@@ -88,6 +88,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public boolean isETEditable{get;set;}//check for display ET question
     public boolean isMPABack{get;set;}//check for display MPA back button
     public boolean isEditCoreparam{get;set;}//used for security
+    public boolean editplatform{get;set;}//used for security
     public boolean isAdditionalPara{get;set;}//used for security
     public boolean editSubSector{get;set;}//used for security
     public boolean editMarketActivityByPL{get;set;}//used for security
@@ -258,6 +259,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         isEditCoreparam=false;
         isAdditionalPara=false;
         editSubSector=false;
+        editplatform = false;
         editMPAByBD=false;
         editCPVByBD=false;
         editETByTPL=false;
@@ -512,11 +514,12 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
 			// Access check for Business Partner user while reactivating the project
     		isEditable = IPM_Utils.overrideAccessForBusinessPartner(project, isEditable);            
             Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
-	        Date dateToCompare = System.today().addMonths(-noOfMonths); 
-	        if(IPM_Coreparameter.IPM_EligibleForReactivation__c && IPM_Coreparameter.IPM_Stopped_Date_Time__c > dateToCompare)
-	        {
-	        	editSubSector = reactivateProjFlag = isEditable; 
-	        }
+            Date dateToCompare = System.today().addMonths(-noOfMonths); 
+            if(IPM_Coreparameter.IPM_EligibleForReactivation__c && IPM_Coreparameter.IPM_Stopped_Date_Time__c > dateToCompare)
+            {
+                editplatform = editSubSector = reactivateProjFlag = isEditable;    
+            }
+            
             answerone_STR=IPM_Coreparameter.IPM_Answer_of_Q1__c;
             answertwo_STR=IPM_Coreparameter.IPM_Answer_of_Q2__c;
             answerthree_STR=IPM_Coreparameter.IPM_Answer_of_Q3__c;
@@ -571,8 +574,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         return options;
     }
         
-    
-    
     /****************************************************************************
     @Description :method to update answer one
     *****************************************************************************/
@@ -705,6 +706,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                     editMarketActivityByPL=true;
                 } 
                 isEditable=true;
+                editplatform = true;
                 editETByTPL=false;
                 if(IPM_ConstantUtils.PHASE_IDEAS.equals(IPM_Coreparameter.IPM_Phase__c)){
                     editSubSector=true;
@@ -724,7 +726,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(isCentralTeam || isBPUser){
             isEditable=true;
             if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) || IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(IPM_Coreparameter.IPM_Project_Type__c) ){
-                editSubSector=true;
+                editSubSector = true;
+                editplatform = true;
             }
             if((IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(IPM_Coreparameter.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(IPM_Coreparameter.IPM_Project_Type__c))) || 
             (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(IPM_Coreparameter.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(IPM_Coreparameter.IPM_Project_Type__c))) || 

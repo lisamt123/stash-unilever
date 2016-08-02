@@ -7,7 +7,7 @@
 */
 var jq= jQuery.noConflict();
 jq(document).ready(function(){
-
+selectDrpdown();
 jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
 
     var selectedCountries=[];
@@ -159,6 +159,7 @@ function scriptPanelLoad(){
         tldOrignalValue = param.value;
         if(newTLDValue !== tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
+            jq('[id$=hiddenDateVal]').val(true) ;
             return false;
         }
         return true;
@@ -173,6 +174,7 @@ function scriptPanelLoad(){
     var selectedDateInputBox = "";
     function setChangedDate()
     {
+        unsaved = false;
         saveChangedTLDjs();
     }
     
@@ -219,11 +221,14 @@ jq('.rollSelectList').on('click', function (e) {
     var dataId = jq(this).prev('.hideDupfield').attr('data-holder');
     holdRolloutsBrand(dataId,valueSelected);
 });
-jq(function(){
+function selectDrpdown(){   
     jq('.rollSelectList option').each(function(){
       var holder = jq(this).parent().prev('.hideDupfield').attr('value');
       if(jq(this).val() === holder){
         jq(this).attr('selected', true);
       }
-    });    
-});
+    });  
+    jq(".ipmAcrdnExpand").hide();
+    jq(".ipmAccordion").find(".pHead span.expico").removeClass("fa-minus");
+    jq(".ipmAccordion").find(".pHead span.expico").addClass("fa-plus");  
+}

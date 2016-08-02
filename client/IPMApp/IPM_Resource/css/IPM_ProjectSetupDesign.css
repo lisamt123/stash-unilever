@@ -1753,5 +1753,5 @@ label.ipmSelect.pos-tool {
 .inputField .tldBox.custom_cal_width {width: 65%;padding-right: 30px;}
 .disp-blk
 {
-display:inline-block;
+display:block;
 }

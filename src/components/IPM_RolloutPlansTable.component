@@ -439,7 +439,7 @@
                 </div>
             </apex:outputPanel>
         </div>
-        <apex:actionFunction name="reRenderPanels" reRender="topButtonPanel,ParentPanel,bottomButtonPanel,hideUser,reRenderPanels,validationErrorMsg" status="loadingStatus"/>
+        <apex:actionFunction name="reRenderPanels" reRender="topButtonPanel,ParentPanel,bottomButtonPanel,hideUser,reRenderPanels,validationErrorMsg" onComplete="selectDrpdown();" status="loadingStatus"/>
      
     </apex:outputPanel>
     

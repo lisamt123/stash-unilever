@@ -1149,15 +1149,43 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <label>IPM Category Picklist</label>
         <picklist>
             <picklistValues>
-                <fullName>Household Care</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Laundry</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair Care</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>false</restrictedPicklist>
@@ -1175,47 +1203,279 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <picklist>
             <controllingField>IPM_Category_Picklist__c</controllingField>
             <picklistValues>
-                <fullName>Cold Refreshment</fullName>
+                <fullName>Engaging Experiences</fullName>
                 <default>false</default>
-                <controllingFieldValues>Household Care</controllingFieldValues>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Goodness of Soy</fullName>
                 <default>false</default>
-                <controllingFieldValues>Household Care</controllingFieldValues>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Gorgeous treat</fullName>
+                <fullName>Delicious Treats</fullName>
                 <default>false</default>
-                <controllingFieldValues>Household Care</controllingFieldValues>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Revitalisation</fullName>
                 <default>false</default>
-                <controllingFieldValues>Household Care</controllingFieldValues>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Unwind</fullName>
+                <fullName>Natural Authenticity</fullName>
                 <default>false</default>
-                <controllingFieldValues>Household Care</controllingFieldValues>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Demystify</fullName>
+                <fullName>Healthy Hydration</fullName>
                 <default>false</default>
-                <controllingFieldValues>Laundry</controllingFieldValues>
+                <controllingFieldValues>Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Elevate</fullName>
+                <fullName>Build Underdeveloped Markets</fullName>
                 <default>false</default>
-                <controllingFieldValues>Laundry</controllingFieldValues>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Inspire</fullName>
+                <fullName>Establish Daily Habit</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Extend Beyond</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Win with strong brands</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay More</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Barriers &amp; trust</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Recruit next gen</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Create relevance</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maille</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expand footprint</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maille boutique</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ben &amp; Jerrys</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cornetto</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fruttare/Solero</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kids (Max/Paddlepop)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Magnum</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Selling Systems Innovation</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Carte D'Or</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cremissimo</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Talenti</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GROM</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Breyers</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Walls Impulse</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Walls Desserts</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Popsicle</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advanced Health</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Anti-Cavity</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Economy</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Freshness</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kids</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Tier</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mid Tier</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Premium</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Super Premium</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Whitening</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complete Care</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expert Brand</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sub-Premium Tier</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Smart Cooking</fullName>
                 <default>false</default>
                 <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Maille</fullName>
+                <fullName>Scratch Cooking</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heat to Eat</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+                <controllingFieldValues>Hair Care</controllingFieldValues>
+                <controllingFieldValues>Household Care</controllingFieldValues>
+                <controllingFieldValues>Laundry</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Northern EU Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Central EU Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southern EU Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North American Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ROW Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+	      <picklistValues>
+                <fullName>Other</fullName>
                 <default>false</default>
                 <controllingFieldValues>Savoury</controllingFieldValues>
             </picklistValues>
@@ -4668,7 +4928,27 @@ OwnerId))</formula>
 	<picklistValues>
             <picklist>IPM_Category_Picklist__c</picklist>
             <values>
+                <fullName>Beverages</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deodorants</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Household Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4676,22 +4956,106 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Category_Platform__c</picklist>
             <values>
-                <fullName>Cold Refreshment</fullName>
+                <fullName>Advanced Health</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Demystify</fullName>
+                <fullName>Anti-Cavity</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Elevate</fullName>
+                <fullName>Barriers %26 trust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ben %26 Jerrys</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breyers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build Underdeveloped Markets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carte D%E2%80%99Or</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Central EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complete Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cornetto</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Create relevance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremissimo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delicious Treats</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engaging Experiences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Establish Daily Habit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expand footprint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expert Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extend Beyond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freshness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fruttare%2FSolero</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GROM</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4699,11 +5063,27 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Gorgeous treat</fullName>
+                <fullName>Healthy Hydration</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Inspire</fullName>
+                <fullName>Heat to Eat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids %28Max%2FPaddlepop%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Magnum</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4711,11 +5091,103 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Maille boutique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mid Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Natural Authenticity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North American Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Northern EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pay More</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Popsicle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ROW Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recruit next gen</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Revitalisation</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Unwind</fullName>
+                <fullName>Scratch Cooking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Selling Systems Innovation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Smart Cooking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southern EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sub-Premium Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Super Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Talenti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walls Desserts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walls Impulse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whitening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win with strong brands</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Other</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

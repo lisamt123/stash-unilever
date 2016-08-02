@@ -561,7 +561,7 @@
                                                     <apex:outputPanel >
                                                    <div class="info" title="">
                                                         <apex:inputField value="{!project.IPM_Category_Picklist__c}"  style="display:none" >  </apex:inputField> 
-                                                        <apex:inputField value="{!project.IPM_Category_Platform__c}"  >    </apex:inputField>  
+                                                        <apex:inputField value="{!project.IPM_Category_Platform__c}" rendered="{!editplatform}" >    </apex:inputField>  
                                                     </div>   
                                                       </apex:outputPanel>                       
                                                 </apex:actionRegion>
