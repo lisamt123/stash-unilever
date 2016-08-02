@@ -87,6 +87,9 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 
             if(Trigger.isUpdate) 
             { 
+            // By passing trigger call for copy over snapshot details  
+            if(((IPM_Financial__c)Trigger.Old[0]).Charter_Approved__c != ((IPM_Financial__c)Trigger.New[0]).Charter_Approved__c || ((IPM_Financial__c)Trigger.Old[0]).Contract_Approved__c != ((IPM_Financial__c)Trigger.New[0]).Contract_Approved__c || 
+              ((IPM_Financial__c)Trigger.Old[0]).MR_Approved__c != ((IPM_Financial__c)Trigger.New[0]).MR_Approved__c || ((IPM_Financial__c)Trigger.Old[0]).MD_Approved__c != ((IPM_Financial__c)Trigger.New[0]).MD_Approved__c){
             	Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
             	
             	Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
