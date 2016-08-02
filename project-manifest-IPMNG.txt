@@ -1,4 +1,3 @@
-
 src
 src/classes
 src/classes/AbstractStandardSetExtension.cls
@@ -57,6 +56,8 @@ src/classes/IPM_Coreparameters.cls
 src/classes/IPM_Coreparameters.cls-meta.xml
 src/classes/IPM_CountryHandler.cls
 src/classes/IPM_CountryHandler.cls-meta.xml
+src/classes/IPM_CreateProject.cls
+src/classes/IPM_CreateProject.cls-meta.xml
 src/classes/IPM_CreateRolloutProjects.cls
 src/classes/IPM_CreateRolloutProjects.cls-meta.xml
 src/classes/IPM_DueDateNotificationBatch_Test.cls
@@ -69,12 +70,18 @@ src/classes/IPM_EcoDesignSection_Test.cls
 src/classes/IPM_EcoDesignSection_Test.cls-meta.xml
 src/classes/IPM_ExportDataController.cls
 src/classes/IPM_ExportDataController.cls-meta.xml
+src/classes/IPM_ExportTeamMembersReportCntrl_Test.cls
+src/classes/IPM_ExportTeamMembersReportCntrl_Test.cls-meta.xml
+src/classes/IPM_ExportTeamMembersReportController.cls
+src/classes/IPM_ExportTeamMembersReportController.cls-meta.xml
 src/classes/IPM_FinGateController.cls
 src/classes/IPM_FinGateController.cls-meta.xml
 src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
 src/classes/IPM_FinancialControllerRegional_Test.cls
 src/classes/IPM_FinancialControllerRegional_Test.cls-meta.xml
+src/classes/IPM_FinancialControllerSoftVldtns_Test.cls
+src/classes/IPM_FinancialControllerSoftVldtns_Test.cls-meta.xml
 src/classes/IPM_FinancialController_Test.cls
 src/classes/IPM_FinancialController_Test.cls-meta.xml
 src/classes/IPM_FinancialHandler.cls
@@ -95,6 +102,8 @@ src/classes/IPM_FunnelController_Test.cls
 src/classes/IPM_FunnelController_Test.cls-meta.xml
 src/classes/IPM_GateDocumentController.cls
 src/classes/IPM_GateDocumentController.cls-meta.xml
+src/classes/IPM_GateDocumentController_Test.cls
+src/classes/IPM_GateDocumentController_Test.cls-meta.xml
 src/classes/IPM_GateDocumentRiskManagement.cls
 src/classes/IPM_GateDocumentRiskManagement.cls-meta.xml
 src/classes/IPM_Gate_RollOuts_Controller.cls
@@ -179,6 +188,8 @@ src/classes/IPM_ProjectOverviewCtrl.cls
 src/classes/IPM_ProjectOverviewCtrl.cls-meta.xml
 src/classes/IPM_ProjectOverviewCtrl_Test.cls
 src/classes/IPM_ProjectOverviewCtrl_Test.cls-meta.xml
+src/classes/IPM_ProjectOverviewCtrol_Test.cls
+src/classes/IPM_ProjectOverviewCtrol_Test.cls-meta.xml
 src/classes/IPM_ProjectQuestionnaireHelper.cls
 src/classes/IPM_ProjectQuestionnaireHelper.cls-meta.xml
 src/classes/IPM_ProjectRolloutHandler.cls
@@ -229,6 +240,8 @@ src/classes/IPM_Taskview.cls
 src/classes/IPM_Taskview.cls-meta.xml
 src/classes/IPM_Team_Assignment_Controller.cls
 src/classes/IPM_Team_Assignment_Controller.cls-meta.xml
+src/classes/IPM_Team_Assignment_Controller_Test.cls
+src/classes/IPM_Team_Assignment_Controller_Test.cls-meta.xml
 src/classes/IPM_TestFactory_Helper.cls
 src/classes/IPM_TestFactory_Helper.cls-meta.xml
 src/classes/IPM_UpdateBETOnProject_Queueable.cls
@@ -260,6 +273,8 @@ src/components/IPM_FinancialTabContent.component
 src/components/IPM_FinancialTabContent.component-meta.xml
 src/components/IPM_FinancialTable.component
 src/components/IPM_FinancialTable.component-meta.xml
+src/components/IPM_Financial_Action_Standards_Inverse.component
+src/components/IPM_Financial_Action_Standards_Inverse.component-meta.xml
 src/components/IPM_GateKeeperList.component
 src/components/IPM_GateKeeperList.component-meta.xml
 src/components/IPM_Gate_RollOuts.component
@@ -413,6 +428,8 @@ src/customMetadata/IPM_Red_Yellow_Soft_Validation_Setting.InnoReno_PostCharter_A
 src/customMetadata/IPM_Red_Yellow_Soft_Validation_Setting.InnoReno_PostCharter_AboveThresh_MPA2.md
 src/customMetadata/IPM_Red_Yellow_Soft_Validation_Setting.InnoReno_PostCharter_BelowThresh.md
 src/customMetadata/IPM_Red_Yellow_Soft_Validation_Setting.Oper_IdeasPostCharter_None.md
+src/customPermissions
+src/customPermissions/IPM_TeamMembers_ExtractDownloadable.customPermission
 src/email
 src/email/IPM_Emails
 src/email/IPM_Emails/IPM_Due_Date_in_past_For_PLE.email
@@ -438,8 +455,13 @@ src/email/IPM_Emails/IPM_send_email_when_current_project_is_stopped_in_ideas_pha
 src/email/IPM_Emails/IPM_send_email_when_project_reactivated.email
 src/email/IPM_Emails/IPM_send_email_when_project_reactivated.email-meta.xml
 src/flows
+src/flows/IPM_Financial_SnapShot-7.flow
+src/flows/IPM_Financial_SnapShot-8.flow
+src/flows/IPM_Financial_Year_SnapShot-6.flow
 src/flows/IPM_Notify_Local_Rollout_Project_Created-15.flow
 src/flows/IPM_Notify_Regional_Rollout_Project_Created-13.flow
+src/flows/IPM_Notify_chatter_post_after_Bosscard_Inactivity_of_175_days-3.flow
+src/flows/IPM_Notify_chatter_post_after_Bosscard_inactivity_of_30_days-9.flow
 src/flows/IPM_Notify_when_project_is_stopped-2.flow
 src/flows/IPM_Notify_when_project_is_stopped-3.flow
 src/flows/IPM_email_alert_on_stopping_projects-1.flow
@@ -478,6 +500,7 @@ src/objects/IPM_Project_GKM_To_Phase_Matrix__mdt.object
 src/objects/IPM_Project_Metadata__mdt.object
 src/objects/IPM_Project_Resource__c.object
 src/objects/IPM_Project_Rollout__c.object
+src/objects/IPM_Project_Template__c.object
 src/objects/IPM_Project_Type__c.object
 src/objects/IPM_Project__c.object
 src/objects/IPM_Questionnaire__c.object
@@ -503,6 +526,8 @@ src/pages/IPM_EditProject.page
 src/pages/IPM_EditProject.page-meta.xml
 src/pages/IPM_EditTask.page
 src/pages/IPM_EditTask.page-meta.xml
+src/pages/IPM_ExportTeamMembersReport.page
+src/pages/IPM_ExportTeamMembersReport.page-meta.xml
 src/pages/IPM_ExportToExcel.page
 src/pages/IPM_ExportToExcel.page-meta.xml
 src/pages/IPM_Financial.page
@@ -519,6 +544,8 @@ src/pages/IPM_ProjectSearchPage.page
 src/pages/IPM_ProjectSearchPage.page-meta.xml
 src/pages/IPM_ProjectSetUpView.page
 src/pages/IPM_ProjectSetUpView.page-meta.xml
+src/pages/IPM_Resource_Allocation.page
+src/pages/IPM_Resource_Allocation.page-meta.xml
 src/pages/IPM_RolloutPlansAdd.page
 src/pages/IPM_RolloutPlansAdd.page-meta.xml
 src/pages/IPM_RolloutPlansRegional.page
@@ -537,12 +564,14 @@ src/reportTypes
 src/reportTypes/BB_BD_Report.reportType
 src/reportTypes/BETs_with_Lead_IPM.reportType
 src/reportTypes/IPM_Projects_with_IPM_Project_Documents_with_IPM_Project_Document_Sections.reportType
+src/reportTypes/IPM_Team_Members.reportType
 src/reportTypes/IPM_with_BET.reportType
 src/reportTypes/OTIF_Report.reportType
 src/reports
 src/reports/IPM_Reports
 src/reports/IPM_Reports/BD_BB_Alignment_Report.report
 src/reports/IPM_Reports/IPM_Sustainability_Report.report
+src/reports/IPM_Reports/IPM_Team_Members.report
 src/reports/IPM_Reports/OTIF_Report.report
 src/reports/IPM_Reports/Project_Parameters.report
 src/sharingRules
@@ -562,4 +591,3 @@ src/workflows/IPM_Project_Resource__c.workflow
 src/workflows/IPM_Project_Rollout__c.workflow
 src/workflows/IPM_Project__c.workflow
 src/workflows/IPM_Questionnaire__c.workflow
-
