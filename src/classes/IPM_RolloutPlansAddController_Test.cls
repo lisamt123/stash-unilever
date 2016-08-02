@@ -13,28 +13,29 @@
 @isTest
 private class IPM_RolloutPlansAddController_Test
 {
-    private static list<IPM_Project_Rollout__c> regionalRolloutList;
-    private static list<IPM_Project_Rollout__c> localRolloutList;
-    private static  String projectId;
-   
-    private static MDO_Geography__c goegraphiesCluster;
-    private static MDO_Geography__c goegraphiesMCO;
-    
-    private static list<IPM_Project__c> projectList;
-    
-    private static IPM_Country__c tempCountry;
-    private static list<IPM_Company_Card__c> companyCardList;
-  
-    private static integer dmlLimit;
-    private static MDO_Geography__c mdoAFR;
-    private static MDO_Geography__c mdoLA;
-    private static IPM_MCO_Short_Names__c shortName;
-    private static IPM_Market_Cluster_Short_Names__c mcoShortName;
-    private static List<IPM_Project__c> regionalProjectsFR;
-    private static List<IPM_Project__c> regionalProjects;
-    private static PageReference pageRef= Page.ipm_rolloutplansadd;
-    private static PageReference pageRefRegional= Page.ipm_rolloutplansregional;
-    private static PageReference expectedPageRef ;
+	private static list<IPM_Project_Rollout__c> regionalRolloutList;
+	private static list<IPM_Project_Rollout__c> localRolloutList;
+	private static  String projectId;
+
+	private static MDO_Geography__c goegraphiesCluster;
+	private static MDO_Geography__c goegraphiesMCO;
+	
+	private static list<IPM_Project__c> projectList;
+	
+	private static IPM_Country__c tempCountry;
+	private static list<IPM_Company_Card__c> companyCardList;
+
+	private static integer dmlLimit;
+	private static MDO_Geography__c mdoAFR;
+	private static MDO_Geography__c mdoLA;
+	private static IPM_MCO_Short_Names__c shortName;
+	private static IPM_Market_Cluster_Short_Names__c mcoShortName;
+	private static List<IPM_Project__c> regionalProjectsFR;
+	private static List<IPM_Project__c> regionalProjects;
+	private static ApexPages.Message[] pageMessages;
+	private static PageReference pageRef= Page.ipm_rolloutplansadd;
+	private static PageReference pageRefRegional= Page.ipm_rolloutplansregional;
+	private static PageReference expectedPageRef ;
 	private static PageReference actualPageRef;   
     
     private static final string GLOBAL_PL = 'GLOBAL_PL';
@@ -88,70 +89,70 @@ private class IPM_RolloutPlansAddController_Test
     * Constructor logic for the controller is tested for  projects (Searching rollouts, Adding rollouts, Processing rollouts). 
     * Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects                            
     ********************************************************************************************************************************************/
-    private static  void GlobalProjRolloutAdd(Boolean isActive ,Boolean isRegionalProj ,Boolean isFeasibilityProject) 
-    {
-       IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
-       IPM_RolloutPlansAddController irp2 ;
+	private static  void GlobalProjRolloutAdd(Boolean isActive ,Boolean isRegionalProj ,Boolean isFeasibilityProject, Boolean isArchProcess) 
+	{
+		IPM_RolloutPlansAddController irp = new IPM_RolloutPlansAddController();
+		IPM_RolloutPlansAddController irp2 ;
 
-       
-	   if(!isRegionalProj)  
-        { 
-          // creating multiple instances of   IPM_RolloutPlansAddController
-          irp2= new IPM_RolloutPlansAddController();
-        } 
-       
-       // setting values of GeographyWrapper parameters
-       IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
-       Set<String> projectNameSet = new Set<String>{TestComments1,TestComments2,TestComments3};
-       List<Id> globalProjectIdList = new List<Id>();
-       Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
-       User globalProjectLeader = null;
-       User regionalProjectLeader = null;  
-        
-       // getting project leaders  for global ,local and regional
-       List<User> userList = [Select Id,Name,lastName from User where LastName in(:GLOBAL_PL,:REGIONAL_PL,:LOCAL_PL)];
-        
-       for(User lUser  :userList)
-        {
-            if(lUser.lastName == GLOBAL_PL)
-            {
-                globalProjectLeader = lUser;
-            }
-            if(lUser.lastName == REGIONAL_PL)
-            {
-                regionalProjectLeader = lUser;
-            }
-        }
-        Test.startTest(); 
-        System.RunAs(globalProjectLeader)
-        {
-          
-            if(isRegionalProj)
-            {
-            	// creating projects as a global project leader
-            	projectList=IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader);
-            	if(isFeasibilityProject)
-            	{
-            	   for(IPM_Project__c proj : projectList )
-            	    {
-                        proj.IPM_phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
-                    } 
-            	}
-            	
-            	insert  projectList;
-            	projectMap = new Map<Id,IPM_Project__c>(projectList);  
-            }
-            else 
-            {
-			    projectMap =  new Map<Id,IPM_Project__c>([Select Id,IPM_Phase__c,IPMProject_Span__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
-                                                    (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
-                                                    (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet]);
-                projectList=projectMap.values();
-            
-            }
-            
-            regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
-            insert regionalRolloutList;
+		
+		if(isRegionalProj)  
+		{ 
+			// creating multiple instances of   IPM_RolloutPlansAddController
+			irp2= new IPM_RolloutPlansAddController();
+		} 
+		
+		// setting values of GeographyWrapper parameters
+		IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
+		Set<String> projectNameSet = new Set<String>{TestComments1,TestComments2,TestComments3};
+		List<Id> globalProjectIdList = new List<Id>();
+		Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
+		User globalProjectLeader = null;
+		User regionalProjectLeader = null;  
+		
+		// getting project leaders  for global ,local and regional
+		List<User> userList = [Select Id,Name,lastName from User where LastName in(:GLOBAL_PL,:REGIONAL_PL,:LOCAL_PL)];
+		
+		for(User lUser  :userList)
+		{
+			if(lUser.lastName == GLOBAL_PL)
+			{
+				globalProjectLeader = lUser;
+			}
+			if(lUser.lastName == REGIONAL_PL)
+			{
+				regionalProjectLeader = lUser;
+			}
+		}
+		Test.startTest(); 
+		System.RunAs(globalProjectLeader)
+		{
+			
+			if(isRegionalProj)
+			{
+				// creating projects as a global project leader
+				projectList=IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader);
+				if(isFeasibilityProject)
+				{
+					for(IPM_Project__c proj : projectList )
+					{
+						proj.IPM_phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+					} 
+				}
+				
+				insert  projectList;
+				projectMap = new Map<Id,IPM_Project__c>(projectList);  
+			}
+			else 
+			{
+				projectMap =  new Map<Id,IPM_Project__c>([Select Id,IPM_Phase__c,IPMProject_Span__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
+				(Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
+				(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet]);
+				projectList=projectMap.values();
+				
+			}
+			//Creating Rollouts
+			regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
+			insert regionalRolloutList;
             
             dmlLimit = Limits.getDMLStatements();
 
@@ -186,8 +187,9 @@ private class IPM_RolloutPlansAddController_Test
                }
             
 			}
-         
-           insert countryList;
+			IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
+			insert countryList;
+			IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
                      
            countryList = [SELECT Id,Name,MDO_Geography__c,Country_Code__c,Country_Name__c,Local_Rollout__c,Market_Cluster_Code__c,
                 Market_Cluster_Name__c,MCO_Code__c,MCO_Name__c,Project_Country__c,IPM_Project__c, IPM_Project__r.IPM_Market_Type__c, IPM_Regional_Project__c,
@@ -360,7 +362,9 @@ private class IPM_RolloutPlansAddController_Test
                     countryList.add(tmpCountry);
             }
           
-          insert countryList;
+			IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
+			insert countryList;
+			IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
           List<IPM_Project_Rollout__c> rollouLst = [Select id,IPM_Rollout_Project__c, (Select id,Country_Code__c,Project_Country__c,isActive__c from IPM_Countries_Local__r ) from IPM_Project_Rollout__c Where id =: regionalRolloutList[0].id];
           
           // setting controller parameters
@@ -386,8 +390,8 @@ private class IPM_RolloutPlansAddController_Test
           
           dmlLimit = Limits.getDMLStatements();
 
-          if(!isRegionalProj)
-          {
+		if(isRegionalProj)
+		{   
 			   // setting controller parameters
 			  irp2.project=projectList[0];
 			  irp2.globalCountries=GLOBAL_COUNTRIES;
@@ -459,6 +463,57 @@ private class IPM_RolloutPlansAddController_Test
 			  ApexPages.currentPage().getParameters().put(ID,null);
 			  Test.setCurrentPageReference(pageRef);
 			  irp.cancel();
+			if(isArchProcess)
+			{
+				//Archieving Regional Projects      
+				IPM_Project__c regProjArc = regionalProjects[0];
+				regProjArc.Is_Archieved__c = true;
+				IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+				update regProjArc;
+				IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
+				irp.checkLocalProjectAssociatedOrNot();
+				//==
+				// setting controller parameters
+				irp.project=projectList[0];
+				irp.globalCountries=GLOBAL_COUNTRIES;
+				irp.regionalMco=REGIONAL_MCO;
+				irp.regionalCountry=REGIONAL_COUNTRY;
+				irp.regionalNoRoll=REGIONAL_NOROLL;
+				irp.globalUnselectedCountries = GLOBAL_UNSELECTED_COUNTRIES;
+				irp.regionalUnselectedMco = REGIONAL_UNSELECTED_MCO; //unselected mco country code
+				irp.regionalUnselectedNoRoll = REGIONAL_UNSELECTED_NOROLL;
+				irp.selectedCountry = AFRICA;
+				irp.errorMessage=ERROR_MESSAGE;
+				irp.setCountryNoRolls = new Set<String>{CONGO,CHAD}; //it is made from  regionalNoRoll
+				irp.setCountryCodesGlobal= new Set<String>{AG_BR_AO};  // country iso code is added in the controller
+				irp.setCountryCodesGlobalUnselected= new Set<String>{KW,NB}; //globalUnselectedCountries is put into this
+				irp.setCountryCodesMCOsUnselected = new Set<String>{ASIA,EUROPE}; //regionalUnselectedMco is put into this 
+				irp.setCountryCodesMCOs =  new Set<string>{AFRICA_EMERGING_MARKETS,OTHER_SOUTH_ASIA}; // regionalMco is put into this
+				irp.setCountryCodesUnselected = new Set<String>{KW,NB}; // regionalUselectedCountry is put into this
+				irp.setCountryNoRollsUnselected = new Set<String>{CB}; //regionalUnselectedNoRoll is put into this
+				irp.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
+
+				geoWrp.code=LV4_GEO0085;
+				geoWrp.name=AFRICA_EMERGING_MARKETS;
+				geoWrp.parentCode=GEO0060;
+				geoWrp.rolloutStatus=With_MCO;
+				geoWrp.key=true;
+				geoWrp.selected=true;
+				geoWrp.clusterDisabled=true;
+				geoWrp.mcoDisabled=true;
+				geoWrp.countryDisabled =true;
+				geoWrp.noRolloutDisabled=true;
+				
+				IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
+				update countryList;
+				IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
+				
+				List<IPM_Project_Rollout__c> rollouLstArc = [Select id,IPM_Rollout_Project__c, (Select id,Country_Code__c,Project_Country__c,isActive__c from IPM_Countries_Local__r ) from IPM_Project_Rollout__c Where id =: regionalRolloutList[0].id];
+				
+				// setting controller parameters
+				irp.lstClusterWrappers.add(geoWrp);
+				irp.generateRollouts();
+			}  
 			  irp.redirectPage();    
 				
 		  }
@@ -541,48 +596,205 @@ private class IPM_RolloutPlansAddController_Test
 			IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader}); 
         
 		}   
-        
-        System.runAs(globalProjectLeader)
-        {   
-            projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
-            insert projectList;
-            
-            set<Id> projId = new set<Id>();
-            for(IPM_Project__c proj : projectList)
-            {
-                projId.add(proj.id);   
-            }
-            List<IPM_Project__c> projectAssertList = [Select Id,Name from IPM_Project__c where id in : projId];
-            system.assertEquals(3,projectAssertList.size(),'count of Project inserted is not 3'); 
-        }
-        
-        Test.StopTest();  
-    
+		
+		System.runAs(globalProjectLeader)
+		{   
+			projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
+			insert projectList;
+			
+			set<Id> projId = new set<Id>();
+			for(IPM_Project__c proj : projectList)
+			{
+				projId.add(proj.id);   
+			}
+			List<IPM_Project__c> projectAssertList = [Select Id,Name from IPM_Project__c where id in : projId];
+			system.assertEquals(3,projectAssertList.size(),'count of Project inserted is not 3'); 
+		}
+		
+		Test.StopTest();  
+		
 	}
-  
 
 
+	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+	* @name :  testGlobalProjRolloutAdd
+	***************************************************************************************/
+	private static testmethod void testGlobalProjRolloutAdd()
+	{
+		
+		GlobalProjRolloutAdd(true,false,false,false);
+		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
+		
+	} 
+	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation for regional project
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+	* Parameters are set to null
+	* @name :  testRegionalProjRolloutAddNullValues
+	***************************************************************************************/
+	private static testmethod void testRegionalProjRolloutAddNullValues()
+	{  
+		IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
+		IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
+		
+		User regionalProjectLeader = null;  
 
-    /*************************************************************************************
-    * @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
-    * Constructor logic for the controller is tested for regional projects (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
-    * @name :  testRegionalProjRolloutAdd2
-    ***************************************************************************************/
-    private static testmethod void testRegionalProjRolloutAdd2()
-    {
-      GlobalProjRolloutAdd(true,true,false); 
-      System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
-    }
-    
-    
-    /*************************************************************************************
-    * @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
-    * Constructor logic for the controller is tested for  regional projects (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
-    * @name :  testRegionalProjRolloutAdd3
-    ***************************************************************************************/
-    private static testmethod void testRegionalProjRolloutAdd3()
-    {
-      GlobalProjRolloutAdd(true,true,true);
-      System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
-    }
+		List<User> userList = [Select Id,Name,lastName from User where LastName in(:GLOBAL_PL,:REGIONAL_PL,:LOCAL_PL)];
+		
+		for(User lUser  :userList)
+		{
+			if(lUser.lastName == REGIONAL_PL)
+			{
+				regionalProjectLeader = lUser;
+			}
+		}
+		test.StartTest();
+		List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
+		
+		
+		regionalProjects= IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader); 
+		insert regionalProjects;
+		
+		List<id> regionalProjId = new List<Id>();
+		for(IPM_Project__c regionalProject : regionalProjects)
+		{
+			regionalProjId.add(regionalProject.id);
+		}
+		
+		List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
+		
+		for(MDO_Geography__c geoList : mdoCountryList)
+		{
+			tempCountry = new  IPM_Country__c(MDO_Geography__c=geoList.Id,IPM_Regional_Project__c=regionalProjects[0].id);    
+			countryList.add(tempCountry);
+		}
+		
+		insert countryList;
+		
+		countryList = [SELECT Id,Name,MDO_Geography__c,Country_Code__c,Country_Name__c,Local_Rollout__c,Market_Cluster_Code__c,
+		Market_Cluster_Name__c,MCO_Code__c,MCO_Name__c,Project_Country__c,IPM_Project__c, IPM_Project__r.IPM_Market_Type__c, IPM_Regional_Project__c,
+		IPM_Regional_Project__r.IPM_Market_Type__c, IPM_Local_Project__c, IPM_Local_Project__r.IPM_Market_Type__c
+		FROM IPM_Country__c WHERE id IN : countryList];
+		
+		
+		update countryList;
+		
+		System.RunAs(regionalProjectLeader)
+		{    
+			Test.setCurrentPageReference(pageRef);
+			ApexPages.currentPage().getParameters().put(ID,regionalProjects[0].Id);
+
+			irp.globalCountries='KK,WW';
+			irp.regionalMco='WESR EURO,SOUTH AMERICA';
+			irp.regionalCountry=REGIONAL_COUNTRY;
+			irp.regionalNoRoll=REGIONAL_NOROLL;
+			irp.globalUnselectedCountries = GLOBAL_UNSELECTED_COUNTRIES;
+			irp.regionalUnselectedMco = REGIONAL_UNSELECTED_MCO; //unselected mco country code
+			irp.regionalUnselectedNoRoll = REGIONAL_UNSELECTED_NOROLL;
+			
+			irp.errorMessage=ERROR_MESSAGE;
+			irp.isEditable=true;
+			irp.disableMCO = true; 
+			irp.selectedCountry = 'Australia';
+			
+			irp.setCountryNoRolls = new Set<String>{CONGO,CHAD}; //it is made from  regionalNoRoll
+			irp.setCountryCodesGlobal= new Set<String>{AG_BR_AO};  // country iso code is added in the controller
+			irp.setCountryCodesGlobalUnselected= new Set<String>{KW,NB}; //globalUnselectedCountries is put into this
+			
+			irp.setCountryCodesMCOsUnselected = new Set<String>{ASIA,EUROPE}; //regionalUnselectedMco is put into this 
+			irp.setCountryCodesMCOs =  new Set<string>{AFRICA_EMERGING_MARKETS,OTHER_SOUTH_ASIA}; // regionalMco is put into this
+			irp.setCountryCodesUnselected = new Set<String>{KW,NB}; // regionalUselectedCountry is put into this
+			irp.setCountryNoRollsUnselected = new Set<String>{CB}; //regionalUnselectedNoRoll is put into this
+			irp.setCountryCodes = new Set<String>{'UV'}; //regionalCountry put into this 
+			
+			geoWrp.code=LV4_GEO0085;
+			geoWrp.name=AFRICA_EMERGING_MARKETS;
+			geoWrp.parentCode=GEO0060;
+			geoWrp.rolloutStatus=With_MCO;
+			geoWrp.key=true;
+			geoWrp.selected=true;
+			geoWrp.clusterDisabled=true;
+			geoWrp.mcoDisabled=true;
+			geoWrp.countryDisabled =true;
+			geoWrp.noRolloutDisabled=true;
+			
+			irp.changeMCO();
+
+			dmlLimit = Limits.getDMLStatements();
+
+			ApexPages.currentPage().getParameters().put(ID,null);
+			Test.setCurrentPageReference(pageRef);
+			ApexPages.currentPage().getParameters().put(ID,null);
+
+			irp.cancel();
+			irp.redirectPage();
+			irp.changeMCO();
+			irp.project=regionalProjects[0];
+			irp.project.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+			irp.project.IPM_phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+			irp.generateRollouts();
+			
+			irp.setCountryCodesGlobal=null;
+			irp.setCountryCodesGlobalUnselected=null;
+			irp.setCountryCodesMCOs= null;
+			irp.setCountryCodesMCOsUnselected =null;
+			irp.setCountryCodes = null;
+			irp.setCountryCodesUnselected =null;
+			irp.setCountryNoRolls =null;
+			irp.setCountryNoRollsUnselected =null;
+			irp.processCountryCodeLists();
+			Test.setCurrentPageReference(pageRefRegional);
+			ApexPages.currentPage().getParameters().put(ID,null);
+
+			
+			PageReference rolloutPlans = Page.IPM_RolloutPlans;
+			rolloutPlans.getParameters().put(IPM_ConstantUtils.SF_ID, null); 
+			rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, IPM_ConstantUtils.EDITMODE_FALSE );               
+			irp.cancel();
+			irp.redirectPage();
+			
+			PageReference pRefconst = new PageReference(IPM_ConstantUtils.REDIRECT_URL_FOR_ROLLOUT_REDIRECT);
+			Test.setCurrentPageReference(pRefconst);
+			
+			List<IPM_Project__c> regionaToLocalProject = IPM_TestFactory_Helper.initiateRegionalProjectPhaseChange(regionalProjId,regionalProjectLeader);
+			update regionaToLocalProject;
+
+			test.StopTest();
+			pageMessages = ApexPages.getMessages();
+			System.assertEquals(true, pageMessages.isEmpty(),'Error messages generated');
+		}
+	}
+	
+	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+	* @name :  testGlobalProjRolloutAdd2
+	***************************************************************************************/
+	private static testmethod void testGlobalProjRolloutAdd2()
+	{
+		GlobalProjRolloutAdd(false,false,false,false);
+		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG); 
+	}
+	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts) and Archieved functionality
+	* @name :  testGlobalProjRolloutAdd3
+	***************************************************************************************/
+	private static testmethod void testGlobalProjRolloutAdd3()
+	{
+		GlobalProjRolloutAdd(false,false,false,true);
+		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
+	}
+	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
+	* Constructor logic for the controller is tested for regional projects (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+	* @name :  testRegionalProjRolloutAdd2
+	***************************************************************************************/
+	private static testmethod void testRegionalProjRolloutAdd2()
+	{
+		GlobalProjRolloutAdd(true,true,false,false); 
+		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
+	}
 }
