@@ -60,6 +60,7 @@ public class AF_OOPS_SelectionController_Test
 			ApexPages.currentPage().getParameters().put('fy',currYear);   
 			//Instantiate AF_OOPS_SelectionController  Class
 			AF_OOPS_SelectionController selCtrl=new AF_OOPS_SelectionController();
+			selCtrl.isAgencyFlag=true;
 			Test.stopTest();
 		}
 	}

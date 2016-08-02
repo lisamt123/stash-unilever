@@ -69,10 +69,6 @@ global with sharing class AF_OopEstimateRemote {
 		orderedRow.sort();
 		agencyNameMap = AF_BrandEstimateRemote.getAllAgencyEntities(agencyId);
 		ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName();
-		List<String> agenciesToSelect = AF_BrandEstimateRemote.getAgencyEntities(agencyId, oopsActualId, AF_Constants.SOBJECT_OOPSACTUAL_APINAME); 
-		// These are the Agency Entities which are not created as Agency Estimates.
-		List<String> ulEntitiesToSelect = AF_BrandEstimateRemote.getUnileverEntities(oopsActualId, AF_Constants.SOBJECT_OOPSACTUAL_APINAME); 
-		// These are those Unilever Entities which are not created as a record for Agency Estimates.
 		colDetail = ''; //Column variable which gets added to the map finally.
 		rowDetail = ''; //Row variable which gets added to the map finally.
 		String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
