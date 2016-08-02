@@ -24,7 +24,13 @@
    </div>
    <div>             
 
-
+    <script>
+    Function showPanelsDiv(){
+    
+    alert('called');
+    }
+    
+    </script>
 
 
 
@@ -104,13 +110,16 @@ alert('ssss');
         <div class="form-group">
           <label class="col-lg-2" >Plant Code  </label>
           <div class="col-lg-4"> 
-              <apex:selectList value="{!lossTree.Plant_Code__c}" styleclass="form-control" size="1">
-                <apex:selectOptions value="{!listPlantCodes}"/>
+              <apex:selectList value="{!lossTree.Plant_Code__c}" styleclass="form-control" size="1"  >
+               <apex:actionSupport event="onchange" action="{!showPanelsDiv}"/>
+                <apex:selectOptions value="{!listPlantCodes}" />
               </apex:selectList>
          <!-- <apex:inputField value="{!lossTree.Plant_Code__c}" styleclass="form-control"/> -->                                              
                          
           </div>
         </div>
+        
+        <apex:outputpanel rendered="{!showingPanel}">Tolerance level  for {!code1} = {!plantCode}</apex:outputpanel>
         
         
         
@@ -158,6 +167,8 @@ alert('ssss');
           
        </div>
 
+
+
            <apex:outputPanel id="frm">
           <apex:outputPanel id="msg">
           <apex:outputPanel rendered="{!if(message!=null,true,false)}"><p style="color:red">{!message}</p></apex:outputPanel>
@@ -167,6 +178,9 @@ alert('ssss');
            <div class="panel panel-primary" > 
            <div class = "panel-heading">Loss Tree Details</div>   
             <div class="panel-body">
+            
+            
+            
             
            <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c='Output Reliability',true,false)}"  >
              <div class="table-responsive" >
@@ -181,13 +195,15 @@ alert('ssss');
                             <th>Week</th>  
                             <th>Planned Production</th>
                             <th>Actual Production</th>
-                            <th>ABS Loss Value</th>
+                            <th>ABS value</th>
                             <th>OR%</th>
+                            
                             <th class="col-md-2">Loss Level 1</th>
                             <th class="col-md-2">Loss Level 2</th>
                             <th class="col-md-2">Loss Level 3</th>
                             <th>Remarks</th>
                             <th>Reset</th>
+                            <th>created date</th>
                             
                         </tr>  
                         </thead>  
@@ -207,11 +223,13 @@ alert('ssss');
                                     <td>{!w.wlt.OR_Loss_Value__c}</td>
                                     
                                     <td>{!w.wlt.OR__c}</td>
+                                    
                                     <td><apex:selectList value="{!w.selectbox1}" style="height:30px" size="1" onchange="change1213('{!w.i}',this);" id="or1" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
                                     <td><apex:selectList value="{!w.selectbox2}" size="1" style="height:30px" onchange="change2123('{!w.i}',this);" id="or2" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
                                     <td><apex:selectList value="{!w.selectbox3}" size="1" style="height:30px" onchange="change3132('{!w.i}',this);" id="or3" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>
                                     <td><apex:inputtext value="{!w.Remarks}" id="rem"/></td>
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}"  value="Reset" onclick="resetAll('{!w.i}');" rerender="resetor"/>  </td>
+                                    <td>{!w.wlt.InsertedDate__c}</td>
                                 </tr>
                             </apex:repeat>
                             
@@ -255,11 +273,12 @@ alert('ssss');
                             <th>Planned Recipt</th>
                             <th>Actual receipt</th>
                             
-                            <th>ABS Loss Value</th>
+                            <th>ABS value</th>
                             <th class="col-md-2">Loss Level 1</th>
                             <th class="col-md-2">Loss Level 2</th>
                             <th>Remarks</th>
                             <th> Reset </th>
+                            <th>Created Date</th>
                         </tr>  
                         </thead>  
                         <tbody> 
@@ -281,6 +300,7 @@ alert('ssss');
                                     <td><apex:selectList value="{!w.selectbox2}" size="1" onchange="change21('{!w.i}',this);" id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
                                     <td><apex:inputtext value="{!w.Remarks}" id="rem1"/></td>
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" rerender="resetm"/>  </td>
+                                    <td>{!w.wlt.InsertedDate__c}</td>
                                 </tr>
                                 
                             </apex:repeat>
@@ -304,13 +324,14 @@ alert('ssss');
                             <th>Week</th>  
                             <th>Planned Dispatch</th>
                             <th>Actual Dispatch</th>
-                            <th>ABS Loss Value</th>
+                            <th>ABS value</th>
                             <th>DC%</th>
                             <th class="col-md-2">Loss Level 1</th>
                             <th class="col-md-2">Loss Level 2</th>
                             <th class="col-md-2">Loss Level 3</th>
                             <th>Remarks</th>
                             <th> Reset </th>
+                            <th>Created Date</th>
                         </tr>  
                         </thead>  
                         <tbody> 
@@ -333,6 +354,7 @@ alert('ssss');
                                     <td><apex:selectList value="{!w.selectbox3}" size="1" onchange="change3132('{!w.i}',this);" id="dc3"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>-->
                                     <td><apex:inputtext value="{!w.Remarks}" id="rem2"/></td>
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" reRender="ds"/>  </td>
+                                    <td>{!w.wlt.InsertedDate__c}</td>
                                 </tr>
                             </apex:repeat>
                         </tbody>
@@ -452,24 +474,31 @@ var losstype = j$('[id$="lossT"]').val();
         "paging":   true,
         "ordering": true,
         "info":     false,
-        "bStateSave": true,
+        "bStateSave": false,
         "bFilter": false,        
         "bSearchable":false,
-        "bLengthChange": false,
-        "order": [[ 5, "desc"],[8,"desc"],[1,"desc"]],
-        "columnDefs": [ { "orderable": false, "targets": [0,8,9,10]}]          
+        "fixedColumns": true,
+        "bLengthChange": true,
+        "scrollY": 300,
+        
+        "order": [[ 13, "asc" ],[ 4, "asc"],[8,"asc"],[1,"asc"]],
+       "columnDefs": [ { "orderable": false, "targets": [0,9,10]},{"visible":false, "targets": [13]} ]          
      });}   
      if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
     j$('[id$="myTable1"]').dataTable({
         "paging":   true,
         "ordering": true,
+        "fixedColumns": true,
         "info":     false,
         "bFilter": false,
-        "bStateSave": true,
+        "order": [[ 14, "asc" ],[ 4, "asc" ], [8,"asc"],[1,"asc"]],
+       "columnDefs": [ { "orderable": false, "targets": [0,9,10,11,12,13]}, {"visible":false, "targets": [14]}  ],
+         "bStateSave": false,
+         "scrollY": 300,  
         "bSearchable":false,
-        "bLengthChange": true,
-        "order": [[ 4, "desc"],[8,"desc"],[1,"desc"]],
-        "columnDefs": [ { "orderable": false, "targets": [0,8,9,10,11,12,13]}  ]                         
+        "bLengthChange": true
+       
+                                 
      });}    
 }
 </script>
