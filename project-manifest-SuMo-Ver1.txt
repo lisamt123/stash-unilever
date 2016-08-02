@@ -21,11 +21,11 @@ src/objects/Chatter_Likes__c.object
 src/tabs/Chatter_Likes__c.tab
 src/layouts/Chatter_Likes__c-Chatter_Likes_Layout.layout
 src/reportTypes/SuMo_Chatter_Activity.reportType
-src/analyticSnapshots/SuMo_Chatter_Activity.snapshot
 src/classes/SuMoPBS_FeedbackTriggerTest.cls
 src/triggers/SuMoPBS_Training_Plan_FeedbackTrigger.trigger
 src/classes/SuMoPBS_FeedbackTriggerTest.cls-meta.xml
 src/triggers/SuMoPBS_Training_Plan_FeedbackTrigger.trigger-meta.xml
 project-manifest-SuMo-Ver1.txt
 src/reports/success__SuMo_Reports/SuMo_Chatter_Activity.report
+
 
