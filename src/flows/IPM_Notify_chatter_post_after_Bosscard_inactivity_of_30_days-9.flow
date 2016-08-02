@@ -4,7 +4,7 @@
         <processMetadataValues>
             <name>textJson</name>
             <value>
-                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;@[{![IPM_Bosscard__c].OwnerId}] Your Bosscard:&amp;nbsp;{![IPM_Bosscard__c].Name} has not been updated for 30 days. Do you still need this Bosscard?&lt;br&gt;&quot;}</stringValue>
+                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;@[{![IPM_Bosscard__c].IPM_Bosscard_Owner__c}] Your Bosscard: {![IPM_Bosscard__c].Name} has not been updated for 30 days. Do you still need this Bosscard?&quot;}</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
@@ -16,8 +16,7 @@
         <inputParameters>
             <name>text</name>
             <value>
-                <stringValue>@[{!myVariable_current.OwnerId}] Your Bosscard: {!myVariable_current.Name} has not been updated for 30 days. Do you still need this Bosscard?
-</stringValue>
+                <stringValue>@[{!myVariable_current.IPM_Bosscard_Owner__c}] Your Bosscard: {!myVariable_current.Name} has not been updated for 30 days. Do you still need this Bosscard?</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -79,8 +78,14 @@
         </rules>
     </decisions>
     <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
         <name>myDecision</name>
-        <label>Primary Decision</label>
+        <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
@@ -89,12 +94,6 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
@@ -102,6 +101,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
@@ -124,7 +129,7 @@
             <label>Post to Chatter 30 days of Inactivity</label>
         </rules>
     </decisions>
-    <interviewLabel>IPM_Notify_chatter_post_after_Bosscard_inactivity_of_30_days-1_IPM_Bosscard__c</interviewLabel>
+    <interviewLabel>IPM_Notify_chatter_post_after_Bosscard_inactivity_of_30_days-9_IPM_Bosscard__c</interviewLabel>
     <label>IPM Notify chatter post after Bosscard inactivity of 30 days</label>
     <processMetadataValues>
         <name>ObjectType</name>

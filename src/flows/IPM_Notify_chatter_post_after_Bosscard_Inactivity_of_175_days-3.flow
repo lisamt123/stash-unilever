@@ -4,7 +4,7 @@
         <processMetadataValues>
             <name>textJson</name>
             <value>
-                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;@[{![IPM_Bosscard__c].OwnerId}] Your Bosscard: {![IPM_Bosscard__c].Name} &amp;nbsp;will soon be deleted due to inactivity. Please provide an update to this record if you would like to prevent it from being deleted.&amp;nbsp;&quot;}</stringValue>
+                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;@[{![IPM_Bosscard__c].IPM_Bosscard_Owner__c}] Your Bosscard: {![IPM_Bosscard__c].Name}  will soon be deleted due to inactivity. Please provide an update to this record if you would like to prevent it from being deleted.&quot;}</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
@@ -16,7 +16,7 @@
         <inputParameters>
             <name>text</name>
             <value>
-                <stringValue>@[{!myVariable_current.OwnerId}] Your Bosscard: {!myVariable_current.Name}  will soon be deleted due to inactivity. Please provide an update to this record if you would like to prevent it from being deleted. </stringValue>
+                <stringValue>@[{!myVariable_current.IPM_Bosscard_Owner__c}] Your Bosscard: {!myVariable_current.Name}  will soon be deleted due to inactivity. Please provide an update to this record if you would like to prevent it from being deleted.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -78,8 +78,14 @@
         </rules>
     </decisions>
     <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
         <name>myDecision</name>
-        <label>Primary Decision</label>
+        <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
@@ -88,12 +94,6 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
@@ -101,6 +101,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
@@ -119,12 +125,6 @@
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>String</stringValue>
@@ -132,6 +132,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
@@ -154,7 +160,7 @@
             <label>Post to Chatter 175 days of Inactivity</label>
         </rules>
     </decisions>
-    <interviewLabel>IPM_Notify_chatter_post_after_Bosscard_Inactivity_of_175_days-1_IPM_Bosscard__c</interviewLabel>
+    <interviewLabel>IPM_Notify_chatter_post_after_Bosscard_Inactivity_of_175_days-3_IPM_Bosscard__c</interviewLabel>
     <label>IPM Notify chatter post after Bosscard Inactivity of 175 days</label>
     <processMetadataValues>
         <name>ObjectType</name>

@@ -2108,6 +2108,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Bosscard__c.IPM_Bosscard_Owner__c</field>
+        <readable>true</readable>
+    </fieldPermissions
+    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Bosscard__c.IPM_Bosscard_Span_Logo__c</field>
         <readable>true</readable>
