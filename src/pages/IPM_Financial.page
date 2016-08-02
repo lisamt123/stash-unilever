@@ -330,10 +330,9 @@
                                                                       <apex:param name="check" value="" assignTo="{!CheckCountry}"/> 
                                                                 </apex:actionFunction>
                                                                  <!-- Rendered when local project and localrollout TLD do not match. Misalignment message is displayed. Message is stored in CustomLabel-->
-                                                                 <apex:outputPanel id="misAlignErrorPanel" rendered="{!AND( NOT(isProjectStop),NOT(isNonkey),isTargetLaunchDateMisaligned,validationErrorMessage != '')}">
+                                                                 <apex:outputPanel id="misAlignErrorPanel" rendered="{!AND( NOT(isProjectStop),NOT(isNonkey),isTargetLaunchDateMisaligned,validationErrorMessageforTLD != '')}">
                                                                     <div class="misAlignedTLD">
-                                                                        -----------------
-                                                                        <apex:outputText value="{!validationErrorMessage}"/>
+                                                                        <apex:outputText value="{!validationErrorMessageforTLD}"/>
                                                                     </div>
                                                                 </apex:outputPanel>
                                                                 <!-- Rendered when validation message is not empty. Validation message is set from controller class-->
