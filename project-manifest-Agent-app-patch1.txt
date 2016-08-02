@@ -5,6 +5,12 @@ src/objects/aa_Agent_App_User_Preference__c.object
 src/objects/aa_Topic__c.object
 src/objects/aa_Trigger_pattern__c.object
 src
+src/classes/aa_Agent_Report_Trigger_Handler_Test.cls
+src/classes/aa_Agent_Report_Trigger_Handler_Test.cls-meta.xml
+src/classes/AA_Agent_Report_util_Test.cls
+src/classes/AA_Agent_Report_util_Test.cls-meta.xml
+src/classes/AA_Follow_UnFollow_SchedularTest.cls
+src/classes/AA_Follow_UnFollow_SchedularTest.cls-meta.xml
 src/classes/AA_Agent_Report_trigger_test.cls
 src/classes/AA_Agent_Report_trigger_test.cls-meta.xml
 src/classes/AA_AddCompetitorName_Test.cls
