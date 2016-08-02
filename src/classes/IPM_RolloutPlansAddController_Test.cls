@@ -507,9 +507,7 @@ private class IPM_RolloutPlansAddController_Test
 				IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = true;
 				update countryList;
 				IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION = false;
-				
-				List<IPM_Project_Rollout__c> rollouLstArc = [Select id,IPM_Rollout_Project__c, (Select id,Country_Code__c,Project_Country__c,isActive__c from IPM_Countries_Local__r ) from IPM_Project_Rollout__c Where id =: regionalRolloutList[0].id];
-				
+
 				// setting controller parameters
 				irp.lstClusterWrappers.add(geoWrp);
 				irp.generateRollouts();

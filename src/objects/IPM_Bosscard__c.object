@@ -182,6 +182,19 @@
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Bosscard_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The users who created the Bosscaard</description>
+        <externalId>false</externalId>
+        <label>Bosscard Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_BosscardOwner</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_Bosscard_Span_Logo__c</fullName>
         <description>To display the imaged based on the span , different images for Global , Regional and Local.</description>
         <externalId>false</externalId>
