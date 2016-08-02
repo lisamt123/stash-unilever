@@ -1829,24 +1829,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         return !projList.isEmpty(); 
       } 
     
-  
-       
-    //DEF2339 & DEF2344 fix end
-    /*******************************************************************************************************
-    * @description              Used to validate the financial Y0Turnover
-    * @param y0Turnover         Used to process the passed y0Turnover
-    * @return                   Boolean value says if the validation is failed or not
-    */
-    public void validateY0Turnover(Decimal y0Turnover){
-        isy0TurnoverInvalid = false;
-        isValidationFailed = false;
-        //Validate Y0 Turnover value   
-        if(y0Turnover <= IPM_ConstantUtils.INVALID_VALUE){
-            isy0TurnoverInvalid = true;
-                isValidationFailed = true;            
-        }
-    } 
-    
     /*******************************************************************************************************
     * @description                      Used to validate the financial GrossPLTurnover
     * @param lstGrossPLTurnover     Used to process the passed lstGrossPLTurnover

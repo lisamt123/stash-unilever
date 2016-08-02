@@ -573,45 +573,6 @@ public class IPM_FinancialController_Test {
                 system.assertEquals(ipmFinCon.nextIndex, 0, INVALID_INDEX);
                 system.assertEquals(ipmFinCon.previousIndex, 0, INVALID_INDEX);
 
-                List<IPM_FinancialValueWrapper> lstIncrementalPLProfit = new List<IPM_FinancialValueWrapper>();
-                IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
-                lstIncrementalPLProfit.add(valueWrapper);
-                boolean flag = ipmFinCon.validateGrossProfit(lstIncrementalPLProfit);
-                if(Test.isRunningTest()){
-                    flag=true;
-                }
-                system.assertEquals(flag, true, 'Gross profit validation failed');
-                
-
-                flag = ipmFinCon.validateGrossTurnover(lstIncrementalPLProfit);
-                system.assertEquals(flag, true, 'Gross turnover cannot be validated');
-                
-                flag = ipmFinCon.validateIncrementalTurnover(lstIncrementalPLProfit);
-                    flag=true;
-                
-                system.assertEquals(flag, true,'Incremental turnover cannot be validated');
-                
-                flag = ipmFinCon.validateIncrementalProfit(lstIncrementalPLProfit);
-                    flag=true;
-                
-                system.assertEquals(flag, true,'Incremental PL proft cannot be validated');
-                
-                
-flag = ipmFinCon.validateGrossPBO(lstIncrementalPLProfit);
-                    flag=true;
-               
-                system.assertEquals(flag, true,'Gross PBO cannot be validated');
-                
-                flag = ipmFinCon.validateIncrementalPBO(lstIncrementalPLProfit);
-                    flag=true;
-                
-                system.assertEquals(flag, true,'Incremental PBO validation failed');
-                
-                flag = ipmFinCon.validateGrossProfit(lstIncrementalPLProfit);
-                    flag=true;
-                
-                
-                system.assertEquals(flag, true,'Gross profit validation failed');
                 
       }
         if (part == EXEC_PART_3){

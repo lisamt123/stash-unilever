@@ -11,39 +11,16 @@
 private class IPM_FinancialControllerSoftVldtns_Test
 {
   
-  //private static List<IPM_Assessment__c> finalAssessmentList = new List<IPM_Assessment__c>();
   private static List<IPM_Company_Card__c> companyCardList; 
-  //private static List<IPM_Country__c> countryList= new List<IPM_Country__c>();
   private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-  //private static List<IPM_Project__c> projectListPhaseChange;
-  //private static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
-  //private static final String WITH_MCO = 'With MCO';
   private static final String ORIGINAL = 'Original';
-  //private static final String REGIONAL = 'Regional';
-  //private static final String REGIONAL_COMPANY_CARD = 'Regional Company Card';
-  //private static final String PROJ_DOC_SEC_Id = 'ProjDocSecId';
-  //private static final String ID = 'Id';
-  //private static final String TESTSTR = 'Test';
-  //private static final String PRINTDOC = 'printDoc';
   private static final String GLOBAL_PL = 'GLOBAL_PL';
   private static final String REGIONAL_PL = 'REGIONAL_PL';
   private static final String LOCAL_PL = 'LOCAL_PL';
   private static final String GLOBAL_COMPANY_CARD = 'Global Company Card';
-  //private static final String EICOUNTRIES_NOT_MATCHED = 'EICountries size not matched';
-  //private static final String NON_EICOUNTRIES_NOT_MATCHED = 'NonEICountries size not matched';
-  //private static final String DOCUMENT_NOT_CREATED = 'Document not created';
-  //private static final String ASSESSMENT_NOT_CREATED = 'Assessments are not created';
-  //private static final String COUNTRIES_NOT_CREATED = 'Countries not created';
-  //private static final String GEOGRAPHY_NOT_CREATED = 'Geography not created';
   private static final String PROJECTS_NOT_CREATED = 'Projects not created';
-  //private static final String PROJECT_PHASE_INCORRECT = 'Project phase is not correct';
-  //private static final String TESTCOMMENT_1 = 'TestComments1';
-  //private static final String TESTCOMMENT_2 = 'TestComments2';
-  //private static final String TESTCOMMENT_3 = 'TestComments3';
-  //private static final String AF = 'AF';
-  //private static final String AG = 'AG';
-  //private static final String LA = 'LA';
-  //private static final String BR = 'BR';
+  private static final string TEST_STR = 'test';
+
   
   /***********************************
   Description of the purpose of the method. 
@@ -203,14 +180,8 @@ private class IPM_FinancialControllerSoftVldtns_Test
       User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
-      //List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject' limit 1000];
       
-     
-      
-      //Id defaultRecordTypeId = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
-      
-
       PageReference pageRef = Page.IPM_Financial;
       Test.setCurrentPage(pageRef);
 
@@ -240,5 +211,78 @@ private class IPM_FinancialControllerSoftVldtns_Test
       }
 
   }
+  
+  public static testmethod void test_CAPEX_IRR_NPV_PAYBACK(){
+      
+      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL];
+      
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c]);
+	  List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject'];
+      
+      PageReference pageRef = Page.IPM_Financial;
+      Test.setCurrentPage(pageRef);
+
+      
+      
+      lstProjects[1].IPM_SourceProjectType__c = 'Original';
+      lstProjects[1].IPM_ProjectGKM__c = 'GKM1';
+      lstProjects[1].IPM_Project_Y3iTO__c  = 3000.00;
+      Update lstProjects[1];
+      
+      Test.startTest();
+      
+      System.runAs(globalProjectLeader){
+        ApexPages.currentPage().getParameters().put('Id', lstProjects[1].Id);
+      	IPM_Financial__c currentFinancial = null;
+      	for(IPM_Financial__c fin: lstFin){
+      		if(!fin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+      			currentFinancial = fin;
+      			break;
+      		}
+      	}
+      
+        IPM_FinancialController finController2 =  new IPM_FinancialController();
+        finController2.currentFinancialId = currentFinancial.Id;
+        finController2.currentFinancial = currentFinancial;
+        finController2.isFinacialConsolidated = false;
+          
+
+        List<IPM_FinancialValueWrapper> lstIncrementalPLProfit = new List<IPM_FinancialValueWrapper>();
+        IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
+        lstIncrementalPLProfit.add(valueWrapper);
+        boolean flag = finController2.validateGrossProfit(lstIncrementalPLProfit);
+        system.assertEquals(flag, true, 'Gross profit validation failed');
+
+        flag = finController2.validateGrossTurnover(lstIncrementalPLProfit);
+        system.assertEquals(flag, true, 'Gross turnover cannot be validated');
+                
+        flag = finController2.validateIncrementalTurnover(lstIncrementalPLProfit);
+        system.assertEquals(flag, true,'Incremental turnover cannot be validated');
+                
+        flag = finController2.validateIncrementalProfit(lstIncrementalPLProfit);    
+        system.assertEquals(flag, true,'Incremental PL proft cannot be validated');
+            
+            
+        flag = finController2.validateGrossPBO(lstIncrementalPLProfit);
+		system.assertEquals(flag, true,'Gross PBO cannot be validated');
+            
+        flag = finController2.validateIncrementalPBO(lstIncrementalPLProfit);     
+        system.assertEquals(flag, true,'Incremental PBO validation failed');
+        
+        flag = finController2.validateGrossProfit(lstIncrementalPLProfit);
+        system.assertEquals(flag, true,'Gross profit validation failed');
+        
+        
+        flag = finController2.validateGrossBMI(lstIncrementalPLProfit);
+        system.assertEquals(flag, true,'Gross BMI validation failed');
+        
+        flag = finController2.validateIncrementalBMI(lstIncrementalPLProfit);     
+        system.assertEquals(flag, true,'Incremental BMI validation failed');
+        
+        Test.stopTest();
+      }
+
+  }
+  
 
 }
