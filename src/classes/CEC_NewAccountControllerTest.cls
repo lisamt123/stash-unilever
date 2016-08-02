@@ -50,6 +50,21 @@ public without sharing class CEC_NewAccountControllerTest{
         accObj2.RecordTypeId = rtId;
         insert accObj4;
         
+        // Create Account
+        Account accObj5 = new Account(lastname= CEC_Constants.lastName, PersonHomePhone=phoneNo,PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        accObj5.RecordTypeId = rtId;
+        insert accObj5;
+        
+        // Create Account
+        Account accObj6 = new Account(lastname= CEC_Constants.lastName,PersonMobilePhone=phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        accObj6.RecordTypeId = rtId;
+        insert accObj6;
+        
+        // Create Account
+        Account accObj7 = new Account(lastname= CEC_Constants.lastName, PersonOtherPhone =phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail='account_test@test00de0000000bblj.com', Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        accObj7.RecordTypeId = rtId;
+        insert accObj7;
+        
         // Create Case
         Case caseObj = new Case();
         insert caseObj;
