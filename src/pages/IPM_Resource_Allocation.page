@@ -278,7 +278,7 @@
             <apex:outputPanel id="redirectToRolloutsPage">
              <script>
                 function backToRollouts(){
-                    window.parent.location.href="{!URLFOR($Page.IPM_RolloutPlans)}?id={!projectId}&RolloutLeaderType={!leaderType}&RolloutSpan={!rolloutSpan}";
+                     window.parent.location.href="{!URLFOR($Page.IPM_RolloutPlans)}?id={!projectId}&RolloutLeaderType={!leaderType}&RolloutSpan={!rolloutSpan}&EditMode=true";
                 }
              </script>
          </apex:outputPanel>
