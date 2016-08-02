@@ -1,7 +1,3 @@
 src
-src/classes
-src/classes/IPM_FinancialHandler.cls
-src/classes/IPM_FinancialHandler.cls-meta.xml
-src/pages
-src/pages/IPM_ProjectDocumentSectionEditor.page
-src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
+src/flows
+src/flows/IPM_Financial_Year_SnapShot-5.flow
