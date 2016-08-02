@@ -369,6 +369,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             IPM_FinancialHelper.checkIfMisAligned((List<IPM_Financial__c>)Trigger.New,financialDetailMap);
         }
     }
+	}
     /**
     * @description:beforeInsert
     * This method is called iteratively for each record to be insert during a AFTER
