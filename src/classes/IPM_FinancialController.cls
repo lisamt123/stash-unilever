@@ -2669,13 +2669,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if((localProjectRolloutTLDYear-localProjectTLDYear) != 0 ) 
             {
                 isTLDYearMisaligned = true;
-                validationErrorMessage += IPM_ConstantUtils.IPM_SPACE + Label.IPM_TLD_Year_Misaligned;
+                    validationErrorMessageforTLD += IPM_ConstantUtils.IPM_SPACE + Label.IPM_TLD_Year_Misaligned;
             }
            // misalignment message 
         } 
-        else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
+        else if(validationErrorMessageforTLD.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
             isMisalignedTLD  = false;
-            validationErrorMessage = IPM_ConstantUtils.BLANK;
+            validationErrorMessageforTLD = IPM_ConstantUtils.BLANK;
         }
                   
         isTargetLaunchDateMisaligned =  flag; 
@@ -3313,6 +3313,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			if(toUpdateFinancials != null && !toUpdateFinancials.isEmpty() ){
 				update toUpdateFinancials;
 			}
+			
+			getRolloutWrappers(); 
+            getSustainabilityPeriod(); 
+            getVisibleTabs(); 
+            getSectionList(); 
+            getMisalignmentVisibility();
 			
 			//call the getFinancials(); method to properly render the validation cells highlighting on page load
 			getFinancials();
