@@ -109,10 +109,10 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       IPM_TestFactory_Helper.createRegionalRolloutList(true,projectList,new List<User>{globalProjectLeader,globalProjectLeader,globalProjectLeader,globalProjectLeader});
       
-      List<IPM_Project__c> projectListTemp = [Select id From IPM_Project__c Where id IN : projectList ];
+      List<IPM_Project__c> projectListTemp = [Select id From IPM_Project__c Where id IN : projectList limit 1000 ];
       system.assert(projectListTemp.size() > 0,PROJECTS_NOT_CREATED);
       
-      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED']);
+      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
       
       Test.startTest();
      
@@ -135,7 +135,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
         projectIdset.add(proj.Id);
       }
       
-      List<IPM_Project__c> lstProjectsAndRollout = [Select id, (Select Id, name,IPM_Rollout_Project__c,Market_Cluster__c,IPM_Rollout_Type__c,Target_Launch_Date__c from IPM_Project_Rollout__r) from IPM_Project__c where Id IN :projectIdset];
+      List<IPM_Project__c> lstProjectsAndRollout = [Select id, (Select Id, name,IPM_Rollout_Project__c,Market_Cluster__c,IPM_Rollout_Type__c,Target_Launch_Date__c from IPM_Project_Rollout__r) from IPM_Project__c where Id IN :projectIdset limit 1000];
       
       Map<Id, List<IPM_Project_Rollout__c>> projIdTORegRolloutMap =  new Map<Id, List<IPM_Project_Rollout__c>>();
       
@@ -147,7 +147,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       //creating local financials Ends
       
-      List<IPM_Financial__c> NonConsolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like 'TestComments1%']);
+      List<IPM_Financial__c> NonConsolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like 'TestComments1%' limit 1000]);
       
       System.assert(NonConsolidatedFinLst.size()>1,'No Non consolidated business created');
       
@@ -160,11 +160,11 @@ private class IPM_FinancialControllerSoftVldtns_Test
   
   public static testmethod void testBelowThresholdSoftValidation(){
       
-      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL];
+      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
-      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c]);
-      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED']);
-      List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject'];
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
+      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
+      List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject' limit 1000];
       
       lstProjects[0].IPM_SourceProjectType__c = 'Original';
       lstProjects[0].IPM_ProjectGKM__c = 'GKM1';
@@ -200,11 +200,11 @@ private class IPM_FinancialControllerSoftVldtns_Test
   
   public static testmethod void testAboveThresholdSoftValidation(){
       
-      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL];
+      User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
-      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c]);
-      //List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED']);
-      List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject'];
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
+      //List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
+      List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject' limit 1000];
       
      
       
