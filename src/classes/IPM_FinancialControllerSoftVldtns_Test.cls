@@ -1,9 +1,9 @@
 /*******************************************************
 * @Author:Cognizant  
-* @Name: IPM_EcoDesignSection_Test
-* @Description: Test class for IPM_EcoDesignSection
+* @Name: IPM_FinancialControllerSoftVldtns_Test.cls
+* @Description: Test class for Soft validations of financials
 * @Author:Cognizant
-* @Date:04/22/2015
+* @Date:08/02/2016
 * *****************************************************/
 
 
