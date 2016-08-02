@@ -206,21 +206,30 @@
         <fullName>IPM_Category__c</fullName>
         <description>IPM Category of the project.</description>
         <externalId>false</externalId>
-        <label>Category</label>
+        <label>Category Group</label>
         <picklist>
             <picklistValues>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_Charter_Gate_Approval_Charter_Gate__c</fullName>
@@ -1013,11 +1022,19 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <picklistValues>
             <picklist>IPM_Category__c</picklist>
             <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1125,11 +1142,19 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <picklistValues>
             <picklist>IPM_Category__c</picklist>
             <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1236,11 +1261,19 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <picklistValues>
             <picklist>IPM_Category__c</picklist>
             <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>PC</fullName>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

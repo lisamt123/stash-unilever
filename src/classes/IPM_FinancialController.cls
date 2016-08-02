@@ -29,6 +29,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean isValidationError {get; set;} //Boolean variable to indicate validation error on page
     public Boolean isValidationErrorCal {get; set;} //Boolean variable to check if error is in calendar year 
     public String validationErrorMessage {get; set;} //Validation error Message to be displayed on the page
+    public String validationErrorMessageforTLD {get; set;} //Validation error Message to be displayed on the page if TLD is misaligned
     public String validationErrorMessageCal {get; set;} //Validation error Message to be displayed on the page
 
     public String currentFinancialId {get; set;} //Stores the id of the current financial being viewed. Changes dynamically and used with re-render
@@ -275,6 +276,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isITOgrtGTO = false; 
         isITOgrtGTOCal = false;
         validationErrorMessage = IPM_ConstantUtils.BLANK;
+        validationErrorMessageforTLD = IPM_ConstantUtils.BLANK; 
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
         milestoneFinanceDataValidationMessage = IPM_ConstantUtils.BLANK;
@@ -2658,12 +2660,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
             }
         } 
-        // check for the misalignment 
+            // check for the TLD misalignment 
         if(localProjectTLD!= IPM_ConstantUtils.BLANK && localProjectTLD!=localProjectRolloutTLD) 
         {
             flag = true;
             isMisalignedTLD  = true;
-            validationErrorMessage = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
+                validationErrorMessageforTLD = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
             if((localProjectRolloutTLDYear-localProjectTLDYear) != 0 ) 
             {
                 isTLDYearMisaligned = true;

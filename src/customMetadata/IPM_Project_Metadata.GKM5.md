@@ -8,7 +8,7 @@
     </values>
     <values>
         <field>IPM_ApplicableCategories__c</field>
-        <value xsi:type="xsd:string">Household Care,Laundry,Hair Care,Skin Care,Oral Care,Skin Cleansing,Deodorants &amp; Fragrances</value>
+        <value xsi:type="xsd:string">Household Care,Laundry,Hair Care,Skin Care,Oral Care,Skin Cleansing,Deodorants &amp; Fragrances,Dressings,Savoury,Spreads,Tea and Soy &amp; Fruit Beverages,Ice Cream</value>
     </values>
     <values>
         <field>IPM_ApplicableCompanyCard__c</field>

@@ -1,4 +1,4 @@
-    <labels>
+   <labels>
         <fullName>IPM_Download_All_AttachmentsBttnName</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9553,7 +9553,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
 If you discover that stopping this Project was a mistake you can undo this action in the next 72 hours by using the Cancel Stopping Project button on the Project Overview Page.
 
 
-If you take no further action after 72 hours from now this Project {0} will be stopped. Please note Stopped Projects cannot be reactivated</value>
+If you take no further action after 72 hours from now this Project {0} will be stopped. Please note Stopped Projects cannot be reactivated.</value>
     </labels>
 	<labels>
         <fullName>IPM_NoOfMonths_ForReactivation</fullName>

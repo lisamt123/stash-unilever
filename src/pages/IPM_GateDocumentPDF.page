@@ -132,6 +132,9 @@
         .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
         .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>tbody>tr>td{padding:2px 5px;height:10px;}
         .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign tr{height:10px;}
+		.fintable.inverse.table.ipmFinancetable.textareabig.ipmFintableAlign{table-layout:inherit;}
+        .ipmFinancetable.inverse thead th{width:auto;}
+        .algnCenter{text-align:center;}
         
         /*Table Style*/
         .ipmTable.table{border-left:none; border-right:none;width:100%;}
@@ -555,8 +558,7 @@
         .glbfinvalContainer{float:left;display:table;width:100%;}
     
     /* Financial Action Standards Inverse styles */
-        .ipmFinancetable.inverse{width:100%;max-width:100%;}
-        .ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;float: none;}
+        .ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;display:block;}
         .ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
         
         @media print
@@ -575,7 +577,7 @@
         .redtxt{
           color:red !important;
         }
-
+		table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cellWidth {float: left; width: 50%;}
     </style>
 </head>
 <body class="docBody">
