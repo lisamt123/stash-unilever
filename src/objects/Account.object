@@ -2747,7 +2747,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <columns>ACCOUNT.NAME</columns>
         <columns>PC_EMAIL</columns>
         <columns>ACCOUNT.PHONE1</columns>
-        <columns>Homebase__pc</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>

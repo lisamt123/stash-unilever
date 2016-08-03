@@ -807,12 +807,6 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
         <type>Lookup</type>
     </fields>
     <fields>
-        <fullName>CurrencyIsoCode</fullName>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-    </fields>
-    <fields>
         <fullName>DW_Order_Number__c</fullName>
         <description>TO: DW Order Number</description>
         <externalId>false</externalId>
@@ -2591,7 +2585,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <closed>false</closed>
             </picklistValues>
             <picklistValues>
-                <fullName>Pending with Courier</fullName>
+                <fullName>Pending With Courier</fullName>
                 <default>false</default>
                 <closed>false</closed>
             </picklistValues>
