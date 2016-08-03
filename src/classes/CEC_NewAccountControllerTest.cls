@@ -23,6 +23,8 @@ public without sharing class CEC_NewAccountControllerTest{
     private static final string acctName = 'Test Account';
     private static final string phoneNo = '0991236785';
     private static final string email = 'account_test@test00de0000000bblj.com';
+    private static final string localIdentifier = '111.222.333-12';
+    private static final string updLocalIdentifier = '111.222.333-44';
     
     static Case insertCase1(){
         
@@ -35,7 +37,7 @@ public without sharing class CEC_NewAccountControllerTest{
         Id rtId = [select Id, name from RecordType where name = 'Person Account' and SObjectType = 'Account' limit 1].Id;
         
         // Create Account
-        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        Account accObj = new Account(lastname= CEC_Constants.lastName, Phone = phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
         accObj.RecordTypeId = rtId;
         insert accObj;
         
@@ -52,17 +54,17 @@ public without sharing class CEC_NewAccountControllerTest{
         insert accObj4;
         
         // Create Account
-        Account accObj5 = new Account(lastname= CEC_Constants.lastName, PersonHomePhone=phoneNo,PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        Account accObj5 = new Account(lastname= CEC_Constants.lastName, PersonHomePhone=phoneNo,PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
         accObj5.RecordTypeId = rtId;
         insert accObj5;
         
         // Create Account
-        Account accObj6 = new Account(lastname= CEC_Constants.lastName,PersonMobilePhone=phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        Account accObj6 = new Account(lastname= CEC_Constants.lastName,PersonMobilePhone=phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail= email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
         accObj6.RecordTypeId = rtId;
         insert accObj6;
         
         // Create Account
-        Account accObj7 = new Account(lastname= CEC_Constants.lastName, PersonOtherPhone =phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail=email, Local_Identifier__c = '111.222.333-12', Local_Identifier_No_Special_Char__c = '111.222.333-12');
+        Account accObj7 = new Account(lastname= CEC_Constants.lastName, PersonOtherPhone =phoneNo, PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode, PersonEmail=email, Local_Identifier__c = localIdentifier, Local_Identifier_No_Special_Char__c = localIdentifier);
         accObj7.RecordTypeId = rtId;
         insert accObj7;
         
@@ -164,7 +166,7 @@ Test method for Search Consumer
             testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
             testController.newConsumer.PersonMailingStreet = 'George Street';
             testController.newConsumer.PersonEmail = email;
-            testController.newConsumer.Local_Identifier__c = '111.222.333-12';
+            testController.newConsumer.Local_Identifier__c = localIdentifier;
             
             pageReference pr = testController.searchConsumer();
             
@@ -199,7 +201,7 @@ Test method for Search Consumer
             
             // Scenario 5 - duplicates not found for Local Identifier
             
-            testController.newConsumer.Local_Identifier__c = '111.222.333-44';
+            testController.newConsumer.Local_Identifier__c = updLocalIdentifier;
             
             pr = testController.searchConsumer();
         } 
@@ -228,7 +230,7 @@ Test method for Attach Consumer to Case
             testController.newConsumer.lastname = CEC_Constants.lastName;
             testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = CEC_Constants.PersonMailingPostalCode;
-            testController.newConsumer.Local_Identifier__c = '111.222.333-44';
+            testController.newConsumer.Local_Identifier__c = updLocalIdentifier;
             
             pageReference pr = testController.searchConsumer();
             
@@ -271,7 +273,7 @@ Test method for Save Consumer
             testController.newConsumer.lastname = CEC_Constants.lastName;
             testController.newConsumer.Phone = phoneNo;
             testController.newConsumer.PersonMailingPostalCode = 'TA10 0AC';
-            testController.newConsumer.Local_Identifier__c = '111.222.333-44';
+            testController.newConsumer.Local_Identifier__c = updLocalIdentifier;
             
             testController.getSalutation();
             testController.back();
