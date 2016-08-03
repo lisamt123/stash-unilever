@@ -2043,11 +2043,23 @@
     <enabled>true</enabled>
 </pageAccesses>
    <recordTypeVisibilities>
-        <recordType>Case.none</recordType>
+        <recordType>Case.None</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>case.Spam</recordType>
+        <recordType>Case.Spam</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>PersonAccount.PersonAccount</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <recordType>cec_Additional_Case_Information__c.Adviser_Questionaire</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>cec_Additional_Case_Information__c.Close_Case_Survey</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
