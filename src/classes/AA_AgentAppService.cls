@@ -49,6 +49,10 @@ public with sharing class AA_AgentAppService  {
                    query = 'select ' + commaSepratedFields + ' from ' + SobjectApiName + ' order by Topic_Order__c ' ;
                    result = Database.query(query);
            }
+             else if (SobjectApiName == 'aa_Agent_App_Category__c'){
+                  query = 'select ' + commaSepratedFields + ' from ' + SobjectApiName + ' order by Name ' ;
+                   result = Database.query(query);
+             }
            else { 
             query = 'select ' + commaSepratedFields + ' from ' + SobjectApiName ;
             result = Database.query(query);
@@ -784,34 +788,58 @@ public with sharing class AA_AgentAppService  {
         return appWrapperObj;
     }
     @AuraEnabled
-    public Static aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperClass.AgentAppDataRequest objAgentApp){
+    public Static String checkCompetitorSource(String source){
+        String sourceVal='';
+        if(!String.isEmpty(source)){
+            sourceVal=source;
+                return sourceVal;
+        }
+        else{
+            return sourceVal;    
+        }
+    }
+    @AuraEnabled
+    public Static String getCompetitorUserIds(List<String> userToMentionIds){
         string userids='';
+        if(userToMentionIds.size()>0){
+            for(string str:userToMentionIds)
+            {
+                userids=userids+str+',';
+            }       
+            userids=userids.removeEnd(',');
+            return userids;
+        }  
+        else{
+            return userids;
+        }
+    }
+    @AuraEnabled
+    public Static aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperClass.AgentAppDataRequest objAgentApp){
         //string topicids='';
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
-              newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
-              newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
-    
-        if(!String.isEmpty(objAgentApp.Source)){
-            newObjToBeInserted.Source__c  = objAgentApp.Source;
-        }
-            newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
-            newObjToBeInserted.Competitor_Brand__c  = objAgentApp.CompetitorBrandId;
-            newObjToBeInserted.Competitor_Name__c  = objAgentApp.CompetitorId;
+        newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
+        newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
+        
+        newObjToBeInserted.Source__c  = checkCompetitorSource(objAgentApp.Source);
+        
+        newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
+        newObjToBeInserted.Competitor_Brand__c  = objAgentApp.CompetitorBrandId;
+        newObjToBeInserted.Competitor_Name__c  = objAgentApp.CompetitorId;
         if(!String.isEmpty(objAgentApp.CategoryId)){
             newObjToBeInserted.Category__c  = objAgentApp.CategoryId;
         }
-       if(!String.isEmpty(objAgentApp.TopicId)){
+        if(!String.isEmpty(objAgentApp.TopicId)){
             newObjToBeInserted.Topic__c  = objAgentApp.TopicId;
             if(!String.isEmpty(objAgentApp.SubTopic)){
                 newObjToBeInserted.Sub_Topics__c  = objAgentApp.SubTopic;
             }
         }  
-         if(!String.isEmpty(objAgentApp.CountryId)) {
-                newObjToBeInserted.Country__c = objAgentApp.CountryId;
-          }
-            newObjToBeInserted.Town__c = objAgentApp.Town;
-            newObjToBeInserted.longitude__c = objAgentApp.Longitude;
-            newObjToBeInserted.latitude__c = objAgentApp.Latitude;
+        if(!String.isEmpty(objAgentApp.CountryId)) {
+            newObjToBeInserted.Country__c = objAgentApp.CountryId;
+        }
+        newObjToBeInserted.Town__c = objAgentApp.Town;
+        newObjToBeInserted.longitude__c = objAgentApp.Longitude;
+        newObjToBeInserted.latitude__c = objAgentApp.Latitude;
         if(!String.isEmpty(objAgentApp.CodeOfConduct)){
             if(objAgentApp.CodeOfConduct == 'true'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = true;    
@@ -824,21 +852,12 @@ public with sharing class AA_AgentAppService  {
         //objAgentApp.OtherBrandName = '';
         newObjToBeInserted.OtherCompanyName__c=objAgentApp.OtherCompetitor;
         //Adding userids  to be mentioned in the feed and topics names  to be inserted
-        if(objAgentApp.usertomentionIds.size()>0){
-       
-        for(string str:objAgentApp.usertomentionIds)
-        {
-          userids=userids+str+',';
-          
-        }       
-        userids=userids.removeEnd(',');
-        newObjToBeInserted.TF_Mention_User__c=userids;
-        }        
+        newObjToBeInserted.TF_Mention_User__c=getCompetitorUserIds(objAgentApp.usertomentionIds);
         //Adding cluster
-         if(!String.isEmpty(objAgentApp.ClusterId)) {
-          newObjToBeInserted.ClusterId__c=objAgentApp.ClusterId;
-             //objAgentApp.ClusterId = 'clusterId';
-         }
+        if(!String.isEmpty(objAgentApp.ClusterId)) {
+            newObjToBeInserted.ClusterId__c=objAgentApp.ClusterId;
+            //objAgentApp.ClusterId = 'clusterId';
+        }
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();

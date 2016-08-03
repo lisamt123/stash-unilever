@@ -11,7 +11,8 @@ public class AA_ApplicationWrapperObjLtng extends AA_BaseApplicationWrapperObj{
     //Public AA_WrapperUtility.AllAgentReports objGetAgentDataResponse {get;set;}
     Public AA_WrapperClass.AgentAppDataResponse objGetAgentDataResponse{get;set;}
     Public AA_WrapperClass.AgentAppFilterRequest objAgentAppFilterDataRequest{get;set;}
-    Public List<AA_WrapperUtility.agentReportDetail> objPassAgentReportsToNG{get;set;}
+   // Public List<AA_WrapperUtility.agentReportDetail> objPassAgentReportsToNG{get;set;}
+   Public List<AA_WrapperClass.agentReportDetail> objPassAgentReportsToNG{get;set;}
     public Integer TotalAgentReports;
     public Boolean UpdateLikeCount;
     
