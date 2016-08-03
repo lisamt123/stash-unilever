@@ -1517,6 +1517,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(currentFinancial.Project_Sustainability_Period__c == selectedSustainabilityPeriod) {
                 sustainabilityPeriodChanging = false;
             }
+            
+            validationErrorMessage = IPM_ConstantUtils.BLANK;
             validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
             validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
@@ -1542,6 +1544,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             isEditMode = FALSE;
             isEditModeBottomUp = false;
             
+            validationErrorMessage = IPM_ConstantUtils.BLANK;
             redValidationCellsString = IPM_ConstantUtils.BLANK;
             yellowValidationCellsString = IPM_ConstantUtils.BLANK;
             getCurrentFinancialType(currentFinancial);
@@ -1574,6 +1577,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getMisalignmentVisibility();
             isEditMode = FALSE;
             isEditModeBottomUp = false;
+            
+            validationErrorMessage = IPM_ConstantUtils.BLANK;
             validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
             validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
             validateFinancialSummaryTable(currentFinancial);
@@ -1663,6 +1668,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                   BI = IPM_ConstantUtils.smallBI;
                 }
               
+              validationErrorMessage = IPM_ConstantUtils.BLANK;
               redValidationCellsString = IPM_ConstantUtils.BLANK;
               yellowValidationCellsString = IPM_ConstantUtils.BLANK;
 
@@ -2181,6 +2187,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             update currentFinancial;
             getFinancials();
             
+            validationErrorMessage = IPM_ConstantUtils.BLANK;
             redValidationCellsString = IPM_ConstantUtils.BLANK;
             yellowValidationCellsString = IPM_ConstantUtils.BLANK;
             getCurrentFinancialType(currentFinancial);
@@ -2218,6 +2225,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             update currentFinancial;
             getFinancials();
             
+            validationErrorMessage = IPM_ConstantUtils.BLANK;
             redValidationCellsString = IPM_ConstantUtils.BLANK;
             yellowValidationCellsString = IPM_ConstantUtils.BLANK;
             getCurrentFinancialType(currentFinancial);
@@ -3296,20 +3304,68 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				update toUpdateFinancials;
 			}
 			
-			getRolloutWrappers(); 
-            getSustainabilityPeriod(); 
-            getVisibleTabs(); 
-            getSectionList(); 
-            getMisalignmentVisibility();
-			
-	    //call the getFinancials(); method to properly render the validation cells highlighting on page load
-	    getFinancials();
-	    getValidationSettingSet();
-			
-	    validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-            validateFinancialSummaryTable(currentFinancial);
-	    }
+			try{
+	            if (projectId != null) 
+	            {
+	                isEditable=IPM_Utils.getIpmuserType(projectId, IPM_ConstantUtils.IPM_ROLE_FINANCE);
+	                
+	
+	                getRolloutWrappers(); 
+	                getSustainabilityPeriod(); 
+	                getVisibleTabs(); 
+	                getSectionList(); 
+	                getMisalignmentVisibility(); 
+	                getFinancials();
+	                getValidationSettingSet();
+	
+	                                 
+	                //calculating and setting the Business Impact
+	                setBusinessImpact(projectId);
+	                BI = globalbusinessImpactStr;
+	                if(BI == null || BI == IPM_ConstantUtils.BLANK){
+	                  BI = IPM_ConstantUtils.smallBI;
+	                }
+	                //upto here                 
+	                isEditMode = FALSE; 
+	                isEditModeBottomUp = false;
+	                
+	                Boolean result = validateMilestoneAndFinacialData();
+	                if(result) {
+	                    milestoneFinanceDataValidationMessage = Label.IPM_Finacial_Data_Missing;
+	                }
+	                localProjectConditions();
+	              
+	            }
+	        } 
+	        catch (Exception ex)
+	        {
+	            isError = TRUE;
+	            
+	            if(currentFinancial != null)
+	            { 
+	                errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+	            } 
+	            else 
+	            {
+	                errorMessage = Label.IPM_NO_ROLLOUTS_ERROR;
+	                isRolloutError = true;          
+	            }
+	       }
+	       
+	       if(currentFinancial == null && project!=null) /// && added as throws error if class is initialised from outside
+	       {  
+	            if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+	            {
+	                errorMessage = Label.IPM_NO_ROLLOUTS_ERROR;
+	                isError = true;
+	                isRolloutError = true;
+	            }  
+	        }
+	            validationErrorMessage = IPM_ConstantUtils.BLANK;
+	            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+	            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
+	            validateFinancialSummaryTable(currentFinancial);
+		}
 		
 	}
     
@@ -3366,6 +3422,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				
 				
 				//Run the validations
+				validationErrorMessage = IPM_ConstantUtils.BLANK;
 				validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFin);
 				validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFin);
 				validateFinancialSummaryTable(currentFin);
