@@ -23,41 +23,41 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Message__c</field>
+                <field>sf4twitter__Message__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Published_Date__c</field>
+                <field>sf4twitter__Published_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Link__c</field>
+                <field>sf4twitter__Link__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Likes_Link__c</field>
+                <field>sf4twitter__Likes_Link__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Origin_Icon__c</field>
+                <field>sf4twitter__Origin_Icon__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Type__c</field>
+                <field>sf4twitter__Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Account__c</field>
+                <field>sf4twitter__Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Case__c</field>
+                <field>sf4twitter__Case__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Status__c</field>
+                <field>sf4twitter__Status__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -79,33 +79,33 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Twitter_Image__c</field>
+                <field>sf4twitter__Twitter_Image__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Author_Real_Name__c</field>
+                <field>sf4twitter__Author_Real_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Author_Name__c</field>
+                <field>sf4twitter__Author_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Author_External_Id__c</field>
+                <field>sf4twitter__Author_External_Id__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Author_URL__c</field>
+                <field>sf4twitter__Author_URL__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>User_Bio__c</field>
+                <field>sf4twitter__User_Bio__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Twitter_Location__c</field>
+                <field>sf4twitter__Twitter_Location__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -118,17 +118,17 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Replied_User__c</field>
+                <field>sf4twitter__Replied_User__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Replied_Status__c</field>
+                <field>sf4twitter__Replied_Status__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Parent__c</field>
+                <field>sf4twitter__Parent__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -141,25 +141,25 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Tweet_Sentiment__c</field>
+                <field>sf4twitter__Tweet_Sentiment__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Lead__c</field>
+                <field>sf4twitter__Lead__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Contact__c</field>
+                <field>sf4twitter__Contact__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Solution__c</field>
+                <field>sf4twitter__Solution__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>New_Case__c</field>
+                <field>sf4twitter__New_Case__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -172,21 +172,21 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Facebook_Page__c</field>
+                <field>sf4twitter__Facebook_Page__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>TwitterID__c</field>
+                <field>sf4twitter__TwitterID__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Twitter_Account__c</field>
+                <field>sf4twitter__Twitter_Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Twitter_Search__c</field>
+                <field>sf4twitter__Twitter_Search__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
