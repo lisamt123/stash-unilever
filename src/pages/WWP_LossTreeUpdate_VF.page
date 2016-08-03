@@ -203,7 +203,7 @@ alert('ssss');
                             <th class="col-md-2">Loss Level 3</th>
                             <th>Remarks</th>
                             <th>Reset</th>
-                            <th>created date</th>
+                           
                             
                         </tr>  
                         </thead>  
@@ -229,7 +229,7 @@ alert('ssss');
                                     <td><apex:selectList value="{!w.selectbox3}" size="1" style="height:30px" onchange="change3132('{!w.i}',this);" id="or3" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>
                                     <td><apex:inputtext value="{!w.Remarks}" id="rem"/></td>
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}"  value="Reset" onclick="resetAll('{!w.i}');" rerender="resetor"/>  </td>
-                                    <td>{!w.wlt.InsertedDate__c}</td>
+                                    
                                 </tr>
                             </apex:repeat>
                             
@@ -278,7 +278,7 @@ alert('ssss');
                             <th class="col-md-2">Loss Level 2</th>
                             <th>Remarks</th>
                             <th> Reset </th>
-                            <th>Created Date</th>
+                            
                         </tr>  
                         </thead>  
                         <tbody> 
@@ -300,7 +300,7 @@ alert('ssss');
                                     <td><apex:selectList value="{!w.selectbox2}" size="1" onchange="change21('{!w.i}',this);" id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
                                     <td><apex:inputtext value="{!w.Remarks}" id="rem1"/></td>
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" rerender="resetm"/>  </td>
-                                    <td>{!w.wlt.InsertedDate__c}</td>
+                                    
                                 </tr>
                                 
                             </apex:repeat>
@@ -331,7 +331,7 @@ alert('ssss');
                             <th class="col-md-2">Loss Level 3</th>
                             <th>Remarks</th>
                             <th> Reset </th>
-                            <th>Created Date</th>
+                          
                         </tr>  
                         </thead>  
                         <tbody> 
@@ -354,7 +354,7 @@ alert('ssss');
                                     <td><apex:selectList value="{!w.selectbox3}" size="1" onchange="change3132('{!w.i}',this);" id="dc3"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>-->
                                     <td><apex:inputtext value="{!w.Remarks}" id="rem2"/></td>
                                     <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" reRender="ds"/>  </td>
-                                    <td>{!w.wlt.InsertedDate__c}</td>
+                                   
                                 </tr>
                             </apex:repeat>
                         </tbody>
@@ -481,8 +481,8 @@ var losstype = j$('[id$="lossT"]').val();
         "bLengthChange": true,
         "scrollY": 300,
         
-        "order": [[ 13, "asc" ],[ 4, "asc"],[8,"asc"],[1,"asc"]],
-       "columnDefs": [ { "orderable": false, "targets": [0,9,10]},{"visible":false, "targets": [13]} ]          
+        "order": [[ 4, "asc"],[8,"asc"],[1,"asc"]],
+       "columnDefs": [ { "orderable": false, "targets": [0,9,10]} ]          
      });}   
      if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
     j$('[id$="myTable1"]').dataTable({
@@ -491,8 +491,8 @@ var losstype = j$('[id$="lossT"]').val();
         "fixedColumns": true,
         "info":     false,
         "bFilter": false,
-        "order": [[ 14, "asc" ],[ 4, "asc" ], [8,"asc"],[1,"asc"]],
-       "columnDefs": [ { "orderable": false, "targets": [0,9,10,11,12,13]}, {"visible":false, "targets": [14]}  ],
+        "order": [[ 4, "asc" ], [8,"asc"],[1,"asc"]],
+       "columnDefs": [ { "orderable": false, "targets": [0,9,10,11,12,13]}  ],
          "bStateSave": false,
          "scrollY": 300,  
         "bSearchable":false,
