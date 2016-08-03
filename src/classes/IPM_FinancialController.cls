@@ -3302,9 +3302,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getSectionList(); 
             getMisalignmentVisibility();
 			
-			//call the getFinancials(); method to properly render the validation cells highlighting on page load
-			getFinancials();
-		}
+	    //call the getFinancials(); method to properly render the validation cells highlighting on page load
+	    getFinancials();
+	    getValidationSettingSet();
+			
+	    validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
+            validateFinancialSummaryTable(currentFinancial);
+	    }
 		
 	}
     
