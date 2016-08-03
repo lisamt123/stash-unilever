@@ -19,7 +19,7 @@
 		<members>AR - Agency Portal User</members>
 		<members>CEC External Knowledge View</members>
 		<members>Core NT Profile</members>	
-		<name>Profiles</name>	
+		<name>Profile</name>	
     </types> 
 	
 </Package>
