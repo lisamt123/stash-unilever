@@ -199,7 +199,7 @@
         <filters>
             <field>LAST_UPDATE</field>
             <operation>equals</operation>
-            <value>2/25/2016 12:00 AM</value>
+            <value>8/2/2016 12:00 AM</value>
         </filters>
         <label>PH - alert tracker detail</label>
         <language>en_US</language>

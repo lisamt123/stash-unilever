@@ -3529,34 +3529,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_DACH_Queue_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>ACCOUNT.NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>Country_Name__c</columns>
-        <columns>Brand__c</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>CEC DACH Queue open emails</label>
-        <language>en_US</language>
-        <queue>CEC_DACH_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_DACH</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_HGS_Europe</role>
-            <role>CEC_User_DACH</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
