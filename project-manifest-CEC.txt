@@ -40,7 +40,6 @@ src/flows/CEC_Update_Case_Social_Media_External_Id-6.flow
 src/layouts/sf4twitter__Fcbk_Page__c-sf4twitter__FCBK Page Layout
 src/layouts/sf4twitter__Twitter_Conversation__c-sf4twitter__Conversation Layout.layout
 src/layouts/Case-Case Feed Layout.layout
-src/objects/Account.object
 src/objects/Case.object
 src/objects/cec_Case_Action__c.object
 src/objects/CEC_Fulfilment_Product__c.object
