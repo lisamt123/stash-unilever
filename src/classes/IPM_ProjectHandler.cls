@@ -67,6 +67,12 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 if(Trigger.isInsert &&  project.IPM_Project_Name__c !=null && !String.isBlank(project.IPM_Project_Name__c) && project.IPM_Company_Card__c !=null && project.IPM_ProjectSubType__c !=null && !String.isBlank(project.IPM_ProjectSubType__c) )
                 {
                     project.IPM_Category_Picklist__c = project.IPM_Category_Text__c;
+                    // Set 'Platform' Default Value as Not Applicable 
+                    if(String.isBlank(project.IPM_Category_Platform__c)){
+                    	
+                    	project.IPM_Category_Platform__c = IPM_ConstantUtils.PLATFORM_NA;
+                    }
+                    	
                     projectAssociatedWithProjectTypesList.add(project); 
                 }
                 //Process BET flow
@@ -75,6 +81,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 	// Set category picklist value from category text value
                     project.IPM_Category_Picklist__c = project.IPM_Category_Text__c;
                     
+                    // Set 'Platform' Default Value as Not Applicable
+                    if(String.isBlank(project.IPM_Category_Platform__c)){
+                    	
+                    	project.IPM_Category_Platform__c = IPM_ConstantUtils.PLATFORM_NA;
+                    } 
                     //Set default BET value
                     if(String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
                         project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
