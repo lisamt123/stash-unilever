@@ -2062,10 +2062,6 @@
         <recordType>cec_Additional_Case_Information__c.Close_Case_Survey</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.PersonAccount</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
     <tabSettings>
         <tab>cec_Store__c</tab>
         <visibility>Available</visibility>
