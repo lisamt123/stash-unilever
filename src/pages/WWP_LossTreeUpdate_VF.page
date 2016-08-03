@@ -471,8 +471,7 @@ function refreshdata(){
 var losstype = j$('[id$="lossT"]').val();
     if(losstype == 'MRP Compliance'){
     j$('[id$="myTable"]').dataTable({
-        "paging":   true,
-        "ordering": true,
+        "paging":   true, "ordering": true,
         "info":     false,
         "bStateSave": false,
         "bFilter": false,        
@@ -480,14 +479,11 @@ var losstype = j$('[id$="lossT"]').val();
         "fixedColumns": true,
         "bLengthChange": true,
         "scrollY": 300,
-        
         "order": [[ 4, "asc"],[8,"asc"],[1,"asc"]],
-       "columnDefs": [ { "orderable": false, "targets": [0,9,10]} ]          
-     });}   
+       "columnDefs": [ { "orderable": false, "targets": [0,9,10]} ] });}   
      if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
     j$('[id$="myTable1"]').dataTable({
-        "paging":   true,
-        "ordering": true,
+        "paging":   true,"ordering": true,
         "fixedColumns": true,
         "info":     false,
         "bFilter": false,
@@ -496,11 +492,7 @@ var losstype = j$('[id$="lossT"]').val();
          "bStateSave": false,
          "scrollY": 300,  
         "bSearchable":false,
-        "bLengthChange": true
-       
-                                 
-     });}    
-}
+        "bLengthChange": true });}    }
 </script>
 
 </div>
