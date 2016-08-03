@@ -28,7 +28,7 @@ public class CEC_CaseTriggerHelperExtTest {
             insert reasonCodeList;
             
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping(); 
-           
+            update cmmList;
             
         }
     }
@@ -40,7 +40,7 @@ public class CEC_CaseTriggerHelperExtTest {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
                                                     WHERE Market__c = 'United Kingdom' LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c=cmmUK.id,Brand__c='Knorr',Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c='Knorr',Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
                 insert cbm;
                 
                 
