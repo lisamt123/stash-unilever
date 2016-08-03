@@ -770,7 +770,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	string finExtId = '';
     	if(regionalrolloutid != null && rolloutFinancialmap.containskey(regionalrolloutid)){ 
        	   for(IPM_Financial__c fir:rolloutFinancialmap.get(regionalrolloutid)){
-               if(finExtId != '' && (pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE && fir.Financial_External_ID__c == pr.name + IPM_Utils.CONSOLIDATED) || (pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && fir.Financial_External_ID__c == pr.name)){
+               if((pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE && fir.Financial_External_ID__c == pr.name + IPM_Utils.CONSOLIDATED) || (pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && fir.Financial_External_ID__c == pr.name)){
                    
                    finExtId = fir.Financial_External_ID__c;                                     
                }                       
