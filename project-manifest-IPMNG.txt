@@ -297,6 +297,8 @@ src/components/IPM_OTIFStatusTable.component
 src/components/IPM_OTIFStatusTable.component-meta.xml
 src/components/IPM_PerformanceBreakdown.component
 src/components/IPM_PerformanceBreakdown.component-meta.xml
+src/components/IPM_ProjectDetails.component
+src/components/IPM_ProjectDetails.component-meta.xml
 src/components/IPM_RolloutPlansTable.component
 src/components/IPM_RolloutPlansTable.component-meta.xml
 src/components/IPM_Section_GateChecklist.component
