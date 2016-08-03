@@ -168,7 +168,7 @@
                                 <div class="slds-media__body">
                                   <div class="{!'slds-publisher slds-publisher--comment '+ v.feedElementId}">
                                     <label for="comment-text-input-01" class="slds-assistive-text">Write a comment</label>
-                                    <ui:inputText aura:id="textComment" label="" class="slds-input" value="{!v.textComment}" placeholder="Write a comment…" click="{!c.handleCommentPublisherStyling}"/>
+                                    <ui:inputText aura:id="textComment" label="" class="slds-input unique111" value="{!v.textComment}" placeholder="Write a comment…" click="{!c.handleCommentPublisherStyling}"/>
                                     <div class="slds-publisher__actions slds-grid slds-grid--align-spread">
                                       <ul class="slds-grid slds-publisher__toggle-visibility">
                                         <li>
