@@ -520,7 +520,7 @@
         <fullName>IPM_Global_Category_Average_View_GHG__c</fullName>
         <description>Stores Global Category Average GHG value</description>
         <externalId>false</externalId>
-        <label>Global Category Average View GHG</label>
+        <label>Qualitative Metric for GHG</label>
         <precision>18</precision>
         <required>true</required>
         <scale>2</scale>
@@ -557,7 +557,7 @@
         <fullName>IPM_Global_Category_Average_View_Waste__c</fullName>
         <description>Stores Global Category Average Waste  value</description>
         <externalId>false</externalId>
-        <label>Global Category Average View Waste</label>
+        <label>Qualitative Metric for Waste</label>
         <precision>18</precision>
         <required>true</required>
         <scale>2</scale>
@@ -570,7 +570,7 @@
         <fullName>IPM_Global_Category_Average_View_Water__c</fullName>
         <description>Stores Global Category Average water value</description>
         <externalId>false</externalId>
-        <label>Global Category Average View Water</label>
+        <label>Qualitative Metric for Water</label>
         <precision>18</precision>
         <required>true</required>
         <scale>2</scale>

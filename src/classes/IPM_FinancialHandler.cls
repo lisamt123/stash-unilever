@@ -262,7 +262,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                     {
                         activeChangedFinancialMap.put(financial.Id,financial); 
                         changedFinancialSet.add(financial.Id); 
-                        
+                         
                         financialToactiveChangedFieldMap.put(financial.Id,new Set<String>{IPM_FinancialHelper.ACTIVE_FIELD});
                     }
                     
@@ -350,7 +350,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             
             IPM_FinancialHelper.initializeConsolidation(deleteFinancialMap.values(),null,deleteFinancialMap,upsertConsolidatedFinancialMap,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE);
             deleteFinancialMap.clear();
+             if(Trigger.OldMap !=null)
+             {
              finIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());
+             }
         }
         
         if(!upsertConsolidatedFinancialMap.isEmpty())
@@ -369,7 +372,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             IPM_FinancialHelper.checkIfMisAligned((List<IPM_Financial__c>)Trigger.New,financialDetailMap);
         }
     }
-	}
     /**
     * @description:beforeInsert
     * This method is called iteratively for each record to be insert during a AFTER

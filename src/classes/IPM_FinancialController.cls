@@ -1829,24 +1829,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         return !projList.isEmpty(); 
       } 
     
-  
-       
-    //DEF2339 & DEF2344 fix end
-    /*******************************************************************************************************
-    * @description              Used to validate the financial Y0Turnover
-    * @param y0Turnover         Used to process the passed y0Turnover
-    * @return                   Boolean value says if the validation is failed or not
-    */
-    public void validateY0Turnover(Decimal y0Turnover){
-        isy0TurnoverInvalid = false;
-        isValidationFailed = false;
-        //Validate Y0 Turnover value   
-        if(y0Turnover <= IPM_ConstantUtils.INVALID_VALUE){
-            isy0TurnoverInvalid = true;
-                isValidationFailed = true;            
-        }
-    } 
-    
     /*******************************************************************************************************
     * @description                      Used to validate the financial GrossPLTurnover
     * @param lstGrossPLTurnover     Used to process the passed lstGrossPLTurnover
@@ -2669,13 +2651,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if((localProjectRolloutTLDYear-localProjectTLDYear) != 0 ) 
             {
                 isTLDYearMisaligned = true;
-                validationErrorMessage += IPM_ConstantUtils.IPM_SPACE + Label.IPM_TLD_Year_Misaligned;
+                    validationErrorMessageforTLD += IPM_ConstantUtils.IPM_SPACE + Label.IPM_TLD_Year_Misaligned;
             }
            // misalignment message 
         } 
-        else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
+        else if(validationErrorMessageforTLD.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
             isMisalignedTLD  = false;
-            validationErrorMessage = IPM_ConstantUtils.BLANK;
+            validationErrorMessageforTLD = IPM_ConstantUtils.BLANK;
         }
                   
         isTargetLaunchDateMisaligned =  flag; 
@@ -3313,6 +3295,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			if(toUpdateFinancials != null && !toUpdateFinancials.isEmpty() ){
 				update toUpdateFinancials;
 			}
+			
+			getRolloutWrappers(); 
+            getSustainabilityPeriod(); 
+            getVisibleTabs(); 
+            getSectionList(); 
+            getMisalignmentVisibility();
 			
 			//call the getFinancials(); method to properly render the validation cells highlighting on page load
 			getFinancials();
