@@ -1470,10 +1470,6 @@
         <apexPage>CEC_IssueCreationPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
-	<tabSettings>
-        <tab>New_case</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
     <tabSettings>
         <tab>CEC_Case_Market_Mapping__c</tab>
         <visibility>Available</visibility>

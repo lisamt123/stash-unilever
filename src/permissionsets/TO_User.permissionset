@@ -65,123 +65,123 @@
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_Account</apexClass>
+    <apexClass>CRMfusionDBR101__DB_Account</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_AccountNameCleaner</apexClass>
+    <apexClass>CRMfusionDBR101__DB_AccountNameCleaner</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_AccountUnitTests</apexClass>
+    <apexClass>CRMfusionDBR101__DB_AccountUnitTests</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_Api</apexClass>
+    <apexClass>CRMfusionDBR101__DB_Api</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_Auth</apexClass>
+    <apexClass>CRMfusionDBR101__DB_Auth</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_AutoConvert</apexClass>
+    <apexClass>CRMfusionDBR101__DB_AutoConvert</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_AutoConvert_UnitTests</apexClass>
+    <apexClass>CRMfusionDBR101__DB_AutoConvert_UnitTests</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_AutoMerge</apexClass>
+    <apexClass>CRMfusionDBR101__DB_AutoMerge</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_AutoMerge_UnitTests</apexClass>
+    <apexClass>CRMfusionDBR101__DB_AutoMerge_UnitTests</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_BatchDeleteOldLinks</apexClass>
+    <apexClass>CRMfusionDBR101__DB_BatchDeleteOldLinks</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_BatchKeyBuilder</apexClass>
+    <apexClass>CRMfusionDBR101__DB_BatchKeyBuilder</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_BatchKeyDeletion</apexClass>
+    <apexClass>CRMfusionDBR101__DB_BatchKeyDeletion</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_BuildKeyUpdates</apexClass>
+    <apexClass>CRMfusionDBR101__DB_BuildKeyUpdates</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_Contact</apexClass>
+    <apexClass>CRMfusionDBR101__DB_Contact</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_ContactUnitTests</apexClass>
+    <apexClass>CRMfusionDBR101__DB_ContactUnitTests</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_ConvertMergeController</apexClass>
+    <apexClass>CRMfusionDBR101__DB_ConvertMergeController</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_CountryFilter</apexClass>
+    <apexClass>CRMfusionDBR101__DB_CountryFilter</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_CustomMatchHandler</apexClass>
+    <apexClass>CRMfusionDBR101__DB_CustomMatchHandler</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_DefaultData</apexClass>
+    <apexClass>CRMfusionDBR101__DB_DefaultData</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_DisabledWarningController</apexClass>
+    <apexClass>CRMfusionDBR101__DB_DisabledWarningController</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_DuplicateAccountsList</apexClass>
+    <apexClass>CRMfusionDBR101__DB_DuplicateAccountsList</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_DuplicateContactsList</apexClass>
+    <apexClass>CRMfusionDBR101__DB_DuplicateContactsList</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_DuplicateLeadsList</apexClass>
+    <apexClass>CRMfusionDBR101__DB_DuplicateLeadsList</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_Globals</apexClass>
+    <apexClass>CRMfusionDBR101__DB_Globals</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_HelpController</apexClass>
+    <apexClass>CRMfusionDBR101__DB_HelpController</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_Install</apexClass>
+    <apexClass>CRMfusionDBR101__DB_Install</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_KeyBuilderController</apexClass>
+    <apexClass>CRMfusionDBR101__DB_KeyBuilderController</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_KeyFilter</apexClass>
+    <apexClass>CRMfusionDBR101__DB_KeyFilter</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_KeyMatch</apexClass>
+    <apexClass>CRMfusionDBR101__DB_KeyMatch</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <classAccesses>
-    <apexClass>CRMfusionDBR101.DB_Lead</apexClass>
+    <apexClass>CRMfusionDBR101__DB_Lead</apexClass>
     <enabled>true</enabled>
 </classAccesses>
 <customPermissions>
@@ -1887,159 +1887,159 @@
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Account_Inline_Duplicates_List</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Account_Inline_Duplicates_List</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_AutoConvert_Settings</apexPage>
+    <apexPage>CRMfusionDBR101__DB_AutoConvert_Settings</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_AutoMerge_Settings</apexPage>
+    <apexPage>CRMfusionDBR101__DB_AutoMerge_Settings</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Contact_Inline_Duplicates_List</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Contact_Inline_Duplicates_List</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Help</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Help</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Lead_Inline_Duplicates_List</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Lead_Inline_Duplicates_List</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Match_Redirector</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Match_Redirector</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Sample_Redirect_Page</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Sample_Redirect_Page</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scen_Target_Filter_Page_Setup_Warning</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scen_Target_Filter_Page_Setup_Warning</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Edit</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Edit</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Filter_Edit_Create</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Filter_Edit_Create</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Filter_Page_Setup_Warning</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Filter_Page_Setup_Warning</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Filter_View</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Filter_View</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Key_Builder</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Key_Builder</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_New</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_New</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Rule_Edit_Create</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Rule_Edit_Create</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Rule_Page_Setup_Warning</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Rule_Page_Setup_Warning</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Rule_View</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Rule_View</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Target_Filter_Edit_Create</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Target_Filter_Edit_Create</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_Target_Filter_View</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_Target_Filter_View</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_VF_Key_Builder</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_VF_Key_Builder</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Scenario_View</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Scenario_View</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_ANC_Prefix</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_ANC_Prefix</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_ANC_Replace</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_ANC_Replace</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_ANC_Suffix</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_ANC_Suffix</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_Country_Mapping</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_Country_Mapping</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_Download</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_Download</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_Editor</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_Editor</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_Enable_Objects</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_Enable_Objects</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_Experimental_Edit</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_Experimental_Edit</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_Experimental_View</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_Experimental_View</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_First_Name</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_First_Name</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_State_Mapping</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_State_Mapping</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Settings_Web_Lead_Sources</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Settings_Web_Lead_Sources</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Today_Tab</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Today_Tab</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Warning_Convert</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Warning_Convert</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Warning_Convert_Merge</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Warning_Convert_Merge</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
 <pageAccesses>
-    <apexPage>CRMfusionDBR101.DB_Warning_Merge</apexPage>
+    <apexPage>CRMfusionDBR101__DB_Warning_Merge</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
    <recordTypeVisibilities>
