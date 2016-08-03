@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
     <types>
-	<members>af_usersearch</members>
-		<members>af_SendCurrencyReminder</members>
-		<members>AFBrandEstimateStCtrlExtSummary</members>
-		<members>checkRecursive</members>
-		<members>checkRecursiveBonusQuarterly</members>
-		<members>checkRecursivePOReport</members>
-		<members>AgencyHomePageController</members>
-		<name>ApexClass</name>	
+		<members>Unilever - Ideas Admin</members>
+		<members>FA - Agency</members>
+		<members>FA - Facility Manager</members>
+		<members>FA - Instructor</members>
+		<members>FA - Participant1</members>
+		<members>FA-Participant-Planner - Central CB4L Hybrid User PLATFORM</members>
+		<members>FA-Participant-Planner - Market CB4L Hybrid User PLATFORM</members>
+		<members>FA-Participant-Planner-Administator</members>
+		<members>FA-Participant-Planner-Market User PLATFORM</members>
+		<members>FA-Participant-RR Brand Manager</members>
+		<members>FA-Participant-RR Brand Moderator</members>
+		<members>FA-Participant-RR Brand Owner</members>
+		<members>FA-Participant-RR Community manager</members>
+		<members>FA-Participant-RR Customer service</members>
+		<members>Force.com - One App User</members>
+		<members>AR - Agency Portal User</members>
+		<members>CEC External Knowledge View</members>
+		<members>Core NT Profile</members>	
+		<name>Profile</name>	
     </types> 
-	<types>
-		<members>Ideas</members>
-		<name>CustomTab</name>
-	</types>
+	
 </Package>
