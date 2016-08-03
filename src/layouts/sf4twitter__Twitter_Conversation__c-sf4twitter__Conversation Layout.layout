@@ -237,14 +237,14 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Twitter_Image__c</fields>
-        <fields>First_Attachment_Image_Preview__c</fields>
-        <fields>Message__c</fields>
-        <fields>Contact__c</fields>
-        <fields>Type__c</fields>
-        <fields>Published_Date__c</fields>
-        <relatedList>Twitter_Conversation__c.Parent__c</relatedList>
-        <sortField>Published_Date__c</sortField>
+        <fields>sf4twitter__Twitter_Image__c</fields>
+        <fields>sf4twitter__First_Attachment_Image_Preview__c</fields>
+        <fields>sf4twitter__Message__c</fields>
+        <fields>sf4twitter__Contact__c</fields>
+        <fields>sf4twitter__Type__c</fields>
+        <fields>sf4twitter__Published_Date__c</fields>
+        <relatedList>sf4twitter__Twitter_Conversation__c.Parent__c</relatedList>
+        <sortField>sf4twitter__Published_Date__c</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
