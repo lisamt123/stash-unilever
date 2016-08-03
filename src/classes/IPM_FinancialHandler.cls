@@ -330,6 +330,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                }
 	            }
             } 
+			}
             
             if(!upsertFinancialYearMap.isEmpty())  
 	        {
@@ -350,10 +351,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             
             IPM_FinancialHelper.initializeConsolidation(deleteFinancialMap.values(),null,deleteFinancialMap,upsertConsolidatedFinancialMap,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE);
             deleteFinancialMap.clear();
-             if(Trigger.OldMap !=null)
-             {
-             finIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());
-             }
+            finIdsforProjY3iToSync.addAll(Trigger.OldMap.keySet());
+
         }
         
         if(!upsertConsolidatedFinancialMap.isEmpty())
