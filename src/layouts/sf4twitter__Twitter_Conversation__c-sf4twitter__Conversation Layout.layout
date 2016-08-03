@@ -246,7 +246,7 @@
         <relatedList>sf4twitter__Twitter_Conversation__c.Parent__c</relatedList>
         <sortField>sf4twitter__Published_Date__c</sortField>
         <sortOrder>Desc</sortOrder>
-    </relatedLists>
+    </relatedLists>  
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
