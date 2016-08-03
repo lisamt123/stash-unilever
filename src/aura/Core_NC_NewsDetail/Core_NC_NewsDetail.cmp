@@ -44,14 +44,14 @@
             <div id="list" class="row">                
     			<!--top back arrow bar of the page-->
                 <div class="topBarStyle">
-                    <div onclick="{!c.buttonClick}" class="topBackBar">
-                         <img src="/resource/NewsCenterIcons/back.svg" class="topBackBarIcon" id="pageTopBar" ></img>
+                    <div onclick="{!c.buttonClick}" class="">
+                         <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" class="topBackBarIcon" id="pageTopBar" ></img>
                     </div>
                 </div>
                 <!--Banner Image News Article-->
                 <aura:if isTrue="{!v.defaultImage}">
                     <div class="leftRightSpaceing">        
-                        <img src="{!v.newsArticle.BannerURL}" class="BigImage"></img>
+                        <img src="{!v.newsArticle.BannerURL}" class=""></img>
                     </div>
                 </aura:if>
                 
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                                 <div onclick="{!c.gotoBannerNewsDetail}">                    	
-                                    <img src="{!relatedNews.BannerURL}" class="BigImage" ></img><br/>
+                                    <img src="{!relatedNews.BannerURL}" class="" ></img><br/>
                                     {!relatedNews.Name}
                                 </div> <br/>
                             </aura:if>
@@ -202,11 +202,11 @@
                         </div>
                     </div>
                     <!--<input type="text"/>
-                        <div onclick="{!c.postChatterInfo}">  POST </div>-->
+                        <div onclick="{!c.postChatterInfo}">  POST </div> 
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/>
-                <!--Ligthning Chatter Feed:News App Enhancements
+                Ligthning Chatter Feed:News App Enhancements -->
                 	<c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
-                	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> -->
+                	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
             </div>
     	</div>                 
     </div>
