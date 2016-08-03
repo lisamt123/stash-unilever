@@ -1918,6 +1918,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Assessment__c.QM_Global_Category_Average_View_GHG__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Assessment__c.QM_Global_Category_Average_View_Waste__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Assessment__c.QM_Global_Category_Average_View_Water__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Assessment__c.IPM_Country_Name__c</field>
         <readable>true</readable>
