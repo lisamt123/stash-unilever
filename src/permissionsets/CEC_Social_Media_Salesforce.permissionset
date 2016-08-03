@@ -1,1271 +1,1271 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
-        <application>sf4twitter.Salesforce_for_Twitter</application>
+        <application>sf4twitter__Salesforce_for_Twitter</application>
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
-        <apexClass>sf4twitter.AutomationWrapper</apexClass>
+        <apexClass>sf4twitter__AutomationWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.AutomationWrapperTest</apexClass>
+        <apexClass>sf4twitter__AutomationWrapperTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.CoreFactory</apexClass>
+        <apexClass>sf4twitter__CoreFactory</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.CoreSearchController</apexClass>
+        <apexClass>sf4twitter__CoreSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.CoreUserObjectCollection</apexClass>
+        <apexClass>sf4twitter__CoreUserObjectCollection</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkAccountManager</apexClass>
+        <apexClass>sf4twitter__FcbkAccountManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkAdapter</apexClass>
+        <apexClass>sf4twitter__FcbkAdapter</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkAdapterTest</apexClass>
+        <apexClass>sf4twitter__FcbkAdapterTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkCredentialManager</apexClass>
+        <apexClass>sf4twitter__FcbkCredentialManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkCredentialManagerTest</apexClass>
+        <apexClass>sf4twitter__FcbkCredentialManagerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkFeaturesController</apexClass>
+        <apexClass>sf4twitter__FcbkFeaturesController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkFeaturesControllerTest</apexClass>
+        <apexClass>sf4twitter__FcbkFeaturesControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkGetConversationController</apexClass>
+        <apexClass>sf4twitter__FcbkGetConversationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkGetConversationControllerTest</apexClass>
+        <apexClass>sf4twitter__FcbkGetConversationControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkGetPrivateMessagesController</apexClass>
+        <apexClass>sf4twitter__FcbkGetPrivateMessagesController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkGetPrivateMessagesControllerTest</apexClass>
+        <apexClass>sf4twitter__FcbkGetPrivateMessagesControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkMockdata</apexClass>
+        <apexClass>sf4twitter__FcbkMockdata</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkOauth</apexClass>
+        <apexClass>sf4twitter__FcbkOauth</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkOauthController</apexClass>
+        <apexClass>sf4twitter__FcbkOauthController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkOauthControllerTest</apexClass>
+        <apexClass>sf4twitter__FcbkOauthControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkObjectManager</apexClass>
+        <apexClass>sf4twitter__FcbkObjectManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkObjectManagerTest</apexClass>
+        <apexClass>sf4twitter__FcbkObjectManagerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FCBKPageSearchController</apexClass>
+        <apexClass>sf4twitter__FCBKPageSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FCBKPageSearchControllerTest</apexClass>
+        <apexClass>sf4twitter__FCBKPageSearchControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkPageSelectionController</apexClass>
+        <apexClass>sf4twitter__FcbkPageSelectionController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkPageSelectionControllerTest</apexClass>
+        <apexClass>sf4twitter__FcbkPageSelectionControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkQLResponseParser</apexClass>
+        <apexClass>sf4twitter__FcbkQLResponseParser</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkQLResponseParserTest</apexClass>
+        <apexClass>sf4twitter__FcbkQLResponseParserTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkTypes</apexClass>
+        <apexClass>sf4twitter__FcbkTypes</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkTypesTest</apexClass>
+        <apexClass>sf4twitter__FcbkTypesTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkUpdatePageInfoController</apexClass>
+        <apexClass>sf4twitter__FcbkUpdatePageInfoController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkUpdatePageInfoControllerTest</apexClass>
+        <apexClass>sf4twitter__FcbkUpdatePageInfoControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkUserFanPagesController</apexClass>
+        <apexClass>sf4twitter__FcbkUserFanPagesController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.FcbkUserFanPagesControllerTest</apexClass>
+        <apexClass>sf4twitter__FcbkUserFanPagesControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.GenerateEnvironmentTest</apexClass>
+        <apexClass>sf4twitter__GenerateEnvironmentTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.HttpWrapper</apexClass>
+        <apexClass>sf4twitter__HttpWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.HttpWrapperTest</apexClass>
+        <apexClass>sf4twitter__HttpWrapperTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.JSONObject</apexClass>
+        <apexClass>sf4twitter__JSONObject</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.JSONObjectTest</apexClass>
+        <apexClass>sf4twitter__JSONObjectTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.Oauth4Twitter</apexClass>
+        <apexClass>sf4twitter__Oauth4Twitter</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.Oauth4TwitterTest</apexClass>
+        <apexClass>sf4twitter__Oauth4TwitterTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.OAuthClass</apexClass>
+        <apexClass>sf4twitter__OAuthClass</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.OAuthClassTest</apexClass>
+        <apexClass>sf4twitter__OAuthClassTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.RSSHandler</apexClass>
+        <apexClass>sf4twitter__RSSHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.RSSHandlerTest</apexClass>
+        <apexClass>sf4twitter__RSSHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SecurityManager</apexClass>
+        <apexClass>sf4twitter__SecurityManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SecurityManagerTest</apexClass>
+        <apexClass>sf4twitter__SecurityManagerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SecurityUtilities</apexClass>
+        <apexClass>sf4twitter__SecurityUtilities</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SetupController</apexClass>
+        <apexClass>sf4twitter__SetupController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SetupControllerTest</apexClass>
+        <apexClass>sf4twitter__SetupControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialArticlesController</apexClass>
+        <apexClass>sf4twitter__SocialArticlesController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialArticlesControllerTest</apexClass>
+        <apexClass>sf4twitter__SocialArticlesControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialBitlyAdapter</apexClass>
+        <apexClass>sf4twitter__SocialBitlyAdapter</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialBitlyAdapterTest</apexClass>
+        <apexClass>sf4twitter__SocialBitlyAdapterTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialBitlyController</apexClass>
+        <apexClass>sf4twitter__SocialBitlyController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialBitlyControllerTest</apexClass>
+        <apexClass>sf4twitter__SocialBitlyControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialConsoleDetector</apexClass>
+        <apexClass>sf4twitter__SocialConsoleDetector</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialConsoleDetectorTest</apexClass>
+        <apexClass>sf4twitter__SocialConsoleDetectorTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialDispatcherController</apexClass>
+        <apexClass>sf4twitter__SocialDispatcherController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialDispatcherControllerTest</apexClass>
+        <apexClass>sf4twitter__SocialDispatcherControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialKloutAdapter</apexClass>
+        <apexClass>sf4twitter__SocialKloutAdapter</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialKloutAdapterTest</apexClass>
+        <apexClass>sf4twitter__SocialKloutAdapterTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialOutputLinkController</apexClass>
+        <apexClass>sf4twitter__SocialOutputLinkController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialOutputLinkControllerTest</apexClass>
+        <apexClass>sf4twitter__SocialOutputLinkControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialSetupController</apexClass>
+        <apexClass>sf4twitter__SocialSetupController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialSetupControllerTest</apexClass>
+        <apexClass>sf4twitter__SocialSetupControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialSolutionController</apexClass>
+        <apexClass>sf4twitter__SocialSolutionController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialSolutionControllerTest</apexClass>
+        <apexClass>sf4twitter__SocialSolutionControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialTemplateController</apexClass>
+        <apexClass>sf4twitter__SocialTemplateController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.SocialTemplateControllerTest</apexClass>
+        <apexClass>sf4twitter__SocialTemplateControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TestAssociationInbound</apexClass>
+        <apexClass>sf4twitter__TestAssociationInbound</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TestAssociationInboundReply</apexClass>
+        <apexClass>sf4twitter__TestAssociationInboundReply</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TestAssociationOutbound</apexClass>
+        <apexClass>sf4twitter__TestAssociationOutbound</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TestTriggers</apexClass>
+        <apexClass>sf4twitter__TestTriggers</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TroubleshootingLogController</apexClass>
+        <apexClass>sf4twitter__TroubleshootingLogController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TroubleshootingLogControllerTest</apexClass>
+        <apexClass>sf4twitter__TroubleshootingLogControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAccountManager</apexClass>
+        <apexClass>sf4twitter__TwitterAccountManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAccountManagerTest</apexClass>
+        <apexClass>sf4twitter__TwitterAccountManagerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAccountSearchController</apexClass>
+        <apexClass>sf4twitter__TwitterAccountSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAddContributorController</apexClass>
+        <apexClass>sf4twitter__TwitterAddContributorController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAddContributorControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterAddContributorControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAddToCampaignController</apexClass>
+        <apexClass>sf4twitter__TwitterAddToCampaignController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAddToCampaignControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterAddToCampaignControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAjaxSearch</apexClass>
+        <apexClass>sf4twitter__TwitterAjaxSearch</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterAjaxSearchTest</apexClass>
+        <apexClass>sf4twitter__TwitterAjaxSearchTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterChatterAdapter</apexClass>
+        <apexClass>sf4twitter__TwitterChatterAdapter</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterChatterAdapterTest</apexClass>
+        <apexClass>sf4twitter__TwitterChatterAdapterTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterContactController</apexClass>
+        <apexClass>sf4twitter__TwitterContactController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterContactControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterContactControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterConversationManager</apexClass>
+        <apexClass>sf4twitter__TwitterConversationManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterConversationManagerTest</apexClass>
+        <apexClass>sf4twitter__TwitterConversationManagerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterCredentialManager</apexClass>
+        <apexClass>sf4twitter__TwitterCredentialManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterCustomSettings</apexClass>
+        <apexClass>sf4twitter__TwitterCustomSettings</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterError</apexClass>
+        <apexClass>sf4twitter__TwitterError</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterErrorTest</apexClass>
+        <apexClass>sf4twitter__TwitterErrorTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterFindContactController</apexClass>
+        <apexClass>sf4twitter__TwitterFindContactController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterFindContactControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterFindContactControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterFindConversationController</apexClass>
+        <apexClass>sf4twitter__TwitterFindConversationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterFindConversationControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterFindConversationControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterFollow</apexClass>
+        <apexClass>sf4twitter__TwitterFollow</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterFollowTest</apexClass>
+        <apexClass>sf4twitter__TwitterFollowTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterForceController</apexClass>
+        <apexClass>sf4twitter__TwitterForceController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterForceControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterForceControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterGetConversationController</apexClass>
+        <apexClass>sf4twitter__TwitterGetConversationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterGetConversationControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterGetConversationControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterGetUsernameController</apexClass>
+        <apexClass>sf4twitter__TwitterGetUsernameController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterGetUsernameControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterGetUsernameControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterIgnoreController</apexClass>
+        <apexClass>sf4twitter__TwitterIgnoreController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterIgnoreControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterIgnoreControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterKeywordSearchController</apexClass>
+        <apexClass>sf4twitter__TwitterKeywordSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterKeywordSearchControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterKeywordSearchControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterLeadController</apexClass>
+        <apexClass>sf4twitter__TwitterLeadController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterLeadControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterLeadControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterLogger</apexClass>
+        <apexClass>sf4twitter__TwitterLogger</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterLoggerTest</apexClass>
+        <apexClass>sf4twitter__TwitterLoggerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterMockData</apexClass>
+        <apexClass>sf4twitter__TwitterMockData</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterOAuthController</apexClass>
+        <apexClass>sf4twitter__TwitterOAuthController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterOAuthControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterOAuthControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterObjectManager</apexClass>
+        <apexClass>sf4twitter__TwitterObjectManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterOutboundTweetsController</apexClass>
+        <apexClass>sf4twitter__TwitterOutboundTweetsController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterOutboundTweetsControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterOutboundTweetsControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterOutputFilter</apexClass>
+        <apexClass>sf4twitter__TwitterOutputFilter</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterOutputFilterTest</apexClass>
+        <apexClass>sf4twitter__TwitterOutputFilterTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterPersonAccountManager</apexClass>
+        <apexClass>sf4twitter__TwitterPersonAccountManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterPersonAccountManagerTest</apexClass>
+        <apexClass>sf4twitter__TwitterPersonAccountManagerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterPostToChatterPopUpController</apexClass>
+        <apexClass>sf4twitter__TwitterPostToChatterPopUpController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterPostToChatterPopUpControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterPostToChatterPopUpControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterResult</apexClass>
+        <apexClass>sf4twitter__TwitterResult</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterReviewController</apexClass>
+        <apexClass>sf4twitter__TwitterReviewController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterReviewControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterReviewControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterScheduler</apexClass>
+        <apexClass>sf4twitter__TwitterScheduler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSchedulerController</apexClass>
+        <apexClass>sf4twitter__TwitterSchedulerController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSchedulerControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterSchedulerControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSchedulerIgnore</apexClass>
+        <apexClass>sf4twitter__TwitterSchedulerIgnore</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSchedulerIgnoreTest</apexClass>
+        <apexClass>sf4twitter__TwitterSchedulerIgnoreTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSchedulerTest</apexClass>
+        <apexClass>sf4twitter__TwitterSchedulerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSearchController</apexClass>
+        <apexClass>sf4twitter__TwitterSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSearchManager</apexClass>
+        <apexClass>sf4twitter__TwitterSearchManager</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSearchManagerTest</apexClass>
+        <apexClass>sf4twitter__TwitterSearchManagerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSimpleOutboundTweetExtension</apexClass>
+        <apexClass>sf4twitter__TwitterSimpleOutboundTweetExtension</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSimpleOutboundTweetExtensionTest</apexClass>
+        <apexClass>sf4twitter__TwitterSimpleOutboundTweetExtensionTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSolvedByCommunityController</apexClass>
+        <apexClass>sf4twitter__TwitterSolvedByCommunityController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterSolvedByCommunityControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterSolvedByCommunityControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterStartPageController</apexClass>
+        <apexClass>sf4twitter__TwitterStartPageController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterStartPageControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterStartPageControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterTemplates</apexClass>
+        <apexClass>sf4twitter__TwitterTemplates</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterTemplatesTest</apexClass>
+        <apexClass>sf4twitter__TwitterTemplatesTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterTestUtil</apexClass>
+        <apexClass>sf4twitter__TwitterTestUtil</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterThumbsChangeController</apexClass>
+        <apexClass>sf4twitter__TwitterThumbsChangeController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterThumbsChangeControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterThumbsChangeControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterToCaseController</apexClass>
+        <apexClass>sf4twitter__TwitterToCaseController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterToCaseControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterToCaseControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterToKnowledgeController</apexClass>
+        <apexClass>sf4twitter__TwitterToKnowledgeController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterToKnowledgeControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterToKnowledgeControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterUpdateTwitterInfoController</apexClass>
+        <apexClass>sf4twitter__TwitterUpdateTwitterInfoController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterUpdateTwitterInfoControllerTest</apexClass>
+        <apexClass>sf4twitter__TwitterUpdateTwitterInfoControllerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterUtils</apexClass>
+        <apexClass>sf4twitter__TwitterUtils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>sf4twitter.TwitterUtilsTest</apexClass>
+        <apexClass>sf4twitter__TwitterUtilsTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.FcbkFeatures</apexPage>
+        <apexPage>sf4twitter__FcbkFeatures</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.FcbkGetConversation</apexPage>
+        <apexPage>sf4twitter__FcbkGetConversation</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.FcbkGetPrivateMessages</apexPage>
+        <apexPage>sf4twitter__FcbkGetPrivateMessages</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.FcbkOauth</apexPage>
+        <apexPage>sf4twitter__FcbkOauth</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.FcbkPageSelection</apexPage>
+        <apexPage>sf4twitter__FcbkPageSelection</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.FcbkUpdatePageInfo</apexPage>
+        <apexPage>sf4twitter__FcbkUpdatePageInfo</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.FcbkUserFanPages</apexPage>
+        <apexPage>sf4twitter__FcbkUserFanPages</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.Setup</apexPage>
+        <apexPage>sf4twitter__Setup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialKlout</apexPage>
+        <apexPage>sf4twitter__SocialKlout</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialSetup</apexPage>
+        <apexPage>sf4twitter__SocialSetup</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SplashPage</apexPage>
+        <apexPage>sf4twitter__SplashPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TroubleshootingLog</apexPage>
+        <apexPage>sf4twitter__TroubleshootingLog</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.Twitter_StartPage</apexPage>
+        <apexPage>sf4twitter__Twitter_StartPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAddContributor</apexPage>
+        <apexPage>sf4twitter__TwitterAddContributor</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAddToCampaign</apexPage>
+        <apexPage>sf4twitter__TwitterAddToCampaign</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAjaxFrameSearch</apexPage>
+        <apexPage>sf4twitter__TwitterAjaxFrameSearch</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterContact</apexPage>
+        <apexPage>sf4twitter__TwitterContact</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterErrorMessage</apexPage>
+        <apexPage>sf4twitter__TwitterErrorMessage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFindContact</apexPage>
+        <apexPage>sf4twitter__TwitterFindContact</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFindConversation</apexPage>
+        <apexPage>sf4twitter__TwitterFindConversation</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFollow</apexPage>
+        <apexPage>sf4twitter__TwitterFollow</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterGetConversation</apexPage>
+        <apexPage>sf4twitter__TwitterGetConversation</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterGetUsername</apexPage>
+        <apexPage>sf4twitter__TwitterGetUsername</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterIgnore</apexPage>
+        <apexPage>sf4twitter__TwitterIgnore</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterLead</apexPage>
+        <apexPage>sf4twitter__TwitterLead</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterMessage</apexPage>
+        <apexPage>sf4twitter__TwitterMessage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOAuth</apexPage>
+        <apexPage>sf4twitter__TwitterOAuth</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOAuthCallback</apexPage>
+        <apexPage>sf4twitter__TwitterOAuthCallback</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterPostToChatter</apexPage>
+        <apexPage>sf4twitter__TwitterPostToChatter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterReview</apexPage>
+        <apexPage>sf4twitter__TwitterReview</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterScheduler</apexPage>
+        <apexPage>sf4twitter__TwitterScheduler</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSearchInterface</apexPage>
+        <apexPage>sf4twitter__TwitterSearchInterface</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSolvedByCommunity</apexPage>
+        <apexPage>sf4twitter__TwitterSolvedByCommunity</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterThumbsChange</apexPage>
+        <apexPage>sf4twitter__TwitterThumbsChange</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterToCase</apexPage>
+        <apexPage>sf4twitter__TwitterToCase</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterToKnowledge</apexPage>
+        <apexPage>sf4twitter__TwitterToKnowledge</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterUpdateTwitterInfo</apexPage>
+        <apexPage>sf4twitter__TwitterUpdateTwitterInfo</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.JSONObject</apexPage>
+        <apexPage>sf4twitter__JSONObject</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.JSONObjectTest</apexPage>
+        <apexPage>sf4twitter__JSONObjectTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.Oauth4Twitter</apexPage>
+        <apexPage>sf4twitter__Oauth4Twitter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.Oauth4TwitterTest</apexPage>
+        <apexPage>sf4twitter__Oauth4TwitterTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.OAuthClass</apexPage>
+        <apexPage>sf4twitter__OAuthClass</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.OAuthClassTest</apexPage>
+        <apexPage>sf4twitter__OAuthClassTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.RSSHandler</apexPage>
+        <apexPage>sf4twitter__RSSHandler</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.RSSHandlerTest</apexPage>
+        <apexPage>sf4twitter__RSSHandlerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SecurityManager</apexPage>
+        <apexPage>sf4twitter__SecurityManager</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SecurityManagerTest</apexPage>
+        <apexPage>sf4twitter__SecurityManagerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SecurityUtilities</apexPage>
+        <apexPage>sf4twitter__SecurityUtilities</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SetupController</apexPage>
+        <apexPage>sf4twitter__SetupController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SetupControllerTest</apexPage>
+        <apexPage>sf4twitter__SetupControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialArticlesController</apexPage>
+        <apexPage>sf4twitter__SocialArticlesController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialArticlesControllerTest</apexPage>
+        <apexPage>sf4twitter__SocialArticlesControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialBitlyAdapter</apexPage>
+        <apexPage>sf4twitter__SocialBitlyAdapter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialBitlyAdapterTest</apexPage>
+        <apexPage>sf4twitter__SocialBitlyAdapterTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialBitlyController</apexPage>
+        <apexPage>sf4twitter__SocialBitlyController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialBitlyControllerTest</apexPage>
+        <apexPage>sf4twitter__SocialBitlyControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialConsoleDetector</apexPage>
+        <apexPage>sf4twitter__SocialConsoleDetector</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialConsoleDetectorTest</apexPage>
+        <apexPage>sf4twitter__SocialConsoleDetectorTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialDispatcherController</apexPage>
+        <apexPage>sf4twitter__SocialDispatcherController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialDispatcherControllerTest</apexPage>
+        <apexPage>sf4twitter__SocialDispatcherControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialKloutAdapter</apexPage>
+        <apexPage>sf4twitter__SocialKloutAdapter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialKloutAdapterTest</apexPage>
+        <apexPage>sf4twitter__SocialKloutAdapterTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialOutputLinkController</apexPage>
+        <apexPage>sf4twitter__SocialOutputLinkController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialOutputLinkControllerTest</apexPage>
+        <apexPage>sf4twitter__SocialOutputLinkControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialSetupController</apexPage>
+        <apexPage>sf4twitter__SocialSetupController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialSetupControllerTest</apexPage>
+        <apexPage>sf4twitter__SocialSetupControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialSolutionController</apexPage>
+        <apexPage>sf4twitter__SocialSolutionController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialSolutionControllerTest</apexPage>
+        <apexPage>sf4twitter__SocialSolutionControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialTemplateController</apexPage>
+        <apexPage>sf4twitter__SocialTemplateController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.SocialTemplateControllerTest</apexPage>
+        <apexPage>sf4twitter__SocialTemplateControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TestAssociationInbound</apexPage>
+        <apexPage>sf4twitter__TestAssociationInbound</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TestAssociationInboundReply</apexPage>
+        <apexPage>sf4twitter__TestAssociationInboundReply</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TestAssociationOutbound</apexPage>
+        <apexPage>sf4twitter__TestAssociationOutbound</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TestTriggers</apexPage>
+        <apexPage>sf4twitter__TestTriggers</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TroubleshootingLogController</apexPage>
+        <apexPage>sf4twitter__TroubleshootingLogController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TroubleshootingLogControllerTest</apexPage>
+        <apexPage>sf4twitter__TroubleshootingLogControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAccountManager</apexPage>
+        <apexPage>sf4twitter__TwitterAccountManager</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAccountManagerTest</apexPage>
+        <apexPage>sf4twitter__TwitterAccountManagerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAccountSearchController</apexPage>
+        <apexPage>sf4twitter__TwitterAccountSearchController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAddContributorController</apexPage>
+        <apexPage>sf4twitter__TwitterAddContributorController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAddContributorControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterAddContributorControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAddToCampaignController</apexPage>
+        <apexPage>sf4twitter__TwitterAddToCampaignController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAddToCampaignControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterAddToCampaignControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAjaxSearch</apexPage>
+        <apexPage>sf4twitter__TwitterAjaxSearch</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterAjaxSearchTest</apexPage>
+        <apexPage>sf4twitter__TwitterAjaxSearchTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterChatterAdapter</apexPage>
+        <apexPage>sf4twitter__TwitterChatterAdapter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterChatterAdapterTest</apexPage>
+        <apexPage>sf4twitter__TwitterChatterAdapterTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterContactController</apexPage>
+        <apexPage>sf4twitter__TwitterContactController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterContactControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterContactControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterConversationManager</apexPage>
+        <apexPage>sf4twitter__TwitterConversationManager</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterConversationManagerTest</apexPage>
+        <apexPage>sf4twitter__TwitterConversationManagerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterCredentialManager</apexPage>
+        <apexPage>sf4twitter__TwitterCredentialManager</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterCustomSettings</apexPage>
+        <apexPage>sf4twitter__TwitterCustomSettings</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterError</apexPage>
+        <apexPage>sf4twitter__TwitterError</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterErrorTest</apexPage>
+        <apexPage>sf4twitter__TwitterErrorTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFindContactController</apexPage>
+        <apexPage>sf4twitter__TwitterFindContactController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFindContactControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterFindContactControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFindConversationController</apexPage>
+        <apexPage>sf4twitter__TwitterFindConversationController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFindConversationControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterFindConversationControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFollow</apexPage>
+        <apexPage>sf4twitter__TwitterFollow</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterFollowTest</apexPage>
+        <apexPage>sf4twitter__TwitterFollowTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterForceController</apexPage>
+        <apexPage>sf4twitter__TwitterForceController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterForceControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterForceControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterGetConversationController</apexPage>
+        <apexPage>sf4twitter__TwitterGetConversationController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterGetConversationControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterGetConversationControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterGetUsernameController</apexPage>
+        <apexPage>sf4twitter__TwitterGetUsernameController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterGetUsernameControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterGetUsernameControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterIgnoreController</apexPage>
+        <apexPage>sf4twitter__TwitterIgnoreController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterIgnoreControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterIgnoreControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterKeywordSearchController</apexPage>
+        <apexPage>sf4twitter__TwitterKeywordSearchController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterKeywordSearchControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterKeywordSearchControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterLeadController</apexPage>
+        <apexPage>sf4twitter__TwitterLeadController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterLeadControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterLeadControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterLogger</apexPage>
+        <apexPage>sf4twitter__TwitterLogger</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterLoggerTest</apexPage>
+        <apexPage>sf4twitter__TwitterLoggerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterMockData</apexPage>
+        <apexPage>sf4twitter__TwitterMockData</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOAuthController</apexPage>
+        <apexPage>sf4twitter__TwitterOAuthController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOAuthControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterOAuthControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterObjectManager</apexPage>
+        <apexPage>sf4twitter__TwitterObjectManager</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOutboundTweetsController</apexPage>
+        <apexPage>sf4twitter__TwitterOutboundTweetsController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOutboundTweetsControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterOutboundTweetsControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOutputFilter</apexPage>
+        <apexPage>sf4twitter__TwitterOutputFilter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterOutputFilterTest</apexPage>
+        <apexPage>sf4twitter__TwitterOutputFilterTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterPersonAccountManager</apexPage>
+        <apexPage>sf4twitter__TwitterPersonAccountManager</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterPersonAccountManagerTest</apexPage>
+        <apexPage>sf4twitter__TwitterPersonAccountManagerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterPostToChatterPopUpController</apexPage>
+        <apexPage>sf4twitter__TwitterPostToChatterPopUpController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterPostToChatterPopUpControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterPostToChatterPopUpControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterResult</apexPage>
+        <apexPage>sf4twitter__TwitterResult</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterReviewController</apexPage>
+        <apexPage>sf4twitter__TwitterReviewController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterReviewControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterReviewControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterScheduler</apexPage>
+        <apexPage>sf4twitter__TwitterScheduler</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSchedulerController</apexPage>
+        <apexPage>sf4twitter__TwitterSchedulerController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSchedulerControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterSchedulerControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSchedulerIgnore</apexPage>
+        <apexPage>sf4twitter__TwitterSchedulerIgnore</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSchedulerIgnoreTest</apexPage>
+        <apexPage>sf4twitter__TwitterSchedulerIgnoreTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSchedulerTest</apexPage>
+        <apexPage>sf4twitter__TwitterSchedulerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSearchController</apexPage>
+        <apexPage>sf4twitter__TwitterSearchController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSearchManager</apexPage>
+        <apexPage>sf4twitter__TwitterSearchManager</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSearchManagerTest</apexPage>
+        <apexPage>sf4twitter__TwitterSearchManagerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSimpleOutboundTweetExtension</apexPage>
+        <apexPage>sf4twitter__TwitterSimpleOutboundTweetExtension</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSimpleOutboundTweetExtensionTest</apexPage>
+        <apexPage>sf4twitter__TwitterSimpleOutboundTweetExtensionTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSolvedByCommunityController</apexPage>
+        <apexPage>sf4twitter__TwitterSolvedByCommunityController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterSolvedByCommunityControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterSolvedByCommunityControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterStartPageController</apexPage>
+        <apexPage>sf4twitter__TwitterStartPageController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterStartPageControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterStartPageControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterTemplates</apexPage>
+        <apexPage>sf4twitter__TwitterTemplates</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterTemplatesTest</apexPage>
+        <apexPage>sf4twitter__TwitterTemplatesTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterTestUtil</apexPage>
+        <apexPage>sf4twitter__TwitterTestUtil</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterThumbsChangeController</apexPage>
+        <apexPage>sf4twitter__TwitterThumbsChangeController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterThumbsChangeControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterThumbsChangeControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterToCaseController</apexPage>
+        <apexPage>sf4twitter__TwitterToCaseController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterToCaseControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterToCaseControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterToKnowledgeController</apexPage>
+        <apexPage>sf4twitter__TwitterToKnowledgeController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterToKnowledgeControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterToKnowledgeControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterUpdateTwitterInfoController</apexPage>
+        <apexPage>sf4twitter__TwitterUpdateTwitterInfoController</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterUpdateTwitterInfoControllerTest</apexPage>
+        <apexPage>sf4twitter__TwitterUpdateTwitterInfoControllerTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterUtils</apexPage>
+        <apexPage>sf4twitter__TwitterUtils</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter.TwitterUtilsTest</apexPage>
+        <apexPage>sf4twitter__TwitterUtilsTest</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
 	<description>CEC: Provide access to the Standard Social Media Package</description>
