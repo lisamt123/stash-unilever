@@ -785,14 +785,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>sf4twitter__JSONObject</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>sf4twitter__JSONObjectTest</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>sf4twitter__Oauth4Twitter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
