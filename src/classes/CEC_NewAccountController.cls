@@ -379,7 +379,7 @@ The rest of the Consumer records are ignored.
     
     //Check the phone match
     private void checkPhoneMatch(List<ConsumerWrapper> duplicateConsumerList, List<ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet){
-        String searchPhoneStr,searchHomePhoneStr,searchMobilePhoneStr,searchOtherPhoneStr;
+        String searchPhoneStr = '',searchHomePhoneStr = '' ,searchMobilePhoneStr = '' ,searchOtherPhoneStr = '';
         
         if(String.isNotBlank(newConsumer.Phone_No_Special_Char__c) && newConsumer.Phone_No_Special_Char__c.length() >= 6) {
             // Get last 6 characters of the phone.
@@ -395,7 +395,7 @@ The rest of the Consumer records are ignored.
             // Get last 6 characters of the phone.
             searchMobilePhoneStr = newConsumer.Mobile_Phone_No_Special_Char__c.right(6);
         }
-        System.debug('newConsumer.Other_Phone_No_Special_Char__c'+newConsumer.Other_Phone_No_Special_Char__c);
+       
         if(String.isNotBlank(newConsumer.Other_Phone_No_Special_Char__c) && newConsumer.Other_Phone_No_Special_Char__c.length() >= 6) {
             // Get last 6 characters of the phone.
             searchOtherPhoneStr = newConsumer.Other_Phone_No_Special_Char__c.right(6);

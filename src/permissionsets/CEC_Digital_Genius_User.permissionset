@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>dgec.DG_EmailPromtsExtension</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<description>Access to the DG components to be able to use the AI capability on Cases</description>
+    <label>CEC - Digital Genius User</label>
+    <pageAccesses>
+        <apexPage>dgec.DG_EmailPromts</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

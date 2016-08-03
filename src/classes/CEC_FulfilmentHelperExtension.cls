@@ -12,7 +12,7 @@ VERSION  AUTHOR              DATE            DETAIL                        Descr
 1.0       mahesh konar       20th july 2016   CSC-4844                      Sonar Fixes
 
 ***********************************************************************/
-public class CEC_FulfilmentHelperExtension {
+public with sharing class  CEC_FulfilmentHelperExtension {
     
      /**
     This method is used to check quality and update QA flag
@@ -32,7 +32,7 @@ public class CEC_FulfilmentHelperExtension {
 
         Double QualityPercent =  loggedinuser.Quality_Check_Percentage__c;
 
-        Double qualityMaxRefund = loggedinuser.Max_Refund_Amount__c;
+        //Double qualityMaxRefund = loggedinuser.Max_Refund_Amount__c;
 
         //System.debug('~~~~QualityPercent  ' + QualityPercent );
         //System.debug('~~~~loggedinuser.Quality_Check_Percentage__c ' + loggedinuser.Quality_Check_Percentage__c);
@@ -43,7 +43,7 @@ public class CEC_FulfilmentHelperExtension {
         if (Test.isRunningTest()) {
             randomnumber = 0.00;
             QualityPercent  = 1.00;
-            qualityMaxRefund = 1.00;
+            //qualityMaxRefund = 1.00;
         }
 
         for (cec_Fulfilment__c fulfilmentObj : fulfilmentList) {
