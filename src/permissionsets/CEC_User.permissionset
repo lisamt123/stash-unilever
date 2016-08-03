@@ -5202,7 +5202,7 @@
         <enabled>true</enabled>
     </pageAccesses>
 	<pageAccesses>
-        <apexPage>Dgec.DG_WelcomeEmailPromts</apexPage>
+        <apexPage>Dgec__DG_WelcomeEmailPromts</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
