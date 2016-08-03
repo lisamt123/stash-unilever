@@ -51,7 +51,7 @@
                 <!--Banner Image News Article-->
                 <aura:if isTrue="{!v.defaultImage}">
                     <div class="leftRightSpaceing">        
-                        <img src="{!v.newsArticle.BannerURL}" class=""></img>
+                        <img src="{!v.newsArticle.BannerURL}" ></img>
                     </div>
                 </aura:if>
                 
