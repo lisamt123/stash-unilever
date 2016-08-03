@@ -6,6 +6,7 @@
         <customApplicationComponent>Console.BuiltInComponent.knowledgeOne</customApplicationComponent>
         <customApplicationComponent>WorkIt_Console_App_Hidden</customApplicationComponent>
         <customApplicationComponent>ONE_Correspond</customApplicationComponent>
+		<customApplicationComponent>Console.BuiltInComponent.macroBrowser</customApplicationComponent>
     </customApplicationComponents>
     <defaultLandingTab>standard-home</defaultLandingTab>
     <detailPageRefreshMethod>autoRefresh</detailPageRefreshMethod>
@@ -204,6 +205,10 @@
     <tab>User_Default_Setting__c</tab>
     <tab>CEC_ChequeBook_Detail__c</tab>
     <tab>standard-Macro</tab>
+	<tab>CEC_Debit_Card_Detail__c</tab>
+    <tab>CEC_Retrieval_Request__c</tab>
+    <tab>CEC_E_Voucher_Details__c</tab>
+    <tab>sf4twitter__Twitter_Conversation__c</tab>
     <workspaceMappings>
         <mapping>
             <tab>Article__c</tab>
@@ -264,6 +269,18 @@
         </mapping>
         <mapping>
             <tab>standard-report</tab>
+        </mapping>
+		<mapping>
+            <tab>CEC_Debit_Card_Detail__c</tab>
+        </mapping>
+        <mapping>
+            <tab>CEC_E_Voucher_Details__c</tab>
+        </mapping>
+        <mapping>
+            <tab>CEC_Retrieval_Request__c</tab>
+        </mapping>
+		<mapping>
+            <tab>sf4twitter__Twitter_Conversation__c</tab>
         </mapping>
     </workspaceMappings>
 </CustomApplication>
