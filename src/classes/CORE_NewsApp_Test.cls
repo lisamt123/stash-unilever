@@ -11,7 +11,7 @@
 
 */
 
-@isTest //(Seealldata=false)
+@isTest
 public class CORE_NewsApp_Test{
     
    @testSetup static void setupTest() {
@@ -33,7 +33,7 @@ public class CORE_NewsApp_Test{
         if(!lstCustSet.isEmpty()){
             insert lstCustSet;  
         }
-              
+
     }
     
     
@@ -239,5 +239,55 @@ public class CORE_NewsApp_Test{
         System.assert(  Core_NC_NewsCenterController.getGAInfo()!=null);
         Test.stopTest();
     }
+    
+     /* public static testMethod void TestAskPaul(){
+        
+             String strSiteTypeOrName3='PaulsBlog';
+             DateTime dt=System.now().addDays(-1);
+              List<CORE_NEWS_ARTICLE__c> lstCustSet = new List<CORE_NEWS_ARTICLE__c>();
+               lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GroupsToPost', Text_Value__c='0F918000000D4dDCAS'));   
+            if(!lstCustSet.isEmpty()){
+            insert lstCustSet;  
+           }
+             News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Leadership',News_Body__c='Test Body6?',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c=strSiteTypeOrName3,
+                                                  Site_Type__c=strSiteTypeOrName3,Sub_Title__c='Sub Title6',Summary__c='Test Summary6',Title__c='Test Body6?',
+                                                  View_Count__c=10);
+            insert news1;
+            boolean   resultGrp=false;
+     // Fetching the  ParentId's from Custom setting 
+          // string  strParentIdsToCheck=lstCustSet;
+    List<FeedItem> feedItemsToInsert = new List<FeedItem>();         
+    if(news1.Site_Name__c==strSiteTypeOrName3 && news1.Site_Type__c==strSiteTypeOrName3 )  {
+    
+     feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body =news1.Title__c, ParentId =news1.Id,
+                                LinkURL = news1.Sharepoint_URL__c, Title = news1.Name));
+    
+    }  
+    
+    insert feedItemsToInsert ;
+            
+        FeedItem feedItemObject =new FeedItem();
+        feedItemObject.Type='TextPost';
+         feedItemObject.Title=news1.Title__c;
+        feedItemObject.Body=news1.News_Body__c;
+        feedItemObject.ParentId=news1.Id;
+        
+          Core_NC_NewsArticleCommentCount handlerFeed=new Core_NC_NewsArticleCommentCount();
+         // handlerFeed.chatterPostAskPaul(feedItemObject);       
+        
+        if(feedItemObject.Title.contains('?') ){
+           feedItemObject.Type='QuestionPost';
+            insert feedItemObject ;
+        }
+         
+         
+        
+        
+      
+      
+      }  */
+    
+    
     
 }

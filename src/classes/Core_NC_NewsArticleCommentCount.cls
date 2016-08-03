@@ -6,7 +6,7 @@
   Requirement/Description:Count the number of comments and  class name modified as per unilever standard
 */
 public with sharing Class Core_NC_NewsArticleCommentCount{
-   public static void newsArticleCount (Id newsArticleid){
+   public static void newsArticleCount (Id newsArticleid){     
     Decimal decFeedItemCnt=0.00;
     Decimal decFeedCommentCnt=0.00;
     Decimal decTotalCount=0.00;
@@ -21,17 +21,18 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
     } 
     
     //Ask Paul Handler Method
-   public   void chatterPostAskPaul(List<FeedItem> newTrigger){
     
-       boolean   resultGrp=false;
-     // Fetching the  ParentId's from Custom setting       
-       string    strParentIdsToCheck;   
-       strParentIdsToCheck = CORE_NEWS_ARTICLE__c.getinstance('GroupsToPost').Text_Value__c;  
-      
-              for(FeedItem objFI: newTrigger){ 
+   public void chatterPostAskPaul(List<FeedItem> newTrigger){
+     boolean   resultGrp=false;
+     // Fetching the  ParentId's from Custom setting 
+           string  strParentIdsToCheck;
+      if(!Test.isRunningTest()){ 
+    strParentIdsToCheck = CORE_NEWS_ARTICLE__c.getinstance('GroupsToPost').Text_Value__c;  
+    
+      for(FeedItem objFI: newTrigger){ 
                 //Enter only when ParentId is not Null            
-                    if(objFI.ParentId !=null   ){
-                 
+                    if(objFI.ParentId !=null ){
+                         
                        // check if newly inserted Chatter post (record in feeditem) has ParentId matching to one of the values in the custom setting instance value
                        for(String strGrp:strParentIdsToCheck.split(',')){ 
                           String strGrpsToCheck = objFI.ParentId;
@@ -42,7 +43,7 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
                            
                           }
                          //check if  if newly inserted FeedItem body is not Null 
-                         if(objFI.Body!= null ) {
+                         if(objFI.Body!= null  )  {
                            if( objFI.Body.contains('?')  && resultGrp==true){
                               
                                //Change FeedItem Type to Qyestion Post
@@ -51,17 +52,18 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
                                }
                              }
                         // check if newly inserted FeedItem post title is not null     
-                         if(objFI.Title!= null ) {
+                        if(objFI.Title!= null ) {
                            if( objFI.Title.contains('?')  && resultGrp==true){
                             
-                               //Change FeedItem Type to Qyestion Post 
+                               //Change FeedItem Type to Question Post 
                                   objFI.Type = 'QuestionPost'; 
                                   resultGrp=false;
                                }
                              }
                              
                           }//end of Parent If
-                      }// end of Parent for
-                  }
-   
+                      }// end of Parent for 
+                 
+                 } 
+                }
    }
