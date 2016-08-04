@@ -5091,6 +5091,24 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kB5N_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kB5N</label>
+        <queue>IPM_a7IE0000000kB5N</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kB5S_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ZZZ</label>
+        <queue>IPM_a7IE0000000kB5S</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>SecCon-{0000}</displayFormat>
         <label>Section Content Id</label>

@@ -25709,6 +25709,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>aa_Agent_App_User_Preference__c.Auto_Follow__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>aa_Agent_App_User_Preference__c.Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25804,6 +25809,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>aa_Agent_Report__c.ClusterId__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>aa_Agent_Report__c.Cluster_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25835,6 +25845,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>aa_Agent_Report__c.Is_Accepted_Code_of_Conduct__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.OtherBrandName__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.OtherCompanyName__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -25894,6 +25914,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>aa_Agent_Report__c.TF_Mention_User__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Agent_Report__c.TF_Topic_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>aa_Agent_Report__c.Topic__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -25935,6 +25965,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>aa_Topic__c.Topic_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>aa_Topic__c.Topic_Order__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

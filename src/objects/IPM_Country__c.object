@@ -3235,6 +3235,24 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kB5N_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kB5N</label>
+        <queue>IPM_a7IE0000000kB5N</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kB5S_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ZZZ</label>
+        <queue>IPM_a7IE0000000kB5S</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

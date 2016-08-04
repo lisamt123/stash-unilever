@@ -5497,6 +5497,24 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000kB5N_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kB5N</label>
+        <queue>IPM_a7IE0000000kB5N</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kB5S_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ZZZ</label>
+        <queue>IPM_a7IE0000000kB5S</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
