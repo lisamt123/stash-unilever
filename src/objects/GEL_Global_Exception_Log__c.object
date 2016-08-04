@@ -596,9 +596,10 @@ IF( REF__c  &lt;&gt; null,  REF__c ,  Name )
         <fullName>Resolution_Comments__c</fullName>
         <externalId>false</externalId>
         <label>Resolution Comments</label>
-        <required>false</required>
+        <length>130000</length>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
     </fields>
     <fields>
         <fullName>Status__c</fullName>
