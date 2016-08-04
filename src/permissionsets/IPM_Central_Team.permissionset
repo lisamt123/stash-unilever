@@ -6081,6 +6081,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IPM_Project__c.IPM_Category_Picklist__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	  <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project__c.IPM_Category_Platform__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IPM_Project__c.IPM_Category__c</field>
         <readable>true</readable>
     </fieldPermissions>

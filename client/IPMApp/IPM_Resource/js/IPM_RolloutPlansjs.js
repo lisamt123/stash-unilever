@@ -216,12 +216,12 @@ function skipValidation() {
 }
 
 function selectDrpdown(){ 
-    jq('.rollSelectList').on('click', function (e) {
+    jq('.rollSelectList').on('change', function (e) {
         var valueSelected = this.value;
         jq(this).prev('.hideDupfield').attr('value',valueSelected);
         var dataId = jq(this).prev('.hideDupfield').attr('data-holder');
         holdRolloutsBrand(dataId,valueSelected);
-    });  
+    }); 
     jq('.rollSelectList option').each(function(){
       var holder = jq(this).parent().prev('.hideDupfield').attr('value');
       if(jq(this).val() === holder){
