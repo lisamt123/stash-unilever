@@ -2624,6 +2624,39 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>Number</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>Home_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Home Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mobile_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <listViews>
         <fullName>AllAccounts</fullName>
         <columns>ACCOUNT.NAME</columns>

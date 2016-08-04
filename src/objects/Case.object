@@ -3219,6 +3219,202 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>Search_Birthdate__c</fullName>
+        <description>CEC Search Birthdate is used to default the birthdate from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Birthdate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Search_Email__c</fullName>
+        <description>CEC Search Email is used to default the email from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_First_Name__c</fullName>
+        <description>CEC Search First Name is used to default the firstname from contact us page.</description>
+        <externalId>false</externalId>
+        <label>Search First Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Home_Phone__c</fullName>
+        <description>CEC Search Home Phone is used to default the home phone from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Home Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Last_Name__c</fullName>
+        <description>CEC Search Last Name is used to default the lastname from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Last Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_City__c</fullName>
+        <description>CEC Search Mailing City is used to default the mailing city from contact us page.</description>
+        <externalId>false</externalId>
+        <label>Search Mailing City</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_Country__c</fullName>
+        <description>CEC Search Mailing Country is used to default the country from the contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing Country</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_State_Province__c</fullName>
+        <description>CEC Search Mailing State/Province is used to default the state /province from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing State/Province</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_Street__c</fullName>
+        <description>CEC Search Mailing Street is used to default the mailing street from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing Street</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_Zip_Postal_Code__c</fullName>
+        <description>CEC Search Mailing Zip/Postal Code is used to default the zip code from the contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing Zip/Postal Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mobile__c</fullName>
+        <description>CEC Search Mobile is used to default the mobile number from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mobile</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Other_Phone__c</fullName>
+        <description>CEC Search Other Phone is used to default the other phone from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Other Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Phone__c</fullName>
+        <description>CEC Search Phone is used to default phone from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Salutation__c</fullName>
+        <description>CEC Search Salutation is used to default the salutation from contact us page .</description>
+        <externalId>false</externalId>
+        <label>Search Salutation</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Social_Media_External_Id__c</fullName>
+        <description>CEC: Field will be populated with Facebook page Id or Twitter handle when case infromation is updated on the conversation object</description>
+        <externalId>false</externalId>
+        <label>Social Media External Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transient_External_Id__c</fullName>
+        <description>Contains the external Id value which is used to populate the CBM for Transient case</description>
+        <externalId>false</externalId>
+        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,&apos;&apos;)</formula>
+        <label>Transient External Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <listViews>
         <fullName>All_email</fullName>
         <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>

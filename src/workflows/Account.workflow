@@ -126,6 +126,36 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+	<fieldUpdates>
+        <fullName>CEC_NoSpecialChar_Home_Phone_Update</fullName>
+        <description>CEC : Remove the special &amp; whitespace character from the standard &apos;Home Phone&apos; field and update the custom field.</description>
+        <field>Home_Phone_No_Special_Char__c</field>
+        <formula>SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(PersonHomePhone, &quot; &quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;), &quot;.&quot;,&quot;&quot;),&quot;+&quot;,&quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;)</formula>
+        <name>CEC_NoSpecialChar Home Phone Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CEC_NoSpecialChar_Mobile_Phone_Update</fullName>
+        <description>CEC : Remove the special &amp; whitespace character from the standard &apos;Mobile Phone&apos; field and update the custom field.</description>
+        <field>Mobile_Phone_No_Special_Char__c</field>
+        <formula>SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(PersonMobilePhone, &quot; &quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;), &quot;.&quot;,&quot;&quot;),&quot;+&quot;,&quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;)</formula>
+        <name>CEC_NoSpecialChar Mobile Phone Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CEC_NoSpecialChar_Other_Phone_Update</fullName>
+        <description>CEC : Remove the special &amp; whitespace character from the standard &apos;Other Phone&apos; field and update the custom field.</description>
+        <field>Other_Phone_No_Special_Char__c</field>
+        <formula>SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(PersonOtherPhone, &quot; &quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;), &quot;.&quot;,&quot;&quot;),&quot;+&quot;,&quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;)</formula>
+        <name>CEC_NoSpecialChar Other Phone Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>CEC Account Email Notification</fullName>
         <actions>
@@ -207,6 +237,39 @@
         <active>true</active>
         <description>CEC : To remove special &amp; whitespace characters in the standard &apos;Phone&apos; field and copy to a custom field.</description>
         <formula>/* ----------------------------------------------------  1. Used RecordType.Name =&apos;Person Account&apos; instead of &apos;IsPersonAccount&apos; in the formula.  The CEC app uses only RecordType which has both label and name &apos;Person Account&apos;. The &apos;IsPersonAccount&apos; returns more than 1 recordtype accounts ex., &apos;Pitch Expert&apos; which is not required.  2. !ISBLANK(Phone) conditions are added for backward compatibility. This will be removed once all the account data has this new custom field populated via the field update --------------------------------------------------------*/   RecordType.Name = &apos;Person Account&apos; &amp;&amp; (ISCHANGED(Phone) || ISNEW() || !ISBLANK(Phone) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+	    <rules>
+        <fullName>CEC_HomePhoneRemoveSpecialChar</fullName>
+        <actions>
+            <name>CEC_NoSpecialChar_Home_Phone_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC : To remove special &amp; whitespace characters in the standard &apos;Home Phone&apos; field and copy to a custom field.</description>
+        <formula>/* ---------------------------------------------------- 1. Used RecordType.Name =&apos;Person Account&apos; instead of &apos;IsPersonAccount&apos; in the formula. The CEC app uses only RecordType which has both label and name &apos;Person Account&apos;. The &apos;IsPersonAccount&apos; returns more than 1 recordtype accounts ex., &apos;Pitch Expert&apos; which is not required. 2. !ISBLANK(Phone) conditions are added for backward compatibility. This will be removed once all the account data has this new custom field populated via the field update --------------------------------------------------------*/ RecordType.Name = &apos;Person Account&apos; &amp;&amp; (ISCHANGED(PersonAssistantPhone) || ISNEW() || !ISBLANK(PersonHomePhone) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC_MobilePhoneRemoveSpecialChar</fullName>
+        <actions>
+            <name>CEC_NoSpecialChar_Mobile_Phone_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC : To remove special &amp; whitespace characters in the standard &apos;Home Phone&apos; field and copy to a custom field.</description>
+        <formula>/* ---------------------------------------------------- 1. Used RecordType.Name =&apos;Person Account&apos; instead of &apos;IsPersonAccount&apos; in the formula. The CEC app uses only RecordType which has both label and name &apos;Person Account&apos;. The &apos;IsPersonAccount&apos; returns more than 1 recordtype accounts ex., &apos;Pitch Expert&apos; which is not required. 2. !ISBLANK(Phone) conditions are added for backward compatibility. This will be removed once all the account data has this new custom field populated via the field update --------------------------------------------------------*/ RecordType.Name = &apos;Person Account&apos; &amp;&amp; (ISCHANGED( PersonMobilePhone) || ISNEW() || !ISBLANK(PersonMobilePhone) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC_OtherPhoneRemoveSpecialChar</fullName>
+        <actions>
+            <name>CEC_NoSpecialChar_Other_Phone_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC : To remove special &amp; whitespace characters in the standard &apos;Other Phone&apos; field and copy to a custom field.</description>
+        <formula>/* ---------------------------------------------------- 1. Used RecordType.Name =&apos;Person Account&apos; instead of &apos;IsPersonAccount&apos; in the formula. The CEC app uses only RecordType which has both label and name &apos;Person Account&apos;. The &apos;IsPersonAccount&apos; returns more than 1 recordtype accounts ex., &apos;Pitch Expert&apos; which is not required. 2. !ISBLANK(Phone) conditions are added for backward compatibility. This will be removed once all the account data has this new custom field populated via the field update --------------------------------------------------------*/ RecordType.Name = &apos;Person Account&apos; &amp;&amp; (ISCHANGED( PersonOtherPhone) || ISNEW() || !ISBLANK(PersonOtherPhone) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
