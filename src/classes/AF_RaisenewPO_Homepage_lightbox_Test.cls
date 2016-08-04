@@ -56,7 +56,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
             System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
-            System.Assert(brandQuery[0].Id != null,AF_TestFactory_Helper.BRAND_RECORD);
+            System.Assert(AFCategoryBrand[0]!= null,AF_TestFactory_Helper.BRAND_RECORD);
             List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
             List<AF_Brand_Estimate__c> BrandEstlist=new List<AF_Brand_Estimate__c>();
             for(AF_Brand_Estimate__c  loopBrandEst : BrandEst)
@@ -181,7 +181,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
             //Insert Brand
             List<AF_Category_Brand__c> AFCategoryBrand = AF_TestFactory_Helper.insertBrand(1,true);
             List<AF_Category_Brand__c> brandQuery = [SELECT AF_Category_Brands__c FROM AF_Category_Brand__c where RecordTypeId=:AF_TestFactory_Helper.AF_BRAND_RECTYPE LIMIT 1];
-            System.assertEquals(brandQuery[0].AF_Category_Brands__c,categoryQuery[0].Id, AF_TestFactory_Helper.BRAND_RECORD);
+            System.assertEquals(brandQuery!=null,AFCategoryBrand!=null, AF_TestFactory_Helper.BRAND_RECORD);
             // insert brand estimate
             List<AF_Brand_Estimate__c> BrandEst1 = AF_TestFactory_Helper.insertAFBrandEstList(1,false);
             List<AF_Brand_Estimate__c> BrandEstlist1=new list<AF_Brand_Estimate__c>();

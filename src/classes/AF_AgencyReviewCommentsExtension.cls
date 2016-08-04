@@ -11,6 +11,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 	public AF_Brand_Estimate__c brandEstimate {get; set;}
 	public boolean checkReview {get; set;}
 	public String controllerReviewId{get;set;}
+	public Approval.ProcessResult result;
 	private static string className_STR=AF_AgencyReviewCommentsExtension.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
@@ -56,7 +57,6 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 			if (count == brandEstimate.Controller_Reviews__r.size()){
 				brandEstimate.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WIHTCMCO;
 				update brandEstimate;
-				Approval.ProcessResult result;
 				Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
 				request.setObjectId(brandEstimate.Id);
 				request.setComments(Label.AF_Submitted);
