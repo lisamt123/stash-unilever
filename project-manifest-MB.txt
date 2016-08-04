@@ -149,6 +149,4 @@ src/staticresources/MB_Charts.resource
 src/staticresources/MB_Charts.resource-meta.xml
 src/staticresources/MB_Icons.resource
 src/staticresources/MB_Icons.resource-meta.xml
-src/staticresources/Lightning_designing_style.resource
-src/staticresources/Lightning_designing_style.resource-meta.xml
 src/tabs/MB_Tab.tab
