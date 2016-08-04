@@ -43,3 +43,4 @@ src/tabs/GEL_Global_Exception_Log__c.tab
 src/workflows/GEL_Global_Exception_Log__c.workflow
 src/sites/Global_Finance.site
 src/networks/Global Finance.network
+src/profiles/Unilever - Force MultiApp Standard.profile
