@@ -34736,6 +34736,14 @@
     <layoutAssignments>
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Final</layout>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Final_Layout</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
+    </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -37430,13 +37438,6 @@
         <enabled>true</enabled>
         <name>ViewPublicReports</name>
     </userPermissions>
-    <layoutAssignments>
-        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Final</layout>
-        <recordType>GEL_Global_Exception_Log__c.GEL_Final_Layout</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
-        <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
-    </layoutAssignments>
+   
     
 </Profile>
