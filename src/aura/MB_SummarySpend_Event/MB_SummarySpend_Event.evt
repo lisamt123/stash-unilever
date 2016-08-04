@@ -2,4 +2,5 @@
     <aura:attribute name="deviceId" type="string"/>
     <aura:attribute name="month" type="string"/>
     <aura:attribute name="deviceName" type="string"/>
+     <aura:attribute name="ServiceName" type="String"/>
 </aura:event>

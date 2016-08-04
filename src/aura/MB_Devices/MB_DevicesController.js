@@ -61,6 +61,8 @@
                     component.set("v.Device_Details",response.getReturnValue());
                     component.set("v.userName",result[0].userName);
                     component.set("v.localCurrency",result[0].userCurrency);
+                   // component.set("v.ServiceName",result[0].ServiceName);
+                    //alert(result.length);
                     var usertotalUsage=0;
                     for(var i=0;i<result.length;i++)
                     {
@@ -112,8 +114,10 @@
         
         var datavalue=dataList[index].deviceId;
         var devicename=dataList[index].deviceName;
+        var ServiceName=dataList[index].ServiceName;
+       // alert(ServiceName);
         var detailpage_event=$A.get("e.c:MB_DetailSummary_Event");   
-        detailpage_event.setParams({"deviceId":datavalue,"month":component.get("v.CurrentMonth"),"deviceName":devicename}).fire();
+        detailpage_event.setParams({"deviceId":ServiceName,"month":component.get("v.CurrentMonth"),"ServiceName":ServiceName,"deviceName":devicename}).fire();
     },
     
     //This method handles change of month from dropdown

@@ -57,6 +57,8 @@ public with sharing class MB_Controller_Class_Test {
   insert usageTypeObject4;
   MB_Usage_Type__c usageTypeObject5 = new MB_Usage_Type__c(Name = 'Recurring');
   insert usageTypeObject5;
+  MB_Usage_Type__c usageTypeObject6 = new MB_Usage_Type__c(Name = 'ABC');
+  insert usageTypeObject6;
       
   MB_Charge_Type__c chargeTypeObject1 = new MB_Charge_Type__c(Name = 'Domestic Outgoing Calls');
   insert chargeTypeObject1;
@@ -68,6 +70,8 @@ public with sharing class MB_Controller_Class_Test {
   insert chargeTypeObject4;
   MB_Charge_Type__c chargeTypeObject5 = new MB_Charge_Type__c(Name = 'Tax');
   insert chargeTypeObject5;
+  MB_Charge_Type__c chargeTypeObject6 = new MB_Charge_Type__c(Name = 'XYZ');
+  insert chargeTypeObject6;
       
   MB_Billing_Currency__c billingCurrencyObject = new MB_Billing_Currency__c(Name = 'GBP', Symbol__c = 'USD');
   insert billingCurrencyObject;
@@ -180,7 +184,16 @@ public with sharing class MB_Controller_Class_Test {
   billingEntityObject12.Charge_Type__c = chargeTypeObject2.Id;
   billingEntityObject12.User__c = UserInfo.getUserId();
   insert billingEntityObject12;
-             
+  
+  MB_Billing_Entity__c billingEntityObject13 = new MB_Billing_Entity__c(Billing_Currency__c = 'BC2', Billing_Month__c = Month_April, Call_Minutes__c = 0.00, Data_Consumed_In_MB__c = 0.00, 
+                                    iPass_Consumed_In_MB__c = 0.00, Item_Count__c = 10.00, Local_Net_Amount__c = 50.00, Messages__c = 0.00, Non_Usage_Consumed__c = 0.00, 
+                                    Service_Name__c = 'SN2');
+  billingEntityObject12.Device_Details__c = deviceDetailsObject.Id;
+  billingEntityObject12.Usage_Type__c = usageTypeObject6.Id;
+  billingEntityObject12.Charge_Type__c = chargeTypeObject6.Id;
+  billingEntityObject12.User__c = UserInfo.getUserId();
+  insert billingEntityObject13;
+    
   boolean testVariance1 = MB_Controller_Class.getVariance(200,100);
   System.assertEquals(testVariance1, true);
   
@@ -196,9 +209,12 @@ public with sharing class MB_Controller_Class_Test {
   string userName = MB_Controller_Class.getUserName();
   System.assertEquals(userName, 'fufn');
   
-  MB_Wrapper_Class  wrapperObject1 = MB_Controller_Class.getSpendDetails(deviceDetailsObject.Id,Month_May);
+  MB_Wrapper_Class  wrapperObject13 = MB_Controller_Class.getSpendDetails(billingEntityObject13.Service_Name__c,Month_May);
+  System.assert(wrapperObject13 != null);
+  
+  MB_Wrapper_Class  wrapperObject1 = MB_Controller_Class.getSpendDetails(billingEntityObject1.Service_Name__c,Month_May);
   System.assert(wrapperObject1 != null);
-      
+  
   List<MB_Wrapper_Class.MB_Device_Wrapper_Class> wrapperList1 = MB_Controller_Class.deviceSpendDetailsForUser(Month_May);
   System.assert(wrapperList1 != null);
        

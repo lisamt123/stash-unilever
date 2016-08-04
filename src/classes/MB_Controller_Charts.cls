@@ -27,20 +27,7 @@ public with sharing Class MB_Controller_Charts{
  public static Decimal totalIpassUsageIn =0; 
  public static Decimal totalAverageIpassUsageIn =0; 
  
- public static Map<String,Decimal> getRoaming(MB_Billing_Entity__c AvgofCollegueData, Map<Id,string> usageTypeMap){ 
  
-  Map<String,Decimal> datamap=new  Map<String,Decimal>();
-      if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
-               totalIpassUsageIn +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
-             }  
-            
-           if(string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass && AvgofCollegueData.Data_Consumed_In_MB__c!=null){
-               totalAverageIpassUsageIn +=(AvgofCollegueData.Data_Consumed_In_MB__c).setScale(2);
-             } 
-     datamap.put('totalIpassUsageIn',totalIpassUsageIn);
-     datamap.put('totalAverageIpassUsageIn',totalAverageIpassUsageIn);
-     return datamap;
-       }
 
      public static Map<String,Decimal> getTotalData(MB_Billing_Entity__c beObj, Map<Id,string> chargeType ){ 
  
@@ -116,63 +103,8 @@ public with sharing Class MB_Controller_Charts{
     datamap.put('Internationalipass',totalInternationalIpassUsage);
     return datamap;
  }
- public static Map<String,Decimal> getColleagueTotalUsage(MB_Billing_Entity__c AvgofCollegueData, Map<Id,string> usageTypeMap){
- Decimal AverageDataUsage=0;
-  Decimal AverageCallUsage=0;
-  Decimal AverageMessageUsage=0;
-  Decimal AverageIpassUsage=0;
-           if(AvgofCollegueData.Data_Consumed_In_MB__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data){
-               AverageDataUsage+=AvgofCollegueData.Data_Consumed_In_MB__c;  
-           }
-           if(AvgofCollegueData.Call_Minutes__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Calls){
-               AverageCallUsage+=AvgofCollegueData.Call_Minutes__c; 
-           }
-           if(AvgofCollegueData.Messages__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Messaging){
-               AverageMessageUsage+=AvgofCollegueData.Messages__c;  
-           }  
-           if(AvgofCollegueData.Data_Consumed_In_MB__c!= null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
-                AverageIpassUsage+=AvgofCollegueData.Data_Consumed_In_MB__c; 
-           }
-     Map<String,Decimal> getColleagueTotalMap=new Map<String,Decimal>();
-     getColleagueTotalMap.put(Colleague_Data,AverageDataUsage);
-     getColleagueTotalMap.put(Colleague_Calls,AverageCallUsage);
-     getColleagueTotalMap.put(Colleague_SMS,AverageMessageUsage);
-     getColleagueTotalMap.put('Colleagueipass',AverageIpassUsage);
-     
-     return getColleagueTotalMap;
- }
-  public static Map<String,Decimal> getUserTotalUsage(MB_Billing_Entity__c AvgofCollegueData, Map<Id,string> usageTypeMap){
-   Decimal DataUsage =0;
-  Decimal CallUsage =0;
-  Decimal MessageUsage =0;
-  Decimal IpassUsage =0;
-         if(AvgofCollegueData.Data_Consumed_In_MB__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Data){  
-           DataUsage +=AvgofCollegueData.Data_Consumed_In_MB__c;
-           
-          }
-         if(AvgofCollegueData.Call_Minutes__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Calls){ 
-           CallUsage +=AvgofCollegueData.Call_Minutes__c;
-           System.debug('-------$$----'+CallUsage );
-          }
-         if(AvgofCollegueData.Messages__c != null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_Messaging){ 
-           MessageUsage +=AvgofCollegueData.Messages__c;
-           System.debug('-------$$----'+MessageUsage );
-          }
-         if(AvgofCollegueData.Data_Consumed_In_MB__c!= null && string.valueOf(usageTypeMap.get(AvgofCollegueData.Usage_Type__c)) == MB_Constants.Usage_Type_iPass){
-           IpassUsage +=AvgofCollegueData.Data_Consumed_In_MB__c;
-           System.debug('-------$$----'+IpassUsage );
-           }
-     Map<String,Decimal> getUserTotalMap=new Map<String,Decimal>();
-     getUserTotalMap.put('UserData',DataUsage );
-     getUserTotalMap.put('UserCalls',CallUsage );
-     getUserTotalMap.put('UserSMS',MessageUsage );
-     getUserTotalMap.put('Useripass',IpassUsage );
-     System.debug('@@##'+getUserTotalMap.size());
-     return getUserTotalMap;
- }
- 
  @AuraEnabled              
- public static MB_Wrapper_Class.MB_Device_Wrapper_Class getChargeType(String month, ID deviceId) {
+ public static MB_Wrapper_Class.MB_Device_Wrapper_Class getChargeType(String month, String deviceId) {
  
      MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
      wrprobj.totalDomesticDataUsage=0;
@@ -189,7 +121,7 @@ public with sharing Class MB_Controller_Charts{
   List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c, Data_Consumed_In_MB__c, 
                                     Device_Details__c,Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c, User__c, User_Country__c, User_Email__c
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND User_Country__c=:country AND Device_Details__c =:deviceId AND Billing_Month__c =: month]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND User_Country__c=:country AND Service_Name__c=:deviceId AND Billing_Month__c =: month]; 
                           
     List<ID> usageIDlist=new  List<ID>();
     List<ID> chargeIDlist=new  List<ID>();
@@ -283,11 +215,11 @@ public with sharing Class MB_Controller_Charts{
        System.debug('@dom'+ wrprobj.totalDomesticIpassUsage+'@int'+wrprobj.totalInternationalIpassUsage);
        return wrprobj;
     }
-
-    @AuraEnabled
-     public static MB_Wrapper_Class.MB_Device_Wrapper_Class getyourCollegueChargeType(String month,ID deviceId) {
+ @AuraEnabled
+     public static MB_Wrapper_Class.MB_Device_Wrapper_Class getyourCollegueChargeType(String month,String deviceId) {
      System.debug('---#----'+deviceId);
      MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj=new MB_Wrapper_Class.MB_Device_Wrapper_Class(); 
+     Decimal serviceCount=0;
      wrprobj.totalDataUsage=0; 
      wrprobj.totalCallUsage=0; 
      wrprobj.totalMessageUsage=0; 
@@ -296,89 +228,75 @@ public with sharing Class MB_Controller_Charts{
     wrprobj.totalAverageCallUsage=0;
     wrprobj.totalAverageMessageUsage=0;
     wrprobj.totalAverageIpassUsage=0;
+   Decimal totalDataavg=0;
+     Decimal totalCallavg=0;
+     Decimal totalMessageavg=0;
     string  country=[SELECT Country FROM User WHERE Id =:userinfo.getuserid() ].Country ; 
-    Map<String,Decimal> getColleagueTotalMap=new Map<String,Decimal>();
-    Map<String,Decimal> getUserTotalMap =new Map<String,Decimal>();
-        Integer UserCount=0;
-       
-       List<MB_Billing_Entity__c> lstCollegueChargeType=[Select Id, Name, Data_Consumed_In_MB__c,Usage_Type__c,Charge_Type__c,User__c,Call_Minutes__c,Messages__c from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND Device_Details__c =:deviceId ];   
-        System.debug('------------------------'+lstCollegueChargeType);
-        Set<Id> userIdSet=new Set<Id>();
-        List<ID> usageIDlist=new  List<ID>();
-    List<ID> chargeIDlist=new  List<ID>();
-    for(MB_Billing_Entity__c Idlist:lstCollegueChargeType)
-    {
-    usageIDlist.add(Id.valueof(Idlist.Usage_Type__c));
-    chargeIDlist.add(Id.valueof(Idlist.Charge_Type__c));
-    }
-     List<MB_Usage_Type__c> usageList=[select id,name from MB_Usage_Type__c where Id in :usageIDlist];
-     List<MB_Charge_Type__c> chargegeList=[select id ,name from MB_Charge_Type__c where Id in :chargeIDlist];
-
-     Map<Id,string> usageTypeMap=new  Map<Id,string>();
-     Map<Id,string> chargeTypeMap=new Map<Id,string>();
-        for(MB_Charge_Type__c charge:chargegeList){
-            chargeTypeMap.put(charge.id,string.valueof(charge.name));
-         }
-         
-          for(MB_Usage_Type__c usage:usageList){
-            usageTypeMap.put(usage.id,string.valueof(usage.name));
-         }
-        
-       for(MB_Billing_Entity__c CollegueData:lstCollegueChargeType){
-       userIdSet.add(CollegueData.User__c);System.debug('!@#$!'+CollegueData.User__c);
+    
+    AggregateResult[] serviceCoun = [SELECT COUNT_DISTINCT(Service_Name__c)serviceC FROM MB_Billing_Entity__c WHERE Usage_Type__r.Name != 'iPass' AND User_Country__c = :country AND Billing_Month__c = :month];
+    if((Decimal)serviceCoun[0].get('serviceC')>0){
+     serviceCount=((Decimal)serviceCoun[0].get('serviceC')).setScale(2);
+     }
+    wrprobj=getColleageAverage(month,country,wrprobj,deviceId);
+    //code for Average Calculation
+     AggregateResult[] totalData=[SELECT SUM(Data_Consumed_In_MB__c)Avg_Data from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data];   
+     if((Decimal)totalData[0].get('Avg_Data')>0){
+       totalDataavg=((Decimal)totalData[0].get('Avg_Data')).setScale(2);
+     }
+     AggregateResult[] totalCall=[SELECT SUM(Call_Minutes__c)Avg_Call from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country  AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Calls];   
+     if((Decimal)totalCall[0].get('Avg_Call')>0){
+       totalCallavg=((Decimal)totalCall[0].get('Avg_Call')).setScale(2);  
+     }
+     AggregateResult[] totalMessage=[SELECT SUM(Messages__c)Avg_message from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND  Usage_Type__r.Name= :MB_Constants.Usage_Type_Messaging];   
+     if((Decimal)totalMessage[0].get('Avg_message')>0){
+       totalMessageavg=((Decimal)totalMessage[0].get('Avg_message')).setScale(2);
+     }
+    if(serviceCount>0){
+       if(totalDataavg>0){
+       wrprobj.totalAverageDataUsage=(totalDataavg/serviceCount).setScale(2) ;
        }
-       UserCount=userIdSet.Size();System.debug('----&---1--'+UserCount);
-       
-       if(lstCollegueChargeType.size()>0)   {
-       for(MB_Billing_Entity__c AvgofCollegueData:lstCollegueChargeType)
-       {   System.debug('----!!!--'+lstCollegueChargeType.size());
-      
-     getColleagueTotalMap = getColleagueTotalUsage(AvgofCollegueData,usageTypeMap);
-       
-        if(UserCount>0){
-             wrprobj.totalAverageDataUsage +=(getColleagueTotalMap.get(Colleague_Data)/UserCount).setScale(2);
-        }
-        else{ 
-             wrprobj.totalAverageDataUsage +=getColleagueTotalMap.get(Colleague_Data).setScale(2);   
-        }   
-        if(UserCount>0){
-                 wrprobj.totalAverageCallUsage +=(getColleagueTotalMap.get(Colleague_Calls)/UserCount).setScale(2); 
-        }
-        else{
-             wrprobj.totalAverageCallUsage +=getColleagueTotalMap.get(Colleague_Calls).setScale(2);
-        }
-        if(UserCount>0){
-              System.debug('----&---4--'+UserCount);
-             wrprobj.totalAverageMessageUsage +=(getColleagueTotalMap.get(Colleague_SMS)/UserCount).setScale(2); 
-             System.debug('----&---5--'+wrprobj.totalAverageMessageUsage);
-        }
-        else{
-             wrprobj.totalAverageMessageUsage +=getColleagueTotalMap.get(Colleague_SMS).setScale(2);
-        }
-       
-      
-       
-             if(AvgofCollegueData.User__c == UserInfo.getUserId()){
-               getUserTotalMap = getUserTotalUsage(AvgofCollegueData,usageTypeMap);
-                  System.debug('@@-----------'+AvgofCollegueData);
-                  wrprobj.totalDataUsage +=(getUserTotalMap.get('UserData')).setScale(2) ; 
-                  wrprobj.totalCallUsage +=(getUserTotalMap.get('UserCalls')).setScale(2) ; 
-                  wrprobj.totalMessageUsage +=(getUserTotalMap.get('UserSMS')).setScale(2) ; 
-                  
-             if(string.valueOf(chargeTypeMap.get(AvgofCollegueData.Charge_Type__c)).contains(Roaming_Type)) {
-                 getUserTotalMap = getRoaming(AvgofCollegueData,usageTypeMap);
-                 wrprobj.totalIpassUsage =getUserTotalMap.get('totalIpassUsageIn').setScale(2) ;
-                 wrprobj.totalAverageIpassUsage =getUserTotalMap.get('totalAverageIpassUsageIn').setScale(2) ;
-             }
-         }
-      }  
-             
-      return wrprobj;
-         
-    }
-    return null;
+       if(totalCallavg>0){
+       wrprobj.totalAverageCallUsage=(totalCallavg/serviceCount).setScale(2);
+       }
+       if(totalMessageavg>0){  
+       wrprobj.totalAverageMessageUsage=(totalMessageavg/serviceCount).setScale(2);
+       }
+     }
+     else{
+        wrprobj.totalAverageDataUsage=totalDataavg.setScale(2) ;
+        wrprobj.totalAverageCallUsage=totalCallavg.setScale(2);
+        wrprobj.totalAverageMessageUsage=totalMessageavg.setScale(2);
+     }
+return wrprobj;
     
 }
+public static MB_Wrapper_Class.MB_Device_Wrapper_Class getColleageAverage(String month,String country, MB_Wrapper_Class.MB_Device_Wrapper_Class wrprobj,string deviceId) {
+    
+      AggregateResult[] totalDataUsageIn=[SELECT SUM(Data_Consumed_In_MB__c)Total_data from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data AND Service_Name__c =:deviceId];   
+     if((Decimal)totalDataUsageIn[0].get('Total_data')>0){
+      wrprobj.totalDataUsage=((Decimal)totalDataUsageIn[0].get('Total_data')).setScale(2);
+     }
+     AggregateResult[] totalCallUsageIn=[SELECT SUM(Call_Minutes__c)Total_Call from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Calls AND Service_Name__c =:deviceId];   
+     if((Decimal)totalCallUsageIn[0].get('Total_Call')>0){
+      wrprobj.totalCallUsage=((Decimal)totalCallUsageIn[0].get('Total_Call')).setScale(2);  
+     }
+     AggregateResult[] totalMessageUsageIn=[SELECT SUM(Messages__c)Total_Message from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Messaging AND Service_Name__c =:deviceId];   
+     if((Decimal)totalMessageUsageIn[0].get('Total_Message')>0){
+      wrprobj.totalMessageUsage=((Decimal)totalMessageUsageIn[0].get('Total_Message')).setScale(2);
+     }
+     AggregateResult[] totalIpassUsageIn1=[SELECT SUM(Data_Consumed_In_MB__c)Data_Consumed from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_Data AND Charge_Type__r.Name LIKE :Roaming_Type+'%'];   
+     System.debug('%%##1'+(Decimal)totalIpassUsageIn1[0].get('Data_Consumed')); 
+     if((Decimal)totalIpassUsageIn1[0].get('Data_Consumed') >0){
+      wrprobj.totalIpassUsage=((Decimal)totalIpassUsageIn1[0].get('Data_Consumed')).setScale(2); 
+      
+     }System.debug('%%###'+wrprobj.totalIpassUsageIn); 
+     AggregateResult[] totalAverageIpassUsageIn1=[SELECT SUM(Data_Consumed_In_MB__c)Ipass_Consumed from MB_Billing_Entity__c where Billing_Month__c =: month AND User_Country__c=:country AND User__c =: UserInfo.getUserId() AND Usage_Type__r.Name= :MB_Constants.Usage_Type_iPass AND Charge_Type__r.Name LIKE :Roaming_Type+'%'];   
+     if((Decimal)totalAverageIpassUsageIn1[0].get('Ipass_Consumed')>0){
+      wrprobj.totalAverageIpassUsage=((Decimal)totalAverageIpassUsageIn1[0].get('Ipass_Consumed')).setScale(2);  
+     }
+     System.debug('@data'+wrprobj.totalDataUsage);
+   return wrprobj;
+     }
 
  @AuraEnabled
      public static MB_Wrapper_Class.MB_Device_Wrapper_Class getInsights(String month) {

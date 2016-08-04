@@ -59,17 +59,19 @@
         align-items: center;
         }
         .device_desc_a {
-        border-bottom: 1px solid #CFD7E6;
-        padding: 17px 0px;
-        margin: 0 10px;
-        height: 52px;
+            border-bottom: 1px solid #CFD7E6;
+            padding: 28px 0 0px 0px;
+            margin: 0 10px;
+            height: 52px;
+            font-size: 0.75rem;
+            font-weight: bold;
         }
         .device_desc_b{
-        padding: 20px 10px;
+        padding: 4px 10px;
         }
         .see_more{
         float: right;
-        padding: 4px 6px;
+        padding: 4px 0px;
         margin-right: 5px;
         }
         .info_icon{
@@ -79,8 +81,12 @@
         }
         .Seemore_image{
         float: right;
-        width: 20px;
-        margin-right: -6px;
+        width: 16px;
+        margin-right: -10px;
+        margin-top: 5px;
+        }
+        .image1{
+        margin-top:1px;
         }
     </style>
     <aura:if isTrue="{!v.showspinner=='false'}"> 
@@ -108,8 +114,9 @@
                                 
                             </div>
                             <div class="device_desc">
-                                <div class="slds-text-body--regular device_desc_a" data-index="{!indx}" onclick="{!c.gotoDetailSummary}">{!device.deviceName}</div>
-                                <div class="slds-text-heading--small device_desc_b"><span data-index="{!indx}" onclick="{!c.gotoDetailSummary}">{!v.localCurrency}  {!device.totalUsage}</span>
+                                <div class="slds-text-body--regular device_desc_a" data-index="{!indx}" onclick="{!c.gotoDetailSummary}">{!device.deviceName}<div style="    font-size: 1.1rem;float:right;" data-index="{!indx}" onclick="{!c.gotoDetailSummary}">{!v.localCurrency}  {!device.totalUsage}</div></div>
+                                <div class="slds-text-body--regular device_desc_b">
+                                    <div class="servicename slds-truncate" >{!device.ServiceName}</div>
                                     <span class="Seemore_image">
                                         <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png" data-index="{!indx}" onclick="{!c.gotoDetailSummary}"></img>
                                     </span><span class="slds-text-body--regular see_more" data-index="{!indx}" onclick="{!c.gotoDetailSummary}">see more</span>
@@ -125,9 +132,9 @@
                                 
                             </div>
                             <div class="device_desc">
-                                <div class="slds-text-body--regular device_desc_a">iPass</div>
-                                <div class="slds-text-heading--small device_desc_b"><span>{!v.iPassTotalAmount[0].userCurrency} {!v.iPassTotalAmount[0].iPassTotalAmount}</span>
-                                    <span class="Seemore_image">
+                                <div class="slds-text-body--regular device_desc_a">iPass <div style="float: right;font-size: 1.1rem;">{!v.iPassTotalAmount[0].userCurrency} {!v.iPassTotalAmount[0].iPassTotalAmount}</div></div>
+                                <div class="slds-text-heading--small device_desc_b">
+                                    <span class="Seemore_image image1">
                                         <img src="/resource/Lightning_designing_style/assets/icons/utility/chevronright_60.png"></img>
                                     </span><span class="slds-text-body--regular see_more" >see more</span>
                                 </div>

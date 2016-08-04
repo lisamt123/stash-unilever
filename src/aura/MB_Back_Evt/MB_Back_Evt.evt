@@ -5,4 +5,5 @@
     <aura:attribute name="UsageType" type="String"/>
     <aura:attribute name="deviceName" type="String"/>
     <aura:attribute name="deviceId" type="String"/>
+    <aura:attribute name="ServiceName" type="String"/>
 </aura:event>

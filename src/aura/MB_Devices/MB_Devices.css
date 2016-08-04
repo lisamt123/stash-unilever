@@ -45,3 +45,10 @@
 .THIS .device_img img{
     width:90%;
 }
+.THIS .servicename{
+    width: 125px;
+    float: left;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 0.75rem;
+}

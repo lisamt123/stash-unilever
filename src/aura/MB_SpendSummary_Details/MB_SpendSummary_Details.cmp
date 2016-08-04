@@ -8,6 +8,7 @@
 <aura:attribute name="month" type="string"/>
 <aura:attribute name="deviceName" type="string"/>
 <aura:attribute name="usageType" type="string"/>
+<aura:attribute name="ServiceName" type="String"/>
     <style>
         body{
          background:#D1D1D1;

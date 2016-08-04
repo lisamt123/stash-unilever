@@ -29,7 +29,7 @@
 	},
     gotoSummarySpend:function(component, event, helper) {
     var summaryEvent=$A.get("e.c:MB_SummarySpend_Event"); 
-        summaryEvent.setParams({"month":component.get("v.month"),"deviceId":component.get("v.deviceId"),"deviceName":component.get("v.deviceName")}).fire();
+        summaryEvent.setParams({"ServiceName":component.get("v.ServiceName"),"month":component.get("v.month"),"deviceId":component.get("v.deviceId"),"deviceName":component.get("v.deviceName")}).fire();
 
     }
 })

@@ -21,14 +21,14 @@ public with sharing class MB_Controller_UsageDetailClass{
             billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Usage_Type__r.Name=:usagetype]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Service_Name__c=:deviceId AND Usage_Type__r.Name=:usagetype]; 
       }
       else{
           
            billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Usage_Type__r.Name not in (:'Data',:'Calls',:'Messaging',:'ipass')]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Service_Name__c=:deviceId AND Usage_Type__r.Name not in (:'Data',:'Calls',:'Messaging',:'ipass')]; 
       
       }
     Decimal TotalUsageAmount=0;
@@ -47,30 +47,17 @@ public with sharing class MB_Controller_UsageDetailClass{
             billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Charge_Type__r.Name=:chargetype]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Service_Name__c=:deviceId AND Charge_Type__r.Name=:chargetype]; 
             System.debug('Inside charge type if-->'+billingEntityList);
       }
       else{
             billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Usage_Type__r.Name=:chargetype]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Service_Name__c=:deviceId AND Usage_Type__r.Name=:chargetype]; 
             System.debug('else flow');
       }
-      /*if(chargetype!='NonUsage'&&chargetype!='Recurring'&&chargetype!='Tax'&&chargetype!='Discount'&&chargetype!='Recurring'&&chargetype!='Recurring'&&chargetype!='Recurring'){
-            billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
-                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Charge_Type__r.Name=:chargetype]; 
-            System.debug('Inside charge type if-->'+billingEntityList);
-      }
-      else{
-            billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
-                                    Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
-                                    Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Usage_Type__r.Name=:chargetype]; 
-            System.debug('else flow');
-      }*/
+      
     Decimal TotalUsageAmount=0;
     for(MB_Billing_Entity__c UsageTotalAmount:billingEntityList){
     if(UsageTotalAmount.Local_Net_Amount__c!=null){
@@ -141,7 +128,7 @@ public with sharing class MB_Controller_UsageDetailClass{
               List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                             Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                             Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                            FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Usage_Type__r.Name=:usagetype]; 
+                                            FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Service_Name__c=:deviceId AND Usage_Type__r.Name=:usagetype]; 
             Set<String> chargelist=new Set<String>();
             for(MB_Billing_Entity__c chargelst:billingEntityList){
                  chargelist.add(chargelst.Charge_Type__r.Name);
@@ -188,7 +175,7 @@ public with sharing class MB_Controller_UsageDetailClass{
             List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                             Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c,iPass_Consumed_In_MB__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                             Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                            FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Device_Details__c=:deviceId AND Usage_Type__r.Name not in (:'Data',:'Calls',:'Messaging',:'ipass')]; 
+                                            FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c =:month AND Service_Name__c=:deviceId AND Usage_Type__r.Name not in (:'Data',:'Calls',:'Messaging',:'ipass')]; 
             Set<String> chargelist=new Set<String>();
             for(MB_Billing_Entity__c chargelst:billingEntityList){
                  chargelist.add(chargelst.Usage_Type__r.Name);

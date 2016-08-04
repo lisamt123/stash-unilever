@@ -49,6 +49,7 @@ public with sharing class MB_Controller_Class{
         return  previousBillingPeriod;
     }
     
+    
    /*******************************************************************************************************
     * @description This method returns total user spend with particular device.
     * @param  month
@@ -64,11 +65,11 @@ public with sharing class MB_Controller_Class{
                                   
       List<MB_Wrapper_Class.MB_Device_Wrapper_Class> wrapperList=new List<MB_Wrapper_Class.MB_Device_Wrapper_Class>();
       set<Id> deviceIds=new set<Id>();
-      Map<Id,MB_Billing_Entity__c> deviceMap=new Map<Id,MB_Billing_Entity__c>();
+      Map<String,MB_Billing_Entity__c> deviceMap=new Map<String,MB_Billing_Entity__c>();
       for(MB_Billing_Entity__c entity:billingEntityList){
          
         if(!deviceMap.containsKey(entity.Device_Details__c)){
-          deviceMap.put(entity.Device_Details__c,entity);
+          deviceMap.put(entity.Service_Name__c,entity);
         }
       }
       for(MB_Billing_Entity__c entity:billingEntityList){
@@ -93,19 +94,20 @@ public with sharing class MB_Controller_Class{
       
       System.debug('URL--->'+URL.getSalesforceBaseUrl().toExternalForm());
       List<MB_Billing_Entity__c> billingEntityDistinctList=deviceMap.values();
+      System.debug('Service names'+billingEntityDistinctList.size());
       for(MB_Billing_Entity__c entity:billingEntityDistinctList ){
         MB_Wrapper_Class.MB_Device_Wrapper_Class objWrapper=new MB_Wrapper_Class.MB_Device_Wrapper_Class();
         objWrapper.userName=userinfo.getFirstName();
         objWrapper.deviceId=entity.Device_Details__c;
         objWrapper.userCurrency=CurrencySym();
         objWrapper.deviceName=entity.Device_Details__r.Name;
-        
+        objWrapper.ServiceName=entity.Service_Name__c;
+        System.debug('Service_Name>>>>>>>>>>>>'+entity.Service_Name__c);
         if(imageIdMap.size() > 0){
-          objWrapper.deviceImageUrl=sfcBaseUrl+string.valueof(imageIdMap.get(entity.Device_Details__c));
-          
+          objWrapper.deviceImageUrl=sfcBaseUrl+string.valueof(imageIdMap.get(entity.Device_Details__c));          
         }
         system.debug('###'+ objWrapper.deviceImageUrl);
-        objWrapper.totalUsage=totalDeviceSpend(billingEntityList,entity.Device_Details__c).setScale(2);
+        objWrapper.totalUsage=totalDeviceSpend(billingEntityList,entity.Service_Name__c).setScale(2);
      
         wrapperList.add(objWrapper);
       }
@@ -120,13 +122,14 @@ public with sharing class MB_Controller_Class{
     * @return decimal  
     */ 
   
-    public static  decimal totalDeviceSpend(List<MB_Billing_Entity__c> billingList, ID deviceId) {
+    public static  decimal totalDeviceSpend(List<MB_Billing_Entity__c> billingList, String deviceId) {
         decimal totalDeviceAmount = 0; 
 
         for(MB_Billing_Entity__c beObj : billingList){
-            if(beObj.Device_Details__c == deviceId)
+            if(beObj.Service_Name__c == deviceId)
               if(beObj.Local_Net_Amount__c !=null ){
                 totalDeviceAmount += beObj.Local_Net_Amount__c;
+                System.debug(deviceId+'<<<<'+totalDeviceAmount );
                 }
         }
         return totalDeviceAmount;
@@ -298,7 +301,7 @@ public with sharing class MB_Controller_Class{
        List<MB_Billing_Entity__c> billingEntityList = [SELECT Id, Name, Billing_Currency__c, Billing_Month__c, Call_Minutes__c, Charge_Type__c,Charge_Type__r.Name, Data_Consumed_In_MB__c, 
                                     Device_Details__c, Device_Details__r.Name,Device_Details__r.Photo_URL__c, Item_Count__c, Local_Net_Amount__c, Messages__c, Non_Usage_Consumed__c, 
                                     Service_Name__c, Usage_Type__c,Usage_Type__r.Name, User__c, User_Country__c, User_Email__c 
-                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Device_Details__c=:deviceId AND Usage_Type__r.Name !=:iPass_Type]; 
+                                    FROM MB_Billing_Entity__c where User__c =: UserInfo.getUserId() AND Billing_Month__c in (:month,:previous) AND Service_Name__c=:deviceId AND Usage_Type__r.Name !=:iPass_Type]; 
                                     
                
        List<MB_Billing_Entity__c> previousmonthBillingList=new List<MB_Billing_Entity__c>();

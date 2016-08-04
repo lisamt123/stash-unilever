@@ -70,7 +70,7 @@
     border-radius: 0 5px 5px 0;
         }	
     </style>
-    
+    <aura:attribute name="ServiceName" type="String"/>
     <aura:attribute name="deviceName" type="String"/>
     <aura:attribute name="CurrentMonth" type="String"/>
     <aura:attribute name="deviceId" type="String"/>
@@ -86,7 +86,7 @@
                <div onclick="{!c.gotoDevices}"> <img  class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" ></img></div> 
          
         <div class="sectiona_a">
-            <div class="slds-text-heading--small head_c-1">{!v.deviceName}</div>
+            <div class="slds-text-body--small head_c-1">{!v.deviceName}<div>{!v.ServiceName}</div></div>
             <div class="head_d-1">
                 <div> 
                     <div onclick="{!c.gotoSummary_charts}"><img class="icon-style-1" src="/resource/MB_Icons/MB_Icons/chart_60.png" /></div>

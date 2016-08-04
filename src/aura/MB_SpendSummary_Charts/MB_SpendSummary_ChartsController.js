@@ -1,5 +1,6 @@
 ({  
     doinit : function(component, event, helper) {
+        
         var Domestic= $A.get("$Label.c.MB_Domestic");
         var International= $A.get("$Label.c.MB_International");
         var You= $A.get("$Label.c.MB_You");
@@ -63,9 +64,9 @@
     gotoDetailesText: function(component, event, helper) {
         var monthArray=component.get("v.CurrentMonth").split(' ');
         var month=monthArray[0];
-        
+       // alert('2'+component.get("ServiceName"));
         var detailedTextEcent=$A.get("e.c:MB_Detail_text_Event");  
-        detailedTextEcent.setParams({"CurrentMonth":component.get("v.CurrentMonth"),"deviceName":component.get("v.deviceName"),"deviceId":component.get("v.deviceId")}).fire();
+        detailedTextEcent.setParams({"ServiceName":component.get("v.ServiceName"),"CurrentMonth":component.get("v.CurrentMonth"),"deviceName":component.get("v.deviceName"),"deviceId":component.get("v.deviceId")}).fire();
     }, 
     //This method redirects to previous screen
     gotoDevices:function(component, event, helper) {

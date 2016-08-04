@@ -60,7 +60,8 @@ getDetail:function(component, event, helper) {
                 values:{
                     CurrentMonth:event.getParam("month"),
                     deviceId:event.getParam("deviceId"),
-                    selectedMonth:selectedmonth
+                    selectedMonth:selectedmonth,
+                    ServiceName:event.getParam("ServiceName")
                 }
             }
         }, component);
@@ -104,6 +105,7 @@ getDetail:function(component, event, helper) {
     },
     showDetail_charts : function(component, event, helper) {
         helper.scrollToLocation(component, "top");
+        //alert('1'+event.getParam("ServiceName"));
 		var destination = "markup://c:MB_SpendSummary_Charts";
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
@@ -114,7 +116,8 @@ getDetail:function(component, event, helper) {
                 values:{
                     CurrentMonth:event.getParam("month"),
                     deviceId:event.getParam("deviceId"),
-                    deviceName:event.getParam("deviceName")
+                    deviceName:event.getParam("deviceName"),
+                    ServiceName:event.getParam("ServiceName")
                 }
             }
         }, component);
@@ -133,7 +136,8 @@ getDetail:function(component, event, helper) {
                 values:{
                     CurrentMonth:event.getParam("CurrentMonth"),
                     deviceId:event.getParam("deviceId"),
-                    deviceName:event.getParam("deviceName")
+                    deviceName:event.getParam("deviceName"),
+                    ServiceName:event.getParam("ServiceName")
                 }
             }
         }, component);
@@ -142,7 +146,7 @@ getDetail:function(component, event, helper) {
     MB_gotoSummary_chart: function(component, event, helper) {
         //helper.scrollToLocation(component, "top");
 		var destination = "markup://c:MB_SpendSummary_Charts";
-        
+       //  alert(event.getParam("ServiceName"));
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("content");
             content.set("v.body", view);
@@ -152,7 +156,9 @@ getDetail:function(component, event, helper) {
                 values:{
                     CurrentMonth:event.getParam("CurrentMonth"),
                     deviceId:event.getParam("deviceId"),
-                    deviceName:event.getParam("deviceName") 
+                    deviceName:event.getParam("deviceName") ,
+                    ServiceName:event.getParam("ServiceName"),
+                   
                 }
             }
         }, component);
@@ -204,7 +210,8 @@ getDetail:function(component, event, helper) {
                     selectedMonth:selectedmonth,
                     UsageType:event.getParam("UsageType"),
                     deviceName:event.getParam("deviceName"),
-                    deviceId:event.getParam("deviceId")
+                    deviceId:event.getParam("deviceId"),
+                    ServiceName:event.getParam("ServiceName")
                 }
             }
         }, component);
@@ -245,7 +252,8 @@ getDetail:function(component, event, helper) {
             attributes: {
                 values:{
                   CurrentMonth:event.getParam("selectedMonth"),  
-                    Pagename:event.getParam("Pagename")
+                    Pagename:event.getParam("Pagename"),
+                    ServiceName:event.getParam("ServiceName")
                 }
                 
             }
@@ -266,7 +274,8 @@ getDetail:function(component, event, helper) {
                     deviceId:event.getParam("deviceId"),
                     month:event.getParam("month"),
                     usageType:event.getParam("usageType") ,
-                    deviceName:event.getParam("deviceName")
+                    deviceName:event.getParam("deviceName"),
+                    ServiceName:event.getParam("ServiceName")
                 }
             }
         }, component);
@@ -284,7 +293,8 @@ getDetail:function(component, event, helper) {
                 values:{
                     deviceId:event.getParam("deviceId"),
                     CurrentMonth:event.getParam("month"),
-                    deviceName:event.getParam("deviceName")
+                    deviceName:event.getParam("deviceName"),
+                    ServiceName:event.getParam("ServiceName")
                 }
             }
         }, component);

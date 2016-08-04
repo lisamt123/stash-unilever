@@ -44,13 +44,14 @@
     <aura:attribute name="deviceName" type="String"/>
     <aura:attribute name="CurrentMonth" type="String"/>
     <aura:attribute name="deviceId" type="String"/>
+    <aura:attribute name="ServiceName" type="String"/>
     <aura:attribute name="result" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
     <aura:attribute name="Avgresult" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
     <aura:if isTrue="{!v.showspinner=='false'}">
     <div>
         <img class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.gotoDevices}"></img>
         <div class="sectiona_a">
-            <div class="slds-text-heading--small head_c-1">{!v.deviceName}</div>
+            <div class="slds-text-body--small head_c-1">{!v.deviceName}<div>{!v.ServiceName}</div></div>
             <div class="head_d-1">
                 <div>
                     <div><img class="icon-styles-1" src="/resource/MB_Icons/MB_Icons/chart_60.png" /></div>
