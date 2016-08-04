@@ -20,7 +20,7 @@
     <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable inverse fintable table table-bordered textareabig ipmFintableAlign">
         <thead>
             <tr>
-                <th scope="col" width="200px">                    
+                <th scope="col" class="custInverseWidth" width="200px">                    
                     
                 </th>
                 <th colspan="5">

@@ -822,9 +822,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }
             }
 
-                      
-            validationError = IPM_ConstantUtils.BLANK;
-            
             if((updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()) || (updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty()))
             {
                 if(updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()){
@@ -1079,13 +1076,26 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         localRolloutBrandMap = new Map<Id,IPM_Project_Rollout__c>( [SELECT Id,IPM_Brand__c FROM IPM_Project_Rollout__c WHERE id IN :holdRolloutidBrandMap.keyset() LIMIT 10000]);
         for(IPM_Project_Rollout__c rollout: localRolloutBrandMap.values())
         {
+            IPM_Project_Rollout__c updatedRollout =new IPM_Project_Rollout__c();
+	        updatedRollout.id = rollout.id;
             if(IPM_ConstantUtils.BRAND_NOT_FOUND.equals(rollout.IPM_Brand__c)){
                 holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
             }
-			if(holdRolloutidBrandMap.get(rollout.id).isEmpty())
+            else if(rollout.IPM_Brand__c == null && !holdRolloutidBrandMap.get(rollout.id).isEmpty())
+            {
+            	list<string> brandNameList = new list<string>();
+            	brandNameList.addAll(holdRolloutidBrandMap.get(rollout.id));
+            	updatedRollout.IPM_Brand__c = brandNameList[0];
+	        	rolloutToUpdateBrand.put(rollout.id,updatedRollout);
+	        	rollout.IPM_Brand__c = updatedRollout.IPM_Brand__c;
+            }
+            else if(holdRolloutidBrandMap.get(rollout.id).isEmpty())
 	        {
+	        	updatedRollout.IPM_Brand__c = system.label.IPM_Brand_Not_Found;
+	        	rolloutToUpdateBrand.put(rollout.id,updatedRollout);
 	        	holdRolloutidBrandMap.get(rollout.id).add(system.label.IPM_Brand_Not_Found);
-	        } 
+	        	rollout.IPM_Brand__c = updatedRollout.IPM_Brand__c;
+	        }  
         }
         //enable edit access on brand when current project is reginal rollout and phase is feasibility/capability
         if( (IPM_ConstantUtils.PHASE_FEASIBILITY.Equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_CAPABILITY.Equals(project.IPM_Phase__c)) && 
@@ -1105,6 +1115,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
 	    	 IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
 	    	 update rolloutToUpdateBrand.values();
 	    	 IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+			 getAllbrands();
+			 
         }
         
     }

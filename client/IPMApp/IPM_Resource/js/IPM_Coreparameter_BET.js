@@ -124,6 +124,6 @@ function hilightTaskScript(){
     jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
     jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
- window.onload = function replacePickVals(){
+ window.onload = function(){
             jq('option').filter(function () { return jq(this).html() == "--None--"; }).html('Not Applicable');
 };
