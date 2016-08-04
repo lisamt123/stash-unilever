@@ -879,7 +879,7 @@
                <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
                 <c:IPM_OTIFStatusTableView otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableView>
                 <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',true,false)}"></c:IPM_GateKeeperListView> 
-           
+           		<c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!pds.Id}"  rendered="{!pds.IPM_Master_Section_External_Id__c=='Environmental_Impact'}"></c:IPM_EcoDesignSection>
            
            <!---Components To BE Displayed within Sections END-->
            <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}" styleClass="bdText" />
@@ -907,7 +907,7 @@
                 <apex:outputText value="{!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
                     <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',project.IPM_Project_Type__c!='Operational')}"></c:IPM_FinInitialEstOfOppCharter>
                     <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
-                    <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
+                    <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}"></c:IPM_EcoDesignSection>
                     <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
                     <c:IPM_Risk_QuestionnaireView getProjectId="{!projectId}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
                     <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}"></c:IPM_Gate_RollOuts>
