@@ -37430,4 +37430,25 @@
         <enabled>true</enabled>
         <name>ViewPublicReports</name>
     </userPermissions>
+    <layoutAssignments>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Final</layout>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Final_Layout</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
+    </layoutAssignments>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Final_Layout</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
 </Profile>
