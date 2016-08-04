@@ -31256,11 +31256,7 @@
         <field>IPM_Task__c.IPM_Phase__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Task__c.IPM_ProjectComplexity__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Task__c.IPM_Project_Document_Section__c</field>
