@@ -160,6 +160,11 @@ public class MB_Controller_Charts_Test{
   
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject12 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject12 = MB_Controller_Charts.getChargeType(Month_April, billingEntityObject5.Service_Name__c);
+  System.assertEquals(deviceWrapperClassObject12.totalDomesticIpassUsage,null);   
+  
+  MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject13 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
+  deviceWrapperClassObject13 = MB_Controller_Charts.getChargeType(Month_April, billingEntityObject7.Service_Name__c);
+  System.assertEquals(deviceWrapperClassObject13.totalDomesticIpassUsage,null); 
   
   MB_Wrapper_Class.MB_Device_Wrapper_Class deviceWrapperClassObject6 = new MB_Wrapper_Class.MB_Device_Wrapper_Class();
   deviceWrapperClassObject6 = MB_Controller_Charts.getiPassChargeType(Month_April, billingEntityObject1.Usage_Type__c);
