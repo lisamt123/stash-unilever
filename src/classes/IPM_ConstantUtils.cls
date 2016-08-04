@@ -1246,4 +1246,6 @@ public class IPM_ConstantUtils {
    public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
    
    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
+    // Platform As 'Not Appliable'
+    public static final string PLATFORM_NA = 'Not Applicable';
 }

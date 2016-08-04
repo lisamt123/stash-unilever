@@ -1157,15 +1157,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deodorants</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Dressings</fullName>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1188,6 +1180,22 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
                 <fullName>Hair Care</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>false</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1205,57 +1213,57 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <picklistValues>
                 <fullName>Engaging Experiences</fullName>
                 <default>false</default>
-                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Goodness of Soy</fullName>
                 <default>false</default>
-                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Delicious Treats</fullName>
                 <default>false</default>
-                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Revitalisation</fullName>
                 <default>false</default>
-                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Natural Authenticity</fullName>
                 <default>false</default>
-                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Healthy Hydration</fullName>
                 <default>false</default>
-                <controllingFieldValues>Beverages</controllingFieldValues>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Build Underdeveloped Markets</fullName>
                 <default>false</default>
-                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Establish Daily Habit</fullName>
                 <default>false</default>
-                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Extend Beyond</fullName>
                 <default>false</default>
-                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Win with strong brands</fullName>
                 <default>false</default>
-                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Pay More</fullName>
                 <default>false</default>
-                <controllingFieldValues>Deodorants</controllingFieldValues>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Barriers &amp; trust</fullName>
@@ -1445,9 +1453,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <picklistValues>
                 <fullName>Not Applicable</fullName>
                 <default>false</default>
-                <controllingFieldValues>Hair Care</controllingFieldValues>
-                <controllingFieldValues>Household Care</controllingFieldValues>
-                <controllingFieldValues>Laundry</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Northern EU Platform</fullName>
@@ -2322,7 +2327,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Platform_Formula__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK(IPM_Parent_Project__c), TEXT(IPM_Category_Platform__c),TEXT(IPM_Parent_Project__r.IPM_Category_Platform__c))</formula>
+        <formula>IF(ISBLANK(IPM_Parent_Project__c),TEXT(IPM_Category_Platform__c),IF(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__c),TEXT(IPM_Parent_Project__r.IPM_Category_Platform__c),TEXT(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Platform__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Platform Formula</label>
         <required>false</required>
@@ -4387,14 +4392,10 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
         </picklistValues>
-		<picklistValues>
+	<picklistValues>
             <picklist>IPM_Category_Picklist__c</picklist>
             <values>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Deodorants</fullName>
+                <fullName>Deodorants %26 Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4426,7 +4427,19 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4581,6 +4594,10 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pay More</fullName>
                 <default>false</default>
             </values>
@@ -4646,10 +4663,6 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Win with strong brands</fullName>
-                <default>false</default>
-            </values>
-	    <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5191,14 +5204,10 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
         </picklistValues>
-	<picklistValues>
+<picklistValues>
             <picklist>IPM_Category_Picklist__c</picklist>
             <values>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Deodorants</fullName>
+                <fullName>Deodorants %26 Fragrances</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5230,7 +5239,19 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5385,6 +5406,10 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Pay More</fullName>
                 <default>false</default>
             </values>
@@ -5452,11 +5477,8 @@ OwnerId))</formula>
                 <fullName>Win with strong brands</fullName>
                 <default>false</default>
             </values>
-	    <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
+
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>IPM_Project_Name__c</searchResultsAdditionalFields>
