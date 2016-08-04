@@ -24,7 +24,7 @@ public class flowController{
     public flowController(ApexPages.StandardController stdController) {
     }
     
- public Flow.Interview.VPM_PurchasingRequestAdvanceForm  flBatch {get;set;}
+ //public Flow.Interview.VPM_PurchasingRequestAdvanceForm  flBatch {get;set;}
  // Factor your PageReference as a full GET/SET
  public PageReference prFinishLocation {
  get {
@@ -45,8 +45,8 @@ public class flowController{
  Boolean BlockDelete =false;
  
  string URl='';
-      System.debug('Piyush----@@@flBatch '+flBatch );
- if(flBatch != null) {
+   //   System.debug('Piyush----@@@flBatch '+flBatch );
+ /*if(flBatch != null) {
  try{
      reDirect = string.valueOf(flBatch.getVariableValue('vpm_redirecttolaunchvar')); 
      strTemp = string.valueOf(flBatch.getVariableValue('VPM_PurchasingRequestID'));
@@ -82,7 +82,7 @@ public class flowController{
      }
      catch (exception ex){}
  
- }
+ }*/
  system.debug('Piyush  ---@@URL' +URL);
  return URl;
  }

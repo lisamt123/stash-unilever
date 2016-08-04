@@ -2,26 +2,39 @@
     <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.4.js')}"/>
     <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <script>
-          
+  
       $(document).ready(function() {
+      debugger;
          $('[id*="saveButton"],[id*="cancelButton"]').hide();
-         $('.bPageBlock').css({'border-top':'1px solid white','background-color':'#fff','border-left-color':'#fff','border-right-color':'#fff'});
-         localStorage.getItem("msg") ? $("#resultMsg").text(localStorage.getItem("msg")) : '';
+        // $('.bPageBlock').css({'border-top':'1px solid white','background-color':'#fff','border-left-color':'#fff','border-right-color':'#fff'});
+       //  localStorage.getItem("msg") ? $("#resultMsg").text(localStorage.getItem("msg")) : '';
+         //localStorage.removeItem("msg");
+         
+          $('[id*="saveButton"],[id*="cancelButton"]').on('click',function() {
+            $('input[type="text"],textarea').blur();
+            $('[id*="saveButton"],[id*="cancelButton"]').hide();         
+         });
+         
+          $('input[type="text"],textarea,select').on('click keyup keypress blur change dblclick',function(){ //$(document).dblclick(function() {
+              $('[id*="saveButton"],[id*="cancelButton"]').show();
+          });
      });
-       $(document).dblclick(function() {
-          $('[id*="saveButton"],[id*="cancelButton"]').show();
-        });
         
         function func()
   {
   alert('Only relevant for Manual Blocks/Unblocks/Deletes/Undeletes'); 
+  }
+        function func1()
+  {
+       
+ 
   }
   function openAdvanceform()
   {
   debugger;
   window.location = 'apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}'; 
   var localhost = document.domain;
-  window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm?id={!VPM_PurchasingRequests__c.Id}';
+  window.top.location='https://'+localhost+'/apex/VPM_AdvancedForm_V1?id={!VPM_PurchasingRequests__c.Id}';
   }
    function PageReload()
   {
@@ -30,6 +43,7 @@
   window.top.location='https://'+localhost+'/{!VPM_PurchasingRequests__c.id}';
   return false;
   }
+  
     function reworkBtnClick(){
         debugger;
         var purId="{!VPM_PurchasingRequests__c.Id}";
@@ -66,68 +80,64 @@
             
         } 
         }
+        function callSendToSAPAPI()
+        {
+            callSendToSAPAPI();
+            return false;
+        }
     </script>
-    <apex:pageBlock tabStyle="VPM_PurchasingRequests__c">
-        <apex:form >
-        <div align="center">
-            <!--apex:commandButton action="{!edit}" value="Edit" id="editButton"/-->
-            <apex:commandButton action="{!saveFromUser}" value="Save" id="saveButton"/>
+       <apex:pageBlock tabStyle="VPM_PurchasingRequests__c">
+ 
+    <apex:form id="pageForm">
+      <div align="center">
+            
+            <apex:commandButton action="{!saveFromUser}" value="Save" id="saveButton" />
+           
             <apex:commandButton action="{!cancelFromUser}" value="Cancel" id="cancelButton"/>
             <apex:outputText value="{!callJavaScriptAlert}" escape="false"></apex:outputText>
-             
-            <apex:commandButton value="Send to SAP" action="{!callSendToSAPAPI}" rendered="{!RenderSAPBtn}" 
-            disabled="{!NOT(enableSendToSAPBtn)}"/>
-            <apex:commandButton value="Manually Mark as complete" rendered="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />
-           <!--apex:commandButton value="Rework" rendered="{!ReworkBtn}" onclick='reworkBtnClick()'/-->  
-            <apex:commandButton value="Rework"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/> 
-            <apex:commandButton value="Submit Request"  action="{!SubmitRequestAction}" disabled="{!NOT(SubmitRequestBtn)}"/>
+            <apex:actionRegion >
+             <apex:commandButton rendered="{!isProcure}" action="{!saveUserValues}" value="{!buttonValue}" reRender="pageForm"/>
+            </apex:actionRegion>
+           
+            <apex:commandButton value="{!$Label.VPM_Send_to_SAP}" rendered="{!RenderSAPBtn}" disabled="{!NOT(enableSendToSAPBtn)}" action="{!callSendToSAPAPI}"/>
+            <apex:commandButton value="{!$Label.VPM_Manually_Mark_as_complete}" rendered="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />
+           
+            <apex:commandButton value="{!$Label.VPM_Rework}"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/> 
+            <apex:commandButton value="{!$Label.VPM_Submit_Request}"  action="{!SubmitRequestAction}" disabled="{!NOT(SubmitRequestBtn)}"/>   
       </div>
+      <apex:pagemessages id="pageMessages1"/><br/> 
       <div id='resultMsg'></div>
       <br/>
             <apex:actionFunction name="ReworkAction" action="{!ReworkAction}" reRender="out" oncomplete="PageReload()"/>
-             
+             <!--apex:actionFunction name="callSendToSAPAPI" action="{!callSendToSAPAPI}" reRender="out" oncomplete="PageReload()"/-->
+            
         <apex:pageBlockSection rendered="{!isBR}" id="BR" title="Business Requestor at a Glance">
-            <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c}">
-             <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
-            <!--/apex:outputField>   
-            <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_CompanyCode__c}">
-                <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-            </apex:outputField>
-            <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_WhatAreYouBuying__c}"-->
-                <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
-            <!--/apex:outputField-->
+            
             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AnnualEstimatedSpend__c}">
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
             </apex:outputField>           
-            <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsInvoiceReceived__c}"-->
-                <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
-            <!--/apex:outputField-->
-            <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_POBoxPostCode__c}"-->
-                <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
-            <!--/apex:outputField-->
-            <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Country__c}"-->
-                <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
-            <!--/apex:outputField-->
+            
             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_OrderingEmailAddress__c}">
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
             </apex:outputField>
-            <!--apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Comments__c}"-->    
-                <!--apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" /-->
-            <!--/apex:outputField-->
+            
             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_MDMBPMRequestorName__c}"> 
                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
             </apex:outputField>
         </apex:pageBlockSection>
          <apex:pageBlockSection rendered="{!isFLS}" id="FLS" title="FLS at a Glance">
-             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}">
-                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-             </apex:outputField>
+             <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CashManagementGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
+              
+            
          </apex:pageBlockSection>
           <apex:pageBlockSection rendered="{!isFinance}" id="Finance" title="Finance at a Glance">
-             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}">
+             <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VATRegistrationNumber__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+               <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" style="display:none;visibility:hidden">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}">
@@ -186,14 +196,50 @@
               </apex:outputField>
          </apex:pageBlockSection>
           <apex:pageBlockSection rendered="{!isProcure}" id="Procurement" title="Procurement at Glance">
-             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorSME__c}">
+              <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" >
+              <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_Approval_Worker__c.Label}"></apex:outputLabel>
+              <apex:outputText value="{!approvalWorkerName}" /> 
+              </apex:pageBlockSectionItem>
+              <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AlreadyAvailableSupplierUse__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
+              
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorSME__c}">    
+                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton">
+                      <!--<apex:actionSupport event="onchange" action="{!markExceptionTypeRequired}" reRender="exceptionType"/>-->
+                   </apex:inlineEditSupport>
+              </apex:outputField>
+              
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorException__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+               <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_City__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_SMEComment__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField id="exceptionType" value="{!VPM_PurchasingRequests__c.VPM_ExceptionType__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VendorClassification__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Payment_Terms_if_none_Selected__c}">
+                <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" style="display:none">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Minority_Diversity_vendor__c}">
+                <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_E_Invoicing_Agreed__c}">
+                <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
                <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Bypass__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
@@ -204,14 +250,17 @@
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_MinorityIndicators__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
+              
          </apex:pageBlockSection>
-          <apex:pageBlockSection rendered="{!isMDM}" id="MDM" title="MDM Ops at a Glance">
-             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VendorCode__c}">
+           <apex:pageBlockSection rendered="{!isMDM}" id="MDM" title="MDM Ops at a Glance">
+             <apex:outputField label="Vendor Code" value="{!VPM_PurchasingRequests__c.VPM_VendorCodeLookup__r.mdm_Code__c}"/>
+             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}" style="display:none;visibility:hidden">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_VATRegistrationNumber__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
+              
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
@@ -233,6 +282,24 @@
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_BankKey__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_BankControlKey__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_BankAccountNumber__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AccountHolderName__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>              
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IBAN__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_BankName__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_SwiftKey__c}">
+                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+              </apex:outputField>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AdoptScanDate__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
@@ -245,9 +312,11 @@
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
-             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_TradePartnerType__c}">
+              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_AccountGroup__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
+                    
+             
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_POCreationSystem__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
@@ -257,12 +326,14 @@
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_HouseNumber__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
-             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Region__c}">
+             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_Regions__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
-             <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorSME__c}">
-                 <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
-              </apex:outputField>
+              <apex:actionRegion >
+                 <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorSME__c}">
+                     <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
+                  </apex:outputField>
+              </apex:actionRegion>
              <apex:outputField value="{!VPM_PurchasingRequests__c.VPM_IsVendorException__c}">
                  <apex:inlineEditSupport event="ondblclick" showOnEdit="saveButton, cancelButton" />
               </apex:outputField>
@@ -287,13 +358,13 @@
              <apex:commandButton value="Send to SAP" action="{!callSendToSAPAPI}" rendered="{!RenderSAPBtn}" 
             disabled="{!NOT(enableSendToSAPBtn)}" />
             <apex:commandButton value="Manually Mark as complete" rendered="{!ManuallyMarkasCompletebtn}" action="{!ManuallyMarkAsCompleteAction}" />
-            <!--apex:commandButton value="Rework" rendered="{!ReworkBtn}" onclick='reworkBtnClick()'/-->  
+            
              <apex:commandButton value="Rework"  disabled="{!NOT(ReworkBtn)}" onclick="reworkBtnClick();return false;"/> 
             <apex:commandButton value="Submit Request"  action="{!SubmitRequestAction}" disabled="{!NOT(SubmitRequestBtn)}"/>
           </div>
             <apex:actionFunction name="ReworkAction" action="{!ReworkAction}" reRender="out" oncomplete="PageReload()"/>
          
-
+                
             </apex:form>
-    </apex:pageBlock>
+    </apex:pageBlock> 
  </apex:page>

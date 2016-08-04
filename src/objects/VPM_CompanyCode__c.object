@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -50,6 +50,7 @@
     <description>Object that holds company codes.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
@@ -137,10 +138,8 @@
     <searchLayouts>
         <lookupDialogsAdditionalFields>VPM_CompanyCode__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Company_Name__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>VPM_CountryCode__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>VPM_Country__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields xsi:nil="true"/>
-        <lookupPhoneDialogsAdditionalFields>VPM_CountryCode__c</lookupPhoneDialogsAdditionalFields>
+        <lookupFilterFields>VPM_Country__c</lookupFilterFields>
         <lookupPhoneDialogsAdditionalFields>Company_Name__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>VPM_CompanyCode__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>VPM_Country__c</lookupPhoneDialogsAdditionalFields>
@@ -148,7 +147,6 @@
         <searchFilterFields>VPM_CompanyCode__c</searchFilterFields>
         <searchFilterFields>VPM_CountryCode__c</searchFilterFields>
         <searchFilterFields>VPM_Country__c</searchFilterFields>
-        <searchFilterFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Company_Name__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>

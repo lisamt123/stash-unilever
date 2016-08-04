@@ -1,0 +1,99 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_GoldenDataController2" language="{!userlang}" action="{!ApprovalMaintain1}" >
+           <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+
+    <apex:form >
+        
+   
+  
+    <apex:pageBlock title="{!$Label.VPM_FusionGolde_DataScreen}" id="thePageBlock">
+        <apex:pageMessages id="pageMessages"></apex:pageMessages>
+            <apex:pageBlockButtons > 
+            <apex:commandButton action="{!backToFlow}" value="{!$Label.VPM_Back}" immediate="true"/>
+            <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_SaveButton}" reRender="hiddenBlock,pageMessages" status="actStatusId" />
+
+        </apex:pageBlockButtons>
+         <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 
+           <apex:pageBlockSection columns="1">                
+                  <apex:outputText label="{!$Label.VPM_VendorCode}" value="{!vendorCode}"/>   
+                  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_VendorType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorType__c}" required="true" />
+               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_GlobalAuthorisationGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c}" required="true"/>  
+                 <apex:outputPanel style="display:none;visibility:hidden">
+                    <apex:inputField value="{!VPM_PurchasingRequests__c.VPM_ECC__c}"/> </apex:outputpanel>
+                    
+               <apex:pageBlockSectionItem helpText="{!$Label.VPM_SiriusGoldenDataHelptext1}">
+                   <apex:outputLabel value="{!$Label.VPM_TradePartnerType}" id="TradPartLbl" for="TradePartnerType" />
+                   <apex:inputField id="TradePartnerType" value="{!VPM_PurchasingRequests__c.VPM_TradePartnerType__c}" required="true"/>
+               </apex:pageBlockSectionItem>
+                
+                
+               <apex:pageBlockSectionItem >               
+                   <apex:outputLabel value="{!$Label.Account_Group}" for="ACCGrp" />
+                   <apex:inputField id="ACCGrp" value="{!VPM_PurchasingRequests__c.VPM_AccountGroup__c}" required="true"/>  
+               </apex:pageBlockSectionItem>
+               <apex:pageBlockSectionItem helpText="{!$Label.VPM_SiriusGoldenDataHelptext2}">            
+                   <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_CompanyCode__c.Label}" />
+                   <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_CompanyCode__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_CompanyCode__r.Company_Name__c}" />
+               </apex:pageBlockSectionItem> 
+                 
+                 <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" >
+                  
+                 <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}"/>
+                 <apex:outputPanel layout="block" styleClass="requiredInput">
+                 <apex:outputpanel layout="block" styleClass="requiredBlock"/>
+                 <apex:actionRegion >
+                  <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorName1__c.Label}" value="{!VendorName}" required="true">
+                  <apex:actionSupport event="onchange" reRender="section1" action="{!vendorNameChange}"/>
+                  </apex:inputText>
+                  </apex:actionRegion>
+                  </apex:outputpanel>
+                  
+                 </apex:pageBlockSectionItem>
+                 
+                 <apex:pageBlockSection id="section1">
+                 <apex:pageBlockSectionItem labelStyle="width: 100px" dataStyle="width: 200px" >
+                 <apex:outputLabel value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm_1__c.Label}"/>
+                 <apex:outputPanel layout="block" styleClass="requiredInput">
+                 <apex:outputpanel layout="block" styleClass="requiredBlock"/>
+                 <apex:inputText label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SearchTerm_1__c.Label}" value="{!searchTerm1}" />
+                 </apex:outputPanel>
+                 </apex:pageBlockSectionItem>
+                 </apex:pageBlockSection>
+                 
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_Street1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Street1__c }" required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_City__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_City__c }"  required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_Country__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Country__c }" required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_PaymentTerms__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" required="true" />
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReconciliationAccount__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}" required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SortKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SortKey__c}" required="true"/>
+                 <apex:pageBlockSectionItem >
+                 <apex:outputText value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CashManagementGroup__c.Label}" />
+                 <apex:outputPanel ><div class="requiredInput">
+                     <div class="requiredBlock"></div>
+                     <apex:selectList label="{!$Label.VPM_CashManagementGroup}" value="{!vendorCashManagementGrp}"  multiselect="false" size="1" required="true">
+                        <apex:selectOptions value="{!CashManagementGrp}"/>
+                      </apex:selectList>
+                 </div></apex:outputPanel></apex:pageBlockSectionItem>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_PaymentMethod__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentMethod__c}" required="true"/>
+                 <apex:pageBlockSectionItem >
+                 
+                 <apex:outputText value="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PurchasingOrganisation__c.Label}" />
+                 <apex:outputPanel ><div class="requiredInput">
+                     <div class="requiredBlock"></div>
+                      
+                  <apex:selectList label="{!$Label.VPM_PurchasingOrganisation}" value="{!vendorPurchasingOrg}"  multiselect="false" size="1" required="true" >
+                    <apex:selectOptions value="{!purchasingOrg}"/>
+                  </apex:selectList>
+                  </div></apex:outputPanel></apex:pageBlockSectionItem>
+                
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankCountryKey__c}" required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankKey__c}" required="true"/>
+                 <apex:inputField label="{!$Label.VPM_BankAccountNumber}" value="{!VPM_PurchasingRequests__c.VPM_BankAccountNumber__c}" required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_CheckDoubleInvoices__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDoubleInvoices__c}" required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SearchTerm2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SearchTerm2__c}" required="true"/>
+                 <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SRVBasedVendorID__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SRVBasedVendorID__c}" required="true"/>
+                 </apex:pageBlockSection>  
+         </apex:pageBlock>      
+   </apex:form>
+  <c:VPM_LoadingComponent />  
+</apex:page>

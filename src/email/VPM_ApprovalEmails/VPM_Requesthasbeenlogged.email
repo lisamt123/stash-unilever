@@ -1,0 +1,42 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:13.0pt;mso-ascii-font-family:Calibri;
+mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;mso-ansi-language:
+EN-US">The following Vendor Request has now been logged.</span></p>
+
+<p class="MsoListParagraphCxSpFirst" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family:Symbol;mso-fareast-font-family:Symbol;mso-bidi-font-family:
+Symbol;mso-ansi-language:EN-US">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Request Type: Create New Vendor<o:p></o:p></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="text-indent: -0.25in;"><!--[if !supportLists]--><span style="color: rgb(0, 0, 0); font-family: Symbol; font-size: 12pt;">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]--><font face="arial" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size: 12pt;">Request ID:&nbsp;</span></font><font face="arial">{!VPM_PurchasingRequests__c.Name}</font></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family:Symbol;
+mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;mso-ansi-language:
+EN-US">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Date Raised:&nbsp;{!VPM_PurchasingRequests__c.CreatedDate}<o:p></o:p></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family:Symbol;
+mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;mso-ansi-language:
+EN-US">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Vendor Name:&nbsp;<o:p></o:p><span style="font-family: Arial, sans-serif; font-size: 12pt; background-color: rgb(255, 255, 255);">{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</span></p>
+
+<p class="MsoListParagraphCxSpMiddle" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family:Symbol;
+mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;mso-ansi-language:
+EN-US">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Company Code:&nbsp;{!VPM_PurchasingRequests__c.VPM_CompanyCode__c}<o:p></o:p></p>
+
+<p class="MsoListParagraphCxSpLast" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt; text-indent: -0.25in;"><!--[if !supportLists]--><span style="font-family:Symbol;
+mso-fareast-font-family:Symbol;mso-bidi-font-family:Symbol;mso-ansi-language:
+EN-US">·<span style="font-stretch: normal; font-size: 7pt; font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->Status: New<o:p></o:p></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><span style="font-size:13.0pt;mso-ascii-font-family:Calibri;
+mso-hansi-font-family:Calibri;mso-bidi-font-family:Calibri;mso-ansi-language:
+EN-US">&nbsp;</span></p>
+
+<p class="MsoNormal" style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><b><i>Disclaimer: Please do not reply to this mail, the
+sending mail box is not monitored.<o:p></o:p></i></b></p>]]></td>
+</tr>
+</table>

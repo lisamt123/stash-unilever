@@ -61,7 +61,12 @@
         <fullName>VPM_FullDetails__c</fullName>
         <description>Provides a text summary of the important SAP matching fields for display within the Advanced form. Not interfaced with SAP</description>
         <externalId>false</externalId>
-        <formula>mdm_Name1__c &amp; &quot;, &quot; &amp;  mdm_Street__c &amp; &quot;, &quot; &amp; mdm_City__c &amp; &quot;, &quot; &amp; mdm_Postcode__c  &amp; &quot;, &quot; &amp; TEXT(mdm_Country__c)  &amp;&quot; | ECC: &quot;&amp; mdm_ecc__c &amp;&quot; | Vendor Code: &quot;&amp; mdm_Code__c</formula>
+        <formula>mdm_Name1__c &amp; &quot;, &quot; &amp;  mdm_Street__c &amp; &quot;, &quot; &amp; mdm_City__c &amp; &quot;, &quot; &amp; mdm_Postcode__c  &amp; &quot;, &quot; &amp; TEXT(mdm_Country__c)  &amp;&quot; | ECC: &quot;&amp; mdm_ecc__c &amp;&quot; | Vendor Code: &quot;&amp; 
+IF(CONTAINS(mdm_ecc__c,&quot;Cordillera&quot;), mdm_vCodeCordillera__c,
+IF(CONTAINS(mdm_ecc__c,&quot;Fusion&quot;), mdm_vCodeFusion__c,
+IF(CONTAINS(mdm_ecc__c,&quot;Sirius&quot;), mdm_vCodeSirius__c,
+IF(CONTAINS(mdm_ecc__c,&quot;U2K2&quot;), mdm_vCodeU2K2__c,
+&quot;&quot;))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Full Details</label>
         <required>false</required>
@@ -1323,6 +1328,7 @@ IF(ISBLANK(mdm_vCodeU2K2__c),&quot;&quot;,&quot; ,U2K2&quot; ))-2)</formula>
         <columns>mdm_Code__c</columns>
         <columns>mdm_ECC_1__c</columns>
         <columns>NAME</columns>
+        <columns>mdm_ecc__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -1333,6 +1339,14 @@ IF(ISBLANK(mdm_vCodeU2K2__c),&quot;&quot;,&quot; ,U2K2&quot; ))-2)</formula>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Vendors</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>mdm_Name1__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdm_Postcode__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdm_ecc__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdm_vCodeCordillera__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdm_vCodeFusion__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdm_vCodeSirius__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>mdm_vCodeU2K2__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

@@ -1,6 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>Account_Group</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AccountGroup</shortDescription>
+        <value>Account Group - works with Trade Partner Type to define ECC account group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Add_Additional_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Additional Information</shortDescription>
+        <value>Add Additional Information</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Alternative_payee_in_document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Alternative payee in document</shortDescription>
+        <value>Indicator: Alternative Payee in Document Allowed?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ApprovReject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_ApprovReject</shortDescription>
+        <value>Please Approve / Reject the Request before completing the Advanced Form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AutoGenerationofPurchaseOrderallowed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AutoGeneration of Purchase Order allowed</shortDescription>
+        <value>Auto Generation of Purchase Order allowed</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Back</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankAccountNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankAccountNumber</shortDescription>
+        <value>Bank Account Number</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BankDetailsTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bank Details Title</shortDescription>
+        <value>Bank Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteFlag</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteFlag</shortDescription>
+        <value>Maintain</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteTitle</shortDescription>
+        <value>Block and Delete Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BlockDeleteUnblockUnDleteInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteUnblockUnDlete Info</shortDescription>
+        <value>By selecting this option any other information completed on this Advanced form will be disregarded.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Block_Delete_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Block/Delete message</shortDescription>
+        <value>You are seeing a limited number of menu options because this vendor is blocked or marked for deletion. Please request to unblock/undelete before raising a separate request to complete further actions.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_BypassFrontlineTeam</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BypassFrontlineTeam</shortDescription>
+        <value>Please note if you complete and submit the Advanced Form, you will bypass your Front Line Services team and the request will route straight to approver/s.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CashManagementGroup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CashManagementGroup</shortDescription>
+        <value>Cash Management Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CertificateName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Certificate Name</shortDescription>
+        <value>VPM_Mulesoft_Callouts</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Certificate_Number_Tax_Exemption</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Certificate Number Tax Exemption</shortDescription>
+        <value>Certificate Number of the Withholding Tax Exemption</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CheckDoubleInvoicesPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CheckDoubleInvoicesPageMessage</shortDescription>
+        <value>Check Double Invoices : You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Click_Here</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Click_Here</shortDescription>
+        <value>Click Here</value>
+    </labels>
+    <labels>
         <fullName>VPM_ClientId</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -13,5 +139,754 @@
         <protected>false</protected>
         <shortDescription>VPM Client Secret</shortDescription>
         <value>ca16126215ea409498F4296ADB25EAB5</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Collection_Authorization</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Collection Authorization</shortDescription>
+        <value>Indicator Is there Collection Authorization</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Commodity_Code_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Commodity Code help text</shortDescription>
+        <value>To change the Commodity Code, please exit this form and edit the Rapid form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Company_Code_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Company Code Details</shortDescription>
+        <value>Company Code Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Company_Code_help_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Company Code help text</shortDescription>
+        <value>To change the Company Code, please exit this form and edit the Rapid form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ContactPerson</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Contact Person message</shortDescription>
+        <value>By entering Contact Person details you will be adding a new Contact Person in SAP. Please use the Chatter feed to log an exception if you have a particular request about an existing Contact Person.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Contact_Person</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Contact Person</shortDescription>
+        <value>Contact Person</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Contact_Vendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Vendor</shortDescription>
+        <value>Contact Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CordilleraGoldenDataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CordilleraGoldenDataScreen</shortDescription>
+        <value>Cordillera Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Cordillera_Region_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Cordillera Region Specific</shortDescription>
+        <value>Cordillera Region Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Creation_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Creation Details</shortDescription>
+        <value>Creation/Maintenance Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditBankDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Edit Bank Details</shortDescription>
+        <value>Edit Bank Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditFinanciallySensitiveFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EditFinanciallySensitiveFields</shortDescription>
+        <value>Edit Financial Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditPaymentTerms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EditPaymentTerms</shortDescription>
+        <value>Edit Payment Terms and Purchasing Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EditRegionalSpecificFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EditRegionalSpecificFields</shortDescription>
+        <value>Edit Regional Specific Fields</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterBankDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterBankDetails</shortDescription>
+        <value>Enter Bank Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterFinanciallySensitiveFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterFinanciallySensitiveFields</shortDescription>
+        <value>Enter Financial Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterGeneralVendorDetails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterGeneralVendorDetails</shortDescription>
+        <value>Enter General Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterPaymentTerms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterPaymentTerms</shortDescription>
+        <value>Enter Payment Terms and Purchasing Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_EnterRegionalSpecificFields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_EnterRegionalSpecificFields</shortDescription>
+        <value>Enter Regional Specific Fields</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Exit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Exit</shortDescription>
+        <value>Exit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Exit_Form</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exit Form</shortDescription>
+        <value>Exit Form</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Exitthisform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Exitthisform</shortDescription>
+        <value>Exit this form</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FinanciallySensitiveTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Financially Sensitive Title</shortDescription>
+        <value>Finance Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_FusionGolde_DataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_FusionGolde DataScreen</shortDescription>
+        <value>Fusion Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Fusion_Region_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Fusion Region Specific</shortDescription>
+        <value>Fusion Region Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_General_Vendor_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_General Vendor Details</shortDescription>
+        <value>General Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataBackButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Back Button</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataDisplayText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Display Text</shortDescription>
+        <value>Please select the Country first, changing the Country will erase out any data you entered.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataNextButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Next Button</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>VPM_GoldenDataScreen2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Screen 2</shortDescription>
+        <value>Golden Data Screen 2</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Golden_Data_Screen_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Golden Data Screen 1</shortDescription>
+        <value>Golden Data Screen 1</value>
+    </labels>
+    <labels>
+        <fullName>VPM_I_am_working_on_it</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>I am working on it</shortDescription>
+        <value>I am working on it</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Incoterms2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Incoterms2</shortDescription>
+        <value>Incoterms 2</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Indicator_Alternative_payee_using_account_number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Indicator Alternative payee using account number</shortDescription>
+        <value>Indicator Alternative Payee using Account Number</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Indicator_Clearing_between_customer_and_vendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Indicator Clearing between customer and vendor</shortDescription>
+        <value>Indicator Clearing between Customer and Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_International1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM International1</shortDescription>
+        <value>Please select International Version.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_InternationalFusion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM International Fusion</shortDescription>
+        <value>No fields exist in this section for the region.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_InternationalMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM International Msg</shortDescription>
+        <value>You must enter a value.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_International_Version</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_International Version</shortDescription>
+        <value>International Version</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Language</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Language</shortDescription>
+        <value>Language</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MDMCountry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM MDM Country</shortDescription>
+        <value>Vendor Country</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Manually_Mark_as_complete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Manually Mark as complete</shortDescription>
+        <value>Manually Mark as complete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_MyVendorisnotlisted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_MyVendorisnotlisted</shortDescription>
+        <value>My Vendor isn&apos;t listed, I want to create a new Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>VPM_No_Longer_Working</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Longer Working on the Record</shortDescription>
+        <value>No Longer Working on the Record</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Other</shortDescription>
+        <value>Other</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PartnerFunction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Partner Function</shortDescription>
+        <value>Partner Function</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentBlock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PaymentBlock</shortDescription>
+        <value>Payment Block</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Payment_Terms</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Terms</shortDescription>
+        <value>Payment Terms</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymetTermsTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Terms Title</shortDescription>
+        <value>Payment Terms and Purchasing Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PostalCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PurchasingOrganisation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PurchasingOrganisation</shortDescription>
+        <value>Purchasing Organisation</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PurchasingOrganization</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Purchasing Organization Validation</shortDescription>
+        <value>Purchasing Organisation : You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Quick_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quick Submit</shortDescription>
+        <value>Quick Submit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestVendortoBlock_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RequestVendortoBlock/Delete</shortDescription>
+        <value>Request Vendor to Block/Delete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestVendortoUnblock_Undelete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_RequestVendortoUnblock/Undelete</shortDescription>
+        <value>Request Vendor to Unblock/Undelete</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Request_Brief_Desc1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Request_Brief_Desc1</shortDescription>
+        <value>This information is stored at the Salesforce user profile level.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Request_Brief_Desc2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Request_Brief_Desc2</shortDescription>
+        <value>to access your user profile. Note: these details are from the business requestor who created the request, and so must be changed by the business requestor.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Request_Brief_Heading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Review Requestor Brief</shortDescription>
+        <value>Review Requestor Brief</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Email</shortDescription>
+        <value>Requestor Email</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Name</shortDescription>
+        <value>Requestor Name</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorRole</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Role</shortDescription>
+        <value>Requestor Role</value>
+    </labels>
+    <labels>
+        <fullName>VPM_RequestorTelephone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Requestor Telephone</shortDescription>
+        <value>Requestor Telephone</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Rework</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rework</shortDescription>
+        <value>Rework</value>
+    </labels>
+    <labels>
+        <fullName>VPM_ReworkAlert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Rework alert</shortDescription>
+        <value>This request is in an approval process. Please click the &apos;Recall&apos; button on the approval related list below first.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Rounding_Profile_Group</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Rounding Profile Group</shortDescription>
+        <value>Rounding Profile Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SRVBasedVendorPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SRVBasedVendorPageMessage</shortDescription>
+        <value>SRV Based Vendor Id : You must enter a value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SaveButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save Button</shortDescription>
+        <value>Save and Return to Menu</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SaveExitButton</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save &amp; Exit Button</shortDescription>
+        <value>Save &amp; Exit</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SchemaGroupVendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SchemaGroupVendor</shortDescription>
+        <value>Schema Group Vendor</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SelectAction</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Action</shortDescription>
+        <value>Select Action</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Select_Option</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Select Option</shortDescription>
+        <value>Please select at least one option.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SendWebFormRequest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send Web Form Request</shortDescription>
+        <value>Send Web Form Request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SendWebformRequestInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SendWebformRequestInfo</shortDescription>
+        <value>By selecting Yes you will be sending the vendor a web form for them to complete their general vendor details, bank details, and provide supporting documentation. This will be sent to the email address in the field below. Select No to avoid sending the web form request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SendWebformRequestToVendor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send Webform Request to Vendor</shortDescription>
+        <value>Send Web Form Request to Vendor?</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Send_Button</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Send Button</shortDescription>
+        <value>Send</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Send_ResendWebformRequest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Send/ResendWebformRequest</shortDescription>
+        <value>Send / Resend Web Form Request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Send_to_SAP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Send to SAP</shortDescription>
+        <value>Send to SAP</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SiriusGoldenDataHelptext1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SiriusGoldenDataHelptext1</shortDescription>
+        <value>Always VN for Sirius. For Cordillera Freight Vendors select VN for Carriers or GS for Goods Suppliers. For Cordillera PI Vendors only change from VN if vendor is a Goods Supplier, an Invoice Party only or an Ordering address.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SiriusGoldenDataHelptext2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>change company code</shortDescription>
+        <value>To change the Company Code, please exit this form and edit the Rapid form.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SiriusGoldenDataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SiriusGoldenDataScreen</shortDescription>
+        <value>Sirius Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Sirius_Regional_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Sirius Regional Specific</shortDescription>
+        <value>Sirius Regional Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>VPM_SubmitVendorRequestforApproval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SubmitVendorRequestforApproval</shortDescription>
+        <value>Submit Vendor Request for Approval</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Submit_Request</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit Request</shortDescription>
+        <value>Submit Request</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TaxCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Tax Code</shortDescription>
+        <value>Tax Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Tax_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Tax Information</shortDescription>
+        <value>Tax Information</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TradePartnerType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TradePartnerType</shortDescription>
+        <value>Trade Partner Type - Works with Account Group to Define ECC Account Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Type</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Type</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>VPM_U2K2GoldenDataScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_U2K2GoldenDataScreen</shortDescription>
+        <value>U2K2 Golden Data Screen</value>
+    </labels>
+    <labels>
+        <fullName>VPM_U2K2_Region_Specific</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM U2K2 Region Specific</shortDescription>
+        <value>U2K2 Region Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_UnBlockUnDeleteTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnBlockUnDeleteTitle</shortDescription>
+        <value>UnBlock and UnDelete Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorCode</shortDescription>
+        <value>Vendor Code</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorMatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorMatch</shortDescription>
+        <value>Vendor Match</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorName</shortDescription>
+        <value>Vendor Name</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorName_Address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Name and Address</shortDescription>
+        <value>Vendor Name and Address</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorRequestsHome</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Requests Home</shortDescription>
+        <value>Home</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorRequestsHomePage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Requests Home Page</shortDescription>
+        <value>Vendor Requests</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Contact_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Contact Details</shortDescription>
+        <value>Vendor Contact Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Vendor Details</shortDescription>
+        <value>Vendor Details</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Match</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor Match</shortDescription>
+        <value>Vendor Match</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Match_Desc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Vendor_Match_Desc</shortDescription>
+        <value>Search for your Vendor using Name and Country to search the global database for an existing Vendor. Optionally add Street Address, Post Code or Tax Code to narrow down search results. Note that tax Code searches all tax fields for the data.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Not_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Vendor Not Found</shortDescription>
+        <value>Could not connect to the ECC to get Vendor Information. Please contact your IT Helpdesk.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Vendor_Search_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Vendor_Search_message</shortDescription>
+        <value>Search for your Vendor using Name and Country to search the global database for an existing Vendor. Optionally add address, post code or tax code to narrow down search results. Tax Code searches all tax fields for the data.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Withholding_Tax</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Withholding Tax</shortDescription>
+        <value>Withholding Tax</value>
+    </labels>
+    <labels>
+        <fullName>Vendor_SME_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Vendor SME Status</shortDescription>
+        <value>Vendor SME Status</value>
     </labels>
 </CustomLabels>

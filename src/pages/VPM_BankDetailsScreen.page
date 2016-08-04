@@ -1,0 +1,47 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_SubController" language="{!userlang}">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!--<script>
+    $(document).ready(function(){
+      for(var i=0;i<$(".detailList td.labelCol").length;i++){
+        var emptyLabel = $(".detailList td.labelCol")[i];
+            if($(emptyLabel).text() == "")
+                $(emptyLabel).hide();
+        }
+    });
+    </script> -->
+    <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+    <apex:form >
+        
+    <apex:pageBlock title="{!$Label.VPM_BankDetailsTitle}" >
+    <apex:pagemessages id="pageMessages"/>
+     <apex:pageBlockButtons >     
+            <apex:commandButton action="{!backToFlow}" value="{!$Label.VPM_Back}"  immediate="true"/>  
+            <apex:commandButton action="{!SaveMethod}" value="{!$Label.VPM_SaveButton}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>   
+            <apex:commandButton action="{!SaveAndExit}"  value="{!$Label.VPM_SaveExitButton}"  reRender="hiddenBlock,pageMessages" status="actStatusId"/>
+        </apex:pageBlockButtons>
+        
+        <apex:pageBlockSection columns="1">
+        
+       <!--     <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankCountryKey__c}"  />-->
+            <apex:selectList value="{!vendorBankCountryKey}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankCountryKey__c.Label}" size="1" >
+                <apex:selectOptions value="{! BankCountryKey}"/>
+            </apex:selectList>
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankKey__c}"  />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankAccountNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankAccountNumber__c}" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_AccountHolderName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountHolderName__c}" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_ReferenceSpecificationsBankDetail__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReferenceSpecificationsBankDetail__c}"  />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankControlKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankControlKey__c}" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_IBAN__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IBAN__c}"  />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_CollectionAuthorization__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CollectionAuthorization__c}" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_PartnerBankType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerBankType__c}"  />
+            
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_BankName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankName__c}"  />
+            
+            
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_SwiftKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SwiftKey__c}"/>
+      
+   </apex:pageBlockSection>
+   </apex:pageBlock>
+  </apex:form>
+</apex:page>

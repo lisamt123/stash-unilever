@@ -1,22 +1,27 @@
-<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="false" extensions="VPM_GoldenDataController2">
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="false" 
+extensions="VPM_GoldenDataController2" language="{!userlang}" action="{!ApprovalMaintain1}" >
     <script>
     debugger;
      localStorage.removeItem("cancelClicked");
     </script>
-    <apex:form >
-          <apex:pageBlock title="Golden Data Screen 2">
-             <apex:pageBlockButtons >
-                 <apex:commandButton action="{!backToGoldenData1}" value="Back" immediate="true"/>    
-                 <apex:commandButton action="{!saveRecord}" value="Save and Exit"/>
-                 
-             </apex:pageBlockButtons>
-          
+    <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+   <apex:form >
+          <apex:pageBlock title="{!$Label.VPM_GoldenDataScreen2}">
+             <apex:pagemessages id="pageMessages"/>
+            <apex:pageBlockButtons >
+                 <apex:commandButton action="{!backToGoldenData1}" value="{!$Label.VPM_GoldenDataBackButton}" reRender="hiddenBlock"  status="actStatusId" immediate="true"/>    
+                 <apex:commandButton action="{!saveRecord}" value="{!$Label.VPM_SaveExitButton}" reRender="hiddenBlock,pageMessages" status="actStatusId" />
+            </apex:pageBlockButtons>
+              <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 
             <apex:pageBlockSection columns="1">
-                <apex:inputField value="{!commodityCodeVar.VPM_Vendor_Type__c}" required="true"/>
-                
-                <apex:inputField value="{!commodityCodeVar.VPM_Authorisation_Group__c}" required="true"/>
-                <apex:inputField value="{!purchReqVar.VPM_TradePartnerType__c}" required="true"/>
+             
+                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorType__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_VendorType__c}" required="true"/ >
+                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GlobalAuthorisationGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_GlobalAuthorisationGroup__c}" required="true"/>
+                <apex:outputPanel style="display:none;visibility:hidden">
+                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ECC__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_ECC__c}"/></apex:outputpanel>
+                <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TradePartnerType__c.Label}" value="{!purchReqVar.VPM_TradePartnerType__c}" required="true" />
             </apex:pageBlockSection>      
           </apex:pageBlock>
-   </apex:form>  
+   </apex:form>
+   <c:VPM_LoadingComponent />  
 </apex:page>

@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>VPM_ServiceEndpoint__c</field>
-        <value xsi:type="xsd:string">https://vendor-bpm-uat.eu.cloudhub.io</value>
+        <value xsi:type="xsd:string">https://qa-vendor-bpm.cloud.unileverservices.com:8082</value>
     </values>
     <values>
         <field>VPM_ServiceResource__c</field>

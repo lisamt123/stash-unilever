@@ -1,0 +1,24 @@
+<apex:page standardController="VPM_PurchasingRequests__c" recordSetVar="PurchasingRequests" tabStyle="VPM_PurchasingRequests__c" standardStylesheets="true" sidebar="true" showHeader="true" >
+
+ <table border="" cellPadding="10" width= "100%">       
+          <TR> <TH> <apex:sectionHeader title="{!$Label.VPM_VendorRequestsHomePage}" subtitle="{!$Label.VPM_VendorRequestsHome}"/></TH> 
+          <TH align="right"> <apex:image id="IAndALogo" value="{!$Resource.VPM_IandALogo}" width="251" height="30" style="float:right;"/>
+</TH> </TR>
+    
+          
+  </table>
+          
+
+ <apex:enhancedList type="VPM_PurchasingRequests__c"  height="400" rowsPerPage="25" id="MyRequests" customizable="True" />
+ 
+ <br>
+ </br>
+ <br>
+ </br>
+ 
+  <apex:panelGrid columns="2" id="theGrid" width="100%">
+ <analytics:reportChart reportId="00O19000000Gdhg" cacheAge="43200000" cacheResults="true" showRefreshButton="false"> </analytics:reportChart> 
+ <analytics:reportChart reportId="00O19000000Gdhl" cacheAge="43200000" cacheResults="true" showRefreshButton="false"> </analytics:reportChart> 
+ </apex:panelGrid>
+ 
+</apex:page>

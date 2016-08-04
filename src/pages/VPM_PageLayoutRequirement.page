@@ -73,6 +73,7 @@
         }
      
   </script>
+  
     <apex:form style="text-align:center">
         <apex:commandButton value="Send to SAP" action="{!callSendToSAPAPI}" rendered="{!RenderSAPBtn}" 
         disabled="{!NOT(enableSendToSAPBtn)}" onclick="return false;"/>

@@ -1,0 +1,37 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_SubController" language="{!userlang}">
+           <script>
+    debugger;
+     localStorage.removeItem("cancelClicked");
+    </script>
+    <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+    <apex:form >
+        
+        <apex:pageBlock title="{!$Label.VPM_FinanciallySensitiveTitle}" id="thePageBlock">
+
+          <apex:pagemessages id="pageMessages"/>
+         <apex:pageBlockButtons > 
+          <apex:commandButton action="{!backToFlow}" Value="{!$Label.VPM_Back}" immediate="true" reRender="hiddenBlock,pageMessages"  status="actStatusId"/>               
+                 <apex:commandButton action="{!SaveMethod}" value="{!$Label.VPM_SaveButton}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>     
+                 <apex:commandButton action="{!SaveAndExit}" value="{!$Label.VPM_SaveExitButton}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>    
+                
+          </apex:pageBlockButtons>
+            
+          <apex:pageBlockSection columns="1">
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReconciliationAccount__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReconciliationAccount__c}"/>   
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentMethod__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentMethod__c}" />   
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GRbasedIV__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_GRbasedIV__c}"/>   
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AutomaticPurchaseOrderGeneration__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AutomaticPurchaseOrderGeneration__c }"/>   
+              
+<apex:selectList value="{!vendorPaymentBlock}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentBlock__c.Label}" size="1" >
+    <apex:selectOptions value="{!PaymentBlock}"/>
+   </apex:selectList>
+ 
+              <!--apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AlternativePayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AlternativePayee__c}"/-->   
+                         
+          </apex:pageBlockSection>        
+       </apex:pageBlock>          
+    </apex:form>
+   <c:VPM_LoadingComponent />  
+    
+</apex:page>

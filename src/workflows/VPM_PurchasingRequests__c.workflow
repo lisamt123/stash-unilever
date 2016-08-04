@@ -68,7 +68,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>VPM_ApprovalEmails/VPM_RequestReworkNotification</template>
+        <template>VPM_ApprovalEmails/VPM_RequestrequestingforRework</template>
     </alerts>
     <alerts>
         <fullName>VPM_RequestSubmittedForFLS_MDMOpsReviewNotification</fullName>
@@ -90,6 +90,16 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_BankDetails</fullName>
+        <field>VPM_ProvidedBankDetails__c</field>
+        <literalValue>1</literalValue>
+        <name>VPM_BankDetails</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ChangeOwnerToFLSQueue</fullName>
@@ -140,6 +150,24 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_ClearApprovalWorkerID</fullName>
+        <description>Sets the Approval Worker ID text field to blank</description>
+        <field>VPM_Approval_Worker_ID__c</field>
+        <name>VPM Clear Approval Worker ID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ClearApprovalWorkerName</fullName>
+        <description>Sets text field Approval Worker name to blank</description>
+        <field>VPM_Approval_Worker__c</field>
+        <name>VPM Clear Approval Worker Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_FinanceSubmittedYes</fullName>
         <description>VPM - Sets the Finance Submitted field to &apos;Yes&apos; to confirm Finance have finished their review. Triggers a process builder to handle different updates.</description>
         <field>VPM_FinanceSubmitted__c</field>
@@ -160,6 +188,56 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTerms30DKDefault</fullName>
+        <description>Sets default value of Payment Terms to 30DK</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>30DK_Within 30 days Due net (30NET)</literalValue>
+        <name>Payment Terms 30DK Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTerms90DKDefault</fullName>
+        <description>Sets Payment Terms to 90DK</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>90DK_Within 90 days Due net (90NET)</literalValue>
+        <name>Payment Terms 90DK Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTermsP030Default</fullName>
+        <description>Default payment terms for Sirius, U2K2 and Cordillera if Vendor is an SME</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>P030_Within 30 days Due net (30NET)</literalValue>
+        <name>Payment Terms P030 Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTermsP090Default</fullName>
+        <description>Sets Payment Terms to P090</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>P090_Within 90 days Due net (90NET)</literalValue>
+        <name>Payment Terms P090 Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_PaymentTermsS090Default</fullName>
+        <description>Sets Payment terms to S090</description>
+        <field>VPM_PaymentTerms__c</field>
+        <literalValue>S090_Within 90 days Due net (90NET)</literalValue>
+        <name>Payment Terms S090 Default</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_ProcurementRejected</fullName>
@@ -184,6 +262,57 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_Provided</fullName>
+        <field>VPM_ProvidedUnblockUndelete__c</field>
+        <literalValue>1</literalValue>
+        <name>VPM_ProvidedUnblockUndelete</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ProvidedBlock_Delete</fullName>
+        <field>VPM_ProvidedBlockDelete__c</field>
+        <literalValue>1</literalValue>
+        <name>VPM_ProvidedBlock/Delete</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ProvidedFinancialSensitive</fullName>
+        <field>VPM_ProvidedFinancialSensitive__c</field>
+        <literalValue>1</literalValue>
+        <name>VPM_ProvidedFinancialSensitive</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_ProvidedPaymentTerms</fullName>
+        <field>VPM_ProvidedPaymentTerms__c</field>
+        <literalValue>1</literalValue>
+        <name>VPM_ProvidedPaymentTerms</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_RecordTypeVendorRequest</fullName>
+        <description>Changes record type to Vendor Request, i.e. the default record type where a Vendor lookup has not yet been completed</description>
+        <field>RecordTypeId</field>
+        <lookupValue>VPM_VendorReq</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Record Type Vendor Request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_RequestGroupTime</fullName>
         <description>VPM - Time when it got assigned to group.</description>
         <field>VPM_RequestGroupTime__c</field>
@@ -194,6 +323,40 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_SearchTerm2Update</fullName>
+        <field>VPM_SearchTerm2__c</field>
+        <formula>IF( LEN( VPM_VendorName1__c) &gt;= 20 
+
+,  RIGHT(LEFT(VPM_VendorName1__c, 20),10) 
+,
+ IF(LEN( VPM_VendorName1__c) &gt; 10 , 
+RIGHT(VPM_VendorName1__c,LEN( VPM_VendorName1__c)-10)
+,&apos;&apos;) 
+)</formula>
+        <name>VPM_Search Term 2 Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_SetPaymentTermsDefaultNonSME</fullName>
+        <field>VPM_PaymentTerms__c</field>
+        <name>VPM Set Payment Terms Default non SME</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>NextValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_SetPaymentTermsDefaultValuesSME</fullName>
+        <description>Sets the 30 day limited payment term values if Vendor is an SME</description>
+        <field>VPM_PaymentTerms__c</field>
+        <name>VPM Set Payment Terms Default values SME</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>NextValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_Set_Email_Flag_to_No</fullName>
         <description>Resets the Flag once work flow rule has been fired</description>
         <field>VPM_VendordoesntExistFlag__c</field>
@@ -202,6 +365,16 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_StatusDraftRequest</fullName>
+        <description>Sets the record status in the custom status field back to &apos;Draft Request&apos;</description>
+        <field>VPM_Status__c</field>
+        <literalValue>Draft Request</literalValue>
+        <name>Status is Draft Request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_StatusFLSApproved</fullName>
@@ -308,6 +481,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_UpdateSearchTerm1</fullName>
+        <description>Updates Search Term 1 with the first 10 characters of Vendor Name</description>
+        <field>VPM_SearchTerm_1__c</field>
+        <formula>LEFT(VPM_VendorName1__c,10)</formula>
+        <name>Update Search Term 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_UpdateStatusBPMSubmitFail</fullName>
         <description>VPM Update Status when BPM submit fails</description>
         <field>VPM_Status__c</field>
@@ -349,6 +532,95 @@
         </criteriaItems>
         <description>VPM  - Used to send notification to the Business Requester when Status Changes to FLS Requested Re-Work</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Default Search Term 1 and 2</fullName>
+        <actions>
+            <name>VPM_SearchTerm2Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_UpdateSearchTerm1</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>Draft Request</value>
+        </criteriaItems>
+        <description>VPM - takes the value in the &apos;name&apos; field and uses it to default &apos;Search Term 1&apos; and &apos;Search Term 2&apos; in SAP</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Default Value Payment Terms if Vendor is SME Fusion</fullName>
+        <actions>
+            <name>VPM_PaymentTerms30DKDefault</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>VPM - Used to set the Default Values for Payment Terms if Vendor is an SME is Yes in Fusion</description>
+        <formula>ISCHANGED( VPM_IsVendorSME__c )
+&amp;&amp;
+ISPICKVAL(VPM_IsVendorSME__c,&quot;Yes&quot;)
+&amp;&amp;
+ISPICKVAL( VPM_ECC__c,&quot;Fusion&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Default Value Payment Terms if Vendor is SME Sirius U2K2 Cordillera</fullName>
+        <actions>
+            <name>VPM_PaymentTermsP030Default</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>VPM - Used to set the Default Values for Payment Terms if Vendor is an SME is Yes in Sirius, U2K2 or Cordillera</description>
+        <formula>ISCHANGED( VPM_IsVendorSME__c )
+&amp;&amp;
+ISPICKVAL(VPM_IsVendorSME__c,&quot;Yes&quot;)
+&amp;&amp;
+OR(
+ISPICKVAL( VPM_ECC__c,&quot;Sirius&quot;),
+ISPICKVAL( VPM_ECC__c,&quot;U2K2&quot;),
+ISPICKVAL( VPM_ECC__c,&quot;Cordillera&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Default Value Payment Terms if Vendor not SME Fusion</fullName>
+        <actions>
+            <name>VPM_PaymentTerms90DKDefault</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>VPM - Used to set the Default Values for Payment Terms if Vendor is an SME is No in Fusion</description>
+        <formula>ISPICKVAL(VPM_IsVendorSME__c,&quot;&quot;)
+||
+AND(
+ISCHANGED(VPM_IsVendorSME__c),
+ISPICKVAL(VPM_IsVendorSME__c,&quot;No&quot;)
+)
+&amp;&amp;
+ISPICKVAL( VPM_ECC__c,&quot;Fusion&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM Default Value Payment Terms if Vendor not SME U2K2</fullName>
+        <actions>
+            <name>VPM_PaymentTermsS090Default</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>VPM - Used to set the Default Values for Payment Terms if Vendor is an SME is No in U2K2</description>
+        <formula>ISPICKVAL(VPM_IsVendorSME__c,&quot;&quot;)
+||
+AND(
+ISCHANGED(VPM_IsVendorSME__c),
+ISPICKVAL(VPM_IsVendorSME__c,&quot;No&quot;)
+)
+&amp;&amp;
+ISPICKVAL( VPM_ECC__c,&quot;U2K2&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>VPM Send email to Vendor</fullName>
@@ -421,5 +693,28 @@
         </criteriaItems>
         <description>Update salesforce record depending on MDM service call</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>VPM_ResetValuesOnCreate</fullName>
+        <actions>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_RecordTypeVendorRequest</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>VPM_StatusDraftRequest</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Resets certain system values in picklists and fields on create to ensure the request is considered as a new request if it is cloned from a different request</description>
+        <formula>True</formula>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

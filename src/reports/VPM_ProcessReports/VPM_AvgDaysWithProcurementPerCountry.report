@@ -23,7 +23,7 @@
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
             <operator>equals</operator>
-            <value>VPM_PurchasingRequests__c.VPM_VendorReq,VPM_PurchasingRequests__c.VPM_VendorReqCreate,VPM_PurchasingRequests__c.VPM_PurRequis,VPM_PurchasingRequests__c.VPM_PurRequisVendorCreate</value>
+            <value>VPM_PurchasingRequests__c.VPM_VendorReq,VPM_PurchasingRequests__c.VPM_VendorReqCreate,Purchase Requisition,Purchase Requisition (Vendor Create)</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

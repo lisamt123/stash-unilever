@@ -1,0 +1,27 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_SearchVendor,VPM_SubController" language="{!userlang}">
+   <script>
+    debugger;
+     localStorage.removeItem("cancelClicked");
+    </script>
+    <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+   <apex:form >
+   
+        
+        <apex:pageBlock title="{!$Label.VPM_PaymetTermsTitle}" id="thePageBlock">
+        <apex:pagemessages id="pageMessages"/>
+        <apex:pageBlockButtons > 
+                <apex:commandButton action="{!backToFlow}"  immediate="true" Value="{!$Label.VPM_Back}" reRender="hiddenBlock"  status="actStatusId"/>   
+                 <apex:commandButton action="{!SaveMethod}" value="{!$Label.VPM_SaveButton}"  reRender="hiddenBlock,pageMessages"  status="actStatusId"/> 
+                 <apex:commandButton action="{!SaveAndExit}" value="{!$Label.VPM_SaveExitButton}"  reRender="hiddenBlock,pageMessages"  status="actStatusId"/>  
+                
+                 
+          </apex:pageBlockButtons>
+            
+          <apex:pageBlockSection columns="2">              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTerms__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_PaymentTerms__c}" />              
+          </apex:pageBlockSection>        
+       </apex:pageBlock>          
+   </apex:form> 
+   <c:VPM_LoadingComponent />  
+</apex:page>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Email sent to the creator of the Vendor Request confirming their request has been completed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>VPM_BlankLetter</letterhead>
+    <name>VPM_Request has been completed</name>
+    <style>freeForm</style>
+    <subject>Your Vendor Request {!VPM_PurchasingRequests__c.Name} is now complete.</subject>
+    <textOnly>Date Completed: 
+      &lt;messaging:emailTemplate subject=&quot;fgfg&quot; recipientType=&quot;User&quot; relatedToType=&quot;VPM_PurchasingRequests__c&quot;&gt;
+&lt;messaging:plainTextEmailBody &gt;
+&lt;apex:outputText value=&quot;The formatted Account CreatedDate is:
+         {0,date,yyyy.MM.dd G &apos;at&apos; HH:mm:ss z}&quot;&gt;
+       &lt;apex:param value=&quot;{!relatedTo.createddate}&quot; /&gt;
+   &lt;/apex:outputText&gt;
+
+
+&lt;/messaging:plainTextEmailBody&gt;
+&lt;/messaging:emailTemplate&gt;</textOnly>
+    <type>html</type>
+</EmailTemplate>

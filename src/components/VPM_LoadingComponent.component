@@ -1,0 +1,68 @@
+<apex:component >
+
+    <apex:actionStatus onstart="startLoading();" onstop="endLoading();" id="actStatusId"/>
+    <style>
+        .overlay {
+            display: none;
+            height: 100%;
+            left: 0;
+            position: fixed;
+            top: 0;
+            opacity: 0.3;
+            -moz-opacity: 0.3;
+            width: 100%;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+            filter: alpha(opacity=30);
+            background: #000;
+            -khtml-opacity: 0.3;
+            z-index: 1000;
+        }
+        .loader {
+            background: url('/img/loading32.gif') scroll no-repeat 0 0;
+            width: 32px;
+            height: 32px;
+            font-weight:bold;
+            font-style:italic;
+            font-size:13px;
+            text-indent: -1em;
+            position: absolute;
+            left: 50%;
+        }
+        .loadingMsg{
+            position: relative;
+            top: 3em;
+        }
+    </style>
+ 
+    <div id="load_scrl" class="loadingBox loader" style="display:none">
+     <div class="loadingMsg">Processing... </div>
+    </div>
+    <div class="loadingBox overlay"> </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    var count =0;
+        function startLoading(){
+            $('#load_scrl').css('top', $(document).scrollTop() + 200);
+            $('.loadingBox').show();
+            debugger;
+                setInterval(
+function () {
+        debugger;
+      
+        $('.messageTable').find('li').each(function( index ) 
+        {
+            if($( this ).text().indexOf('Validation Error:')>-1)
+            {
+                $( this ).text($( this ).text().replace('Validation Error:',''));
+            }
+        })
+
+}
+
+, 0);
+        }
+        function endLoading(){
+             $('.loadingBox').hide();
+        }
+    </script>
+</apex:component>

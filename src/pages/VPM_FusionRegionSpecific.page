@@ -1,0 +1,438 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_SubController" language="{!userlang}">  
+    <!--<script>
+    debugger;
+    localStorage.removeItem("cancelClicked");
+    </script>-->
+    <apex:form >
+       <apex:pageBlock title="{!$Label.VPM_Fusion_Region_Specific}" id="thePageBlock">
+           <apex:pagemessages id="pageMessages"/>
+          <apex:pageBlockButtons >  
+           <apex:commandButton action="{!backToFlow}" value="{!$Label.VPM_Back}" immediate="true" reRender="hiddenBlock" status="actStatusId"/>  
+                 <apex:commandButton action="{!SaveMethodRegionSpecific}" value="{!$Label.VPM_SaveButton}" reRender="hiddenBlock,pageMessages,thePageBlock" status="actStatusId"/> 
+                 <apex:commandButton action="{!SaveAndExit}" value="{!$Label.VPM_SaveExitButton}" reRender="hiddenBlock,pageMessages" status="actStatusId"/>           
+                   
+          </apex:pageBlockButtons>    
+            <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 
+
+
+<apex:pageBlocksection title="{!$Label.VPM_Company_Code_Details}">
+  
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TermsOfPayment__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TermsOfPayment__c}" />
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccntWithVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_AccntWithVendor__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_MinorityIndicators__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_MinorityIndicators__c}" />
+    <apex:inputField label="{!$Label.VPM_Alternative_payee_in_document}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorAlternativePayeeAllowed__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTermsKeyCreditMemos__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentTermsKeyCreditMemos__c}" />
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorPayItemsSeparately__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorPayItemsSeparately__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentMethodSupplement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentMethodSupplement__c}" />
+    <apex:inputField label="{!$Label.VPM_Indicator_Alternative_payee_using_account_number}" value="{!VPM_PurchasingRequests__c.VPM_AlternativePayeeAccountNumber__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HeadOfficeAccountNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_HeadOfficeAccountNumber__c}"/>
+    <apex:inputField label="{!$Label.VPM_Indicator_Clearing_between_customer_and_vendor}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorClearingBetwCustomerNVendor__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CertificationDate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CertificationDate__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxOfficeIdentification__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxOfficeIdentification__c}"/>
+    <apex:selectList value="{!vendorGroupingKey}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GroupingKey__c.Label}" size="1">
+    <apex:selectOptions value="{!GroupingKey}"/>
+   </apex:selectList>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AdoptScanDate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AdoptScanDate__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DunnProcedure__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DunnProcedure__c}" />
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PayableLocation__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PayableLocation__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PermittedPayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PermittedPayee__c}"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SortKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SortKey__c}" required="true" />
+    
+<!---    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CashManagementGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CashManagementGroup__c}" required="true"/>-->
+    <apex:pageBlockSectionItem labelStyle="width: 300px" dataStyle="width: 200px" >
+ <apex:outputLabel value="{!$Label.VPM_CashManagementGroup}" />
+        <apex:outputPanel layout="block" styleClass="requiredInput">
+      <apex:outputpanel layout="block" styleClass="requiredBlock"/>
+<apex:selectList value="{!vendorCashmgmntgroup}" multiselect="false" label="{!$Label.VPM_CashManagementGroup}" size="1" required="true">
+    <apex:selectOptions value="{!Cashmgmntgroup}"/>
+   </apex:selectList>
+                  
+                   </apex:outputPanel>  
+                 </apex:pageBlockSectionItem> 
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerksInternet__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerksInternet__c}"  />
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDoubleInvoices__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDoubleInvoices__c}" required="true"/>
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerksFax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerksFax__c}"  />
+    <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerkAtVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerkAtVendor__c}"  />
+     <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ToleranceGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ToleranceGroup__c}"  />
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HouseBank__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_HouseBank__c}"  />
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountClerkTelephoneNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountClerkTelephoneNumber__c}"  />
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_StandardCommMethod__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_StandardCommMethod__c}"  />
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingClerk__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingClerk__c}"  />
+  <apex:selectList value="{!vendorAccountStatement}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountStatement__c.Label}" size="1">
+  <apex:selectOptions value="{!AccountStatement}"/>
+  </apex:selectList>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BExchangeLimit__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BExchangeLimit__c}"/>
+
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PmtAdviceByEDI__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PmtAdviceByEDI__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryName__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress1__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress2__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress3__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryCountry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryCountry__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyName__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress1__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress2__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress3__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress4__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress4__c}"/>    
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndividualPayment__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndividualPayment__c}"  />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountMemo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountMemo__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LanguageKeyCOCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LanguageKeyCOCode__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PreviousAccountNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PreviousAccountNumber__c}"  />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FreeText1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FreeText1__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FreeText2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FreeText2__c}"/> 
+</apex:pageBlocksection>
+<apex:pageBlocksection title="{!$Label.VPM_PurchasingOrganisation}">
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OurAccNumWithVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OurAccNumWithVendor__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ShippingConditions__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ShippingConditions__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SubsequentSettlement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SubsequentSettlement__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PricingDateControl__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PricingDateControl__c}" />  
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SubsequentSettlementIndex__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SubsequentSettlementIndex__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AutoEvalGRSetmtDel__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AutoEvalGRSetmtDel__c}"/>
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AutoEvalGRSetmtRet__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AutoEvalGRSetmtRet__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PurchasingGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PurchasingGroup__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderAcknowledgmentRequirement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OrderAcknowledgmentRequirement__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ConfirmationControl__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ConfirmationControl__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_MinimumOrderValue__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_MinimumOrderValue__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PlannedDeliveryTime__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PlannedDeliveryTime__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RoundingProfile__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_RoundingProfile__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_UnitOfMeasureGrp__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_UnitOfMeasureGrp__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ABCIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ABCIndicator__c}"/> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SRVBasedVendorID__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SRVBasedVendorID__c}" required="true"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderCurrency__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OrderCurrency__c}"/>
+  
+  <apex:selectList value="{!vendorSchemaGroupVendor}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SchemaGroupVendor__c.Label}" size="1" >
+  <apex:selectOptions value="{!SchemaGroupVendor}"/>
+  </apex:selectList>
+  
+  <apex:selectList value="{!vendorIncoterms1}" multiselect="false" label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Incoterms1__c.Label}" size="1" >
+  <apex:selectOptions value="{!Incoterms1}"/>
+  </apex:selectList>
+  
+   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.Fields.VPM_Incoterms2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Incoterms2__c}" required="{!isRequiredIncoterms2}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPerson__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPerson__c}"/>
+</apex:pageBlocksection>
+<apex:pageBlocksection title="{!$Label.VPM_Withholding_Tax}">
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxIdentificationNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxIdentificationNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CertificateWithholdingTaxExemption__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CertificateWithholdingTaxExemption__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCode__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorForWithholdingTaxType__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Liable__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Liable__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RecipientType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_RecipientType__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReasonForExemption__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReasonForExemption__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorSubjectToWithholdingTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorSubjectToWithholdingTax__c}"/>
+</apex:pageBlocksection>
+<apex:pageBlocksection title="{!$Label.VPM_Other}">
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NODEL__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_NODEL__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TradingPartner__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TradingPartner__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Plant__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Plant__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ActualQMSystem__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ActualQMSystem__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_QMSystemTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_QMSystemTo__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LLDCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LLDCode__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_InstructionKeyDataExchange__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_InstructionKeyDataExchange__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ServiceAgent__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ServiceAgent__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DepartmentNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_DepartmentNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PartnerNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DefaultPartner__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DefaultPartner__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ArabiaOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IsraelOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IsraelOldNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TurkeyOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TurkeyOldNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SMSIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SMSIndicator__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndonesiaOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NPIVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_NPIVendor__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThaiOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingNote__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingNote__c}"/>
+    
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingText__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_AccountingText__c}"/> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TAXOfficeIdentLangKey__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TAXOfficeIdentLangKey__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TextToInput__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TextToInput__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DataLine__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_DataLine__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TeleBox__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TeleBox__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPurchTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPurchTax__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LastExtReview__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LastExtReview__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TrainStation__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TrainStation__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CarFreightGroup__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_CarFreightGroup__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SCAC__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SCAC__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_EqualisationTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_EqualisationTax__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DMEIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DMEIndicator__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RegStGrp__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_RegStGrp__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SocialInsurance__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SocialInsurance__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SocialInsuranceCodeSoc__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SocialInsuranceCodeSoc__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorVendorSubRangeRelevant__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorVendorSubRangeRelevant__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorPlantLevelRelevant__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorPlantLevelRelevant__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PANNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PANNumber__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CSTno__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CSTno__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LSTno__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LSTno__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SerRegNo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SerRegNo__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExcIndVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExcIndVendor__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ECCNo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ECCNo__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExciseRegNo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExciseRegNo__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExciseRange__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExciseRange__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExciseDivision__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExciseDivision__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Commissionerate__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_Commissionerate__c}"/>            
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SSIStatus__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SSIStatus__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndustryType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndustryType__c}" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CENVAT__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CENVAT__c}"/>           
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PANreference__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PANreference__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CorporateGrp__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CorporateGrp__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CreditInfoNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CreditInfoNumber__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExternalMFG__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExternalMFG__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxNumAtResponsibleTaxAuthority__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxNumAtResponsibleTaxAuthority__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OtherCommunication__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OtherCommunication__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDigit__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDigit__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExtManufacturer__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExtManufacturer__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DateOfBirth__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DateOfBirth__c}" /> 
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PlaceOfBirth__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PlaceOfBirth__c}"/>
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Sex__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Sex__c}" /> 
+
+
+      </apex:pageBlocksection>
+    </apex:pageBlock>          
+   </apex:form>
+    
+</apex:page>
+
+          <!--apex:pageBlockSection columns="2">
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ActualQMSystem__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ActualQMSystem__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_QMSystemTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_QMSystemTo__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BExchangeLimit__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BExchangeLimit__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccntWithVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_AccntWithVendor__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ServiceAgent__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ServiceAgent__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Sex__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Sex__c}" /> 
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ShippingConditions__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ShippingConditions__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ConfirmationControl__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_ConfirmationControl__c}" /> 
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DataLine__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_DataLine__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DateOfBirth__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DateOfBirth__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_MinorityIndicators__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_MinorityIndicators__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_MinimumOrderValue__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_MinimumOrderValue__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PlaceOfBirth__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PlaceOfBirth__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PlannedDeliveryTime__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_PlannedDeliveryTime__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PricingDateControl__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PricingDateControl__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OurAccNumWithVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OurAccNumWithVendor__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TeleBox__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TeleBox__c}"/>  
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_EqualisationTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_EqualisationTax__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SalesPurchTax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SalesPurchTax__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SCAC__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SCAC__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LastExtReview__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LastExtReview__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TrainStation__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TrainStation__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ABCIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ABCIndicator__c}"/> 
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PermittedPayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PermittedPayee__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SRVBasedVendorID__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SRVBasedVendorID__c}" required="true" />
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReturnsVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReturnsVendor__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OfficeOfEntry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OfficeOfEntry__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ModeTransportForeignTrade__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ModeTransportForeignTrade__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DunnProcedure__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DunnProcedure__c}" />
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccNumOfAlternativePayee__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccNumOfAlternativePayee__c}"/>
+             
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingNote__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountingNote__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountingText__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_AccountingText__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AddressTimeZone__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AddressTimeZone__c}" />
+              
+            
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ArabiaOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ArabiaOldNumber__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AutoEvalGRSetmtDel__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AutoEvalGRSetmtDel__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AutoEvalGRSetmtRet__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AutoEvalGRSetmtRet__c}"/> 
+              
+              <apex:inputField label="{!$Label.VPM_Indicator_Alternative_payee_using_account_number}" value="{!VPM_PurchasingRequests__c.VPM_AlternativePayeeAccountNumber__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BankNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BankNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress1__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress2__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryAddress3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryAddress3__c}"/> 
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BlockFunction__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BlockFunction__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CentralDeletionFlag__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CentralDeletionFlag__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CentralPostingBlock__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CentralPostingBlock__c}"/>
+              
+              <apex:inputField label="{!$Label.VPM_Certificate_Number_Tax_Exemption}" value="{!VPM_PurchasingRequests__c.VPM_CertificateWithholdingTaxExemption__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CentralPurchasingBlock__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CentralPurchasingBlock__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CertificationDate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CertificationDate__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ChangedBy__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ChangedBy__c}"/> 
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryName__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_BeneficiaryCountry__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_BeneficiaryCountry__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CENVAT__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CENVAT__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CSTno__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CSTno__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Changedon__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Changedon__c}" />
+              
+              <apex:inputField label="{!$Label.VPM_Collection_Authorization}" value="{!VPM_PurchasingRequests__c.VPM_CollectionAuthorization__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Commissionerate__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_Commissionerate__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CarFreightGroup__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_CarFreightGroup__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CorrespondentBank__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CorrespondentBank__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndividualSpec__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndividualSpec__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Country__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_Country__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DMEIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DMEIndicator__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExciseRange__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExciseRange__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExciseRegNo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExciseRegNo__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DefaultPartner__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DefaultPartner__c}"/> 
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DepartmentDescription__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_DepartmentDescription__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_DepartmentNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_DepartmentNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Department__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Department__c}" />
+            
+              
+             
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ECCNo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ECCNo__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Email2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Email2__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Email3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Email3__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Email__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_Email__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExcIndVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExcIndVendor__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExciseDivision__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExciseDivision__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionFrom__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionFrom__c}"/>
+              
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionRate__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionRate__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ExemptionTo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ExemptionTo__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FaxExtension__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FaxExtension__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FaxNumber2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FaxNumber2__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Fax__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_Fax__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FaxNumber3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FaxNumber3__c}"/>
+             
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FreeText1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FreeText1__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FreeText2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_FreeText2__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_FunctionDescription__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_FunctionDescription__c}"/>
+              
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Function__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_Function__c}" />
+              
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_HeadOfficeAccountNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_HeadOfficeAccountNumber__c}"/>
+              
+              
+              
+              <apex:inputField label="{!$Label.VPM_Alternative_payee_in_document}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorAlternativePayeeAllowed__c}"/>
+              <apex:inputField label="{!$Label.VPM_Indicator_Clearing_between_customer_and_vendor}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorClearingBetwCustomerNVendor__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorForWithholdingTaxType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorForWithholdingTaxType__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorPayItemsSeparately__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorPayItemsSeparately__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorPlantLevelRelevant__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorPlantLevelRelevant__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndicatorVendorSubRangeRelevant__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndicatorVendorSubRangeRelevant__c}"/>
+              
+               
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndonesiaOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndonesiaOldVendorNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IndustryType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IndustryType__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_InstructionKeyDataExchange__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_InstructionKeyDataExchange__c}" />
+              
+             
+              
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LLDCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LLDCode__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IsraelOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IsraelOldNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LSTno__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LSTno__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_LanguageKeyCOCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_LanguageKeyCOCode__c}" />
+            
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TAXOfficeIdentLangKey__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TAXOfficeIdentLangKey__c}"/>
+              
+              
+             
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Liable__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Liable__c}"/>
+              
+              
+             
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_MobilePhone__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_MobilePhone__c}"/>
+              
+
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_NPIVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_NPIVendor__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_OrderAcknowledgmentRequirement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_OrderAcknowledgmentRequirement__c}"/>
+              
+            
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PANNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PANNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PANreference__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PANreference__c}"/>
+            
+          
+              
+              
+      
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PartnerNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PartnerNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PayableLocation__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PayableLocation__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentMethodSupplement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentMethodSupplement__c}" />
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PaymentTermsKeyCreditMemos__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PaymentTermsKeyCreditMemos__c}" />
+              
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Plant__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Plant__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PmtAdviceByEDI__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PmtAdviceByEDI__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PostalCode2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PostalCode2__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PurchaseOrderText__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PurchaseOrderText__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_PurchasingGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_PurchasingGroup__c}" />
+              
+             
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ReasonForExemption__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ReasonForExemption__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RecipientType__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_RecipientType__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_RegStGrp__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_RegStGrp__c}" />
+              
+             
+              
+              <apex:inputField label="{!$Label.VPM_Rounding_Profile_Group}" value="{!VPM_PurchasingRequests__c.VPM_RoundingProfile__c}"  />
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SMSIndicator__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SMSIndicator__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SSIStatus__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SSIStatus__c}" />
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SerRegNo__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SerRegNo__c}"/>
+              
+             
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SocialInsuranceCodeSoc__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SocialInsuranceCodeSoc__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SocialInsurance__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SocialInsurance__c}"/>
+              
+              
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SubsequentSettlementIndex__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SubsequentSettlementIndex__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_SubsequentSettlement__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_SubsequentSettlement__c}"/>
+              
+
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TaxOfficeIdentification__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TaxOfficeIdentification__c}"/>
+              
+              
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Telephone__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_Telephone__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TextToInput__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TextToInput__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThaiOldVendorNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThaiOldVendorNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress1__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress1__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress2__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress2__c}"/>
+              
+               <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress3__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress3__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyAddress4__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyAddress4__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ThirdPartyName__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ThirdPartyName__c}"/>
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TurkeyOldNumber__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_TurkeyOldNumber__c}"/>
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_TypeofVendor__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_TypeofVendor__c}" />
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_UnitOfMeasureGrp__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_UnitOfMeasureGrp__c}"/>
+            
+              
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCode__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCode__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxCountryKey__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxCountryKey__c}" />
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WithholdingTaxIdentificationNumber__c.Label}"  value="{!VPM_PurchasingRequests__c.VPM_WithholdingTaxIdentificationNumber__c}"/>
+               
+
+
+
+          </apex:pageBlockSection-->

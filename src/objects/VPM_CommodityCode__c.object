@@ -47,9 +47,10 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Object that holds Commodity Code details.</description>
+    <description>Object that holds Commodity details. Collapsed view of Commodity including Family and Class per Commodity, separated via Record Types (Class) and dependent picklist (Family).</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
@@ -63,59 +64,95 @@
         <label>Authorisation Group</label>
         <picklist>
             <picklistValues>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <fullName>3PM--3Pm America&apos;s_VMBA 3PM America</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <fullName>3PM--3PM Europe_VMBA 3PM Europe</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MBS--IT</fullName>
+                <fullName>3PM--3PM NAMCA, TUII, South Africa &amp; RUB_VMBA 3PM NAMCA South Afr RUB</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics AM</fullName>
+                <fullName>3PM--3PM South &amp; North Asia &amp; SEAA_VMBA 3PM Asia SEAA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics - SEAA</fullName>
+                <fullName>Chemicals--Fragrances &amp; Flavours_VMBA Fragrances Flavors</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics SA (South Asia)</fullName>
+                <fullName>Chemicals--Functional Chemicals_VMBA Functional Chemicals</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics NA (North Asia)</fullName>
+                <fullName>Chemicals--Inorganics_VMBA Inorganics</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics NAME</fullName>
+                <fullName>Chemicals--Oleochemicals_VMBA Oleochemicals</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics TUII</fullName>
+                <fullName>Chemicals--Petrochemicals_VMBA Petrochemicals</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics Africa</fullName>
+                <fullName>Chemicals--Speciality Chemicals_VMBA Speciality Chemicals</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics RUB</fullName>
+                <fullName>Commodities--Liquid Oils_VMBA Liquid Oils</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>SCS-Logistics EU</fullName>
+                <fullName>Commodities--Risk - Food Soft Commoditie_VMBA Food Soft Commodities</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MBS--Marketing Materials</fullName>
+                <fullName>Commodities--Risk - Oils &amp; Fats_VMBA Risk Oils and Fats</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MBS--Innovation &amp; Professional Services</fullName>
+                <fullName>Commodities--Risk - Petro Based_VMBA Petro Based</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Soft Commodities_VMBA Soft Commodities</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Commodities--Tropical Oils_VMBA Tropical Oils</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee_Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Freight_Freight</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ingredients--Ingredients 1_VMBA Ingredients 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ingredients--Ingredients 2_VMBA Ingredients 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ingredients--Ingredients 3_VMBA Ingredients 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intercompany_VMBA Intercompany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intercompany Transfer_VMBA Intercompany Transfer</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -123,7 +160,43 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MBS--Workplace &amp; Travel</fullName>
+                <fullName>MBS--HR_VMBA HR TRAVEL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Innovation &amp; Professional Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Innovation &amp; Professional Services_VMBA Outsourcing Professional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--IT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--IT_VMBA IT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Lakme Lever Ltd_VMBA Lakme Lever Ltd</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Marketing Materials_VMBA MRKTNG MATERIALS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Marketing Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Marketing Services_VMBA MARKTNG SRVCS</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -131,16 +204,137 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MBS--Marketing Services</fullName>
+                <fullName>MBS--Other_MBS--Other</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>MBS--Workplace &amp; Travel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MBS--Workplace &amp; Travel_VMBA workplace</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Bottles_VMBA Bottles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Closures, Assemblies and Valv_VMBA CLSR Assemblies Valves</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Customer Packaging_VMBA CUST PACKAGING</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Decoration_VMBA Decoration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Feedstock_VMBA Feedstock</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Flexibles_VMBA Flexibles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Folding Cartons, Aseptic, IC_VMBA Fldng crtns Stick tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Metal &amp; Glass_VMBA Metal Glass</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Tea Packaging_VMBA Tea Packaging</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Packaging--Tubs &amp; Lids, In-mould Labels_VMBA TL IN Mould Label Tubes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rice Exports_VMBA Rice Exports</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Russian Custom Tax_VMBA Russian Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-CAPEX AFR ASIA SEAA_VMBA CAPEX AAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-CAPEX EU AM LATAM_VMBA CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics Africa_VMBA Logistics Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics AM_VMBA Logistics AM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics EU</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics EU_VMBA Logistics EU</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics NA (North Asia)_VMBA Logistics NA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics NAME_VMBA Logistics NAME</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics RUB_VMBA Logistics RUB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics SA (South Asia)_VMBA Logistics SA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics – SEAA_VMBA Logistics SEAA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-Logistics TUII_VMBA Logistics TUII</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCS-UNICA_VMBA UNICA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tea--Tea_VMBA Tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UOI--UOI_VMBA UOI--UOI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_Commodity_Class__c</fullName>
+        <fullName>VPM_CommodityClass__c</fullName>
+        <description>The Commodity record type is the Commodity Class. To make Commodity Class searchable in lookup dialogues, the value of Record type name is written via WFR in to this field.</description>
         <externalId>false</externalId>
         <label>Commodity Class</label>
         <length>255</length>
@@ -150,18 +344,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_Commodity_Code__c</fullName>
-        <description>Field to hold Commodity Code details</description>
-        <externalId>true</externalId>
-        <label>Commodity Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_Commodity_Family__c</fullName>
+        <fullName>VPM_CommodityFamily__c</fullName>
         <description>Field to hold Commodity Family</description>
         <externalId>false</externalId>
         <label>Commodity Family</label>
@@ -228,17 +411,40 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_Commodity_Code__c</fullName>
+        <description>Field to hold Commodity Code details</description>
+        <externalId>true</externalId>
+        <label>Commodity Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_Vendor_Type__c</fullName>
         <description>Field to hold Vendor type detials</description>
         <externalId>false</externalId>
         <label>Vendor Type</label>
         <picklist>
             <picklistValues>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>MBS (IP) - Marketing Business Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -246,23 +452,23 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <label>Commodity Code</label>
+    <label>Commodity</label>
     <listViews>
         <fullName>All</fullName>
         <columns>VPM_Commodity_Code__c</columns>
-        <columns>VPM_Commodity_Family__c</columns>
+        <columns>VPM_CommodityFamily__c</columns>
         <columns>VPM_Vendor_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
     </listViews>
     <nameField>
-        <label>Commodity Code Name</label>
+        <label>Commodity Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Commodity Codes</pluralLabel>
+    <pluralLabel>Commodities</pluralLabel>
     <recordTypes>
-        <fullName>VPM_Activations_and_Promotions</fullName>
+        <fullName>VPM_ActivationsAndPromotions</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5820</description>
         <label>Activations and Promotions</label>
@@ -274,7 +480,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
@@ -283,13 +489,72 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Ad_hoc_Research</fullName>
+        <fullName>VPM_AdhesivesSealants</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5019</description>
+        <label>Adhesives &amp; Sealants</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityFamily__c</picklist>
+            <values>
+                <fullName>Equipment %26 MRO</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_AdhocResearch</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5702</description>
         <label>Ad-hoc Research</label>
@@ -301,7 +566,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Market Research</fullName>
                 <default>true</default>
@@ -310,44 +575,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
             </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>VPM_Adhesives_Sealants</fullName>
-        <active>true</active>
-        <description>VPM Commodity Class 5019</description>
-        <label>Adhesives &amp; Sealants</label>
-        <picklistValues>
-            <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
+                <fullName>PI_Production Item Vendor_G001</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SCS-CAPEX EU AM LATAM</fullName>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
             <values>
-                <fullName>Equipment %26 MRO</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Vendor_Type__c</picklist>
-            <values>
-                <fullName>SCS - Supply Chain Services</fullName>
-                <default>true</default>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Advertising_Agency</fullName>
+        <fullName>VPM_AdvertisingAgency</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6001</description>
         <label>Advertising Agency</label>
@@ -359,7 +609,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -368,13 +618,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Advertising_Production_Services</fullName>
+        <fullName>VPM_AdvertisingProductionServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6002</description>
         <label>Advertising Production Services</label>
@@ -386,7 +652,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -395,13 +661,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Agile_Working</fullName>
+        <fullName>VPM_AgileWorking</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6826</description>
         <label>Agile Working</label>
@@ -413,7 +695,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -422,13 +704,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Archiving_Records_Management_Services</fullName>
+        <fullName>VPM_ArchivingRecordsManagementServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6815</description>
         <label>Archiving &amp; Records Management Services</label>
@@ -440,7 +738,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -449,13 +747,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Brand_Design</fullName>
+        <fullName>VPM_BrandDesign</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6004</description>
         <label>Brand Design</label>
@@ -467,7 +781,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -476,13 +790,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Broadcast_Advertising_Placement</fullName>
+        <fullName>VPM_BroadcastAdvertisingPlacement</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6201</description>
         <label>Broadcast Advertising Placement</label>
@@ -494,7 +824,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
@@ -503,13 +833,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Building_Maintenance_Repairs_Services</fullName>
+        <fullName>VPM_BuildingMaintenanceRepairsServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6801</description>
         <label>Building Maintenance &amp; Repairs Services</label>
@@ -521,7 +867,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -530,13 +876,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Business_Support_Services</fullName>
+        <fullName>VPM_BusinessSupportServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6816</description>
         <label>Business Support Services</label>
@@ -548,7 +910,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -557,13 +919,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Catering_Vending_Services</fullName>
+        <fullName>VPM_CateringVendingServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6808</description>
         <label>Catering &amp; Vending Services</label>
@@ -575,7 +953,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -584,13 +962,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Cleaning_Janitorial</fullName>
+        <fullName>VPM_CleaningJanitorial</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6809</description>
         <label>Cleaning &amp; Janitorial</label>
@@ -602,7 +996,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -611,40 +1005,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
-                <default>true</default>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
             </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>VPM_Co_op_marketing</fullName>
-        <active>true</active>
-        <description>VPM Commodity Class 5812</description>
-        <label>Co-op marketing</label>
-        <picklistValues>
-            <picklist>VPM_Authorisation_Group__c</picklist>
-            <values>
-                <fullName>MBS--Marketing Materials</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
-            <values>
-                <fullName>Marketing Promotional and Sales Services</fullName>
-                <default>true</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_Vendor_Type__c</picklist>
             <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
             </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Consumer_Care</fullName>
+        <fullName>VPM_ConsumerCare</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5703</description>
         <label>Consumer Care</label>
@@ -656,7 +1039,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Market Research</fullName>
                 <default>true</default>
@@ -665,13 +1048,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Continuous_Research</fullName>
+        <fullName>VPM_ContinuousResearch</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5701</description>
         <label>Continuous Research</label>
@@ -683,7 +1082,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Market Research</fullName>
                 <default>true</default>
@@ -692,13 +1091,72 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Corporate_Insurance_Services</fullName>
+        <fullName>VPM_CoopMarketing</fullName>
+        <active>true</active>
+        <description>VPM Commodity Class 5812</description>
+        <label>Co-op marketing</label>
+        <picklistValues>
+            <picklist>VPM_Authorisation_Group__c</picklist>
+            <values>
+                <fullName>MBS--Marketing Materials</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityFamily__c</picklist>
+            <values>
+                <fullName>Marketing Promotional and Sales Services</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Vendor_Type__c</picklist>
+            <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_CorporateInsuranceServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6404</description>
         <label>Corporate Insurance Services</label>
@@ -710,7 +1168,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Professional Services</fullName>
                 <default>true</default>
@@ -719,13 +1177,25 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Corporate_Public_Relations_Services</fullName>
+        <fullName>VPM_CorporatePublicRelationsServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6407</description>
         <label>Corporate &amp; Public Relations Services</label>
@@ -737,7 +1207,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Professional Services</fullName>
                 <default>true</default>
@@ -746,13 +1216,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Courier_Mail_Services</fullName>
+        <fullName>VPM_CourierMailServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6810</description>
         <label>Courier &amp; Mail Services</label>
@@ -764,7 +1250,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -773,13 +1259,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Creative_Services</fullName>
+        <fullName>VPM_CreativeServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6003</description>
         <label>Creative Services</label>
@@ -791,7 +1293,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -800,13 +1302,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Customer_Care</fullName>
+        <fullName>VPM_CustomerCare</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5817</description>
         <label>Customer Care</label>
@@ -818,7 +1336,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
@@ -827,8 +1345,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -840,16 +1374,12 @@
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -858,13 +1388,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Electrical_innovation_device</fullName>
+        <fullName>VPM_ElectricalInnovationDevice</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6301</description>
         <label>Electrical innovation device</label>
@@ -876,7 +1422,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Innovation Sourcing</fullName>
                 <default>true</default>
@@ -885,8 +1431,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -903,7 +1465,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -912,29 +1474,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Factory_Technical_Engineering_Services</fullName>
+        <fullName>VPM_FactoryTechnicalEngineeringServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5022</description>
         <label>Factory Technical &amp; Engineering Services</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -943,13 +1517,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Field_Sales</fullName>
+        <fullName>VPM_FieldSales</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5813</description>
         <label>Field Sales</label>
@@ -961,7 +1551,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
@@ -970,13 +1560,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Financial_Services</fullName>
+        <fullName>VPM_FinancialServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6405</description>
         <label>Financial Services</label>
@@ -988,7 +1594,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Professional Services</fullName>
                 <default>true</default>
@@ -997,13 +1603,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Fleet_Company_Vehicles</fullName>
+        <fullName>VPM_FleetCompanyVehicles</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6821</description>
         <label>Fleet &amp; Company Vehicles</label>
@@ -1015,7 +1637,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -1024,29 +1646,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Food_and_Beverage_POS</fullName>
+        <fullName>VPM_FoodAndBeveragePOS</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5020</description>
         <label>Food and Beverage POS</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1055,13 +1689,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Furniture_Fixtures_Space_Planning_Office_Moves</fullName>
+        <fullName>VPM_FurnitureFixturesSpacePlanningOfficeMoves</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6802</description>
         <label>Furniture, Fixtures, Space Planning &amp; Office Moves</label>
@@ -1073,7 +1723,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -1082,13 +1732,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Global_Mobility_Personnel_Relocation</fullName>
+        <fullName>VPM_GlobalMobilityPersonnelRelocation</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6602</description>
         <label>Global Mobility &amp; Personnel Relocation</label>
@@ -1100,7 +1766,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
@@ -1109,57 +1775,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Goods_Transportation_Distribution</fullName>
+        <fullName>VPM_GoodsTransportationDistribution</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5602</description>
         <label>Goods Transportation &amp; Distribution</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-Logistics - SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics AM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics Africa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-Logistics EU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics NAME</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics TUII</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Logistics</fullName>
                 <default>true</default>
@@ -1168,13 +1818,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Grants_Subsidies</fullName>
+        <fullName>VPM_GrantsSubsidies</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6904</description>
         <label>Grants &amp; Subsidies</label>
@@ -1186,7 +1852,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
@@ -1195,13 +1861,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Grounds_Maintenance_Services</fullName>
+        <fullName>VPM_GroundsMaintenanceServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6825</description>
         <label>Grounds Maintenance Services</label>
@@ -1213,7 +1895,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -1222,13 +1904,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_HR_Benefits_and_Reward</fullName>
+        <fullName>VPM_HRBenefitsAndReward</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6601</description>
         <label>HR Benefits and Reward</label>
@@ -1240,7 +1938,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
@@ -1249,13 +1947,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_HR_Services</fullName>
+        <fullName>VPM_HRServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6611</description>
         <label>HR Services</label>
@@ -1267,7 +1981,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
@@ -1276,8 +1990,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -1294,7 +2024,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
@@ -1303,13 +2033,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_IT_Services</fullName>
+        <fullName>VPM_ITServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5403</description>
         <label>IT Services</label>
@@ -1321,7 +2067,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
@@ -1330,29 +2076,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Ice_Cream_POS</fullName>
+        <fullName>VPM_IceCreamPOS</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5018</description>
         <label>Ice Cream POS</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1361,29 +2119,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Industrial_Supplies</fullName>
+        <fullName>VPM_IndustrialSupplies</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5008</description>
         <label>Industrial Supplies</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1392,29 +2162,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Instrumentation_Process_Control</fullName>
+        <fullName>VPM_InstrumentationProcessControl</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5003</description>
         <label>Instrumentation &amp; Process Control</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1423,13 +2205,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Interactive_Advertising_Placement</fullName>
+        <fullName>VPM_InteractiveAdvertisingPlacement</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6202</description>
         <label>Interactive Advertising Placement</label>
@@ -1441,7 +2239,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
@@ -1450,13 +2248,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Interactive_Digital</fullName>
+        <fullName>VPM_InteractiveDigital</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6006</description>
         <label>Interactive (Digital)</label>
@@ -1468,7 +2282,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -1477,13 +2291,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Intercompany_Charges</fullName>
+        <fullName>VPM_IntercompanyCharges</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6903</description>
         <label>Intercompany Charges</label>
@@ -1495,7 +2325,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
@@ -1504,29 +2334,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Laboratory_Support</fullName>
+        <fullName>VPM_LaboratorySupport</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5010</description>
         <label>Laboratory Support</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1535,13 +2377,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Legal_Services</fullName>
+        <fullName>VPM_LegalServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6403</description>
         <label>Legal Services</label>
@@ -1553,7 +2411,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Professional Services</fullName>
                 <default>true</default>
@@ -1562,8 +2420,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -1575,16 +2449,12 @@
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1593,13 +2463,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Management_Consulting</fullName>
+        <fullName>VPM_ManagementConsulting</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6402</description>
         <label>Management Consulting</label>
@@ -1611,7 +2497,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Professional Services</fullName>
                 <default>true</default>
@@ -1620,29 +2506,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Material_Handling_Equipment</fullName>
+        <fullName>VPM_MaterialHandlingEquipment</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5004</description>
         <label>Material Handling Equipment</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1651,7 +2549,23 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1664,16 +2578,12 @@
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1682,13 +2592,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Media_Agency</fullName>
+        <fullName>VPM_MediaAgency</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6204</description>
         <label>Media Agency</label>
@@ -1700,7 +2626,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
@@ -1709,29 +2635,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Motors_Power_Transmissions</fullName>
+        <fullName>VPM_MotorsPowerTransmissions</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5012</description>
         <label>Motors &amp; Power Transmissions</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -1740,7 +2678,23 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -1781,52 +2735,16 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics - SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics AM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics Africa</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>SCS-Logistics EU</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics NAME</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics TUII</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>false</default>
@@ -1887,17 +2805,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Occupational_Health</fullName>
+        <fullName>VPM_OccupationalHealth</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6603</description>
         <label>Occupational Health</label>
@@ -1909,7 +2839,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
@@ -1918,13 +2848,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Office_Consumables</fullName>
+        <fullName>VPM_OfficeConsumables</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6803</description>
         <label>Office Consumables</label>
@@ -1936,7 +2882,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -1945,13 +2891,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Oil_Gas</fullName>
+        <fullName>VPM_OilGas</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6817</description>
         <label>Oil &amp; Gas</label>
@@ -1963,7 +2925,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -1972,29 +2934,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_POS_Equipment</fullName>
+        <fullName>VPM_POSEquipment</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5021</description>
         <label>POS Equipment</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -2003,29 +2977,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Packaging_Equipment</fullName>
+        <fullName>VPM_PackagingEquipment</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5002</description>
         <label>Packaging Equipment</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -2034,13 +3020,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Packaging_Print_Production</fullName>
+        <fullName>VPM_PackagingPrintProduction</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6007</description>
         <label>Packaging Print Production</label>
@@ -2052,7 +3054,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -2061,8 +3063,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -2079,7 +3097,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
@@ -2088,8 +3106,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -2106,22 +3140,42 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Out of Scope Procurement</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Pest_Control_Maintenance</fullName>
+        <fullName>VPM_PestControlMaintenance</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6811</description>
         <label>Pest Control Maintenance</label>
@@ -2133,7 +3187,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -2142,29 +3196,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Pipes_Valves_Fittings</fullName>
+        <fullName>VPM_PipesValvesFittings</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5013</description>
         <label>Pipes, Valves &amp; Fittings</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -2173,29 +3239,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Pneumatics_Hydraulics</fullName>
+        <fullName>VPM_PneumaticsHydraulics</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5014</description>
         <label>Pneumatics &amp; Hydraulics</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -2204,13 +3282,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Point_of_Sale_Materials_POSM</fullName>
+        <fullName>VPM_PointOfSaleMaterialsPOSM</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5815</description>
         <label>Point of Sale Materials (POSM)</label>
@@ -2222,7 +3316,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
@@ -2231,8 +3325,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -2249,7 +3359,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
@@ -2258,13 +3368,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Print_Media_Placement</fullName>
+        <fullName>VPM_PrintMediaPlacement</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6203</description>
         <label>Print Media Placement</label>
@@ -2276,7 +3402,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Media %28Placement%29</fullName>
                 <default>true</default>
@@ -2285,13 +3411,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Printed_Material</fullName>
+        <fullName>VPM_PrintedMaterial</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5816</description>
         <label>Printed Material</label>
@@ -2303,7 +3445,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
@@ -2312,13 +3454,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Printed_Stationary_Forms</fullName>
+        <fullName>VPM_PrintedStationaryForms</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6805</description>
         <label>Printed Stationary &amp; Forms</label>
@@ -2330,7 +3488,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -2339,29 +3497,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Process_Equipment</fullName>
+        <fullName>VPM_ProcessEquipment</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5001</description>
         <label>Process Equipment</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -2370,13 +3540,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Production_Support</fullName>
+        <fullName>VPM_ProductionSupport</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6901</description>
         <label>Production Support</label>
@@ -2388,7 +3574,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Out of Scope Procurement</fullName>
                 <default>true</default>
@@ -2397,13 +3583,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Public_Relations_Marketing</fullName>
+        <fullName>VPM_PublicRelationsMarketing</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6005</description>
         <label>Public Relations (Marketing)</label>
@@ -2415,7 +3617,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -2424,8 +3626,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -2442,7 +3660,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -2451,8 +3669,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -2464,16 +3698,12 @@
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -2482,13 +3712,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_R_D_and_QA_Professional_Services</fullName>
+        <fullName>VPM_RDAndQAProfessionalServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6408</description>
         <label>R&amp;D and QA Professional Services</label>
@@ -2500,7 +3746,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Professional Services</fullName>
                 <default>true</default>
@@ -2509,13 +3755,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Real_Estate</fullName>
+        <fullName>VPM_RealEstate</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6820</description>
         <label>Real Estate</label>
@@ -2527,7 +3789,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -2536,13 +3798,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Reception_Switchboard_Services</fullName>
+        <fullName>VPM_ReceptionSwitchboardServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6814</description>
         <label>Reception &amp; Switchboard Services</label>
@@ -2554,7 +3832,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -2563,13 +3841,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Reprographics_Services</fullName>
+        <fullName>VPM_ReprographicsServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6806</description>
         <label>Reprographics Services</label>
@@ -2581,7 +3875,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -2590,13 +3884,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Resourcing_Permanent_Recruitment</fullName>
+        <fullName>VPM_ResourcingPermanentRecruitment</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6607</description>
         <label>Resourcing/Permanent Recruitment</label>
@@ -2608,7 +3918,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
@@ -2617,13 +3927,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Resourcing_Temporary_Staffing</fullName>
+        <fullName>VPM_ResourcingTemporaryStaffing</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6605</description>
         <label>Resourcing/Temporary Staffing</label>
@@ -2635,7 +3961,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
@@ -2644,8 +3970,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -2662,7 +4004,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -2671,29 +4013,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Site_Infrastructure_Equipment</fullName>
+        <fullName>VPM_SiteInfrastructureEquipment</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5005</description>
         <label>Site Infrastructure Equipment</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -2702,7 +4056,23 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -2720,7 +4090,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
@@ -2729,13 +4099,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Supply_Chain_Services</fullName>
+        <fullName>VPM_SupplyChainServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6409</description>
         <label>Supply Chain Services</label>
@@ -2746,44 +4132,12 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>SCS-Logistics - SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics AM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics Africa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-Logistics EU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics NAME</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics TUII</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Professional Services</fullName>
                 <default>true</default>
@@ -2792,13 +4146,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_TV_Advertising_Production_Services</fullName>
+        <fullName>VPM_TVAdvertisingProductionServices</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6008</description>
         <label>TV Advertising Production Services</label>
@@ -2810,7 +4180,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Agencies and Media</fullName>
                 <default>true</default>
@@ -2819,8 +4189,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -2837,7 +4223,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>IT %26 Telecom</fullName>
                 <default>true</default>
@@ -2846,13 +4232,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Training_Education_Seminar</fullName>
+        <fullName>VPM_TrainingEducationSeminar</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6606</description>
         <label>Training, Education &amp; Seminar</label>
@@ -2864,7 +4266,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Human Resources</fullName>
                 <default>true</default>
@@ -2873,13 +4275,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Travel_and_Accomodation</fullName>
+        <fullName>VPM_TravelAndAccomodation</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6701</description>
         <label>Travel and Accomodation</label>
@@ -2891,7 +4309,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Travel</fullName>
                 <default>true</default>
@@ -2900,13 +4318,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Warehousing_Logistics</fullName>
+        <fullName>VPM_WarehousingLogistics</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5819</description>
         <label>Warehousing &amp; Logistics</label>
@@ -2918,7 +4352,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Marketing Promotional and Sales Services</fullName>
                 <default>true</default>
@@ -2927,57 +4361,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Warehousing_Pallets</fullName>
+        <fullName>VPM_WarehousingPallets</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5601</description>
         <label>Warehousing &amp; Pallets</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-Logistics - SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics AM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics Africa</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-Logistics EU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics NA %28North Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics NAME</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics SA %28South Asia%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SCS-Logistics TUII</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Logistics</fullName>
                 <default>true</default>
@@ -2986,7 +4404,23 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
@@ -3004,7 +4438,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -3013,8 +4447,24 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
@@ -3031,7 +4481,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -3040,29 +4490,41 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Water_Treatment_Consumables</fullName>
+        <fullName>VPM_WaterTreatmentConsumables</fullName>
         <active>true</active>
         <description>VPM Commodity Class 5009</description>
         <label>Water Treatment Consumables</label>
         <picklistValues>
             <picklist>VPM_Authorisation_Group__c</picklist>
             <values>
-                <fullName>SCS-CAPEX AFR ASIA SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SCS-CAPEX EU AM LATAM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Equipment %26 MRO</fullName>
                 <default>true</default>
@@ -3071,13 +4533,29 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
-                <fullName>SCS - Supply Chain Services</fullName>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
                 <default>true</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>VPM_Work_Clothing_Uniforms</fullName>
+        <fullName>VPM_WorkClothingUniforms</fullName>
         <active>true</active>
         <description>VPM Commodity Class 6822</description>
         <label>Work Clothing &amp; Uniforms</label>
@@ -3089,7 +4567,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_Commodity_Family__c</picklist>
+            <picklist>VPM_CommodityFamily__c</picklist>
             <values>
                 <fullName>Workplace Materials %26 Services</fullName>
                 <default>true</default>
@@ -3098,11 +4576,40 @@
         <picklistValues>
             <picklist>VPM_Vendor_Type__c</picklist>
             <values>
+                <fullName>FRGT_Freight Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>MBS %28IP%29 - Marketing Business Services</fullName>
                 <default>true</default>
             </values>
+            <values>
+                <fullName>PI_Production Item Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RCT_Russian Customs Tax Vendor_G001</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCS_Supply Chain Services_G001</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>VPM_Commodity_Code__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>VPM_Vendor_Type__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>VPM_CommodityClass__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>VPM_CommodityFamily__c</lookupDialogsAdditionalFields>
+        <lookupFilterFields>VPM_CommodityClass__c</lookupFilterFields>
+        <lookupFilterFields>VPM_CommodityFamily__c</lookupFilterFields>
+        <lookupFilterFields>NAME</lookupFilterFields>
+        <lookupPhoneDialogsAdditionalFields>VPM_Commodity_Code__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>VPM_Vendor_Type__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>VPM_CommodityClass__c</searchFilterFields>
+        <searchFilterFields>VPM_CommodityFamily__c</searchFilterFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

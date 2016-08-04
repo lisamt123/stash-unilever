@@ -1,0 +1,39 @@
+<apex:page standardController="VPM_PurchasingRequests__c" standardStylesheets="true"
+           sidebar="false" extensions="VPM_SubController"  language="{!userlang}" >
+           <chatter:feedWithFollowers entityid="{!VPM_PurchasingRequests__c.Id}" id="ChatterBlock"  />
+    <apex:form >
+        
+    
+  
+    <apex:pageBlock title="{!$Label.VPM_SendWebFormRequest}" id="thePageBlock">
+     <apex:pageMessages id="pageMessages" />
+    <apex:pageBlockButtons > 
+           
+            <apex:commandButton action="{!backToFlow}" Value="{!$Label.VPM_Back}"  immediate="true" reRender="hiddenBlock"  status="actStatusId"/>   
+            <apex:commandButton action="{!saveSendWebform}" value="{!$Label.VPM_Send_Button}" reRender="hiddenBlock,pageMessages"  status="actStatusId" rendered="{!isRequiredField}"/>   
+            <apex:commandButton action="{!saveSendWebform}" value="{!$Label.VPM_Next}" reRender="hiddenBlock,pageMessages"  status="actStatusId" rendered="{!Not(isRequiredField)}"/>   
+              
+        </apex:pageBlockButtons>
+           <apex:pageBlockSection columns="1">                
+               <apex:outputText Value="{!$Label.VPM_SendWebformRequestInfo}" ></apex:outputText>  
+                  <apex:pageBlockSectionItem >  
+    <apex:outputLabel value="{!$Label.VPM_SendWebformRequestToVendor}" for="options"/>
+    <apex:outputPanel styleClass="requiredInput" layout="block">
+    <apex:outputPanel styleClass="requiredBlock" layout="block"/> 
+        <apex:actionRegion >
+   <apex:selectList id="options" size="1" label="{!$Label.VPM_SendWebformRequestToVendor}"  value="{!positions}" required="true">
+                    <apex:selectoption itemLabel="Yes" itemValue="Yes"/>  
+                    <apex:selectoption itemLabel="No" itemValue="No"/>
+          <apex:actionSupport event="onchange" action="{!newMethod}"  reRender="thePageBlock"/>
+       </apex:selectList>
+      
+              </apex:actionRegion>
+   </apex:outputPanel>
+</apex:pageBlockSectionItem> 
+
+              <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorContactDetail__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_VendorContactDetail__c}" required="{!isRequiredField}" rendered="{!isRequiredField}" />
+          </apex:pageBlockSection>  
+         </apex:pageBlock>          
+   </apex:form>
+   <c:VPM_LoadingComponent />  
+</apex:page>

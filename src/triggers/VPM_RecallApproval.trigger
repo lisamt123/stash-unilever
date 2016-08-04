@@ -11,6 +11,7 @@ History
 -------                                                            
 VERSION  AUTHOR            DATE              DETAIL                  Description
 1.0 -   Samrin Shaikh       11/04/2016       INITIAL DEVELOPMENT     Unlock Record  
+2.0     Samrin Shaikh       19/07/2016       IAPR - 482 Point 1      Unlock the record By defaults when it is Approval process  
 
 ***********************************************************************************/
 
@@ -24,7 +25,8 @@ trigger VPM_RecallApproval on VPM_PurchasingRequests__c (After insert, After upd
         {
           for (VPM_PurchasingRequests__c purc :trigger.new)  
           {
-                if(purc.VPM_Rework__c=='Yes')
+               // if(purc.VPM_Rework__c=='Yes')
+               if(purc.VPM_IsLock__c)
                 {
                 Approval.unlock(trigger.new,false);
                 }

@@ -14,10 +14,6 @@
         <label>Summary</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>VPM_CompanyCode__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_AlreadyBeenInvoiced__c</field>
             </layoutItems>
@@ -66,12 +62,36 @@
                 <field>VPM_Vendor_SubType__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>VPM_CommodityClassCode__c</field>
+                <behavior>Required</behavior>
+                <field>VPM_CompanyCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_RaisedByProcurementTeam__c</field>
+                <field>VPM_CheckDoubleInvoices__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Minority_Diversity_vendor__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_E_Invoicing_Agreed__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Payment_Terms_if_none_Selected__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Approval_Worker__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Approval_Worker_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_Fieldtype__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -161,9 +181,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>VPM_CompanyCode__c</fields>
-    </miniLayout>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
