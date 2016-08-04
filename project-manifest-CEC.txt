@@ -8,6 +8,7 @@ src/objects
 src/package.xml
 src/pages
 src/permissionsets
+src/profiles
 src/reports
 src/sharingRules
 src/staticresources
@@ -54,6 +55,8 @@ src/permissionsets/CEC_Social_Media_Salesforce.permissionset
 src/permissionsets/CEC_User.permissionset
 src/permissionsets/TO_CRUD.permissionset
 src/permissionsets/TO_User.permissionset
+src/profiles/Unilever - Salesforce MultiApp Standard Secured.profile
+src/profiles/Unilever - Salesforce MultiApp Standard.profile
 src/sharingRules/sf4twitter__Fcbk_Page__c.sharingRules
 src/sharingRules/sf4twitter__Fcbk_User__c.sharingRules
 src/sharingRules/sf4twitter__Twitter_Account__c.sharingRules
