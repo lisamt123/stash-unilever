@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;groups&quot;:[&quot;Changed_By__c.Name&quot;,&quot;Type__c&quot;],&quot;measures&quot;:[[&quot;count&quot;,&quot;*&quot;]]}","version":-1.0}}

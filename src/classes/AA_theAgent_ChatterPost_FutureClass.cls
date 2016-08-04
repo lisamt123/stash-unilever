@@ -3,7 +3,7 @@ Public with sharing class AA_theAgent_ChatterPost_FutureClass{
     @future 
     Public static void CallSendToChatter(Map<String,String> lsttriggerList)
     {
-      Map<ID,aa_Agent_Report__c> countryList=new Map<ID,aa_Agent_Report__c>(); 
+      //Map<ID,aa_Agent_Report__c> countryList=new Map<ID,aa_Agent_Report__c>(); 
         for ( String objOnfeedID : lsttriggerList.keySet() ){
           aa_Agent_Report__c report = (aa_Agent_Report__c) JSON.deserialize(lsttriggerList.get(objOnfeedID), aa_Agent_Report__c.class);
                //if(objOnfeedID!='Cluster_Id'){

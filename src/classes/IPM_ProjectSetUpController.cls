@@ -1137,16 +1137,21 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     }
                 }
             } else if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE || project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
-                List<IPM_Financial__c>  financeList = [SELECT Id, IPM_Business_Case_Confirmed__c FROM IPM_Financial__c WHERE Local_Project__c=:projectId];
+                List<IPM_Financial__c>  financeList = [SELECT Id, Is_BC_Confirmed_Capability__c,IPM_Business_Case_Confirmed__c FROM IPM_Financial__c WHERE Local_Project__c=:projectId];
                 if(!financeList.isEmpty()){
                     IPM_Financial__c financeObj = financeList[0];
-                    if(financeObj.IPM_Business_Case_Confirmed__c){
+                    if(financeObj.IPM_Business_Case_Confirmed__c && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE){
                         isTLDFieldEditable = false;
-                    } else {
-                        isTLDFieldEditable = true;
+                    } 
+                    else if(financeObj.Is_BC_Confirmed_Capability__c && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) {
+                        isTLDFieldEditable = false;
+                    }
+                    else{
+                    	isTLDFieldEditable = true;
                     }               
                 }
-            } else {
+            } 
+            else {
                 isTLDFieldEditable = true;
             }
         }else if(project !=null){
