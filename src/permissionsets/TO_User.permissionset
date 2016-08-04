@@ -251,11 +251,6 @@
 </fieldPermissions>
 <fieldPermissions>
     <editable>false</editable>
-    <field>cec_Case_Brand_Mapping__c.Skill__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
     <field>cec_Case_Brand_Mapping__c.Brand_Market__c</field>
     <readable>true</readable>
 </fieldPermissions>
@@ -267,6 +262,11 @@
 <fieldPermissions>
     <editable>false</editable>
     <field>cec_Case_Brand_Mapping__c.Language__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>cec_Case_Brand_Mapping__c.Skill__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -726,11 +726,6 @@
 </fieldPermissions>
 <fieldPermissions>
     <editable>false</editable>
-    <field>CEC_Case_Market_Mapping__c.Language__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
     <field>CEC_Case_Market_Mapping__c.Locale__c</field>
     <readable>true</readable>
 </fieldPermissions>
@@ -742,6 +737,11 @@
 <fieldPermissions>
     <editable>false</editable>
     <field>CEC_Case_Market_Mapping__c.Country__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>CEC_Case_Market_Mapping__c.Language__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -870,6 +870,11 @@
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
+    <editable>false</editable>
+    <field>cec_Alert_Tracker__c.Rule_Type__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
     <editable>true</editable>
     <field>cec_Alert_Tracker__c.Unique_Id__c</field>
     <readable>true</readable>
@@ -877,11 +882,6 @@
 <fieldPermissions>
     <editable>false</editable>
     <field>cec_Alert_Tracker__c.Current_Threshold__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
-    <field>cec_Alert_Tracker__c.Rule_Type__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -1051,6 +1051,21 @@
 </fieldPermissions>
 <fieldPermissions>
     <editable>true</editable>
+    <field>Account.Home_Phone_No_Special_Char__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Account.Mobile_Phone_No_Special_Char__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Account.Other_Phone_No_Special_Char__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
     <field>Account.CEC_Marketing_Opt_In__c</field>
     <readable>true</readable>
 </fieldPermissions>
@@ -1092,11 +1107,6 @@
 <fieldPermissions>
     <editable>false</editable>
     <field>Account.Club_Member_Number__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>true</editable>
-    <field>Account.Contact_Again__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -1152,21 +1162,6 @@
 <fieldPermissions>
     <editable>true</editable>
     <field>Account.Phone_No_Special_Char__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>true</editable>
-    <field>Account.Home_Phone_No_Special_Char__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>true</editable>
-    <field>Account.Mobile_Phone_No_Special_Char__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>true</editable>
-    <field>Account.Other_Phone_No_Special_Char__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -1250,6 +1245,11 @@
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
+    <editable>false</editable>
+    <field>Case.CEC_Reason_Code__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
     <editable>true</editable>
     <field>Case.Date_of_Manufacture__c</field>
     <readable>true</readable>
@@ -1272,6 +1272,11 @@
 <fieldPermissions>
     <editable>true</editable>
     <field>Case.Matching_Response__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Product_Code__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -1331,22 +1336,77 @@
 </fieldPermissions>
 <fieldPermissions>
     <editable>false</editable>
-    <field>Case.CEC_Reason_Code__c</field>
+    <field>Case.L0_Product_Category__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
     <editable>false</editable>
-    <field>Case.Product_Code__c</field>
+    <field>Case.L1_Product_Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.L2_Product_Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.L3_Product_Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.L4_Product_Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.L5_Product_Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.L6_Product_Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.L7_Product_Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Reason_L0_desc__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Reason_L1_desc__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Reason_L2_desc__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Reason_L3_desc__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Reason_L4_desc__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Reason_L5_desc__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
     <editable>true</editable>
     <field>Case.Case_product_category__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
-    <field>Case.L0_Product_Category__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -1460,6 +1520,11 @@
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Case_Market_Tag__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
     <editable>true</editable>
     <field>Case.DW_Order_Number__c</field>
     <readable>true</readable>
@@ -1482,11 +1547,6 @@
 <fieldPermissions>
     <editable>true</editable>
     <field>Case.Tag__c</field>
-    <readable>true</readable>
-</fieldPermissions>
-<fieldPermissions>
-    <editable>false</editable>
-    <field>Case.Case_Market_Tag__c</field>
     <readable>true</readable>
 </fieldPermissions>
 <fieldPermissions>
@@ -1828,6 +1888,15 @@
     <viewAllRecords>false</viewAllRecords>
 </objectPermissions>
 <objectPermissions>
+    <allowCreate>false</allowCreate>
+    <allowDelete>false</allowDelete>
+    <allowEdit>false</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>im_Issue__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
     <allowCreate>true</allowCreate>
     <allowDelete>false</allowDelete>
     <allowEdit>true</allowEdit>
@@ -1854,7 +1923,7 @@
     <object>Contact</object>
     <viewAllRecords>false</viewAllRecords>
 </objectPermissions>
-    <pageAccesses>
+<pageAccesses>
     <apexPage>CEC_CaseInline</apexPage>
     <enabled>true</enabled>
 </pageAccesses>
