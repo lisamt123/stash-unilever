@@ -3,37 +3,42 @@
     <active>true</active>
     <allowRecall>true</allowRecall>
     <allowedSubmitters>
-        <type>creator</type>
-    </allowedSubmitters>
-    <allowedSubmitters>
         <type>owner</type>
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
-        <field>VPM_WhatAreYouBuying__c</field>
-        <field>VPM_Spend__c</field>
-        <field>CreatedBy</field>
         <field>Owner</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>VPM_FLS</name>
+                <name>VPM_RussianCustomTax</name>
                 <type>queue</type>
             </approver>
-            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+            <whenMultipleApprovers>Unanimous</whenMultipleApprovers>
         </assignedApprover>
-        <label>FLS Review</label>
-        <name>VPM_FLSReview</name>
+        <label>Russian Custom Tax Review</label>
+        <name>VPM_RussianCustomTaxReview</name>
     </approvalStep>
-    <description>Used for the FLS team to qualify the initial data entry as fit for onward processing. Triggered by the Business Requestor submitting the form.</description>
+    <description>The approval process triggered by the Advanced Form being submitted by the Business Requestor or FLS.</description>
     <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
     <entryCriteria>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
-            <field>VPM_PurchasingRequests__c.VPM_BusinessRequestorSubmitted__c</field>
+            <field>VPM_PurchasingRequests__c.VPM_VendorType__c</field>
+            <operation>equals</operation>
+            <value>RCT_Russian Customs Tax Vendor_G001</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.VPM_AdvancedFormSubmitted__c</field>
             <operation>equals</operation>
             <value>Yes</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>VPM_PurchasingRequests__c.RecordType</field>
+            <operation>notEqual</operation>
+            <value>Vendor Request</value>
         </criteriaItems>
     </entryCriteria>
     <finalApprovalActions>
@@ -42,57 +47,57 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_ChangeIsInApprovalProcess</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_StatusFLSApproveds</name>
+            <name>VPM_RussiaApprovedtoyes</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
+            <name>Request_Last_with_Group_Russian_Custom_T</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_NotifiedBusinessRequesterRequestFLSTeam</name>
+            <name>VPM_RequestRejectNotification</name>
             <type>Alert</type>
-        </action>
-        <action>
-            <name>VPM_StatusFLSRejected</name>
-            <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>Change_Business_Requestor_Flag_to_Null</name>
+            <name>Assign_to_Freight</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>Change_Status_to_FLS_review</name>
+            <name>ChangeReworkStatustoNo</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>Notification_for_Logged</name>
-            <type>Alert</type>
-        </action>
-        <action>
-            <name>VPM_ChangeOwnerToFLSQueue</name>
+            <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
         </action>
         <action>
             <name>VPM_ChangesIslockStatusTrue</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>VPM_StatustoApprovalPending</name>
+            <type>FieldUpdate</type>
+        </action>
     </initialSubmissionActions>
-    <label>FLS Approval</label>
-    <nextAutomatedApprover>
-        <useApproverFieldOfRecordOwner>true</useApproverFieldOfRecordOwner>
-        <userHierarchyField>Manager</userHierarchyField>
-    </nextAutomatedApprover>
+    <label>Russian Custom Tax Approval</label>
     <recallActions>
         <action>
             <name>ChangeReworkStatustoNo</name>

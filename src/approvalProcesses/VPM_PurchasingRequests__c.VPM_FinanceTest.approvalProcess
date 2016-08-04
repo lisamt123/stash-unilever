@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>RecordType</field>
+        <field>VPM_WhatAreYouBuying__c</field>
+        <field>VPM_Spend__c</field>
+        <field>CreatedBy</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Algeria</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_Country__c, &apos;Algeria&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>Finance Algeria</label>
+        <name>Finance_Algeria</name>
+    </approvalStep>
+    <description>The approval process triggered by the Advanced Form being submitted by the Business Requestor or FLS. Triggered using Process Builder.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>(
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;)) &amp;&amp;  VPM_Commodity_Family__c = &quot;Out of Scope Procurement&quot;  &amp;&amp; (RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;) &amp;&amp; ( VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE ||  VPM_ProvidedBankDetails__c = TRUE ||  VPM_ProvidedFinancialSensitive__c = TRUE )
+)|| (
+(CONTAINS(Text(VPM_VendorType__c),&quot;PI&quot;)) &amp;&amp; (CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;3PM&quot;)) &amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos;) &amp;&amp; 
+( VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE ||  VPM_ProvidedBankDetails__c = TRUE ||  VPM_ProvidedFinancialSensitive__c = TRUE ||  VPM_Is_changed_VAT__c = TRUE )
+) || (
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;)) &amp;&amp;  VPM_Commodity_Family__c = &quot;Out of Scope Procurement&quot; &amp;&amp; (VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) &amp;&amp; 
+(RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;) &amp;&amp; ( VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE ||  VPM_ProvidedBankDetails__c = TRUE ||  VPM_ProvidedFinancialSensitive__c = TRUE ||  VPM_Is_changed_VAT__c = TRUE )
+) || (
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;))&amp;&amp; (CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;MBS--Lakme Lever Ltd_VMBA Lakme Lever Ltd&quot;)) &amp;&amp; (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos;) &amp;&amp; ( VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE ||  VPM_ProvidedBankDetails__c = TRUE ||  VPM_ProvidedFinancialSensitive__c = TRUE )
+) || (
+(CONTAINS(Text(VPM_VendorType__c),&quot;SCS&quot;)) &amp;&amp; (CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-UNICA_VMBA UNICA&quot;)) &amp;&amp; (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos;) &amp;&amp; ( VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE ||  VPM_ProvidedBankDetails__c = TRUE ||  VPM_ProvidedFinancialSensitive__c = TRUE )
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>ChangeReworkStatustoNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_FinanceSubmittedYes</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_Status_Finance_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NotifiedBusinessRequesterRequestFinanceTeam</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>VPM_StatusFinanceRejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>true</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>VPM_ChangesIslockStatusTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Finance test</label>
+    <recallActions>
+        <action>
+            <name>ChangeReworkStatustoNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

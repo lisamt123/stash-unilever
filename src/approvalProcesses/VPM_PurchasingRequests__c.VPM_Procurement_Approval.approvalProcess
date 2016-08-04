@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Approver5__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver1__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver8__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver9__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver3__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver2__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver4__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver10__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver6__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <approver>
+                <name>VPM_Approver7__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>Single Approval Procurement</label>
+        <name>Single_Approval_Procurement</name>
+    </approvalStep>
+    <description>Approval process for Procurement Vendor Requests.</description>
+    <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>OR(
+/*MBS/SCS Capex-MRO Vendors Create or Extend*/
+RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos;
+&amp;&amp;
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
+&amp;&amp;
+
+OR(
+CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;),
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
+)
+&amp;&amp;
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
+,
+
+/*MBS/SCS Capex-MRO Vendors Maintain*/
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;
+&amp;&amp; 
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
+&amp;&amp;
+OR(
+CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;),
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
+)
+&amp;&amp;
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
+&amp;&amp;
+(
+VPM_ProvidedUnblockUndelete__c = TRUE || 
+VPM_ProvidedBlockDelete__c = TRUE || 
+VPM_ProvidedPaymentTerms__c = TRUE 
+)
+,
+
+/*SCS Logistics*/
+RecordType.DeveloperName == &apos;VPM_VendorReqMaintain&apos;
+&amp;&amp;
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
+&amp;&amp;
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-Logistics&quot;)
+&amp;&amp;
+VPM_ProvidedPaymentTerms__c = TRUE
+,
+
+/*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Create or Extend*/
+RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos;
+&amp;&amp;
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
+&amp;&amp;
+OR(
+CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;),
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
+)
+&amp;&amp;
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
+&amp;&amp;
+(
+VPM_Company_Code_Value__c = &apos;2611&apos; || 
+VPM_Company_Code_Value__c = &apos;5449&apos; || 
+VPM_Company_Code_Value__c = &apos;5496&apos; || 
+VPM_Company_Code_Value__c = &apos;5487&apos;
+)
+,
+
+/*USCC/UASCC related MBS/SCS Capex 2611, 5449, 5496, 5487 Maintain*/
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;
+&amp;&amp;
+RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
+
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
+&amp;&amp;
+OR(
+CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;),
+CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
+)
+&amp;&amp;
+
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
+&amp;&amp;
+(
+VPM_ProvidedUnblockUndelete__c = TRUE || 
+VPM_ProvidedBlockDelete__c = TRUE || 
+VPM_ProvidedPaymentTerms__c = TRUE 
+)
+&amp;&amp;
+(
+VPM_Company_Code_Value__c = &apos;2611&apos; || 
+VPM_Company_Code_Value__c = &apos;5449&apos; || 
+VPM_Company_Code_Value__c = &apos;5496&apos; || 
+VPM_Company_Code_Value__c = &apos;5487&apos;
+)
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>ChangeReworkStatustoNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeIsInApprovalProcess</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ClearApprovalWorkerID</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ClearApprovalWorkerName</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ProcurementSubmittedYes</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ClearApprovalWorkerID</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ClearApprovalWorkerName</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ProcurementRejected</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_RequestRejectNotification</name>
+            <type>Alert</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>VPM_ChangeIsinApprovalStatus</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeOwnerToProcurement_Queue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatus_No</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_StatustoApprovalPending</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Procurement Approval</label>
+    <recallActions>
+        <action>
+            <name>ChangeReworkStatustoNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ClearApprovalWorkerID</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ClearApprovalWorkerName</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

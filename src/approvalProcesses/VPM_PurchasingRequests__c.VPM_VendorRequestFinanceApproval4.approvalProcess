@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>RecordType</field>
+        <field>VPM_WhatAreYouBuying__c</field>
+        <field>VPM_Spend__c</field>
+        <field>CreatedBy</field>
+        <field>Owner</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Turkey</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL( VPM_CountryRequestingVendor__c , &apos;Turkey&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Turkey</label>
+        <name>Finance_Turkey</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Uganda</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Uganda&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Uganda</label>
+        <name>Finance_Uganda</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Ukraine</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Ukraine&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Ukraine</label>
+        <name>Finance_Ukraine</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_UnitedKingdom</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;United Kingdom&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance United Kingdom</label>
+        <name>Finance_United_Kingdom</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Uruguay</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Uruguay&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Uruguay</label>
+        <name>Finance_Uruguay</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_USA</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;USA&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance USA</label>
+        <name>Finance_USA</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_UtdArabEmir</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Utd.Arab Emir.&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Utd.Arab Emir.</label>
+        <name>Finance_Utd_Arab_Emir</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Peru</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Venezuela&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Venezuela</label>
+        <name>Finance_Venezuela</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Vietnam</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Vietnam&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Vietnam</label>
+        <name>Finance_Vietnam</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Zambia</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Zambia&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Zambia</label>
+        <name>Finance_Zambia</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>VPM_Finance_Zimbabwe</name>
+                <type>queue</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>ISPICKVAL(VPM_CountryRequestingVendor__c, &apos;Zimbabwe&apos;)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Finance Zimbabwe</label>
+        <name>Finance_Zimbabwe</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>adhoc</type>
+            </approver>
+        </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c</field>
+                <operation>equals</operation>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Finance Last Step</label>
+        <name>Finance_Last_Step</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>The approval process triggered by the Advanced Form being submitted by the Business Requestor or FLS.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND(
+OR(
+CONTAINS(&quot;TUVWXYZ&quot;,LEFT(VPM_CRVT__c,1))
+),
+TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
+)
+&amp;&amp;
+OR
+(
+
+/*MBS/SCS Cap-MRO*/  
+
+(
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;)
+) 
+&amp;&amp; 
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
+&amp;&amp; 
+(VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE) 
+&amp;&amp; 
+RecordType.DeveloperName == &apos;VPM_VendorReqMaintain&apos;
+,
+
+/*MBS(Indirect) Others (Out Scope Proc)*/
+
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;)
+&amp;&amp; 
+VPM_Commodity_Family__c == &quot;Out of Scope Procurement&quot;
+&amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
+AND
+(
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;,
+VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE
+))
+,
+/* Freight,SCS Log*/
+(BEGINS(Text(VPM_VendorType__c),&quot;FRGT&quot;)||BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-L&quot;))
+&amp;&amp; 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;
+&amp;&amp;
+( VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
+,
+
+/*PI,3PM*/
+
+(
+BEGINS(Text(VPM_VendorType__c),&quot;PI&quot;) || (BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;) &amp;&amp; BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;3PM&quot;))
+) 
+&amp;&amp;
+(
+RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;  &amp;&amp; 
+VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE || VPM_Is_changed_VAT__c = TRUE ) 
+) 
+,
+
+/*USCC/UASCC,MBS/SCSCap,2611,5449,5496,5487*/ 
+
+(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;)) 
+&amp;&amp; 
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
+&amp;&amp; 
+(VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) 
+&amp;&amp; 
+RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos;
+&amp;&amp;
+( VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
+,
+
+/* USCC/UASCC,MBS(Indir)2611,5449,5496,5487*/
+ 
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) 
+&amp;&amp; 
+VPM_Commodity_Family__c = &quot;Out of Scope Procurement&quot;
+&amp;&amp; 
+(VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) 
+&amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
+AND
+(
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;,
+VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE || VPM_Is_changed_VAT__c = TRUE
+))
+,
+
+/*MBS Lakme,SCS Unica*/
+OR(
+(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;Lakme&quot;)),
+(BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;UNICA&quot;))
+)
+&amp;&amp; 
+(
+RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || AND(RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; &amp;&amp;(  VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
+))
+
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>ChangeReworkStatustoNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeIsInApprovalProcess</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_FinanceSubmittedYes</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_NotifiedBusinessRequesterRequestFinanceTeam</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>VPM_StatusFinanceRejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>true</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>VPM_ChangeIsinApprovalStatus</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeOwnerToFinanceQueue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeReworkStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusTrue</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_StatustoApprovalPending</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Finance Approval Turkey-Zimbabwe</label>
+    <recallActions>
+        <action>
+            <name>ChangeReworkStatustoNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangeAdvanceFormSubmittedtonull</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>false</showApprovalHistory>
+</ApprovalProcess>

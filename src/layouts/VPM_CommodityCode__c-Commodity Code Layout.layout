@@ -24,7 +24,7 @@
                 <field>VPM_Commodity_Code__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Required</behavior>
                 <field>VPM_CommodityClass__c</field>
             </layoutItems>
         </layoutColumns>
