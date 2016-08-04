@@ -80,9 +80,8 @@ public with sharing class AA_AgentAppService  {
         return retList;
     }
     
-    public static String getClusterIsNull(aa_Agent_App_User_Preference__c UserPref){
+    public static String getClusterIsNull(aa_Agent_App_User_Preference__c UserPref,String countryQueryParam){
     	String soqlquery = '';
-    	String countryQueryParam=' AND country__c=null)';
     	aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
     	if(UserPref.Country__c != null && UserPref.Cluster__c == null )
         {
@@ -97,9 +96,9 @@ public with sharing class AA_AgentAppService  {
         return soqlquery;
     }
     
-    public static String getClusterAndCountryIsNotNull(aa_Agent_App_User_Preference__c UserPref){
+    public static String getClusterAndCountryIsNotNull(aa_Agent_App_User_Preference__c UserPref,String countryQueryParam){
     	String soqlquery = '';
-    	String countryQueryParam=' AND country__c=null)';
+    	
     	aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
     	 if(UserPref.Cluster__c  != null &&  UserPref.Country__c !=null){
             soqlquery+=' AND (country__c= '+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;
@@ -110,9 +109,8 @@ public with sharing class AA_AgentAppService  {
         return soqlquery;
     }
     
-    public static String getClusterIsNotNull(aa_Agent_App_User_Preference__c UserPref){
+    public static String getClusterIsNotNull(aa_Agent_App_User_Preference__c UserPref,String countryQueryParam){
     	String soqlquery = '';
-    	String countryQueryParam=' AND country__c=null)';
     	aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
     	 if(UserPref.Cluster__c  != null && UserPref.Country__c == null ){
             //if global only selected
@@ -132,14 +130,14 @@ public with sharing class AA_AgentAppService  {
     public static String getPrepareSqlWithUserPref(aa_Agent_App_User_Preference__c UserPref){
     	String soqlquery='';
     	String countryQueryParam=' AND country__c=null)';
-    	aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
+    	//aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
     	//if country only selected
         
-        soqlquery += getClusterIsNull(UserPref);
+        soqlquery += getClusterIsNull(UserPref, countryQueryParam);
         
-        soqlquery += getClusterAndCountryIsNotNull(UserPref);
+        soqlquery += getClusterAndCountryIsNotNull(UserPref, countryQueryParam);
         
-        soqlquery += getClusterIsNotNull(UserPref);
+        soqlquery += getClusterIsNotNull(UserPref, countryQueryParam);
        
         
                 
