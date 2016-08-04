@@ -391,7 +391,7 @@ public with sharing  class ChatterPublisherHandler {
   /* ===========================================  Private helper methods =============================================================== */
     
 
-    /* parse links in post */
+    /* parse links in post ---Commneting the below section as this ais a unused private method 
     
     private static boolean parseLink(String text) {
         boolean result = false;
@@ -401,7 +401,7 @@ public with sharing  class ChatterPublisherHandler {
             }
         }
         return result;
-    }
+    } */
     
     /* create a link capability from text segment to post */
     
