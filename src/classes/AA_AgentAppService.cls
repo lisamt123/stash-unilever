@@ -90,24 +90,15 @@ public with sharing class AA_AgentAppService  {
             soqlquery +=' AND ( Country__c = '+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;   
             // get cluster id for this country
             aa_Country__c countyclustidlst=[Select  Cluster_Id__c from  aa_Country__c where Id=:UserPref.Country__c];
-            
-               
             soqlquery+= ' OR (ClusterId__c='+AA_Constants.Escapechar+countyclustidlst.Cluster_Id__c+AA_Constants.Escapechar;
             soqlquery+= countryQueryParam;
             soqlquery+=' OR  ClusterId__c= '+AA_Constants.Escapechar+globalclustId.id+AA_Constants.Escapechar+ ' )';
-        } 
-            
-              
-        //IF cluster is selected and country also selected  
-        if(UserPref.Cluster__c  != null &&  UserPref.Country__c !=null){
+        }else if(UserPref.Cluster__c  != null &&  UserPref.Country__c !=null){
             soqlquery+=' AND (country__c= '+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;
             soqlquery+=' OR (ClusterId__c = '+AA_Constants.Escapechar+UserPref.Cluster__c +AA_Constants.Escapechar;
             soqlquery+= countryQueryParam;
             soqlquery+=' OR ClusterId__c= '+AA_Constants.Escapechar+globalclustId.id+AA_Constants.Escapechar+')';
-        } 
-       
-        // IF cluster is selected and country not  selected  
-        if(UserPref.Cluster__c  != null && UserPref.Country__c == null ){
+        } else if(UserPref.Cluster__c  != null && UserPref.Country__c == null ){
             //if global only selected
             if(UserPref.Cluster__c == globalclustId.id)
             {
