@@ -1729,7 +1729,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType)&&
            !validationSettingSet.isEmpty() &&
            !isFinacialConsolidated &&
-           currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)
+           currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME) &&
+           isFinancialEditable(project,finToValidate)
            
           )
            {
@@ -1784,7 +1785,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
            GKMPhaseMapEle.Financial_Type_To_Validate__c.contains(currentFinancialType) &&
            !validationSettingSet.isEmpty() &&
            !isFinacialConsolidated &&
-           currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME)
+           currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME) &&
+           isFinancialEditable(project,finToValidate)
           ){
           	
           	
@@ -3148,9 +3150,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			//if any rollup finanicial cell is having a wrong value 
 			//then the corresponding cell in the correspondiong consolidated financial cell should be highligted red/yellow
 			// the consolidated financial validation are handled in IPM_FinancialValue_Wrapper class so a check for !isFinacialConsolidated is made here
+			// also check for isFinancialEditable is made, in effect CAPEX will be checked in this method only Non cosolidated-editable financials
+			//for Consildated financials the validations are derived from rollup financials
 			//so as to calculate validations for non consolidated financials
 	        if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
 	             !isFinacialConsolidated &&
+	             isFinancialEditable(project,finToValidate) &&
 	            (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
 	            (isFinacialConsolidated && finToValidate.Yellow_Validation_Cells__c != null && finToValidate.Yellow_Validation_Cells__c.containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
 	           isCAPEXInvalid = true;
@@ -3304,67 +3309,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				update toUpdateFinancials;
 			}
 			
-			try{
-	            if (projectId != null) 
-	            {
-	                isEditable=IPM_Utils.getIpmuserType(projectId, IPM_ConstantUtils.IPM_ROLE_FINANCE);
-	                
-	
-	                getRolloutWrappers(); 
-	                getSustainabilityPeriod(); 
-	                getVisibleTabs(); 
-	                getSectionList(); 
-	                getMisalignmentVisibility(); 
-	                getFinancials();
-	                getValidationSettingSet();
-	
-	                                 
-	                //calculating and setting the Business Impact
-	                setBusinessImpact(projectId);
-	                BI = globalbusinessImpactStr;
-	                if(BI == null || BI == IPM_ConstantUtils.BLANK){
-	                  BI = IPM_ConstantUtils.smallBI;
-	                }
-	                //upto here                 
-	                isEditMode = FALSE; 
-	                isEditModeBottomUp = false;
-	                
-	                Boolean result = validateMilestoneAndFinacialData();
-	                if(result) {
-	                    milestoneFinanceDataValidationMessage = Label.IPM_Finacial_Data_Missing;
-	                }
-	                localProjectConditions();
-	              
-	            }
-	        } 
-	        catch (Exception ex)
-	        {
-	            isError = TRUE;
-	            
-	            if(currentFinancial != null)
-	            { 
-	                errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-	            } 
-	            else 
-	            {
-	                errorMessage = Label.IPM_NO_ROLLOUTS_ERROR;
-	                isRolloutError = true;          
-	            }
-	       }
-	       
-	       if(currentFinancial == null && project!=null) /// && added as throws error if class is initialised from outside
-	       {  
-	            if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
-	            {
-	                errorMessage = Label.IPM_NO_ROLLOUTS_ERROR;
-	                isError = true;
-	                isRolloutError = true;
-	            }  
-	        }
-	            validationErrorMessage = IPM_ConstantUtils.BLANK;
-	            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-	            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-	            validateFinancialSummaryTable(currentFinancial);
+			initialiseFinancials();
 		}
 		
 	}
@@ -3393,7 +3338,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	        getCurrentFinancialType(currentFin);
 	        //flag to identify if the financial id consolidatd financial
 	        isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
-			if (financialExtIdsForCurrentTab != null && financialExtIdsForCurrentTab.contains(currentFin.Financial_External_Id__c) && !currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE))
+	        
+			
+			
+			if (financialExtIdsForCurrentTab != null && financialExtIdsForCurrentTab.contains(currentFin.Financial_External_Id__c) && !currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && isFinancialEditable(project,currentFin))
 			{
 				financialsInnovation = new IPM_FinancialWrapper();
 				financialsCalendar = new IPM_FinancialWrapper();
@@ -3538,5 +3486,110 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		return financialExtIdsForCurrentTab;
 		
     }
+    
+    /**************************************************************************************************************
+    * This method calculates if the financial is editable or not 
+    * @parmas
+    * proj : The current project
+    * finToEvaluate : The financial record to evaluate
+	**************************************************************************************************************/
+    public Boolean isFinancialEditable(IPM_Project__c proj, IPM_Financial__c finToEvaluate){
+    	
+    	Boolean isFinConsolidated = finToEvaluate.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
+    	
+    	if(proj.IPM_Phase__c != 'Ideas' && 
+		   (project.IPM_Phase__c == 'PLE' ||proj.IPM_Project_Type__c != 'Operational') && 
+		   (   project.IPM_Phase__c == 'PLE' ||
+		       (proj.IPMProject_Span__c == 'Global' && !isFinConsolidated) ||
+			   (proj.IPMProject_Span__c == 'Regional' && isFinConsolidated))  ){
+				  if((proj.IPMProject_Span__c == 'Global' ||  proj.IPMProject_Span__c == 'Regional') && isFinConsolidated && !isEditMode && !isProjectStop && toShowEditButton){
+					return true;
+				  }
+				  else{
+						return false;
+				 }
+		
+		}
+		
+		else if(!isEditMode && !isProjectStop && toShowEditButton){
+				return true;
+		}
+		else{
+			return false;
+		}
+    }
+    
+    
+    /**************************************************************************************************************
+    * This method does the reInitializing work. After the setConsolidatedFinancialValidationCells method is invoked the 
+    * Financial wrapper and Financial value wrapper is again properly generated.
+    * @parmas
+    * proj : The current project
+    * finToEvaluate : The financial record to evaluate
+	**************************************************************************************************************/
+    public void initialiseFinancials(){
+    	try{
+            if (projectId != null) 
+            {
+                isEditable=IPM_Utils.getIpmuserType(projectId, IPM_ConstantUtils.IPM_ROLE_FINANCE);
+                
+
+                getRolloutWrappers(); 
+                getSustainabilityPeriod(); 
+                getVisibleTabs(); 
+                getSectionList(); 
+                getMisalignmentVisibility(); 
+                getFinancials();
+                getValidationSettingSet();
+
+                                 
+                //calculating and setting the Business Impact
+                setBusinessImpact(projectId);
+                BI = globalbusinessImpactStr;
+                if(BI == null || BI == IPM_ConstantUtils.BLANK){
+                  BI = IPM_ConstantUtils.smallBI;
+                }
+                //upto here                 
+                isEditMode = FALSE; 
+                isEditModeBottomUp = false;
+                
+                Boolean result = validateMilestoneAndFinacialData();
+                if(result) {
+                    milestoneFinanceDataValidationMessage = Label.IPM_Finacial_Data_Missing;
+                }
+                localProjectConditions();
+              
+            }
+        } 
+        catch (Exception ex)
+        {
+            isError = TRUE;
+            
+            if(currentFinancial != null)
+            { 
+                errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            } 
+            else 
+            {
+                errorMessage = Label.IPM_NO_ROLLOUTS_ERROR;
+                isRolloutError = true;          
+            }
+       }
+	       
+       if(currentFinancial == null && project!=null) /// && added as throws error if class is initialised from outside
+       {  
+            if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+            {
+                errorMessage = Label.IPM_NO_ROLLOUTS_ERROR;
+                isError = true;
+                isRolloutError = true;
+            }  
+        }
+        validationErrorMessage = IPM_ConstantUtils.BLANK;
+        validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
+        validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
+        validateFinancialSummaryTable(currentFinancial);
+    }
+    
         
 }
