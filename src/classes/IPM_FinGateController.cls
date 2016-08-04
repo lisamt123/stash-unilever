@@ -16,6 +16,8 @@ public with sharing class IPM_FinGateController {
 
     public Integer sustainabilityPeriod {get; set;} //Sustainability Period relevant for this set of business cases. 
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
+    public Integer colSpanCalendar {get; set;} //Derived from number of financial years for Calendar Financial Table
+    public Integer totalCalendarFinYears {get; set;} //Derived from number of financial years for Calendar Financial Table
     
     public string printDoc {get; set;} //Current Document being viewed
     public boolean renderGate{get;set;}
@@ -52,10 +54,11 @@ public with sharing class IPM_FinGateController {
                               IPM_Project_Type__c, IPM_Phase__c 
                         FROM IPM_Project__C 
                         WHERE Id=:projectId];
-            getSustainabilityPeriod();
+            
             getFieldSuffix();
             getFinancials();
             getFinancialsForSummary();
+            getSustainabilityPeriod();
         }
     }
     
@@ -68,6 +71,7 @@ public with sharing class IPM_FinGateController {
     private void getSustainabilityPeriod(){
         sustainabilityPeriod = Integer.valueOf(project.Sustainability_Period__c);
         colSpan = (sustainabilityPeriod * 2) + 1;
+        colSpanCalendar = (totalCalendarFinYears-1)/2;
     }
 
     /*******************************************************************************************************
@@ -130,6 +134,8 @@ public with sharing class IPM_FinGateController {
     */
     private void getFinancials(){
         
+        totalCalendarFinYears = 0;
+        
         if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
             ExternalId = project.IPM_Project_Name__c;
         } 
@@ -168,6 +174,7 @@ public with sharing class IPM_FinGateController {
                 //Calendar Years
                 else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
                     generateFinancials(finYear, financialsCalendar);
+                    totalCalendarFinYears++;
                 }
             }
         }
