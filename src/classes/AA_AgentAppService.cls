@@ -84,13 +84,16 @@ public with sharing class AA_AgentAppService  {
     	String soqlquery = '';
     	String countryQueryParam=' AND country__c=null)';
     	aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
-    	soqlquery +=' AND ( Country__c = '+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;   
+    	if(UserPref.Country__c != null && UserPref.Cluster__c == null )
+        {
+    		soqlquery +=' AND ( Country__c = '+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;   
             // get cluster id for this country
             aa_Country__c countyclustidlst=[Select  Cluster_Id__c from  aa_Country__c where Id=:UserPref.Country__c];
             soqlquery+= ' OR (ClusterId__c='+AA_Constants.Escapechar+countyclustidlst.Cluster_Id__c+AA_Constants.Escapechar;
             soqlquery+= countryQueryParam;
             soqlquery+=' OR  ClusterId__c= '+AA_Constants.Escapechar+globalclustId.id+AA_Constants.Escapechar+ ' )';
             return soqlquery;
+        } 
     }
     
     public static String getPrepareSqlWithUserPref(aa_Agent_App_User_Preference__c UserPref){
@@ -98,10 +101,10 @@ public with sharing class AA_AgentAppService  {
     	String countryQueryParam=' AND country__c=null)';
     	aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
     	//if country only selected
-        if(UserPref.Country__c != null && UserPref.Cluster__c == null )
-        {
-            soqlquery += getCountryClusterSqlString(UserPref);
-        }else if(UserPref.Cluster__c  != null &&  UserPref.Country__c !=null){
+        
+        soqlquery += getCountryClusterSqlString(UserPref);
+        
+        if(UserPref.Cluster__c  != null &&  UserPref.Country__c !=null){
             soqlquery+=' AND (country__c= '+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;
             soqlquery+=' OR (ClusterId__c = '+AA_Constants.Escapechar+UserPref.Cluster__c +AA_Constants.Escapechar;
             soqlquery+= countryQueryParam;
