@@ -243,7 +243,7 @@
         <fields>sf4twitter__Contact__c</fields>
         <fields>sf4twitter__Type__c</fields>
         <fields>sf4twitter__Published_Date__c</fields>
-        <relatedList>sf4twitter__Twitter_Conversation__c.Parent__c</relatedList>
+        <relatedList>sf4twitter__Twitter_Conversation__c.sf4twitter__Parent__c</relatedList>
         <sortField>sf4twitter__Published_Date__c</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>  
