@@ -23,6 +23,7 @@ public with sharing class AF_OOPSRecordManager
 	private AF_OOPS_Settings__c CustomSettings {get;set;}
 	public String MatrixErrorMessage {get;set;}
 	public Boolean IsMatrixError {get;set;}
+	public Double Estimatevalue;
 	Boolean bulkmethod=false;
 	private static string className_STR=AF_OOPSRecordManager.class.getName();
 	/**********************************************************************
@@ -346,7 +347,7 @@ public with sharing class AF_OOPSRecordManager
 	{
 		AF_OOPS_Estimate__c obj = new AF_OOPS_Estimate__c();                
 		OverallPercentage = CustomSettings.Overall_Percentage__c;
-		Double Estimatevalue = 0;
+		Estimatevalue = 0;
 		BrandEstimate = BrandEstimateCollection.get(AgencyEstimate.AF_Brand_Estimate__c);       
 		if(AgencyEstimate != null)      
 		{

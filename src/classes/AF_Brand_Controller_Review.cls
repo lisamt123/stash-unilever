@@ -14,6 +14,7 @@ public with sharing class AF_Brand_Controller_Review
 	list<AF_Controller_Review__c> lstReview=new list<AF_Controller_Review__c>();
 	Map<id,set<string>> mapgroupCR = new Map<id,set<string>>();
 	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
+	public Approval.ProcessResult result;
 	/***********************************************************************************
 *  @Description: this method is used to query and check's the review for all
 *  @              records in brandestimate and update it in controller review object
@@ -82,7 +83,6 @@ public with sharing class AF_Brand_Controller_Review
 		checkReview(BrandId);
 	}
 	public void checkReview(set<id> BrandId){
-		Approval.ProcessResult result;
 		string CHECK_REVIEW='checkReview';
 		if(!mapgroups.isempty())
 		{

@@ -13,6 +13,8 @@ global with sharing class AF_brandEstimatehandlerHelper{
 	public static List<AF_Brand_Estimate__c> brandEstimateList = new  List<AF_Brand_Estimate__c>();
 	public static List<AF_Brand_Estimate__c> brandEstupdateList = new  List<AF_Brand_Estimate__c>();
 	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
+	public 	static Approval.ProcessResult result;
+	public	static Approval.ProcessResult result2;
 	/*********************************************************************************************************
 *  @Description: this method is used to update the latest catfinnace users and Agency users in BrandEstimate
 *  @name : brandEstimatehandlerMethod
@@ -63,8 +65,6 @@ global with sharing class AF_brandEstimatehandlerHelper{
 *  @return: none.
 **************************************************************************************************************/
 	public static void brandEstApprovalProcess(){
-		Approval.ProcessResult result;
-		Approval.ProcessResult result2;
 		for(ID wid : brandWorkitem.keySet()){
 			Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
 			req.setComments('Rejecting for change Approver'); //RejectComment

@@ -14,9 +14,9 @@ public class AF_BonusMatrixOverrideController_Test
     static user userforBonusMatrixOverride;
     private static string CHPARENTID='CHParentId';
     private static string ID='id';
-    private static AF_ViewAllController viewCtrl1;
-    private static AF_ViewAllController viewCtrl2;
-    private static AF_ViewAllController viewCtrl3;
+    public static AF_ViewAllController viewCtrl1;
+    public static AF_ViewAllController viewCtrl2;
+    public static AF_ViewAllController viewCtrl3;
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_bonusMatrixOverrideController
