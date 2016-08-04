@@ -83,20 +83,20 @@ public with sharing class AA_AgentAppService  {
     public static String getPrepareSqlWithUserPref(aa_Agent_App_User_Preference__c UserPref){
     	String soqlquery='';
     	String countryQueryParam=' AND country__c=null)';
+    	aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
     	//if country only selected
         if(UserPref.Country__c != null && UserPref.Cluster__c == null )
         {
             soqlquery +=' AND ( Country__c = '+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;   
             // get cluster id for this country
             aa_Country__c countyclustidlst=[Select  Cluster_Id__c from  aa_Country__c where Id=:UserPref.Country__c];
-            aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
+            
                
             soqlquery+= ' OR (ClusterId__c='+AA_Constants.Escapechar+countyclustidlst.Cluster_Id__c+AA_Constants.Escapechar;
             soqlquery+= countryQueryParam;
             soqlquery+=' OR  ClusterId__c= '+AA_Constants.Escapechar+globalclustId.id+AA_Constants.Escapechar+ ' )';
         } 
             
-        aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
               
         //IF cluster is selected and country also selected  
         if(UserPref.Cluster__c  != null &&  UserPref.Country__c !=null){
@@ -120,14 +120,7 @@ public with sharing class AA_AgentAppService  {
             }                                                                       
         }
                 
-        soqlquery += getPrepareSqlStringWithUserPref(UserPref);
-        
-        return soqlquery;
-    }
-    
-   	public static String getPrepareSqlStringWithUserPref(aa_Agent_App_User_Preference__c UserPref){
-   		String soqlquery='';
-   		if(UserPref.Agent_App_Unilever_Brand__c!=null)
+        if(UserPref.Agent_App_Unilever_Brand__c!=null)
         {
           soqlquery +=' AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+UserPref.Agent_App_Unilever_Brand__c+AA_Constants.Escapechar;
         }                
@@ -160,8 +153,10 @@ public with sharing class AA_AgentAppService  {
         {
             soqlquery +=' AND Reporting_on__c = '+AA_Constants.Escapechar+UserPref.ReportingOn__c+AA_Constants.Escapechar;
         }
+        
         return soqlquery;
-   	}
+    }
+    
     @AuraEnabled
     public static AA_ApplicationWrapperObjLtng getRetriveAllAgentReports(String filterType, String sortType, Integer limitRecords, Integer offSet, String applyFilter, String clusterId, String countryId,String unileverBrandId, String retailerId, String reportingOnId,String recordType,String competitorBrandId,String competitorId, String categoryId, String topicId){
         AA_WrapperClass.AgentAppDataRequest objAgentAppDataRequest = new  AA_WrapperClass.AgentAppDataRequest();
