@@ -1,0 +1,1 @@
+{"query":{"query":"{&quot;measures&quot;:[[&quot;avg&quot;,&quot;RUN_TIME&quot;]],&quot;groups&quot;:[[&quot;TIMESTAMP_DERIVED_Year&quot;,&quot;TIMESTAMP_DERIVED_Month&quot;,&quot;TIMESTAMP_DERIVED_Day&quot;]],&quot;filters&quot;:[[&quot;PAGE_NAME&quot;,[&quot;&#x2F;apex&#x2F;IPM_ProjectSearchPage&quot;],&quot;in&quot;]]}","version":-1.0}}

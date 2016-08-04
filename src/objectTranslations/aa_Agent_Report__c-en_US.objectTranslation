@@ -44,6 +44,11 @@
     </fields>
     <fields>
         <label><!-- Cluster --></label>
+        <name>ClusterId__c</name>
+        <relationshipLabel><!-- Agent Reports --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cluster --></label>
         <name>Cluster_Name__c</name>
     </fields>
     <fields>
@@ -72,6 +77,14 @@
     <fields>
         <label><!-- Is Accepted Code of Conduct --></label>
         <name>Is_Accepted_Code_of_Conduct__c</name>
+    </fields>
+    <fields>
+        <label><!-- OtherBrandName --></label>
+        <name>OtherBrandName__c</name>
+    </fields>
+    <fields>
+        <label><!-- OtherCompanyName --></label>
+        <name>OtherCompanyName__c</name>
     </fields>
     <fields>
         <label><!-- RecordTypeName --></label>
@@ -214,6 +227,14 @@
         <help><!-- List Of sub topics inserted for Competitor Report --></help>
         <label><!-- Sub Topics --></label>
         <name>Sub_Topics__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF Mention User --></label>
+        <name>TF_Mention_User__c</name>
+    </fields>
+    <fields>
+        <label><!-- TF Topic Name --></label>
+        <name>TF_Topic_Name__c</name>
     </fields>
     <fields>
         <label><!-- Topic --></label>
