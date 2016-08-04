@@ -37436,9 +37436,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
         <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
     </layoutAssignments>
     <recordTypeVisibilities>
