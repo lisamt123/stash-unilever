@@ -3,6 +3,10 @@
     <label>Home Care_Household Care</label>
     
     <values>
+        <field>Category_Group_Category_Name__c</field>
+        <value xsi:type="xsd:string">Home Care_Household Care</value>
+    </values>
+    <values>
         <field>Greenhouse_Gases_g__c</field>
         <value xsi:type="xsd:boolean">true</value>
     </values>
