@@ -51,12 +51,12 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 			count++;
 		}
 		try{
-			Approval.ProcessResult result;
 			update brandEstimate.Controller_Reviews__r;
 			//Check if all reviews have been completed
 			if (count == brandEstimate.Controller_Reviews__r.size()){
 				brandEstimate.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WIHTCMCO;
 				update brandEstimate;
+				Approval.ProcessResult result;
 				Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
 				request.setObjectId(brandEstimate.Id);
 				request.setComments(Label.AF_Submitted);
