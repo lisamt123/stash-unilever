@@ -490,3 +490,9 @@ input.misalignedField{border:2px solid red;}
 .attchTable tr{border-bottom:1px solid #ddd;padding:2px 0px;}
 .attchImgtd{width:10%;}
 .attchTable td{padding: 4px 0px;}
+.modMtop{margin-top: 7px;display: block;}
+
+table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cellWidth {
+    float: left;
+    width: 50%;
+}

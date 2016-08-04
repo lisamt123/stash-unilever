@@ -795,7 +795,7 @@ input.misalignedField{border:2px solid red;}
 .glbValSubLeft,.glbValSubRight{width:50%;float:left;}
 .glbValM{width:20%;float:left;border-right: 1px solid #ddd;padding: 5px;min-height: 40px;}
 .glbValM2{width:33%;float:left;border-right: 1px solid #ddd;padding: 5px;min-height: 40px;}
-.glbsubHeadM,.glbsubHeadM2{font-size: 14px;color: #364354;font-weight: bold;}
+.glbsubHeadM,.glbsubHeadM2{font-size: 13px;color: #364354;font-weight: bold;}
 .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
 .glbfinvalContainer{float: left;max-height: 337px;overflow: auto;width:100%;}
 .glbSeclist{width:50%;float:left;}
@@ -804,8 +804,9 @@ input.misalignedField{border:2px solid red;}
 
 /* Financial Action Standards Inverse styles */
 .ipmFinancetable.inverse{width:100%;max-width:100%;}
-.ipmFinancetable.inverse .finproject{font-size: 14px;color: #364354;font-weight: bold;float: none;}
+.ipmFinancetable.inverse .finproject{font-size: 12px;color: #364354;font-weight: bold;float: none;padding: 0px 0px;border-right: 0px;}
 .ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+.custInverseWidth{width:11%;}
 
 /* Market Performance Appendix Styles */
 .apexp {padding: 0px 20px;}
