@@ -17,7 +17,7 @@ public with sharing class Core_NC_NewsArticleHandler{
                         if(strGrp != '' && strGrp != null && newsArticle.Site_Name__c==siteDetails && newsArticle.Site_Type__c==siteDetails){
                                 //Format a FeedItem to post on group wall.
                                 feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body =postTitle , ParentId =strGrp,
-                                LinkURL = newsArticle.Sharepoint_URL__c+newsArticle.Post_GA_URL__c,  CreatedById = postedById));
+                                LinkURL = newsArticle.Sharepoint_URL__c+newsArticle.Post_GA_URL__c, Title = newsArticle.Name,  CreatedById = postedById));
                         }
                             //create chatter post when site type and site name is News Centre:News Centre Enhancements
                         else if(strGrp != '' && strGrp != null){

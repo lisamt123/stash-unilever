@@ -43,22 +43,22 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
                            
                           }
                          //check if  if newly inserted FeedItem body is not Null 
-                         if(objFI.Body!= null  )  {
+                         if(objFI.Body!= null && objFI.Type!='QuestionPost' )  {
                            if( objFI.Body.contains('?')  && resultGrp==true){
                               
-                               //Change FeedItem Type to Qyestion Post
+                               //Change FeedItem Type to Question Post
                                  
                                   objFI.Type = 'QuestionPost'; 
-                                  objFI.Title=objFI.Body;
+                                  objFI.Title='Converting To Question Post';
                                   resultGrp=false;
                                }
                              }
                         // check if newly inserted FeedItem post title is not null     
-                        if(objFI.Title!= null ) {
+                        if(objFI.Title!= null && objFI.Type!='QuestionPost' ) {
                            if( objFI.Title.contains('?')  && resultGrp==true){
                             
                                //Change FeedItem Type to Question Post 
-                                  objFI.Title=objFI.Body;
+                                  objFI.Title='Converting To Question Post';
                                   objFI.Type = 'QuestionPost'; 
                                   resultGrp=false;
                                }
