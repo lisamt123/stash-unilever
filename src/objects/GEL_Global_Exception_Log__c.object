@@ -62,11 +62,23 @@
         <label>Country</label>
         <picklist>
             <picklistValues>
+                <fullName>Country_Saudi Arabia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Country_Bangladesh</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Country_Belgium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_Benelux</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -78,11 +90,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Country_USCC CEE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_CEE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Country_China</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_China, Country_Japan</fullName>
+                <fullName>Country_Taiwan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -90,15 +110,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Corporate Centre Netherlands</fullName>
+                <fullName>MCO_DACH</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Côte D&apos;Ivoire</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Country_Czech Republic</fullName>
+                <fullName>CountryGroup_South Central Europe</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -110,11 +126,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Ghana</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Country_Hong Kong</fullName>
+                <fullName>Global</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -134,27 +146,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Kenya</fullName>
+                <fullName>MCO_Middle America</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Mexico</fullName>
+                <fullName>Country_Corporate Centre Netherlands</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Netherlands</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Country_Nigeria</fullName>
+                <fullName>Country_China, Country_Japan</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Country_Pakistan</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Country_Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -170,14 +174,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Russian Federation</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Country_Saudi Arabia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Country_Slovakia</fullName>
                 <default>false</default>
             </picklistValues>
@@ -190,7 +186,31 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Sri Lanka</fullName>
+                <fullName>MCO_UASCC, MCO_USCC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_UK/Ireland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_North America MCO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_Nordics</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -198,11 +218,43 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Switzerland</fullName>
+                <fullName>Country_Mexico</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Taiwan</fullName>
+                <fullName>Country_Turkey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Ghana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Nigeria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Kenya</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Russian Federation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Côte D&apos;Ivoire</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Tunisia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_UAPL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -214,15 +266,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Tunisia</fullName>
+                <fullName>Country_Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Turkey</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Country_UAPL ESA</fullName>
+                <fullName>Country_Philippines</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -230,75 +278,19 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_United Kingdom</fullName>
+                <fullName>MCO_West Africa</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_USCC CEE</fullName>
+                <fullName>Country_UAPL ESA</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Venezuela</fullName>
+                <fullName>Country_Czech Republic</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Country_Vietnam</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CountryGroup_South Central Europe</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_ANZ</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_Benelux</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_CEE</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_DACH</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_Mexico and Greater Caribbean</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_Middle America</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_Nordics</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_North America MCO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_Southern Cone MCO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_UAPL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_UASCC, MCO_USCC</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MCO_UK/Ireland</fullName>
+                <fullName>Country_Switzerland</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -306,10 +298,18 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MCO_West Africa</fullName>
+                <fullName>MCO_Southern Cone MCO</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>MCO_Mexico and Greater Caribbean</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -319,9 +319,10 @@
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
-        <required>false</required>
+        <length>131072</length>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
     </fields>
     <fields>
         <fullName>ETC_BO_Owner__c</fullName>
@@ -557,6 +558,41 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>REF_Number2__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( REF__c &lt;&gt; null, REF__c , Name )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>REF Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>REF_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;&amp;Id ,
+IF( REF__c  &lt;&gt; null,  REF__c ,  Name )
+,&apos;_self&apos; 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>REF Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>REF__c</fullName>
+        <externalId>false</externalId>
+        <label>REF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Resolution_Comments__c</fullName>
         <externalId>false</externalId>
         <label>Resolution Comments</label>
@@ -601,8 +637,8 @@
     <label>GEL Global Exception Log</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>Exception_Raiser__c</columns>
+        <columns>REF_Number__c</columns>
+        <columns>Legacy_Exception_Raiser__c</columns>
         <columns>Country__c</columns>
         <columns>Status__c</columns>
         <columns>Process__c</columns>
@@ -612,7 +648,7 @@
     </listViews>
     <nameField>
         <displayFormat>GEL-{0000}</displayFormat>
-        <label>REF Number</label>
+        <label>G_REF Number</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>GEL Global Exception Logs</pluralLabel>
@@ -1463,22 +1499,25 @@
         </picklistValues>
     </recordTypes>
     <searchLayouts>
-        <customTabListAdditionalFields>Exception_Raiser__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>REF_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Legacy_Exception_Raiser__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Country__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Process__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>Exception_Raiser__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Country__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Process__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>Exception_Raiser__c</lookupPhoneDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>REF_Number__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>REF_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Legacy_Exception_Raiser__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Country__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Process__c</lookupPhoneDialogsAdditionalFields>
-        <searchResultsAdditionalFields>Exception_Raiser__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Country__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Process__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>REF_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Legacy_Exception_Raiser__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
 </CustomObject>

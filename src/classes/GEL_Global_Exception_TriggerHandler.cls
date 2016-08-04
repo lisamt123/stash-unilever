@@ -68,12 +68,7 @@ public with sharing class GEL_Global_Exception_TriggerHandler implements ITrigge
             for(Global_Exception_Users__c geu : listuseremails){            
                     setUserEmails.add(geu.Email__c);                
             }        
-            listUsers = [select id,Username from user where Username in:setUserEmails];
-            if(!listUsers.isEmpty()){
-                for(user u: listUsers){
-                    mapuserid.put(u.Username,u.id);
-                }
-            }
+
             for(GEL_Global_Exception_Log__c GE : (List<GEL_Global_Exception_Log__c>) Trigger.new){
                 Map<id, GEL_Global_Exception_Log__c> oldMap1 = (Map<Id,GEL_Global_Exception_Log__c >) Trigger.oldMap;
                 if(GE.ETC_BO_Owner__c != null && GE.ETC_BO_Owner__c != oldMap1.get(GE.id).ETC_BO_Owner__c ){
