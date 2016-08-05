@@ -1,7 +1,4 @@
 <aura:component implements="force:appHostable" controller="MB_Controller_Class">
-  <!-- <ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
-    <ltng:require styles="/resource/EA_StaticResource/assets/fonts"/>
--->
     <aura:attribute name="CurrentMonth" type="string"/>
     <aura:attribute name="deviceId" type="String"/>
     <aura:attribute name="userName" type="String"/> 
@@ -102,7 +99,7 @@
                      </aura:if>
                     <div class="slds-text-body--regular data_value">{!v.usageData.totalDataUsage} MB</div>
                 </div>
-                <div class="slds-text-body--small Voice">Voice<br/>
+                <div class="slds-text-body--small Voice">Calls<br/>
                     <aura:if isTrue="{!v.usageData.callVariance==true}">
                        <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
                      </aura:if>

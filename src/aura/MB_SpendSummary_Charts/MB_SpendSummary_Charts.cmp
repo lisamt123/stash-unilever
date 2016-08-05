@@ -81,7 +81,7 @@
                     </div>
                
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">VOICE (Min)</div>
+                    <div class="slds-text-body--small chart_main">CALLS (Min)</div>
                     <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
                      <div class="chartstext">
                         <div style="width:25%;float:left">
@@ -134,7 +134,7 @@
                     </div>
                 </div>
                 <div class="car_main">
-                    <div class="slds-text-body--small chart_main">VOICE  (Min)</div>
+                    <div class="slds-text-body--small chart_main">CALLS  (Min)</div>
                     <div class="slds-text-body--regular chart_sub">You -vs- Your Colleagues</div>
                     <div class="Insights">
                         <div class="slds-text-body--regular">
