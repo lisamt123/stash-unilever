@@ -1,0 +1,157 @@
+<aura:component implements="force:appHostable" controller="MB_Controller_Class">
+  <!-- <ltng:require styles="/resource/CFTA_Style/styles/salesforce-lightning-design-system.css"/>
+    <ltng:require styles="/resource/EA_StaticResource/assets/fonts"/>
+-->
+    <aura:attribute name="CurrentMonth" type="string"/>
+    <aura:attribute name="deviceId" type="String"/>
+    <aura:attribute name="userName" type="String"/> 
+    <aura:attribute name="showDetails" type="boolean"/>
+    <aura:attribute name="totalSpend" type="decimal"/>
+    <aura:attribute name="selectedMonth" type="string"/>
+    <aura:attribute name="pageName" type="string" default="MB_Usage_Comp"/>
+    <aura:attribute name="usageData" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="showspinner" type="boolean" default="true"/>
+    <style>
+        .message_body{
+        	background:#eef1f6;
+            min-height:500px;
+            color: #033A69;	
+        }
+        .trend{
+        width: 20px;
+        float: left;
+		margin-left: 7%;
+    	margin-right: -24%;
+        }
+        .SMS .trend{
+        margin-right:-45%;
+        }
+        .Data,.SMS,.Voice{
+            height: 50px;
+            float: left;
+            width: 50%;
+            text-align: center;
+            border: 1px solid #eef1f6;
+            padding: 9px;
+            background: #fff;
+        }
+
+        .I_PASS{
+            float:left;
+            width:50%;
+            text-align:center;
+            border: 1px solid #eef1f6;
+            padding: 9px;
+            background: #fff;
+            height: 50px;
+        }
+        .amount{
+        	font-weight:bold;
+        }
+        .navbar-fixed-top{
+            height: 42px;
+        }
+        .usage-text-summary{
+        	padding: 15px 20px 0px 20px;
+        }
+        .drop-down{
+            width: 14px;
+            background: white;
+            position: absolute;
+            right: 5%;
+            top: 93px;
+        }
+        .data_value{
+            font-weight:bold;
+        	margin-top:3px;
+        }
+       .usage-box{
+        margin-top:3px;
+        }
+        @media screen and (max-width:320px){
+                .trend{
+        width: 20px;
+        float: left;
+        margin-left: 15%;
+        margin-right:-10%;
+        }
+        .SMS .trend{
+        margin-right:-15%;
+        }
+        .message_body {
+        min-height: 460px !important;
+        }
+        }
+    </style>
+ <aura:if isTrue="{!v.showspinner=='false'}">  
+   <c:MB_Mobile_billing_Common pagename="{!v.pageName}" selectedmonth="{!v.selectedMonth}"/>
+   <c:MB_SpendSummary_headerCommon month="{!v.CurrentMonth}" />
+   <aura:if isTrue="{!v.showDetails==true}">
+    <div class="slds-text-heading--small message_body">
+        <div class="usage-text-summary">
+            Hi {!v.userName},<br/>Your total spend for {!v.CurrentMonth} is <span class="amount">{!v.usageData.userCurrency}{!v.totalSpend}</span><br/><br/>Usage
+        </div>
+        <div class="usage-box">
+                <div class="slds-text-body--small Data">Data<br/>
+                    <aura:if isTrue="{!v.usageData.dataVariance==true}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
+                     </aura:if>
+                    <aura:if isTrue="{!v.usageData.dataVariance==false}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
+                     </aura:if>
+                    <div class="slds-text-body--regular data_value">{!v.usageData.totalDataUsage} MB</div>
+                </div>
+                <div class="slds-text-body--small Voice">Voice<br/>
+                    <aura:if isTrue="{!v.usageData.callVariance==true}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
+                     </aura:if>
+                    <aura:if isTrue="{!v.usageData.callVariance==false}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
+                     </aura:if>
+                    <div class="slds-text-body--regular data_value">{!v.usageData.totalCallUsagePattern}</div>
+                </div>
+                <div class="slds-text-body--small SMS">SMS<br/>
+                    <aura:if isTrue="{!v.usageData.smsVariance==true}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
+                     </aura:if>
+                    <aura:if isTrue="{!v.usageData.smsVariance==false}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
+                     </aura:if>
+                    <div class="slds-text-body--regular data_value">{!v.usageData.totalMessageUsage}</div>
+                </div> 
+                <div class="slds-text-body--small I_PASS">iPASS<br/>
+                    <aura:if isTrue="{!v.usageData.ipassVariance ==true}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Up.svg" /></span>
+                     </aura:if>
+                    <aura:if isTrue="{!v.usageData.ipassVariance ==false}">
+                       <span><img class="trend trend-down" src="/resource/MB_Icons/MB_Icons/Trend_Down.svg" /></span>
+                     </aura:if>
+                    <div class="slds-text-body--regular data_value">{!v.usageData.totalIpassUsage} MB</div>
+                </div>
+                <div style="clear:both"></div>
+        </div>
+        <div  class="usage-text-summary">Insights</div>
+        <c:MB_Usage_Insights deviceId="{!v.deviceId}" CurrentMonth="{!v.CurrentMonth}" /> 
+        
+    </div>
+   </aura:if>
+    <aura:if isTrue="{!v.showDetails == false}">
+        <div class="slds-text-heading--small" style="padding:15px;" >
+                <span>Hi {!v.userName}, 
+                   You don’t have any spend for {!v.CurrentMonth}.  
+                </span>
+              </div>
+      
+    </aura:if>
+     <aura:set attribute="else">
+               <div class="slds-spinner_container">
+                  <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+               </div>
+         </aura:set>
+    </aura:if>	
+    <c:MB_Action_bar componentName="MB_Usage_Comp" selectedMonth="{!v.CurrentMonth}"/>
+</aura:component>
