@@ -25804,11 +25804,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>aa_Agent_Report__c.ClusterId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>aa_Agent_Report__c.Cluster_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
