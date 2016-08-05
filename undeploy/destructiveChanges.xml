@@ -3,7 +3,6 @@
     <types>
 		<members>Unilever - Ideas Admin</members>
 		<members>FA - Agency</members>
-		<members>FA - Facility Manager</members>
 		<members>FA - Instructor</members>
 		<members>FA - Participant1</members>
 		<members>FA-Participant-Planner - Central CB4L Hybrid User PLATFORM</members>
@@ -20,5 +19,13 @@
 		<members>Core NT Profile</members>	
 		<name>Profile</name>	
     </types> 
+    <types>
+    	<members>Core_NC_Test_NewsApp</members>
+    	<name>ApexClass</name>
+    </types>
+    <types>
+    	<members>Category</members>
+    	<name>ApexPage</name>
+    </types>
 	
 </Package>
