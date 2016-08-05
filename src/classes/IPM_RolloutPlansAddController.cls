@@ -98,7 +98,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     public Set<Id> projPurgeIdSet = new Set<Id>();
 	public Map<String,IPM_Country__c> existingRelatedCountriesMap;
 	public Map<String,Set<String>> relatedMCOAndCountry;
-        
+    
+        public String marketClusterName{get {
+            if(project.Market_Cluster_Name__c != '') {
+                return project.Market_Cluster_Name__c;
+            } else{ 
+                return null;
+            }
+        } set;}
+	    
     /**
     *  @Description Constructor of the class 
     *  @name IPM_RolloutPlansAddController
@@ -151,7 +159,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     {    
         try
         {
-            if(searchCountry!=null)
+            if(searchCountry!=null && searchCountry!='')
             {
                 //GET A LIST OF ALL IPM COUNTRIES
                 String likePerStr='%';
@@ -171,7 +179,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
               
                 for(MDO_Geography__c geography : Database.query(queryString))
                 {
-                      mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
+                    if(((marketClusterName==geography.Name || marketClusterName==geography.parent_L2__r.Name || 
+                		marketClusterName==geography.parent_L2__r.parent_L2__r.Name) && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                		|| project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+                	{
+                		mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
+                	}
+                	else
+                	{
+                		continue;
+                	}
                 }
                 if(!mapUnileverCountries.isEmpty())
                 {
