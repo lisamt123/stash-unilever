@@ -551,6 +551,22 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	          {
 	            countryWrapper.noRolloutDisabled = true;
 	          }
+                    if(setCountryCodes!=null && setCountryCodes.contains(countryWrapper.code))  
+                    {
+                        countryWrapper.rolloutStatus = IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE;
+                        countryWrapper.selected = true;
+                    }
+                    if(setCountryCodesMCOs!=null && setCountryCodesMCOs.contains(countryWrapper.code))
+                    {
+                        countryWrapper.rolloutStatus = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO; 
+                        countryWrapper.selected = true;
+                    }
+                    
+                    if(setCountryNoRolls!=null && setCountryNoRolls.contains(countryWrapper.code))
+                    {
+                        countryWrapper.rolloutStatus = IPM_ConstantUtils.NO_ROLLOUT; 
+                        countryWrapper.selected = true; 	 	
+                    }
                         
                     lstCountryWrappers.add(countryWrapper);
                     

@@ -349,11 +349,11 @@
                                 <apex:param value="{!currentFinancial.NPV_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
-                        <!-- Charter Gate Approved -->		
-						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
-                            <apex:outputText value="{0, number, ###,###,###.##}">		
-                                <apex:param value="{!currentFinancial.NPV_Charter__c}" />		
-                            </apex:outputText>		
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{0, number, ###,###,###.##}">       
+                                <apex:param value="{!currentFinancial.NPV_Charter__c}" />       
+                            </apex:outputText>      
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -382,9 +382,9 @@
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Global__c}"/>
                         </apex:outputPanel>
-                        <!-- Charter Gate Approved -->		
-						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
-                            <apex:outputText value="{!currentFinancial.IRR_Charter__c}"/>		
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.IRR_Charter__c}"/>       
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -411,9 +411,9 @@
                                 <apex:param value="{!currentFinancial.Payback_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
-                        <!-- Charter Gate Approved -->		
-						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
-                            <apex:outputText value="{!currentFinancial.Payback_Charter__c}"/>		
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.Payback_Charter__c}"/>       
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -449,9 +449,9 @@
                                 <apex:param value="{!currentFinancial.CAPEX_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
-						<!-- Charter Gate Approved -->		
-						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
-                            <apex:outputText value="{!currentFinancial.CAPEX_Charter__c}"/>		
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.CAPEX_Charter__c}"/>     
                         </apex:outputPanel>
                         <!-- Regional Values -->
                         <!-- Condition for checking field suffix is regional or not -->
@@ -483,7 +483,7 @@
                         </apex:outputPanel>
                         
                         <!-- Charter Gate Approved -->
-						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.BIC_Charter__c}"/>
                         </apex:outputPanel>
 
@@ -520,9 +520,9 @@
                             </apex:outputText>
                         </apex:outputPanel>
                         
-                        <!-- Charter Gate Approved -->		
-						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
-                            <apex:outputText value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Charter__c}"/>		
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Charter__c}"/>     
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -553,9 +553,9 @@
                             </apex:outputText>
                         </apex:outputPanel>
                         
-                        <!-- Charter Gate Approved -->		
-						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
-                            <apex:outputText value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Charter__c}"/>		
+                        <!-- Charter Gate Approved -->      
+                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">     
+                            <apex:outputText value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Charter__c}"/>        
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -590,7 +590,7 @@
                 <th class="blueBorder" scope="col" colspan="3" width="35%">
                     <span class="finproject"> {!currentFinancial.Display_Name__c}</span>
                 </th>
-                <th class="" scope="col" colspan="{!colSpan}" width="65%">
+                <th class="" scope="col" colspan="{!totalCalendarFinYears}" width="65%">
                     <span class="finproject">{!$Label.IPM_Fin_Calendar}</span>
                     <span class="fintotal"> {!sustainabilityPeriod}</span>
                 </th>
@@ -603,8 +603,8 @@
             <tr class="fintleblubg">
                 <td colspan="3" rowspan="2" class="blueBorder btmBleBorder"></td>
                 <td class="y0BorderGay"></td>
-                <td class="finproject" colspan="{!sustainabilityPeriod}">{!$Label.IPM_GROSS_P_L}</td>
-                <td class="iPLBorderGay finproject" colspan="{!sustainabilityPeriod}">{!$Label.IPM_INCREMENTAL_P_L}</td>
+                <td class="finproject" colspan="{!colSpanCalendar}">{!$Label.IPM_GROSS_P_L}</td>
+                <td class="iPLBorderGay finproject" colspan="{!colSpanCalendar}">{!$Label.IPM_INCREMENTAL_P_L}</td>
             </tr>
             <tr class="fintleblubg btmBleBorder finproject">
                 <!--<td colspan="3"></td>-->

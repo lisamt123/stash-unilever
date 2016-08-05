@@ -3,6 +3,10 @@
     <label>Refreshments_Ice Cream</label>
     
     <values>
+        <field>Category_Group_Category_Name__c</field>
+        <value xsi:type="xsd:string">Refreshments_Ice Cream</value>
+    </values>
+    <values>
         <field>Greenhouse_Gases_g__c</field>
         <value xsi:type="xsd:boolean">true</value>
     </values>
