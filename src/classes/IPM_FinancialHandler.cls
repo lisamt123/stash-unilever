@@ -87,6 +87,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 
             if(Trigger.isUpdate) 
             { 
+	            // By passing trigger call for copy over snapshot details  
+		            if(((IPM_Financial__c)Trigger.Old[0]).Charter_Approved__c == ((IPM_Financial__c)Trigger.New[0]).Charter_Approved__c || ((IPM_Financial__c)Trigger.Old[0]).Contract_Approved__c == ((IPM_Financial__c)Trigger.New[0]).Contract_Approved__c || 
+		              ((IPM_Financial__c)Trigger.Old[0]).MR_Approved__c == ((IPM_Financial__c)Trigger.New[0]).MR_Approved__c || ((IPM_Financial__c)Trigger.Old[0]).MD_Approved__c == ((IPM_Financial__c)Trigger.New[0]).MD_Approved__c)
+		              {
             	Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
             	
             	Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
@@ -128,19 +132,12 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                if(!financialDetailMap.isEmpty())
 	                {
 	              		IPM_FinancialHelper.manageFinancialYears(targetLaunchChangedDateMap,financialDetailMap,upsertConsolidatedFinancialYearMap);	
-	                	if(!upsertConsolidatedFinancialYearMap.isEmpty())
-		                {
 		                	upsert upsertConsolidatedFinancialYearMap.values() External_Id__c;
 		                }
-	                }
 	                if(!targetLaunchChangedDateMap.isEmpty())
 		            { 
 		                IPM_FinancialHelper.updateFinancialYearTables(targetLaunchChangedDateMap,financialDetailMap,updateFinancialYearMap);
-
-		            	if(!updateFinancialYearMap.isEmpty())
-		            	{
 		            		update updateFinancialYearMap.values();
-		            	}
 		            }
 				}
 				// Once the Consolidated Years have been added start the process for Calculating Everything from Strach.
@@ -285,48 +282,28 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                if(!financialDetailMap.isEmpty())
 	                {
 	                    // insert new financial Years based on Sustainability Period. 
-	                    if(!susChangedFinancialMap.isEmpty())
-	                    {
 	                        IPM_FinancialHelper.processSustainabilityPeriod(susChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap);
-	                    }
 	                    
 	                    // Update Financial Volume Type to Child Financial Years.
-	                    if(!volumeTypeChangedFinancialMap.isEmpty())
-	                    {
 	                        IPM_FinancialHelper.updateFinancialYearVolumeType(volumeTypeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap);
-	                    }
 	                    
 	                    // Update Approval Fields on Financial Years
-                        if(!approvalChangedFinancialMap.isEmpty()) 
-                        {
                             IPM_FinancialHelper.copyOverFinancialFields(approvalChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToApprovalChangeFieldMap);
-                        }
                         
-                        if(!activeChangedFinancialMap.isEmpty())
-                        {
                         	IPM_FinancialHelper.copyOverFinancialFields(activeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToactiveChangedFieldMap);
-                        }
                         
                         // Additional Field Copy Over from Financial To Financial Years
-                        if(!additionalFieldChangedFinancialMap.isEmpty()) 
-                        {
                         	IPM_FinancialHelper.copyOverFinancialFields(additionalFieldChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToaddtChangedFieldMap);
-                        }
                         
                         
                         // Update Copy Over values to Financial Years
-                        if(!copyOverChangedFinancialMap.isEmpty())
-                        {
                             IPM_FinancialHelper.copyOverFinancialFields(copyOverChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialTocopyOverChangedFieldMap);
-                        }
-	
-	                    if(!consolidationChangedFinancialList.isEmpty())
-			            {   
+		                        
 			                IPM_FinancialHelper.initializeConsolidation(consolidationChangedFinancialList,oldFinancialMap,financialDetailMap,upsertConsolidatedFinancialMap,changedFinancialFieldSet); 
-			            }
 	                }
 	            }
             } 
+			}
             
             if(!upsertFinancialYearMap.isEmpty())  
 	        {

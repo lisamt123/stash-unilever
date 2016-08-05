@@ -222,6 +222,10 @@ public with sharing class IPM_FinancialHelper
     
     public static void initializeConsolidation(List<IPM_Financial__c> consolidationChangedFinancialList,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,Set<String> fieldsToConsolidate) 
     {
+        if(consolidationChangedFinancialList.isEmpty()){
+        	return;
+        }
+        
         Map<String,Map<Id,sObject>> consolidatedToRelatedFinancialMap = new Map<String,Map<Id,sObject>>();
         Map<String,sObject> consolidatedFinancialMap = new Map<String,sObject>();
         
@@ -280,6 +284,9 @@ public with sharing class IPM_FinancialHelper
         
     public static void updateFinancialYearVolumeType(Map<Id,IPM_Financial__c> volumeTypeChangedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
+        if(volumeTypeChangedFinancialMap.isEmpty()){
+        	return;
+        }
         for(IPM_Financial__c financial : volumeTypeChangedFinancialMap.values())
         { 
             if(financialDetailMap.containsKey(financial.Id))
@@ -314,6 +321,9 @@ public with sharing class IPM_FinancialHelper
     ************************************************************************************************************/
     public static void processSustainabilityPeriod(Map<Id,IPM_Financial__c> changedSustainabilityMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
+        if(changedSustainabilityMap.isEmpty()){
+        	return;
+        }
         for(IPM_Financial__c financial : changedSustainabilityMap.values())
         {
             if(financialDetailMap.containsKey(financial.Id))
@@ -616,6 +626,10 @@ public with sharing class IPM_FinancialHelper
     ***************************************************************************************************************/
     public static void copyOverFinancialFields(Map<Id,IPM_Financial__c> changedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<Id,Set<String>> financialToChangedFeilds)
     {
+        if(changedFinancialMap.isEmpty()){
+        	return;
+        }
+        
         for(Id financialID : changedFinancialMap.KeySet()) 
         {
             IPM_Financial__c changedFinancialDetail = financialDetailMap.get(financialID);
