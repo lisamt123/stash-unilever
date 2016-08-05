@@ -43,6 +43,15 @@
         <label>Water(litres)</label>
         <type>Checkbox</type>
     </fields>
+	 <fields>
+        <fullName>Category_Group_Category_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Category Group Category Name</label>
+        <type>Text</type>
+		<length>255</length>
+        <required>false</required>
+        <unique>false</unique>	
+    </fields>
     <label>IPM Category EI Matrix</label>
     <pluralLabel>IPM Category EI Matrix</pluralLabel>
     <visibility>Public</visibility>
