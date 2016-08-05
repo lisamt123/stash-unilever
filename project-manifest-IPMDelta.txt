@@ -5,3 +5,5 @@ src/classes/IPM_RolloutPlansAddController.cls-meta.xml
 src/flows
 src/flows/IPM_Financial_SnapShot-1.flow
 src/flows/IPM_Financial_Year_SnapShot-1.flow
+src/objects
+src/objects/IPM_Milestone__c.object
