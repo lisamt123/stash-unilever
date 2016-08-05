@@ -440,7 +440,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
                 lstRegionalRollout = [SELECT Id, MCO__c, Market_Cluster__c, IPM_Project__c 
                                                           FROM IPM_Project_Rollout__c 
-                                                          WHERE Regional_Project__c=:project.Id AND isActive__c = true 
+                                                          WHERE Regional_Project__c=:project.Id  
                                                           LIMIT 10000];
                 if(lstRegionalRollout != null && !lstRegionalRollout.isempty())
                 {
