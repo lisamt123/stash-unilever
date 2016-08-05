@@ -3529,21 +3529,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_DACH_Queue_ph</fullName>
-        <columns>Brand__c</columns>
-        <columns>CASES.SUBJECT</columns>
+        <fullName>CEC_DACH_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.TYPE</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>Country_Name__c</columns>
+        <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC DACH Queue ph</label>
+        <label>CEC DACH Queue open emails</label>
         <language>en_US</language>
         <queue>CEC_DACH_Queue</queue>
         <sharedTo>

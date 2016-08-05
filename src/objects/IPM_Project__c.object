@@ -5515,6 +5515,24 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000kB5c_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_OASIS</label>
+        <queue>IPM_a7IE0000000kB5c</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kB5h_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kB5h</label>
+        <queue>IPM_a7IE0000000kB5h</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
