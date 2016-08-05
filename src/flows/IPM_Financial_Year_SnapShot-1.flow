@@ -17,21 +17,24 @@
         </connector>
     </assignments>
     <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
         <name>myDecision</name>
-        <label>Primary Decision</label>
-        <locationX>200</locationX>
+        <label>myDecision</label>
+        <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision2</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -40,6 +43,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -56,22 +65,31 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-      
             <connector>
                 <targetReference>myRule_1_pmetdec</targetReference>
             </connector>
             <label>MD Approved</label>
         </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision2</name>
+        <label>myDecision2</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision4</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_2</name>
+            <name>myRule_3</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -80,6 +98,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -96,22 +120,31 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-
             <connector>
-                <targetReference>myRule_2_pmetdec</targetReference>
+                <targetReference>myRule_3_pmetdec</targetReference>
             </connector>
             <label>MR Approved</label>
         </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision4</name>
+        <label>myDecision4</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision6</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_3</name>
+            <name>myRule_5</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -120,6 +153,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -136,22 +175,28 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-          
             <connector>
-                <targetReference>myRule_3_pmetdec</targetReference>
+                <targetReference>myRule_5_pmetdec</targetReference>
             </connector>
             <label>Contract Approved</label>
         </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_4</name>
+            <name>myRule_7</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -160,6 +205,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -176,9 +227,8 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-
             <connector>
-                <targetReference>myRule_4_pmetdec</targetReference>
+                <targetReference>myRule_7_pmetdec</targetReference>
             </connector>
             <label>Charter Approved</label>
         </rules>
@@ -212,12 +262,6 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
@@ -225,6 +269,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -241,69 +291,6 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-         
-            <label>Previously Met - Prev</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>myRule_2_pmetdec</name>
-        <label>Previously Met Decision</label>
-        <locationX>200</locationX>
-        <locationY>100</locationY>
-        <defaultConnector>
-            <targetReference>myRule_2_A1</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
-        <rules>
-            <name>myRule_2_pmetnullrule</name>
-            <conditionLogic>or</conditionLogic>
-            <conditions>
-                <leftValueReference>myVariable_old</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_2_A1</targetReference>
-            </connector>
-            <label>Previously Met - Null</label>
-        </rules>
-        <rules>
-            <name>myRule_2_pmetrule</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_old.MR_Approved__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-        
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
@@ -336,11 +323,66 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_old.MR_Approved__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Previously Met - Prev</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>myRule_5_pmetdec</name>
+        <label>Previously Met Decision</label>
+        <locationX>500</locationX>
+        <locationY>100</locationY>
+        <defaultConnector>
+            <targetReference>myRule_5_A1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
+        <rules>
+            <name>myRule_5_pmetnullrule</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_5_A1</targetReference>
+            </connector>
+            <label>Previously Met - Null</label>
+        </rules>
+        <rules>
+            <name>myRule_5_pmetrule</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -349,6 +391,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -365,21 +413,20 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
-            
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
     <decisions>
-        <name>myRule_4_pmetdec</name>
+        <name>myRule_7_pmetdec</name>
         <label>Previously Met Decision</label>
-        <locationX>400</locationX>
+        <locationX>700</locationX>
         <locationY>100</locationY>
         <defaultConnector>
-            <targetReference>myRule_4_A1</targetReference>
+            <targetReference>myRule_7_A1</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Previously Met</defaultConnectorLabel>
         <rules>
-            <name>myRule_4_pmetnullrule</name>
+            <name>myRule_7_pmetnullrule</name>
             <conditionLogic>or</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -389,20 +436,14 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_4_A1</targetReference>
+                <targetReference>myRule_7_A1</targetReference>
             </connector>
             <label>Previously Met - Null</label>
         </rules>
         <rules>
-            <name>myRule_4_pmetrule</name>
+            <name>myRule_7_pmetrule</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -411,6 +452,12 @@
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -431,7 +478,7 @@
         </rules>
     </decisions>
     <description>Stores Snapshot of financial Year Data across Phases</description>
-    <interviewLabel>IPM_Financial_Year_SnapShot-6_IPM_Financial_Year__c</interviewLabel>
+    <interviewLabel>IPM_Financial_Year_SnapShot-1_IPM_Financial_Year__c</interviewLabel>
     <label>IPM Financial Year SnapShot</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -452,12 +499,6 @@
         </value>
     </processMetadataValues>
     <processMetadataValues>
-        <name>RecursiveCountVariable</name>
-        <value>
-            <elementReference>RecursiveCountVariable</elementReference>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
         <name>TriggerType</name>
         <value>
             <stringValue>onAllChanges</stringValue>
@@ -465,6 +506,12 @@
     </processMetadataValues>
     <processType>Workflow</processType>
     <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
         <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
@@ -475,12 +522,6 @@
             <name>reference</name>
             <value>
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
@@ -492,6 +533,18 @@
         </connector>
         <filters>
             <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
                     <stringValue>IPM Financial Postfix</stringValue>
@@ -510,21 +563,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -548,12 +589,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -563,6 +598,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -578,12 +619,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -593,6 +628,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -620,6 +661,12 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>MD Locked</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Boolean</stringValue>
@@ -632,12 +679,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -647,6 +688,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -662,12 +709,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -677,6 +718,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -692,12 +739,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -707,6 +748,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -722,12 +769,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -737,6 +778,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -754,6 +801,12 @@
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
                 <booleanValue>false</booleanValue>
@@ -763,12 +816,6 @@
             <name>reference</name>
             <value>
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A2</name>
@@ -780,6 +827,18 @@
         </connector>
         <filters>
             <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
                     <stringValue>IPM Financial Postfix</stringValue>
@@ -798,21 +857,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -836,12 +883,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -851,6 +892,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -866,12 +913,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -881,6 +922,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -896,12 +943,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>MD Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Boolean</stringValue>
@@ -911,6 +952,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>MD Locked</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -926,12 +973,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -941,6 +982,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -956,12 +1003,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -971,6 +1012,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -986,12 +1033,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -1001,6 +1042,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1016,12 +1063,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -1031,6 +1072,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1048,6 +1095,12 @@
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
                 <booleanValue>false</booleanValue>
@@ -1057,12 +1110,6 @@
             <name>reference</name>
             <value>
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A3</name>
@@ -1071,6 +1118,18 @@
         <locationY>400</locationY>
         <filters>
             <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
                     <stringValue>IPM Financial Postfix</stringValue>
@@ -1089,21 +1148,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -1127,12 +1174,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -1142,6 +1183,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1157,12 +1204,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -1172,6 +1213,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1187,12 +1234,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>MD Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Boolean</stringValue>
@@ -1202,6 +1243,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>MD Locked</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1217,12 +1264,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -1232,6 +1273,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1247,12 +1294,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -1262,6 +1303,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1277,12 +1324,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -1292,6 +1333,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1307,12 +1354,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons MD</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -1322,6 +1363,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons MD</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1339,600 +1386,6 @@
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[IPM_Financial_Year__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_2_A1</name>
-        <label>Update Market Ready From Global</label>
-        <locationX>200</locationX>
-        <locationY>200</locationY>
-        <connector>
-            <targetReference>myRule_2_A2</targetReference>
-        </connector>
-        <filters>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>IPM Financial Postfix</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>operatorDataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>IPM_Financial_Postfix__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Global</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Advertising_Promotions_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Advertising_Promotions_Global__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Gross_Profit_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Gross_Profit_Global__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>MR Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>MR_Locked__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Profit_Before_Overheads_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Profit_Before_Overheads_Global__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Turnover_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Turnover_Global__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Volume_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Volume_Global__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Volume_Tons_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Volume_Tons_Global__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>IPM_Financial_Year__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[IPM_Financial_Year__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_2_A2</name>
-        <label>Update Market Ready From Regional</label>
-        <locationX>200</locationX>
-        <locationY>300</locationY>
-        <connector>
-            <targetReference>myRule_2_A3</targetReference>
-        </connector>
-        <filters>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>IPM Financial Postfix</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>operatorDataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>IPM_Financial_Postfix__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Regional</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Advertising_Promotions_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Advertising_Promotions_Regional__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Gross_Profit_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Gross_Profit_Regional__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>MR Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>MR_Locked__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Profit_Before_Overheads_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Profit_Before_Overheads_Regional__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Turnover_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Turnover_Regional__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Volume_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Volume_Regional__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Volume_Tons_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Volume_Tons_Regional__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>IPM_Financial_Year__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[IPM_Financial_Year__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
             <name>evaluationType</name>
             <value>
                 <stringValue>criteria</stringValue>
@@ -1944,299 +1397,14 @@
                 <booleanValue>false</booleanValue>
             </value>
         </processMetadataValues>
-        <name>myRule_2_A3</name>
-        <label>Update Market Ready From Local</label>
-        <locationX>200</locationX>
-        <locationY>400</locationY>
-        <filters>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>IPM Financial Postfix</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>operatorDataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>IPM_Financial_Postfix__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Local</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Advertising_Promotions_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Advertising_Promotions_Local__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Gross_Profit_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Gross_Profit_Local__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>MR Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>MR_Locked__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Profit_Before_Overheads_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Profit_Before_Overheads_Local__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Turnover_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Turnover_Local__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Volume_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Volume_Local__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons MR</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Number</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Volume_Tons_MR__c</field>
-            <value>
-                <elementReference>myVariable_current.Volume_Tons_Local__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>IPM_Financial_Year__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
         <processMetadataValues>
             <name>reference</name>
             <value>
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_3_A1</name>
-        <label>Update Contract From Global</label>
+        <label>Update Market Ready From Global</label>
         <locationX>300</locationX>
         <locationY>200</locationY>
         <connector>
@@ -2244,6 +1412,18 @@
         </connector>
         <filters>
             <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
                     <stringValue>IPM Financial Postfix</stringValue>
@@ -2262,21 +1442,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -2300,12 +1468,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -2318,54 +1480,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Advertising_Promotions_Contract__c</field>
+            <field>Advertising_Promotions_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Advertising_Promotions_Global__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Contract Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Contract_Locked__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -2378,23 +1510,53 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Gross_Profit_Contract__c</field>
+            <field>Gross_Profit_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Gross_Profit_Global__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
+                <name>dataType</name>
                 <value>
-                    <stringValue>Profit Before Overheads Contract</stringValue>
+                    <stringValue>Boolean</stringValue>
                 </value>
             </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>MR Locked</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MR_Locked__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
@@ -2408,24 +1570,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Profit_Before_Overheads_Contract__c</field>
+            <field>Profit_Before_Overheads_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Profit_Before_Overheads_Global__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -2438,24 +1600,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Turnover_Contract__c</field>
+            <field>Turnover_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Turnover_Global__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -2468,24 +1630,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Volume_Contract__c</field>
+            <field>Volume_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Volume_Global__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -2498,12 +1660,18 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Volume_Tons_Contract__c</field>
+            <field>Volume_Tons_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Volume_Tons_Global__c</elementReference>
             </value>
@@ -2511,6 +1679,12 @@
         <object>IPM_Financial_Year__c</object>
     </recordUpdates>
     <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
         <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
@@ -2523,20 +1697,26 @@
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
             </value>
         </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
-            </value>
-        </processMetadataValues>
         <name>myRule_3_A2</name>
-        <label>Update Contract From Regional</label>
+        <label>Update Market Ready From Regional</label>
         <locationX>300</locationX>
         <locationY>300</locationY>
         <connector>
             <targetReference>myRule_3_A3</targetReference>
         </connector>
         <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
@@ -2556,21 +1736,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -2594,12 +1762,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -2612,54 +1774,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Advertising_Promotions_Contract__c</field>
+            <field>Advertising_Promotions_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Advertising_Promotions_Regional__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Contract Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Boolean</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Contract_Locked__c</field>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -2672,23 +1804,53 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Gross_Profit_Contract__c</field>
+            <field>Gross_Profit_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Gross_Profit_Regional__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
+                <name>dataType</name>
                 <value>
-                    <stringValue>Profit Before Overheads Contract</stringValue>
+                    <stringValue>Boolean</stringValue>
                 </value>
             </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>MR Locked</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MR_Locked__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
@@ -2702,24 +1864,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Profit_Before_Overheads_Contract__c</field>
+            <field>Profit_Before_Overheads_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Profit_Before_Overheads_Regional__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -2732,24 +1894,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Turnover_Contract__c</field>
+            <field>Turnover_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Turnover_Regional__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -2762,24 +1924,24 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Volume_Contract__c</field>
+            <field>Volume_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Volume_Regional__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -2792,12 +1954,18 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Volume_Tons_Contract__c</field>
+            <field>Volume_Tons_MR__c</field>
             <value>
                 <elementReference>myVariable_current.Volume_Tons_Regional__c</elementReference>
             </value>
@@ -2805,6 +1973,12 @@
         <object>IPM_Financial_Year__c</object>
     </recordUpdates>
     <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
         <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
@@ -2817,17 +1991,23 @@
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
             </value>
         </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
-            </value>
-        </processMetadataValues>
         <name>myRule_3_A3</name>
-        <label>Update Contract From Local</label>
+        <label>Update Market Ready From Local</label>
         <locationX>300</locationX>
         <locationY>400</locationY>
         <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
@@ -2847,21 +2027,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -2885,11 +2053,35 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
+                <name>dataType</name>
                 <value>
-                    <stringValue>Advertising &amp; Promotions Contract</stringValue>
+                    <stringValue>Currency</stringValue>
                 </value>
             </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Advertising_Promotions_MR__c</field>
+            <value>
+                <elementReference>myVariable_current.Advertising_Promotions_Local__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
@@ -2903,23 +2095,23 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Advertising_Promotions_Contract__c</field>
+            <field>Gross_Profit_MR__c</field>
             <value>
-                <elementReference>myVariable_current.Advertising_Promotions_Local__c</elementReference>
+                <elementReference>myVariable_current.Gross_Profit_Local__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Contract Locked</stringValue>
-                </value>
-            </processMetadataValues>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
@@ -2930,6 +2122,276 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>MR Locked</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>MR_Locked__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Profit_Before_Overheads_MR__c</field>
+            <value>
+                <elementReference>myVariable_current.Profit_Before_Overheads_Local__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Turnover_MR__c</field>
+            <value>
+                <elementReference>myVariable_current.Turnover_Local__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Volume_MR__c</field>
+            <value>
+                <elementReference>myVariable_current.Volume_Local__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons MR</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Volume_Tons_MR__c</field>
+            <value>
+                <elementReference>myVariable_current.Volume_Tons_Local__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>IPM_Financial_Year__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[IPM_Financial_Year__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_5_A1</name>
+        <label>Update Contract From Global</label>
+        <locationX>500</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myRule_5_A2</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>IPM Financial Postfix</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>IPM_Financial_Postfix__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Global</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Advertising_Promotions_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Advertising_Promotions_Global__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Contract Locked</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -2945,11 +2407,35 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
                     <stringValue>Gross Profit Contract</stringValue>
                 </value>
             </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Gross_Profit_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Gross_Profit_Global__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
@@ -2960,6 +2446,567 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Profit_Before_Overheads_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Profit_Before_Overheads_Global__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Turnover_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Turnover_Global__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Volume_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Volume_Global__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Volume_Tons_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Volume_Tons_Global__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>IPM_Financial_Year__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[IPM_Financial_Year__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_5_A2</name>
+        <label>Update Contract From Regional</label>
+        <locationX>500</locationX>
+        <locationY>300</locationY>
+        <connector>
+            <targetReference>myRule_5_A3</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>IPM Financial Postfix</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>IPM_Financial_Postfix__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Regional</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Advertising_Promotions_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Advertising_Promotions_Regional__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Contract Locked</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Contract_Locked__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Gross_Profit_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Gross_Profit_Regional__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Profit_Before_Overheads_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Profit_Before_Overheads_Regional__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Turnover_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Turnover_Regional__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Volume_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Volume_Regional__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Number</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Volume_Tons_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Volume_Tons_Regional__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>IPM_Financial_Year__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[IPM_Financial_Year__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_5_A3</name>
+        <label>Update Contract From Local</label>
+        <locationX>500</locationX>
+        <locationY>400</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>IPM Financial Postfix</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>IPM_Financial_Postfix__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Local</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions Contract</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Advertising_Promotions_Contract__c</field>
+            <value>
+                <elementReference>myVariable_current.Advertising_Promotions_Local__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Contract Locked</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Contract_Locked__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit Contract</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -2975,12 +3022,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -2990,6 +3031,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads Contract</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3005,12 +3052,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3020,6 +3061,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover Contract</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3035,12 +3082,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -3050,6 +3091,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Contract</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3065,12 +3112,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons Contract</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -3080,6 +3121,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons Contract</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3097,6 +3144,12 @@
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
                 <booleanValue>false</booleanValue>
@@ -3108,20 +3161,26 @@
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
             </value>
         </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_4_A1</name>
+        <name>myRule_7_A1</name>
         <label>Update Charter From Regional</label>
-        <locationX>400</locationX>
+        <locationX>700</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_4_A2</targetReference>
+            <targetReference>myRule_7_A2</targetReference>
         </connector>
         <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
@@ -3141,21 +3200,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -3179,12 +3226,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3194,6 +3235,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3209,12 +3256,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Charter Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Boolean</stringValue>
@@ -3224,6 +3265,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Charter Locked</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3239,12 +3286,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3254,6 +3295,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3269,12 +3316,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3284,6 +3325,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3299,12 +3346,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3314,6 +3355,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3329,12 +3376,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -3344,6 +3385,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3359,12 +3406,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -3374,6 +3415,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3391,6 +3438,12 @@
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
                 <booleanValue>false</booleanValue>
@@ -3402,20 +3455,26 @@
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
             </value>
         </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_4_A2</name>
+        <name>myRule_7_A2</name>
         <label>Update Charter From Global</label>
-        <locationX>400</locationX>
+        <locationX>700</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_4_A3</targetReference>
+            <targetReference>myRule_7_A3</targetReference>
         </connector>
         <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
@@ -3435,21 +3494,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -3473,12 +3520,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3488,6 +3529,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3503,12 +3550,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Charter Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Boolean</stringValue>
@@ -3518,6 +3559,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Charter Locked</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3533,12 +3580,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3548,6 +3589,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3563,12 +3610,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Profit Before Overheads Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3578,6 +3619,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Profit Before Overheads Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3605,15 +3652,15 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
                     <stringValue>Turnover Charter</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
             <field>Turnover_Charter__c</field>
@@ -3622,12 +3669,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Charter</stringValue>
-                </value>
-            </processMetadataValues>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
@@ -3638,6 +3679,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3653,12 +3700,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -3668,6 +3709,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3685,6 +3732,12 @@
     </recordUpdates>
     <recordUpdates>
         <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
                 <booleanValue>false</booleanValue>
@@ -3696,17 +3749,23 @@
                 <stringValue>[IPM_Financial_Year__c]</stringValue>
             </value>
         </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>criteria</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_4_A3</name>
+        <name>myRule_7_A3</name>
         <label>Update Charter From Local</label>
-        <locationX>400</locationX>
+        <locationX>700</locationX>
         <locationY>400</locationY>
         <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
@@ -3726,21 +3785,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>inputDataType</name>
-                <value>
-                    <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>rightHandSideType</name>
                 <value>
                     <stringValue>Picklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <field>IPM_Financial_Postfix__c</field>
@@ -3764,12 +3811,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Advertising &amp; Promotions Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3779,6 +3820,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Advertising &amp; Promotions Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3800,15 +3847,15 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Charter Locked</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Charter Locked</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3824,12 +3871,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Gross Profit Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3839,6 +3880,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Gross Profit Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3854,9 +3901,15 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>rightHandSideType</name>
+                <name>dataType</name>
                 <value>
-                    <stringValue>Reference</stringValue>
+                    <stringValue>Currency</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3866,15 +3919,9 @@
                 </value>
             </processMetadataValues>
             <processMetadataValues>
-                <name>dataType</name>
+                <name>rightHandSideType</name>
                 <value>
-                    <stringValue>Currency</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
+                    <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
             <field>Profit_Before_Overheads_Charter__c</field>
@@ -3884,12 +3931,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Turnover Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Currency</stringValue>
@@ -3899,6 +3940,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Turnover Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3914,12 +3961,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -3929,6 +3970,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -3944,12 +3991,6 @@
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Volume Tons Charter</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -3959,6 +4000,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Volume Tons Charter</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -4000,13 +4047,5 @@
         <value>
             <elementReference>$Flow.CurrentDateTime</elementReference>
         </value>
-    </variables>
-    <variables>
-        <name>RecursiveCountVariable</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <scale>2</scale>
     </variables>
 </Flow>
