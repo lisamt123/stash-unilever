@@ -592,11 +592,14 @@ IF(text(IPM_Phase__c)=&apos;Capability&apos;,
 IF(text(IPM_Phase__c)=&apos;Market Ready&apos;, 
 4, 
 IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
-5,6
-)
-)
-)
-)
+5,
+IF(text(IPM_Phase__c)=&apos;Post Launch Evaluation&apos;, 
+6, 
+-1) 
+) 
+) 
+) 
+) 
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Phase Order</label>
