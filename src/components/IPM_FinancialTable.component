@@ -29,7 +29,7 @@
     <!--
         Renders if there any validation error for innovation financial year records
     -->
-    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop),OR(isValidationError, isValidationErrorCal), isInnovation)}">
+    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop),OR(isValidationError, isValidationErrorCal, ipmFinancial.IsFinancialInvalid__c), validationErrorMessage != '',  isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <div class="col-sm-11 finalerttext">
