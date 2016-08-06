@@ -3319,8 +3319,17 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7IE0000000kB5h_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7IE0000000kB5h</label>
+        <label>IPM_PROJECT AOKI_EU</label>
         <queue>IPM_a7IE0000000kB5h</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kB6I_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kB6I</label>
+        <queue>IPM_a7IE0000000kB6I</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
