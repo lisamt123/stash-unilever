@@ -1196,7 +1196,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             queryString+= field + ', ';
         }
         //IPM Financial Year
-        queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, (SELECT ';
+        queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, Parent_Project__r.IPM_Project_Type__c, (SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
             if (!(field.equalsignoreCase('Id')) && field != IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) 
             {
@@ -1676,8 +1676,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 currentFinancial.isFinancialInvalid__c = false;
                 validationErrorMessage = IPM_ConstantUtils.BLANK;
               }
+              
+              financialsToUpdateSet.clear();
               //logic to calculate the consolidated financials validation cells value
-              if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+              if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && !(currentFinancial.Parent_Project__c != null && currentFinancial.Parent_Project__r.IPM_Project_Type__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))){
                 financialsToUpdateSet = getConsolidatedValidationCells(currentFinancial);
               }
               
@@ -3237,7 +3239,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			queryString+= field + ', ';
 		}
 		//IPM Financial Year
-		queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, (SELECT ';
+		queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, Parent_Project__r.IPM_Project_Type__c, (SELECT ';
 		For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
 			if (!(field.equalsignoreCase('Id')) && field != IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) 
 			{
