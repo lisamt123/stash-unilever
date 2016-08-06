@@ -354,9 +354,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isRolloutError = true;
             }  
         }
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-            validateFinancialSummaryTable(currentFinancial);
+
+            softValidate(currentFinancial);
       }
      //method to calculate the Business Impact
      private void setBusinessImpact(Final Id pId){
@@ -1517,11 +1516,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(currentFinancial.Project_Sustainability_Period__c == selectedSustainabilityPeriod) {
                 sustainabilityPeriodChanging = false;
             }
+
+            softValidate(currentFinancial);
             
-            validationErrorMessage = IPM_ConstantUtils.BLANK;
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-            validateFinancialSummaryTable(currentFinancial);
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_CHECKSUSTAINABILITY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
@@ -1543,16 +1540,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getMisalignmentVisibility();
             isEditMode = FALSE;
             isEditModeBottomUp = false;
-            
-            validationErrorMessage = IPM_ConstantUtils.BLANK;
+                        
             redValidationCellsString = IPM_ConstantUtils.BLANK;
             yellowValidationCellsString = IPM_ConstantUtils.BLANK;
             getCurrentFinancialType(currentFinancial);
             isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
                         
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-            validateFinancialSummaryTable(currentFinancial);
+	softValidate(currentFinancial);
         } 
         catch (Exception ex)
         {
@@ -1577,11 +1571,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getMisalignmentVisibility();
             isEditMode = FALSE;
             isEditModeBottomUp = false;
-            
-            validationErrorMessage = IPM_ConstantUtils.BLANK;
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-            validateFinancialSummaryTable(currentFinancial);
+
+            softValidate(currentFinancial);
         } 
         catch (Exception ex)
         {
@@ -1673,17 +1664,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               yellowValidationCellsString = IPM_ConstantUtils.BLANK;
 
               getValidationSettingSet();
- 
-              validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-              validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-              validateFinancialSummaryTable(currentFinancial);
-
+			  
+			  softValidate(currentFinancial);
+			  
               //check for hard validation - REQ3006
               if(isFinancialInvalid || isFinancialInvalidInnovation){
                 currentFinancial.isFinancialInvalid__c = true;
+                validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
               }
               else{
                 currentFinancial.isFinancialInvalid__c = false;
+                validationErrorMessage = IPM_ConstantUtils.BLANK;
               }
               //logic to calculate the consolidated financials validation cells value
               if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
@@ -2194,10 +2185,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             yellowValidationCellsString = IPM_ConstantUtils.BLANK;
             getCurrentFinancialType(currentFinancial);
             isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+
+            softValidate(currentFinancial);
             
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-            validateFinancialSummaryTable(currentFinancial);
         } 
         catch (Exception ex) 
         {
@@ -2233,9 +2223,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getCurrentFinancialType(currentFinancial);
             isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
             
-            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-            validateFinancialSummaryTable(currentFinancial);
+            softValidate(currentFinancial);
+
         } 
         catch (Exception ex) 
         {
@@ -3000,7 +2989,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         	existingNonCurrentFinancialRedValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.RED);
         	existingNonCurrentFinancialYellowValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
         	conFin.Red_Validation_Cells__c = existingNonCurrentFinancialRedValues + redValidationCellsString;
-            conFin.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
+        	conFin.Yellow_Validation_Cells__c = existingNonCurrentFinancialYellowValues + yellowValidationCellsString;
+        	conFin.IsFinancialInvalid__c =  (conFin.Red_Validation_Cells__c.length()>1);
+
         }
              
         
@@ -3062,6 +3053,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * return : List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingsList
     ***********************************************************************************************************/
     public List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> getSoftValidationSettingList(IPM_Project__c project){
+        
+        //The IPM_Red_Yellow_Soft_Validation_Setting__mdt might return more than one matching records, so a list is returned
+        
         Map<Id, IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingMap = new Map <Id,IPM_Red_Yellow_Soft_Validation_Setting__mdt>([Select Id,MasterLabel,IPM_Threshold_Status__c,IPM_Project_Sub_Type__c,IPM_Project_Phase__c,IPM_Market_Place_Activity__c,checkValidPaybackYellow__c,checkValidNPVYellow__c,checkValidITOYellow__c,checkValidIRRYellow__c,checkValidGTOAndITORed__c,checkValidCAPEXYellow__c,checkPBOYellow__c,checkGrossProfitYellow__c,checkBMIYellow__c from IPM_Red_Yellow_Soft_Validation_Setting__mdt Limit 1000 ]);
         
         List<IPM_Red_Yellow_Soft_Validation_Setting__mdt> validationSettingsList =  new List<IPM_Red_Yellow_Soft_Validation_Setting__mdt>();
@@ -3300,7 +3294,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 					
 					currentFin.Red_Validation_Cells__c = uniqueRedCellsStr;
 					currentFin.Yellow_Validation_Cells__c = uniqueYellowCellsStr;
+					currentFin.IsFinancialInvalid__c = (currentFin.Red_Validation_Cells__c.length() > 1);
 					toUpdateFinancials.add(currentFin);
+
 				}
 				
 			}
@@ -3309,7 +3305,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				update toUpdateFinancials;
 			}
 			
-			initialiseFinancials();
+			initializeFinancials();
 		}
 		
 	}
@@ -3369,7 +3365,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 				}
 				
 				
-				//Run the validations
+				//Run the validations to get the validation cells string (both red and yellow)
 				validationErrorMessage = IPM_ConstantUtils.BLANK;
 				validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFin);
 				validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFin);
@@ -3460,6 +3456,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         existingNonCurrentFinancialValues = existingNonCurrentFinancialValues + cells + IPM_ConstantUtils.SEMICOLON;
                     }
                 }
+                
             }
             
             return existingNonCurrentFinancialValues;
@@ -3527,7 +3524,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * proj : The current project
     * finToEvaluate : The financial record to evaluate
 	**************************************************************************************************************/
-    public void initialiseFinancials(){
+    public void initializeFinancials(){
     	try{
             if (projectId != null) 
             {
@@ -3585,10 +3582,39 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isRolloutError = true;
             }  
         }
-        validationErrorMessage = IPM_ConstantUtils.BLANK;
-        validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,currentFinancial);
-        validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,currentFinancial);
-        validateFinancialSummaryTable(currentFinancial);
+        
+        softValidate(currentFinancial);
+    }
+    
+    
+    /**************************************************************************************************************
+    * This method sets the red Validation Error message if the criteria meets
+    * @parmas
+    * finToEvaluate : The financial record to evaluate
+	**************************************************************************************************************/
+    public void setValidationErrorMessage(IPM_Financial__c finToEvaluate){
+
+    	if( (finToEvaluate != null &&  finToEvaluate.IsFinancialInvalid__c) || isValidationError || isValidationErrorCal || isFinancialInvalid ){
+        	validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
+        }
+        else{
+        	validationErrorMessage = IPM_ConstantUtils.BLANK;
+        }
+    }
+    
+    /**************************************************************************************************************
+    * This method carries out the soft validation for Non consolidate financials (Consolidated financials are validated in FinancialValkueWrapper Constructor itself) 
+    * and then call the method to set the validation error message
+    * @parmas
+    * finToEvaluate : The financial record to evaluate
+	**************************************************************************************************************/
+    public void softValidate(IPM_Financial__c finToEvaluate){
+    	isFinancialInvalid = false;
+        isValidationError = false;
+        validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,finToEvaluate);
+        validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,finToEvaluate);
+        validateFinancialSummaryTable(finToEvaluate);
+        setValidationErrorMessage(finToEvaluate);
     }
     
         
