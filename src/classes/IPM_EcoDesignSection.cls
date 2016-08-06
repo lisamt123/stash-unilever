@@ -194,7 +194,7 @@ public with sharing class IPM_EcoDesignSection {
             fields += ',' + fld ;   
         }
         fields = fields.subStringAfter(',');
-        string queryCatMetrics = 'select '+ fields +' from IPM_Category_EI_Matrix__mdt where masterlabel = \''+project.IPM_Category_Group__c+'_'+project.IPM_Category_Text__c+'\'';
+        string queryCatMetrics = 'select '+ fields +' from IPM_Category_EI_Matrix__mdt where Category_Group_Category_Name__c = \''+project.IPM_Category_Group__c+'_'+project.IPM_Category_Text__c+'\'';
         IPM_Category_EI_Matrix__mdt CatMetrics = database.query(queryCatMetrics);
         for (string fld :fieldMap.keySet()){
             if(String.valueOf(fieldMap.get(fld).getDescribe().getType()).equalsIgnoreCase('BOOLEAN')){
