@@ -173,80 +173,19 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                }
 	                
 	                // Volume Type Change
-	                for(String volumeTypeAPIName : IPM_FinancialHelper.VOLUME_FIELDS)  
-	                {
-	                    // Get the Field API for the Volume Type Field
-	                    String newVolumeType = (String)financial.get(volumeTypeAPIName);
-	                    String oldVolumeType = (String)oldFinancial.get(volumeTypeAPIName);
-	                    
-	                    // Check if the Volume Type has Changed from before. IF Yes we need to update Financial Years as well.
-	                    if(newVolumeType != oldVolumeType)
-	                    {
-	                        volumeTypeChangedFinancialMap.put(financial.Id,financial);
-	                        changedFinancialSet.add(financial.Id);
-	                        break;
-	                    }
-	                }
-	                
+                            volumeTypeChange(financial, oldFinancial, volumeTypeChangedFinancialMap, changedFinancialSet);
+                            
 	                // Approval Field Changes
-	                for(String approvalFieldAPI : IPM_FinancialHelper.APPROVAL_FIELDSET) 
-	                {
-	                    Boolean oldApprovalValue = (Boolean )oldFinancial.get(approvalFieldAPI);
-	                    Boolean newApprovalValue = (Boolean )financial.get(approvalFieldAPI);
-	                    if(newApprovalValue != oldApprovalValue)
-	                    {
-	                        approvalChangedFinancialMap.put(financial.Id,financial);
-	                        changedFinancialSet.add(financial.Id);
-	                        
-	                        Set<String> changedFieldSet = new Set<String>(); 
-	                        if(financialToApprovalChangeFieldMap.containsKey(financial.Id))
-	                        {
-	                            changedFieldSet = financialToApprovalChangeFieldMap.get(financial.Id);
-	                        }
-	                        changedFieldSet.add(approvalFieldAPI);
-	                        financialToApprovalChangeFieldMap.put(financial.Id,changedFieldSet);
-	                    }
-	                }
+                            approvalfieldchanged(financial, oldFinancial, approvalChangedFinancialMap, changedFinancialSet, financialToApprovalChangeFieldMap);
+                            
 	                
 	                // CopyOver Field Changes
-	                for(String copyOverFieldAPI : IPM_FinancialHelper.COPYOVER_FIELDSET)
-                    {
-                        Boolean oldCopyOverValue = (Boolean )oldFinancial.get(copyOverFieldAPI);
-                        Boolean newCopyOverValue = (Boolean )financial.get(copyOverFieldAPI);
-                        if(newCopyOverValue != oldCopyOverValue)
-                        {
-                            copyOverChangedFinancialMap.put(financial.Id,financial);
-                            changedFinancialSet.add(financial.Id);
-                             
-                            Set<String> changedFieldSet = new Set<String>(); 
-                            if(financialTocopyOverChangedFieldMap.containsKey(financial.Id))
-                            {
-                                changedFieldSet = financialTocopyOverChangedFieldMap.get(financial.Id);
-                            }
-                            changedFieldSet.add(copyOverFieldAPI);
-                            financialTocopyOverChangedFieldMap.put(financial.Id,changedFieldSet);
-                        }
-                    }
-                    
-                    // CopyOver Field Changes
-	                for(String additionalFieldAPI : IPM_FinancialHelper.ADDITIONAL_FIELDS)
-                    {
-                        String oldValue = (String)oldFinancial.get(additionalFieldAPI);
-                        String newValue = (String )financial.get(additionalFieldAPI);
-                        if(newValue != oldValue)
-                        {
-                            additionalFieldChangedFinancialMap.put(financial.Id,financial);
-                            changedFinancialSet.add(financial.Id);
-                             
-                            Set<String> changedFieldSet = new Set<String>(); 
-                            if(financialToaddtChangedFieldMap.containsKey(financial.Id))
-                            {
-                                changedFieldSet = financialToaddtChangedFieldMap.get(financial.Id);
-                            }
-                            changedFieldSet.add(additionalFieldAPI);
-                            financialToaddtChangedFieldMap.put(financial.Id,changedFieldSet);
-                        }
-                    }
+                            copyOverFieldChange(financial, oldFinancial, copyOverChangedFinancialMap, changedFinancialSet, financialTocopyOverChangedFieldMap);
+                            
+                            
+                            // addtional Field Changes
+                            additionalFieldChange(financial, oldFinancial, additionalFieldChangedFinancialMap, changedFinancialSet, financialToaddtChangedFieldMap);
+                                
                         
                     // Active Field Changes
                     Boolean oldActiveValue = (Boolean )oldFinancial.get(IPM_FinancialHelper.ACTIVE_FIELD);
@@ -348,6 +287,103 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 		}
         return false;
     } 
+    
+    /**
+    * Method for volume type change 
+    */
+    private void volumeTypeChange(IPM_Financial__c financial, IPM_Financial__c oldFinancial, Map<Id,IPM_Financial__c> volumeTypeChangedFinancialMap, Set<Id> changedFinancialSet){
+    	
+    	for(String volumeTypeAPIName : IPM_FinancialHelper.VOLUME_FIELDS)  
+        {
+            // Get the Field API for the Volume Type Field
+            String newVolumeType = (String)financial.get(volumeTypeAPIName);
+            String oldVolumeType = (String)oldFinancial.get(volumeTypeAPIName);
+            
+            // Check if the Volume Type has Changed from before. IF Yes we need to update Financial Years as well.
+            if(newVolumeType != oldVolumeType)
+            {
+                volumeTypeChangedFinancialMap.put(financial.Id,financial);
+                changedFinancialSet.add(financial.Id);
+                break;
+            }
+        }
+    }
+    
+    /**
+    * Method for approval field change 
+    */
+    private void approvalfieldchanged(IPM_Financial__c financial, IPM_Financial__c oldFinancial, Map<Id,IPM_Financial__c> approvalChangedFinancialMap, 
+    									Set<Id> changedFinancialSet, Map<Id,Set<String>> financialToApprovalChangeFieldMap){
+    	for(String approvalFieldAPI : IPM_FinancialHelper.APPROVAL_FIELDSET) 
+        {
+            Boolean oldApprovalValue = (Boolean )oldFinancial.get(approvalFieldAPI);
+            Boolean newApprovalValue = (Boolean )financial.get(approvalFieldAPI);
+            if(newApprovalValue != oldApprovalValue)
+            {
+                approvalChangedFinancialMap.put(financial.Id,financial);
+                changedFinancialSet.add(financial.Id);
+                
+                Set<String> changedFieldSet = new Set<String>(); 
+                if(financialToApprovalChangeFieldMap.containsKey(financial.Id))
+                {
+                    changedFieldSet = financialToApprovalChangeFieldMap.get(financial.Id);
+                }
+                changedFieldSet.add(approvalFieldAPI);
+                financialToApprovalChangeFieldMap.put(financial.Id,changedFieldSet);
+            }
+        }
+    }
+    
+    /**
+    * Method for copy over field change 
+    */
+    private void copyOverFieldChange(IPM_Financial__c financial, IPM_Financial__c oldFinancial, Map<Id,IPM_Financial__c> copyOverChangedFinancialMap,
+    								 Set<Id> changedFinancialSet, Map<Id,Set<String>> financialTocopyOverChangedFieldMap){
+    	for(String copyOverFieldAPI : IPM_FinancialHelper.COPYOVER_FIELDSET)
+        {
+            Boolean oldCopyOverValue = (Boolean )oldFinancial.get(copyOverFieldAPI);
+            Boolean newCopyOverValue = (Boolean )financial.get(copyOverFieldAPI);
+            if(newCopyOverValue != oldCopyOverValue)
+            {
+                copyOverChangedFinancialMap.put(financial.Id,financial);
+                changedFinancialSet.add(financial.Id);
+                 
+                Set<String> changedFieldSet = new Set<String>(); 
+                if(financialTocopyOverChangedFieldMap.containsKey(financial.Id))
+                {
+                    changedFieldSet = financialTocopyOverChangedFieldMap.get(financial.Id);
+                }
+                changedFieldSet.add(copyOverFieldAPI);
+                financialTocopyOverChangedFieldMap.put(financial.Id,changedFieldSet);
+            }
+        }
+    }
+    
+    /**
+    * Method for addtional field change 
+    */
+    private void additionalFieldChange(IPM_Financial__c financial, IPM_Financial__c oldFinancial,  Map<Id,IPM_Financial__C> additionalFieldChangedFinancialMap, 
+    									Set<Id> changedFinancialSet, Map<Id,Set<String>> financialToaddtChangedFieldMap){
+    	for(String additionalFieldAPI : IPM_FinancialHelper.ADDITIONAL_FIELDS)
+        {
+            String oldValue = (String)oldFinancial.get(additionalFieldAPI);
+            String newValue = (String )financial.get(additionalFieldAPI);
+            if(newValue != oldValue)
+            {
+                additionalFieldChangedFinancialMap.put(financial.Id,financial);
+                changedFinancialSet.add(financial.Id);
+                 
+                Set<String> changedFieldSet = new Set<String>(); 
+                if(financialToaddtChangedFieldMap.containsKey(financial.Id))
+                {
+                    changedFieldSet = financialToaddtChangedFieldMap.get(financial.Id);
+                }
+                changedFieldSet.add(additionalFieldAPI);
+                financialToaddtChangedFieldMap.put(financial.Id,changedFieldSet);
+            }
+        }
+    }
+    
        
     
     /**
