@@ -17,14 +17,20 @@
       <div class="slds-media__body">
         <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
           <p class="slds-truncate"> 
+              <span>
               <aura:iteration items="{!v.element.messageSegments}" var="messageSegment">
+                  <span>
                   <aura:if isTrue="{!messageSegment.type =='EntityLink'}"> 
+                      <span>
                       <c:ChatterOpenRef refId="{!messageSegment.referenceId}" refName="{!messageSegment.text}"/>
+                      </span>
                   </aura:if>
                   <aura:if isTrue="{!messageSegment.type !='EntityLink'}">
                       {!messageSegment.text}
                   </aura:if>
+                  </span>
               </aura:iteration>
+              </span>
           </p>
           <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none downHide">
        		<c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#down" class="slds-button__icon slds-button__icon--hint slds-button__icon--small" ariaHidden="true"/>
@@ -36,14 +42,26 @@
         </p>
         <div class="slds-comment__content slds-text-longform">
             <aura:if isTrue="{!v.element.isRichText}">
+                <span>
                 <aura:iteration items="{!v.element.richBodyText}" var="richTextSegment">
+                    <span>
+                        <span>
                     <aura:if isTrue="{!!(richTextSegment.segmentType == 'mention')}"> 
+                        <span>
                     	<aura:unescapedHtml value="{!richTextSegment.segmentBody}"/>
+                        </span>
                     </aura:if>
+                        </span>
+                        <span>
                 	<aura:if isTrue="{!richTextSegment.segmentType == 'mention'}"> 
+                        <span>
                     	<c:ChatterOpenRef refId="{!richTextSegment.refId}" refName="{!richTextSegment.refName}"/>
+                        </span>
                     </aura:if>
+                        </span>
+                    </span>
                 </aura:iteration>  
+                </span>
             </aura:if>
             <aura:if isTrue="{!!v.element.isRichText}"><p> {!v.element.bodyText} </p></aura:if>    
         </div>
@@ -70,48 +88,76 @@
             </div>
         </aura:if>
          <aura:if isTrue="{!v.element.isFile}">
+             <span>
            <aura:iteration items="{!v.element.files}" var="file">
+               <span>
         	<div class="slds-attachments">
+                <span>
               <div class="slds-attachments__item slds-box slds-box--x-small slds-theme--shade">
+                  <span>
                 <div class="slds-grid slds-grid--align-spread">
+                    <span>
                   <div class="slds-media">
+                      <span>
                     <div class="slds-media__figure">
                       <span class="slds-icon_container"> 
  
                  		   <!--<aura:renderIf isTrue="{!$Browser.formFactor == 'DESKTOP'}">
                                <c:ChatterFilePreview idName="{!file.contentId}" versionId="{!file.versionId}" contentId="{!file.contentId}" renditionUrl240By180="{!file.renditionUrl240By180}"/> 
                            </aura:renderIf> -->
-                           
+                           <span>
                               <c:ChatterFilePreviewSF1 contentId="{!file.contentId}" renditionUrl="{!file.renditionUrl240By180}"  versionId="{!file.versionId}"/>
                           
-                          
+                          </span>
                           <span class="slds-assistive-text"></span>
                       </span>
                     </div>
+                      </span>
+                      <span>
                     <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+                        <span>
                         <div class="slds-media__body">
+                            <span>
                             <p>{!file.title}</p> 
+                            </span>
+                            <span>
                           <a href="{!file.downloadUrl}" title="">
-                              <p><c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#download" class="slds-icon slds-icon--x-small slds-icon-text-default" ariaHidden="true"/>
+                              <span>
+                                  <p><span><c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#download" class="slds-icon slds-icon--x-small slds-icon-text-default" ariaHidden="true"/></span>
                               Download</p>
+                              </span>
                             </a>
+                            </span>
                         </div>
+                        </span>
                       </aura:if>
+                      </span>
                     </div>
+                    </span>
                 </div>
+                  </span>
               </div>
+                </span>
             </div>
+               </span>
             </aura:iteration>
+             </span>
         </aura:if>
         <aura:if isTrue="{!!v.element.isEmptyTopics}"> 
             <div class="slds-tags slds-text-body--small slds-p-bottom--x-small">
               <span>Topics:</span>
               <ul class="slds-tags__list">
+                  <span>
                 <aura:iteration items="{!v.element.topics}" var="topic"> 
+                    <span>
                     <li class="slds-tags__item">
+                        <span>
                      <a href="javascript:void(0)" title="Powerpoint">{!topic}</a>
+                        </span>
                     </li>
+                    </span>
                 </aura:iteration>
+                  </span>span>
               </ul>
             </div>
          </aura:if>
@@ -137,19 +183,29 @@
         <div class="slds-tags slds-text-body--small slds-p-bottom--x-small">
               <span>People who like this :</span>
               <ul class="slds-tags__list">
-                <aura:iteration items="{!v.element.likers}" var="liker"> 
+                  <span>
+                <aura:iteration items="{!v.element.likers}" var="liker">
+                    <span>
                     <li class="slds-tags__item">
+                        <span>
                      <c:ChatterOpenRef refId="{!liker.referenceId}" refName="{!liker.displayName}"/>
+                        </span>
                     </li>
+                    </span>
                 </aura:iteration>
+                  </span>
               </ul>
            </div>
           </aura:if>
           <ul class="timeline">
           <aura:if isTrue="{!v.element.hasComments}">
+              <span>
                 <aura:iteration items="{!v.element.comments}" var="comment">
+                    <span>
                     <c:ChatterComment currentComment="{!comment}" commentId="{!comment.id}"/> 
+                        </span>
                 </aura:iteration>  
+                  </span>
           	</aura:if>
             <li class="slds-timeline__item">
                   <span class="slds-assistive-text"></span> 
@@ -168,7 +224,7 @@
                                 <div class="slds-media__body">
                                   <div class="{!'slds-publisher slds-publisher--comment '+ v.feedElementId}">
                                     <label for="comment-text-input-01" class="slds-assistive-text">Write a comment</label>
-                                    <ui:inputText aura:id="textComment" label="" class="slds-input unique111" value="{!v.textComment}" placeholder="Write a comment…" click="{!c.handleCommentPublisherStyling}"/>
+                                    <ui:inputText aura:id="textComment" label="" class="slds-input" value="{!v.textComment}" placeholder="Write a comment…" click="{!c.handleCommentPublisherStyling}"/>
                                     <div class="slds-publisher__actions slds-grid slds-grid--align-spread">
                                       <ul class="slds-grid slds-publisher__toggle-visibility">
                                         <li>
