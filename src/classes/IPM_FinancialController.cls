@@ -3594,9 +3594,22 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @parmas
     * finToEvaluate : The financial record to evaluate
 	**************************************************************************************************************/
-    public void setValidationErrorMessage(IPM_Financial__c finToEvaluate){
+    public void setValidationErrorMessage(IPM_Financial__c finToEvaluate, IPM_Project__c project){
+		
+		Boolean isFinancialToBeSoftValidated = false;
+		
+		//get Current Financial type (Key, NonKey, Consolidated)
+		getCurrentFinancialType(finToEvaluate);
+		
+		//get the type of financials that can be evaluated for the current GKM and phase combination
+		IPM_Project_GKM_To_Phase_Matrix__mdt projGKMToPhaseElement= getProjGKMToPhaseMatrixElement(project);
+		
+		//find if the financial should show be softValidated and hence show the financial page validationErrorMessage
+    	if(projGKMToPhaseElement != null){
+    		isFinancialToBeSoftValidated = projGKMToPhaseElement.Financial_Type_To_Validate__c.contains(currentFinancialType);
+    	}
 
-    	if( (finToEvaluate != null &&  finToEvaluate.IsFinancialInvalid__c) || isValidationError || isValidationErrorCal || isFinancialInvalid ){
+    	if( isFinancialToBeSoftValidated && ( (finToEvaluate != null &&  finToEvaluate.IsFinancialInvalid__c) || isValidationError || isValidationErrorCal || isFinancialInvalid )){
         	validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
         }
         else{
@@ -3616,7 +3629,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR,finToEvaluate);
         validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION,finToEvaluate);
         validateFinancialSummaryTable(finToEvaluate);
-        setValidationErrorMessage(finToEvaluate);
+        setValidationErrorMessage(finToEvaluate, project);
     }
     
         
