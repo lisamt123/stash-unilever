@@ -438,6 +438,22 @@
         <unique>false</unique>
     </fields>
     <label>Product Category</label>
+    <listViews>
+        <fullName>ANZ</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>L3_Product_Category__c</field>
+            <operation>contains</operation>
+            <value>spreads</value>
+        </filters>
+        <label>ANZ</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>Product Category Name</label>
         <type>Text</type>
