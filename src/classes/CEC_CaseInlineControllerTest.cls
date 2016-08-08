@@ -20,7 +20,7 @@ public class CEC_CaseInlineControllerTest{
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
-            List<cec_Alert_Action__c> masterAlertActionList = new List<cec_Alert_Action__c>();
+            
             List<mdm_Product_Category__c> prodCategoryList = 
                                                 CEC_TestDataFactory.createProductCategory(5);
             insert prodCategoryList;
@@ -454,13 +454,13 @@ Test method for mapArticleToCase method
             system.assertEquals(1,knCount);
             
             caseControllerObj.getAllRecords();
-            System.assertEquals(false, caseControllerObj.displayMore);
+            System.assert(!caseControllerObj.displayMore);
             caseObj.RecordTypeId=spamRec[0].Id;
             caseControllerObj.caseRecord=caseObj;
             caseControllerObj.selectQuickcode();
             
             if(spamRec.size()>0){
-                System.assertEquals(spamRec[0].Id, caseControllerObj.caseRecord.RecordTypeId);
+                System.assert(caseControllerObj.caseRecord.RecordTypeId==spamRec[0].Id);
             } 
             Test.stopTest();
         }

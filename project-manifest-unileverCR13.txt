@@ -1,0 +1,8 @@
+src/pages
+src/pages/WU_WarehouseSearchPage.page
+src/pages/WU_WarehouseSearchPage.page-meta.xml
+src/objects
+src/objects/WU_Master_Warehouse__c.object
+src/objects/WU_Warehouse_Capacity_Detail__c.object
+src/layouts
+src/layouts/WU_Master_Warehouse__c-Warehouse Capacity CustomLayout.layout

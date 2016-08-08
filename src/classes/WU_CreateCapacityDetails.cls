@@ -1,4 +1,4 @@
-public class WU_CreateCapacityDetails 
+public with sharing class WU_CreateCapacityDetails 
 {
     public static Boolean isFromMultipleScreen = false;
     public Set<String> masterWarehouseIdSet;

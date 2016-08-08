@@ -5,6 +5,15 @@ public class WWP_LossTree_Test {
     String oRString = 'Output Reliability';
     String ORName1 = 'ORName1';
     String ORSubfamily1 = 'ORSubfamily1';
+    String S = '0';
+         
+        
+        WWP_Master_Table__c wwpMaster = new WWP_Master_Table__c();
+        wwpMaster.name = 'B100';
+        wwpMaster.OR_Tolerance__c = 95;
+        insert wwpMaster;
+       
+    
         WWP_PlantCode_User_Mapping__c pcuser = new WWP_PlantCode_User_Mapping__c();
         pcuser.name='pcuser1';
         pcuser.plant_code__c = 'B100';
@@ -60,28 +69,32 @@ public class WWP_LossTree_Test {
         
         Test.startTest();
         WWP_LossTree_CC wwp = new WWP_LossTree_CC();
-        //wwp.lossTree = ltree;
+        
         wwp.lossTree.Loss_Type__c = oRString ;
         wwp.lossTree.Plant_Code__c= 'B100';
         wwp.selectedWeek= '201512';
         wwp.dispalyAll = true;
         
         
+        
+        
+        
+        wwp.showPanelsDiv();
         wwp.fetchLossTree();
-        //system.assert(wwp.mapbox12.size()>0);
+        
         system.assertEquals(wwp.listLossTree.size(),1);
         
-        Apexpages.currentPage().getParameters().put('firstParam','0');
+        Apexpages.currentPage().getParameters().put('firstParam',S);
         Apexpages.currentPage().getParameters().put('secondParam',ORName1);
         wwp.control1213();
         system.assertEquals(wwp.listLossTreeW[0].listbox1[0].getvalue(),ORName1);
         
-        Apexpages.currentPage().getParameters().put('firstParam2','0');
+        Apexpages.currentPage().getParameters().put('firstParam2',S);
         Apexpages.currentPage().getParameters().put('secondParam2',ORSubfamily1);
         wwp.control2123();
         system.assertEquals(wwp.listLossTreeW[0].listbox2[0].getvalue(),ORSubfamily1);
         
-        Apexpages.currentPage().getParameters().put('firstParam3','0');
+        Apexpages.currentPage().getParameters().put('firstParam3',S);
         Apexpages.currentPage().getParameters().put('secondParam3','ORdesc11');
         wwp.control3132();
         system.assertEquals(wwp.listLossTreeW[0].listbox3[0].getvalue(),'ORdesc11');
@@ -94,15 +107,15 @@ public class WWP_LossTree_Test {
         
         
         
-        Apexpages.currentPage().getParameters().put('mrpfirstParam','0');
+        Apexpages.currentPage().getParameters().put('mrpfirstParam',S);
         Apexpages.currentPage().getParameters().put('mrpsecondParam','ORName2');
         wwp.controlMRP12();
         
-        Apexpages.currentPage().getParameters().put('mrpfirstParam2','0');
+        Apexpages.currentPage().getParameters().put('mrpfirstParam2',S);
         Apexpages.currentPage().getParameters().put('mrpsecondParam2','ORSubfamily21');
         wwp.controlMRP21();
         
-        Apexpages.currentPage().getParameters().put('resetite','0');
+        Apexpages.currentPage().getParameters().put('resetite',S);
         wwp.resetline();
         
         wwp.control2123();

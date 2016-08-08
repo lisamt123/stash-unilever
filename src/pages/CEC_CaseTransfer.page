@@ -51,43 +51,12 @@ transfer case to the correct market.---------------------->
             <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;
                                                                  height: 100%;opacity:0.65;width:100%;"> 
                 <div class="waitingHolder" style="top: 74.2px; width: 91px;">
-                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                    <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." alt="loading Icon"/>
                     <span class="waitingDescription">Loading...</span>
                 </div>
             </div>
         </apex:facet>
         <apex:facet name="stop"></apex:facet>
     </apex:actionStatus>
-    <script>
-    function changeValue(input, textid){
-        document.getElementById(textid).value = input.value;        
-    }
-    function RefreshPrimaryTab(isTransferSuccess) {
-        if (isTransferSuccess) {
-            if(window.location.search.indexOf('&') != -1){                 
-                sforce.console.getEnclosingPrimaryTabId(callCloseTab);   
-            }else{
-                window.opener.location.href="/{!$CurrentPage.parameters.id}";
-                window.close();
-            }  
-        }  
-    }
-    function resetHiddenVal(inputElement) {
-        document.getElementById(inputElement).value = null;
-    }     
-    function getCurrentTabToClose () {
-        sforce.console.getEnclosingTabId(callCloseTab);
-    }    
-    function callCloseTab(result) {
-        sforce.console.closeTab(result.id);
-    }    
-    function noenter(ev)  {
-        if (window.event && window.event.keyCode == 13 || ev.which == 13) {
-            searchMktFunc();
-            return false;
-        } else {
-            return true;
-        }
-    }
-    </script> 
+    <apex:includeScript value="{!$Resource.CEC_CaseTransferPage}"/>
 </apex:page>

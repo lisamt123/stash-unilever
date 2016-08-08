@@ -124,6 +124,19 @@ Competitor strategy; Price change trend; Other</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
+    <fields>
+        <fullName>Topic_Order__c</fullName>
+        <description>The order in which the topics are displayed</description>
+        <externalId>false</externalId>
+        <label>Topic Order</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <label>Agent Topic</label>
     <nameField>
         <label>Topic Name</label>

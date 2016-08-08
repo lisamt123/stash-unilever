@@ -1,0 +1,1970 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>sf4twitter__Salesforce_for_Twitter</application>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <classAccesses>
+        <apexClass>sf4twitter__AutomationWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__AutomationWrapperTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__CoreFactory</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__CoreSearchController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__CoreUserObjectCollection</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkAccountManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkAdapter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkAdapterTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkCredentialManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkCredentialManagerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkFeaturesController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkFeaturesControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkGetConversationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkGetConversationControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkGetPrivateMessagesController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkGetPrivateMessagesControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkMockdata</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkOauth</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkOauthController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkOauthControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkObjectManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkObjectManagerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FCBKPageSearchController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FCBKPageSearchControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkPageSelectionController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkPageSelectionControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkQLResponseParser</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkQLResponseParserTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkTypes</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkTypesTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkUpdatePageInfoController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkUpdatePageInfoControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkUserFanPagesController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__FcbkUserFanPagesControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__GenerateEnvironmentTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__HttpWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__HttpWrapperTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__JSONObject</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__JSONObjectTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__Oauth4Twitter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__Oauth4TwitterTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__OAuthClass</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__OAuthClassTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__RSSHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__RSSHandlerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SecurityManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SecurityManagerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SecurityUtilities</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SetupController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SetupControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialArticlesController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialArticlesControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialBitlyAdapter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialBitlyAdapterTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialBitlyController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialBitlyControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialConsoleDetector</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialConsoleDetectorTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialDispatcherController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialDispatcherControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialKloutAdapter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialKloutAdapterTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialOutputLinkController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialOutputLinkControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialSetupController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialSetupControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialSolutionController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialSolutionControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialTemplateController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__SocialTemplateControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TestAssociationInbound</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TestAssociationInboundReply</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TestAssociationOutbound</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TestTriggers</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TroubleshootingLogController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TroubleshootingLogControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAccountManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAccountManagerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAccountSearchController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAddContributorController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAddContributorControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAddToCampaignController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAddToCampaignControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAjaxSearch</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterAjaxSearchTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterChatterAdapter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterChatterAdapterTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterContactController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterContactControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterConversationManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterConversationManagerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterCredentialManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterCustomSettings</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterError</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterErrorTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterFindContactController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterFindContactControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterFindConversationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterFindConversationControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterFollow</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterFollowTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterForceController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterForceControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterGetConversationController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterGetConversationControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterGetUsernameController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterGetUsernameControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterIgnoreController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterIgnoreControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterKeywordSearchController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterKeywordSearchControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterLeadController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterLeadControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterLogger</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterLoggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterMockData</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterOAuthController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterOAuthControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterObjectManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterOutboundTweetsController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterOutboundTweetsControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterOutputFilter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterOutputFilterTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterPersonAccountManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterPersonAccountManagerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterPostToChatterPopUpController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterPostToChatterPopUpControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterResult</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterReviewController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterReviewControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterScheduler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSchedulerController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSchedulerControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSchedulerIgnore</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSchedulerIgnoreTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSchedulerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSearchController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSearchManager</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSearchManagerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSimpleOutboundTweetExtension</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSimpleOutboundTweetExtensionTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSolvedByCommunityController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterSolvedByCommunityControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterStartPageController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterStartPageControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterTemplates</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterTemplatesTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterTestUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterThumbsChangeController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterThumbsChangeControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterToCaseController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterToCaseControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterToKnowledgeController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterToKnowledgeControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterUpdateTwitterInfoController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterUpdateTwitterInfoControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>sf4twitter__TwitterUtilsTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <pageAccesses>
+    <apexPage>sf4twitter__FcbkFeatures</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__FcbkGetConversation</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__FcbkGetPrivateMessages</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__FcbkOauth</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__FcbkPageSelection</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__FcbkUpdatePageInfo</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__FcbkUserFanPages</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__Setup</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__SocialKlout</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__SocialSetup</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__SplashPage</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TroubleshootingLog</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__Twitter_StartPage</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterAddContributor</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterAddToCampaign</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterAjaxFrameSearch</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterContact</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterErrorMessage</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterFindContact</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterFindConversation</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterFollow</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterGetConversation</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterGetUsername</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterIgnore</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterLead</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterMessage</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterOAuth</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterOAuthCallback</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterPostToChatter</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterReview</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterScheduler</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterSearchInterface</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterSolvedByCommunity</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterThumbsChange</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterToCase</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterToKnowledge</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+<pageAccesses>
+    <apexPage>sf4twitter__TwitterUpdateTwitterInfo</apexPage>
+    <enabled>true</enabled>
+</pageAccesses>
+	<description>CEC: Provide access to the Standard Social Media Package</description>
+  <fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Category__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Description__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Enable_Auto_Case_Creation__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Enable_Facebook_Reply_Comment__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Facebook_Image__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Fcbk_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__High_Volume_Pages__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Image__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Last_Banned_Ids__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Last_Time_Run__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Likes__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__PM_Bring_In__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Post_Hashtag_Chatter__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Products__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Run_Case_Association_Logic__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Search_Lower_Limit_Time__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Search_Upper_Limit_Time__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Send_Error_Email__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Time_to_Keep_Assoc_Case_Close_Private__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Unknown_Users__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__Valid__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__tmpPrivateMessageTimestamp__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_Page__c.sf4twitter__untilTimeStamp__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__Facebook_Image__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__Fcbk_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__Image__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__Valid__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__about_me__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__birthday__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__city__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__country__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__email__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__first_name__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__last_name__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__political__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__religion__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__sex__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Fcbk_User__c.sf4twitter__state__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Active__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Bit_ly_Password__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Bit_ly_Username__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Contributor_Enabled__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Direct_Message_Id_Threshold__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Enable_Auto_Case_Creation__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Has_Password__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Klout_Number__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Klout_Score__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Last_DM_Ids__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Last_Tweet_Ids__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__OAuth_Secret__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__OAuth_Token__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__PartialTwitterMinMessage__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__PartialTwitterMinTweets__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Partial_Twitter_Max_Message__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Partial_Twitter_Max_Twitter__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Post_Hashtag_Chatter__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Results_Per_Page__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Search_Direct_Message_Id_Offset__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Search_Tweet_Id_Offset__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Send_Error_Email__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Tweet_Id_Threshold__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Twitter_Max_Message__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Twitter_Max_Twitter__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Twitter_User_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Unknown_Twitter_Usernames__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__Valid__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__associate_DM__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__associate_cases_same_username__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__closed_case_duration__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Account__c.sf4twitter__ignore_maxid__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__Authentication__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__Main_Account__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__OAuth_Secret__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__OAuth_Token__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__TwitterAccount__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__Twitter_User_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__User__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Contributor__c.sf4twitter__Valid__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Account__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Attachments__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Author_External_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Author_Name__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Author_Real_Name__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Author_URL__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Case_Created__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Case__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Chatter_Post_Link__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Chatter_Post__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Collected_Comments__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Contact_Created__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Contact__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Content__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Direct_Message__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Download_Name__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Facebook_Page__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Height__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Image_Preview__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Image__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Name__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Source_Video__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Source__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Url__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__First_Attachment_Width__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Follower_Count__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Following_Count__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Geo_Coordinates__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Image__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__In_Reply_To_Status_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__In_Reply_To_User_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__IsDirectMessage__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Is_Geo_Enabled__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Klout_Number__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Klout_Score__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Lead_Created__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Lead__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Likes_Link__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Likes__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Link_Shared__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Link__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Message__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Negative_Tweets__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Neutral_Tweets__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__New_Case__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Origin_Date__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Origin_Icon__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Origin__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__ParentConversation__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Parent__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Place_Coordinates__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Place__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Positive_Tweets__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Published_Date__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Replied_Status__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Replied_User__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Solution_Created__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Solution__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Status__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__ThreadPMId__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Total_Comments__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Tweet_Sentiment__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Twitter_Account__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Twitter_Id_Number__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Twitter_Image__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Twitter_Location__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Twitter_Search__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Twitter_Source__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Type__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Uncollected_Comments__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Uncollected_Schedule__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__Updated_Date__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__User_Bio__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__User_Creation_Date__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__User_Last_tweet__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__User_Likes__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__User_Status_count__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Conversation__c.sf4twitter__paging__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Followers__c.sf4twitter__Contact__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Followers__c.sf4twitter__Lead__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Followers__c.sf4twitter__Twitter_Account__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Scheduler__c.sf4twitter__Facebook_Page__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Scheduler__c.sf4twitter__Last_Run_Time__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Scheduler__c.sf4twitter__Period_Time__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Scheduler__c.sf4twitter__Running_User__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Scheduler__c.sf4twitter__Twitter_Account__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Scheduler__c.sf4twitter__Twitter_Search__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Scheduler__c.sf4twitter__jobId__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Active__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Campaign__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Last_Tweet_Ids__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__PartialTwitterMinSearch__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Partial_Twitter_Max_Search__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Results_Per_Page__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Search_Tweet_Id_Offset__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Send_Error_Email__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Tweet_Id_Threshold__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Twitter_Max_Search__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Unknown_Twitter_Usernames__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__Weight__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>sf4twitter__Twitter_Search__c.sf4twitter__ignore_maxid__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Case.Transient_External_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Case.sf4twitter__Author_External_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Case.sf4twitter__Twitter_Username__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Case.sf4twitter__twitterId__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Case.Social_Media_External_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.hoot2sf_TwitterUsername__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Contact_Source__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Fcbk_Image_Url__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Contact.sf4twitter__Fcbk_Picture__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Fcbk_Profile_Url__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Fcbk_User_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Fcbk_Username__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Contact.sf4twitter__Follow_Status__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Influencer_Type__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Influencer__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Klout_Number__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Contact.sf4twitter__Klout_Score__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Languages__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Level__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Origin__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Contact.sf4twitter__Research_this_Contact__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Bio__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Creation_Date__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Follower_Count__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Following_count__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Image_Url__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Last_Tweet__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Location__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>false</editable>
+    <field>Contact.sf4twitter__Twitter_Picture__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Status_count__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_User_Id__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__Twitter_Username__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Contact.sf4twitter__followed__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Solution.sf4twitter__Contact__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Solution.sf4twitter__TwitterId__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<fieldPermissions>
+    <editable>true</editable>
+    <field>Solution.sf4twitter__Twitter_Summary__c</field>
+    <readable>true</readable>
+</fieldPermissions>
+<label>CEC - Social Media (Salesforce)</label>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Fcbk_Page_Admin__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Fcbk_Page__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Fcbk_User__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Twitter_Account__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Twitter_Contributor__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Twitter_Conversation__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Twitter_Followers__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Twitter_Scheduler__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+<objectPermissions>
+    <allowCreate>true</allowCreate>
+    <allowDelete>true</allowDelete>
+    <allowEdit>true</allowEdit>
+    <allowRead>true</allowRead>
+    <modifyAllRecords>false</modifyAllRecords>
+    <object>sf4twitter__Twitter_Search__c</object>
+    <viewAllRecords>false</viewAllRecords>
+</objectPermissions>
+	<tabSettings>
+        <tab>sf4twitter__Twitter_Conversation__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>sf4twitter__Social_Setup</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>sf4twitter__Salesforce_for_Twitter</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>sf4twitter__Social_Agent</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>sf4twitter__Fcbk_User__c</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
+	<tabSettings>
+        <tab>sf4twitter__Fcbk_Page__c</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
+    <userLicense>Salesforce</userLicense>
+</PermissionSet>
