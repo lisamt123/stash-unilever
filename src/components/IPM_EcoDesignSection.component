@@ -10,10 +10,11 @@
 <apex:attribute name="getSectionId" assignTo="{!ProdocSecId}" type="ID" description="Get section id" />
 <apex:attribute name="Ecoedit" assignTo="{!isEditable}" type="Boolean" description="security purpose"/>
 <apex:attribute name="displayOnlyTables" type="Boolean" description="conditional display purpose"/>
+
 <apex:includeScript value="{!$Resource.EcoDesignJS}"/>
   <!-- Begin Default Content REMOVE THIS --> 
   <apex:outputPanel layout="block" rendered="{!!noRolloutSubmittedYet}">   
-        <div class="altBGcolor clearfix">
+        <div class="altBGcolor clearfix ecoPdf">
             <p class="mb20 {!if(displayOnlyTables==true,'ecotabHide','ecoTabshow')}" >
                 <apex:outputtext escape="false" value="{!$Label.IPM_EcoDesign_Section_Text}" rendered="{!(isEditable && firstSyncToEcoDesign)}"/>
             </p>
@@ -212,14 +213,14 @@
                                                                         <label>{!$Label.IPM_Ecodesign_Nutrition}</label>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="inputField inline">                                
-                                                                        </div>
-                                                                        <div class="inputField inline">                                
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="inputField">                                
-                                                                        <apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
+                                                                        <div class="inputField inline">                                
+                                                                        </div>
+                                                                        <div class="inputField inline">                                
                                                                         </div>
                                                                     </td>
                                                                     <td>
@@ -316,7 +317,7 @@
                                                             </td>
                                                         </tr>
                                                     </tbody>
-                                                    </table>                                                    
+                                                    </table>                                                
                                                     <table class="ipmTable table table-bordered ecoDesignCountry" width="100%"> 
                                                         <thead>
                                                             <tr>                                     
@@ -461,14 +462,14 @@
                                                                         <label>{!$Label.IPM_Ecodesign_Nutrition}</label>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="inputField cellWidth">                                
-                                                                        </div>
-                                                                        <div class="inputField cellWidth">                                
+                                                                        <div class="inputField">                                
+                                                                        <apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <div class="inputField">                                
-                                                                        <apex:outputText value="{!countryEle.IPM_Nutrition__c}"/>
+                                                                        <div class="inputField cellWidth">                                
+                                                                        </div>
+                                                                        <div class="inputField cellWidth">                                
                                                                         </div>
                                                                     </td>
                                                                     <td>
