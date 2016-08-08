@@ -92,14 +92,14 @@
 If(includes(IPM_Managed_Category__c, &apos;Laundry&apos;), 1, 0) + 
 If(includes(IPM_Managed_Category__c, &apos;Savoury&apos;), 1, 0) + 
 If(includes(IPM_Managed_Category__c, &apos;Ice Cream&apos;), 1, 0) +
-If(includes(IPM_Managed_Category__c, &apos;Hair&apos;), 1, 0) +
+If(includes(IPM_Managed_Category__c, &apos;Hair Care&apos;), 1, 0) +
 If(includes(IPM_Managed_Category__c, &apos;Spreads&apos;), 1, 0) +
-If(includes(IPM_Managed_Category__c, &apos;Beverages&apos;), 1, 0) +
+If(includes(IPM_Managed_Category__c, &apos;Tea and Soy &amp; Fruit Beverages&apos;), 1, 0) +
 If(includes(IPM_Managed_Category__c, &apos;Skin Care&apos;), 1, 0) +
 If(includes(IPM_Managed_Category__c, &apos;Skin Cleansing&apos;), 1, 0) +
 If(includes(IPM_Managed_Category__c, &apos;Dressings&apos;), 1, 0) +
 If(includes(IPM_Managed_Category__c, &apos;Oral Care&apos;), 1, 0) +
-If(includes(IPM_Managed_Category__c, &apos;Deodarants&apos;), 1, 0)</formula>
+If(includes(IPM_Managed_Category__c, &apos;Deodorants &amp; Fragrances&apos;), 1, 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Category Count</label>
         <precision>18</precision>
