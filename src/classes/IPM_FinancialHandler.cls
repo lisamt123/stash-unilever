@@ -223,16 +223,14 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 
         }
         
-        if(!upsertConsolidatedFinancialMap.isEmpty())
+        // Remove references for Id for upsert.
+        for(IPM_Financial__c financial : upsertConsolidatedFinancialMap.values())
         {
-            // Remove references for Id for upsert.
-            for(IPM_Financial__c financial : upsertConsolidatedFinancialMap.values())
-            {
-                financial.id = null;
-                IPM_FinancialHelper.processLastSaved(financial);
-            }
-            upsert upsertConsolidatedFinancialMap.values() Financial_External_ID__c;
+            financial.id = null;
+            IPM_FinancialHelper.processLastSaved(financial);
         }
+        upsert upsertConsolidatedFinancialMap.values() Financial_External_ID__c;
+        
         
         if(Trigger.isUpdate)
         {
