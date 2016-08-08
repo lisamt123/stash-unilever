@@ -726,7 +726,7 @@
         </rules>
     </decisions>
     <description>Stores Snapshots of Financial Data</description>
-    <interviewLabel>IPM_Financial_SnapShot-1_IPM_Financial__c</interviewLabel>
+    <interviewLabel>IPM_Financial_SnapShot-9_IPM_Financial__c</interviewLabel>
     <label>IPM Financial SnapShot</label>
     <processMetadataValues>
         <name>ObjectType</name>

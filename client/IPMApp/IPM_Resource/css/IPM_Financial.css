@@ -394,3 +394,7 @@ div.filterTitle span.wordwrap {margin-left: -5px;}
 .finSumTbl>tbody>tr>td.yellowmisaligned {
     border: 3px solid #EC2;
 }
+
+div.table-responsive table.ipmFinancetable.fintable.table.table-bordered{
+table-layout: fixed;
+}

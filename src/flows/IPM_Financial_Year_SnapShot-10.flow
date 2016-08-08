@@ -478,7 +478,7 @@
         </rules>
     </decisions>
     <description>Stores Snapshot of financial Year Data across Phases</description>
-    <interviewLabel>IPM_Financial_Year_SnapShot-1_IPM_Financial_Year__c</interviewLabel>
+    <interviewLabel>IPM_Financial_Year_SnapShot-10_IPM_Financial_Year__c</interviewLabel>
     <label>IPM Financial Year SnapShot</label>
     <processMetadataValues>
         <name>ObjectType</name>
