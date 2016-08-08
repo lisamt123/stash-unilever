@@ -47856,10 +47856,10 @@
         <layout>FilesConnect_SFDev__x-FilesConnect-SFDev Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Final</layout>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Final</layout>
+        <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Layout</layout>
         <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -51836,9 +51836,9 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
