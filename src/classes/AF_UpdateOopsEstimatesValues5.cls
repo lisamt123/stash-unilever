@@ -9,7 +9,7 @@
 ****************************************************************************************************************************/
 public with sharing Class AF_UpdateOopsEstimatesValues5
 {
-	static set<String> fYear=new set<String>(); 
+    static set<String> fYear=new set<String>(); 
     static Map<id ,String> AgencyEntityNames=new Map<id,String>();
     static Map<id ,String> unileverEntityNames=new Map<id,String>();
     static Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
@@ -24,8 +24,6 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
     static set<string>  currncycodes=new set<string>();
     static set<String> agencyCountries=new set<String>();
     static set<String> unileverCountries=new set<String>();
-    private static string className_STR=AF_UpdateOopsEstimatesValues5.class.getName();
-    
     /***********************************************************************************
 *  @Description: this method is used to calculate the local currency of OOPSEstimate
 *  @name : UpdateExchageRates
@@ -34,8 +32,8 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 *************************************************************************************/  
     public static void UpdateExchageRates(list<AF_OOPS_Estimate__c> ae)
     {
-    	set<id>   AgencyEntity= new set<id>();
-    	set<id>   unileverEntity=new set<id>();
+        set<id>   AgencyEntity= new set<id>();
+        set<id>   unileverEntity=new set<id>();
         List<AF_OOPS_Estimate__c> agencyRecords=ae;
         if(agencyRecords.size()>0)
         for(AF_OOPS_Estimate__c agencyEst:agencyRecords)
@@ -173,7 +171,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
             currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
         }
         catch(Exception e){
-            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','retrieveCurrencyExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
         }
         if(currencyrecords.size()>0)
         for(AF_Currency__c  curren:currencyrecords)

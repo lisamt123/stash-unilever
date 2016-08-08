@@ -32,8 +32,7 @@ public with sharing class AF_subResult_Helper{
 *  @return: none.
 *************************************************************************************/  
     public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,
-	Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  
-    BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
+    Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id> BonusAnnualSubResult,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
         subResultCalcExt(queryListofSubResult);
         subResultBonusFeesCalc(queryListofSubResult);
         bonusResultList = new List<AF_Bonus_Results__c>();
@@ -51,7 +50,16 @@ public with sharing class AF_subResult_Helper{
         }
         counter =0;
         subResultStatusCalc(BonusQuarterlySubResult,QuaterSet,status,Lock);
-        
+     }   
+        /*****************************************************************************************
+*  @Description: this method is used to Map the sub result id to string of that records
+*  @             
+*  @name : subResultMap
+*  @param : queryListofSubResult,status,Lock,BonusAnnualSubResult,BonusQuarterlySubResultMap
+*  @return: none.
+*************************************************************************************/  
+        public static void subResultMap(Map<Id,String> BonusQuarterlySubResultMap){
+        string subResultMap='subResultMap';
         if(counter ==1){
             List<AF_Bonus_Results__c> bonusquart = new List<AF_Bonus_Results__c>();
             for(Id bt:BonusQuarterlySubResultMap.keySet()){
@@ -92,7 +100,7 @@ public with sharing class AF_subResult_Helper{
                 }
                 catch(Exception e)
                 {
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultMap,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
             }
@@ -103,7 +111,7 @@ public with sharing class AF_subResult_Helper{
             }
             catch(Exception e)
                 {
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultMap,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
         }
@@ -113,11 +121,11 @@ public with sharing class AF_subResult_Helper{
             }
             catch(Exception e)
                 {
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultMap,e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
         }
-    }
+      }
     public static void subResultCalcExt(List<AF_Sub_Result__c> queryListofSubResult){
         for(AF_Sub_Result__c subResult:queryListofSubResult){
             if(subResult.AF_Period__c == null){
