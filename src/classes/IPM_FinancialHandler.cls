@@ -87,9 +87,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 
             if(Trigger.isUpdate) 
             { 
-	            // By passing trigger call for copy over snapshot details  
-		            if(((IPM_Financial__c)Trigger.Old[0]).Charter_Approved__c == ((IPM_Financial__c)Trigger.New[0]).Charter_Approved__c || ((IPM_Financial__c)Trigger.Old[0]).Contract_Approved__c == ((IPM_Financial__c)Trigger.New[0]).Contract_Approved__c || 
-		              ((IPM_Financial__c)Trigger.Old[0]).MR_Approved__c == ((IPM_Financial__c)Trigger.New[0]).MR_Approved__c || ((IPM_Financial__c)Trigger.Old[0]).MD_Approved__c == ((IPM_Financial__c)Trigger.New[0]).MD_Approved__c)
+                 //By passing trigger call for copy over snapshot details  
+ 				 if(checkToByPassCopyOver((IPM_Financial__c)Trigger.Old[0], (IPM_Financial__c)Trigger.New[0]))
 		              {
             	Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
             	
@@ -338,6 +337,19 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             IPM_FinancialHelper.checkIfMisAligned((List<IPM_Financial__c>)Trigger.New,financialDetailMap);
         }
     }
+    
+    /**
+    * This method is to by passing trigger call for copy over snapshot details 
+    */
+    private boolean checkToByPassCopyOver(IPM_Financial__c oOld, IPM_Financial__c oNew){
+    	if(oOld.Charter_Approved__c == oNew.Charter_Approved__c || oOld.Contract_Approved__c == oNew.Contract_Approved__c || 
+	        oOld.MR_Approved__c == oNew.MR_Approved__c || oOld.MD_Approved__c == oNew.MD_Approved__c) {
+        	return true;
+		}
+        return false;
+    } 
+       
+    
     /**
     * @description:beforeInsert
     * This method is called iteratively for each record to be insert during a AFTER
