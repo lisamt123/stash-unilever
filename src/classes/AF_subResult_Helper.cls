@@ -36,7 +36,6 @@ public with sharing class AF_subResult_Helper{
         subResultCalcExt(queryListofSubResult);
         subResultBonusFeesCalc(queryListofSubResult);
         bonusResultList = new List<AF_Bonus_Results__c>();
-        string subResultCalc='subResultCalc';
         if(BonusAnnualSubResult.size()>0){
             for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusAnnualSubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]){
                 bonusResult.AF_Bonusable_Fees__c = bonusfeesAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);

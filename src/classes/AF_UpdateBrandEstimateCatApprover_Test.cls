@@ -16,8 +16,6 @@ public class AF_UpdateBrandEstimateCatApprover_Test
     static user userForupdateoopsEstcatApprover4;
     static user userForupdateoopsEstcatApprover5;
     static user userForupdateoopsEstcatApprover6;
-    static  List<contact> con2;
-    static  List<contact> con3;
     static  List<contact> con4;
     static  List<contact> con5;
     static  List<contact> con6;
@@ -45,8 +43,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
             list<contact>con =AF_TestFactory_Helper.AFInsertContact(1,true);
             list<contact>con1 =AF_TestFactory_Helper.AFInsertContact(1,true);
             System.assertEquals(con!=Null,con1!=null,AF_TestFactory_Helper.CONTACT_RECORD);
-            con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
-            con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+            list<contact>con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
+            list<Contact>con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+            System.assertEquals(con2!=Null,con3!=null,AF_TestFactory_Helper.CONTACT_RECORD);
             con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
             List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
             System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
@@ -113,8 +112,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
              list<contact>con =AF_TestFactory_Helper.AFInsertContact(1,true);
              List<contact>con1 =AF_TestFactory_Helper.AFInsertContact(1,true);
              System.assertEquals(con!=Null,con1!=null,AF_TestFactory_Helper.CONTACT_RECORD);
-             con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
-             con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+             list<contact>con2 =AF_TestFactory_Helper.AFInsertContact(1,true);
+             list<contact>con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+             System.assertEquals(con2!=Null,con3!=null,AF_TestFactory_Helper.CONTACT_RECORD);
              con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
              con5 =AF_TestFactory_Helper.AFInsertContact(1,true);
             List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
@@ -182,8 +182,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
             list<contact>con  = AF_TestFactory_Helper.AFInsertContact(1,true);
             list<Contact>con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
             System.assertEquals(con!=Null,con1!=null,AF_TestFactory_Helper.CONTACT_RECORD);
-            con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-            con3 =AF_TestFactory_Helper.AFInsertContact(1,true);
+            list<contact>con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            list<contact>con3 = AF_TestFactory_Helper.AFInsertContact(1,true);
+            System.assertEquals(con2!=Null,con3!=null,AF_TestFactory_Helper.CONTACT_RECORD);
             con4 =AF_TestFactory_Helper.AFInsertContact(1,true);
             con5 =AF_TestFactory_Helper.AFInsertContact(1,true);
             con6 =AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -253,8 +254,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
             list<contact>con  = AF_TestFactory_Helper.AFInsertContact(1,true); 
             List<Contact>con1  = AF_TestFactory_Helper.AFInsertContact(1,true);  
             System.assertEquals(con!=Null,con1!=null,AF_TestFactory_Helper.CONTACT_RECORD);
-            con2  = AF_TestFactory_Helper.AFInsertContact(1,true);  
-            con3  = AF_TestFactory_Helper.AFInsertContact(1,true);  
+            list<contact>con2  = AF_TestFactory_Helper.AFInsertContact(1,true);  
+            list<contact>con3  = AF_TestFactory_Helper.AFInsertContact(1,true);  
+            System.assertEquals(con2!=Null,con3!=null,AF_TestFactory_Helper.CONTACT_RECORD);
             con4  = AF_TestFactory_Helper.AFInsertContact(1,true);
             con5  = AF_TestFactory_Helper.AFInsertContact(1,true);
             con6  = AF_TestFactory_Helper.AFInsertContact(1,true);
@@ -326,8 +328,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
             list<contact>con  = AF_TestFactory_Helper.AFInsertContact(1,true);
             list<Contact>con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
             System.assertEquals(con!=Null,con1!=null,AF_TestFactory_Helper.CONTACT_RECORD);
-            con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-            con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            list<contact>con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            list<contact>con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            System.assertEquals(con2!=Null,con3!=null,AF_TestFactory_Helper.CONTACT_RECORD);
             con4 = AF_TestFactory_Helper.AFInsertContact2(1,true);
             con5 = AF_TestFactory_Helper.AFInsertContact2(1,true);
             con6 = AF_TestFactory_Helper.AFInsertContact2(1,true);
@@ -409,8 +412,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
             list<contact>con  = AF_TestFactory_Helper.AFInsertContact(1,true);
             list<Contact>con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
             System.assertEquals(con!=Null,con1!=null,AF_TestFactory_Helper.CONTACT_RECORD);
-            con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-            con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            list<contact>con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            list<contact>con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            System.assertEquals(con2!=Null,con3!=null,AF_TestFactory_Helper.CONTACT_RECORD);
             con4 = AF_TestFactory_Helper.AFInsertContact2(1,true);
             con5 = AF_TestFactory_Helper.AFInsertContact2(1,true);
             con6 = AF_TestFactory_Helper.AFInsertContact2(1,true);
@@ -495,8 +499,9 @@ public class AF_UpdateBrandEstimateCatApprover_Test
             list<contact>con  = AF_TestFactory_Helper.AFInsertContact(1,true);
             list<contact>con1 = AF_TestFactory_Helper.AFInsertContact1(1,true);
             System.assertEquals(con!=Null,con1!=null,AF_TestFactory_Helper.CONTACT_RECORD);
-            con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
-            con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            list<contact>con2 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            list<contact>con3 = AF_TestFactory_Helper.AFInsertContact2(1,true);
+            System.assertEquals(con2!=Null,con3!=null,AF_TestFactory_Helper.CONTACT_RECORD);
             List<contact> conQuery = [SELECT id FROM contact LIMIT 1];
             System.Assert(conQuery[0].Id != null, AF_TestFactory_Helper.CONTACT_RECORD);
             //Insert category
