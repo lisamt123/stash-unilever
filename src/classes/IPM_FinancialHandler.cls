@@ -108,7 +108,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					    targetLaunchChangedDateMap.put(financial.Id,financial); 
 					    changedFinancialSet.add(financial.Id);
 					}
-                		if(financial.Year_3_iTO_Global__c!=oldFinancial.Year_3_iTO_Global__c || financial.Year_3_iTO_Regional__c != oldFinancial.Year_3_iTO_Regional__c || financial.Year_3_iTO_Local__c!=oldFinancial.Year_3_iTO_Local__c)
+                            if(isFinancialChange(financial, oldFinancial))
                 		{
                     		finIdsforProjY3iToSync.add(financial.Id);    
             			} 
@@ -166,15 +166,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                                 
                         
                     // Active Field Changes
-                    Boolean oldActiveValue = (Boolean )oldFinancial.get(IPM_FinancialHelper.ACTIVE_FIELD);
-                    Boolean newActiveValue = (Boolean )financial.get(IPM_FinancialHelper.ACTIVE_FIELD);
-                    if(newActiveValue != oldActiveValue)
-                    {
-                        activeChangedFinancialMap.put(financial.Id,financial); 
-                        changedFinancialSet.add(financial.Id); 
-                         
-                        financialToactiveChangedFieldMap.put(financial.Id,new Set<String>{IPM_FinancialHelper.ACTIVE_FIELD});
-                    }
+                            activeFieldChange(financial, oldFinancial, activeChangedFinancialMap, changedFinancialSet, financialToactiveChangedFieldMap);
                     
 	                // Consolidation Field change
 	                Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(financial.recordTypeId,financial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
@@ -276,6 +268,18 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 		}
 		return false;
     } 
+    
+    /**
+    * Check financial change for projects. 
+    */
+    private boolean isFinancialChange(IPM_Financial__c financial, IPM_Financial__c oldFinancial) {
+    	if(financial.Year_3_iTO_Global__c!=oldFinancial.Year_3_iTO_Global__c || 
+    		financial.Year_3_iTO_Regional__c != oldFinancial.Year_3_iTO_Regional__c || 
+    		financial.Year_3_iTO_Local__c!=oldFinancial.Year_3_iTO_Local__c) {
+    			return true;
+    		}
+    	return false;
+    }
     
     /**
     * Insert new Financial Years to Consolidated Financials when TLD is changed for any default Financial. 
@@ -400,6 +404,22 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 changedFieldSet.add(additionalFieldAPI);
                 financialToaddtChangedFieldMap.put(financial.Id,changedFieldSet);
             }
+        }
+    }
+    
+    /**
+    * Method for active field change 
+    */
+    private void activeFieldChange(IPM_Financial__c financial, IPM_Financial__c oldFinancial, Map<Id,IPM_Financial__c> activeChangedFinancialMap,
+    							   Set<Id> changedFinancialSet, Map<Id,Set<String>> financialToactiveChangedFieldMap){
+    	Boolean oldActiveValue = (Boolean )oldFinancial.get(IPM_FinancialHelper.ACTIVE_FIELD);
+        Boolean newActiveValue = (Boolean )financial.get(IPM_FinancialHelper.ACTIVE_FIELD);
+        if(newActiveValue != oldActiveValue)
+        {
+            activeChangedFinancialMap.put(financial.Id,financial); 
+            changedFinancialSet.add(financial.Id); 
+             
+            financialToactiveChangedFieldMap.put(financial.Id,new Set<String>{IPM_FinancialHelper.ACTIVE_FIELD});
         }
     }
     
