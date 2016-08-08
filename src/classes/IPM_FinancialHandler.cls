@@ -138,17 +138,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         {
                             IPM_Financial__c oldFinancial = null;
                             
-                            // Sustainability Period Change
                             oldFinancial = oldFinancialMap.get(financial.Id); 
                             
-                            Integer newSustainabilityPeriod = Integer.valueOf(financial.Project_Sustainability_Period__c);
-                            Integer oldSustainabilityPeriod = Integer.valueOf(oldFinancial.Project_Sustainability_Period__c);
-                            
-                            if(newSustainabilityPeriod != oldSustainabilityPeriod)
-                            {
-                                susChangedFinancialMap.put(financial.Id,financial);
-                                changedFinancialSet.add(financial.Id);
-                            }
+                            // Sustainability Period Change
+                            sustainabilityPeriodChange(financial, oldFinancial, susChangedFinancialMap, changedFinancialSet);
                             
                             // Volume Type Change
                             volumeTypeChange(financial, oldFinancial, volumeTypeChangedFinancialMap, changedFinancialSet);
@@ -307,6 +300,20 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 IPM_FinancialHelper.updateFinancialYearTables(targetLaunchChangedDateMap,financialDetailMap,updateFinancialYearMap);
                 update updateFinancialYearMap.values();
             }
+        }
+    }
+    
+    /**
+    * Method for sustainability period change
+    */
+    private void sustainabilityPeriodChange(IPM_Financial__c financial, IPM_Financial__c oldFinancial, Map<Id,IPM_Financial__c> susChangedFinancialMap, Set<Id> changedFinancialSet){
+    	Integer newSustainabilityPeriod = Integer.valueOf(financial.Project_Sustainability_Period__c);
+        Integer oldSustainabilityPeriod = Integer.valueOf(oldFinancial.Project_Sustainability_Period__c);
+        
+        if(newSustainabilityPeriod != oldSustainabilityPeriod)
+        {
+            susChangedFinancialMap.put(financial.Id,financial);
+            changedFinancialSet.add(financial.Id);
         }
     }
     
