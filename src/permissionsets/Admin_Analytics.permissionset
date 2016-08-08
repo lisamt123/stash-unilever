@@ -50693,30 +50693,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>PBS_Achievement_Category__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PBS_Achievement__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PBS_Learning_Assignment__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PBS_Learning_Category__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PBS_Learning__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>PBS_Profile__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>PSARCategory__c</tab>
         <visibility>None</visibility>
     </tabSettings>
