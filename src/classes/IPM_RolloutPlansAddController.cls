@@ -564,26 +564,36 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         countryWrapper.selected = true;
                     }
           
-	          if(noRolloutDisabledCountrycodeSet.Contains(countryWrapper.code))
-	          {
-	            countryWrapper.noRolloutDisabled = true;
-	          }
-                    if(setCountryCodes!=null && setCountryCodes.contains(countryWrapper.code))  
-                    {
-                        countryWrapper.rolloutStatus = IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE;
-                        countryWrapper.selected = true;
-                    }
-                    if(setCountryCodesMCOs!=null && setCountryCodesMCOs.contains(countryWrapper.code))
-                    {
-                        countryWrapper.rolloutStatus = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO; 
-                        countryWrapper.selected = true;
-                    }
+	                if(noRolloutDisabledCountrycodeSet.Contains(countryWrapper.code))
+	                {
+						countryWrapper.noRolloutDisabled = true;
+	                }
                     
-                    if(setCountryNoRolls!=null && setCountryNoRolls.contains(countryWrapper.code))
-                    {
-                        countryWrapper.rolloutStatus = IPM_ConstantUtils.NO_ROLLOUT; 
-                        countryWrapper.selected = true; 	 	
-                    }
+					Map<String,String> rolloutStatusMap = new Map<String,String>();
+					
+					for(String selectedCountryCode : setCountryCodes)
+					{
+						rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE);  
+					}
+					
+					for(String selectedCountryCode : setCountryCodesMCOs)
+					{
+						rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO);
+					}
+					
+					for(String selectedCountryCode : setCountryNoRolls)
+					{
+						rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.NO_ROLLOUT);
+					}
+					
+					rolloutStatusMap.remove(null);
+					
+					
+					if(rolloutStatusMap.containsKey(countryWrapper.code))
+					{
+						countryWrapper.selected = true;
+						countryWrapper.rolloutStatus =  rolloutStatusMap.get(countryWrapper.code);
+					}
                         
                     lstCountryWrappers.add(countryWrapper);
                     
