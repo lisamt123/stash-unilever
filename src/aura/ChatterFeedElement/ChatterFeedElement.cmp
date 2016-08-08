@@ -157,7 +157,7 @@
                     </li>
                     </span>
                 </aura:iteration>
-                  </span>span>
+                  </span>
               </ul>
             </div>
          </aura:if>
