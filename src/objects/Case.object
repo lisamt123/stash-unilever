@@ -3233,6 +3233,104 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <type>Checkbox</type>
     </fields>
     <listViews>
+        <fullName>ANZ_All_open_cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CONTACT.FIRST_NAME</field>
+            <operation>notContain</operation>
+            <value>ANZ queue</value>
+        </filters>
+        <label>ANZ All open cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ANZ_My_new_cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>ANZ My new cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ANZ_My_open_cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>ANZ My open cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>ANz_My_closed_cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CASES.CLOSED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>ANZ My closed cases</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>All_email</fullName>
         <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -3288,6 +3386,40 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_ANZ_All_new_e_mails_assigned</fullName>
+        <columns>OWNER_NAME</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email ANZ,Email,Web</value>
+        </filters>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>notContain</operation>
+            <value>ANZ</value>
+        </filters>
+        <label>ANZ All new e-mails assigned</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_ANZ_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
@@ -3295,11 +3427,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC ANZ Escalation Queue</label>
+        <label>ANZ Escalation Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Escalation_Queue</queue>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_ANZ</role>
             <role>CEC_User_ANZ</role>
         </sharedTo>
@@ -3312,11 +3443,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC ANZ Queue</label>
+        <label>ANZ Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
-            <role>CEC_Global_Head</role>
             <role>CEC_Manager_ANZ</role>
             <role>CEC_User_ANZ</role>
         </sharedTo>
