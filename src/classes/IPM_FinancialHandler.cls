@@ -103,9 +103,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                IPM_Financial__c oldFinancial = oldFinancialMap.get(financial.Id); 
 	            	
 	            	// Only add Financial Years For Consolidated Financials.
-					if(financial.isActive__c && financial.recordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && 
-						financial.Target_Launch_Date__c!=null && financial.Target_Launch_Date__c.year()  != oldFinancial.Target_Launch_Date__c.year() )
-					{
+                            if(checkForConsolidatedFinancial(financial, oldFinancial))
+                            {
 					    targetLaunchChangedDateMap.put(financial.Id,financial); 
 					    changedFinancialSet.add(financial.Id);
 					}
@@ -265,6 +264,17 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         	return true;
 		}
         return false;
+    }
+    
+    /**
+    * Check to add only Financial Years For Consolidated Financials. 
+    */
+    private boolean checkForConsolidatedFinancial(IPM_Financial__c financial, IPM_Financial__c oldFinancial){
+    	if(financial.isActive__c && financial.recordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && 
+           financial.Target_Launch_Date__c!=null && financial.Target_Launch_Date__c.year()  != oldFinancial.Target_Launch_Date__c.year()) {
+			return true;
+		}
+		return false;
     } 
     
     /**
