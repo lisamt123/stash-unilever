@@ -9,7 +9,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Name</field>
+                <field>REF_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
