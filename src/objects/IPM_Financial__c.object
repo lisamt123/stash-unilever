@@ -144,7 +144,7 @@
         <description>This field is the difference between BIC regional and BIC local.</description>
         <externalId>false</externalId>
         <formula>IF(BIC_Regional__c &lt;&gt; 0, 
-	IF((ABS(BIC_Regional__c - BIC_Local__c)/BIC_Regional__c) &gt; 0.05, 
+	IF((ABS((BIC_Regional__c - BIC_Local__c)/BIC_Regional__c)) &gt; 0.05, 
 		ABS(BIC_Regional__c - BIC_Local__c), 
 		0
 	), 
@@ -332,7 +332,7 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <description>This captures difference between Regional and local CAPEX field.</description>
         <externalId>false</externalId>
         <formula>IF(CAPEX_Regional__c &lt;&gt; 0, 
-	IF((ABS(CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c) &gt; 0.05, 
+	IF((ABS((CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c)) &gt; 0.05, 
 		ABS(CAPEX_Regional__c - CAPEX_Local__c), 
 		0
 	), 
@@ -599,7 +599,7 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <description>GM Y1 bps vs DNDS Difference</description>
         <externalId>false</externalId>
         <formula>IF(GM_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
-	IF((ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
+	IF((ABS((GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c)) &gt; 0.05, 
 		ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c), 
 		0
 	), 
@@ -1273,7 +1273,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <description>This field holds IRR  difference between value of IRR regional and local fields.</description>
         <externalId>false</externalId>
         <formula>IF(IRR_Regional__c &lt;&gt; 0, 
-	IF((ABS(IRR_Regional__c - IRR_Local__c)/IRR_Regional__c) &gt; 0.05, 
+	IF((ABS((IRR_Regional__c - IRR_Local__c)/IRR_Regional__c)) &gt; 0.05, 
 		ABS(IRR_Regional__c - IRR_Local__c), 
 		0
 	), 
@@ -1849,7 +1849,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <description>Difference between NPV regional and local NPV&apos;s.</description>
         <externalId>false</externalId>
         <formula>IF(NPV_Regional__c &lt;&gt; 0, 
-	IF((ABS(NPV_Regional__c - NPV_Local__c)/NPV_Regional__c) &gt; 0.05, 
+	IF((ABS((NPV_Regional__c - NPV_Local__c)/NPV_Regional__c)) &gt; 0.05, 
 		ABS(NPV_Regional__c - NPV_Local__c), 
 		0
 	), 
@@ -1998,7 +1998,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <description>PBO Y1 bps vs DNDS Difference</description>
         <externalId>false</externalId>
         <formula>IF(PBO_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
-	IF((ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)/PBO_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
+	IF((ABS((PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)/PBO_Y1_bps_vs_DNDS_Regional__c)) &gt; 0.05, 
 		ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c), 
 		0
 	), 
@@ -2151,7 +2151,7 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <description>Payback_Regional - payback_Local = payback_Difference.</description>
         <externalId>false</externalId>
         <formula>IF(Payback_Regional__c &lt;&gt; 0, 
-	IF((ABS(Payback_Regional__c - Payback_Local__c)/Payback_Regional__c) &gt; 0.05, 
+	IF((ABS((Payback_Regional__c - Payback_Local__c)/Payback_Regional__c)) &gt; 0.05, 
 		ABS(Payback_Regional__c - Payback_Local__c), 
 		0
 	), 

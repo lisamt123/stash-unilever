@@ -33,8 +33,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
-                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
-                                                                     {!NPVErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
+                                                                     												  {!NPVErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.NPV_Global__c}" />
                                     </apex:outputText>
@@ -61,8 +61,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
-                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
-                                                                     {!NPVErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
+                                																					  {!NPVErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.NPV_Regional__c}" />
                                     </apex:outputText>
@@ -89,8 +89,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
-                                                                     {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
-                                                                     {!NPVErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
+                                																					  {!NPVErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.NPV_Local__c}" />
                                     </apex:outputText>
@@ -134,8 +134,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
-                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
-                                                                     {!IRRErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
+                                																					  {!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Global__c}
                                 </a>
                             </apex:outputText>
@@ -158,8 +158,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
-                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
-                                                                     {!IRRErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
+                                																					  {!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Regional__c}
                                 </a>
                             </apex:outputText>
@@ -182,8 +182,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
-                                                                     {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
-                                                                     {!IRRErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
+                                																					  {!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Local__c}
                                 </a>
                             </apex:outputText>
@@ -223,8 +223,8 @@
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
-                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
-                                                                     {!PaybackErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
+                                																					  {!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.Payback_Global__c}" />
                                     </apex:outputText>
@@ -251,8 +251,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
-                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
-                                                                     {!PaybackErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
+                                																					  {!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
                                     </apex:outputText>
@@ -279,8 +279,8 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0, NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
-                                                                     {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
-                                                                     {!PaybackErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
+                                																					  {!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.Payback_Local__c}" />
                                     </apex:outputText>
@@ -328,8 +328,8 @@
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
-                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
-                                                                     {!CAPEXErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
+                                																					  {!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.CAPEX_Global__c}" />
                                     </apex:outputText>
@@ -357,8 +357,8 @@
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
-                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
-                                                                     {!CAPEXErrorMsg}">
+                                																					  {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
+                                																					  {!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.CAPEX_Regional__c}" />
                                     </apex:outputText>
@@ -385,8 +385,8 @@
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
-                                                                     {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
-                                                                     {!CAPEXErrorMsg}">
+																													  {!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
+																													  {!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.CAPEX_Local__c}" />
                                     </apex:outputText>
@@ -427,7 +427,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c>0),NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}
-                                                                     {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
+																													  {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.BIC_Global__c}" />
                                     </apex:outputText>
@@ -454,7 +454,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c>0) ,NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}
-                                                                     {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
+                                                                     												  {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.BIC_Regional__c}" />
                                     </apex:outputText>
@@ -481,7 +481,7 @@
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c>0),NOT(isEditMode))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}
-                                                                     {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
+																													  {!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.BIC_Local__c}" />
                                     </apex:outputText>

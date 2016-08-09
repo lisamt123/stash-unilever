@@ -398,4 +398,4 @@ div.filterTitle span.wordwrap {margin-left: -5px;}
 div.table-responsive table.ipmFinancetable.fintable.table.table-bordered{
 table-layout: fixed;
 }
-.ipmFinancetable .tooltip-inner{white-space:pre-wrap; line-height:16px; max-width: 214px;}
+.fintable .tooltip-inner{white-space:pre-wrap; line-height:16px; max-width: 240px;}
