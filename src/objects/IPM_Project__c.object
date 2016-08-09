@@ -1113,9 +1113,9 @@
         <fullName>IPM_Category_Icon__c</fullName>
         <description>To store the category icon details.</description>
         <externalId>false</externalId>
-        <formula>IF(IPM_Category_Text__c = &apos;Beverages&apos; || IPM_Category_Text__c = &apos;BEVERAGES&apos;, 
+        <formula>IF(IPM_Category_Text__c = &apos;Tea and Soy &amp; Fruit Beverages&apos; || IPM_Category_Text__c = &apos;BEVERAGES&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_beverages.png&apos;,&apos;BEVERAGES&apos;,21,21), 
-IF(IPM_Category_Text__c = &apos;DEODARANTS&apos; || IPM_Category_Text__c = &apos;Deodarants&apos;, 
+IF(IPM_Category_Text__c = &apos;Deodorants &amp; Fragrances&apos; || IPM_Category_Text__c = &apos;Deodorants &amp; Fragrances&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_deo.png&apos;,&apos;DEO&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Dressings&apos; || IPM_Category_Text__c = &apos;DRESSINGS&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_dressings.png&apos;,&apos;DRESSINGS&apos;,21,21), 
@@ -1129,7 +1129,7 @@ IF(IPM_Category_Text__c = &apos;Laundry&apos; || IPM_Category_Text__c = &apos;LA
 IMAGE(&apos;/resource/IPM_Resource/images/category_laundry.png&apos;,&apos;LAUNDRY&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;ORAL CARE&apos; || IPM_Category_Text__c = &apos;Oral Care&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_oral.png&apos;,&apos;ORAL&apos;,21,21), 
-IF( IPM_Category_Text__c = &apos;SAVORY&apos; || IPM_Category_Text__c = &apos;Savory&apos;, 
+IF( IPM_Category_Text__c = &apos;Savoury&apos; || IPM_Category_Text__c = &apos;Savoury&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_savoury.png&apos;,&apos;SAVOURY&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Skin Care&apos; || IPM_Category_Text__c = &apos;SKIN CARE&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_skincare.png&apos;,&apos;SKINCARE&apos;,21,21), 

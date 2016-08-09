@@ -144,7 +144,17 @@
         <fullName>IPM_HoldCategory__c</fullName>
         <externalId>false</externalId>
         <formula>IF(INCLUDES( IPM_User_Category__c ,&quot;Household Care&quot;), &quot;Household Care,&quot;, &quot;&quot;) &amp;
-IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &quot;&quot;)</formula>
+IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &quot;&quot;) &amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Savoury&quot;), &quot;Savoury,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Ice Cream&quot;), &quot;Ice Cream,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Skin Care&quot;), &quot;Skin Care,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Hair Care&quot;), &quot;Hair Care,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Oral Care&quot;), &quot;Oral Care,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Skin Cleansing&quot;), &quot;Skin Cleansing,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Deodorants &amp; Fragrances&quot;), &quot;Deodorants &amp; Fragrances,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Dressings&quot;), &quot;Dressings,&quot;, &quot;&quot;) &amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Spreads&quot;), &quot;Spreads,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;), &quot;Tea and Soy &amp; Fruit Beverages,&quot;, &quot;&quot;)</formula>
         <label>HoldCategory</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
