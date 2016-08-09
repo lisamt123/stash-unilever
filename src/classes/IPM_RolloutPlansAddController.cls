@@ -545,7 +545,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             lstMCOWrappers = sortWrappersByName(lstMCOWrappers);
             
-            selectMCO(lstMCOWrappers);
+            if(!lstMCOWrappers.isEmpty()){
+            	selectMCO(lstMCOWrappers);
+            }
             
             //COUNTRY SUB WRAPPERS
             
