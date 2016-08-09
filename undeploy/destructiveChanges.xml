@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
 	<types>
-        <members>Food_Beverages.md</members>
-        <members>Refreshments_Spreads.md</members>
+        <members>IPM_Category_EI_Matrix__mdt.Food_Beverages.md</members>
+        <members>IPM_Category_EI_Matrix__mdt.Refreshments_Spreads.md</members>
 		<name>CustomMetadata</name>
     </types>
 </Package>
