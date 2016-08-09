@@ -1,8 +1,9 @@
-src
-src/classes
-src/classes/BET_Team_MemberHandlerCls.cls
-src/classes/BET_Team_MemberHandlerCls.cls-meta.xml
-src/classes/BET_Team_MemberHandlerClsHelper
-src/classes/BET_Team_MemberHandlerClsHelper-meta.xml
-
-
+ src
+ src/classes/BET_MemberRequestHandlerCls.cls
+ src/classes/BET_Member_RequestHandler.cls
+ src/classes/BET_TriggerFactory.cls
+ src/pages/BC_All_stories.page
+ src/pages/BC_Landing_page.page
+ src/pages/BC_article_template.page
+ src/pages/BET.page
+ src/pages/CoreNTLandingPage.page
