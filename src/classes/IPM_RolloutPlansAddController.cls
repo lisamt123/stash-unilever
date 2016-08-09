@@ -96,8 +96,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     private Set<String > noRolloutDisabledCountrycodeSet = new Set<String >();
     private Set<Id> localRolloutProjectIds;
     public Set<Id> projPurgeIdSet = new Set<Id>();
-	public Map<String,IPM_Country__c> existingRelatedCountriesMap;
-	public Map<String,Set<String>> relatedMCOAndCountry;
+    public Map<String,IPM_Country__c> existingRelatedCountriesMap;
+    public Map<String,Set<String>> relatedMCOAndCountry;
     
         public String marketClusterName{get {
             if(project.Market_Cluster_Name__c != '') {
@@ -180,15 +180,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 for(MDO_Geography__c geography : Database.query(queryString))
                 {
                     if(((marketClusterName==geography.Name || marketClusterName==geography.parent_L2__r.Name || 
-                		marketClusterName==geography.parent_L2__r.parent_L2__r.Name) && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-                		|| project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-                	{
-                		mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
-                	}
-                	else
-                	{
-                		continue;
-                	}
+                        marketClusterName==geography.parent_L2__r.parent_L2__r.Name) && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                        || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+                    {
+                        mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 if(!mapUnileverCountries.isEmpty())
                 {
@@ -324,6 +324,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             Set<String> setDisabledMCOCodes = new Set<String>();
             
             setCountryCodesGlobal = new Set<String>();
+            setCountryCodes = new Set<String>();
+            setCountryCodesMCOs = new Set<String>();
+            setCountryNoRolls = new Set<String>(); 
             
             for (MDO_Geography__c country : mapUnileverCountries.values())
             { //change-4
@@ -545,9 +548,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             lstMCOWrappers = sortWrappersByName(lstMCOWrappers);
             
-            if(!lstMCOWrappers.isEmpty()){
-            	selectMCO(lstMCOWrappers);
-            }
+            selectMCO(lstMCOWrappers);
             
             //COUNTRY SUB WRAPPERS
             
@@ -561,36 +562,36 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         countryWrapper.selected = true;
                     }
           
-	                if(noRolloutDisabledCountrycodeSet.Contains(countryWrapper.code))
-	                {
-						countryWrapper.noRolloutDisabled = true;
-	                }
+                    if(noRolloutDisabledCountrycodeSet.Contains(countryWrapper.code))
+                    {
+                        countryWrapper.noRolloutDisabled = true;
+                    }
                     
-					Map<String,String> rolloutStatusMap = new Map<String,String>();
-					
-					for(String selectedCountryCode : setCountryCodes)
-					{
-						rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE);  
-					}
-					
-					for(String selectedCountryCode : setCountryCodesMCOs)
-					{
-						rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO);
-					}
-					
-					for(String selectedCountryCode : setCountryNoRolls)
-					{
-						rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.NO_ROLLOUT);
-					}
-					
-					rolloutStatusMap.remove(null);
-					
-					
-					if(rolloutStatusMap.containsKey(countryWrapper.code))
-					{
-						countryWrapper.selected = true;
-						countryWrapper.rolloutStatus =  rolloutStatusMap.get(countryWrapper.code);
-					}
+                    Map<String,String> rolloutStatusMap = new Map<String,String>();
+                    
+                    for(String selectedCountryCode : setCountryCodes)
+                    {
+                        rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE);  
+                    }
+                    
+                    for(String selectedCountryCode : setCountryCodesMCOs)
+                    {
+                        rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO);
+                    }
+                    
+                    for(String selectedCountryCode : setCountryNoRolls)
+                    {
+                        rolloutStatusMap.put(selectedCountryCode,IPM_ConstantUtils.NO_ROLLOUT);
+                    }
+                    
+                    rolloutStatusMap.remove(null);
+                    
+                    
+                    if(rolloutStatusMap.containsKey(countryWrapper.code))
+                    {
+                        countryWrapper.selected = true;
+                        countryWrapper.rolloutStatus =  rolloutStatusMap.get(countryWrapper.code);
+                    }
                         
                     lstCountryWrappers.add(countryWrapper);
                     
