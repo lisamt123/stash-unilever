@@ -5,6 +5,14 @@
         .button-type-filament, .flare-total, .flare-button-count {
             display: none !important;
         }
+        ul{
+        	list-style-type: disc;
+    		margin-left: 40px;
+        }
+        ol{
+        	list-style-type: decimal;
+    		margin-left: 40px;
+        }
     </style>
     <!--Handling Events-->
     <aura:handler event="c:CORE_NC_SelectNewsId" action="{!c.getNewsDetailInfo}" />
