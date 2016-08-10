@@ -3,3 +3,4 @@ src/layouts
 src/layouts/sf4twitter__Fcbk_Page__c-sf4twitter__FCBK Page Layout.layout
 src/pages
 src/pages/CEC_NewAccountContact.page
+src/pages/CEC_NewAccountContact.page-meta.xml
