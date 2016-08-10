@@ -1037,7 +1037,7 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Refreshments</fullName>
+                <fullName>Refreshment</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1157,7 +1157,7 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Refreshments</fullName>
+                <fullName>Refreshment</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1276,7 +1276,7 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Refreshments</fullName>
+                <fullName>Refreshment</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
