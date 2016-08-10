@@ -30,10 +30,10 @@ This method is entry point for the actions to be executed before a cec_Fulfilmen
         
         
         /* Calling helper to check quality */
-        CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+    
         if(!fulfilmentList.isEmpty()){
-            fulfilmentHelper.qualityCheck(fulfilmentList);
-            fulfilmentHelper.beforeInsUpdCalcEnclosure(fulfilmentList, null);
+            CEC_FulfilmentHelperExtension.qualityCheck(fulfilmentList);
+            CEC_FulfilmentHelperExtension.beforeInsUpdCalcEnclosure(fulfilmentList, null);
         }
         
     }
@@ -45,14 +45,14 @@ This method is entry point for the actions to be executed before a cec_Fulfilmen
         //if(!fulfilmentList.isEmpty())
         //Commented for CSC 3135
         //fulfilmentHelper.refundApprovalCheck(fulfilmentList,fulfilmentOldMap);
-        fulfilmentHelper.beforeInsUpdCalcEnclosure(fulfilmentList,fulfilmentOldMap);
+        CEC_FulfilmentHelperExtension.beforeInsUpdCalcEnclosure(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.deleteFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.upsertFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.convertRefundValueToWords(fulfilmentList,fulfilmentOldMap);
         fulfilmentHelper.updateDebitCardValue(fulfilmentList,fulfilmentOldMap);
-        fulfilmentHelper.updateEvoucherValue(fulfilmentList,fulfilmentOldMap);
-        fulfilmentHelper.updateAccountDetails(fulfilmentList,fulfilmentOldMap);  
-        fulfilmentHelper.updateFulfilmentApprovedDate(fulfilmentList,fulfilmentOldMap);
+        CEC_FulfilmentHelperExtension.updateEvoucherValue(fulfilmentList,fulfilmentOldMap);
+        CEC_FulfilmentHelperExtension.updateAccountDetails(fulfilmentList,fulfilmentOldMap);  
+        CEC_FulfilmentHelperExtension.updateFulfilmentApprovedDate(fulfilmentList,fulfilmentOldMap);
     }   
     
     

@@ -1,0 +1,126 @@
+.THIS .sectiona_a{
+            padding: 1.2rem 0.9rem 0.5rem .9rem;
+}
+.THIS .head_c-1{
+            float:left;
+            color:#033A69;
+            width:50%;
+}
+.THIS .head_d-1{
+    width: 5.59rem;
+    color: #033a69;
+    position: absolute;
+    right: 0px;
+    top: 35px;
+}
+.THIS .canvasjs-chart-container{
+    margin-top: 9px;
+}
+.THIS  .icon-styles-1{
+    width: 40px;
+    float: left;
+    background: transparent;
+    border: 1px solid #cfd7e6;
+    border-right: 0;
+    padding: 8.5px;
+    border-radius: 5px 0 0 5px;
+}
+.THIS   .icon-styles-2{
+    width: 41px;
+    float: left;
+    background: white;
+    border: 1px solid #cfd7e6;
+    padding: 9.5px;
+    border-radius: 0 5px 5px 0;
+}
+.THIS .usage{
+            color:#033A69;
+            padding:0 0 0.4rem 1rem;
+}
+.THIS .insights{
+            color:#033A69;
+            padding:1rem 0 .4rem 1rem;
+}
+.THIS .sub_carousel{
+            width:95%;
+            height:150px;
+            margin: 0 auto;
+}
+.THIS .a.canvasjs-chart-credit{
+            display:none;
+}
+.THIS .chart_sub{
+	border-bottom: 1px solid #CFD7E6;
+    color: #033a69;
+    padding: .2rem 0 0rem 0rem;
+    margin-left: 7.5px;
+    margin-right: 10px;
+}
+.THIS .chart_main{
+    color:#033A69;
+    padding: .5rem .5rem 0 .5rem;
+}
+.THIS .main_carousel{
+    width:95%;
+    margin:0 auto;
+    background:#fff;
+}
+.THIS .car_main{
+    float:left;
+    width:50%;
+    left:0px;
+    top:200px;
+    border: 1px solid #cfd7e6;
+    border-radius: 4px;
+    height:211px;
+}
+.THIS .back-button{
+    width: 5%;
+    margin-left: 18px;
+    margin-top: 10px;
+    margin-right: 35px;
+}
+.THIS .chartstext{
+   width: 90%;
+    text-align: center;
+}
+.THIS .chartstext11{
+  line-height:11px;
+    margin-bottom:-17px;
+}
+.THIS .line_bar_data,.THIS .line_bar_calls,.THIS .line_bar_SMS,.THIS .line_bars_ipass{
+    width: 20px;
+    background:#0C8EFF;
+    float: left;
+    margin: 0 22px;
+    position: relative;
+    top: 0;
+    max-height:100px;
+}
+.THIS .line_bars_data,.THIS .line_bars_calls,.THIS .line_bars_SMS,.THIS .line_bar_ipass{
+    width: 20px;
+    display: inline-block;
+    background: #F88962;
+    float:left;
+     max-height:100px;
+}
+.THIS .Insights{
+    height: 100px;
+    width:95%;
+}
+.THIS .bar_data{
+    width:9rem;
+    float:left;
+    transform: rotate(180deg);
+    height: 106px;
+    margin: 13px 0;
+}
+.THIS .bar_text{
+    float:right;
+    padding: 1.2rem 0.5rem 0 2.3rem;
+    text-align: left;
+    width: 42%;
+}
+.THIS .charttext{
+    font-size:10px
+}
