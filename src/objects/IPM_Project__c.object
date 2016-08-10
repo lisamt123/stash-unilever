@@ -3324,7 +3324,7 @@ OwnerId))</formula>
         <description>Category  will be auto populated from user record.</description>
         <externalId>false</externalId>
         <label>Category</label>
-        <length>18</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>

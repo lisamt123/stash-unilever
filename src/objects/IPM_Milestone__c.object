@@ -221,7 +221,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Refreshments</fullName>
+                <fullName>Refreshment</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
