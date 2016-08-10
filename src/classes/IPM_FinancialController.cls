@@ -3266,11 +3266,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			getRedYellowCellsMap(lstFinancial,finExtIdRedCellsMap,finExtIdYellowCellsMap);
 
 			//Work with the string containing list of erroneous cells to populate the cells on consolidated financials
-			List<IPM_Financial__c> toUpdateFinancials = new List<IPM_Financial__c>();
+			//used map to avoid the duplicate Id error (becuase of child financial years fetch) while the update operation 
+			Map<Id,IPM_Financial__c> toUpdateFinancialsMap = new Map<Id,IPM_Financial__c>();
 				
 			for(IPM_Financial__c currentFin: lstFinancial){
 			
-				if(currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+				if(currentFin.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) 
+				    && !toUpdateFinancialsMap.containsKey(currentFin.Id)){
 					
 					Set<String> uniqueRedCells = new Set<String>( );
 					Set<String> uniqueYellowCells = new Set<String>( );
@@ -3297,14 +3299,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 					currentFin.Red_Validation_Cells__c = uniqueRedCellsStr;
 					currentFin.Yellow_Validation_Cells__c = uniqueYellowCellsStr;
 					currentFin.IsFinancialInvalid__c = (currentFin.Red_Validation_Cells__c.length() > 1);
-					toUpdateFinancials.add(currentFin);
+					toUpdateFinancialsMap.put(currentFin.Id,currentFin);
 
 				}
 				
 			}
 			
-			if(toUpdateFinancials != null && !toUpdateFinancials.isEmpty() ){
-				update toUpdateFinancials;
+			if(toUpdateFinancialsMap != null && !toUpdateFinancialsMap.isEmpty() ){
+				update toUpdateFinancialsMap.Values();
 			}
 			
 			initializeFinancials();
