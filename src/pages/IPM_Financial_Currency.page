@@ -42,7 +42,7 @@
                                 <apex:outputText rendered="{!AND(project.IPM_Project_Type__c != 'Operational' ,NOT(isError))}">
                                     <div class="finArrow"><span class="fa fa-angle-left"></span></div>
                                 </apex:outputText>
-                                   <div class="ipmAccordion">
+                                   <div class="ipmAccordion currency">
                                       <div class="projectContainer">   
                                          <!--Rendered when project span is global and map is loaded with consolidated or default mapping-->
                                          <apex:outputPanel layout="block" styleClass="pHead" rendered="{!AND(project.IPMProject_Span__c == 'Global',renderMapGlobal)}">
@@ -279,6 +279,5 @@
             </div>     
         </apex:define>
     </apex:composition>    
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Financial.js')}" type="text/javascript"></script> 
 </apex:page>

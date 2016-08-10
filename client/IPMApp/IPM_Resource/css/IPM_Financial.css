@@ -398,4 +398,8 @@ div.filterTitle span.wordwrap {margin-left: -5px;}
 div.table-responsive table.ipmFinancetable.fintable.table.table-bordered{
 table-layout: fixed;
 }
-.fintable .tooltip-inner{white-space:pre-wrap; line-height:16px; max-width: 240px;}
+
+div.ipmAccordion.currency .projectContainer .ipmAcrdnExpand ul.accordionFilters li div.projectContainer div.pHead.accrHead.filterSubTitle,
+div.ipmAccordion.currency .projectContainer .ipmAcrdnExpand ul.accordionFilters li div.projectContainer div.ipmAcrdnExpand ul li.finRecord{
+padding:10px 7px;
+}
