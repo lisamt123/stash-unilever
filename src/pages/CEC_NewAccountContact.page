@@ -21,7 +21,7 @@
     <apex:includeScript value="{!URLFOR($Resource.jquery1112, 'jquery-1.11.2.min.js')}"/>
     <apex:includeScript value="/soap/ajax/28.0/connection.js"/>
     <apex:includeScript value="/support/console/30.0/integration.js"/>
-    <!--<apex:include pageName="pca__Component"/>-->
+    <apex:include pageName="pca__Component"/>
     <apex:form id="frm" >
         <apex:outputPanel styleClass="tabs" layout="block">  
             <ul>
