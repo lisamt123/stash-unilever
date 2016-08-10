@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">   
 	<types>
-		<members>Core_NC_SwitchingBaseComponent</members>
-		<members>Core_NC_ChatterShare</members>
-		<members>Core_NC_ShareComponent</members>
+		<members></members>
+		<members></members>
+		<members></members>
 		<name>AuraDefinitionBundle</name>
 	</types>
-	<types>
-        <members>CORE_NC_JsFiles</members>
-        <name>Static Resources</name>
-    </types>	
+		
 </Package>
