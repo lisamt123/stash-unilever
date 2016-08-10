@@ -602,7 +602,7 @@ private class IPM_SyncFinanceTableTLD_Test
         setupRegionalOriginalIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
-        Date targetLanchDate1 = System.today().addYears(4);
+        Date targetLanchDate1 = System.today().addYears(3);
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
@@ -678,7 +678,7 @@ private class IPM_SyncFinanceTableTLD_Test
     static testMethod void testSyncFinanceTableTLD_When_OperationalProjectsTLD_Updated() {
         setupOperationalProjects();
         
-        Date targetLanchDate1 = System.today().addYears(4);
+        Date targetLanchDate1 = System.today().addYears(3);
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
