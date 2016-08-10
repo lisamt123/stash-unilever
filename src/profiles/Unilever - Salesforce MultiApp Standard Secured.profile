@@ -48868,6 +48868,9 @@
         <layout>UserAlt-User Profile Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>UserAppMenuItem-Application Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>UserProvisioningRequest-User Provisioning Request Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
