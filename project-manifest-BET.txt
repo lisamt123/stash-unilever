@@ -6,6 +6,16 @@ src/classes/BET_Member_RequestHandler.cls
 src/classes/BET_Member_RequestHandler.cls-meta.xml
 src/classes/BET_TriggerFactory.cls
 src/classes/BET_TriggerFactory.cls-meta.xml
+src/classes/CoreNTLandingPageController.cls
+src/classes/CoreNTLandingPageController.cls-meta.xml
+src/classes/BC_article_template.cls
+src/classes/BC_article_template.cls-meta.xml
+src/classes/BC_landing_page.cls
+src/classes/BC_landing_page.cls-meta.xml
+src/classes/uw_BETRemoteController.cls
+src/classes/uw_BETRemoteController.cls-meta.xml
+src/classes/BC_all_stories.cls
+src/classes/BC_all_stories.cls-meta.xml
 src/pages
 src/pages/BC_All_stories.page
 src/pages/BC_Landing_page.page
