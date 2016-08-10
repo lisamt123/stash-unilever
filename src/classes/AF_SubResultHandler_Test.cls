@@ -148,54 +148,12 @@ public class AF_SubResultHandler_Test
             List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,true);
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c LIMIT 1];
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
-            //insert sub Results.
-            List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,false);
-            List<AF_Sub_Result__c> subResultlist= new  List<AF_Sub_Result__c>();
-            for(AF_Sub_Result__c sr : subResults)
-            {
-                sr.AF_Digital__c = true;
-                sr.AF_Traditional__c = false;
-                sr.AF_Quant__c = 12;
-                sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
-                sr.AF_Minimum__c = 1;
-                sr.AF_Outstanding__c = 3;
-                sr.AF_Stretching__c = 2;
-                sr.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                sr.AF_Class_code__c=false;
-                sr.Bonus_Measure__c ='BM1';
-                sr.AF_Period__c=AF_Constants.QUARTER1;
-                subResultlist.add(sr);
-            }
-            try{
-            insert subResultlist;
-            update subResultlist;
-            }catch(Exception e){
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_SubResultHandler',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-            }
-            AF_Sub_Result__c sub =new AF_Sub_Result__c();
             //insert sub result
-            List<AF_Sub_Result__c> subResults1 = AF_TestFactory_Helper.insertSubResult1(1,false);
-            List<AF_Sub_Result__c> subResultlist1= new  List<AF_Sub_Result__c>();
-            for(AF_Sub_Result__c sr1 : subResults1 )
-            {
-                sr1.Sub_Result_AnnualID__c=sub.id;  
-                sr1.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
-                sr1.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                subResultlist1.add(sr1);
-            }
-            insert subResultlist1;
-            List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
-            try{
-                delete subResultlist;
-            }
-            catch(Exception e){
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_SubResultHandler',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-            }
-            //Insert Bonus Results.
+            List<AF_Sub_Result__c> subResults1 = AF_TestFactory_Helper.insertSubResult1(1,true);
             List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,true);
             List<AF_Bonus_Results__c> BonusResultQuery = [SELECT ID,AF_Bonus_Thresholds__c FROM AF_Bonus_Results__c WHERE RecordTypeId=:AF_TestFactory_Helper.AF_BONUS_RESULTS_RECTYPE LIMIT 1];
             System.assertEquals(BonusResultQuery[0].AF_Bonus_Thresholds__c,BonusThreshold[0].id, AF_TestFactory_Helper.BONUSRESULT_RECORD);
-            System.assertEquals(BonusResultList!=null,subResultsQuery!=null, AF_TestFactory_Helper.BONUSRESULT_RECORD);
+            System.assertEquals(BonusResultList!=null,subResults1!=null, AF_TestFactory_Helper.BONUSRESULT_RECORD);
             AF_SubResultHandler subhand = new AF_SubResultHandler();
             subhand.bulkBefore();
             AF_Sub_Result__c so = new AF_Sub_Result__c();
@@ -318,19 +276,6 @@ public class AF_SubResultHandler_Test
                 AgencyEsitmateNew.add(agency);
             }
             insert AgencyEsitmateNew;
-            List<AF_Agency_Estimate__c> AgencyEsitmate1 = AF_TestFactory_Helper.insertAgencyEstimate1(1,false);
-            List<AF_Agency_Estimate__c> AgencyEsitmateNew1 = new  List<AF_Agency_Estimate__c>();
-            for(AF_Agency_Estimate__c agency1 : AgencyEsitmate1){
-                agency1.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
-                agency1.AF_Fiscal_Year__c=currYear;
-                agency1.AF_Adaptation__c=22;
-                agency1.AF_Digital__c=22;
-                agency1.AF_Traditional__c=22;
-                AgencyEsitmateNew1.add(agency1);
-            }
-            insert AgencyEsitmateNew1;
-            List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate limit 1];
-            System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
             //Insert OOPS Estimate.
             List<AF_OOPS_Estimate__c> OOPSEstimateList = AF_TestFactory_Helper.InsertOOPsEstimate(1,true);
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
@@ -362,35 +307,7 @@ public class AF_SubResultHandler_Test
             }
             insert subResultlist;
             update subResultlist;
-            List<AF_Sub_Result__c> subResults1 = AF_TestFactory_Helper.insertSubResult1(1,false);
-            List<AF_Sub_Result__c> subResultlist1= new  List<AF_Sub_Result__c>();
-            for(AF_Sub_Result__c sr1 : subResults1 )
-            {
-                sr1.AF_Digital__c = true;
-                sr1.AF_Traditional__c = false;
-                sr1.AF_Period__c=AF_Constants.QUARTER2;
-                sr1.AF_Quant__c = 12;
-                sr1.AF_Minimum__c = 5;
-                sr1.AF_Outstanding__c = 7;
-                sr1.AF_Stretching__c = 6;
-                sr1.Bonus_Measure__c = 'BM1';
-                sr1.AF_Quant_Bonus_Value__c = 156;
-                sr1.AF_Total_Bonus_Value__c = 3800;
-                sr1.AF_Bonusable_Fees__c = 35;
-                sr1.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                sr1.Sub_Result_AnnualID__c=subResultlist[0].id;
-                sr1.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
-                subResultlist1.add(sr1);
-            }
-            insert subResultlist1;
-            List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
-            System.assertEquals(subResultsQuery[0].AF_Bonus_Threshold__c ,BonusThresholdQuery[0].id, AF_TestFactory_Helper.SUBRESULT_RECORD);
-            try{
-                delete subResultlist;
-            }
-            catch(Exception e){
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_SubResultHandler1',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-            }
+            
             //Insert Bonus Results.
             List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResultsquarterly(1,false);
             List<AF_Bonus_Results__c> BonusResultListNew = new  List<AF_Bonus_Results__c>();
@@ -416,7 +333,6 @@ public class AF_SubResultHandler_Test
             subhand.beforeInsert(so);
             subhand.beforeUpdate(so,oldso);
             subhand.afterInsert(subResultlist[0]);
-            subhand.afterUpdate(subResultlist1[0],subResultlist[0]);
             subhand.afterdelete(so);
             subhand.beforeDelete(so);
             Test.stopTest();

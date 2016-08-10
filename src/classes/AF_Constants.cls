@@ -45,6 +45,14 @@ public class AF_Constants
     public static final String TOTAL='total';
     public static final String USERID='userid';
     //public static final String YEAR = 'year';
+    /* Variables */
+    public static Double USDValue=0.0;
+    public static Double EURValue=0.0;
+    
+    /* set used in class */
+    Set<String> year = new set<String>();
+    Set<Id> BonusThresholdId = new Set<Id>();
+    Set<String> QuaterSet = new Set<String>();
     /*Attachment Types*/
     public static final String SOW='SOW';
     public static final String SCOPE_OF_WORK='Scope Of Work';
