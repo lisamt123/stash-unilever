@@ -52,12 +52,10 @@
           
             <div class="slds-publisher slds-publisher--discussion">
             <dl class="slds-list--horizontal slds-m-bottom--small slds-publisher__toggle-visibility">
-              <dt class="slds-list__item slds-text-body--small">To:&nbsp;</dt>
-              <dd class="slds-list__item">{!v.to}</dd>
             </dl>
-            <label for="comment-text-input2" class="slds-assistive-text">Share an update, @mention someone, add a file..</label>
+            <label for="comment-text-input2" class="slds-assistive-text">Write something...</label>
          
-           <ui:inputText aura:id="textToPost" label="" class="slds-input lookup-input" value="{!v.textToPost}" placeholder="Share an update, @mention someone..." click="{!c.handlePublisherStyling}"/> 
+           <ui:inputText aura:id="textToPost" label="" class="slds-input lookup-input" value="{!v.textToPost}" placeholder="Write something..." click="{!c.handlePublisherStyling}"/> 
             
                 <div class="slds-attachments attachmentContainer  hideApproval">
               <div class="slds-attachments__item slds-box slds-box--x-small slds-theme--shade">
@@ -99,8 +97,7 @@
             </div>
           </div>
             <div class="shareButton">
-           
-              <button class="slds-button slds-button--brand" onclick="{!c.sharePost}">Share</button>   
+              <button class="slds-button slds-button--brand" onclick="{!c.sharePost}">Comment</button>   
             </div>
                 
             </div>
