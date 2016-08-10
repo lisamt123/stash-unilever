@@ -12,20 +12,21 @@
 <div style="border:2px solid blue;width:800px"> 
 <img src="https://unilever.my.salesforce.com/servlet/servlet.ImageServer?id=015E0000007FZPP&oid=00DE0000000bbLj&lastMod=1444368211000" width="100%"/>
 <p style="font-family: 'dinOffPro',sans-serif;font-size:14px;margin-left:30px"></br></br>
-
+ A new competitor agent report has been forwarded for your review</br></br>
+<span style="font-size:18px;color:#3366CC;font-weight: bold;"> {!aa_Agent_Report__c.Report_Title__c} </span></br></br>
 Hi,<br/><br/>
 
-{!aa_Agent_Report__c.CreatedBy} has submitted an Agent report with a new competitor brand - {!aa_Agent_Report__c.OtherBrandName__c} & competitor name - {!aa_Agent_Report__c.OtherCompanyName__c}. Please review the competitor brand/competitor name. If it’s a valid addition please add them to the master list of competitor brand/competitor name & update the Agent report with the new values from the list. <br/><br/>
+A new competitor Agent report has been forwarded by
+ {!aa_Agent_Report__c.LastModifiedBy}  for you to review.</br>
+Please use the links below to Approve/Reject the report.</br></br>
 
-Please use the links below to view  report details.<br/><br/>
-
-<a href="com.salesforce.salesforce1://entity/view?entityId={!aa_Agent_Report__c.Id}">Mobile</a><br/>
-<a href= "{!aa_Agent_Report__c.Link}">Desktop</a> <br/><br/>
+<a href="com.salesforce.salesforce1://entity/view?entityId={!aa_Agent_Report__c.Id}">Mobile</a></br>
+<a href= "{!aa_Agent_Report__c.Link}">Desktop</a> </br></br>
 
 
 PS: This is an auto generated mail, please do not reply.<br/><br/>
 
 Thanks,<br/>
-The Agent <br/><br/><br/><br/>
+The Agent </br></br></br></br>
 </p>
 </div>

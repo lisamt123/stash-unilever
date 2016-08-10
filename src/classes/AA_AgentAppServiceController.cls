@@ -59,13 +59,13 @@ public with sharing class AA_AgentAppServiceController {
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport_Competitor(objAgentApp));
-            //list<String> agentAPPDocumentIDInserted = 
+            system.debug('convertRequestAgentReport_Competitor(objAgentApp)====================>'+convertRequestAgentReport_Competitor(objAgentApp));
             AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
             appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
-            
+            system.debug('appWrapperObj in insert comp====================>'+appWrapperObj);
             
         return appWrapperObj;
     }
@@ -167,7 +167,15 @@ public with sharing class AA_AgentAppServiceController {
             }else if(objAgentApp.CodeOfConduct == 'false'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = false;    
             }          
-        }      
+        }   
+        
+         if(!String.isEmpty(objAgentApp.TopicId)){
+            newObjToBeInserted.Topic__c  = objAgentApp.TopicId;
+            if(!String.isEmpty(objAgentApp.SubTopic)){
+                newObjToBeInserted.Sub_Topics__c  = objAgentApp.SubTopic;    
+            }
+            
+        }   
        
         //Adding New Brand Fields 
         newObjToBeInserted.OtherBrandName__c=objAgentApp.OtherBrandName;
