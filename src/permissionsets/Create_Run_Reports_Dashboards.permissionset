@@ -4333,6 +4333,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>UtilRecursiveCtrl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Utility</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -5038,6 +5042,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>isll_WordCloudControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>updateMDRpointsHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
