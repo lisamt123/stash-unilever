@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <label>Refreshments_Ice Cream</label>
-    
+    <label>Refreshment_Ice Cream</label>
     <values>
         <field>Category_Group_Category_Name__c</field>
-        <value xsi:type="xsd:string">Refreshments_Ice Cream</value>
+        <value xsi:type="xsd:string">Refreshment_Ice Cream</value>
     </values>
     <values>
         <field>Greenhouse_Gases_g__c</field>
