@@ -240,8 +240,6 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 *  @return: none.
 *************************************************************************************/
     public static void retrieveMatrixRate(AF_Agency_Estimate__c agencyEst,String Matccode,String readypcode,AF_Matrix_Table__c mt){
-        if(agencyEst.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO)
-        {
             if(agencyEst.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO){
                 if(agencyEst.AF_Agency_Spot_Rate__c != null && agencyEst.AF_Agency_Spot_Rate__c!= 0 && agencyEst.AF_Traditional__c  != null  && agencyEst.AF_Agency_Exchange_Rate__c!=null)
                 agencyEst.AF_Traditional_Local__c = (agencyEst.AF_Traditional__c*agencyEst.AF_Agency_Exchange_Rate__c)/agencyEst.AF_Agency_Spot_Rate__c;
@@ -254,7 +252,6 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
                 if( agencyEst.Indicative_Gain_in_USD__c!=null && AF_Constants.EURValue!=null && AF_Constants.EURValue!=0.0)
                 {
                     agencyEst.Indicative_Gain_Loss_in_EUR__c=agencyEst.Indicative_Gain_in_USD__c/AF_Constants.EURValue;
-                }
             }   
         }
         else 

@@ -12,7 +12,6 @@ public class AF_SubResultHandler_Test
     Private Static Integer IcurrYear = System.Today().year();
     Private Static string currYear=string.valueof(IcurrYear);
     static user userForsubResult;
-    private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /**********************************************************************
 *  @Description: This method will have Test data for testing the subresult
                  handler method,as it performs the testing logic of updation of quant
