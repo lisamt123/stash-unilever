@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AA_Report_Created</name>
+    <style>none</style>
+    <subject>A new competitor agent report submitted for your review : {!aa_Agent_Report__c.Report_Title__c}</subject>
+    <textOnly>A new Competitor agent Report  submitted for your review {!aa_Agent_Report__c.Name} Hi , A new competitor agent report has been submitted by {!aa_Agent_Report__c.Owner.FullName}. Please Click Here  to Approve/Reject or Reassign the report to CI managers. PS: This is an auto generated mail, please do not reply. Thanks, The Agent</textOnly>
+    <type>custom</type>
+</EmailTemplate>

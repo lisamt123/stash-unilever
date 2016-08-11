@@ -1,0 +1,315 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false"  docType="html-5.0" cache="false" applyBodyTag="false" applyHtmlTag="false">
+<c:AA_RemoteServiceCallController />
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta content='True' name='HandheldFriendly' />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <!--meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" / -->
+
+     <!-- Latest compiled and minified CSS -->
+
+  <apex:stylesheet value="{!URLFOR($Resource.AgentAppStaticResource,'css/bootstrap.min.css')}" />
+  <apex:stylesheet value="{!URLFOR($Resource.AgentAppStaticResource,'css/styles.css')}" />
+  <apex:stylesheet value="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+ <apex:includeScript value="{!URLFOR($Resource.LoadImage)}"/>
+<!--script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en" type="text/javascript" /-->
+<!--apex:includeScript value="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en{! If($Label.GoogleAPIKey != 'Null' ,'&key='+$Label.GoogleAPIKey,'') }"/-->
+<apex:includeScript value="https://maps.googleapis.com/maps/api/js?v=3.exp&language=en{! If($Label.GoogleAPIKey != 'Null' ,'&client='+$Label.GoogleAPIKey,'') }"/>
+    <apex:includeScript value="{!$Resource.AA_forcetk}/forcetk.js"/>
+   <script src="{!URLFOR($Resource.AgentAppStaticResource, 'js/common/agentReportCreate.js')}"></script>
+<script src="{!URLFOR($Resource.AgentAppStaticResource, 'js/require.js')}" data-main="{!URLFOR($Resource.AgentAppStaticResource, 'js/main.js')}"></script>
+ 
+<script> 
+    (function()
+   {try{var a=navigator.userAgent; 
+   if((a.indexOf('Salesforce')!=-1) && (a.indexOf('iPhone')!=-1||a.indexOf('iPad')!=-1)&&( a.indexOf('OS/7')!=-1||a.indexOf('OS 7')!=-1 || a.indexOf('OS/8')!=-1||a.indexOf('OS 8')!=-1)&&(a.indexOf('Safari')==-1)){ 
+   var s=document.createElement('style'); 
+   s.innerHTML="body{overflow: auto;-webkit-overflow-scrolling:touch;}body{position:absolute;left:0;right:0;width:100%;top:0;bottom:0;height:"+ (window.screen.height-61)+ "px;}.container{overflow:scroll;height:100%;}"; 
+   document.getElementsByTagName('head')[0].appendChild(s);
+    document.getElementsByTagName('head')[0].appendChild('<meta name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0, maximum-scale=1.0" />');
+   }
+   }catch(e){}})();
+   
+</script>
+<style>
+    .container{
+       
+    }
+</style>
+</head>
+<script>
+   (function(){
+    var ua=navigator.userAgent; 
+      if((ua.indexOf('Salesforce')!=-1)&&(ua.indexOf('iPod')!=-1|| ua.indexOf('iPhone')!=-1||ua.indexOf('iPad')!=-1)&&(ua.indexOf('OS/9')!=-1 || ua.indexOf('OS 9')!=-1 || ua.indexOf('OS/9.0.1')!=-1 || ua.indexOf('OS 9.0.1') || ua.indexOf('OS/9.0.2')!=-1 || ua.indexOf('OS 9.0.2') )&&(ua.indexOf('Safari')==-1)){ 
+  var s=document.createElement('style'); 
+    s.innerHTML="body{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling: touch;width:100%;height:"+ (window.screen.height-61) + "px;}.container{overflow:scroll;height:100%;}";
+    document.getElementsByTagName('head')[0].appendChild(s);
+    document.getElementsByTagName('head')[0].appendChild('<meta name="viewport" content="width=device-width,height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0" />');
+    }})();
+     </script>
+<body>
+
+
+<header class="col-md-12 header"></header>    
+        <ui-view> </ui-view> 
+        <div id="x"></div>
+        <div class="loading_image ng-scope" ng-if="rootVars.dataLoading">
+            Loading...
+        </div>
+
+       <!-- <div class="loading_image ng-scope" ng-hide="rootVars.hideLoadingIcon">&nbsp;</div>-->
+
+<script>
+var remoteTKClient = new remotetk.Client();
+                window.RESOURCE_ROOT = "{!URLFOR($Resource.AgentAppStaticResource, '')}";
+                if(window.RESOURCE_ROOT.indexOf("?") != -1)
+                window.RESOURCE_ROOT = window.RESOURCE_ROOT.substring(0, window.RESOURCE_ROOT.indexOf("?"));
+                var url = (window.location != window.parent.location) ? document.referrer: document.location;
+                window.BASEURL = url.origin;
+                window.MSA_USER_FNAME = "{!$User.FirstName}" ;
+                window.MSA_USER_LNAME = "{!$User.LastName}";
+                window.loginUrl = 'https://login.salesforce.com/';
+                window.clientId = '3MVG9Y6d_Btp4xp6dvEfNShCrOxOjOOhk2zhL4AzVGU0mqv4wQ8c6MaFeP3I.ID3nCTIEw0k9kTvU.f0gvGdH';
+                window.redirectUri = 'sfdc://success';
+                //sforce.connection.sessionId = '{!$Api.Session_ID}';
+                window.authenticatedUser = {};
+                authenticatedUser.id = '{!$User.Id}';
+                authenticatedUser.sessionId = '{!$Api.Session_ID}';
+                
+          window.ImageRes;    
+    var client = new forcetk.Client();
+    // Get the token from Visualforce
+    client.setSessionToken('{!$Api.Session_ID}'); 
+   
+    var uploadFlag = true;
+    var extArray = ["exe", "svg","xml", "mp4","mp3","ini","dat","avi","gs","jar","bat"];
+    
+function upload(obj,eleName) {
+   
+       if(obj == 'file'){
+          $('#file2').val(''); 
+          $('#file1').val(''); 
+      }else if(obj=='file1'){
+          $('#file').val(''); 
+          $('#file2').val(''); 
+      }else if(obj=='file2'){
+          $('#file1').val(''); 
+          $('#file').val(''); 
+      } 
+      var a = $("#"+obj)[0].files[0];
+      var filename = a.name;  
+      
+      var extension = filename.replace(/^.*\./, '');
+      //alert(extension);
+     extension = extension.toLowerCase();
+     var checkVal = extArray.indexOf(extension);
+      if(checkVal != -1){
+         //alert("Please select valid file.");
+          $("#previewFile").html("<p  style='color:red;'>Please select valid file to upload. Valid file format e.g. '.jpg','.png','.gif', '.bmp', '.doc', '.csv', '.xls', '.ppt', '.pdf' etc</p>");
+            $("#previewFile").append('<i class="fa fa-times pull-right" onclick=\'closePrev("#previewFile")\'>');
+            $("#previewFile").show();
+         return false;
+      } 
+     /* if(a.size > (1024*1024*4)){
+          alert("Selected file size is too large. System allows only file less than 4 MB.");
+          return false;
+      }*/
+                  
+
+      
+      if(a.size>0) {
+       showLoading(eleName);
+
+      if(extension=='jpg' || extension=='jpeg' || extension=='png' || extension=='gif'){
+                return void loadImage.parseMetaData(a, function(b) {
+                    if (!b.imageHead) return void UploadOtherFile(a);
+                    var c = 0;
+                    b.exif && (c = b.exif.get("Orientation")), console.log(c);
+                    var d = new FileReader;
+                    d.onloadend = function() {
+                        var b = new Image;
+                        b.src = d.result, b.onload = function() {
+                            var d = "none";
+                            8 === c ? (tempW = b.height, tempH = b.width, d = "left") : 6 === c ? (tempW = b.height, tempH = b.width, d = "right") : 1 === c ? (tempW = b.width, tempH = b.height) : 3 === c ? (tempW = b.width, tempH = b.height, d = "flip") : (tempW = b.width, tempH = b.height);
+                            var e = 768,
+                                f = 768;
+                            tempW / e > tempH / f ? tempW > e && (tempH *= e / tempW, tempW = e) : tempH > f && (tempW *= f / tempH, tempH = f);
+                            var g = document.createElement("canvas");
+                            g.width = tempW, g.height = tempH;
+                            var h = g.getContext("2d");
+                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);
+                            else if ("right" === d) h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);
+                            else if ("flip" === d) {
+                                var i = Math.PI,
+                                    j = .5 * g.width,
+                                    k = .5 * g.height;
+                                h.translate(j, k), h.rotate(i), h.translate(.5 * -tempW, .5 * -tempH), h.drawImage(b, 0, 0, tempW, tempH)
+                            } else h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);
+                            h.setTransform(1, 0, 0, 1, 0, 0);
+                            var l = g.toDataURL("image/jpeg"),
+                                m = dataURItoBlob(l);
+                                console.log(m);
+                             console.log("Type:"+ a.type);
+                            client.createBlob("ContentVersion", {
+                                Origin: "H",
+                                PathOnClient: a.name
+                            }, a.name, "VersionData", m, function(a) {
+                                 displayPreviewImage(a);
+                                 console.log("ContentId : " + a.id); 
+                                 chatterid = a.id;
+                                 $("#submitButton").prop("disabled", !1);
+                                 window.ImageRes = a;
+                                    var imageId = JSON.stringify(ImageRes);
+                            }, function(a, b, c) {
+                                  closeLoading();  
+                                  alert("Upload failed - Sorry"), console.log(c)
+                            })
+                        }
+                    }, d.readAsDataURL(a)
+                })
+                
+                }
+              
+             else {
+            UploadOtherFile(a);
+            }
+            }
+        }
+        
+        
+        function dataURItoBlob(a) {
+        console.log("Error in Custom function");
+            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) c.push(b.charCodeAt(d));
+            return new Blob([new Uint8Array(c)], {
+                type:'image/jpeg'
+            })
+        }
+        
+     function UploadOtherFile(file){
+      var ext = file.name.replace(/^.*\./, '');
+        
+      extension = ext.toLowerCase();
+      var checkVal = extArray.indexOf(extension);
+          if(checkVal != -1){
+             closeLoading();
+             alert("Please select valid file.");
+             return false;
+         }
+          if(extension !='png'){
+             if(file.size > (1024*1024*4)){
+                 closeLoading();
+                 alert("Selected file size is too large. System allows only file less than 4 MB.");
+                 return false;
+             } 
+         }
+
+        // alert("in upload other file");
+     client.createBlob('ContentVersion', {
+                        Origin: 'H', // 'H' for Chatter File, 'C' for Content Document
+                        PathOnClient: file.name
+        
+                    }, file.name, 'VersionData', file , function(response) {
+                     var filename = file.name;
+            window.ImageRes = response;
+            var imageId = JSON.stringify(ImageRes);
+            var extension = filename.replace(/^.*\./, '');
+            console.log("Extension=>"+ extension);
+            if (extension == filename) { extension = ''; } else { extension = extension.toLowerCase(); }
+           // alert(extension );
+                       
+            if(extension == 'doc' || extension=='docx'){
+                extension = 'doc';
+                displayOtherFiles(extension);
+            }else if(extension == 'ppt' || extension=='pptx'){
+                extension = 'ppt';
+                displayOtherFiles(extension);
+            }else if(extension == 'csv' || extension == 'pdf'){
+                displayOtherFiles(extension);
+            }else if(extension == 'xls' || extension == 'xlsx' || extension == 'xlsm'){
+                extension = 'xls';
+                displayOtherFiles(extension);
+            }else if(extension=='png'){
+                displayPreviewImage(response);
+            }
+            else
+            {
+            $("#previewFile").html("<p>File uploaded successfully!</p>");
+            $("#previewFile").append('<i class="fa fa-times pull-right" onclick=\'closePrev("#previewFile")\'>');
+            $("#previewFile").show();
+            closeLoading();
+            }
+            
+           
+                
+           
+            console.log(response);
+                    }, function(request, status, response) {
+                        closeLoading();
+                        $("#message").html("Error: " + status);
+                    });
+     
+     
+     
+     
+     }   
+  
+    function closePrev(obj)
+    {
+        $(obj).hide();
+    }  
+    
+    function showLoading(eleName){
+     $("#submitButton").attr('disabled','disabled');  
+      $("#"+eleName).removeClass("loadingOff"); // remove css 
+      $("#"+eleName).addClass("loadingOn"); // add css to display loading icon
+      }
+
+    function closeLoading(){
+        $("#previewLoadingCamera").removeClass("loadingOn"); // remove css
+        $("#previewLoadingCamera").addClass("loadingOff"); // add css to hide loading icon
+        
+         $("#previewLoadingImage").removeClass("loadingOn"); // remove css
+        $("#previewLoadingImage").addClass("loadingOff"); // add css to hide loading icon
+        
+         $("#previewLoadingAttach").removeClass("loadingOn"); // remove css
+        $("#previewLoadingAttach").addClass("loadingOff"); // add css to hide loading icon
+        $("#submitButton").removeAttr('disabled');
+    }
+
+    
+    function displayPreviewImage(response){
+        urlString = "/sfc/servlet.shepherd/version/download/"+ response.id;
+        $("#previewFile").html('<img  class="img-responsive pull-left prodImage" id="preview" alt=" " height="100" width="100"/>');
+        $("#previewFile").append('<i class="fa fa-times pull-right" onclick=\'closePrev("#previewFile")\'>');
+        $("#preview").attr('src', urlString);
+        $("#previewFile").show();
+        closeLoading();
+    } 
+    
+    function displayOtherFiles(extension){
+            //var imgUrl = "{!URLFOR($Resource.AgentAppStaticResource,'images/icons/')}"+extension+'.svg';
+            var imgUrl = window.RESOURCE_ROOT+'/images/icons/'+extension+'.svg';
+            console.log(imgUrl);
+           $("#previewFile").html('<img  class="img-responsive pull-left prodImage" id="preview" alt=" " height="100" width="100"/>');
+           $("#previewFile").append('<i class="fa fa-times pull-right" onclick=\'closePrev("#previewFile")\'>');
+            $("#preview").attr('src', imgUrl);
+            $("#previewFile").show();
+            closeLoading();
+    }
+      
+    
+</script>
+<script>
+window.onkeydown=function(){window.focus();} 
+</script>
+
+</body>
+</html>
+</apex:page>
