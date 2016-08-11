@@ -30,12 +30,9 @@ public with sharing class AA_AgentAppServiceController {
     
     public AA_ApplicationWrapperObj insertAgentApp(AA_ApplicationWrapperObj appWrapperObj){
         try{
-            system.debug('Insert Agent app==>'+appWrapperObj);
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
-            system.debug('insert object in db'+convertRequestAgentReport(objAgentApp));
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport(objAgentApp));
-            //list<String> agentAPPDocumentIDInserted = 
             AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
             appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
@@ -59,13 +56,11 @@ public with sharing class AA_AgentAppServiceController {
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport_Competitor(objAgentApp));
-            system.debug('convertRequestAgentReport_Competitor(objAgentApp)====================>'+convertRequestAgentReport_Competitor(objAgentApp));
             AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
             appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
-            system.debug('appWrapperObj in insert comp====================>'+appWrapperObj);
             
         return appWrapperObj;
     }
@@ -93,7 +88,6 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.ClusterId__c=Id.ValueOf(objAgentApp.ClusterId);
             }
             else if(!String.isEmpty(objAgentApp.CountryId)){
-                system.debug('User does not inserted cluster value');
                 List<aa_country__c> clustidlist=[Select Cluster_Id__c from aa_Country__c where ID =:objAgentApp.CountryId Limit 1];
                 newObjToBeInserted.ClusterId__c= clustidlist[0].Cluster_Id__c;
             }
@@ -108,7 +102,6 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
             //Adding userids  to be mentioned in the feed and topics names  to be inserted
-        system.debug('COnvert agent app from userIds==>'+objAgentApp.usertomentionIds);
           if(objAgentApp.usertomentionIds !=NUll && objAgentApp.usertomentionIds.size()>0){
         for(string str:objAgentApp.usertomentionIds)
         {
@@ -120,7 +113,6 @@ public with sharing class AA_AgentAppServiceController {
         } 
          
     
-         system.debug('newObjToBeInserted cluster value'+newObjToBeInserted.ClusterId__c);
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
@@ -602,7 +594,6 @@ public with sharing class AA_AgentAppServiceController {
                    If null check is removed query will fail with exception even if one value is null
                 */   
                 
-                system.debug('userPref Values==>'+UserPref);
                  //if country only selected
                 if(UserPref.Country__c != NULL && UserPref.Cluster__c == NULL )
                 {
@@ -695,7 +686,6 @@ public with sharing class AA_AgentAppServiceController {
                 }
            }else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {     
                  
-                system.debug('in applyfilter true'); 
                 
                 requestAgentDataObj=(aa_Agent_Report__c)convertRequestAgentReport(objAgentApp);
                
@@ -776,7 +766,6 @@ public with sharing class AA_AgentAppServiceController {
                     soqlquery +=' AND Reporting_on__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ReportingOn+AA_Constants.Escapechar;
                 }
                 String recTypeId='';
-                system.debug('record type id =======>'+appWrapperObj.objAgentAppDataRequest.RecordType);
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Unilever')
                 {
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -818,7 +807,6 @@ public with sharing class AA_AgentAppServiceController {
          }else if(objAgentApp.SortOnMostLike=='true'){
             String  soqlFeedQuery='SELECT Id,likecount FROM aa_Agent_Report__Feed order by likecount desc limit 1000'  ; //+ ' OFFSET '+appWrapperObj.objAgentAppDataRequest.OffSet;
             List<aa_Agent_Report__Feed> feedlist=  database.query(soqlFeedQuery); 
-            system.debug('FeedList==>'+feedList);
             set<ID>idlist=new set<ID>();            
             String reportidInString='( ';           
             for(aa_Agent_Report__Feed item:feedlist)
@@ -836,14 +824,11 @@ public with sharing class AA_AgentAppServiceController {
        }else
            soqlquery +=' LIMIT 1000';
          
-       system.debug('Soql query =====>'+soqlquery);
         List <aa_Agent_Report__c> tmpList=  database.query(soqlquery); 
-        system.debug('tmpList===>'+tmpList);
         List<AA_WrapperUtility.agentReportDetail> objFinalReport = new List<AA_WrapperUtility.agentReportDetail>();        
         // To check whether current user has liked report or not 
                    Set<ID> feedIds=new Set<ID>();
                    for(aa_Agent_Report__c itemfeedlike :tmpList){
-                       system.debug('tmpList for loop===>'+itemfeedlike.Name);
                        for(aa_Agent_Report__Feed objfeedlike :itemfeedlike.Feeds){
                           if(itemfeedlike.Chatter_Post_ID__c==objfeedlike.Id){
                                feedIds.add(objfeedlike.Id);  
