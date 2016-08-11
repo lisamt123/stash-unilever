@@ -49,7 +49,7 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
                                //Change FeedItem Type to Question Post
                                  
                                   objFI.Type = 'QuestionPost'; 
-                                  objFI.Title='Converting To Question Post';
+                                  objFI.Title='My Question is...';
                                   resultGrp=false;
                                }
                              }
@@ -58,7 +58,7 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
                            if( objFI.Title.contains('?')  && resultGrp==true){
                             
                                //Change FeedItem Type to Question Post 
-                                  objFI.Title='Converting To Question Post';
+                                  objFI.Title='My Question is...';
                                   objFI.Type = 'QuestionPost'; 
                                   resultGrp=false;
                                }
