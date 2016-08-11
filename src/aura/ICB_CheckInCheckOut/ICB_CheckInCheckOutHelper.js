@@ -43,14 +43,19 @@
                     component.set('v.status', returnMSG);
                     component.set('v.checkinReady', false);
                     component.set('v.showSpinnerCI',false);
-                    console.log('returnMSG='+returnMSG);
-                    console.log('$A.get("$Label.c.ICB_TEXT_CHECK_IN")='+$A.get("$Label.c.ICB_TEXT_CHECK_IN"));
-                    console.log('$A.get("$Label.c.ICB_PREFIX_SOBJECT_EVENT")='+returnMSG);
+                    
                     if( returnMSG.indexOf($A.get("$Label.c.ICB_TEXT_CHECK_IN")) > -1 ){
-                        console.log('ENTROU RETORNO MSERIES');
-                    	sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES"), false);
+                        
+                        var lVisit = component.get('v.visit');
+                        var codcustomer = lVisit.ICB_Sales_Area__c;
+                		
+                        if( codcustomer != null && codcustomer != "undefined" ){
+                            console.log('URI MSERIES= '+$A.get("$Label.c.ICB_SCHEMA_MSERIES")+codcustomer);
+                    		sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES")+codcustomer, false);
+                        }else {
+                            sforce.one.navigateToURL($A.get("$Label.c.ICB_SCHEMA_MSERIES"), false);
+                        }
                     }else{
-                        console.log('ENTROU RETORNO TELA VISITAS');
                         sforce.one.navigateToURL($A.get("$Label.c.ICB_PREFIX_SOBJECT_EVENT"), true);
                     }
                 }
@@ -61,10 +66,37 @@
         return;
     },
     
-    locateGoldenMinute : function(component, event, helper){
-        
-        var action = component.get('c.getCognosFile');
+    locateVisit : function(component, event, helper){
+		console.log('Entering <locateVisit>');
+    	var action = component.get('c.getVisit');
         var idReg = component.get('v.recordId');
+        
+        action.setParams({ visitId : idReg });
+        
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            
+            if( state === $A.get("$Label.c.ICB_STATE_RESPONSE_SUCCESS") ){
+                var lReturn = response.getReturnValue();
+                
+                component.set('v.visit', lReturn);
+                var lVisit = component.get('v.visit');
+                console.log('lVisit= '+JSON.stringify(lVisit));
+                
+                if( (lVisit.ICB_GeolocationCheckin__Latitude__s != null &&
+                     lVisit.ICB_GeolocationCheckin__Latitude__s != 'undefined') || 
+                     lVisit.ICB_GoldenMinuteOpen__c ){
+                    component.set('v.goldenMinuteOpen', true);
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        return;
+    },
+    locateGoldenMinute : function(component, event, helper){
+        console.log('Entering <locateGoldenMinute>');
+        var action = component.get('c.getCognosFile');
+        var idReg = component.get('v.visitId');
         
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -89,6 +121,7 @@
     },
     
     goldenMinute : function(component, event, helper, confirm){
+        console.log('Entering <goldenMinute>');
         var goldenMinute = component.get('v.golden');
         
         if( goldenMinute != null ){
@@ -110,7 +143,42 @@
             var currentDate = year+'-'+month+'-'+day;
             
             if( currentDate == gmDate || confirm == 'true' ){
-                sforce.one.navigateToURL('/'+goldenMinute.Id, false);
+                //********* CHAMAR O SET GOLDEN MINUTE
+                component.set('v.isStatusGM', false);
+                component.set('v.isShowButtonsGM', false);
+                
+                //*****************************************************************************************************
+                //*************************************** BEGIN CHANGE ************************************************
+                //*****************************************************************************************************
+                //Author: Carlos Carvalho - Date: 07-07-2016
+                //Description: Some situations the 3G connection doesn't work the call back method.
+                //We need to move the method inside this method and transition to golden minute needs to stay inside 
+                //the following method
+                //ID: 232828 - CHECK-IN AND CHECK-OUT NOT ENABLING WHEN GOLDEN MINUTE BUTTON IS CLICKED.
+                //*****************************************************************************************************
+                //*****************************************************************************************************
+                //helper.setGMinute(component, event, helper, 'c.setGoldenMinuteOpen', goldenMinute.Id);
+                var action = component.get('c.setGoldenMinuteOpen');
+                var idReg = component.get('v.recordId');
+                action.setParams({ idVisit : idReg });
+                
+                action.setCallback(this, function(response) {
+                    var state = response.getState();
+                    if( state === $A.get("$Label.c.ICB_STATE_RESPONSE_SUCCESS") ){
+                        var isChecked = response.getReturnValue();
+                        console.log('isChecked= '+isChecked);
+                        if( isChecked == 'true' )
+                        {
+                            component.set('v.isStatusGM', true);
+                        }
+                        sforce.one.navigateToURL('/'+goldenMinute.Id);
+                    }
+                });
+                $A.enqueueAction(action);
+                //*****************************************************************************************************
+                //*************************************** END CHANGE **************************************************
+                //*****************************************************************************************************
+                
             }else{
                 component.set('v.statusGM', $A.get("$Label.c.ICB_STATUS_GOLDEN_MINUTE_NOT_UPDATE"));
                 component.set('v.isStatusGM', true);
@@ -120,5 +188,28 @@
             component.set('v.statusGM', $A.get("$Label.c.ICB_STATUS_GOLDEN_MINUTE_NOT_UPLOADED"));
             component.set('v.isStatusGM', true);
         }
+        console.log('Exit <goldenMinute>');
+    },
+    setGMinute : function(component, event, helper, method, idGoldenMinute){
+        console.log('Entering <setGMinute>');
+        var action = component.get(method);
+        var idReg = component.get('v.recordId');
+        action.setParams({ idVisit : idReg });
+    	
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if( state === $A.get("$Label.c.ICB_STATE_RESPONSE_SUCCESS") ){
+                var isChecked = response.getReturnValue();
+                console.log('isChecked= '+isChecked);
+                if( isChecked == 'true' )
+                {
+                    component.set('v.isStatusGM', true);
+                }
+                sforce.one.navigateToURL('/'+idGoldenMinute);
+            }
+        });
+        $A.enqueueAction(action);
+        console.log('Exit <setGMinute>');
+        return;
     }
 })

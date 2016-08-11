@@ -20,7 +20,7 @@ public class CEC_CaseActionControllerTest{
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
-            List<cec_Alert_Action__c> masterAlertActionList = new List<cec_Alert_Action__c>();
+            
             List<mdm_Product_Category__c> prodCategoryList = 
                                                 CEC_TestDataFactory.createProductCategory(1);
             insert prodCategoryList;

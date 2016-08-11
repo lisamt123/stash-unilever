@@ -1,0 +1,8 @@
+src/layouts
+src/layouts/WU_Master_Warehouse__c-New Warehouse Capacity Layout.layout
+
+src/permissionsets
+src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
+
+src/objects
+src/objects/WU_Master_Warehouse__c.object

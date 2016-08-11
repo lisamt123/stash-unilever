@@ -3,7 +3,7 @@ public class Amr_AdManagerController_Test {
     
     static testMethod void adManagerMethod(){
         
-        List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
+        //List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'stan321', Email='standuser321@testorg.com', 
                  EmailEncodingKey='UTF-8', LastName='Testing321', LanguageLocaleKey='en_US', 
@@ -46,10 +46,10 @@ public class Amr_AdManagerController_Test {
         }
       
       
-        String Clust ='testClust';
-        String Count='testCount';
+        //String Clust ='testClust';
+        //String Count='testCount';
         String Id = jobDetail.Id;
-        String AdManagertxt = 'ABC/12345';
+        //String AdManagertxt = 'ABC/12345';
         String emailId= 'pqr12@gmail.com';
         String userId = u.Id;
         
@@ -84,12 +84,12 @@ public class Amr_AdManagerController_Test {
         controller.getSubmitForm();
        // controller.createJob();
         Amr_AdManagerController_CC.insertJobAllocationData(Id,userId,emailId);
-        Amr_AdManagerHelper_CC.InnerJobDetail innerJob = new Amr_AdManagerHelper_CC.InnerJobDetail(Clust,Count,Id,AdManagertxt);
+       // Amr_AdManagerHelper_CC.InnerJobDetail innerJob = new Amr_AdManagerHelper_CC.InnerJobDetail(Clust,Count,Id,AdManagertxt);
         PageReference pageRef = Page.Amr_CAPJobportfolio;
         Test.setCurrentPage(pageRef);
-        PageReference pageRefVal = controller.Redirect();
+        //PageReference pageRefVal = controller.Redirect();
         
-        String obj = JSON.serialize(innerJob);
+       // String obj = JSON.serialize(innerJob);
         //Amr_AdManagerController_CC.automaticJobAllocation(obj);
       //  controller.compareThresold(jobDetail,category1.id,brandPos.Id,brand.Id);
         
@@ -99,7 +99,7 @@ public class Amr_AdManagerController_Test {
     
     static testMethod void methodToSubmitForm(){
         
-        List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
+        //List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
         User u = new User(Alias = 'stan321', Email='standuser321@testorg.com', 
             EmailEncodingKey='UTF-8', LastName='Testing321', LanguageLocaleKey='en_US', 
@@ -225,7 +225,7 @@ public class Amr_AdManagerController_Test {
         controller.selectedCountry =Amr_ConstantForAdManager.NONE;
     //    for(Amr_Job_Details__c job:jobList){
         controller.jobDetails=jobList.get(0);
-        PageReference pageRefVal = controller.getSubmitForm();
+       // PageReference pageRefVal = controller.getSubmitForm();
       //  system.assert(jobList!=null);
    // }
         Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetail.Id];

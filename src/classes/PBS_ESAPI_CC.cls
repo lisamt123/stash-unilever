@@ -44,7 +44,7 @@ global with sharing class PBS_ESAPI_CC {
     */
     global static PBS_SFDCEncoder_CC encoder() {
         if (SFDC_encoder == null) {
-            SFDC_encoder =  new pbs_SFDCEncoder_CC();
+            SFDC_encoder =  new PBS_SFDCEncoder_CC();
         }
         return SFDC_encoder;
     }

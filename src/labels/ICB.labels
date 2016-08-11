@@ -15,6 +15,14 @@
         <value>https://maps.googleapis.com/maps/api/staticmap?markers=color:red%7Clabel:A%7C</value>
     </labels>
     <labels>
+        <fullName>ICB_ROADNET_CREATED_BY_NAME</fullName>
+        <categories>ICB</categories>
+        <language>pt_BR</language>
+        <protected>false</protected>
+        <shortDescription>ICB ROADNET CREATED BY NAME</shortDescription>
+        <value>antonio.raul.fonseca@unilever.com</value>
+    </labels>
+    <labels>
         <fullName>GoogleAPIKey</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -99,7 +107,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ICB_Distance_Limit</shortDescription>
-        <value>0.1</value>
+        <value>0.5</value>
     </labels>
     <labels>
         <fullName>ICB_ERROR_CHECKIN_BEFORE_CHECKOUT</fullName>

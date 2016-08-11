@@ -1108,7 +1108,7 @@ public with sharing class Oblix_SOWRollOverLogic {
             Map<Id, Oblix_SOW_Projects__c> map_original_id_original_campaign = new Map<Id,Oblix_SOW_Projects__c>();
 
             // this map is used to copy over values from original to cloned campaigns
-            Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject(ASSET_OBJECT);
+            Map<String, Schema.SObjectField> map_name_and_field = Oblix_Utils.fetchAllFieldsForObject(SOW_OBJECT);
 
             Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>> map_original_id_splits_to_clone = new Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
 

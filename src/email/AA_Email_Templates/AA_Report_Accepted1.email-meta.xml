@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AA_Report_Accepted1</name>
+    <style>none</style>
+    <subject>Your “Agent” report has been published : {!aa_Agent_Report__c.Report_Title__c}</subject>
+    <textOnly>Dear {!aa_Agent_Report__c.CreatedBy}, Thank you for your “Agent” report.  Your report has been reviewed and published in The Agent app. You can share your report with your colleagues by using the @mention functionality in the “Agent” app.  PS: This is an auto generated mail, please do not reply.  Thanks, The Agent</textOnly>
+    <type>custom</type>
+</EmailTemplate>

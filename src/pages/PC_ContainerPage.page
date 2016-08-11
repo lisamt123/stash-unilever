@@ -64,12 +64,12 @@
                 </div>
                 <div class="box center box-center-2">
                     <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Collaborate!" href="{!$Page.PC_Forum}" target="_self">
-                        <apex:image title="Collaborate!" value="{!URLFOR($Resource.PCResources, 'img/hexicons_collaborate.svg')}" />
+                        <apex:image title="Collaborate!" value="{!URLFOR($Resource.PCResources, 'img/hexicons_collaborate_new.png')}" />
                     </a>
                 </div>                               
                 <div class="box center box-center-3">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Quizup" href="http://www.quizup.com" target="_new" >
-                        <apex:image title="Quizup" value="{!URLFOR($Resource.PCResources, 'img/hexicons_quizup.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="Quizup" href="http://play.trivie.com/#/home/" target="_new" >
+                        <apex:image title="Trivie" value="{!URLFOR($Resource.PCResources, 'img/hexicons_quizup_new.png')}" />
                     </a>
                 </div>                
 
