@@ -90,7 +90,7 @@ Captured Images will be stored as attachment or document object.</description>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -141,6 +141,20 @@ Captured Images will be stored as attachment or document object.</description>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ClusterId__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cluster</label>
+        <referenceTo>aa_Cluster__c</referenceTo>
+        <relationshipLabel>Agent Reports</relationshipLabel>
+        <relationshipName>Agent_Reports</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Cluster_Name__c</fullName>
@@ -212,7 +226,7 @@ Captured Images will be stored as attachment or document object.</description>
         <relationshipName>Agent_Reports</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -227,9 +241,33 @@ Captured Images will be stored as attachment or document object.</description>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>OtherBrandName__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Brand Name</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OtherCompanyName__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Company Name</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>RecordTypeName__c</fullName>
         <externalId>false</externalId>
-        <label>RecordTypeName</label>
+        <label>Record Type Name</label>
         <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -305,6 +343,10 @@ Captured Images will be stored as attachment or document object.</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Counterfeit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Food Solutions</fullName>
                 <default>false</default>
             </picklistValues>
@@ -314,6 +356,10 @@ Captured Images will be stored as attachment or document object.</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Perfect In Store Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sustainability</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -449,6 +495,30 @@ Captured Images will be stored as attachment or document object.</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>TF_Mention_User__c</fullName>
+        <externalId>false</externalId>
+        <label>TF Mention User</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TF_Topic_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>TF Topic Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Topic__c</fullName>
@@ -881,6 +951,10 @@ Captured Images will be stored as attachment or document object.</description>
             <picklist>Reporting_on__c</picklist>
             <values>
                 <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Counterfeit</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1452,6 +1526,10 @@ Captured Images will be stored as attachment or document object.</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Counterfeit</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Food Solutions</fullName>
                 <default>false</default>
             </values>
@@ -1555,6 +1633,10 @@ Captured Images will be stored as attachment or document object.</description>
             <picklist>Reporting_on__c</picklist>
             <values>
                 <fullName>Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Counterfeit</fullName>
                 <default>false</default>
             </values>
             <values>

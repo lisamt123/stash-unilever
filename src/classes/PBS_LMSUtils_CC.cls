@@ -91,7 +91,7 @@ public with sharing class PBS_LMSUtils_CC{
                                                         ,AssigneeId
                                                         ,PermissionSetId
                                                         from PermissionSetAssignment
-                                                        where PermissionSet.Name = 'LMS_Admin'
+                                                        where PermissionSet.Name = 'PBS_LMS_Admin'
                                                         and AssigneeId = :currentUserId];
         if(userPerms.size()>0){
             return true;
@@ -112,7 +112,7 @@ public with sharing class PBS_LMSUtils_CC{
 
         List<PermissionSetAssignment> userPerms = [select Id
                                                         from PermissionSetAssignment
-                                                        where PermissionSet.Name IN ('LMS_Admin','LMS_User','LMS_External_User')
+                                                        where PermissionSet.Name IN ('PBS_LMS_Admin','PBS_LMS_User','LMS_External_User')
                                                         and AssigneeId = :userId];
         if(userPerms.size()>0){
             return true;
@@ -137,7 +137,7 @@ public with sharing class PBS_LMSUtils_CC{
 
     public static Set<Id> getLMSPermSets(){
         Set<Id> result = new Set<Id>();
-        for(PermissionSet ps : [select id from PermissionSet where name in ('LMS_Admin','LMS_User')]){
+        for(PermissionSet ps : [select id from PermissionSet where name in ('PBS_LMS_Admin','PBS_LMS_User')]){
             result.add(ps.Id);
         }
         return result;

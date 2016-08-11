@@ -38,8 +38,8 @@ public class PBS_LearningDeleteSharedAsgmtsExt_Test {
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -64,7 +64,7 @@ public class PBS_LearningDeleteSharedAsgmtsExt_Test {
             PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
         }
 
-        List<PBS_Learning_Assignment__c> las = [select id,Shared_Learning_Assignment__c,User__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
+        //List<PBS_Learning_Assignment__c> las = [select id,Shared_Learning_Assignment__c,User__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
 
         List<PBS_Learning_Assignment__c> taskLearningAssignments = [select id,Shared_Learning_Assignment__c
             from PBS_Learning_Assignment__c

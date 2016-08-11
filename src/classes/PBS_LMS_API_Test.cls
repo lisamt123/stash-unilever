@@ -37,8 +37,8 @@ public class PBS_LMS_API_Test {
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -73,8 +73,8 @@ public class PBS_LMS_API_Test {
                 PBS_LearningData_Test.publishLearning(resourceLearnings.get(0).Id,'resource',tresources.get(0).Id,false);
                 List<PBS_Training_Plan_Section__c> tplanSections = [select id from PBS_Training_Plan_Section__c where Training_Plan__c = :tplanId limit 1];
                 //Add to training plan section
-                List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
-
+                //List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings); //removed due to sonar fix
+                PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
                 PBS_LMS_API_CC.upsertAssignments(selectedUserIds,tplanId);
             }
 
@@ -95,8 +95,8 @@ public class PBS_LMS_API_Test {
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -125,7 +125,7 @@ public class PBS_LMS_API_Test {
             List<PBS_Learning_Assignment__c> learningAssignments = [select id from PBS_Learning_Assignment__c where Training_Plan_Section_Assignment__r.Training_Plan_Section__r.Training_Plan__c = :tplanId];
             System.assert(learningAssignments.size()>0);
             List<PBS_Learning__c> resourceLearnings;
-
+            System.debug('test');
             System.runAs(adminUsers.get(0)){
                 //Add an additional shared learning
                 //create resource learnings
@@ -136,7 +136,8 @@ public class PBS_LMS_API_Test {
                 PBS_LearningData_Test.publishLearning(resourceLearnings.get(0).Id,'resource',tresources.get(0).Id,false);
                 List<PBS_Training_Plan_Section__c> tplanSections = [select id from PBS_Training_Plan_Section__c where Training_Plan__c = :tplanId limit 1];
                 //Add to training plan section
-                List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
+                //List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings); //sonar fix
+                 PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
 
                 PBS_LMS_API_CC.upsertAssignments(selectedUserIds,tplanId);
             }
@@ -180,7 +181,7 @@ public class PBS_LMS_API_Test {
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
         }
 
         PBS_TrainingPlanData_Test.createSampleData();
@@ -204,7 +205,7 @@ public class PBS_LMS_API_Test {
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
         }
 
         PBS_TrainingTrackData_Test.createSampleData();

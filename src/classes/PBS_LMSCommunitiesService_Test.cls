@@ -31,7 +31,7 @@ public class PBS_LMSCommunitiesService_Test {
     
     static testMethod void testGetTrainingPlanIdsForCategory(){
         List<User> lmsUsers = PBS_UtilClass_Test.createUsers(2,'Standard User');
-        PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+        PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         
         List<PBS_Learning_Category__c> idlist =[select id from PBS_Learning_Category__c limit 10];
         
@@ -51,19 +51,19 @@ public class PBS_LMSCommunitiesService_Test {
     
     static testMethod void testWithoutSharingOps(){
         PBS_LMSCommunitiesService_CC.WithoutSharingOps commwsops = new PBS_LMSCommunitiesService_CC.WithoutSharingOps();
-        List<PBS_Training_Track__c> trainingtracks =[select id from PBS_Training_Track__c limit 10];
+        //List<PBS_Training_Track__c> trainingtracks =[select id from PBS_Training_Track__c limit 10];//sonar fix
         Id accountId = PBS_LMSUtils_CC.getUserAccountId();
         
         List<PBS_Learning_Category__c> idlist =[select id from PBS_Learning_Category__c limit 10];
         
         Test.startTest();
-        	Id trackid = null;
+            Id trackid = null;
             for(PBS_Learning_Category__c lc : idlist){
                 trackid = lc.Id;
             }
-        	commwsops.getTrainingPlanIdsForAccount(accountId);
-        	commwsops.getAccountTrainingTracks(accountId);
-        	commwsops.filterTrainingTracksForAccount(new Set<Id>{trackid},PBS_LMSUtils_CC.getUserAccountId(), 'Active');
+            commwsops.getTrainingPlanIdsForAccount(accountId);
+            commwsops.getAccountTrainingTracks(accountId);
+            commwsops.filterTrainingTracksForAccount(new Set<Id>{trackid},PBS_LMSUtils_CC.getUserAccountId(), 'Active');
             System.assert(commwsops != NULL);
         Test.stopTest();
     }

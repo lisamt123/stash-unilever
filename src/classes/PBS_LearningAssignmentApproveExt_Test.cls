@@ -43,7 +43,7 @@ private class PBS_LearningAssignmentApproveExt_Test {
 
       PBS_LearningAssignmentApproveExt_CC asgmtApproveExt = new PBS_LearningAssignmentApproveExt_CC(new ApexPages.StandardController(learningAssignments.get(0)));
       asgmtApproveExt.approveAssignment();
-	  System.assert(asgmtApproveExt != null);	
+      System.assert(asgmtApproveExt != null);   
     Test.stopTest();
   }
 
@@ -74,8 +74,8 @@ private class PBS_LearningAssignmentApproveExt_Test {
 
     System.runAs(adminUsers.get(0)){
       //Assign corresponding perm sets
-      PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-      PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+      PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+      PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
     }
 
     String taskApproverId = lmsUsers.get(1).Id;
@@ -111,7 +111,8 @@ private class PBS_LearningAssignmentApproveExt_Test {
     List<PBS_Training_Plan_Section__c> tplanSections = PBS_TrainingPlanData_Test.createTrainingPlanSections(tplans.get(0).Id,1);
 
     //Create training plan section items for quizzes
-    List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,taskLearnings);
+    //List<PBS_Training_Plan_Section_Item__c> tplanSectionItmes1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,taskLearnings); //removed for fixing sonar issues
+    PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,taskLearnings); 
 
     //Assign the user to the trainign plan
     List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];

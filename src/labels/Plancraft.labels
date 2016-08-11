@@ -19,7 +19,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PBS_Library</shortDescription>
-        <value>Library</value>
+        <value>PlanWiki</value>
     </labels>
 	    <labels>
         <fullName>ALMS_Generic_Error_Message</fullName>

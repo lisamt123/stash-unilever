@@ -90,7 +90,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             	
             	Set<Id> changedFinancialSet = new Set<Id>();
 				
-		IPM_FinancialHelper.deleteFinancialYears(newFinancialList);
+		
             	
             	for(IPM_Financial__c financial : newFinancialList)
 	            {
@@ -150,6 +150,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 Map<Id,Set<String>> financialToactiveChangedFieldMap = new Map<Id,Set<String>>();
                 Map<Id,Set<String>> financialToaddtChangedFieldMap = new Map<Id,Set<String>>();
 
+				//Delete Financial Years less than TLD
+				IPM_FinancialHelper.deleteFinancialYears(newFinancialList);
                 // Check for Financial Action Standard Update For Sections 
                 IPM_FinancialHelper.updateFinancialActionStandard((Map<Id,IPM_Financial__c>) Trigger.newMap);  
                 IPM_FinancialHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial__c>) Trigger.newMap);   

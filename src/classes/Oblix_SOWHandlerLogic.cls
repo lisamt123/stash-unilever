@@ -190,7 +190,10 @@ public with sharing class Oblix_SOWHandlerLogic {
                         ms.ParentId = sow.Id;
                         ms.UserOrGroupId =  userPermission.User_id__c;
                         ms.RowCause = Schema.Marketing_SOW__Share.RowCause.MANUAL;
-                        ms.AccessLevel = userPermission.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_READ_ONLY ? 'Read' : 'Edit';
+                        // S.S. 02.06.2016. - requirement to add attachments require to have edit access to SOWs, and edit needs to be prevented through VF and
+                        // Oblix_PermissionHandler class
+                        //ms.AccessLevel = userPermission.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_READ_ONLY ? 'Read' : 'Edit';
+                        ms.AccessLevel = 'Edit';
                         sharesToInsert.add(ms);
 
                     }

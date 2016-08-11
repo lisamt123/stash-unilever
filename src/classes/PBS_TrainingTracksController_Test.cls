@@ -37,8 +37,8 @@ private class PBS_TrainingTracksController_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         List<PBS_Params_Test.TrainingTrackParam> params = new List<PBS_Params_Test.TrainingTrackParam>();
@@ -47,7 +47,7 @@ private class PBS_TrainingTracksController_Test{
         params.add(new PBS_Params_Test.TrainingTrackParam());
         params.add(new PBS_Params_Test.TrainingTrackParam());
 
-        List<PBS_Training_Track__c> tracks = PBS_TrainingTrackData_Test.createTrainingTracks(params);
+        PBS_TrainingTrackData_Test.createTrainingTracks(params);
 
         Test.startTest();
 
@@ -68,8 +68,8 @@ private class PBS_TrainingTracksController_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         List<PBS_Params_Test.TrainingTrackParam> params = new List<PBS_Params_Test.TrainingTrackParam>();

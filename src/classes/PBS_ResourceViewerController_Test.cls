@@ -37,8 +37,8 @@ private class PBS_ResourceViewerController_Test{
 
         System.runAs(adminUsers.get(0)){
             //Assign corresponding perm sets
-            PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+            PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+            PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
         Id learningAssignmentId = createResourceViewerData(adminUsers,lmsUsers,false);
@@ -49,7 +49,7 @@ private class PBS_ResourceViewerController_Test{
         Test.setCurrentPage(pageRef);
         Test.startTest();
             System.runAs(lmsUsers.get(0)){
-                PBS_ResourceViewerController_CC cont = new PBS_ResourceViewerController_CC();
+                new PBS_ResourceViewerController_CC();
                 String contRef = PBS_ResourceViewerController_CC.redirectToResource(learningAssignmentId);
                 System.assert(contRef != null);
                 System.assert(contRef.indexOf('#t=1') != -1);
@@ -85,7 +85,7 @@ private class PBS_ResourceViewerController_Test{
         //Create training plan sections
         List<PBS_Training_Plan_Section__c> tplanSections1 = PBS_TrainingPlanData_Test.createTrainingPlanSections(tplans.get(0).Id,1);
         //Create training plan section items for quizzes
-        List<PBS_Training_Plan_Section_Item__c> tplan1SectionItems1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,resourceLearnings);
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections1.get(0).Id,resourceLearnings);
 
         List<PBS_Training_Plan__c> tplan = [select id from PBS_Training_Plan__c limit:integer.valueof(System.Label.PBS_soqllimit)];
         System.assertEquals(1,tplan.size());

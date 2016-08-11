@@ -65,4 +65,25 @@ public with sharing class CEC_Constants {
     public static final String BRAND = 'BRAND';
     public static final String UPC = 'UPC';
     public static final String STORE_NAME= 'STORE NAME';
+    
+    
+    //String literals for using in test class
+    public static final String UK = 'United Kingdom';
+    public static final String unknownEmail ='unknown@unilever.com';
+    public static final String languageUS ='en_us';
+    public static final String cmmCountry ='Brazil';
+    public static final String caseStatus = 'New';
+    public static final String caseOrigin = 'Email';
+    public static final String suppliedName = 'Test Abc';
+    public static final String none = '-None-';
+    public static final String PersonMailingPostalCode = 'TA10 0AB';
+    public static final String issuedDebitCardNumber = '82472182382234';
+    public static final String newDebitCardNumber = '23847238497238';
+    public static final String chequebookName = 'CB1';
+    public static final String USD = 'USD';
+    public static final String lastName = 'Test Account';
+    public static final String textileFactoryName = 'testTextileFactory';
+    public static final String productFactoryName = 'testProductFactory';
+    public static final String retrievalStatus = 'Retrieval Complete';
+    
 }

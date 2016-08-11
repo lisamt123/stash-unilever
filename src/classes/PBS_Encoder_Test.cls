@@ -39,7 +39,7 @@
 private class PBS_Encoder_Test {
 
     public static final string VALID_1 = 'Valid #1';
-    public static final string VALID_2 = 'Valid #1';
+    public static final string VALID_2 = 'Valid #2';
     public static final string VALID_3 = 'Valid #3';
     public static final string VALID_4 = 'Valid #4';
     public static final string VALID_5 = 'Valid #5';

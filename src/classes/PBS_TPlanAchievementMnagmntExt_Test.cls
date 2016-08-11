@@ -37,8 +37,8 @@ private class PBS_TPlanAchievementMnagmntExt_Test{
 
     System.runAs(adminUsers.get(0)){
       //Assign corresponding perm sets
-      PBS_UtilClass_Test.addPermissionSet(adminUsers,'LMS_Admin');
-      PBS_UtilClass_Test.addPermissionSet(lmsUsers,'LMS_User');
+      PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
+      PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
     }
 
     PBS_TrainingPlanData_Test.createSampleData();
@@ -69,7 +69,7 @@ private class PBS_TPlanAchievementMnagmntExt_Test{
                 //Add achievements to the training plan
             List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
             List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(1, lAchieveCat.get(0).Id, 'Achievements');
-            List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplans, lAchievement);
+            PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplans, lAchievement);
 
 
                 PBS_TrainingPlanAchievementMngmtExt_CC cont = new PBS_TrainingPlanAchievementMngmtExt_CC(new ApexPages.StandardController(tplan));

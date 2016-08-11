@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>HLE Request Object</description>
@@ -53,7 +52,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -2570,7 +2568,7 @@ p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
 //alert(p.pkl_Status__c); 
 try { 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -2616,7 +2614,7 @@ p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
 p.Estimate_Type__c = &quot;{!CPA_HLE_Request__c.Estimate_Type__c }&quot;; 
 p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;; 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -2671,7 +2669,7 @@ p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;;
 
 var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -2731,7 +2729,7 @@ p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;;
 p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
 var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 

@@ -247,11 +247,11 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+	<fields>
         <fullName>Product_Name_Other__c</fullName>
         <description>CEC Product Name &amp; Other field will mention (FS)  for all food products</description>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK(Other__c),  Name , Name  &amp; &quot; (&quot; &amp; Other__c   &amp;  &quot;)&quot;)</formula>
+        <formula>IF(ISBLANK(Other__c),  Name , Name  &amp; " (" &amp; Other__c   &amp;  ")")</formula>
         <label>Product Name &amp; Other</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -295,6 +295,7 @@
         <columns>NAME</columns>
         <columns>Brand__c</columns>
         <columns>Consumer_Product_Descriptor_Local_Lang__c</columns>
+        <columns>GTIN_EAN_UPC_Code__c</columns>
         <columns>Global_CPG_Code__c</columns>
         <columns>Form__c</columns>
         <columns>ISO_Country_Code__c</columns>
