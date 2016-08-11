@@ -3145,13 +3145,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			//for CAPEX, the validation is based on rollup financials, for consolidated financials
 			//if any rollup finanicial cell is having a wrong value 
 			//then the corresponding cell in the correspondiong consolidated financial cell should be highligted red/yellow
-			// the consolidated financial validation are handled in IPM_FinancialValue_Wrapper class so a check for !isFinacialConsolidated is made here
-			// also check for isFinancialEditable is made, in effect CAPEX will be checked in this method only Non cosolidated-editable financials
+			// the consolidated financial validation are handled in IPM_FinancialValue_Wrapper class
 			//for Consildated financials the validations are derived from rollup financials
 			//so as to calculate validations for non consolidated financials
 	        if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
 	             !isFinacialConsolidated &&
-	             isFinancialEditable(project,finToValidate) &&
 	            (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
 	            (isFinacialConsolidated && finToValidate.Yellow_Validation_Cells__c != null && finToValidate.Yellow_Validation_Cells__c.containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
 	           isCAPEXInvalid = true;
@@ -3231,7 +3229,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		
 		String queryString = 'SELECT ';
 		List<IPM_Financial__c> lstFinancial = new List<IPM_Financial__c>();
-		
+		system.debug('lstFinancial---'+lstFinancial);
 		//fetch all the financials from the current project
 		
 		//IPM financial
