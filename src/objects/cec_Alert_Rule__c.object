@@ -547,11 +547,6 @@
             <operation>equals</operation>
             <value>Abhishek Kumar Singh</value>
         </filters>
-        <filters>
-            <field>Market__c</field>
-            <operation>equals</operation>
-            <value>Italy</value>
-        </filters>
         <label>Abhishek Alerts</label>
         <language>en_US</language>
     </listViews>
