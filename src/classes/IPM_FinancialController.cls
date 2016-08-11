@@ -105,6 +105,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean isPaybackInvalid{get; set;}
     public set<String> validationSettingSet; 
     
+    String[] currencies = new String[]{};
+    public decimal decMultFactor = 1;
+    public decimal exRate{get;set;}
+    map<string,decimal> mapCurrency;   
+    
     public boolean isProjectStop {
         get
         {
@@ -1386,11 +1391,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getMisalignmentVisibility()
     {
         showMisalignment = FALSE;
+        String pageName = ApexPages.currentPage().getUrl().substringBetween('apex/', '?');
         
         List<IPM_Project__c> lstLocalProjects = new List<IPM_Project__c>();
         
         if (project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME && 
-            (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
+            (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) &&
+            (pageName!= null && pageName.equalsIgnoreCase('IPM_Financial')))
         {
             
              // check if it is a Regional Rollout Or Regional Orignal, Check if there are local Projects created. If yes, then only display misAlignment. 
@@ -2448,13 +2455,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
        
     }
     
-   
-    
-    String[] currencies = new String[]{};
-    public decimal decMultFactor = 1;
-    public decimal exRate{get;set;}
-    map<string,decimal> mapCurrency;    
-    
     public List<SelectOption> getItems() {
             list<IPM_Exchange_Rate__c> lstCurrency = [SELECT Currency_Code__c,Exchange_Rate__c FROM IPM_Exchange_Rate__c order by Currency_Code__c limit 10000];
             List<SelectOption> options = new List<SelectOption>();
@@ -3145,13 +3145,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 			//for CAPEX, the validation is based on rollup financials, for consolidated financials
 			//if any rollup finanicial cell is having a wrong value 
 			//then the corresponding cell in the correspondiong consolidated financial cell should be highligted red/yellow
-			// the consolidated financial validation are handled in IPM_FinancialValue_Wrapper class so a check for !isFinacialConsolidated is made here
-			// also check for isFinancialEditable is made, in effect CAPEX will be checked in this method only Non cosolidated-editable financials
+			// the consolidated financial validation are handled in IPM_FinancialValue_Wrapper class
 			//for Consildated financials the validations are derived from rollup financials
 			//so as to calculate validations for non consolidated financials
 	        if(( validationSettingSet.contains('checkValidCAPEXYellow'.toLowerCase()) &&
 	             !isFinacialConsolidated &&
-	             isFinancialEditable(project,finToValidate) &&
 	            (Decimal)finToValidate.get(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) <= IPM_ConstantUtils.INVALID_VALUE) ||
 	            (isFinacialConsolidated && finToValidate.Yellow_Validation_Cells__c != null && finToValidate.Yellow_Validation_Cells__c.containsIgnoreCase(IPM_ConstantUtils.FIELD_LITERAL_CAPEX + fieldSuffix))){
 	           isCAPEXInvalid = true;
@@ -3231,7 +3229,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		
 		String queryString = 'SELECT ';
 		List<IPM_Financial__c> lstFinancial = new List<IPM_Financial__c>();
-		
+		system.debug('lstFinancial---'+lstFinancial);
 		//fetch all the financials from the current project
 		
 		//IPM financial
@@ -3512,7 +3510,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		
 		}
 		
-		else if(!isEditMode && !isProjectStop && toShowEditButton){
+		else if(isEditMode!= null && !isEditMode && isProjectStop!=null && !isProjectStop && toShowEditButton!= null && toShowEditButton){
 				return true;
 		}
 		else{

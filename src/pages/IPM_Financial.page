@@ -405,6 +405,7 @@
                                                                     isIRRInvalid="{!isIRRInvalid}"
                                                                     isNPVInvalid="{!isNPVInvalid}"
                                                                     isPaybackInvalid="{!isPaybackInvalid}"
+                                                                    exRate="{!exRate}"
                                                                 />
                                                                   <!-- DEF2676 fix Start -->
                                                      			<apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">
