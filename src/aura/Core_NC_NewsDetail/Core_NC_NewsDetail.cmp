@@ -32,11 +32,17 @@
         margin-left: 0.1rem !important;
         margin-top: 10px;
         }
+<<<<<<< HEAD
+        .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1){
+        display: none!important;
+        }        
+=======
          .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1) {
         display: none!important;
         } 
         .slds-button--icon-container{
         display: none!important;}
+>>>>>>> develop
     </style>   
     <!--add bootstrap style class to give space in the both left and right side of the display pannel-->
     <div id="pageTopSection" aura:id="mytopdiv" class="pageBackgroundColor"> 
@@ -202,9 +208,15 @@
                         </div>
                     </div>
                     <!--<input type="text"/>
+<<<<<<< HEAD
+                        <div onclick="{!c.postChatterInfo}">  POST </div>-->
+                    <!--<forceChatter:feed type="Record" subjectId="{!v.newsId}"/>-->
+                <!--Ligthning Chatter Feed:News App Enhancements-->
+=======
                         <div onclick="{!c.postChatterInfo}">  POST </div> 
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/>
                 Ligthning Chatter Feed:News App Enhancements -->
+>>>>>>> develop
                 	<c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
                 	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
             </div>
