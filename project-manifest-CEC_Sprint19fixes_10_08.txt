@@ -3,5 +3,5 @@ src/profiles
 src/remoteSiteSettings
 src/profiles/Unilever - Salesforce MultiApp Standard Secured.profile
 src/profiles/Unilever - Salesforce MultiApp Standard.profile
-src/profiles/CEC.remoteSite
+src/remoteSiteSettings/CEC.remoteSite
 
