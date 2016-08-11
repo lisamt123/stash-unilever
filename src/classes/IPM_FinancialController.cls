@@ -105,6 +105,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean isPaybackInvalid{get; set;}
     public set<String> validationSettingSet; 
     
+    String[] currencies = new String[]{};
+    public decimal decMultFactor = 1;
+    public decimal exRate{get;set;}
+    map<string,decimal> mapCurrency;   
+    
     public boolean isProjectStop {
         get
         {
@@ -1386,11 +1391,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getMisalignmentVisibility()
     {
         showMisalignment = FALSE;
+        String pageName = ApexPages.currentPage().getUrl().substringBetween('apex/', '?');
         
         List<IPM_Project__c> lstLocalProjects = new List<IPM_Project__c>();
         
         if (project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME && 
-            (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
+            (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) &&
+            (pageName!= null && pageName.equalsIgnoreCase('IPM_Financial')))
         {
             
              // check if it is a Regional Rollout Or Regional Orignal, Check if there are local Projects created. If yes, then only display misAlignment. 
@@ -2447,13 +2454,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }
        
     }
-    
-   
-    
-    String[] currencies = new String[]{};
-    public decimal decMultFactor = 1;
-    public decimal exRate{get;set;}
-    map<string,decimal> mapCurrency;    
     
     public List<SelectOption> getItems() {
             list<IPM_Exchange_Rate__c> lstCurrency = [SELECT Currency_Code__c,Exchange_Rate__c FROM IPM_Exchange_Rate__c order by Currency_Code__c limit 10000];
@@ -3512,7 +3512,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 		
 		}
 		
-		else if(!isEditMode && !isProjectStop && toShowEditButton){
+		else if(isEditMode!= null && !isEditMode && isProjectStop!=null && !isProjectStop && toShowEditButton!= null && toShowEditButton){
 				return true;
 		}
 		else{
