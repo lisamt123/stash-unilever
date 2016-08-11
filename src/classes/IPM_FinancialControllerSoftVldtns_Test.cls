@@ -141,15 +141,13 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
       List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
-      List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject' limit 1000];
+      List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where name NOT IN ('IPM_MasterProject')];
       
       lstProjects[0].IPM_SourceProjectType__c = 'Original';
       lstProjects[0].IPM_ProjectGKM__c = 'GKM1';
       Update lstProjects[0];
 
       System.runAs(globalProjectLeader){
-          //Id defaultRecordTypeId = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
-      
           PageReference pageRef = Page.IPM_Financial;
           Test.setCurrentPage(pageRef);
          
@@ -180,7 +178,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
       User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
-      List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject' limit 1000];
+	  List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
       
       PageReference pageRef = Page.IPM_Financial;
       Test.setCurrentPage(pageRef);
@@ -217,7 +215,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
       User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
-	  List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name != 'IPM_MasterProject' limit 1000];
+	  List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
       
       PageReference pageRef = Page.IPM_Financial;
       Test.setCurrentPage(pageRef);
