@@ -2,9 +2,14 @@ src
 src/classes
 src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
+src/components
+src/components/IPM_FinancialSummaryTable.component
+src/components/IPM_FinancialSummaryTable.component-meta.xml
+src/components/IPM_FinancialTable.component
+src/components/IPM_FinancialTable.component-meta.xml
+
 src/customMetadata
 src/customMetadata/IPM_Category_EI_Matrix.Refreshment_Beverages.md
 src/customMetadata/IPM_Category_EI_Matrix.Refreshment_Ice_Cream.md
 src/objects
 src/objects/IPM_Milestone__c.object
-src/objects/IPM_Project__c.object
