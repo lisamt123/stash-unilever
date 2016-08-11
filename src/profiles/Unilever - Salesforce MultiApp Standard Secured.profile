@@ -52785,6 +52785,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+		<businessAccountDefault>true</businessAccountDefault>
         <recordType>Account.Standard</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
