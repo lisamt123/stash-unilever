@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>CEC - Connectivity for the Digital Genius AI, used for analysing incoming cases</description>
-    <disableProtocolSecurity>false</disableProtocolSecurity>
-    <isActive>true</isActive>
-    <url>https://unileverbackend.genius.ai</url>
-</RemoteSiteSetting>
