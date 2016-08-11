@@ -1,7 +1,4 @@
 src
-src/profiles
 src/remoteSiteSettings
-src/profiles/Unilever - Salesforce MultiApp Standard Secured.profile
-src/profiles/Unilever - Salesforce MultiApp Standard.profile
-src/remoteSiteSettings/CEC.remoteSite
+src/remoteSiteSettings/DigitalGenius_ConnectBackend.remoteSite
 

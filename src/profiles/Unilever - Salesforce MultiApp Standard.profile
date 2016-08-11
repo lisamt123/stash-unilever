@@ -51598,7 +51598,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-		<personAccountDefault>false</personAccountDefault>
         <recordType>Account.Standard</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
