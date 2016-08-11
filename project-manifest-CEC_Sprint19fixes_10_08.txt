@@ -1,12 +1,5 @@
 src
-<<<<<<< HEAD
 src/profiles
 src/profiles/Unilever - Salesforce MultiApp Standard Secured.profile
 src/profiles/Unilever - Salesforce MultiApp Standard.profile
-=======
-src/layouts
-src/layouts/sf4twitter__Fcbk_Page__c-sf4twitter__FCBK Page Layout.layout
-src/pages
-src/pages/CEC_NewAccountContact.page
-src/pages/CEC_NewAccountContact.page-meta.xml
->>>>>>> develop
+
