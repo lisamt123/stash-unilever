@@ -1837,15 +1837,32 @@
         <field>IPM_Analytics__c.IPM_iTO_Y8_BD__c</field>
         <readable>false</readable>
     </fieldPermissions>
+	
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Assessment__c.QM_Global_Category_Average_View_GHG__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Assessment__c.QM_Global_Category_Average_View_Waste__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Assessment__c.QM_Global_Category_Average_View_Water__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	
     <fieldPermissions>
-	<editable>false</editable>
-	<field>IPM_Assessment__c.IPM_Global_Category_Average_View_HlthHyg__c</field>
-	<readable>true</readable>
+		<editable>false</editable>
+		<field>IPM_Assessment__c.IPM_Global_Category_Average_View_HlthHyg__c</field>
+		<readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-	<editable>false</editable>
-	<field>IPM_Assessment__c.IPM_Global_Category_Average_View_Nutri__c</field>
-	<readable>true</readable>
+		<editable>false</editable>
+		<field>IPM_Assessment__c.IPM_Global_Category_Average_View_Nutri__c</field>
+		<readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

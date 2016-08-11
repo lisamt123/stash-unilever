@@ -553,6 +553,10 @@ public with sharing class IPM_TaskHelper {
 						task.IPM_Active__c = false;
 					} 
 	 			}
+	 			
+	 			if(projectDetail.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL && task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL && task.IPM_Section__c == null){
+	 				task.IPM_Active__c = true;
+	 			}
  			}
  			makeNullDocumentSectionTaskInactive(task);
  		}
