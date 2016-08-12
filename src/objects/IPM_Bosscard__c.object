@@ -3400,7 +3400,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
     <listViews>
         <fullName>IPM_a7IE0000000kBWF_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7IE0000000kBWF</label>
+        <label>IPM_PRINCE 2</label>
         <queue>IPM_a7IE0000000kBWF</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -3411,6 +3411,51 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000kBWP</label>
         <queue>IPM_a7IE0000000kBWP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kCG6_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MAROON5 EU_EU</label>
+        <queue>IPM_a7IE0000000kCG6</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kCGB_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_COLDPLAY_EU</label>
+        <queue>IPM_a7IE0000000kCGB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kCGG_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kCGG</label>
+        <queue>IPM_a7IE0000000kCGG</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kCGL_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PRINCE 3_EU</label>
+        <queue>IPM_a7IE0000000kCGL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kCGV_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kCGV</label>
+        <queue>IPM_a7IE0000000kCGV</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
