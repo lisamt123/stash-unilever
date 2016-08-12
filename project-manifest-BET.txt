@@ -15,4 +15,5 @@ src/pages/BC_article_template.page
 src/pages/BC_article_template.page-meta.xml
 src/pages/BET.page
 src/pages/BET.page-meta.xml
-
+src/pages/CoreNTLandingPage.page
+src/pages/CoreNTLandingPage.page-meta.xml
