@@ -245,12 +245,26 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
  
                     if(!rqsQuestionAlreadyExists && !insertQuestionnaireList.isEmpty())
                     {
-                        insertQuestionnaireList.addAll(generateProjectQuestionnaire(rqsMasterQuestionList,recTypeIDRQS,incomingProject));
+                        // Need Map to eliminate the duplicated Between master questions and questions related to RQS from the parent project
+						Map<String,IPM_Questionnaire__c> uniqueRQSQuestionnaireMap = new  Map<String,IPM_Questionnaire__c>();
+						
+						for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(rqsMasterQuestionList,recTypeIDRQS,incomingProject))
+						{
+							String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
+							uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
+						}                        
                         if(!addedQuestionareAtParent.isEmpty())
                         {
-                            insertQuestionnaireList.addAll(generateProjectQuestionnaire(addedQuestionareAtParent,recTypeIDRQS,incomingProject));    
-                        }
-                    }
+                            for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(addedQuestionareAtParent,recTypeIDRQS,incomingProject))
+							{
+								String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
+								uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
+							}
+							
+						}
+						// the below list will contain the unique combined list of the RQS questions from Master list and Parent project
+						insertQuestionnaireList.addAll(uniqueRQSQuestionnaireMap.values());
+					}
                     
                     if(!rndFeasibilityQuestionAlreadyExists && !rndFeasibilityQuestionMap.isEmpty())
                     {
