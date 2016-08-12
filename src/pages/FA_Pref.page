@@ -1,4 +1,4 @@
-<apex:page controller="ChatterUIController" action="{!init}" docType="html-5.0" standardStylesheets="false" sidebar="false" showHeader="false">
+<apex:page action="{!init}" docType="html-5.0" standardStylesheets="false" sidebar="false" showHeader="false"> <!-- controller="ChatterUIController" -->
 
     <apex:composition template="Template">
         <apex:define name="pageTitle">Programme Logistics</apex:define>
@@ -48,14 +48,14 @@
             <div class="panels" id="panels">
          
                    <div class="uiScroller forceScroller" id="panelScroller" data-scroller='{"enableRefresh":"true"}'>
-                    <!-- <div id="pullDown" class="padGridEqSides padHalfBottom">
-                        <span class="pullDownIcon"></span><span class="pullDownLabel">{!$Label.pull_to_refresh_text}</span>
-                    </div>-->
+                    <!-- <div id="pullDown" class="padGridEqSides padHalfBottom"> -->
+                      <!--  <span class="pullDownIcon"></span><span class="pullDownLabel">{!$Label.pull_to_refresh_text}</span> -->
+                   <!-- </div>-->
                     <apex:outputPanel layout="block" id="sPanel">                                                         
-                         <div data-role="page" id="Programme Logistics" style="background:#ffffff;background-image: url({!HostURL}{!URLFOR($Resource.FA_Images, 'FA_Background_Image_for_Four_Acres.jpg')});background-repeat:no-repeat;background-size: 100% 65%;">
+                     <!--    <div data-role="page" id="Programme Logistics" style="background:#ffffff;background-image: url({!HostURL}{!URLFOR($Resource.FA_Images, 'FA_Background_Image_for_Four_Acres.jpg')});background-repeat:no-repeat;background-size: 100% 65%;">
                                 <div data-role="header" id="ProgrammeLogisticsHeader">
                                         <h1 style="fontFile=fileadmin/fonts/DINPro-Bold.otf;">Choose Programme</h1>                                
-                                </div><!-- /header --> 
+                                </div>
                                 <div data-role="content" id="conPref"> 
                                 <apex:form id="formProgrammeLogistics">                                                 
                                        <apex:selectList id="choosecourse" size="1" style="fontFile=fileadmin/fonts/DINPro-Medium.otf;" >  
@@ -65,7 +65,7 @@
                                       <p style="text-align:center">               
                                       <a href="#" id="aPref" target="_self" data-inline="true" data-role="button" data-theme="a" >Go</a>
                                       </p>
-                                 </apex:form><!-- end of Form tag-->
+                                 </apex:form>
                                  <script>
                                     $('select[id$=choosecourse]').change(function()
                                                                             {   
@@ -87,8 +87,10 @@
                                            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right" style="fontFile=fileadmin/fonts/DINPro-Bold.otf;">Close</a>
                                            <p style="fontFile=fileadmin/fonts/DINPro-Bold.otf;font-size:18px;"> Please select a Programme to enter Programme Logistics </p>
                                   </div> 
-                                </div><!-- /content -->
-                          </div><!-- page -->
+                                </div>
+                          </div> -->
+                        
+                          
                     </apex:outputPanel>
                            
                     
@@ -98,9 +100,9 @@
                             ChatterUI.UserContext = {
                             userId: '{!$User.Id}',
                             sessionId: '{!GETSESSIONID()}',
-                            usingMobile: {!usingMobile},
+                         <!-- usingMobile: {!usingMobile},
                             userObjectPrefix: '{!userObjectPrefix}',
-                            feedObjectPrefix: '{!feedObjectPrefix}'
+                            feedObjectPrefix: '{!feedObjectPrefix}'-->
                         }
                     </script> 
                                

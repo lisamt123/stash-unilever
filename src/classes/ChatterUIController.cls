@@ -753,7 +753,7 @@ public with sharing class ChatterUIController {
        }   
         */
           
-       public PageReference showCourseDetail()
+      /* FA decom job to remove FA_Training_Room__c object public PageReference showCourseDetail()
         {  
            //Apexpages.currentPage().getHeaders().put('content-disposition', 'attachment; filename=mypdf.pdf');
                                       
@@ -853,6 +853,7 @@ public with sharing class ChatterUIController {
                 objProDetail.startDate=DateTime.valueOf(co.FA_Start_Date_Time__c.format('yyyy-MM-dd HH:mm:ss',String.ValueOf(UserInfo.getTimeZone())));
                 objProDetail.endDate=DateTime.valueOf(co.FA_End_Date_Time__c.format('yyyy-MM-dd HH:mm:ss',String.ValueOf(UserInfo.getTimeZone())));
                 
+                Sambit FA decom job FA_Training_Room__c ref removal*/
                 //Below code written to convert all the Notes into Attachments so they can be displayed and downloaded                
                 /*if(prenotesOnly.size()>0)
                 {  
@@ -906,13 +907,13 @@ public with sharing class ChatterUIController {
                 }
                 */
                 
-                objProDetail.CoOcc=co;
+         /*       objProDetail.CoOcc=co;
                 objProDetail.CoPreAttachment=prenotes;                
                 ObjProDetail.CoPostAttachment=postnotes;
                 ObjProDetail.CoMaterialAttachment=coMaterialnotes;                
               }                   
             return null;    
-         }          
+         }      sambit object ref removal second sequence*/    
             
     /*
         End of the code for the Couse Detail Page

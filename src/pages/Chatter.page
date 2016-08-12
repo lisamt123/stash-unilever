@@ -25,7 +25,7 @@ LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
-<apex:page controller="ChatterUIController" action="{!init}" docType="html-5.0" standardStylesheets="false" sidebar="false" showHeader="false">
+<apex:page action="{!init}" docType="html-5.0" standardStylesheets="false" sidebar="false" showHeader="false"> <!-- controller="ChatterUIController" -->
 <style>
 <!--@font-face {
     font-family: "DINProFont";
@@ -117,15 +117,15 @@ font-family:'DINProFont';
                         ChatterUI.UserContext = {
                             userId: '{!$User.Id}',
                             sessionId: '{!GETSESSIONID()}',
-                           // usingMobile:{!usingMobile},
-                             usingMobile:false,
+                           <!-- usingMobile:{!usingMobile},
+                             usingMobile:false, 
 
                             userObjectPrefix: '{!userObjectPrefix}',
                             feedObjectPrefix: '{!feedObjectPrefix}'
                             
                         }
                       var AllFourAcreGroupID='{!AllFourAcreGroupID}'; 
-                      var FourAcreHelpGroupID='{!FourAcreHelpGroupID}'; 
+                      var FourAcreHelpGroupID='{!FourAcreHelpGroupID}'; -->
                      
                                         
                     </script>
