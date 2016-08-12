@@ -1247,5 +1247,6 @@ public class IPM_ConstantUtils {
    
    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
     // Platform As 'Not Appliable'
-    public static final string PLATFORM_NA = 'Not Applicable';
+   public static final string PLATFORM_NA = 'Not Applicable';
+   public static final String IPM_SECTOR='Sector';
 }

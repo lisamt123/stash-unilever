@@ -322,8 +322,11 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             getIpmuserType();   
         }
         getCategoryValue();
-        getsubsector();
-        getMarket();
+		if(ipm_CategoryVal !=null && ipm_CategoryVal.IPM_Sector__c)
+        {
+        	subSector_STR=IPM_Coreparameter.IPM_Sector__c;	
+        }
+        getsubsector();//common method for market,sub sector and sector
         getStrategicGraph();
         betValue();
         getAccessonPage();
@@ -547,8 +550,13 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             }
         }
         IPM_Coreparameter.IPM_Market__c=market_STR;
-        IPM_Coreparameter.IPM_Sub_sector__c=subSector_STR;
-        //IPM_Coreparameter.IPM_BET_Toolkit__c=betValue_STR; 
+        if(ipm_CategoryVal.IPM_Sector__c)
+        {
+        	IPM_Coreparameter.IPM_Sector__c = subSector_STR;	
+        }
+        else{
+        	IPM_Coreparameter.IPM_Sub_sector__c=subSector_STR;
+        } 
         isThresholdSaved =true;
         updateCoreParameter();
         //Update Reset BET option upon save
@@ -737,60 +745,39 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }                                       
         
     }     
-    
     /****************************************************************************
-    @Description :Get list of Market based on category
-    *****************************************************************************/
-    @TestVisible private void getMarket(){
-        selCat=IPM_ConstantUtils.BLANK;
-        List<MDO_Category__c> userMarket=new List<MDO_Category__c>();
-        if(IPM_Coreparameter.IPM_Category_Text__c!=null){
-            lstmarket=new list<selectoption>();
-            selCat=IPM_Coreparameter.IPM_Category_Text__c;
-            set<string>UniqueMarket=new set<string>();
-            if(String.isNotBlank(selCat)) {
-                userMarket=[SELECT id, Name FROM MDO_Category__c  
-                            WHERE category_type__c=:IPM_ConstantUtils.IPM_MARKET AND parent_id__r.Name=:selCat LIMIT 1000];
-            }
-            if(!userMarket.isEmpty()){
-                for(MDO_Category__c u:userMarket){
-                    if(!UniqueMarket.Contains(u.Name)){
-                        lstmarket.add(new Selectoption(u.Name,u.Name));
-                        UniqueMarket.add(u.Name);
-                    }
-                    
-               } 
-                          
-            }
-            
-        }
-    }
-    /****************************************************************************
-    @Description :To retrive the Subsector details
+    @Description :To retrieve the Subsector/Makert/Sector details
     *****************************************************************************/  
     @TestVisible private void getSubsector(){
         selCat=IPM_ConstantUtils.BLANK;
-        if(IPM_Coreparameter.IPM_Category_Text__c!=null){
+        if(ipm_CategoryVal !=null && IPM_Coreparameter.IPM_Category_Text__c!=null){
             lstsubsector=new list<selectoption>();
             selCat=IPM_Coreparameter.IPM_Category_Text__c;
             List<MDO_Category__c > subsectorList=new List<MDO_Category__c >();
             set<string>uniqueSubSector=new set<string>();
-            if(String.IsNotBlank(selCat)) {
-                subsectorList=[SELECT id, Name FROM
-                            MDO_Category__c WHERE parent_L3__r.Name=:selCat
-                            AND category_type__c=:IPM_ConstantUtils.IPM_SUBSECTOR  LIMIT 1000];
+            string query_Str='';
+            query_Str='SELECT Name FROM MDO_Category__c ';
+            if(ipm_CategoryVal.IPM_Sub_Sector__c)
+            {
+            	 query_Str+='WHERE parent_L3__r.Name= \''+ selCat +'\' AND category_type__c=\''+IPM_ConstantUtils.IPM_SUBSECTOR +'\' ';
             }
-            if(!subsectorList.isEmpty()){
-               for(MDO_Category__c u:subsectorList){
-                    if(!uniqueSubSector.contains(u.Name)){
-                        lstsubsector.add(new Selectoption(u.Name,u.Name));
-                        uniqueSubSector.add(u.Name );
-                    }
-                    
-                    
-                } 
-                          
+            else if(ipm_CategoryVal.IPM_Sector__c)
+            {
+            	query_Str+='WHERE parent_L2__r.Name= \''+ selCat + '\' AND category_type__c=\''+IPM_ConstantUtils.IPM_SECTOR +'\' ';
             }
+            else if(ipm_CategoryVal.IPM_Market__c)
+            {
+            	query_Str+='WHERE category_type__c= \''+IPM_ConstantUtils.IPM_MARKET + '\' AND parent_id__r.Name=\''+ selCat + '\' ';
+            }
+            query_Str+=' LIMIT 1000';
+            
+            subsectorList = Database.Query(query_Str);
+            for(MDO_Category__c u:subsectorList){
+                if(!uniqueSubSector.contains(u.Name)){
+                    lstsubsector.add(new Selectoption(u.Name,u.Name));
+                    uniqueSubSector.add(u.Name );
+                }
+            }  
         }          
     }
     
