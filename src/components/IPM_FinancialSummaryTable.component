@@ -9,7 +9,8 @@
     <apex:attribute name="isIRRInvalid" type="Boolean" description="Identify whether IRR value is invalid." />
     <apex:attribute name="isNPVInvalid" type="Boolean" description="Identify whether NPV value is invalid." />
     <apex:attribute name="isPaybackInvalid" type="Boolean" description="Identify whether Payback value is invalid." />
-    
+    <apex:attribute name="exRate" type="Decimal" description="test"/>
+
     <!-- Variables -->
     <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
 
