@@ -433,6 +433,38 @@
     </sf:deploy>
   </target>  
   <!-- ***************************************************************************** -->
+  <!-- Validate the  set of Agent App meta-data before deployment with AA Test Classes      -->
+  <!-- ***************************************************************************** -->
+  <target name="validateAA">
+    <echo level="info">Testing the deployment of Clarity Approvals</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+          <runTest>AA_AddCompetitorName_Test</runTest>
+          <runTest>AA_AgentAppServiceController_Test</runTest>
+          <runTest>AA_ApplicationWrapperObj_Test</runTest>
+          <runTest>AA_BaseApplicationServices_Test</runTest>
+          <runTest>AA_Constants_Test</runTest>
+          <runTest>AA_DatabaseServiceUtil_Test</runTest>
+          <runTest>AA_Follow_Unfollow_batch_Test</runTest>
+          <runTest>AA_Follow_Unfollow_class_Test</runTest>
+          <runTest>AA_RemoteServiceCallController_Test</runTest>
+          <runTest>AA_theAgent_ChatterPost_FutureClass_Test</runTest>
+          <runTest>AA_TheAgentReportWrapper_Test</runTest>
+          <runTest>AA_TheAgentSingleExecution_Test</runTest>
+          <runTest>AA_WrapperUtility_Test</runTest>
+    </sf:deploy>
+  </target>
+  <!-- ***************************************************************************** -->
     <!-- Validate the  set of News App meta-data before deployment with few Test Classes      -->
     <!-- ***************************************************************************** -->
     <target name="validateNewsApp">

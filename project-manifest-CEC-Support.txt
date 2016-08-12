@@ -1,0 +1,10 @@
+src
+src/objects
+src/pages
+src/permissionsets
+src/objects/cec_Case_Action__c.object
+src/pages/CEC_CaseActions.page
+src/pages/CEC_CaseActions.page-meta.xml
+src/permissionsets/CEC_Digital_Genius_Admin.permissionset
+src/permissionsets/CEC_Digital_Genius_User.permissionset
+
