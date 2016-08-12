@@ -416,9 +416,9 @@
                                                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}">i</a>
                                                                             </span>
                                                                                 <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox"  >
-                                                                                    <!-- To display below outputPanel when fasttract is applicable    -->
+                                                                                    <!-- To display below outputPanel when fasttrack is applicable    -->
                                                                                     <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}">
-                                                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" />
+                                                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!$Permission.EditableFastTrack}"/>
                                                                                     <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                                                                     <apex:actionSupport event="onchange" reRender="FastTrackHelpTextpanel"  />
                                                                                     </apex:outputPanel>

@@ -310,7 +310,7 @@
                                         </div>
                                         <!-- Below rendered condition is used to provide fast track checkbox for non operational projects -->
                                         <apex:outputPanel layout="block" styleClass="col-sm-12 yellowBox noPadleft"  rendered="{!!isOperational}">
-                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" />
+                                                <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!$Permission.EditableFastTrack}"/>
                                             <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                         </apex:outputPanel>
                                     </apex:outputPanel>   
@@ -366,7 +366,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12 yellowBox noPadleft">
-                                            <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" />
+                                                <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!$Permission.EditableFastTrack}"/>
                                             <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                     </div>
                                 </apex:outputPanel>  

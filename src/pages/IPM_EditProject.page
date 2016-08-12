@@ -339,12 +339,12 @@
                                         <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
                                         <div class="col-sm-12 yellowBox noPadleft">
                                          <span class="SecButtonSet infoMarTop pull-left">
-                                                                                <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}"></a>
-                                                                            </span>
+                                         <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}"></a>
+                                            </span>
                                             <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" >
                                                 <!-- To display below outputPanel when fasttract is applicable    -->
                                                 <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
-                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
+                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,!$Permission.EditableFastTrack,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
                                                     <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                                     <apex:actionSupport event="onchange" reRender="FastTrackHelpTextpanel"  />
                                                 </apex:outputPanel>
