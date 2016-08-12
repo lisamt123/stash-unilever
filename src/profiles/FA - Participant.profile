@@ -34263,10 +34263,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Category</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>ChangePassword</apexPage>
         <enabled>false</enabled>
     </pageAccesses>

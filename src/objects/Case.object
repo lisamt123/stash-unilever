@@ -3248,9 +3248,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>0</value>
         </filters>
         <filters>
-            <field>CONTACT.FIRST_NAME</field>
+            <field>OWNER_NAME</field>
             <operation>notContain</operation>
-            <value>ANZ queue</value>
+            <value>CEC ANZ Queue</value>
         </filters>
         <label>ANZ All open cases</label>
         <language>en_US</language>
@@ -3443,7 +3443,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>ANZ Queue</label>
+        <label>ANZ Round Robin Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
@@ -7601,7 +7601,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7633,19 +7633,27 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
+            <value>Rebe</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
+            <value>Kirsten</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
+            <value>Michael</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Martin</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Charlyn</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
