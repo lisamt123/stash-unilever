@@ -277,7 +277,7 @@
                                     <!-- Below rendered condition is used for charter gate -->
                                     <apex:outputPanel rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                         <!-- Below rendered condition is used to provide output label for non operational projects -->
-                                        <apex:outputPanel layout="block" rendered="{!!isOperational}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
+                                         <apex:outputPanel layout="block" rendered="{!NOT(OR(isOperational,project.IPM_ProjectGKM__c=='GKM3'))}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
                                             <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel setupBlock" />
                                             <div class="ipmApproveButtons gkm">
                                                 <apex:selectRadio value="{!project.IPM_GateKeeping_Model__c}" >
@@ -335,7 +335,7 @@
                                  <!-- Below rendered condition will execute for charter gate document -->
                                 <apex:outputPanel layout="block" rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                      <!-- Below rendered condition will execute for non operational projects -->
-                                    <apex:outputPanel layout="block" rendered="{!!isOperational}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
+                                   <apex:outputPanel layout="block" rendered="{!NOT(OR(isOperational,project.IPM_ProjectGKM__c=='GKM3'))}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
                                         <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel setupBlock" />
                                         <div class="ipmApproveButtons gkm">
                                             <apex:selectRadio value="{!project.IPM_GateKeeping_Model__c}" >
