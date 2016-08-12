@@ -71,6 +71,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public id documentSectionId{get;set;}
     public boolean isEcoDesignSecNegotiable;
     public string stopDisclaimer{get;set;}
+    public Boolean hideGCLTRCLTQuestions{get;set;}
     //REQ03006
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
@@ -81,6 +82,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     {
         super();           
         isDefaultAvailable=false;
+        hideGCLTRCLTQuestions = false;
         isOperational=false;
         showSkipSections=false;
         showStop=true;
@@ -138,6 +140,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     isOperational=true;
                 }
                 
+                if(project.IPM_GateKeeping_Model__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3)
+                {
+                	hideGCLTRCLTQuestions = true;
+                }
                 // Show all Validations on selecting Propose
                 showValidationMethod();               
                 

@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <!-- if project type is original then below outputPanel will display-->
-                        <apex:outputPanel layout="block" rendered="{if(AND(!isOriginal, project.IPM_ProjectGKM != 'GKM3') true, false)}">
+                        <apex:outputPanel layout="block" rendered="{if(AND(!isOriginal, project.IPM_GateKeeping_Model__c != 'GKM3') true, false)}">
                         <div class="coreTopContainer coreBg">
                             <div class="col-sm-12">
                                 <apex:outputPanel layout="block" styleClass="col-sm-6 noPadleft" >
