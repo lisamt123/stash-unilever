@@ -2,5 +2,9 @@ src
 src/objects
 src/pages
 src/objects/cec_Case_Action__c.object
+<<<<<<< HEAD
 src/pages/CEC_CaseActions.page
 src/pages/CEC_CaseActions.page-meta.xml
+=======
+src/pages/CEC_CaseActions.page
+>>>>>>> develop

@@ -1,0 +1,15 @@
+<aura:component >
+    <aura:attribute name="contentId" type="String" description=""/>
+    <aura:attribute name="renditionUrl" type="String" description=""/>
+    <aura:dependency resource="markup://force:navigateToSObject" type="EVENT"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="versionId" type="String" description=""/>
+    <aura:attribute name="previewImageUrl" type="String" description=""/>
+    
+    <div class="gallery1" style="overflow:hidden;">
+        <a onclick="{!c.showFilePreviewSF1}">
+            <img  style="border: solid 1px #999; padding:5px;" alt="Click to preview" src="{!v.previewImageUrl}" />
+        </a>
+	</div>
+	
+</aura:component>
