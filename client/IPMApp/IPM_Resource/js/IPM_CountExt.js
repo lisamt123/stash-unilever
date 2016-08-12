@@ -13,6 +13,7 @@ jq(document).ready(function() {
     var strTextAreaID = "";
     var strLabelName = "";
     var MaxLength = 0;
+    var countSpacesAsChars = false;
     if (jq("#dummyCount").length > 0) {
         strTextAreaID = "gate";
         strLabelName = "charCountRemaining";
@@ -30,21 +31,101 @@ jq(document).ready(function() {
     }
     if (navigator.userAgent.indexOf("Trident") > -1) {
         strBrowser = "IE";
-    }
-        
+    }    
     /* The below if's cannot be merged as it may break functionality. Also if we try to merge it with the nested one, there will be contradiction with the other sonar issue 'Reduce the number of conditional operators' */
     if (window.CKEDITOR) {
         var strFrameParent = jq(document).find('.secEditSummary').find("textarea").attr('name');
         if(strFrameParent !== null && strFrameParent !== undefined){
             if (strFrameParent.indexOf(strTextAreaID) >= 0) {
-                CKEDITOR.instances[strFrameParent].on("key", function(e) {
-                    var objTextArea = this.document.$.body;
-                    var strText = objTextArea.textContent;
-                    
+                // RTF On Key Event Handler
+                // ckeditor key for keyup is "key"
+                CKEDITOR.instances[strFrameParent].on("key", function(event) {
+                    event = event || window.event;
+                    objTextArea = this.document.$.body;
+                    if(event.data.domEvent.$.keyCode !==17 && event.data.domEvent.$.keyCode !== 86){
+                        return editorCount(objTextArea, event);
+                    }
+                });
+                CKEDITOR.instances[strFrameParent].on("paste", function(event) {
+                    var selectedText;                  
+                    if (document.getSelection){ // all modern browsers and IE9+
+                        selectedText = document.getSelection().toString();
+                    }
+                    if (!countSpacesAsChars) {
+                        normalizedText = selectedText.replace(/\s/g, "").replace(/&nbsp;/g, "");
+                    }
+                    strText = normalizedText.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
+                    //Strip Html tags
+                    strText = normalizedText.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");
+                    event = event || window.event;
+                    objTextArea = this.document.$.body;
+                    var cplength = strText.length;
+                    var strText1;
+                    var objTextareaText = objTextArea.innerText;
+                    var normalizedText1 = objTextareaText;
+                    if (!countSpacesAsChars) {
+                        normalizedText1 = objTextareaText.replace(/\s/g, "").replace(/&nbsp;/g, "");
+                    }
+                    strText1 = normalizedText1.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
+                    //Strip Html tags
+                    strText1 = normalizedText1.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");       
+                    var strFullText = strText1.length;
+                   return editorPaste(strFullText,cplength,event);                   
+                });
+                function editorPaste(strFullText,cplength,event){
+                    var totCount = cplength + strFullText;
+                    if(totCount >= MaxLength){
+                        if (strBrowser === "IE") {
+                            jq('#ipmDeleteModal').modal();
+                            jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
+                            jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
+                            jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
+                            jq('#ipmDeleteModal').find('.green').hide();
+                            jq('#ipmDeleteModal .modal-body').css({
+                                "height": "120px",
+                                "margin-right": "15px"
+                            });
+                            event.preventDefault();
+                        } else if (strBrowser === "CHROME") {
+                            jq('#ipmDeleteModal').modal();
+                            jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
+                            jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
+                            jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
+                            jq('#ipmDeleteModal').find('.green').hide();
+                            jq('#ipmDeleteModal .modal-body').css({
+                                "height": "120px",
+                                "margin-right": "15px"
+                            });
+                            event.preventDefault();
+                        }
+                    }
+                    setTimeout(function() {
+                        var text = element.innerHTML;
+                        var wrapper = document.createElement('div');
+                        wrapper.innerHTML = text;
+                        walk_the_DOM(wrapper, function(el) {
+                            if (el.removeAttribute) {
+                                el.removeAttribute('id');
+                                el.removeAttribute('class');
+                            }
+                        });
+                        element.innerHTML = wrapper.innerHTML;
+                        strText = wrapper.textContent || wrapper.innerText;
+                        showCharacterCount(strText);
+                    }, 100);
+                }                
+                function editorCount(objTextArea, e){
+                    var objTextareaText = objTextArea.innerText;
+                    var normalizedText = objTextareaText;
+                    if (!countSpacesAsChars) {
+                        normalizedText = objTextareaText.replace(/\s/g, "").replace(/&nbsp;/g, "");
+                    }
+                    strText = normalizedText.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
+                    //Strip Html tags
+                    strText = normalizedText.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");
                     /* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
-                    if ( (e.data.domEvent.$.keyCode === 8) || (e.data.domEvent.$.keyCode === 46) || ((e.data.domEvent.$.shiftKey) 
-                        && 
-                        (e.data.domEvent.$.keyCode === 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode === 35)) 
+                    if ((e.data.domEvent.$.keyCode === 8) || (e.data.domEvent.$.keyCode === 46) || ((e.data.domEvent.$.shiftKey) 
+                        && (e.data.domEvent.$.keyCode === 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode === 35)) 
                         || (e.data.domEvent.$.keyCode === 35) || (e.data.domEvent.$.keyCode === 36) || (e.data.domEvent.$.keyCode === 37) 
                         || (e.data.domEvent.$.keyCode === 38) || (e.data.domEvent.$.keyCode === 39) || (e.data.domEvent.$.keyCode === 40)) {
                         showCharacterCount();
@@ -52,19 +133,20 @@ jq(document).ready(function() {
                         e.returnValue = true;
                         return true;
                     }
-                    if (strText.length === MaxLength) {
+                    // Reaches Max Length - Shows error MAX_VALUE Reached Error Msg.
+                    if (strText.length >= MaxLength) {
                         e.cancelBubble = true;
                         e.returnValue = false;
                         e.cancel();
                         e.stop();
                         return false;
                     } else {
-                        showCharacterCount();
+                        showCharacterCount(strText);
                         e.cancelBubble = false;
                         e.returnValue = true;
                         return true;
                     }
-                });
+                }                
                 CKEDITOR.instances[strFrameParent].on("instanceReady", function(ev) {
                     // Set keyup event  
                     jq("div.cke_inner").find("span.cke_toolbar").find("a").click(function() {
@@ -79,69 +161,16 @@ jq(document).ready(function() {
                             return true;
                         }
                         showCharacterCount();
-
                     });
-                    //paste event
-                    this.document.on("paste", function(event) {
-                        var strText;
-                        if (strBrowser === "IE") {
-                            strText = window.clipboardData.getData('Text');
-                        } else if (strBrowser === "CHROME") {
-                            strText = event.data.$.clipboardData.getData("text/plain");
-                        }
-                        var element = (this).$.body;                    
-                        var strFullText = strText.length;
-                        if (strFullText > MaxLength) {
-                            if (strBrowser === "IE") {
-                                event.preventDefault ? event.preventDefault() : event.returnValue = false;
-                                window.clipboardData.clearData("Text");
-                                jq('#ipmDeleteModal').modal();
-                                jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
-                                jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
-                                jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
-                                jq('#ipmDeleteModal').find('.green').hide();
-                                jq('#ipmDeleteModal .modal-body').css({
-                                    "height": "120px",
-                                    "margin-right": "15px"
-                                });
-                            } else if (strBrowser === "CHROME") {
-                                event.data.preventDefault();
-                                event.data.$.clipboardData.clearData();
-                                jq('#ipmDeleteModal').modal();
-                                jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
-                                jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
-                                jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
-                                jq('#ipmDeleteModal').find('.green').hide();
-                                jq('#ipmDeleteModal .modal-body').css({
-                                    "height": "120px",
-                                    "margin-right": "15px"
-                                });
-                            }
-                        }
-                        setTimeout(function() {
-                            var text = element.innerHTML;
-                            var wrapper = document.createElement('div');
-                            wrapper.innerHTML = text;
-                            walk_the_DOM(wrapper, function(el) {
-                                if (el.removeAttribute) {
-                                    el.removeAttribute('id');
-                                    el.removeAttribute('class');
-                                }
-                            });
-                            element.innerHTML = wrapper.innerHTML;                      
-                            strText = wrapper.innerHTML.replace(/\&lt;br\&gt;/gi,"\n").replace(/(&lt;([^&gt;]+)&gt;)/gi, "");
-                            showCharacterCount(strText);
-                        }, 100);
-                    });
-                });           
+                });       
             }
         }
     }
-    var walk_the_DOM = function (node, func) {
+    var walk_the_DOM = function walk(node, func) {
         func(node);
         node = node.firstChild;
         while (node) {
-            walk_the_DOM(node, func);
+            walk(node, func);
             node = node.nextSibling;
         }
     };
@@ -161,10 +190,18 @@ jq(document).ready(function() {
         if (strFrame.indexOf(strTextAreaID) >= 0) {
             NewLineCount = 0;
             var objTextArea = jq(jq(document).find(".secEditSummary").find("iframe.cke_wysiwyg_frame")).contents().find("html").find("body")[0];
-            strTextArea = objTextArea.innerText.replace(/\&lt;br\&gt;/gi,"\n").replace(/(&lt;([^&gt;]+)&gt;)/gi, "");
-            
+            // New set of code start
+            var objTextareaText = objTextArea.innerText;
+            var normalizedText = objTextareaText;
+            if (!countSpacesAsChars) {
+                normalizedText = objTextareaText.replace(/\s/g, "").replace(/&nbsp;/g, "");
+            }
+            normalizedText = normalizedText.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
+            //Strip Html tags
+            normalizedText = normalizedText.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");
+            // New set of code end
+            strTextArea = normalizedText;            
             var rem = MaxLength - parseInt(strTextArea.length);
-
             if (rem > 0) {
                 jq("#" + strLabelName).show().text(rem.toString()).prev("span").text(IPMAppSE.charRemaining);
             } else {
@@ -173,3 +210,25 @@ jq(document).ready(function() {
         }
     }
 });
+function storeCount(e){
+    if(e === 'true'){
+        var chkCount = jq('.charCountRemaining').text();    
+    }
+    else{
+        var chkCount = jq('#lblCharCountGate2').text();    
+    }
+    refreshpage('Gate',chkCount);
+}
+function storeCountoutcomesave(){
+    var chkCount = jq('.charCountRemaining').text();
+    refreshoutcomesave('',chkCount);
+}
+function storeCountoutcomesavenotify(e){
+    if(e === 'true'){
+        var chkCount = jq('.charCountRemaining').text();    
+    }
+    else{
+        var chkCount = jq('#lblCharCountGate2').text();    
+    }
+    refreshoutcomesavenotify('','Checked',chkCount);
+}
