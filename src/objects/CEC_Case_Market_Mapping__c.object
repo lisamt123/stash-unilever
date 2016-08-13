@@ -598,6 +598,8 @@
         <columns>NAME</columns>
         <columns>CaseOrigin__c</columns>
         <columns>Country__c</columns>
+        <columns>Account_Owner_Active_Flag__c</columns>
+        <columns>DefaultAccountOwnerId__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <language>en_US</language>

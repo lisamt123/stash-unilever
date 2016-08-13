@@ -2593,16 +2593,6 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>All_PWO</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>fml_Clarity_ID__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <label>All PWO</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
         <fullName>CAP_ULPM_CPA_project_work_order</fullName>
         <filterScope>Queue</filterScope>
         <label>ULPM</label>
