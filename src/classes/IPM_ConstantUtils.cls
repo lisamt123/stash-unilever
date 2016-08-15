@@ -191,6 +191,8 @@ public class IPM_ConstantUtils {
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
     
+    public static Integer repeatCount=0;//this is to avoid  recursion in IPM_FinancialHandler class
+    
     
     // financial constant
     
