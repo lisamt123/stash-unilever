@@ -191,6 +191,8 @@ public class IPM_ConstantUtils {
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
     
+    public static Integer repeatCount=0;//this is to avoid  recursion in IPM_FinancialHandler class
+    
     
     // financial constant
     
@@ -1247,5 +1249,6 @@ public class IPM_ConstantUtils {
    
    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
     // Platform As 'Not Appliable'
-    public static final string PLATFORM_NA = 'Not Applicable';
+   public static final string PLATFORM_NA = 'Not Applicable';
+   public static final String IPM_SECTOR='Sector';
 }
