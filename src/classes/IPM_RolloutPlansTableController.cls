@@ -894,10 +894,15 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     {
                         update updateLocalProjTLDList;
                     }
-                   	saveLocalRolloutBrand();
-                   
+                    
                 }
             }
+        
+         if(String.isBlank(validationError))
+         {
+         	saveLocalRolloutBrand(); 
+         }   
+           
         }
         catch (Exception ex)
         {

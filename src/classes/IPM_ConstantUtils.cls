@@ -194,6 +194,8 @@ public class IPM_ConstantUtils {
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
     
+    public static Integer repeatCount=0;//this is to avoid  recursion in IPM_FinancialHandler class
+    
     
     // financial constant
     
@@ -1086,7 +1088,6 @@ public class IPM_ConstantUtils {
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';
    public static final String IPM_SUBSECTOR='Sub Sector';
-    public static final String IPM_SECTOR='Sector';
    public static final String FEEDBACK_FROM_LAST_GATE='Feedback_from_Last_Gate';
    public static final String MASTER_PROJECT_NAME = 'IPM_MasterProject';
    
@@ -1237,7 +1238,12 @@ public class IPM_ConstantUtils {
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
    public static final String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
    public static final String Original_SHIPTO_TRADE_TLD = 'Target Launch Date(Ship to Trade)';
-   
+    public static final String ADDITIONAL_MILESTONE_PDL = 'Product Design Lock Milestone (Mandatory for Personal Care)';
+    public static final String PERSONAL_CARE = 'Personal Care';
+    
+    //Milestone Duedate validation constants
+    public static final String PRODUCT_DESIGN_LOCK = 'Product Design Lock';
+    
    public static final Integer KB_TO_BYTES = 1024;
    public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
    
@@ -1260,5 +1266,11 @@ public class IPM_ConstantUtils {
    
    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
     // Platform As 'Not Appliable'
-    public static final string PLATFORM_NA = 'Not Applicable';
+   public static final string PLATFORM_NA = 'Not Applicable';
+   public static final String IPM_SECTOR='Sector';
+   //IPM_Project_Phantom_NonKey valuse OTIF Report
+    public static final String Nonkey = 'NONKEY';
+    public static final String Project = 'PROJECT';
+    public static final String Phantom = 'PHANTOM';
+    
 }

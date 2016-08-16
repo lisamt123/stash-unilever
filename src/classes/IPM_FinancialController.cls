@@ -308,6 +308,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if (projectId != null) 
             {
                 isEditable=IPM_Utils.getIpmuserType(projectId, IPM_ConstantUtils.IPM_ROLE_FINANCE);
+                
+
                 getRolloutWrappers(); 
                 getSustainabilityPeriod(); 
                 getVisibleTabs(); 
@@ -322,6 +324,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
                 
                 getValidationSettingSet();
+
                                  
                 //calculating and setting the Business Impact
                 setBusinessImpact(projectId);
@@ -705,6 +708,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
                 mapConsolidatedFinancials = new Map<String, IPM_Financial__c> ();
                 
+                
                 // If Project is Global Orignal Project
                 if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
                 {
@@ -870,7 +874,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             WHERE IPM_Project__c =: project.Id
                                                             AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true)
                                                             ORDER BY Market_Cluster_Name__c Limit: IPM_ConstantUtils.MaxLimit];
-       
+        
         For (IPM_Project_Rollout__c regionalRollout : lstRegionalRollout)
         { 
             if(!regionalRollout.IPM_Financials__r.isEmpty())
@@ -964,6 +968,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     private void getGlobalRollupWrappers()
     {
+
         //Rollout Wrappers
         String projectId = project.Id; // No SOnar used in Query
         Integer maxLimit = IPM_ConstantUtils.MaxLimit; // No SOnar used in Query
@@ -972,9 +977,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String baseFromClause = ' FROM IPM_Project__c ';
         String baseWhereClause = ' WHERE IPM_Parent_Project__c =:projectId ';
         String baseOrderByClause = ' ORDER BY Market_Cluster_Name__c limit:maxLimit '; 
+        
 
         if(project.Is_Archieved__c)
-        {
+        { 
             baseWhereClause = baseWhereClause + 'AND Is_Archieved__c = true AND IPM_StoppedByProject__c =:projectId ';
         }
         else
@@ -1026,7 +1032,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalMyViewWrappers() 
     {
         // No need to display Non Key financials in case of Regional View. Only needs to be displayed in Global Charter
-        
+
         
         List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                             FROM IPM_Financial__c
@@ -1080,7 +1086,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     private void getRegionalTopDownWrappers()
     {
-    	// Get the regional Rollout from where regional Projects got created.Get associated financials from those regional Rollouts.
+        // Get the regional Rollout from where regional Projects got created.Get associated financials from those regional Rollouts.
         IPM_Project_Rollout__c regionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
                                                     (SELECT Id, Name, recordTypeID,Financial_External_ID__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c 
                                                         FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Charter_Approved__c = true
@@ -1293,10 +1299,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     private void generateFinancials(IPM_Financial_Year__c finYear, IPM_FinancialWrapper finWrapper){
-        
-        
         //Year 0 Values
-          
+           
         if (finYear.Year__c == IPM_ConstantUtils.Y0_YEARINDEX)
         {
             finWrapper.y0ValueMarketShare = (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
@@ -1372,7 +1376,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //These values are used for red/soft vaildations on consolidated financials
         //@Param1 : financialExternalId + Field Name (only field name is not necessary since, for consolidated financials can have may rollup financials. 
         //                                           if any of the rolloup financials have error in a cell the corresponding financial cells needs to be highlighted red/yellow. 
-        //                                           So financila external id of the rollup financial and field/cell name is used to create a unique key)
+        //											 So financila external id of the rollup financial and field/cell name is used to create a unique key)
         //@Param2 : currentFinancial : So as to check the currentfinancial values and whether it is a consolidated financial
         //@Param3 : currentTab :  Since the validations need to happen only for editabel financials i.e. currentTab = 'myView'
         
@@ -1738,7 +1742,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }
     }
     
-    /*******************************************************************************************************
+        /*******************************************************************************************************
     * @description              Used to validate the financial record values entered to save
     * @param finWrapper         Used to process the passed financial wrapper(financialsCalendar or financialsInnovation)
     * @param yearType       Used to process the passed financial wrapper for the passed year type
@@ -1813,6 +1817,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         getCurrentFinancialType(finToValidate);
         isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
         getValidationSettingSet();
+
         //Validate Calendar Year cell data
         //REQ3006- non key financial will be validated in upto charter, post charter validation will not be for non key financials
         If(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && 
@@ -1824,7 +1829,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
            currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME) &&
            isFinancialEditable(project,finToValidate)
           ){
-            
+          	
             Boolean isValidateIncrementalTurnoverFailed= false;
             Boolean isValidateIncrementalProfitFailed= false; 
             Boolean isValidateGrossProfitFailed= false;

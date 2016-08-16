@@ -314,7 +314,20 @@
                                     </div>
                                 </div>
                                 </apex:outputPanel>
-                                           <apex:outputPanel >
+								<apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sector__c}">
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-3 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">{!$Label.IPM_Sector}
+                                         <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                             </span></span>
+                                    </div>
+                                    <div class="col-sm-9 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Sector__c}</span>
+                                    </div>
+                                </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel >
                                 <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
                                     <div class="col-sm-3 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Platform}
