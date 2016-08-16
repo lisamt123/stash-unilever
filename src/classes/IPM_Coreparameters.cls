@@ -57,7 +57,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public List<string> questionthreeList{get;set;}
     public IPM_CoreParameter_Configration__c coreConfig{get;set;}//configuration of core parameter
     public IPM_InnovationRenovation__c innovationRenovation{get;set;}//get innovation or innovation data
-    public list<selectoption>lstmarket{get;set;}//list of market oprions
     public string strategicHelpText{get;set;}//store strategic help text
     public IPM_Coreparameter_Graph__c strategicGraphTick{get;set;}//store strategic graph tick mark
     public string editCoreParameterURL{get;set;}//get the url parameter value
