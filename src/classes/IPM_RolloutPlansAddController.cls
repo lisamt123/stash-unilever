@@ -1000,7 +1000,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @return NONE
     **/
     private string filterCondition(string span){
-        string addCondition = IPM_ConstantUtils.BLANK;;
+        string addCondition = IPM_ConstantUtils.BLANK;
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(span))
         {
             addCondition = 'WHERE IPM_Project__c =: projectId LIMIT 10000';
