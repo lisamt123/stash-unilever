@@ -144,39 +144,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Base_II__c</fullName>
-        <description>Base II value at Contract gate document</description>
-        <externalId>false</externalId>
-        <label>Bases II</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Base_I__c</fullName>
-        <description>Base I value at Contract gate document</description>
-        <externalId>false</externalId>
-        <label>Bases I</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Bases_III__c</fullName>
-        <description>Bases III</description>
-        <externalId>false</externalId>
-        <label>Bases III</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Brand_Positioning__c</fullName>
         <description>Brand Positioning details</description>
         <externalId>false</externalId>
@@ -251,6 +218,41 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Charter_Y1_GM__c</fullName>
+        <description>Charter Innovation Y1 GM%</description>
+        <externalId>false</externalId>
+        <label>Charter Y1 GM%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Charter_Y1_gTO__c</fullName>
+        <description>Charter Innovation Y1 gross Turn Over (gTO)</description>
+        <externalId>false</externalId>
+        <label>Charter Y1 gTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Charter_Y1_iTO__c</fullName>
+        <description>Charter Innovation Y1 incremental Turn Over (iTO)</description>
+        <externalId>false</externalId>
+        <label>Charter Y1 iTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -361,6 +363,41 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Contract_Y1_GM__c</fullName>
+        <description>Contract Innovation Y1 GM%</description>
+        <externalId>false</externalId>
+        <label>Contract Y1 GM%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Contract_Y1_gTO__c</fullName>
+        <description>Contract Innovation Y1 gTO</description>
+        <externalId>false</externalId>
+        <label>Contract Y1 gTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Contract_Y1_iTO__c</fullName>
+        <description>Contract Innovation Y1 iTO</description>
+        <externalId>false</externalId>
+        <label>Contract Y1 iTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -486,6 +523,41 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_MD_Y1_GM__c</fullName>
+        <description>MD Innovation Y1 GM%</description>
+        <externalId>false</externalId>
+        <label>MD Y1 GM%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>IPM_MD_Y1_gTO__c</fullName>
+        <description>MD Innovation Y1 gTO</description>
+        <externalId>false</externalId>
+        <label>MD Y1 gTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_MD_Y1_iTO__c</fullName>
+        <description>MD Innovation Y1 iTO</description>
+        <externalId>false</externalId>
+        <label>MD Y1 iTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_MD_Y3_GM__c</fullName>
         <description>MD Y3 GM%</description>
         <externalId>false</externalId>
@@ -540,6 +612,41 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_MR_Y1_GM__c</fullName>
+        <description>MR Innovation Y1 GM%</description>
+        <externalId>false</externalId>
+        <label>MR Y1 GM%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>IPM_MR_Y1_gTO__c</fullName>
+        <description>MR Innovation Y1 gTO</description>
+        <externalId>false</externalId>
+        <label>MR Y1 gTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_MR_Y1_iTO__c</fullName>
+        <description>MR Innovation Y1 iTO</description>
+        <externalId>false</externalId>
+        <label>MR Y1 iTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -714,6 +821,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Project_Phantom_Non_Key__c</fullName>
+        <description>To identify the type of financial record.</description>
+        <externalId>false</externalId>
+        <label>Project/Phantom/Non Key</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Span__c</fullName>
         <description>Span of the project i.e. Global/Regional/Local</description>
         <externalId>false</externalId>
@@ -823,6 +941,41 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y1_GM_BD__c</fullName>
+        <description>Innovation Y1 GM% (BD)</description>
+        <externalId>false</externalId>
+        <label>Y1 GM% (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Y1_gTO_BD__c</fullName>
+        <description>Innovation Y1 gTO (BD)</description>
+        <externalId>false</externalId>
+        <label>Y1 gTO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y1_iTO_BD__c</fullName>
+        <description>Innovation Y1 iTO (BD)</description>
+        <externalId>false</externalId>
+        <label>Y1 iTO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

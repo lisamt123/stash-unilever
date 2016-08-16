@@ -77,13 +77,13 @@ private class IPM_BD_BB_Report_Batch_Test {
         
         String strCSName = '';
         
-        for(Integer i = 1; i < 4; i++){
-        	for(String strPhase : IPM_ConstantUtils.DEFAULT_PHASE_SEQ){
-        		strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
-        		IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
-        		reportCS.IPM_Start_Year__c = startYear;
-        		reportCSList.add(reportCS);
-        	}	
+        for(Integer i = 1; i < 7; i++){
+            for(String strPhase : IPM_ConstantUtils.DEFAULT_PHASE_SEQ){
+                strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
+                IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
+                reportCS.IPM_Start_Year__c = startYear;
+                reportCSList.add(reportCS);
+            }   
         }
         insert reportCSList;
       	

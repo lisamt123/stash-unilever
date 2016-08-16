@@ -98,13 +98,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
         for(IPM_Project__c p:Scope){
             projectIdSet.add(p.Id);
-
-            if(p.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                if(p.IPM_Phase__c != null){
+          
+                if(p.IPM_Phase__c != null)
+                {
                 	scopeProjectList.add(p);
             	}
                 projectIdMap.put(p.Id,p);               
-            } 
+            
         }
         
         // prepare Generic Maps related to Financial Year Object and Analytic object's fields API Name 

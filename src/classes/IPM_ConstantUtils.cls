@@ -1251,4 +1251,9 @@ public class IPM_ConstantUtils {
     // Platform As 'Not Appliable'
    public static final string PLATFORM_NA = 'Not Applicable';
    public static final String IPM_SECTOR='Sector';
+   //IPM_Project_Phantom_NonKey valuse OTIF Report
+    public static final String Nonkey = 'NONKEY';
+    public static final String Project = 'PROJECT';
+    public static final String Phantom = 'PHANTOM';
+    
 }
