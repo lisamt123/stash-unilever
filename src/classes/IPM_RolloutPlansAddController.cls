@@ -1398,8 +1398,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 mcoRollout.Market_Cluster__c = geography.parent_L2__r.parent_L2__r.mdm_id__c;
                 mcoRollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
                 
-                mcoRollout.KeyMCO__c = KeyMCO;
-                
                 if(project.IPM_phase__c != IPM_ConstantUtils.PHASE_IDEAS && !isProjectGKM3) // Local Rollout created after Ideas phase will be marked as Key(Apart from GKM3)
                 {
                     mcoRollout.KeyMCO__c = true;
@@ -1429,8 +1427,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapUpsertRollouts.put(mcoRolloutName, mcoRollout);
                 }
                 
+                if(mcoRollout.KeyMCO__c == null || (mcoRollout.KeyMCO__c != KeyMCO) )
+                {
+                    mcoRollout.KeyMCO__c = KeyMCO;
+                    mapUpsertRollouts.put(mcoRolloutName, mcoRollout);  
+                }
+                
             }
-            
             
             if(mapExistingCountries.containsKey(countryExternalId))
             {
@@ -1772,7 +1775,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 ipmCountry.IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE;
                 ipmCountry.IPM_Local_Project__c=null;//added to cover the source data for DEF3821
                 
-                if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && !isProjectGKM3) 
                 {
                     ipmCountry.IPM_Project__c = project.IPM_Parent_Project__c;
                 }
