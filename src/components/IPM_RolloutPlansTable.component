@@ -322,7 +322,7 @@
                                             </apex:outputPanel>
                                         </th>
                                         <th scope="col" width="100px" colspan="1"> </th>   
-                                        </th>
+                                        
                                          
                                         <th scope="col" width="180px" colspan="1">
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
