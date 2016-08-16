@@ -778,8 +778,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     	} 
                     }
                  }    
-            }
-        }
+				}
+			}
+		}
         
         catch(Exception ex){  
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
