@@ -1535,21 +1535,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>IPM_Analytics_OTIF__c.IPM_Base_II__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Analytics_OTIF__c.IPM_Base_I__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Analytics_OTIF__c.IPM_Bases_III__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Brand_Positioning__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1889,6 +1874,86 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Charter_Y1_gTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Charter_Y1_iTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Charter_Y1_GM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Contract_Y1_gTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Contract_Y1_iTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Contract_Y1_GM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_MR_Y1_gTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_MR_Y1_iTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_MR_Y1_GM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_MD_Y1_gTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_MD_Y1_iTO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_MD_Y1_GM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Y1_gTO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Y1_iTO_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Y1_GM_BD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Project_Phantom_Non_Key__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
         <editable>true</editable>
         <field>IPM_Analytics_OTIF__c.Contract_Communication__c</field>
         <readable>true</readable>

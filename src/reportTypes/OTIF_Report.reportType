@@ -33,21 +33,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Base_I__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Base_II__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Bases_III__c</field>
-            <table>IPM_Analytics_OTIF__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>IPM_Brand_Positioning__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
@@ -447,6 +432,86 @@
             <field>IPM_Contract_Price__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>
-        <masterLabel>IPM Analytics OTIFs</masterLabel>
+	<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Charter_Y1_gTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Charter_Y1_iTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Charter_Y1_GM__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Contract_Y1_gTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Contract_Y1_iTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Contract_Y1_GM__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_MR_Y1_gTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_MR_Y1_iTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_MR_Y1_GM__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_MD_Y1_gTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_MD_Y1_iTO__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_MD_Y1_GM__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Y1_gTO_BD__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Y1_iTO_BD__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Y1_GM_BD__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Project_Phantom_Non_Key__c</field>
+            <table>IPM_Analytics_OTIF__c</table>
+        </columns>
+		<masterLabel>IPM Analytics OTIFs</masterLabel>
     </sections>
 </ReportType>
