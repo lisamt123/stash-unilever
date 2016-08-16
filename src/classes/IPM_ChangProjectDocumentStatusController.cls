@@ -346,7 +346,16 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                     //Check for Global level
                     rolloutCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND  isActive__c=true];
+            if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3){
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
+            }else {
+            	Set<String> phaseToBeExcluded = new Set<String>{IPM_ConstantUtils.FEASIBILITY_PHASE};
+            	if(phaseToBeExcluded.contains(project.IPM_Phase__c)){
+            		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true AND KeyMCO__c = true];
+            	}else{
+            		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
+            	}
+            }
                     
                     if(rolloutCount>0 && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
                     {
