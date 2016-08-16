@@ -10,7 +10,7 @@ Purpose: Provides required constants for all classes developed for Contracting A
 History
 -------
 VERSION     AUTHOR           DATE            DETAIL Description
-1.0         Dinesh Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
+1.0         Dineshsing Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public class CPA_ConstantsForContractingAppClasses{
 
