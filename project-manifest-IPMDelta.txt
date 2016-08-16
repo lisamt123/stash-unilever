@@ -16,6 +16,8 @@ src/classes/IPM_FinancialHandler.cls
 src/classes/IPM_FinancialHandler.cls-meta.xml
 src/classes/IPM_FinancialMisalignment.cls
 src/classes/IPM_FinancialMisalignment.cls-meta.xml
+src/classes/IPM_FinancialWrapper.cls
+src/classes/IPM_FinancialWrapper.cls-meta.xml
 src/classes/IPM_MarketPerformaceController.cls
 src/classes/IPM_MarketPerformaceController.cls-meta.xml
 src/classes/IPM_ProjectDocumentSectionController.cls
