@@ -744,6 +744,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 project.IPM_Complexity__c =  projectMetadata.IPM_DefaultComplexity__c;
                 project.IPM_Child_Complexity__c = projectMetadata.IPM_DefaultComplexity__c; 
                 project.IPM_ProjectGKM__c =  projectMetadata.MasterLabel;
+                
+                if(projectMetadata.MasterLabel == IPM_ConstantUtils.GKM_3){
+                	project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GKM_3;
+                }
                                 
         }
         
