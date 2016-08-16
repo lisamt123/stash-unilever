@@ -32,7 +32,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String validationErrorMessage {get; set;} //Validation error Message to be displayed on the page
     public String validationErrorMessageforTLD {get; set;} //Validation error Message to be displayed on the page if TLD is misaligned
     public String validationErrorMessageCal {get; set;} //Validation error Message to be displayed on the page
-    public String validationErrorMessageforTLD {get; set;} //Validation error Message to be displayed on the page for TLD misalignment
 
     public String currentFinancialId {get; set;} //Stores the id of the current financial being viewed. Changes dynamically and used with re-render
     private String previousFinancialId {get; set;} //Store the previously viwed financial Id. Used to maintain stae when switching tabs
