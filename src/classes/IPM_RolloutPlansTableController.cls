@@ -68,6 +68,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     @TestVisible private Map<id,IPM_Project_Rollout__c> rolloutToUpdateBrand;
     public map<id,set<string>> holdRolloutidBrandMap{get;set;}//map of local rollout id and set of brands
     @TestVisible private Map<string,IPM_Country__c> rolloutCountryMap;//map for country name and country details
+    public Map<Id,Boolean> showClusterNameMap{get;set;}
+    
     /*******************************************************************************************************
     * @description  Constructor
     * @param        NONE
@@ -123,7 +125,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         isFLAllocated=false;
         isBrandEditable = false;
         rolloutToUpdateBrand = new map<id,IPM_Project_Rollout__c>();
-		rolloutCountryMap = new Map<string,IPM_Country__c>(); 
+        rolloutCountryMap = new Map<string,IPM_Country__c>();
+        showClusterNameMap = new Map<Id,Boolean>();
        	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
        	if(projectTolocalRolloutToCountryMap!=null)
        	{
@@ -143,8 +146,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             projectId = ApexPages.currentPage().getParameters().get(ID_PARAMETER);
             if (projectId != null)
             {
-                List<IPM_Project__c> projectList  = [SELECT Id, IPM_CompanyCardText__c,IPM_White_Space_Project__c, IPM_Child_Complexity__c, Deputy_Project_Leader__c, 
-                           IPMCompany__c, IPM_Clustering__c, IPMPlatform__c, IPMProject_Span__c, IPMProject_Type__c, IPMRegion__c, IPM_Answer_of_Q1__c, 
+                List<IPM_Project__c> projectList  = [SELECT Id, IPMPlatform__c,IPM_CompanyCardText__c,IPM_White_Space_Project__c, IPM_Child_Complexity__c, Deputy_Project_Leader__c, 
+                           IPMCompany__c, IPM_Clustering__c,IPMProject_Span__c, IPMProject_Type__c, IPMRegion__c, IPM_Answer_of_Q1__c, IPM_ProjectGKM__c, 
                            IPM_Answer_of_Q2__c, IPM_Answer_of_Q3__c, IPM_Approver_of_Charter__c, IPM_Approver_of_Contract_Market_Ready__c, 
                            IPM_Bosscard_Status__c, IPM_Bosscard__c, IPM_Brand_Positioning__c, IPM_Brand__c, IPM_Category_Group__c,IPM_SourceProjectType__c, 
                            IPM_Category_Icon__c,IPM_Category_Text__c,IPM_Category__c,IPM_Company_Card__c,IPM_Complexity__c,IPM_Core_Parameters__c,
@@ -263,6 +266,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 if(!localrolloutCountryMap.isEmpty())
                 {
                     rolloutCountryNamesMap.putAll(localrolloutCountryMap);
+                    showClusterNameMap.put(regionalId,true);
+                }
+                else
+                {
+                	showClusterNameMap.put(regionalId,false);
                 }
                 
                 //Add Unique Names
@@ -608,7 +616,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id FROM Local_Rollouts__r';
+            queryString+= ' Id ,IPM_Regional_PL__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Finance_Member__r.Name FROM Local_Rollouts__r';   
             queryString+= ' WHERE Regional_Project__c =: nullRegionalProject AND ( isActive__c = true OR '+ showEntity + ' = true ) ';
             queryString+= ' ORDER BY IPM_Rollout_Project__c),';
             queryString+= ' IPM_Project__r.IPM_Phase__c, IPM_Regional_PL__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: projectId AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setRegionalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true ) ';
@@ -704,7 +712,12 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public PageReference addRollout()
     {
             PageReference addRollouts = null;
-            if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+            if(IPM_ConstantUtils.GKM_3.equalsIgnoreCase(project.IPM_ProjectGKM__c) && !IPM_ConstantUtils.PHASE_IDEAS.equalsIgnoreCase(project.IPM_Phase__c)){
+                // For GKM3 Feasibility Phase and onwards
+                addRollouts = Page.IPM_RolloutPlansAddManage;
+                addRollouts.getParameters().put(ID_PARAMETER, projectId);                
+                addRollouts.setRedirect(true);  
+            }else if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
             {
                 addRollouts = Page.IPM_RolloutPlansAdd;
                 addRollouts.getParameters().put(ID_PARAMETER, projectId);                
@@ -739,7 +752,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public PageReference editRollout()
     {
-        isEditMode =TRUE;  
+        //Method invoked in IPM_LocalRolloutPlansTable component PageReference
+         isEditMode = true;  
         return null;
     }
         
@@ -785,7 +799,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                             Id localRolloutId = tempLocalRollout.Id;
                             IPM_Project_Rollout__c localRollout = lstcompleteRollout.get(localRolloutId);
                             
-                            if(projectType!=null && projectType.IPM_CreateLocalProjects__c)
+                            if(projectType!=null &&  projectType.IPM_CreateLocalProjects__c && (projectType.IPM_GateKeeping_Model__c!=IPM_ConstantUtils.GKM_3  || (projectType.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GKM_3 && localRollout.keyMCO__c)))
                             {
                                 localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
                                 localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;

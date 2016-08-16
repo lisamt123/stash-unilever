@@ -30,6 +30,7 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
         super();
         projectId= ApexPages.currentPage().getParameters().get('Id');
         showEntity = IPM_ConstantUtils.BLANK;
+        finance = new IPM_Financial__c();
         String QueryString = '';
         isEditable=false;
         isFinanceUpdate=false;
@@ -41,7 +42,13 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
             
             
            queryString =  'SELECT Id,IPM_BD_BB_Feedback__c,Local_Project__c,Local_Project__r.name,Local_Project__r.IPM_Phase__c,Misaligned__c,IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,IPM_Country_Feedback__c FROM IPM_Financial__c WHERE  ( isActive__c = true OR '+ showEntity +' = true ) and Local_Project__c=:projectId';
-           finance = Database.query(queryString);
+           
+           List<IPM_Financial__c> financialList = Database.query(queryString);
+           
+           if(financialList != null && !financialList.isEmpty()){
+              finance = financialList[0];
+           }
+           
                            
             if(project.IPM_Project_Leader__c==userinfo.getuserid() || project.Deputy_Project_Leader__c==userinfo.getuserid()){
                 isEditable=true;
@@ -87,9 +94,9 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
     public void save(){
         try
         {
-            if(finance!=null)
+            if(finance != null)
             {
-                update finance;//will alwasys be 1 record.
+                update finance;//will always be 1 record.
             }
             saveMsg=true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_BCC_SAVED_SUCCESFULLY));

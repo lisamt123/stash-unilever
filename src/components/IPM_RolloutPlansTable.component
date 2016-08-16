@@ -49,7 +49,9 @@
             <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!NOT(ISBLANK(validationError))}"/> 
         </apex:outputPanel>
         
-        <table class="ipmTable table table-bordered myListTable">
+        <!-- ---- Table Heading for Non GKM3 Models starts here  ---------->
+        <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+            <table class="ipmTable table table-bordered myListTable">
             <thead class="">
                 <tr>
                     <th width="34px" scope="col" colspan="1">
@@ -90,6 +92,44 @@
                 </tr>
             </thead>
         </table>
+        </apex:outputPanel>
+        <!-- ---- Table Heading for Non GKM3 Models ends here  ---------->
+        
+        <!-- ---- Table Heading for GKM3 Models starts here  ---------->
+        <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c = 'GKM3'}">
+            <table class="ipmTable table table-bordered myListTable">
+                <thead class="">
+                    <tr>
+                        <th width="34px" scope="col" colspan="1"> 
+                            <div>
+                                <div class="colCompleted incHeight"><span> </span></div>
+                            </div>
+                        </th>
+                        <th scope="col" width="150px" colspan="1">
+                            <div>
+                                <div class="colProject incHeight"><span>{!$Label.IPM_ROLLOUT_NAME}</span></div>
+                            </div>              
+                        </th>
+                       <th scope="col" width="60px" colspan="1">
+                            <div>
+                                <div class="colCategory incHeight"><span>{!$Label.IPM_KEY}</span></div>
+                            </div>
+                        </th>
+                        <th scope="col" width="190px" colspan="1">
+                            <div>
+                                <div class="colCategory incHeight"><span>{!$Label.IPM_TARGET_LAUNCH_DATE}</span></div>
+                            </div>
+                        </th>
+                        <th scope="col" width="100px" colspan="1">
+                            <div>
+                                <div class="colPhase incHeight"><span>{!$Label.IPM_Status}</span></div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </apex:outputPanel>    
+        <!-- ---- Table Heading for GKM3 Models ends here  ---------->
         <apex:outputPanel id="rolloutsPanel" >
         <apex:outputPanel id="rolloutPanel">
             <div class="tableAccrdion">
@@ -260,9 +300,16 @@
                                             </div>
                                         </th>
                                         <th scope="col" width="150px" colspan="">                                                    
-                                                <span class="rollsubhead">
-                                                    <strong>{!regionalRollout.IPM_Rollout_Project__c}</strong>
-                                                </span>                                       
+                                            <span class="rollsubhead">
+                                                <strong>
+                                                    <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+                                                        {!regionalRollout.IPM_Rollout_Project__c}
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c = 'GKM3'}">
+                                                        {!regionalRollout.Market_Cluster_Name__c}
+                                                    </apex:outputPanel>
+                                                </strong>
+                                            </span>                                        
                                         </th> 
                                         <th scope="col" width="60px" colspan="">                                                
                                                 <span class="rollsubhead">
@@ -270,17 +317,19 @@
                                                 </span>                                        
                                         </th>
                                         <th scope="col" width="190px" colspan="1">
-                                            <apex:outputField value="{!regionalRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>                                            
+                                            <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+                                                <apex:outputField value="{!regionalRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}" />
+                                            </apex:outputPanel>
                                         </th>
-                                        <th scope="col" width="100px" colspan="1">                                          
+                                        <th scope="col" width="100px" colspan="1"> </th>   
                                         </th>
                                          
                                         <th scope="col" width="180px" colspan="1">
-                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             
-                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
+                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
                                                                                            
                                                <apex:outputPanel id="projectLeaderPanel" rendered="{!AND(isEditable,isEditMode)}">
                                                     <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Regional_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Project_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
@@ -291,12 +340,12 @@
                                             </apex:outputPanel>
                                         </th>
                                         
-                                        <th scope="col" width="130px" colspan="1"> 
-                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                        <th scope="col" width="120px" colspan="1"> 
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             
-                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">   
+                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">   
                                                                                       
                                                 <apex:outputPanel id="financeLeaderPanel" rendered="{!AND(isEditMode,isEditable)}"> 
                                                     <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
@@ -327,7 +376,7 @@
                                             </td>
                                             <td scope="col" width="150px">
                                                 <div>              
-                                                    <span class="rollsubhead wordwrap">
+                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c)),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
                                                         {!localRollout.IPM_Rollout_Project__c}
                                                     </span>
                                                 </div>
