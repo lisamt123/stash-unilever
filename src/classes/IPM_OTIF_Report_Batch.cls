@@ -779,13 +779,14 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     }
                  }    
 				}
+				return projRolloutMap;
 			}
 		}
         
         catch(Exception ex){  
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
         } 
-        return projRolloutMap;
+        
     }       
     /*********************************************************************************************************************
      * @Description: To fetch Project Document Section Content Records
@@ -889,7 +890,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                     GM_of_TO_MR__c,
                                                     GM_of_TO_Local__c,
                                                     GM_of_TO_Global__c,
-                                                    GM_of_TO_Regional__c                                                                                                            
+                                                    GM_of_TO_Regional__c,                                                                                                           
                                                     Charter_Approved__c,
                                                     Contract_Approved__c,
                                                     MD_Approved__c,
@@ -1057,7 +1058,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
           otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
           
           // Populating Y3 iTO  BD
-           if(p.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && (p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || || p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
+           if(p.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && (p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
                 if(p.IPM_Phase__c == IPM_Utils.Ideas) {
 					otifAnalyticObj.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;
 				}
