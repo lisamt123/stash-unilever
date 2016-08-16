@@ -480,7 +480,7 @@
                                                                             </div>
                                                                         </apex:outputPanel>
                                                                         <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList sectorposList" id="multiMSectors" rendered="{!editSubSector}"> 
-                                                                            <apex:dataList value="{!lstsubsector}" var="lm" id="marketposListUL" styleClass="cccmiList ccm-new" >                                                                
+                                                                            <apex:dataList value="{!lstmarket}" var="lm" id="marketposListUL" styleClass="cccmiList ccm-new" >                                                                
                                                                                 <div class="col-xs-1 ipmCheckbox">
                                                                                     <input class="ccCheck" type="checkbox" value="{!lm.value}" id="{!lm.value}" />
                                                                                     <label for="{!lm.value}"></label>
@@ -503,11 +503,10 @@
                                                             </div>
                                                         </apex:outputPanel>
                                                         <!-- If IPM_Sub_Sector__c field value is true, the below panel will be diplayed  -->
-                                                        <apex:outputPanel rendered="{!OR(ipm_CategoryVal.IPM_Sub_Sector__c,ipm_CategoryVal.IPM_Sector__c)}">
+                                                        <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sub_Sector__c}">
                                                             <div class="inputField">
                                                                 <div class="panel-label bsFieldLabel">
-                                                                    <apex:outputlabel styleClass="fontB" value="{!$Label.IPM_Sub_Sector}" rendered="{!ipm_CategoryVal.IPM_Sub_Sector__c}"/>
-																	<apex:outputlabel styleClass="fontB" value="{!$Label.IPM_Sector}" rendered="{!ipm_CategoryVal.IPM_Sector__c}"/>
+                                                                    <apex:outputlabel styleClass="fontB" value="{!$Label.IPM_Sub_Sector}" />
                                                                      <span class="SecButtonSet custButton infoMarTop">
                                                  <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}">i</a>
                                              </span>
@@ -518,11 +517,11 @@
                                                                     <apex:outputPanel layout="block" styleClass="noPadright noPadleft dropdown sectorposListContainer ipmDropDown" > 
                                                                         <apex:inputText value="{!subSector_STR}" id="SSectorHiddenField" styleClass="hiddensectorfield" />
                                                                         <!-- Below text will be rendered if user has only read access to sub-sector (in disabled state) -->
-                                                                        <apex:inputText html-placeholder="{!if(ipm_CategoryVal.IPM_Sub_Sector__c,$Label.IPM_No_Sub_Sector_selected,$Label.IPM_No_Sector_is_selected)}" value="{!subSector_STR}" rendered="{!!editSubSector}" disabled="true" />
+                                                                        <apex:inputText html-placeholder="{!$Label.IPM_No_Sub_Sector_selected}" value="{!subSector_STR}" rendered="{!!editSubSector}" disabled="true" />
                                                                         <!-- To display below outputPanel when current user has edit access on page   -->
                                                                         <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" rendered="{!editSubSector}" >
                                                                             <div class="ipmDropDownSelect">
-                                                                                <span class='sectorSelValues'>{!if(ipm_CategoryVal.IPM_Sub_Sector__c,$label.IPM_SelectSubSector,$label.IPM_Select_Sector)}</span>
+                                                                                <span class='sectorSelValues'>{!$label.IPM_SelectSubSector}</span>
                                                                                 <a class="listArrow"></a>    
                                                                             </div>                                                                            
                                                                         </apex:outputPanel>

@@ -54,6 +54,9 @@ public class IPM_ConstantUtils {
     public static final String GATEKEEPING_MODEL_RCLT='RCLT';
     public static final String GATEKEEPING_MODEL_BOTH='GCLT & RCLT';
     
+    // Added for GKM3 changes
+    public static String GATE_KEEPING_MODEL_3 = 'GKM3';
+    
     public static final String COMPLEXITY_FULL='Full';
     public static final String COMPLEXITY_LITE='Lite';
     public static final String SECTION_STATUS_FILLED ='Filled-in';
@@ -191,8 +194,6 @@ public class IPM_ConstantUtils {
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
     
-    public static Integer repeatCount=0;//this is to avoid  recursion in IPM_FinancialHandler class
-    
     
     // financial constant
     
@@ -209,6 +210,7 @@ public class IPM_ConstantUtils {
     public static final string EXCEPTION_SAVEFINANCIALS='saveFinancials';
     public static final string EXCEPTION_REFRESHFROMLOCAL='refreshFromLocal';
     public static final string EXCEPTION_REFRESHFROMREGIONAL='refreshFromRegional';
+    public static final string EXCEPTION_REFRESHFROMGLOBAL='refreshFromGlobal';
     public static final string CONSOLIDATED='CONSOLIDATED';
     
     
@@ -224,6 +226,7 @@ public class IPM_ConstantUtils {
     
     public static String IPMGLOBAL = 'Global';
     public static String IPMREGIONAL = 'Regional';
+    public static String IPMLOCAL = 'Local';
     
     public static String FUNCTIONAL_ROLE_ALL='All';
     public static String FUNCTIONAL_ROLE_BD='BD';
@@ -876,7 +879,14 @@ public class IPM_ConstantUtils {
     public static final Integer BET_DUEDATE_H2_MONTH=6;
     public static final Integer BET_DUEDATE_H2_DAY=30;
     
-    
+    public static final String GKM_1 = 'GKM1';
+    public static final String GKM_2 = 'GKM2';
+    public static final String GKM_3 = 'GKM3';
+    public static final String GKM_4 = 'GKM4';
+    public static final String GKM_5 = 'GKM5';
+    public static final String GKM_6 = 'GKM6';
+    public static final String GKM_7 = 'GKM7';
+    public static final String GKM_8 = 'GKM8';
     
      
     
@@ -1076,6 +1086,7 @@ public class IPM_ConstantUtils {
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';
    public static final String IPM_SUBSECTOR='Sub Sector';
+    public static final String IPM_SECTOR='Sector';
    public static final String FEEDBACK_FROM_LAST_GATE='Feedback_from_Last_Gate';
    public static final String MASTER_PROJECT_NAME = 'IPM_MasterProject';
    
@@ -1249,6 +1260,5 @@ public class IPM_ConstantUtils {
    
    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
     // Platform As 'Not Appliable'
-   public static final string PLATFORM_NA = 'Not Applicable';
-   public static final String IPM_SECTOR='Sector';
+    public static final string PLATFORM_NA = 'Not Applicable';
 }

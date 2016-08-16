@@ -59,7 +59,7 @@
                                                    <apex:repeat value="{!lstRolloutWrappers}" var="rolloutWrapper">
                                                    <li>
                                                        <div class="projectContainer">
-                                                            <div class="pHead accrHead filterSubTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
+                                                            <div class="pHead accrHead filterSubTitle {!IF(project.IPMProject_Span__c != 'Local' && currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
                                                             <!--Rendered when project is not span ie it will render for all other span types-->    
                                                             <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
                                                                 <span class='expico-square fa fa-minus'></span>
@@ -220,7 +220,7 @@
                                                                     isNonkey="{!isNonkey}"
                                                                     isProjectStop="{!isProjectStop}"
                                                                 />
-                                                        		
+                                                                
                                                                 
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
                                                                     fieldSuffix="{!fieldSuffix}"

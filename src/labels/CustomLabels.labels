@@ -1,26 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-	<labels>
-        <fullName>IPM_No_Sector_is_selected</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>No Sector is selected</shortDescription>
-        <value>No Sector is selected</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Select_Sector</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Select Sector</shortDescription>
-        <value>Select Sector</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Sector</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Sector</shortDescription>
-        <value>Sector</value>
-    </labels>
     <labels>
         <fullName>IPM_ShowEntity</fullName>
         <language>en_US</language>
