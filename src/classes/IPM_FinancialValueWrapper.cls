@@ -7,6 +7,7 @@ public class IPM_FinancialValueWrapper {
     public Integer index {get; set;} //index
     public Decimal value {get; set;} //decimal value
     public Decimal difference {get; set;} //difference (For Misalignment)
+    public Decimal globalValue {get;set;}
     public Decimal regionalValue {get; set;} //Regional Value (For Misalignment)
     public Decimal localValue {get; set;} //Local Value (For Misalignment)
     public Integer scale {get; set;} //decimal digits
@@ -16,6 +17,12 @@ public class IPM_FinancialValueWrapper {
     public String finextIdFieldSuffixKey {get; set;}
     public String redValidationErrorMessage {get; set;}  //Consolidated Error message for red validations
     public String yellowValidationErrorMessage {get; set;} //Consolidated Error message for yellow validations
+    
+    public String topFinATLabel {get;set;}
+    public String bottomFinATLabel {get;set;}
+    public Decimal topFinValue{get;set;}
+    public Decimal bottomFinValue {get;set;}
+   
     /*******************************************************************************************************
     * @description          Constructor
     * @param index          index
@@ -188,6 +195,110 @@ public class IPM_FinancialValueWrapper {
         }
         this.finextIdFieldSuffixKey = finextIdFieldSuffixKey;
     }
+    
+    //For GKM3
+    
+    public IPM_FinancialValueWrapper(Integer index, Decimal value,Decimal globalValue, Decimal regionalValue, Decimal localValue, Decimal difference, Integer scale,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial,String currentTab){
+        this.scale = scale;
+        this.index = index;
+        this.value = value.setScale(scale);
+        this.globalValue = globalValue.setScale(scale);
+        this.regionalValue = RegionalValue.setScale(scale);
+        this.localValue = LocalValue.setScale(scale);
+        this.difference = difference.setScale(scale);
+        this.isValueInvalid = false;
+        this.isMinorValueInvalid = false;
+        this.isGrossTOGRTIto =false;
+        this.redValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        this.yellowValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        String toFindStr ='';
+        
+        if(currentFinancial != null && currentFinancial.Financial_External_ID__c != null && finextIdFieldSuffixKey != null ){
+        	toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+        }
+        
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
+        	this.isValueInvalid = true;
+        	this.redValidationErrorMessage = this.redValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
+        }
+        else{
+        	this.isValueInvalid = false;
+        }
+        
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.YELLOW,currentTab)){
+        	this.isMinorValueInvalid = true;
+        	this.yellowValidationErrorMessage = this.yellowValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
+        }
+        else{
+        	this.isMinorValueInvalid = false;
+        }
+        this.finextIdFieldSuffixKey = finextIdFieldSuffixKey;
+        
+        if(IPM_ConstantUtils.GKM_3.equalsIgnoreCase(currentFinancial.Gate_Keeping_Model__c)){
+        	this.topFinATLabel = Label.IPM_AT_GLOBAL_LEVEL;
+        	this.topFinValue = globalValue;
+        	this.bottomFinATLabel = Label.IPM_AT_LOCAL_LEVEL;
+        	this.bottomFinValue = localValue;
+        }
+        else{
+        	this.topFinATLabel = Label.IPM_AT_REGIONAL_LEVEL;
+        	this.topFinValue = regionalValue;
+        	this.bottomFinATLabel = Label.IPM_AT_LOCAL_LEVEL;
+        	this.bottomFinValue = localValue;
+        }
+    }
+    
+    public IPM_FinancialValueWrapper(Integer index, Decimal value,Decimal globalValue, Decimal regionalValue, Decimal localValue, Decimal difference,String finextIdFieldSuffixKey, IPM_Financial__c currentFinancial,String currentTab){
+        this.scale = 2;
+        this.index = index;
+        this.value = value.setScale(scale);
+        this.globalValue = globalValue.setScale(scale);
+        this.regionalValue = RegionalValue.setScale(scale);
+        this.localValue = LocalValue.setScale(scale);
+        this.difference = difference.setScale(scale);
+        this.isValueInvalid = false;
+        this.isMinorValueInvalid = false;
+        this.isGrossTOGRTIto =false;
+        this.redValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        this.yellowValidationErrorMessage = IPM_ConstantUtils.BLANK;
+        String toFindStr ='';
+        
+         if(currentFinancial != null && currentFinancial.Financial_External_ID__c != null && finextIdFieldSuffixKey != null ){
+         	toFindStr = finextIdFieldSuffixKey.replace(currentFinancial.Financial_External_ID__c+IPM_ConstantUtils.UNDERSCORE,IPM_ConstantUtils.BLANK);
+         }
+        
+        
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.RED,currentTab)){
+        	this.isValueInvalid = true;
+        	this.redValidationErrorMessage = this.redValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
+        }
+        else{
+        	this.isValueInvalid = false;
+        }
+        
+        if(isConsolidatedFinValueInvalid(currentFinancial,toFindStr,IPM_ConstantUtils.YELLOW,currentTab)){
+        	this.isMinorValueInvalid = true;
+        	this.yellowValidationErrorMessage = this.yellowValidationErrorMessage + Label.IPM_SVF_Please_check_your_MCO_financials;
+        }
+        else{
+        	this.isMinorValueInvalid = false;
+        }
+        this.finextIdFieldSuffixKey = finextIdFieldSuffixKey;
+        
+        if(IPM_ConstantUtils.GKM_3.equalsIgnoreCase(currentFinancial.Gate_Keeping_Model__c)){
+        	this.topFinATLabel = Label.IPM_AT_GLOBAL_LEVEL;
+        	this.topFinValue = globalValue;
+        	this.bottomFinATLabel = Label.IPM_AT_LOCAL_LEVEL;
+        	this.bottomFinValue = localValue;
+        }
+        else{
+        	this.topFinATLabel = Label.IPM_AT_REGIONAL_LEVEL;
+        	this.topFinValue = regionalValue;
+        	this.bottomFinATLabel = Label.IPM_AT_LOCAL_LEVEL;
+        	this.bottomFinValue = localValue;
+        }
+    }
+
     
     /*******************************************************************************************************
     * @description   Method to check if the consolidated financial year value has any red or yellow soft validation
