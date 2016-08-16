@@ -198,7 +198,6 @@ public with sharing class IPM_RolloutTriggerHandler
         // For regional Rollouts it would be Global Project and For local Rollouts it would be parent Project plus regional project 
         
         Map<String,Schema.SObjectField> projRolloutFieldTypeMap = Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap();
-		Map<String,Schema.SObjectField> financialFieldTypeMap = Schema.SObjectType.IPM_Financial__c.fields.getMap();
 
         String rolloutQuery = ' SELECT ';        
         for(String fieldAPIName : projRolloutFieldTypeMap.keySet())
