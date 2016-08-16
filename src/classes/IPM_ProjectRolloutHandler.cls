@@ -193,14 +193,16 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)  && oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c){
                 if(newRollout.Regional_Project__c != null){
                     globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
-                } else if(newRollout.IPM_Project__c != null){
+                } 
+				if(newRollout.Regional_Project__c==null && newRollout.IPM_Project__c != null){
                     globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
                 }
             }            
         }  
         if(oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c && newRollout.Regional_Project__c != null){
             misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
-        } else if(oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c) {
+        }
+		if(oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c  && newRollout.Regional_Project__c == null ) {
             misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
         }
 
