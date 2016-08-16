@@ -42,8 +42,9 @@
                         </div>
                     </div>                  
                      <!--  Component added based on Global and Regional Rollout   -->                  
-                    <c:IPM_RolloutPlansTable rendered="{!isSpanGlobal}"/>
+                    <c:IPM_RolloutPlansTable rendered="{!OR(AND(isSpanGlobal,project.IPM_ProjectGKM__c != 'GKM3'),AND(project.IPM_ProjectGKM__c == 'GKM3',project.IPM_Phase__c == 'Ideas'))}"/>
                     <c:IPM_LocalRolloutPlansTable rendered="{!isSpanRegional}"/>
+                    <c:IPM_RolloutPlansTable_GKM3 rendered="{!AND(project.IPM_ProjectGKM__c == 'GKM3',project.IPM_Phase__c != 'Ideas')}"/>
                     
                 </div>
                 <div id="ipmAddMemberModal" tabindex="-1" data-backdrop-limit="1" class="modal fade ipmAddMemberModal">

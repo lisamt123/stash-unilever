@@ -504,7 +504,7 @@ public without sharing class IPM_ProjectJobHelper
                     projectSpecificRegionalRolloutMap.put(rollout.IPM_Project__c,associatedRegionalRolloutsMap);
                 }
                 
-                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && rollout.IPM_Project_GKM__c != IPM_ConstantUtils.GKM_3)
                 {
                     // Check for Local Rollouts and Prepare projectToRolloutMap
                     Map<Id,IPM_Project_Rollout__c> associatedlocalRolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -515,6 +515,20 @@ public without sharing class IPM_ProjectJobHelper
                     associatedlocalRolloutsMap.put(rollout.Id,rollout);
                     projectSpecificLocalRolloutMap.put(rollout.Regional_Project__c,associatedlocalRolloutsMap);
                 }
+
+                else if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && rollout.IPM_Project_GKM__c== IPM_ConstantUtils.GKM_3)  
+                {
+                	// Check for Local Rollouts and Prepare projectToRolloutMap
+                    Map<Id,IPM_Project_Rollout__c> associatedlocalRolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
+                    if(projectSpecificLocalRolloutMap.containsKey(rollout.IPM_Project__c) && projectSpecificLocalRolloutMap.get(rollout.IPM_Project__c) !=null)
+                    {
+                        associatedlocalRolloutsMap = projectSpecificLocalRolloutMap.get(rollout.IPM_Project__c);
+                    }
+                    associatedlocalRolloutsMap.put(rollout.Id,rollout);
+                    projectSpecificLocalRolloutMap.put(rollout.IPM_Project__c,associatedlocalRolloutsMap);
+                
+                }
+                
             }
         }             
         

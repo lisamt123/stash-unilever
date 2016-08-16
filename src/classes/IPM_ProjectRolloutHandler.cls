@@ -176,7 +176,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 newRollout.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && 
                 newRollout.IPM_RolloutJobType__c == IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC)
         {
-            if( REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null )
+            if( ( REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null) || (LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project_GKM__c == IPM_ConstantUtils.GKM_3))
             {   
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
                 phaseChangeRolloutSet.add(newRollout.Id);

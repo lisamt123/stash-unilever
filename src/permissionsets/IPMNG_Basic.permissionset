@@ -1001,7 +1001,11 @@
         <enabled>true</enabled>
     </classAccesses>
    
-    
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout__c.IPM_Project_GKM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics_OTIF__c.Comm_BET_Final_Release_Availability__c</field>
