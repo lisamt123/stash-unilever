@@ -585,21 +585,24 @@
         <externalId>false</externalId>
         <formula>IF(text(IPM_Phase__c)=&apos;Ideas&apos;,
 1, 
-IF(text(IPM_Phase__c)=&apos;Feasibility&apos;, 
+IF(AND(text(IPM_Phase__c)=&apos;Feasibility&apos;,IPM_Name__c=&apos;Product Design Lock&apos;), 
 2, 
+IF(AND(text(IPM_Phase__c)=&apos;Feasibility&apos;,IPM_Name__c &lt;&gt; &apos;Product Design Lock&apos;), 
+3,
 IF(text(IPM_Phase__c)=&apos;Capability&apos;, 
-3, 
-IF(text(IPM_Phase__c)=&apos;Market Ready&apos;, 
 4, 
+IF(text(IPM_Phase__c)=&apos;Market Ready&apos;, 
+5, 
 IF(text(IPM_Phase__c)=&apos;Market Deployment&apos;,
-5,
-IF(text(IPM_Phase__c)=&apos;Post Launch Evaluation&apos;, 
-6, 
--1) 
-) 
-) 
-) 
-) 
+6,
+IF(text(IPM_Phase__c)=&apos;Post Launch Evaluation&apos;,
+7,
+-1)
+)
+)
+)
+)
+)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Phase Order</label>
