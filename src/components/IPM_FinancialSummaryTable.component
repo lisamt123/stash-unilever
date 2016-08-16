@@ -13,9 +13,6 @@
 
     <!-- Variables -->
     <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
-    <apex:variable value="{!IF(ipmFinancial.Gate_Keeping_Model__c == 'GKM3', TRUE, FALSE)}" var="isGKM3"/>
-    <apex:variable value="{!IF(isGKM3, 'Global__c', 'Regional__c')}" var="spanOfValue"/>
-    <apex:variable value="{!IF(isGKM3, $Label.IPM_AT_GLOBAL_LEVEL,$Label.IPM_AT_REGIONAL_LEVEL )}" var="topFinATLabel"/>
 
     <div class="row">
         <div class="col-sm-4">
@@ -36,7 +33,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!topFinATLabel} {!ipmFinancial['NPV_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
                                 <br/>{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
                                 <br/>{!NPVErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -64,7 +61,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!topFinATLabel} {!ipmFinancial['NPV_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c}
                                 <br/>{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
                                 <br/>{!NPVErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -92,7 +89,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.NPV_Difference__c != NULL), ipmFinancial.NPV_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!topFinATLabel} {!ipmFinancial['NPV_'+spanOfValue]} 
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.NPV_Regional__c} 
                                 <br/>{!$Label.ipmFinSummaryNPV} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.NPV_Local__c}
                                 <br/>{!NPVErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -137,7 +134,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!topFinATLabel} {!ipmFinancial['IRR_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
                                                                                                                       <br/>{!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Global__c}
@@ -161,7 +158,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!topFinATLabel} {!ipmFinancial['IRR_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
                                                                                                                       <br/>{!IRRErrorMsg}">
                                     {!ipmFinancial.IRR_Regional__c}
@@ -185,14 +182,10 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.IRR_Difference__c != NULL), ipmFinancial.IRR_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!topFinATLabel} {!ipmFinancial['IRR_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.IRR_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryIRR} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.IRR_Local__c}
                                                                                                                       <br/>{!IRRErrorMsg}">
-                                                                                                                      
-                                    <apex:outputText value="{0, number,###,###,###.##}">
-                                        <apex:param value="{!ipmFinancial.IRR_Local__c}" />
-                                    </apex:outputText>
-                                    
+                                    {!ipmFinancial.IRR_Local__c}
                                 </a>
                             </apex:outputText>
                             <!-- This section will be rendered when the following conditions are met 
@@ -230,7 +223,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!topFinATLabel} {!ipmFinancial['Payback_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
                                                                                                                       <br/>{!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -258,7 +251,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!topFinATLabel} {!ipmFinancial['Payback_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
                                                                                                                       <br/>{!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -286,7 +279,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,(ipmFinancial.Payback_Difference__c != NULL), ipmFinancial.Payback_Difference__c>0, NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!topFinATLabel} {!ipmFinancial['Payback_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.Payback_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryPayback} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.Payback_Local__c}
                                                                                                                       <br/>{!PaybackErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -335,7 +328,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!topFinATLabel} {!ipmFinancial['CAPEX_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
                                                                                                                       <br/>{!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -364,7 +357,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!topFinATLabel} {!ipmFinancial['CAPEX_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
                                                                                                                       <br/>{!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -392,7 +385,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText styleClass="info" rendered="{!AND(showMisalignment,(ipmFinancial.CAPEX_Difference__c != NULL), ipmFinancial.CAPEX_Difference__c>0,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!topFinATLabel} {!ipmFinancial['CAPEX_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.CAPEX_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryCAPEX} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.CAPEX_Local__c}
                                                                                                                       <br/>{!CAPEXErrorMsg}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
@@ -434,7 +427,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c>0),NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!topFinATLabel} {!ipmFinancial['BIC_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.BIC_Global__c*exrate}" />
@@ -461,7 +454,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c>0) ,NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!topFinATLabel} {!ipmFinancial['BIC_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.BIC_Regional__c*exrate}" />
@@ -488,7 +481,7 @@
                                 3. If its not edit mode
                             -->
                             <apex:outputText rendered="{!AND(showMisalignment,AND(ipmFinancial.BIC_Difference__c != NULL,ipmFinancial.BIC_Difference__c>0),NOT(isEditMode))}">
-                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!topFinATLabel} {!ipmFinancial['BIC_'+spanOfValue]}
+                                <a  data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_REGIONAL_LEVEL} {!ipmFinancial.BIC_Regional__c}
                                                                                                                       <br/>{!$Label.ipmFinSummaryBIC} {!$Label.IPM_AT_LOCAL_LEVEL} {!ipmFinancial.BIC_Local__c}">
                                     <apex:outputText value="{0, number,###,###,###.##}">
                                         <apex:param value="{!ipmFinancial.BIC_Local__c*exrate}" />

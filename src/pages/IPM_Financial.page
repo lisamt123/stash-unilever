@@ -218,32 +218,6 @@
                                                         <div class="col-sm-6 wid40P">
                                                                 <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                           
                                                          </div>
-                                                         
-                                                         
-                                                                                                                  
-                                                         <!-- This is the alert message to be shown when the Non-Key Business case of the GKM3 model is changed
-                                                              showNonKeyBusinessCaseChangedAlert: is the boolean flag which determines that th alert is to be shown or not. this flag is set to false once the cancel/delete image is clicked 
-                                                          -->
-                                                         <apex:outputPanel id="nonKeybusinessCaseChanged" rendered="{!showNonKeyBusinessCaseChangedAlert}">
-                                                            <div class="finAlertBox">
-                                                                <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
-                                                                <div class="col-sm-11 finalerttext">
-                                                                  <p><apex:outputText value="{!$Label.IPM_NonKey_Business_Case_Changed_Alert}" /></p>  
-                                                                    
-                                                                </div>
-                                                                <apex:outputPanel styleClass="col-sm-1">
-                                                                    <!-- apex:image styleClass="alertimg" alt="Alert" value="{!URLFOR($Resource.IPM_Resource, 'images/deleteIcon.png')}"/ -->
-                                                                        <button type="button" class="close ipmModalGetStartedClose" data-target="#nonKeybusinessCaseChanged"  aria-hidden="true" style = "background: #fff; border: 1px #007dbb solid; border-radius: 50%; padding: 3px 5px; color: #007dbb; margin-top: -5px; opacity: 1; width: 30px" >&times;</button>
-                                                                        <!-- Action support called on click of the deleteicon image. this value then makes the flag Is_Nonkey_Business_Case_Changed__c on financial to false -->
-                                                                        <apex:actionSupport event="onclick" action="{!resetNonKeyBusinessCaseChangedFlag}" rerender="tabContentPanel" status="counterStatus" >
-                                                                            <apex:param name="currentFinancialId" value="{!currentFinancial.Id}" assignTo="{!currentFinancialId}"/>
-                                                                        </apex:actionSupport>
-                                                                </apex:outputPanel>
-                                                                
-                                                            </div>
-                                                         </apex:outputPanel>
-                                                         
-                                                         
                                                                 <!-- Rendered only in edit mode -->
                                                                 <apex:outputPanel id="msgss" rendered="{!AND(NOT(isProjectStop),isEditMode)}">
                                                                     <div class="misAlignedTLD">
@@ -264,20 +238,11 @@
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_LOC_FIN_BUSINESS_CASE}');">{!$Label.IPM_ACCEPT_LOCAL_BC}</div>
                                                                         <apex:actionFunction name="refreshFromLocal" action="{!refreshFromLocal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
-                                                                    <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Local and project is not GKM3-->
-                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop), project.IPMProject_Span__c == 'Local', isEditable,currentFinancial.Gate_Keeping_Model__c != 'GKM3')}">
+                                                                    <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Local.-->
+                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop), project.IPMProject_Span__c == 'Local', isEditable)}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_REG_FIN_BUSINESS_CASE}');">{!financialAcceptFrom}</div>
                                                                         <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
-                                                                    
-                                                                    <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Local  and project is GKM3-->
-                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop), project.IPMProject_Span__c == 'Local', isEditable, currentFinancial.Gate_Keeping_Model__c == 'GKM3')}">
-                                                                        <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromGlobalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_GLOBAL_FIN_BUSINESS_CASE}');">{!financialAcceptFrom}</div>
-                                                                        <apex:actionFunction name="refreshFromRegional" action="{!refreshFromGlobal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
-                                                                    </apex:outputPanel>
-                                                                    
-                                                                    
-                                                                    
                                                                     <!-- Rendered when project phase is not PLE and project type is not Operational and controller's -->
                                                                     <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',NOT(isProjectStop),isTargetLaunchDateMisaligned,NOT(isNonkey))}">
                                                                          <div class="ipmButton secondary" onclick="alignTLDRecords();">{! if(isTDLAcceptNBC_Confirm,tldAcceptedBCConfirmed,tldAcceptFromValue)}</div>
@@ -339,8 +304,8 @@
                                                                 <!-- Rendered when there is rollout countries available and size is more than 0--> 
                                                                 <apex:outputPanel styleClass="countryLabel" rendered="{!AND(isProjectStop,associatedCountryList.size >0) }">{!$Label.IPM_RolloutCountriesLabel}
                                                                 <span class="SecButtonSet infoMarTop">
-                                                                        <a class="icoButton info smalllinfo" title="{!$Label.IPM_THE_SELECTION_HERE_DOES_NOT}"></a>
-                                                                 </span>
+                                                 						<a class="icoButton info smalllinfo" title="{!$Label.IPM_THE_SELECTION_HERE_DOES_NOT}"></a>
+                                            					 </span>
                                                                 </apex:outputPanel>
                                                                     <div class="countryCheckList clearfix">
                                                                         <apex:variable value="{!1}" var="rowNum"/>
@@ -443,7 +408,7 @@
                                                                     exRate="{!exRate}"
                                                                 />
                                                                   <!-- DEF2676 fix Start -->
-                                                                <apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">
+                                                     			<apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">
                                                                     <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Earlier_Years}" id="financialYearNavLeft" layout="block" styleClass="financialYearNavLeftDiv pull-left" rendered="{!showPrevious}">
                                                                         <apex:outputPanel id="financialYearNavLeftArrow">
                                                                            &#x21da; <apex:actionSupport event="onclick" action="{!previous}"  reRender="financialYearNav, financialYearCalendar"  status="loadingStatus" oncomplete="finScriptCallBack()" />
@@ -558,7 +523,7 @@
             </apex:form>
             <div id="ipmConfirmModalDiv">
                 <c:IPM_ConfirmModal />
-            </div>    
+            </div>     
         </apex:define>
     </apex:composition>
     

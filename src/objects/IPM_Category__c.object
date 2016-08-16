@@ -23,6 +23,15 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>IPM_Sector__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Applicable for refreshments category group</description>
+        <externalId>false</externalId>
+        <label>Sector</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>IPM_Sub_Sector__c</fullName>
         <defaultValue>false</defaultValue>

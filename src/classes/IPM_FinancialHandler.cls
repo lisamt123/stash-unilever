@@ -86,127 +86,130 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             }   
                 
             if(Trigger.isUpdate) 
-            { 
-                 //By passing trigger call for copy over snapshot details  
- 				 if(checkToByPassCopyOver((IPM_Financial__c)Trigger.Old[0], (IPM_Financial__c)Trigger.New[0]))
-		              {
-            	Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
-            	
-            	Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
-            	
-            	Set<Id> changedFinancialSet = new Set<Id>();
-				
-		IPM_FinancialHelper.deleteFinancialYears(newFinancialList);
-            	
-            	for(IPM_Financial__c financial : newFinancialList)
-	            {
-	                IPM_Financial__c oldFinancial = oldFinancialMap.get(financial.Id); 
-	            	
-	            	// Only add Financial Years For Consolidated Financials.
-                            if(checkForConsolidatedFinancial(financial, oldFinancial))
-                            {
-					    targetLaunchChangedDateMap.put(financial.Id,financial); 
-					    changedFinancialSet.add(financial.Id);
-					}
-                            if(isFinancialChange(financial, oldFinancial))
-                		{
-                    		finIdsforProjY3iToSync.add(financial.Id);    
-            			} 
-	            }
-					
-				//Insert new Financial Years to Consolidated Financials when TLD is changed for any default Financial.
-                        insertFinancialsOnTLDChg(targetLaunchChangedDateMap);
+            {   
+                 if(IPM_ConstantUtils.repeatCount < 4)
+                {
+                     //By passing trigger call for copy over snapshot details  
+                    if(checkToByPassCopyOver((IPM_Financial__c)Trigger.Old[0], (IPM_Financial__c)Trigger.New[0]))
+                          {
+                    Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
+                    
+                    Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
+                    
+                    Set<Id> changedFinancialSet = new Set<Id>();
+                    
+                    IPM_FinancialHelper.deleteFinancialYears(newFinancialList);
+                    
+                    for(IPM_Financial__c financial : newFinancialList)
+                    {
+                        IPM_Financial__c oldFinancial = oldFinancialMap.get(financial.Id); 
                         
-                        // Once the Consolidated Years have been added start the process for Calculating Everything from Strach.
-                        Map<Id,IPM_Financial__c> susChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-                        Map<Id,IPM_Financial__c> volumeTypeChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-                        Map<Id,IPM_Financial__c> approvalChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-                        Map<Id,IPM_Financial__c> copyOverChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-                        Map<Id,IPM_Financial__c> activeChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-                        Map<Id,IPM_Financial__C> additionalFieldChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-                        
-                        Set<String> changedFinancialFieldSet = new Set<String>();
-                        Map<Id,Set<String>> financialToApprovalChangeFieldMap = new Map<Id,Set<String>>();
-                        Map<Id,Set<String>> financialTocopyOverChangedFieldMap = new Map<Id,Set<String>>(); 
-                        Map<Id,Set<String>> financialToactiveChangedFieldMap = new Map<Id,Set<String>>();
-                        Map<Id,Set<String>> financialToaddtChangedFieldMap = new Map<Id,Set<String>>();
-        
-                        // Check for Financial Action Standard Update For Sections 
-                        IPM_FinancialHelper.updateFinancialActionStandard((Map<Id,IPM_Financial__c>) Trigger.newMap);  
-                        IPM_FinancialHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial__c>) Trigger.newMap);   
-                        for(IPM_Financial__c financial : newFinancialList)
+                        // Only add Financial Years For Consolidated Financials.
+                        if(checkForConsolidatedFinancial(financial, oldFinancial))
                         {
-                            IPM_Financial__c oldFinancial = null;
+                            targetLaunchChangedDateMap.put(financial.Id,financial); 
+                            changedFinancialSet.add(financial.Id);
+                        }
+                        if(isFinancialChange(financial, oldFinancial))
+                        {
+                                finIdsforProjY3iToSync.add(financial.Id);    
+                        } 
+                    }
+                        
+                    //Insert new Financial Years to Consolidated Financials when TLD is changed for any default Financial.
+                            insertFinancialsOnTLDChg(targetLaunchChangedDateMap);
                             
-                            oldFinancial = oldFinancialMap.get(financial.Id); 
+                            // Once the Consolidated Years have been added start the process for Calculating Everything from Strach.
+                            Map<Id,IPM_Financial__c> susChangedFinancialMap = new Map<Id,IPM_Financial__c>();
+                            Map<Id,IPM_Financial__c> volumeTypeChangedFinancialMap = new Map<Id,IPM_Financial__c>();
+                            Map<Id,IPM_Financial__c> approvalChangedFinancialMap = new Map<Id,IPM_Financial__c>();
+                            Map<Id,IPM_Financial__c> copyOverChangedFinancialMap = new Map<Id,IPM_Financial__c>();
+                            Map<Id,IPM_Financial__c> activeChangedFinancialMap = new Map<Id,IPM_Financial__c>();
+                            Map<Id,IPM_Financial__C> additionalFieldChangedFinancialMap = new Map<Id,IPM_Financial__c>();
                             
-                            // Sustainability Period Change
-                            sustainabilityPeriodChange(financial, oldFinancial, susChangedFinancialMap, changedFinancialSet);
-                            
-                            // Volume Type Change
-                            volumeTypeChange(financial, oldFinancial, volumeTypeChangedFinancialMap, changedFinancialSet);
-                            
-	                // Approval Field Changes
-                            approvalfieldchanged(financial, oldFinancial, approvalChangedFinancialMap, changedFinancialSet, financialToApprovalChangeFieldMap);
-                            
-	                
-	                // CopyOver Field Changes
-                            copyOverFieldChange(financial, oldFinancial, copyOverChangedFinancialMap, changedFinancialSet, financialTocopyOverChangedFieldMap);
-                            
-                            
-                            // addtional Field Changes
-                            additionalFieldChange(financial, oldFinancial, additionalFieldChangedFinancialMap, changedFinancialSet, financialToaddtChangedFieldMap);
+                            Set<String> changedFinancialFieldSet = new Set<String>();
+                            Map<Id,Set<String>> financialToApprovalChangeFieldMap = new Map<Id,Set<String>>();
+                            Map<Id,Set<String>> financialTocopyOverChangedFieldMap = new Map<Id,Set<String>>(); 
+                            Map<Id,Set<String>> financialToactiveChangedFieldMap = new Map<Id,Set<String>>();
+                            Map<Id,Set<String>> financialToaddtChangedFieldMap = new Map<Id,Set<String>>();
+            
+                            // Check for Financial Action Standard Update For Sections 
+                            IPM_FinancialHelper.updateFinancialActionStandard((Map<Id,IPM_Financial__c>) Trigger.newMap);  
+                            IPM_FinancialHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial__c>) Trigger.newMap);   
+                            for(IPM_Financial__c financial : newFinancialList)
+                            {
+                                IPM_Financial__c oldFinancial = null;
+                                
+                                oldFinancial = oldFinancialMap.get(financial.Id); 
+                                
+                                // Sustainability Period Change
+                                sustainabilityPeriodChange(financial, oldFinancial, susChangedFinancialMap, changedFinancialSet);
+                                
+                                // Volume Type Change
+                                volumeTypeChange(financial, oldFinancial, volumeTypeChangedFinancialMap, changedFinancialSet);
+                                
+                                // Approval Field Changes
+                                approvalfieldchanged(financial, oldFinancial, approvalChangedFinancialMap, changedFinancialSet, financialToApprovalChangeFieldMap);
                                 
                         
-                    // Active Field Changes
-                            activeFieldChange(financial, oldFinancial, activeChangedFinancialMap, changedFinancialSet, financialToactiveChangedFieldMap);
+                                // CopyOver Field Changes
+                                copyOverFieldChange(financial, oldFinancial, copyOverChangedFinancialMap, changedFinancialSet, financialTocopyOverChangedFieldMap);
+                                
+                                
+                                // addtional Field Changes
+                                additionalFieldChange(financial, oldFinancial, additionalFieldChangedFinancialMap, changedFinancialSet, financialToaddtChangedFieldMap);
+                                    
+                            
+                                // Active Field Changes
+                                activeFieldChange(financial, oldFinancial, activeChangedFinancialMap, changedFinancialSet, financialToactiveChangedFieldMap);
+                        
+                                // Consolidation Field change
+                                Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(financial.recordTypeId,financial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
                     
-	                // Consolidation Field change
-	                Set<String> changedFieldSet = IPM_FinancialUtils.isConsolidationChanged(financial.recordTypeId,financial,oldFinancial,IPM_FinancialHelper.FIELDS_TO_CONSOLIDATE,'Financial_External_ID__c'); 
-	            
-	                if(!changedFieldSet.isEmpty())
-	                {
-	                    changedFinancialFieldSet.addAll(changedFieldSet);
-	                    consolidationChangedFinancialList.add(financial);   
-	                    changedFinancialSet.add(financial.Id);
-	                }
-	            }
-	             
-	            if(!changedFinancialSet.isEmpty())
-	            {     
-	                // Get the list of financials which are eligible for Processing.
-	                String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',true,new Set<String>{'IPM_Financial_Year__c'},false);
-	                String financialWhereClause = ' WHERE Id in :changedFinancialSet LIMIT 50000';
-	                financialQuery = financialQuery + financialWhereClause;
-	                Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
-	                    
-	                if(!financialDetailMap.isEmpty())
-	                {
-	                    // insert new financial Years based on Sustainability Period. 
-	                        IPM_FinancialHelper.processSustainabilityPeriod(susChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap);
-	                    
-	                    // Update Financial Volume Type to Child Financial Years.
-	                        IPM_FinancialHelper.updateFinancialYearVolumeType(volumeTypeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap);
-	                    
-	                    // Update Approval Fields on Financial Years
-                            IPM_FinancialHelper.copyOverFinancialFields(approvalChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToApprovalChangeFieldMap);
-                        
-                        	IPM_FinancialHelper.copyOverFinancialFields(activeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToactiveChangedFieldMap);
-                        
-                        // Additional Field Copy Over from Financial To Financial Years
-                        	IPM_FinancialHelper.copyOverFinancialFields(additionalFieldChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToaddtChangedFieldMap);
-                        
-                        // Update Copy Over values to Financial Years
-                            IPM_FinancialHelper.copyOverFinancialFields(copyOverChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialTocopyOverChangedFieldMap);
-		                        
-			                IPM_FinancialHelper.initializeConsolidation(consolidationChangedFinancialList,oldFinancialMap,financialDetailMap,upsertConsolidatedFinancialMap,changedFinancialFieldSet); 
-			            }
-	                }
-	            }
-			}
-            
-	            //Insert new Financial Years to Consolidated Financials.
-	            upsert upsertFinancialYearMap.values() External_ID__c;  
+                                if(!changedFieldSet.isEmpty())
+                                {
+                                    changedFinancialFieldSet.addAll(changedFieldSet);
+                                    consolidationChangedFinancialList.add(financial);   
+                                    changedFinancialSet.add(financial.Id);
+                                }
+                            }
+                     
+                    if(!changedFinancialSet.isEmpty())
+                    {     
+                        // Get the list of financials which are eligible for Processing.
+                        String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',true,new Set<String>{'IPM_Financial_Year__c'},false);
+                        String financialWhereClause = ' WHERE Id in :changedFinancialSet LIMIT 50000';
+                        financialQuery = financialQuery + financialWhereClause;
+                        Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
+                        if(!financialDetailMap.isEmpty())
+                        {
+                            // insert new financial Years based on Sustainability Period. 
+                                IPM_FinancialHelper.processSustainabilityPeriod(susChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap);
+                            
+                            // Update Financial Volume Type to Child Financial Years.
+                                IPM_FinancialHelper.updateFinancialYearVolumeType(volumeTypeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap);
+                            
+                            // Update Approval Fields on Financial Years
+                                IPM_FinancialHelper.copyOverFinancialFields(approvalChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToApprovalChangeFieldMap);
+                            
+                                IPM_FinancialHelper.copyOverFinancialFields(activeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToactiveChangedFieldMap);
+                            
+                            // Additional Field Copy Over from Financial To Financial Years
+                                IPM_FinancialHelper.copyOverFinancialFields(additionalFieldChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToaddtChangedFieldMap);
+                            
+                            // Update Copy Over values to Financial Years
+                                IPM_FinancialHelper.copyOverFinancialFields(copyOverChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialTocopyOverChangedFieldMap);
+                                    
+                                IPM_FinancialHelper.initializeConsolidation(consolidationChangedFinancialList,oldFinancialMap,financialDetailMap,upsertConsolidatedFinancialMap,changedFinancialFieldSet); 
+                            }
+                        }
+                    }
+                    IPM_ConstantUtils.repeatCount++;
+                }
+            }
+
+                //Insert new Financial Years to Consolidated Financials.
+                upsert upsertFinancialYearMap.values() External_ID__c;
         }
         else
         {

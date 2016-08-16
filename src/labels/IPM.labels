@@ -1,3 +1,24 @@
+	<labels>
+        <fullName>IPM_No_Sector_is_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Sector is selected</shortDescription>
+        <value>No Sector is selected</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Select_Sector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Sector</shortDescription>
+        <value>Select Sector</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Sector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sector</shortDescription>
+        <value>Sector</value>
+    </labels>
    <labels>
         <fullName>IPM_Download_All_AttachmentsBttnName</fullName>
         <language>en_US</language>
@@ -9766,113 +9787,4 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM  Team Members Report</shortDescription>
         <value>IPM  Team Members Report&apos;s Extract</value>
     </labels>
-    <labels>
-			<fullName>IPM_KEY_MCO_NEEDS_GKM3</fullName>
-			<language>en_US</language>
-			<protected>false</protected>
-			<shortDescription>IPM_KEY_MCO_NEEDS_GKM3</shortDescription>
-			<value>An MCO is marked as Key if it has a large contribution to the Business Case. 
-
-	Consolidation of the  Key MCOs should make up at least 75% of the Business Case and only Key MCOs need to confirm the Business Case at Contract and Market Ready Gates. 
-
-	MCOs not indicated as Key will have a consolidated Business Case (per Market Cluster) and the Local Rollout Projects will only be created after Market Ready Gate</value>
-    </labels>
 	
-	<labels>
-        <fullName>IPM_Non_Key_Project_Creation_GKM3</fullName>
-        <categories>IPM</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM Non Key Project Creation GKM3</shortDescription>
-        <value>This Local Rollout Project will be created after Market Ready Gate.</value>
-    </labels>
-	<labels>
-        <fullName>IPM_NonKey_Business_Case_Changed_Alert</fullName>
-        <categories>Financial</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM NonKey Business Case Changed Alert</shortDescription>
-        <value>The MCOs included in this Non-Key Business Case have changed. Please review the Business Case.</value>
-    </labels>
-	
-	<labels>
-        <fullName>IPM_MCO_Leader_for_GKM3</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM MCO Leader for GKM3</shortDescription>
-        <value>Please fill MCO Rollout Leader in Key MCOs before proposing your document.</value>
-    </labels>
-	<labels>
-        <fullName>IPM_MCO_Leader_and_Launch_Date_for_GKM3</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM MCO Leader and Launch Date for GKM3</shortDescription>
-        <value>Please fill MCO Rollout Leader and Target Launch Date in all MCOs before proposing your document.</value>
-    </labels>
-	
-	<labels>
-        <fullName>IPM_Rollout_AS_Caps</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_Rollout_AS</shortDescription>
-        <value>Rollout As</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Sector</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Sector</shortDescription>
-        <value>Sector</value>
-    </labels>
-	<labels>
-        <fullName>IPM_No_Sector_is_selected</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>No Sector is selected</shortDescription>
-        <value>No Sector is selected</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Select_Sector</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Select Sector</shortDescription>
-        <value>Select Sector</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Accept_Global_BC</fullName>
-        <categories>Financial</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM Accept Global BC</shortDescription>
-        <value>Accept Global BC</value>
-    </labels>
-	<labels>
-        <fullName>IPM_ABOUT_TO_REFRESH_GLOBAL_FIN_BUSINESS_CASE</fullName>
-        <categories>Financial</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM ABOUT TO REFRESH GLOBAL FIN BUSINESS CASE</shortDescription>
-        <value>You are about to refresh the Financial Business Case from the Global Project Leader. Are you sure you want to continue?</value>
-    </labels>
-	<labels>
-        <fullName>IPM_AT_GLOBAL_LEVEL</fullName>
-        <categories>Financial</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_AT_GLOBAL_LEVEL</shortDescription>
-        <value>at Global level =</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Select_This_MCO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Select users from this MCO</shortDescription>
-        <value>Select users from this MCO</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Select_All</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Select from all of Unilever</shortDescription>
-        <value>Select from all of Unilever</value>
-    </labels>

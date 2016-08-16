@@ -235,8 +235,6 @@ private with sharing class IPM_CoreParameters_Test {
             sic.getStrategicGraph();
             system.assertEquals(sic.coretickMark, operationalGraph, 'coretickMark value should be' + space_STR + operationalGraph);
             sic.IPM_Coreparameter.IPM_Category_Text__c = Laundry_STR;
-            sic.getMarket();
-            system.assertEquals(sic.selCat, Laundry_STR, 'Project category should be ' + space_STR + Laundry_STR);
             sic.answerthree_STR = IPM_ConstantUtils.BASE;
             sic.resetAnswer();
             system.assertEquals(String.isBlank(sic.answerthree_STR), false, 'answer three value should be reset');
