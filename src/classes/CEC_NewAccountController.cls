@@ -319,19 +319,19 @@ The rest of the Consumer records are ignored.
         System.debug('The Consumer List to be filtered/Ordered :: ' + duplicateConsumerList);
         
         // Order 1 : Check the Local Identifier match
-        CEC_NewAccountControllerExtension.checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
         
         // Order 2 : Check the email match
-        CEC_NewAccountControllerExtension.checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
         
         // Order 3 : Check the phone match
-        CEC_NewAccountControllerExtension.checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
         
         // Order 4 : Check the PostCode match
-        CEC_NewAccountControllerExtension.checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
         
         // Order 5 : Check the Street & LastName match
-        CEC_NewAccountControllerExtension.checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
         
         //Order 6 : Display Street fuzzy match
         if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.PersonMailingCity)) {
