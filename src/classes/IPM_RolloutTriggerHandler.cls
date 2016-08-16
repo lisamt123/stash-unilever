@@ -525,21 +525,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
                            
 
-            if(oldProjectRollout != null && localRollout.isActive__c)
-            {
-                if(localRollout.KeyMCO__c)
-                { 
-                    // If Rollout is a key Rollout,We need to generate Corresponding Key Financials.
-                    if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c || localRollout.isActive__c != oldProjectRollout.isActive__c)
-                    {
-                        createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
-                    }
-                }
-                if(!localRollout.KeyMCO__c)
-                {
-                    processlocal(localRollout, oldProjectRollout, financialExistingMap, financialExternalId , associatedPhase);   
-                }    
-            }
+            generateKeyFinancials(localRollout, oldProjectRollout, financialExistingMap, financialExternalId , associatedPhase);
 
             delInactivefinancials(localRollout, oldProjectRollout, setDeleteFinancialExternalIds, localRolloutCountrySet);
         }        
@@ -554,6 +540,25 @@ public with sharing class IPM_RolloutTriggerHandler
             //Non Key Business case is changed when A Nonkey MCO is added or removed from existing Non Key Business Case
             nonKeyFinancial.Is_Nonkey_Business_Case_Changed__c = true;
             mapUpsertFinancials.put(nonKeyFinancial.Financial_External_Id__c,nonKeyFinancial);
+        }
+    }
+    
+    //Method to generate key financials
+    public void generateKeyFinancials(IPM_Project_Rollout__c localRollout, IPM_Project_Rollout__c oldProjectRollout,Map<String,IPM_Financial__c> financialExistingMap, string financialExternalId , string associatedPhase){
+        if(oldProjectRollout != null && localRollout.isActive__c)
+        {
+            if(localRollout.KeyMCO__c)
+            { 
+                // If Rollout is a key Rollout,We need to generate Corresponding Key Financials.
+                if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c || localRollout.isActive__c != oldProjectRollout.isActive__c)
+                {
+                    createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
+                }
+            }
+            if(!localRollout.KeyMCO__c)
+            {
+                processlocal(localRollout, oldProjectRollout, financialExistingMap, financialExternalId , associatedPhase);   
+            }    
         }
     }
     
