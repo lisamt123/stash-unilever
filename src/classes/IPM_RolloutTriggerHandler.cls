@@ -541,15 +541,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 }    
             }
 
-            if(oldProjectRollout != null && !localRollout.isActive__c)
-            {
-                // If old rollout was active, we need to inactive Financials or delete financials.
-                if(localRollout.isActive__c != oldProjectRollout.isActive__c)
-                {
-                    setDeleteFinancialExternalIds.add(oldProjectRollout.IPM_Rollout_Project__c); 
-                    localRolloutCountrySet.add(localRollout.IPM_Rollout_Project__c);
-                }
-            }
+            delInactivefinancials(localRollout, oldProjectRollout, setDeleteFinancialExternalIds, localRolloutCountrySet);
         }        
             
         if(!nonkeyActiveRolloutExists)
@@ -562,6 +554,19 @@ public with sharing class IPM_RolloutTriggerHandler
             //Non Key Business case is changed when A Nonkey MCO is added or removed from existing Non Key Business Case
             nonKeyFinancial.Is_Nonkey_Business_Case_Changed__c = true;
             mapUpsertFinancials.put(nonKeyFinancial.Financial_External_Id__c,nonKeyFinancial);
+        }
+    }
+    
+    //Method to delete inactive financials
+    public void delInactivefinancials(IPM_Project_Rollout__c localRollout, IPM_Project_Rollout__c oldProjectRollout,Set<String> setDeleteFinancialExternalIds, Set<String> localRolloutCountrySet){
+        if(oldProjectRollout != null && !localRollout.isActive__c)
+        {
+            // If old rollout was active, we need to inactive Financials or delete financials.
+            if(localRollout.isActive__c != oldProjectRollout.isActive__c)
+            {
+                setDeleteFinancialExternalIds.add(oldProjectRollout.IPM_Rollout_Project__c); 
+                localRolloutCountrySet.add(localRollout.IPM_Rollout_Project__c);
+            }
         }
     }
     
