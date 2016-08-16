@@ -8,6 +8,7 @@ src/classes/CEC_CaseActionController.cls
 src/classes/CEC_CaseActionControllerTest.cls
 src/pages/CEC_CaseActions.page
 src/pages/CEC_CaseActions.page-meta.xml
+src/classes/CEC_CaseActionController-meta.xml
+src/classes/CEC_CaseActionControllerTest-meta.xml
 src/permissionsets/CEC_Digital_Genius_Admin.permissionset
 src/permissionsets/CEC_Digital_Genius_User.permissionset
-
