@@ -79,7 +79,7 @@ public class WWP_LossTree_Test {
         
         
         
-        
+        wwp.showPanelsDiv();
         wwp.fetchLossTree();
         
         system.assertEquals(wwp.listLossTree.size(),1);
