@@ -538,23 +538,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 }
                 if(!localRollout.KeyMCO__c)
                 {
-                    // If rollout was a Key Rollout before, remove Key Financials for corresponding Rollout 
-                    if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c ||  localRollout.isActive__c != oldProjectRollout.isActive__c) 
-                    {    
-                        // In case there is a corresponding financial specific business case 
-                        if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c)
-                        {
-                            setDeleteFinancialExternalIds.add(oldProjectRollout.IPM_Rollout_Project__c); 
-                        }
-                        // Create Non Key financial for the corresponding Non Key Rollout
-                        createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
-                        
-                        //If it is a non Key and Phase is not ideas, We need to add Financials Corresponding to rollouts.   
-                        if(associatedPhase != IPM_ConstantUtils.PHASE_IDEAS)
-                        {
-                            createRolloutFinancials(localRollout.IPM_Rollout_Project__c,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
-                        }
-                    }       
+                    processlocal(localRollout, oldProjectRollout, financialExistingMap, financialExternalId , associatedPhase);   
                 }    
             }
 
@@ -582,7 +566,26 @@ public with sharing class IPM_RolloutTriggerHandler
         }
     }
     
-    
+    //Method to process each local rollout
+    public void processlocal(IPM_Project_Rollout__c localRollout, IPM_Project_Rollout__c oldProjectRollout, Map<String,IPM_Financial__c> financialExistingMap, string financialExternalId, string associatedPhase){
+        // If rollout was a Key Rollout before, remove Key Financials for corresponding Rollout 
+        if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c ||  localRollout.isActive__c != oldProjectRollout.isActive__c) 
+        {    
+            // In case there is a corresponding financial specific business case 
+            if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c)
+            {
+                setDeleteFinancialExternalIds.add(oldProjectRollout.IPM_Rollout_Project__c); 
+            }
+            // Create Non Key financial for the corresponding Non Key Rollout
+            createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
+            
+            //If it is a non Key and Phase is not ideas, We need to add Financials Corresponding to rollouts.   
+            if(associatedPhase != IPM_ConstantUtils.PHASE_IDEAS)
+            {
+                createRolloutFinancials(localRollout.IPM_Rollout_Project__c,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
+            }
+        }  
+    }
     /*******************************************************************************************************
     * @description   Method to get Creating Financials.
     * @param financialExternalId  External Id for financials which needs to be created.
