@@ -349,6 +349,10 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public PageReference cancelCampaign(){
 
         try{
+        
+            Check_For_Manual_Edit_Of_Campaign__c me = Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+            me.Manual_Edit_Check__c = True;
+            update me;
 
             selected_project.Completed_Stage_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
             selected_project.Projected_Stage_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
@@ -373,6 +377,9 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             selected_project.Campaign_Status__c = Oblix_Utils.CAMPAIGN_STATUS_CANCELLED;
             selected_project.Name += '(' + Oblix_Utils.CAMPAIGN_STATUS_CANCELLED + ')';
             update selected_project;
+            
+            me.Manual_Edit_Check__c = False;
+            update me;
 
             PageReference nextPage = Page.oblix_sowmaindetail;
             nextPage.getParameters().put('sowId', selected_project.Financial_Year__c);
@@ -400,12 +407,13 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         System.DEBUG('In Here');
         try{
             Oblix_SOW_Projects__c campaignToUpdate = new Oblix_SOW_Projects__c();
-            campaignToUpdate = [SELECT ID, Sync_Status__c FROM Oblix_SOW_Projects__c WHERE Id =:selected_project.Campaign_PFY__c LIMIT 1];
+            campaignToUpdate = [SELECT ID, Sync_Status__c,Campaign_PFY__r.sync_status__c FROM Oblix_SOW_Projects__c WHERE Id =:selected_project.Campaign_PFY__c LIMIT 1];
             campaignToUpdate.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+            Oblix_Utils.updateJobRunningCustomSetting(true);
             system.debug('-- updating campaignToUpdate1: ' + campaignToUpdate);
             update campaignToUpdate;
             system.debug('-- updating campaignToUpdate2: ' + campaignToUpdate);
-
+  
         }catch (DmlException e){
             ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not sync Campaign'));
             return null;
