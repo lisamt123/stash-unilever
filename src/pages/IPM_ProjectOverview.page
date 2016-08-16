@@ -87,11 +87,11 @@
 										</li>
 									</apex:repeat>
 
-									<apex:repeat var="message" value="{!lstFinAlertMessage}">
-										<li><apex:commandLink value="{!message}"
-												action="{$Page.IPM_Financial}?id={!project.Id}" /></li>
-									</apex:repeat>
-									<apex:repeat var="message" value="{!BusinessCaseMessageMap}">
+                                    <apex:repeat var="message" value="{!lstFinAlertMessage}">
+                                        <li><apex:commandLink value="{!message}"
+                                                action="{!$Page.IPM_Financial}?id={!project.Id}" /></li>
+                                    </apex:repeat>
+                                    <apex:repeat var="message" value="{!BusinessCaseMessageMap}">
                                         <li><apex:commandLink value="{!BusinessCaseMessageMap[message]}"
 												action="{!$Page.IPM_Financial}?id={!project.Id}" /></li>
 									</apex:repeat>

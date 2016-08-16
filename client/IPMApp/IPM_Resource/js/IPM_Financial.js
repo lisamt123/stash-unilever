@@ -92,6 +92,15 @@ function refreshFromRegionalJs(title, confirmMsg) {
     finScriptCallBack();
 }
 
+/* Below function calls two other functions and also deletes a css class and adds new css class. */
+function refreshFromGlobalJs(title, confirmMsg) {
+	modalFunc(title, confirmMsg);
+	var delModal = jq('#ipmDeleteModal .confirmAction');
+	delModal.removeClass('refreshFromLocal');
+	delModal.addClass('refreshFromRegional');
+	finScriptCallBack();
+}
+
 /*Below function changes the modal title and message in the modal content */
 function modalFunc(title, confirmMsg) {
     jq('#ipmDeleteModal .modal-title').html(title);

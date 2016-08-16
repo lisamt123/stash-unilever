@@ -46,6 +46,7 @@ public without sharing class IPM_Utils {
     public static String Rollout = 'Rollout';
     public static String Local = 'Local';
     public static String CONSOLIDATED = '_CONSOLIDATED';
+    public static String NONKEY = '_NONKEY';
     public static String Innovation = 'Innovation';
     public static String Gross = 'Gross';
     public static String Regional = 'Regional';
@@ -179,7 +180,9 @@ public without sharing class IPM_Utils {
     public static final String LIMIT_STRING = ' LIMIT 50000 ';
     public static String GATE_KEEPING_MODEL_1 = 'GKM1';
     public static String GATE_KEEPING_MODEL_2 = 'GKM2';
-	public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
+    public static String GATE_KEEPING_MODEL_3 = 'GKM3';
+    public static String GATE_KEEPING_MODEL_4 = 'GKM4';
+    public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
     public static final String UPDATE_FINANCIAL_YEAR_STR='updateFinancialYear';
     
     /*******************************************************************************************************
@@ -1416,7 +1419,8 @@ public static void updateclusterSumY3iTOValue(Set<Id> clusterIDsForY3iTOUpdate){
         }
         else
         { 
-            if(projectRollout.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS)
+            if(projectRollout.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS || 
+               (projectRollout.IPM_Project_GKM__c == 'GKM3' && projectRollout.Added_At_Stage__c != IPM_ConstantUtils.PHASE_MARKET_READY && projectRollout.Added_At_Stage__c != IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT && projectRollout.Added_At_Stage__c != IPM_ConstantUtils.PHASE_PLE))
             {
                 return projectRollout.Regional_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_NONKEY;
             }
