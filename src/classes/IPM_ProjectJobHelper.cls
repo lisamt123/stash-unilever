@@ -389,9 +389,17 @@ public without sharing class IPM_ProjectJobHelper
                             }
                         }
                         
-                        if( (currentProjectType.IPM_CreateLocalProjects__c || currentProjectType.IPM_CopyPhase2Local__c) && projectToGrandChildMapping.containsKey(projectId))
+                        if((currentProjectType.IPM_CreateLocalProjects__c || currentProjectType.IPM_CopyPhase2Local__c) && (projectToGrandChildMapping.containsKey(projectId) || (projectToChildMapping.containsKey(projectId) && IPM_Utils.GATE_KEEPING_MODEL_3.equals(incomingProjectDetail.IPM_ProjectGKM__c))))
                         {
-                            Map<Id,IPM_Project__c> localProjectMap =  projectToGrandChildMapping.get(projectId);
+                            Map<Id,IPM_Project__c> localProjectMap;
+                            if(IPM_Utils.GATE_KEEPING_MODEL_3.equals(incomingProjectDetail.IPM_ProjectGKM__c)) 
+                            {
+                            	localProjectMap =  projectToChildMapping.get(projectId);
+                            }
+                            else
+                            {
+                            	localProjectMap =  projectToGrandChildMapping.get(projectId);
+                            }
                             for(IPM_Project__c localProject : localProjectMap.values())
                             {
                                 Boolean phaseChanged = false;

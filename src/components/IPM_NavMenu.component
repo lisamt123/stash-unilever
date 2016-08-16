@@ -16,6 +16,7 @@
     <apex:attribute name="bosscardStatus" type="boolean" description="Pass the Bosscard Status"/>
     <apex:attribute name="bosscardId" type="Id" description="Pass the Bosscard Id"/>
     <apex:attribute name="gkm" type="String" description="Pass the project Gatekeeping Model"/>
+    <apex:attribute name="gkm3Proj" type="String" description="Pass the project Gatekeeping Model(New Field value)"/>
        
     <div class="ipmNavMenuDiv" role="navigation" aria-label="Main menu">
         <nav class="navbar navbar-default" role="navigation">
@@ -38,11 +39,11 @@
                     <li class="{!IF(activeItem=='charter', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Charter"><span>{!$Label.IPM_CHARTER}</span></a></li>
                     </apex:outputPanel>
                      <!--Below rendered condition provide link to gate document page -->
-                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global', OR(gkm='GCLT & RCLT', gkm3Proj='GKM3')),projSpan='Regional',projType='Operational'),OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='contract', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Contract"><span>{!$Label.IPM_Contract}</span></a></li>
                     </apex:outputPanel>
                      <!--Below rendered condition provide link to gate document page -->
-                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',OR(gkm='GCLT & RCLT', gkm3Proj='GKM3')),projSpan='Regional',projType='Operational'),OR(projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='market ready', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Ready"><span>{!$Label.IPM_MARKET_READY}</span></a></li>
                     </apex:outputPanel>
                      <!-- Below rendered condition provide link to gate document page-->
