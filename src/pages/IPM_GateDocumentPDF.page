@@ -578,6 +578,7 @@
           color:red !important;
         }
 		table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cellWidth {float: left; width: 50%;}
+		.dataTable table tr.lastchild td.tldfontchange span{font-size:12px !important;}
     </style>
 </head>
 <body class="docBody">
@@ -753,7 +754,7 @@
                     <td class="label">
                         {!$Label.IPM_TARGET_LAUNCH_DATE}{!$Label.IPM_COLON}
                     </td>      
-                    <td>
+                    <td class="tldfontchange">
                         <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}"/>
                     </td>
                     <td class="label">
@@ -782,7 +783,7 @@
                          <td class="label" width="20%">
                             {!$Label.IPM_TARGET_LAUNCH_DATE}{!$Label.IPM_COLON}
                         </td>      
-                        <td>
+                        <td class="tldfontchange">
                             <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}"/>
                         </td>
                         <td class="label" >
