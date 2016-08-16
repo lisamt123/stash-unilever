@@ -198,12 +198,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
                 }
             }            
         }  
-        if( oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c ){
-            if(newRollout.Regional_Project__c != null){
-                misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
-            } else {
-                misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
-            }
+        if(oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c && newRollout.Regional_Project__c != null){
+            misAlignedConfirmedRollout.put(newRollout.Regional_Project__c,newRollout);
+        } else if(oldRollout.MisAligned_Confirmed_By_Finance_Leader__c != newRollout.MisAligned_Confirmed_By_Finance_Leader__c &&  newRollout.MisAligned_Confirmed_By_Finance_Leader__c) {
+            misAlignedConfirmedRollout.put(newRollout.IPM_Project__c,newRollout);           
         }
 
     }

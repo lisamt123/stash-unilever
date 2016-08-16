@@ -3,11 +3,9 @@ public with sharing class IPM_FinancialMisalignment
     private static final String FINANCIALS_STR1='The financials for ';
     private static final String FINANCIALS_STR2=' projects and ';
     private static final String FINANCIALS_STR3=' are no longer aligned. Please contact your BD/BB Finance partner to re-align the business cases';
-    private static final String FINANCIALS_STR5=' are succesfully aligned.';
     private static Set<Id> projectIds= new Set<Id>();
     private static Map<Id, String> subjectIdMessageMap = new Map<Id, String>();
     private static Map<Id,Set<Id>> subjectIdMentionIdMap = new Map<Id,Set<Id>>();
-    private static Set<Id> mentionId = new Set<Id>();
     
    @InvocableMethod
    public static void postChatterIfLocalRegionalMisaligned(List<Id> localProjIds)
@@ -19,14 +17,7 @@ public with sharing class IPM_FinancialMisalignment
          localProjectIds.addAll(localProjIds);
          
          List<IPM_Financial__c> regionalFins = new List<IPM_Financial__c>();
-         /*
-         regionalFins = [Select Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, 
-                        Regional_Project__r.Deputy_Project_Leader__c,Regional_Project__r.IPM_Finance_Lead__c,Regional_Project__r.IPM_Project_Leader__c,Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, 
-                        Local_Project__r.Deputy_Project_Leader__c,Local_Project__r.IPM_Project_Leader__c,Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c, Gate_Keeping_Model__c,
-                        Regional_Project__r.IPM_Parent_Project__r.Id, Regional_Project__r.IPM_Parent_Project__r.IPM_Finance_Lead__c, Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Leader__c,
-                        Regional_Project__r.IPM_Parent_Project__r.Deputy_Project_Leader__c  from IPM_Financial__c 
-                        where Local_Project__c IN : localProjectIds and recordtype.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT Limit: IPM_ConstantUtils.MaxLimit];
-                        */
+
          regionalFins = [Select Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, 
                         Regional_Project__r.Deputy_Project_Leader__c,Regional_Project__r.IPM_Finance_Lead__c,Regional_Project__r.IPM_Project_Leader__c,Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, 
                         Local_Project__r.Deputy_Project_Leader__c,Local_Project__r.IPM_Project_Leader__c,Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c, Gate_Keeping_Model__c,

@@ -34,6 +34,8 @@ public with sharing class IPM_Resource_Allocation {
     private static final String MCO_STRING = ' IPM_Company_Card__r.IPM_MCO__c = \'';
     private static final String BCKWRD_SLASH = '\'';  
     private static final string QUERY_LIMIT=' limit 50000';
+    private static final String IPM_HOLDCATEGORY_LIKE = ' IPM_HoldCategory__c LIKE ';
+    
     //@description:To store project id FROM url parameter
 
     public String projectID{get;set;}
@@ -938,7 +940,7 @@ public with sharing class IPM_Resource_Allocation {
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
                 UQuery = UQuery+QUERY_STRING_PROFILE;
-                UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
+                UQuery = UQuery+IPM_HOLDCATEGORY_LIKE+holdCategory;
                 UQuery= UQuery + '  ) AND IPM_User_Function__c = \''+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 
             }
@@ -960,7 +962,7 @@ public with sharing class IPM_Resource_Allocation {
                 
                 if(cntxtRLOut.IPM_Rollout_Span__c==IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL)
                 { 
-	                UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
+	                UQuery = UQuery+IPM_HOLDCATEGORY_LIKE+holdCategory;
 	                UQuery= UQuery + '  ) AND IPM_User_Function__c = \''+project_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }
                 else 
@@ -980,7 +982,7 @@ public with sharing class IPM_Resource_Allocation {
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
                 UQuery = UQuery+QUERY_STRING_PROFILE;
-                UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
+                UQuery = UQuery+IPM_HOLDCATEGORY_LIKE+holdCategory;
                 UQuery= UQuery + '  ) AND IPM_User_Role__c = \''+function_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 
             }
@@ -1002,7 +1004,7 @@ public with sharing class IPM_Resource_Allocation {
                
                 if(cntxtRLOut.IPM_Rollout_Span__c==IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL)
                 { 
-	                UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
+	                UQuery = UQuery+IPM_HOLDCATEGORY_LIKE+holdCategory;
 	                UQuery= UQuery + '  ) AND IPM_User_Role__c =\''+function_Leader+BCKWRD_SLASH+QUERY_LIMIT;
                 }
                 else 

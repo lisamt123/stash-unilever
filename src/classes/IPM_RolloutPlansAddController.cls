@@ -939,16 +939,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         String queryString = 'SELECT Id,name,Local_Project__c, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
         queryString+= '(SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Countries_Local__r) ';
         queryString+= 'FROM IPM_Project_Rollout__c ';
-        if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
-        {
-            queryString+= ' WHERE IPM_Project__c =: projectId LIMIT 10000';
-        }
-        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
-        {
-            queryString+= ' WHERE Regional_Project__c =: projectId LIMIT 10000';
-        }
-		
-	Set<String> regionalLocalRegional = new Set<String>();
+        queryString+= filterCondition(project.IPMProject_Span__c);
+        
+        Set<String> regionalLocalRegional = new Set<String>();
         for(IPM_Project_Rollout__c ipmRollout : Database.query(queryString))
         {
             mapExistingRollouts.put(ipmRollout.IPM_Rollout_Project__c, ipmRollout);
@@ -959,14 +952,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         //Countries
         queryString = null;
         queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
-        if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
-        {
-            queryString+= 'WHERE IPM_Project__c =: projectId LIMIT 10000';
-        }
-        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
-        {
-            queryString+= 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';        
-        }
+        queryString+= filterCondition(project.IPMProject_Span__c);
           
         for (IPM_Country__c country : Database.query(queryString))
         {
@@ -1006,7 +992,26 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         processCountry();
         deleteRollout();
     }
-        
+    
+    /**
+    *  @Description This helper method provides filter condition for Global or Regional projects
+    *  @name filterCondition
+    *  @param NONE
+    *  @return NONE
+    **/
+    private string filterCondition(string span){
+        string addCondition;
+        if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(span))
+        {
+            addCondition = 'WHERE IPM_Project__c =: projectId LIMIT 10000';
+        }
+        else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(span))
+        {
+            addCondition = 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';        
+        }
+        return addCondition;        
+    }
+    
     /**
     *  @Description This is a helper method which filters Rollouts depends on whether it has been attached in Charter document(Ideas) phase or not
     *  @name filterRollouts
