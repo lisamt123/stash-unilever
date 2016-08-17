@@ -1023,21 +1023,6 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>ERP_Product__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Object storing ERP information (Sales Area)</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Object storing ERP information (Sales Area)</inlineHelpText>
-        <label>ERP Product</label>
-        <referenceTo>ERP_Product__c</referenceTo>
-        <relationshipLabel>Products</relationshipLabel>
-        <relationshipName>Products</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>EndDate__c</fullName>
         <description>Purpose : Date on which the product will become inactive
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -6318,10 +6303,6 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         </picklistValues>
         <picklistValues>
             <picklist>FS_TopSellers__c</picklist>
-            <values>
-                <fullName>Caterpack 100 %28LYL%2FGREEN%29</fullName>
-                <default>false</default>
-            </values>
             <values>
                 <fullName>Hellmann%27s Real %285L%2F2%2E5L%29</fullName>
                 <default>false</default>
