@@ -1024,7 +1024,7 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-      <runTest>BET_AccessServiceTest<runTest> </runTest>
+      <runTest>BET_AccessServiceTest</runTest>
  <runTest>BET_ApproveProjectsComponentContrTest<runTest>
  <runTest>BET_AssetDispatcherControllerTest</runTest>
  <runTest>BET_AssetHandlerClsTest</runTest>
