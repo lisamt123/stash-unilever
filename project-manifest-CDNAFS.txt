@@ -1,5 +1,4 @@
 src
-src/objects/Contract_Product_Monthly_Actual__c.object
 src/objects/FSVATRU__c.object
 src/objects/FSVATUA__c.object
 src/objects/FS_User_Territory__c.object
