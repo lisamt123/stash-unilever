@@ -205,15 +205,12 @@
                         </div>
                     </div>
                     <!--<input type="text"/>
-<<<<<<< HEAD
                         <div onclick="{!c.postChatterInfo}">  POST </div>-->
                     <!--<forceChatter:feed type="Record" subjectId="{!v.newsId}"/>-->
                 <!--Ligthning Chatter Feed:News App Enhancements-->
-=======
                         <div onclick="{!c.postChatterInfo}">  POST </div> 
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/>
                 Ligthning Chatter Feed:News App Enhancements -->
->>>>>>> develop
                 	<c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
                 	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
             </div>
