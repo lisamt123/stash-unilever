@@ -1291,7 +1291,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
         {
           // Populating Y1 iTO 
-           if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+           if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
            	
            	
            	otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 
@@ -1326,7 +1326,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
             {  
               // Populating Y1 gTO 
-              if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){ 
+              if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){ 
               otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
               otifAnalyticObj.IPM_Contract_Y1_gTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 gTO 
               otifAnalyticObj.IPM_MD_Y1_gTO__c = fr.Turnover_MD__c;					//Market Deployment Innovation Y1 gTO 
@@ -1357,7 +1357,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
              
               // Populating Y1 gTO 
-			  if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){			   
+			if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){			   
               otifAnalytic.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;			//Charter Innovation Y1 gTO	
               otifAnalytic.IPM_Contract_Y1_gTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 gTO	
               otifAnalytic.IPM_MD_Y1_gTO__c = fr.Turnover_MD__c; 					//Market Deployment Innovation Y1 gTO								
@@ -1393,7 +1393,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
         {
           // Populating Y1 iTO 
           
-          if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){ 
+          if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){ 
           otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;			//Charter Innovation Y1 iTO	
           otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;			//Contract Innovation Y1 iTO	
           otifAnalyticObj.IPM_MD_Y1_iTO__c = fr.Turnover_MD__c;						//Market Deployment Innovation Y1 iTO	
@@ -1491,7 +1491,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
         
-       	if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+       	if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
       	 // Populating Y1 iTO  
           otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;			//Charter Innovation Y1 iTO	
           otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;			//Contract Innovation Y1 iTO	
@@ -1507,7 +1507,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
          }else if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
         	
          // Populating Y3 iTO  
-         if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+         if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
           otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
           otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
           otifAnalyticObj.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;
@@ -1537,7 +1537,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
            
-        if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+        if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
            	   
          // Populating Y1 gTO  
               otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
@@ -1560,7 +1560,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
        }else if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
         	
        // Populating Y3 gTO 
-	       if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+	       if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
 	          otifAnalyticObj.IPM_Charter_Y3_gTO__c = fr.Turnover_Charter__c;	// Charter Calender Y3 gTo
               otifAnalyticObj.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c; //Contract Calender Y1 gTO 
               otifAnalyticObj.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;				//Market Deployment Calender Y1 gTO
@@ -1594,7 +1594,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
               // Populating Y1 gTO 
-			    if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+			    if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
 			   	  otifAnalytic.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;			//Charter Innovation Y1 gTO	
 	              otifAnalytic.IPM_Contract_Y1_gTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 gTO	
 	              otifAnalytic.IPM_MD_Y1_gTO__c = fr.Turnover_MD__c; 					//Market Deployment Innovation Y1 gTO								
@@ -1616,7 +1616,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
                }        
         }else if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
         	  // Populating Y3 gTO 
-        	 if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+        	 if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
         	  otifAnalytic.IPM_Charter_Y3_gTO__c = fr.Turnover_Charter__c;
               otifAnalytic.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
               otifAnalytic.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
@@ -1652,7 +1652,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
           
-          if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+          if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
           // Populating Y1 iTO  
 	          otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;			//Charter Innovation Y1 iTO	
 	          otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;			//Contract Innovation Y1 iTO	
@@ -1670,7 +1670,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
                         
         }else if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
         // Populating Y3 iTO
-        if(fr.Charter_Approved__c == true || fr.Contract_Approved__c == true || fr.MD_Approved__c == true || fr.MR_Approved__c == true){
+        if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
           otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
           otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
           otifAnalyticObj.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;
