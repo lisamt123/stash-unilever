@@ -211,10 +211,6 @@
                 <behavior>Edit</behavior>
                 <field>Territory__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Cross_Account_ID__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

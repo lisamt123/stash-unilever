@@ -62,10 +62,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Cross_Account_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FS_ApprovalRequestComments__c</field>
             </layoutItems>
             <layoutItems>

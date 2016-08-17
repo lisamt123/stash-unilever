@@ -462,11 +462,7 @@
         <fields>OPPORTUNITY.CLOSE_DATE</fields>
         <relatedList>Opportunity.ShipToCode__c</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Account_Relationship__c.Secondary_Account__c</relatedList>
-    </relatedLists>
-    <relatedLists>
+	<relatedLists>
         <fields>NAME</fields>
         <relatedList>Risk__c.Account__c</relatedList>
     </relatedLists>

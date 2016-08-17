@@ -91,7 +91,6 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Product__c</fields>
-        <fields>Account__c</fields>
         <fields>External_Key__c</fields>
         <fields>FS_First_of_Month__c</fields>
         <fields>FS_Planned_Quantity__c</fields>

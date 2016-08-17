@@ -14,12 +14,9 @@ src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
 src/layouts/FS_Defined_Objective__c-Operator Objective.layout
 src/layouts/FS_Monthly_Claimed_Cases__c-Actual Layout.layout
 src/layouts/FS_TemporaryTPR__c-TemporaryTPR Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %26 Assets%28LEAF%29.layout
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
 src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
 src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product.layout
-src/layouts/OpportunityTeamMember-Opportunity Team Member Layout.layout
 src/layouts/PricebookEntry-Food Solutions - PBE Layout.layout
 src/layouts/Product2-Food Solutions Product.layout
-src/layouts/Risk__c-Risk Layout.layout
