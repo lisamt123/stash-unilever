@@ -1430,8 +1430,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Project__c> lstLocalProjects = new List<IPM_Project__c>();
         
-        if ( ((project.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3 && project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) ||
-              (project.IPM_ProjectGKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3 && project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && currentFinancial.Local_Project__c != null )) &&
+        if ( (( !IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(project.IPM_ProjectGKM__c) &&  !IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c)) ||
+              (IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(project.IPM_ProjectGKM__c) && !IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c) && currentFinancial!= null && currentFinancial.Local_Project__c != null )) &&
              currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME && 
             (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) &&
             (pageName!= null && pageName.equalsIgnoreCase('IPM_Financial')))
