@@ -6303,26 +6303,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         </picklistValues>
         <picklistValues>
             <picklist>FS_TopSellers__c</picklist>
-            <values>
-                <fullName>Knorr Asian Sauces</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Demi Glace</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Mash Potato</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Primerba</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Tomatoes</fullName>
-                <default>false</default>
-            </values>
+            
         </picklistValues>
         <picklistValues>
             <picklist>FS_Top_Sellers__c</picklist>
