@@ -17,7 +17,8 @@ for(aa_Agent_Report__c report:Trigger.new){
                 //go
                 
                 if (report.Status__c == STATUS_VALUE_TO_POST_ON) {
-
+                  system.debug('objec in trigger'+report);
+                  
                     // brand
                     if (report.Competitor_Brand__c != NULL) {
                        sendTochatterMap.put(report.Competitor_Brand__c,JSON.serialize(report));
@@ -56,14 +57,15 @@ for(aa_Agent_Report__c report:Trigger.new){
                     if (report.Topic__c != NULL) {
                         sendTochatterMap.put(report.Topic__c,JSON.serialize(report));                   
                     }
-                    
+                    system.debug('cluster id to create the chatter post');
                     //Cluster   
-                    if(report.ClusterId__c!=NULL && report.Country__c==NULL )
+                    if(report.ClusterId__c!=NULL)
                     {        
                       //  aa_Country__c cc=[select Cluster_Id__c from aa_Country__c where Id=:report.Country__c];
                        // Id clusterId=cc.Cluster_Id__c;
-                     //  system.debug('Clusteriddddddddddddddd==='+report.Country__r.Cluster_Id__c);
-                        sendTochatterMap.put('Cluster_Id',JSON.serialize(report));                    
+                      system.debug('Clusteriddddddddddddddd==='+report.Country__r.Cluster_Id__c);
+                       // sendTochatterMap.put('Cluster_Id',JSON.serialize(report));  
+                        sendTochatterMap.put(report.ClusterId__c,JSON.serialize(report));                    
                     }                    
                     //User Name
                     String CaretedbyName=userInfo.getUserName();

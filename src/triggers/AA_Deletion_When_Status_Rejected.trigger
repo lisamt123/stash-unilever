@@ -1,5 +1,5 @@
 trigger AA_Deletion_When_Status_Rejected on aa_Agent_Report__c (after update) {
-	    
+        
     List<Id> agentReportIDList =  new List<Id>();
     Set<Id> recordTypeIds = new Set<Id>();
     
@@ -13,12 +13,12 @@ trigger AA_Deletion_When_Status_Rejected on aa_Agent_Report__c (after update) {
     for(aa_Agent_Report__c agentReportObj:Trigger.new){
         
         for(RecordType recordtypeObject:recordtypeNameList ){
-        	  
-        	if((agentReportObj.Status__c == 'Rejected' && recordtypeObject.name == 'ETS Members Record Type' && agentReportObj.Approve_Reject__c == 'Reject')
+              
+            if((agentReportObj.Status__c == 'Rejected' && recordtypeObject.name == 'ETS Members Record Type' && agentReportObj.Approve_Reject__c == 'Reject')
                 ||
                (agentReportObj.Status__c == 'Rejected' && recordtypeObject.name == 'CI Manger Record type'))
                 {
-                	system.debug('all condition satisfied=====>');
+                    system.debug('all condition satisfied=====>');
                     agentReportIDList.add(agentReportObj.id);    
                 }
         
@@ -32,11 +32,11 @@ trigger AA_Deletion_When_Status_Rejected on aa_Agent_Report__c (after update) {
 
     List<Database.DeleteResult> deletedList = Database.delete(agentReportNeedToDelete);
     for(Database.DeleteResult dr : deletedList) {
-    	if (dr.isSuccess()) {
+        if (dr.isSuccess()) {
                 // Operation was successful, so get the ID of the record that was processed
-        	System.debug('Successfully deleted account with ID: ' + dr.getId());
+            System.debug('Successfully deleted account with ID: ' + dr.getId());
         }else {
-        	      // Operation failed, so get all errors               
+                  // Operation failed, so get all errors               
             for(Database.Error err : dr.getErrors()) {
                     System.debug('The following error has occurred.');                   
                     System.debug(err.getStatusCode() + ': ' + err.getMessage());
