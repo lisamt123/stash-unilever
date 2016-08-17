@@ -231,6 +231,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
        else{
            currPhase = projObj.IPM_Temporary_Phase__c;
        }
+       lstFinDataMissingAlertMessage = new list<String>();
        init();
        getGatedocumentRendered();
        // Adding Alert for Local Project leader is blank for rollout Projects
