@@ -80,6 +80,6 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>WINatPOS_Salesforce_Base_URL</shortDescription>
-        <value>https://unilever--c.na9.visual.force.com/</value>
+        <value>https://unilever.my.salesforce.com</value>
     </labels>
     
