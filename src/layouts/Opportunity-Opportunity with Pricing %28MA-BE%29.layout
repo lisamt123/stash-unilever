@@ -342,12 +342,6 @@
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>Amount__c</fields>
-        <fields>Type__c</fields>
-        <relatedList>Marketing_Fund__c.Opportunity__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>MemberName</fields>
         <fields>OppAccessLevel</fields>
         <fields>TeamMemberRole</fields>

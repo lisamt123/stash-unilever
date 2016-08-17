@@ -320,22 +320,7 @@
         </layoutColumns>
         <style>CustomLinks</style>
     </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Contact Detail</label>
-        <layoutColumns>
-            <layoutItems>
-                <height>200</height>
-                <page>FS_ContactRelatedList</page>
-                <showLabel>false</showLabel>
-                <showScrollbars>true</showScrollbars>
-                <width>100%</width>
-            </layoutItems>
-        </layoutColumns>
-        <style>OneColumn</style>
-    </layoutSections>
+    
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
