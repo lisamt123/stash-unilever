@@ -3373,7 +3373,38 @@
         <field>IPM_Financial_Year__c.isActive__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    	<fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial_Year__c.Gate_Keeping_Model__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	
+    <fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Gate_Keeping_Model__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Is_Nonkey_Business_Case_Changed__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.MisalignmentManual__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Source_Project__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Target_Project__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Financial__c.Red_Validation_Cells__c</field>
 		<readable>true</readable>
