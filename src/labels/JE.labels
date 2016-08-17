@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
-        <fullName>Notation</fullName>
+        <fullName>JE_Notation</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Notation</shortDescription>
+        <shortDescription>JE_Notation</shortDescription>
         <value>%-</value>
     </labels>
     <labels>
-        <fullName>Notation2</fullName>
+        <fullName>JE_NotationTwo</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Notation2</shortDescription>
+        <shortDescription>JE_NotationTwo</shortDescription>
         <value>%</value>
     </labels>
     <labels>
-        <fullName>Penetration_range_Error</fullName>
+        <fullName>JE_Penetration_Range_Error</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Penetration range Error</shortDescription>
+        <shortDescription>JE_Penetration_Range_Error</shortDescription>
         <value>Range of penetration should be 100%-200%. your penetration range is:</value>
     </labels>
     <labels>
-        <fullName>Range_of_salary_Error</fullName>
+        <fullName>JE_Salary_Range_Error</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Range of salary Error</shortDescription>
+        <shortDescription>JE_Salary_Range_Error</shortDescription>
         <value>Range of salary should be 100%-200%. your range is:</value>
     </labels>
 </CustomLabels>

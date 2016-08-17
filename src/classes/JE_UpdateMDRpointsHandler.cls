@@ -1,12 +1,12 @@
 /*************************************************************************************************************************************************************
-@ Class:          updateMDRpointsHandler
+@ Class:          JE_UpdateMDRpointsHandler
 @ Version:        1.0
 @ Author:         vinod thupakula
 @ Purpose:        Classs created for to get the market data reference point.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 @ Change history: 09.08.2016 / vinod thupakula / Created the class.
 **************************************************************************************************************************************************************/
-public class updateMDRpointsHandler{
+public class JE_UpdateMDRpointsHandler{
     
     private Integer totalPoints = 0;
     private Integer penetrationPoint = 0;  
@@ -78,16 +78,16 @@ public class updateMDRpointsHandler{
                            je.Market_Data_Reference_Point__c = mdrPoint;
                            je.Penetration_Total_Points__c = penetrationPoint;
                                if(max_mdrpoints<=200 && min_mdrpoints>=100){ 
-                                   je.Range_of_salary__c = min_mdrpoints +Label.Notation+max_mdrpoints+Label.Notation2;                       
+                                   je.Range_of_salary__c = min_mdrpoints +Label.JE_Notation+max_mdrpoints+Label.JE_NotationTwo;                       
                                 }
                                else{ 
-                                   je.Range_of_salary__c = Label.Range_of_salary_Error+min_mdrpoints +Label.Notation+max_mdrpoints+Label.Notation2;                             
+                                   je.Range_of_salary__c = Label.JE_Salary_Range_Error+min_mdrpoints +Label.JE_Notation+max_mdrpoints+Label.JE_NotationTwo;                             
                                }
                                if(max_paypoint<=200 && min_paypoint>=100){ 
-                                   je.Paypoint_Based_on_Range_Penetration__c = min_paypoint+Label.Notation+max_paypoint+Label.Notation2;                       
+                                   je.Paypoint_Based_on_Range_Penetration__c = min_paypoint+Label.JE_Notation+max_paypoint+Label.JE_NotationTwo;                       
                                 }
                                else{ 
-                                   je.Paypoint_Based_on_Range_Penetration__c = Label.Penetration_range_Error+min_paypoint+Label.Notation+max_paypoint+Label.Notation2;                             
+                                   je.Paypoint_Based_on_Range_Penetration__c = Label.JE_Penetration_Range_Error+min_paypoint+Label.JE_Notation+max_paypoint+Label.JE_NotationTwo;                             
                                }                               
                         mappedJeEvalution.add(je);    
                         }
