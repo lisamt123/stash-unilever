@@ -1031,7 +1031,7 @@
       <runTest>BET_AssetServiceTest</runTest>
       <runTest>BET_AssetsOrderController_Test</runTest>
       <runTest>BET_BatchAssetStatusMapping_Test</runTest>
-      <runTest>BET_Batch <runTest>BETStatusMapping_Test</runTest>
+      <runTest>BET_BatchBETStatusMapping_Test</runTest>
       <runTest>BET_BatchBrandDelete_Test</runTest>
       <runTest>BET_BatchBrandMapping_Test</runTest>
       <runTest>BET_BatchCategoryMapping_Test</runTest>
