@@ -17,6 +17,8 @@ src/triggers
 src/workflows
 src/applications/CEC_Admin.app
 src/applications/CEC_Console.app
+src/remoteSiteSettings
+src/remoteSiteSettings/DigitalGenius_ConnectBackend.remoteSite 
 src/classes/CEC_CaseTriggerHelper.cls
 src/classes/CEC_CaseTriggerHelper.cls-meta.xml
 src/classes/CEC_CaseTriggerHelperExtension.cls
