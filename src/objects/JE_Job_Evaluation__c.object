@@ -4499,9 +4499,9 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
         <type>Text</type>
     </nameField>
     <pluralLabel>JE Job Evaluations</pluralLabel>
-    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <recordTypes>
+    <!--<recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>-->
+  <!--  <recordTypes>
         <fullName>Brand_Building</fullName>
         <active>true</active>
         <label>Brand Building</label>
@@ -5892,8 +5892,8 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
         </picklistValues>
-    </recordTypes>
-    <recordTypes>
+    </recordTypes>-->
+ <!--   <recordTypes>
         <fullName>Brand_Development</fullName>
         <active>true</active>
         <label>Brand Development</label>
@@ -7280,8 +7280,8 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
         </picklistValues>
-    </recordTypes>
-    <recordTypes>
+    </recordTypes>-->
+   <!-- <recordTypes>
         <fullName>Customer_Development</fullName>
         <active>true</active>
         <label>Customer Development</label>
@@ -8676,8 +8676,8 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
         </picklistValues>
-    </recordTypes>
-    <recordTypes>
+    </recordTypes>-->
+   <!-- <recordTypes>
         <fullName>Finance</fullName>
         <active>true</active>
         <label>Finance</label>
@@ -10072,8 +10072,8 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
         </picklistValues>
-    </recordTypes>
-    <recordTypes>
+    </recordTypes>-->
+   <!-- <recordTypes>
         <fullName>Human_Resources</fullName>
         <active>true</active>
         <label>Human Resources</label>
@@ -11476,8 +11476,8 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
         </picklistValues>
-    </recordTypes>
-    <recordTypes>
+    </recordTypes>-->
+ <!--   <recordTypes>
         <fullName>Supply_Chain</fullName>
         <active>true</active>
         <label>Supply Chain</label>
@@ -12868,7 +12868,7 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
         </picklistValues>
-    </recordTypes>
+    </recordTypes>-->
     <searchLayouts/>
     <sharingModel>Private</sharingModel>
 </CustomObject>
