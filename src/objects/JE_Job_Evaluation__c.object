@@ -175,56 +175,6 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	 <fields>
-        <fullName>Market_Data_Reference_Point__c</fullName>
-        <externalId>false</externalId>
-        <label>Market Data Reference Point</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Paypoint_Based_on_Range_Penetration__c</fullName>
-        <externalId>false</externalId>
-        <label>Paypoint Based on Range Penetration</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Penetration_Total_Points__c</fullName>
-        <externalId>false</externalId>
-        <label>Penetration Total Points</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Range_of_salary__c</fullName>
-        <externalId>false</externalId>
-        <label>Range of salary</label>
-        <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>Change_Comments__c</fullName>
         <externalId>false</externalId>
@@ -1821,6 +1771,19 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( Job_Grade_of_Line_Manager
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Market_Data_Reference_Point__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Data Reference Point</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Membership_in_Leadership_Teams__c</fullName>
         <externalId>false</externalId>
         <label>Membership in Leadership Teams</label>
@@ -3035,6 +2998,31 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Paypoint_Based_on_Range_Penetration__c</fullName>
+        <externalId>false</externalId>
+        <label>Paypoint Based on Range Penetration</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Penetration_Total_Points__c</fullName>
+        <externalId>false</externalId>
+        <label>Penetration Total Points</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Pillar__c</fullName>
         <externalId>false</externalId>
         <label>Pillar</label>
@@ -3159,6 +3147,18 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Range_of_salary__c</fullName>
+        <externalId>false</externalId>
+        <label>Range of salary</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Reporting_Layer_Validation__c</fullName>
