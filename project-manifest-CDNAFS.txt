@@ -1,22 +1,63 @@
 src
-src/layouts/Account-Distributor.layout
-src/layouts/Account-Operators Russia.layout
-src/layouts/Account-Operators.layout
-src/layouts/Contract_Product__c-Contract Product Layout.layout
-src/layouts/FS_Account_Plan__c-Distributor Account Plan Feed Based.layout
-src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
-src/layouts/FS_Account_Plan__c-Operator Account Plan Feed Based.layout
-src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
-src/layouts/FS_Defined_Objective__c-Defined Objective Layout.layout
-src/layouts/FS_Defined_Objective__c-Distributor Objective Feed Based.layout
-src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective.layout
-src/layouts/FS_Monthly_Claimed_Cases__c-Actual Layout.layout
-src/layouts/FS_TemporaryTPR__c-TemporaryTPR Layout.layout
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
-src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
-src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product.layout
-src/layouts/PricebookEntry-Food Solutions - PBE Layout.layout
-src/layouts/Product2-Food Solutions Product.layout
+src/classes/FS_AccountPlanHandler.cls
+src/classes/FS_AccountPlanHandler.cls-meta.xml
+src/classes/FS_AccountPlanHelper.cls
+src/classes/FS_AccountPlanHelper.cls-meta.xml
+src/classes/FS_Account_Planning_Test.cls
+src/classes/FS_Account_Planning_Test.cls-meta.xml
+src/classes/FS_CentrallyLedChildAccount_Pic_Test.cls
+src/classes/FS_CentrallyLedChildAccount_Pic_Test.cls-meta.xml
+src/classes/FS_CentrallyLedChildAccount_Picklist_CX.cls
+src/classes/FS_CentrallyLedChildAccount_Picklist_CX.cls-meta.xml
+src/classes/FS_ContactDetailHelper_CC.cls
+src/classes/FS_ContactDetailHelper_CC.cls-meta.xml
+src/classes/FS_ContactDetailHelper_CC_Test.cls
+src/classes/FS_ContactDetailHelper_CC_Test.cls-meta.xml
+src/classes/FS_ContactDetail_CC.cls
+src/classes/FS_ContactDetail_CC.cls-meta.xml
+src/classes/FS_ContactDetail_CC_Edit.cls
+src/classes/FS_ContactDetail_CC_Edit.cls-meta.xml
+src/classes/FS_ContactDetail_Test.cls
+src/classes/FS_ContactDetail_Test.cls-meta.xml
+src/classes/FS_ContactExtend_CE.cls
+src/classes/FS_ContactExtend_CE.cls-meta.xml
+src/classes/FS_ContactExtend_CE_Test.cls
+src/classes/FS_ContactExtend_CE_Test.cls-meta.xml
+src/classes/FS_ContactUtility.cls
+src/classes/FS_ContactUtility.cls-meta.xml
+src/classes/FS_ContractProductHandler.cls
+src/classes/FS_ContractProductHandler.cls-meta.xml
+src/classes/FS_ContractProductHelper.cls
+src/classes/FS_ContractProductHelper.cls-meta.xml
+src/classes/FS_CreateContact_CC.cls
+src/classes/FS_CreateContact_CC.cls-meta.xml
+src/classes/FS_CreateContact_CC_Test.cls
+src/classes/FS_CreateContact_CC_Test.cls-meta.xml
+src/classes/FS_GenerateMDMRequest_CX.cls
+src/classes/FS_GenerateMDMRequest_CX.cls-meta.xml
+src/classes/FS_MABE_Test.cls
+src/classes/FS_MABE_Test.cls-meta.xml
+src/classes/FS_OpportunityHandler.cls
+src/classes/FS_OpportunityHandler.cls-meta.xml
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
+src/classes/FS_OpportunityHelper_Test.cls
+src/classes/FS_OpportunityHelper_Test.cls-meta.xml
+src/classes/FS_OpportunityProductHandler.cls
+src/classes/FS_OpportunityProductHandler.cls-meta.xml
+src/classes/FS_SendMDMRequestEmail_CE.cls
+src/classes/FS_SendMDMRequestEmail_CE.cls-meta.xml
+src/classes/FS_SendMDMRequestEmail_CX.cls
+src/classes/FS_SendMDMRequestEmail_CX.cls-meta.xml
+src/classes/FS_SendMDMRequestEmail_CX_Test.cls
+src/classes/FS_SendMDMRequestEmail_CX_Test.cls-meta.xml
+src/classes/FS_TPRCalculationHelper.cls
+src/classes/FS_TPRCalculationHelper.cls-meta.xml
+src/classes/FS_TPRCalculationTest.cls
+src/classes/FS_TPRCalculationTest.cls-meta.xml
+src/classes/FS_TPRUtil.cls
+src/classes/FS_TPRUtil.cls-meta.xml
+src/classes/FS_TPRWithGivenPriceUtil.cls
+src/classes/FS_TPRWithGivenPriceUtil.cls-meta.xml
+src/classes/FS_Utility.cls
+src/classes/FS_Utility.cls-meta.xml
