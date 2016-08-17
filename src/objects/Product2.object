@@ -6304,23 +6304,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <picklistValues>
             <picklist>FS_TopSellers__c</picklist>
             <values>
-                <fullName>Hellmann%27s Real %285L%2F2%2E5L%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Knorr Asian Sauces</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Beef Boullion 2%2F8 KG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Boullion Mushroom 2%2F8 KG</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Knorr Chicken Boullion 2%2F8 KG</fullName>
                 <default>false</default>
             </values>
             <values>

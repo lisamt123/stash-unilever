@@ -21,3 +21,4 @@ src/objects/PricebookEntry.object
 src/objects/Product2.object
 src/objects/Risk__c.object
 src/objects/Task.object
+src/objects/Territory__c.object

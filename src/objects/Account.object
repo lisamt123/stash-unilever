@@ -52,12 +52,7 @@
         <actionName>Tab</actionName>
         <type>Default</type>
     </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <content>Account_Record_Page</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-    </actionOverrides>
+    
     <actionOverrides>
         <actionName>ViewCustomerPortalUser</actionName>
         <type>Default</type>
@@ -499,20 +494,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>Cross_Account_ID__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Used for Ship To &amp; PoP ID</description>
-        <externalId>false</externalId>
-        <label>Cross Acount ID</label>
-        <referenceTo>Account_Relationship__c</referenceTo>
-        <relationshipLabel>Accounts</relationshipLabel>
-        <relationshipName>Accounts</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Lookup</type>
-    </fields>
+    
     <fields>
         <fullName>CurrencyIsoCode</fullName>
         <trackFeedHistory>false</trackFeedHistory>
