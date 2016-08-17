@@ -88,22 +88,6 @@
         <fields>HasSchedule</fields>
         <relatedList>OpportunityLineItem.Contract_Product__c</relatedList>
     </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Product__c</fields>
-        <fields>External_Key__c</fields>
-        <fields>FS_First_of_Month__c</fields>
-        <fields>FS_Planned_Quantity__c</fields>
-        <fields>FS_Forecast_Quantity__c</fields>
-        <fields>FS_Claimed_Cases_Paid__c</fields>
-        <relatedList>FS_Monthly_Claimed_Cases__c.Contract_Product__c</relatedList>
-        <sortField>FS_First_of_Month__c</sortField>
-        <sortOrder>Asc</sortOrder>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Product_at_Risk__c.Contract_Product__c</relatedList>
-    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
