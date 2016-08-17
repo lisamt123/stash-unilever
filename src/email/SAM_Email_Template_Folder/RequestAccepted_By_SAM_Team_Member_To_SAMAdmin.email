@@ -1,0 +1,6 @@
+Hi UL SAM Admin,
+
+ UL SAM TEAM Member  {!SAM_Request__c.lkp_Assign_To__c} has accepted the Service request {!SAM_Request__c.Name} raised by {!SAM_Request__c.CreatedBy} . The request is ""In Progress"".
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

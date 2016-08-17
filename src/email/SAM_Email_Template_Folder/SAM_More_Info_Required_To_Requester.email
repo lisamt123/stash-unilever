@@ -1,0 +1,6 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+SAM team needs additional details for Service Request number {!SAM_Request__c.Name} to make further progress. The status of the request is ""Awaiting information"". Request you to provide the information as mentioned in chatter/comments section of the request.
+
+Thanks,
+UL SAM Team

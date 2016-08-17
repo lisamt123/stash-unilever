@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>email to requester for  Details  : DO/Run-Cost/Build</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DetailsRequired _DO_Build From SAMT</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} : Details Required : DO/Run-Cost/Build</subject>
+    <type>text</type>
+</EmailTemplate>

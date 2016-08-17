@@ -1,0 +1,9 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+Service Request number {!SAM_Request__c.Name} is closed.
+
+Please login to the portal for more details. 
+Click here  {!SAM_Request__c.Link}.
+
+Thanks,
+UL SAM Team

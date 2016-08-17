@@ -107,6 +107,9 @@ public with sharing class SAM_TriggerFactory
         if (soType == SAM_Request__c.sObjectType){
             return new SAM_RequestTrigger_Handler();
         }
+        if (soType == SAM_Request_Line_Item__c.sObjectType){
+            return new SAM_RLITrigger_Handler();
+        }
         return null;
     }
 

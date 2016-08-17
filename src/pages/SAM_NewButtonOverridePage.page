@@ -18,7 +18,7 @@
       
      
       <apex:pageBlockSection columns="1" collapsible="false"  id="theSec">
-       <apex:selectList label="Record Type of new record" value="{!recordtypeId}" style=" width: 177px; form-control" size="1" > 
+       <apex:selectList label="Request Type" value="{!recordtypeId}" style=" width: 177px; form-control" size="1" > 
         <apex:selectOptions value="{!recordTypelist}" /> 
       </apex:selectList>
        

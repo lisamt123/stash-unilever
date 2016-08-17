@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to Requester from SAM Team to About the Service Request Related Quote is rejected.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>QuoteRejected To SAMT From Requester</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} : SAM Quote Rejected</subject>
+    <type>text</type>
+</EmailTemplate>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to Finance Team from SAM Team Requesting for Service Request Related Cross-Charge Details.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>SubmitsForCrossCharge To ULFT</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} is Submitted for Cross-charge</subject>
+    <type>text</type>
+</EmailTemplate>

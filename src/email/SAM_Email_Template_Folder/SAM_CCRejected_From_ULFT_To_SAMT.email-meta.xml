@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email To SAM Team from Finance Team to Inform the Request Related Cross-Charge is Rejected</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CCRejected From ULFT To SAMT</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} :Finance Charge Rejected</subject>
+    <type>text</type>
+</EmailTemplate>

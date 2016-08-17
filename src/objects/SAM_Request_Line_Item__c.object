@@ -1,0 +1,3618 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>SAM_NewButtonRequestLineItemPage</content>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>SAM - Capture data of request line items</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>ltxt_Comments_Box_New__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments Box (New)</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ltxt_Comments_if_any__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments if any</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>md_Request_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Request ID</label>
+        <referenceTo>SAM_Request__c</referenceTo>
+        <relationshipLabel>Product Details</relationshipLabel>
+        <relationshipName>Request_Line_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>num_License_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>License Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_No_of_Cores__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Cores</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_No_of_Direct_Users__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Direct Users</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_No_of_Indirect_Users__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Indirect Users</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_No_of_Physical_Cores_Virtual_Cores__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Physical Cores/Virtual Cores</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_No_of_Physical_Virtual_Processors__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Physical/Virtual Processors</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_No_of_Processor__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Processor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_No_of_Users__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Users</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Number_of_Physical_Cores__c</fullName>
+        <description>For Microsoft record type</description>
+        <externalId>false</externalId>
+        <label>Number of Physical Cores</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Number_of_Physical_Processors__c</fullName>
+        <description>For Microsoft record type</description>
+        <externalId>false</externalId>
+        <label>Number of Physical Processors</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Number_of_Virtual_Cores__c</fullName>
+        <description>For Microsoft record type</description>
+        <externalId>false</externalId>
+        <label>Number of Virtual Cores</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Number_of_Virtual_Processors__c</fullName>
+        <description>For Microsoft record type</description>
+        <externalId>false</externalId>
+        <label>Number of Virtual Processors</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>pkl_Existing_SID__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If it is an existing system, what is the SID</inlineHelpText>
+        <label>Existing SID</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Hard_Partitioning__c</fullName>
+        <externalId>false</externalId>
+        <label>Hard Partitioning</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>pkl_Hyper_V_Farm__c</fullName>
+        <externalId>false</externalId>
+        <label>Hyper - V Farm</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_New_SID__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If new, please name the SID and state if it is ABAP/JAVA</inlineHelpText>
+        <label>New SID</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Physical_Server__c</fullName>
+        <description>This is for Microsoft record type, split of Physical/Virtual Server field</description>
+        <externalId>false</externalId>
+        <label>Physical Server</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Physical_Virtual_Server__c</fullName>
+        <externalId>false</externalId>
+        <label>Physical/Virtual Instance</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Physical_instance__c</fullName>
+        <description>For Oracle &amp; IBM record type</description>
+        <externalId>false</externalId>
+        <label>Physical instance</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Request_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Awaiting CC details (Pending with ULEMP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CC details provided (By ULEMP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Awaiting CC details (Pending with ULSMT)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_System_Type_Existing__c</fullName>
+        <externalId>false</externalId>
+        <label>System Type (Existing)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_System_Type_New__c</fullName>
+        <externalId>false</externalId>
+        <label>System Type (New)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Virtual_Server__c</fullName>
+        <description>For Microsoft record type</description>
+        <externalId>false</externalId>
+        <label>Virtual Server</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Virtual_instance__c</fullName>
+        <description>For Oracle &amp; IBM record type</description>
+        <externalId>false</externalId>
+        <label>Virtual instance</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>txt_Additional_features__c</fullName>
+        <externalId>false</externalId>
+        <label>Additional features</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Backend_Database__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the backend database</inlineHelpText>
+        <label>Backend Database</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Comment_Box_existing__c</fullName>
+        <externalId>false</externalId>
+        <label>Comment Box (existing)</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>txt_Database_Instance_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Database Instance Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Diagnostic__c</fullName>
+        <externalId>false</externalId>
+        <label>Diagnostic</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Edition__c</fullName>
+        <externalId>false</externalId>
+        <label>Edition</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_IBM__c</fullName>
+        <description>This field is just used to show record type on new record page.</description>
+        <externalId>false</externalId>
+        <label>Publisher: IBM</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Installation_Machine_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Installation Machine Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Interfacing_Application_Details__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the interfacing application, and would the data passage increase post implementation of SAP application</inlineHelpText>
+        <label>Interfacing Application Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Interfacing_Details__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is it interfacing with any other system (SAP/Non SAP)</inlineHelpText>
+        <label>Interfacing Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Microsoft__c</fullName>
+        <description>This field is just created to show the record type on new record page</description>
+        <externalId>false</externalId>
+        <label>Publisher: Microsoft</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_New_System_Existing__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>  Is a new system created or hosted on existing system</inlineHelpText>
+        <label>New System/Existing</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Number_of_SAP_Users__c</fullName>
+        <description>For SAP record type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the number of users? (Disclaimer: PM to attach names, roles and transactions these users would be doing)</inlineHelpText>
+        <label>Number of SAP Users</label>
+        <length>5</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Number_of_Users__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the number of users? (Disclaimer:  PM to attach names, roles and transactions these users would be doing)</inlineHelpText>
+        <label>Number of Users</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Oracle__c</fullName>
+        <description>This field is just created to show the record type on new record page</description>
+        <externalId>false</externalId>
+        <label>Publisher: Oracle</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Product__c</fullName>
+        <description>This field is just created to show the record type on new record page</description>
+        <externalId>false</externalId>
+        <label>Publisher: Other Product</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Partitioning__c</fullName>
+        <externalId>false</externalId>
+        <label>Partitioning</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Physical_Machine_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Physical Machine Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Physical_Server_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Physical Server Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Processor_Make_and_Model__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>e.g. Intel Xeon, IBM Power 5 etc.</inlineHelpText>
+        <label>Processor - Make and Model</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Processor_based_or_Named_User__c</fullName>
+        <externalId>false</externalId>
+        <label>Processor based or Named User</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Product_Description__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>What is the SAP Product required?</inlineHelpText>
+        <label>Product Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Publisher__c</fullName>
+        <externalId>false</externalId>
+        <label>Publisher</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_SAP__c</fullName>
+        <description>This field is just created to show the record type on new record page</description>
+        <externalId>false</externalId>
+        <label>Publisher: SAP</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_SID_Name_Existing__c</fullName>
+        <externalId>false</externalId>
+        <label>SID Name (Existing)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_SID_Name_New__c</fullName>
+        <externalId>false</externalId>
+        <label>SID Name (New)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Software_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Software Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Software_Product_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Software Product Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Tuning__c</fullName>
+        <externalId>false</externalId>
+        <label>Tuning</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Version__c</fullName>
+        <externalId>false</externalId>
+        <label>Version</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Virtual_Server_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Virtual Server Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Product</label>
+    <nameField>
+        <label>Product Description</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Product Details</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>SAM_IBM_RO</fullName>
+        <active>true</active>
+        <label>SAM_IBM_RO</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_IBM_RW</fullName>
+        <active>true</active>
+        <description>Please select “IBM” product details record type, if you need to add IBM Product</description>
+        <label>IBM</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Microsoft_RO</fullName>
+        <active>true</active>
+        <label>SAM_Microsoft_RO</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Microsoft_RW</fullName>
+        <active>true</active>
+        <description>Please select “Microsoft” product details record type, if you need to add Microsoft Product</description>
+        <label>Microsoft</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Oracle_RO</fullName>
+        <active>true</active>
+        <label>SAM_Oracle_RO</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Oracle_RW</fullName>
+        <active>true</active>
+        <description>Please select “Oracle” product details record type, if you need to add Oracle Product</description>
+        <label>Oracle</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Other_Product_RO</fullName>
+        <active>true</active>
+        <label>SAM_Other_Product_RO</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Other_Product_RW</fullName>
+        <active>true</active>
+        <description>Please select “Other Product” product details record type, if the product is other than rest options</description>
+        <label>Other Product</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_SAP_RO</fullName>
+        <active>true</active>
+        <label>SAM_SAP_RO</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_SAP_RW</fullName>
+        <active>true</active>
+        <description>Please select “SAP” product details record type, if you need to add SAP Product</description>
+        <label>SAP</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Name</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(TEXT(pkl_Request_Status__c)&lt;&gt;&apos;&apos;,TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_SaveStatus, 
+TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(Name))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>You cannot  updated this field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_License_Qty_Shd_be_greater_than_zero</fullName>
+        <active>true</active>
+        <description>License quantity should be greater than zero. Applicable to Microsoft &amp; SAP record type</description>
+        <errorConditionFormula>num_License_Quantity__c  &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_License_Quantity__c</errorDisplayField>
+        <errorMessage>License Quantity Should not be negative or zero</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Cores_shd_be_positive</fullName>
+        <active>true</active>
+        <description>Applicable for Oracle and IBM record type</description>
+        <errorConditionFormula>num_No_of_Cores__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_No_of_Cores__c</errorDisplayField>
+        <errorMessage>Enter only positive value here</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Direct_Users_shd_be_positive</fullName>
+        <active>true</active>
+        <description>Applicable for Oracle record type</description>
+        <errorConditionFormula>num_No_of_Direct_Users__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_No_of_Direct_Users__c</errorDisplayField>
+        <errorMessage>Enter only positive value here</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Indirect_Users_shd_be_positive</fullName>
+        <active>true</active>
+        <description>Applicable to Oracle record type</description>
+        <errorConditionFormula>num_No_of_Indirect_Users__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_No_of_Indirect_Users__c</errorDisplayField>
+        <errorMessage>Enter only positive value here</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Phy_Cores_shd_be_positive</fullName>
+        <active>true</active>
+        <description>No of Physical Cores should be positive</description>
+        <errorConditionFormula>num_Number_of_Physical_Cores__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_Number_of_Physical_Cores__c</errorDisplayField>
+        <errorMessage>No of Physical Cores should be positive</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Phy_Processors_shd_be_positive</fullName>
+        <active>true</active>
+        <description>No of Physical Processors should be positive</description>
+        <errorConditionFormula>num_Number_of_Physical_Processors__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_Number_of_Physical_Processors__c</errorDisplayField>
+        <errorMessage>No of Physical Processors should be positive</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Processor_shd_be_positive</fullName>
+        <active>true</active>
+        <description>Applicable for IBM &amp; Oracle record type</description>
+        <errorConditionFormula>num_No_of_Processor__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_No_of_Processor__c</errorDisplayField>
+        <errorMessage>Enter only positive number</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Users_Shd_not_be_negative</fullName>
+        <active>true</active>
+        <description>Number of Users should not be negative or zero</description>
+        <errorConditionFormula>num_No_of_Users__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_No_of_Users__c</errorDisplayField>
+        <errorMessage>Number of Users Should not be negative or zero</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Virtual_Cores_shd_be_positive</fullName>
+        <active>true</active>
+        <description>No of Virtual Cores should be positive</description>
+        <errorConditionFormula>num_Number_of_Virtual_Cores__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_Number_of_Virtual_Cores__c</errorDisplayField>
+        <errorMessage>No of Virtual Cores should be positive</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_No_of_Virtual_Processors_shd_be_posi</fullName>
+        <active>true</active>
+        <description>No of Virtual Processors should be positive</description>
+        <errorConditionFormula>num_Number_of_Virtual_Processors__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_Number_of_Virtual_Processors__c</errorDisplayField>
+        <errorMessage>No of Virtual Processors should be positive</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SID_Existing_Comments_Box_Validation</fullName>
+        <active>true</active>
+        <description>For &quot;Other&quot; Existing SID System Type Comment is mandatory</description>
+        <errorConditionFormula>AND(
+  ISPICKVAL(pkl_System_Type_Existing__c ,&quot;Other&quot;),
+   ISBLANK( txt_Comment_Box_existing__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>txt_Comment_Box_existing__c</errorDisplayField>
+        <errorMessage>Comment is mandatory if System Type is Others</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SID_Existing_System_Type_Validation</fullName>
+        <active>true</active>
+        <description>Existing SID System Type is mandatory if Existing SID is Yes</description>
+        <errorConditionFormula>AND(
+  ISPICKVAL(pkl_System_Type_Existing__c , &quot;&quot;),
+  ISPICKVAL(pkl_Existing_SID__c ,&quot;Yes&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>pkl_System_Type_Existing__c</errorDisplayField>
+        <errorMessage>System Type is mandatory for Exisiting SID</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SID_Name_Existing_Validation</fullName>
+        <active>true</active>
+        <description>SID Name(Existing) is mandatory if Existing SID is Yes</description>
+        <errorConditionFormula>AND(
+ ISBLANK(  txt_SID_Name_Existing__c ) ,
+  ISPICKVAL(pkl_Existing_SID__c ,&quot;Yes&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>txt_SID_Name_Existing__c</errorDisplayField>
+        <errorMessage>Existing SID Name is mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SID_Name_New_Validation</fullName>
+        <active>true</active>
+        <description>SID Name(New) is mandatory if New SID is Yes</description>
+        <errorConditionFormula>AND(
+ ISBLANK( txt_SID_Name_New__c ) ,
+ ISPICKVAL(pkl_New_SID__c,&quot;Yes&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>txt_SID_Name_New__c</errorDisplayField>
+        <errorMessage>New SID Name is mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SID_New_Comments_Box_Validation</fullName>
+        <active>true</active>
+        <description>For &quot;Other&quot; New SID System Type Comment is mandatory</description>
+        <errorConditionFormula>AND(
+  ISPICKVAL( pkl_System_Type_New__c ,&quot;Other&quot;),
+   ISBLANK(  ltxt_Comments_Box_New__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>ltxt_Comments_Box_New__c</errorDisplayField>
+        <errorMessage>Comment is mandatory if System Type is Others</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SID_New_System_Type_Validation</fullName>
+        <active>true</active>
+        <description>New SID System Type is mandatory if New SID is Yes</description>
+        <errorConditionFormula>AND(
+  ISPICKVAL( pkl_System_Type_New__c , &quot;&quot;),
+  ISPICKVAL( pkl_New_SID__c ,&quot;Yes&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>pkl_System_Type_New__c</errorDisplayField>
+        <errorMessage>System Type is mandatory for New SID</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_reverse_validation_on_phy_ver_instan</fullName>
+        <active>true</active>
+        <description>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vise versa.</description>
+        <errorConditionFormula>IF(ISPICKVAL(pkl_Physical_instance__c, &quot;Yes&quot;), ISPICKVAL(pkl_Virtual_instance__c, &quot;Yes&quot;), false)</errorConditionFormula>
+        <errorMessage>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vise versa.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_reverse_validation_on_phy_ver_server</fullName>
+        <active>true</active>
+        <description>If Physical Server is selected as Yes, then Virtual Server should not be Yes</description>
+        <errorConditionFormula>IF(ISPICKVAL(pkl_Physical_Server__c, &quot;Yes&quot;), ISPICKVAL(pkl_Virtual_Server__c, &quot;Yes&quot;), false)</errorConditionFormula>
+        <errorMessage>If Physical Server is selected as Yes, then Virtual Server should not be Yes and vise versa.</errorMessage>
+    </validationRules>
+</CustomObject>

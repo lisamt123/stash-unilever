@@ -14,6 +14,7 @@ VERSION     AUTHOR                 DATE            DETAIL Description
 ***********************************************************************/
 public with sharing class SAM_RequestAgeing {
 
+     
     /*******************************************************************
     Purpose: This method is used calculate Age of the request
     Parameters: List<SAM_Request__c>
@@ -21,12 +22,13 @@ public with sharing class SAM_RequestAgeing {
     Throws [Exceptions]: 
     ********************************************************************/
     public static void RequestAgeUpdateScheduler(List<SAM_Request__c> requestList){
-  
+        
+       boolean requestorFlag=false;
+     boolean samAdminFlag=false;
+     boolean samTeamFlag=false; 
         system.debug('requestList>>'+requestList);
         List <SAM_Request__c>newRequestList = new List<SAM_Request__c>();
-        boolean requestorFlag=false;
-        boolean samAdminFlag=false;
-        boolean samTeamFlag=false;  
+        
         Double ticketAge = 0;
      
         Map<String,String>permissionMap = new Map<String,String>();
@@ -36,14 +38,16 @@ public with sharing class SAM_RequestAgeing {
         }
      
         system.debug('permissionMap>>'+permissionMap);
+       
  
         for(SAM_Request__c req:requestList){
-     
+      system.debug('req!!!'+req.createdbyId);
         //aging calculation for project non project type request
         if(req.pkl_Status__c != 'Close' && req.pkl_Status__c != null){
         
-            if(req.RecordType.DeveloperName !=null){
-                if(req.RecordType.DeveloperName == SAM_Constants.SAM_RW_PROJECT_REQUEST || req.RecordType.DeveloperName == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST){
+            if(req.txt_Request_Type__c !=null){
+            system.debug('req.txt_Request_Type__c>>'+req.txt_Request_Type__c);
+                if(req.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST || req.txt_Request_Type__c == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST){
                      if(req.pkl_Status__c == SAM_Constants.OPEN || req.pkl_Status__c == SAM_Constants.INPROGRESS || req.pkl_Status__c == SAM_Constants.QUOTE_REJECTED || req.pkl_Status__c == SAM_Constants.INFORMATION_PROVIDED || (req.pkl_Status__c== SAM_Constants.DRAFT_QUOTE_PROVIDED && req.rus_Pending_with_Project__c == 0  && req.rus_Pending_with_SAM_records__c > 0) ){
                          system.debug('Inside status!!!'+req.pkl_Status__c+'id>>>'+req.Id );
                          if(req.Ticket_Age__c !=null){
@@ -61,7 +65,7 @@ public with sharing class SAM_RequestAgeing {
                  
           //aging calculation for query type request
           
-                }else if(req.RecordType.DeveloperName == SAM_Constants.SAM_RW_QUERY_REQUEST){
+                }else if(req.txt_Request_Type__c == SAM_Constants.SAM_RW_QUERY_REQUEST){
              
                     requestorFlag =false;
                     samAdminFlag=false;
@@ -82,7 +86,7 @@ public with sharing class SAM_RequestAgeing {
                     //Dinesh 27/7 - modified below if condition to fix SonarQube issue
                     //if(requestorFlag == true && samAdminFlag == false && samTeamFlag == false){
                     if(requestorFlag && !samAdminFlag && !samTeamFlag){
-                        if(req.pkl_Status__c == SAM_Constants.OPEN || req.pkl_Status__c == SAM_Constants.INPROGRESS ){
+                        if(req.pkl_Status__c == SAM_Constants.OPEN || req.pkl_Status__c == SAM_Constants.INPROGRESS || req.pkl_Status__c == SAM_Constants.NEED_MORE_INFO ){
                              if(req.Ticket_Age__c !=null){
                                  ticketAge =0;
                                  ticketAge = req.Ticket_Age__c;

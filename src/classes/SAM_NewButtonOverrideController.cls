@@ -16,18 +16,19 @@ public with sharing class SAM_NewButtonOverrideController{
     
         public List<RecordType> schemeList{get;set;}
         public String recordtypeId {get;set;}
-        public String titleText {get;set;}
         public List<RecordType>recordTypeInfoList{get;set;}
         public String retUrl;
-        public List<PermissionSetAssignment> loggedInUserPermissionList;
-        public PermissionSet requestorPermissionSet;  
-        public PermissionSet samAdminPermissionSet;  
-        public PermissionSet samTeamPermissionSet;  
         public boolean requestorFlag;
         public boolean samAdminFlag;
-        public boolean samTeamFlag;  
+        public boolean samTeamFlag;
+          
                     
         public SAM_NewButtonOverrideController(ApexPages.StandardController controller){
+         List<PermissionSetAssignment> loggedInUserPermissionList;
+         PermissionSet requestorPermissionSet;  
+         PermissionSet samAdminPermissionSet;  
+         PermissionSet samTeamPermissionSet;  
+        
         requestorFlag =false;
         samAdminFlag = false;
         samTeamFlag =false;
@@ -40,15 +41,19 @@ public with sharing class SAM_NewButtonOverrideController{
         
         if(loggedInUserPermissionList.size()>0 ){
           for(PermissionSetAssignment permissionSetObj:loggedInUserPermissionList){
+          
+          system.debug('permissionSetObj.PermissionSet.Name>>'+permissionSetObj.PermissionSet.Name);
               if(requestorPermissionSet!=null){
                 if(permissionSetObj.PermissionSet.Name == requestorPermissionSet.Name){
                     requestorFlag = true;
                 }
-               }else if(samAdminPermissionSet!=null){
+               }
+                if(samAdminPermissionSet!=null){
                 if(permissionSetObj.PermissionSet.Name == samAdminPermissionSet.Name){
                     samAdminFlag = true;
                 }
-               } else if(samTeamPermissionSet!=null){
+               } 
+                if(samTeamPermissionSet!=null){
                 if(permissionSetObj.PermissionSet.Name == samTeamPermissionSet.Name){
                     samTeamFlag = true;
                 }

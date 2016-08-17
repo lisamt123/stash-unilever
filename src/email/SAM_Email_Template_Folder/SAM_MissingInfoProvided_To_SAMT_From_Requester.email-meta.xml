@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to SAM Team From Requester to Inform the Missing Information is Provided and the Request is Resubmitted.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>MissingInfoProvided To SAMT From Requester</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} has been submitted</subject>
+    <type>text</type>
+</EmailTemplate>

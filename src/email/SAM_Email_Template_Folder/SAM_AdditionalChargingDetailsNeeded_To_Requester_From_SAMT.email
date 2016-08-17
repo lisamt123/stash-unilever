@@ -1,0 +1,7 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+Please provide additional details  related to for the service request number {!SAM_Request__c.Name}. The current status is ""Awaiting CC details"".
+Please check the chatter/comments section for more information.
+
+Thanks,
+SAM Team

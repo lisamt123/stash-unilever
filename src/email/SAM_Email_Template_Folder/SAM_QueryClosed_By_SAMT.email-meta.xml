@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to Requester To inform His/Her Service Request is Now closed.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RequestClosed By SAMT</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} is closed</subject>
+    <type>text</type>
+</EmailTemplate>

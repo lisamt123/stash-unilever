@@ -1,0 +1,87 @@
+<messaging:emailTemplate recipientType="User" relatedToType="SAM_Request__c" subject="SR :{!relatedTo.name}: Quote Resubmitted.(Dated:{!relatedTo.Last_Quote_Sent_On__c}) ">
+<messaging:htmlEmailBody >
+<p>Hi {!recipient.name},</p>
+<html>
+<style type="text/css">
+  table {
+             border-spacing:0px;
+            border-color:black;  
+        }
+        </style>
+<body>
+
+
+
+<p>Final quote for the service request  {!relatedTo.Name} has been provided: </p>   
+<table  border="1" cellspacing="0"  >
+<apex:repeat var="v" value="{!relatedTo}">
+
+
+  <tr><th>Request Number</th>       <td>{!v.Name}</td></tr>
+  <tr><th>Master Clarity ID</th>    <td>{!v.txt_Master_Clarity_Id__c}</td></tr>
+  <tr><th>SA Clarity ID</th>        <td>{!v.txt_SA_Clarity_Id__c}</td></tr>
+  <tr><th>Name of the Project</th>  <td>{!v.txt_Name_of_the_Project__c}</td></tr>
+
+  <tr><th>Date</th>                 <td>{v.Date}></td></tr>
+</apex:repeat>
+</table>
+<table border="1" cellspacing="0" >
+  <tr >
+    <th>Serial Number</th><th>Publisher</th>  <th>Product Description</th>
+    <th>Charging Type</th>   <th>Run Cost Applicable</th> 
+    <th>Line Status</th>   <th>Quantity</th>   <th>License Cost €</th>
+    <th>Maintainence Cost € </th>   
+  </tr>
+    
+       <apex:variable var="s_no" value="{!1}"/>
+       <apex:repeat var="cx" value="{!relatedTo.Quote_Line_Items__r}">
+       <tr>
+          <td>{!s_no} </td>
+           <td>{!cx.txt_Publisher__c}</td>
+           <td>{!cx.Name}</td>
+           <td>{!cx.pkl_Charging_Type__c}</td>
+           
+           <td>{!cx.pkl_Run_Cost_Applicable__c}</td>
+           <td>{!cx.pkl_Line_Status__c}</td>
+           <td>{!cx.num_Quantity__c}</td>
+           <td>{!cx.fml_License_Cost__c}</td>
+           <td>{!cx.fml_Maintainence_Amount__c}</td>
+            <apex:variable var="s_no" value="{!s_no+1}"/>
+       </tr>
+      
+                </apex:repeat>
+                 </table>
+                <table width="100%" rowspan="1" colspan="4" cellspacing="0" border="1"  >
+  <apex:repeat var="total" value="{!relatedTo}">
+  <tr >
+    <th width="25%">Total CAPEX in  €</th><td width="25%">{!total.rol_Total_CAPEX_in__c}</td>
+    <th width="25%">Total Maintainence Cost € </th><td width="25%">{!total.rol_Total_Annual_Maint_in__c}</td>
+    </tr>
+   </apex:repeat>
+                
+                
+            </table>
+            <p>  Note<br/>
+     Order Status :<br/>
+           "O" Order from the supplier via Ariba now<br/>
+            "X*"  will be cross-charged to the project by Tableau team<br/>
+            "P" engage with Procurement to negotiate price.<br/>
+            "I" already purchased by Innovation<br/>
+            <br></br>
+            - Please note that the SAM team do not process these orders on behalf of the projects. Project is responsible for ensuring the correct orders are placed via Ariba.<br/>
+- Please ensure to align with SAM team for all software for which run cost is applicable. SAM will not budget for any run costs unless discussed with project<br/>
+
+</p>
+            <p/>
+            <center>
+                 <a href="{!$Label.SAM_Default_URL}/{!RelatedTo.Id}"> 
+                    Click here.Please login to the portal to take necessary action.             
+               </a>
+            </center>
+            
+            </body>
+        </html>
+        <p>Thanks,<br/>
+        UL SAM Team</p>
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

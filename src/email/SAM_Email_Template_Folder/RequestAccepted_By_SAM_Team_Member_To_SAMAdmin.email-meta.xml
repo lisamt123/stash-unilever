@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email From SAM Team Member to Inform SAM Admin that the Request is Accepted.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RequestAccepted By SAM Team Member To SAMAdmin</name>
+    <style>none</style>
+    <subject>SR: Request {!SAM_Request__c.Name}  Is Accepted For Service.</subject>
+    <type>text</type>
+</EmailTemplate>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email To Requester From SAM Team To Inform That his/her Query is been Answered</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>QuerryAnswered To Requester</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} is Answered</subject>
+    <type>text</type>
+</EmailTemplate>

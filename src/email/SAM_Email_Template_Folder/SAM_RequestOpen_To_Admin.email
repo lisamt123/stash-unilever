@@ -1,0 +1,7 @@
+Hi UL SAM Admin,
+
+Service Request number {!SAM_Request__c.Name}  has been submitted by {!SAM_Request__c.CreatedBy}. The status of the request is Open. 
+Please take necessary action.
+
+Thanks,
+{!SAM_Request__c.CreatedBy}

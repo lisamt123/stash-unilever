@@ -1,0 +1,9 @@
+Hi {!SAM_Request__c.lkp_Assign_To__c},
+
+Service Request number {!SAM_Request__c.Name}  has been assigned to you.
+ Please take necessary action.
+
+
+
+Thanks,
+UL SAM Admin

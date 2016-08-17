@@ -1,0 +1,9 @@
+Hi UL SAM Team,
+
+Missing information for the the Service request number {!SAM_Request__c.Name} has been submitted. The status of the request is ""in Progress"".
+
+Please login to the portal to take necessary action. 
+Click here {!SAM_Request__c.Link}.
+
+Thanks,
+{!SAM_Request__c.CreatedBy}

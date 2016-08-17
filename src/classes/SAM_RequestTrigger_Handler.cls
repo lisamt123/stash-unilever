@@ -44,7 +44,7 @@ public with sharing class SAM_RequestTrigger_Handler
     public void beforeInsert(List<SObject> lstsObjectNew)
     {
         if(triggerShouldExecute){
-            SAM_Request_TriggerUtil.PreventRequestAssignment(lstsObjectNew);
+            //SAM_Request_TriggerUtil.PreventRequestAssignment(lstsObjectNew);
             System.debug('beforeInsert called');
         }
     }
@@ -54,9 +54,10 @@ public with sharing class SAM_RequestTrigger_Handler
         if(triggerShouldExecute)
         {
             System.debug('beforeUpdate called');
+           // SAM_Request_TriggerUtil.collectPublishers(trigger.new);
             SAM_Request_TriggerUtil.validationForBuildDetail(trigger.new,trigger.old);
-            SAM_Request_TriggerUtil.PreventRequestAssignment(trigger.new);
-            SAM_Request_TriggerUtil.PreventEditAfterClose(trigger.new,trigger.old); 
+            SAM_Request_TriggerUtil.PreventRequestAssignment(trigger.new,trigger.old);
+            //SAM_Request_TriggerUtil.PreventEditAfterClose(trigger.new,trigger.old); 
            // SAM_Request_TriggerUtil.StatusUpdate(lstsObjectNew,lstsObjectOld);         
         }
     }
@@ -65,7 +66,7 @@ public with sharing class SAM_RequestTrigger_Handler
     public void beforeDelete(List<SObject> lstsObjectOld)
     {   
         if(triggerShouldExecute){ 
-            //SAM_Request_TriggerUtil.PreventDelete(lstsObjectOld);
+            SAM_Request_TriggerUtil.PreventDelete(trigger.old);
             System.debug('beforeDelete called');
         }
     }
@@ -74,6 +75,7 @@ public with sharing class SAM_RequestTrigger_Handler
     {
         if(triggerShouldExecute){ 
             System.debug('afterInsert called');
+            SAM_RequestApexSharing.RequestApexSharing(trigger.new); 
         }
     }
     

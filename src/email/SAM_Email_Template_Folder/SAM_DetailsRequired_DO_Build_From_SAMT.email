@@ -1,0 +1,11 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+Additional details are required by the SAM demand management team to make progress on  the service request  {!SAM_Request__c.Name}. The status is ""Details pending"".
+The details are pending for:
+<DO details>
+<Build details>
+<Run cost details>
+Please check the chatter/comments section for more information.
+
+Thanks,
+UL SAM Team

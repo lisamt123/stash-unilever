@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>This custom setting is used for Request, Request Line Item and Quote Line Item triggers</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>chk_Stop_Trigger_Execution__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This filed is used to control trigger execution</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Uncheck the check box to stop the Request trigger exection</inlineHelpText>
+        <label>Execute Trigger</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>txt_Description__c</fullName>
+        <description>Enter short description</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>150</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>SAM Trigger Pattern</label>
+</CustomObject>

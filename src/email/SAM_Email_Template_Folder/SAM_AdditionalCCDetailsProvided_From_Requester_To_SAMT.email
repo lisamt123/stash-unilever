@@ -1,0 +1,9 @@
+Hi SAM Team,
+
+Additional information has been provided for service request number {!SAM_Request__c.Name}
+
+Please login to the portal to find more details.
+ Click here  {!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.CreatedBy}

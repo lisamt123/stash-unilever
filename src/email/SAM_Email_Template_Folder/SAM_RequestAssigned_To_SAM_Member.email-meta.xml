@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to SAM Team Member  to inform the Request is been Assigned to you for the Service..</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RequestAssigned To SAM Member</name>
+    <style>none</style>
+    <subject>SR :{!SAM_Request__c.Name} is assigned</subject>
+    <type>text</type>
+</EmailTemplate>

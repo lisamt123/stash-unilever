@@ -1,0 +1,9 @@
+Hi UL SAM Team ,
+
+Cross Charging for service request {!SAM_Request__c.Name} is approved by Finance Team. The current status is ""Charging Completed"".
+
+Please login to the portal to find more details.
+ Click here  {!SAM_Request__c.Link}.
+
+Thanks,
+UL Finance Team

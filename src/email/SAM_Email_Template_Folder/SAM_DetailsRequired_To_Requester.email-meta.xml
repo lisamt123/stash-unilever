@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email from SAM Team  for Additional Details to be provided by Requester.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DetailsRequired To Requester</name>
+    <style>none</style>
+    <subject>SR : {!SAM_Request__c.Name} : Details Required</subject>
+    <type>text</type>
+</EmailTemplate>

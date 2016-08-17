@@ -20,10 +20,11 @@ global with sharing class SAM_RequestAgeUpdate implements Database.Batchable<sOb
     Returns: Database.QueryLocator
     Throws [Exceptions]: 
     ********************************************************************/
+    global String query;
     global Database.QueryLocator start(Database.BatchableContext BC)
     {
         System.debug('>>>>>> SAM_RequestAgeUpdate  : Started...');
-        String query = 'select id,createdById, pkl_Status__c,Ticket_Age__c,rus_Pending_with_Project__c,rus_Pending_with_SAM_records__c,date_Query_End_Date__c,date_Query_Start_Date__c,RecordType.DeveloperName  from SAM_Request__c';
+        query = 'select id,txt_Request_Type__c,createdById, pkl_Status__c,Ticket_Age__c,rus_Pending_with_Project__c,rus_Pending_with_SAM_records__c,date_Query_End_Date__c,date_Query_Start_Date__c,RecordType.DeveloperName  from SAM_Request__c';
         return Database.getQueryLocator(query);
     }
 

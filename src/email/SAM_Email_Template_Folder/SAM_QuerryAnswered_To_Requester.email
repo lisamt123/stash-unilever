@@ -1,0 +1,9 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+Your service request number {!SAM_Request__c.Name} has been answered.
+
+Please login to the portal to find more details. 
+Click here  {!SAM_Request__c.Link}.
+
+Thanks,
+UL SAM Team

@@ -1,0 +1,9 @@
+Hi  {!SAM_Request__c.CreatedBy},
+
+Service request number {!SAM_Request__c.Name}  has been resubmitted.
+
+Please login to the portal to take necessary action.
+ Click here  {!SAM_Request__c.Link}.
+
+Thanks,
+UL SAM Team

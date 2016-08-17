@@ -4,6 +4,10 @@
    <div align="center" draggable="false" >
    <apex:commandButton value="Submit" action="{!submit}" reRender="redirectPanel" rendered="{!flagToShowSubmitbutton}"/>
    </div>
+   <div align="center" draggable="false" >
+   <apex:commandButton value="Reminder" action="{!reminderAction}"  rendered="{!reminderSetFlag}"/>
+   </div>
+   
       <apex:pageMessages />
       <apex:pageBlock rendered="{!mandatoryStringFlag != null}">
         <apex:pageMessage summary="{!mandatoryStringFlag}"
@@ -22,6 +26,7 @@
                     window.top.location.href = '{!redirectUrl}';
                 </script>
             </apex:outputText>
-        </apex:outputPanel>    
- </apex:form>
+   </apex:outputPanel> 
+   
+   </apex:form>
 </apex:page>

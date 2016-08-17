@@ -3,9 +3,6 @@ Name: SAM_Request_GroupMemberShipUtils()
 Copyright © 2016 Salesforce
 ======================================================
 ======================================================
-Purpose: Batch Class to process Request Ageing.
--------
-======================================================
 ======================================================
 History
 -------
@@ -16,6 +13,7 @@ public with sharing class SAM_Request_GroupMemberShipUtils {
 
     /*******************************************************************
     Purpose: This method identifies members from public group
+    InvokedBy:Process Builder : SAM Get User Public Groups and Set Requester field
     Parameters: List<string>
     Returns: 
     Throws [Exceptions]: 

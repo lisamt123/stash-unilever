@@ -1,0 +1,7 @@
+Hi  UL SAM Team,
+
+Quote provided  for the service request {!SAM_Request__c.Name} has been rejected. The current status is ""Quotation rejected"".
+Please see the chatter/comments sections for futher information on rejection.
+
+Thanks,
+{!SAM_Request__c.CreatedBy}

@@ -48,6 +48,9 @@ public with sharing class SAM_QLITrigger_Handler
     {
         if(triggerShouldExecute){
             System.debug('beforeInsert called');
+            SAM_QLITrigger_Util.PreventNewRecord(trigger.new);
+            SAM_QLITrigger_Util.currencyConversionRate(trigger.new);
+            
         }
     }
     
@@ -62,7 +65,7 @@ public with sharing class SAM_QLITrigger_Handler
     public void beforeDelete(List<SObject> lstsObjectOld)
     {   
         if(triggerShouldExecute){ 
-           // SAM_Request_TriggerUtil.PreventDelete(lstsObjectOld);
+            SAM_QLITrigger_Util.PreventDelete(trigger.old);
             System.debug('beforeDelete called');
         }
     }
@@ -91,7 +94,10 @@ public with sharing class SAM_QLITrigger_Handler
     
     public void afterDelete(List<SObject> lstsObjectOld)
     {
+    if(triggerShouldExecute){
         System.debug('This method is present in interface, hence need to override here');
+        SAM_QLITrigger_Util.ReNumberQuotationLineItems(lstsObjectOld);
+        }
     }
     
     /**

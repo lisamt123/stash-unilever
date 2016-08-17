@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to SAM Team Member to inform the request is reassigned to him/her</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RequestReassigned</name>
+    <style>none</style>
+    <subject>SR : {!SAM_Request__c.Name} is reassigned</subject>
+    <type>text</type>
+</EmailTemplate>
