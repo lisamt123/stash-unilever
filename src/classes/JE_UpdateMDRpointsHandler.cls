@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 @ Change history: 09.08.2016 / vinod thupakula / Created the class.
 **************************************************************************************************************************************************************/
-public class JE_UpdateMDRpointsHandler{
+public with sharing class JE_UpdateMDRpointsHandler{
     
     private Integer totalPoints = 0;
     private Integer penetrationPoint = 0;  
@@ -16,13 +16,12 @@ public class JE_UpdateMDRpointsHandler{
   *@param-  LIST
   *@return- LIST
   */ 
-  public LIST<JEPointsTable__c> jobEvalutionsRecords(list<JE_Job_Evaluation__c> jeJobs){
+  public LIST<JE_Points_Table__c> jobEvalutionsRecords(list<JE_Job_Evaluation__c> jeJobs){
      try{
-        LIST<JEPointsTable__c> jePoints = new LIST<JEPointsTable__c>();
-        MAP<String,JEPointsTable__c> allCodes = JEPointsTable__c.getAll();
-        LIST<JEPointsTable__c> mdrPoints= allCodes.values();
+        LIST<JE_Points_Table__c> jePoints = new LIST<JE_Points_Table__c>();
+        MAP<String,JE_Points_Table__c> allCodes = JE_Points_Table__c.getAll();         
         for(JE_Job_Evaluation__c jobEvalution:jeJobs){
-            for(JEPointsTable__c jePoint:mdrPoints){
+            for(JE_Points_Table__c jePoint:allCodes.values()){
                 if(jobEvalution.Job_Evaluation_Type__c.equalsIgnoreCase(jePoint.Function__c)
                     && jobEvalution.WL_of_Line_Manager__c.equalsIgnoreCase(jePoint.Work_Level__c)){                          
                     totalPoints =  (Integer)jobEvalution.Overall_Total_Score__c;                         
@@ -32,8 +31,8 @@ public class JE_UpdateMDRpointsHandler{
         }
         return jePoints;
      }
-     catch(Exception ex){
-        throw ex;
+     catch(Exception exceptionNull){
+        System.debug('Exception :' + exceptionNull.getMessage());
         return null;
      }   
    }
@@ -42,10 +41,10 @@ public class JE_UpdateMDRpointsHandler{
    *@param- LIST 
    *@return- Integer
    */     
-   public Integer determineMdrPoints(LIST<JEPointsTable__c> jePoints){
+   public Integer determineMdrPoints(LIST<JE_Points_Table__c> jePoints){
       try{         
          Integer mdrPoints = 0;                 
-         for(JEPointsTable__c jPoint:jePoints){
+         for(JE_Points_Table__c jPoint:jePoints){
              if(jPoint.Min__c<=totalPoints && jPoint.Max__c>=totalPoints ){
                  mdrPoints = (Integer)jPoint.Market_Data_Reference_Point__c;
                  penetrationPoint = (Integer)(((totalPoints-jPoint.Min__c)/(jPoint.Max__c-jPoint.Min__c))*100);                  
@@ -53,8 +52,8 @@ public class JE_UpdateMDRpointsHandler{
          }                  
          return mdrPoints; 
       }
-      catch(Exception ex){
-        throw ex;
+      catch(Exception exceptionNull){
+        System.debug('Exception :' + exceptionNull.getMessage());
         return null;
      } 
    }
@@ -92,12 +91,12 @@ public class JE_UpdateMDRpointsHandler{
                         mappedJeEvalution.add(je);    
                         }
                         if(jeJobs[0].Overall_Total_Score__c != null && jeJobs[0].Overall_Total_Score__c != 0){
-                            UtilRecursiveCtrl.isupdateRecord = true;  
+                            JE_UtilRecursiveCtrl.isupdateRecord = false;  
                         }              
                Database.update(mappedJeEvalution);                
       }
-      catch(Exception ex){
-           throw ex;          
+      catch(Exception exceptionDml){
+           System.debug('Exception :' + exceptionDml.getMessage());        
      } 
    }
 }
