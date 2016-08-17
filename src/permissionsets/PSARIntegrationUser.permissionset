@@ -38005,12 +38005,12 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PSAR_Location__c.Location_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>PSAR_Location__c.Location_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -38020,7 +38020,7 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>PSAR_Location__c.Type_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
