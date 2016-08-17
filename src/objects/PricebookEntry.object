@@ -143,6 +143,74 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_ProfitabilityTargetCanada__c</fullName>
+        <description>Purpose : To get Market Target (Opp Product) by considering MarketType and Country (Canada)
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <formula>CASE(Product2.MarketType__c,
+&quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,26.5, 
+&quot;6K SAUCES-GRAVIES&quot;,38.5, 
+&quot;93 MAYONNAISE&quot;,33.8, 
+&quot;FOH MAYO&quot;,30.0, 
+&quot;BOH MAYO&quot;,23.8, 
+&quot;D1 SOUPS&quot;,33.0, 
+&quot;SDJ&quot;,25.8, 
+&quot;E1 BASES-BOUILLIONS&quot;,24.1,
+&quot;Knorr Ultimate Low/Reduced Sodium&quot;,23.0,
+&quot;LCB&quot;,33.9, 
+&quot;F1 SPREADS AND TOPPING&quot;,20.0, 
+&quot;G1 TEA-BEVERAGES&quot;,30.0, 
+&quot;SPECIALTY TEA&quot;,40.5, 
+&quot;HOT TEA&quot;,25.0, 
+&quot;ICED TEA&quot;,30.0, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
+&quot;K1 MEALS&quot;,35.0, 
+&quot;8Z RETAIL&quot;,45.0, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
+&quot;Q1 MISCELLANEOUS&quot;,59.5, 
+0) / 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Profitability Target Canada</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_ProfitabilityTargetUSA__c</fullName>
+        <description>Purpose : To get Market Target (Opp Product) by considering MarketType and Country (USA)
+Data Source : NA | Integration : NA | Security Level : Restricted</description>
+        <externalId>false</externalId>
+        <formula>CASE(Product2.MarketType__c, 
+&quot;6I DRESSINGS-CONDIMENTS-DIPS&quot;,26.5, 
+&quot;6K SAUCES-GRAVIES&quot;,38.5, 
+&quot;93 MAYONNAISE&quot;,33.8, 
+&quot;FOH MAYO&quot;,32.0, 
+&quot;BOH MAYO&quot;,25.1, 
+&quot;D1 SOUPS&quot;,33.0, 
+&quot;SDJ&quot;,22.0, 
+&quot;E1 BASES-BOUILLIONS&quot;,29.5, 
+&quot;Knorr Ultimate Low/Reduced Sodium&quot;,23.0,
+&quot;LCB&quot;,22.0,
+&quot;F1 SPREADS AND TOPPING&quot;,20.0, 
+&quot;G1 TEA-BEVERAGES&quot;,30.0, 
+&quot;SPECIALTY TEA&quot;,23.9, 
+&quot;HOT TEA&quot;,22.9, 
+&quot;ICED TEA&quot;,34.3, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
+&quot;K1 MEALS&quot;,35.0, 
+&quot;8Z RETAIL&quot;,45.0, 
+&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
+&quot;Q1 MISCELLANEOUS&quot;,59.5, 
+0) / 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Profitability Target USA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>FS_Start_Date__c</fullName>
         <description>Price start date coming from SAP</description>
         <externalId>false</externalId>
@@ -200,6 +268,7 @@
     </fields>
     <fields>
         <fullName>FS_salesOrgCode__c</fullName>
+        <description>Sales Organization Code taken from SAP.</description>
         <externalId>false</externalId>
         <label>Sales Org Code</label>
         <length>20</length>
@@ -248,5 +317,6 @@
         <searchResultsAdditionalFields>PRODUCT2.DESCRIPTION</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PRODUCT2.FAMILY_ENUM</searchResultsAdditionalFields>
         <searchResultsAdditionalFields xsi:nil="true"/>
+        <searchResultsAdditionalFields>PRICEBOOK.ACTIVE</searchResultsAdditionalFields>
     </searchLayouts>
 </CustomObject>

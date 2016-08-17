@@ -1,4 +1,4 @@
-<apex:page standardcontroller="Task" extensions="FS_CentrallyLedChildAccount_Picklist" rendered="{!task.FS_Task_Type__c=='Centrally Led'}">        
+<apex:page standardcontroller="Task" extensions="FS_CentrallyLedChildAccount_Picklist_CX" rendered="{!task.FS_Task_Type__c=='Centrally Led'}">        
     <apex:form >
         <apex:pageBlock >
             <apex:pageBlockSection columns="2">  
@@ -13,7 +13,7 @@
                                         <apex:selectOptions value="{!ChildAccountList}"/>
                                     </apex:selectList>
                                     <br/>
-                                    <apex:commandButton value="Create Task" action="{!CreateTask}" reRender="ChildAccountTask,PageMessages"/>
+                                    <apex:commandButton value="Create Task" action="{!createTask}" reRender="ChildAccountTask,PageMessages"/>
                                 </apex:panelGrid>
                             </apex:panelGroup> 
                         </apex:panelGrid></apex:actionRegion></apex:pageBlock>

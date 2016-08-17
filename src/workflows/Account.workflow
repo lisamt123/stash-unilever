@@ -73,6 +73,17 @@
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Account_Validation_Reject_From_Manager</template>
     </alerts>
+    <alerts>
+        <fullName>FS_SendanemailnotificationtoadminsManagersfordochangesonaccount</fullName>
+        <description>Send an email notification to admins/Managers for  do changes on account</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>FS_System_Admin</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Approval_request_for_required_changes</template>
+    </alerts>
     <fieldUpdates>
         <fullName>CEC_Consumer_Country_Updates</fullName>
         <description>CEC: To update the consumer country field for NA</description>
@@ -184,6 +195,27 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <outboundMessages>
+        <fullName>FS_Update_required_changes</fullName>
+        <apiVersion>37.0</apiVersion>
+        <description>Created to send changes on account to external system.</description>
+        <endpointUrl>http://putsreq.com</endpointUrl>
+        <fields>FS_AmountOfVisitors__c</fields>
+        <fields>FS_OperatorOutlet__c</fields>
+        <fields>FS_Top_Client__c</fields>
+        <fields>Fax</fields>
+        <fields>Id</fields>
+        <fields>Phone</fields>
+        <fields>SegmentRussia__c</fields>
+        <fields>Segment__c</fields>
+        <fields>SubSegmentRussia__c</fields>
+        <fields>SubSegment__c</fields>
+        <includeSessionId>true</includeSessionId>
+        <integrationUser>ramesh.suddapalli@accenture.com</integrationUser>
+        <name>FS Update required changes</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
     <rules>
         <fullName>Add Territory Information for NAFS users</fullName>
         <active>false</active>
@@ -279,6 +311,23 @@
         <active>true</active>
         <description>This is use to populate default value of On/Off Invoice from the custom settings</description>
         <formula>ISCHANGED(FS_Distributor_Type__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FS Send account changes to external system</fullName>
+        <actions>
+            <name>FS_Update_required_changes</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <description>To Send changes on account to external system.</description>
+        <formula>AND( RecordType.Name = $Label.FS_AccountOperatorRecordType ,OR(ISCHANGED( FS_AmountOfVisitors__c), ISCHANGED( Phone ), ISCHANGED( Fax ) , ISCHANGED( PersonContactId ) , ISCHANGED( FS_OperatorOutlet__c ) , ISCHANGED(Segment__c), ISCHANGED( SegmentRussia__c ),  ISCHANGED( SubSegment__c ) , ISCHANGED( SubSegmentRussia__c ), ISCHANGED( FS_Top_Client__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FS_Process</fullName>
+        <active>false</active>
+        <formula>AND(OR($Setup.FS_User_Territory__c.Territory__c = &apos;54100 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;54200 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55000 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55020 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55035 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55040 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55045 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;56025 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59020 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59025 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59045 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;89010 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;89015 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;89020 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55015 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55030 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59000 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59015 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59040 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;53000 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;53010 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;53015 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;53020 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59005 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;89100 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10500 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;59010 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;82100 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;82200 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10100 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;55005 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;56005 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;56015 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;56020 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10610 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10620 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10600 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10800 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;56010 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10007 Sales Rep&apos;, $Setup.FS_User_Territory__c.Territory__c = &apos;10200 Sales Rep&apos;), contains(Owner.UserRole.Name,&apos;Sales Rep&apos;), RecordType.Name=&apos;Operator&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

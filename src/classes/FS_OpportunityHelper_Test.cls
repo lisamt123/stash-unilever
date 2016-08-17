@@ -10,10 +10,10 @@ private class FS_OpportunityHelper_Test {
      
     //Set up Test Data for unit test    
      @testSetup static void setupTestData(){
-        String profile='Unilever - Salesforce MultiApp Standard';
+        /*String profile='Unilever - Salesforce MultiApp Standard';        
         String permissionset='FS_Sales_Rep';        
         Profile p = [SELECT Id FROM Profile WHERE Name=:profile];
-        Userrole role=[SELECT Id FROM UserRole WHERE Name = 'FS 10100 Sales Rep'];
+        Userrole role=[SELECT Id FROM UserRole WHERE Name = 'FS 59040 Sales Rep'];
         User SalesRepUser = new User(Alias = 'newUser', Email='newuser@testorg.com',
         EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
         LocaleSidKey='en_US', ProfileId = p.Id,UserRoleId=role.id,
@@ -23,8 +23,26 @@ private class FS_OpportunityHelper_Test {
         PermissionSetAssignment psetassignment = new PermissionSetAssignment();
         psetassignment.AssigneeId = SalesRepUser.Id;
         psetassignment.PermissionSetId = ps.Id;
-        insert psetassignment;
-            
+        insert psetassignment;*/
+        String profile='Unilever - Salesforce MultiApp Standard';
+        String permissionset='FS_Sales_Rep';         
+        Profile p = [SELECT Id FROM Profile WHERE Name=:profile];
+        Userrole role=[SELECT Id FROM UserRole WHERE Name = 'FS 59040 Sales Rep'];
+        User SalesRepUser1 = new User(Alias = 'newUser', Email='newuser1@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,UserRoleId=role.id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newuseropphelper1@testorg.com');
+        insert SalesRepUser1;
+        User SalesRepUser = new User(Alias = 'newUser', Email='newuser@testorg.com',
+        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
+        LocaleSidKey='en_US', ProfileId = p.Id,UserRoleId=role.id,ManagerId = SalesRepUser1.Id,
+        TimeZoneSidKey='America/Los_Angeles', UserName='newuseropphelper@testorg.com');
+        insert SalesRepUser;
+        PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name =:permissionset];
+        PermissionSetAssignment psetassignment = new PermissionSetAssignment();
+        psetassignment.AssigneeId = SalesRepUser.Id;
+        psetassignment.PermissionSetId = ps.Id;
+        insert psetassignment;           
         system.runAs(SalesRepUser){
             //Set up Custom settings for Opportunity Trigger
             FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
@@ -144,5 +162,6 @@ private class FS_OpportunityHelper_Test {
                  }
             }
          }//end of system.runAs() 
-     }//end of method  
+     }//end of method
+    
 }

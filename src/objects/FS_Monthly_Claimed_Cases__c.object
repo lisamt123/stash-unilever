@@ -82,18 +82,9 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
-        <fullName>Current_Year__c</fullName>
-        <externalId>false</externalId>
-        <formula>YEAR(TODAY()) =  YEAR(First_of_Month__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Current Year</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>External_Key__c</fullName>
         <externalId>false</externalId>
-        <formula>Contract_Product__r.Contract__r.ContractNumber +&apos;-&apos;+Contract_Product__r.Product__r.UID_Material_ID__c + &apos;-&apos;+TEXT(First_of_Month__c)</formula>
+        <formula>Contract_Product__r.Contract__r.ContractNumber +&apos;-&apos;+Contract_Product__r.Product__r.UID_Material_ID__c + &apos;-&apos;+TEXT(FS_First_of_Month__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>External Key</label>
         <required>false</required>
@@ -160,6 +151,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>FS_Current_Year__c</fullName>
+        <externalId>false</externalId>
+        <formula>YEAR(TODAY()) =  YEAR(FS_First_of_Month__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current Year</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_Delivery_Start_Date__c</fullName>
         <description>Start Date of the Claim Period</description>
         <externalId>false</externalId>
@@ -191,6 +191,27 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FS_First_of_Month__c</fullName>
+        <externalId>false</externalId>
+        <label>First of Month</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Forecast_Quantity__c</fullName>
+        <description>Forecast updated based upon previous year (excluding last 3 months)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Forecast updated based upon previous year (excluding last 3 months)</inlineHelpText>
+        <label>Forecast Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_Lum_Sum_Amount__c</fullName>
@@ -238,6 +259,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Planned_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Rate_Paid_per_Case__c</fullName>
         <description>Rate actually paid per case (coming from Blacksmith)</description>
         <externalId>false</externalId>
@@ -246,25 +278,6 @@
         <precision>8</precision>
         <required>false</required>
         <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>First_of_Month__c</fullName>
-        <externalId>false</externalId>
-        <label>First of Month</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>Planned_Quantity__c</fullName>
-        <externalId>false</externalId>
-        <label>Planned Quantity</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>

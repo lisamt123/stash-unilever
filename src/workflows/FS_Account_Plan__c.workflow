@@ -52,7 +52,7 @@
     <fieldUpdates>
         <fullName>FS_UpdateApprovedCheckbox</fullName>
         <description>It is used to update Approved checkbox on account plan</description>
-        <field>approved__c</field>
+        <field>FS_Approved__c</field>
         <literalValue>1</literalValue>
         <name>Update Approved Checkbox</name>
         <notifyAssignee>false</notifyAssignee>

@@ -1,0 +1,44 @@
+<apex:page standardController="Account" sidebar="false" showHeader="false" extensions="FS_ContactExtend_CE">
+    
+    <script>
+    function createContact()
+    {
+        window.open('/apex/FS_CreateContact?Id={!Account.id}','_top');
+    }
+    
+    function deleteContact(id)
+    {
+        alert(id);
+    }
+    
+   </script>
+    <apex:form > 
+        <apex:pageBlock title="Contacts">
+            <apex:pageBlockButtons location="Top" >
+                <apex:commandButton Value="New Contact" onclick="createContact();" />
+            </apex:pageBlockButtons>
+            <apex:pageblockSection columns="1" id="pbsection">
+                <apex:pageBlockTable value="{!myContacts}" var="item" id="pbtable">
+                    
+                       <apex:column headerValue="Action" style="width: 4%;" >
+                       <apex:commandLink action="{!deleteContact}" reRender="pbsection">
+                        <apex:outputText value="Del" title="Del" Style="color:#015ba7;" /> 
+                     <apex:param name="nickName" value="{!item.id}" assignTo="{!varContactIdForDeletion}"/>
+                       </apex:commandLink>
+                        
+                    </apex:column>
+                    <apex:column headerValue="Contact Name"  >
+                        <apex:outputLink value="/apex/FS_ContactDetailPage?id={!item.FS_RefId__c}" target="_blank"> 
+                            <apex:outputText value="{!item.name}">
+                            </apex:outputText> 
+                        </apex:outputLink>
+                    </apex:column>
+                    <apex:column value="{!item.FS_Position__c}" headerValue="Position"  />
+                        
+                    <apex:column value="{!item.FS_Decision_Maker__c}" headerValue="Decision Maker" />
+                 
+                </apex:pageBlockTable>
+            </apex:pageblockSection>
+        </apex:pageBlock> 
+    </apex:form>  
+</apex:page>

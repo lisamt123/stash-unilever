@@ -1,0 +1,178 @@
+<apex:page Controller="FS_ContactDetail_CC_EditV1" tabStyle="Contact" >
+    
+    <apex:pagemessages ></apex:pagemessages>
+    
+   <apex:form >
+        <apex:pageBlock >
+            
+            <apex:pageBlockSection title="Contact Information"  columns="1" rendered="{!Not(EditMode)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Owner" />
+                    <apex:outputLink value="/{!varContactDetail.Ownerid}" id="OwnerId">{!varContactDetail.Owner.name}</apex:outputLink>
+                   
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="First Name" />
+                   <apex:outputText value="{!varContactDetail.firstname}" />
+                  
+                     <!--<apex:outputText value="{!FName}" />-->
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Last Name" />
+                    <apex:outputText value="{!varContactDetail.lastname}" />
+                     
+                </apex:pageBlockSectionItem>
+                
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Account Name" />
+                    <apex:outputLink value="/{!varContactDetail.accountid}" id="AccountId">{!varContactDetail.Account.Name}</apex:outputLink>
+                </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Telephone" />
+                    <apex:outputText value="{!varContactDetail.Phone}" />
+                      
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email" />
+                    <apex:outputText value="{!varContactDetail.Email}" />
+                      
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Position" />
+                    <apex:outputText value="{!varContactDetail.FS_Position__c}" />
+                   
+                </apex:pageBlockSectionItem> 
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Decision Maker" />
+               <apex:inputCheckbox value="{!varContactDetail.FS_Decision_Maker__c}" disabled="true"/>   
+                  
+                </apex:pageBlockSectionItem> 
+            </apex:pageBlockSection>
+            <apex:pageBlocksection title="Address Information" columns="1" rendered="{!Not(EditMode)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing Street" />
+                    <apex:outputText value="{!varContactDetail.MailingStreet}" />
+                     
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing City" />
+                    <apex:outputText value="{!varContactDetail.mailingcity}" />
+                   
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing State/Province" />
+                    <apex:outputText value="{!varContactDetail.MailingState}" />
+                    
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel value="Mailing PostalCode" />
+                    <apex:outputText value="{!varContactDetail.MailingPostalCode}" />
+                    
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing Country" />
+                    <apex:outputText value="{!varContactDetail.MailingCountry}" />
+                   
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            
+             <apex:pageBlockSection title="Contact Information"  columns="1" rendered="{!(EditMode)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="Owner" />
+                    <apex:outputLink value="/{!varContactDetail.Ownerid}" id="OwnerId">{!varContactDetail.Owner.name}</apex:outputLink>
+                   
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="First Name" />
+                  
+                   <apex:inputText value="{!varContactDetail.firstname}" />
+                     <!--<apex:outputText value="{!FName}" />-->
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Last Name" />
+                  
+                      <apex:inputText value="{!varContactDetail.lastname}" />
+                </apex:pageBlockSectionItem>
+                
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Account Name" />
+                    <apex:inputField value="{!varContactDetail.AccountId}"/>
+                  </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                  <apex:outputLabel value="Telephone" />
+                   <apex:inputfield value="{!varContactDetail.Phone}" label="{!TELEPHONETEXT}"  onkeypress="return isNumberKey(event,this.value)"><c:helpicon helpText="Please enter 11 digit valid Phone number"/>
+                </apex:inputfield>
+               <!--     <apex:outputLabel value="Telephone" >
+                   <apex:inputText value="{!varContactDetail.Phone}" >
+                  
+                   </apex:inputText>
+                    <c:helpicon helpText="Please enter 11 digit valid Phone number"/>
+                   </apex:outputLabel> -->
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email" />
+                    <apex:inputText value="{!varContactDetail.Email}" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Position" />
+                     <apex:inputText value="{!varContactDetail.FS_Position__c}" />
+                </apex:pageBlockSectionItem> 
+                
+                 <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Decision Maker" />
+                <apex:inputCheckbox value="{!varContactDetail.FS_Decision_Maker__c}" />   
+                </apex:pageBlockSectionItem> 
+            </apex:pageBlockSection>
+            <apex:pageBlocksection title="Address Information" columns="1" rendered="{!(EditMode)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing Street" />
+                   
+                     <apex:inputText value="{!varContactDetail.MailingStreet}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing City" />
+                  
+                    <apex:inputText value="{!varContactDetail.mailingcity}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing State/Province" />
+                    
+                     <apex:inputText value="{!varContactDetail.mailingState}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    
+                    <apex:outputLabel value="Mailing PostalCode" />
+                   
+                     <apex:inputText value="{!varContactDetail.MailingPostalCode}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mailing Country" />
+                    
+                    <apex:inputText value="{!varContactDetail.MailingCountry}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+            <apex:commandButton title="Edit" value="Edit" action="{!editPage}" rendered="{!Not(EditMode)}"/>
+             <apex:commandButton title="Edit" value="Save"  rendered="{!(EditMode)}" action="{!updateContact}"/>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

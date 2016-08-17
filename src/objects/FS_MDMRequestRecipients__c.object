@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Purpose: hold MDM recipients email</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>FS_AnalystEmail__c</fullName>
+        <description>Purpose: holds the analyst email recipient</description>
+        <externalId>false</externalId>
+        <label>Analyst Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_MDMTeamEmail__c</fullName>
+        <description>Purpose: holds the mdm team email recipient</description>
+        <externalId>false</externalId>
+        <label>MDM Team Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <label>FS MDM Request Recipients</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>This will hold the default value on the excel attachment.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>FS_ApprovedByText__c</fullName>
+        <externalId>false</externalId>
+        <label>Approved By Text</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_AttachmentFileName__c</fullName>
+        <description>Purpose: holds the file name of the attachment</description>
+        <externalId>false</externalId>
+        <label>Attachment File Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_CaptionText__c</fullName>
+        <externalId>false</externalId>
+        <label>Caption Text</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyAddress__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company Address</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyCity__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company City</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyFaxText__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company Fax Text</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyFax__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company Fax</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyName__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyNote__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company Note</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyPhoneText__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company Phone Text</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_CompanyPhone__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Company Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>FS_ConditionTypeValue__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Condition Type Value</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_EmailBody__c</fullName>
+        <description>Purpose: holds the value for email body</description>
+        <externalId>false</externalId>
+        <label>Email Body</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FS_EmailSubject__c</fullName>
+        <description>Purpose: holds the value for email subject</description>
+        <externalId>false</externalId>
+        <label>Email Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_FinanceManagerName__c</fullName>
+        <externalId>false</externalId>
+        <label>Finance Manager Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_FinanceManagerPosition__c</fullName>
+        <externalId>false</externalId>
+        <label>Finance Manager Position</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_NameText__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Name Text</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_PositionText__c</fullName>
+        <externalId>false</externalId>
+        <label>Position Text</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_SalesManagerName__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Manager Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_SalesManagerPosition__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Manager Position</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_SalesOrganisation__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Sales Organisation</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_SignatureText__c</fullName>
+        <externalId>false</externalId>
+        <label>Signature Text</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_TargetOfDiscountValue__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Target Of Discount Value</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Title__c</fullName>
+        <description>This is a default value in the MDM Request attachment.</description>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <length>225</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>FS MDM Email Request Default Value</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,44 @@
+<apex:page Controller="FS_CreateContact_CC" tabStyle="Contact">
+<script>
+function isNumberKey(evt,varlength)
+       {
+          var varlengthValue=varlength.length;
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+           if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+             return false;
+           if(varlengthValue)
+           {
+           }
+          return true;
+       }
+</script>
+
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!createContact}" value="{!SAVETEXT}"/>
+            </apex:pageBlockButtons> 
+            <apex:pageBlockSection title="Contact Information"  columns="1" >
+                <apex:outputText Value="{!$User.FirstName} {!$User.LastName}" label="{!OWNEREXT}" />
+                <apex:inputfield value="{!varContactDetail.FirstName}" />
+                <apex:inputfield value="{!varContactDetail.LastName}" label="{!lASTNAMETEXT}" />
+                <apex:inputfield value="{!varContactDetail.Accountid}" required="{!TRUETEXT}" />
+                <apex:inputfield value="{!varContactDetail.Phone}" label="{!TELEPHONETEXT}"  onkeypress="return isNumberKey(event,this.value)"><c:helpicon helpText="Please enter 11 digit valid Phone number"/>
+                </apex:inputfield>
+                <apex:inputfield value="{!varContactDetail.Email}" required="{!TRUETEXT}" />
+                <apex:inputfield value="{!varContactDetail.FS_Position__c}" required="{!TRUETEXT}" />
+                <apex:inputfield value="{!varContactDetail.FS_Decision_Maker__c}"/>
+                
+            </apex:pageBlockSection>
+            <apex:pageBlocksection title="Address Information" columns="1">
+                <apex:inputfield value="{!varContactDetail.MailingStreet}" />
+                <apex:inputfield value="{!varContactDetail.MailingCity}" />
+                <apex:inputfield value="{!varContactDetail.MailingState}" />
+                <apex:inputfield value="{!varContactDetail.MailingPostalCode}" /> 
+                <apex:inputfield value="{!varContactDetail.MailingCountry}" /> 
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form> 
+</apex:page>

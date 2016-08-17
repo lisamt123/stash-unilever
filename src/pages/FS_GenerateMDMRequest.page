@@ -1,0 +1,209 @@
+<apex:page standardcontroller="Opportunity" renderAs="PDF" showHeader="false" sidebar="false" extensions="FS_GenerateMDMRequest_CX" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false">
+
+<head>
+    <style type="text/css">
+       .center{ text-align: center;}
+       .rightfloat{ 
+            float: right;}                
+       .leftalign{
+            float: left; 
+            text-align: left;}
+       table { border-collapse: collapse;}
+       table , td {font-size:12px; border: 1px solid black;}
+       .tdOpportunity{ width: 15%; }
+       .tdOpportunityProduct {width: 10%;}
+       .specialIndention{width: 20%; font-size:12px;}                               
+    </style>
+</head>
+             <br/> 
+             <div class="center">{!defaultCSValue.FS_CompanyName__c}</div><br/>
+             <div class="center">{!defaultCSValue.FS_CompanyAddress__c}</div><br/>
+             <div class="center">{!defaultCSValue.FS_CompanyPhoneText__c} {!defaultCSValue.FS_CompanyPhone__c} {!defaultCSValue.FS_CompanyFaxText__c} {!defaultCSValue.FS_CompanyFax__c}</div>                              
+             <br/> 
+             <br/>
+             <br/>
+             <br/>
+             <br/>
+             <div class="leftalign">{!dateSent}</div>
+             <div class="rightfloat">{!defaultCSValue.FS_CompanyCity__c}</div>
+             <br/> 
+             <br/>
+             <br/>
+             <br/>
+             <br/>
+             <div class="center">{!defaultCSValue.FS_Title__c}</div>
+             <br/> 
+             <br/>
+             <br/>
+                 <table >
+                        <tr>
+                         <td class="tdOpportunity center">{!HeaderCSValue.FS_TargetOfDiscount__c}</td>
+                         <td class="tdOpportunity center">{!HeaderCSValue.FS_ConditionType__c}</td>
+                         <td class="tdOpportunity center">{!HeaderCSValue.FS_SalesOrganisation__c}</td>
+                         <td class="tdOpportunity center">{!HeaderCSValue.FS_ValidityStart__c}</td>
+                         <td class="tdOpportunity center">{!HeaderCSValue.FS_ValidityEnd__c}</td>
+                         <td class="tdOpportunity center">{!HeaderCSValue.FS_InternalOrder__c}</td>
+                        </tr>
+            
+                    <tbody>
+                        <tr>
+                            <td class="tdOpportunity center">1</td>
+                            <td class="tdOpportunity center">2</td>
+                            <td class="tdOpportunity center">3</td>
+                            <td class="tdOpportunity center">4</td>
+                            <td class="tdOpportunity center">5</td>
+                            <td class="tdOpportunity center">6</td>
+                        </tr>
+                        <tr>
+                            <td>{!defaultCSValue.FS_TargetOfDiscountValue__c}</td>
+                            <td>{!defaultCSValue.FS_ConditionTypeValue__c}</td>
+                            <td>{!defaultCSValue.FS_SalesOrganisation__c}</td>
+                            <td>{!opportunityRecord.FS_startDateTPR__c}</td>
+                            <td>{!opportunityRecord.FS_endDateTPR__c}</td>
+                            <td>{!opportunityRecord.FS_internalOrder__c}</td>
+                        </tr>
+                    </tbody>
+                </table> 
+             <br/>
+                 <table >
+                        <tr>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_HierarchyLevel__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_CustomerCode__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_CustomerCodeDescription__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_ProductHierarchy__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_MaterialCode__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_MaterialDescription__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_ProductExpirationDate__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_Amount__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_Unit__c}</td>
+                        </tr>
+            
+                    <tbody>
+                        <tr>
+                            <td class="tdOpportunityProduct center">7</td>
+                            <td class="tdOpportunityProduct center">8</td>
+                            <td class="tdOpportunityProduct center">9</td>
+                            <td class="tdOpportunityProduct center">10</td>
+                            <td class="tdOpportunityProduct center">11</td>
+                            <td class="tdOpportunityProduct center">12</td>
+                            <td class="tdOpportunityProduct center">13</td>
+                            <td class="tdOpportunityProduct center">14</td>
+                            <td class="tdOpportunityProduct center">15</td>
+                        </tr>                     
+                     </tbody>
+                </table>
+                     
+                     <apex:form >
+                        <apex:dataTable value="{!opportunityProducts}" var="op" width="100%">
+
+                       <!--<apex:pageBlock>
+                            <apex:pageBlockTable value="{!opportunityProducts}" var="op">-->
+                                    <apex:column styleClass="tdOpportunityProduct center" > 7 </apex:column>   
+                                    <apex:column styleClass="tdOpportunityProduct center" > 8 </apex:column> 
+                                    <apex:column styleClass="tdOpportunityProduct center" > 9 </apex:column>
+                                    <apex:column styleClass="tdOpportunityProduct center" > empty </apex:column>                                      
+                                    <apex:column styleClass="tdOpportunityProduct center"  value="{!op.ProductCode}"/> 
+                                    <apex:column styleClass="tdOpportunityProduct"  value="{!product2Map[op.Product2Id].Name}"/>
+                                    <apex:column styleClass="tdOpportunityProduct center" > empty </apex:column> 
+                                    <apex:column styleClass="tdOpportunityProduct center"  value="{!op.FS_totalTPRPercentage__c}"/>
+                                    <apex:column styleClass="tdOpportunityProduct center" > % </apex:column> 
+<!--                            </apex:pageBlockTable> 
+                          </apex:pageBlock>  -->
+                          </apex:dataTable>  
+                            
+ <!--
+                            <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_HierarchyLevel__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_CustomerCode__c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS___c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS___c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS___c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS___c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS___c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS___c}</td>
+                         <td class="tdOpportunityProduct center">{!HeaderCSValue.FS_Unit__c}</td>
+
+                         <apex:dataTable value="{!HeaderCSValue}" var="csHeader" >
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_HierarchyLevel__c}"/>
+                            </apex:column>
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_CustomerCode__c}"/>
+                            </apex:column>
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_CustomerCodeDescription__c}"/>
+                            </apex:column>
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_ProductHierarchy__c}"/>
+                            </apex:column>
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_MaterialCode__c}"/>
+                            </apex:column>
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_MaterialDescription__c}"/>
+                            </apex:column>
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_ProductExpirationDate__c}"/>
+                            </apex:column>
+                            <apex:column style="width: 10%;">
+                                <apex:outputText value="{!csHeader.FS_Amount__c}"/>
+                            </apex:column>
+                            <apex:column styleClass="tdOpportunityProduct,center">
+                                <apex:outputText value="{!csHeader.FS_Unit__c}"/>
+                            </apex:column>                            
+                        </apex:dataTable>
+    
+                        <apex:dataTable value="{!opportunityProducts}" var="op" width="100%">
+                            <apex:column styleClass="center">
+                                <apex:outputText >7</apex:outputText>
+                            </apex:column>
+                            <apex:column styleClass="center">
+                                <apex:outputText >8</apex:outputText>
+                            </apex:column>
+                            <apex:column styleClass="center">
+                                <apex:outputText >9</apex:outputText>
+                            </apex:column>
+                            <apex:column styleClass="center"> ' </apex:column>                           
+                            <apex:column styleClass="center">
+                                <apex:outputText value="{!op.ProductCode}"/>
+                            </apex:column>
+                            <apex:column styleClass="leftalign">
+                                <apex:outputText value="{!product2Map[op.Product2Id].Name}"/>
+                            </apex:column>
+                            <apex:column styleClass="center"> ' </apex:column>
+                            <apex:column styleClass="center">
+                                <apex:outputText value="{!op.FS_totalTPRPercentage__c}"/>
+                            </apex:column>
+                            <apex:column styleClass="center"> % </apex:column>                            
+                        </apex:dataTable>-->
+                        
+                        <br/>
+                        <br/>
+                        <div class="leftalign">{!defaultCSValue.FS_CompanyNote__c}</div>
+                        <br/>
+                        <br/>
+                        <br/>                        
+                        <div class="leftalign">{!defaultCSValue.FS_CaptionText__c}</div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>                        
+                         <div class="leftalign">{!defaultCSValue.FS_ApprovedByText__c}</div>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_SalesManagerPosition__c}</div>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_SalesManagerName__c}</div>
+                        <br/>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_PositionText__c}</div>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_NameText__c}</div>    
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_SignatureText__c}</div>
+                         <br/>
+                        <br/>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_FinanceManagerPosition__c}</div>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_FinanceManagerName__c}</div>
+                        <br/>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_PositionText__c}</div>
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_NameText__c}</div>    
+                         <div class="rightfloat specialIndention center">{!defaultCSValue.FS_SignatureText__c}</div>
+                        </apex:form>
+
+ 
+</apex:page>

@@ -1,0 +1,9 @@
+<apex:page sidebar="​false">
+<h1>Sales Wave - This is an amazing snapshot of our daily sales figures!</h1> 
+<wave:dashboard dashboardId="0FK8A0000004CcFWAU" 
+                 showTitle="false" 
+                 height="1000px" 
+                 openLinksInNewWindow="true"
+                 filter="{'Direct_Indirect': {'Division': ['57 Canada']}}"
+/>
+</apex:page>

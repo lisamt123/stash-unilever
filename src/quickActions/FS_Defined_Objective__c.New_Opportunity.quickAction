@@ -10,18 +10,31 @@
         <formula>FS_Defined_Objective__c.FS_Customer__r.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>CloseDate</field>
+        <formula>FS_Defined_Objective__c.FS_Completion_Date__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>Defined_Objective__c</field>
         <formula>FS_Defined_Objective__c.Id</formula>
     </fieldOverrides>
     <fieldOverrides>
+        <field>FS_Start_Date__c</field>
+        <formula>FS_Defined_Objective__c.FS_Objective_Start_Date__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
         <field>StageName</field>
-        <literalValue>01 – Universe</literalValue>
+        <literalValue>01 - Prospecting</literalValue>
     </fieldOverrides>
     <label>New Opportunity</label>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
         <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>AccountId</field>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
                 <field>Name</field>
@@ -39,22 +52,7 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>AccountId</field>
-                <uiBehavior>Edit</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>CloseDate</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>StageName</field>
-                <uiBehavior>Required</uiBehavior>
-            </quickActionLayoutItems>
-            <quickActionLayoutItems>
-                <emptySpace>false</emptySpace>
-                <field>Amount</field>
+                <field>FS_Start_Date__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -63,7 +61,26 @@
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
-        <quickActionLayoutColumns/>
+        <quickActionLayoutColumns>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>StageName</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>true</emptySpace>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>true</emptySpace>
+                <uiBehavior>Edit</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>CloseDate</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+        </quickActionLayoutColumns>
     </quickActionLayout>
     <successMessage>A new opportunity has been created.</successMessage>
     <targetObject>Opportunity</targetObject>

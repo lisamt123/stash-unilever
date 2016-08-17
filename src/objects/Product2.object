@@ -1023,6 +1023,21 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ERP_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Object storing ERP information (Sales Area)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Object storing ERP information (Sales Area)</inlineHelpText>
+        <label>ERP Product</label>
+        <referenceTo>ERP_Product__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>EndDate__c</fullName>
         <description>Purpose : Date on which the product will become inactive
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -1045,6 +1060,50 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>FS Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Bouillons and seasonings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sauces</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dessert Solutions (incl Ice-cream)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings (Excl Olive Oil)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Leaf tea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soup Solutions</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>FS_Compensable__c</fullName>
@@ -1233,6 +1292,168 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Sub_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>FS Sub Category</label>
+        <picklist>
+            <controllingField>FS_Category__c</controllingField>
+            <picklistValues>
+                <fullName>Boullions</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bouillons and seasonings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Boullions Prof</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bouillons and seasonings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fond</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bouillons and seasonings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Primerba</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bouillons and seasonings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seasonings</fullName>
+                <default>false</default>
+                <controllingFieldValues>Bouillons and seasonings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Desserts</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dessert Solutions (incl Ice-cream)</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hellmann&apos;s Salad Dressings</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings (Excl Olive Oil)</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ketchup</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings (Excl Olive Oil)</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MAYO</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings (Excl Olive Oil)</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New category 435</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings (Excl Olive Oil)</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tabasco</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings (Excl Olive Oil)</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tea</fullName>
+                <default>false</default>
+                <controllingFieldValues>Leaf tea</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Binders</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IMP</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New category 207</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oil</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rice</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spaghetti</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spices</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vegetables</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vinegar</fullName>
+                <default>false</default>
+                <controllingFieldValues>Other Foods</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sauces</fullName>
+                <default>false</default>
+                <controllingFieldValues>Sauces</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creme bonj</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCC</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rama</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCC</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCC retail</fullName>
+                <default>false</default>
+                <controllingFieldValues>SCC</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soups</fullName>
+                <default>false</default>
+                <controllingFieldValues>Soup Solutions</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Soup Solutions</fullName>
+                <default>false</default>
+                <controllingFieldValues>Soup Solutions</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_TemporaryTPRTable__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup field to a custom object called TemporaryTPR which stores the values of TemporaryTPR with their corresponding Distributor Type.</description>
+        <externalId>false</externalId>
+        <label>TemporaryTPRTable</label>
+        <referenceTo>FS_TemporaryTPR__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>FS_Thrust__c</fullName>
         <description>Purpose : Locally maintained grouping of products for reporting
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
@@ -1276,13 +1497,55 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
     </fields>
     <fields>
         <fullName>FS_TopSellers__c</fullName>
-        <defaultValue>false</defaultValue>
         <description>Top Sellers check box is used for Russia</description>
         <externalId>false</externalId>
         <label>Top Sellers</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Caterpack 100 (LYL/GREEN)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hellmann&apos;s Real (5L/2.5L)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Asian Sauces</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Beef Boullion 2/8 KG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Boullion Mushroom 2/8 KG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Chicken Boullion 2/8 KG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Demi Glace</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Mash Potato</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Primerba</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Tomatoes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>Checkbox</type>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>FS_Top_Sellers__c</fullName>
@@ -1367,7 +1630,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <label>VAT RU</label>
         <precision>17</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Number</type>
@@ -1415,7 +1678,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>FS_temporaryTPR__c</fullName>
-        <defaultValue>0</defaultValue>
+        <defaultValue>0.00</defaultValue>
         <description>Temporary Price Reduction set for the product when calculating TPR in Opportunities</description>
         <externalId>false</externalId>
         <label>Temporary TPR</label>
@@ -1548,35 +1811,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>I1 ICE CREAM</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>J1 SLIM FAST</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>K1 MEALS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>L1 MEXICAN</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>M1 PREMIUM BAKING MARGARINE</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>N1 CRYSTAL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>O1 SHORTENINGS-OIL</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>P1 INDUSTRIAL OIL</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1584,15 +1819,39 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>R1 BAKERY</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>S1 CORN PRODUCTS</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FOH MAYO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SDJ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Knorr Ultimate Low/Reduced Sodium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LCB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPECIALTY TEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HOT TEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ICED TEA</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1621,12 +1880,34 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>PHLevel6Code__c</fullName>
+        <externalId>false</externalId>
+        <label>PH Level 6 Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PHLevel9Code__c</fullName>
+        <externalId>false</externalId>
+        <label>PH Level 9 Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>PackSize__c</fullName>
         <description>Purpose : Filed depicting the number of units and packaging size per unit in a pack (E.g. 4x2.9 OZ)
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Pack Size</label>
-        <length>30</length>
+        <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1667,7 +1948,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <description>Purpose : To display Product Category 
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
-        <label>Product Category</label>
+        <label>Sector</label>
         <picklist>
             <picklistValues>
                 <fullName>01 AUTO BREW STEEPING</fullName>
@@ -4618,7 +4899,8 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     </fields>
     <fields>
         <fullName>UID_Gross_Weight__c</fullName>
-        <description>Gross weight of SKU</description>
+        <description>Gross weight of SKU. 
+Update: Used in Food Solution Project also</description>
         <externalId>false</externalId>
         <label>Gross Weight</label>
         <precision>18</precision>
@@ -4897,11 +5179,12 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <fullName>AllProducts</fullName>
         <columns>PRODUCT2.NAME</columns>
         <columns>GTIN__c</columns>
-        <columns>FS_DUNumber__c</columns>
         <columns>PackSize__c</columns>
         <columns>COGS__c</columns>
         <columns>MarketType__c</columns>
         <columns>ProfitabilityTarget__c</columns>
+        <columns>Status__c</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
         <filterScope>Everything</filterScope>
         <label>All Products</label>
         <language>en_US</language>
@@ -5842,6 +6125,41 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Category__c</picklist>
+            <values>
+                <fullName>Bouillons and seasonings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dessert Solutions %28incl Ice-cream%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings %28Excl Olive Oil%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leaf tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Foods</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sauces</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Solutions</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_Focus__c</picklist>
             <values>
                 <fullName>BOH</fullName>
@@ -5853,6 +6171,117 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </values>
             <values>
                 <fullName>NON-FOCUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Sub_Category__c</picklist>
+            <values>
+                <fullName>Binders</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boullions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Boullions Prof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Creme bonj</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Desserts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hellmann%27s Salad Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ketchup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New category 207</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New category 435</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Primerba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCC retail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sauces</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seasonings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soup Solutions</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Soups</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spaghetti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spices</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tabasco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vegetables</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vinegar</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5884,6 +6313,49 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </values>
             <values>
                 <fullName>Stand Out Soups</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_TopSellers__c</picklist>
+            <values>
+                <fullName>Caterpack 100 %28LYL%2FGREEN%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hellmann%27s Real %285L%2F2%2E5L%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Asian Sauces</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Beef Boullion 2%2F8 KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Boullion Mushroom 2%2F8 KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Chicken Boullion 2%2F8 KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Demi Glace</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Mash Potato</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Primerba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Tomatoes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5968,6 +6440,10 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>BOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>D1 SOUPS</fullName>
                 <default>false</default>
             </values>
@@ -5980,6 +6456,10 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>FOH MAYO</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>G1 TEA-BEVERAGES</fullName>
                 <default>false</default>
             </values>
@@ -5988,11 +6468,11 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>I1 ICE CREAM</fullName>
+                <fullName>HOT TEA</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>J1 SLIM FAST</fullName>
+                <fullName>ICED TEA</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6000,23 +6480,11 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>L1 MEXICAN</fullName>
+                <fullName>Knorr Ultimate Low%2FReduced Sodium</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>M1 PREMIUM BAKING MARGARINE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>N1 CRYSTAL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>O1 SHORTENINGS-OIL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>P1 INDUSTRIAL OIL</fullName>
+                <fullName>LCB</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6024,11 +6492,11 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>R1 BAKERY</fullName>
+                <fullName>SDJ</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>S1 CORN PRODUCTS</fullName>
+                <fullName>SPECIALTY TEA</fullName>
                 <default>false</default>
             </values>
             <values>

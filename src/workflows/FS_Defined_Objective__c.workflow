@@ -23,7 +23,7 @@
     <fieldUpdates>
         <fullName>FS_UpdateApprovedOfDefObj</fullName>
         <description>It is used to update Approved field on defined objective</description>
-        <field>Approved__c</field>
+        <field>FS_Approved__c</field>
         <literalValue>1</literalValue>
         <name>Update Approved for defined objective</name>
         <notifyAssignee>false</notifyAssignee>
@@ -33,7 +33,7 @@
     <fieldUpdates>
         <fullName>FS_UpdateDefinedObjectiveStatus</fullName>
         <description>It is used to cheange the status on defined objective when rejected</description>
-        <field>Status__c</field>
+        <field>FS_Status__c</field>
         <literalValue>Planning</literalValue>
         <name>Update Defined objective status</name>
         <notifyAssignee>false</notifyAssignee>
@@ -43,11 +43,22 @@
     <fieldUpdates>
         <fullName>FS_UpdateStatusOnDefObj</fullName>
         <description>Is is used to update status on defined objective</description>
-        <field>Status__c</field>
+        <field>FS_Status__c</field>
         <literalValue>Approved</literalValue>
         <name>Update status on defined objective</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>FS_Risk</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>FS_Defined_Objective__c.FS_Objective_Type__c</field>
+            <operation>equals</operation>
+            <value>Retain / Differentiate</value>
+        </criteriaItems>
+        <description>If a Defined Objective has an Objective Type value of Retain/Differentiate, update RecordType to Risk.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
 </Workflow>

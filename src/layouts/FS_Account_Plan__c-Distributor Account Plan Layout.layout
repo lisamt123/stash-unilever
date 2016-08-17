@@ -8,7 +8,7 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
@@ -60,10 +60,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_Plan_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -146,6 +142,9 @@
             <quickActionName>FeedItem.ContentPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
+            <quickActionName>FS_Account_Plan__c.New_Distributor_Objective</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
             <quickActionName>FeedItem.MobileSmartActions</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -163,14 +162,17 @@
     </quickActionList>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
+        <fields>BSP__c</fields>
         <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
         <fields>FS_Objective_Description__c</fields>
         <fields>FS_Tension__c</fields>
         <fields>FS_Objective_Start_Date__c</fields>
         <fields>FS_Completion_Date__c</fields>
+        <fields>FS_Status__c</fields>
         <relatedList>FS_Defined_Objective__c.FS_Account_Plan__c</relatedList>
-        <sortField>FS_Objective_Start_Date__c</sortField>
-        <sortOrder>Desc</sortOrder>
+        <sortField>BSP__c</sortField>
+        <sortOrder>Asc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>
@@ -189,6 +191,14 @@
         <fields>CAMPAIGN.STATUS</fields>
         <fields>CAMPAIGN.START_DATE</fields>
         <relatedList>Campaign.Account_Plan__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Defined_Objective__c</fields>
+        <fields>Description__c</fields>
+        <fields>Risk_Category__c</fields>
+        <fields>CURRENCY_ISO_CODE</fields>
+        <relatedList>Risk__c.Account_Plan__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

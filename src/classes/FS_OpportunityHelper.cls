@@ -6,9 +6,22 @@ VERSION  AUTHOR         DATE          DETAIL Description
                       25/May/2016       Updated handleOpportunityPackage
                       01/July/2016      Updated for account planning
 ***********************************************************************/
+/* * Class FS_OpportunityHelper helper class for Opportunity trigger
+*  @name FS_OpportunityHelper
+*  @param
+*  @return 
+*  @throws 
+*/ 
 public with sharing class FS_OpportunityHelper {
-
-    //Purpose: To update Opportunity with Opp Line Item Value (MABE process)
+Private static final string STATUS_WON='05 – Won';
+Private static final string STATUS_CLOSED_WON='Closed Won';
+Private static final string STATUS_CLOSED_LOST='Closed Lost';
+/* * Method rollUpOpportunityLineItem to update Opportunity with Opp Line Item Value (MABE process)
+*  @name rollUpOpportunityLineItem
+*  @param List<Opportunity> listNewTrigger
+*  @return 
+*  @throws
+*/    
     public static void rollUpOpportunityLineItem(List<Opportunity> listNewTrigger){ 
       //To avoid recurson in trigger used static variable NAFS_Utility.runOnce
       if(FS_Utility.runOnce()){
@@ -73,52 +86,70 @@ public with sharing class FS_OpportunityHelper {
               ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
           }
       }
-    }  
+    }
+/* * Method rollUptoAccountPlan to update rollup fields on account plan
+*  @name rollUptoAccountPlan
+*  @param List<Opportunity> listNewTrigger2
+*  @return 
+*  @throws 
+*/
    //Purpose: To update Account Plan object to roll up Opportunity 
    public static void rollUptoAccountPlan(List<Opportunity> listNewTrigger2){ 
-        if(FS_Utility.run2Once()){
-         Integer Opportunity_Gain = 0;
-         Integer Opportunity_Potential=0;
-         Integer Record_Count;
+        if(FS_Utility.runaccPlanOnce()){
+         Integer opportunity_Gain = 0;
+         Integer opportunity_Potential=0;
+         Integer record_Count;
          List<Id> listAccPlanId = new List<Id>();
-         List<FS_Account_Plan__c> AccPlanList = new List<FS_Account_Plan__C>();
-         List<FS_Account_Plan__c> AccPlanToUpdate = new List<FS_Account_Plan__C>();
-         List<Opportunity> OppList = new List<Opportunity>();
+         List<FS_Account_Plan__c> accPlanList = new List<FS_Account_Plan__C>();
+         List<FS_Account_Plan__c> accPlanToUpdate = new List<FS_Account_Plan__C>();
+         List<Opportunity> oppList = new List<Opportunity>();
          for(Opportunity opp : listNewTrigger2){
               if(opp.Account_Plan__c !=null){
                   listAccPlanId.add(opp.Account_Plan__c);
               }
             }
         //Get Accoun Plan deatils where associated opportunities have been modified
-        AccPlanList=[select id,name,FS_Opportunity_Gain__c,FS_No_of_Opportunities__c,FS_Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ];
-        OppList=[select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId]  ;
+        //accPlanList=[select id,name,FS_Opportunity_Gain__c,FS_No_of_Opportunities__c,FS_Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ];
+        //oppList=[select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId];
+        Map<Id,List<Opportunity>> mapAccPlanOpportunity=New Map<Id,List<Opportunity>>();
+        List<Opportunity> tempOppList=new List<Opportunity>();
+            for(Opportunity opp : [select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId]){
+              tempOppList=new List<Opportunity>();
+                If(mapAccPlanOpportunity.containsKey(opp.Account_Plan__c)){
+                   tempOppList=mapAccPlanOpportunity.get(Opp.Account_Plan__c);
+                }
+              tempOppList.add(Opp);
+              mapAccPlanOpportunity.put(Opp.Account_Plan__c, tempOppList);
+            }
         //Roll up opportunity details up to account plan object
-        for(FS_Account_Plan__c AccPlan : AccPlanList )
+        for(FS_Account_Plan__c accPlan : [select id,name,FS_Opportunity_Gain__c,FS_No_of_Opportunities__c,FS_Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ])
         {
-            Opportunity_Gain=0;            
-            Opportunity_Potential=0;
-            Record_Count=0;
-             for(Opportunity Opp : OppList)
+            opportunity_Gain=0;            
+            opportunity_Potential=0;
+            record_Count=0;
+            tempOppList=new List<Opportunity>();
+            tempOppList=MapAccPlanOpportunity.get(AccPlan.Id);           
+             for(Opportunity opp : tempOppList)
              {
-                 if(AccPlan.id==Opp.Account_Plan__c && opp.amount !=null){
-                 Record_Count=Record_Count+1;
-                 if(opp.StageName=='Closed Won'){
-                 Opportunity_Gain=Opportunity_Gain+Integer.valueOf(opp.Amount);
+                 if(opp.amount !=null){
+                 record_Count=record_Count+1;
+                 if(opp.StageName.equals(STATUS_CLOSED_WON) || opp.StageName.equals(STATUS_WON)){
+                 opportunity_Gain=opportunity_Gain+Integer.valueOf(opp.Amount);
                  }
-                 if(opp.StageName!='Closed Lost'){
-                  Opportunity_Potential=Opportunity_Potential+Integer.valueOf(opp.Amount); 
+                 if(opp.StageName!='STATUS_CLOSED_LOST'){
+                  opportunity_Potential=opportunity_Potential+Integer.valueOf(opp.Amount); 
                  }
                  }
                 }
             //Update roll up fields on account plan object
-            AccPlan.FS_Opportunity_Gain__c=Opportunity_Gain;
-            AccPlan.FS_No_of_Opportunities__c=Record_Count;
+            accPlan.FS_Opportunity_Gain__c=Opportunity_Gain;
+            accPlan.FS_No_of_Opportunities__c=Record_Count;
             accPlan.FS_Opportunity_Amount__c=Opportunity_Potential;
-            AccPlanToUpdate.add(accPlan);            
+            accPlanToUpdate.add(accPlan);            
          }
             try{
-              if(!AccPlanToUpdate.isEmpty()){
-                 update(AccPlanToUpdate);
+              if(!accPlanToUpdate.isEmpty()){
+                 update(accPlanToUpdate);
               }
           }
           Catch(DmlException e){
@@ -128,14 +159,20 @@ public with sharing class FS_OpportunityHelper {
         
         }
 }
+/* * Method rollUptoDefinedObjective to update roll up fields on defined objective record
+*  @name rollUptoDefinedObjective
+*  @param List<Opportunity> listNewTrigger2
+*  @return 
+*  @throws 
+*/
     public static void rollUptoDefinedObjective(List<Opportunity> listNewTrigger2){ 
-        if(FS_Utility.run3Once()){
+        if(FS_Utility.runObjOnce()){
          List<Id> listObjId = new List<Id>();
-         Integer Gross_Amount;
-         Integer Record_Count;
-         List<FS_Defined_Objective__c> ObjList = new List<FS_Defined_Objective__c>();
-         List<FS_Defined_Objective__c> ObjToUpdate = new List<FS_Defined_Objective__c>();
-         List<Opportunity> OppList = new List<Opportunity>();
+         Integer gross_Amount;
+         Integer record_Count;
+         List<FS_Defined_Objective__c> objList = new List<FS_Defined_Objective__c>();
+         List<FS_Defined_Objective__c> objToUpdate = new List<FS_Defined_Objective__c>();
+         List<Opportunity> oppList = new List<Opportunity>();
          for(Opportunity opp : listNewTrigger2){
               if(opp.Defined_Objective__c !=null){
                   listObjId.add(opp.Defined_Objective__c);
@@ -143,24 +180,34 @@ public with sharing class FS_OpportunityHelper {
             }
         //Get Accoun Plan deatils where associated opportunities have been modified
         ObjList=[select id,name,FS_No_of_Opportunities__c from FS_Defined_Objective__c where id in : listObjId];
-        OppList=[select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId];
-        //Roll up opportunity details up to account plan object
-        for(FS_Defined_Objective__c Obj : ObjList )
-        {
-            Gross_Amount=0;
-            Record_Count=0;
-            //Update total no of opportunities on defined objective
-            for(Opportunity Opp : OppList){
-                if(obj.Id==opp.Defined_Objective__c){
-                  Record_Count=Record_Count+1;
-                  If(opp.amount !=null && opp.StageName!='Closed Lost'){
-                  Gross_Amount=Gross_Amount+Integer.valueOf(opp.Amount);                  
-                 }
-             }
+        //OppList=[select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId];
+        Map<Id,List<Opportunity>> mapObjOpportunity=New Map<Id,List<Opportunity>>();
+        List<Opportunity> tempOppList=new List<Opportunity>();
+            for(Opportunity Opp : [select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId]){
+              tempOppList=new List<Opportunity>();
+                If(mapObjOpportunity.containsKey(Opp.Defined_Objective__c)){
+                   tempOppList=mapObjOpportunity.get(Opp.Defined_Objective__c);
+                }
+              tempOppList.add(Opp);
+              mapObjOpportunity.put(Opp.Defined_Objective__c, tempOppList);
             }
-            Obj.FS_No_of_Opportunities__c=Record_Count;
-            Obj.FS_Opportunity_Amount__c=Gross_Amount;
-            ObjToUpdate.add(obj);            
+        //Roll up opportunity details up to account plan object        
+        for(FS_Defined_Objective__c Obj : [select id,name,FS_No_of_Opportunities__c from FS_Defined_Objective__c where id in : listObjId] )
+        {
+            gross_Amount=0;
+            record_Count=0;
+            tempOppList=new List<Opportunity>();
+            tempOppList=MapObjOpportunity.get(Obj.Id);
+            //Update total no of opportunities on defined objective
+            for(Opportunity opp : tempOppList){                
+                  record_Count=record_Count+1;
+                  If(opp.amount !=null && opp.StageName!=STATUS_CLOSED_LOST){
+                  gross_Amount=gross_Amount+Integer.valueOf(opp.Amount);                  
+                 }
+             }            
+            obj.FS_No_of_Opportunities__c=record_Count;
+            obj.FS_Opportunity_Amount__c=gross_Amount;
+            objToUpdate.add(obj);            
          }
             try{
               if(!ObjToUpdate.isEmpty()){
@@ -170,8 +217,289 @@ public with sharing class FS_OpportunityHelper {
           Catch(DmlException e){
               System.debug( 'The following exception has occurred: '+e.getMessage() );
               ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
-          }
-        
+          }        
         }
- }
+    }
+/* * Method copyLineItemToExistingOpp for MABE process to copy line item ,create contract product
+*  @name copyLineItemToExistingOpp
+*  @param List<Opportunity> listNewTrigger,Map<id,Opportunity> OppOldMap
+*  @return 
+*  @throws 
+*/
+    public static void copyLineItemToExistingOpp(List<Opportunity> listNewTrigger,Map<id,Opportunity> OppOldMap){ 
+      //To avoid recurson in trigger used static variable NAFS_Utility.runOnce
+      //if(FS_Utility.runOnce()){          
+          List<Id> listOppId = new List<Id>();
+          List<Id> listAccountId= new List<Id>();         
+          List<Opportunity> listNewOpportunity=new List<Opportunity>();//List of opportunities which marked as 'Closed Won'
+          List<Opportunity> listExistingOpportunity=new List<Opportunity>();//List of Existing opportunities associated with closed New opportunities
+          List<OpportunityLineItem> listExistingOppLineItem = new List<OpportunityLineItem>();//List of line items for existing opportunities
+          List<OpportunityLineItem> listNewOppLineItem = new List<OpportunityLineItem>();//List of line items created for New opportunities
+          List<OpportunityLineItem> oppLineItemToInsert = new List<OpportunityLineItem>();//Opporutnity line item to be created for existing opportunties
+          List<OpportunityLineItem> oppLineItemforExisting = new List<OpportunityLineItem>();//Temporary variable used in loop for each existing opportunity
+          List<OpportunityLineItem> oppLineItemToUpdate = new List<OpportunityLineItem>();//Opportunity line items to be updated
+          List<OpportunityLineItem> oppLineItemUpsert = new List<OpportunityLineItem>();//Opportunity line items that are updated   
+          Set<Id> listExistingOli=new Set<Id>();
+          Set<Id> listPriceBookEntry=new Set<Id>();
+          Set<Id> setContractId=new Set<Id>();
+          Set<Id> setProductId=new Set<Id>();          
+          List<Contract_Product__c>  listNewContractProduct=new  List<Contract_Product__c>();
+          List<Contract_Product__c>  listExistingContractProduct=new  List<Contract_Product__c>();
+          List<Contract_Product__c>  listContractProductInsert=new  List<Contract_Product__c>(); 
+          List<Contract_Product__c>  listContractProductUpdate=new  List<Contract_Product__c>();
+          Map<Id,List<Opportunity>> mapRelatedOpportunity=new Map<Id,List<Opportunity>>();
+          Map<Id,List<OpportunityLineItem>> mapRelatedOppLineItem=new Map<Id,List<OpportunityLineItem>>();
+          Map<Id,List<OpportunityLineItem>> mapRelatedExistingOppLineItem=new Map<Id,List<OpportunityLineItem>>();
+          Map<Id,List<OpportunityLineItem>> mapRelatedNewOppLineItem=new Map<Id,List<OpportunityLineItem>>();
+          List<Opportunity> tempOppList=new List<Opportunity>();
+          Integer total_Quantity;
+          Integer total_Price;
+          Integer unit_Price;
+          Integer existing_Oli_Flag;
+          Integer existing_Contract_Product_Flag;
+          Id oliId;
+          Set<Id> setoppLineItemUpsert=new Set<Id>();
+          OpportunityLineItem oppLineItem=new OpportunityLineItem();
+          List<OpportunityLineItem> tempOppLineItemList=new List<OpportunityLineItem>();
+          List<FS_Contract_Product_Opportunity_Map__c> listNewCustomSetting=New List<FS_Contract_Product_Opportunity_Map__c>();
+          //Get record type ids for Existing and MA-BE
+          Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+          Id existingRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();
+                
+          for(Opportunity opp : listNewTrigger){
+              //Check if stage has been changed to Closed Won for New opportunities
+              if(OppOldMap.get(opp.id).stagename!=opp.stagename && opp.StageName.equals(STATUS_WON) && opp.recordtypeid==newRecordTypeId && opp.ContractId!=Null){               
+                 listNewOpportunity.add(opp);
+                 //system.debug(ListNewOpportunity);
+                 listAccountId.add(opp.AccountId);
+                 setContractId.add(opp.ContractId);
+              }             
+           }
+          
+          if(!listNewOpportunity.isEmpty()){
+              listExistingOpportunity=[select id,stagename,accountid,ContractId from Opportunity where recordtypeid=:existingRecordTypeId and accountid in :listAccountId limit 49999];
+              listExistingOppLineItem = [select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,
+                                         Product2Id,Opportunity.contractId,Contract_Product__c
+                                         from OpportunityLineItem where opportunityId in : listExistingOpportunity limit 49999];              
+              }          
+              
+            Map<Id,OpportunityLineItem> mapListExistingOppLineItem=new Map<Id,OpportunityLineItem>(listExistingOppLineItem);
+            
+            //Create Map between New Closed Opportunity and corresponding line items
+            For(OpportunityLineItem oli: [select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,UnitPrice,
+                                          ListPrice,GrossProfit__c,FS_MarketTarget__c,Discount,FS_Sample__c,
+                                          Product2Id,Product2.name,Opportunity.contractId,Pricebookentry.Product2Id,Contract_Product__c 
+                                          from OpportunityLineItem where opportunityId in :listNewOpportunity limit 49999]){
+              tempOppLineItemList=new List<OpportunityLineItem>();
+              if(mapRelatedOppLineItem.containskey(oli.Opportunity.contractId))
+                    {
+                        tempOppLineItemList=mapRelatedOppLineItem.get(oli.Opportunity.contractId);
+                    }               
+            		tempOppLineItemList.add(oli);
+                    mapRelatedOppLineItem.put(oli.Opportunity.contractId,tempOppLineItemList);
+               }             
+             //Create Map between Contract and related New Closed Opportunities
+              List<Opportunity> tempOpportunityList=new List<Opportunity>();       
+              Map<Id,List<OpportunityLineItem>> mapExistingOppLineItemOpportunity=new Map<Id,List<OpportunityLineItem>>();
+              
+              //Create Map between Existing Opportunity and related line items which already exists
+              For(OpportunityLineItem oli: [select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,
+                                         Product2Id,Opportunity.contractId,Contract_Product__c
+                                         from OpportunityLineItem where opportunityId in :ListExistingOpportunity limit 49999]){
+                tempOppLineItemList=new List<OpportunityLineItem>();
+                //system.debug(oli.Opportunity.contractId);
+                if(mapExistingOppLineItemOpportunity.containskey(oli.Opportunity.contractId))
+                    {
+                        tempOppLineItemList=mapExistingOppLineItemOpportunity.get(oli.Opportunity.contractId);
+                    }               
+            		tempOppLineItemList.add(oli);
+                    //system.debug(tempOppLineItemList);
+                    mapExistingOppLineItemOpportunity.put(oli.Opportunity.contractId,tempOppLineItemList);
+               }             
+              //Open loop for each existing opportunity
+              For(Opportunity existingOpp : [select id,stagename,accountid,ContractId 
+                                             from Opportunity where recordtypeid=:existingRecordTypeId 
+                                             and contractid in :setContractId limit 49999]){
+              oppLineItemforExisting = new List<OpportunityLineItem>();
+              tempOppLineItemList = new List<OpportunityLineItem>();
+              ListPriceBookEntry=new Set<Id>();                    
+                     //Get related line items for new opportunity
+                     If(mapRelatedOppLineItem.containsKey(existingOpp.ContractId) && existingOpp.ContractId!=Null){
+                     tempOppLineItemList=mapRelatedOppLineItem.get(existingOpp.ContractId);
+                     //system.debug(tempOppLineItemList);                  
+                      For(OpportunityLineItem oli: tempOppLineItemList ){                      
+                      //Create list of opportunity line items to be created for existing opportunties
+                      oppLineItemforExisting.add(new OpportunityLineItem(Opportunityid = existingOpp.Id,
+                                                                         PricebookentryId =oli.PricebookentryId,quantity=oli.Quantity,
+                                                                         totalPrice=oli.TotalPrice,Distributor__c=oli.Distributor__c,                                                                                                                                               
+                                                                         Discount=oli.Discount,FS_Sample__c=oli.FS_Sample__c));
+                      //Create list of contract product to created on contract for current Existing opportunity
+                      listNewContractProduct.add(new Contract_Product__c(contract__c=existingOpp.ContractId,Product__c=oli.Product2Id,name=String.valueof(oli.Product2.name)));
+                      listPriceBookEntry.add(oli.PricebookentryId);                      
+                  }//End of For loop for line item 
+                  }
+                  
+                  //Open loop for each price book entry for which line items needs to be created on existing opportunity
+          	      	For(Id Pbe : listPriceBookEntry){
+          	        total_Quantity=0;
+                    total_Price=0;
+                    existing_Oli_Flag=0;                    
+                        If(mapExistingOppLineItemOpportunity.containsKey(existingOpp.ContractId))
+                        {                         
+                        //Open loop for line items which already exist for current Existing Opportunity
+                        for(OpportunityLineItem existingOli : mapExistingOppLineItemOpportunity.get(existingOpp.ContractId))
+                        {
+                    	//Check if new opportunity having line item for this price book entry
+                        If(existingOli.pricebookentryid==pbe){              	
+                    	total_Quantity=Integer.Valueof(existingOli.Quantity);
+                        total_Price=Integer.Valueof(existingOli.TotalPrice);	
+                        existing_Oli_Flag=1;
+                        oliId=existingOli.id;                        
+                        }
+                        } 
+                        }//If closed
+                    
+          	      	for(OpportunityLineItem oli : oppLineItemforExisting){//For 1                        
+          	      		if(oli.pricebookentryid==Pbe){
+          	      			total_Quantity=total_Quantity+Integer.Valueof(oli.Quantity);
+                            total_Price=total_Price+Integer.Valueof(oli.TotalPrice);                            
+          	      		}
+          	      	}//For 1                    
+          	      	if(existing_Oli_Flag==0){
+          	        //Preparing list for Insert
+          	      	oppLineItemToInsert.add(new OpportunityLineItem(Opportunityid = existingOpp.Id,
+                                                                         PriceBookEntryId=Pbe,quantity=total_Quantity,
+                                                                         TotalPrice=total_Price));
+                    setoppLineItemUpsert.add(existingOpp.Id);                                         
+          	      	}
+                          //Prepare list for update
+                          if(existing_Oli_Flag>0){
+                          //Preparing list for update
+                          oppLineItem=new OpportunityLineItem();
+                          oppLineItem=mapListExistingOppLineItem.get(oliId);
+                          oppLineItem.quantity=total_Quantity;
+                          oppLineItem.TotalPrice=total_Price;
+                          oppLineItemToUpdate.add(oppLineItem);                          
+                        }          	      	
+          	      	}
+    }//End loop for Existing opportunities          
+        
+        Map<Id,List<Contract_Product__c>> mapExistingContractConProd=new Map<Id,List<Contract_Product__c>>();
+        List<Contract_Product__c> tempExistingConProductList=new List<Contract_Product__c>();
+        for(Contract_Product__c newContractProduct : [select id,Contract__c,Product__c,Product__r.Name from Contract_Product__c where Contract__c in : SetContractId limit 49999])
+        {
+            tempExistingConProductList  = new List<Contract_Product__c>();
+            if(mapExistingContractConProd.containskey(newContractProduct.Contract__c))
+                    {
+                        tempExistingConProductList   = mapExistingContractConProd.get(newContractProduct.Contract__c);
+                    }
+            		tempExistingConProductList.add(newContractProduct);
+                    mapExistingContractConProd.put(newContractProduct.Contract__c,tempExistingConProductList);            
+        }
+        
+        List<Contract_Product__c> tempConProductList=new List<Contract_Product__c>();
+        for(Contract_Product__c newContractProduct : ListNewContractProduct)
+        {
+            tempConProductList  = new List<Contract_Product__c>();
+            existing_Contract_Product_Flag=0;
+            if(mapExistingContractConProd.containskey(newContractProduct.Contract__c)){
+            tempConProductList=mapExistingContractConProd.get(newContractProduct.Contract__c);                               
+            For(Contract_Product__c existingContractProduct : tempConProductList){
+                If(existingContractProduct.product__c==newContractProduct.product__c){
+                    existing_Contract_Product_Flag=1;
+                    listContractProductUpdate.add(existingContractProduct);
+                    Break;
+                }                
+            }
+            }
+                if(existing_Contract_Product_Flag==0)
+        		    {		    
+        			listContractProductInsert.add(newContractProduct);
+                    tempConProductList  = new List<Contract_Product__c>();
+                    If(mapExistingContractConProd.containsKey(newContractProduct.Contract__c)){                        
+                    tempConProductList = mapExistingContractConProd.get(newContractProduct.Contract__c);
+                    }
+                    tempConProductList.add(newContractProduct);
+                    mapExistingContractConProd.put(newContractProduct.Contract__c,tempConProductList);                    
+        		    } 
+            }        
+        //Set up Map between Contract and corresponding contract product which already exists        
+              try{              
+              if(!oppLineItemToInsert.isEmpty()){
+                  insert oppLineItemToInsert;
+              }
+              if(!oppLineItemToUpdate.isEmpty()){
+                  update oppLineItemToUpdate;
+              }
+              If(!listContractProductInsert.isEmpty()){
+              	insert ListContractProductInsert;
+              }                  
+              }           
+          Catch(DmlException e){
+              System.debug( 'The following exception has occurred: '+e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'MA-BE Process', e.getMessage(), e, null, null, null, 0,'Food Solution');
+          } 
+       
+        oppLineItemUpsert=[select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,
+                           Distributor__c,UnitPrice,ListPrice,GrossProfit__c,FS_MarketTarget__c,
+                           Discount,FS_Sample__c,Product2Id,Product2.name,Opportunity.contractId,Pricebookentry.Product2Id,Contract_Product__c
+                           from OpportunityLineItem where opportunityId in : setoppLineItemUpsert limit 49999];        
+              
+        Map<Id,List<Contract_Product__c>> mapContractConProd=new Map<Id,List<Contract_Product__c>>();       
+                
+        for(Contract_Product__c newContractProduct : [select id,Contract__c,Product__c,Product__r.Name from Contract_Product__c where Contract__c in : SetContractId limit 49999])
+        {
+            tempConProductList  = new List<Contract_Product__c>();            
+            if(mapContractConProd.containskey(newContractProduct.Contract__c))
+                    {
+                        tempConProductList=mapContractConProd.get(newContractProduct.Contract__c);
+                    }
+            		tempConProductList.add(newContractProduct);
+                    mapContractConProd.put(newContractProduct.Contract__c,tempConProductList);          
+        }
+        oppLineItemToUpdate=new List<OpportunityLineItem>();
+        
+        For(opportunityLineItem oli: oppLineItemUpsert){
+            
+            If(oli.Contract_Product__c==null){
+                tempConProductList=new List<Contract_Product__c>();
+                tempConProductList=MapContractConProd.get(oli.Opportunity.contractId);
+                
+            For(Contract_Product__c newContractProduct : tempConProductList){
+                
+                IF(oli.Pricebookentry.Product2Id==newContractProduct.Product__c){
+                    oli.Contract_Product__c=newContractProduct.Id;
+                    oppLineItemToUpdate.add(oli);                    
+                    Break;
+                }                
+            }                          
+        }//End if for contract product on oli        
+        }
+            
+    For(Contract_Product__c ConProd : ListContractProductUpdate){
+        tempOppLineItemList=new List<OpportunityLineItem>();
+        tempOppLineItemList=MapRelatedOppLineItem.get(ConProd.Contract__c);  
+        For(OpportunityLineItem Oli : tempOppLineItemList){
+            If(Oli.Product2Id==ConProd.Product__c){              
+              ListNewCustomsetting.add(New FS_Contract_Product_Opportunity_Map__c(Name=String.valueof(ConProd.Id),FS_Contract_Product__c=ConProd.Id,FS_Opportunity__c=OLi.OpportunityId));
+            }
+        }
+    }
+             try{              
+             If(!oppLineItemToUpdate.isEmpty()){
+                  update oppLineItemToUpdate;
+              }
+             If(!listNewCustomSetting.isEmpty()){
+                  Insert listNewCustomSetting;                 
+              }
+             If(!listContractProductUpdate.isEmpty()){
+              	Update listContractProductUpdate;                
+             }
+                     
+          }
+          Catch(DmlException e){
+              System.debug( 'The following exception has occurred: '+e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'MA-BE Process', e.getMessage(), e, null, null, null, 0,'Food Solution');
+          }
+      }//End of method for MA-BE
 }

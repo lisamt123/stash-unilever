@@ -1,3 +1,9 @@
-<apex:page standardController="Opportunity" extensions="FS_SendMDMRequestEmail_CE" Action="{!createExcelAttachment}">
-Email has been successfully sent.
+<!--<apex:page standardController="Opportunity" extensions="FS_SendMDMRequestEmail_CX" Action="{!createExcelAttachment}"> -->
+<apex:page standardController="Opportunity" extensions="FS_SendMDMRequestEmail_CX" action="{!identifyAction}">
+<apex:form >
+<apex:message />
+<apex:messages />
+
+<apex:commandButton value="Ok" action="{!returnToOpportunity}"/>
+</apex:form>
 </apex:page>

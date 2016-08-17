@@ -23,6 +23,18 @@
                 <behavior>Readonly</behavior>
                 <field>Actual_Quantity__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Forecast_Quantity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Planned_Quantity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_ReferenceOpportunity__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -78,12 +90,20 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>FS_Claimed_Cases_Paid__c</fields>
         <fields>Product__c</fields>
-        <fields>FS_Account__c</fields>
+        <fields>Account__c</fields>
         <fields>External_Key__c</fields>
-        <fields>Planned_Quantity__c</fields>
+        <fields>FS_First_of_Month__c</fields>
+        <fields>FS_Planned_Quantity__c</fields>
+        <fields>FS_Forecast_Quantity__c</fields>
+        <fields>FS_Claimed_Cases_Paid__c</fields>
         <relatedList>FS_Monthly_Claimed_Cases__c.Contract_Product__c</relatedList>
+        <sortField>FS_First_of_Month__c</sortField>
+        <sortOrder>Asc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Product_at_Risk__c.Contract_Product__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

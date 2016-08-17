@@ -58,6 +58,19 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>FS_Account_Business_Plan_Name__c</fullName>
+        <description>Concatenates the Account Name and Business Plan Year, pulls year from Plan Start Date FS_Start_Date__c.</description>
+        <externalId>false</externalId>
+        <formula>FS_Customer__r.Name  &amp; &quot;  &quot; &amp; TEXT(YEAR( FS_Start_Date__c ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Business Plan Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Approved__c</fullName>
         <defaultValue>false</defaultValue>
         <description>This field is used in approval process and will not appear in page layout</description>
@@ -265,6 +278,10 @@
                 <fullName>In Progress</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Resubmit for approval</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -276,7 +293,7 @@
     <fields>
         <fullName>FS_of_Units__c</fullName>
         <externalId>false</externalId>
-        <label># of Units</label>
+        <label>Planned Volume</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -286,6 +303,22 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>Identified_Risk__c</fullName>
+        <externalId>false</externalId>
+        <label>Identified Risk</label>
+        <summarizedField>FS_Defined_Objective__c.FS_Dollars__c</summarizedField>
+        <summaryFilterItems>
+            <field>FS_Defined_Objective__c.FS_Objective_Type__c</field>
+            <operation>equals</operation>
+            <value>Risk</value>
+        </summaryFilterItems>
+        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
     <label>Account Plan</label>
     <listViews>
         <fullName>All</fullName>
@@ -293,11 +326,10 @@
         <label>All</label>
     </listViews>
     <nameField>
-        <displayFormat>AP-{0000}</displayFormat>
         <label>Account Plan Name</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Account Plans</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
@@ -334,6 +366,10 @@
             </values>
             <values>
                 <fullName>Planning</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmit for approval</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -376,6 +412,10 @@
                 <fullName>Planning</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Resubmit for approval</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <searchLayouts/>
@@ -397,40 +437,4 @@ ISPICKVAL(FS_Status__c,&apos;Approved&apos;)),
 OR( ISCHANGED(FS_Status__c), ISCHANGED( FS_Start_Date__c), ISCHANGED(FS_End_Date__c),ISCHANGED(FS_PlanDollars__c), ISCHANGED(FS_PlanPercent__c), ISCHANGED(FS_Plan_Type__c), ISCHANGED( FS_Plan_Statement__c)),$Profile.Name &lt;&gt; &quot;System Administrator&quot;)</errorConditionFormula>
         <errorMessage>You are not allowed to make changes to account plan once it is approved</errorMessage>
     </validationRules>
-    <webLinks>
-        <fullName>Create_Distributor_Action_Plan</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Create Distributor Action Plan</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-        <url>/a4H/e?
-CF00N8A000000Vo7T={!Account.Name}&amp;
-CF00N8A000000Vo7T_lkid={!Account.Id}&amp;
-00N8A000000VoJe=&quot;Planning&quot;&amp;
-retURL=%2F{!FS_Account_Plan__c.Id}&amp;
-RecordType=0128A0000000CvO&amp;
-ent=01I8A0000000LZw</url>
-    </webLinks>
-    <webLinks>
-        <fullName>Create_Operator_Account_Plan</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <linkType>url</linkType>
-        <masterLabel>Create Operator Account Plan</masterLabel>
-        <openType>replace</openType>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-        <url>/a4H/e?
-CF00N8A000000Vo7T={!Account.Name}&amp;
-CF00N8A000000Vo7T_lkid={!Account.Id}&amp;
-00N8A000000VoJe=&quot;Planning&quot;&amp;
-retURL=%2F{!FS_Account_Plan__c.Id}&amp; 
-ent=01I8A0000000LZw &amp;
-RecordType=0128A0000000CvT</url>
-    </webLinks>
 </CustomObject>

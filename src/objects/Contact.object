@@ -606,6 +606,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>FS_PIEncryptKey__c</fullName>
+        <externalId>false</externalId>
+        <label>FS_EncryptKey</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Position__c</fullName>
         <description>To create contact for Russian and US FS users.</description>
         <externalId>false</externalId>
@@ -619,11 +629,47 @@
                 <fullName>Seller</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Director</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Manager</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Technologist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand - chef</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sous chef</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_RefId__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Stores the Russian PII contact Reference id</description>
+        <externalId>true</externalId>
+        <label>RefId</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Fax</fullName>
@@ -1035,6 +1081,657 @@
             </values>
             <values>
                 <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FS_Contact</fullName>
+        <active>true</active>
+        <description>A contact belonging to Russia</description>
+        <label>FS_Contact</label>
+        <picklistValues>
+            <picklist>Day_Rate__c</picklist>
+            <values>
+                <fullName>0- 250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1k- 2%2E5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5- 5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250- 500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>500- 1k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5k %2B</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Expertise__c</picklist>
+            <values>
+                <fullName>Accessory design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acupuncture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architecture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aromatherapy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Direction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist in residence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Athlete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Audio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beautician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blogger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carpenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinematographer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comedian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cosmetic Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dancer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dental Hygienist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dentist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dry Cleaner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy Healer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facialist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facilitator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fashion Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Filming %26 Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastronomy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graffiti Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graphic Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Salon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Stylist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hairdresser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illustrator %26 Sketch Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jewellery design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Lifestyle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Reporter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makeup Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male Grooming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medispa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Midwife</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Motivational Speaker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Musician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nail artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naturopath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nutritionist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Painter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Performance Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perfumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personal Trainer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fashion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fine Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Portraiture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physiotherapist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product %26 Pack Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sailor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sculptor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semiotician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shiatsu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sleep Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sommelier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyteller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Wardrobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Presenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theatre</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trend Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visualiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga Teacher</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_Position__c</picklist>
+            <values>
+                <fullName>Brand - chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buyer</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sous chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technologist</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Homebase__c</picklist>
+            <values>
+                <fullName>Amsterdam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Berlin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brussels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buenos Aires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geneva</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sao Paulo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seoul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shanghai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokyo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miss</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E%2FMs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Relationship__c</picklist>
+            <values>
+                <fullName>Do not recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Have met but not worked with</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met %2F No connection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met but share a mutual connection</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1665,11 +2362,35 @@
         <picklistValues>
             <picklist>FS_Position__c</picklist>
             <values>
+                <fullName>Brand - chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Buyer</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Director</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Manager</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Seller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sous chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Technologist</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

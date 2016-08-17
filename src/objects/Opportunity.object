@@ -49,19 +49,19 @@
         <description>NA FS Sales Process</description>
         <isActive>true</isActive>
         <values>
-            <fullName>01 %E2%80%93 Universe</fullName>
+            <fullName>01 - Prospecting</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>02 - Above</fullName>
+            <fullName>02 - Qualification</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>03 %E2%80%93 In the funnel</fullName>
+            <fullName>03 - Proposal</fullName>
             <default>false</default>
         </values>
         <values>
-            <fullName>04 %E2%80%93 Best Few</fullName>
+            <fullName>04 - Verbal Commitment</fullName>
             <default>false</default>
         </values>
         <values>
@@ -86,6 +86,76 @@
         </values>
         <values>
             <fullName>Replace Existing Business</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>RFS Sales Process</fullName>
+        <description>Stages for Russian opportunity</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>1-New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2-Negotiation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3a-Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3b-Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4-First Delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5a-Done</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5b-Half-done</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5c-Lost</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>Retain%2FDifferentiate%2FRisk</fullName>
+        <description>The process used to manage Retain/Differentiate Risk Opportunities</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>01 - Low Risk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - Medium Risk</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03 - Proposal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04 - Verbal Commitment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05 - Won</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06 - Lost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07 - Not Pursued</fullName>
             <default>false</default>
         </values>
     </businessProcesses>
@@ -141,6 +211,18 @@ Is the customer growing?</inlineHelpText>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>AgreementDate__c</fullName>
+        <description>Created for Opportunity Forecasting and it is required before moving to stage=&apos;05-Won&apos;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Required before moving to stage &apos;05-Won&apos;.</inlineHelpText>
+        <label>Agreement Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Amount</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -174,6 +256,15 @@ Is the customer growing?</inlineHelpText>
     </fields>
     <fields>
         <fullName>ContractId</fullName>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Contract.AccountId</field>
+                <operation>equals</operation>
+                <valueField>$Source.AccountId</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -232,6 +323,17 @@ Is the customer growing?</inlineHelpText>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>FS_ClaimedCaseGenerated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This flag is used to identify if &apos;Monthly Claimed Case&apos; generated for MABE Won opportunity</description>
+        <externalId>false</externalId>
+        <label>Claimed Case Generated</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_Comment__c</fullName>
         <externalId>false</externalId>
         <label>Comment</label>
@@ -244,6 +346,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>FS_DateOfSend__c</fullName>
         <defaultValue>TODAY()</defaultValue>
+        <description>Date of the Opportunity being sent</description>
         <externalId>false</externalId>
         <label>Date of Send</label>
         <required>false</required>
@@ -251,6 +354,49 @@ Is the customer growing?</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Distributer_Payer_Code__c</fullName>
+        <description>It is used to populate distributer payer code which will be coming from SAP</description>
+        <externalId>false</externalId>
+        <label>Distributer Payer Code</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_ExistingBusinessType__c</fullName>
+        <description>To represent Existing Business Type for Russia</description>
+        <externalId>false</externalId>
+        <label>Existing Business Type</label>
+        <picklist>
+            <controllingField>Type</controllingField>
+            <picklistValues>
+                <fullName>Grib</fullName>
+                <default>false</default>
+                <controllingFieldValues>Existing Business</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grab</fullName>
+                <default>false</default>
+                <controllingFieldValues>Existing Business</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grow</fullName>
+                <default>false</default>
+                <controllingFieldValues>Existing Business</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>FS_ExistingTradeProContractID__c</fullName>
@@ -265,14 +411,20 @@ Is the customer growing?</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_Fixed_Price__c</fullName>
-        <defaultValue>false</defaultValue>
+        <fullName>FS_Fixed_Price_Count__c</fullName>
+        <description>To count the opportunity products which the fixed price is true</description>
         <externalId>false</externalId>
-        <label>Fixed Price</label>
-        <trackFeedHistory>false</trackFeedHistory>
+        <label>Fixed Price Count</label>
+        <summaryFilterItems>
+            <field>OpportunityLineItem.FS_FixedPrice__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>FS_GPOName__c</fullName>
@@ -285,6 +437,20 @@ Is the customer growing?</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_GrossMarginTarget__c</fullName>
+        <description>This field is calculate Gross Margin Target and used to MABE Approval Process.</description>
+        <externalId>false</externalId>
+        <formula>IF(AND(MarketTarget__c &gt; 0,MarketTarget__c &gt;= AverageGrossProfit__c),(MarketTarget__c - AverageGrossProfit__c )/ MarketTarget__c, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gross Margin Target</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>FS_Indicator__c</fullName>
@@ -316,6 +482,17 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_MDMRequestSent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Purpose: indicate that MDM email request has already been sent</description>
+        <externalId>false</externalId>
+        <label>MDM Request Sent</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_MSCS__c</fullName>
         <externalId>false</externalId>
         <formula>FS_LumpSum__c  /  FS_TotalNumberOfCases__c</formula>
@@ -344,6 +521,17 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>FS_Owner_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>Owner Manager</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
         <label>Rate</label>
@@ -366,6 +554,17 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>FS_RecordLocked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Purpose: locked the record after approval process.</description>
+        <externalId>false</externalId>
+        <label>Record Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_SiebelID__c</fullName>
         <externalId>false</externalId>
         <label>Siebel ID</label>
@@ -378,7 +577,19 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Start_Date__c</fullName>
+        <description>Start Date for the Opportunity</description>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>FS_SupplyCost__c</fullName>
+        <description>Formula pointing up to the Distributor&apos;s Supply Cost</description>
         <externalId>false</externalId>
         <formula>FS_distributor__r.FS_supplyCost__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -402,10 +613,45 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>FS_TotalDiscount__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_MSCS__c  + FS_TotalHQRate__c  +  FS_TotalRate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Discount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalHQRate__c</fullName>
+        <externalId>false</externalId>
+        <label>Total HQ Rate</label>
+        <summarizedField>OpportunityLineItem.FS_HQRate__c</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>FS_TotalNumberOfCases__c</fullName>
         <externalId>false</externalId>
         <label>Total Number of Cases</label>
         <summarizedField>OpportunityLineItem.Quantity</summarizedField>
+        <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_TotalRate__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Rate</label>
+        <summarizedField>OpportunityLineItem.FS_Rate__c</summarizedField>
         <summaryForeignKey>OpportunityLineItem.OpportunityId</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -426,6 +672,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     </fields>
     <fields>
         <fullName>FS_casesPiece__c</fullName>
+        <description>Determines the type of product package whether it is by Cases or individual pieces</description>
         <externalId>false</externalId>
         <label>Cases/piece</label>
         <picklist>
@@ -435,7 +682,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             </picklistValues>
             <picklistValues>
                 <fullName>box</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -457,6 +704,11 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
                 <operation>equals</operation>
                 <value>Distributor</value>
             </filterItems>
+            <filterItems>
+                <field>Account.ParentId</field>
+                <operation>equals</operation>
+                <value></value>
+            </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
         <referenceTo>Account</referenceTo>
@@ -470,6 +722,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     </fields>
     <fields>
         <fullName>FS_endDateTPR__c</fullName>
+        <description>End Date for the TPR</description>
         <externalId>false</externalId>
         <label>End Date TPR</label>
         <required>false</required>
@@ -480,12 +733,13 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     </fields>
     <fields>
         <fullName>FS_internalOrder__c</fullName>
+        <description>Internal code for the Order to be used in the Opportunity</description>
         <externalId>false</externalId>
         <label>Internal Order</label>
         <picklist>
             <picklistValues>
                 <fullName>40002843 TPRs of Chains team_RUS</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>40002981 TPRs of Moscow_Rus</fullName>
@@ -511,6 +765,10 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
                 <fullName>40002986 TPRs for write-off_RUS</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Test1</fullName>
+                <default>false</default>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -521,6 +779,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     </fields>
     <fields>
         <fullName>FS_kindOfTPR__c</fullName>
+        <description>Comment box describing the kind of TPR used for the opportunity</description>
         <externalId>false</externalId>
         <label>Kind of TPR</label>
         <required>false</required>
@@ -531,6 +790,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     </fields>
     <fields>
         <fullName>FS_offInvoice__c</fullName>
+        <description>Formula field pointing up to the Distributor&apos;s Off Invoice</description>
         <externalId>false</externalId>
         <formula>FS_distributor__r.FS_offInvoice__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -544,6 +804,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     </fields>
     <fields>
         <fullName>FS_onInvoice__c</fullName>
+        <description>Formula field pointing up to the Distributor&apos;s On Invoice</description>
         <externalId>false</externalId>
         <formula>FS_distributor__r.FS_onInvoice__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -558,6 +819,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_prePaid__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Adds 2% to TPR discount in Opportunity Product if checked</description>
         <externalId>false</externalId>
         <label>Pre-paid</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -568,6 +830,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_selfCollection__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Adds 1% to TPR discount in Opportunity Product if checked</description>
         <externalId>false</externalId>
         <label>Self-Collection</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1060,6 +1323,45 @@ Enter competitor pricing if available</inlineHelpText>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ShipToCode__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>To lookup only distributor account</description>
+        <externalId>false</externalId>
+        <label>Ship To Code</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Distributor</value>
+            </filterItems>
+            <filterItems>
+                <field>Account.Parent.Id</field>
+                <operation>equals</operation>
+                <valueField>$Source.FS_distributor__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Opportunities (Ship To)</relationshipLabel>
+        <relationshipName>Opportunities1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Ship_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Ship Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>ShipmentVerified__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1072,6 +1374,38 @@ Enter competitor pricing if available</inlineHelpText>
     <fields>
         <fullName>StageName</fullName>
         <picklist>
+            <picklistValues>
+                <fullName>01 - Prospecting</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>20</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>02 - Qualification</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>20</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>03 - Proposal</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>50</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04 - Verbal Commitment</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Forecast</forecastCategory>
+                <probability>75</probability>
+                <won>false</won>
+            </picklistValues>
             <picklistValues>
                 <fullName>01 – Universe</fullName>
                 <default>false</default>
@@ -1216,6 +1550,110 @@ Enter competitor pricing if available</inlineHelpText>
                 <probability>0</probability>
                 <won>false</won>
             </picklistValues>
+            <picklistValues>
+                <fullName>1-New</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2-Negotiation</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>30</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>01 - Low Risk</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>20</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>02 - Medium Risk</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>35</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>06 - Lost</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07 - Not Pursued</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Omitted</forecastCategory>
+                <probability>0</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>100</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3a-Won</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>50</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3b-Lost</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>40</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4-First Delivery</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>60</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5a-Done</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>100</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5b-Half-done</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>80</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5c-Lost</fullName>
+                <default>false</default>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>70</probability>
+                <won>true</won>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
@@ -1293,6 +1731,7 @@ Enter competitor pricing if available</inlineHelpText>
         <fullName>All_Opportunities</fullName>
         <columns>OPPORTUNITY.NAME</columns>
         <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
         <columns>OPPORTUNITY.CLOSE_DATE</columns>
         <columns>OPPORTUNITY.TYPE</columns>
         <columns>CORE.USERS.FIRST_NAME</columns>
@@ -1339,6 +1778,23 @@ Enter competitor pricing if available</inlineHelpText>
             <value>LAST_N_MONTHS:3</value>
         </filters>
         <label>Opportunity Pipeline</label>
+    </listViews>
+    <listViews>
+        <fullName>FS_All_Approved_TPR_Opportunities</fullName>
+        <columns>OPPORTUNITY.NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>OPPORTUNITY.AMOUNT</columns>
+        <columns>OPPORTUNITY.CLOSE_DATE</columns>
+        <columns>OPPORTUNITY.STAGE_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FS_TPRApproved__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All Approved TPR Opportunities</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>MyOpportunities</fullName>
@@ -1402,10 +1858,351 @@ Enter competitor pricing if available</inlineHelpText>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
+        <fullName>Existing</fullName>
+        <active>true</active>
+        <businessProcess>NA FS Sales Process</businessProcess>
+        <description>This record type is used for May Be process</description>
+        <label>Existing</label>
+        <picklistValues>
+            <picklist>FS_ExistingBusinessType__c</picklist>
+            <values>
+                <fullName>Grab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grib</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_casesPiece__c</picklist>
+            <values>
+                <fullName>box</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_internalOrder__c</picklist>
+            <values>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Cycle__c</picklist>
+            <values>
+                <fullName>00 - Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>01 - Universe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - In the Funnel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Best Few</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Deleted%2FInactive Accts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>FSOpportunity</fullName>
         <active>true</active>
         <businessProcess>NA FS Sales Process</businessProcess>
         <label>FS Opportunity</label>
+        <picklistValues>
+            <picklist>FS_ExistingBusinessType__c</picklist>
+            <values>
+                <fullName>Grab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grib</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
@@ -1708,6 +2505,21 @@ Enter competitor pricing if available</inlineHelpText>
         <active>true</active>
         <businessProcess>NA FS Sales Process</businessProcess>
         <label>Opportunity with Pricing (MA-BE)</label>
+        <picklistValues>
+            <picklist>FS_ExistingBusinessType__c</picklist>
+            <values>
+                <fullName>Grab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grib</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
@@ -2020,6 +2832,21 @@ Enter competitor pricing if available</inlineHelpText>
         <description>Record to store existing volumes</description>
         <label>NFS Actuals</label>
         <picklistValues>
+            <picklist>FS_ExistingBusinessType__c</picklist>
+            <values>
+                <fullName>Grab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grib</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
                 <fullName>box</fullName>
@@ -2317,11 +3144,351 @@ Enter competitor pricing if available</inlineHelpText>
         </picklistValues>
     </recordTypes>
     <recordTypes>
+        <fullName>Risk</fullName>
+        <active>false</active>
+        <businessProcess>Retain%2FDifferentiate%2FRisk</businessProcess>
+        <label>Risk</label>
+        <picklistValues>
+            <picklist>FS_ExistingBusinessType__c</picklist>
+            <values>
+                <fullName>Grab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grib</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_casesPiece__c</picklist>
+            <values>
+                <fullName>box</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>piece</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_internalOrder__c</picklist>
+            <values>
+                <fullName>40002843 TPRs of Chains team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002981 TPRs of Moscow_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002982 TPRs of St Peterburg_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002983 TPRs of Slabco team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002984 TPRs of Metro team_RUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002985 TPRs of Regions_Rus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40002986 TPRs for write-off_RUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ForecastCategoryName</picklist>
+            <values>
+                <fullName>Best Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Commit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Omitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pipeline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonWonLost__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Reason__c</picklist>
+            <values>
+                <fullName>Converted To Another Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discontinued Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Good Lead</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Branded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-Custom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lost To Competition-PL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Match</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Out Of Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Relationship</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taste Test</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timeline Not Met</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer to GSC%2FILT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Value-added Service</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Cycle__c</picklist>
+            <values>
+                <fullName>00 - Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>01 - Universe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>02 - Above</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>03 - In the Funnel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>04 - Best Few</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>06 - Not Pursued</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>07 - Deleted%2FInactive Accts</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Existing Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Business</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>UFS_Opportunity_Russia</fullName>
         <active>true</active>
-        <businessProcess>NA FS Sales Process</businessProcess>
+        <businessProcess>RFS Sales Process</businessProcess>
         <description>UFS Opportunity Russia</description>
         <label>UFS Opportunity Russia</label>
+        <picklistValues>
+            <picklist>FS_ExistingBusinessType__c</picklist>
+            <values>
+                <fullName>Grab</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grib</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grow</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
@@ -2639,6 +3806,21 @@ Enter competitor pricing if available</inlineHelpText>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+        <fullName>FS_AgreementdateIsRequired</fullName>
+        <active>true</active>
+        <description>Agreement Date Is Required Before Moving To Stage=&apos;05 – Won&apos;.</description>
+        <errorConditionFormula>AND( ISCHANGED(StageName),ISPICKVAL(StageName,&apos;05 – Won&apos;),  ISBLANK(AgreementDate__c))</errorConditionFormula>
+        <errorMessage>Enter Agreement Date Before Moving To Stage=&apos;05 – Won&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FS_OpportunityColsedDateInFutureDate</fullName>
+        <active>true</active>
+        <description>Record should throw error and close date will be in future date</description>
+        <errorConditionFormula>AND(OR ( ISNEW(),ISCHANGED( CloseDate )),CloseDate &lt; TODAY())</errorConditionFormula>
+        <errorDisplayField>Account_History__c</errorDisplayField>
+        <errorMessage>Close Date cannot be past date.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Needs_Approval_Before_Progressing</fullName>
         <active>false</active>
         <errorConditionFormula>IF(VALUE(LEFT(TEXT(StageName),2))&gt;=4, true, false)</errorConditionFormula>
@@ -2654,6 +3836,13 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorMessage>Enter valid reason in the Reason Description field according to the selection of Stage field.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Opportunity_Notchange_at_Stage4</fullName>
+        <active>true</active>
+        <description>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</description>
+        <errorConditionFormula>(AND( DealApproved__c= true,OR(ISPICKVAL( StageName, &quot;01 - Prospecting&quot;), ISPICKVAL( StageName, &quot;02 - Qualification&quot;),ISPICKVAL( StageName, &quot;03 - Proposal&quot;))))</errorConditionFormula>
+        <errorMessage>An opportunity at stage 04 - Verbal Commitment  can not be changed at the opportunity level.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Opportunity_Notchange_at_Stage5</fullName>
         <active>true</active>
         <errorConditionFormula>AND(OR(ISPICKVAL(PRIORVALUE(StageName), &quot;Closed Won&quot;), ISPICKVAL(PRIORVALUE(StageName), &quot;05 – Won&quot;)))</errorConditionFormula>
@@ -2663,8 +3852,8 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <fullName>Opportunity_Stage_Based_on_Prior_Value</fullName>
         <active>true</active>
         <description>To Validate Opportunity Stage Value</description>
-        <errorConditionFormula>AND(  ISCHANGED(StageName),ISPICKVAL(StageName,&apos;05 – Won&apos;), NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;04 – Best Few&quot;)))</errorConditionFormula>
-        <errorMessage>You must save the opportunity in Stage 04 - Best Few before advancing to Stage 05 - Won</errorMessage>
+        <errorConditionFormula>AND(  ISCHANGED(StageName),ISPICKVAL(StageName,&apos;05 – Won&apos;), NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;04 - Verbal Commitment&quot;)))</errorConditionFormula>
+        <errorMessage>You must save the opportunity in Stage 04 - Verbal Commitment before advancing to Stage 05 - Won</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Start_Date_TPR_validation</fullName>
@@ -2677,14 +3866,21 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <fullName>Opportunity_Validation</fullName>
         <active>true</active>
         <description>An opportunity at stage 04 or 05 must have at least one line item. Please add a line item to your opportunity, then advance it to stage 04 or 05.</description>
-        <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;04 – Best Few&apos;) , HasOpportunityLineItem=false, IF(ISPICKVAL( StageName , &apos;05 – Won&apos;) , HasOpportunityLineItem=false, false))</errorConditionFormula>
-        <errorMessage>It is used to prevent Opportunity from being updated with &apos;04 – Best Few&apos; or &apos;05 – Won&apos; Stage without any Product selected.</errorMessage>
+        <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;04 - Verbal Commitment&apos;) , HasOpportunityLineItem=false, IF(ISPICKVAL( StageName , &apos;05 – Won&apos;) , HasOpportunityLineItem=false, false))</errorConditionFormula>
+        <errorMessage>It is used to prevent Opportunity from being updated with &apos;04 - Verbal Commitment&apos; or &apos;05 – Won&apos; Stage without any Product selected.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_Validation_for_Stage_4</fullName>
+        <active>true</active>
+        <description>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</description>
+        <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;04 - Verbal Commitment&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
+        <errorMessage>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_for_Stage_4</fullName>
         <active>true</active>
-        <description>It is used to prevent Opportunity from being updated with &apos;04 – Best Few&apos; or &apos;05 – Won&apos;  Stage without any Product selected.</description>
-        <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;04 – Best Few&apos;) ,  HasOpportunityLineItem=false,false)</errorConditionFormula>
+        <description>It is used to prevent Opportunity from being updated with &apos;04 - Verbal Commitment&apos; or &apos;05 – Won&apos;  Stage without any Product selected.</description>
+        <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;04 - Verbal Commitment&apos;) ,  HasOpportunityLineItem=false,false)</errorConditionFormula>
         <errorMessage>An opportunity at stage 04 must have at least one line item.  Please add a line item to your opportunity in stage 03, then advance it to stage 04.</errorMessage>
     </validationRules>
     <validationRules>
@@ -2693,6 +3889,13 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <description>Opportunities must be approved in order to advance it to 05 - Won</description>
         <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Record_Locked</fullName>
+        <active>false</active>
+        <description>Locks the record once approval has been done.</description>
+        <errorConditionFormula>FS_RecordLocked__c &amp;&amp;  NOT($UserRole.Name = &apos;UFS Russia&apos;) &amp;&amp; NOT( $Profile.Name = &apos;System Administrator&apos;)</errorConditionFormula>
+        <errorMessage>Record already passed approval process and cannot be edited.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Samples_Line_Items_Per_Opportunity</fullName>
@@ -2742,5 +3945,16 @@ retURL=%2F{!Opportunity.Id} &amp;
 RecordType=0128A0000000BCD &amp;
 opp11=01 – Universe</url>
     </webLinks>
-    
+    <webLinks>
+        <fullName>Send_MDM_Request_Email</fullName>
+        <availability>online</availability>
+        <description>will be used for sending email for MDM request</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Send MDM Request Email</masterLabel>
+        <openType>noSidebar</openType>
+        <page>FS_SendMDMRequestEmail</page>
+        <protected>false</protected>
+    </webLinks>
 </CustomObject>

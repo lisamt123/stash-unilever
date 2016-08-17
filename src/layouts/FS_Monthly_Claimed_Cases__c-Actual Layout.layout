@@ -20,7 +20,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>First_of_Month__c</field>
+                <field>FS_First_of_Month__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -32,7 +32,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Planned_Quantity__c</field>
+                <field>FS_Planned_Quantity__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -40,7 +40,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Current_Year__c</field>
+                <field>FS_Current_Year__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -89,6 +89,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Lum_Sum_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_Forecast_Quantity__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

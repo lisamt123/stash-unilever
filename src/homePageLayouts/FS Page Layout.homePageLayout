@@ -8,4 +8,5 @@
     <wideComponents>standard-ProcessWorkitems</wideComponents>
     <wideComponents>standard-Calendar</wideComponents>
     <wideComponents>standard-Tasks</wideComponents>
+    <wideComponents>standard-Dashboard</wideComponents>
 </HomePageLayout>

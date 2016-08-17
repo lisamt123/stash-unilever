@@ -3,5 +3,7 @@
     <links>Terms_Of_Use</links>
     <links>Canada_HUB</links>
     <links>US_HUB</links>
+    <links>Unilever_Food_Solutions_US</links>
+    <links>Unilever_Food_Solutions_Canada</links>
     <pageComponentType>links</pageComponentType>
 </HomePageComponent>

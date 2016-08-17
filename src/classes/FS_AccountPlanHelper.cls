@@ -1,33 +1,51 @@
 /**********************************************************************
-Purpose: Helper Class used to calculate TPR.
+Purpose: Helper Class used to approve defined objective and opportunities based on account plan approval.
 History :
 VERSION AUTHOR         DATE         DETAIL Description
 1.0     Accenture    12/Jul/2016     Draft                     
 ***********************************************************************/
-public class FS_AccountPlanHelper {
- public static void approveDefinedObjective(List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap){
-     List<FS_Defined_Objective__C> ObjList=new List<FS_Defined_Objective__C>();
-            List<FS_Defined_Objective__C> ObjToUpdate=new List<FS_Defined_Objective__C>();
+public without sharing class FS_AccountPlanHelper {
+    
+/* * approveDefinedObjective Method for approve defined objective
+*  @name approveDefinedObjective
+*  @param List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap
+*  @return 
+*  @throws 
+*/
+ Private static final string STATUS_APPROVED='Approved';
+ Private static final string STATUS_APPROVAL_REQUESTED='Approval Requested';
+ Private static final string STATUS_PLANNING='Planning';
+ Private static final string STAGE_04='04 - Verbal Commitment';
+ Private Static final string Stage_03='03 - Proposal';
+ public void approveDefinedObjective(List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap){
+            //List<FS_Defined_Objective__C> objList=new List<FS_Defined_Objective__C>();
+            List<FS_Defined_Objective__C> objToUpdate=new List<FS_Defined_Objective__C>();
             //To get all the defined objectives where corresponding account plan is approved    
-            ObjList=[select id,FS_account_plan__C,FS_approved__C,FS_status__c from FS_Defined_Objective__C where FS_account_plan__C in : Trigger.new];
-            
-            for (FS_Account_Plan__C AccPlan : accountPlanList){
-                //Execute only when the account plan status got changed
-                if (AccPlan.fs_status__C != accountplanOldMap.get(AccPlan.Id).fs_status__C) {          
-                    for(FS_Defined_Objective__C Obj : ObjList){
-                        if(Obj.FS_account_plan__C==AccPlan.id){
-                            //If account plan gets approved then update status of the associated objective as Approved
-                            if(AccPlan.fs_status__c=='Approved'){
-                                //Change approved and status on defined objective             
-                                Obj.FS_approved__c=true;
-                                Obj.FS_status__C='Approved';
-                                ObjToUpdate.add(Obj); 
+            //objList=[select id,FS_account_plan__C,FS_approved__C,FS_status__c from FS_Defined_Objective__C where FS_account_plan__C in : accountPlanList];
+            Map<Id,List<Fs_Defined_Objective__c>> mapAccPlanObj=new Map<Id,List<FS_Defined_Objective__c>>();
+            List<Fs_Defined_Objective__c> definedObjList=new List<FS_Defined_Objective__C>();
+         for(FS_Defined_Objective__C obj : [select id,FS_account_plan__C,FS_approved__C,FS_status__c
+                                        from FS_Defined_Objective__C
+                                        where FS_account_plan__C in : accountPlanList limit 49999]){
+         definedObjList=new List<FS_Defined_Objective__c>();
+         If(mapAccPlanObj.containsKey(obj.FS_Account_Plan__c)){
+            definedObjList=MapAccPlanObj.get(obj.FS_Account_Plan__c);
+         }
+         definedObjList.add(obj);
+         mapAccPlanObj.put(obj.FS_Account_Plan__c,definedObjList);
+     }                
+                for (FS_Account_Plan__C accPlan : accountPlanList){
+                //Execute only when the account plan status got changed to approved
+                    if (accPlan.fs_status__C != accountplanOldMap.get(accPlan.Id).fs_status__C && accPlan.fs_status__c.equals(STATUS_APPROVED) && mapAccPlanObj.containsKey(accPlan.Id)){
+                    definedObjList=new List<FS_Defined_Objective__c>();
+                    definedObjList=mapAccPlanObj.get(accPlan.Id);
+                    for(FS_Defined_Objective__C obj : definedObjList){                                      
+                                obj.FS_approved__c=true;
+                                obj.FS_status__C=STATUS_APPROVED;
+                                objToUpdate.add(Obj); 
                             }                           
-                        }
-                        
-                    }        
-                }
-            }
+                        }                        
+                    }                      
             try{
                 if(!ObjToUpdate.isEmpty()){
                     Update ObjToUpdate;
@@ -35,38 +53,112 @@ public class FS_AccountPlanHelper {
             }
             Catch(DmlException e){
                 System.debug( 'The following exception has occurred: '+e.getMessage() );
-                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
+                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_AccountplanHelper', 'UpdateObjField', e.getMessage(), e, null, null, null, 0,'Food Solution');
             }
  }
-     public static void rejectDefinedObjective(List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap){
-     List<FS_Defined_Objective__C> ObjList=new List<FS_Defined_Objective__C>();
-            List<FS_Defined_Objective__C> ObjToUpdate=new List<FS_Defined_Objective__C>();
+ 
+/* * rejectDefinedObjective Method for reject defined objective
+*  @name rejectDefinedObjective
+*  @param List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap
+*  @return 
+*  @throws 
+*/ 
+     public void rejectDefinedObjective(List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap){
+            //List<FS_Defined_Objective__C> objList=new List<FS_Defined_Objective__C>();
+            List<FS_Defined_Objective__C> objToUpdate=new List<FS_Defined_Objective__C>();
             //To get all the defined objectives where corresponding account plan is approved    
-            ObjList=[select id,FS_account_plan__C,FS_approved__C,FS_status__c from FS_Defined_Objective__C where FS_account_plan__C in : Trigger.new];
-            
-            for (FS_Account_Plan__C AccPlan : accountPlanList){
-                //Execute only when the account plan status got changed
-                if (AccPlan.fs_status__C != accountplanOldMap.get(AccPlan.Id).fs_status__C) {          
-                    for(FS_Defined_Objective__C Obj : ObjList){
-                        if(Obj.FS_account_plan__C==AccPlan.id){                            
-                            //If account plan gets declined then update status of the associated objective as Declined
-                            if(AccPlan.fs_status__c=='Planning' &&	accountplanOldMap.get(AccPlan.Id).fs_status__C=='Approval Requested'){
-                                Obj.FS_status__C='Planning';
-                                ObjToUpdate.add(Obj);  
+            //objList=[select id,FS_account_plan__C,FS_approved__C,FS_status__c from FS_Defined_Objective__C where FS_account_plan__C in : accountPlanList];
+            Map<Id,List<Fs_Defined_Objective__c>> mapAccPlanObj=new Map<Id,List<FS_Defined_Objective__c>>();
+            List<Fs_Defined_Objective__c> definedObjList=new List<FS_Defined_Objective__C>();
+     for(FS_Defined_Objective__C obj : [select id,FS_account_plan__C,FS_approved__C,FS_status__c 
+                                        from FS_Defined_Objective__C
+                                        where FS_account_plan__C in : accountPlanList limit 49999]){
+         definedObjList=new List<FS_Defined_Objective__c>();
+         If(mapAccPlanObj.containsKey(obj.FS_Account_Plan__c)){
+            definedObjList=mapAccPlanObj.get(obj.FS_Account_Plan__c);
+         }
+         definedObjList.add(obj);
+         mapAccPlanObj.put(obj.FS_Account_Plan__c,definedObjList);
+     }
+            for (FS_Account_Plan__C accPlan : accountPlanList){
+                //Execute only when the account plan status got declined
+                if (accPlan.fs_status__C != accountplanOldMap.get(accPlan.Id).fs_status__C && accPlan.fs_status__c.equals(STATUS_PLANNING) && accountplanOldMap.get(accPlan.Id).fs_status__C.equals(STATUS_APPROVAL_REQUESTED) && mapAccPlanObj.containsKey(accPlan.Id)) { 
+                    definedObjList=new List<FS_Defined_Objective__c>();
+                    definedObjList=mapAccPlanObj.get(accPlan.Id);
+                    for(FS_Defined_Objective__C obj : definedObjList){                           
+                                obj.FS_status__C=STATUS_PLANNING;
+                                objToUpdate.add(obj);  
                             }
-                        }
-                        
+                        }                        
                     }        
-                }
-            }
+                //}            
             try{
-                if(!ObjToUpdate.isEmpty()){
-                    Update ObjToUpdate;
+                if(!objToUpdate.isEmpty()){
+                    Update objToUpdate;
                 }
             }
             Catch(DmlException e){
                 System.debug( 'The following exception has occurred: '+e.getMessage() );
-                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
+                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_AccountplanHelper', 'UpdateObjField', e.getMessage(), e, null, null, null, 0,'Food Solution');
             }
 }
+/* * approveOpportunities Method for approve opportunities associated with approved account plan
+*  @name approveOpportunities
+*  @param List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap
+*  @return 
+*  @throws 
+*/ 
+    public void approveOpportunities(List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap){
+            //List<Opportunity> oppList=new List<Opportunity>();
+            List<Opportunity> oppToUpdate=new List<Opportunity>();
+            //To get all the defined objectives where corresponding account plan is approved
+            Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();  
+            //oppList=[select Id,DealApproved__c,StageName,Account_Plan__c,HasOpportunityLineItem from Opportunity where account_plan__C in : accountPlanList and DealApproved__c!=true and recordtypeid=:newRecordTypeId];
+            //system.debug(OppList);
+            Map<Id,List<Opportunity>> mapAccPlanOpp=new Map<Id,List<Opportunity>>();
+            List<Opportunity> tempoppList=new List<Opportunity>();
+         for(Opportunity opp : [select Id,DealApproved__c,StageName,Account_Plan__c,HasOpportunityLineItem 
+                            from Opportunity where account_plan__C in : accountPlanList 
+                            and DealApproved__c!=true and recordtypeid=:newRecordTypeId limit 49999]){
+         tempoppList=new List<Opportunity>();
+         If(mapAccPlanOpp.containsKey(opp.Account_Plan__c)){
+            tempoppList=mapAccPlanOpp.get(opp.Account_Plan__c);
+         }
+         tempoppList.add(opp);
+         mapAccPlanOpp.put(opp.Account_Plan__c,tempoppList);
+     }
+                
+                for (FS_Account_Plan__C accPlan : accountPlanList){
+                //Execute only when the account plan status got changed
+                if (accPlan.fs_status__C != accountplanOldMap.get(accPlan.Id).fs_status__C && accPlan.fs_status__c.equals(STATUS_APPROVED) && mapAccPlanOpp.containsKey(accPlan.Id)) {
+                    tempoppList=new List<Opportunity>();
+                    tempoppList=MapAccPlanOpp.get(AccPlan.Id);
+                    for(Opportunity opp : tempoppList){                        
+                        //If account plan gets approved then update status of the associated opportunity as Approved                            
+                        //Change approved and status on defined objective
+                        //system.debug(opp.id);
+                        If(opp.HasOpportunityLineItem){
+                        opp.DealApproved__c=true;
+                        opp.stagename=STAGE_04;
+                        oppToUpdate.add(opp);                             
+                        }
+                        If(!opp.HasOpportunityLineItem)
+                        {
+                         opp.stagename=Stage_03;
+                         oppToUpdate.add(opp);
+                         //system.debug(oppToUpdate);
+                        }
+                            }                           
+                        }                        
+                    }                        
+            try{
+                if(!oppToUpdate.isEmpty()){
+                    Update oppToUpdate;
+                }
+            }
+            Catch(DmlException e){
+                System.debug( 'The following exception has occurred: '+e.getMessage() );
+                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_AccountPlanHelper', 'UpdateOppStage', e.getMessage(), e, null, null, null, 0,'Food Solution');
+            }
+ }
 }

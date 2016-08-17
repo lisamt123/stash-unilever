@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
-    <active>false</active>
+    <active>true</active>
     <allowRecall>true</allowRecall>
     <allowedSubmitters>
         <type>owner</type>
@@ -15,23 +15,17 @@
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>true</allowDelegate>
-        <approvalActions>
-            <action>
-                <name>Approval_request_email_template_to_Step_1_approver</name>
-                <type>Alert</type>
-            </action>
-        </approvalActions>
         <assignedApprover>
             <approver>
                 <type>userHierarchyField</type>
             </approver>
         </assignedApprover>
-        <description>Step 1 is created to send approval request</description>
+        <description>Line Manager approval</description>
         <entryCriteria>
             <criteriaItems>
                 <field>Opportunity.StageName</field>
                 <operation>equals</operation>
-                <value>04 – Best Few</value>
+                <value>03 - Proposal</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Opportunity.RecordType</field>
@@ -45,12 +39,6 @@
     </approvalStep>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
-        <approvalActions>
-            <action>
-                <name>Approval_request_email_template_to_Step_2_approver</name>
-                <type>Alert</type>
-            </action>
-        </approvalActions>
         <assignedApprover>
             <approver>
                 <name>jyotirmoy.sharma@accenture.com</name>
@@ -62,12 +50,406 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <description>Send an approval request to Approvers</description>
+        <description>AFM approval</description>
         <entryCriteria>
-            <formula>AverageGrossProfit__c  &lt;  MarketTarget__c</formula>
+            <formula>AND( Amount &lt;250000, FS_GrossMarginTarget__c&gt;0.03, FS_GrossMarginTarget__c&lt;0.1)</formula>
         </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step2</label>
         <name>Opportunity_Process_Step2</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>jyotirmoy.sharma@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>ramesh.suddapalli@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>AFM approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &lt; 250000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step3</label>
+        <name>Opportunity_Process_Step3</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>s.annadi.reddy@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>SD Approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &lt; 250000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step4</label>
+        <name>Opportunity_Process_Step4</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>L2 Manager approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step5</label>
+        <name>Opportunity_Process_Step5</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>jyotirmoy.sharma@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>ramesh.suddapalli@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>AFM approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step6</label>
+        <name>Opportunity_Process_Step6</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>L2 Manager approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step7</label>
+        <name>Opportunity_Process_Step7</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>jyotirmoy.sharma@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>ramesh.suddapalli@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>AFM approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step8</label>
+        <name>Opportunity_Process_Step8</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>s.annadi.reddy@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>SD Approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step9</label>
+        <name>Opportunity_Process_Step9</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>L2 Manager approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000,   FS_GrossMarginTarget__c &lt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step10</label>
+        <name>Opportunity_Process_Step10</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>jyotirmoy.sharma@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>ramesh.suddapalli@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>AFM approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step11</label>
+        <name>Opportunity_Process_Step11</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>L2 Manager approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step12</label>
+        <name>Opportunity_Process_Step12</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>jyotirmoy.sharma@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>ramesh.suddapalli@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>AFM approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step13</label>
+        <name>Opportunity_Process_Step13</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>nalabolu.prathyusha@accenture.com.acfufsna</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>CDFM Approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step14</label>
+        <name>Opportunity_Process_Step14</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>s.annadi.reddy@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>SD Approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step15</label>
+        <name>Opportunity_Process_Step15</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <description>L2 Manager approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 1000000)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step16</label>
+        <name>Opportunity_Process_Step16</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>jyotirmoy.sharma@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <approver>
+                <name>ramesh.suddapalli@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>AFM approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 1000000)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step17</label>
+        <name>Opportunity_Process_Step17</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>nalabolu.prathyusha@accenture.com.acfufsna</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>CDFM Approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 1000000)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step18</label>
+        <name>Opportunity_Process_Step18</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>s.annadi.reddy@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>SD Approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 1000000)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step19</label>
+        <name>Opportunity_Process_Step19</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>mete.gumus@unilever.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>FD approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 1000000)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Opportunity Process Step20</label>
+        <name>Opportunity_Process_Step20</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>mohammed.abid.ali@accenture.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>MADS approval</description>
+        <entryCriteria>
+            <formula>AND( Amount &gt; 1000000)</formula>
+        </entryCriteria>
+        <label>Opportunity Process Step21</label>
+        <name>Opportunity_Process_Step21</name>
         <rejectBehavior>
             <type>RejectRequest</type>
         </rejectBehavior>
@@ -79,7 +461,7 @@
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
-            <value>04 – Best Few</value>
+            <value>03 - Proposal</value>
         </criteriaItems>
     </entryCriteria>
     <finalApprovalActions>
@@ -91,9 +473,17 @@
             <name>Deal_Approved_Update_Step2</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>FS_Stage_Update</name>
+            <type>FieldUpdate</type>
+        </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
+        <action>
+            <name>Approval_request_email_template_to_approver_for_Final_Reject</name>
+            <type>Alert</type>
+        </action>
         <action>
             <name>Deal_Approved_Update_set_to_false</name>
             <type>FieldUpdate</type>

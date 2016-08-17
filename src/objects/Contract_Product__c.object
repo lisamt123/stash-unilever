@@ -80,6 +80,41 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>FS_ReferenceOpportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Ref Opportunity (Hidden)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Forecast_Quantity__c</fullName>
+        <description>Forecast Quantity from Claimed Cases actuals</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Forecast Quantity from Claimed Cases actuals</inlineHelpText>
+        <label>Forecast Quantity</label>
+        <summarizedField>FS_Monthly_Claimed_Cases__c.FS_Forecast_Quantity__c</summarizedField>
+        <summaryForeignKey>FS_Monthly_Claimed_Cases__c.Contract_Product__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Quantity__c</fullName>
+        <description>Planned Quantity (SSD)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Planned Quantity (SSD)</inlineHelpText>
+        <label>Planned Quantity</label>
+        <summarizedField>FS_Monthly_Claimed_Cases__c.FS_Planned_Quantity__c</summarizedField>
+        <summaryForeignKey>FS_Monthly_Claimed_Cases__c.Contract_Product__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Product__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
