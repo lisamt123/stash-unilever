@@ -1,9 +1,25 @@
 src
-src/objects/FSVATRU__c.object
-src/objects/FSVATUA__c.object
-src/objects/FS_User_Territory__c.object
-src/objects/FS_casePiece__c.object
-src/objects/Activity.object
-src/objects/Campaign.object
-src/objects/Contact.object
-src/objects/Pricebook2.object
+src/layouts/Account-Distributor.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Account-Operators.layout
+src/layouts/Contract_Product__c-Contract Product Layout.layout
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Feed Based.layout
+src/layouts/FS_Account_Plan__c-Distributor Account Plan Layout.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Feed Based.layout
+src/layouts/FS_Account_Plan__c-Operator Account Plan Layout.layout
+src/layouts/FS_Defined_Objective__c-Defined Objective Layout.layout
+src/layouts/FS_Defined_Objective__c-Distributor Objective Feed Based.layout
+src/layouts/FS_Defined_Objective__c-Distributor Objective.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
+src/layouts/FS_Defined_Objective__c-Operator Objective.layout
+src/layouts/FS_Monthly_Claimed_Cases__c-Actual Layout.layout
+src/layouts/FS_TemporaryTPR__c-TemporaryTPR Layout.layout
+src/layouts/Opportunity-Opportunity with Pricing %26 Assets%28LEAF%29.layout
+src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product.layout
+src/layouts/OpportunityTeamMember-Opportunity Team Member Layout.layout
+src/layouts/PricebookEntry-Food Solutions - PBE Layout.layout
+src/layouts/Product2-Food Solutions Product.layout
+src/layouts/Risk__c-Risk Layout.layout
