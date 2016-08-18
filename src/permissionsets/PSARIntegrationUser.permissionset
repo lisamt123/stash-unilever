@@ -39329,11 +39329,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ar_Application__c.C
+        <field>ar_Application__c.Cannot_reapply_until__c</field>
+		 <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editableannot_reapply_until__c</field>
-        <readable>false</readable>>
+        <editable>false</editable>
         <field>ar_Application__c.Company_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
