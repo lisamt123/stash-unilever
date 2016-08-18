@@ -110,8 +110,8 @@
                                     <apex:outputText value="{!$Label.IPM_ABOUT_PROPOSED_STATE}"/>
                                 </div>
                                 <!-- Below rendered condition is used to show the message for proposing gate document --> 
-                                    <apex:outputPanel rendered="{!OR(showSkipSections,isDefaultAvailable,project.IPM_ProjectGKM__c=='GKM3')}">
-                                <!-- Below rendered condition is used to show the message for proposing gate document --> 
+                                    <apex:outputPanel rendered="{!OR(showSkipSections,isDefaultAvailable)}">
+                                    <!-- Below rendered condition is used to show the message for proposing gate document --> 
                                         <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop" rendered="{!OR(showSkipSections,project.IPM_ProjectGKM__c=='GKM3')}">
                                         <apex:outputPanel layout="block" styleClass="SecButtonSet">
                                             <a class="icoButton red-info" title="info"></a>
