@@ -39164,11 +39164,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>aa_Agent_App_User_Preference__c.Auto_Follow__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>aa_Agent_App_User_Preference__c.Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
