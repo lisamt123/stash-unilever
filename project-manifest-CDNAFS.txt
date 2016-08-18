@@ -5,9 +5,6 @@ src/triggers/OpportunityProductTrigger.trigger
 src/triggers/OpportunityProductTrigger.trigger-meta.xml
 src/triggers/OpportunityTrigger.trigger
 src/triggers/OpportunityTrigger.trigger-meta.xml
-src/quickActions/Account.New_Dist_Account_Plan.quickAction
-src/quickActions/Account.New_Op_Account_Plan.quickAction
-src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
-src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
-src/quickActions/FS_Defined_Objective__c.Create_Campaign.quickAction
-src/quickActions/FS_Defined_Objective__c.New_Opportunity.quickAction
+src/groups/FS_US_Supply_Chain.group
+src/groups/FS_AFM_Approvers.group
+src/groups/FS_System_Admin.group
