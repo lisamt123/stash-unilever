@@ -38824,11 +38824,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>WU_Master_Warehouse__c.WU_Warehouse_Secondary_POC_Email__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Year__c</field>
         <readable>false</readable>
     </fieldPermissions>
