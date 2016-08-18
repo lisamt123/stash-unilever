@@ -1,10 +1,7 @@
 src
-src/triggers/AccountPlanTrigger.trigger
-src/triggers/AccountPlanTrigger.trigger-meta.xml
-src/triggers/OpportunityProductTrigger.trigger
-src/triggers/OpportunityProductTrigger.trigger-meta.xml
-src/triggers/OpportunityTrigger.trigger
-src/triggers/OpportunityTrigger.trigger-meta.xml
-src/groups/FS_US_Supply_Chain.group
-src/groups/FS_AFM_Approvers.group
-src/groups/FS_System_Admin.group
+src/approvalProcesses
+src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
+src/approvalProcesses/Opportunity.FS_TPR_Opportunity_Line_Manager_Process.approvalProcess
+src/approvalProcesses/Opportunity.FS_TPR_Opportunity_Process.approvalProcess 
+src/approvalProcesses/FS_Account_Plan__c.FS_Account_Plan_Approval_Process.approvalProcess
+src/approvalProcesses/FS_Defined_Objective__c.FS_Defined_Objective_Approval.approvalProcess

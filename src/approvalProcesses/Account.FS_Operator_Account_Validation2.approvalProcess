@@ -44,10 +44,6 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>aniruddh.uday.kale@accenture.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
                 <name>david.a.roeder@accenture.com</name>
                 <type>user</type>
             </approver>

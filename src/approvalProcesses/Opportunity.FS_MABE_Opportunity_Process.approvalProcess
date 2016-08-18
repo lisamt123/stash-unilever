@@ -297,7 +297,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>nalabolu.prathyusha@accenture.com.acfufsna</name>
+                <name>ramesh.suddapalli@accenture.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
