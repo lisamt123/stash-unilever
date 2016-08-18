@@ -7,19 +7,10 @@
         <field>IPM_Analytics_OTIF__c$IPM_Project_Name__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Project_Id__c</field>
-    </columns>
-    <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Parent_Project_Name__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Project_Leader__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Deputy_Project_Leader__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Finance_Member__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Project_Phantom_Non_Key__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Project_Span__c</field>
@@ -40,9 +31,6 @@
         <field>IPM_Analytics_OTIF__c$IPM_Category_Group__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Category__c</field>
-    </columns>
-    <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Brand_Positioning__c</field>
     </columns>
     <columns>
@@ -58,52 +46,19 @@
         <field>IPM_Analytics_OTIF__c$IPM_Strategic_Intent__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Business_Impact__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Project_Description__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Phase__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Target_Launch_Year_BD__c</field>
-    </columns>
-    <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Target_Launch_Month_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Target_Launch_Year_BB__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Target_Launch_Month_BB__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Actual_Launch_Year__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Actual_Launch_Month__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Project_Description__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Rollout_Status__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Concept_Test__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Scoping_Complete__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_Charter__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Target_Launch_Year_BD__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Contract_Pack__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Contract_Price__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$Contract_Communication__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$Contract_Product__c</field>
@@ -112,106 +67,58 @@
         <field>IPM_Analytics_OTIF__c$Contract_Full_Mix__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Tech_Action_STD_Achieved_by_Lead_Region__c</field>
+        <field>IPM_Analytics_OTIF__c$Contract_Communication__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Materials_Sourcing_Strategies_Agreed__c</field>
+        <field>IPM_Analytics_OTIF__c$Comm_BET_Final_Release_Availability__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Technical_Feasibility__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y1_gTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Attractive_Business_Case__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y1_gTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Capex_Approved__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y1_iTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Customer_Appeal__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y1_GM__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_Contract__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y1_iTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Tech_Prod_Capability_Conf_Main_Plant__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y1_GM__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Spec_Bills_of_Materials_in_Interspec__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Y1_GM__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Tech_Prod_Capability_Confirmed__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Y1_gTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Comm_Full_Think_Big_Pack_Available__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Y1_iTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_MR__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Y1_GM__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Ist_Production_Conf_Specs_Finalised__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Y1_gTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_MD__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Y1_iTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Charter_Target_Launch_Year__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Y1_gTO_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Charter_Target_Launch_Month__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Y1_iTO_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Contract_Target_Launch_Year__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Y1_GM_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Contract_Target_Launch_Month__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MR_Target_Launch_Year__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MR_Target_Launch_Month__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MD_Target_Launch_Year__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MD_Target_Launch_Month__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y3_gTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y3_iTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y3_GM__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y3_gTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y3_iTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y3_GM__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MR_Y3_gTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MR_Y3_iTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MR_Y3_GM__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MD_Y3_gTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MD_Y3_iTO__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_MD_Y3_GM__c</field>
+        <field>IPM_Analytics_OTIF__c$Y3_GM_BD__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$IPM_Y3_gTO_BD__c</field>
@@ -220,16 +127,64 @@
         <field>IPM_Analytics_OTIF__c$IPM_Y3_iTO_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Y3_GM_BD__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y3_GM__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Y3_gTO_BB__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y3_gTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$IPM_Y3_iTO_BB__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Y3_iTO__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Y3_GM_BB__c</field>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Target_Launch_Month__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Target_Launch_Year__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y3_GM__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y3_gTO__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_Contract_Y3_iTO__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Target_Launch_Month__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_Charter_Target_Launch_Year__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Target_Launch_Month__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Target_Launch_Year__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Y3_GM__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Y3_gTO__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MD_Y3_iTO__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Target_Launch_Month__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Target_Launch_Year__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Y3_GM__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Y3_gTO__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics_OTIF__c$IPM_MR_Y3_iTO__c</field>
     </columns>
     <currency>EUR</currency>
     <description>OTIF Report</description>
