@@ -1,6 +1,5 @@
 src/email
 src/email/FS_Email_Templates
-src/email/FS_Email_Templates/Defined_objective_submitted_for_Approval.email
 src/email/FS_Email_Templates/FS_Account_Validation_Reject_From_Admin_Group.email
 src/email/FS_Email_Templates/FS_Account_Validation_Reject_From_Admin_Group.email-meta.xml
 src/email/FS_Email_Templates/FS_Account_Validation_Reject_From_Manager.email
