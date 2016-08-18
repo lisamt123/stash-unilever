@@ -11,7 +11,6 @@ public with sharing class AA_RestRequestController {
         HttpRequest request = buildRequest(path, method, responseFormat, bodyContent, bodyContentType);
         HttpResponse httpRes = sendRequest(request);
         Response restRes = buildResponse(httpRes);
-        system.debug('Return Result==>'+restRes);
         return restRes;
     }
     
@@ -52,7 +51,6 @@ public with sharing class AA_RestRequestController {
         request.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId());
         request.setHeader('ACCEPT', responseFormat);
 
-        system.debug('buildRequest==> '+request);
         return request;
     }
       
