@@ -83,6 +83,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     @TestVisible private static final String GET_REGIONAL_ROLLOUT_NAME = 'getRegionalRolloutName'; //Method Name for Exception Logging
     @TestVisible private static final String GET_KEY_MCO_ROLLOUT_NAME = 'getKeyMCORolloutName'; //Method Name for Exception Logging
     @TestVisible private static final String SelectQueryString ='Id,parent_L2__r.name,parent_L2__r.mdm_id__c,parent_L2__r.geography_type__c,parent_L2__r.parent_L2__c,parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c,parent_L2__r.parent_L2__r.geography_type__c FROM MDO_Geography__c';
+    private static final String STR_ROLLOUT = 'Rollout';
+    private static final String STR_COUNTRY = 'Country';
     public String searchCountry{get;set;}// Hold country name to search
     public Boolean isNoResult{get;set;}//checking for rollout search
     private Set<String> existingPrjList =new Set <String>(); //list of ids of existing   projects associated with rollouts 
@@ -939,7 +941,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         String queryString = 'SELECT Id,name,Local_Project__c, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
         queryString+= '(SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Countries_Local__r) ';
         queryString+= 'FROM IPM_Project_Rollout__c ';
-        queryString+= filterCondition(project.IPMProject_Span__c);
+        queryString+= filterCondition(project.IPMProject_Span__c, STR_ROLLOUT);
         
         Set<String> regionalLocalRegional = new Set<String>();
         for(IPM_Project_Rollout__c ipmRollout : Database.query(queryString))
@@ -952,7 +954,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         //Countries
         queryString = null;
         queryString = 'SELECT Id, IPM_Local_Project__c, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Country__c ';
-        queryString+= filterCondition(project.IPMProject_Span__c);
+        queryString+= filterCondition(project.IPMProject_Span__c, STR_COUNTRY);
           
         for (IPM_Country__c country : Database.query(queryString))
         {
@@ -999,7 +1001,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @param NONE
     *  @return NONE
     **/
-    private string filterCondition(string span){
+    private string filterCondition(string span, string strObj){
         string addCondition = IPM_ConstantUtils.BLANK;
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(span))
         {
@@ -1007,7 +1009,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         }
         else if (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(span))
         {
-            addCondition = 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';        
+        	if(strObj == STR_ROLLOUT)
+        	{
+        		addCondition = 'WHERE Regional_Project__c =: projectId LIMIT 10000';	
+        	}else if(strObj == STR_COUNTRY){
+        		addCondition = 'WHERE IPM_Regional_Project__c =: projectId LIMIT 10000';
+        	}
+                    
         }
         return addCondition;        
     }
