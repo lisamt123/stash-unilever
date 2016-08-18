@@ -182,6 +182,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>FS_Update_Stage_New_to_Negotiation</fullName>
+        <description>Update the Stage field from New to Negotiation.</description>
+        <field>StageName</field>
+        <literalValue>2-Negotiation</literalValue>
+        <name>Update Stage New to Negotiation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FS_Update_TPR_Approved</fullName>
         <description>Update the TPR Approved field</description>
         <field>FS_TPRApproved__c</field>
@@ -191,9 +201,19 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FS_Update_TPR_Approved_by_Line_Manager</fullName>
+        <description>Purpose: tagged the TPR Approved by Line Manager flag in Opportunity</description>
+        <field>FS_TPRApprovedByLineManager__c</field>
+        <literalValue>1</literalValue>
+        <name>Update TPR Approved by Line Manager</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>FS Email to opportunity owner when Deal approval exactly 60 days</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.DealApproved__c</field>
             <operation>equals</operation>
@@ -221,7 +241,7 @@
     </rules>
     <rules>
         <fullName>FS Funnel Stage Notification</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
