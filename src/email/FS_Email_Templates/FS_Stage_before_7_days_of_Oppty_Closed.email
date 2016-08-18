@@ -1,0 +1,3 @@
+Hi {!User.LastName},
+
+This is a notification for opportunity one week before the closed date

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
+    <description>Created for send notification to manger on contract Rejected</description>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>FS Defined Objectives Approved</name>
+    <name>FS Contract rejected details</name>
     <style>none</style>
-    <subject>{!FS_Defined_Objective__c.Name} for {!FS_Defined_Objective__c.FS_Customer__c} is approved</subject>
+    <subject>Rejected Contract Details</subject>
     <type>text</type>
 </EmailTemplate>

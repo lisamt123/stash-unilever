@@ -1,0 +1,5 @@
+Your opportunity has been rejected with the below comments: 
+{!ApprovalRequest.Comments}
+
+Please refer to link below for more details.
+ {!Opportunity.Link}.

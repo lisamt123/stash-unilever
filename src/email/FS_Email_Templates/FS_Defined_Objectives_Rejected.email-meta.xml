@@ -4,6 +4,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>FS Defined Objectives Rejected</name>
     <style>none</style>
-    <subject>{!FS_Defined_Objective__c.Name} for {!FS_Defined_Objective__c.Customer__c} not approved</subject>
+    <subject>{!FS_Defined_Objective__c.Name} for {!FS_Defined_Objective__c.FS_Customer__c} not approved</subject>
     <type>text</type>
 </EmailTemplate>

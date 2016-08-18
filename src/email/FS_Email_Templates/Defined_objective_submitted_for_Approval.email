@@ -1,4 +1,4 @@
-Defined objective {!FS_Defined_Objective__c.Name} on account plan {!FS_Defined_Objective__c.FS_Account_Plan__c.Name} for customer  {!FS_Defined_Objective__c.FS_Account_Plan__c.FS_Customer__c} Needs Approval 
+Defined objective {!FS_Defined_Objective__c.Name} on account plan {!FS_Defined_Objective__c.FS_Account_Plan__c.Name} for customer  {!FS_Defined_Objective__c.FS_Account_Plan__c.FS_Customer__c} needs Approval 
 
 Please click here to review: 
-{!FS_Defined_Objective__cLink}
+{!FS_Defined_Objective__c.Link}
