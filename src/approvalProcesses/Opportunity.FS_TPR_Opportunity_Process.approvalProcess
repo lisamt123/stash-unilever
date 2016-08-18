@@ -95,10 +95,10 @@
         </rejectBehavior>
     </approvalStep>
     <description>Approval for TPR Opportunity</description>
-    <emailTemplate>FS_Email_Templates/FS_Opportunity_approval_request_email_template</emailTemplate>
+    <emailTemplate>FS_Email_Templates/FS_TPR_Opportunity_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <formula>FS_startDateTPR__c &lt;= TODAY()  &amp;&amp;  FS_endDateTPR__c  &gt;=  TODAY() &amp;&amp;  FS_distributor__r.Id &lt;&gt; null &amp;&amp;  FS_Comment__c &lt;&gt; null &amp;&amp; NOT(ISBLANK(TEXT( FS_internalOrder__c )))&amp;&amp; NOT(ISBLANK(TEXT(FS_casesPiece__c)))</formula>
+        <formula>FS_startDateTPR__c &gt;= TODAY()  &amp;&amp;  FS_endDateTPR__c  &gt;=  TODAY() &amp;&amp;  FS_distributor__r.Id &lt;&gt; null &amp;&amp;  FS_Comment__c &lt;&gt; null &amp;&amp; NOT(ISBLANK(TEXT( FS_internalOrder__c )))&amp;&amp; NOT(ISBLANK(TEXT(FS_casesPiece__c)))</formula>
     </entryCriteria>
     <finalApprovalActions>
         <action>
