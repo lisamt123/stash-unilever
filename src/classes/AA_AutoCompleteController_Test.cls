@@ -5,42 +5,47 @@
  * @Author      -   Ipsita S    
  */
 public class AA_AutoCompleteController_Test{      
-        
   
     static testMethod void LookupTest(){
     
-    Test.startTest();
-      String searchStringBrand='ti';
-       String searchStringRetailer='bi';
-       String searchStringUser='ra';
-       String objectName='aa_Agent_App_Competitor_Brand__c';
-       String objectName1='aa_Agent_Retailer__c';
-       String objectName2='User';
+    	Test.startTest();
+      	String searchStringBrand='ti';
+       	String searchStringRetailer='bi';
+       	String searchStringUser='ra';
+       	String objectName='aa_Agent_App_Competitor_Brand__c';
+       	String objectName1='aa_Agent_Retailer__c';
+       	String objectName2='User';
        
-       String recordType1='CompetitorBrand';
-       String recordType2='UnileverBrand';
-       String recordType3= 'null';
-       String recordType4='ti';
+       	String recordType1='CompetitorBrand';
+       	//String recordType2='UnileverBrand';
+       	String recordType3= 'null';
+       	//String recordType4='ti';
        
-    AA_AutoCompleteController.lookup(searchStringBrand, objectName, recordType1);
-    //AA_AutoCompleteController.lookup(searchString,objectName,recordType2);
-    //AA_AutoCompleteController.lookup(searchString,objectName,recordType4);
-     AA_AutoCompleteController.lookup(searchStringRetailer,objectName1,recordType3);
-    AA_AutoCompleteController.lookup(searchStringUser,objectName2,recordType3);
-    Test.stopTest();
+        List<AA_AutoCompleteController.Result> results = new List<AA_AutoCompleteController.Result>();
+        List<AA_AutoCompleteController.Result> results1 = new List<AA_AutoCompleteController.Result>();
+        List<AA_AutoCompleteController.Result> results2 = new List<AA_AutoCompleteController.Result>();
+    	
+    	results = AA_AutoCompleteController.lookup(searchStringBrand, objectName, recordType1);
+    	System.assert(results.isEmpty());
+    	results1 =AA_AutoCompleteController.lookup(searchStringRetailer,objectName1,recordType3);
+     	System.assert(results1.isEmpty());
+    	results2 =AA_AutoCompleteController.lookup(searchStringUser,objectName2,recordType3);
+    	System.assert(results2.isEmpty());
+    	Test.stopTest();
     }
+    
     static testMethod void ResultTest(){
-    aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand);
-       insert compBrand; 
-    aa_Agent_App_Competitor_Brand__c uniBrand= new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand);
-       insert uniBrand;
-    Test.startTest();
-    AA_AutoCompleteController.Result obj1=new AA_AutoCompleteController.Result('testResult',compBrand.Id);
-    AA_AutoCompleteController.Result obj2=new AA_AutoCompleteController.Result('testResult',uniBrand.Id);
-    
-    
-    
-     Test.stopTest();
+    	aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand);
+       	insert compBrand; 
+    	aa_Agent_App_Competitor_Brand__c uniBrand= new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand);
+       	insert uniBrand;
+    	
+    	Test.startTest();
+    	AA_AutoCompleteController.Result obj1=new AA_AutoCompleteController.Result('testResult',compBrand.Id);
+    	System.assertEquals('testResult',obj1.SObjectLabel);
+    	AA_AutoCompleteController.Result obj2=new AA_AutoCompleteController.Result('testResult',uniBrand.Id);
+    	System.assertEquals('testResult',obj2.SObjectLabel);
+	    Test.stopTest();
     }
     
   }

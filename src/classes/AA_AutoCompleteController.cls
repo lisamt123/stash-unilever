@@ -9,12 +9,8 @@ public class AA_AutoCompleteController {
         String sanitizedSearchString = String.escapeSingleQuotes(searchString);
         String sanitizedSObjectAPIName = String.escapeSingleQuotes(sObjectAPIName);
         String sanitizedSObjectFieldName = String.escapeSingleQuotes(recordType);
-        system.debug('#####'+recordType);
-        system.debug('#####'+sanitizedSObjectFieldName);
         
         String searchQuery='';
-        
-        system.debug('Recieved Search value is==> '+sanitizedSearchString);
         List<Result> results = new List<Result>();
  		
          // Build our SOSL query
@@ -26,7 +22,6 @@ public class AA_AutoCompleteController {
              searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name where RecordType.Name=\''+ sanitizedSObjectFieldName +'\' ORDER BY Name) Limit 50'; 
         }
        
- 		system.debug('Query==>'+searchQuery);
         // Execute the Query
         List<List<SObject>> searchList = search.query(searchQuery);
  
