@@ -50937,34 +50937,6 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Pinnovate_Preference__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Plancraft</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Plancraft_Admin_Reports</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>RAP_Jobs_Portfolio</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>SME_Selection</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>SWOP</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Saving_Summary</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>Sustainable_Living_Lab</tab>
         <visibility>None</visibility>
     </tabSettings>
