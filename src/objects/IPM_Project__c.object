@@ -5704,6 +5704,24 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000kDJG_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SPRAY ATTIVO</label>
+        <queue>IPM_a7IE0000000kDJG</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kDKJ_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kDKJ</label>
+        <queue>IPM_a7IE0000000kDKJ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>

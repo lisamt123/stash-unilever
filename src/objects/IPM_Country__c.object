@@ -3442,6 +3442,24 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kDJG_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SPRAY ATTIVO</label>
+        <queue>IPM_a7IE0000000kDJG</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000kDKJ_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000kDKJ</label>
+        <queue>IPM_a7IE0000000kDKJ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

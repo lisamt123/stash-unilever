@@ -81,8 +81,11 @@
     </listViews>
     <listViews>
         <fullName>CEC_ANZ_Queue_cec_Store</fullName>
+        <columns>Country__c</columns>
+        <columns>NAME</columns>
         <filterScope>Queue</filterScope>
         <label>CEC ANZ Queue</label>
+        <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
