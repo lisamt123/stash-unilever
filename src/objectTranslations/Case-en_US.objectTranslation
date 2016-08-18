@@ -1500,6 +1500,14 @@
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Sugestion ID --></label>
+        <name>dgai__Sugestion_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Template ID --></label>
+        <name>dgai__Template_ID__c</name>
+    </fields>
+    <fields>
         <label><!-- isFormKnown --></label>
         <name>isFormKnown__c</name>
     </fields>
@@ -1510,6 +1518,18 @@
     <fields>
         <label><!-- isVariantKnown --></label>
         <name>isVariantKnown__c</name>
+    </fields>
+    <fields>
+        <label><!-- Author External Id --></label>
+        <name>sf4twitter__Author_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Author Username --></label>
+        <name>sf4twitter__Twitter_Username__c</name>
+    </fields>
+    <fields>
+        <label><!-- Conversation External Id --></label>
+        <name>sf4twitter__twitterId__c</name>
     </fields>
     <layouts>
         <layout>Case Feed Layout</layout>

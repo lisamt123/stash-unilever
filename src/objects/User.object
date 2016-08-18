@@ -2983,6 +2983,15 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>dgai__active_user_settings__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>active user settings</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>is_isll_moderator__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

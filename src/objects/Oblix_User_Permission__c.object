@@ -175,8 +175,17 @@
     </listViews>
     <listViews>
         <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>Brand_Name__c</columns>
+        <columns>CategoryBrand_id__c</columns>
+        <columns>Category_Name__c</columns>
+        <columns>User_id__c</columns>
+        <columns>User_Email__c</columns>
+        <columns>Agency_Name__c</columns>
+        <columns>Level_of_Access__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_GB</language>
     </listViews>
     <nameField>
         <displayFormat>UP-{0000}</displayFormat>

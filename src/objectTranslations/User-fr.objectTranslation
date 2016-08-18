@@ -1517,6 +1517,10 @@ The Whole Enchilada: All notifications (Default) --></help>
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- active user settings --></label>
+        <name>dgai__active_user_settings__c</name>
+    </fields>
+    <fields>
         <label><!-- is isll moderator --></label>
         <name>is_isll_moderator__c</name>
     </fields>
