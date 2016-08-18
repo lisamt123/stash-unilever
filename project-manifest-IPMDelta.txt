@@ -1,4 +1,7 @@
 src
+src/classes
+src/classes/IPM_ChangProjectDocumentStatusController.cls
+src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
 src/pages
 src/pages/IPM_ChangeCurrenDocumentStatus.page
 src/pages/IPM_ChangeCurrenDocumentStatus.page-meta.xml
