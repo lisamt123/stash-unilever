@@ -1,6 +1,10 @@
 src
 src/classes/updateMDRpointsHandler.cls
 src/classes/updateMDRpointsHandler.cls-meta.xml
+src/classes/JE_TestFactory.cls
+src/classes/JE_TestFactory.cls-meta.xml
+src/classes/JE_UpdateMDRpointsHandlerTest.cls
+src/classes/JE_UpdateMDRpointsHandlerTest.cls-meta.xml
 src/labels/CustomLabels.labels
 src/objects/JE_Job_Evaluation__c.object
 src/objects/JEPointsTable__c.object
