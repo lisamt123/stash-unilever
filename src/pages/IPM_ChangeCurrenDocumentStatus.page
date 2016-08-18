@@ -112,8 +112,8 @@
                                 <!-- Below rendered condition is used to show the message for proposing gate document --> 
                                     <apex:outputPanel rendered="{!OR(showSkipSections,isDefaultAvailable)}">
                                     <!-- Below rendered condition is used to show the message for proposing gate document --> 
-                                        <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop" rendered="{!OR(showSkipSections,project.IPM_ProjectGKM__c=='GKM3')}">
-                                        <apex:outputPanel layout="block" styleClass="SecButtonSet">
+                                        <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop" rendered="{!showSkipSections}">
+                                            <apex:outputPanel layout="block" styleClass="SecButtonSet">
                                             <a class="icoButton red-info" title="info"></a>
                                             <span class="msgTxt">{!$Label.IPM_THIS_CANNOT_BE_PROPOSED_YET}
                                             </span> 
@@ -142,13 +142,13 @@
                                 <!-- Below rendered condition is used to implement validations according to the conditions --> 
                             <apex:outputPanel layout="block" rendered="{!!showValidation}">
                             <!-- Below rendered condition is used to implement validation of project completion -->
-                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!AND(completedError,!(AND(project.IPM_ProjectGKM__c=='GKM3',project.IPM_Phase__c!='Ideas')))}">
-                                        <span class="errTitle">{!$Label.IPM_CORE_PARAMETERS}:</span> 
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!completedError}">
+                                            <span class="errTitle">{!$Label.IPM_CORE_PARAMETERS}:</span> 
                                         <span class="errList">{!$Label.IPM_Complete_all} <a href="{!$Page.IPM_CoreParameters}?id={!projectId}" target="_top">{!$Label.IPM_CORE_PARAMETERS}</a></span> 
                                     </apex:outputPanel>
                                     <!-- Below rendered condition is used to implement validation of project description -->
-                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!AND(discriptionError,!(AND(project.IPM_ProjectGKM__c=='GKM3',project.IPM_Phase__c!='Ideas')))}">
-                                        <span class="errTitle">{!$Label.IPM_PROJECT_DESCRIPTION}:</span> 
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!discriptionError}">
+                                            <span class="errTitle">{!$Label.IPM_PROJECT_DESCRIPTION}:</span> 
                                         <span class="errList">Please fill <a href="{!$Page.IPM_CoreParameters}?id={!projectId}" target="_top">{!$Label.IPM_PROJECT_DESCRIPTION}</a></span> 
                                     </apex:outputPanel>
                                     <!-- Below rendered condition is used to implement validation of milestones-->
@@ -162,8 +162,8 @@
                                         <span class="errList">Please select <a href="{!$Page.IPM_RolloutPlansAdd}?id={!projectId}" target="_top">{!$Label.IPM_ROLLOUTS_PROPOSAL}</a></span> 
                                     </apex:outputPanel>
                                     <!-- Below rendered condition is used to implement validation of rollout regional PL -->
-                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!AND(rolloutRegionalPLFilledError,!(project.IPM_ProjectGKM__c=='GKM3'))}">
-                                        <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!rolloutRegionalPLFilledError}">
+                                            <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
                                         <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Regional_Project_leader_and_Target_Launch_Date}</a> {!$Label.IPM_In_Regional_Rollouts}</span> 
                                     </apex:outputPanel>
                                         <!-- Below rendered condition is used to implement validation of key MCO rollout PL for GKM3  -->

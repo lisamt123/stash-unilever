@@ -351,9 +351,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }else {
             	Set<String> phaseToBeExcluded = new Set<String>{IPM_ConstantUtils.FEASIBILITY_PHASE};
             	if(phaseToBeExcluded.contains(project.IPM_Phase__c)){
-            		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true AND KeyMCO__c = true];
+            		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND Target_Launch_Date__c=null AND  isActive__c=true AND KeyMCO__c = true];
             	}else{
-            		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
+            		rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND Target_Launch_Date__c=null AND  isActive__c=true];
             	}
             }
                     
@@ -496,7 +496,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 if(rolloutFilledCount>0 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                     showValidation=false;
-                    rolloutRegionalPLFilledError=true;
+                     if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3) 
+		     {
+                     	rolloutRegionalPLFilledError=true;
+		     }
                 }
             
                 if(rolloutCount<1 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
