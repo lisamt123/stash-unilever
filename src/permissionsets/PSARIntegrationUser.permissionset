@@ -50913,10 +50913,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>PBS_Achievement_Category__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>PBS_Achievement__c</tab>
         <visibility>None</visibility>
     </tabSettings>
