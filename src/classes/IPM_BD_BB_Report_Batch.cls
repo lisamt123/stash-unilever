@@ -144,6 +144,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                   Local_Project__r.id,
                                                                                   Parent_Project__r.id, 
                                                                                   Regional_Project__r.Name, 
+                                                                                  Regional_Project__r.IPM_Project_Type__c,
+                                                                                  Parent_Project__r.IPM_Project_Type__c,
+                                                                                  Local_Project__r.IPM_Project_Type__c,
                                                                                   Local_Project__r.Name,
                                                                                   Misaligned__c,
                                                                                   IPM_Auto_Aligned_Fin_TLD__c,
@@ -543,7 +546,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             analyticObj.IPM_BET_Current_Status__c = p.BETCurrentStatus__c;
             analyticObj.IPM_BETOwner__c = p.BET__r.Owner.Name;
             
-            if(String.isNotBlank(p.IPMProject_Span__c) && String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local))){
+            if(String.isNotBlank(p.IPMProject_Span__c) && String.isNotBlank(p.IPM_Project_Type__c) && (p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) || p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))){
                 analyticObj.IPM_Gate_Keeping_Model__c = p.IPM_ProjectGKM__c;     
             }
             
@@ -557,7 +560,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             	analyticObj.IPM_Sub_Category__c =  p.IPM_Market__c; 
             }
                         
-            if(String.isNotBlank(p.IPMProject_Span__c) && !p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) && String.isNotBlank(p.IPM_Project_Type__c) && (!p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) &&  String.isNotBlank(p.IPM_Phase__c) && p.IPM_Phase__c.equalsignorecase(IPM_ConstantUtils.PHASE_IDEAS)){
+            if(String.isNotBlank(p.IPMProject_Span__c) && !p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) && String.isNotBlank(p.IPM_Project_Type__c) && (!p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) &&  String.isNotBlank(p.IPM_Phase__c) && p.IPM_Phase__c.equalsignorecase(IPM_ConstantUtils.PHASE_IDEAS)){
                 analyticObj.IPM_Key_NonKey__c = p.IPM_Project_Rollout__r.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
             }
 
@@ -571,8 +574,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 analyticObj.IPM_Brand__c = p.IPM_LocalProject_Brand__c;       
             }
 			
-            if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original)){
-                analyticObj.IPM_Geography__c = IPM_Utils.valueGlobal;       
+            if(String.isNotBlank(p.IPM_Project_Type__c) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)){
+                analyticObj.IPM_Geography__c = p.IPMProject_Span__c.equalsignorecase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)?IPM_Utils.valueGlobal:EMPTY_STRING;       
                 analyticObj.IPM_White_Space_Project__c = p.IPM_White_Space_Project__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;     
             }
             else if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
@@ -609,13 +612,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(p.Id)){ 
-                analyticObj.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
-                analyticObj.IPM_Target_Launch_Date_Aligned__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null; // Auto_Aligned will only be checked for local projects
-                analyticObj.IPM_Financials_Aligned__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?(projFinMap.get(p.id).Misaligned__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO):null;
+                analyticObj.IPM_Business_Impact_BD__c =(String.isNotBlank(p.IPM_Project_Type__c) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?projFinMap.get(p.id).Business_Impact_Global__c:EMPTY_STRING; 
+                analyticObj.IPM_Target_Launch_Date_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c? NO:((p.IPM_Misalligned__c== YES) ? YES : NO)):null; // Auto_Aligned will only be checked for local projects
+                analyticObj.IPM_Financials_Aligned__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?(projFinMap.get(p.id).Misaligned__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO):null;
                 // CPP BD
-                analyticObj.IPM_Company_Project_Priority_BD__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
+                analyticObj.IPM_Company_Project_Priority_BD__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?projFinMap.get(p.id).IPM_CPP_Regional__c:null;
                 //CPP BB
-                analyticObj.IPM_Company_Project_Priority_BB__c = p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)?projFinMap.get(p.id).IPM_CPP_Local__c:null;
+                analyticObj.IPM_Company_Project_Priority_BB__c = (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))?projFinMap.get(p.id).IPM_CPP_Local__c:null;
                
             }  
             
@@ -1026,8 +1029,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	grossGPYrFieldMapping = new Map<String, String>();
     	incGPInnvYrFieldMapping = new Map<String, String>();
     	
-    	fYearTOFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Turnover_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Turnover_Regional__c'};
-    	fYearGPFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Gross_Profit_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Gross_Profit_Regional__c'};
+    	fYearTOFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Turnover_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Turnover_Regional__c',IPM_ConstantUtils.IPMLOCAL => 'Turnover_Local__c'};
+    	fYearGPFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Gross_Profit_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Gross_Profit_Regional__c',IPM_ConstantUtils.IPMLOCAL => 'Gross_Profit_Local__c'};
     	String fYearFieldAPIName = '';
     	
 		String strRefernceCalYear = '';
