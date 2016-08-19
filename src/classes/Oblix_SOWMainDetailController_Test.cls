@@ -16,19 +16,21 @@ private class Oblix_SOWMainDetailController_Test {
 
     private static final String SOW_ID_PARAMETER_STRING = 'sowId';
 
-	//private static final String PROJECT_TXT = 'Project';
-	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
+    //private static final String PROJECT_TXT = 'Project';
+    private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
-	private static Marketing_SOW__c mSow;
-	private static User ul1;
-	private static User ul2;
-	private static User ul3;
-	private static User superuser;
+    private static Marketing_SOW__c mSow;
+    private static User ul1;
+    private static User ul2;
+    private static User ul3;
+    private static User superuser;
+    private static  Boolean fxEnabled;
+    private static  Boolean shouldSync;
 
-	// TODO: test submit, approve, reject; test add/delete attachments
-	@isTest static void testCampaignNonCampaignList() {
+    // TODO: test submit, approve, reject; test add/delete attachments
+    @isTest static void testCampaignNonCampaignList() {
 
-		initTestData();
+        initTestData();
 
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
@@ -50,23 +52,23 @@ private class Oblix_SOWMainDetailController_Test {
         //Boolean sow_approvers_defined;
 
         System.runAs(ul1){
-        	ul1Permissions = getUserPermissions(controllerInstance);
-        	showSubmitUL1 = controllerInstance.show_submit;
+            ul1Permissions = getUserPermissions(controllerInstance);
+            showSubmitUL1 = controllerInstance.show_submit;
             system.assertNotEquals(NULL, ul1Permissions, 'Expecting this to be populated with permissions!');
         }
         System.runAs(ul2){
-        	ul2Permissions = getUserPermissions(controllerInstance);
-        	showSubmitUL2 = controllerInstance.show_submit;
+            ul2Permissions = getUserPermissions(controllerInstance);
+            showSubmitUL2 = controllerInstance.show_submit;
             system.assertNotEquals(NULL, ul2Permissions, 'Expecting this to be populated with permissions!');
         }
         System.runAs(ul3){
-        	ul3Permissions = getUserPermissions(controllerInstance);
-        	showSubmitUL3 = controllerInstance.show_submit;
+            ul3Permissions = getUserPermissions(controllerInstance);
+            showSubmitUL3 = controllerInstance.show_submit;
             system.assertNotEquals(NULL, ul3Permissions, 'Expecting this to be populated with permissions!');
         }
         System.runAs(superuser){
-        	superuserPermissions = getUserPermissions(controllerInstance);
-        	showSubmitSuperuser = controllerInstance.show_submit;
+            superuserPermissions = getUserPermissions(controllerInstance);
+            showSubmitSuperuser = controllerInstance.show_submit;
 
             system.assertNotEquals(NULL, superuserPermissions, 'Expecting this to be populated with permissions!');
         }
@@ -165,7 +167,7 @@ private class Oblix_SOWMainDetailController_Test {
 
         Test.startTest();
 
-        Boolean fxEnabled = controllerInstance.submitForApprovalFX;
+        fxEnabled = controllerInstance.submitForApprovalFX;
         
         PageReference submitForApproval = controllerInstance.submitForApproval();
 
@@ -181,12 +183,14 @@ private class Oblix_SOWMainDetailController_Test {
 
      @isTest static void testSyncCampaigns() {
         initTestData();
-
+        PageReference initiateRO;
+        PageReference syncCamp;
+        PageReference sow_details_page;
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
         Test.startTest();
         
-        PageReference initiateRO = controllerInstance.initiateRollOver();
+        initiateRO = controllerInstance.initiateRollOver();
 
         List<Oblix_SOW_Projects__c> lst_sowp = [SELECT Id, Sync_Status__c FROM Oblix_SOW_Projects__c limit 1];
 
@@ -195,11 +199,11 @@ private class Oblix_SOWMainDetailController_Test {
 
         update lst_sowp;
 
-        PageReference syncCamp = controllerInstance.syncCampaigns();
+        syncCamp = controllerInstance.syncCampaigns();
 
         controllerInstance.updateSyncStatusAndNameSuffix();
         
-        Boolean shouldSync = controllerInstance.shouldSyncAllCampaigns;
+        shouldSync = controllerInstance.shouldSyncAllCampaigns;
 
         System.assertNotEquals(null, controllerInstance.selected_sow);
         System.assertEquals(mSow.Id, controllerInstance.selected_sow.Id);
@@ -211,7 +215,7 @@ private class Oblix_SOWMainDetailController_Test {
             
         Test.stopTest();    
 
-        PageReference sow_details_page = Page.oblix_sowmain;
+        sow_details_page = Page.oblix_sowmain;
 
         //List<Marketing_SOW__c> sowRecord = [SELECT Id, Name_Suffix__c FROM Marketing_SOW__c LIMIT 1];
 
@@ -288,29 +292,29 @@ private class Oblix_SOWMainDetailController_Test {
 */
 
     private static Map<Permission, Boolean> getUserPermissions(Oblix_SowMainDetailController controllerInstance){
-    	Map<Permission, Boolean> up = new Map<Permission, Boolean>();
+        Map<Permission, Boolean> up = new Map<Permission, Boolean>();
 
-    	up.put(Permission.CAN_EDIT, controllerInstance.can_edit);
-    	up.put(Permission.CAN_DELETE, controllerInstance.can_delete_sow);
-    	up.put(Permission.CAN_APPROVE, controllerInstance.can_approve_sow);
-    	up.put(Permission.CAN_REJECT, controllerInstance.can_reject_sow);
-    	up.put(Permission.CAN_SUBMIT, controllerInstance.can_submit_for_approval);
-    	up.put(Permission.CAN_DELETE_ATTACHMENT, controllerInstance.can_delete_attachment);
-    	up.put(Permission.CAN_ADD_ATTACHMENT, controllerInstance.can_add_attachment);
-    	up.put(Permission.CAN_MANAGE_CAMPAIGN, controllerInstance.can_manage_campaign);
-    	up.put(Permission.CAN_MANAGE_NON_CAMPAIGN, controllerInstance.can_manage_non_campaign);
+        up.put(Permission.CAN_EDIT, controllerInstance.can_edit);
+        up.put(Permission.CAN_DELETE, controllerInstance.can_delete_sow);
+        up.put(Permission.CAN_APPROVE, controllerInstance.can_approve_sow);
+        up.put(Permission.CAN_REJECT, controllerInstance.can_reject_sow);
+        up.put(Permission.CAN_SUBMIT, controllerInstance.can_submit_for_approval);
+        up.put(Permission.CAN_DELETE_ATTACHMENT, controllerInstance.can_delete_attachment);
+        up.put(Permission.CAN_ADD_ATTACHMENT, controllerInstance.can_add_attachment);
+        up.put(Permission.CAN_MANAGE_CAMPAIGN, controllerInstance.can_manage_campaign);
+        up.put(Permission.CAN_MANAGE_NON_CAMPAIGN, controllerInstance.can_manage_non_campaign);
 
-    	return up;
+        return up;
     }
 
     // TODO: add user-brand UserPermission records that define approvers and test approval buttons
     private static void initTestData(){
 
-    	Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();
-    	ul1 = testUsers.get('UL1');
-    	ul2 = testUsers.get('UL2');
-    	ul3 = testUsers.get('UL3');
-    	superuser = testUsers.get('superuser');
+        Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();
+        ul1 = testUsers.get('UL1');
+        ul2 = testUsers.get('UL2');
+        ul3 = testUsers.get('UL3');
+        superuser = testUsers.get('superuser');
 
         insert Oblix_TestUtils.createOblixCustomSettings();
 
@@ -320,6 +324,7 @@ private class Oblix_SOWMainDetailController_Test {
             //mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, brand.id);
             Map<Id, Oblix_SOW_Projects__c> map_campaigns_to_test = Oblix_TestUtils.insertCampaignsWithRelatedRecords(3,5,5,mSow.Id,'Total turnover >€400m', 'Global campaign (all market clusters)', 'Up to 4 locations', 'New – Multi channel');
+            system.assert(map_campaigns_to_test !=null,'map_campaigns_to_test  inserted');
             Oblix_TestUtils.createMarketingBasics(mSow.Id);
         }
     }
