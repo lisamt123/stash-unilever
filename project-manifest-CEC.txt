@@ -17,6 +17,8 @@ src/triggers
 src/workflows
 src/applications/CEC_Admin.app
 src/applications/CEC_Console.app
+src/remoteSiteSettings
+src/remoteSiteSettings/DigitalGenius_ConnectBackend.remoteSite
 src/classes/CEC_CaseTriggerHelper.cls
 src/classes/CEC_CaseTriggerHelper.cls-meta.xml
 src/classes/CEC_CaseTriggerHelperExtension.cls
@@ -44,7 +46,6 @@ src/layouts/Case-Case Feed Layout.layout
 src/layouts/Common_Issue__kav-Common Issue Layout.layout
 src/objects/Case.object
 src/objects/Account.object
-src/objects/cec_Case_Action__c.object
 src/objects/CEC_Fulfilment_Product__c.object
 src/objects/sf4twitter__Twitter_Conversation__c.object
 src/pages/CEC_NewAccountContact.page
