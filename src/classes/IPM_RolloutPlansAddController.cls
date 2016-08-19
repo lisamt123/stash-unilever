@@ -978,7 +978,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 processUnSelectedCountries(setCountryNoRolls,IPM_ConstantUtils.ROLLOUT_TYPE_COUNTRY);
                 
             if(isProjectGKM3){
-            	processGlobalMCORollouts();
+                processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+                processGlobalMCORollouts();
             }
                 processRegionalMCORollouts();
                 processRegionalCountryRollouts(); 
@@ -1564,7 +1565,10 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 newMCORollout.MCO_Name__c = geography.parent_L2__r.name;
                 newMCORollout.Market_Cluster__c = geography.parent_L2__r.parent_L2__r.mdm_id__c;
                 newMCORollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
-                newMCORollout.Regional_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = regionalRolloutName);
+              	if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+                {
+                	newMCORollout.Regional_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = regionalRolloutName);
+                }
                 
                 newMCORollout.KeyMCO__c = KeyMCO;	
                 
@@ -1716,7 +1720,10 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 newCountryRollout.MCO_Name__c = geography.parent_L2__r.name;
                 newCountryRollout.Market_Cluster__c = geography.parent_L2__r.parent_L2__r.mdm_id__c;
                 newCountryRollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
-                newCountryRollout.Regional_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = regionalRolloutName);
+                if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+                {
+                	newCountryRollout.Regional_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = regionalRolloutName);
+                }
                 
                 if(!isProjectGKM3){
                 	newCountryRollout.Regional_Project__c = project.Id;	

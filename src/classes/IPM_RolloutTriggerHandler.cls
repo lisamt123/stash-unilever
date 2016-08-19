@@ -1,6 +1,6 @@
 /**
 @Author Cognizant
-@Name IPM_RolloutPlansTableController
+@Name IPM_RolloutTriggerHandler
 @CreateDate 27/04/2015
 @Description This class is used for managing the trigger methods for IPM_Project_Rollout__c object 
 @Version 1.0
@@ -698,8 +698,10 @@ public with sharing class IPM_RolloutTriggerHandler
         Map<String,IPM_Financial__c> financialExtIdFinancialMap = new Map<String,IPM_Financial__c>();
         IPM_Financial__c survivingNonkeyFinancial = new IPM_Financial__c();
         
-        for(IPM_Financial__c regionalRolloutFinancial : regionalRollout.IPM_Financials__r ){
-            financialExtIdFinancialMap.put(regionalRolloutFinancial.Financial_External_ID__c,regionalRolloutFinancial);
+        if(regionalRollout!=null){
+        	for(IPM_Financial__c regionalRolloutFinancial : regionalRollout.IPM_Financials__r ){
+	            financialExtIdFinancialMap.put(regionalRolloutFinancial.Financial_External_ID__c,regionalRolloutFinancial);
+	        }
         }      
         
         Boolean activeNonKeyRolloutPresent = false;
