@@ -13,4 +13,3 @@ src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
 src/layouts/FS_Defined_Objective__c-Operator Objective.layout
 src/layouts/Account-Feed Based Distributor.layout
 src/layouts/Account-Feed Based Operator.layout
-src/layouts/Account-Operator Russia.layout
