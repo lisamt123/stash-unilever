@@ -590,6 +590,25 @@ private with sharing class IPM_ProjectHelper_Test
            
             List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutList];
             System.assertEquals(dbRolloutList.size(),localRolloutList.size(),ASSERT_ERROR_STR+localRolloutList.size());
+            insertCountry(localRolloutList);
+            /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
+            List<IPM_Project_Document__c> projectDocumentList = new List<IPM_Project_Document__c>();
+            // Already Added ProjectId's
+            for(IPM_Project__c project : projectList)
+            {
+                projectDocumentList.add(project.Project_Documents__r);
+            }  
+            insertCMIRecords(projectList, projectDocumentList);
+            for(IPM_Project__c project : projectList)
+            {
+                globalProjectIdList.add(project.Id);    
+            }
+            // Initiate Phase Change would result in Rollout Project Creation.
+            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
+            update projectListPhaseChange;
+     }
+   	private static void insertCountry(List<IPM_Project_Rollout__c>  localRolloutList)
+   	{
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             
@@ -628,24 +647,10 @@ private with sharing class IPM_ProjectHelper_Test
             List<IPM_Country__c> dbCountryList =  [Select Id,Country_Code__c from IPM_Country__c where id in :countryList AND MDO_Geography__r.ISO_3166_1_Code__c = 'BR'];
             System.assert(dbCountryList.size()>0);
             
-            /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
-            List<IPM_Project_Document__c> projectDocumentList = new List<IPM_Project_Document__c>();
             
-            // Already Added ProjectId's
             
-            for(IPM_Project__c project : projectList)
-            {
-                projectDocumentList.add(project.Project_Documents__r);
             }  
-            insertCMIRecords(projectList, projectDocumentList);
-            for(IPM_Project__c project : projectList)
-            {
-                globalProjectIdList.add(project.Id);    
-            }
-            // Initiate Phase Change would result in Rollout Project Creation.
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
-            update projectListPhaseChange;
-     }
+   	
     private static void insertCMIRecords(List<IPM_Project__c> projectList, List<IPM_Project_Document__c> projectDocumentList)
 	{
             IPM_ProjectDocumentSectionContentHandler.SKIP_TRIGGER_EXECUTION  = true;
