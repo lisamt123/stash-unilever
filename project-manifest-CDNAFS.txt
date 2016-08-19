@@ -1,5 +1,3 @@
 src
-src/approvalProcesses
-src/approvalProcesses/Contract.FS_Contract_approved_and_rejected.approvalProcess
-src/approvalProcesses/Opportunity.FS_FixedPrice_Process.approvalProcess
-src/approvalProcesses/Opportunity.FS_MABE_Opportunity_Process.approvalProcess
+src/workflows
+src/workflows/Account.workflow
