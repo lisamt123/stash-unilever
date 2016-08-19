@@ -30,8 +30,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
             
             li_campaign_and_non_campaign_items = new List<Oblix_SOWMainDetalControllerExt.CampaignNonCampaignItems>();
             
-            
-            // Fix to resolve SOQL 101 Issue
+
+           // Fix to resolve SOQL 101 Issue
             
             /*
 
@@ -117,12 +117,12 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
     }
 
     public PageReference deleteAction(){
-
+        Database.DeleteResult delete_result_main_campaign;
         PageReference sow_details_page = Page.oblix_sowmain;
 
         try{
             // Campaign Splits and SWOP Campaigns have master-detail so the related records will be deleted also
-            Database.DeleteResult delete_result_main_campaign = Database.delete(selected_sow, true);
+            delete_result_main_campaign = Database.delete(selected_sow, true);
 
         // not a DML exception
         } catch (Exception e){
@@ -239,7 +239,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
 
         List<Oblix_SOW_Projects__c> campaignsToUpdate = new List<Oblix_SOW_Projects__c>();
         if(campaignIDSync == null){
-            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c 
+            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c,Campaign_PFY__r.sync_status__c
                                                         FROM Oblix_SOW_Projects__c 
                                                         WHERE Financial_Year__c =:selected_sow.SOW_PFY__c 
                                                         AND Sync_Status__c = :Oblix_Utils.JOB_STATUS_SYNC_REQUIRED
@@ -248,7 +248,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
                 campaignsToUpdate.add(eachCampaign);
             }
         }else{
-            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c 
+            for(Oblix_SOW_Projects__c eachCampaign : [SELECT Id, Sync_Status__c,Campaign_PFY__r.sync_status__c
                                                     FROM Oblix_SOW_Projects__c 
                                                     WHERE Id =:campaignIDSync 
                                                     AND Sync_Status__c = :Oblix_Utils.JOB_STATUS_SYNC_REQUIRED
@@ -260,6 +260,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
         try{
 
             update campaignsToUpdate;
+            
             campaignIDSync = null;
         }catch (DmlException e){
             ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not update related Campaigns'));

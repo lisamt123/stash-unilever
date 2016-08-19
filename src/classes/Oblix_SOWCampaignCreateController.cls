@@ -50,7 +50,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         System.DEBUG('Set Countries : ' + selected_project.Campaign_Countries__c);
         System.DEBUG('All Regions : ' + selected_project.OblixRegion__c);
         System.DEBUG('Main Regions : ' + selectedMainRegions);
-        List < String > regionList = new List < String > ();
+        //List < String > regionList = new List < String > ();
         String tempCountries = selected_project.Campaign_Countries__c;
         if (selectedMainRegions != null && selected_project.Campaign_Countries__c.length() > 0) {
             selected_project.Campaign_Countries__c = selectedMainRegions + '/' + selected_project.Campaign_Countries__c;
@@ -86,7 +86,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         }
 
         //Prepare a list of up to 3 first clusters and/or countries
-        List<String> first3Countries = new List<String>();
+        //List<String> first3Countries = new List<String>();
         Integer countryCounter = 0;
         System.debug('Selected Countries: ' + selectedCountries);
         for(String country : selectedCountries.split('[/,]')){
@@ -120,8 +120,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
 
     private void setCampaignScaleOne(String selectedMainRegions, String selectedCountriesLoc) {
-        String countriesSelected = '';
-        List < String > splitRegion = new List < String > ();
+        //String countriesSelected = '';
+        //List < String > splitRegion = new List < String > ();
         System.DEBUG('###selectedCountriesLoc save : ' + selectedCountriesLoc);
         List < String > lstCountriesString = new List < String > ();
         if (!selectedCountriesLoc.equalsIgnoreCase(''))

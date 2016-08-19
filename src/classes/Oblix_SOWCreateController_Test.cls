@@ -44,11 +44,12 @@ private class Oblix_SOWCreateController_Test {
         //ul3 = testUsers.get('UL3');
         //superuser = testUsers.get('superuser');
     }
-	
-	@isTest static void testCheckUserHasPermissionToSOW() {
+    
+    @isTest static void testCheckUserHasPermissionToSOW() {
         initTestUsers();
+        Pagereference permission_denied_page;
 
-		MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+        MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
         Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 
@@ -65,7 +66,7 @@ private class Oblix_SOWCreateController_Test {
         System.runAs(ul1) {
             checkUserHasPermissionToSOW = controller.checkUserHasPermissionToSOW();
 
-            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+            permission_denied_page = Page.Oblix_PermissionDenied;
             System.assertEquals(null, checkUserHasPermissionToSOW);
         }
 
@@ -75,7 +76,7 @@ private class Oblix_SOWCreateController_Test {
 
         Test.stopTest();
           
-	}
+    }
 
 
     @isTest static void testEditSOW() {
@@ -174,6 +175,6 @@ private class Oblix_SOWCreateController_Test {
         Test.stopTest();
           
     }
-	
-	
+    
+    
 }
