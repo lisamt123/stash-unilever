@@ -484,10 +484,9 @@
         <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
-    <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
-    <showHighlightsPanel>true</showHighlightsPanel>
-    <showInteractionLogPanel>true</showInteractionLogPanel>
+    <showHighlightsPanel>false</showHighlightsPanel>
+    <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>

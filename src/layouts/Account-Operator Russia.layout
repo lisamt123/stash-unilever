@@ -546,7 +546,7 @@
         <fields>NAME</fields>
         <relatedList>Account_Relationship__c.Secondary_Account__c</relatedList>
     </relatedLists>
-    <relatedObjects>ParentId</relatedObjects>
+    <!--<relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>
@@ -557,5 +557,5 @@
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
+    </summaryLayout>--->
 </Layout>
