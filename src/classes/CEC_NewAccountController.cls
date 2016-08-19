@@ -179,7 +179,14 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        
                        if (duplicateConsumerList.size() > 0) {
                            hasResultToDisplayFlag = true;
-                       }                      
+                       }  
+
+					   if (String.isNotBlank(newConsumer.Phone)) {
+                               newConsumer.Phone_No_Special_Char__c = '';
+                               newConsumer.Home_Phone_No_Special_Char__c = '';
+                               newConsumer.Mobile_Phone_No_Special_Char__c = '';
+                               newConsumer.Other_Phone_No_Special_Char__c ='';
+                   	   }
                    } 
                    searchPerformed = true;    
                    isTransactionSuccess = true;
