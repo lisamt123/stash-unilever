@@ -162,146 +162,154 @@
                                         <span class="errList">Please select <a href="{!$Page.IPM_RolloutPlansAdd}?id={!projectId}" target="_top">{!$Label.IPM_ROLLOUTS_PROPOSAL}</a></span> 
                                     </apex:outputPanel>
                                     <!-- Below rendered condition is used to implement validation of rollout regional PL -->
-                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!rolloutRegionalPLFilledError}">
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!AND(rolloutRegionalPLFilledError,project.IPM_ProjectGKM__c!='GKM3')}">
                                             <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
-                                        <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Regional_Project_leader_and_Target_Launch_Date}</a> {!$Label.IPM_In_Regional_Rollouts}</span> 
-                                    </apex:outputPanel>
-                                        <!-- Below rendered condition is used to implement validation of key MCO rollout PL for GKM3  -->
-                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!AND(rolloutRegionalPLFilledError,AND(project.IPM_ProjectGKM__c=='GKM3',project.IPM_Phase__c!='Ideas'))}">  
-                                            <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
-                                            <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Country_Project_leader_and_Target_Launch_Date}</a> in Key MCOs</span> 
+                                            <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Regional_Project_leader_and_Target_Launch_Date}</a> {!$Label.IPM_In_Regional_Rollouts}</span> 
                                         </apex:outputPanel>
-                                    <!-- Below rendered condition is used to implement validation of rollout country PL -->
-                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!rolloutCountryPLFilledError}">
-                                        <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
-                                        <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Country_Project_leader_and_Target_Launch_Date}</a> {!$Label.IPM_In_Local_Rollouts}</span> 
-                                    </apex:outputPanel>
-                                    <!-- Below rendered condition is used to implement validation of financials -->
-                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!financialError}">
-                                        <span class="errTitle">{!$Label.IPM_FINANCIALS}:</span> 
-                                        <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_Financial}?id={!projectId}" target="_top">{!$Label.IPM_Financial_Data}</a></span> 
-                                    </apex:outputPanel>
-                                    <!-- Below rendered condition is used to implement validation of risk -->
-                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!riskError}">
-                                        <span class="errTitle">{!$Label.IPM_Risks}</span>
-                                        <span class="errList">{!$Label.IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!riskSectionId}" target="_top">{!$Label.IPM_Risk_Section}</a></span> 
-                                    </apex:outputPanel> 
-                                    <!-- Below rendered condition is used to implement validation of eco design --> 
-                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!ecoDesignNoAssessmentError}">
-                                        <span class="errTitle">{!$Label.IPM_EcoDesign_Assessment}</span>
-                                        <span class="errList">{!$Label.IPM_EcoDesign_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!ecoDesignSectionId}" target="_top">{!$Label.IPM_EcoDesign_Assessment_Section}</a></span> 
-                                    </apex:outputPanel>
-			    	    <!-- CR0281 bb document validation -->
-                                    <!-- Below rendered condition is used for checking TLD alignment, business case confirmation,financial alignment -->
-                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!isBDBBAlignment}">
-                                        <span class="errTitle">{!$Label.IPM_BB_Document}</span>
-                                        <!-- Below rendered condition is used for checking business case confirmation -->
-                                        <apex:outputPanel layout="block" rendered="{!businessCasePending}">
-                                             <!-- Below rendered condition is provide the link for section 6.3 --> 
-                                                 <apex:outputPanel layout="block" >    
-                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!documentSectionId}" target="_blank">{!$Label.IPM_confirm_business_case_in_gate}</a> </span> 
-                                                 </apex:outputPanel>
-                                            <apex:variable value="{!totalLocalProjects}" var="rowNum"/>
-                                            <div class="errList">
-                                                <apex:repeat value="{!localBCProjectName}" var="localProject">
-                                                  <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
-                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
-                                                </apex:repeat>
-                                            </div>
-                                        </apex:outputPanel>
-                                        <!-- Below rendered condition is used for checking financial alignment -->
-                                        <apex:outputPanel layout="block" rendered="{!financialAlignment}">
-                                            <!-- Below rendered condition is provide the link for section 6.3 -->  
-                                                 <apex:outputPanel layout="block">    
-                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!documentSectionId}" target="_blank">{!$Label.IPM_Finance_Align}</a> </span> 
-                                                 </apex:outputPanel>
-                                            <apex:variable value="{!totalFinProject}" var="rowNum"/>
-                                            <div class="errList">
-                                                <apex:repeat value="{!localFinProjectName}" var="localProject">
-                                                    <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
-                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
-                                                </apex:repeat>
-                                            </div>
-                                        </apex:outputPanel>
-                                        <!-- Below rendered condition is used for checking TLD alignment -->
-                                        <apex:outputPanel layout="block" rendered="{!tldAlignment}">
-                                           <apex:outputPanel layout="block" >    
-                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!documentSectionId}" target="_blank">{!$Label.IPM_TDL_Align}</a> </span> 
-                                                 </apex:outputPanel>
-                                            <apex:variable value="{!totalTLDProject}" var="rowNum"/>
-                                            <div class="errList">
-                                                <apex:repeat value="{!localTLDProjectName}" var="localProject">
-                                                    <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span> 
-                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
-                                                </apex:repeat>
-                                            </div>
-                                        </apex:outputPanel>
-                                    </apex:outputPanel>
-                            </apex:outputPanel>
-                        </apex:outputPanel>
-                        <apex:outputPanel layout="block" styleClass="thStatusBox" rendered="{!AND(showValidation,belowThresholdError)}">
-                            <div class="SecButtonSet pull-left">
-                                <a class="icoButton redBell"></a>
-                            </div>
-                            <div class="thBoxText">
-                                {!$Label.IPM_BelowThresholdError_Msg}
-                            </div>    
-                        </apex:outputPanel>
-                            </apex:outputPanel>
-                        </apex:outputPanel>
-                        
-                        <!-- For Postponed State --> 
-                        <apex:outputPanel id="postpone" styleClass="postpone">
-                        <!-- Below rendered condition will check postpone status validations -->
-                            <apex:outputPanel rendered="{!If(Status='Postponed',true,false)}" > 
-                                <div class="col-xs-12 toolTipMsg marginTop"><apex:outputLabel value="{!$Label.IPM_POSTPONE_AND_RETRIEVE_FROM_PRO_ARCHIVE}" /></div>
-                                <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop" id="postponeMsg">
-                                        <apex:outputPanel layout="block" styleClass="SecButtonSet">
-                                            <a class="icoButton red-info" title="info"></a>
-                                            <span class="msgTxt">{!$Label.IPM_Postpone_Msg}
-                                            </span> 
-                                            <span class="msgTxt">{!showErrorMsg}</span>
-                                        </apex:outputPanel>
-                                    </apex:outputPanel>
-                                <apex:outputPanel >
-                                    <div class='input-group date'>
-                                        <apex:outputLabel value="{!$Label.IPM_POSTPONE_ON}"/>
-					<apex:repeat value="{!pendingMilestoneList}" var="milestone">
-                                            <apex:inputField styleClass="dateInputBox tldBox calendar" value="{!milestone.IPM_Planned_Date__c}" id="Duedate" rendered="{!Not(milestone.IPM_Name__c = tldMilestoneName)}"/>
-                                            <apex:inputField styleClass="dateInputBox " value="{!milestone.IPM_Planned_Date__c}" id="DuedateTLD" rendered="{!(milestone.IPM_Name__c = tldMilestoneName)}" html-disabled="true"/>
-                                            
-                                            &nbsp;&nbsp; <b><apex:outputText value="{!milestone.IPM_Name__c}" /></b>
-                                            <br/><br/>
-                                        </apex:repeat>
                                         
-                                    </div>
-                                    <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/>
-                                    <!--<span class="bluText">* Goes to Contract Gate document, Section Feedback from Last Gate</span>-->
-                                    <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Postponed_Comments__c}"/>
-                                </apex:outputPanel>
-                                <div class="marginTop ipmButtonGroup pull-right postponeModal" data-toggle="modal" data-target="#ipmModalPostponed" title="Postpone" data-backdrop="static" data-keyboard="false">
-                                    <!--<span class="ipmButton primary">{!$Label.IPM_CHANGE}</span>-->
-                                    <span class="ipmButton primary">Change</span>
-                                </div> 
+                                        <!-- Below rendered condition is used to implement validation of key MCO rollout PL for GKM3 in Feasibility phase -->
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!AND(rolloutRegionalPLFilledError,AND(project.IPM_ProjectGKM__c=='GKM3',project.IPM_Phase__c=='Feasibility'))}">  
+                                            <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
+                                            <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Country_Project_leader_and_Target_Launch_Date}</a> in Key MCOs.</span> 
+                                        </apex:outputPanel>
+                                        
+                                        <!-- Below rendered condition is used to implement validation of key MCO rollout PL for GKM3 in Capability phase -->
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!AND(rolloutRegionalPLFilledError,AND(project.IPM_ProjectGKM__c=='GKM3',project.IPM_Phase__c=='Capability'))}">  
+                                            <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
+                                            <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Country_Project_leader_and_Target_Launch_Date}</a> in all MCOs.</span> 
+                                        </apex:outputPanel>
+                                        
+                                        <!-- Below rendered condition is used to implement validation of rollout country PL -->
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!rolloutCountryPLFilledError}">
+                                            <span class="errTitle">{!$Label.IPM_ROLLOUTS}:</span>
+                                            <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_RolloutPlans}?id={!projectId}" target="_top">{!$Label.IPM_Country_Project_leader_and_Target_Launch_Date}</a> {!$Label.IPM_In_Local_Rollouts}</span> 
+                                        </apex:outputPanel>
+                                        <!-- Below rendered condition is used to implement validation of financials -->
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!financialError}">
+                                            <span class="errTitle">{!$Label.IPM_FINANCIALS}:</span> 
+                                            <span class="errList">{!$Label.IPM_Please_Fill} <a href="{!$Page.IPM_Financial}?id={!projectId}" target="_top">{!$Label.IPM_Financial_Data}</a></span> 
+                                        </apex:outputPanel>
+                                        <!-- Below rendered condition is used to implement validation of risk -->
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!riskError}">
+                                            <span class="errTitle">{!$Label.IPM_Risks}</span>
+                                            <span class="errList">{!$Label.IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!riskSectionId}" target="_top">{!$Label.IPM_Risk_Section}</a></span> 
+                                        </apex:outputPanel> 
+                                        <!-- Below rendered condition is used to implement validation of eco design -->
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!ecoDesignNoAssessmentError}">
+                                            <span class="errTitle">{!$Label.IPM_EcoDesign_Assessment}</span>
+                                            <span class="errList">{!$Label.IPM_EcoDesign_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!ecoDesignSectionId}" target="_top">{!$Label.IPM_EcoDesign_Assessment_Section}</a></span> 
+                                        </apex:outputPanel>
+                            <!-- CR0281 bb document validation -->
+                                        <!-- Below rendered condition is used for checking TLD alignment, business case confirmation,financial alignment -->
+                                        <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!isBDBBAlignment}">
+                                            <span class="errTitle">{!$Label.IPM_BB_Document}</span>
+                                            <!-- Below rendered condition is used for checking business case confirmation -->
+                                            <apex:outputPanel layout="block" rendered="{!businessCasePending}">
+                                                 <!-- Below rendered condition is provide the link for section 6.3 --> 
+                                                     <apex:outputPanel layout="block" >    
+                                                        <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!documentSectionId}" target="_blank">{!$Label.IPM_confirm_business_case_in_gate}</a> </span> 
+                                                     </apex:outputPanel>
+                                                <apex:variable value="{!totalLocalProjects}" var="rowNum"/>
+                                                <div class="errList">
+                                                    <apex:repeat value="{!localBCProjectName}" var="localProject">
+                                                      <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
+                                                        <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                    </apex:repeat>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <!-- Below rendered condition is used for checking financial alignment -->
+                                            <apex:outputPanel layout="block" rendered="{!financialAlignment}">
+                                                <!-- Below rendered condition is provide the link for section 6.3 -->  
+                                                     <apex:outputPanel layout="block">    
+                                                        <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!documentSectionId}" target="_blank">{!$Label.IPM_Finance_Align}</a> </span> 
+                                                     </apex:outputPanel>
+                                                <apex:variable value="{!totalFinProject}" var="rowNum"/>
+                                                <div class="errList">
+                                                    <apex:repeat value="{!localFinProjectName}" var="localProject">
+                                                        <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
+                                                        <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                    </apex:repeat>
+                                                </div>
+                                            </apex:outputPanel>
+                                            <!-- Below rendered condition is used for checking TLD alignment -->
+                                            <apex:outputPanel layout="block" rendered="{!tldAlignment}">
+                                               <apex:outputPanel layout="block" >    
+                                                        <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!documentSectionId}" target="_blank">{!$Label.IPM_TDL_Align}</a> </span> 
+                                                     </apex:outputPanel>
+                                                <apex:variable value="{!totalTLDProject}" var="rowNum"/>
+                                                <div class="errList">
+                                                    <apex:repeat value="{!localTLDProjectName}" var="localProject">
+                                                        <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span> 
+                                                        <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                    </apex:repeat>
+                                                </div>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                </apex:outputPanel> 
                             </apex:outputPanel>
-                        </apex:outputPanel>
-                        
-                        <!-- For Approved State -->
-                        <apex:outputPanel id="approve" styleClass="approve">
-                        <!-- Below rendered condition will check approved status validations -->
-                            <apex:outputPanel rendered="{!If(Status='Approved',true,false)}" > 
-                                <div class="col-xs-12 toolTipMsg marginTop"><apex:outputLabel value="{!$Label.IPM_APPROVE_AND_NO_ACTION}" /></div>
-                                <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright approvedBox">                           
-                                    <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>(Optional)</i>
-                                    <!-- Below rendered condition is used to show below output text for opertional project -->
-                                    <apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
-                                    <span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText>  Gate document, Section Feedback from Last Gate</span>
+                            <apex:outputPanel layout="block" styleClass="thStatusBox" rendered="{!AND(showValidation,belowThresholdError)}">
+                                <div class="SecButtonSet pull-left">
+                                    <a class="icoButton redBell"></a>
+                                </div>
+                                <div class="thBoxText">
+                                    {!$Label.IPM_BelowThresholdError_Msg}
+                                </div>    
+                            </apex:outputPanel>
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            
+                            <!-- For Postponed State --> 
+                            <apex:outputPanel id="postpone" styleClass="postpone">
+                            <!-- Below rendered condition will check postpone status validations -->
+                                <apex:outputPanel rendered="{!If(Status='Postponed',true,false)}" > 
+                                    <div class="col-xs-12 toolTipMsg marginTop"><apex:outputLabel value="{!$Label.IPM_POSTPONE_AND_RETRIEVE_FROM_PRO_ARCHIVE}" /></div>
+                                    <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop" id="postponeMsg">
+                                            <apex:outputPanel layout="block" styleClass="SecButtonSet">
+                                                <a class="icoButton red-info" title="info"></a>
+                                                <span class="msgTxt">{!$Label.IPM_Postpone_Msg}
+                                                </span> 
+                                                <span class="msgTxt">{!showErrorMsg}</span>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    <apex:outputPanel >
+                                        <div class='input-group date'>
+                                            <apex:outputLabel value="{!$Label.IPM_POSTPONE_ON}"/>
+                                            <apex:repeat value="{!pendingMilestoneList}" var="milestone">
+                                                <apex:inputField styleClass="dateInputBox tldBox calendar" value="{!milestone.IPM_Planned_Date__c}" id="Duedate" rendered="{!Not(milestone.IPM_Name__c = tldMilestoneName)}"/>
+                                                <apex:inputField styleClass="dateInputBox " value="{!milestone.IPM_Planned_Date__c}" id="DuedateTLD" rendered="{!(milestone.IPM_Name__c = tldMilestoneName)}" html-disabled="true"/>
+                                                
+                                                &nbsp;&nbsp; <b><apex:outputText value="{!milestone.IPM_Name__c}" /></b>
+                                                <br/><br/>
+                                            </apex:repeat>
+                                            
+                                        </div>
+                                        <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/>
+                                        <!--<span class="bluText">* Goes to Contract Gate document, Section Feedback from Last Gate</span>-->
+                                        <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Postponed_Comments__c}"/>
                                     </apex:outputPanel>
-                                    
-                                    <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}"/>
-                                    <!-- Below rendered condition is used for charter gate -->
-                                    <apex:outputPanel rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
-                                        <!-- Below rendered condition is used to provide output label for non operational projects -->
+                                    <div class="marginTop ipmButtonGroup pull-right postponeModal" data-toggle="modal" data-target="#ipmModalPostponed" title="Postpone" data-backdrop="static" data-keyboard="false">
+                                        <!--<span class="ipmButton primary">{!$Label.IPM_CHANGE}</span>-->
+                                        <span class="ipmButton primary">Change</span>
+                                    </div> 
+                                </apex:outputPanel>
+                            </apex:outputPanel>
+                            
+                            <!-- For Approved State -->
+                            <apex:outputPanel id="approve" styleClass="approve">
+                            <!-- Below rendered condition will check approved status validations -->
+                                <apex:outputPanel rendered="{!If(Status='Approved',true,false)}" > 
+                                    <div class="col-xs-12 toolTipMsg marginTop"><apex:outputLabel value="{!$Label.IPM_APPROVE_AND_NO_ACTION}" /></div>
+                                    <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright approvedBox">                           
+                                        <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>(Optional)</i>
+                                        <!-- Below rendered condition is used to show below output text for opertional project -->
+                                        <apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
+                                        <span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText>  Gate document, Section Feedback from Last Gate</span>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}"/>
+                                        <!-- Below rendered condition is used for charter gate -->
+                                        <apex:outputPanel rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
+                                            <!-- Below rendered condition is used to provide output label for non operational projects -->
                                             <apex:outputPanel layout="block" rendered="{!NOT(OR(isOperational,hideGCLTRCLTQuestions))}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
                                             <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel setupBlock" />
                                             <div class="ipmApproveButtons gkm">
