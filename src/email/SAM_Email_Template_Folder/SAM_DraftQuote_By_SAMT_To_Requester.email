@@ -41,7 +41,7 @@
        <apex:repeat var="cx" value="{!relatedTo.Quote_Line_Items__r}">
        <tr>
           <td>{!s_no} </td>
-           <td>{!cx.txt_Publisher__c}</td>
+           <td>{!cx.pkl_Publisher__c}</td>
            <td>{!cx.Name}</td>
            <td>{!cx.pkl_Charging_Type__c}</td>
            
