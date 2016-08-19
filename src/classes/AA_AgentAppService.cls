@@ -84,7 +84,7 @@ public with sharing class AA_AgentAppService  {
         return retList;
     }
     
-    public static String getClusterIsNull(aa_Agent_App_User_Preference__c UserPref,String countryQueryParam){
+   /* public static String getClusterIsNull(aa_Agent_App_User_Preference__c UserPref,String countryQueryParam){
         String soqlquery = '';
         aa_Cluster__c globalclustId=[Select Id from aa_Cluster__c where name='Global' ];
         if(UserPref.Country__c != null && UserPref.Cluster__c == null )
@@ -180,7 +180,7 @@ public with sharing class AA_AgentAppService  {
         }
         
         return soqlquery;
-    }
+    }*/
     
     @AuraEnabled
     public static AA_ApplicationWrapperObjLtng getRetriveAllAgentReports(String filterType, String sortType, Integer limitRecords, Integer offSet, String applyFilter, String clusterId, String countryId,String unileverBrandId, String retailerId, String reportingOnId,String recordType,String competitorBrandId,String competitorId, String categoryId, String topicId){
@@ -256,7 +256,7 @@ public with sharing class AA_AgentAppService  {
                         Each value fetching from database needs to be go thrugh null check before applying it to the current filter i.e. in below query
                         If null check is removed query will fail with exception even if one value is null
                     */   
-                  soqlquery += getPrepareSqlWithUserPref(UserPref);  
+                  soqlquery += AA_AgentAppServiceUtility.getPrepareSqlWithUserPref(UserPref);  
                 }else if(objAgentAppDataRequest.ApplyFilter=='true') { 
                     system.debug('Filtered Report====>'+objAgentAppDataRequest.ApplyFilter);
                     requestAgentDataObj= convertRequestAgentReport(objAgentApp);
@@ -734,11 +734,11 @@ public with sharing class AA_AgentAppService  {
     delete feedlikelist[0];
     return false;
    }
-    @AuraEnabled
+   /* @AuraEnabled
     public static Id getGlobalClusterId(){
          aa_Cluster__c globalCluster=[Select Id from aa_Cluster__c where name='Global'];
          return globalCluster.Id;
-    } 
+    } */
     @AuraEnabled
      public static AA_ApplicationWrapperObjLtng insertAgentApp(String clusterId,String countryId,String town, String reportName, String reportDescription,
      List<String> userIds ,String unileverBrandId, String retailerId, String reportingOnId,String recordType, String status,String contentId){
@@ -784,11 +784,11 @@ public with sharing class AA_AgentAppService  {
         ContentVersion c = [Select Id, ContentDocumentId from ContentVersion where id =: newContentVersion.Id LIMIT 1]; 
             return c;
     } 
-     @AuraEnabled
+    /* @AuraEnabled
     public static Id getOtherCompetitorBrandId(){
          aa_Agent_App_Competitor_Brand__c otherCompetitorBrandId=[Select Id from aa_Agent_App_Competitor_Brand__c where name='Other'];
          return otherCompetitorBrandId.Id;
-    } 
+    } */
     @AuraEnabled
     public static AA_ApplicationWrapperObjLtng insertAgentApp_Competitor(String clusterId,String countryId,String town, String reportName, String reportDescription,
      List<String> userIds ,String source,String competitorBrandId,String otherBrandName,String otherCompetitor ,String competitorId,String categoryId,String retailer, String topicId,String subTopic ,String recordType, String status,String contentId){  
