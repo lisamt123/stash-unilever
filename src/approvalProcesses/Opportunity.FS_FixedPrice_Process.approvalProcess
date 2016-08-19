@@ -4,7 +4,11 @@
     <allowRecall>false</allowRecall>
     <allowedSubmitters>
         <type>owner</type>
-    </allowedSubmitters>    
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+    </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
