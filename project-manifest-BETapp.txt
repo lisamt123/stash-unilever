@@ -5,7 +5,7 @@ src/staticresources/BETApp.resource-meta.xml
 src
 src/pages
 src/pages/BET.page
-src/pagess/BET.page-meta.xml
+src/pages/BET.page-meta.xml
 src/pages/BET_EditAsset.page
 src/pages/BET_EditAsset.page-meta.xml
 src/pages/uw_BetEdit.page
