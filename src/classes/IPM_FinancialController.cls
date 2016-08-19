@@ -1685,19 +1685,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               yellowValidationCellsString = IPM_ConstantUtils.BLANK;
 
               getValidationSettingSet();
-			  
-			  softValidate(currentFinancial);
-			  
-              //check for hard validation - REQ3006
-              if(isFinancialInvalid || isFinancialInvalidInnovation){
-                currentFinancial.isFinancialInvalid__c = true;
-                validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;
-              }
-              else{
-                currentFinancial.isFinancialInvalid__c = false;
-                validationErrorMessage = IPM_ConstantUtils.BLANK;
-              }
               
+              softValidate(currentFinancial);
+              
+              //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
+              //method checkIsFinancialInvalid sets the flag appropriately
+			  checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+			
               financialsToUpdateSet.clear();
               //logic to calculate the consolidated financials validation cells value
               if(!currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  &&  (projectType!= null && !projectType.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )){
@@ -2212,6 +2206,17 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
             softValidate(currentFinancial);
             
+            //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
+			isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+			
+			if(isFinancialInvalidValueChanged){
+				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+				update currentFinancial;
+				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+			}
+			
+			refreshFinancials();
+            
         } 
         catch (Exception ex) 
         {
@@ -2248,12 +2253,72 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
             
             softValidate(currentFinancial);
+            
+            
+            //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
+			isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+			
+			if(isFinancialInvalidValueChanged){
+				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+				update currentFinancial;
+				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+			}
+			
 
         } 
         catch (Exception ex) 
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_REFRESHFROMREGIONAL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            isError = true;
+            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+        }
+    }
+    
+    
+    /*******************************************************************************************************
+    * @description  Used to refresh the financial numbers from Regional numbers
+    * @param        NONE
+    * @return       NONE
+    */
+    public void refreshFromGlobal() 
+    {
+        try
+        {
+            if(currentFinancial.Copy_Global_to_Local__c)
+            {
+                currentFinancial.Copy_Global_to_Local__c = false;
+                
+				update currentFinancial;
+            }
+            
+            currentFinancial.Copy_Global_to_Local__c = true;
+            
+			update currentFinancial;
+                       
+            getFinancials();
+            
+            redValidationCellsString = IPM_ConstantUtils.BLANK;
+            yellowValidationCellsString = IPM_ConstantUtils.BLANK;
+            getCurrentFinancialType(currentFinancial);
+            isFinacialConsolidated = currentFinancialType.equalsIgnoreCase(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+            
+            softValidate(currentFinancial);
+            
+            //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
+			isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+			
+			if(isFinancialInvalidValueChanged){
+				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+				update currentFinancial;
+				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+			}
+
+        } 
+        catch (Exception ex) 
+        {
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                    IPM_ConstantUtils.EXCEPTION_REFRESHFROMGLOBAL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             isError = true;
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
@@ -3698,4 +3763,28 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     		return IPM_ConstantUtils.BLANK ;
     	}
     }
+    
+    /************************************************************************************************************** 
+    * This method check whether the financial is invalid and checks/unchecks the invaild flag on the financial records, accordingly 
+    * @parmas
+    * isFinancialInvalid,isFinancialInvalidInnovation : Boolean variables which determine if the financial is invalid 
+    * finToEvaluate : The financial record to evaluate
+    **************************************************************************************************************/
+    public Boolean checkIsFinancialInvalid(Boolean isFinancialInvalid, Boolean isFinancialInvalidInnovation, IPM_Financial__c finToEvaluate){
+		  Boolean isChanged = false;
+		  
+	      if((isFinancialInvalid || isFinancialInvalidInnovation) && !finToEvaluate.isFinancialInvalid__c){
+	        finToEvaluate.isFinancialInvalid__c = true;
+	        isChanged = true;
+	      }
+	      else if((!isFinancialInvalid && !isFinancialInvalidInnovation) && finToEvaluate.isFinancialInvalid__c){
+	        finToEvaluate.isFinancialInvalid__c = false;
+	        isChanged = true;
+	      }
+	      return isChanged;
+    }
+    
+    
+    
+        
 }
