@@ -171,7 +171,33 @@
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
-        
+        <quickActionListItems>
+            <quickActionName>FeedItem.TextPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.ContentPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FS_Defined_Objective__c.New_Opportunity</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FS_Defined_Objective__c.Create_Risk</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.MobileSmartActions</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.RypplePost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.LinkPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.PollPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>FeedItem.QuestionPost</quickActionName>
+        </quickActionListItems>
     </quickActionList>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
@@ -212,7 +238,11 @@
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>Date_of_Loss__c</fields>
+        <fields>Probability__c</fields>
+        <fields>Risk_Category__c</fields>
         <relatedList>Risk__c.Defined_Objective__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
