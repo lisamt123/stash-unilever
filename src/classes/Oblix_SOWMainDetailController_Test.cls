@@ -15,7 +15,8 @@
 private class Oblix_SOWMainDetailController_Test {
 
     private static final String SOW_ID_PARAMETER_STRING = 'sowId';
-
+      static  Boolean fxEnabled;
+      static  Boolean shouldSync;
     //private static final String PROJECT_TXT = 'Project';
     private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
@@ -24,8 +25,6 @@ private class Oblix_SOWMainDetailController_Test {
     private static User ul2;
     private static User ul3;
     private static User superuser;
-    private static  Boolean fxEnabled;
-    private static  Boolean shouldSync;
 
     // TODO: test submit, approve, reject; test add/delete attachments
     @isTest static void testCampaignNonCampaignList() {

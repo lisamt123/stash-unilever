@@ -142,6 +142,7 @@ private class Oblix_CampaignSummaryController_Test {
     @isTest static void Oblix_CampaignSummaryController_TestCancelCampaign(){
         User u = Oblix_TestUtils.createTestUser();
         insert Oblix_TestUtils.createOblixCustomSettings();
+        system.assert(true,u.id!=null);
         System.runAs(u) {
             
             Test.startTest();
@@ -171,6 +172,7 @@ private class Oblix_CampaignSummaryController_Test {
         User u = Oblix_TestUtils.createTestUser();
         insert Oblix_TestUtils.createOblixCustomSettings();
         PageReference cancelCampaign;
+        system.assert(true,u.id!=null);
         System.runAs(u) {
             
             Test.startTest();
