@@ -1,3 +1,3 @@
 src
-src/approvalProcesses
-src/approvalProcesses/Account.FS_Operator_Account_Validation2.approvalProcess
+src/workflows
+src/workflows/Account.workflow
