@@ -281,13 +281,14 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     private void insertFinancialsOnTLDChg(Map<Id,IPM_Financial__c> targetLaunchChangedDateMap){
     	if(!targetLaunchChangedDateMap.isEmpty())
         { 
+        	Set<Id> financialIdSet = targetLaunchChangedDateMap.keySet();
             // Stores the List of Consolidated Financial Records which are to be inserted.
             Map<String,IPM_Financial_Year__c> upsertConsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>(); 
             
             Map<Id,IPM_Financial_Year__c> updateFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
             
             String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',true,new Set<String>{'IPM_Financial_Year__c'},false);
-            String financialWhereClause = ' WHERE Id in :changedFinancialSet LIMIT 50000';
+            String financialWhereClause = ' WHERE Id in :financialIdSet LIMIT 50000';
             financialQuery = financialQuery + financialWhereClause;
             Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
                 
