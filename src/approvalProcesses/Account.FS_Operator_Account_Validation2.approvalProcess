@@ -44,19 +44,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>david.a.roeder@accenture.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
                 <name>jyotirmoy.sharma@accenture.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>maha.r.bhaskar.reddy@accenture.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>ramesh.suddapalli@accenture.com</name>
                 <type>user</type>
             </approver>
             <approver>
