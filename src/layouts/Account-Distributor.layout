@@ -470,7 +470,7 @@
         <fields>NAME</fields>
         <relatedList>Risk__c.Account__c</relatedList>
     </relatedLists>
-    <showEmailCheckbox>false</showEmailCheckbox>
+    <!-- <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
@@ -480,5 +480,5 @@
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
+    </summaryLayout>-->
 </Layout>
