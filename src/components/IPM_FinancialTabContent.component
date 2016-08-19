@@ -17,6 +17,7 @@
     <apex:attribute name="showPrevious" type="Boolean" description="Flag "/>
     <apex:attribute name="showNext" type="Boolean" description="Flag "/>
     <apex:attribute name="isEditMode" type="Boolean" default="false" description="Edit Mode"/>
+    <apex:attribute name="exRate" type="Decimal" description="test"/>
 
     <!-- Project Name Header -->
     <div class="row">
@@ -39,6 +40,7 @@
     <c:IPM_FinancialSummaryTable ipmFinancial="{!ipmFinancial}"
         fieldSuffix="{!fieldSuffix}"
         isEditMode="{!isEditMode}"
+        exRate="{!exRate}"
     />
     <apex:outputPanel id="financialYearNavigator" layout="block" styleClass="financialYearNavDiv pull-right">
 	        <!--

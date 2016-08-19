@@ -472,6 +472,7 @@
                                                                 fieldSuffix="{!fieldSuffix}"
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
+                                                                exRate="{!exRate}"
                                                             />
                                                          
                                                         </div>
@@ -507,6 +508,7 @@
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
                                                                 isEditMode="{!isEditModeBottomUp}"
+                                                                exRate="{!exRate}"
                                                             />
                                                         </div>                            
                                                     </div>
