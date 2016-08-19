@@ -476,7 +476,7 @@ private class IPM_GateDocumentController_Test{
         system.runAs(globalUser){
         attachment att = new attachment(name='Gate_Document', ParentId= projectDocSecListObj[0].Id, body=blob.ValueOf('test'));
         insert att;
-        ApexPages.StandardController sc = new ApexPages.StandardController(project);        pRef = Page.IPM_GateDocAttchList;
+        pRef = Page.IPM_GateDocAttchList;
         pRef.getParameters().put('id', project.Id);
         Test.setCurrentPage(pRef);
         Test.startTest();

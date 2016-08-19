@@ -4,8 +4,8 @@
 * @description  This class is used to test the functionality of IPM_GatekeeperChecklist class 
 */
 @isTest
-private class IPM_GatekeeperChecklist_Test{
-
+private class IPM_GatekeeperChecklist_Test 
+{	
     public static IPM_Project__c project;// Project object initialization
     public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     public static IPM_GatekeeperChecklist ipmGK;
