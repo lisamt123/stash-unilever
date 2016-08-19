@@ -1,3 +1,9 @@
 src
-src/approvalProcesses
-src/approvalProcesses/Account.FS_Operator_Account_Validation2.approvalProcess
+src/flows/FS_Account_Plan_Approval-1.flow
+src/flows/FS_Account_Status_Change-1.flow
+src/flows/FS_Assign_Territory_Based_on_User_Custom_Setting-11.flow
+src/flows/FS_Defined_Objective_Approval_Process-2.flow
+src/flows/FS_Update_Region_and_Zone_for_Russia-2.flow
+src
+src/workflows
+src/workflows/Account.workflow
