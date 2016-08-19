@@ -470,7 +470,7 @@
         <fields>NAME</fields>
         <relatedList>Risk__c.Account__c</relatedList>
     </relatedLists>
-    <relatedObjects>ParentId</relatedObjects>
+    <!-- <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
     <showInteractionLogPanel>true</showInteractionLogPanel>
@@ -481,5 +481,5 @@
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
+    </summaryLayout>-->
 </Layout>
