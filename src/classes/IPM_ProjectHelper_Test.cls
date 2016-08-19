@@ -632,12 +632,22 @@ private with sharing class IPM_ProjectHelper_Test
             List<IPM_Project_Document__c> projectDocumentList = new List<IPM_Project_Document__c>();
             
             // Already Added ProjectId's
-            Set<Id>  alreadyAddedProjectIds = new Set<Id>();
             
             for(IPM_Project__c project : projectList)
             {
                 projectDocumentList.add(project.Project_Documents__r);
             }  
+            insertCMIRecords(projectList, projectDocumentList);
+            for(IPM_Project__c project : projectList)
+            {
+                globalProjectIdList.add(project.Id);    
+            }
+            // Initiate Phase Change would result in Rollout Project Creation.
+            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
+            update projectListPhaseChange;
+     }
+    private static void insertCMIRecords(List<IPM_Project__c> projectList, List<IPM_Project_Document__c> projectDocumentList)
+	{
             IPM_ProjectDocumentSectionContentHandler.SKIP_TRIGGER_EXECUTION  = true;
             IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION = true;
             //Insert CMI Records. 
@@ -645,6 +655,7 @@ private with sharing class IPM_ProjectHelper_Test
             List<IPM_Project_Document_Section__c> updatedDocumentSectionList = new List<IPM_Project_Document_Section__c>();
             String selectedCountry = 'AG';
             //Getting Gate CMI Test's and Corresponding KPI's
+        Set<Id>  alreadyAddedProjectIds = new Set<Id>();
             
             Map<String,IPM_Gate_CMI_KPI_Inputs__c> testKPIMap=new Map<String,IPM_Gate_CMI_KPI_Inputs__c>();
 
@@ -715,14 +726,8 @@ private with sharing class IPM_ProjectHelper_Test
             IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION = false;
             List<IPM_Gate_CMI__c>  globalProjectCMIList = [SELECT id,IPM_CMI_Added_At__c,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c FROM IPM_Gate_CMI__c where IPM_Project__c in :projectList];
             System.assert(globalProjectCMIList.size()>0);
-            for(IPM_Project__c project : projectList)
-            {
-                globalProjectIdList.add(project.Id);    
             }
             
-            // Initiate Phase Change would result in Rollout Project Creation.
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
             
-            update projectListPhaseChange;
-     }
+	
 }
