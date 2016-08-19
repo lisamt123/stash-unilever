@@ -891,6 +891,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Home Phone No Special Char --></label>
+        <name>Home_Phone_No_Special_Char__c</name>
+    </fields>
+    <fields>
         <label><!-- CNPJ --></label>
         <name>ICB_CNPJ__c</name>
     </fields>
@@ -1100,12 +1104,20 @@
         <name>Machine_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Mobile Phone No Special Char --></label>
+        <name>Mobile_Phone_No_Special_Char__c</name>
+    </fields>
+    <fields>
         <label><!-- Next Review Date --></label>
         <name>Next_Review_Date__c</name>
     </fields>
     <fields>
         <label>Nombre de buveurs de thé</label>
         <name>No_of_Tea_drinkers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Phone No Special Char --></label>
+        <name>Other_Phone_No_Special_Char__c</name>
     </fields>
     <fields>
         <label><!-- Overall Rating --></label>

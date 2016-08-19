@@ -1267,6 +1267,17 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Home_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Home Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ICB_CNPJ__c</fullName>
         <description>Number of the Cadastro Nacional de Pessoa Jurídica of the customer.</description>
         <externalId>false</externalId>
@@ -1582,6 +1593,17 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Mobile_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Name</fullName>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1612,6 +1634,17 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <fullName>NumberOfEmployees</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
+    </fields>
+    <fields>
+        <fullName>Other_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Overall_Rating__c</fullName>
@@ -2718,7 +2751,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <columns>ACCOUNT.NAME</columns>
         <columns>PC_EMAIL</columns>
         <columns>ACCOUNT.PHONE1</columns>
-        <columns>Homebase__pc</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>

@@ -2537,6 +2537,177 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Search_Birthdate__c</fullName>
+        <description>CEC Search Birthdate is used to default the birthdate from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Birthdate</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Search_Email__c</fullName>
+        <description>CEC Search Email is used to default the email from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_First_Name__c</fullName>
+        <description>CEC Search First Name is used to default the firstname from contact us page.</description>
+        <externalId>false</externalId>
+        <label>Search First Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Home_Phone__c</fullName>
+        <description>CEC Search Home Phone is used to default the home phone from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Home Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Last_Name__c</fullName>
+        <description>CEC Search Last Name is used to default the lastname from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Last Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_City__c</fullName>
+        <description>CEC Search Mailing City is used to default the mailing city from contact us page.</description>
+        <externalId>false</externalId>
+        <label>Search Mailing City</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_Country__c</fullName>
+        <description>CEC Search Mailing Country is used to default the country from the contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing Country</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_State_Province__c</fullName>
+        <description>CEC Search Mailing State/Province is used to default the state /province from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing State/Province</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_Street__c</fullName>
+        <description>CEC Search Mailing Street is used to default the mailing street from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing Street</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mailing_Zip_Postal_Code__c</fullName>
+        <description>CEC Search Mailing Zip/Postal Code is used to default the zip code from the contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mailing Zip/Postal Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Search_Mobile__c</fullName>
+        <description>CEC Search Mobile is used to default the mobile number from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Mobile</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Other_Phone__c</fullName>
+        <description>CEC Search Other Phone is used to default the other phone from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Other Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Phone__c</fullName>
+        <description>CEC Search Phone is used to default phone from contact us page</description>
+        <externalId>false</externalId>
+        <label>Search Phone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Search_Salutation__c</fullName>
+        <description>CEC Search Salutation is used to default the salutation from contact us page .</description>
+        <externalId>false</externalId>
+        <label>Search Salutation</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Set_Assignment_Fields__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -2555,6 +2726,19 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Social_Media_External_Id__c</fullName>
+        <description>CEC: Field will be populated with Facebook page Id or Twitter handle when case infromation is updated on the conversation object</description>
+        <externalId>false</externalId>
+        <label>Social Media External Id</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Social_Response_Survey_URL__c</fullName>
@@ -2730,6 +2914,18 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Transient_External_Id__c</fullName>
+        <description>Contains the external Id value which is used to populate the CBM for Transient case</description>
+        <externalId>false</externalId>
+        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,&apos;&apos;)</formula>
+        <label>Transient External Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Type</fullName>
@@ -3492,10 +3688,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>ANZ Escalation Queue</label>
+        <label>CEC ANZ Escalation Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Escalation_Queue</queue>
         <sharedTo>
+            <role>CEC_Global_Head</role>
             <role>CEC_Manager_ANZ</role>
             <role>CEC_User_ANZ</role>
         </sharedTo>
@@ -3508,10 +3705,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>ANZ Round Robin Queue</label>
+        <label>CEC ANZ Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
+            <role>CEC_Global_Head</role>
             <role>CEC_Manager_ANZ</role>
             <role>CEC_User_ANZ</role>
         </sharedTo>
@@ -3601,6 +3799,39 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Benelux_In_voortgang</fullName>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <columns>Language__c</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>Case_Brand__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Escalated,Pending with Courier,Awaiting Factory Response</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Awaiting Knowledge Response,Awaiting Information from Consumer</value>
+        </filters>
+        <label>CEC Benelux In afwachting reactie</label>
+        <language>nl_NL</language>
+    </listViews>
+    <listViews>
         <fullName>CEC_Benelux_queue</fullName>
         <columns>Language__c</columns>
         <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
@@ -3622,7 +3853,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,Review Needed</value>
+            <value>New,Review Needed,In Progress</value>
         </filters>
         <label>CEC Benelux WH Nieuw/Herzien</label>
         <language>nl_NL</language>
@@ -3727,9 +3958,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_DACH_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
-        <columns>CASES.STATUS</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>Country_Name__c</columns>
@@ -7666,7 +7897,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7688,7 +7919,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>KateR</value>
+            <value>Martin</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -7698,27 +7929,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Rebe</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
             <value>IversenJ</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Ekkehard</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>Martin</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
             <value>Charlyn</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Ekkeha</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Rebe</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
@@ -8170,8 +8396,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
@@ -10192,6 +10418,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>00NE0000006IedE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>00NE0000006IedL</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>00NE0000006IedM</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>00NE0000006IedN</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.SUBJECT</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.STATUS</searchResultsAdditionalFields>
