@@ -224,6 +224,7 @@ public class IPM_ConstantUtils {
     
     public static String IPMGLOBAL = 'Global';
     public static String IPMREGIONAL = 'Regional';
+    public static String IPMLOCAL = 'Local';
     
     public static String FUNCTIONAL_ROLE_ALL='All';
     public static String FUNCTIONAL_ROLE_BD='BD';
@@ -876,7 +877,14 @@ public class IPM_ConstantUtils {
     public static final Integer BET_DUEDATE_H2_MONTH=6;
     public static final Integer BET_DUEDATE_H2_DAY=30;
     
-    
+    public static final String GKM_1 = 'GKM1';
+    public static final String GKM_2 = 'GKM2';
+    public static final String GKM_3 = 'GKM3';
+    public static final String GKM_4 = 'GKM4';
+    public static final String GKM_5 = 'GKM5';
+    public static final String GKM_6 = 'GKM6';
+    public static final String GKM_7 = 'GKM7';
+    public static final String GKM_8 = 'GKM8';
     
      
     
@@ -1076,6 +1084,7 @@ public class IPM_ConstantUtils {
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';
    public static final String IPM_SUBSECTOR='Sub Sector';
+    public static final String IPM_SECTOR='Sector';
    public static final String FEEDBACK_FROM_LAST_GATE='Feedback_from_Last_Gate';
    public static final String MASTER_PROJECT_NAME = 'IPM_MasterProject';
    
@@ -1250,7 +1259,6 @@ public class IPM_ConstantUtils {
    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
     // Platform As 'Not Appliable'
    public static final string PLATFORM_NA = 'Not Applicable';
-   public static final String IPM_SECTOR='Sector';
    //IPM_Project_Phantom_NonKey valuse OTIF Report
     public static final String Nonkey = 'NONKEY';
     public static final String Project = 'PROJECT';
