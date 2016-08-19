@@ -173,13 +173,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SAM_Quote_Line_Item__c.fml_List_Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SAM_Quote_Line_Item__c.fml_Maintainence_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Quote_Line_Item__c.fml_Run_Cost_Detail_Validation__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -268,6 +273,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SAM_Quote_Line_Item__c.pkl_Publisher__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SAM_Quote_Line_Item__c.pkl_Quotation_Available__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -304,11 +314,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SAM_Quote_Line_Item__c.txt_Project_Maintained_by__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>SAM_Quote_Line_Item__c.txt_Publisher__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -648,6 +653,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SAM_Request__c.Record_Count_for_Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SAM_Request__c.SAM_Team_Owner__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -665,6 +675,16 @@
         <editable>false</editable>
         <field>SAM_Request__c.chk_Is_Quote_Submitted_Once__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.chk_Is_Request_Quote_Approved__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.chk_Is_Request_Sent_for_CC__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -757,6 +777,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.fml_Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SAM_Request__c.lkp_Assign_To__c</field>
         <readable>true</readable>
@@ -812,9 +837,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.ltxt_Request_Comment_History__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -943,8 +968,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SAM_Request__c.rol_Total_Annual_Maint_in_for_X_type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SAM_Request__c.rol_Total_CAPEX_in__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Total_CAPEX_in_for_X_type__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

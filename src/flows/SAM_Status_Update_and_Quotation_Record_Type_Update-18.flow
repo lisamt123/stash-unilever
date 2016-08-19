@@ -4080,7 +4080,7 @@
             <label>Is Next Action(SAM Team) - Quote Provided ReSubmit</label>
         </rules>
     </decisions>
-    <description>Replaced &quot;Request Status&quot; fields update with formula field</description>
+    <description>Setting Is_Request_Sent_for_CC on Awaiting Charge and Is_Request_Quote_Approved on Quote Approved</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -4126,7 +4126,7 @@
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
-    <interviewLabel>SAM_Status_Update_and_Quotation_Record_Type_Update-17_SAM_Request__c</interviewLabel>
+    <interviewLabel>SAM_Status_Update_and_Quotation_Record_Type_Update-18_SAM_Request__c</interviewLabel>
     <label>SAM Status Update and Quotation Record Type Update</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -5700,6 +5700,36 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Is Request Quote Approved</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>chk_Is_Request_Quote_Approved__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
@@ -6370,6 +6400,36 @@
                 <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Is Request Sent for CC</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>chk_Is_Request_Sent_for_CC__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>

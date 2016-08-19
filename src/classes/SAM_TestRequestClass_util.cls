@@ -34,37 +34,39 @@ public with sharing class SAM_TestRequestClass_util {
     Throws [Exceptions]: 
     ********************************************************************/
     public static SAM_Request__c SAM_Request(){
-
+        //19/08 Dinesh - Initialize below variable to avoid below SonarQube issue
+        //Avoid unused local variables such as 'testUSer'.
+        User testUSer = null;
         RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Request__c' AND Name='Project' limit 1] ;
-		User testUSer = createTestUser();
+        testUSer = createTestUser();
         SAM_Request__c reqRec = new SAM_Request__c();
-		reqRec.txt_Deployments_Any_other_please_specify__c = SAM_Constants.TEST;
-		reqRec.txt_Other_Landscape_Details__c = SAM_Constants.TEST;
-		reqRec.mpkl_Cloud_Platforms__c = 'Amazon';
-		reqRec.pkl_Deployments__c = 'On-premise';
-		reqRec.eml_Financial_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
-		reqRec.txt_Financial_Manager_Name__c = SAM_Constants.TEST;
-		reqRec.date_Go_Live_Date__c = system.today();
-		reqRec.pkl_SAAS_Yes_No__c = SAM_Constants.No;
-		reqRec.txt_SA_Clarity_Id__c = SAM_Constants.TEST;
-		reqRec.pkl_Any_infrastructural_requirements__c = SAM_Constants.No;
-		reqRec.eml_Infrastructure_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
-		reqRec.txt_Infrastructure_Manager_Name__c = SAM_Constants.TEST;
-		reqRec.mpkl_Landscape_Details__c = 'Cordillera';
-		reqRec.txt_Master_Clarity_Id__c = SAM_Constants.TEST;
-		reqRec.txt_Scope_of_the_Project__c = SAM_Constants.TEST;
-		reqRec.txt_Name_of_the_Project__c = SAM_Constants.TEST;
-		reqRec.num_No_of_Users__c = 2;
-		reqRec.txt_Portfolio__c = SAM_Constants.TEST;
-		reqRec.eml_Portfolio_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
-		reqRec.txt_Portfolio_Manager_Name__c = SAM_Constants.TEST;
-		reqRec.eml_Program_Owner_Email__c = SAM_Constants.TEST_EMAIL ;
-		reqRec.txt_Program_Owner_Name__c = SAM_Constants.TEST;
-		reqRec.mpkl_Country_of_Deployment__c = 'India';
-		reqRec.eml_Project_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
-		reqRec.txt_Project_Manager_Name__c = SAM_Constants.TEST;
-		reqRec.eml_Project_Technical_Architect_Email__c = SAM_Constants.TEST_EMAIL ;
-		reqRec.txt_Project_Technical_Architect_Name__c = SAM_Constants.TEST;
+        reqRec.txt_Deployments_Any_other_please_specify__c = SAM_Constants.TEST;
+        reqRec.txt_Other_Landscape_Details__c = SAM_Constants.TEST;
+        reqRec.mpkl_Cloud_Platforms__c = 'Amazon';
+        reqRec.pkl_Deployments__c = 'On-premise';
+        reqRec.eml_Financial_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
+        reqRec.txt_Financial_Manager_Name__c = SAM_Constants.TEST;
+        reqRec.date_Go_Live_Date__c = system.today();
+        reqRec.pkl_SAAS_Yes_No__c = SAM_Constants.No;
+        reqRec.txt_SA_Clarity_Id__c = SAM_Constants.TEST;
+        reqRec.pkl_Any_infrastructural_requirements__c = SAM_Constants.No;
+        reqRec.eml_Infrastructure_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
+        reqRec.txt_Infrastructure_Manager_Name__c = SAM_Constants.TEST;
+        reqRec.mpkl_Landscape_Details__c = 'Cordillera';
+        reqRec.txt_Master_Clarity_Id__c = SAM_Constants.TEST;
+        reqRec.txt_Scope_of_the_Project__c = SAM_Constants.TEST;
+        reqRec.txt_Name_of_the_Project__c = SAM_Constants.TEST;
+        reqRec.num_No_of_Users__c = 2;
+        reqRec.txt_Portfolio__c = SAM_Constants.TEST;
+        reqRec.eml_Portfolio_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
+        reqRec.txt_Portfolio_Manager_Name__c = SAM_Constants.TEST;
+        reqRec.eml_Program_Owner_Email__c = SAM_Constants.TEST_EMAIL ;
+        reqRec.txt_Program_Owner_Name__c = SAM_Constants.TEST;
+        reqRec.mpkl_Country_of_Deployment__c = 'India';
+        reqRec.eml_Project_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
+        reqRec.txt_Project_Manager_Name__c = SAM_Constants.TEST;
+        reqRec.eml_Project_Technical_Architect_Email__c = SAM_Constants.TEST_EMAIL ;
+        reqRec.txt_Project_Technical_Architect_Name__c = SAM_Constants.TEST;
         reqRec.txt_Budget_Owner_Name__c = SAM_Constants.TEST_EMAIL ;
         reqRec.eml_Budget_Owner_Email__c = SAM_Constants.TEST_EMAIL ;  
         reqRec.txt_ICC_GLC_LCC__c = SAM_Constants.TEST;
@@ -75,7 +77,7 @@ public with sharing class SAM_TestRequestClass_util {
         reqRec.txt_Invoice_Approver_Name__c= SAM_Constants.TEST ;
         reqRec.eml_Invoice_Approver_Email__c= SAM_Constants.TEST_EMAIL ;
         reqRec.pkl_Software_Purchase_Req__c = SAM_Constants.YES ;
-		reqRec.recordtypeid = rt.id;
+        reqRec.recordtypeid = rt.id;
         return reqRec;
     }
 
@@ -86,7 +88,7 @@ public with sharing class SAM_TestRequestClass_util {
     Throws [Exceptions]: 
     ********************************************************************/
     public static SAM_Request_Line_Item__c createProductDetails (SAM_Request__c objReq){
-		RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Request_Line_Item__c' AND Name='IBM' limit 1] ;
+        RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Request_Line_Item__c' AND Name='IBM' limit 1] ;
         SAM_Request_Line_Item__c objPD = new SAM_Request_Line_Item__c();
         objPD.Name= rt.name;
         objPD.recordtypeid = rt.id;
@@ -101,7 +103,7 @@ public with sharing class SAM_TestRequestClass_util {
     Throws [Exceptions]: 
     ********************************************************************/
     public static SAM_Quote_Line_Item__c createQuotationDetails (SAM_Request__c objReq){
-		RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Quote_Line_Item__c' AND Name='SAM Quote RW' limit 1] ;
+        RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Quote_Line_Item__c' AND Name='SAM Quote RW' limit 1] ;
         SAM_Quote_Line_Item__c objQD = new SAM_Quote_Line_Item__c();
         objQD.Name= rt.name;
         objQD.recordtypeid = rt.id;

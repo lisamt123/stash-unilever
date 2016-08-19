@@ -26,14 +26,14 @@ public with sharing class SAM_Request_PublisherFieldUpdate{
     {
         try
         {
-            List<SAM_Request__c> requests = [Select Id,txt_CrossCharge_Publisher__c From SAM_Request__c where Id in :recIds];           
+           
+            List<SAM_Request__c> requests = [SELECT Name,txt_CrossCharge_Publisher__c,txt_Request_Type__c,(Select txt_Publisher__c FROM Request_Line_Items__r ) FROM SAM_Request__c where Id in :recIds];           
             for(SAM_Request__c request : requests)
             {
-              List<SAM_Request_Line_Item__c> requestLineItems = [SELECT Name FROM SAM_Request_Line_Item__c WHERE md_Request_ID__c = :request.Id];
               Set<string> publishers = new Set<String>();
-              for(SAM_Request_Line_Item__c requestLineItem : requestLineItems)
+              for(SAM_Request_Line_Item__c requestLineItem : request.Request_Line_Items__r)
               {
-                  publishers.add(requestLineItem.Name);
+                  publishers.add(requestLineItem.txt_Publisher__c);
               }
               request.txt_CrossCharge_Publisher__c  = String.Join(new List<String>(publishers),',');
               //System.debug(publishers); 

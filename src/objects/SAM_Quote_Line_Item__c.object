@@ -46,6 +46,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -53,6 +54,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -306,6 +308,21 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>fml_List_Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_List_Price__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_GBP_EUR__c *num_List_Price__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),(  num_USD_EUR__c *num_List_Price__c ),(0))))) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Currency (€)</inlineHelpText>
+        <label>List Price (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>fml_Maintainence_Amount__c</fullName>
         <externalId>false</externalId>
         <formula>IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;EUR&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Percentage&apos;),NOT(ISNULL(num_Maintainence_Percentage__c)))) ,(num_Maintainence_Percentage__c * fml_License_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;EUR&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Amount&apos;),NOT(ISNULL(num_Maintainence_Cost__c)))),(num_Maintainence_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;GBP&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Percentage&apos;),NOT(ISNULL(num_Maintainence_Percentage__c)))),(num_GBP_EUR__c * num_Maintainence_Percentage__c * fml_License_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;GBP&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Amount&apos;),NOT(ISNULL(num_Maintainence_Cost__c)))),(num_GBP_EUR__c * num_Maintainence_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;USD&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Percentage&apos;),NOT(ISNULL(num_Maintainence_Percentage__c)))),(num_USD_EUR__c * num_Maintainence_Percentage__c * fml_License_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;USD&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Amount&apos;),NOT(ISNULL(num_Maintainence_Cost__c)))),(num_USD_EUR__c * num_Maintainence_Cost__c),0)))))))))))</formula>
@@ -322,8 +339,14 @@
     <fields>
         <fullName>fml_Run_Cost_Detail_Validation__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( AND(ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;), OR( ISBLANK(txt_Publisher__c) , ISBLANK(txt_Run_Cost_in_Euros__c) , ISBLANK(txt_Project_Maintained_by__c),ISBLANK(dt_Contract_Start_Date__c),ISBLANK(dt_Contract_End_Date__c),ISPICKVAL( pkl_Run_Cost_Start_Year__c , &apos;&apos;),ISPICKVAL( pkl_Run_Cost_End_Year__c , &apos;&apos;),ISPICKVAL( pkl_Whether_SAM_will_pick_up_Run_Cost__c , &apos;&apos;), ISBLANK( txta_SAM_Comments__c ) )),true,false )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IF( AND(ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;), 
+OR( ISBLANK( txt_Run_Cost_Publisher__c ) , ISBLANK(txt_Run_Cost_in_Euros__c) , 
+ISBLANK(txt_Project_Maintained_by__c),ISBLANK(dt_Contract_Start_Date__c),
+ISBLANK(dt_Contract_End_Date__c),ISPICKVAL( pkl_Run_Cost_Start_Year__c , &apos;&apos;),
+ISPICKVAL( pkl_Run_Cost_End_Year__c , &apos;&apos;),ISPICKVAL( pkl_Whether_SAM_will_pick_up_Run_Cost__c , &apos;&apos;), 
+ISBLANK( txta_SAM_Comments__c ),ISBLANK(txt_Run_Cost_Publisher__c),ISBLANK(txt_Software_Name__c),ISBLANK(Run_Cost_Year_1__c),ISBLANK(Run_Cost_Year_2__c),ISPICKVAL(Run_Cost_for_Year_1__c,&apos;&apos;),ISPICKVAL(Run_Cost_for_Year_2__c,&apos;&apos;),ISPICKVAL(pkl_Whether_SAM_will_pick_up_Run_Cost__c,&apos;&apos;))),
+true,
+false )</formula>
         <label>Run Cost Detail Validation</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -396,7 +419,8 @@
     <fields>
         <fullName>num_List_Price__c</fullName>
         <externalId>false</externalId>
-        <label>List Price (€)</label>
+        <inlineHelpText>Currency Input Field(€, £, $)</inlineHelpText>
+        <label>List Price</label>
         <precision>18</precision>
         <required>false</required>
         <scale>4</scale>
@@ -443,7 +467,7 @@
     <fields>
         <fullName>num_Quotation_Number__c</fullName>
         <externalId>false</externalId>
-        <label>Quotation Number</label>
+        <label>Serial Number</label>
         <precision>4</precision>
         <required>false</required>
         <scale>0</scale>
@@ -619,6 +643,38 @@ USD - US Dollars ($)</inlineHelpText>
             </picklistValues>
             <picklistValues>
                 <fullName>Percentage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Publisher__c</fullName>
+        <externalId>false</externalId>
+        <label>Publisher</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Product</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -967,17 +1023,6 @@ USD - US Dollars ($)</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>txt_Publisher__c</fullName>
-        <externalId>false</externalId>
-        <label>Publisher</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>txt_Run_Cost_Publisher__c</fullName>
         <externalId>false</externalId>
         <label>Publisher</label>
@@ -992,11 +1037,12 @@ USD - US Dollars ($)</inlineHelpText>
         <fullName>txt_Run_Cost_in_Euros__c</fullName>
         <externalId>false</externalId>
         <label>Run Cost (€)</label>
-        <length>50</length>
+        <precision>18</precision>
         <required>false</required>
+        <scale>4</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1276,6 +1322,29 @@ USD - US Dollars ($)</inlineHelpText>
             </values>
             <values>
                 <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Publisher__c</picklist>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1781,6 +1850,29 @@ USD - US Dollars ($)</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Publisher__c</picklist>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Quotation_Available__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2282,6 +2374,29 @@ USD - US Dollars ($)</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Publisher__c</picklist>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_Quotation_Available__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2563,6 +2678,14 @@ USD - US Dollars ($)</inlineHelpText>
         <errorMessage>Cross Charge Applicable (X) charging type not applicable for Non-Project requests</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_DO_Reverse_Validation</fullName>
+        <active>true</active>
+        <description>Don&apos;t allow DO fields to enter if DO applicable is No.</description>
+        <errorConditionFormula>AND( OR(ISPICKVAL(pkl_DO_PO_Details_Applicable__c,&apos;No&apos;),ISPICKVAL(pkl_DO_PO_Details_Applicable__c,&apos;&apos;)), NOT(ISBLANK( txt_DO_Number__c )))</errorConditionFormula>
+        <errorDisplayField>txt_DO_Number__c</errorDisplayField>
+        <errorMessage>DO detail fields are mandatory only if DO details Applicable is Yes.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Dis_Percentage_shd_be_positive</fullName>
         <active>true</active>
         <description>Discount percentage should be +ve</description>
@@ -2661,5 +2784,33 @@ true,false )</errorConditionFormula>
         <errorConditionFormula>num_Maintainence_Percentage__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Maintainence_Percentage__c</errorDisplayField>
         <errorMessage>Enter only positive value here</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Run_Cost</fullName>
+        <active>true</active>
+        <errorConditionFormula>txt_Run_Cost_in_Euros__c &lt;=0</errorConditionFormula>
+        <errorDisplayField>txt_Run_Cost_in_Euros__c</errorDisplayField>
+        <errorMessage>Run Cost should be positive.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Run_Cost_one_year</fullName>
+        <active>true</active>
+        <errorConditionFormula>Run_Cost_Year_1__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>Run_Cost_Year_1__c</errorDisplayField>
+        <errorMessage>Run Cost (€) (year +1) should be positive.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Run_Cost_two_year</fullName>
+        <active>true</active>
+        <errorConditionFormula>Run_Cost_Year_2__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>Run_Cost_Year_2__c</errorDisplayField>
+        <errorMessage>Run Cost (€) (year +2) should be positive.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Run_cost_Reverse_Validation</fullName>
+        <active>true</active>
+        <description>Don&apos;t allow run cost fields to enter if run cost is No.</description>
+        <errorConditionFormula>AND(OR(ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;No&apos;),ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;&apos;)),OR( NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( dt_Contract_End_Date__c )),NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( text(pkl_Run_Cost_Start_Year__c) )),NOT(ISBLANK( text(pkl_Run_Cost_End_Year__c) )),NOT(ISBLANK( txt_Run_Cost_in_Euros__c )),NOT(ISBLANK(  Run_Cost_Year_1__c  )),NOT(ISBLANK(  Run_Cost_Year_2__c  )),NOT(ISBLANK(text( Run_Cost_for_Year_1__c ) )),NOT(ISBLANK( text( Run_Cost_for_Year_2__c) )),NOT(ISBLANK(text(  pkl_Whether_SAM_will_pick_up_Run_Cost__c ) )),NOT(ISBLANK(  txt_Project_Maintained_by__c  )),NOT(ISBLANK( txta_SAM_Comments__c  )) )   )</errorConditionFormula>
+        <errorMessage>Run Cost fields are mandatory only if Run Cost Applicable is Yes.</errorMessage>
     </validationRules>
 </CustomObject>

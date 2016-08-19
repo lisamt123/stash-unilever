@@ -1,0 +1,218 @@
+    <labels>
+        <fullName>SAM_Answer_Accepted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Answer Accepted</shortDescription>
+        <value>Answer Accepted</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Answer_Rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Need More Info ( earlier Answer Rejected )</shortDescription>
+        <value>Need More Info</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_CC_details_Pending_with_ULEMP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting CC details (Pending with ULEMP)</shortDescription>
+        <value>Awaiting CC details (Pending with ULEMP)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_CC_details_Pending_with_ULSMT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting CC details (Pending with ULSMT)</shortDescription>
+        <value>Awaiting CC details (Pending with ULSMT)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_Charge</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting Charge</shortDescription>
+        <value>Awaiting Charge</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Awaiting_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Awaiting Information</shortDescription>
+        <value>Awaiting Information</value>
+    </labels>
+    <labels>
+        <fullName>SAM_CC_Details_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM CC Details Provided</shortDescription>
+        <value>CC details provided (By ULEMP)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Charging_Completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Charging Completed</shortDescription>
+        <value>Charging Completed</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Charging_In_Progress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Charging In Progress</shortDescription>
+        <value>Charging In Progress</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Charging_Rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Charging Rejected</shortDescription>
+        <value>Charging Rejected</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Closed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Closed</shortDescription>
+        <value>Closed</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Cross_Charge_Applicable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Cross Charge Applicable</shortDescription>
+        <value>Cross Charge Applicable (X)</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Default_URL</fullName>
+        <categories>SAM_Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM_Default_URL</shortDescription>
+        <value>https://unilever--sam.cs28.my.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Details_Pending</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Details Pending</shortDescription>
+        <value>Details Pending</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Details_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Details Provided</shortDescription>
+        <value>Details Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Draft_Quote_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Draft Quote Provided</shortDescription>
+        <value>Draft Quote Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_In_Progress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM In Progress</shortDescription>
+        <value>In Progress</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Information_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Information Provided</shortDescription>
+        <value>Information Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_NewLine</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM NewLine</shortDescription>
+        <value>--</value>
+    </labels>
+    <labels>
+        <fullName>SAM_No_Software_Spend</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM No Software Spend</shortDescription>
+        <value>No Software Spend</value>
+    </labels>
+    <labels>
+        <fullName>SAM_On_Hold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM On Hold</shortDescription>
+        <value>On Hold</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Open</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Open</shortDescription>
+        <value>Open</value>
+    </labels>
+    <labels>
+        <fullName>SAM_QLI_NewBtn_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM QLI NewBtn URL</shortDescription>
+        <value>CF00N23000000L3tG</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Query_Answered</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Query Answered</shortDescription>
+        <value>Query Answered</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Quote_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Quote Approved</shortDescription>
+        <value>Quote Approved</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Quote_Provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Quote Provided</shortDescription>
+        <value>Quote Provided</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Quote_Rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Quote Rejected</shortDescription>
+        <value>Quote Rejected</value>
+    </labels>
+    <labels>
+        <fullName>SAM_RLI_NewBtn_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM RLI NewBtn URL</shortDescription>
+        <value>CF00N23000000L5kL</value>
+    </labels>
+    <labels>
+        <fullName>SAM_Request_Object_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Request Object name</shortDescription>
+        <value>aBC</value>
+    </labels>
+    <labels>
+        <fullName>SAM_SaveStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM_SaveStatus</shortDescription>
+        <value>Saved</value>
+    </labels>
+    <labels>
+        <fullName>SAM_mandatory_fields</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM mandatory fields</shortDescription>
+        <value>Below field(s) are mandatory to Submit the record.</value>
+    </labels>

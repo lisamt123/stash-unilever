@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
-        <fullName>Check_if_In_Progress_criteria_met</fullName>
-        <ccEmails>alokste@gmail.com</ccEmails>
-        <description>Check if In Progress criteria met</description>
-        <protected>false</protected>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Close_Case_Survey</template>
-    </alerts>
-    <alerts>
         <fullName>Quote_Resubmitted_With_Modification</fullName>
         <description>Quote Resubmitted After Requester asking for Modification in Quote</description>
         <protected>false</protected>
@@ -258,10 +250,6 @@
         <recipients>
             <recipient>SAM_Team</recipient>
             <type>group</type>
-        </recipients>
-        <recipients>
-            <recipient>alok.kumar@mindtree.com</recipient>
-            <type>user</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT</template>
@@ -627,6 +615,17 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>SAM_RT_SAM_CC_Req_Fin_Queue</fullName>
+        <description>Set the Cross Charge request type to SAM_Cross_Charge_Request_Finance_Awaiting_Charge_Queue</description>
+        <field>RecordTypeId</field>
+        <lookupValue>SAM_Cross_Charge_Request_Finance_Awaiting_Charge_Queue</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>SAM RT SAM_CC_Req_Fin_Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>SAM_RT_SAM_Cross_Charge_Request_Closed</fullName>
         <description>Set the record type to SAM_Cross_Charge_Request_Closed</description>
         <field>RecordTypeId</field>
@@ -700,6 +699,17 @@
         <lookupValue>SAM_Cross_Charge_Request_Complete</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>SAM Set Charge Complete Layout</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SAM_Set_Proj_Finance_OnAwaitingCharge_Q</fullName>
+        <description>Set the record type to SAM_Project_Finance_On_Awaiting_Charge_Queue</description>
+        <field>RecordTypeId</field>
+        <lookupValue>SAM_Project_Finance_On_Awaiting_Charge_Queue</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>SAM Set Proj Finance OnAwaitingCharge Q</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
@@ -1217,9 +1227,29 @@
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Open,Awaiting Charge,Charging In Progress</value>
+            <value>Open,Charging In Progress</value>
         </criteriaItems>
         <description>Update the CrossCharge Request Record Type to SAM_Cross_Charge_Request_Finance</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Update Record Type To SAM_Cross_Charge_Request_Finance_Awaiting_Charge_Queue</fullName>
+        <actions>
+            <name>SAM_RT_SAM_CC_Req_Fin_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SAM_Request__c.txt_Request_Type__c</field>
+            <operation>equals</operation>
+            <value>SAM_RW_CrossCharge_Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Awaiting Charge</value>
+        </criteriaItems>
+        <description>Update the CrossCharge Request Record Type to SAM_Cross_Charge_Request_Finance_Awaiting_Charge_Queue</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1337,9 +1367,29 @@
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Awaiting Charge,Charging In Progress,Charging Completed,Awaiting Build/DO/RunCost Details,Build/DO/RunCost Details Provided</value>
+            <value>Charging In Progress,Charging Completed</value>
         </criteriaItems>
         <description>Updates the Project Request record type to SAM_Project_Finance_On_Awaiting_Charge</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Update Record Type To SAM_Project_Finance_On_Awaiting_Charge_Queue</fullName>
+        <actions>
+            <name>SAM_Set_Proj_Finance_OnAwaitingCharge_Q</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SAM_Request__c.txt_Request_Type__c</field>
+            <operation>equals</operation>
+            <value>SAM_RW_Project_Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Awaiting Charge</value>
+        </criteriaItems>
+        <description>Updates the Project Request record type toSAM_Project_Finance_On_Awaiting_Charge_Queue</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>

@@ -46,6 +46,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Request object (used for SAM app) to capture requests raised by ULEMP</description>
@@ -54,6 +55,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -165,6 +167,19 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Record_Count_for_Report__c</fullName>
+        <description>Report Field</description>
+        <externalId>false</externalId>
+        <label>Record Count for Report</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>SAM_Team_Owner__c</fullName>
         <externalId>false</externalId>
         <formula>$User.Id</formula>
@@ -203,6 +218,24 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Is Quote Submitted Once</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_Is_Request_Quote_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Request Quote Approved</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_Is_Request_Sent_for_CC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Request Sent for CC</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -386,9 +419,23 @@
     <fields>
         <fullName>fml_Total_Applicable_Cross_Charge__c</fullName>
         <externalId>false</externalId>
-        <formula>rol_Total_Annual_Maint_in__c +  rol_Total_CAPEX_in__c</formula>
+        <formula>rol_Total_Annual_Maint_in_for_X_type__c +  rol_Total_CAPEX_in_for_X_type__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Applicable Cross Charge (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>rol_Total_Annual_Maint_in__c +  rol_Total_CAPEX_in__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total €</label>
         <precision>18</precision>
         <required>false</required>
         <scale>4</scale>
@@ -510,6 +557,17 @@
         <externalId>false</externalId>
         <inlineHelpText>Is there any reporting/monitoring/archiving tool etc to be deployed on the server.</inlineHelpText>
         <label>Reporting Details</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ltxt_Request_Comment_History__c</fullName>
+        <description>Records the request comment history</description>
+        <externalId>false</externalId>
+        <label>Request Comment History</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1848,6 +1906,7 @@
                 <controllingFieldValues>Charging Rejected</controllingFieldValues>
                 <controllingFieldValues>Details Provided</controllingFieldValues>
                 <controllingFieldValues>In Progress</controllingFieldValues>
+                <controllingFieldValues>On Hold</controllingFieldValues>
                 <controllingFieldValues>Quote Approved</controllingFieldValues>
                 <controllingFieldValues>Quote Rejected</controllingFieldValues>
             </picklistValues>
@@ -1863,6 +1922,7 @@
                 <controllingFieldValues>Charging Rejected</controllingFieldValues>
                 <controllingFieldValues>Details Provided</controllingFieldValues>
                 <controllingFieldValues>In Progress</controllingFieldValues>
+                <controllingFieldValues>On Hold</controllingFieldValues>
                 <controllingFieldValues>Quote Approved</controllingFieldValues>
                 <controllingFieldValues>Quote Rejected</controllingFieldValues>
             </picklistValues>
@@ -1954,7 +2014,6 @@
             <picklistValues>
                 <fullName>Charging Completed</fullName>
                 <default>false</default>
-                <controllingFieldValues>Awaiting Charge</controllingFieldValues>
                 <controllingFieldValues>Charging In Progress</controllingFieldValues>
                 <controllingFieldValues>Open</controllingFieldValues>
             </picklistValues>
@@ -1973,7 +2032,6 @@
             <picklistValues>
                 <fullName>Charging Rejected</fullName>
                 <default>false</default>
-                <controllingFieldValues>Awaiting Charge</controllingFieldValues>
                 <controllingFieldValues>Charging In Progress</controllingFieldValues>
                 <controllingFieldValues>Open</controllingFieldValues>
             </picklistValues>
@@ -1988,7 +2046,6 @@
             <picklistValues>
                 <fullName>Awaiting CC details (Pending with ULSMT)</fullName>
                 <default>false</default>
-                <controllingFieldValues>Awaiting Charge</controllingFieldValues>
                 <controllingFieldValues>Charging In Progress</controllingFieldValues>
                 <controllingFieldValues>Open</controllingFieldValues>
             </picklistValues>
@@ -2138,6 +2195,7 @@
                 <controllingFieldValues>Details Provided</controllingFieldValues>
                 <controllingFieldValues>In Progress</controllingFieldValues>
                 <controllingFieldValues>Need More Info</controllingFieldValues>
+                <controllingFieldValues>On Hold</controllingFieldValues>
                 <controllingFieldValues>Quote Approved</controllingFieldValues>
                 <controllingFieldValues>Quote Rejected</controllingFieldValues>
             </picklistValues>
@@ -2266,7 +2324,7 @@
         <fullName>pkl_Software_Purchase_Req__c</fullName>
         <description>When No ,user cannot proceed further with quotation</description>
         <externalId>false</externalId>
-        <label>Software Purchased Required</label>
+        <label>Software Purchase Required</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -2461,6 +2519,17 @@
         <externalId>false</externalId>
         <label>Total Annual Maint in €</label>
         <summarizedField>SAM_Quote_Line_Item__c.Total_Annual_Maint__c</summarizedField>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Total_Annual_Maint_in_for_X_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Annual Maint in € for X type</label>
+        <summarizedField>SAM_Quote_Line_Item__c.Total_Annual_Maint__c</summarizedField>
         <summaryFilterItems>
             <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
             <operation>equals</operation>
@@ -2476,6 +2545,17 @@
         <fullName>rol_Total_CAPEX_in__c</fullName>
         <externalId>false</externalId>
         <label>Total CAPEX in  €</label>
+        <summarizedField>SAM_Quote_Line_Item__c.fml_Total_CAPEX__c</summarizedField>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Total_CAPEX_in_for_X_type__c</fullName>
+        <externalId>false</externalId>
+        <label>Total CAPEX in € for X type</label>
         <summarizedField>SAM_Quote_Line_Item__c.fml_Total_CAPEX__c</summarizedField>
         <summaryFilterItems>
             <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
@@ -2956,44 +3036,6 @@ This field will be read only for all user</description>
         <unique>false</unique>
     </fields>
     <label>Request</label>
-    <listViews>
-        <fullName>SAM_Admin_SAM_Request</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>date_Go_Live_Date__c</columns>
-        <columns>txt_Master_Clarity_Id__c</columns>
-        <columns>txt_SA_Clarity_Id__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>date_CrossCharge_Submission_Date__c</columns>
-        <columns>CREATEDBY_USER.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <label>SAM Admin Queue</label>
-        <language>en_US</language>
-        <queue>SAM_Admin_Queue</queue>
-        <sharedTo>
-            <group>SAM_Admin</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>SAM_Finance_Queue_SAM_Request</fullName>
-        <filterScope>Queue</filterScope>
-        <label>SAM Finance Queue</label>
-        <language>en_US</language>
-        <queue>SAM_Finance_Queue</queue>
-        <sharedTo>
-            <group>SAM_Finance_Team</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>SAM_Team_SAM_Request</fullName>
-        <filterScope>Queue</filterScope>
-        <label>SAM Team</label>
-        <language>en_US</language>
-        <queue>SAM_Team</queue>
-        <sharedTo>
-            <group>SAM_Team</group>
-        </sharedTo>
-    </listViews>
     <nameField>
         <displayFormat>REQ-{000000000}</displayFormat>
         <label>Request ID</label>
@@ -12664,6 +12706,1292 @@ This field will be read only for all user</description>
         </picklistValues>
     </recordTypes>
     <recordTypes>
+        <fullName>SAM_Cross_Charge_Request_Finance_Awaiting_Charge_Queue</fullName>
+        <active>true</active>
+        <description>Cross Charge request in awaiting Charge state</description>
+        <label>SAM Cross Charge Request Finance Awaiting Charge Queue</label>
+        <picklistValues>
+            <picklist>Finance_Status__c</picklist>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Cloud_Platforms__c</picklist>
+            <values>
+                <fullName>Amazon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Country_of_Deployment__c</picklist>
+            <values>
+                <fullName>Afghanistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Akrotiri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Albania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Algeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Andorra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Angola</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Anguilla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Antarctica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahamas%2C The</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahrain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barbados</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belarus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bermuda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bhutan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Botswana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bouvet Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brunei</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burkina Faso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burundi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cameroon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cape Verde</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cayman Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Christmas Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clipperton Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comoros</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cook Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cote d%27Ivoire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dhekelia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Djibouti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Egypt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eritrea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethiopia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europa Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Faroe Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fiji</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Guiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gabon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gambia%2C The</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gaza Strip</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gibraltar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glorioso Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greenland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grenada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guadeloupe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guernsey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea-Bissau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guyana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Haiti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iraq</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Isle of Man</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Israel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jamaica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jan Mayen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jersey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jordan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kenya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kiribati</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kuwait</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kyrgyzstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lebanon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lesotho</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liberia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Libya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liechtenstein</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxembourg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Madagascar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malawi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mali</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshall Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Martinique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayotte</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moldova</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monaco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mongolia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montserrat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Morocco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mozambique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Namibia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nauru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Navassa Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nigeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norfolk Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Palau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paracel Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitcairn Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qatar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reunion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rwanda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Helena</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Lucia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samoa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Marino</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saudi Arabia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senegal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seychelles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sierra Leone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solomon Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somalia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spratly Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sudan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suriname</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Svalbard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swaziland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Syria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tajikistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tanzania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timor-Leste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Togo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokelau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tonga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trinidad and Tobago</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tromelin Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tunisia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkmenistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuvalu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uganda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uzbekistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vanuatu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wake Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wallis and Futuna</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Sahara</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yemen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zambia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zimbabwe</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Landscape_Details__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Any_infrastructural_requirements__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Build_details_applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Deployments__c</picklist>
+            <values>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-premise</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Mode_of_Charging__c</picklist>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Ownership_Reporting__c</picklist>
+            <values>
+                <fullName>Charging-Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-Requester</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-SAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query-Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query-Responded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote-Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request-Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request-Onhold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Reason_for_closure__c</picklist>
+            <values>
+                <fullName>Any other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>As requested by user</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Software Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request completed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAAS_Yes_No__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_Finance_Status__c</picklist>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_Requester_Status__c</picklist>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_team_Status__c</picklist>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Software_Purchase_Req__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>SAM_Non_Project_Close</fullName>
         <active>true</active>
         <label>SAM Non Project Close</label>
@@ -20018,6 +21346,1500 @@ This field will be read only for all user</description>
         <fullName>SAM_Project_Finance_On_Awaiting_Charge</fullName>
         <active>true</active>
         <label>SAM Project Finance On Awaiting Charge</label>
+        <picklistValues>
+            <picklist>Finance_Status__c</picklist>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Cloud_Platforms__c</picklist>
+            <values>
+                <fullName>Amazon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Country_of_Deployment__c</picklist>
+            <values>
+                <fullName>Afghanistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Akrotiri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Albania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Algeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Andorra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Angola</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Anguilla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Antarctica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahamas%2C The</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahrain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barbados</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belarus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bermuda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bhutan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Botswana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bouvet Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brunei</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burkina Faso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burundi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cameroon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cape Verde</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cayman Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Christmas Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clipperton Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comoros</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cook Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cote d%27Ivoire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dhekelia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Djibouti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Egypt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eritrea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethiopia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europa Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Faroe Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fiji</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Guiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gabon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gambia%2C The</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gaza Strip</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gibraltar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glorioso Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greenland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grenada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guadeloupe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guernsey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea-Bissau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guyana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Haiti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iraq</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Isle of Man</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Israel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jamaica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jan Mayen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jersey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jordan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kenya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kiribati</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kuwait</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kyrgyzstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lebanon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lesotho</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liberia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Libya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liechtenstein</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxembourg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Madagascar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malawi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mali</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshall Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Martinique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayotte</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moldova</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monaco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mongolia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montserrat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Morocco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mozambique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Namibia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nauru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Navassa Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nigeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norfolk Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Palau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paracel Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitcairn Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qatar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reunion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rwanda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Helena</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Lucia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samoa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Marino</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saudi Arabia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senegal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seychelles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sierra Leone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solomon Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somalia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spratly Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sudan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suriname</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Svalbard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swaziland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Syria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tajikistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tanzania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timor-Leste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Togo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokelau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tonga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trinidad and Tobago</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tromelin Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tunisia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkmenistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuvalu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uganda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uzbekistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vanuatu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wake Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wallis and Futuna</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Sahara</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yemen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zambia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zimbabwe</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Landscape_Details__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Any_infrastructural_requirements__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Build_details_applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Deployments__c</picklist>
+            <values>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-premise</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Mode_of_Charging__c</picklist>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Ownership_Reporting__c</picklist>
+            <values>
+                <fullName>Charging-Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-Requester</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-SAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query-Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query-Responded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote-Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request-Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request-Onhold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Reason_for_closure__c</picklist>
+            <values>
+                <fullName>Any other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>As requested by user</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Software Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request completed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAAS_Yes_No__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_Finance_Status__c</picklist>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_Requester_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_team_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Software_Purchase_Req__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Project_Finance_On_Awaiting_Charge_Queue</fullName>
+        <active>true</active>
+        <description>When request is assigned to the finance queue</description>
+        <label>SAM Project Finance On Awaiting Charge Queue</label>
         <picklistValues>
             <picklist>Finance_Status__c</picklist>
             <values>
@@ -35411,7 +38233,9 @@ TEXT(pkl_SAM_Requester_Status__c)=$Label.SAM_Answer_Rejected ,
 TEXT(pkl_SAM_Requester_Status__c)=$Label.SAM_Quote_Rejected ,
 TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Closed, 
 TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Answer_Rejected ,
-TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Quote_Rejected ),	
+TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Quote_Rejected ,
+TEXT(pkl_SAM_team_Status__c) =  $Label.SAM_Details_Pending ,
+TEXT(pkl_SAM_team_Status__c) =  $Label.SAM_Awaiting_Information ),	
 OR(
 txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;,
 txt_Request_Type__c = &quot;SAM_RW_CrossCharge_Request&quot;,
@@ -35445,11 +38269,11 @@ txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;)</errorConditionFormula
         <active>true</active>
         <description>cannot select &quot;Awaiting charge&quot; if none of the quote LI is &quot;X&quot;</description>
         <errorConditionFormula>AND( 
-TEXT(pkl_SAM_team_Status__c) =&quot;Awaiting Charge&quot;,
+OR(TEXT(pkl_SAM_team_Status__c) = $Label.SAM_Awaiting_Charge, TEXT(pkl_SAM_team_Status__c) =  $Label.SAM_Awaiting_CC_details_Pending_with_ULEMP ),
 rol_Product_detail_count_having_cross_ch__c =0, 
 txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;)</errorConditionFormula>
         <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
-        <errorMessage>You can not select &quot;Awaiting charge&quot; if none of the quote Line Item is &quot;X&quot;</errorMessage>
+        <errorMessage>You can not select &quot;Awaiting charge&quot; or &quot;Awaiting CC details (Pending with ULEMP)&quot; if none of the quote Line Item is &quot;X&quot;.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Budget_Owner_Email_Validation</fullName>
@@ -35529,6 +38353,13 @@ TEXT(pkl_Status__c)&lt;&gt;  $Label.SAM_In_Progress
 , txt_Request_Type__c =&quot;SAM_RW_CrossCharge_Request&quot; )</errorConditionFormula>
         <errorDisplayField>date_Finance_Submission_Date__c</errorDisplayField>
         <errorMessage>Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Cannot_Edit_When_AssignedTo_Queue</fullName>
+        <active>true</active>
+        <description>Should not allow to edit record when assigned to queue</description>
+        <errorConditionFormula>NOT(ISBLANK( Owner:Queue.OwnerId ))</errorConditionFormula>
+        <errorMessage>Accept from queue to edit</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Closure_Reason_No_Software_Spend</fullName>
@@ -35684,7 +38515,7 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
     </validationRules>
     <validationRules>
         <fullName>SAM_DetailsPending_CCDone_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Cannot proceed for Details Pending if Build Details NOT applicable in any quote line item after Cross Charge is rejected or completed</description>
         <errorConditionFormula>AND(
 OR( TEXT(pkl_Status__c)=  $Label.SAM_Charging_Completed,
@@ -35697,20 +38528,39 @@ rol_Build_detail_applicable__c = 0
     </validationRules>
     <validationRules>
         <fullName>SAM_DetailsPending_QuoteAppro_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Cannot proceed for Details Pending if Build Details NOT applicable in any quote line item or  Cross Charge is applicable and not complete</description>
         <errorConditionFormula>AND(
 TEXT(pkl_Status__c)= $Label.SAM_Quote_Approved , 
 TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Details_Pending,
 OR(rol_Product_detail_count_having_cross_ch__c &gt; 0,
-rol_Build_detail_applicable__c = 0)
+AND(rol_Build_detail_applicable__c = 0,
+ rol_DO_detail_validation_count__c = 0,
+  rol_Run_Cost_Detail_Validation_count__c =0 )
+)
 )</errorConditionFormula>
         <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
-        <errorMessage>Build Details is not applicable on any Quotation line item or Cross Charge is not complete</errorMessage>
+        <errorMessage>Build Details / DO / Run Cost is not applicable on any Quotation line item or Cross Charge is applicable on one or more quotation line item</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_DetailsPending_Validation</fullName>
+        <active>true</active>
+        <description>Cannot proceed for Details Pending if Request Build Details Applicable</description>
+        <errorConditionFormula>AND(TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Details_Pending ,
+	OR(AND(NOT(chk_Is_Request_Quote_Approved__c) ,NOT(ISPICKVAL( pkl_Build_details_applicable__c ,&quot;Yes&quot;))),
+	   AND(chk_Is_Request_Quote_Approved__c,
+		   OR(AND(rol_Product_detail_count_having_cross_ch__c &gt; 0,NOT(chk_Is_Request_Sent_for_CC__c)),
+		   AND(OR(AND(rol_Product_detail_count_having_cross_ch__c &gt; 0,chk_Is_Request_Sent_for_CC__c ),rol_Product_detail_count_having_cross_ch__c = 0),
+		      rol_Build_detail_applicable__c = 0, rol_DO_detail_validation_count__c = 0,  rol_Run_Cost_Detail_Validation_count__c =0))
+	   ) 
+	)
+	)</errorConditionFormula>
+        <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
+        <errorMessage>Build Details / DO / Run Cost is not applicable on any Quotation line item or Cross Charge is applicable on one or more quotation line item</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Details_Pending_InProg_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Cannot proceed for Details Pending if Build Details Applicable is Not Yes</description>
         <errorConditionFormula>AND(
 TEXT(pkl_Status__c)=  $Label.SAM_In_Progress , 

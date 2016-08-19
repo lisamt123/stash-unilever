@@ -46,6 +46,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>SAM - Capture data of request line items</description>
@@ -54,6 +55,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -753,11 +755,12 @@
         <externalId>false</externalId>
         <inlineHelpText>What is the number of users? (Disclaimer: PM to attach names, roles and transactions these users would be doing)</inlineHelpText>
         <label>Number of SAP Users</label>
-        <length>5</length>
+        <precision>18</precision>
         <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -3456,12 +3459,54 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>You cannot  updated this field.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Number_of_Physical_CoreVirtual_Cores</fullName>
+        <active>true</active>
+        <errorConditionFormula>num_No_of_Physical_Cores_Virtual_Cores__c &lt;=0</errorConditionFormula>
+        <errorDisplayField>num_No_of_Physical_Cores_Virtual_Cores__c</errorDisplayField>
+        <errorMessage>No of Physical Cores//Virtual Cores should be positive.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Number_of_Physical_Virtual_Processor</fullName>
+        <active>true</active>
+        <errorConditionFormula>num_No_of_Physical_Virtual_Processors__c &lt;=0</errorConditionFormula>
+        <errorDisplayField>num_No_of_Physical_Virtual_Processors__c</errorDisplayField>
+        <errorMessage>No of Physical/Virtual Processors should be positive.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Number_of_SAP_user</fullName>
+        <active>true</active>
+        <errorConditionFormula>txt_Number_of_SAP_Users__c &lt;=0</errorConditionFormula>
+        <errorDisplayField>txt_Number_of_SAP_Users__c</errorDisplayField>
+        <errorMessage>No. of SAP user should be positive.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Existing_SID_Reverse_Validation</fullName>
+        <active>true</active>
+        <description>Don&apos;t allow dependent field to enter data if  Existing SID is No.</description>
+        <errorConditionFormula>AND( OR( ISPICKVAL( pkl_Existing_SID__c , &apos;No&apos;), ISPICKVAL(pkl_Existing_SID__c , &apos;&apos;) ) , OR( Not(ISBLANK( txt_SID_Name_Existing__c )),Not(ISBLANK(text( pkl_System_Type_Existing__c  ))),Not(ISBLANK( txt_Comment_Box_existing__c  ))) )</errorConditionFormula>
+        <errorMessage>Existing SID dependent fields are mandatory only when Existing SID value is Yes</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_License_Qty_Shd_be_greater_than_zero</fullName>
         <active>true</active>
         <description>License quantity should be greater than zero. Applicable to Microsoft &amp; SAP record type</description>
         <errorConditionFormula>num_License_Quantity__c  &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_License_Quantity__c</errorDisplayField>
         <errorMessage>License Quantity Should not be negative or zero</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_New_Existing_SID_Validation</fullName>
+        <active>true</active>
+        <description>Both New SID and Existing SID can not be Yes at the same time.</description>
+        <errorConditionFormula>AND(  ISPICKVAL(pkl_New_SID__c , &apos;Yes&apos;), ISPICKVAL(pkl_Existing_SID__c , &apos;Yes&apos;))</errorConditionFormula>
+        <errorMessage>You can not select New SID and Existing SID as Yes at the same time.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_New_SID_Reverse_Validation</fullName>
+        <active>true</active>
+        <description>Don&apos;t allow dependent field to enter data if New SID is No.</description>
+        <errorConditionFormula>AND(  OR( ISPICKVAL(pkl_New_SID__c, &apos;No&apos;), ISPICKVAL(pkl_New_SID__c, &apos;&apos;) ) , OR( Not(ISBLANK(txt_SID_Name_New__c)),Not(ISBLANK(text(pkl_System_Type_New__c ))),Not(ISBLANK(ltxt_Comments_Box_New__c ))) )</errorConditionFormula>
+        <errorMessage>New SID dependent fields are mandatory only when New SID value is Yes</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Cores_shd_be_positive</fullName>
@@ -3536,6 +3581,50 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>No of Virtual Processors should be positive</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Physical_Instance_Validation</fullName>
+        <active>true</active>
+        <description>Physical Server Name is mandatory if physical instance is yes.</description>
+        <errorConditionFormula>AND( ISPICKVAL( pkl_Physical_instance__c , &apos;Yes&apos;),  ISBLANK(txt_Physical_Server_Name__c ) )</errorConditionFormula>
+        <errorDisplayField>txt_Physical_Server_Name__c</errorDisplayField>
+        <errorMessage>Physical Server Name is mandatory if physical instance is yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Physical_Server_Name_Validation</fullName>
+        <active>true</active>
+        <description>Physical serve name  should be blank when &apos;Physical instance&apos; is selected as No or Not Sure.</description>
+        <errorConditionFormula>AND( NOT(ISBLANK(txt_Physical_Server_Name__c)),OR( ISPICKVAL( pkl_Physical_instance__c , &apos;No&apos;), ISPICKVAL(pkl_Physical_instance__c , &apos;Not sure&apos;),ISPICKVAL(pkl_Physical_instance__c , &apos;&apos;) ) )</errorConditionFormula>
+        <errorDisplayField>txt_Physical_Server_Name__c</errorDisplayField>
+        <errorMessage>Physical Server Name is mandatory if Physical instance is Yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Physical_Server_Reverse_Validation</fullName>
+        <active>true</active>
+        <description>Physical Server related fields are mandatory only if physical server is YES</description>
+        <errorConditionFormula>AND(OR( ISPICKVAL(pkl_Physical_Server__c , &apos;No&apos;),ISPICKVAL(pkl_Physical_Server__c , &apos;Not Sure&apos;),ISPICKVAL(pkl_Physical_Server__c , &apos;&apos;)), OR(NOT(ISBLANK( num_Number_of_Physical_Cores__c )),NOT(ISBLANK(  num_Number_of_Physical_Processors__c ))) )</errorConditionFormula>
+        <errorMessage>Physical Server related fields are mandatory only if physical server is YES.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Physical_Server_Validation_Microsoft</fullName>
+        <active>true</active>
+        <description>If physical server is yes then no of physical processor and no of physical cores are mandatory.</description>
+        <errorConditionFormula>AND(
+ISPICKVAL( pkl_Physical_Server__c ,&apos;Yes&apos;),
+OR(ISBLANK( num_Number_of_Physical_Cores__c  ),ISBLANK(  num_Number_of_Physical_Processors__c ))
+)</errorConditionFormula>
+        <errorMessage>If physical server is yes then number of physical processor and number of physical cores are mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SID_Existing_Comments_Box_Reverse</fullName>
+        <active>true</active>
+        <description>You can not enter comments if System Type is other than Others.</description>
+        <errorConditionFormula>AND(
+NOT(ISPICKVAL(pkl_System_Type_Existing__c ,&apos;Other&apos;)),
+NOT(ISBLANK( txt_Comment_Box_existing__c )) 
+)</errorConditionFormula>
+        <errorDisplayField>txt_Comment_Box_existing__c</errorDisplayField>
+        <errorMessage>You can not enter comments if System Type is other than Others.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_SID_Existing_Comments_Box_Validation</fullName>
         <active>true</active>
         <description>For &quot;Other&quot; Existing SID System Type Comment is mandatory</description>
@@ -3580,6 +3669,17 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>New SID Name is mandatory</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_SID_New_Comments_Box_Reverse</fullName>
+        <active>true</active>
+        <description>You can not enter comments if System Type is other than Others.</description>
+        <errorConditionFormula>AND( 
+NOT(ISPICKVAL( pkl_System_Type_New__c ,&apos;Other&apos;)), 
+NOT(ISBLANK(  ltxt_Comments_Box_New__c )) 
+)</errorConditionFormula>
+        <errorDisplayField>ltxt_Comments_Box_New__c</errorDisplayField>
+        <errorMessage>You can not enter comments if System Type is other than Others.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_SID_New_Comments_Box_Validation</fullName>
         <active>true</active>
         <description>For &quot;Other&quot; New SID System Type Comment is mandatory</description>
@@ -3600,6 +3700,39 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
 )</errorConditionFormula>
         <errorDisplayField>pkl_System_Type_New__c</errorDisplayField>
         <errorMessage>System Type is mandatory for New SID</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Virtual_Instance_Validation</fullName>
+        <active>true</active>
+        <description>Virtual Server Name is mandatory if virtual instance is yes.</description>
+        <errorConditionFormula>AND( ISPICKVAL(  pkl_Virtual_instance__c , &apos;Yes&apos;), ISBLANK( txt_Virtual_Server_Name__c ) )</errorConditionFormula>
+        <errorDisplayField>txt_Virtual_Server_Name__c</errorDisplayField>
+        <errorMessage>Virtual Server Name is mandatory if virtual instance is yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Virtual_Server_Name_Validation</fullName>
+        <active>true</active>
+        <description>Virtual serve name should be blank when &apos;Vitual instance&apos; is selected as No or Not Sure.</description>
+        <errorConditionFormula>AND( NOT(ISBLANK( txt_Virtual_Server_Name__c )),OR( ISPICKVAL(  pkl_Virtual_instance__c  , &apos;No&apos;), ISPICKVAL(pkl_Virtual_instance__c  , &apos;Not sure&apos;),ISPICKVAL(pkl_Virtual_instance__c  , &apos;&apos;) ) )</errorConditionFormula>
+        <errorDisplayField>txt_Virtual_Server_Name__c</errorDisplayField>
+        <errorMessage>Virtual Server Name is mandatory if virtual instance is Yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Virtual_Server_Reverse_Validation</fullName>
+        <active>true</active>
+        <description>Virtual Server related fields are mandatory only if virtual server is YES.</description>
+        <errorConditionFormula>AND(OR( ISPICKVAL( pkl_Virtual_Server__c , &apos;No&apos;),ISPICKVAL(pkl_Virtual_Server__c , &apos;Not Sure&apos;),ISPICKVAL(pkl_Virtual_Server__c , &apos;&apos;)), OR(NOT(ISBLANK(  num_Number_of_Virtual_Cores__c )),NOT(ISBLANK(  num_Number_of_Virtual_Processors__c ))) )</errorConditionFormula>
+        <errorMessage>Virtual Server related fields are mandatory only if virtual server is YES.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Virtual_Server_Validation_Microsoft</fullName>
+        <active>true</active>
+        <description>If virtual server is yes then number of virtual processor and number of virtual cores are mandatory.</description>
+        <errorConditionFormula>AND( 
+ISPICKVAL(  pkl_Virtual_Server__c ,&apos;Yes&apos;), 
+OR(ISBLANK(  num_Number_of_Virtual_Cores__c ),ISBLANK(  num_Number_of_Virtual_Processors__c )) 
+)</errorConditionFormula>
+        <errorMessage>If virtual server is yes then number of virtual processor and number of virtual cores are mandatory.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_reverse_validation_on_phy_ver_instan</fullName>

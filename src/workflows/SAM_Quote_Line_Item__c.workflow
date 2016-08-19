@@ -13,7 +13,7 @@
     <fieldUpdates>
         <fullName>SAM_Publisher_Quote_Field_Update</fullName>
         <field>txt_Run_Cost_Publisher__c</field>
-        <formula>txt_Publisher__c</formula>
+        <formula>TEXT(pkl_Publisher__c)</formula>
         <name>SAM Publisher Quote Field Update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -95,7 +95,7 @@
         </actions>
         <active>true</active>
         <description>Update publisher if run cost applicable is yes</description>
-        <formula>AND(( ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;) ), OR(ISCHANGED( txt_Publisher__c ) ,ISCHANGED( pkl_Run_Cost_Applicable__c ), ISNEW() ))</formula>
+        <formula>AND(( ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;) ), OR(ISCHANGED(  pkl_Publisher__c ) ,ISCHANGED( pkl_Run_Cost_Applicable__c ), ISNEW(), ISBLANK( txt_Run_Cost_Publisher__c )  ))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -253,7 +253,7 @@
         </actions>
         <active>true</active>
         <description>Update software name if run cost applicable is yes</description>
-        <formula>AND(( ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;) ), OR(ISCHANGED( Name ) ,ISCHANGED( pkl_Run_Cost_Applicable__c ), ISNEW()))</formula>
+        <formula>AND(( ISPICKVAL( pkl_Run_Cost_Applicable__c , &apos;Yes&apos;) ), OR(ISCHANGED( Name ) ,ISCHANGED( pkl_Run_Cost_Applicable__c ), ISNEW(), ISBLANK( txt_Software_Name__c ) ))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

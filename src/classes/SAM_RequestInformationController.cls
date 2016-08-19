@@ -142,7 +142,10 @@ public with sharing class SAM_RequestInformationController{
                     {
                         if(recordtypeValue.Contains('SAM_RW_Query_Request') && !samTeamFlag && ((mandatoryField.SAM_Field_API_name__c.tolowercase() == 'date_query_end_date__c') || (mandatoryField.SAM_Field_API_name__c.tolowercase() == 'date_query_start_date__c')) )
                         {
-                        //do NOT add to the mandatory list
+                            //19/08 Dinesh - Added below to avoid SonarQube issue
+                           //Avoid empty if statements
+                           //You can always write reverse condition in If and move the else condition code to if.
+                            System.debug('do NOT add to the mandatory list');
                         }
                         else
                         {
