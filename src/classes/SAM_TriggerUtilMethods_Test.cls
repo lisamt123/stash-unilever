@@ -50,15 +50,15 @@ private class SAM_TriggerUtilMethods_Test {
         Test.startTest();   
                         
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
-		insert objRequest;
-		objRequest.txt_SA_Clarity_Id__c = SAM_Constants.TEST+SAM_Constants.TEST;
+        insert objRequest;
+        objRequest.txt_SA_Clarity_Id__c = SAM_Constants.TEST+SAM_Constants.TEST;
         update objRequest;
         
         SAM_Request_Line_Item__c ObjRLI =  SAM_TestRequestClass_util.createProductDetails(objRequest);
-		insert ObjRLI;
+        insert ObjRLI;
         
         SAM_Quote_Line_Item__c ObjQLI =  SAM_TestRequestClass_util.createQuotationDetails(objRequest);
-		insert ObjQLI;
+        insert ObjQLI;
         
         objRequest.pkl_SAM_Requester_Status__c = SAM_Constants.QUOTE_APPROVED;
         update objRequest;
@@ -69,14 +69,14 @@ private class SAM_TriggerUtilMethods_Test {
         objRequest.pkl_SAM_team_Status__c = SAM_Constants.AWAITINGCHARGE;
         update objRequest;
             
-		objRequest.pkl_SAM_team_Status__c = SAM_Constants.CLOSED;
+        objRequest.pkl_SAM_team_Status__c = SAM_Constants.CLOSED;
         objRequest.pkl_Reason_for_closure__c = 'Invalid Request';
         objRequest.ltxt_Comments__c = SAM_Constants.TEST;
         update objRequest;
-		//delete objRequest;
+        //delete objRequest;
         Test.stopTest();
         List<Attachment> attachments=[select id, name from Attachment where parent.id=:objRequest.id];
-		System.assertEquals(2, attachments.size());
+        System.assertEquals(2, attachments.size());
         
     }
     /*******************************************************************
@@ -90,23 +90,23 @@ private class SAM_TriggerUtilMethods_Test {
 
         Test.startTest();   
                         
-		SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
+        SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
         objRequest.pkl_status__c = SAM_Constants.SAVED;
-		insert objRequest;
+        insert objRequest;
         
         SAM_Request_Line_Item__c ObjRLI =  SAM_TestRequestClass_util.createProductDetails(objRequest);
-		insert ObjRLI;
+        insert ObjRLI;
         
         SAM_Quote_Line_Item__c ObjQLI =  SAM_TestRequestClass_util.createQuotationDetails(objRequest);
-		insert ObjQLI;
+        insert ObjQLI;
                              
         delete ObjQLI;
         delete ObjRLI;
-		delete objRequest;
+        delete objRequest;
         
         Test.stopTest();
 
-		System.assertEquals(objRequest.isdeleted, false);
+        System.assertEquals(objRequest.isdeleted, false);
         
     }
 }

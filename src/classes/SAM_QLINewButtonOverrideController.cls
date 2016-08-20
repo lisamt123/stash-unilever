@@ -16,10 +16,18 @@ public with sharing class SAM_QLINewButtonOverrideController{
     String retUrl;
     String recordId;
     String requestLkId;
+    public SAM_Request__c requestObj;
 public SAM_QLINewButtonOverrideController(ApexPages.StandardController controller){
      retUrl = Apexpages.CurrentPage().getParameters().get('retURL');
-    recordId = Apexpages.CurrentPage().getParameters().get(label.SAM_QLI_NewBtn_URL);
-    requestLkId = Apexpages.CurrentPage().getParameters().get(label.SAM_QLI_NewBtn_URL+'_lkid');
+    if(retUrl.removeStart('/').startsWith(label.SAM_Request_Object_name)){
+        requestObj = [select id,name from SAM_Request__c where id =:retUrl.removeStart('/')];
+        recordId = requestObj.name;
+        requestLkId  = requestObj.id;
+    }else{
+        SAM_Quote_Line_Item__c qli = [select md_Request__r.name, md_Request__c from SAM_Quote_Line_Item__c where id=:retUrl.removeStart('/')];
+        recordId = qli.md_Request__r.name;
+        requestLkId = qli.md_Request__c;
+    }
 }
 
  /*******************************************************************

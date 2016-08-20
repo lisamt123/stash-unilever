@@ -29,6 +29,10 @@
                 <field>num_List_Price__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>fml_List_Price__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>pkl_Discount_Applicable__c</field>
             </layoutItems>
@@ -57,12 +61,12 @@
                 <field>num_Quotation_Number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>txt_Publisher__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>fml_Software_Engagement_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_Publisher__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

@@ -72,7 +72,7 @@ public  class SAM_RequestAgeing_Test {
     objRequest.Ticket_Age__c=0;
     objRequest.date_Query_End_Date__c=Date.newInstance( 2016, 7, 7 );
     objRequest.date_Query_Start_Date__c=Date.newInstance( 2016, 6, 6 );
-    
+	objRequest.ltxt_Query_Detailed_Notes__c = SAM_Constants.TEST;    
     insert objRequest;
     List<SAM_Request__c> reqList=new List<SAM_Request__c>();
     reqList.add(objRequest);
@@ -97,7 +97,7 @@ public  class SAM_RequestAgeing_Test {
     objRequest.Ticket_Age__c=0;
     objRequest.date_Query_End_Date__c=Date.newInstance( 2016, 7, 7 );
     objRequest.date_Query_Start_Date__c=Date.newInstance( 2016, 6, 6 );
-    
+    objRequest.ltxt_Query_Detailed_Notes__c = SAM_Constants.TEST;
     insert objRequest;
     objRequest = [select Id, CreatedById,recordtypeid,txt_Request_Type__c,pkl_Status__c,Ticket_Age__c,date_Query_End_Date__c,date_Query_Start_Date__c  from SAM_Request__c where Id =: objRequest.Id limit 1];
     List<SAM_Request__c> reqList=new List<SAM_Request__c>();

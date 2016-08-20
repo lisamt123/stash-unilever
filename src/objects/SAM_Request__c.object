@@ -505,12 +505,11 @@
         <externalId>false</externalId>
         <inlineHelpText>Provide comments where mandatory for certain actions</inlineHelpText>
         <label>Action Comments</label>
-        <length>255</length>
-        <required>false</required>
+        <length>2000</length>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>ltxt_CrossCharge_SAM_Comments__c</fullName>
@@ -2267,9 +2266,13 @@
                 <fullName>On Hold</fullName>
                 <default>false</default>
                 <controllingFieldValues>Awaiting Charge</controllingFieldValues>
+                <controllingFieldValues>CC details provided (By ULEMP)</controllingFieldValues>
+                <controllingFieldValues>Details Provided</controllingFieldValues>
                 <controllingFieldValues>Draft Quote Provided</controllingFieldValues>
                 <controllingFieldValues>In Progress</controllingFieldValues>
+                <controllingFieldValues>Information Provided</controllingFieldValues>
                 <controllingFieldValues>Quote Approved</controllingFieldValues>
+                <controllingFieldValues>Quote Provided</controllingFieldValues>
                 <controllingFieldValues>Quote Rejected</controllingFieldValues>
             </picklistValues>
             <picklistValues>
@@ -38514,6 +38517,16 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Deployments is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Detailed_Notes_Mandatory</fullName>
+        <active>true</active>
+        <description>Detailed Notes cannot be blank</description>
+        <errorConditionFormula>AND(ISBLANK(  ltxt_Query_Detailed_Notes__c  ), 
+TEXT(pkl_SAM_team_Status__c)&lt;&gt; $Label.SAM_SaveStatus ,
+txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; )</errorConditionFormula>
+        <errorDisplayField>ltxt_Query_Detailed_Notes__c</errorDisplayField>
+        <errorMessage>Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_DetailsPending_CCDone_Validation</fullName>
         <active>false</active>
         <description>Cannot proceed for Details Pending if Build Details NOT applicable in any quote line item after Cross Charge is rejected or completed</description>
@@ -38842,6 +38855,17 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>No of Users is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_On_Hold_Validation</fullName>
+        <active>true</active>
+        <description>Cannot put on Hold after request sent for Awaiting Charge</description>
+        <errorConditionFormula>AND( 
+Text(pkl_SAM_team_Status__c)=  $Label.SAM_On_Hold   , 
+ chk_Is_Request_Sent_for_CC__c 
+)</errorConditionFormula>
+        <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
+        <errorMessage>Cannot put On Hold as already sent for Cross Charging earlier</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_OtherCloudDetails_Validation_reverse</fullName>
         <active>true</active>
         <description>Other Cloud Details mandatory if Cloud Platform is Others</description>
@@ -39048,6 +39072,19 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Project Technical Architect Name is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Query_Answered_Validation</fullName>
+        <active>true</active>
+        <description>Query Requester cannot change request status to Query Answered</description>
+        <errorConditionFormula>AND( 
+Text(pkl_SAM_team_Status__c)=  $Label.SAM_Query_Answered  , 
+Text( pkl_Status__c ) &lt;&gt; $Label.SAM_Query_Answered,
+CreatedById = OwnerId,
+txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; 
+)</errorConditionFormula>
+        <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
+        <errorMessage>Requester cannot select Query Answered option</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Query_EndDate_mandatory_Validation</fullName>
         <active>true</active>
         <description>End date Validation</description>
@@ -39064,9 +39101,7 @@ Text( pkl_Status__c )&lt;&gt; $Label.SAM_SaveStatus
         <fullName>SAM_Query_End_Date_Future_Validation</fullName>
         <active>true</active>
         <description>End date cannot be a future date</description>
-        <errorConditionFormula>AND(
-date_Query_End_Date__c &gt;  TODAY() ,
-txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; )</errorConditionFormula>
+        <errorConditionFormula>date_Query_End_Date__c &gt;  TODAY()</errorConditionFormula>
         <errorDisplayField>date_Query_End_Date__c</errorDisplayField>
         <errorMessage>End Date cannot be a future date</errorMessage>
     </validationRules>

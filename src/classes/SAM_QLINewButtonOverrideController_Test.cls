@@ -50,11 +50,14 @@ public  class SAM_QLINewButtonOverrideController_Test{
     
        SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
        insert objRequest;
+       objRequest.pkl_status__c = SAM_Constants.INPROGRESS;
+       update objRequest;
        SAM_Quote_Line_Item__c  objQLI = SAM_TestRequestClass_util.createQuotationDetails(objRequest);
        insert objQLI;
        Test.setCurrentPage(new PageReference('SAM_QLI_NewButtonOverridePage'));
        System.currentPageReference().getParameters().put('id', objQLI.id);
-       String retURL = SAM_Request__c.getSObjectType().getDescribe().getKeyPrefix();
+       //String retURL = SAM_Request__c.getSObjectType().getDescribe().getKeyPrefix();
+       String retURL = '/'+objQLI.id;
        ApexPages.currentPage().getParameters().put('retUrl',retURL);
        SAM_QLINewButtonOverrideController  controller = new SAM_QLINewButtonOverrideController(new ApexPages.StandardController(objQLI));
             

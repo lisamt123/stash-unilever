@@ -26,9 +26,16 @@ public with sharing class SAM_NewButtonRequestLineItemController{
         public SAM_NewButtonRequestLineItemController(ApexPages.StandardController controller){
             //Dinesh 26/7 - Encode the below line from XSS perspective. Also replace hard coded values with constants
             retUrl = Apexpages.CurrentPage().getParameters().get('retURL');
-            recordId = Apexpages.CurrentPage().getParameters().get(label.SAM_RLI_NewBtn_URL);
-            requestLkId = Apexpages.CurrentPage().getParameters().get(label.SAM_RLI_NewBtn_URL+'_lkid');
-            system.debug('recordId>>>'+recordId+'requestId>>>>'+requestLkId);
+            if(retUrl.removeStart('/').startsWith(label.SAM_Request_Object_name)){
+                requestObj = [select id,name from SAM_Request__c where id =:retUrl.removeStart('/')];
+                recordId = requestObj.name;
+                requestLkId  = requestObj.id;
+            }else{
+                SAM_Request_Line_Item__c rli = [select md_Request_ID__r.name, md_Request_ID__c from SAM_Request_Line_Item__c where id=:retUrl.removeStart('/')];
+                recordId = rli.md_Request_ID__r.name;
+                requestLkId = rli.md_Request_ID__c;
+            }
+            system.debug('requestObj >>>'+requestObj );
             recordTypeInfoList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_IBM_RW','SAM_Microsoft_RW','SAM_Oracle_RW','SAM_Other_Product_RW','SAM_SAP_RW')] ;
         }
         
@@ -80,8 +87,9 @@ public with sharing class SAM_NewButtonRequestLineItemController{
             try{
                 
                 String UrlLink ='';
+                //UrlLink = '/'+SAM_Request_Line_Item__c.getSObjectType().getDescribe().getKeyPrefix()+'/e?'+label.SAM_RLI_NewBtn_URL+'='+requestObj.name+'&'+label.SAM_RLI_NewBtn_URL+'_lkid='+requestObj.id+'&retURL=%2F'+requestObj.id+'&RecordType='+recordtypeId+'&nooverride=1';
+                
                 UrlLink = '/'+SAM_Request_Line_Item__c.getSObjectType().getDescribe().getKeyPrefix()+'/e?'+label.SAM_RLI_NewBtn_URL+'='+recordId+'&'+label.SAM_RLI_NewBtn_URL+'_lkid='+requestLkId+'&retURL=%2F'+requestLkId+'&RecordType='+recordtypeId+'&nooverride=1';
-                         
                 massPageUrl = new PageReference(UrlLink);
                 massPageUrl.setRedirect(true);
                 system.debug('massPageUrl>>>'+massPageUrl);

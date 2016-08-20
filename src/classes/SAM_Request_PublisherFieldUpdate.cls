@@ -11,11 +11,12 @@ History
 -------
 VERSION     AUTHOR               DATE            DETAIL Description
 1.0         Alok Kumar          27/07/2016     INITIAL DEVELOPMENT CSR:
+2.0         Alok Kumar          20/08/2016     Fetching publisher from Quotation line items
 ***********************************************************************/
 public with sharing class SAM_Request_PublisherFieldUpdate{
 
     /*******************************************************************
-    Purpose: This method gets the unique list of publishers from Product Details and updates the Publisher field of the Request
+    Purpose: This method gets the unique list of Publishers from Quotation line items and updates the Publisher field of the Request
     InvokedBy : Process Builder : SAM Status Update and Quotation Record Type Update > Is Next Action(Requester)-Quote Approved clause
     Parameters: List<string>
     Returns: 
@@ -27,13 +28,14 @@ public with sharing class SAM_Request_PublisherFieldUpdate{
         try
         {
            
-            List<SAM_Request__c> requests = [SELECT Name,txt_CrossCharge_Publisher__c,txt_Request_Type__c,(Select txt_Publisher__c FROM Request_Line_Items__r ) FROM SAM_Request__c where Id in :recIds];           
+           List<SAM_Request__c> requests = [SELECT Name,txt_CrossCharge_Publisher__c,txt_Request_Type__c,(Select pkl_Publisher__c,pkl_Charging_Type__c FROM Quote_Line_Items__r ) FROM SAM_Request__c where Id in :recIds];           
             for(SAM_Request__c request : requests)
             {
               Set<string> publishers = new Set<String>();
-              for(SAM_Request_Line_Item__c requestLineItem : request.Request_Line_Items__r)
+              for(SAM_Quote_Line_Item__c requestLineItem : request.Quote_Line_Items__r)
               {
-                  publishers.add(requestLineItem.txt_Publisher__c);
+               if(requestLineItem.pkl_Charging_Type__c == Label.SAM_Cross_Charge_Applicable)
+                publishers.add(requestLineItem.pkl_Publisher__c);
               }
               request.txt_CrossCharge_Publisher__c  = String.Join(new List<String>(publishers),',');
               //System.debug(publishers); 

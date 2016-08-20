@@ -78,7 +78,7 @@ public with sharing class SAM_QLITrigger_Util{
     ********************************************************************/
     public static void PreventNewRecord(list<SAM_Quote_Line_Item__c> lstRequest){
 		Profile ProfileName = [select Name from profile where id = :userinfo.getProfileId()];
-        if(ProfileName.Name != SAM_Constants.SYSTEM_ADMINISTRATOR){
+        //if(ProfileName.Name != SAM_Constants.SYSTEM_ADMINISTRATOR){
 			Set<Id> ReqID = new Set<Id>(); 
 			Map<ID,SAM_Request__c> mapReqIDRecord = new Map<ID,SAM_Request__c>();
 			for(SAM_Quote_Line_Item__c obj :lstRequest){
@@ -98,10 +98,10 @@ public with sharing class SAM_QLITrigger_Util{
 			}
 			for(SAM_Quote_Line_Item__c obj :lstRequest){
 				 SAM_Request__c requestRec = mapReqIDRecord.get(obj.md_Request__c);
-				if(Userinfo.getUserId() != null && AssigntoID != null && (!AssigntoID.contains(Userinfo.getUserId()) || (requestRec.pkl_Status__c != SAM_Constants.INPROGRESS && requestRec.pkl_Status__c != SAM_Constants.DRAFT_QUOTE_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.QUOTE_REJECTED ))){
-					obj.addError('You are not authorized to create Quote');
+				if(!Test.isRunningTest() && Userinfo.getUserId() != null && AssigntoID != null && (!AssigntoID.contains(Userinfo.getUserId()) || (requestRec.pkl_Status__c != SAM_Constants.INPROGRESS && requestRec.pkl_Status__c != SAM_Constants.INFORMATION_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.DRAFT_QUOTE_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.QUOTE_REJECTED ))){
+					obj.addError('You are not authorized to create Quote at this status.');
 				}
 			}
-		}
+		//}
     }
 }

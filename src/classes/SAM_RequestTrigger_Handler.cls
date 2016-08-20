@@ -84,6 +84,7 @@ public with sharing class SAM_RequestTrigger_Handler
         if(triggerShouldExecute){
             System.debug('afterUpdate called');
             //SAM_Request_TriggerUtil.ResetNextActionPicklists(lstsObjectNew,lstsObjectOld);
+            //SAM_Request_TriggerUtil.requestStatusOnChildRecord(trigger.new,trigger.old);
         }
     }
     

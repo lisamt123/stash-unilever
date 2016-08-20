@@ -15,30 +15,13 @@ VERSION     AUTHOR       DATE            DETAIL Description
 public with sharing class SAM_TestRequestClass_util {
     
     /*******************************************************************
-    Purpose: This method is used to create Test User
-    Parameters: 
-    Returns: 
-    Throws [Exceptions]: 
-    ********************************************************************/
-    public static User createTestUser (){
-        Profile p = [select id from profile where name='system Administrator'];      
-        User testUser1 = [Select Id,profileid,isactive from user where profileid  =: p.Id AND isactive = true limit 1];
-        return testUser1;
-    
-    }
-    
-    /*******************************************************************
     Purpose: This method is used to create test data for SAM_Request__c
     Parameters: 
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
     public static SAM_Request__c SAM_Request(){
-        //19/08 Dinesh - Initialize below variable to avoid below SonarQube issue
-        //Avoid unused local variables such as 'testUSer'.
-        User testUSer = null;
         RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Request__c' AND Name='Project' limit 1] ;
-        testUSer = createTestUser();
         SAM_Request__c reqRec = new SAM_Request__c();
         reqRec.txt_Deployments_Any_other_please_specify__c = SAM_Constants.TEST;
         reqRec.txt_Other_Landscape_Details__c = SAM_Constants.TEST;

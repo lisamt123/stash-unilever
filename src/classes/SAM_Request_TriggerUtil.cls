@@ -101,7 +101,7 @@ public with sharing class SAM_Request_TriggerUtil{
                     }
                 }
             }
-            if(newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && oldlstRequest[i].pkl_SAM_team_Status__c != SAM_Constants.AWAITINGCHARGE && newlstRequest[i].pkl_SAM_team_Status__c == SAM_Constants.AWAITINGCHARGE){
+            if(newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && newlstRequest[i].rol_Product_detail_count_having_cross_ch__c>0 && oldlstRequest[i].pkl_SAM_team_Status__c != SAM_Constants.AWAITINGCHARGE && newlstRequest[i].pkl_SAM_team_Status__c == SAM_Constants.AWAITINGCHARGE){
                 if(Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id).size()<1){
                     newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails".');
                 }
@@ -116,52 +116,41 @@ public with sharing class SAM_Request_TriggerUtil{
             } 
         }
      }
-     
-     /*******************************************************************
-    Purpose: Method to get list of publishers
+/*******************************************************************
+    Purpose: update the child recordt with request status
     Parameters: List of SAM_Request__c
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-   /*  public static void collectPublishers(list<SAM_Request__c> newlstRequest){
-    
-   system.debug('Inside Publisher!!!!!!!!!!!!!!!!!');
-        Set<Id> requestIdSet = new Set<Id>();
-        Set<String> publisherNameSet ;
-        List<String> publisherNameList ;
-        List<SAM_Request__c> requestFinalList = new List<SAM_Request__c>();
-        for(SAM_Request__c obj :newlstRequest){
-            requestIdSet.add(obj.Id);
+    /*public static void requestStatusOnChildRecord(list<SAM_Request__c> newlstRequest, list<SAM_Request__c> oldlstRequest){
+		List<SAM_Request_Line_Item__c>rliList = new List<SAM_Request_Line_Item__c>();
+		List<SAM_Quote_Line_Item__c>qliList = new List<SAM_Quote_Line_Item__c>();
+		
+		map<Id,List<SAM_Request_Line_Item__c>>mapRliList = new map<Id,List<SAM_Request_Line_Item__c>>();
+		map<Id,List<SAM_Quote_Line_Item__c>>mapQliList = new map<Id,List<SAM_Quote_Line_Item__c>>();
+		
+		Set<Id> requestId = new Set<Id>();
+		for(SAM_Request__c obj :newlstRequest){
+            requestId.add(obj.Id);
         }
-        List<SAM_Request_Line_Item__c> productDetailList = [select id,Name,md_Request_ID__c  from SAM_Request_Line_Item__c where md_Request_ID__c IN: requestIdSet];
-        for(SAM_Request__c obj:newlstRequest){
-        system.debug('obj.pkl_Status__c!!'+obj.pkl_Status__c+'obj.Id!!'+obj.Id);
-        if(obj.pkl_Status__c == 'Quote Approved'){
-      //  String publisherNameStr ='';
-        publisherNameList = new List<String>();
-        publisherNameSet = new Set<String>();
-            for(SAM_Request_Line_Item__c ReqLineObj:productDetailList){
-        
-                 if(obj.Id == ReqLineObj.md_Request_ID__c){
-                
-                publisherNameSet.add(ReqLineObj.Name);
-                }
-            }
-            system.debug('publisherNameSet!!!'+publisherNameSet);
-            
-            publisherNameList.addAll(publisherNameSet);
-            
-            for(String str:publisherNameList){
-                publisherNameStr = str+','+publisherNameStr;
-            }
-            String publisherNameStr = String.Join(new List<String>(publisherNameList),',');
-            system.debug('publisherNameStr!!!'+publisherNameStr);
-            obj.txt_Sam_Publisher__c= publisherNameStr;
-            requestFinalList.add(obj);
-            system.debug('requestFinalList!!!!'+requestFinalList);
-        }
-        
-     }
-     
-    }*/
+		List<SAM_Request__c> reqChildList = [select id,pkl_Status__c ,(select md_Request_ID__c,pkl_Request_Status__c from Request_Line_Items__r),(select md_Request__c,pkl_Request_Status__c from Quote_Line_Items__r) from SAM_Request__c where id=:requestId];
+		for(SAM_Request__c req:reqChildList){
+			mapRliList.put(req.id,req.Request_Line_Items__r);
+			mapQliList.put(req.id,req.Quote_Line_Items__r);
+		}
+		for(integer i = 0 ; i < reqChildList.size(); i++){
+			if(oldlstRequest[i].pkl_Status__c <> newlstRequest[i].pkl_Status__c){				
+				for(SAM_Request_Line_Item__c relatedRLI:mapRliList.get(newlstRequest[i].id)){
+					relatedRLI.pkl_Request_Status__c = newlstRequest[i].pkl_Status__c;
+					rliList.add(relatedRLI);
+				}
+				for(SAM_Quote_Line_Item__c relatedQLI:mapQliList.get(newlstRequest[i].id)){
+					relatedQLI.pkl_Request_status__c = newlstRequest[i].pkl_Status__c;
+					qliList.add(relatedQLI);
+				}
+			}
+		}
+		update rliList;
+		update qliList;
+	}*/
 }

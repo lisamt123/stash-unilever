@@ -32,6 +32,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>fml_List_Price__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>pkl_Discount_Applicable__c</field>
             </layoutItems>
             <layoutItems>
@@ -60,11 +64,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Publisher__c</field>
+                <field>fml_Software_Engagement_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>fml_Software_Engagement_Type__c</field>
+                <field>pkl_Publisher__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

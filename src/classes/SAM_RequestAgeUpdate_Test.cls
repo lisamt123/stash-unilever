@@ -43,17 +43,17 @@ public  class SAM_RequestAgeUpdate_Test {
     Throws [Exceptions]: 
     ********************************************************************/
    static testMethod void testBatch(){
-       //19/08 Dinesh - Initialize below variable to avoid below SonarQube issue
-       //Avoid unused local variables such as 'batchprocessid'.
-       ID batchprocessid = null;
         SAM_StatusMsgCustomSetting();
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
         insert objRequest;
         
         Test.startTest();
         SAM_RequestAgeUpdate batchObj = new SAM_RequestAgeUpdate();
-        batchprocessid = Database.executeBatch(batchObj);
+        ID batchprocessid = Database.executeBatch(batchObj);
         Test.StopTest();
+        //19/08 Dinesh - used batchprocessid variable to avoid below SonarQube issue
+        //Avoid unused local variables such as 'batchprocessid'.
+        System.assert(batchprocessid != Null);
         SAM_Request__c objRequestValue = [select id,pkl_Status__c from SAM_Request__c where id =: objRequest.id];
         System.assert(objRequestValue.pkl_Status__c != SAM_Constants.OPEN);
     }

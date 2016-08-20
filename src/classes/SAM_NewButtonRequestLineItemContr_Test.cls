@@ -54,7 +54,10 @@ public  class SAM_NewButtonRequestLineItemContr_Test{
        insert objRLI;
        Test.setCurrentPage(new PageReference('SAM_NewButtonRequestLineItemPage'));
        System.currentPageReference().getParameters().put('id', objRLI.id);
-       String retURL = SAM_Request__c.getSObjectType().getDescribe().getKeyPrefix();
+       //String retURL = SAM_Request__c.getSObjectType().getDescribe().getKeyPrefix();
+        String retURL = '/'+objRLI.id;
+            
+       system.debug('retURL>>>>!!'+retURL);
        ApexPages.currentPage().getParameters().put('retUrl',retURL);
        SAM_NewButtonRequestLineItemController controller = new SAM_NewButtonRequestLineItemController(new ApexPages.StandardController(objRLI));
             
