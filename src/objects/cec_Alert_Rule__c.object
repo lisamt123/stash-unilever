@@ -613,11 +613,18 @@
     </listViews>
     <listViews>
         <fullName>CEC_ANZ_Queue_cec_Alert_Rule</fullName>
+        <columns>NAME</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>L5_Reason_Code__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC ANZ Queue</label>
+        <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
         </sharedTo>
     </listViews>
     <listViews>

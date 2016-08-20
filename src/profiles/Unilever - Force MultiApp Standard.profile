@@ -35878,7 +35878,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Core_Approval_Details__c.GTES</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -35889,7 +35888,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Core_Approval_Header__c.Ariba</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -35910,7 +35908,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>Core_Approver_Details__c.Ariba</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -36201,7 +36198,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>OV_Shelf__c.Subject</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -36387,7 +36383,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>uw_BET_Team_Member__c.InternalUser</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -36398,7 +36393,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
-        <personAccountDefault>true</personAccountDefault>
         <recordType>uw_Links__c.HUB_Working_Resources</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
