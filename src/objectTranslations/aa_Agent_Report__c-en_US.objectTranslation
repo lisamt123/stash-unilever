@@ -79,15 +79,15 @@
         <name>Is_Accepted_Code_of_Conduct__c</name>
     </fields>
     <fields>
-        <label><!-- OtherBrandName --></label>
+        <label><!-- Other Brand Name --></label>
         <name>OtherBrandName__c</name>
     </fields>
     <fields>
-        <label><!-- OtherCompanyName --></label>
+        <label><!-- Other Company Name --></label>
         <name>OtherCompanyName__c</name>
     </fields>
     <fields>
-        <label><!-- RecordTypeName --></label>
+        <label><!-- Record Type Name --></label>
         <name>RecordTypeName__c</name>
     </fields>
     <fields>
@@ -132,6 +132,10 @@
         <picklistValues>
             <masterLabel>Perfect In Store Execution</masterLabel>
             <translation><!-- Perfect In Store Execution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainability</masterLabel>
+            <translation><!-- Sustainability --></translation>
         </picklistValues>
     </fields>
     <fields>
