@@ -600,7 +600,6 @@ private class IPM_NewTask_Test{
                  newTask.tasks = task;
                  newTask.projectObject = projDetailList11[0];
                  task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD;
-                 List<SelectOption> optionPhaseList= newTask.getPhaselist();
                  system.assertEquals(task.IPM_Phase__c!= null,true,'Task Phase List for standard tasks not populated as expected');
             }	  
         Test.stopTest();      
@@ -617,15 +616,8 @@ private class IPM_NewTask_Test{
             IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
             initializedData(); 
             createProjectResource(projectDetailList[0].Id,userBD.id);
-            List<IPM_Project_Metadata__mdt> metaDataList = IPM_TestFactory_Helper.createIPMProjectMetadata();
-            List<IPM_Project_Metadata__mdt> updatedMetaDataList = new List<IPM_Project_Metadata__mdt>();
             try{
-                //for(IPM_ProjectMetadata__c metaData:metaDataList)
-                //{
-                    //metaData.IPM_ApplicableGates__c = null;
-                    //updatedMetaDataList.add(metaData);
-                //}   
-                //update updatedMetaDataList;
+                
                 system.runAs(userBD)
                 {
                      putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
@@ -689,7 +681,7 @@ private class IPM_NewTask_Test{
              	 List<SelectOption> optionFunctionalRoleList = newTask.getListFunctionalRole(); 
              	 system.assertEquals(!optionFunctionalRoleList.isEmpty(),true,'Task functional List for standard tasks not populated as expected'); 
                  task.IPM_Function__c = 'BD';
-                 string functionalOwner = newTask.getFunctionalRoleOwner();
+                 newTask.getFunctionalRoleOwner();
                  system.assertEquals(string.isNotBlank(task.IPM_Function__c),true,'Task owner List for standard tasks not populated as expected'); 
             }  
              	 
@@ -731,7 +723,7 @@ private class IPM_NewTask_Test{
                  List<SelectOption> optionFunctionalRoleList = newTask.getListFunctionalRole(); 
                  system.assertEquals(!optionFunctionalRoleList.isEmpty(),true,'Task functional List for standard tasks not populated as expected'); 
                  task.IPM_Function__c = 'BD';
-                 string functionalOwner = newTask.getFunctionalRoleOwner();
+                 newTask.getFunctionalRoleOwner();
              	 system.assertEquals(string.isNotBlank(task.IPM_Function__c),true,'Task owner List for standard tasks not populated as expected'); 
             }  
             

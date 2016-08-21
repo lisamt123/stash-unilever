@@ -4,8 +4,8 @@
 * @description  This class is used to test the functionality of IPM_GatekeeperChecklist class 
 */
 @isTest
-private class IPM_GatekeeperChecklist_Test{
-
+private class IPM_GatekeeperChecklist_Test 
+{	
     public static IPM_Project__c project;// Project object initialization
     public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     public static IPM_GatekeeperChecklist ipmGK;
@@ -258,11 +258,6 @@ private class IPM_GatekeeperChecklist_Test{
             update quesList[0];
             IPM_Questionnaire__c ipmQuestionnaire = [SELECT Id,RecordTypeId FROM IPM_Questionnaire__c WHERE Id =:quesList[0].id  LIMIT 1];
             System.assertEquals(ipmQuestionnaire.RecordTypeId, quesList[0].RecordTypeId, 'Questionnaire Record Type is Updated');//Positive Test;
-            string tst = ipmGk.gateTypeRND;
-            tst= ipmGk.gateTypeSCFeas;
-            tst= ipmGK.gateTypeRNDFeas;
-            tst= ipmGK.gateTypeTradeMark;
-            boolean bln = ipmGK.editTable;
             ipmGK.updateReadOnlyGKchecklist();
             IPM_GatekeeperChecklist.recTypeTrademark=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
             ipmGk.projectID=project.Id;

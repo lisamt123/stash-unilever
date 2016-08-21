@@ -262,7 +262,7 @@
                                                                     <!-- Rendered when financial record is updatebale based on security model and edit mode is true.-->
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditMode, false)}">
                                                                         <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}</div>
-                                                                        <apex:actionFunction name="cancel" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:actionFunction name="cancel" action="{!refreshFinancials}" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                         
@@ -472,6 +472,7 @@
                                                                 fieldSuffix="{!fieldSuffix}"
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
+                                                                exRate="{!exRate}"
                                                             />
                                                          
                                                         </div>
@@ -488,7 +489,7 @@
                                                                  <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditModeBottomUp, false)}">
                                                                        <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}
                                                                        </div>
-                                                                       <apex:actionFunction name="cancel" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                       <apex:actionFunction name="cancel" action="{!refreshFinancials}" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                            <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
                                                                        </apex:actionFunction>
                                                                        <div class="ipmButton primary" onclick="saveRecord();">{!$Label.IPM_SAVE}
@@ -507,6 +508,7 @@
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
                                                                 isEditMode="{!isEditModeBottomUp}"
+                                                                exRate="{!exRate}"
                                                             />
                                                         </div>                            
                                                     </div>

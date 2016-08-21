@@ -578,6 +578,8 @@
           color:red !important;
         }
 		table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cellWidth {float: left; width: 50%;}
+		.dataTable table tr.lastchild td.tldfontchange span{font-size:12px !important;}
+        .dataTable table td.tldfontchange span{font-size:12px !important;}
     </style>
 </head>
 <body class="docBody">
@@ -614,13 +616,12 @@
             </div>
                                     
             <div class="categoryContainer pull-right"> 
-                <div class="cImage pull-left secCategory">
-                    <apex:outputField styleClass="categoryImage"  value="{!project.IPM_Category_Icon__c}" rendered="{!if(ISBLANK(project.IPM_Category_Icon__c),'false','true')}"/>
-                </div>
-                <div class="cTitle pull-right">
-                                
+                <div class="cTitle pull-right">         
                     <apex:outputText value="{!project.IPM_Category_Text__c}" styleClass="secCategory"/>                               
-                </div>                                
+                </div> 
+				<div class="cImage pull-right secCategory">
+                    <apex:outputField styleClass="categoryImage"  value="{!project.IPM_Category_Icon__c}" rendered="{!if(ISBLANK(project.IPM_Category_Icon__c),'false','true')}"/>
+                </div>				
             </div>   
             <div class="spacer"></div>  
         </div>
@@ -753,7 +754,7 @@
                     <td class="label">
                         {!$Label.IPM_TARGET_LAUNCH_DATE}{!$Label.IPM_COLON}
                     </td>      
-                    <td>
+                    <td class="tldfontchange">
                         <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}"/>
                     </td>
                     <td class="label">
@@ -782,7 +783,7 @@
                          <td class="label" width="20%">
                             {!$Label.IPM_TARGET_LAUNCH_DATE}{!$Label.IPM_COLON}
                         </td>      
-                        <td>
+                        <td class="tldfontchange">
                             <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}"/>
                         </td>
                         <td class="label" >

@@ -75,9 +75,9 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
         }
         
         
-        if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
-            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
-            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
+        if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && (project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) ||
+            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && (project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) ||
+            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_PLE && (project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) ||
             ((project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY || project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT) && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){        
                 projectDocList=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,
                             LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Project__c 
