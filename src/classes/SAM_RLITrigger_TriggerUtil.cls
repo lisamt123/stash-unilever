@@ -34,7 +34,9 @@ public with sharing class SAM_RLITrigger_TriggerUtil{
     Throws [Exceptions]: 
     ********************************************************************/
     public static void PreventNewRecord(list<SAM_Request_Line_Item__c> lstRequest){
-        Profile ProfileName = [select Name from profile where id = :userinfo.getProfileId()];
+        //21/08 Dinesh - Commented below variable to avoid below SonarQube issue
+        //Avoid unused local variables such as 'ProfileName'.
+        //Profile ProfileName = [select Name from profile where id = :userinfo.getProfileId()];
         //if(ProfileName.Name != SAM_Constants.SYSTEM_ADMINISTRATOR){
             Set<Id> ReqID = new Set<Id>(); 
             Map<ID,SAM_Request__c> mapReqIDRecord = new Map<ID,SAM_Request__c>();

@@ -77,31 +77,33 @@ public with sharing class SAM_QLITrigger_Util{
     Throws [Exceptions]: 
     ********************************************************************/
     public static void PreventNewRecord(list<SAM_Quote_Line_Item__c> lstRequest){
-		Profile ProfileName = [select Name from profile where id = :userinfo.getProfileId()];
+        //21/08 Dinesh - Commented below variable to avoid below SonarQube issue
+        //Avoid unused local variables such as 'ProfileName'.
+        //Profile ProfileName = [select Name from profile where id = :userinfo.getProfileId()];
         //if(ProfileName.Name != SAM_Constants.SYSTEM_ADMINISTRATOR){
-			Set<Id> ReqID = new Set<Id>(); 
-			Map<ID,SAM_Request__c> mapReqIDRecord = new Map<ID,SAM_Request__c>();
-			for(SAM_Quote_Line_Item__c obj :lstRequest){
-				ReqID.add(obj.md_Request__c);
-			}
-			List<SAM_Request__c> ReqList = [Select id,pkl_Status__c from SAM_Request__c where id=:ReqID];
-			for(SAM_Request__c req:ReqList ){
-				mapReqIDRecord.put(req.Id,req);
-			}
-			Set<Id> AssigntoID = new Set<Id>();
-			String userType = Schema.SObjectType.User.getKeyPrefix();
+            Set<Id> ReqID = new Set<Id>(); 
+            Map<ID,SAM_Request__c> mapReqIDRecord = new Map<ID,SAM_Request__c>();
+            for(SAM_Quote_Line_Item__c obj :lstRequest){
+                ReqID.add(obj.md_Request__c);
+            }
+            List<SAM_Request__c> ReqList = [Select id,pkl_Status__c from SAM_Request__c where id=:ReqID];
+            for(SAM_Request__c req:ReqList ){
+                mapReqIDRecord.put(req.Id,req);
+            }
+            Set<Id> AssigntoID = new Set<Id>();
+            String userType = Schema.SObjectType.User.getKeyPrefix();
 
-			for (GroupMember m : [Select Id, UserOrGroupId From GroupMember WHERE group.name = 'SAM Team']){
-				if (((String)m.UserOrGroupId).startsWith(userType)){
-					AssigntoID.add(m.UserOrGroupId);
-				}
-			}
-			for(SAM_Quote_Line_Item__c obj :lstRequest){
-				 SAM_Request__c requestRec = mapReqIDRecord.get(obj.md_Request__c);
-				if(!Test.isRunningTest() && Userinfo.getUserId() != null && AssigntoID != null && (!AssigntoID.contains(Userinfo.getUserId()) || (requestRec.pkl_Status__c != SAM_Constants.INPROGRESS && requestRec.pkl_Status__c != SAM_Constants.INFORMATION_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.DRAFT_QUOTE_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.QUOTE_REJECTED ))){
-					obj.addError('You are not authorized to create Quote at this status.');
-				}
-			}
-		//}
+            for (GroupMember m : [Select Id, UserOrGroupId From GroupMember WHERE group.name = 'SAM Team']){
+                if (((String)m.UserOrGroupId).startsWith(userType)){
+                    AssigntoID.add(m.UserOrGroupId);
+                }
+            }
+            for(SAM_Quote_Line_Item__c obj :lstRequest){
+                 SAM_Request__c requestRec = mapReqIDRecord.get(obj.md_Request__c);
+                if(!Test.isRunningTest() && Userinfo.getUserId() != null && AssigntoID != null && (!AssigntoID.contains(Userinfo.getUserId()) || (requestRec.pkl_Status__c != SAM_Constants.INPROGRESS && requestRec.pkl_Status__c != SAM_Constants.INFORMATION_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.DRAFT_QUOTE_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.QUOTE_REJECTED ))){
+                    obj.addError('You are not authorized to create Quote at this status.');
+                }
+            }
+        //}
     }
 }
