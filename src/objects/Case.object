@@ -7924,7 +7924,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>IversenJ</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
