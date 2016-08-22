@@ -91,16 +91,7 @@
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
-    <fields>
-        <fullName>Collective_Risk_Value__c</fullName>
-        <externalId>false</externalId>
-        <label>Collective Risk Value</label>
-        <summarizedField>Product_at_Risk__c.Total__c</summarizedField>
-        <summaryForeignKey>Product_at_Risk__c.Risk__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
+   
     <fields>
         <fullName>Date_of_Loss__c</fullName>
         <externalId>false</externalId>
