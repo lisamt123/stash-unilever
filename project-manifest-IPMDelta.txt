@@ -2,6 +2,13 @@ src
 src/classes
 src/classes/IPM_ChangProjectDocumentStatusController.cls
 src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
+src/classes/IPM_RolloutPlansAddController.cls
+src/classes/IPM_RolloutPlansAddController.cls-meta.xml
+src/classes/IPM_RolloutTriggerHandler.cls
+src/classes/IPM_RolloutTriggerHandler.cls-meta.xml
+src/customMetadata
+src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_Deo_Personal.md
+src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_Deo_Personal.md
 src/pages
 src/pages/IPM_ChangeCurrenDocumentStatus.page
 src/pages/IPM_ChangeCurrenDocumentStatus.page-meta.xml
