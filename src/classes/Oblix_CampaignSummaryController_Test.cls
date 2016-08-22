@@ -4,7 +4,7 @@ private class Oblix_CampaignSummaryController_Test {
     private static final String PROJECT_NAME = 'Project';
     private static final String PAGE_PROJECT_ID_PARAMETER_NAME = 'projectId';
     private static final String PAGE_SOW_ID_PARAMETER_NAME = 'sowId';
-    private  static PageReference cancelCampaign;
+    public  static PageReference cancelCampaign;
     @isTest static void Oblix_CampaignSummaryController_Test(){
         User u = Oblix_TestUtils.createTestUser();
         insert Oblix_TestUtils.createOblixCustomSettings();

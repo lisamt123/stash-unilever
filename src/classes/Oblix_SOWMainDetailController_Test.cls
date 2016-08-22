@@ -25,9 +25,9 @@ private class Oblix_SOWMainDetailController_Test {
     private static User ul2;
     private static User ul3;
     private static User superuser;
-    private static PageReference initiateRO;
-    private static PageReference syncCamp;
-    private static PageReference sow_details_page;
+    public static PageReference initiateRO;
+    public  static PageReference syncCamp;
+    public static PageReference sow_details_page;
 
     // TODO: test submit, approve, reject; test add/delete attachments
     @isTest static void testCampaignNonCampaignList() {

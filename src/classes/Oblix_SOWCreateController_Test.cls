@@ -23,7 +23,7 @@ private class Oblix_SOWCreateController_Test {
     private static final String BRAND_CIFF = 'Ciff';
     private static final String SMALL_CAT_PC = 'Personal Care';
     private static final String SMALL_CAT_OF = 'Other Food';
-    private static Pagereference permission_denied_page;
+    public static Pagereference permission_denied_page;
 
 
     @testSetup static void initCommonData() {
