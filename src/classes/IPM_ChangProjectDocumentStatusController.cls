@@ -949,7 +949,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         localFinProjectName=new set<String>();
         localTLDProjectName=new set<String>();
         documentSectionId=null;
-        if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c))){
+        if((IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) || IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equals(project.IPM_ProjectGKM__c)) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c)))
+        {
             finList=new List<IPM_Financial__c>();
             finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Local_Project__r.Is_Archieved__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
             Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,
