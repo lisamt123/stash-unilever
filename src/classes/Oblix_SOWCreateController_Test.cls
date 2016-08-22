@@ -23,7 +23,7 @@ private class Oblix_SOWCreateController_Test {
     private static final String BRAND_CIFF = 'Ciff';
     private static final String SMALL_CAT_PC = 'Personal Care';
     private static final String SMALL_CAT_OF = 'Other Food';
-
+    private static Pagereference permission_denied_page;
 
 
     @testSetup static void initCommonData() {
@@ -47,7 +47,6 @@ private class Oblix_SOWCreateController_Test {
     
     @isTest static void testCheckUserHasPermissionToSOW() {
         initTestUsers();
-        Pagereference permission_denied_page;
 
         MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
         Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);

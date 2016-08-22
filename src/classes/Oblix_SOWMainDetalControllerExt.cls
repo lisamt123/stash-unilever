@@ -11,7 +11,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Oblix_DashboardsHandler scoresFYFeeDashboard {get; set;}
     public Oblix_DashboardsHandler scoresFullFeeDashboard {get; set;}
     public DateTime pageLastRefreshed {get;set;}
-
+    public static Approval.ProcessResult result;
     public static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     public static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
 
@@ -319,7 +319,6 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     * @description  submit SOW for approval
     ********************************************************************************/
     public PageReference submitForApproval(){
-        Approval.ProcessResult result;
         Id submitterId = UserInfo.getUserId();
 
         Savepoint sp;
@@ -458,7 +457,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
                 pwr.setComments(sowApproveComments);
                 pwr.setAction('Approve');
                 pwr.setWorkitemId(wi.Id);
-                Approval.ProcessResult result =  Approval.process(pwr);
+                result =  Approval.process(pwr);
 
                 System.debug('Approval successfull');
 

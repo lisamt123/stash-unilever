@@ -25,6 +25,9 @@ private class Oblix_SOWMainDetailController_Test {
     private static User ul2;
     private static User ul3;
     private static User superuser;
+    private static PageReference initiateRO;
+    private static PageReference syncCamp;
+    private static PageReference sow_details_page;
 
     // TODO: test submit, approve, reject; test add/delete attachments
     @isTest static void testCampaignNonCampaignList() {
@@ -106,7 +109,7 @@ private class Oblix_SOWMainDetailController_Test {
             
         Test.stopTest();    
 
-        PageReference sow_details_page = Page.oblix_sowmain;
+        sow_details_page = Page.oblix_sowmain;
         System.assertEquals(sow_details_page.getUrl(), deleteAction.getUrl());
 
         List<Oblix_SOW_Projects__c> projects = [SELECT Id FROM Oblix_SOW_Projects__c WHERE Id = :mSow.Id];
@@ -139,7 +142,7 @@ private class Oblix_SOWMainDetailController_Test {
             
         Test.stopTest();    
 
-        PageReference sow_details_page = Page.oblix_sowmain;
+        sow_details_page = Page.oblix_sowmain;
         System.assertEquals(sow_details_page.getUrl(), submitForApproval.getUrl());
         System.assertEquals(sow_details_page.getUrl(), approveSOW.getUrl());
 
@@ -174,7 +177,7 @@ private class Oblix_SOWMainDetailController_Test {
             
         Test.stopTest();    
 
-        PageReference sow_details_page = Page.oblix_sowmain;
+        sow_details_page = Page.oblix_sowmain;
         System.assertEquals(sow_details_page.getUrl(), submitForApproval.getUrl());
         System.assertEquals(sow_details_page.getUrl(), rejectSOW.getUrl());
 
@@ -182,9 +185,6 @@ private class Oblix_SOWMainDetailController_Test {
 
      @isTest static void testSyncCampaigns() {
         initTestData();
-        PageReference initiateRO;
-        PageReference syncCamp;
-        PageReference sow_details_page;
         ApexPAges.currentPage().getParameters().put(SOW_ID_PARAMETER_STRING, mSow.Id);
         Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
         Test.startTest();

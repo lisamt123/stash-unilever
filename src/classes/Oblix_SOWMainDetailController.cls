@@ -11,7 +11,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
     //        is_sync_requested = false;
     //    }
     //}
-
+    public Database.DeleteResult delete_result_main_campaign;
     public Oblix_SOWMainDetailController() {
 
         //is_sync_requested = false;
@@ -117,7 +117,6 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SOWMainDet
     }
 
     public PageReference deleteAction(){
-        Database.DeleteResult delete_result_main_campaign;
         PageReference sow_details_page = Page.oblix_sowmain;
 
         try{
