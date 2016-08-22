@@ -81,19 +81,7 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <fields>
-        <fullName>FS_Completed__c</fullName>
-        <externalId>false</externalId>
-        <formula>if( FS_No_of_Objectives__c=0,0,FS_No_of_Completed_Objectives__c/FS_No_of_Objectives__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Completed %</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
+    
     <fields>
         <fullName>FS_Customer__c</fullName>
         <description>Lookup to Account</description>
@@ -120,7 +108,33 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-        
+    <fields>
+        <fullName>FS_No_of_Completed_Objectives__c</fullName>
+        <description>This fields rolls up no of completed defined objectives</description>
+        <externalId>false</externalId>
+        <label>No of Completed Objectives</label>
+        <summaryFilterItems>
+            <field>FS_Defined_Objective__c.FS_Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </summaryFilterItems>
+        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>FS_No_of_Objectives__c</fullName>
+        <description>This field rolls up no of defined objectives</description>
+        <externalId>false</externalId>
+        <label>No of Objectives</label>
+        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
     <fields>
         <fullName>FS_No_of_Opportunities__c</fullName>
         <description>This field used to roll up no of opportunities</description>
@@ -277,22 +291,7 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>Identified_Risk__c</fullName>
-        <externalId>false</externalId>
-        <label>Identified Risk</label>
-        <summarizedField>FS_Defined_Objective__c.FS_Dollars__c</summarizedField>
-        <summaryFilterItems>
-            <field>FS_Defined_Objective__c.FS_Objective_Type__c</field>
-            <operation>equals</operation>
-            <value>Risk</value>
-        </summaryFilterItems>
-        <summaryForeignKey>FS_Defined_Objective__c.FS_Account_Plan__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
+    
     <label>Account Plan</label>
     <listViews>
         <fullName>All</fullName>
