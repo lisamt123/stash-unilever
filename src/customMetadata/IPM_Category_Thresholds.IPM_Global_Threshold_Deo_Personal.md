@@ -7,7 +7,7 @@
     </values>
     <values>
         <field>IPM_Category__c</field>
-        <value xsi:type="xsd:string">Deodorants & Fragrances</value>
+        <value xsi:type="xsd:string">Deodorants & Fragrances IPM_Category_threshhold__c </value>
     </values>
     <values>
         <field>IPM_Category_threshhold__c</field>
