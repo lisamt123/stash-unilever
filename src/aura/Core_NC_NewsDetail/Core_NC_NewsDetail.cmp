@@ -203,14 +203,15 @@
                         <div>                            
                             <!--<iframe src="{!'/apex/NewsArticleFeed_NewsApp?articleid='+v.newsId}" scrolling="false" id="iframe_id" class="fullWidth" height="250px"/>-->
                         </div>
+                        
                     </div>
                     <!--<input type="text"/>
                         <div onclick="{!c.postChatterInfo}">  POST </div>-->
                     <!--<forceChatter:feed type="Record" subjectId="{!v.newsId}"/>-->
                 <!--Ligthning Chatter Feed:News App Enhancements-->
                         <div onclick="{!c.postChatterInfo}">  POST </div> 
-                    <forceChatter:feed type="Record" subjectId="{!v.newsId}"/>
-                Ligthning Chatter Feed:News App Enhancements -->
+                    <forceChatter:feed type="Record" subjectId="{!v.newsId}"/> -->
+                <!-- Ligthning Chatter Feed:News App Enhancements -->
                 	<c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
                 	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
             </div>
