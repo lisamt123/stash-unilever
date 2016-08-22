@@ -4,6 +4,11 @@
         <apexClass>dgai__DG_AgentsListController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>User.dgai__active_user_settings__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<description>Access to the DG Agents List admin page to provide users access to the Digital Genius capability</description>
     <label>CEC - Digital Genius Admin</label>
     <pageAccesses>
