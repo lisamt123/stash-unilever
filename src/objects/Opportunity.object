@@ -369,6 +369,19 @@ Is the customer growing?</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_Distributor_Type__c</fullName>
+        <description>Formula field that retrieves the Distributor Type of the Distributor Account</description>
+        <externalId>false</externalId>
+        <formula>TEXT(FS_distributor__r.FS_Distributor_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Distributor Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_ExistingBusinessType__c</fullName>
         <description>To represent Existing Business Type for Russia</description>
         <externalId>false</externalId>
