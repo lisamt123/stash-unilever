@@ -32,6 +32,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
   public List<SelectOption> Commprefvalue = new List<SelectOption>();
   public Map<String,String> backupBrandQuarter = new Map<String,String>();
   public list<wrapChechbox> QuarterBackupEstimate{get;set;}
+  public list<String> validateAddQuarter;
   public String category{get;set;} 
   public String year{get;set;}
   Integer counter;
@@ -128,7 +129,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @return: none.
 *************************************************************************************/
   public void showPopup(){
-    list<String> validateAddQuarter=new list<String>();
+    validateAddQuarter=new list<String>();
     countOfSelectedBaseFee =0;
     selectedBrandEstimateIds = new Set<String>();
     gapQuarter = new List<String>();
@@ -187,6 +188,22 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         }
         tempvalueMap.clear();
         addquarter.sort();
+        showPopupdisplay();
+     }
+   }
+ }       
+        /***********************************************************************************
+*  @Description: this method is used to adjust the quarter for an exisitng record and to
+*  @             handle the updation of the selected records.This method holds the logic 
+         to prepare the data to update the BrandEstimate Adjusted quarters
+*  @name : showPopup
+*  @param : none
+*  @return: none.
+*************************************************************************************/
+  public void showPopupdisplay(){
+    String quarterformat='';
+    for(wrapChechbox B:QuarterEstimate){
+      if(B.selected){
         if(addquarter.size()>1){
           quarterformat=addquarter.get(0)+'-'+addquarter.get(addquarter.size()-1);           
         }

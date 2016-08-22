@@ -82,12 +82,12 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
 *************************************************************************************/
   public void beforeUpdate(SObject oldSo, SObject so)
   {
-    Integer trigger_count=0;   
+    //Integer trigger_count=0;   
     AF_Agency_Estimate__c agencyInstance = (AF_Agency_Estimate__c)so;
     AF_Agency_Estimate__c oldAgencyInstance = (AF_Agency_Estimate__c)oldSo;
     // AF_UpdateAgencyEstimate Trigger Logic Starts
     if(agencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO && oldAgencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO){
-      trigger_count++;
+      //trigger_count++;
     }
     else{
       agencyEstimatesRecords.add(agencyInstance);

@@ -26,8 +26,6 @@ public with sharing class AF_SubResultHandler implements ITrigger{
     Set<String> year = new set<String>();
     list<AF_Sub_Result__c> SubBonusQuarterlyList=new list<AF_Sub_Result__c>();
     list<AF_Sub_Result__c> newTriggerList=new list<AF_Sub_Result__c>();
-    list<AF_Sub_Result__c>  Subresultupdate= new list<AF_Sub_Result__c>();
-    private static string className_STR=AF_SubResultHandler.class.getName();
     /***********************************************************************************
 *  @Description: This derived as part of trigger hanlder
 *            
@@ -189,7 +187,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
             }
             catch(Exception e)
             {
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
                 system.debug(e);
             }
         }
@@ -249,7 +247,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
             }
             catch(Exception e)
             {
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
                 apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
             }
     }
@@ -289,12 +287,13 @@ public with sharing class AF_SubResultHandler implements ITrigger{
                     }
                     catch(Exception e)
                         {
-                            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinallyBonusListUpdate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className_STR,'andFinallyBonusListUpdate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
                             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
                         }
                 }
     }
     public void andFinallyUpdateExt(){
+        list<AF_Sub_Result__c>  Subresultupdate= new list<AF_Sub_Result__c>();
         if(AF_CheckRecursiveBonusQuarterly.run){
                 AF_CheckRecursiveBonusQuarterly.run=false;
                 if(newTriggerList.size()>0){
@@ -334,7 +333,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
                 try{
                     update Subresultupdate;
                 }catch(exception e){
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinallyUpdateExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className_STR,'andFinallyUpdateExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
                 }
             }
     }
@@ -383,7 +382,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
                 try{
                     upsert subresultinsert;
                 }catch(exception e){
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinallyInsertExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className_STR,'andFinallyInsertExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
             }
