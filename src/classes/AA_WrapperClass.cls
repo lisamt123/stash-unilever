@@ -1,6 +1,6 @@
 public class AA_WrapperClass{
     /**
-     * @date        -   03/08/2015
+     * @date        -   
      * @description -   In order to send response in wrapper object
      * @modifiedby  -
     */
@@ -56,7 +56,7 @@ public class AA_WrapperClass{
         }
         
         /**
-     * @date        -   03/08/2015
+     * @date        -   
      * @description -   In order to get request in wrapper object
      * @modifiedby  -
     */
@@ -147,7 +147,7 @@ public class AA_WrapperClass{
         }
         
          /**
-     * @date        -   03/08/2015
+     * @date        -   
      * @description -   Provide list of reports to angularJS from salesforce
      * @modifiedby  -
     */
