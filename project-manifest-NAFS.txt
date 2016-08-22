@@ -1,3 +1,11 @@
 src
 src/objects
-src/objects/ERP_Product__c.object
+src/objects/FSDistributorTypeCnC__c.object
+src/objects/FSDistributorTypeDirectClient__c.object
+src/objects/FSDistributorTypeLogist__c.object
+src/objects/FSDistributorTypePartner__c.object
+src/objects/FSDistributorTypeSlabco__c.object
+src/objects/FSDistributorTypeStrategic__c.object
+src/objects/FSOpportunityTriggerSettings__c.object
+src/objects/FSVATRU__c.object
+src/objects/FSVATUA__c.object
