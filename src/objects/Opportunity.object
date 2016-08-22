@@ -4019,6 +4019,16 @@ RecordType=0128A0000000BCD &amp;
 opp11=01 – Universe</url>
     </webLinks>
     <webLinks>
+        <fullName>FS_SendMDMEmail</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Send MDM Email</masterLabel>
+        <openType>replace</openType>
+        <page>FS_SendEmailWithMDMRequest</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
         <fullName>Send_MDM_Request_Email</fullName>
         <availability>online</availability>
         <description>will be used for sending email for MDM request</description>

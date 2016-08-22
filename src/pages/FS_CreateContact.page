@@ -7,9 +7,7 @@ function isNumberKey(evt,varlength)
            if (charCode != 46 && charCode > 31 
             && (charCode < 48 || charCode > 57))
              return false;
-           if(varlengthValue)
-           {
-           }
+          
           return true;
        }
 </script>
@@ -25,8 +23,12 @@ function isNumberKey(evt,varlength)
                 <apex:inputfield value="{!varContactDetail.FirstName}" />
                 <apex:inputfield value="{!varContactDetail.LastName}" label="{!lASTNAMETEXT}" />
                 <apex:inputfield value="{!varContactDetail.Accountid}" required="{!TRUETEXT}" />
-                <apex:inputfield value="{!varContactDetail.Phone}" label="{!TELEPHONETEXT}"  onkeypress="return isNumberKey(event,this.value)"><c:helpicon helpText="Please enter 11 digit valid Phone number"/>
+                <apex:inputfield value="{!varContactDetail.Phone}" label="Mobile"  >
                 </apex:inputfield>
+                <apex:inputText value="{!workPhoneNumber}" label="Work" > 
+                </apex:inputText>
+                <apex:inputText value="{!personalPhoneNumber}" label="Personal" >
+                </apex:inputText>
                 <apex:inputfield value="{!varContactDetail.Email}" required="{!TRUETEXT}" />
                 <apex:inputfield value="{!varContactDetail.FS_Position__c}" required="{!TRUETEXT}" />
                 <apex:inputfield value="{!varContactDetail.FS_Decision_Maker__c}"/>

@@ -73,6 +73,28 @@
         <template>FS_Email_Templates/FS_Account_Validation_Reject_From_Manager</template>
     </alerts>
     <alerts>
+        <fullName>FS_Proposed_Account_Owner_Nomination</fullName>
+        <description>FS Proposed Account Owner Nomination Sent For Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FS_ProposedAccountOwner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Proposed_Account_Owner_Nomination</template>
+    </alerts>
+    <alerts>
+        <fullName>FS_Proposed_Account_Owner_Nomination_Rejected</fullName>
+        <description>Proposed Account Owner Nomination Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <field>FS_ProposedAccountOwner__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>FS_Email_Templates/FS_Proposed_Account_Owner_Nomination_Rejected</template>
+    </alerts>
+    <alerts>
         <fullName>FS_SendanemailnotificationtoadminsManagersfordochangesonaccount</fullName>
         <description>Send an email notification to admins/Managers for  do changes on account</description>
         <protected>false</protected>
@@ -235,6 +257,26 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Off_Invoice_Update</fullName>
+        <field>FS_offInvoice__c</field>
+        <formula>Parent.FS_offInvoice__c</formula>
+        <name>Off Invoice Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>On_Invoice_Update</fullName>
+        <field>FS_onInvoice__c</field>
+        <formula>Parent.FS_onInvoice__c</formula>
+        <name>On Invoice Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Proposed_acount_owner_update</fullName>
         <description>If approved proposed account owner will be updated to Null</description>
         <field>FS_ProposedAccountOwner__c</field>
@@ -244,9 +286,18 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Supply_Cost_Update</fullName>
+        <field>FS_supplyCost__c</field>
+        <formula>Parent.FS_supplyCost__c</formula>
+        <name>Supply Cost Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_Recordtype</fullName>
         <field>RecordTypeId</field>
-        <lookupValue>Operators</lookupValue>
+        <lookupValue>Operator</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>Update Recordtype</name>
         <notifyAssignee>false</notifyAssignee>
@@ -357,6 +408,32 @@
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
+        <fullName>FS Distributor Type Information Update on Child from Parent Account</fullName>
+        <actions>
+            <name>Off_Invoice_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>On_Invoice_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Supply_Cost_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.ParentId</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>contains</operation>
+            <value>Unilever Food Solution - Russia</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>FS Populate On%2FOff Invoice</fullName>
         <actions>
             <name>FS_UpdateOffInvoice</name>
@@ -388,10 +465,18 @@
             <name>Update_Recordtype</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>contains</operation>
+            <value>Unilever Food Solution - Russia</value>
+        </criteriaItems>
         <description>Created to update the distributor type,on invoice,off invoice values from parent account.</description>
-        <formula>true</formula>
-        <triggerType>onAllChanges</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>FS_Process</fullName>

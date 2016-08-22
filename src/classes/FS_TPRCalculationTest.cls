@@ -374,7 +374,7 @@ public class FS_TPRCalculationTest {
         String profile='Unilever Food Solution - Russia';
         //String permissionset='FS_Sales_Rep';
         Profile p = [SELECT Id FROM Profile WHERE Name=:profile];
-        Userrole role=[SELECT Id FROM UserRole WHERE Name = 'Fied Sales Rep NDM'];
+        Userrole role=[SELECT Id FROM UserRole WHERE Name = 'Field Sales Rep NDM'];
         User SalesRepUser1 = new User(Alias = 'newUser1', 
                                       Email='newuser1@testorg.com',
         							  EmailEncodingKey='UTF-8', 

@@ -43,6 +43,36 @@ public with sharing class FS_TPRUtil {
         return additionalDiscount;
     }
     
+    /** Method to Calculate Temporary Discount Value:
+    *  @name calculateAdditionalDiscount
+    *  @param OpportunityLineItem oppProd, Map<Id, Opportunity> opportunityMap, Map<Id, Product2> product2Map, Map<Id, FS_TemporaryTPR__c> temporaryTPRMap
+    *  @return Double temporaryDiscount
+    *  @throws N/A
+    */
+    public static Double calculateTemporaryDiscount(OpportunityLineItem oppProd, Map<Id, Opportunity> opportunityMap, Map<Id, Product2> product2Map, Map<Id, FS_TemporaryTPR__c> temporaryTPRMap) {
+        Double temporaryDiscount = 0;
+        FS_Distributor_Type__c dt = FS_Distributor_Type__c.getOrgDefaults();
+                
+        if(opportunityMap.get(oppProd.OpportunityId).FS_Distributor_Type__c == dt.FS_C_C__c) {
+            temporaryDiscount = temporaryTPRMap.get(product2Map.get(oppProd.Product2Id).FS_TemporaryTPRTable__c).FS_C_C__c;
+        } else if(opportunityMap.get(oppProd.OpportunityId).FS_Distributor_Type__c == dt.FS_Direct__c) {
+            temporaryDiscount = temporaryTPRMap.get(product2Map.get(oppProd.Product2Id).FS_TemporaryTPRTable__c).FS_Direct__c;
+        } else if(opportunityMap.get(oppProd.OpportunityId).FS_Distributor_Type__c == dt.FS_Logist__c) {
+            temporaryDiscount = temporaryTPRMap.get(product2Map.get(oppProd.Product2Id).FS_TemporaryTPRTable__c).FS_Logist__c;
+        } else if(opportunityMap.get(oppProd.OpportunityId).FS_Distributor_Type__c == dt.FS_Partner__c) {
+            temporaryDiscount = temporaryTPRMap.get(product2Map.get(oppProd.Product2Id).FS_TemporaryTPRTable__c).FS_Partner__c;
+        } else if(opportunityMap.get(oppProd.OpportunityId).FS_Distributor_Type__c == dt.FS_Slabco__c) {
+            temporaryDiscount = temporaryTPRMap.get(product2Map.get(oppProd.Product2Id).FS_TemporaryTPRTable__c).FS_Slabco__c;
+        } else if(opportunityMap.get(oppProd.OpportunityId).FS_Distributor_Type__c == dt.FS_Strategic__c) {
+            temporaryDiscount = temporaryTPRMap.get(product2Map.get(oppProd.Product2Id).FS_TemporaryTPRTable__c).FS_Strategic__c;
+        } else {
+            temporaryDiscount = 0;
+        }
+        
+        System.debug('>>> temporaryDiscount: ' + temporaryDiscount);
+        return temporaryDiscount;
+    }
+    
     /** Method to Calculate Gross Sales Value:
     *  @name calculateGSV
     *  @param OpportunityLineItem oppProd, Map<Id, Opportunity> opportunityMap, Map<Id, Product2> product2Map, Map<Id, PricebookEntry> priceBookEntryMap
@@ -77,7 +107,8 @@ public with sharing class FS_TPRUtil {
         Double niv = 0;
         //Id distId = oppProd.FS_distributor__c;        
         
-        Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
+        //Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
+        Double temporaryTPRDecimal = oppProd.FS_Temporary_Discount__c;
         Double onInvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_onInvoice__c / 100;
                 
         niv = (oppProd.FS_grossSalesValue__c - oppProd.FS_temporaryPriceReduction__c - (oppProd.FS_grossSalesValue__c * temporaryTPRDecimal)) * (1 - onInvoiceDecimal);
@@ -165,7 +196,8 @@ public with sharing class FS_TPRUtil {
     public static Double calculateGMWithTPREqualsZero(OpportunityLineItem oppProd, Map<Id, Product2> product2Map, Map<Id, Opportunity> opportunityMap) {
         Double gm = 0;
         
-        Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
+        //Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
+        Double temporaryTPRDecimal = oppProd.FS_Temporary_Discount__c;
         Double onInvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_onInvoice__c / 100;
         Double offnvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_offInvoice__c / 100;
         Double scDecimal = opportunityMap.get(oppProd.OpportunityId).FS_supplyCost__c / 100;

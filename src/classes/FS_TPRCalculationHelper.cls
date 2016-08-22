@@ -23,7 +23,8 @@ public class FS_TPRCalculationHelper {
             opportunityIdList.add(oli.OpportunityId);
         }
         
-        Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([SELECT ID, 
+        Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([SELECT ID,
+                                                                        	FS_Distributor_Type__c,
                                                                             FS_supplyCost__c,
                                                                             FS_casesPiece__c,
                                                                             FS_offInvoice__c,
@@ -53,7 +54,8 @@ public class FS_TPRCalculationHelper {
         }
         
         Map<Id, Product2> product2Map = new Map<Id, Product2>([SELECT Id, 
-                                                                   FS_temporaryTPR__c, 
+                                                                   FS_temporaryTPR__c,
+                                                               	   FS_TemporaryTPRTable__c,
                                                                    FS_stdPerUnit__c, 
                                                                    FS_ZSU__c,
                                                                	   FS_VATRU__c,
@@ -61,6 +63,24 @@ public class FS_TPRCalculationHelper {
                                                    			   FROM Product2
                                                   			   WHERE Id IN : ProductIdList]);
         
+        //Query TemporaryTPR Entries
+        Set<Id> temporaryTPRList = new Set<Id>();
+        for(Product2 prod : product2Map.values()) {
+            if(prod.FS_TemporaryTPRTable__c != null) {
+            	temporaryTPRList.add(prod.FS_TemporaryTPRTable__c);    
+            }            
+        }
+        
+        Map<Id, FS_TemporaryTPR__c> temporaryTPRMap = new Map<Id, FS_TemporaryTPR__c>([SELECT Id,
+                                                                                      	FS_C_C__c,
+                                                                                      	FS_Direct__c,
+                                                                                      	FS_Logist__c,
+                                                                                      	FS_Partner__c,
+                                                                                      	FS_Slabco__c,
+                                                                                      	FS_Strategic__c
+                                                                                      FROM FS_TemporaryTPR__c
+                                                                                      WHERE Id IN : temporaryTPRList]);
+                
         for(OpportunityLineItem oppProd : oppProdList) {
             
             try {
@@ -71,6 +91,13 @@ public class FS_TPRCalculationHelper {
                     //Calculate Additional Discount
                     oppProd.FS_additionalDiscount__c = FS_TPRUtil.calculateAdditionalDiscount(oppProd, opportunityMap);
                     
+                    //Calculate Temporary Discount
+                    if(temporaryTPRMap.size() > 0) {
+                    	oppProd.FS_Temporary_Discount__c = FS_TPRUtil.calculateTemporaryDiscount(oppProd, opportunityMap, product2Map, temporaryTPRMap);    
+                    } else {
+                        oppProd.FS_Temporary_Discount__c = 0;
+                    }                    
+                                        
                     //Calculate Total TPR %            
                     oppProd.FS_totalTPRPercentage__c = oppProd.FS_tprPercent__c + oppProd.FS_additionalDiscount__c;
                     

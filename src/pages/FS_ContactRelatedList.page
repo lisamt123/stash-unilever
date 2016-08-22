@@ -1,5 +1,5 @@
-<apex:page standardController="Account" sidebar="false" showHeader="false" extensions="FS_ContactExtend_CE">
-    
+<apex:page standardController="Account" sidebar="false" showHeader="false" extensions="FS_ContactExtend_CX">
+   
     <script>
     function createContact()
     {
@@ -20,14 +20,14 @@
             <apex:pageblockSection columns="1" id="pbsection">
                 <apex:pageBlockTable value="{!myContacts}" var="item" id="pbtable">
                     
-                       <apex:column headerValue="Action" style="width: 4%;" >
+                    <!--   <apex:column headerValue="Action" style="width: 4%;" >
                        <apex:commandLink action="{!deleteContact}" reRender="pbsection">
                         <apex:outputText value="Del" title="Del" Style="color:#015ba7;" /> 
                      <apex:param name="nickName" value="{!item.id}" assignTo="{!varContactIdForDeletion}"/>
                        </apex:commandLink>
                         
-                    </apex:column>
-                    <apex:column headerValue="Contact Name"  >
+                    </apex:column>  -->
+                   <apex:column headerValue="Contact Name"  >
                         <apex:outputLink value="/apex/FS_ContactDetailPage?id={!item.FS_RefId__c}" target="_blank"> 
                             <apex:outputText value="{!item.name}">
                             </apex:outputText> 

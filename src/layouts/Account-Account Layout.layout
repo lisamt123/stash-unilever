@@ -75,11 +75,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>KeyCustomerLevel1__c</field>
+                <field>KeyCustomerLevel6Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>KeyCustomerLevel1Name__c</field>
+                <field>KeyCustomerLevel6Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -128,6 +128,26 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Top_Client__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Channel__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Division__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Sales_ORG__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SAP_Territory__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Global_Unique_ID__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -272,6 +292,7 @@
         <fields>CONTACT.TITLE</fields>
         <fields>CONTACT.EMAIL</fields>
         <fields>CONTACT.PHONE1</fields>
+        <fields>FS_Decision_Maker__c</fields>
         <relatedList>RelatedContactList</relatedList>
     </relatedLists>
     <relatedLists>
@@ -359,17 +380,17 @@
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>FS_Plan_Statement__c</fields>
-        <fields>FS_Plan_Type__c</fields>
-        <fields>FS_PlanDollars__c</fields>
-        <fields>FS_PlanPercent__c</fields>
         <fields>FS_Start_Date__c</fields>
         <fields>FS_End_Date__c</fields>
+        <fields>NAME</fields>
+        <fields>FS_Plan_Statement__c</fields>
+        <fields>FS_of_Units__c</fields>
+        <fields>FS_PlanDollars__c</fields>
         <fields>FS_Status__c</fields>
+        <fields>FS_Approved__c</fields>
         <relatedList>FS_Account_Plan__c.FS_Customer__c</relatedList>
-        <sortField>FS_Status__c</sortField>
-        <sortOrder>Asc</sortOrder>
+        <sortField>FS_Start_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>PRODUCT.NAME</fields>
@@ -377,6 +398,18 @@
         <fields>PRODUCT.DEFAULT_PRICE</fields>
         <fields>PRODUCT.ACTIVE</fields>
         <relatedList>PricebookEntry.DO_NOT_DEPLOY_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>FS_Monthly_Claimed_Cases__c.FS_Distributor_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Account_Relationship__c.Secondary_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Risk__c.Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

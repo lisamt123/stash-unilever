@@ -62,6 +62,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Cross_Account_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>FS_ApprovalRequestComments__c</field>
             </layoutItems>
             <layoutItems>
@@ -82,7 +86,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Territory__c</field>
+                <field>SAP_Territory__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -320,7 +324,22 @@
         </layoutColumns>
         <style>CustomLinks</style>
     </layoutSections>
-    
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Contact Detail</label>
+        <layoutColumns>
+            <layoutItems>
+                <height>200</height>
+                <page>FS_ContactRelatedList</page>
+                <showLabel>false</showLabel>
+                <showScrollbars>true</showScrollbars>
+                <width>100%</width>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
+    </layoutSections>
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
@@ -511,10 +530,20 @@
         <fields>OPPORTUNITY.CLOSE_DATE</fields>
         <relatedList>Opportunity.FS_distributor__c</relatedList>
     </relatedLists>
-    
+    <relatedLists>
+        <fields>PRODUCT.NAME</fields>
+        <fields>PRODUCT.CUSTOMER_PRODUCT_ID</fields>
+        <fields>PRODUCT.DEFAULT_PRICE</fields>
+        <fields>PRODUCT.ACTIVE</fields>
+        <relatedList>PricebookEntry.DO_NOT_DEPLOY_Account__c</relatedList>
+    </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>FS_Monthly_Claimed_Cases__c.FS_Distributor_Account__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Account_Relationship__c.Secondary_Account__c</relatedList>
     </relatedLists>
     <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>

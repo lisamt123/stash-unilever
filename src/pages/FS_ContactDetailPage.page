@@ -32,9 +32,21 @@
                 
                 
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel value="{!TELEPHONETEXT}" />
+                    <apex:outputLabel value="Mobile" />
                     <apex:outputText value="{!varContactDetail.Phone}" />
                 </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Work" />
+                    <apex:outputText value="{!workPhoneNumber}" />
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Personal" />
+                    <apex:outputText value="{!personalPhoneNumber}" />
+                </apex:pageBlockSectionItem>
+                
+                
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!EMAILTEXT}" />
@@ -43,12 +55,12 @@
                 
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!POSITIONTEXT}" />
-                    <apex:outputText value="{!Position}" />
+                    <apex:outputText value="{!varContactDetail.FS_Position__c}" />
                 </apex:pageBlockSectionItem> 
                 
                  <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!DECISIONMAKERTEXT}" />
-               <apex:inputCheckbox value="{!DecisionMakerBoolean}" disabled="true"/>   
+               <apex:inputCheckbox value="{!varContactDetail.FS_Decision_Maker__c}" disabled="true"/>   
                 </apex:pageBlockSectionItem> 
             </apex:pageBlockSection>
             <apex:pageBlocksection title="{!ADDRESSTEXT}" columns="1">
@@ -62,7 +74,7 @@
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!MAILINGSTATETEXT}" />
-                    <apex:outputText value="{!State}" />
+                    <apex:outputText value="{!varContactDetail.MailingState}" />
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
                     
