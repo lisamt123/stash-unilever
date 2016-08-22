@@ -12,7 +12,7 @@ VERSION  AUTHOR         DATE          DETAIL Description
 *  @return 
 *  @throws 
 */ 
-public with sharing class FS_OpportunityHelper {
+public without sharing class FS_OpportunityHelper {
 Private static final string STATUS_WON='05 – Won';
 Private static final string STATUS_CLOSED_WON='Closed Won';
 Private static final string STATUS_CLOSED_LOST='Closed Lost';

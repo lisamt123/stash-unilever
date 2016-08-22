@@ -77,23 +77,23 @@ public class FS_TPRCalculationHelper {
                     //Calculate GSV
                     oppProd.FS_grossSalesValue__c = FS_TPRUtil.calculateGSV(oppProd, opportunityMap, product2Map, priceBookEntryMap);
                     
-                    //Calculate NIV
-                    oppProd.FS_netInvoiceValue__c = FS_TPRUtil.calculateNIV(oppProd, product2Map, opportunityMap);
-                    
                     //Calculate TPR
                     oppProd.FS_temporaryPriceReduction__c = FS_TPRUtil.calculateTPR(oppProd);
+                    
+                    //Calculate NIV
+                    oppProd.FS_netInvoiceValue__c = FS_TPRUtil.calculateNIV(oppProd, product2Map, opportunityMap);
                     
                     //Calculate TurnOver
                     oppProd.FS_turnover__c = FS_TPRUtil.calculateTurnOver(oppProd, opportunityMap);
                     
                     //Calculate PC
-                    oppProd.FS_profitCost__c = FS_TPRUtil.calculatePC(oppProd, product2Map, opportunityMap);
+                    oppProd.FS_productCost__c = FS_TPRUtil.calculatePC(oppProd, product2Map, opportunityMap);
                     
                     //Calculate SC
                     oppProd.FS_supplyCost__c = FS_TPRUtil.calculateSC(oppProd, opportunityMap);
                     
                     //Calculate SCC
-                    oppProd.FS_supplyCostChain__c = oppProd.FS_profitCost__c + oppProd.FS_supplyCost__c;
+                    oppProd.FS_supplyCostChain__c = oppProd.FS_productCost__c + oppProd.FS_supplyCost__c;
                     
                     //Calculate GP
                     oppProd.FS_grossProfit__c = oppProd.FS_turnover__c - oppProd.FS_supplyCostChain__c;

@@ -77,7 +77,7 @@ private class FS_CentrallyLedChildAccount_Pic_Test {
             
             
             ApexPages.StandardController sc = new ApexPages.StandardController(tsk);
-            FS_CentrallyLedChildAccount_Picklist fscc = new FS_CentrallyLedChildAccount_Picklist(sc);
+            FS_CentrallyLedChildAccount_Picklist_CX fscc = new FS_CentrallyLedChildAccount_Picklist_CX(sc);
             List<SelectOption> tf = fscc.ChildAccountList;
             List<Task> tf1 = fscc.ChildAccountTaskList;
             List<String> str1 = fscc.CentrallyLedList;

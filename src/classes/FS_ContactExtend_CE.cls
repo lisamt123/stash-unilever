@@ -18,6 +18,7 @@ public with sharing class FS_ContactExtend_CE{
     
     private final Id acctVarId;
     Public String varContactIdForDeletion{get;set;}
+    Public String varContactRefIdForEdit{get;set;}
     
     public List<Contact> myContacts { get; private set; }
     
@@ -91,6 +92,25 @@ Returns: String
          return null;
         
     }
+ 
+     Public Pagereference EditContact()
+    {
+        try
+        {
+            PageReference varEditContact = new PageReference('/apex/FS_ContactDetailPage_Edit?id='+varContactRefIdForEdit+'&mode=edit'); 
+            varEditContact.setRedirect(true);
+             return varEditContact;
+            
+        }
+        Catch(Exception e)
+        {
+         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,FS_ContactUtility.ERRORTRYAGINTEXT));
+        
+        }
+         return null;
+        
+    }
+ 
  
     
 }

@@ -20,6 +20,9 @@ public with sharing class FS_CreateContact_CC {
     Public Contact varContactDetail{get;set;}
     Public ID accId ;
     Private String varAccountName;
+    
+      Public String workPhoneNumber{get;set;}
+      Public String personalPhoneNumber{get;set;}
     Public Static Final String varResonseResult='{"AddSiteLeadResult": {     "ErrorCode": 0,     "Message": "???????? ?????????",     "SiteLead": {       "Address": "address-1, 4 - 33",       "Age": 28,       "BirthDate": "1987-01-12",       "BusinessAddress": "",       "BusinessName": "OOO MTC",       "BusinessPostalCode": "449543",       "City": "city1",       "Country": "Russia",       "Email": "tolmachev@example.com",       "ExtraParameters": [         {           "Name": "Number of pets",           "Value": "2"         },         {           "Name": "Job",           "Value": "Developer"         }       ],       "FacebookId": "897384",       "Firstname": "Tol",       "Gender": "Male",       "Id": "feff7eae-f646-4ba5-987f-ecd265e498f0",       "Income": 70000,       "JobTitle": "",       "LandlinePhone": "89345673245",       "MaritalStatus": "Married",       "Middlename": "middleName",       "OkId": "0294485",       "PassportNumber": "3606789654",       "PersonalDataAgree": true,       "Phone": "89270087098",       "PropertyStatus": "propertyStatus",       "SocialStatus": "socialStatus",       "Surname": "Machev",       "Username": "Tolmachev",       "VkId": "789347503"     },     "Success": true,     "Warnings": []   } }';
     Public Blob cryptoKey{get;set;}
     
@@ -77,7 +80,7 @@ public with sharing class FS_CreateContact_CC {
     {
         
         
-       if(varContactDetail.phone.length()==11 || varContactDetail.phone.length()==0)
+       if(!String.isBlank(varContactDetail.phone) && (varContactDetail.phone.length()==11 || varContactDetail.phone.length()==0))
        {
        System.debug('varContactDetail.AccountiD'+varContactDetail.AccountiD);
         
@@ -138,8 +141,9 @@ public with sharing class FS_CreateContact_CC {
                 varSiteLead.phone=null;
             }*/
             
-            varSiteLead.Email=varContactDetail.Email;
-            varSiteLead.Phone=varContactDetail.phone;
+            //varSiteLead.Email=varContactDetail.Email;
+            
+            //varSiteLead.Phone=varContactDetail.phone;
             if(!String.isBlank(varContactDetail.MailingStreet))
             {
                 
@@ -159,7 +163,7 @@ public with sharing class FS_CreateContact_CC {
             {
                 varSiteLead.City=null;
             }
-            if(!String.isBlank(varContactDetail.MailingPostalCode))
+          /*  if(!String.isBlank(varContactDetail.MailingPostalCode))
             {
                 
                 varSiteLead.BusinessPostalCode=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT,cryptoKey, Blob.valueOf(varContactDetail.MailingPostalCode)));
@@ -169,7 +173,7 @@ public with sharing class FS_CreateContact_CC {
             {
                varSiteLead.BusinessPostalCode=null; 
             }
-            
+            */
             if(!String.isBlank(varContactDetail.MailingCountry))
             {
                 
@@ -181,16 +185,86 @@ public with sharing class FS_CreateContact_CC {
             }
              varExtraParameters = new FS_ExtraParameters();
             
-            varExtraParameters.Name=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(FS_ContactUtility.DECISIONMAKER)));
+           varExtraParameters.Name=FS_ContactUtility.DECISIONMAKER;
             varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(string.valueOf(varContactDetail.FS_Decision_Maker__c))));
             
             moreListItem.add(varExtraParameters);
             
             
+            if( !String.isBlank(varContactDetail.Email)){       
+                varExtraParameters = new FS_ExtraParameters();      
+                        
+                varExtraParameters.Name='Email';        
+                varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.Email)));        
+                 moreListItem.add(varExtraParameters);      
+            }       
+            else        
+            {       
+                varExtraParameters = new FS_ExtraParameters();      
+            }       
+                    
+                    
+             if( !String.isBlank(varContactDetail.MailingPostalCode)){      
+                varExtraParameters = new FS_ExtraParameters();      
+                        
+                varExtraParameters.Name='PostalCode';       
+                varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingPostalCode)));        
+                        
+                        
+                 moreListItem.add(varExtraParameters);      
+            }       
+            else        
+            {       
+                varExtraParameters = new FS_ExtraParameters();      
+            }
+            
+            
+            
+            
+            
+              if( !String.isBlank(varContactDetail.phone)){
+                varExtraParameters = new FS_ExtraParameters();
+                
+                varExtraParameters.Name='Mobile';
+                varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.phone)));
+                moreListItem.add(varExtraParameters);
+            }
+            else
+            {
+                varExtraParameters = new FS_ExtraParameters();
+            }
+            
+              if( !String.isBlank(workPhoneNumber)){
+                varExtraParameters = new FS_ExtraParameters();
+                
+                varExtraParameters.Name='workPhoneNumber';
+                varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(workPhoneNumber)));
+                moreListItem.add(varExtraParameters);
+            }
+            else
+            {
+                varExtraParameters = new FS_ExtraParameters();
+            }
+            
+              if( !String.isBlank(personalPhoneNumber)){
+                varExtraParameters = new FS_ExtraParameters();
+                
+                varExtraParameters.Name='personalPhoneNumber';
+                varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(personalPhoneNumber)));
+                moreListItem.add(varExtraParameters);
+            }
+            else
+            {
+                varExtraParameters = new FS_ExtraParameters();
+            }
+            
+            
+            
+            
              if( !String.isBlank(varContactDetail.FS_Position__c)){
                 varExtraParameters = new FS_ExtraParameters();
                 
-                varExtraParameters.Name=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(FS_ContactUtility.POSITIONTEXT)));
+                varExtraParameters.Name=FS_ContactUtility.POSITIONTEXT;
                 varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.FS_Position__c)));
                 moreListItem.add(varExtraParameters);
             }
@@ -201,7 +275,7 @@ public with sharing class FS_CreateContact_CC {
             if(!String.isBlank(varContactDetail.MailingState)){
                 varExtraParameters = new FS_ExtraParameters();
                 
-                varExtraParameters.Name=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(FS_ContactUtility.STATETEXT)));
+                varExtraParameters.Name=FS_ContactUtility.STATETEXT;
                 varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingState)));
                 moreListItem.add(varExtraParameters);
             }
@@ -211,14 +285,14 @@ public with sharing class FS_CreateContact_CC {
             }
             
             varExtraParameters = new FS_ExtraParameters();
-            varExtraParameters.Name=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(FS_ContactUtility.OWNERIDTEXT)));
+            varExtraParameters.Name=FS_ContactUtility.OWNERIDTEXT;
             varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(UserInfo.getUserId())));
             moreListItem.add(varExtraParameters);
             
             if(!String.isBlank(UserInfo.getName())){
                 varExtraParameters = new FS_ExtraParameters();
                 
-                varExtraParameters.Name=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(FS_ContactUtility.OWNERNAMETEXT)));
+                varExtraParameters.Name=FS_ContactUtility.OWNERNAMETEXT;
                 varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(UserInfo.getName())));
                 moreListItem.add(varExtraParameters);
             }
@@ -230,7 +304,7 @@ public with sharing class FS_CreateContact_CC {
             if(!String.isBlank(varContactDetail.AccountId)){
                 varExtraParameters = new FS_ExtraParameters();
                 
-                varExtraParameters.Name=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(FS_ContactUtility.ACCOUNTIDTEXT)));
+                varExtraParameters.Name=FS_ContactUtility.ACCOUNTIDTEXT;
                 varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.AccountId)));
                 moreListItem.add(varExtraParameters);
             }
@@ -241,7 +315,7 @@ public with sharing class FS_CreateContact_CC {
             if(!String.isBlank(varAccountName)){
                 varExtraParameters = new FS_ExtraParameters();
                 
-                varExtraParameters.Name=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(FS_ContactUtility.ACCOUNTNAMETEXT)));
+                varExtraParameters.Name=FS_ContactUtility.ACCOUNTNAMETEXT;
                 varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varAccountName)));
                  moreListItem.add(varExtraParameters);
             }
@@ -323,7 +397,7 @@ public with sharing class FS_CreateContact_CC {
                 }
                  System.debug('-----errorCode--'+errorCode);
                 if(errorCode=='300'){
-                      ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Entered Telephone numebr or Email is already existed'));
+                      ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Entered Telephone Number already exists in our Database.'));
                       return null;
                 
                 }else if(errorCode=='0'){

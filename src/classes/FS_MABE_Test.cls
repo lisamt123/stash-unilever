@@ -1,8 +1,7 @@
 @isTest
 private class FS_MABE_Test {
 //Set up Test Data for unit test    
-     @testSetup static void setupTestData(){
-        
+     @testSetup static void setupTestData(){        
         String profile='System Administrator';
         String permissionset='FS_Sales_Rep';         
         Profile p = [SELECT Id FROM Profile WHERE Name=:profile];
@@ -199,7 +198,7 @@ Update(listclaimed_case_Update);
 system.assertNotEquals(null, listclaimed_case_Update.size());
 //ClaimCaseForecast.ClaimCaseList=[SELECT Id, FS_First_of_Month__c, Account__c, Contract_Product__c, FS_Planned_Quantity__c, Product__c,FS_Claimed_Cases_Paid__c  FROM FS_Monthly_Claimed_Cases__c where contract_product__c in :ListNewContractProduct];
 Test.startTest();
-MonthlyClaimCasesBatch ClaimCaseForecast=new MonthlyClaimCasesBatch();
+FS_MonthlyClaimCases_Batch ClaimCaseForecast=new FS_MonthlyClaimCases_Batch();
 //Database.executeBatch(ClaimCaseForecast,1);
 Database.QueryLocator ql = ClaimCaseForecast.start(null);
 ClaimCaseForecast.execute(null,listclaimed_case_Update);
@@ -249,7 +248,7 @@ Map<id,List<FS_Monthly_Claimed_Cases__c>> MapClaimCase=new Map<id,List<FS_Monthl
                     MapClaimCase.put(claimed_case.Contract_Product__c,tempList);
             //tempSet.add(claimed_case.Contract_Product__c);
         }
-NewMonthlyClaimCase_Batch ClaimCaseForecast=new NewMonthlyClaimCase_Batch();
+FS_NewMonthlyClaimCase_Batch ClaimCaseForecast=new FS_NewMonthlyClaimCase_Batch();
 Test.startTest();
 ClaimCaseForecast.start(null);
 ClaimCaseForecast.execute(null,listClaimed_Case);

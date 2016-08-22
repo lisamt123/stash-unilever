@@ -75,21 +75,17 @@ public with sharing class FS_TPRUtil {
     */
     public static Double calculateNIV(OpportunityLineItem oppProd, Map<Id, Product2> product2Map, Map<Id, Opportunity> opportunityMap) {
         Double niv = 0;
-        //Id distId = oppProd.FS_distributor__c;
+        //Id distId = oppProd.FS_distributor__c;        
         
-        try {
-            niv = oppProd.FS_grossSalesValue__c * (1 - (product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100) - (oppProd.FS_totalTPRPercentage__c / 100)) 
+        Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
+        Double onInvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_onInvoice__c / 100;
+                
+        niv = (oppProd.FS_grossSalesValue__c - oppProd.FS_temporaryPriceReduction__c - (oppProd.FS_grossSalesValue__c * temporaryTPRDecimal)) * (1 - onInvoiceDecimal);
+        
+        /*
+        niv = oppProd.FS_grossSalesValue__c * (1 - (product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100) - (oppProd.FS_totalTPRPercentage__c / 100)) 
             				* (1 - (opportunityMap.get(oppProd.OpportunityId).FS_onInvoice__c / 100));        
-            
-        }  catch(Exception e) {
-        	System.debug( 'The following exception has occurred: '+e.getMessage() );
-            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 
-                                                  'FS_TPRUtil', 
-                                                  'calculateNIV', 
-                                                  e.getMessage(), 
-                                                  e, null, null, null, 
-                                                  0,'Food Solution');
-        }
+        */
         
         return niv;
     }
@@ -121,7 +117,7 @@ public with sharing class FS_TPRUtil {
         return turnOver;
     }
 
-    /** Method to Calculate Profit Cost value:
+    /** Method to Calculate Product Cost value:
     *  @name calculatePC
     *  @param OpportunityLineItem oppProd, Map<Id, Product2> product2Map, Map<Id, Opportunity> opportunityMap
     *  @return Double pc
@@ -171,7 +167,8 @@ public with sharing class FS_TPRUtil {
         
         Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
         Double onInvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_onInvoice__c / 100;
-        Double onOffnvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_offInvoice__c / 100;
+        Double offnvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_offInvoice__c / 100;
+        Double scDecimal = opportunityMap.get(oppProd.OpportunityId).FS_supplyCost__c / 100;
         
         /*
         Formula:
@@ -180,14 +177,44 @@ public with sharing class FS_TPRUtil {
         ((((GSV*(1 – temporary TPR ))*(1-PPR on-invoice)) *(1-PPR off-invoice)))
         */
         
+        /* Correct Formula
+         GM when TPR = 0% = (GSV * (1 - temporary discount) * (1 - on invoice) 
+							- GSV * (1 - temporary discount) * (1 - on invoice) * off invoice)
+							- PC - Supply Cost * (GSV * (1 - temporary discount) * (1 - on invoice) 
+							- GSV * (1 - temporary discount) * (1 - on invoice) * off invoice)
+							/
+							(GSV * (1 - temporary discount) * (1 - on invoice) 
+							- GSV * (1 - temporary discount) * (1 - on invoice) * off invoice)
+
+		*/
+        Double sc = (opportunityMap.get(oppProd.OpportunityId).FS_supplyCost__c / 100);
+        
+        gm = ((oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal)
+              	- oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) * offnvoiceDecimal)
+             	- oppProd.FS_productCost__c - scDecimal * (oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal)
+                * (1 - onInvoiceDecimal) - oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) 
+                * (1 - onInvoiceDecimal) * offnvoiceDecimal))
+             /
+             (oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) 
+                - oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) * offnvoiceDecimal);
+        
+        /*        
         gm = ((((oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal)) 
                 * (1 - onInvoiceDecimal))
-               * (1 - onOffnvoiceDecimal))
-              - oppProd.FS_profitCost__c - oppProd.FS_supplyCost__c)
+               * (1 - offnvoiceDecimal))
+              - oppProd.FS_productCost__c - oppProd.FS_supplyCost__c)              
+              
             / 
             (((oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal))
               * (1 - onInvoiceDecimal))
-             * (1 - onOffnvoiceDecimal));
+             * (1 - offnvoiceDecimal));
+        */
+        System.debug('gm FS_grossSalesValue__c: ' + oppProd.FS_grossSalesValue__c);
+        System.debug('gm temporaryTPRDecimal: ' + temporaryTPRDecimal);
+        System.debug('gm onInvoiceDecimal: ' + onInvoiceDecimal);
+        System.debug('gm offnvoiceDecimal: ' + offnvoiceDecimal);
+        System.debug('gm FS_productCost__c: ' + oppProd.FS_productCost__c);
+        System.debug('gm FS_supplyCost__c: ' + oppProd.FS_supplyCost__c);
         
         return gm * 100;
     }
