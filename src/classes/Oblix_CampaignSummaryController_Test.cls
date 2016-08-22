@@ -4,7 +4,7 @@ private class Oblix_CampaignSummaryController_Test {
     private static final String PROJECT_NAME = 'Project';
     private static final String PAGE_PROJECT_ID_PARAMETER_NAME = 'projectId';
     private static final String PAGE_SOW_ID_PARAMETER_NAME = 'sowId';
-
+ 
     @isTest static void Oblix_CampaignSummaryController_Test(){
         User u = Oblix_TestUtils.createTestUser();
         insert Oblix_TestUtils.createOblixCustomSettings();
@@ -144,7 +144,7 @@ private class Oblix_CampaignSummaryController_Test {
         insert Oblix_TestUtils.createOblixCustomSettings();
         system.assert(true,u.id!=null);
         System.runAs(u) {
-            
+        PageReference cancelCampaign;
             Test.startTest();
 
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
@@ -156,11 +156,12 @@ private class Oblix_CampaignSummaryController_Test {
             ApexPages.currentPage().getParameters().put(PAGE_SOW_ID_PARAMETER_NAME,mSow.Id);
             Oblix_CampaignSummaryController ctrl = new Oblix_CampaignSummaryController();
             
-            PageReference cancelCampaign = ctrl.cancelCampaign();
+            cancelCampaign = ctrl.cancelCampaign();
 
             Test.stopTest();
 
             List<Oblix_SOW_Projects__c> projects = [SELECT Id, Campaign_Status__c FROM Oblix_SOW_Projects__c WHERE Id =: project.Id];
+            system.assert(true,projects!=null);
             PageReference nextPage = Page.oblix_sowmaindetail;
             nextPage.getParameters().put(PAGE_SOW_ID_PARAMETER_NAME, mSow.Id);
             //System.assertEquals(nextPage.getUrl(),cancelCampaign.getUrl());
@@ -195,6 +196,7 @@ private class Oblix_CampaignSummaryController_Test {
             Test.stopTest();
 
             List<Oblix_SOW_Projects__c> projects = [SELECT Id, Sync_Status__c FROM Oblix_SOW_Projects__c WHERE Id =: project.Id];
+            system.assert(true,projects!=null);
             //System.assertEquals(Oblix_TestUtils.JOB_STATUS_SYNC_REQUESTED, projects[0].Sync_Status__c);
 
             
