@@ -1,40 +1,45 @@
 src
+src/classes
+src/classes/FS_ContractProductHelper.cls
+src/classes/FS_TPRCalculationHelper.cls
+src/classes/FS_TPRCalculationTest.cls
+src/classes/FS_TPRUtil.cls
+src
+src/layouts
+src/layouts/Account-Account Layout.layout
+src/layouts/Account-Agency Layout.layout
+src/layouts/Account-Distributor.layout
+src/layouts/Account-Feed Based Distributor.layout
+src/layouts/Account-Feed Based Operator.layout
+src/layouts/Account-Operator Russia.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Account-Operators.layout
+src/layouts/Account-US Distributor.layout
+src/layouts/FS_Monthly_Claimed_Cases__c-Actual Layout.layout
+src/layouts/FS_TemporaryTPR__c-TemporaryTPR Layout.layout
+src/layouts/Risk__c-Risk Layout.layout
+src/layouts/Task-Task Layout.layout
+src
 src/objects
-src/objects/Contact.object
-src/objects/Contract.object
-src/objects/Event.object
-src/objects/FSOpportunityTriggerSettings__c.object
-src/objects/FSVATRU__c.object
-src/objects/FSVATUA__c.object
-src/objects/FS_Account_Plan__c.object
-src/objects/FS_Contract_Product_Opportunity_Map__c.object
-src/objects/FS_Defined_Objective__c.object
-src/objects/FS_MDMEmailRequestDefaultValue__c.object
-src/objects/FS_MDMEmailRequestTemplate__c.object
-src/objects/FS_MDMRequestPageMessages__c.object
-src/objects/FS_MDMRequestRecipient__c.object
-src/objects/FS_MDMRequestRecipients__c.object
 src/objects/FS_Monthly_Claimed_Cases__c.object
-src/objects/FS_Russia_City_Region_Zone__c.object
-src/objects/FS_SalesOrgCode__c.object
-src/objects/FS_Segmentation__c.object
-src/objects/FS_TemporaryTPR__c.object
-src/objects/FS_User_Territory__c.object
-src/objects/FS_casePiece__c.object
 src/objects/Opportunity.object
-src/objects/OpportunityContactRole.object
-src/objects/OpportunityLineItem.object
-src/objects/Pricebook2.object
-src/objects/PricebookEntry.object
-src/objects/Product2.object
-src/objects/Risk__c.object
-src/objects/Sales_Area__c.object
-src/objects/Task.object
-src/objects/Account_Relationship__c.object
-src/objects/FSDistributorTypeCnC__c.object
-src/objects/FSDistributorTypeDirectClient__c.object
-src/objects/FSDistributorTypeLogist__c.object
-src/objects/FSDistributorTypePartner__c.object
-src/objects/FSDistributorTypeSlabco__c.object
-src/objects/FSDistributorTypeStrategic__c.object
-src/objects/Product_at_Risk__c.object
+src
+src/pages
+src/pages/FS_ContactDetailPage.page
+src/pages/FS_ContactRelatedList.page
+src/pages/FS_CreateContact.page
+src/pages/FS_GenerateMDMRequest.page
+src/tabs/FS_Account_Plan__c.tab
+src/tabs/FS_Defined_Objective__c.tab
+src/tabs/FS_Segmentation__c.tab
+src
+src/workflows
+src/workflows/Account.workflow
+src/workflows/FSDistributorTypeCnC__c.workflow
+src/workflows/FSDistributorTypeDirectClient__c.workflow
+src/workflows/FSDistributorTypeLogist__c.workflow
+src/workflows/FSDistributorTypePartner__c.workflow
+src/workflows/FSDistributorTypeSlabco__c.workflow
+src/workflows/FSDistributorTypeStrategic__c.workflow
+src/workflows/FSVATRU__c.workflow
+src/workflows/FSVATUA__c.workflow
