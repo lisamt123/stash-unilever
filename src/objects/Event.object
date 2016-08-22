@@ -104,23 +104,35 @@
         <fullName>Subject</fullName>
         <picklist>
             <picklistValues>
-                <fullName>Call</fullName>
+                <fullName>Customer contact or meeting</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Email</fullName>
+                <fullName>Attend customer event</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Meeting</fullName>
+                <fullName>Invite or engage customer at industry event</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Send Letter/Quote</fullName>
+                <fullName>Top to Top meeting</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
+                <fullName>Customer presentation, proposal, business review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conduct annual joint business planning session</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Site visit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resource engagement with customer - marketing, culinary or other</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

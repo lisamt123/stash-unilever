@@ -165,8 +165,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
 &quot;ICED TEA&quot;,30.0, 
 &quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
 &quot;K1 MEALS&quot;,35.0, 
-&quot;8Z RETAIL&quot;,45.0, 
-&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
+&quot;8Z RETAIL&quot;,45.0,
 &quot;Q1 MISCELLANEOUS&quot;,59.5, 
 0) / 100</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -200,7 +199,6 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
 &quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
 &quot;K1 MEALS&quot;,35.0, 
 &quot;8Z RETAIL&quot;,45.0, 
-&quot;H1 FLAVOUR DELIVERY SYS-SEASONING&quot;,66.8, 
 &quot;Q1 MISCELLANEOUS&quot;,59.5, 
 0) / 100</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

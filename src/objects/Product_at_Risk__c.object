@@ -47,99 +47,92 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>This object describes the relationship between Distributor Type and TemporaryTPR with regards to the Product</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
-    <enableReports>false</enableReports>
-    <enableSearch>true</enableSearch>
+    <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
-        <fullName>FS_C_C__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>TPR percentage for Distributor Type: C&amp;C</description>
+        <fullName>Distributor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>C&amp;C</label>
+        <label>Distributor</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Products at Risk</relationshipLabel>
+        <relationshipName>Products_at_Risk</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Price</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackTrending>false</trackTrending>
-        <type>Percent</type>
+        <type>Currency</type>
     </fields>
     <fields>
-        <fullName>FS_Direct__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>TPR percentage for Distributor Type: Direct</description>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>Direct</label>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Products at Risk</relationshipLabel>
+        <relationshipName>Products_at_Risk</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Risk__c</fullName>
+        <externalId>false</externalId>
+        <label>Risk</label>
+        <referenceTo>Risk__c</referenceTo>
+        <relationshipLabel>Products at Risk</relationshipLabel>
+        <relationshipName>Products_at_Risk</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity__c * Price__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackTrending>false</trackTrending>
-        <type>Percent</type>
+        <type>Currency</type>
     </fields>
-    <fields>
-        <fullName>FS_Logist__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>TPR percentage for Distributor Type: Logist</description>
-        <externalId>false</externalId>
-        <label>Logist</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_Partner__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>TPR percentage for Distributor Type: Partner</description>
-        <externalId>false</externalId>
-        <label>Partner</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_Slabco__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>TPR percentage for Distributor Type: FS_Slabco</description>
-        <externalId>false</externalId>
-        <label>Slabco</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>FS_Strategic__c</fullName>
-        <defaultValue>0</defaultValue>
-        <description>TPR percentage for Distributor Type: Strategic</description>
-        <externalId>false</externalId>
-        <label>Strategic</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <label>TemporaryTPR</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
+    <label>Product at Risk</label>
     <nameField>
-        <label>TemporaryTPR Name</label>
-        <type>Text</type>
+        <displayFormat>PAR-{0000}</displayFormat>
+        <label>Product at Risk Name</label>
+        <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>TemporaryTPR</pluralLabel>
+    <pluralLabel>Products at Risk</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

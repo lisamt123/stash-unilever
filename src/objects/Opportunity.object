@@ -602,6 +602,17 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>FS_TPRApprovedByLineManager__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Purpose: Line Manager approval flag</description>
+        <externalId>false</externalId>
+        <label>TPR Approved by Line Manager</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FS_TPRApproved__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Purpose: This will be used to flag the opportunity as TPR Approved.</description>
@@ -681,7 +692,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>box</fullName>
+                <fullName>cases</fullName>
                 <default>true</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -1881,7 +1892,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
-                <fullName>box</fullName>
+                <fullName>cases</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2206,7 +2217,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
-                <fullName>box</fullName>
+                <fullName>cases</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2523,7 +2534,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
-                <fullName>box</fullName>
+                <fullName>cases</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -2849,7 +2860,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
-                <fullName>box</fullName>
+                <fullName>cases</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3166,7 +3177,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
-                <fullName>box</fullName>
+                <fullName>cases</fullName>
                 <default>true</default>
             </values>
             <values>
@@ -3492,7 +3503,7 @@ Enter competitor pricing if available</inlineHelpText>
         <picklistValues>
             <picklist>FS_casesPiece__c</picklist>
             <values>
-                <fullName>box</fullName>
+                <fullName>cases</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3898,6 +3909,55 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorMessage>Record already passed approval process and cannot be edited.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Required_Cases_Pieces_field</fullName>
+        <active>true</active>
+        <description>Use for validating required field once Opportunity has been approved by Line Manager.</description>
+        <errorConditionFormula>FS_TPRApprovedByLineManager__c &amp;&amp;  ISBLANK( TEXT( FS_casesPiece__c ) )</errorConditionFormula>
+        <errorMessage>Cases / Pieces is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_Comment_field</fullName>
+        <active>true</active>
+        <description>Use for validating required field once Opportunity has been approved by Line Manager.</description>
+        <errorConditionFormula>FS_TPRApprovedByLineManager__c &amp;&amp;  ISBLANK( FS_Comment__c )</errorConditionFormula>
+        <errorMessage>Comment is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_Distributor_field</fullName>
+        <active>true</active>
+        <description>Use for validating required field once Opportunity has been approved by Line Manager.</description>
+        <errorConditionFormula>FS_TPRApprovedByLineManager__c &amp;&amp;  ISNULL( FS_distributor__c )</errorConditionFormula>
+        <errorMessage>Distributor is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_End_Date_TPR</fullName>
+        <active>true</active>
+        <description>Use for validating required field once Opportunity has been approved by Line Manager.</description>
+        <errorConditionFormula>FS_TPRApprovedByLineManager__c &amp;&amp; ISNULL( FS_endDateTPR__c )</errorConditionFormula>
+        <errorMessage>End Date TPR is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_Internal_Order</fullName>
+        <active>true</active>
+        <description>Use for validating required field once Opportunity has been approved by Line Manager.</description>
+        <errorConditionFormula>FS_TPRApprovedByLineManager__c  &amp;&amp;   ISBLANK(TEXT(FS_internalOrder__c))</errorConditionFormula>
+        <errorMessage>Internal Order is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_ShipToCode_Field</fullName>
+        <active>true</active>
+        <description>Use for validating required field once Opportunity has been approved by Line Manager.</description>
+        <errorConditionFormula>FS_TPRApprovedByLineManager__c  &amp;&amp;   ISNULL(ShipToCode__c)</errorConditionFormula>
+        <errorMessage>Ship to Code value is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Required_Start_Date_TPR</fullName>
+        <active>true</active>
+        <description>Use for validating required field once Opportunity has been approved by Line Manager.</description>
+        <errorConditionFormula>FS_TPRApprovedByLineManager__c &amp;&amp; ISNULL(FS_startDateTPR__c)</errorConditionFormula>
+        <errorMessage>Start Date TPR is a required field.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Samples_Line_Items_Per_Opportunity</fullName>
         <active>true</active>
         <description>The number of samples SKUs that can be ordered should be limited to 10 per opportunity</description>
@@ -3945,5 +4005,16 @@ retURL=%2F{!Opportunity.Id} &amp;
 RecordType=0128A0000000BCD &amp;
 opp11=01 – Universe</url>
     </webLinks>
-    
+    <webLinks>
+        <fullName>Send_MDM_Request_Email</fullName>
+        <availability>online</availability>
+        <description>will be used for sending email for MDM request</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Send MDM Request Email</masterLabel>
+        <openType>noSidebar</openType>
+        <page>FS_SendMDMRequestEmail</page>
+        <protected>false</protected>
+    </webLinks>
 </CustomObject>

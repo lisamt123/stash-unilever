@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>This will be used for on and off invoice of distributor type Logist</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>FS_Off_Invoice__c</fullName>
+        <externalId>false</externalId>
+        <label>Off Invoice</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FS_On_Invoice__c</fullName>
+        <externalId>false</externalId>
+        <label>On Invoice</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <label>FS Distributor Type Logist</label>
+    <visibility>Public</visibility>
+</CustomObject>

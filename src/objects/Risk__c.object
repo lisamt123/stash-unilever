@@ -92,6 +92,16 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Collective_Risk_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Collective Risk Value</label>
+        <summarizedField>Product_at_Risk__c.Total__c</summarizedField>
+        <summaryForeignKey>Product_at_Risk__c.Risk__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Date_of_Loss__c</fullName>
         <externalId>false</externalId>
         <label>Date of Loss</label>
@@ -120,10 +130,25 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>FS_Sector__c</fullName>
+        <description>It is used to store specific sector for a risk</description>
+        <externalId>false</externalId>
+        <label>Sector</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Probability__c</fullName>
         <externalId>false</externalId>
         <label>Probability</label>
         <picklist>
+            <picklistValues>
+                <fullName>0%</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>25%</fullName>
                 <default>false</default>

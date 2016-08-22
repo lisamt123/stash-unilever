@@ -1023,6 +1023,21 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>ERP_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Object storing ERP information (Sales Area)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Object storing ERP information (Sales Area)</inlineHelpText>
+        <label>ERP Product</label>
+        <referenceTo>ERP_Product__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>EndDate__c</fullName>
         <description>Purpose : Date on which the product will become inactive
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -1150,6 +1165,99 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_FI_BFPP__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>FI-BFPP</label>
+        <picklist>
+            <controllingField>FS_FI_Market__c</controllingField>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+                <controllingFieldValues>None</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_FI_Category__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>FI-Category</label>
+        <picklist>
+            <controllingField>FS_FI_Division__c</controllingField>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+                <controllingFieldValues>None</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_FI_Division__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>FI-Division</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_FI_Market__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>FI-Market</label>
+        <picklist>
+            <controllingField>FS_FI_Category__c</controllingField>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+                <controllingFieldValues>None</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_FI_SPF__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>FI-SPF</label>
+        <picklist>
+            <controllingField>FS_FI_BFPP__c</controllingField>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+                <controllingFieldValues>None</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>FS_Focus__c</fullName>
@@ -6145,6 +6253,41 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_FI_BFPP__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FI_Category__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FI_Division__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FI_Market__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FI_SPF__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_Focus__c</picklist>
             <values>
                 <fullName>BOH</fullName>
@@ -6303,7 +6446,46 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         </picklistValues>
         <picklistValues>
             <picklist>FS_TopSellers__c</picklist>
-            
+            <values>
+                <fullName>Caterpack 100 %28LYL%2FGREEN%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hellmann%27s Real %285L%2F2%2E5L%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Asian Sauces</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Beef Boullion 2%2F8 KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Boullion Mushroom 2%2F8 KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Chicken Boullion 2%2F8 KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Demi Glace</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Mash Potato</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Primerba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knorr Tomatoes</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>FS_Top_Sellers__c</picklist>

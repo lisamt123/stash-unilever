@@ -375,6 +375,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>FS_Temporary_Discount__c</fullName>
+        <description>Value of Temporary Discount of Product with regards to Distributor Type</description>
+        <externalId>false</externalId>
+        <label>Temporary Discount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>FS_additionalDiscount__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Sum of discount for Pre-paid and Self-Collection. If any of these checkboxes are checked, their corresponding discount will be added to this field.</description>
@@ -452,9 +462,9 @@
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>FS_profitCost__c</fullName>
+        <fullName>FS_productCost__c</fullName>
         <defaultValue>0</defaultValue>
-        <description>Profit Cost</description>
+        <description>Product Cost</description>
         <externalId>false</externalId>
         <label>PC</label>
         <precision>18</precision>
