@@ -1,2 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?> <CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"> IPM Global Threshold Deo Personal
-IPM_Category_Group__c <value xsi:type="xsd:string">Personal Care IPM_Category__c <value xsi:type="xsd:string">Deodorants & Fragrances IPM_Category_threshhold__c <value xsi:type="xsd:double">10000.0 IPM_Market_Cluster__c <value xsi:nil="true"/> IPM_Project_Span__c <value xsi:type="xsd:string">Global
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>IPM Global Threshold Deo Personal</label>
+    <protected>false</protected>
+    <values>
+        <field>IPM_Category_Group__c</field>
+        <value xsi:type="xsd:string">Personal Care</value>
+    </values>
+    <values>
+        <field>IPM_Category__c</field>
+        <value xsi:type="xsd:string">Deodorants &amp; Fragrances</value>
+    </values>
+    <values>
+        <field>IPM_Category_threshhold__c</field>
+        <value xsi:type="xsd:double">10000.0</value>
+    </values>
+    <values>
+        <field>IPM_Market_Cluster__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>IPM_Project_Span__c</field>
+        <value xsi:type="xsd:string">Global</value>
+    </values>
+</CustomMetadata>
