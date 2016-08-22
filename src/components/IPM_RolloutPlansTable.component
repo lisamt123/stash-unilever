@@ -366,50 +366,91 @@
                             <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
                             <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />
                                 <div class="pt20">
-                                    <table class="rollouttable editable">                                 
-                                        <tr>
-                                            <td scope="col" width="34px">
-                                                <div class="incHeight">
-                                                    <span class="rollsubhead">
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="150px">
-                                                <div>              
-                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c)),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
-                                                        {!localRollout.IPM_Rollout_Project__c}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="60px">
-                                                <div class="incHeight">              
-                                                    <span class="key wordwrap">
-                                                        <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!localRollout.KeyMCO__c}"/>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="190px">
-                                                <div class="incHeight">                                                     
-                                                    <input type="hidden" id="hiddenDateVal" /> 
-                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
-                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="checkTLDDate(this)"/> 
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="100px">
-                                            	<!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
-                                                <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
-                                                <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
-                                            </td>
-                                            <td scope="col" width="180px">
-                                                <div class="incHeight">
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="130px">
-                                                <div>
-                                                </div>
-                                            </td>                
-                                        </tr>                                    
-                                    </table>
+                                	<apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+                                	 
+	                                    <table class="rollouttable editable">                                 
+	                                        <tr>
+	                                            <td scope="col" width="34px">
+	                                                <div class="incHeight">
+	                                                    <span class="rollsubhead">
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="150px">
+	                                                <div>              
+	                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c)),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
+	                                                        {!localRollout.IPM_Rollout_Project__c}
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="60px">
+	                                                <div class="incHeight">              
+	                                                    <span class="key wordwrap">
+	                                                        <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!localRollout.KeyMCO__c}"/>
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="190px">
+	                                                <div class="incHeight">     
+	                                                                                          
+	                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
+	                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="checkTLDDate(this)"/> 
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="100px">
+	                                                <!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
+	                                                <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
+	                                                <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
+	                                            </td>
+	                                              
+	                                            <td scope="col" width="180px" ></td>
+	                                            <td scope="col" width="120px" > </td> 
+	                                            
+	                                        </tr> 
+	                                        </table>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c = 'GKM3'}">
+                                        
+	                                        <table class="rollouttable editable">                                 
+	                                        <tr>
+	                                            <td scope="col" width="34px">
+	                                                <div class="incHeight">
+	                                                    <span class="rollsubhead">
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="150px">
+	                                                <div>              
+	                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c)),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
+	                                                        {!localRollout.IPM_Rollout_Project__c}
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="60px">
+	                                                <div class="incHeight">              
+	                                                    <span class="key wordwrap">
+	                                                        <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!localRollout.KeyMCO__c}"/>
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="190px">
+	                                                <div class="incHeight">     
+	                                                                                          
+	                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
+	                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="checkTLDDate(this)"/> 
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="100px">
+	                                                <!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
+	                                                <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
+	                                                <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
+	                                            </td>
+	                                              
+	                                        </tr> 
+	                                        </table>
+                                        
+                                        </apex:outputPanel>
                                     <table class="rollouttable editable">
                                         <tr class="secrow">
                                             <td width="3%"> </td>
