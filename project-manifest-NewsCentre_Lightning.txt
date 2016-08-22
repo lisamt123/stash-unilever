@@ -1,6 +1,5 @@
 src
 src/classes
-src/classes
 src/classes/Core_NC_NewsArticleHandler.cls
 src/classes/Core_NC_NewsArticleHandler.cls-meta.xml
 src/classes/Core_NC_NewsArticleCommentCount.cls
