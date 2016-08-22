@@ -1,3 +1,3 @@
 src
 src/objects
-src/objects/FS_Monthly_Claimed_Cases__c.object
+src/objects/Contract_Product__c.object
