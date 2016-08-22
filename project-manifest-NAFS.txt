@@ -1,3 +1,13 @@
 src
 src/objects
-src/objects/FS_Account_Plan__c.object
+src/objects/FS_Contract_Product_Opportunity_Map__c.object
+src/objects/FS_MDMEmailRequestDefaultValue__c.object
+src/objects/FS_MDMEmailRequestTemplate__c.object
+src/objects/FS_MDMRequestPageMessages__c.object
+src/objects/FS_MDMRequestRecipient__c.object
+src/objects/FS_MDMRequestRecipients__c.object
+src/objects/FS_Russia_City_Region_Zone__c.object
+src/objects/FS_SalesOrgCode__c.object
+src/objects/FS_TemporaryTPR__c.object
+src/objects/FS_User_Territory__c.object
+src/objects/FS_casePiece__c.object
