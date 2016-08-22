@@ -105,7 +105,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean isPaybackInvalid{get; set;}
     public set<String> validationSettingSet;
     public String projectType; 
-	public transient Boolean isFinancialInvalidValueChanged;
+    public transient Boolean isFinancialInvalidValueChanged; 
     
     //for Exchange rate
     String[] currencies = new String[]{};
