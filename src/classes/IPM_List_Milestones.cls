@@ -96,7 +96,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             projectId = ApexPages.currentPage().getParameters().get('Pid');
         }
         projectObj = [SELECT IPM_Phase__c,IPM_Fast_Track_Project__c, IPM_CompanyCardText__c, IPM_Project_Leader__c, Is_Archieved__c, IPM_PrepareForArchival__c, IPM_Target_Launch_Dates__c,IPM_Market_Type__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_GateKeeping_Model__c,
-                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c, (SELECT Id, Name from IPM_Project_Rollout__r)  FROM IPM_Project__c WHERE Id =:projectId];
+                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c, (SELECT Id, Name from IPM_Project_Rollout__r), (SELECT Id, Name FROM Regional_Project_Rollout__r)  FROM IPM_Project__c WHERE Id =:projectId];
         projectPhase =  projectObj != null && projectObj.IPM_Phase__c != null ? projectObj.IPM_Phase__c : '';
         initializeMilestones();
         phaseMsList.sort();//customised sort
@@ -196,13 +196,18 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         }
     }
     
+    // Method to show the TLD Help Text
     public String getTLDHelpText()
     {
     	String tldHelpTextLabel = '';
     	IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectObj);
     	
-    	List<IPM_Project_Rollout__c> associatedRolloutList = projectObj.IPM_Project_Rollout__r;    	
-		
+    	List<IPM_Project_Rollout__c> associatedRolloutList = projectObj.IPM_Project_Rollout__r;   
+    	
+    	if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(projectObj.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(projectObj.IPMProject_Span__c)){
+    		associatedRolloutList = projectObj.Regional_Project_Rollout__r;
+    	}
+    			
 		if(associatedRolloutList.isEmpty() && associatedProjectType.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS && associatedProjectType.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
 		{
 			tldHelpTextLabel = DEFAULT_TLD_HELPTEXT; //Resultant Label: IPM_Before_Rollout_TLDMilestone_HelpText

@@ -590,9 +590,41 @@ private with sharing class IPM_ProjectHelper_Test
            
             List<IPM_Project_Rollout__c> dbRolloutList =  [Select Id from IPM_Project_Rollout__c where id in :localRolloutList];
             System.assertEquals(dbRolloutList.size(),localRolloutList.size(),ASSERT_ERROR_STR+localRolloutList.size());
+            insertCountry(localRolloutList);
+            /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
+            List<IPM_Project_Document__c> projectDocumentList = new List<IPM_Project_Document__c>();
+            // Already Added ProjectId's
+            for(IPM_Project__c project : projectList)
+            {
+                projectDocumentList.add(project.Project_Documents__r);
+            }  
+            insertCMIRecords(projectList, projectDocumentList);
+            for(IPM_Project__c project : projectList)
+            {
+                globalProjectIdList.add(project.Id);    
+            }
+            // Initiate Phase Change would result in Rollout Project Creation.
+            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
+            update projectListPhaseChange;
+     }
+   	private static void insertCountry(List<IPM_Project_Rollout__c>  localRolloutList)
+   	{
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             
+            List<String> iscodes = new List<String>{'AG','BR'}; 
+            List<MDO_Geography__c> geoList =  new List<MDO_Geography__c>();
+            Map<String,MDO_Geography__c> geoMap = new Map<String,MDO_Geography__c>();
+            for(String isoCode : iscodes)
+            {
+                geoList.add(new MDO_Geography__c(ISO_3166_1_Code__c = isoCode));
+            }
+            insert geoList;
+            System.assert(geoList[0].Id != null,'Geo not Created');
+            for(MDO_Geography__c geoObj : geoList)
+            {
+                geoMap.put(geoObj.ISO_3166_1_Code__c,geoObj);
+            }
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
                 String geoExternalId = '';
@@ -605,35 +637,102 @@ private with sharing class IPM_ProjectHelper_Test
                     geoExternalId = 'BR';
                 }
                 
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
+                IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geoMap.get(geoExternalId).Id,IPM_Project__c = localRollout.IPM_Project__c,
+                    local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);  
                 
                 countryList.add(tempCountry);
             }
             
             insert countryList;
-            List<IPM_Country__c> dbCountryList =  [Select Id from IPM_Country__c where id in :countryList];
-            System.assertEquals(dbCountryList.size(),countryList.size(),ASSERT_ERROR_STR+countryList.size());
-            
-            /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
+            List<IPM_Country__c> dbCountryList =  [Select Id,Country_Code__c from IPM_Country__c where id in :countryList AND MDO_Geography__r.ISO_3166_1_Code__c = 'BR'];
+            System.assert(dbCountryList.size()>0);
             
             
-             // Set GateKeeping Model as RCLT and start with Regional Project Creation.
-            for(IPM_Project__c project : projectList)
-            {
-                project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+            
             }  
+   	
+    private static void insertCMIRecords(List<IPM_Project__c> projectList, List<IPM_Project_Document__c> projectDocumentList)
+	{
+            IPM_ProjectDocumentSectionContentHandler.SKIP_TRIGGER_EXECUTION  = true;
+            IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION = true;
+            //Insert CMI Records. 
+            Map<Id,IPM_Gate_CMI__c> projectSpecificCMIGates = new Map<Id,IPM_Gate_CMI__c>();
+            List<IPM_Project_Document_Section__c> updatedDocumentSectionList = new List<IPM_Project_Document_Section__c>();
+            String selectedCountry = 'AG';
+            //Getting Gate CMI Test's and Corresponding KPI's
+        Set<Id>  alreadyAddedProjectIds = new Set<Id>();
             
-            update projectList;
-            
-            for(IPM_Project__c project : projectList)
+            Map<String,IPM_Gate_CMI_KPI_Inputs__c> testKPIMap=new Map<String,IPM_Gate_CMI_KPI_Inputs__c>();
+
+            for(IPM_Gate_CMI_KPI_Inputs__c testKPI : IPM_Gate_CMI_KPI_Inputs__c.getall().values())
             {
-                globalProjectIdList.add(project.Id);    
+                testKPIMap.put(testKPI.IPM_Test__c,testKPI);
+            }   
+            for(IPM_Project_Document__c projectDocument : [SELECT ID,IPM_Project__c,( Select Id from IPM_Project_Sections__r LIMIT 10) from IPM_Project_Document__c where Id in :projectDocumentList])
+            {
+                if(!alreadyAddedProjectIds.contains(projectDocument.IPM_Project__c))
+                {
+                    for(IPM_Project_Document_Section__c projectDocumentSection :  projectDocument.IPM_Project_Sections__r)
+                    {
+                        String cmiName = 'Charter/Concept/Idea Screener - Nielsen'; 
+                        String[] testValues = cmiName.split(IPM_ConstantUtils.Slash);
+                        IPM_Gate_CMI__c gateCMI = new IPM_Gate_CMI__c();
+                        gateCMI.IPM_Project__c = projectDocument.IPM_Project__c;
+                        gateCMI.gate__c = testValues[0];
+                        gateCMI.Element__c = testValues[1];
+                        gateCMI.Test__c = testValues[2];
+                        gateCMI.IPM_CMI_Added_At__c = 'Charter';
+                        gateCMI.Country__c = selectedCountry;
+                        if(testKPIMap.get(gateCMI.Test__c)!=null)
+                        {
+                            gateCMI.KPI__c = testKPIMap.get(gateCMI.Test__c).IPM_KPI__c;
+                            gateCMI.IPM_CMI_Overall_Colour_Score_Method__c= testKPIMap.get(gateCMI.Test__c).IPM_Overall_Colour_Score_Method__c;
+                        }   
+                        projectSpecificCMIGates.put(projectDocumentSection.Id,gateCMI);
+                        projectDocumentSection.IPM_CMI_Selected_Test_Concepts__c = cmiName;
+                        projectDocumentSection.IPM_Master_Section_External_Id__c = 'Mix_Qualification_Plan_and_Action_Standards';
+                        projectDocumentSection.IPM_CMI_Selected_Countries__c = selectedCountry;
+                        updatedDocumentSectionList.add(projectDocumentSection);
+                    } 
+                    alreadyAddedProjectIds.add(projectDocument.IPM_Project__c);
+                }
+            }
+            insert projectSpecificCMIGates.values(); 
+            update updatedDocumentSectionList;
+            
+            List<IPM_Project_Document_Section_Content__c> projDocSecConList = new List<IPM_Project_Document_Section_Content__c>();
+             //Creating Gate CMI Content         
+            for(Id projectDocSectionId : projectSpecificCMIGates.KeySet())
+            {
+                IPM_Gate_CMI_KPI_Inputs__c kpiInputs=new IPM_Gate_CMI_KPI_Inputs__c();
+                IPM_Gate_CMI__c gateCMI = projectSpecificCMIGates.get(projectDocSectionId);
+                 //Getting KPI Inputs
+                for(IPM_Gate_CMI_KPI_Inputs__c kpi:IPM_Gate_CMI_KPI_Inputs__c.getall().values())
+                {
+                    if(kpi.IPM_Test__c == gateCMI.Test__c && kpi.IPM_KPI__c == gateCMI.KPI__c)
+                    {
+                        kpiInputs=kpi;
+                    }
+                }
+                IPM_Project_Document_Section_Content__c projDocSecCon = new IPM_Project_Document_Section_Content__c();
+                projDocSecCon.IPM_Gate_CMI__c = gateCMI.Id;
+                projDocSecCon.IPM_Content_Type__c = IPM_ConstantUtils.CMIGATE_CONTENT_TYPE;
+                projDocSecCon.IPM_CMI_Country__c = selectedCountry;
+                projDocSecCon.IPM_Country__c = selectedCountry;
+                projDocSecCon.IPM_CMI_Is_Free_Text__c = true;
+                projDocSecCon.IPM_CMI_Input__c = '1';
+                projDocSecCon.IPM_Project_Document_Section__c = projectDocSectionId;
+                projDocSecCon.IPM_CMI_Overall_Colour_Coding_Method__c= kpiInputs.IPM_Overall_Colour_Score_Method__c;
+                projDocSecCon.IPM_CMI_Overall_Score_Label__c=kpiInputs.IPM_Overall_Score_Label__c;
+                projDocSecConList.add(projDocSecCon);
+            }
+            insert  projDocSecConList;
+            IPM_ProjectDocumentSectionContentHandler.SKIP_TRIGGER_EXECUTION  = false;
+            IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION = false;
+            List<IPM_Gate_CMI__c>  globalProjectCMIList = [SELECT id,IPM_CMI_Added_At__c,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c FROM IPM_Gate_CMI__c where IPM_Project__c in :projectList];
+            System.assert(globalProjectCMIList.size()>0);
             }
             
-            // Initiate Phase Change would result in Rollout Project Creation.
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
             
-            update projectListPhaseChange;
-     }
+	
 }

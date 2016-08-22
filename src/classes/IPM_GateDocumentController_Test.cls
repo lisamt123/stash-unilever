@@ -272,6 +272,21 @@ private class IPM_GateDocumentController_Test{
             System.assertEquals(ipmGateDocContrl.IsFilledIn,false,'value failed to reset');
             ipmGateDocContrl.project.IPM_ProjectSubType__c=IPM_ConstantUtils.IPM_BLG;
             ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.attachmentList=null;
+            ipmGateDocContrl.summaryAttachmentList=null;
+            ipmGateDocContrl.typeFilters=null;
+            ipmGateDocContrl.statusFilters=null;
+            ipmGateDocContrl.roleFilters=null;
+            ipmGateDocContrl.DueDateMsg=null;
+            ipmGateDocContrl.finRegional=null;
+            ipmGateDocContrl.finLocal=null;
+            ipmGateDocContrl.finProjectPriority =null;
+            ipmGateDocContrl.rollOut =null;
+            ipmGateDocContrl.parentSectionId=null;
+            ipmGateDocContrl.sectionId=null;
+            ipmGateDocContrl.regionalCPP = null;
+            ipmGateDocContrl.localCPP = null;
+            ipmGateDocContrl.reactivateProjectFlag = false;
             test.stopTest();
         }
     }  
@@ -455,4 +470,19 @@ private class IPM_GateDocumentController_Test{
         }
     }
     
+    //Test method for controller class IPM_PDocAttachmentListCtrl
+    static testMethod void IPM_PDocAttachmentListCtrlTest(){
+       initializeTestMethodData();
+        system.runAs(globalUser){
+        attachment att = new attachment(name='Gate_Document', ParentId= projectDocSecListObj[0].Id, body=blob.ValueOf('test'));
+        insert att;
+        pRef = Page.IPM_GateDocAttchList;
+        pRef.getParameters().put('id', project.Id);
+        Test.setCurrentPage(pRef);
+        Test.startTest();
+        List<Attachment> lstAttachment = [Select Id,Name from attachment where Name like :IPM_ConstantUtils.GD_ATTACHMENT_SUFFIX limit 1];
+        System.assertEquals(lstAttachment.size(),1,'Attachment missing for Gate doc.');// Negative Test
+        Test.stopTest();
+        }
+    }
 }

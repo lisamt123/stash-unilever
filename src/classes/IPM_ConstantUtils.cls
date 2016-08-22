@@ -1088,6 +1088,7 @@ public class IPM_ConstantUtils {
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';
    public static final String IPM_SUBSECTOR='Sub Sector';
+    public static final String IPM_SECTOR='Sector';
    public static final String FEEDBACK_FROM_LAST_GATE='Feedback_from_Last_Gate';
    public static final String MASTER_PROJECT_NAME = 'IPM_MasterProject';
    
@@ -1267,7 +1268,6 @@ public class IPM_ConstantUtils {
    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
     // Platform As 'Not Appliable'
    public static final string PLATFORM_NA = 'Not Applicable';
-   public static final String IPM_SECTOR='Sector';
    //IPM_Project_Phantom_NonKey valuse OTIF Report
     public static final String Nonkey = 'NONKEY';
     public static final String Project = 'PROJECT';

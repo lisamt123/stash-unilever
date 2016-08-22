@@ -297,7 +297,7 @@
                                                                     <!-- Rendered when financial record is updatebale based on security model and edit mode is true.-->
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditMode, false)}">
                                                                         <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}</div>
-                                                                        <apex:actionFunction name="cancel" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:actionFunction name="cancel" action="{!refreshFinancials}" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                         
@@ -339,8 +339,8 @@
                                                                 <!-- Rendered when there is rollout countries available and size is more than 0--> 
                                                                 <apex:outputPanel styleClass="countryLabel" rendered="{!AND(isProjectStop,associatedCountryList.size >0) }">{!$Label.IPM_RolloutCountriesLabel}
                                                                 <span class="SecButtonSet infoMarTop">
-                                                                        <a class="icoButton info smalllinfo" title="{!$Label.IPM_THE_SELECTION_HERE_DOES_NOT}"></a>
-                                                                 </span>
+                                                 						<a class="icoButton info smalllinfo" title="{!$Label.IPM_THE_SELECTION_HERE_DOES_NOT}"></a>
+                                            					 </span>
                                                                 </apex:outputPanel>
                                                                     <div class="countryCheckList clearfix">
                                                                         <apex:variable value="{!1}" var="rowNum"/>
@@ -443,7 +443,7 @@
                                                                     exRate="{!exRate}"
                                                                 />
                                                                   <!-- DEF2676 fix Start -->
-                                                                <apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">
+                                                     			<apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">
                                                                     <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Earlier_Years}" id="financialYearNavLeft" layout="block" styleClass="financialYearNavLeftDiv pull-left" rendered="{!showPrevious}">
                                                                         <apex:outputPanel id="financialYearNavLeftArrow">
                                                                            &#x21da; <apex:actionSupport event="onclick" action="{!previous}"  reRender="financialYearNav, financialYearCalendar"  status="loadingStatus" oncomplete="finScriptCallBack()" />
@@ -507,6 +507,7 @@
                                                                 fieldSuffix="{!fieldSuffix}"
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
+                                                                exRate="{!exRate}"
                                                             />
                                                          
                                                         </div>
@@ -523,7 +524,7 @@
                                                                  <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditModeBottomUp, false)}">
                                                                        <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}
                                                                        </div>
-                                                                       <apex:actionFunction name="cancel" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                       <apex:actionFunction name="cancel" action="{!refreshFinancials}" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                            <apex:param name="isEditModeBottomUp" value="false" assignTo="{!isEditModeBottomUp}"/>
                                                                        </apex:actionFunction>
                                                                        <div class="ipmButton primary" onclick="saveRecord();">{!$Label.IPM_SAVE}
@@ -542,6 +543,7 @@
                                                                 showNext="{!showNext}"
                                                                 showPrevious="{!showPrevious}"
                                                                 isEditMode="{!isEditModeBottomUp}"
+                                                                exRate="{!exRate}"
                                                             />
                                                         </div>                            
                                                     </div>
@@ -558,7 +560,7 @@
             </apex:form>
             <div id="ipmConfirmModalDiv">
                 <c:IPM_ConfirmModal />
-            </div>    
+            </div>     
         </apex:define>
     </apex:composition>
     

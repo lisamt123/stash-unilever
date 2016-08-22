@@ -128,6 +128,12 @@ private class IPM_List_Milestones_Test {
             System.assert([Select Id, IPM_Completed__c from IPM_Milestone__c WHERE Id =:ipmMilestone.Id].size() == 0, 'Milestone has not been deleted.');
             Test.stopTest();
         }
+        IPM_List_Milestones mileList = new IPM_List_Milestones();
+        mileList.isEditable = true;
+        mileList.isBDuser = true;
+        mileList.isSDateEdit = true;
+        mileList.reactivateProjectFlag = true;
+        mileList.getPaginationUIDisplay();
     }
     
     
@@ -195,6 +201,7 @@ private class IPM_List_Milestones_Test {
           		}
           	}
             Test.StopTest();
+            ipmListMilestones.toggleDueDate();
         }
 
     }

@@ -15,7 +15,7 @@
        <thead>
             <tr>
                 <apex:repeat var="header" value="{!headers}" >
-                   <th width="15%">{!header}</th>
+                    <th width="{!if(header = 'Local Project Name','24%',if(header = 'Status','12%','15%'))}">{!header}</th>
                 </apex:repeat>  
             </tr>
         </thead>
@@ -28,12 +28,12 @@
                             <apex:repeat value="{!regionalRollOutWrap.localRollOutWrapList}" var="localRollOutWrap" id="localRollRep">
                                 <tr>                      
                                     <td class="gateRolloutPadding" width="15%"><span class="gateRCountry">{!localRollOutWrap.associatedCountryString}</span></td>
-                                    <td class="gateRolloutPadding" width="15%">
+                                    <td class="gateRolloutPadding" width="10%">
                                       <apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Status__c}"  rendered="{!span = 'Global'}"/>
                                       <apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Regional_Rollout_Status__c}"  rendered="{!span = 'Regional'}"/>
                                      </td>
                                     <td class="gateRolloutPadding" width="15%"><apex:outputField value="{!localRollOutWrap.localRollOut.Target_Launch_Date__c}"/></td>
-                                    <td class="gateRolloutPadding gateRname" width="15%"><apex:outputField value="{!localRollOutWrap.localRollOut.Name}"/></td>
+                                    <td class="gateRolloutPadding gateRname" width="24%"><apex:outputField value="{!localRollOutWrap.localRollOut.Name}"/></td>
                                     <td class="gateRolloutPadding gateRname" width="15%"><apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Brand__c}" rendered="{!span != 'Local'}"/></td>                      
                                 </tr>
                             </apex:repeat>

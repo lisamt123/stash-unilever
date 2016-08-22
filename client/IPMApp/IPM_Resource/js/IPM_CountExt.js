@@ -72,7 +72,7 @@ jq(document).ready(function() {
                     var strFullText = strText1.length;
                    return editorPaste(strFullText,cplength,event);                   
                 });
-                function editorPaste(strFullText,cplength,event){
+                var editorPaste = function(strFullText,cplength,event){
                     var totCount = cplength + strFullText;
                     if(totCount >= MaxLength){
                         if (strBrowser === "IE") {
@@ -99,22 +99,9 @@ jq(document).ready(function() {
                             event.preventDefault();
                         }
                     }
-                    setTimeout(function() {
-                        var text = element.innerHTML;
-                        var wrapper = document.createElement('div');
-                        wrapper.innerHTML = text;
-                        walk_the_DOM(wrapper, function(el) {
-                            if (el.removeAttribute) {
-                                el.removeAttribute('id');
-                                el.removeAttribute('class');
-                            }
-                        });
-                        element.innerHTML = wrapper.innerHTML;
-                        strText = wrapper.textContent || wrapper.innerText;
-                        showCharacterCount(strText);
-                    }, 100);
+                    showCharacterCount();
                 }                
-                function editorCount(objTextArea, e){
+                var editorCount = function(objTextArea, e){
                     var objTextareaText = objTextArea.innerText;
                     var normalizedText = objTextareaText;
                     if (!countSpacesAsChars) {
@@ -166,11 +153,11 @@ jq(document).ready(function() {
             }
         }
     }
-    var walk_the_DOM = function walk(node, func) {
+    var walk_the_DOM = function (node, func) {
         func(node);
         node = node.firstChild;
         while (node) {
-            walk(node, func);
+            walk_the_DOM(node, func);
             node = node.nextSibling;
         }
     };
@@ -200,7 +187,7 @@ jq(document).ready(function() {
             //Strip Html tags
             normalizedText = normalizedText.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");
             // New set of code end
-            strTextArea = normalizedText;            
+            strTextArea = normalizedText;  
             var rem = MaxLength - parseInt(strTextArea.length);
             if (rem > 0) {
                 jq("#" + strLabelName).show().text(rem.toString()).prev("span").text(IPMAppSE.charRemaining);

@@ -35,10 +35,10 @@
                     <div class="finproject"></div>
                 </th>
                 <th scope="col">
-                    <div class="finproject">{!$Label.ipmFinTableASInnovationValueShare}</div>
+                    <div class="finproject">{!$Label.ipmFinTableASInnovationValueShare} %</div>
                 </th>
                 <th scope="col">
-                    <div class="finproject">{!$Label.ipmFinTableASIncrementalValueShare}</div>
+                    <div class="finproject">{!$Label.ipmFinTableASIncrementalValueShare} %</div>
                 </th>
                 <th scope="col">
                     <div class="finproject">{!$Label.ipmFinTableGDgTO} €'000</div>
