@@ -1241,7 +1241,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
     	
     	String strFYearTOFieldName = fYearTOFieldMapping.get(strScope);
-	    String strFYearGMFieldName = fYearTOFieldMapping.get(strScope);
+	    String strFYearGMFieldName = fYearGMFieldMapping.get(strScope);
     	
         if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
             {  
@@ -1338,7 +1338,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 	     public IPM_Analytics_OTIF__c setGrossValuesInnovationRollout(IPM_Financial_Year__c fr, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project_Rollout__c pr,string strScope){
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
     	String strFYearTOFieldName = fYearTOFieldMapping.get(strScope);
-	    String strFYearGMFieldName = fYearTOFieldMapping.get(strScope);
+	    String strFYearGMFieldName = fYearGMFieldMapping.get(strScope);
 	    
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
             {  
@@ -1372,7 +1372,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year__c fr,IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p,string strScope){
 	
 	    String strFYearTOFieldName = fYearTOFieldMapping.get(strScope);
-	    String strFYearGMFieldName = fYearTOFieldMapping.get(strScope); 
+	    String strFYearGMFieldName = fYearGMFieldMapping.get(strScope); 
 	    
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
              
@@ -1545,7 +1545,7 @@ public IPM_Analytics_OTIF__c setGrossValuesInnovationProject(IPM_Financial_Year_
     	
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
     	String strFYearTOFieldName = fYearTOFieldMapping.get(strScope);
-	    String strFYearGMFieldName = fYearTOFieldMapping.get(strScope);
+	    String strFYearGMFieldName = fYearGMFieldMapping.get(strScope);
         if(fr.Year__c == IPM_Utils.n1 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && String.isNotBlank(fr.PL_Type__c) && fr.Financial_External_ID__c.endswith(IPM_ConstantUtils.FINANCIAL_NONKEY) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
            
         if(fr.Charter_Approved__c || fr.Contract_Approved__c || fr.MD_Approved__c || fr.MR_Approved__c){
