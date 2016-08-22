@@ -1,4 +1,14 @@
 src
 src/objects
-src/objects/Account.object
-src/objects/Account_Relationship__c.object
+src/objects/FS_Monthly_Claimed_Cases__c.object
+src/objects/ERP_Product__c.object
+src/objects/FSDistributorTypeCnC__c.object
+src/objects/FSDistributorTypeDirectClient__c.object
+src/objects/FSDistributorTypeLogist__c.object
+src/objects/FSDistributorTypePartner__c.object
+src/objects/FSDistributorTypeSlabco__c.object
+src/objects/FSDistributorTypeStrategic__c.object
+src/objects/FSOpportunityTriggerSettings__c.object
+src/objects/FSVATRU__c.object
+src/objects/FSVATUA__c.object
+src/objects/FS_Account_Plan__c.object
