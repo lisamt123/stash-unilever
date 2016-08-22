@@ -61,7 +61,7 @@ src/classes/SAM_TriggerUtilMethods_Test.cls
 src/classes/SAM_TriggerUtilMethods_Test.cls-meta.xml
 src/documents
 src/documents/SAM_Demand
-src/documents/SAM_Demand/SAM_Logo.jpg
+src/documents/SAM_Demand/SAM Logo.jpg
 src/documents/SAM_Demand/SAM_Logo.jpg-meta.xml
 src/documents/SAM_Demand-meta.xml
 src/email
