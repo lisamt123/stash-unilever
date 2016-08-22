@@ -13,9 +13,10 @@
 <!-- 1.0 -    Kasi&Pavan   22/01/2015      INITIAL DEVELOPMENT        Phase III       -->
 <!-- 2.0 -    Sathish V    04/02/2015      Console UI Enhancement     Phase III       -->
 <!-- 3.0 -    Goverdhan S  16/12/2015      Added Consumer Note field  CSC-2755        -->
+<!-- 4.0 -    Mahesh k     01/08/2016      Phone search across all phone field   CSC-4553     -->
 <!--====================================================-->
 
-<apex:page controller="CEC_NewAccountController" tabStyle="Account" cache="true" language="{!$CurrentPage.parameters.lang}">
+<apex:page controller="CEC_NewAccountController" tabStyle="Account" cache="true" language="{!$CurrentPage.parameters.lang}">    
     <apex:stylesheet value="{!URLFOR($Resource.cec_styles, 'cec_styles.css')}"/> 
     <apex:includeScript value="{!URLFOR($Resource.jquery1112, 'jquery-1.11.2.min.js')}"/>
     <apex:includeScript value="/soap/ajax/28.0/connection.js"/>
@@ -59,21 +60,21 @@
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_Local_Indentifier}"/>
                         <apex:inputField value="{!newConsumer.Local_Identifier__c}" id="consumerLocalIdentifier" />
-                    </apex:pageBlockSectionItem>						
+                    </apex:pageBlockSectionItem>                        
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!$Label.CEC_PostCode}"/>                        
+                        <apex:outputLabel value="{!$Label.CEC_PostCode}" />                        
                         <apex:inputField id="vf_account_postalcode" value="{!newConsumer.PersonMailingPostalCode}"/>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!$Label.CEC_Street}"/>
+                        <apex:outputLabel value="{!$Label.CEC_Street}" />
                         <apex:inputField id="vf_account_street" value="{!newConsumer.PersonMailingStreet}" />    
                     </apex:pageBlockSectionItem> 
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="{!$Label.CEC_Account_Site}"/>
+                        <apex:outputLabel value="{!$Label.CEC_Account_Site}" />
                         <apex:inputField id="vf_account_site" value="{!newConsumer.Site}" />
                     </apex:pageBlockSectionItem>   
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="{!$Label.CEC_City}"/>
+                        <apex:outputLabel value="{!$Label.CEC_City}" />
                         <apex:inputField id="vf_account_city" value="{!newConsumer.PersonMailingCity}" />    
                     </apex:pageBlockSectionItem>   
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
@@ -86,16 +87,16 @@
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_Email_Label}"/>
-                        <apex:inputField value="{!newConsumer.PersonEmail}"/>    
-                    </apex:pageBlockSectionItem>    
+                        <apex:inputField id="vf_account_email" value="{!newConsumer.PersonEmail}"/>    
+                    </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_Phone}"/>
                         <apex:inputField value="{!newConsumer.Phone}" id="consumerPhoneField" />
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
                         <apex:outputLabel value="{!$Label.CEC_Unilever_Opt_In}"/>
-						<apex:inputField value="{!newConsumer.Unilever_Opt_In__c}"/>
-                    </apex:pageBlockSectionItem>	  
+                        <apex:inputField value="{!newConsumer.Unilever_Opt_In__c}"/>
+                    </apex:pageBlockSectionItem>      
                 </apex:pageBlockSection>     
             </apex:pageBlock>
         </apex:outputPanel>
@@ -119,10 +120,10 @@
                         </apex:column>                
                         <apex:column width="20%" styleClass="results-label local-identifier" breakBefore="true">
                             <apex:outputLabel value="Local Identifier:"/>
-                        </apex:column>		
+                        </apex:column>      
                         <apex:column width="80%" colspan="2" styleClass="results-data local-identifier">
                             <apex:outputLabel value="{!dupe.consumer.Local_Identifier_No_Special_Char__c}"/>
-                        </apex:column>						
+                        </apex:column>                      
                         <apex:column width="20%" styleClass="results-label partial-address" breakBefore="true">
                             <apex:outputLabel value="Address:"/>
                         </apex:column>
@@ -142,10 +143,28 @@
                             <apex:outputLabel value="{!dupe.consumer.PersonEmail}"/>
                         </apex:column>
                         <apex:column width="20%" styleClass="results-label phone bottom" breakBefore="true">
-                            <apex:outputLabel value="Phone:"/>
+                            <apex:outputLabel value="Phone 1:"/>
                         </apex:column>
                         <apex:column width="80%" colspan="2" styleClass="results-data phone bottom">
                             <apex:outputLabel value="{!dupe.consumer.Phone}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label phone additional" breakBefore="true">
+                            <apex:outputLabel value="Phone 2:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data phone additional">
+                            <apex:outputLabel value="{!dupe.consumer.PersonHomePhone}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label phone additional" breakBefore="true">
+                            <apex:outputLabel value="Phone 3:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data phone additional">
+                            <apex:outputLabel value="{!dupe.consumer.PersonMobilePhone}"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label phone additional" breakBefore="true">
+                            <apex:outputLabel value="Phone 4:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data phone additional">
+                            <apex:outputLabel value="{!dupe.consumer.PersonOtherPhone}"/>
                         </apex:column>
                         <apex:column width="20%" styleClass="results-label issue-title additional" breakBefore="true">
                             <apex:outputLabel value=""/>
@@ -183,7 +202,6 @@
         </apex:outputPanel>
     </apex:form>
     <script type="text/javascript">
-        var isPhoneValid = true;
         function refreshPrimaryTab(isContactPopulated, isTranSuccess) {
             if (isContactPopulated && isTranSuccess) {
                 sforce.console.getFocusedPrimaryTabId(doRefresh);
@@ -213,13 +231,10 @@
                 $('.tab.results').hide();
             }
         }
-
         $(document).ready(function () {
             searchMode();
         });
-
         var resultsShown = false;
-
         // Set active tab on click and switch to a workflow mode.
         function setActiveTab(tab) {
             $('.tab').removeClass('active');
@@ -236,7 +251,6 @@
                 }
             });
         }
-
         // Show/hide form/results blocks, depending on current mode.
         function show(toShow) {
             var $form = $('div.form');
@@ -256,7 +270,6 @@
                 break;
             }
         }
-
         // Mode 1: searching for an existing consumer.
         function searchMode() {
             show('form');
@@ -266,7 +279,6 @@
                 $('.tab.non-searchable').show();
             }
         }
-
         // Mode 2: displaying the consumers found using the previous search.
         function resultsMode() {
             setActiveTab('results');
@@ -279,15 +291,17 @@
                 $('.more').click(function () {
                     $(this).parent().find('td').toggleClass('current');
                     $(this).parent().nextAll().eq(0).find('.local-identifier').toggleClass('current');
-					$(this).parent().nextAll().eq(1).find('.partial-address').toggle();
+                    $(this).parent().nextAll().eq(1).find('.partial-address').toggle();
                     $(this).parent().nextAll().eq(2).find('.full-address').toggle().toggleClass('current');
                     $(this).parent().nextAll().eq(3).find('.email').toggleClass('current');
                     $(this).parent().nextAll().eq(4).find('.phone').toggleClass('bottom').toggleClass('current');
-                    $(this).parent().nextAll().eq(5).find('.additional').toggle().toggleClass('current').toggleClass('current-case-divider');
+                    $(this).parent().nextAll().eq(5).find('.additional').toggle().toggleClass('current');
                     $(this).parent().nextAll().eq(6).find('.additional').toggle().toggleClass('current');
                     $(this).parent().nextAll().eq(7).find('.additional').toggle().toggleClass('current');
-                    $(this).parent().nextAll().eq(8).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(8).find('.additional').toggle().toggleClass('current').toggleClass('current-case-divider');;
                     $(this).parent().nextAll().eq(9).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(10).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(11).find('.additional').toggle().toggleClass('current');
                 });
 
                 $('.results-footer .btn').click(function (e) {
@@ -296,7 +310,6 @@
                 });
             }
         }
-
         // Mode 3: a matching consumer was not found, a new one needs to be created.
         function createMode() {
             $('.tabs .search a').html('{!$Label.CEC_CreateContactDisplay}').parent().addClass('create').removeClass('search');
@@ -307,7 +320,6 @@
             $('.non-searchable').show();
             $('.tabs .results').hide();
         }
-
         // Mode 4: Confirmation that the new counsumer was created.
         function createdMode(isContactPopulated, isTranSuccess) {
             if (isContactPopulated && isTranSuccess) {
@@ -322,5 +334,6 @@
                 $('.tab.results').hide();
             }
         }
+
     </script>
 </apex:page>

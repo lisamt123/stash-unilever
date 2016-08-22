@@ -8,6 +8,7 @@
         	var state = response.getState();
         	if (state === "SUCCESS") {
         		if(response.getReturnValue()!==''){
+                    component.set("v.showspinner",false);
                     var updatedData = response.getReturnValue();
                     var responseData = [];
                     if(updatedData.length>0 && updatedData.length>updatedData[0].LoadMoreLimit)   {
