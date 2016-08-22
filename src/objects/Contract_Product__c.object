@@ -56,16 +56,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <fields>
-        <fullName>Actual_Quantity__c</fullName>
-        <externalId>false</externalId>
-        <label>Actual Quantity</label>
-        <summarizedField>FS_Monthly_Claimed_Cases__c.FS_Claimed_Cases_Paid__c</summarizedField>
-        <summaryForeignKey>FS_Monthly_Claimed_Cases__c.Contract_Product__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
+    
     <fields>
         <fullName>Contract__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -90,30 +81,8 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>Forecast_Quantity__c</fullName>
-        <description>Forecast Quantity from Claimed Cases actuals</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Forecast Quantity from Claimed Cases actuals</inlineHelpText>
-        <label>Forecast Quantity</label>
-        <summarizedField>FS_Monthly_Claimed_Cases__c.FS_Forecast_Quantity__c</summarizedField>
-        <summaryForeignKey>FS_Monthly_Claimed_Cases__c.Contract_Product__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Planned_Quantity__c</fullName>
-        <description>Planned Quantity (SSD)</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Planned Quantity (SSD)</inlineHelpText>
-        <label>Planned Quantity</label>
-        <summarizedField>FS_Monthly_Claimed_Cases__c.FS_Planned_Quantity__c</summarizedField>
-        <summaryForeignKey>FS_Monthly_Claimed_Cases__c.Contract_Product__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
+    
+   
     <fields>
         <fullName>Product__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
