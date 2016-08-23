@@ -14,11 +14,7 @@ src/layouts/FS_TemporaryTPR__c-TemporaryTPR Layout.layout
 src/layouts/Risk__c-Risk Layout.layout
 src/layouts/Task-Task Layout.layout
 src
-src/pages
-src/pages/FS_ContactDetailPage.page
-src/pages/FS_ContactRelatedList.page
-src/pages/FS_CreateContact.page
-src/pages/FS_GenerateMDMRequest.page
+src/tabs
 src/tabs/FS_Account_Plan__c.tab
 src/tabs/FS_Defined_Objective__c.tab
 src/tabs/FS_Segmentation__c.tab
