@@ -221,7 +221,8 @@ public with sharing class AA_AgentAppService  {
                                                                FROM aa_Agent_App_User_Preference__c              
                                                               Where UserId__c =: UserInfo.getUserId()];      
                     userPref.Category__c=requestAgentDataObj.Category__c;
-                    if(!String.isEmpty(requestAgentDataObj.Country__c)|| requestAgentDataObj.Country__c != 'null'){
+                    String checkNullValue = 'null';
+                    if(!String.isEmpty(requestAgentDataObj.Country__c)|| requestAgentDataObj.Country__c != checkNullValue){
                         userPref.Country__c=requestAgentDataObj.Country__c;
                     }else{
                         userPref.Country__c=null;
@@ -230,7 +231,7 @@ public with sharing class AA_AgentAppService  {
                     userPref.Competitor_Name__c=requestAgentDataObj.Competitor_Name__c;
                     userPref.Retailer__c=requestAgentDataObj.Retailer__c;
                     userPref.Agent_App_Unilever_Brand__c=requestAgentDataObj.Agent_App_Unilever_Brand__c;
-                    if(!String.isEmpty(objAgentAppDataRequest.ClusterId) && objAgentAppDataRequest.ClusterId != null && objAgentAppDataRequest.ClusterId != 'null'){
+                    if(!String.isEmpty(objAgentAppDataRequest.ClusterId) && objAgentAppDataRequest.ClusterId != null && objAgentAppDataRequest.ClusterId != checkNullValue){
                         userPref.Cluster__c=objAgentAppDataRequest.ClusterId;
                     }else{
                         userPref.Cluster__c=null;
@@ -537,9 +538,10 @@ public with sharing class AA_AgentAppService  {
     @AuraEnabled
     public static aa_Agent_Report__c convertRequestAgentReport(AA_WrapperClass.AgentAppDataRequest objAgentApp){
         string userids='';
-       // string topicids='';        
+       // string topicids='';
+        String checkNullValue = 'null';        
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
-        if(!String.isEmpty(objAgentApp.CountryId) && objAgentApp.CountryId != 'null' && objAgentApp.CountryId != 'Select a Country'){
+        if(!String.isEmpty(objAgentApp.CountryId) && objAgentApp.CountryId != checkNullValue && objAgentApp.CountryId != 'Select a Country'){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
         }
         newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
@@ -565,10 +567,10 @@ public with sharing class AA_AgentAppService  {
             newObjToBeInserted.TF_Mention_User__c=userids;
         } 
         //Adding cluster
-        if(!String.isEmpty(objAgentApp.ClusterId) && (objAgentApp.ClusterId != 'Select a Cluster') && (objAgentApp.ClusterId != 'null')){
+        if(!String.isEmpty(objAgentApp.ClusterId) && (objAgentApp.ClusterId != 'Select a Cluster') && (objAgentApp.ClusterId != checkNullValue)){
             newObjToBeInserted.ClusterId__c= objAgentApp.ClusterId;
         }
-         else if(!String.isEmpty(objAgentApp.CountryId)&& (objAgentApp.CountryId != 'null')){
+         else if(!String.isEmpty(objAgentApp.CountryId)&& (objAgentApp.CountryId != checkNullValue)){
                 system.debug('User did not enter country'+objAgentApp.CountryId);
                 List<aa_country__c> clustidlist=[Select Cluster_Id__c from aa_Country__c where ID =:objAgentApp.CountryId Limit 1];
                 newObjToBeInserted.ClusterId__c= clustidlist[0].Cluster_Id__c;
@@ -716,6 +718,7 @@ public with sharing class AA_AgentAppService  {
     @AuraEnabled
     public Static aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperClass.AgentAppDataRequest objAgentApp){
         //string topicids='';
+        String checkNullValue = 'null';
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
         newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
         newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
@@ -734,7 +737,7 @@ public with sharing class AA_AgentAppService  {
                 newObjToBeInserted.Sub_Topics__c  = objAgentApp.SubTopic;
             }
         }  
-        if(!String.isEmpty(objAgentApp.CountryId) && (objAgentApp.CountryId != 'null')) {
+        if(!String.isEmpty(objAgentApp.CountryId) && (objAgentApp.CountryId != checkNullValue)) {
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
         }
         newObjToBeInserted.Town__c = objAgentApp.Town;
@@ -754,11 +757,11 @@ public with sharing class AA_AgentAppService  {
         //Adding userids  to be mentioned in the feed and topics names  to be inserted
         newObjToBeInserted.TF_Mention_User__c=getCompetitorUserIds(objAgentApp.usertomentionIds);
         //Adding cluster
-        if(!String.isEmpty(objAgentApp.ClusterId)&& (objAgentApp.ClusterId != 'null')) {
+        if(!String.isEmpty(objAgentApp.ClusterId)&& (objAgentApp.ClusterId != checkNullValue)) {
             newObjToBeInserted.ClusterId__c=objAgentApp.ClusterId;
             //objAgentApp.ClusterId = 'clusterId';
         }
-         else if(!String.isEmpty(objAgentApp.CountryId)&& (objAgentApp.CountryId != 'null')){
+         else if(!String.isEmpty(objAgentApp.CountryId)&& (objAgentApp.CountryId != checkNullValue)){
                 system.debug('User does not inserted cluster value');
                 List<aa_country__c> clustidlist=[Select Cluster_Id__c from aa_Country__c where ID =:objAgentApp.CountryId Limit 1];
                 newObjToBeInserted.ClusterId__c= clustidlist[0].Cluster_Id__c;
