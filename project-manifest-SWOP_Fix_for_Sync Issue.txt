@@ -42,9 +42,6 @@ src/classes/Oblix_ProjectHandler_Test.cls
 src/classes/Oblix_ProjectHandler_Test.cls-meta.xml
 src/classes/Oblix_VersionControl_Test.cls
 src/classes/Oblix_VersionControl_Test.cls-meta.xml
-src/objects
-src/objects/Check_For_Manual_Edit_Of_Campaign__c.object
-src/objects/Oblix_SOW_Projects__c.object
 src/staticresources
 src/staticresources/Oblix_SwopAssets.resource
 src/staticresources/Oblix_SwopAssets.resource-meta.xml
