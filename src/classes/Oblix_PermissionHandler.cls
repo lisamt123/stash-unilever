@@ -742,7 +742,7 @@ public with sharing class Oblix_PermissionHandler {
         b_has_super_user_permission_set = false;
 
 
-        List<PermissionSetAssignment> li_permissions_assigned = new List<PermissionSetAssignment>();
+        //List<PermissionSetAssignment> li_permissions_assigned = new List<PermissionSetAssignment>();
         Id currentUserId = UserInfo.getUserId();   
 
         for (PermissionSetAssignment permission_set_assignment: [SELECT PermissionSet.Name 

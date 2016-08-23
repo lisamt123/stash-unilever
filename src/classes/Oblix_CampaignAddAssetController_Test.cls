@@ -352,7 +352,7 @@ private class Oblix_CampaignAddAssetController_Test {
 
         //Pick asset scoring that isn't in the basket already
         Asset_Scoring__c asset_scoring = assetScorings[assetScorings.size()-1];
-        
+        system.assert(asset_scoring!=null,'asset_scoring inserted');
         // When
         Test.startTest();
 

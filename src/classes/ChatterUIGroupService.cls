@@ -31,12 +31,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 public with sharing class ChatterUIGroupService {
 
-	public static final Integer GROUP_PAGE_SIZE = 100;
-	//maximum number of groups a user can belong to
-	public static final Integer MAX_GROUPS = 100;
-	public static final String REQUEST_STATUS_ACCEPTED = 'Accepted';
-	public static final String REQUEST_STATUS_DECLINED = 'Declined';
-	public static final String REQUEST_STATUS_PENDING = 'Pending';
+  public static final Integer GROUP_PAGE_SIZE = 100;
+  //maximum number of groups a user can belong to
+  public static final Integer MAX_GROUPS = 100;
+  public static final String REQUEST_STATUS_ACCEPTED = 'Accepted';
+  public static final String REQUEST_STATUS_DECLINED = 'Declined';
+  public static final String REQUEST_STATUS_PENDING = 'Pending';
 
     /**
      * Create a group
@@ -54,12 +54,12 @@ public with sharing class ChatterUIGroupService {
         newGroup.CollaborationType = (isPublic) ? 'Public' : 'Private';
 
         try {
-        	insert newGroup;
+          insert newGroup;
         }
         catch(DMLException de) {
-        	System.debug('Error creating Chatter group' + de);
-        	//Let caller handle exception
-        	throw de;
+          System.debug('Error creating Chatter group' + de);
+          //Let caller handle exception
+          throw de;
         }
 
         return newGroup;
@@ -78,7 +78,7 @@ public with sharing class ChatterUIGroupService {
         groupRequest.RequesterId = userId;
 
         try {
-        	insert groupRequest;
+          insert groupRequest;
         }
         catch(DMLException de) {
             System.debug('Error creating CollaborationGroupMemberRequest' + de);
@@ -143,12 +143,12 @@ public with sharing class ChatterUIGroupService {
         updatedGroup.CollaborationType = (isPublic) ? 'Public' : 'Private';
 
         try {
-        	update updatedGroup;
+          update updatedGroup;
         }
         catch(DMLException de) {
-        	System.debug('Error updating Chatter group' + de);
-        	//Let caller handle exception
-        	throw de;
+          System.debug('Error updating Chatter group' + de);
+          //Let caller handle exception
+          throw de;
         }
 
         return updatedGroup;
@@ -161,17 +161,17 @@ public with sharing class ChatterUIGroupService {
      * @return CollaborationGroupMember - the found group member. null is returned if no groupmember is found
      */
     public static CollaborationGroupMember getGroupMember(String groupId, String userId) {
-    	List<CollaborationGroupMember> members = [SELECT Id
-										    	   FROM CollaborationGroupMember
-										    	   WHERE MemberId = :userId
-										    	    AND CollaborationGroupId = :groupId];
+      List<CollaborationGroupMember> members = [SELECT Id
+                             FROM CollaborationGroupMember
+                             WHERE MemberId = :userId
+                              AND CollaborationGroupId = :groupId];
 
-		if(members.isEmpty()) {
-		  return null;
-		}
-		else {
-			return members[0];
-		}
+    if(members.isEmpty()) {
+      return null;
+    }
+    else {
+      return members[0];
+    }
     }
 
     /**
@@ -184,17 +184,17 @@ public with sharing class ChatterUIGroupService {
         Map<Id, Id> usersWithPendingRequests = new Map<Id, Id>();
 
         for(CollaborationGroupMemberRequest request : [SELECT Id, RequesterId
-										    	           FROM CollaborationGroupMemberRequest
-										    	           WHERE CollaborationGroupId = :groupId
-										    	            AND Status = :REQUEST_STATUS_PENDING
-										    	            LIMIT :GROUP_PAGE_SIZE]) {
+                                     FROM CollaborationGroupMemberRequest
+                                     WHERE CollaborationGroupId = :groupId
+                                      AND Status = :REQUEST_STATUS_PENDING
+                                      LIMIT :GROUP_PAGE_SIZE]) {
             usersWithPendingRequests.put(request.RequesterId, request.Id);
         }
 
         for(User user : [SELECT Id, Name, SmallPhotoUrl, Title, CompanyName
-				            FROM User
-				            WHERE Id IN :usersWithPendingRequests.keySet()
-				            ORDER BY Name]) {
+                    FROM User
+                    WHERE Id IN :usersWithPendingRequests.keySet()
+                    ORDER BY Name]) {
             pendingRequests.add(new GroupRequest(usersWithPendingRequests.get(user.Id), user));
         }
         return pendingRequests;
@@ -214,7 +214,7 @@ public with sharing class ChatterUIGroupService {
                                                     WHERE CollaborationGroupId = :groupId
                                                     AND MemberId = :userId];
         if(!members.isEmpty()) {
-        	delete members[0];
+          delete members[0];
         }
     }
 
@@ -228,12 +228,13 @@ public with sharing class ChatterUIGroupService {
      */
     public static GroupPage searchGroupsByName(String searchText, Integer pageNumber) {
         //ignore searches with less than 2 characters
+        Integer pageNumberIndex=pageNumber;
         if(searchText == null || searchText.length() < 2 ) {
             return new GroupPage(new List<CollaborationGroup>(), 0, 1);
         }
 
         if(pageNumber == null || pageNumber < 1) {
-            pageNumber = 1;
+            pageNumberIndex = 1;
         }
 
         String likeClause = '%' + EncodingUtil.urlDecode(searchText, 'UTF-8') +'%';
@@ -241,17 +242,17 @@ public with sharing class ChatterUIGroupService {
         Integer rowsLeft = Limits.getLimitQueryRows() - Limits.getQueryRows() - GROUP_PAGE_SIZE;
         Integer groupCount = [SELECT count() FROM CollaborationGroup WHERE Name LIKE :likeClause LIMIT :rowsLeft ];
 
-        Integer offSet = (pageNumber - 1) * GROUP_PAGE_SIZE;
+        Integer offSet = (pageNumberIndex - 1) * GROUP_PAGE_SIZE;
 
         List<CollaborationGroup> groups = [SELECT Id, Name, Description, SmallPhotoUrl, FullPhotoUrl, OwnerId, CollaborationType,
                                             (SELECT Id FROM GroupMembers WHERE MemberId = :UserInfo.getUserId())
-								            FROM CollaborationGroup
-								            WHERE Name LIKE :likeClause
-								            ORDER BY Name
-								            LIMIT :GROUP_PAGE_SIZE
-								            OFFSET :offset];
+                            FROM CollaborationGroup
+                            WHERE Name LIKE :likeClause
+                            ORDER BY Name
+                            LIMIT :GROUP_PAGE_SIZE
+                            OFFSET :offset];
 
-	   return new GroupPage(groups, groupCount, pageNumber);
+     return new GroupPage(groups, groupCount, pageNumberIndex);
     }
 
     /**
@@ -288,45 +289,45 @@ public with sharing class ChatterUIGroupService {
     */
     public class GroupPage {
 
-    	public List<CollaborationGroup> groups {get; private set;}
-    	public Map<String, List<CollaborationGroup>> mappedGroups {get; private set;}
-    	public Integer totalGroupCount  {get; private set;}
-    	public Integer nextPage  {get; private set;}
-    	public Boolean hasMore {get; private set;}
+      public List<CollaborationGroup> groups {get; private set;}
+      public Map<String, List<CollaborationGroup>> mappedGroups {get; private set;}
+      public Integer totalGroupCount  {get; private set;}
+      public Integer nextPage  {get; private set;}
+      public Boolean hasMore {get; private set;}
 
         /**
-	    * Group page constructor
-	    *
-	    * @param groups - The groups in this page.
-	    * @param totalGroupCount - the total number of groups that match the search criteria
-	    * @param currentPageNumber - the current page number.
-	    */
-    	public GroupPage(List<CollaborationGroup> groups, Integer totalGroupCount, Integer currentPageNumber) {
-    		this.groups = groups;
-    		this.totalGroupCount = totalGroupCount;
-    		this.hasMore =  (currentPageNumber * GROUP_PAGE_SIZE) < totalGroupCount;
-    		if (hasMore) {
-    		  this.nextPage = currentPageNumber + 1;
-    		}
+      * Group page constructor
+      *
+      * @param groups - The groups in this page.
+      * @param totalGroupCount - the total number of groups that match the search criteria
+      * @param currentPageNumber - the current page number.
+      */
+      public GroupPage(List<CollaborationGroup> groups, Integer totalGroupCount, Integer currentPageNumber) {
+        this.groups = groups;
+        this.totalGroupCount = totalGroupCount;
+        this.hasMore =  (currentPageNumber * GROUP_PAGE_SIZE) < totalGroupCount;
+        if (hasMore) {
+          this.nextPage = currentPageNumber + 1;
+        }
 
-    		Map<String, List<CollaborationGroup>> alphaGroups = new Map<String, List<CollaborationGroup>>();
+        Map<String, List<CollaborationGroup>> alphaGroups = new Map<String, List<CollaborationGroup>>();
 
-    		for (CollaborationGroup grp : groups) {
-    			List<CollaborationGroup> aGroup = new List<CollaborationGroup>();
-    			//create a map of groups categorized alphabetically.
-    			String alphaKey = grp.Name.substring(0, 1).toUpperCase();
+        for (CollaborationGroup grp : groups) {
+          List<CollaborationGroup> aGroup = new List<CollaborationGroup>();
+          //create a map of groups categorized alphabetically.
+          String alphaKey = grp.Name.substring(0, 1).toUpperCase();
 
-    			if (alphaGroups != null && alphaGroups.containsKey(alphaKey)) {
+          if (alphaGroups != null && alphaGroups.containsKey(alphaKey)) {
                     aGroup = alphaGroups.get(alphaKey);
-    			}
+          }
 
-    			aGroup.add(grp);
+          aGroup.add(grp);
 
                 alphaGroups.put(alphaKey, aGroup);
             }
 
             this.mappedGroups = alphaGroups;
-    	}
+      }
     }
 
     /**
@@ -334,16 +335,16 @@ public with sharing class ChatterUIGroupService {
     */
     public class GroupRequest {
 
-    	public String requestId {get; set;}
-    	public User requester {get; set;}
+      public String requestId {get; set;}
+      public User requester {get; set;}
 
         /**
         * @param requestId - Id of the CollaborationGroupMemberRequest
         * @param requester - the User who requested access to the group.
         */
-    	public GroupRequest(String requestId, User requester) {
-    		this.requestId = requestId;
-    		this.requester = requester;
-    	}
+      public GroupRequest(String requestId, User requester) {
+        this.requestId = requestId;
+        this.requester = requester;
+      }
     }
 }
