@@ -150,9 +150,11 @@ public class AA_AgentAppService_Test{
         aa_Cluster__c clusterData = new aa_Cluster__c(Name =AA_Constants.GlobalString);
         insert clusterData;
         aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Other',RecordTypeId=recTypeId1);
-        insert uniBrand; 
+        insert uniBrand;
+        AA_WrapperClass.AgentAppFilterRequest objRequest = new AA_WrapperClass.AgentAppFilterRequest();
         Test.startTest();
-        AA_AgentAppService.getfiterDataIds();
+        objRequest = AA_AgentAppService.getfiterDataIds();
+        System.assert(objRequest.GlobalClusterId != null);
         Test.stopTest();
     }
     static testMethod void getUserPreferenceTest(){
@@ -177,9 +179,13 @@ public class AA_AgentAppService_Test{
        insert retailerData2;
         aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id,Cluster__c=clusterData3.Id,Country__c= countryData2.Id,Retailer__c=retailerData2.Id,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
         insert userpref;
+        
+        aa_Agent_App_User_Preference__c objResponse = new aa_Agent_App_User_Preference__c();
+        
         Test.startTest();
         system.runAs(user){
-        AA_AgentAppService.getUserPreference();
+        objResponse = AA_AgentAppService.getUserPreference();
+        System.assert(objResponse.Id != null);
         }
         Test.stopTest();
     }
@@ -258,9 +264,11 @@ public class AA_AgentAppService_Test{
         insert compName;
         aa_Topic__c topic = new aa_Topic__c(Name = AA_Constants.Topicsample);
         insert topic;
-          Test.startTest();
-         system.runAs(user){
-         AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id, countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id);
+        AA_ApplicationWrapperObjLtng objRep = new AA_ApplicationWrapperObjLtng();
+        Test.startTest();
+        system.runAs(user){
+         objRep = AA_AgentAppService.getRetriveAllAgentReports(filterType, sortType, limitRecords, offset, applyFilter, clusterData.id, countryData.id, uniBrand.id, retailerData.id, unileverReport.Reporting_on__c, recordType, compBrand.id, compName.id, compCategory.id, topic.id);
+         system.assert(objRep.TotalAgentReportsCount != null);
      	}
         /* system.runAs(user){
              filterType='FilteredReports';
