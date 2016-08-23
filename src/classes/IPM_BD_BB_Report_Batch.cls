@@ -156,13 +156,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                   FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
-                if(fi.Local_Project__r.id !=null && fi.Local_Project__r.Name == fi.Financial_External_ID__c){
+                if(fi.Local_Project__r.id !=null && (fi.Local_Project__r.Name == fi.Financial_External_ID__c  || fi.Local_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
                     projFinMap.put(fi.Local_Project__r.id,fi);
                     financialIdSet.add(fi.id);
-                }else if(fi.Regional_Project__r.id !=null &&  fi.Financial_External_ID__c ==  fi.Regional_Project__r.Name + IPM_Utils.CONSOLIDATED ){
+                }else if(fi.Regional_Project__r.id !=null &&  (fi.Financial_External_ID__c ==  fi.Regional_Project__r.Name + IPM_Utils.CONSOLIDATED || fi.Regional_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ){
                     projFinMap.put(fi.Regional_Project__r.id,fi);
                     financialIdSet.add(fi.id);
-                }else if(fi.Parent_Project__r.id != null && fi.Financial_External_ID__c == fi.Parent_Project__r.Name + IPM_Utils.CONSOLIDATED ) {
+                }else if(fi.Parent_Project__r.id != null && (fi.Financial_External_ID__c == fi.Parent_Project__r.Name + IPM_Utils.CONSOLIDATED || fi.Parent_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
                     projFinMap.put(fi.Parent_Project__r.id,fi);
                     financialIdSet.add(fi.id);
                 }else if(fi.Regional_Project__r.id !=null &&  fi.Financial_External_ID__c == fi.Regional_Project__r.Name + IPM_ConstantUtils.FINANCIAL_NONKEY){
