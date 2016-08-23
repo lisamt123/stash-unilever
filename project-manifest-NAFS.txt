@@ -1,3 +1,9 @@
 src
 src/objects
-src/objects/Risk__c.object
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/objects/Pricebook2.object
+src/objects/PricebookEntry.object
+src/objects/Product2.object
+src/objects/Task.object
+src/objects/Accounts__c.object
