@@ -107,7 +107,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Territory__c</field>
+                <field>SAP_Territory__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -429,6 +429,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Amount__c</fields>
+        <fields>CURRENCY_ISO_CODE</fields>
+        <fields>Date_of_Loss__c</fields>
         <relatedList>Risk__c.Account__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -484,6 +487,7 @@
         <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
+    <relatedObjects>ParentId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
