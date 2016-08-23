@@ -5232,6 +5232,24 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000Xb7n_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000Xb7n</label>
+        <queue>IPM_a7IE0000000Xb7n</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000XbRf_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000XbRf</label>
+        <queue>IPM_a7IE0000000XbRf</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>
