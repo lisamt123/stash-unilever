@@ -15,10 +15,8 @@
     <inactiveIndexPage>CommunitiesLogin</inactiveIndexPage>
     <indexPage>CommunitiesLanding</indexPage>
     <masterLabel>Unilever International Distributor</masterLabel>
-    <requireHttps>true</requireHttps>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
-    <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>blessy.voola@unilever.com</siteAdmin>
+    <siteAdmin>blessy.voola@unilever.com.prod</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
     <urlPathPrefix>UID</urlPathPrefix>
