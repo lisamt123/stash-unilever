@@ -350,7 +350,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
         try{
         
-            Check_For_Manual_Edit_Of_Campaign__c me = Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
             me.Manual_Edit_Check__c = True;
             update me;
 
@@ -380,6 +380,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             
             me.Manual_Edit_Check__c = False;
             update me;
+            
 
             PageReference nextPage = Page.oblix_sowmaindetail;
             nextPage.getParameters().put('sowId', selected_project.Financial_Year__c);

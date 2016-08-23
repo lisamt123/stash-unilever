@@ -288,9 +288,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     @return : page reference  7 if new ,6 if Edit
     */
     public pageReference saveProjectAction() {
-        Check_For_Manual_Edit_Of_Campaign__c me = Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+        Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
         me.Manual_Edit_Check__c = True;
-        update me;
+        update me; 
         
         Savepoint sp;
         try {
@@ -325,7 +325,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
                 update selected_project;
                 me.Manual_Edit_Check__c = False;
-                update me;
+                update me; 
                 return reDirectToCampaignSummary();
 
             } else if(!campaignHelper.doClone && !campaignHelper.is_NFY_campaign_in_the_middle_of_rollover){ //New campaign
@@ -337,7 +337,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 insert agencyHubSplitListToInsert;
                 
                 me.Manual_Edit_Check__c = False;
-                update me;
+                update me; 
                 
                 return reDirectToAddAsset();
 
@@ -389,7 +389,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             if(sp != null) Database.rollback(sp);
             
             me.Manual_Edit_Check__c = False;
-            update me;
+            update me; 
            
            return null;
         }

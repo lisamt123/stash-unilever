@@ -43,7 +43,7 @@
         <description>set the status on individual campaigns to &quot;Sync Required&quot;  - 
 Condition - parent SOW has sync status &quot;Sync Complete&quot;</description>
         <formula>$Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == false 
-&amp;&amp; $Setup.Check_For_Manual_Edit_Of_Campaign__c.Manual_Edit_Check__c = true &amp;&amp;
+&amp;&amp; $Setup.Oblix_Check_For_Manual_Edit_Of_Campaign__c.Manual_Edit_Check__c = true &amp;&amp;
 (
 (TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos; 
 || TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;) 
