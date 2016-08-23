@@ -1,3 +1,5 @@
 src
 src/permissionsets
-src/permissionsets/FS_Sales_Rep.permissionset
+src/permissionsets/FS_AFM.permissionset
+src/permissionsets/FS_Admin.permissionset
+src/permissionsets/FS_Marketing.permissionset
