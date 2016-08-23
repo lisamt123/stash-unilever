@@ -52,7 +52,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     };
     
     private static Map<String, String> fYearTOFieldMapping; // Global, Regional Turn Over field will be mapped
-    private static Map<String, String> fYearGPFieldMapping; // Global, Regional Gross Profitfield will be mapped
     private static Map<String, String> fYearGMFieldMapping; // Global, Regional Gross Margin % will be mapped
     
     public Map<Id, Set<Id>> regRLToNKLocalRolloutMap = new Map<Id, Set<Id>>(); // This map will store Regional Rollout Id to corresponding Non key rollout ids
@@ -1558,7 +1557,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     public void prepareFinancialGenericTemplate(){
     
     	fYearTOFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Turnover_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Turnover_Regional__c',IPM_ConstantUtils.IPMLOCAL => 'Turnover_Local__c'};
-    	fYearGPFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'Gross_Profit_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'Gross_Profit_Regional__c',IPM_ConstantUtils.IPMLOCAL => 'Gross_Profit_Local__c'};
     	fYearGMFieldMapping = new Map<String, String>{IPM_ConstantUtils.IPMGLOBAL => 'GM_of_TO_Global__c', IPM_ConstantUtils.IPMREGIONAL => 'GM_of_TO_Regional__c',IPM_ConstantUtils.IPMLOCAL => 'GM_of_TO_Local__c'};
     	
     }
@@ -1573,15 +1571,39 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     
      public IPM_Analytics_OTIF__c snapshotY3Gross(IPM_Financial_Year__c fr,IPM_Analytics_OTIF__c otifAnalyticObj){
     	
-    	          otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Charter_Approved__c?fr.Turnover_Charter__c:null;
-	              otifAnalyticObj.IPM_Contract_Y3_gTO__c = fr.Contract_Approved__c?fr.Turnover_Contract__c:null;
-	              otifAnalyticObj.IPM_MD_Y3_gTO__c = fr.MD_Approved__c?fr.Turnover_MD__c:null;
-	              otifAnalyticObj.IPM_MR_Y3_gTO__c = fr.MR_Approved__c?fr.Turnover_MR__c:null;
-	              otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.Charter_Approved__c?fr.GM_of_TO_Charter__c:null;
-	              otifAnalyticObj.IPM_Contract_Y3_GM__c = fr.Contract_Approved__c?fr.GM_of_TO_Contract__c:null;
-	              otifAnalyticObj.IPM_MD_Y3_GM__c = fr.MD_Approved__c?fr.GM_of_TO_MD__c:null;
-	              otifAnalyticObj.IPM_MR_Y3_GM__c = fr.MR_Approved__c?fr.GM_of_TO_MR__c:null; 
+    	if(fr.Charter_Approved__c){	
+				  otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
+	              otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
+    	   }      
+	        else if(fr.Contract_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
+	            otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
+	        	otifAnalyticObj.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
+	            otifAnalyticObj.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
 	              
+	        }   
+	        else if(fr.MR_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
+	            otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
+	        	otifAnalyticObj.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
+	            otifAnalyticObj.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
+	            otifAnalyticObj.IPM_MR_Y3_gTO__c =fr.Turnover_MR__c;
+	            otifAnalyticObj.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;              
+	             
+			}
+	        else if(fr.MD_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
+	            otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
+	        	otifAnalyticObj.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
+	            otifAnalyticObj.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
+	            otifAnalyticObj.IPM_MR_Y3_gTO__c =fr.Turnover_MR__c;
+	            otifAnalyticObj.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;
+	        	otifAnalyticObj.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
+	            otifAnalyticObj.IPM_MD_Y3_GM__c = fr.GM_of_TO_MD__c;
+	             
+	        }
+    	          
+	             
 	      return   otifAnalyticObj;       
     }
     
@@ -1594,10 +1616,27 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
            
      public IPM_Analytics_OTIF__c snapshotY3Incremental(IPM_Financial_Year__c fr,IPM_Analytics_OTIF__c otifAnalyticObj){
      	  
-	          otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Charter_Approved__c?fr.Turnover_Charter__c:null;
-	          otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Contract_Approved__c?fr.Turnover_Contract__c:null;
-	          otifAnalyticObj.IPM_MD_Y3_iTO__c = fr.MD_Approved__c?fr.Turnover_MD__c:null;
-	          otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.MR_Approved__c?fr.Turnover_MR__c:null;
+     	  	if(fr.Charter_Approved__c){	
+	            otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
+	        
+	        }
+	        else if(fr.Contract_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
+	        	otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;	        	
+	        }   
+	        else if(fr.MR_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
+	        	otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
+	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;	        	
+	        	
+	        }
+	        else if(fr.MD_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
+	        	otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
+	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
+	        	otifAnalyticObj.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;	        	
+	        }
+	        
 	          
 	          return otifAnalyticObj;
      } 
@@ -1610,10 +1649,27 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/  
     
      public IPM_Analytics_OTIF__c snapshotY1Incremental(IPM_Financial_Year__c fr, IPM_Analytics_OTIF__c otifAnalyticObj){
-      		otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Charter_Approved__c?fr.Turnover_Charter__c:null;		//Charter Innovation Y1 iTO	 
-          	otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Contract_Approved__c?fr.Turnover_Contract__c:null;		//Contract Innovation Y1 iTO	
-         	otifAnalyticObj.IPM_MD_Y1_iTO__c = fr.MD_Approved__c?fr.Turnover_MD__c:null;					//Market Deployment Innovation Y1 iTO	
-          	otifAnalyticObj.IPM_MR_Y1_iTO__c = fr.MR_Approved__c?fr.Turnover_MR__c:null;	
+     	
+     		if(fr.Charter_Approved__c){	
+				otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
+	        }
+	        else if(fr.Contract_Approved__c){
+				otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
+          	    otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 iTO	
+	        }   
+	        else if(fr.MR_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
+          	    otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 iTO	
+	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
+				
+	        }
+	        else if(fr.MD_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
+          	    otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 iTO	
+	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
+	        	otifAnalyticObj.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;	        	
+	        }
+      		
       	   return otifAnalyticObj;
       }  
       
@@ -1627,15 +1683,38 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 
      public IPM_Analytics_OTIF__c snapshotY1Gross(IPM_Financial_Year__c fr, IPM_Analytics_OTIF__c otifAnalyticObj){
     	
-    	          otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Charter_Approved__c?fr.Turnover_Charter__c:null;		//Charter Innovation Y1 gTO 
-	              otifAnalyticObj.IPM_Contract_Y1_gTO__c = fr.Contract_Approved__c?fr.Turnover_Contract__c:null;		//Contract Innovation Y1 gTO 
-	              otifAnalyticObj.IPM_MD_Y1_gTO__c = fr.MD_Approved__c?fr.Turnover_MD__c:null;					//Market Deployment Innovation Y1 gTO 
-	              otifAnalyticObj.IPM_MR_Y1_gTO__c = fr.MR_Approved__c?fr.Turnover_MR__c:null;					//Market Ready Innovation Y1 gTO
-	              
-	              otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.Charter_Approved__c?fr.GM_of_TO_Charter__c:null;		//Charter Innovation Y1 GM%	
-	              otifAnalyticObj.IPM_Contract_Y1_GM__c = fr.Contract_Approved__c?fr.GM_of_TO_Contract__c:null;		//Contract Innovation Y1 GM%	
-	              otifAnalyticObj.IPM_MD_Y1_GM__c = fr.MD_Approved__c?fr.GM_of_TO_MD__c:null;					//Market Deployment Innovation Y1 GM%
-	              otifAnalyticObj.IPM_MR_Y1_GM__c = fr.MR_Approved__c?fr.GM_of_TO_MR__c:null;  
+    	
+    	if(fr.Charter_Approved__c){	
+				  otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
+    	          otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 	        
+	        }
+	        else if(fr.Contract_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
+    	        otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 
+	        	otifAnalyticObj.IPM_Contract_Y1_GM__c = fr.GM_of_TO_Contract__c;
+	        	otifAnalyticObj.IPM_Contract_Y1_gTO__c = fr.Turnover_Contract__c;
+				
+	        }   
+	        else if(fr.MR_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
+    	        otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 
+	        	otifAnalyticObj.IPM_Contract_Y1_GM__c = fr.GM_of_TO_Contract__c;
+	        	otifAnalyticObj.IPM_Contract_Y1_gTO__c = fr.Turnover_Contract__c;
+	        	otifAnalyticObj.IPM_MR_Y1_gTO__c = fr.Turnover_MR__c;					//Market Ready Innovation Y1 gTO
+	            otifAnalyticObj.IPM_MR_Y1_GM__c = fr.GM_of_TO_MR__c;
+			}
+	        else if(fr.MD_Approved__c){
+	        	otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
+    	        otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 
+	        	otifAnalyticObj.IPM_Contract_Y1_GM__c = fr.GM_of_TO_Contract__c;
+	        	otifAnalyticObj.IPM_Contract_Y1_gTO__c = fr.Turnover_Contract__c;
+	        	otifAnalyticObj.IPM_MR_Y1_gTO__c = fr.Turnover_MR__c;					//Market Ready Innovation Y1 gTO
+	            otifAnalyticObj.IPM_MR_Y1_GM__c = fr.GM_of_TO_MR__c;
+	        	otifAnalyticObj.IPM_MD_Y1_gTO__c = fr.Turnover_MD__c;
+				otifAnalyticObj.IPM_MD_Y1_GM__c = fr.GM_of_TO_MD__c;
+	        	        	
+	        }
+	                
     	return otifAnalyticObj;
     }            
 }
