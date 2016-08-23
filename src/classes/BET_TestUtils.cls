@@ -28,7 +28,6 @@ public class BET_TestUtils {
 		Parameters:
 		Returns: BET record
 		Throws: -
-		t
 	*************************************************************/
 	public static uw_BET__c getTestBet(){
 		MDO_Brand__c brand = new MDO_Brand__c();
