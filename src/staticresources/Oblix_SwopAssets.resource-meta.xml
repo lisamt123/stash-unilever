@@ -3,4 +3,4 @@
     <cacheControl>Public</cacheControl>
     <contentType>application/octet-stream</contentType>
     <description>js, css, images used in oblix application</description>
-</StaticResource>
+</StaticResource>    
