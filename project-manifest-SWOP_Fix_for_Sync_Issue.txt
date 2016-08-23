@@ -45,6 +45,8 @@ src/classes/Oblix_VersionControl_Test.cls-meta.xml
 src/staticresources
 src/staticresources/Oblix_SwopAssets.resource
 src/staticresources/Oblix_SwopAssets.resource-meta.xml
+src/objects
+src/objects/Oblix_SOW_Projects__c.object
 src/pages
 src/pages/Oblix_CampaignCreate.page
 src/pages/Oblix_CampaignCreate.page-meta.xml
