@@ -4,7 +4,7 @@
     
     <values>
         <field>Category_Group_Category_Name__c</field>
-        <value xsi:type="xsd:string">Personal Care_Deodorants</value>
+    <value xsi:type="xsd:string">Personal Care_Deodorants &amp; Fragrances</value>
     </values>
     <values>
         <field>Greenhouse_Gases_g__c</field>
