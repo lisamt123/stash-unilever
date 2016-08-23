@@ -188,6 +188,7 @@ private class IPM_ProjectSetUpController_Test {
             sic.project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_GLOBAL;
             sic.project.IPM_Brand_Positioning__c='Lux';
             sic.getBrandPos();
+            sic.saveProject();
                 
             
         }
@@ -275,7 +276,7 @@ private class IPM_ProjectSetUpController_Test {
             sic.processProjectSave();
             List<IPM_Project__c> updatedProjectList = [ SELECT Id,IPM_White_Space_Project__c FROM IPM_Project__c WHERE Id=:ProjectWithOutBoss.id LIMIT 1];
             system.assertEquals(updatedProjectList[0].IPM_White_Space_Project__c,false,'Project white space is :'+updatedProjectList[0].IPM_White_Space_Project__c);
-            
+            sic.saveProject();
             
         }
         
@@ -407,6 +408,7 @@ private class IPM_ProjectSetUpController_Test {
             sic.project.IPM_Phase__c =IPM_ConstantUtils.PHASE_CAPABILITY;
             sic.setIsTLDFieldEditable();//test tld is editable or not
             system.assertEquals(sic.isTLDFieldEditable,false,'TLD is not editable on page');
+            sic.saveProject();
         }
         test.stopTest();
     }
