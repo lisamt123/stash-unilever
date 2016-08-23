@@ -4018,16 +4018,5 @@ retURL=%2F{!Opportunity.Id} &amp;
 RecordType=0128A0000000BCD &amp;
 opp11=01 – Universe</url>
     </webLinks>
-    <webLinks>
-        <fullName>Send_MDM_Request_Email</fullName>
-        <availability>online</availability>
-        <description>will be used for sending email for MDM request</description>
-        <displayType>button</displayType>
-        <height>600</height>
-        <linkType>page</linkType>
-        <masterLabel>Send MDM Request Email</masterLabel>
-        <openType>noSidebar</openType>
-        <page>FS_SendMDMRequestEmail</page>
-        <protected>false</protected>
-    </webLinks>
+    
 </CustomObject>
