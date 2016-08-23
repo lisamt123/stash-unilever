@@ -1,5 +1,3 @@
 src
-src/tabs
-src/tabs/FS_Account_Plan__c.tab
-src/tabs/FS_Defined_Objective__c.tab
-src/tabs/FS_Segmentation__c.tab
+src/permissionsets
+src/permissionsets/FS_Sales_Rep.permissionset
