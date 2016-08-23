@@ -14,16 +14,16 @@ public with sharing class AF_SubResultHandler implements ITrigger{
     Set<Id>  BonusAnnualSubResult = new Set<Id>();
     Map<Id,String> BonusQuarterlySubResultMap = new Map<Id,String>();
     Set<Id>  BonusQuarterlySubResult = new Set<Id>();
-    Set<String> QuaterSet = new Set<String>();
-    Set<String> quarter = new Set<String>();
+    //Set<String> QuaterSet = new Set<String>();
+    //Set<String> quarter = new Set<String>();
     Set<Id> BonusThresholdDelId = new Set<Id>();
-    set<string> Uniquekey=new set<string>();
+    //set<string> Uniquekey=new set<string>();
     list<AF_Bonus_Results__c> BonusList=new list<AF_Bonus_Results__c>();
     Set<Id> BonusThershold = new Set<Id>();
     set<id> bonusthreshold=new set<id>();
     Set<Id> AgencyName = new set<id>();
     Set<Id> BrandName = new set<id>();
-    Set<String> year = new set<String>();
+    //Set<String> year = new set<String>();
     list<AF_Sub_Result__c> SubBonusQuarterlyList=new list<AF_Sub_Result__c>();
     list<AF_Sub_Result__c> newTriggerList=new list<AF_Sub_Result__c>();
     /***********************************************************************************
@@ -46,6 +46,10 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 *************************************************************************************/
     public void bulkAfter()
     {
+    Set<String> QuaterSet = new Set<String>();
+    set<string> year= new set<string>();
+    AF_Constants.fiscal_year=year;
+    AF_Constants.QuaterSet=QuaterSet;
     list<AF_Sub_Result__c>  SubresultTriggerNew= new list<AF_Sub_Result__c>();
     list<AF_Sub_Result__c>  bonusThrehsoldList= new list<AF_Sub_Result__c>();
         if(Trigger.isUpdate)
@@ -121,6 +125,10 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 *************************************************************************************/
     public void beforeDelete(SObject so)
     {
+    set<string> Uniquekey=new set<string>();
+    Set<String> quarter = new Set<String>();
+    AF_Constants.quarterly=quarter;
+    AF_Constants.Uniquekey=Uniquekey;
     list<AF_Sub_Result__c> triggerOldSubResult = new list<AF_Sub_Result__c>();
         AF_Sub_Result__c SubResultInstance = (AF_Sub_Result__c)so;
         BonusThershold.add(SubResultInstance.AF_Bonus_Threshold__c);
@@ -180,7 +188,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
                 if(!queryListofSubResult.isEmpty()){
                     if(Trigger.isUpdate && Trigger.isAfter)
                     {
-                        AF_subResult_Helper.subResultCalc(queryListofSubResult,status,Lock,BonusAnnualSubResult,QuaterSet,BonusQuarterlySubResult);
+                        AF_subResult_Helper.subResultCalc(queryListofSubResult,status,Lock,BonusAnnualSubResult,AF_Constants.QuaterSet,BonusQuarterlySubResult);
                         AF_subResult_Helper.subResultMap(BonusQuarterlySubResultMap);
                     }
                 }
@@ -208,8 +216,8 @@ public with sharing class AF_SubResultHandler implements ITrigger{
     list<AF_Sub_Result__c> SubResult=new list<AF_Sub_Result__c>();
     list<AF_Sub_Result__c> UpdateSubResult = new list<AF_Sub_Result__c>();
         try{
-                BonusList=[select id , AF_Bonus_Thresholds__c, AF_Qual_Bonus_Value__c, AF_Period__c,AF_Bonusable_Fees__c, AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN:BonusThershold and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId() and AF_Period__c IN:quarter];
-                SubResult=[select id, AF_Bonus_Threshold__c,AF_Bonusable_Fees__c, AF_Result_type__c,  AF_Qual_Bonus_Value__c, AF_Period__c, AF_Unique_Key__c, AF_deletion_key__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN:BonusThershold and AF_Unique_Key__c IN:Uniquekey and AF_Result_type__c=:AF_Constants.RESULT_TYPE_QUARTERLY and AF_Status__c=:AF_Constants.STATUS_DRAFT];
+                BonusList=[select id , AF_Bonus_Thresholds__c, AF_Qual_Bonus_Value__c, AF_Period__c,AF_Bonusable_Fees__c, AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN:BonusThershold and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId() and AF_Period__c IN:AF_Constants.quarterly];
+                SubResult=[select id, AF_Bonus_Threshold__c,AF_Bonusable_Fees__c, AF_Result_type__c,  AF_Qual_Bonus_Value__c, AF_Period__c, AF_Unique_Key__c, AF_deletion_key__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN:BonusThershold and AF_Unique_Key__c IN:AF_Constants.Uniquekey and AF_Result_type__c=:AF_Constants.RESULT_TYPE_QUARTERLY and AF_Status__c=:AF_Constants.STATUS_DRAFT];
                 for(AF_Sub_Result__c s:SubResult){
                     if(s.AF_Period__c==AF_Constants.QUARTER1){
                         countQ1++;
@@ -343,7 +351,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
                 AF_CheckRecursiveBonusQuarterly.run=false;
                 if(newTriggerList.size()>0){
                     Set<String> QuarterInfo = new Set<String>();
-                    SubBonusQuarterlyList=[select id,AF_Minimum__c,AF_Outstanding__c, AF_Stretching__c,AF_country__c,AF_Traditional__c,AF_Digital__c,Bonus_Measure__c,AF_deletion_key__c,AF_Bonus_Threshold__c,Sub_Result_AnnualID__c,AF_Period__c from AF_Sub_Result__c where (AF_Period__c=:AF_Constants.QUARTER1 or AF_Period__c=:AF_Constants.QUARTER2 or AF_Period__c=:AF_Constants.QUARTER3) and AF_Status__c=:AF_Constants.STATUS_DRAFT and AF_Bonus_Threshold__r.Agency_Name__c IN:AgencyName and AF_Bonus_Threshold__r.Brand_Name__c IN:BrandName and AF_Bonus_Threshold__r.Year__c IN:year and AF_Class_code__c=false];
+                    SubBonusQuarterlyList=[select id,AF_Minimum__c,AF_Outstanding__c, AF_Stretching__c,AF_country__c,AF_Traditional__c,AF_Digital__c,Bonus_Measure__c,AF_deletion_key__c,AF_Bonus_Threshold__c,Sub_Result_AnnualID__c,AF_Period__c from AF_Sub_Result__c where (AF_Period__c=:AF_Constants.QUARTER1 or AF_Period__c=:AF_Constants.QUARTER2 or AF_Period__c=:AF_Constants.QUARTER3) and AF_Status__c=:AF_Constants.STATUS_DRAFT and AF_Bonus_Threshold__r.Agency_Name__c IN:AgencyName and AF_Bonus_Threshold__r.Brand_Name__c IN:BrandName and AF_Bonus_Threshold__r.Year__c IN:AF_Constants.fiscal_year and AF_Class_code__c=false];
                     if(SubBonusQuarterlyList.size()>0){
                         for(AF_Sub_Result__c s:SubBonusQuarterlyList){
                             QuarterInfo.add(s.AF_Period__c);

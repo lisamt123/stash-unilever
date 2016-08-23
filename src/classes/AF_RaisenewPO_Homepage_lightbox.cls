@@ -35,12 +35,11 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
   public list<String> validateAddQuarter;
   public String category{get;set;} 
   public String year{get;set;}
-  Integer counter;
+  //Integer counter;
   Integer countOfSelectedBaseFee;
   public Boolean displayPopup{get;set;}
   String newQuarter;
   List<String> gapQuarter;
-  private static string className_STR=AF_RaisenewPO_Homepage_lightbox.class.getName();
   List<String>addQuarter=new List<String>();
   String brandQuarter;
   String newBrandName;
@@ -134,15 +133,17 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
     selectedBrandEstimateIds = new Set<String>();
     gapQuarter = new List<String>();
     newBrandName='';
-    String quarterformat='';
+    //String quarterformat='';
     brandQuarter='';
     displayPopup = true;
+    Integer counter;
+    AF_Constants.counter=counter;
     for(wrapChechbox B:QuarterEstimate){
       if(B.selected){
         countOfSelectedBaseFee++;
         brandQuarter = '';
         newBrandName = '';
-        quarterformat='';
+        //quarterformat='';
         newQuarter='';
         newBrandName = B.BrandRecord.Brand__r.Name +'-';     
         newBrandName=newBrandName+B.BrandRecord.AF_Agency__r.Name;
@@ -249,7 +250,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
                     addquarter.add(t);
                   }
                 }
-                counter =1;
+                AF_Constants.counter =1;
               }
             }
           }
@@ -383,7 +384,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
       }
       catch(Exception e)
           {
-              AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+              AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.classNameSTR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
               apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
           }
     }
@@ -393,7 +394,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
       }
       catch(Exception e)
             {
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.classNameSTR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
                 apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
             }
     }
@@ -404,7 +405,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
       }
       catch(Exception e)
       {
-        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.classNameSTR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
               apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
       }
     }
@@ -454,7 +455,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
       }
     }
     catch(Exception e){
-      AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+      AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.classNameSTR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
       apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
     }
     displayPopup = False;
@@ -504,7 +505,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
     }
     catch(Exception e)
         {
-            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SendEmailNotification',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.classNameSTR,'SendEmailNotification',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
         }
   }
