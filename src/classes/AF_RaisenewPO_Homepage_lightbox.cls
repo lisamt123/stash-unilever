@@ -128,6 +128,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @return: none.
 *************************************************************************************/
   public void showPopup(){
+    Integer counter=0;
     validateAddQuarter=new list<String>();
     countOfSelectedBaseFee =0;
     selectedBrandEstimateIds = new Set<String>();
@@ -136,7 +137,6 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
     //String quarterformat='';
     brandQuarter='';
     displayPopup = true;
-    Integer counter;
     AF_Constants.counter=counter;
     for(wrapChechbox B:QuarterEstimate){
       if(B.selected){

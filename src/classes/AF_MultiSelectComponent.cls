@@ -26,7 +26,7 @@ public with sharing class AF_MultiSelectComponent{
   public List<String> selectedPerList{get;set;}
   public List<String> selectedPerListBackup{get;set;}
   public List<String> AvailablePerListBackup{get;set;}
-  public List<String> permMyBackupList;
+  //public List<String> permMyBackupList;
   public Set<String> permMyBackupSet;
   public List<String> permUserBackupList;
   Public List<selectOption > pmMyListComp {get;set;}
@@ -36,8 +36,7 @@ public with sharing class AF_MultiSelectComponent{
   public String uid{get;set;}
   public List<GroupMember> gmList;
   public List<String> newDeletedList;
-  public List<PermissionSetAssignment> pList;
-  private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
+  //public List<PermissionSetAssignment> pList;
   public AF_MultiSelectComponent(){
     uid=ApexPages.currentPage().getParameters().get(AF_Constants.USERID);
     searchGroups();
@@ -54,7 +53,7 @@ public with sharing class AF_MultiSelectComponent{
     permissionIds = new Set<String>();
     pmMyListComp = new list<selectOption>();
     pmUserListComp = new list<selectOption>();
-    permMyBackupList = new List<String>();
+    //permMyBackupList = new List<String>();
     permMyBackupSet = new Set<String>();
     selectedPerListBackup = new List<String>();
     AvailablePerListBackup = new List<String>();
@@ -76,6 +75,7 @@ public with sharing class AF_MultiSelectComponent{
 *************************************************************************************/
   Public void GetMyPermissions()
   {
+    list <String> permMyBackupList =new list<string>();
     for(PermissionSetAssignment pMy:[SELECT Assignee.name,Id,PermissionSetId,PermissionSet.name FROM PermissionSetAssignment where Assigneeid=:uid and PermissionSetId IN:permissionIds]){
       pmMyListComp.add(new selectOption(pMy.PermissionSet.name,pMy.PermissionSet.name));
       permMyBackupList.add(pMy.PermissionSet.name);
@@ -308,7 +308,7 @@ public with sharing class AF_MultiSelectComponent{
       }
       catch(Exception e)
       {
-        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,saveGroupsMembers,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className,saveGroupsMembers,e.getMessage(),e.getTypeName(),e.getStackTraceString());
         apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
       }
     }
@@ -327,7 +327,7 @@ public with sharing class AF_MultiSelectComponent{
       }
       catch(Exception e)
       {
-        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,saveGroupsMembers,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className,saveGroupsMembers,e.getMessage(),e.getTypeName(),e.getStackTraceString());
         apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
       }
     }
@@ -342,6 +342,8 @@ public with sharing class AF_MultiSelectComponent{
 *  @return: none.
 *************************************************************************************/    
   public void savePermission(){
+    List<PermissionSetAssignment> pList;
+    AF_Constants.pList=pList;
     Set<String> deleteGroupsSet = new Set<String>();
     Set<String> addGroupsSet = new Set<String>();
     List<String> newSelectedList = new List<String>();
@@ -380,13 +382,13 @@ public with sharing class AF_MultiSelectComponent{
 *************************************************************************************/    
   public void savePermissionset(){
   string savePermissionset='savePermissionset';
-    if(pList.size()>0){
+    if(AF_Constants.pList.size()>0){
       try{
-        insert pList;
+        insert AF_Constants.pList;
       }
       catch(Exception e)
       {
-        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,savePermissionset,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className,savePermissionset,e.getMessage(),e.getTypeName(),e.getStackTraceString());
         apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
       }
     }
@@ -405,7 +407,7 @@ public with sharing class AF_MultiSelectComponent{
       }
       catch(Exception e)
       {
-        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,savePermissionset,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.className,savePermissionset,e.getMessage(),e.getTypeName(),e.getStackTraceString());
         apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
       }
     }
