@@ -1,5 +1,4 @@
 src
-src/permissionsets
-src/permissionsets/FS_AFM.permissionset
-src/permissionsets/FS_Admin.permissionset
-src/permissionsets/FS_Marketing.permissionset
+src/layouts
+src/layouts/Contact-FSRU Contact.layout
+src/layouts/Contact-FSUS Contact.layout
