@@ -545,6 +545,13 @@
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
+                        
+                        <!-- For only Charter the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number,###,###,###.##}">
+									<apex:param value="{!ipmFinancial.GM_Y1_bps_vs_DNDS_Charter__c*exrate}" />
+                            </apex:outputText> 
+                        </apex:outputPanel>
                     </td>
                 </tr>
                 <tr>
@@ -572,6 +579,13 @@
                             <apex:outputText value="{0, number,###,###,###.##}">
                                 <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Local__c*exrate}" />
                             </apex:outputText>
+                        </apex:outputPanel>
+                        
+                        <!-- For only Charter the following section will be rendered -->
+                        <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
+                            <apex:outputText value="{0, number,###,###,###.##}">
+                                <apex:param value="{!ipmFinancial.PBO_Y1_bps_vs_DNDS_Charter__c*exrate}" />
+                            </apex:outputText> 
                         </apex:outputPanel>
                     </td>
                 </tr>
