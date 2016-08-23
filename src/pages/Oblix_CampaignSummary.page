@@ -559,10 +559,9 @@
                                 <thead>
                                     <tr>
                                         <apex:repeat value="{!$ObjectType.Oblix_Project_Assets__c.FieldSets.Oblix_Campaign_Summary}" var="field_name">
-                                           <!-- Fix by Suresh -->
-                                           <!-- <th style="{!IF(field_name.Label == 'Record ID','display:none;','')}"> -->
-                                           <th style="{!IF(field_name.Label == $Label.Oblix_Project_Assets_Record_ID,'display:none;','')}"> 
-                                               <apex:outputLabel value="{!field_name.label}" />
+
+                                            <th style="{!IF(field_name.Label == 'Record ID','display:none;','')}">
+                                                <apex:outputLabel value="{!field_name.label}" />
                                             </th>
 
                                         </apex:repeat>
@@ -576,11 +575,9 @@
                                     <apex:repeat value="{!liso_assets}" var="asset">
                                         <apex:variable value="{!asset['Id']}" var="asset_id" />
                                         <tr>
-                                           <apex:repeat value="{!$ObjectType.Oblix_Project_Assets__c.FieldSets.Oblix_Campaign_Summary}" var="field_name">
+                                            <apex:repeat value="{!$ObjectType.Oblix_Project_Assets__c.FieldSets.Oblix_Campaign_Summary}" var="field_name">
                                                 <!-- <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" onclick="viewAssetFunction('{!asset_id}'); blockme();"> -->
-                                                <!-- Fix by Suresh -->
-                                                <!-- <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" class="{!IF(can_manage_asset, 'redirect_td', '')}"> -->
-                                                <td style="{!IF(field_name.Label == $label.Oblix_Project_Assets_Record_ID,'display:none;','')}" class="{!IF(can_manage_asset, 'redirect_td', '')}">
+                                                <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" class="{!IF(can_manage_asset, 'redirect_td', '')}">
                                                     <apex:outputText value="{0, number, ###,###.##}" rendered="{!(asset[field_name] != null && field_name.Type =='double')}">
                                                         <apex:param value="{!asset[field_name]}" />
                                                     </apex:outputText>
@@ -595,7 +592,7 @@
                                                     <!--apex:outputPanel rendered="{!IF(can_edit == false,false,true)}">
                                                             
                                                         </apex:outputPanel-->
-                                                   <apex:outputText value="{! IF(field_name == 'Asset_Type__c', LEFT(asset[field_name], FIND(' - ', asset[field_name])) ,asset[field_name]) }" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" styleclass="expandMore"> </apex:outputText>
+                                                    <apex:outputText value="{! IF(field_name == 'Asset_Type__c', LEFT(asset[field_name], FIND(' - ', asset[field_name])) ,asset[field_name]) }" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" styleclass="expandMore"> </apex:outputText>
                                                 </td>
                                             </apex:repeat>
                                             <apex:outputPanel id="deleteTableDefinition" rendered="{!IF(can_manage_asset && NOT(selected_project.Record_Locked_Sync__c),true,false)}">
@@ -736,3 +733,4 @@
         </apex:define>
     </apex:composition>
 </apex:page>
+                            
