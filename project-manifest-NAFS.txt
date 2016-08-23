@@ -1,3 +1,3 @@
 src
 src/objects
-src/objects/Product_at_Risk__c.object
+src/objects/Risk__c.object
