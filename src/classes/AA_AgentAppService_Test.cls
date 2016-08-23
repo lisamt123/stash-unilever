@@ -83,7 +83,7 @@ public class AA_AgentAppService_Test{
         aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Report_Description__c = AA_Constants.Stringwhatever ,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,TF_Mention_User__c='12345',TF_Topic_Name__c='2345');
         insert competitorReport;
         List<string> userList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
-            List<string> topicList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
+            //List<string> topicList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
                 aa_Topic__c newtopic=new aa_Topic__c(Name=AA_Constants.Topicsample,Sub_Topic__c=AA_Constants.SubtopicSample);
         
         AA_AgentAppService.insertAgentApp_Competitor(clusterData.id,countryData.id,AA_Constants.TownSample,competitorReport.Report_Title__c,competitorReport.Report_Description__c,
@@ -116,7 +116,7 @@ public class AA_AgentAppService_Test{
         insert unileverReport;
         
         List<string> userList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
-        List<string> topicList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
+        //List<string> topicList=new List<string>{AA_Constants.StringFirstRandomNumber,AA_Constants.StringSecondRandomNumber};
         FeedItem fi2 = new FeedItem();
         fi2.body = 'New Agent File uploaded';
         fi2.Type = 'TextPost' ;
@@ -127,7 +127,7 @@ public class AA_AgentAppService_Test{
         unileverReport.Status__c='Existing';
         update unileverReport;
         Test.startTest();
-        AA_ApplicationWrapperObjLtng appWrapperObj = new AA_ApplicationWrapperObjLtng();
+        //AA_ApplicationWrapperObjLtng appWrapperObj = new AA_ApplicationWrapperObjLtng();
         AA_AgentAppService.insertAgentApp(clusterData.id,countryData.id,AA_Constants.TownSample,unileverReport.Report_Title__c,unileverReport.Report_Description__c,
                                           userList,uniBrand.id,retailerData.Id,unileverReport.Reporting_on__c,recTypeId,null,null);
         system.assertEquals(unileverReport.Report_Title__c,unileverReport.Report_Title__c);
@@ -139,9 +139,9 @@ public class AA_AgentAppService_Test{
     }
     static testMethod void getfiterDataIdsTest(){
         
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
+        //Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+        //Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+        //Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
@@ -226,14 +226,14 @@ public class AA_AgentAppService_Test{
        
          String filterType=AA_Constants.MyReportSample;
          String sortType=AA_Constants.SortLatestType;
-         String showFilterType=AA_Constants.MyReportSample;
+         //String showFilterType=AA_Constants.MyReportSample;
          Integer limitRecords=12;
          Integer offset=0;
          String applyFilter='false';
          String recordType='Unilever';
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
+        //Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+        //Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+        //Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
@@ -244,9 +244,9 @@ public class AA_AgentAppService_Test{
          aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Status__c='New',Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
          insert unileverReport;
          
-         Schema.DescribeSObjectResult R2 = aa_Agent_Report__c.SObjectType.getDescribe();
-         Map<String,Schema.RecordTypeInfo> RT2 = R2.getRecordTypeInfosByName();
-         Id recTypeId2 = (RT2.get('Competitor Report')).getRecordTypeId();
+         //Schema.DescribeSObjectResult R2 = aa_Agent_Report__c.SObjectType.getDescribe();
+         //Map<String,Schema.RecordTypeInfo> RT2 = R2.getRecordTypeInfosByName();
+         //Id recTypeId2 = (RT2.get('Competitor Report')).getRecordTypeId();
          
          Schema.DescribeSObjectResult R3 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
          Map<String,Schema.RecordTypeInfo> RT3 = R3.getRecordTypeInfosByName();
