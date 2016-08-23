@@ -1,9 +1,4 @@
 src
 src/classes
-src/classes/IPM_OTIF_Report_Batch.cls
-src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
-src/classes/IPM_OTIF_Report_BatchSchedule.cls
-src/classes/IPM_OTIF_Report_BatchSchedule.cls-meta.xml
-src/reports
-src/reports/IPM_Reports
-src/reports/IPM_Reports/OTIF_Report.report
+src/classes/IPM_BD_BB_Report_Batch.cls
+src/classes/IPM_BD_BB_Report_Batch.cls-meta.xml
