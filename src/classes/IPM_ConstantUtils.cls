@@ -41,7 +41,6 @@ public class IPM_ConstantUtils {
     public static String GD_ATTACHMENT_SUFFIX = 'Gate_Document';
     public static final String COMMENT_TYPE='TextPost';
     
-    
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
     public static final String CONTRACT_GATE='Contract';
@@ -116,11 +115,14 @@ public class IPM_ConstantUtils {
     
     public static final String CONTRACT_PRODUCT ='What is the Consumer test scoring on Product?';
     public static final String CONTRACT_FULL_MIX ='What is the Consumer test scoring on Full mix?';
-    public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';       
+    public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';    
+    
     // Newly added OTIF questions 
     public static final String CONTRACT_PACK ='What is the Consumer test scoring on Pack ?';    
     public static final String CONTRACT_PRICE ='What is the Consumer test scoring on Price ?';    
-     //for gate Document
+    
+    
+    //for gate Document
     public static final String INTRODUCTION_HEADER_SEQUENCE='1';
     public static final String EXTERNAL_HEADER_SEQUENCE='2';
     public static final String MIX_HEADER_SEQUENCE='3';
@@ -183,7 +185,7 @@ public class IPM_ConstantUtils {
     public static final String STRATEGIC_FIT='Strategic Fit';
     public static final String FEEDBACK_FROM_BOSSCARD='Feedback from BOSSCARD';
     
-     //to store BOSSCARD external Id
+    //to store BOSSCARD external Id
     public static final String CONSUMER_NEED_EXTERNAL_ID='Consumer_Need';
     public static final String ENVIRONMENTAL_IMPACT_EXTERNAL_ID='Environmental_Impact';
     public static final String STRATEGIC_FIT_EXTERNAL_ID='Strategic_Fit';
@@ -193,8 +195,6 @@ public class IPM_ConstantUtils {
     public static final String CORPORATE_RISK_QUESTIONNAIRE_RECORDTYPE='Corporate Risk';
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
-    
-    public static Integer repeatCount=0;//this is to avoid  recursion in IPM_FinancialHandler class
     
     
     // financial constant
@@ -212,7 +212,6 @@ public class IPM_ConstantUtils {
     public static final string EXCEPTION_SAVEFINANCIALS='saveFinancials';
     public static final string EXCEPTION_REFRESHFROMLOCAL='refreshFromLocal';
     public static final string EXCEPTION_REFRESHFROMREGIONAL='refreshFromRegional';
-    public static final string EXCEPTION_REFRESHFROMGLOBAL='refreshFromGlobal';
     public static final string CONSOLIDATED='CONSOLIDATED';
     
     
@@ -224,11 +223,10 @@ public class IPM_ConstantUtils {
     public static String PHASE_MARKET_DEPLOYMENT='Market Deployment';
     public static String PHASE_PLE='PLE';
     public static set<String> PHASE_SET_WO_PLE = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_MARKET_DEPLOYMENT} ;
-    public static set<String> PHASE_SET_WO_MARKET_DEPLOYMENT = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_PLE} ;
-    
-    public static String IPMGLOBAL = 'Global';
+        public static set<String> PHASE_SET_WO_MARKET_DEPLOYMENT = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_PLE} ;
+            
+            public static String IPMGLOBAL = 'Global';
     public static String IPMREGIONAL = 'Regional';
-    public static String IPMLOCAL = 'Local';
     
     public static String FUNCTIONAL_ROLE_ALL='All';
     public static String FUNCTIONAL_ROLE_BD='BD';
@@ -247,10 +245,10 @@ public class IPM_ConstantUtils {
     public static String TYPE_OPTIONAL='Optional';
     public static String FUNCTIONAL_ROLE_TYPE_SUPPLY_CHAIN='Supply Chain';
     //BOSSCARD PDF Format
-     public static final String BOSSCARD_PDF_FORMAT ='_BOSSCARD-'; 
+    public static final String BOSSCARD_PDF_FORMAT ='_BOSSCARD-'; 
     
     //Servlet URL
-     public static final String SERVLET_URL='/servlet/servlet.FileDownload?file='; 
+    public static final String SERVLET_URL='/servlet/servlet.FileDownload?file='; 
     //CoreParameter field variables ends
     
     //Functional Variable for role type starts
@@ -881,14 +879,7 @@ public class IPM_ConstantUtils {
     public static final Integer BET_DUEDATE_H2_MONTH=6;
     public static final Integer BET_DUEDATE_H2_DAY=30;
     
-    public static final String GKM_1 = 'GKM1';
-    public static final String GKM_2 = 'GKM2';
-    public static final String GKM_3 = 'GKM3';
-    public static final String GKM_4 = 'GKM4';
-    public static final String GKM_5 = 'GKM5';
-    public static final String GKM_6 = 'GKM6';
-    public static final String GKM_7 = 'GKM7';
-    public static final String GKM_8 = 'GKM8';
+    
     
      
     
@@ -1032,66 +1023,66 @@ public class IPM_ConstantUtils {
    //Dynamic Image Url
     public static final string IMAGE_URL= String.valueof(URL.getSalesforceBaseUrl().toExternalForm());
     
-   // Content Type for Sections
-   public static final String CMIGATE_CONTENT_TYPE = 'CMI Gate';
-   public static final String OTIF_CONTENT_TYPE = 'OTIF';
-   public static final String EVIDENCE_CONTENT_TYPE = 'Consumer Evidence Concepts';
-   public static final String CUSTOMERCHANNELS_CONTENT_TYPE = 'Customer Channels';
-   public static final String ASSORTMENT_CONTENT_TYPE = 'Assortment Strategy';
-   public static final String ASSUMPTIONS_CONTENT_TYPE = 'Assumptions';
-   public static final String CUCOMPLEXITY_CONTENT_TYPE = 'Cu_Complexity'; 
-   public static final String SF_PROJ_DOC_SEC_ID='projDocSecId';
-   public static final String SF_CONTENT_ID='contentId';
-   public static final String SF_PROJ_DOC_SEC_CON_ID='projDocSecConId';
-   public static final String SF_DESC='desc';
-   public static final String SF_SECTION_TYPE='sectionType';
-   
-   //task pagination size
-   public static final integer NO_OF_RECORDS = 20;
-   
-
-   
-   //BET Field API Name : To be used while querying History Table
-   public final static string STRING_PROJECT_PHASE_API = 'IPM_Phase__c';
-  
-   // Rollout Background Process Job Types
-   public static final String JOBTYPE_PROJECTCREATION_ADHOC = 'Adhoc - Rollout Project Creation'; 
-   public static final String JOBTYPE_PROJECTCREATION_PHASECHANGE = 'Phase Change - Rollout Project Creation ';
-   
-   // Project Background Process Job Types
-   public static final String JOBTYPE_PHASECHANGE = 'Phase Change';
-   public static final String JOBTYPE_PROJECTCREATION =' Project Creation';
-   
-   //For Gatekeeper Checklist
-   public static final String RND='rnd';
-   public static final String RND_FEASIBILITY='rndFeasibility';
-   public static final String SC_FEASIBILITY='scFeasibility';  
-   
-   //For custom permission
-   public static final String IPM_CENTRALTEAM_PERMISSION='IPM_CentralTeam';
-   public static final String IPM_BUSINESSPARTNER_PERMISSION='IPM_Business_Partner'; 
-   public static final String IPM_SYNC_TLD='SyncTLD';
-   
-   //For exception handling
-   public static final String IPM_NG_APPLICATION='IPM NG';
-   //Company Card details
-   public static final String COMPANY_CARD_OBJECT='IPM_Company_Card__c';
-   public static final String UNILIVER_CLUSTER='Unilever Cluster';
-   public static final String COUNTRY_CLUSTER='Country Cluster';
-   
-  //For Financial Action Standards Component
-   public static final String IPM_FINANCIAL_ACTION_STANDARD='Business_Case_Action_Standards';
-   public static final Decimal IPM_FINANCIAL_ACTION_STANDARD_VALUE=0;
-   public static final String IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS='Global Action Standards';
-   public static final String IPM_FINANCIAL_ACTION_STANDARDS='Action Standards';
-   
-   //core parameter market and sub sector
-   public static final String IPM_MARKET='Market';
-   public static final String IPM_SUBSECTOR='Sub Sector';
+    // Content Type for Sections
+    public static final String CMIGATE_CONTENT_TYPE = 'CMI Gate';
+    public static final String OTIF_CONTENT_TYPE = 'OTIF';
+    public static final String EVIDENCE_CONTENT_TYPE = 'Consumer Evidence Concepts';
+    public static final String CUSTOMERCHANNELS_CONTENT_TYPE = 'Customer Channels';
+    public static final String ASSORTMENT_CONTENT_TYPE = 'Assortment Strategy';
+    public static final String ASSUMPTIONS_CONTENT_TYPE = 'Assumptions';
+    public static final String CUCOMPLEXITY_CONTENT_TYPE = 'Cu_Complexity'; 
+    public static final String SF_PROJ_DOC_SEC_ID='projDocSecId';
+    public static final String SF_CONTENT_ID='contentId';
+    public static final String SF_PROJ_DOC_SEC_CON_ID='projDocSecConId';
+    public static final String SF_DESC='desc';
+    public static final String SF_SECTION_TYPE='sectionType';
+    
+    //task pagination size
+    public static final integer NO_OF_RECORDS = 20;
+    
+    
+    
+    //BET Field API Name : To be used while querying History Table
+    public final static string STRING_PROJECT_PHASE_API = 'IPM_Phase__c';
+    
+    // Rollout Background Process Job Types
+    public static final String JOBTYPE_PROJECTCREATION_ADHOC = 'Adhoc - Rollout Project Creation'; 
+    public static final String JOBTYPE_PROJECTCREATION_PHASECHANGE = 'Phase Change - Rollout Project Creation ';
+    
+    // Project Background Process Job Types
+    public static final String JOBTYPE_PHASECHANGE = 'Phase Change';
+    public static final String JOBTYPE_PROJECTCREATION =' Project Creation';
+    
+    //For Gatekeeper Checklist
+    public static final String RND='rnd';
+    public static final String RND_FEASIBILITY='rndFeasibility';
+    public static final String SC_FEASIBILITY='scFeasibility';  
+    
+    //For custom permission
+    public static final String IPM_CENTRALTEAM_PERMISSION='IPM_CentralTeam';
+    public static final String IPM_BUSINESSPARTNER_PERMISSION='IPM_Business_Partner'; 
+    public static final String IPM_SYNC_TLD='SyncTLD';
+    
+    //For exception handling
+    public static final String IPM_NG_APPLICATION='IPM NG';
+    //Company Card details
+    public static final String COMPANY_CARD_OBJECT='IPM_Company_Card__c';
+    public static final String UNILIVER_CLUSTER='Unilever Cluster';
+    public static final String COUNTRY_CLUSTER='Country Cluster';
+    
+    //For Financial Action Standards Component
+    public static final String IPM_FINANCIAL_ACTION_STANDARD='Business_Case_Action_Standards';
+    public static final Decimal IPM_FINANCIAL_ACTION_STANDARD_VALUE=0;
+    public static final String IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS='Global Action Standards';
+    public static final String IPM_FINANCIAL_ACTION_STANDARDS='Action Standards';
+    
+    //core parameter market and sub sector
+    public static final String IPM_MARKET='Market';
+    public static final String IPM_SUBSECTOR='Sub Sector';
     public static final String IPM_SECTOR='Sector';
-   public static final String FEEDBACK_FROM_LAST_GATE='Feedback_from_Last_Gate';
-   public static final String MASTER_PROJECT_NAME = 'IPM_MasterProject';
-   
+    public static final String FEEDBACK_FROM_LAST_GATE='Feedback_from_Last_Gate';
+    public static final String MASTER_PROJECT_NAME = 'IPM_MasterProject';
+    
     
    //For BET release date messages
    public static final String BET_FIRST_RELEASE_MESSAGE_STR1 = ' will be launching on ';
@@ -1120,157 +1111,154 @@ public class IPM_ConstantUtils {
    
    //files size limit
     public static final String FILESIZE_LIMIT='exceeds the maximum size limit';
-     //security model strings
-   public static final String IPM_IPMNNAME='IPM_';
-   public static final String IPM_QUEUE='Queue';
-   public static final String IPM_PROJECTOBJECT='IPM_Project__c';
-   public static final String IPM_BOSSCARDOBJECT='IPM_Bosscard__c';
-   public static final String IPM_FINANCEOBJECT='IPM_Financial__c';
-   public static final String IPM_COUNTRYOBJECT='IPM_Country__c';
-   public static final String IPM_ROLLOUTOBJECT='IPM_Project_Rollout__c';
-   public static final String IPM_DOCUMENTSECTIONCONTENT='IPM_Project_Document_Section_Content__c';
-   
-   //BET Search related Constants
-   public final static string CATEGORY_TYPE ='Category';
-   public final static string CATEGORY_STATUS_ACTIVE = 'Active';
-   
-   //gate document section security
-   public static final String IPM_ROLLOUT_PLANS='Rollout_Plans';
-   public static final String IPM_MILESTONES_DOC='Milestones';
-   public static final String IPM_CUTOMER_OPPORTUNITY='Customer Opportunities and Challenges';
-   public static final String IPM_GATEKEEPE_CHECKLIST='Gate_Keeper_Checklist'; 
-   public static final String IPM_PACK_GRAPHICS='Pack_Graphics';
-   public static final String KEY_ISSUES_NEEDING_FOCUS_IN_GATE_MEETING='Key_Issues_needing_focus_in_Gate_Meeting';
-   
-   //Ecodesign
-   public static final String ECODESIGN_MARKET_PLACE_ACTIVITY_BLG = 'BLG';
-   public static final String ECODESIGN_PROJECT_TYPE_OPERATIONAL = 'Operational';
-   public static final String ECODESIGN_SYNC_STATUS_ERROR = 'Error';
-   public static final String ECODESIGN_SYNC_STATUS_IN_PROGRESS = 'In Progress';
-   public static final String ECODESIGN_SYNC_STATUS_READY = 'Ready';
-   public static final String ECODESIGN_SYNC_STATUS_SUCCESS = 'Success';
-   //batch class
-   public static final String IPM_BATCHAPEX='BatchApex';
-   public static final String IPM_PROCESSING='Processing';
-   public static final String IPM_PREPARE='Preparing';
-   public static final String IPM_QUEUED='Queued';
-   public static final String IPM_JOBSTATED_AT='Job Started At ';
-   public static final string IPM_QUEUE_CRNT_METHOD='queueCreation';//hold method name
-   public static final string IPM_QUEUE_UPDATE_METHOD='GroupQueueUpdate';//hold method name
-   public static final string IPM_QUEUE_UPDATENAME_METHOD='groupNameUpdate';//hold method name
-   public static final string IPM_GRP_MEM_UPDATE_METHOD='groupmemberupdate';//hold method name
-   
-   
-   public static final string IPM_HOUR = String.valueOf(Datetime.now().hour());
-   public static final string IPM_MIN = String.valueOf(Datetime.now().minute() + 10); 
-   public static final string IPM_SECOND= String.valueOf(Datetime.now().second());
-   //parse to cron expression
-   public static final string IPM_NEXT_FIRE_TIME= IPM_SECOND + ' ' + IPM_MIN + ' ' + IPM_HOUR + ' * * ?';
-   public static integer IPM_BATCHLIMIT=100;
-   //bosscard
-   public static final string IPM_Q='Q';
-   public static final string IPM_BOSSCARD_PATTERN='[a-zA-Z0-9 ]+$';
-   public static final string IPM_HOMEPAGE_URL='/apex/IPM_HomePage';
-   public static final string IPM_BOSS_CANCEL='cancel';
-   public static final string IPM_BOSS_QUARTER='getListOfQuarter';
-   public static final string IPM_BOSS_BRANDPOS='getBrandPos';
-   public static final string IPM_BOSS_CATEGORY='getCategory';
-   public static final string IPM_BOSS_COMPANYC='getAllcompanycard';
-   public static final string IPM_BOSS_DELETEBOSSC='DeleteBosscard';
-   public static final string IPM_BOSS_USERTYPE='getIpmuserType';
-   public static final string IPM_BOSS_REAMOVEAPPR='removeApprover';
-   public static final string IPM_BOSS_REMOVELOGO='removeBosscardLogo';
-   public static final string IPM_BOSS_SAVE='save';
-   public static final string IPM_BOSS_PDF_CONTENT='content-disposition';
-   public static final string IPM_BOSS_PDF_FILENAME='attachment; filename=';
-   public static final string IPM_BOSS_PDF_FORMAT='.pdf';
-   public static final string IPM_BOSS_STATUS='IPM_Bosscard_Status__c';
-   public static final string IPM_BOSS_CREATE_PROJECT = 'createProject';
-   public static final string IPM_BOSS_BOSSCARD_CTRL = 'IPM_BosscardStatusController';
-   public static final string IPM_BOSS_BOSSCARDUPDATE='updateStatus';
-   public static final string IPM_BOSS_INPROGRESS='In Progress';
-   public static final string IPM_BOSS_APPROVED='Approved';
-   public static final string IPM_BOSS_NOT_APPROVED='Not Approved';
-   public static final string IPM_BOSS_DISCARD='Discard';
-   public static final string IPM_BOSS_CHANGE_BOSS_STATUS='Change Bosscard Status';
-   public static final string IPM_BOSS_CSS_COMPLETED='completed';
-   public static final string IPM_BOSS_CSS_STATUS='status';
-   public static final string IPM_BOSS_CSS_STOPPED='stopped';
-   //For Consolidated
-   public static final String IPM_GLOBAL_CONSOLIDATED_CONTROLLER_STR = 'IPM_Global_Consolidated_Controller';
-   public static final String GET_SUMMARY_STR= 'getSummary';
-   
-   //For Brand Position status
-   public static final String BRANDPOSITION_STATUS_INACTIVE= 'Inactive';
-   public static final String BRANDPOSITION_STATUS_ACTIVE= 'Active';
-   //Image upload
-   public static final String IPM_IMGUPLOAD_ISPROJECT='isProject';
-   public static final String IPM_IMGUPLOAD_ISEDIT='isEdit';
-   public static final String IPM_IMGUPLOAD_TRUE='true';
-   public static final String IPM_IMGUPLOAD_UPLOADMETHOD='upload';
-   public static final String IPM_IMGUPLOAD_IMGSRC='<img src=';
-   public static final String IPM_IMGUPLOAD_CLOSE='>';
-   
-   public static final String IPM_UPDATECHILD_PROJECT='updateChildProjects';
-   public static final String IPM_UPDATEGLOBAL_PROJECT='updateProjectName';
-   public static final String IPM_ENVIRONMENTAL_IMPACT=system.label.IPM_Environmental_Impact;
-   
-   //coreparameter CSS
-   public static final String IPM_OPERATIONAL_SLIDER='oprtnSliderbar';
-   public static final String IPM_OPERATIONAL_BLUEPOINTER='bluePointer';
-   public static final String IPM_ANSWER_CHECKED='checked';
-   public static final String IPM_ANSWER_UNCHECKED='unchecked';
-   
-   //DML operation
-   public static final String OPERATION_INSERT ='Insert';
-   public static final String OPERATION_UPDATE ='Update';
-   
-   // 'Target Launch Date Updated From' picklist values
-   public static final String TLD_UPDATED_FROM_NONE ='None';
-   public static final String TLD_UPDATED_FROM_ROLLOUT ='Rollout';
-   public static final String TLD_UPDATED_FROM_PROJECT ='Project';
-   
-   // local project notifications (REQ02445 & REQ02446)
-   public static final String EMAIL_NOTIFICATION_BODY ='Dear {Gate Keeper}, The Target Launch Date and/or Business Case for {Project Name} have been modified post-{Phase} gate.';
-   public static final String EMAIL_NOTIFICATION_SUBJECT ='Target Launch Date and/or Business Case updated';
-   //DEF2339 & DEF2344 fix
-   public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
-   public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
-   public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
-   public static final String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
-   public static final String Original_SHIPTO_TRADE_TLD = 'Target Launch Date(Ship to Trade)';
+    //security model strings
+    public static final String IPM_IPMNNAME='IPM_';
+    public static final String IPM_QUEUE='Queue';
+    public static final String IPM_PROJECTOBJECT='IPM_Project__c';
+    public static final String IPM_BOSSCARDOBJECT='IPM_Bosscard__c';
+    public static final String IPM_FINANCEOBJECT='IPM_Financial__c';
+    public static final String IPM_COUNTRYOBJECT='IPM_Country__c';
+    public static final String IPM_ROLLOUTOBJECT='IPM_Project_Rollout__c';
+    public static final String IPM_DOCUMENTSECTIONCONTENT='IPM_Project_Document_Section_Content__c';
+    
+    //BET Search related Constants
+    public final static string CATEGORY_TYPE ='Category';
+    public final static string CATEGORY_STATUS_ACTIVE = 'Active';
+    
+    //gate document section security
+    public static final String IPM_ROLLOUT_PLANS='Rollout_Plans';
+    public static final String IPM_MILESTONES_DOC='Milestones';
+    public static final String IPM_CUTOMER_OPPORTUNITY='Customer Opportunities and Challenges';
+    public static final String IPM_GATEKEEPE_CHECKLIST='Gate_Keeper_Checklist'; 
+    public static final String IPM_PACK_GRAPHICS='Pack_Graphics';
+    public static final String KEY_ISSUES_NEEDING_FOCUS_IN_GATE_MEETING='Key_Issues_needing_focus_in_Gate_Meeting';
+    
+    //Ecodesign
+    public static final String ECODESIGN_MARKET_PLACE_ACTIVITY_BLG = 'BLG';
+    public static final String ECODESIGN_PROJECT_TYPE_OPERATIONAL = 'Operational';
+    public static final String ECODESIGN_SYNC_STATUS_ERROR = 'Error';
+    public static final String ECODESIGN_SYNC_STATUS_IN_PROGRESS = 'In Progress';
+    public static final String ECODESIGN_SYNC_STATUS_READY = 'Ready';
+    public static final String ECODESIGN_SYNC_STATUS_SUCCESS = 'Success';
+    //batch class
+    public static final String IPM_BATCHAPEX='BatchApex';
+    public static final String IPM_PROCESSING='Processing';
+    public static final String IPM_PREPARE='Preparing';
+    public static final String IPM_QUEUED='Queued';
+    public static final String IPM_JOBSTATED_AT='Job Started At ';
+    public static final string IPM_QUEUE_CRNT_METHOD='queueCreation';//hold method name
+    public static final string IPM_QUEUE_UPDATE_METHOD='GroupQueueUpdate';//hold method name
+    public static final string IPM_QUEUE_UPDATENAME_METHOD='groupNameUpdate';//hold method name
+    public static final string IPM_GRP_MEM_UPDATE_METHOD='groupmemberupdate';//hold method name
+    
+    
+    public static final string IPM_HOUR = String.valueOf(Datetime.now().hour());
+    public static final string IPM_MIN = String.valueOf(Datetime.now().minute() + 10); 
+    public static final string IPM_SECOND= String.valueOf(Datetime.now().second());
+    //parse to cron expression
+    public static final string IPM_NEXT_FIRE_TIME= IPM_SECOND + ' ' + IPM_MIN + ' ' + IPM_HOUR + ' * * ?';
+    public static integer IPM_BATCHLIMIT=100;
+    //bosscard
+    public static final string IPM_Q='Q';
+    public static final string IPM_BOSSCARD_PATTERN='[a-zA-Z0-9 ]+$';
+    public static final string IPM_HOMEPAGE_URL='/apex/IPM_HomePage';
+    public static final string IPM_BOSS_CANCEL='cancel';
+    public static final string IPM_BOSS_QUARTER='getListOfQuarter';
+    public static final string IPM_BOSS_BRANDPOS='getBrandPos';
+    public static final string IPM_BOSS_CATEGORY='getCategory';
+    public static final string IPM_BOSS_COMPANYC='getAllcompanycard';
+    public static final string IPM_BOSS_DELETEBOSSC='DeleteBosscard';
+    public static final string IPM_BOSS_USERTYPE='getIpmuserType';
+    public static final string IPM_BOSS_REAMOVEAPPR='removeApprover';
+    public static final string IPM_BOSS_REMOVELOGO='removeBosscardLogo';
+    public static final string IPM_BOSS_SAVE='save';
+    public static final string IPM_BOSS_PDF_CONTENT='content-disposition';
+    public static final string IPM_BOSS_PDF_FILENAME='attachment; filename=';
+    public static final string IPM_BOSS_PDF_FORMAT='.pdf';
+    public static final string IPM_BOSS_STATUS='IPM_Bosscard_Status__c';
+    public static final string IPM_BOSS_CREATE_PROJECT = 'createProject';
+    public static final string IPM_BOSS_BOSSCARD_CTRL = 'IPM_BosscardStatusController';
+    public static final string IPM_BOSS_BOSSCARDUPDATE='updateStatus';
+    public static final string IPM_BOSS_INPROGRESS='In Progress';
+    public static final string IPM_BOSS_APPROVED='Approved';
+    public static final string IPM_BOSS_NOT_APPROVED='Not Approved';
+    public static final string IPM_BOSS_DISCARD='Discard';
+    public static final string IPM_BOSS_CHANGE_BOSS_STATUS='Change Bosscard Status';
+    public static final string IPM_BOSS_CSS_COMPLETED='completed';
+    public static final string IPM_BOSS_CSS_STATUS='status';
+    public static final string IPM_BOSS_CSS_STOPPED='stopped';
+    //For Consolidated
+    public static final String IPM_GLOBAL_CONSOLIDATED_CONTROLLER_STR = 'IPM_Global_Consolidated_Controller';
+    public static final String GET_SUMMARY_STR= 'getSummary';
+    
+    //For Brand Position status
+    public static final String BRANDPOSITION_STATUS_INACTIVE= 'Inactive';
+    public static final String BRANDPOSITION_STATUS_ACTIVE= 'Active';
+    //Image upload
+    public static final String IPM_IMGUPLOAD_ISPROJECT='isProject';
+    public static final String IPM_IMGUPLOAD_ISEDIT='isEdit';
+    public static final String IPM_IMGUPLOAD_TRUE='true';
+    public static final String IPM_IMGUPLOAD_UPLOADMETHOD='upload';
+    public static final String IPM_IMGUPLOAD_IMGSRC='<img src=';
+    public static final String IPM_IMGUPLOAD_CLOSE='>';
+    
+    public static final String IPM_UPDATECHILD_PROJECT='updateChildProjects';
+    public static final String IPM_UPDATEGLOBAL_PROJECT='updateProjectName';
+    public static final String IPM_ENVIRONMENTAL_IMPACT=system.label.IPM_Environmental_Impact;
+    
+    //coreparameter CSS
+    public static final String IPM_OPERATIONAL_SLIDER='oprtnSliderbar';
+    public static final String IPM_OPERATIONAL_BLUEPOINTER='bluePointer';
+    public static final String IPM_ANSWER_CHECKED='checked';
+    public static final String IPM_ANSWER_UNCHECKED='unchecked';
+    
+    //DML operation
+    public static final String OPERATION_INSERT ='Insert';
+    public static final String OPERATION_UPDATE ='Update';
+    
+    // 'Target Launch Date Updated From' picklist values
+    public static final String TLD_UPDATED_FROM_NONE ='None';
+    public static final String TLD_UPDATED_FROM_ROLLOUT ='Rollout';
+    public static final String TLD_UPDATED_FROM_PROJECT ='Project';
+    
+    // local project notifications (REQ02445 & REQ02446)
+    public static final String EMAIL_NOTIFICATION_BODY ='Dear {Gate Keeper}, The Target Launch Date and/or Business Case for {Project Name} have been modified post-{Phase} gate.';
+    public static final String EMAIL_NOTIFICATION_SUBJECT ='Target Launch Date and/or Business Case updated';
+    //DEF2339 & DEF2344 fix
+    public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
+    public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
+    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
+    public static final String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+    public static final String Original_SHIPTO_TRADE_TLD = 'Target Launch Date(Ship to Trade)';
     public static final String ADDITIONAL_MILESTONE_PDL = 'Product Design Lock Milestone (Mandatory for Personal Care)';
     public static final String PERSONAL_CARE = 'Personal Care';
     
     //Milestone Duedate validation constants
     public static final String PRODUCT_DESIGN_LOCK = 'Product Design Lock';
     
-   public static final Integer KB_TO_BYTES = 1024;
-   public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
-   
-   //Market performance field names
-   
-   public static final string PERFORMANCE_PERIOD='Period__c';   
-   public static final string BREAKELINE='<br/>';
-   public static final string EURO='EUR';
-   public static final string MONITONING_PER_EXTERNAL_ID='Monitoring_Performance_in_Market';
-   public static final string MISALIGNED_CSS='misalignedField'; 
-   
-   public static final string SIX_THREE='6.3'; 
-   
-   public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c';
-   
-   public static final string Clustering = 'Clustering';
-   public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
-   public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';
-   public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
-   
-   public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
-    // Platform As 'Not Appliable'
-   public static final string PLATFORM_NA = 'Not Applicable';
-   //IPM_Project_Phantom_NonKey valuse OTIF Report
-    public static final String Nonkey = 'NONKEY';
-    public static final String Project = 'PROJECT';
-    public static final String Phantom = 'PHANTOM';
+    public static final Integer KB_TO_BYTES = 1024;
+    public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
     
+    //Market performance field names
+    
+    public static final string PERFORMANCE_PERIOD='Period__c';   
+    public static final string BREAKELINE='<br/>';
+    public static final string EURO='EUR';
+    public static final string MONITONING_PER_EXTERNAL_ID='Monitoring_Performance_in_Market';
+    public static final string MISALIGNED_CSS='misalignedField'; 
+    
+    public static final string SIX_THREE='6.3'; 
+    
+    public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c';
+    
+    public static final string Clustering = 'Clustering';
+    
+    public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
+    public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';
+    public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
+    
+    public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
+    
+    // Platform As 'Not Appliable'
+    public static final string PLATFORM_NA = 'Not Applicable';
 }

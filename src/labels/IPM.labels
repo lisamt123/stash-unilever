@@ -1,3 +1,35 @@
+	<labels>
+		<fullName>IPM_PDL_Due_Date_Before_Contract</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_PDL_Due_Date_Before_Contract</shortDescription>
+		<value>The Product Design Lock due date must be the same as, or earlier than, the Contract Gate due date.</value>
+	</labels>
+	<labels>
+		<fullName>IPM_Contract_Due_Date_After_PDL</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_Contract_Due_Date_After_PDL</shortDescription>
+		<value>The Contract Gate due date must be the same as, or after, the Product Design Lock due date.</value>
+	</labels>
+	<labels>
+		<fullName>IPM_PDL_Due_Date_After_Charter</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_PDL_Due_Date_After_Charter</shortDescription>
+		<value>The Product Design Lock due date must be on or after the Charter Gate due date.</value>
+	</labels>
+	<labels>
+		<fullName>IPM_Charter_Due_Date_Before_PDL</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_Charter_Due_Date_Before_PDL</shortDescription>
+		<value>The Charter Gate due date must be on or before both Product Design Lock and Contract Gate due date.</value>
+	</labels>
    <labels>
         <fullName>IPM_Download_All_AttachmentsBttnName</fullName>
         <language>en_US</language>
