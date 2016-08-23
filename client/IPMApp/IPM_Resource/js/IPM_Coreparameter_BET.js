@@ -11,17 +11,16 @@ jq(document).ready(function() {
     sectorPicklist();
 });
 function sectorPicklist(){
-    jq('.ccCheck').change(function(e) {
-    if (jq('.sectorposList input[type=checkbox]:checked').length > 20) {
-        jq(this).prop('checked', false);
-        jq(this).next('label').removeClass('selected');
-    }
-});
 jq(document).on('click', '.sectorposList input[type="checkbox"], .sectorposList li', function(e){
    e.stopPropagation();
 });   
 jq(document).on('show.bs.dropdown', '.sectorposListContainer', function(){
     jq(this).find('.sectorposList').show(); 
+    jq('.sectorposList .ipmCheckbox input').each(function(){
+        var mvalue = jq(this).attr('id');
+        var cvalue = mvalue.replace('amp;','&');
+        jq(this).attr('id',cvalue);
+    });
 });
 jq(document).click(function(e) {
     if( e.target.id !== 'sectorposListUL') {
@@ -48,11 +47,17 @@ jq('.ipmSectorDropbuttonscc').click(function(e) {
         } 
     });
     jq('.hiddensectorfield').val(brandPositionValue);
-    if(brandPositionValue === ''){
+    if(brandPositionValue === '' && jq('.ipmDropDownSelect').hasClass('sectorField')){
         jq('.sectorSelValues').text(IPMAppPS.sectorLabel);
     }
     else{
         jq('.sectorSelValues').text(brandPositionValue);
+    }
+    if(brandPositionValue === '' && jq('.ipmDropDownSelect').hasClass('marketField')){
+        jq('.marketSelValues').text(IPMAppPS.selectmarketLabel);
+    }
+    else{
+        jq('.marketSelValues').text(brandPositionValue);
     }
     jq(".sectorposList").hide(); 
 });  
@@ -62,6 +67,7 @@ jq('.ipmSectorDropbuttonscc').click(function(e) {
              jq(this).prop('checked', false);
            jq(this).next('label').removeClass('selected');
             jq('.sectorSelValues').text(IPMAppPS.sectorLabel);
+            jq('.marketSelValues').text(IPMAppPS.selectmarketLabel);
         });
     });     
 if( jq('.hiddensectorfield') !== null && jQuery.type(jq('.hiddensectorfield')) !== 'undefined') 
@@ -69,7 +75,12 @@ if( jq('.hiddensectorfield') !== null && jQuery.type(jq('.hiddensectorfield')) !
     var brandPicklist = jq('.hiddensectorfield').val();   
     if(jQuery.type(brandPicklist) !== "undefined" && brandPicklist.length > 0 )
     {
-        jq('.sectorSelValues').text(brandPicklist);
+         if(jq('.ipmDropDownSelect').hasClass('marketField')){
+            jq('.marketSelValues').text(brandPicklist);
+        }
+        if(jq('.ipmDropDownSelect').hasClass('sectorField')){
+            jq('.sectorSelValues').text(brandPicklist);
+        }        
         var brandArray = brandPicklist.split(',');  
         jq(".sectorposList  input[type=checkbox]").each(function(e){
             var checkboxObj = jq(this);

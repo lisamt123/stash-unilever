@@ -733,7 +733,7 @@ ul.progress-bar li.bosscard {
 	word-break:break-word;
 }
 
-.slideBar2 label:before {
+.slide-bar.slideBar2 label:before {
     background: #EDEDED;
 	    bottom: 25px;
 }
@@ -743,13 +743,13 @@ ul.progress-bar li.bosscard {
     top: 20px;
 	word-break:break-word;
 }
-.slideBar3 label:before {
+.slide-bar.slideBar3 label:before {
     background: #EDEDED;
 	    bottom: 25px;
 }
 
-.slideBar2 label.fstchild:before,
-.slideBar3 label.fstchild:before {
+.slide-bar.slideBar2 label.fstchild:before,
+.slide-bar.slideBar3 label.fstchild:before {
     background: #fff;
 }
 .slide-bar {
