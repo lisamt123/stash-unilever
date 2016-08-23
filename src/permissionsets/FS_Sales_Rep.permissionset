@@ -992,10 +992,6 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>Account.Operator</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>Account.Operators</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
