@@ -82,10 +82,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Territory__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Global_Unique_ID__c</field>
             </layoutItems>
         </layoutColumns>
@@ -320,7 +316,6 @@
         </layoutColumns>
         <style>CustomLinks</style>
     </layoutSections>
-    
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
@@ -511,7 +506,6 @@
         <fields>OPPORTUNITY.CLOSE_DATE</fields>
         <relatedList>Opportunity.FS_distributor__c</relatedList>
     </relatedLists>
-    
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>FS_Monthly_Claimed_Cases__c.FS_Distributor_Account__c</relatedList>

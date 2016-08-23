@@ -130,11 +130,7 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Sales_ORG__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_Territory__c</field>
-            </layoutItems>
+            </layoutItems>            
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Global_Unique_ID__c</field>
