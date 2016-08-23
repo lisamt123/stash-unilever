@@ -31,10 +31,7 @@
         .slds .slds-publisher__actions > .slds-button {
         margin-left: 0.1rem !important;
         margin-top: 10px;
-        }
-        .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1){
-        display: none!important;
-        }        
+        }      
          .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1) {
         display: none!important;
         } 
@@ -206,15 +203,12 @@
                         
                     </div>
                     <!--<input type="text"/>
-                        <div onclick="{!c.postChatterInfo}">  POST </div>-->
-                    <!--<forceChatter:feed type="Record" subjectId="{!v.newsId}"/>-->
-                <!--Ligthning Chatter Feed:News App Enhancements-->
                         <div onclick="{!c.postChatterInfo}">  POST </div> 
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/> -->
                 <!-- Ligthning Chatter Feed:News App Enhancements -->
-                	<c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
-                	<c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
+                    <c:ChatterPublisherCmp subjectId="{!v.newsId}" feedType="Record"/>  
+                    <c:ChatterFeedCmp subjectId="{!v.newsId}" feedType="Record"/> 
             </div>
-    	</div>                 
+        </div>                 
     </div>
-</aura:component>
+</aura:component> 
