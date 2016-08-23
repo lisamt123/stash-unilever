@@ -1,14 +1,3 @@
 src
-src/classes
-src/classes/FS_Account_Planning_Test.cls
-src/classes/FS_Account_Planning_Test.cls-meta.xml
-src/classes/FS_CentrallyLedChildAccount_Pic_Test.cls
-src/classes/FS_CentrallyLedChildAccount_Pic_Test.cls-meta.xml
-src/classes/FS_MABE_Test.cls
-src/classes/FS_MABE_Test.cls-meta.xml
-src/classes/FS_OpportunityTrigger_Test.cls
-src/classes/FS_OpportunityTrigger_Test.cls-meta.xml
-src/classes/FS_ContactDetailHelper_CC_Test.cls
-src/classes/FS_ContactDetailHelper_CC_Test.cls-meta.xml
-src/classes/FS_SendMDMRequestEmail_CX_Test.cls
-src/classes/FS_SendMDMRequestEmail_CX_Test.cls-meta.xml
+src/permissionsets
+src/permissionsets/FS_Sales_Rep.permissionset
