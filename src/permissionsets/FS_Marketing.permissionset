@@ -27,11 +27,7 @@
     <classAccesses>
         <apexClass>FS_ContactDetailHelper_CC_Test</apexClass>
         <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>FS_ContactDetail_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+    </classAccesses>    
     <classAccesses>
         <apexClass>FS_ContactExtend_CE</apexClass>
         <enabled>false</enabled>
