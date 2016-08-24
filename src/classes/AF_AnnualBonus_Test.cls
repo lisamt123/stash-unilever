@@ -18,7 +18,7 @@ public class AF_AnnualBonus_Test
     private static String Year = AF_Constants.YEAR;
     private static String ANNUAL_BONUS='The AnnualBonus records are inserted';
     private static String QUARTERLY_BONUS='The QuarterlyBonus records are inserted';
-    private static string className_STR=AF_AfterUpdateBonusResHandler.class.getName();
+    //private static string className_STR=AF_AfterUpdateBonusResHandler.class.getName();
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AFannualBonus
@@ -501,6 +501,7 @@ public class AF_AnnualBonus_Test
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
             //insert sub Results.
             List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,true);
+            system.assert(true,subResults!=null);
             List<AF_Bonus_Results__c> BonusResultQuery = [SELECT ID,AF_Bonus_Thresholds__c FROM AF_Bonus_Results__c WHERE RecordTypeId=:AF_TestFactory_Helper.AF_BONUS_RESULTS_RECTYPE LIMIT 1];
             System.assertEquals(BonusResultQuery[0].AF_Bonus_Thresholds__c,BonusThreshold[0].id, AF_TestFactory_Helper.BONUSRESULT_RECORD);
             ApexPages.currentPage().getParameters().put(Brandid,AFCategoryBrand[0].id);
