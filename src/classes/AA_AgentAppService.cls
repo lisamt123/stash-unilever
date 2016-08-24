@@ -58,7 +58,7 @@ public with sharing class AA_AgentAppService  {
                    result = Database.query(query);
              }
            else { 
-            query = AA_Constants.selectString + commaSepratedFields + AA_Constants.fromString + SobjectApiName ;
+            query = AA_Constants.selectString + commaSepratedFields + AA_Constants.fromString + SobjectApiName + ' order by Name ' ;
             result = Database.query(query);
         }
          }
@@ -84,9 +84,9 @@ public with sharing class AA_AgentAppService  {
         return retList;
     }
    
-    public static String getAppliedFilterSqlString(aa_Agent_Report__c requestAgentDataObj,AA_WrapperClass.AgentAppDataRequest objAgentAppDataRequest, String countryQueryParam){
-    	String soqlquery='';
-    	if(requestAgentDataObj.country__c != null && requestAgentDataObj.ClusterId__c == null)
+   	public static String getCountryClusterSqlString(aa_Agent_Report__c requestAgentDataObj, String countryQueryParam){
+   		String soqlquery='';
+   		if(requestAgentDataObj.country__c != null && requestAgentDataObj.ClusterId__c == null)
                     {
                         soqlquery +=' AND ( Country__c = '+AA_Constants.Escapechar+requestAgentDataObj.country__c+AA_Constants.Escapechar;
                         // get cluster id for this country
@@ -116,6 +116,11 @@ public with sharing class AA_AgentAppService  {
                             soqlquery+='OR ClusterId__c= '+AA_Constants.Escapechar+globalclustId.id+AA_Constants.Escapechar+')';
                         }
                     }
+                    return soqlquery;
+   	}
+    public static String getAppliedFilterSqlString(aa_Agent_Report__c requestAgentDataObj,AA_WrapperClass.AgentAppDataRequest objAgentAppDataRequest, String countryQueryParam){
+    	String soqlquery='';
+    				soqlquery += getCountryClusterSqlString(requestAgentDataObj,countryQueryParam);
                     if(requestAgentDataObj.Agent_App_Unilever_Brand__c != null)
                     {
                       soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+requestAgentDataObj.Agent_App_Unilever_Brand__c +AA_Constants.Escapechar;
@@ -136,10 +141,6 @@ public with sharing class AA_AgentAppService  {
                     {
                        soqlquery +='AND Category__c = '+AA_Constants.Escapechar+requestAgentDataObj.Category__c+AA_Constants.Escapechar;
                     }                
-                    /* if(appWrapperObj.objAgentAppDataRequest.ClusterId!=NULL)
-                    {
-                       soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ClusterId+AA_Constants.Escapechar;
-                    }*/
                     if(objAgentAppDataRequest.TopicId!=null)
                     {
                         soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+objAgentAppDataRequest.TopicId+AA_Constants.Escapechar;
