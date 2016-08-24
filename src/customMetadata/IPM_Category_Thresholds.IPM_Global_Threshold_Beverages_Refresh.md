@@ -7,7 +7,7 @@
     </values>
     <values>
         <field>IPM_Category__c</field>
-        <value xsi:type="xsd:string">Beverages</value>
+        <value xsi:type="xsd:string">Tea and Soy &amp; Fruit Beverages</value>
     </values>
     <values>
         <field>IPM_Category_threshhold__c</field>
