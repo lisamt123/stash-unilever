@@ -130,7 +130,7 @@
         <field>IPM_Analytics_OTIF__c$IPM_OTIF_Comment_Contract__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics_OTIF__c$Contract_Communication__c</field>
+        <field>IPM_Analytics_OTIF__c$Comm_Full_Think_Big_Pack_Available__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics_OTIF__c$Tech_Prod_Capability_Conf_Main_Plant__c</field>
