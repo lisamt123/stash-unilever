@@ -4,6 +4,10 @@
         <enabled>true</enabled>
         <name>IPM_TeamMembers_ExtractDownloadable</name>
     </customPermissions>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>EditableFastTrack</name>
+    </customPermissions>
     <applicationVisibilities>
         <application>IPM_NG</application>
         <visible>false</visible>
