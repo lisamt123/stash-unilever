@@ -22,6 +22,7 @@
         </assignedApprover>
         <description>Line Manager approval</description>
         <entryCriteria>
+            <booleanFilter>1 AND 2 AND( 3 OR 4)</booleanFilter>
             <criteriaItems>
                 <field>Opportunity.StageName</field>
                 <operation>equals</operation>
@@ -31,6 +32,15 @@
                 <field>Opportunity.RecordType</field>
                 <operation>equals</operation>
                 <value>Opportunity with Pricing (MA-BE)</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>User.FS_Type_Of_User__c</field>
+                <operation>equals</operation>
+                <value>DDM</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>User.FS_Type_Of_User__c</field>
+                <operation>equals</operation>
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
@@ -52,7 +62,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount &lt;250000, FS_GrossMarginTarget__c&gt;0.03, FS_GrossMarginTarget__c&lt;0.1)</formula>
+            <formula>AND(Amount &lt;250000, FS_GrossMarginTarget__c &gt;= 0.03, FS_GrossMarginTarget__c&lt;0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step2</label>
@@ -76,7 +86,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount &lt; 250000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND(Amount &lt; 250000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step3</label>
@@ -96,7 +106,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND( Amount &lt; 250000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND(Amount &lt; 250000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step4</label>
@@ -114,7 +124,7 @@
         </assignedApprover>
         <description>L2 Manager approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step5</label>
@@ -138,7 +148,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step6</label>
@@ -156,7 +166,7 @@
         </assignedApprover>
         <description>L2 Manager approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step7</label>
@@ -180,7 +190,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step8</label>
@@ -200,7 +210,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 250000, Amount &lt; 500000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  250000, Amount &lt; 500000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step9</label>
@@ -218,7 +228,7 @@
         </assignedApprover>
         <description>L2 Manager approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000,   FS_GrossMarginTarget__c &lt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000,   FS_GrossMarginTarget__c &lt; 0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step10</label>
@@ -242,7 +252,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &lt; 0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step11</label>
@@ -260,7 +270,7 @@
         </assignedApprover>
         <description>L2 Manager approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND( Amount &gt;= 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step12</label>
@@ -284,7 +294,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step13</label>
@@ -304,7 +314,7 @@
         </assignedApprover>
         <description>CDFM Approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step14</label>
@@ -324,7 +334,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 500000, Amount &lt; 1000000, FS_GrossMarginTarget__c &gt; 0.1)</formula>
+            <formula>AND( Amount  &gt;=  500000, Amount &lt; 1000000, FS_GrossMarginTarget__c  &gt;=  0.1)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step15</label>
@@ -342,7 +352,7 @@
         </assignedApprover>
         <description>L2 Manager approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 1000000)</formula>
+            <formula>AND( Amount  &gt;=  1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step16</label>
@@ -366,7 +376,7 @@
         </assignedApprover>
         <description>AFM approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 1000000)</formula>
+            <formula>AND( Amount  &gt;=  1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step17</label>
@@ -386,7 +396,7 @@
         </assignedApprover>
         <description>CDFM Approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 1000000)</formula>
+            <formula>AND( Amount  &gt;=  1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step18</label>
@@ -406,7 +416,7 @@
         </assignedApprover>
         <description>SD Approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 1000000)</formula>
+            <formula>AND( Amount  &gt;=  1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step19</label>
@@ -426,7 +436,7 @@
         </assignedApprover>
         <description>FD approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 1000000)</formula>
+            <formula>AND( Amount  &gt;=  1000000)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Opportunity Process Step20</label>
@@ -446,7 +456,7 @@
         </assignedApprover>
         <description>MADS approval</description>
         <entryCriteria>
-            <formula>AND( Amount &gt; 1000000)</formula>
+            <formula>AND( Amount  &gt;=  1000000)</formula>
         </entryCriteria>
         <label>Opportunity Process Step21</label>
         <name>Opportunity_Process_Step21</name>
@@ -462,6 +472,15 @@
             <field>Opportunity.StageName</field>
             <operation>equals</operation>
             <value>03 - Proposal</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordType</field>
+            <operation>equals</operation>
+            <value>Opportunity with Pricing (MA-BE)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.FS_Type_Of_User__c</field>
+            <operation>equals</operation>
         </criteriaItems>
     </entryCriteria>
     <finalApprovalActions>
