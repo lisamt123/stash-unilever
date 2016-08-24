@@ -2593,6 +2593,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 mcoCountryRolloutPlan.Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
                 mcoCountryRolloutPlan.Local_Project_Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
                 update mcoCountryRolloutPlan;
+                localRolloutProject.Rollout_Plan_Target_Launch_Date__c = mcoCountryRolloutPlan.Target_Launch_Date__c ;
+                update localRolloutProject; 
                 getFinancials();                 
             }
             

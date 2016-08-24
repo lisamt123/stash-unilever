@@ -124,8 +124,8 @@ This componet used for regional rollout project
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
                                                 
-                                                <apex:outputField value="{!localProject.IPM_Target_Launch_Dates__c}" rendered="{!NOT(isEditMode)}"/>
-                                                <apex:inputField value="{!lstcompleteProjects[localProjectID].IPM_Target_Launch_Dates__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
+                                                <apex:outputField value="{!localProject.Rollout_Plan_Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>   
+                                                <apex:inputField value="{!lstcompleteProjects[localProjectID].Rollout_Plan_Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
