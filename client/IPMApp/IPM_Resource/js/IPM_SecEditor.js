@@ -384,4 +384,5 @@ jq('#ipmModal').on('show.bs.modal', function (e) {
             e.stopPropagation();
         }
     }
-})
+});
+function setFocusOnLoad() {}  

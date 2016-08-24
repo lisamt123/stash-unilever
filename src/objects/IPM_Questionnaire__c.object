@@ -612,7 +612,7 @@ IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Chart
     <fields>
         <fullName>RQS_Contract_Answered__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(OR(IPM_Project__r.RQS_Contract_Answered__c&gt;0, IPM_Project__r.ContractRiskIdentified__c), &apos;Yes&apos;,&apos;No&apos;)</formula>
+        <formula>IF(IPM_Project__r.RQS_Contract_Answered__c&gt;0, &apos;Yes&apos;,&apos;No&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RQS Contract Answered</label>
         <required>false</required>

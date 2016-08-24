@@ -97,13 +97,16 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global void execute(Database.BatchableContext BC,  list<IPM_Project__c> Scope){  
 
         for(IPM_Project__c p:Scope){
-            projectIdSet.add(p.Id);
-          
-                if(p.IPM_Phase__c != null)
-                {
-                	scopeProjectList.add(p);
-            	}
-                projectIdMap.put(p.Id,p);               
+            if(String.isNotBlank(p.Project_External_ID__c)){
+                projectIdSet.add(p.Project_External_ID__c);
+            }else {
+                projectIdSet.add(p.Id);
+            } 
+            if(p.IPM_Phase__c != null)
+			{
+				scopeProjectList.add(p);
+			}
+			projectIdMap.put(p.Id,p);               
             
         }
         

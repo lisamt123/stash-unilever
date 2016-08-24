@@ -245,26 +245,9 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
  
                     if(!rqsQuestionAlreadyExists && !insertQuestionnaireList.isEmpty())
                     {
-                        // Need Map to eliminate the duplicated Between master questions and questions related to RQS from the parent project
-						Map<String,IPM_Questionnaire__c> uniqueRQSQuestionnaireMap = new  Map<String,IPM_Questionnaire__c>();
-						
-						for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(rqsMasterQuestionList,recTypeIDRQS,incomingProject))
-						{
-							String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
-							uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
-						}                        
-                        if(!addedQuestionareAtParent.isEmpty())
-                        {
-                            for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(addedQuestionareAtParent,recTypeIDRQS,incomingProject))
-							{
-								String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
-								uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
-							}
-							
-						}
-						// the below list will contain the unique combined list of the RQS questions from Master list and Parent project
-						insertQuestionnaireList.addAll(uniqueRQSQuestionnaireMap.values());
-					}
+                        
+                        insertQuestionnaireList.addAll(createRQSQuestions(rqsMasterQuestionList,incomingProject,addedQuestionareAtParent).values());
+                    }
                     
                     if(!rndFeasibilityQuestionAlreadyExists && !rndFeasibilityQuestionMap.isEmpty())
                     {
@@ -471,4 +454,32 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
         }  
         return projectQuestionareList;
     }
+     /**************************************************************
+    * @description: used to create specific Questionnaire records based on Record Type when project is created.
+    * @param1 rqsMasterQuestionList : RQS Questionnaire List
+    * @param2 incomingProject : Project record
+    * */
+    public static Map<String,IPM_Questionnaire__c> createRQSQuestions(List<IPM_Questionnaire__c> rqsMasterQuestionList,IPM_Project__c incomingProject,List<IPM_Questionnaire__c> addedQuestionareAtParent){
+        // Need Map to eliminate the duplicated Between master questions and questions related to RQS from the parent project
+            Map<String,IPM_Questionnaire__c> uniqueRQSQuestionnaireMap = new  Map<String,IPM_Questionnaire__c>();
+            
+            for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(rqsMasterQuestionList,recTypeIDRQS,incomingProject))
+            {
+              String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
+              uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
+            }                        
+                        if(!addedQuestionareAtParent.isEmpty())
+                        {
+                            for(IPM_Questionnaire__c ipQ :generateProjectQuestionnaire(addedQuestionareAtParent,recTypeIDRQS,incomingProject))
+              {
+                String rqsMapKey = ipQ.IPM_RQS_Gate_Type__c+ipQ.recordTypeId+ipQ.IPM_Sequence_Number__c ;
+                uniqueRQSQuestionnaireMap.put(rqsMapKey,ipQ);
+              }
+              
+            }
+            // the below list will contain the unique combined list of the RQS questions from Master list and Parent project
+            return uniqueRQSQuestionnaireMap;
+        
+    }
+    
 }
