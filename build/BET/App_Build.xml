@@ -163,5 +163,6 @@
       <runTest>uw_TriggerHandler_Test</runTest>
       <runTest>uw_UnitTestDataFactory</runTest>
   </sf:deploy>
+  <!--<antcall target="generatePackage"/>-->
   </target>
 </project>
