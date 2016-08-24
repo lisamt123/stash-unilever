@@ -500,51 +500,7 @@ public class AF_AnnualBonus_Test
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c from AF_Bonus_Threshold__c LIMIT 1];
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
             //insert sub Results.
-            List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,false);
-            for(AF_Sub_Result__c sr : subResults)
-            {
-                sr.AF_Digital__c = true;
-                sr.AF_Traditional__c = false;
-                sr.AF_Bonus_Threshold__c=BonusThresholdlist[0].id;
-                sr.AF_Quant_Bonus__c=23;
-                sr.AF_Quant__c = 12;
-                sr.AF_Minimum__c = 1;
-                sr.AF_Outstanding__c = 3;
-                sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c =bonusMeasure;
-            }
-            insert subResults;
-            List<AF_Sub_Result__c> subResults1 = AF_TestFactory_Helper.insertSubResult1(1,false);
-            for(AF_Sub_Result__c sr1 : subResults1)
-            {
-                sr1.AF_Digital__c = true;
-                sr1.AF_Traditional__c = true;
-                sr1.AF_Bonus_Threshold__c=BonusThresholdlist[0].id;
-                //sr1.AF_Qual__c=5;
-                sr1.AF_Quant__c = 12;
-                sr1.AF_Minimum__c = 5;
-                sr1.AF_Outstanding__c = 7;
-                sr1.AF_Stretching__c = 6;
-                sr1.Bonus_Measure__c = bonusMeasure;
-                sr1.AF_Quant_Bonus_Value__c = 156;
-                sr1.AF_Total_Bonus_Value__c = 3800;
-                sr1.AF_Bonusable_Fees__c = 35;
-            }
-            insert subResults1;
-            List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
-            System.assertEquals(subResultsQuery[0].AF_Bonus_Threshold__c ,BonusThresholdQuery[0].id, AF_TestFactory_Helper.SUBRESULT_RECORD);
-            //Insert Bonus Results.
-            List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,false);
-            List<AF_Bonus_Results__c> brList = new List<AF_Bonus_Results__c>();
-            for(AF_Bonus_Results__c bResult:BonusResultList){
-                bResult.AF_Bonusable_Fees__c=35;
-                bResult.AF_Total_Remuneration__c=8;
-                bResult.AF_Remuneration_Percentage__c=15;
-                //bResult.AF_Qual__c=12;
-                bResult.AF_Remuneration_Rating__c =3;
-                brList.add(bResult);
-            }
-            insert brList;
+            List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,true);
             List<AF_Bonus_Results__c> BonusResultQuery = [SELECT ID,AF_Bonus_Thresholds__c FROM AF_Bonus_Results__c WHERE RecordTypeId=:AF_TestFactory_Helper.AF_BONUS_RESULTS_RECTYPE LIMIT 1];
             System.assertEquals(BonusResultQuery[0].AF_Bonus_Thresholds__c,BonusThreshold[0].id, AF_TestFactory_Helper.BONUSRESULT_RECORD);
             ApexPages.currentPage().getParameters().put(Brandid,AFCategoryBrand[0].id);
@@ -680,69 +636,8 @@ public class AF_AnnualBonus_Test
             List<AF_Bonus_Threshold__c> BonusThresholdQuery = [Select Agency_Name__c,Brand_Name__c,Year__c from AF_Bonus_Threshold__c LIMIT 1];
             System.assertEquals(BonusThresholdQuery[0].Agency_Name__c,acc[0].id, AF_TestFactory_Helper.BONUSTHERSHOLD_RECORD);
             //insert sub Results.
-            List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,false);
-            for(AF_Sub_Result__c sr1 : subResults)
-            {
-                sr1.AF_Digital__c = true;
-                sr1.AF_Traditional__c = false;
-                sr1.AF_Quant__c = 12;
-                sr1.AF_Class_code__c=false;
-                sr1.AF_Minimum__c = 1;
-                sr1.AF_Outstanding__c = 3;
-                sr1.AF_Stretching__c = 2;
-                sr1.Bonus_Measure__c =bonusMeasure;
-                sr1.AF_Period__c=AF_Constants.QUARTER1;
-                sr1.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                sr1.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
-                //subResults.add(sr);
-            }
-            for(AF_Sub_Result__c sr : subResults)
-            {
-                sr.AF_Digital__c = true;
-                sr.AF_Traditional__c = false;
-                sr.AF_Quant__c = 12;
-                sr.AF_Class_code__c=false;
-                sr.AF_Minimum__c = 1;
-                sr.AF_Outstanding__c = 3;
-                sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c =bonusMeasure;
-                sr.AF_Period__c=AF_Constants.QUARTER2;
-                sr.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
-                //subResults.add(sr);
-            }
-            list<AF_Sub_Result__c >sublist=new list<AF_Sub_Result__c >();
-            for(AF_Sub_Result__c sr2 : subResults)
-            {
-                sr2.AF_Digital__c = true;
-                sr2.AF_Traditional__c = false;
-                sr2.AF_Quant__c = 12;
-                sr2.AF_Class_code__c=false;
-                sr2.AF_Minimum__c = 0;
-                sr2.AF_Outstanding__c = 3;
-                sr2.AF_Stretching__c = 2;
-                sr2.Bonus_Measure__c =bonusMeasure;
-                sr2.AF_Period__c=AF_Constants.QUARTER3;
-                sr2.Sub_Result_AnnualID__c=subResults[0].id;
-                sr2.AF_Status__c=AF_Constants.STATUS_DRAFT;
-                sr2.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
-                sublist.add(sr2);
-            }  
-            try{
-            insert sublist;
-            update sublist;
-            delete sublist;
-            }
-            catch(Exception E){
-             AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AfterUpdHandler',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-            }
-            AF_SubResultHandler obj=new AF_SubResultHandler();
-            obj.beforeDelete(subResults[0]);
-            obj.afterDelete(subResults[0]);
-            obj.validateSubResult(subResults[0]);
-            //update subResults;
-            List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 2];
-            System.assert(subResultsQuery!=null, AF_TestFactory_Helper.SUBRESULT_RECORD);
+            List<AF_Sub_Result__c> subResults = AF_TestFactory_Helper.insertSubResult(1,true);
+            System.assert(subResults!=null, AF_TestFactory_Helper.SUBRESULT_RECORD);
             //Insert Bonus Results.
             List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,true);
             System.assert(BonusResultList[0].id!=null, AF_TestFactory_Helper.SUBRESULT_RECORD);

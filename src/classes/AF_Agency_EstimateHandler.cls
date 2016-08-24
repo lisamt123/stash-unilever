@@ -15,6 +15,7 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
   Set<String> Country = new Set<String>();
   Set<id> AgencyEstids=new set<id>();
   Boolean deletePOReport=false;
+  Integer trigger_count=0;
   List<AF_Agency_Estimate__c> agencyEstimateRecords = new List<AF_Agency_Estimate__c>();
   List<AF_Agency_Estimate__c> agencyEstimatesRecords = new List<AF_Agency_Estimate__c>();
   map<String,map<String,Decimal>> countryTradDigitalMap = new map<String,map<String,Decimal>>();
@@ -81,13 +82,12 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
 *  @return: boolean.
 *************************************************************************************/
   public void beforeUpdate(SObject oldSo, SObject so)
-  {
-    //Integer trigger_count=0;   
+  {   
     AF_Agency_Estimate__c agencyInstance = (AF_Agency_Estimate__c)so;
     AF_Agency_Estimate__c oldAgencyInstance = (AF_Agency_Estimate__c)oldSo;
     // AF_UpdateAgencyEstimate Trigger Logic Starts
     if(agencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO && oldAgencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO){
-      //trigger_count++;
+      trigger_count++;
     }
     else{
       agencyEstimatesRecords.add(agencyInstance);
