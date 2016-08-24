@@ -3,6 +3,3 @@ src/dashboards
 src/dashboards/FS_Dashboards-meta.xml
 src/dashboards/FS_Dashboards/FS_Opportunity_Pipeline_Dash_Board.dashboard
 src/dashboards/FS_Dashboards/Funnel_Health_Opportunity_Dashboard.dashboard
-src
-src/approvalProcesses
-src/approvalProcesses/Opportunity.FS_MABE_Opportunity_Process.approvalProcess
