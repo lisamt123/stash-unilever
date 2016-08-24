@@ -1,3 +1,10 @@
 src
-src/layouts
-src/layouts/Task-Task Layout.layout
+src/reports
+src/reports/NAFS_Report-meta.xml
+src/reports/NAFS_Report/FS_Contact_Account_Report.report
+src/reports/NAFS_Report/FS_Hierarchy_Levels.report
+src/reports/NAFS_Report/FS_Opportunites_Funnel.report
+src/reports/NAFS_Report/FS_Opportunity.report
+src/reports/NAFS_Report/FS_Opportunity_Pipeline.report
+src/reports/NAFS_Report/FS_Opportunity_planned.report
+src/reports/NAFS_Report/FS_Product_TopSellers.report
