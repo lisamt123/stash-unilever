@@ -3581,7 +3581,7 @@ OwnerId))</formula>
         <summaryFilterItems>
             <field>IPM_Questionnaire__c.RecordTypeId</field>
             <operation>equals</operation>
-            <value>Corporate Risk, RQS Questionnaire</value>
+            <value>Corporate Risk</value>
         </summaryFilterItems>
         <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
