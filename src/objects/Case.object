@@ -3513,7 +3513,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notContain</operation>
             <value>CEC ANZ Queue</value>
         </filters>
-        <label>ANZ All open cases</label>
+        <filters>
+            <field>Case_ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>AU,NZ</value>
+        </filters>
+        <label>CEC ANZ All open cases</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>
@@ -3540,7 +3545,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Email ANZ,Web,Email</value>
         </filters>
-        <label>ANZ My Emails</label>
+        <label>CEC ANZ My Emails</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>
@@ -3567,7 +3572,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>LAST_N_DAYS:30</value>
         </filters>
-        <label>ANZ My closed cases</label>
+        <label>CEC ANZ My closed cases</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>
@@ -3589,29 +3594,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>New</value>
         </filters>
-        <label>ANZ My new cases</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_ANZ</role>
-            <role>CEC_User_ANZ</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>ANZ_My_open_cases</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>ANZ My open cases</label>
+        <label>CEC ANZ My new cases</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>
@@ -3638,7 +3621,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>LAST_N_DAYS:30</value>
         </filters>
-        <label>ANZ All closed cases</label>
+        <filters>
+            <field>Case_ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>AU,NZ</value>
+        </filters>
+        <label>CEC ANZ All closed cases</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>
@@ -3727,7 +3715,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notContain</operation>
             <value>ANZ</value>
         </filters>
-        <label>ANZ All new e-mails assigned</label>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>ANZ</value>
+        </filters>
+        <label>CEC ANZ All new e-mails assigned</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_ANZ</role>
@@ -3742,7 +3735,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>ANZ Escalation Queue</label>
+        <label>CEC ANZ Escalation Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Escalation_Queue</queue>
         <sharedTo>
@@ -3753,13 +3746,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_ANZ_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>NAME</columns>
+        <columns>CASES.EMAIL</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>OWNER_NAME</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.STATUS</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>ANZ CEC Round Robin Queue</label>
+        <label>CEC ANZ Round Robin Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
@@ -7682,7 +7684,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Social,Phone</value>
         </filters>
-        <label>Casos BackOffice 0800 Brazil</label>
+        <label>CEC Brazil BackOffice 0800</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7712,7 +7714,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Email,Email Brazil,Web</value>
         </filters>
-        <label>Casos BackOffice EMAIL Brazil</label>
+        <label>CEC Brazil BackOffice EMAIL</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7742,7 +7744,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Email,Email Brazil,Web</value>
         </filters>
-        <label>Casos BackOffice EMAIL Brazil FOODS</label>
+        <label>CEC Brazil BackOffice EMAIL FOODS</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7787,7 +7789,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>contains</operation>
             <value>closeup,close-up,close up,dimension,regenerate,baby</value>
         </filters>
-        <label>Casos BackOffice EMAIL Brazil HPC</label>
+        <label>CEC Brazil BackOffice EMAIL HPC</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7850,7 +7852,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>Gentili</value>
         </filters>
-        <label>Casos pendientes - Argentina</label>
+        <label>CEC Southern Cone - pendientes Argentina</label>
         <language>es_MX</language>
     </listViews>
     <listViews>
@@ -7940,10 +7942,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
+            <value>IversenJ</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
+            <value>Kirsten</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -7980,7 +7984,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Review Needed</value>
         </filters>
-        <label>Debora Grimm_REVISAO</label>
+        <label>CEC Brazil Debora Grimm_REVISAO</label>
         <language>pt_BR</language>
         <sharedTo>
             <role>CEC_Manager_Brazil</role>

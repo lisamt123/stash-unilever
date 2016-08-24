@@ -366,6 +366,7 @@
         <fullName>CEC_ANZ_Queue_cec_Case_Brand_Mapping</fullName>
         <columns>NAME</columns>
         <columns>Brand__c</columns>
+        <columns>Inbound_Email__c</columns>
         <columns>Country__c</columns>
         <columns>Outbound_Email_Address__c</columns>
         <columns>Language__c</columns>

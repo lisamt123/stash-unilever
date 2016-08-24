@@ -12,6 +12,7 @@ History
 VERSION    AUTHOR            DATE            DETAIL                   
 1.0       Koti             Dec-2015      INITIAL DEVELOPMENT
 1.1       Sathish           MAR-2016        Code Refactoring.   
+1.2       Divya             Aug-2015       Clicktools Static Data Change
 ***********************************************************************/
 
 @isTest(SeeAllData=false)
@@ -102,17 +103,17 @@ public class CEC_CaseActionControllerTest{
                                                         Q5_Data__c, Q6_Data__c, Q7_Data__c, Q8_Data__c, Q9_Data__c,
                                                         Q10_Data__c, Q11_Data__c, Survey_Id__c, Survey_Name__c From cec_Case_Action__c WHERE Case_Id__c = :currentCaseId];
 
-            System.assertEquals(surveyCaseActionList[0].Q8_Data__c, '&q8=This is case subject 1');
-            System.assertEquals(surveyCaseActionList[0].Q2_Data__c, '&q2=Email');   
+            System.assertEquals(surveyCaseActionList[0].Q8_Data__c, 'This is case subject 1');
+            System.assertEquals(surveyCaseActionList[0].Q2_Data__c, 'Email');   
             System.assertEquals(surveyCaseActionList[0].Survey_Id__c, 'abcdefgh');
             
             Test.setCurrentPage(pageRef);
             pageRef.getParameters().put('id', CurrentCaseId);
             //Create a new instance of the class
             CEC_CaseActionController controller = new CEC_CaseActionController();
-            System.assertEquals(controller.CaseActionList[0].Q8_Data__c, '&q8=This is case subject 1');
-            System.assertEquals(controller.CaseActionList[0].Q2_Data__c, '&q2=Email'); 
-            System.assertEquals(controller.CaseActionList[0].Q5_Data__c, '&q5=L1234');
+            System.assertEquals(controller.CaseActionList[0].Q8_Data__c, 'This is case subject 1');
+            System.assertEquals(controller.CaseActionList[0].Q2_Data__c, 'Email'); 
+            System.assertEquals(controller.CaseActionList[0].Q5_Data__c, 'L1234');
             System.assertEquals(controller.CaseActionList[0].Survey_Id__c, 'abcdefgh');
             System.assertEquals(controller.CaseActionList[0].Survey_Name__c, 'Test Survey Name');
 
