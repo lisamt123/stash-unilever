@@ -659,6 +659,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     otifAnalyticRollOut.IPM_Geography__c = pr.Market_Cluster_Name__c;
                     otifAnalyticRollOut.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
                     otifAnalyticRollOut.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
+                    otifAnalyticRollOut.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
+                    
                       
         }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
             otifAnalyticRollOut.IPM_Project_Span__c = IPM_Utils.Local;
