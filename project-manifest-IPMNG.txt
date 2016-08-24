@@ -128,6 +128,8 @@ src/classes/IPM_List_Milestones_Test.cls
 src/classes/IPM_List_Milestones_Test.cls-meta.xml
 src/classes/IPM_Milestone.cls
 src/classes/IPM_Milestone.cls-meta.xml
+src/classes/IPM_Milestone_Test.cls
+src/classes/IPM_Milestone_Test.cls-meta.xml
 src/classes/IPM_MilestoneHelper.cls
 src/classes/IPM_MilestoneHelper.cls-meta.xml
 src/classes/IPM_MyList.cls
@@ -309,6 +311,8 @@ src/components/IPM_Section_GateChecklist.component
 src/components/IPM_Section_GateChecklist.component-meta.xml
 src/components/IPM_StopConfirmation.component
 src/components/IPM_StopConfirmation.component-meta.xml
+src/components/IPM_Team_Assignment.component
+src/components/IPM_Team_Assignment.component-meta.xml
 src/components/IPM_Team_Assignment_Page.component
 src/components/IPM_Team_Assignment_Page.component-meta.xml
 src/components/IPM_ToDos.component
