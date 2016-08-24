@@ -41,7 +41,12 @@ public with sharing class IPM_StopProjectHelper
         incomingProject.IPM_Stopped_Phase__c = incomingProject.IPM_Phase__c;
         incomingProject.IPM_Stopped_At_Span__c = incomingProject.IPMProject_Span__c;
         incomingProject.IPM_Document_Update_Comments__c = incomingProject.IPM_Stopped_Comments__c;
-        
+		
+		if(incomingProject.IPM_ProjectStoppedDatetime__c == null)
+    	{
+    		incomingProject.IPM_ProjectStoppedDatetime__c = System.now().format();
+    	}
+
         if(sourceProject!=null)
         {
             incomingProject.IPM_Stopped_Date_Time__c = sourceProject.IPM_Stopped_Date_Time__c;    
