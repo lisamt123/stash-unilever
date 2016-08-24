@@ -342,8 +342,7 @@ public with sharing class AF_MultiSelectComponent{
 *  @return: none.
 *************************************************************************************/    
   public void savePermission(){
-    List<PermissionSetAssignment> pList;
-    AF_Constants.pList=pList;
+    List<PermissionSetAssignment> pList = new list<PermissionSetAssignment>();
     Set<String> deleteGroupsSet = new Set<String>();
     Set<String> addGroupsSet = new Set<String>();
     List<String> newSelectedList = new List<String>();
@@ -368,6 +367,7 @@ public with sharing class AF_MultiSelectComponent{
           p.PermissionSetId = gid;
           p.Assigneeid = uid;
           pList.add(p);
+          AF_Constants.pList=pList;
         }
       }
     }

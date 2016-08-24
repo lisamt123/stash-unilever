@@ -316,7 +316,8 @@ public with sharing class AF_AgencyEstimateController
             IsInsert = false;               
             AgencyEstimate = [SELECT Id,AF_OverridePO_Adaptation_LC__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,AF_Category_Finance_Flag__c,AF_Total_USD__c,AF_Total_Local__c,Traditional_USD_Formula__c,AF_Digital_USD_Formula__c,Adaptation_USD_Formula__c,AF_IsCrossborder__c,AF_Ready_For_PO_Entry_Currency__c,AF_Agency_Spot_Rate__c,AF_Quarter_PO_Raised__c,AF_PO_Value__c,AF_Adaptation__c,AF_PO_Number__c,AF_Brand_Estimate__r.AF_CMCO_Rejected__c,AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c,AF_Brand_Estimate__r.AF_Status_Base_Fees__c,AF_Is_Unilever_Central_Hub__c,AF_CentralBilling__c, AF_Unilever_Entity_Name__c,AF_Agency_Entity_Name__c,AF_isLocked__c, AF_Digital__c, AF_Traditional__c,AF_Agency_Entity__c,AF_Unilever_Entity__c,AF_Total__c,AF_Matrix_Data_Entry_Currency__c, AF_Traditional_Local__c, AF_Digital_Local__c, AF_Adaptation_Local__c,AF_Agency_Exchange_Rate__c,AF_CentralBillingMessage__c,AF_LC_Traditional__c,AF_LC_Digital__c,AF_LC_Adaptation__c,AF_LC_Total__c  FROM AF_Agency_Estimate__c WHERE Id = : ParentId];
             EntityExceptionCollection = [SELECT Id, AF_Agency_Estimate__c, AF_Value_Euro__c,AF_Value__c,AF_Country__c FROM AF_Entity_Exception__c where AF_Agency_Estimate__c = : ParentId];
-            if(EntityExceptionCollection != null){if(EntityExceptionCollection.size() > 0){DisplayExceptionList = true;}}            
+            if(EntityExceptionCollection != null)
+            {if(EntityExceptionCollection.size() > 0){DisplayExceptionList = true;}}            
             if(AgencyEstimate != null)
             {      
                 UnileverEntityName = AgencyEstimate.AF_Unilever_Entity_Name__c;
@@ -330,32 +331,7 @@ public with sharing class AF_AgencyEstimateController
                 }else{
                     SetDisplayValues();
                 }
-                //Added by Reetha for access rights of agency Users
-                if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY){
-                    fieldsReadOnly = true;
-                }
-                if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE){
-                    catFieldsReadOnly = true;
-                }
-                if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO){
-                    cmcoFieldsReadOnly = true;
-                }
-                if(AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c!=null){
-                    brandEstQuarter = AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c;
-                    if(!brandEstQuarter.contains(AF_Constants.QUARTER4)){
-                        POOverrideDisplay = true;
-                    }
-                }
-                if(AgencyEstimate.AF_isLocked__c == null || !AgencyEstimate.AF_isLocked__c)IsLocked = true;else{IsLocked = false;}
-                CalculateTotal();
-                if(AgencyEstimate.af_total__c >0)
-                {
-                    IsEditMode=true;
-                }
-                else
-                {
-                    IsEditMode=true;
-                }
+                checkField(AgencyEstimate);
                 try{
                     poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
                 }
@@ -375,6 +351,36 @@ public with sharing class AF_AgencyEstimateController
                 overridePONumber = AgencyEstimate.AF_PO_Number__c;
             }  
     }
+
+public void checkField(AF_Agency_Estimate__c agencyEst){
+//Added by Reetha for access rights of agency Users
+                if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY){
+                    fieldsReadOnly = true;
+                }
+                if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE){
+                    catFieldsReadOnly = true;
+                }
+                if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO){
+                    cmcoFieldsReadOnly = true;
+                }
+                if(agencyEst.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c!=null){
+                    brandEstQuarter = agencyEst.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c;
+                    if(!brandEstQuarter.contains(AF_Constants.QUARTER4)){
+                        POOverrideDisplay = true;
+                    }
+                }
+                if(agencyEst.AF_isLocked__c == null || !agencyEst.AF_isLocked__c)IsLocked = true;else{IsLocked = false;}
+                CalculateTotal();
+                if(agencyEst.af_total__c >0)
+                {
+                    IsEditMode=true;
+                }
+                else
+                {
+                    IsEditMode=true;
+                }
+
+}
         /**********************************************************************
 *  @Description: this method is used identify which user has logged in to the application,
                  depending on the logged in user ,making the UI visiblity
@@ -400,21 +406,27 @@ public with sharing class AF_AgencyEstimateController
             if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
                 isAgency= true;
             }
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
+        identifyLoggedUserType(LoggedinUser);   
+            
+        }
+    }
+
+    public void identifyLoggedUserType(User LoggedUser){
+    if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
                 isCatFinance= true;
             }
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
+            if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
                 isCMCO= true;
                 CMCORO=true;
             }
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER){
+            if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER){
                 isControllerPro = true;
             }
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
+            if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
                 isCMCOSuperUser = true;
             }
-        }
-    }
+
+    }       
     /**********************************************************************
 *  @Description: this method is used to call the wrapper method 
 *  @name : getupdatedC_breakdown
