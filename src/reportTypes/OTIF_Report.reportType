@@ -86,6 +86,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>BET Final Release Status</displayNameOverride>
             <field>Comm_BET_Final_Release_Availability__c</field>
             <table>IPM_Analytics_OTIF__c</table>
         </columns>

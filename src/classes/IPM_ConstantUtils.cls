@@ -105,8 +105,8 @@ public class IPM_ConstantUtils {
     public static final String OTIF_BASES_III='Bases III';
     public static final String OTIF_SPEC_BILLS_OF_MATERIALS_IN_INTERSPEC='Spec/Bills of Materials in Interspec';
     public static final String OTIF_TECHNICAL_AND_PRODUCTION_CAPABILITY_CONFIRMED='Technical and Production Capability Confirmed';
-    public static final String OTIF_COMMUNICATION_BET_FINAL_RELEASE_AVAILABILITY='Communication: BET Final Release Availability';
-    public static final String OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE='Communication: Full Think Big Pack Available';    
+    public static final String OTIF_COMMUNICATION_BET_FINAL_RELEASE_AVAILABILITY='BET Final Release Status';
+    public static final String OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE='What is the Consumer test scoring on Communication?';    
     public static final String OTIF_CONCEPT_TEST='Concept Test';    
     public static final String OTIF_FIRST_PROD_CONF_SPEC_FINALISED='First Production Confirmed and Specifications Finalised';        
     public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';
