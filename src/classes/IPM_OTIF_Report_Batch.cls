@@ -857,14 +857,14 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 				  otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
 	              otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
     	   }      
-	        else if(fr.Contract_Approved__c){
+	         if(fr.Contract_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
 	            otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
 	        	otifAnalyticObj.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
 	            otifAnalyticObj.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
 	              
 	        }   
-	        else if(fr.MR_Approved__c){
+	         if(fr.MR_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
 	            otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
 	        	otifAnalyticObj.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
@@ -873,7 +873,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 	            otifAnalyticObj.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;              
 	             
 			}
-	        else if(fr.MD_Approved__c){
+	         if(fr.MD_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y3_gTO__c =  fr.Turnover_Charter__c;	              
 	            otifAnalyticObj.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
 	        	otifAnalyticObj.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
@@ -902,17 +902,17 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 	            otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
 	        
 	        }
-	        else if(fr.Contract_Approved__c){
+	         if(fr.Contract_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
 	        	otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;	        	
 	        }   
-	        else if(fr.MR_Approved__c){
+	         if(fr.MR_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
 	        	otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
 	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;	        	
 	        	
 	        }
-	        else if(fr.MD_Approved__c){
+	         if(fr.MD_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
 	        	otifAnalyticObj.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
 	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
@@ -935,17 +935,17 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      		if(fr.Charter_Approved__c){	
 				otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
 	        }
-	        else if(fr.Contract_Approved__c){
+	         if(fr.Contract_Approved__c){
 				otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
           	    otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 iTO	
 	        }   
-	        else if(fr.MR_Approved__c){
+	         if(fr.MR_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
           	    otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 iTO	
 	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
 				
 	        }
-	        else if(fr.MD_Approved__c){
+	         if(fr.MD_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 iTO	 	        
           	    otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;		//Contract Innovation Y1 iTO	
 	        	otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
@@ -970,14 +970,14 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 				  otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
     	          otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 	        
 	        }
-	        else if(fr.Contract_Approved__c){
+	         if(fr.Contract_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
     	        otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 
 	        	otifAnalyticObj.IPM_Contract_Y1_GM__c = fr.GM_of_TO_Contract__c;
 	        	otifAnalyticObj.IPM_Contract_Y1_gTO__c = fr.Turnover_Contract__c;
 				
 	        }   
-	        else if(fr.MR_Approved__c){
+	         if(fr.MR_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
     	        otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 
 	        	otifAnalyticObj.IPM_Contract_Y1_GM__c = fr.GM_of_TO_Contract__c;
@@ -985,7 +985,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 	        	otifAnalyticObj.IPM_MR_Y1_gTO__c = fr.Turnover_MR__c;					//Market Ready Innovation Y1 gTO
 	            otifAnalyticObj.IPM_MR_Y1_GM__c = fr.GM_of_TO_MR__c;
 			}
-	        else if(fr.MD_Approved__c){
+	         if(fr.MD_Approved__c){
 	        	otifAnalyticObj.IPM_Charter_Y1_gTO__c = fr.Turnover_Charter__c;		//Charter Innovation Y1 gTO 
     	        otifAnalyticObj.IPM_Charter_Y1_GM__c = fr.GM_of_TO_Charter__c; 
 	        	otifAnalyticObj.IPM_Contract_Y1_GM__c = fr.GM_of_TO_Contract__c;
