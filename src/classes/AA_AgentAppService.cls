@@ -200,8 +200,7 @@ public with sharing class AA_AgentAppService  {
                     {
                         recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
                         soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
-                    }            
-                    if(objAgentAppDataRequest.RecordType=='Competitor')
+                    }else if(objAgentAppDataRequest.RecordType=='Competitor')
                     {
                         recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
                         soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
@@ -282,9 +281,7 @@ public with sharing class AA_AgentAppService  {
             objGetAllReports.feedList =item.Feeds;
             objGetAllReports.status =item.Status__c;
             objGetAllReports.currentTime=String.valueOf(system.now());
-            if(item.RecordType.Name!= null){
-                if(item.RecordType.Name == 'Unilever Agent Published Report'){ objGetAllReports.recordType = 'UL'; } else if(item.RecordType.Name == 'Competitor Report'){ objGetAllReports.recordType = 'CI'; }
-            }
+            if(item.RecordType.Name != null && item.RecordType.Name == 'Unilever Agent Published Report'){ objGetAllReports.recordType = 'UL'; } else if(item.RecordType.Name!= null && item.RecordType.Name == 'Competitor Report'){ objGetAllReports.recordType = 'CI'; }
             objGetAllReports.CreatedBy=item.CreatedBy.Name;
             objGetAllReports.CountryId=item.Country__c;
             objGetAllReports.CreatedTime=String.valueOf(item.LastModifiedDate);
@@ -325,13 +322,11 @@ public with sharing class AA_AgentAppService  {
             if(objGetAllReports.TotalCommentCount>=decresecomment)
             objGetAllReports.TotalCommentCount=objGetAllReports.TotalCommentCount-decresecomment;
             /*Set UL or CI logo if no Chatter post Id associated with Agent Report */
-            if(objGetAllReports.DocumentUrl==null){
-               if(item.RecordType.Name == 'Unilever Agent Published Report'){
-                    objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('UL Logo Id').Value__c;
-                } else if(item.RecordType.Name == 'Competitor Report'){
-                    objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('CI Logo Id').Value__c;
-                }
-              }
+            if(objGetAllReports.DocumentUrl==null && item.RecordType.Name == 'Unilever Agent Published Report'){
+                objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('UL Logo Id').Value__c;
+            } else if(objGetAllReports.DocumentUrl==null && item.RecordType.Name == 'Competitor Report'){
+                objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('CI Logo Id').Value__c;
+            }
             objFinalReport.add(objGetAllReports);                   
         }    
         if(objAgentApp.SortOnMostLike =='true'){
