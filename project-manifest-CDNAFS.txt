@@ -1,4 +1,8 @@
 src
-src/reports
-src/reports/unfiled$public-meta.xml
-src/reports/unfiled$public/FS_Opportunities_Funnel_Stage_Duration.report
+src/dashboards
+src/dashboards/FS_Dashboards-meta.xml
+src/dashboards/FS_Dashboards/FS_Opportunity_Pipeline_Dash_Board.dashboard
+src/dashboards/FS_Dashboards/Funnel_Health_Opportunity_Dashboard.dashboard
+src
+src/approvalProcesses
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_Process.approvalProcess
