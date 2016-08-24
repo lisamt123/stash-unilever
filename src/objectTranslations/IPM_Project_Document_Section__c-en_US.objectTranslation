@@ -13,6 +13,10 @@
         <name>Comments__c</name>
     </fields>
     <fields>
+        <label><!-- Gate With Sequence --></label>
+        <name>Gate_With_Sequence__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Assortment CU --></label>
         <name>IPM_Assortment_CU__c</name>
     </fields>
