@@ -1,4 +1,7 @@
 src
+src/reportTypes
+src/reportTypes/FS_Account_levels.reportType
+src
 src/reports
 src/reports/NAFS_Report-meta.xml
 src/reports/NAFS_Report/FS_Contact_Account_Report.report
