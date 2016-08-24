@@ -1,13 +1,5 @@
 src
 src/reportTypes
-src/reportTypes/FS_Account_levels.reportType
-src
-src/reports
-src/reports/NAFS_Report-meta.xml
-src/reports/NAFS_Report/FS_Contact_Account_Report.report
-src/reports/NAFS_Report/FS_Hierarchy_Levels.report
-src/reports/NAFS_Report/FS_Opportunites_Funnel.report
-src/reports/NAFS_Report/FS_Opportunity.report
-src/reports/NAFS_Report/FS_Opportunity_Pipeline.report
-src/reports/NAFS_Report/FS_Opportunity_planned.report
-src/reports/NAFS_Report/FS_Product_TopSellers.report
+src/dashboards/FS_Dashboards-meta.xml
+src/dashboards/FS_Dashboards/FS_Opportunity_Pipeline_Dash_Board.dashboard
+src/dashboards/FS_Dashboards/Funnel_Health_Opportunity_Dashboard.dashboard
