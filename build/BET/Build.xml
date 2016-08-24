@@ -56,8 +56,8 @@
       autoUpdatePackage="true"
       ignoreWarnings="true"
       deployRoot="src"
-      pollWaitMillis="${sfdc.pollWaitMillis}"
-      maxPoll="${sfdc.maxPoll}">
+      pollWaitMillis="10000"
+      maxPoll="4000">
 	   <runTest>CommunitiesLandingControllerTest</runTest>
       <runTest>CommunitiesLoginControllerTest</runTest>
       <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
