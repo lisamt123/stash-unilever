@@ -12,104 +12,130 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    Thiago Oliveira 05/08/2016  Class creation  
 ***********************************************************************/
-@IsTest
+@isTest(seeAllData=true)
 public class ICB_InventoryProducts_CC_Test 
 {
     
-    static testMethod void ICB_getProducts_Test()
+    private static Account acc;
+    private static Contact contact;
+    private static User user;
+    private static Product2 product;
+    private static ICB_Inventory__c inventory2;
+    private static ICB_Inventory_Line_Item__c inventoryLineItem;
+    private static PriceBook2 priceBook2;
+    private static PriceBookEntry priceBookEntry;
+    private static String inventoryList;
+    
+    Static
     {
-        /*
-        account acc = new account();
-        acc.name = 'Testeacc';
-        database.insert(acc);
-        
-        
-        contact cont = new contact(FirstName = 'FirstTest',
-                                   LastName = 'LastTest',
-                                   title = 'Operador',
-                                   phone ='9999-9999',
-                                   email = 'PartnerCommunity@testaccenture.com',
-                                   accountId = acc.id
-                                  );
-        database.insert(cont);
-        
-     	system.debug('cont:'+ cont.id);
-        UserRole portalRole = [Select Id From UserRole Where PortalType = 'Partner' Limit 1];
-        Profile p = [SELECT Id FROM Profile WHERE Name='Partner Community']; 
-        User u = new User(Alias = 'System', Email='PartnerCommunity@testaccenture.com',
-                          ContactId = cont.Id,
-                          UserRoleId = portalRole.Id,
-                          EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
-                          LocaleSidKey='en_US', ProfileId = p.Id, 
-                          TimeZoneSidKey='America/Los_Angeles', UserName='PartnerCommunity@testaccenture.com'
-                         );
-        
-       
-        User user = new User();
-        System.runAs(new User(Id = UserInfo.getUserId())) {
-            database.insert(u);
-        }        
-       */
-        
-		
-        
-        User user1 = [select id, ContactId from user where ContactId != null Limit 1];
-       
-        
-       
-        /*
-        ICB_Inventory__c inventory = new ICB_Inventory__c(Name = acc.Name);
-        
-        database.insert(inventory);
-        
-        product2 prod = new product2(Name ='ProdTest',ICB_Reference_Unit__c = 100.10, Product_Image__c= 'Frutare_coco', Family = 'Impulse');
-        
-        database.insert(prod);
-        
-        ICB_Inventory_Line_Item__c inventLine = new ICB_Inventory_Line_Item__c(ICB_Quantity_Unit__c = 10,
-                                                                               ICB_Quantity_Boxes__c = 2,
-                                                                               ICB_Sales_Price__c = 100,
-                                                                               ICB_Quantity_ToBe_Updated__c = 2,
-                                                                               ICB_Inventory__c = inventory.id,
-                                                                               ICB_Product__c = prod.id);
-        database.insert(inventLine);
-        */
-        Test.startTest();
-            ICB_InventoryProducts_CC.getProducts();
-        Test.stopTest();
-        
-    }
-    static testMethod void ICB_updateOperatorInventory_Test(){
-        
-        ICB_Inventory__c inventory = new ICB_Inventory__c(Name ='Test');
-        
-        database.insert(inventory);
-        
-        product2 prod = new product2(Name ='ProdTest',ICB_Reference_Unit__c = 100, Product_Image__c= 'Frutare_coco', Family = 'Impulse');
-        
-        database.insert(prod);
-        
-       List<ICB_Inventory_Line_Item__c> inventLine = new List<ICB_Inventory_Line_Item__c>();
-        List<ICB_Inventory_Line_Item__c> inventLineCatch = new List<ICB_Inventory_Line_Item__c>();
-       ICB_Inventory_Line_Item__c inventoryLine = new ICB_Inventory_Line_Item__c( ICB_Quantity_Unit__c = 10,
-                                                                               ICB_Quantity_Boxes__c = 2,
-                                                                               ICB_Sales_Price__c = 100,
-                                                                               ICB_Quantity_ToBe_Updated__c = 2,
-                                                                               ICB_Inventory__c = inventory.id,
-                                                                               ICB_Product__r = prod);
-       
-        inventLine.add(inventoryLine);
-        database.insert(inventLine);
-        system.debug('@@@:'+inventLine.get(0).ICB_Product__r.ICB_Reference_Unit__c);
-        ICB_InventoryProducts_CC.updateOperatorInventory(inventLine);
-        
-        
-        for(ICB_Inventory_Line_Item__c inv: inventLine){
-            inv.ICB_Product__r = null;
-            inventLineCatch.add(inv);
-        }
-        
-        ICB_InventoryProducts_CC.updateOperatorInventory(inventLineCatch);
+        acc = new Account();
+        contact = new Contact();
+        user = new User();
+        product = new Product2();
+        inventory2 = new ICB_Inventory__c();
+        inventoryLineItem = new ICB_Inventory_Line_Item__c();
+        priceBook2 = new PriceBook2();
+        priceBookEntry = new PriceBookEntry();
+        inventoryList = '';
     }
     
+	/*******************************************************************
+    Purpose: Test the method getProducts, all scenarios
+	Parameters: [NONE]
+	Returns: [VOID]
+	Throws [Exceptions]: [NONE]
+    ********************************************************************/    
+    static testMethod void ICB_getProducts_Test()
+    {
+        List<ICB_Inventory_Line_Item__c> inventLineGetProductsCatch = new List<ICB_Inventory_Line_Item__c>();
+        createInstances();
+        System.runAs(user)
+        {
+            ICB_InventoryProducts_CC.getProducts();
+            system.assert(inventoryLineItem != null);
+        }
+        
+        inventLineGetProductsCatch = null;
+        ICB_InventoryProducts_CC.getProducts();
+      
+    }
+    /*******************************************************************
+    Purpose: Test the method updateOperatorInventory, all scenarios
+	Parameters: [NONE]
+	Returns: [VOID]
+	Throws [Exceptions]: [NONE]
+    ********************************************************************/ 
+    
+    static testMethod void ICB_updateOperatorInventory_Test()
+    {
+        createInstances();
+        List<ICB_Inventory_Line_Item__c> inventLineCatch = new List<ICB_Inventory_Line_Item__c>();
+        List<ICB_Inventory_Line_Item__c> inventLine = new List<ICB_Inventory_Line_Item__c>();
+        
+        inventLine.add(inventoryLineItem);
+        ICB_InventoryProducts_CC.updateOperatorInventory(inventLine);
+        system.assert(inventoryLineItem.ICB_Quantity_Unit__c == 51);
+        
+        inventLineCatch = null;
+        ICB_InventoryProducts_CC.updateOperatorInventory(inventLineCatch);
+        
+    }
+    /*******************************************************************
+    Purpose: Test the method getProductPrice, all scenarios
+	Parameters: List<PriceBookEntry>
+	Returns: [VOID]
+	Throws [Exceptions]: [NONE]
+    ********************************************************************/ 
+    static testMethod void ICB_getProductPrice_Test()
+    {
+        createInstances();
+        List<PriceBookEntry> listPB = new List<PriceBookEntry>();
+        System.runAs(user)
+        {
+            ICB_InventoryProducts_CC.getProductPrice();
+            system.assert(priceBookEntry != null);
+        }
+        listPB = null;
+        ICB_InventoryProducts_CC.getProductPrice();
+       
+    }
+    /*******************************************************************
+    Purpose: Test the method updateValues, all scenarios
+	Parameters: [NONE]
+	Returns: [VOID]
+	Throws [Exceptions]: [NONE]
+    ********************************************************************/
+    static testMethod void ICB_updateValues_Test()
+    {
+        List<PriceBookEntry> listPBUpdate = new List<PriceBookEntry>();
+        List<PriceBookEntry> listPBUpdateIf = new List<PriceBookEntry>();
+        createInstances();
+        System.runAs(user)
+        {
+            listPBUpdate.add(priceBookEntry);
+            system.assertNotEquals(null,[SELECT id from PriceBookEntry ORDER BY CreatedDate DESC LIMIT 1]);
+            ICB_InventoryProducts_CC.updateValues(listPBUpdate);
+        }
+       
+        ICB_InventoryProducts_CC.updateValues(listPBUpdateIf);
+    }
+    
+    /*******************************************************************
+    Purpose: Method to instance all objects used for tests
+	Parameters: [NONE]
+	Returns: [VOID]
+	Throws [Exceptions]: [NONE]
+    ********************************************************************/
+     private static void createInstances()
+    {
+        acc = ICB_SobjectInstance_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
+        contact = ICB_SobjectInstance_Test.insertContact('Test', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id, '');
+        user = ICB_SobjectInstance_Test.insertUserPartnerCommunity('Partner Community',contact.Id, 'Test','acc','Testac', 'test@accenture.com', 'test@accenture.com.Unilever','testNick');
+        product = ICB_SobjectInstance_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png');
+        inventory2 = ICB_SobjectInstance_Test.insertInventory('Catanduva Distribuidora');
+        inventoryLineItem = ICB_SobjectInstance_Test.insertInventoryLineItem(product.Id, inventory2.Id,50,10);
+        priceBook2 = ICB_SobjectInstance_Test.insertPriceBook2(product.Name);
+        priceBookEntry = ICB_SobjectInstance_Test.insertPriceBookEntry(product.Id,priceBook2.Id);
+        
+    }
 }

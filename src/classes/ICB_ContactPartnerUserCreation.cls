@@ -9,7 +9,7 @@ History
 VERSION AUTHOR 				DATE 		DETAIL Description
 1.0 	CARLOS HENRIQUE  18/08/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
-public class ICB_ContactPartnerUserCreation {
+public with sharing class ICB_ContactPartnerUserCreation {
     
     public static final ICB_ContactPartnerUserCreation instance = new ICB_ContactPartnerUserCreation();
     private static Profile myProfile;
@@ -20,7 +20,7 @@ public class ICB_ContactPartnerUserCreation {
     }
 
     static {
-         myProfile =  [SELECT id FROM Profile WHERE name = 'Partner Community'][0];
+         myProfile =  [SELECT id FROM Profile WHERE name = 'Partner Community Login Basic'][0];
     }
     
     public static ICB_ContactPartnerUserCreation getInstance() {
@@ -99,7 +99,7 @@ public class ICB_ContactPartnerUserCreation {
         dmo.EmailHeader.triggerAutoResponseEmail = false;       
         dmo.optAllOrNone = false;
         
-        String userName = contact.email.substringBefore('@').tolowercase() + system.now().day() + '@unl.community.com';
+        String userName = contact.email.substringBefore('@').tolowercase() + system.now().day() + '@operadorkibon.com';
         String alias = contact.email.substringBefore('@');
 
         newUser = new User(
@@ -126,7 +126,7 @@ public class ICB_ContactPartnerUserCreation {
         List<PermissionSetAssignment> psa = new List<PermissionSetAssignment>();
         List<PermissionSet> listPermission = [SELECT Id, Label 
                           FROM PermissionSet 
-                          WHERE Label IN ('ICB Mobile Channel Salesman', 'ICB Mobile Channel Salesman Partner Community')];
+                          WHERE Label IN ('ICB Mobile Channel Salesman', 'ICB Mobile Channel Operator PCL')];
         
       	List<User> listUser = [SELECT Id, 
                                Contact.ICB_Type__c, 

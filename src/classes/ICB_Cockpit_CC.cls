@@ -29,10 +29,16 @@ public class ICB_Cockpit_CC
     private static final String CONST_OPERATION_IS_CLOSED;
     private static final String CONST_OPERATION_OPEN;
     private static final String CONST_TYPE_LIST;
-    private static Id idRecTypeStandard;
+    private static final String CONST_TYPE_CONTACT_SALES;
+    private static final String CONST_TYPE_CONTACT_OPERATOR;
+    //private static Id idRecTypeStandard;
     private static Map<Id,Contact> mapContact;
+    private static Map<String,Id> mapOptions;
+    private static Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem;
+    private static Map<Id, String> mapUserPhoto;
     private static Id contactId;
     private static Id accountId;
+    private static Set<Id> setContactId;
     
     Static
     {
@@ -50,13 +56,21 @@ public class ICB_Cockpit_CC
         CONST_OPERATION_IS_CLOSED = 'isClosed';
         CONST_OPERATION_OPEN = 'open';
         CONST_TYPE_LIST = 'List<ICB_Wrapper_Cockpit_CC>';
-        idRecTypeStandard = ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT);
+        CONST_TYPE_CONTACT_SALES = 'Ice Cream Salesman';
+        CONST_TYPE_CONTACT_OPERATOR = 'Operator';
+        mapOptions = new Map<String,Id>();
+        mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
+        mapUserPhoto = new Map<Id, String>();
+        setContactId = new Set<Id>();
+       // idRecTypeStandard = ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT); 
         contactId = [SELECT ContactId FROM User WHERE isPortalEnabled = TRUE AND Id =: UserInfo.getUserId()].ContactId;
         accountId = [SELECT AccountId FROM Contact WHERE Id =:contactId].AccountId;
         mapContact = new Map<Id,Contact>([SELECT Id,
                                           Name,
                                           AccountId,
-                                          Account.Name 
+                                          Account.Name,
+                                          ICB_Type__c,
+                                          ICB_Sales_Locale__c
                                           FROM Contact
                                           WHERE AccountId =: accountId]);
     }
@@ -73,9 +87,6 @@ public class ICB_Cockpit_CC
         System.debug('Entering <getContacts>: '+ isClosed);
         
         List<ICB_Wrapper_Cockpit_CC> listWrapper = new List<ICB_Wrapper_Cockpit_CC>();
-        Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
-        Map<Id, String> mapUserPhoto = new Map<Id, String>();
-        Set<Id> setContactId = new Set<Id>();
         ICB_Wrapper_Cockpit_CC itemWrapper;
         ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         item.quantityIce = 0;
@@ -85,11 +96,7 @@ public class ICB_Cockpit_CC
             List<Opportunity> listOpportunity = isClosed ? returnListOppClosed() : returnListOppOpen();
             List<OpportunityLineItem> listOpportunityLineItem = returnListOppItem();
             
-            for(User user : [SELECT ContactId,
-                             FullPhotoUrl 
-                             FROM User 
-                             WHERE isPortalEnabled = TRUE 
-                             AND ContactId =: mapContact.keySet()])
+            for(User user : [SELECT ContactId, FullPhotoUrl FROM User WHERE isPortalEnabled = TRUE AND ContactId =: mapContact.keySet()])
             {
                 mapUserPhoto.put(user.ContactId, user.FullPhotoUrl);
             }
@@ -117,45 +124,13 @@ public class ICB_Cockpit_CC
                 mapLineItem.put(oppItem.OpportunityId, item);
             } 
             
-            for(Opportunity opp : listOpportunity)
-            {
-                if(!setContactId.contains(opp.ICB_Contact__c)){
-                    itemWrapper = new ICB_Wrapper_Cockpit_CC();
-                    itemWrapper.oppItem = opp;
-                    itemWrapper.oppLineItem = mapLineItem.get(opp.id).oppLineItem;
-                    itemWrapper.contactItem = mapContact.get(opp.ICB_Contact__c);
-                    itemWrapper.check = false;
-                    itemWrapper.checkButton = false;
-                    itemWrapper.quantityIce = mapLineItem.get(opp.Id).quantityIce;
-                    itemWrapper.urlImage = mapUserPhoto.get(opp.ICB_Contact__c);
-                    listWrapper.add(itemWrapper);
-                    setContactId.add(opp.ICB_Contact__c);
-                }
-                
-            }
-            for(Contact contact : [SELECT 	id,
-                                   Name,
-                                   Account.Name 
-                                   FROM Contact 
-                                   WHERE Id =: mapContact.keySet()])
-            {
-                if(!setContactId.contains(contact.Id))
-                {
-                    itemWrapper = new ICB_Wrapper_Cockpit_CC();
-                    itemWrapper.urlImage ='';
-                    itemWrapper.contactItem = mapContact.get(contact.id);
-                    itemWrapper.check = false;
-                    itemWrapper.checkButton = false;
-                    itemWrapper.isDisabled = true;
-                    itemWrapper.urlImage = mapUserPhoto.get(contact.Id);
-                    listWrapper.add(itemWrapper);
-                }
-                
-            }
+            listWrapper.addAll(returnOpportunitiesContacts(listOpportunity));
+            listWrapper.addAll(returnContacts());
+            
         }
         catch(Exception e)
         {
-            System.debug('Message Error: ' + e.getMessage());
+            System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
         
         System.debug('Exiting <getContacts>: '+ JSON.serializePretty(listWrapper));
@@ -282,7 +257,7 @@ public class ICB_Cockpit_CC
         }
         catch(Exception e)
         {
-            System.debug('Message Error: ' + e.getMessage());
+            System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
         System.debug('Exiting <getInventories>: '+ JSON.serializePretty(listWrapper));
         return listWrapper;
@@ -301,11 +276,11 @@ public class ICB_Cockpit_CC
     @AuraEnabled
     public static void createOpportunity(String idContact,String oppName, String accountName,String idAccount, String inventoryList)
     {
-        System.debug('Entering <createOpportunity>: '+idContact);
-        System.debug('Entering <createOpportunity>: '+oppName);
-        System.debug('Entering <createOpportunity>: '+accountName);
-        System.debug('Entering <createOpportunity>: '+idAccount);
-        System.debug('Entering <createOpportunity>: '+ inventoryList);
+        System.debug('Entering <createOpportunity> 1: ' + idContact);
+        System.debug('Entering <createOpportunity> 2: ' + oppName);
+        System.debug('Entering <createOpportunity> 3: ' + accountName);
+        System.debug('Entering <createOpportunity> 4: ' + idAccount);
+        System.debug('Entering <createOpportunity> 5: ' + inventoryList);
         
         Opportunity opp = new Opportunity();
         
@@ -322,6 +297,7 @@ public class ICB_Cockpit_CC
             opp.Pricebook2Id = priceBookId;
             opp.ICB_OLD_QUANTITY_RETURNED__c = 0;
             opp.ICB_Contact__c = idContact;
+            opp.ICB_Sales_Locale__c = mapContact.get(idContact).ICB_Sales_Locale__c;
             
             Database.insert(opp);
             createOppItem(opp.id,inventoryList, opp.Name);
@@ -330,7 +306,7 @@ public class ICB_Cockpit_CC
         }
         catch(Exception e)
         {
-            System.debug('Message Error: ' + e.getMessage());
+            System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
         System.debug('Exiting <createOpportunity>: ');
     }
@@ -354,18 +330,19 @@ public class ICB_Cockpit_CC
             if(isClosed)
             {
                 List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(listJson);
-                List<ICB_Wrapper_Cockpit_CC> returnListInventories = deserializeJSON(listJson);
-                List<Opportunity> oppList = new List<Opportunity>();
+                //List<ICB_Wrapper_Cockpit_CC> returnListInventories = deserializeJSON(listJson);
+                //List<Opportunity> oppList = new List<Opportunity>();
                 for(ICB_Wrapper_Cockpit_CC wrapper : listInventories)
                 {
                     opp.ICB_OLD_QUANTITY_RETURNED__c += wrapper.quantity;
+                    
                 }
             }
             Database.update(opp); 
         }
         catch(Exception e)
         {
-            System.debug('Message Error: ' + e.getMessage());
+            System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
         System.debug('Exiting <updateOpportunity>: ');
     }
@@ -382,8 +359,7 @@ public class ICB_Cockpit_CC
     {
         System.debug('Entering <updateOppItem>: '+ inventoryList);
         System.debug('Entering <updateOppItem>: '+ operation);
-        System.debug('CONSTANTE ##### ' + CONST_OPERATION_IS_CLOSED);
-        
+       
         List<OpportunityLineItem> oppItem = new List<OpportunityLineItem>();
         Boolean isIncrement = false;
         
@@ -405,7 +381,6 @@ public class ICB_Cockpit_CC
                                            WHERE PriceBookEntryId =: mapPriceBook.keySet() 
                                            AND Opportunity.StageName <>: CONST_STAGE_CLOSED])
             {
-                System.debug('OPERATION ##### ' + operation);
                 if(operation.equalsIgnoreCase(CONST_OPERATION_IS_CLOSED))
                 {
                     opp.IS_CLOSED__c = true;
@@ -456,10 +431,11 @@ public class ICB_Cockpit_CC
         }
         catch(Exception e)
         {
-            System.debug('Message Error: ' + e.getMessage());
+             System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
         System.debug('Exiting <updateOppItem>');
     }
+
     /*******************************************************************
     Purpose: Create opportunity line items based in opportunity create
     Parameters: @inventoryList(list of items)
@@ -604,10 +580,13 @@ public class ICB_Cockpit_CC
                                                 CreatedDate,
                                                 StageName,
                                                 ICB_Contact__c,
+                                     			ICB_Contact__r.ICB_Type__c,
                                                 OwnerId,
                                                 Amount,
                                                 ICB_OLD_QUANTITY_RETURNED__c,
-                                                ICB_Total_Sold_Price__c 
+                                                ICB_Total_Sold_Price__c,
+                                     			ICB_Sales_Locale__c,
+                                     			ICB_Sales_Locale_List__c
                                     FROM Opportunity 
                                     WHERE ICB_Contact__c =: mapContact.keySet() 
                                     AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE OR StageName = :CONST_STAGE_CLOSED)
@@ -630,8 +609,11 @@ public class ICB_Cockpit_CC
                                                 OwnerId,
                                                 Amount,	
                                                 ICB_Contact__c,
+                                     			ICB_Contact__r.ICB_Type__c,
                                                 ICB_OLD_QUANTITY_RETURNED__c,
-                                                ICB_Total_Sold_Price__c 
+                                                ICB_Total_Sold_Price__c,
+                                     			ICB_Sales_Locale__c,
+                                     			ICB_Sales_Locale_List__c
                                     FROM Opportunity 
                                     WHERE ICB_Contact__c =: mapContact.keySet()
                                     AND (StageName = :CONST_STAGE_PENDING OR StageName = :CONST_STAGE_AVAILABLE)];
@@ -651,16 +633,74 @@ public class ICB_Cockpit_CC
                                                                 Name,
                                                                 Quantity,
                                                                 ICB_STATUS_SALES__c,
-                                                                Opp_Line_Item_Key__c,
-                                                      			Opportunity.OwnerId,
+                                                                Opportunity.OwnerId,
                                                                 ICB_ITEMS_RETURNED__c, 
                                                                 ICB_Total_Purchase_Price__c,
                                                                 ICB_Purchase_Price__c 
                                                       FROM OpportunityLineItem 
                                                       WHERE Opportunity.ICB_Contact__c =: mapContact.keySet() 
                                                       AND (Opportunity.StageName = :CONST_STAGE_PENDING OR Opportunity.StageName = :CONST_STAGE_AVAILABLE 
-                                                           OR Opportunity.StageName = :CONST_STAGE_CLOSED)];
+                                                           OR Opportunity.StageName = :CONST_STAGE_CLOSED)]; 
         System.debug('Exiting <returnListOppItemClosed>: ' + JSON.serializePretty(oppLineItemList));
         return oppLineItemList;
+    }
+    
+   /*******************************************************************
+    Purpose: Retrieve Contacts on the first load components ICB_Cockpit and ICB_CloseSale
+    Parameters: NONE
+    Returns: List<ICB_Wrapper_Cockpit_CC>
+    Throws [Exceptions]: Exception
+    ********************************************************************/
+    private static List<ICB_Wrapper_Cockpit_CC> returnContacts()
+    {
+        List<ICB_Wrapper_Cockpit_CC> listWrapper = new List<ICB_Wrapper_Cockpit_CC>();
+        ICB_Wrapper_Cockpit_CC itemWrapper;
+        for(Contact contact : [SELECT id, Name, Account.Name, ICB_Type__c FROM Contact WHERE Id =: mapContact.keySet()])
+        {
+            if((!setContactId.contains(contact.Id) && contact.ICB_Type__c == CONST_TYPE_CONTACT_SALES) || 
+               (!setContactId.contains(contact.Id) && contact.ICB_Type__c == CONST_TYPE_CONTACT_SALES && contactId <> contact.Id && 
+                mapContact.get(contactId).ICB_Type__c == CONST_TYPE_CONTACT_OPERATOR))
+            {
+                itemWrapper = new ICB_Wrapper_Cockpit_CC();
+                itemWrapper.urlImage ='';
+                itemWrapper.contactItem = mapContact.get(contact.id);
+                itemWrapper.check = false;
+                itemWrapper.checkButton = false;
+                itemWrapper.isDisabled = true;
+                itemWrapper.urlImage = mapUserPhoto.get(contact.Id);
+                listWrapper.add(itemWrapper);
+            }
+            
+        }
+        return listWrapper;
+    }
+    /*******************************************************************
+    Purpose: Retrieve Opportunities on the first load components ICB_Cockpit and ICB_CloseSale
+    Parameters: NONE
+    Returns: List<ICB_Wrapper_Cockpit_CC>
+    Throws [Exceptions]: Exception
+    ********************************************************************/
+    private static List<ICB_Wrapper_Cockpit_CC> returnOpportunitiesContacts(List<Opportunity> listOpportunity)
+    {
+        List<ICB_Wrapper_Cockpit_CC> listWrapper = new List<ICB_Wrapper_Cockpit_CC>();
+        ICB_Wrapper_Cockpit_CC itemWrapper;
+        for(Opportunity opp : listOpportunity)
+        {
+            if((!setContactId.contains(opp.ICB_Contact__c) && opp.ICB_Contact__r.ICB_Type__c == CONST_TYPE_CONTACT_SALES)||
+               (!setContactId.contains(opp.ICB_Contact__c) && opp.ICB_Contact__r.ICB_Type__c == CONST_TYPE_CONTACT_SALES && contactId <> opp.ICB_Contact__c && 
+                mapContact.get(contactId).ICB_Type__c == CONST_TYPE_CONTACT_OPERATOR)){
+                    itemWrapper = new ICB_Wrapper_Cockpit_CC();
+                    itemWrapper.oppItem = opp;
+                    itemWrapper.oppLineItem = mapLineItem.get(opp.id).oppLineItem;
+                    itemWrapper.contactItem = mapContact.get(opp.ICB_Contact__c);
+                    itemWrapper.check = false;
+                    itemWrapper.checkButton = false;
+                    itemWrapper.quantityIce = mapLineItem.get(opp.Id).quantityIce;
+                    itemWrapper.urlImage = mapUserPhoto.get(opp.ICB_Contact__c);
+                    listWrapper.add(itemWrapper);
+                    setContactId.add(opp.ICB_Contact__c);
+                }
+        }
+        return listWrapper;
     }
 }

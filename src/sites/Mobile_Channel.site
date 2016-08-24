@@ -14,10 +14,10 @@
     <inMaintenancePage>CommunitiesLogin</inMaintenancePage>
     <inactiveIndexPage>CommunitiesLogin</inactiveIndexPage>
     <indexPage>CommunitiesLanding</indexPage>
-    <masterLabel>Unilever International Distributor</masterLabel>
+    <masterLabel>Mobile Channel</masterLabel>
     <requireInsecurePortalAccess>false</requireInsecurePortalAccess>
-    <siteAdmin>blessy.voola@unilever.com.prod</siteAdmin>
+    <siteAdmin>ronaldo.c.garcia@accenture.com</siteAdmin>
     <siteType>ChatterNetwork</siteType>
     <subdomain>unilever</subdomain>
-    <urlPathPrefix>UID</urlPathPrefix>
+    <urlPathPrefix>mobilechannel</urlPathPrefix>
 </CustomSite>

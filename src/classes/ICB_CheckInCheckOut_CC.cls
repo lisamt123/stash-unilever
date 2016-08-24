@@ -28,9 +28,10 @@ public with sharing class ICB_CheckInCheckOut_CC
     public static Event getVisit(String visitId)
     {
         system.debug('Entering <getVisit>: '+ visitId);
-        List<Event> visita = [SELECT Id, What.Name, WhatId, Account.SAP_ID__c, ICB_GeolocationCheckIn__Latitude__s,
-                              ICB_GoldenMinuteOpen__c, ICB_Sales_Area__c From Event Where Id =: visitId 
-                              AND REcordTypeId =: idRecTypeIceCream limit 1];
+        List<Event> visita = [SELECT Id, What.Name, WhatId, Account.SAP_ID__c, ICB_GeolocationCheckin__Latitude__s,
+                              ICB_GoldenMinuteOpen__c, ICB_Sales_Area__c,Subject,Location From Event Where Id =: visitId 
+                              AND REcordTypeId =: idRecTypeIceCream 
+                              limit 1];
         system.debug('Exiting <getVisit>: '+ visita);
         if(!visita.isEmpty())
         {
@@ -51,7 +52,7 @@ public with sharing class ICB_CheckInCheckOut_CC
         
         try
         {
-            Territory__c lTerritory = [SELECT Id, User__c, Territory_ID__c FROM Territory__c WHERE User__c =: UserInfo.getUserId()];
+            Territory__c lTerritory = [SELECT Id, User__c, Territory_ID__c FROM Territory__c WHERE User__c =: UserInfo.getUserId() order by createddate desc limit 1];
             String lTerritoryLike = '%'+lTerritory.Territory_ID__c+'%';
             
             List< ContentDocument > lstCon = [SELECT Id, CreatedDate, Title FROM ContentDocument Where Title LIKE :lTerritoryLike
@@ -84,7 +85,7 @@ public with sharing class ICB_CheckInCheckOut_CC
                 ICB_GeolocationCheckIn__Longitude__s, EndDateTime, StartDateTime, ICB_CustomerGeolocation__c,
                 ICB_CustomerGeolocation__Latitude__s, ICB_CustomerGeolocation__Longitude__s,ICB_GeolocationCheckOut__c, 
                 ICB_GeolocationCheckOut__Longitude__s, ICB_GeolocationCheckOut__Latitude__s, ICB_ExecutedDistance__c 
-                FROM Event Where Id =: visitId AND RecordTypeId =: idRecTypeIceCream  limit 1];
+                FROM Event Where Id =: visitId AND RecordTypeId =: idRecTypeIceCream limit 1];
         if(!visita.isEmpty())
         {
             system.debug('Exiting <getEvent>: '+ visita);

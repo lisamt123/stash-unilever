@@ -317,3 +317,201 @@
         <shortDescription>ICB_WARNING_CHECKOUT_SUCCESSFULLY</shortDescription>
         <value>Warning! Check-Out it has been performed!</value>
     </labels>
+     <labels>
+        <fullName>ICB_SCH_VISITS</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_SCH_VISITS</shortDescription>
+        <value>Scheduled Visits</value>
+    </labels>
+    <labels>
+        <fullName>ICB_SCH_VISIT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_SCH_VISIT</shortDescription>
+        <value>Scheduled Visit</value>
+    </labels>
+    <labels>
+        <fullName>ICB_NO_VISIT_SCH</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_NO_VISIT_SCH</shortDescription>
+        <value>No Visit Scheduled</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BUTTON_BACK</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_BUTTON_BACK</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>ICB_SOBJECT_CONTACT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB SOBJECT CONTACT</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>ICB_ERROR_MESSAGE</fullName>
+        <categories>Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_ERROR_MESSAGE</shortDescription>
+        <value>Message Error:</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TITLE_PRODUCT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Title of the product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>ICE_Type_Operator</fullName>
+        <categories>Setup Ice Cream Operator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICE Type Operator</shortDescription>
+        <value>Operator</value>
+    </labels>
+    <labels>
+        <fullName>ICB_UPDATE_INVENTORY</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB UPDATE INVENTORY</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>ICB_TITLE_PRODUCT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Title of the product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>ICB_REC_TYPE_STANDARD_CONTACT</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB REC TYPE STANDARD CONTACT</shortDescription>
+        <value>Standard_Contact</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PROD_SALE_VALUE</fullName>
+        <categories>ICB Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sale Value</shortDescription>
+        <value>Sale Value</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PROD_PURCHASE_VALUE</fullName>
+        <categories>List price screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB PROD PURCHASE VALUE</shortDescription>
+        <value>Purchase Value</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PROD_DESCRIPTION</fullName>
+        <categories>ICB Labels</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>ICB_Price_Book_RecordTypeId</fullName>
+        <categories>Record type Id.</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB Price Book RecordTypeId</shortDescription>
+        <value>Price Book</value>
+    </labels>
+     <labels>
+        <fullName>ICB_Price_Book_Description</fullName>
+        <categories>Price book description.</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB Price Book Description</shortDescription>
+        <value>Tabela de preço para o operador</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PRICELIST_HEADER_SUB_TITLES</fullName>
+        <categories>ICB Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Header value Plural</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PRICELIST_HEADER_SUB_TITLE</fullName>
+        <categories>ICB Header</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Header value singular</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>ICB_INVENTORY_HEADER_SUB_TITLE</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB INVENTORY HEADER SUB TITLE</shortDescription>
+        <value>Products in stock</value>
+    </labels>
+    <labels>
+        <fullName>ICB_INVENTORY_HEADER_SUB_TITLES</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_INVENTORY_HEADER_SUB_TITLES</shortDescription>
+        <value>Product in stock</value>
+    </labels>
+    <labels>
+        <fullName>ICB_INVENTORY_NAME</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB INVENTORY NAME</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>ICB_ENTRY</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB ENTRY</shortDescription>
+        <value>Entry(Unit.)</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BALANCE</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB BALANCE</shortDescription>
+        <value>Balance(BX.)</value>
+    </labels>
+    <labels>
+        <fullName>ICB_BALANCE_UNIT</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB_BALANCE UNIT</shortDescription>
+        <value>Balance(UNIT.)</value>
+    </labels>
+    <labels>
+        <fullName>ICB_CHECK_HASHTAG</fullName>
+        <categories>Setup Ice Cream Operator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB CHECK HASHTAG</shortDescription>
+        <value>#foto</value>
+    </labels>
