@@ -374,7 +374,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         //Copying IPM Milestone fields 
         if(projMilestoneMap.containskey(p.id)){ 
             for(IPM_Milestone__c mile : projMilestoneMap.get(p.id)){ 
-                if(mile.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade)){
+                if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.Original_SHIPTO_TRADE_TLD) || mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.SHIPTO_TRADE_TLD)){
                    if(mile.IPM_Actual_Target_Launch_Year__c != null){
                        otifAnalyticObj.IPM_Actual_Launch_Year__c = integer.valueOf(mile.IPM_Actual_Target_Launch_Year__c);                   
                    }

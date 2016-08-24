@@ -1,6 +1,4 @@
 src
 src/classes
-src/classes/IPM_ConstantUtils.cls
-src/classes/IPM_ConstantUtils.cls-meta.xml
-src/reportTypes
-src/reportTypes/OTIF_Report.reportType
+src/classes/IPM_OTIF_Report_Batch.cls
+src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
