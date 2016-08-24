@@ -478,7 +478,7 @@ private class IPM_GateDocumentController_Test{
         ApexPages.StandardController sc = new ApexPages.StandardController(project);
         IPM_PDocAttachmentListCtrl docCtrl = new IPM_PDocAttachmentListCtrl(sc);
         System.assert(docCtrl.documentList.size() == 0,'Attachment Exists!!');
-        attachment att = new attachment(name='Gate_Document', ParentId= projectDocSecListObj[0].Id, body=blob.ValueOf('test'));
+        attachment att = new attachment(name='Gate_Document', ParentId= projDocList[0].Id, body=blob.ValueOf('test'));
         insert att;
         pRef = Page.IPM_GateDocAttchList;
         pRef.getParameters().put('id', project.Id);
