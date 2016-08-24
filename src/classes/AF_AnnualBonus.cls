@@ -64,16 +64,16 @@ public with sharing class AF_AnnualBonus {
     private static String AF_Qualitative_value=AF_Constants.TEST_QUAL_VALUE;
     private static string className_STR=AF_Constants.TEST_ANNUAL_BONUS;
     public Boolean showSubmit{get;set;}
-	private set<string> agencyEstUnqStr = new set<string>();
-	Map<String,Integer> countryBMMap= new Map<String,Integer>();
-	map<String,Integer> countryCountMap = new map<String,Integer>();
-	map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_Map = new map<String,map<String,boolean>>();
-	List<AF_Sub_Result__c> Bonus_SubResult_List = new List<AF_Sub_Result__c>();
-	 map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_MapTemp = new map<String,map<String,boolean>>();
-	 map<string,AF_Sub_Result__c>mapBonus_result=new map<string,AF_Sub_Result__c>();
-	 Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
-	 Map<String,Integer> BonusMeasureShowMap = new Map<String,Integer>();
-	 Map<String,Integer> BonusMeasureCalcMap = new Map<String,Integer>();
+    private set<string> agencyEstUnqStr = new set<string>();
+    Map<String,Integer> countryBMMap= new Map<String,Integer>();
+    map<String,Integer> countryCountMap = new map<String,Integer>();
+    map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_Map = new map<String,map<String,boolean>>();
+    List<AF_Sub_Result__c> Bonus_SubResult_List = new List<AF_Sub_Result__c>();
+     map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_MapTemp = new map<String,map<String,boolean>>();
+     map<string,AF_Sub_Result__c>mapBonus_result=new map<string,AF_Sub_Result__c>();
+     Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
+     Map<String,Integer> BonusMeasureShowMap = new Map<String,Integer>();
+     Map<String,Integer> BonusMeasureCalcMap = new Map<String,Integer>();
     /*End code refactoring*/
     /**********************************************************************
 *  @Description: Contructor method
@@ -146,8 +146,8 @@ public with sharing class AF_AnnualBonus {
             Bonus_SubResult_List = [SELECT AF_Qual_Per__c,AF_Comment__c,AF_Quant__c,AF_Total_Bonus__c,AF_Qual__c,AF_Country__r.AF_Country__c,AF_Country__r.name,Bonus_Measure__c,AF_Locked__c,AF_country__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Brand_Name__c,AF_Bonus_Threshold__r.Agency_Name__c,AF_Bonus_Threshold__r.Year__c,AF_Digital__c,AF_Traditional__c,AF_Minimum__c,AF_Stretching__c,AF_Outstanding__c,AF_Unique_Thresholds__c,AF_Quant_Bonus_Value__c,AF_Total_Bonus_Value__c,AF_Bonusable_Fees__c,AF_Quant_Bonus__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN :btId and AF_Period__c=null];
             if(Bonus_SubResult_List.size()>0){
                 showmainblock=true;
-				annualBonusConstructorExt(Bonus_SubResult_List);
-				annualBonusDigitalTradExt(Bonus_SubResult_List);
+                annualBonusConstructorExt(Bonus_SubResult_List);
+                annualBonusDigitalTradExt(Bonus_SubResult_List);
                 
             }
             annualBonusQuantQualExt(Bonus_SubResult_List);
@@ -167,28 +167,28 @@ public with sharing class AF_AnnualBonus {
             }
             
             
-			annualBonusTradDigitalCalc();
+            annualBonusTradDigitalCalc();
            
             sum_of_bonusable_fees=Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
             annualBonusTotalTradDigitalCalc();
             annualBonusBMCalc(Bonus_SubResult_List);
             
-			annualBonusQualQuantPerCalc(Bonus_SubResult_List);
+            annualBonusQualQuantPerCalc(Bonus_SubResult_List);
           
         } 
         if(AF_Pilot_Model)
         {
             annualBonusPilotModel(agency_id,Brand_id,current_year);
-		}	
+        }   
     }
-	
+    
     /*********************************************************************************
 *  @Description: this method is used to as an extension of the construtor
 *  @param : none
 *  @return: none.
-***************************************************************************************/	
-	public void annualBonusConstructorExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
-		for(AF_Sub_Result__c bonus_SubResult_Obj:Bonus_SubResult_List){
+***************************************************************************************/    
+    public void annualBonusConstructorExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
+        for(AF_Sub_Result__c bonus_SubResult_Obj:Bonus_SubResult_List){
                     Countryname_BT.add(bonus_SubResult_Obj.AF_Country__r.AF_Country__c);
                     string brandname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Brand_Name__c;
                     string agencyname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Agency_Name__c;
@@ -233,14 +233,14 @@ public with sharing class AF_AnnualBonus {
                     tradDigMapBM.put(Trad,bonus_SubResult_Obj.AF_Traditional__c);
                     bonus_Threshold_Trad_Dig_BM_Map.put(BMStr,tradDigMapBM);
                 }
-	}
+    }
     /**********************************************************************************************
 *  @Description: this method is used to as an extension of the construtor for Trad and Digital Map
 *  @param : none
 *  @return: none.
-***************************************************************************************************/	
-	public void annualBonusDigitalTradExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
-		for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
+***************************************************************************************************/    
+    public void annualBonusDigitalTradExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
+        for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
                     String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                     String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
                     map<String,boolean> tradDigMapBMtemp = new map<String,boolean>();
@@ -263,14 +263,14 @@ public with sharing class AF_AnnualBonus {
                         bonus_Threshold_Trad_Dig_BM_MapTemp.put(StrTemp,tradDigMapBMtemp);
                     }
                 } 
-	}
+    }
    /**********************************************************************************************
 *  @Description: this method is used to as an extension of the construtor Quant,Qual calculation
 *  @param : none
 *  @return: none.
-***************************************************************************************************/	
-	public void annualBonusQuantQualExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
-		for(AF_Sub_Result__c bonusResObj:Bonus_SubResult_List){
+***************************************************************************************************/    
+    public void annualBonusQuantQualExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
+        for(AF_Sub_Result__c bonusResObj:Bonus_SubResult_List){
                 mapBonus_result.put(bonusResObj.AF_Unique_Thresholds__c,bonusResObj);
                 if(bonusResObj.AF_Quant_Bonus_Value__c!=null){
                     sum_of_bonus_val=sum_of_bonus_val + integer.valueof(bonusResObj.AF_Quant_Bonus_Value__c);
@@ -288,14 +288,14 @@ public with sharing class AF_AnnualBonus {
                     sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
                 }
             }
-	}
+    }
    /**********************************************************************************************
 *  @Description: this method is used to as an extension of the construtor Trad,Digital calculation
 *  @param : none
 *  @return: none.
-***************************************************************************************************/		
-	public void annualBonusTradDigitalCalc(){
-		 for(AF_Agency_Estimate__c agEstObj:[Select id,AF_Total__c,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN :agencyEstUnqStr and AF_Brand_Estimate__r.AF_Active__c=True])
+***************************************************************************************************/        
+    public void annualBonusTradDigitalCalc(){
+         for(AF_Agency_Estimate__c agEstObj:[Select id,AF_Total__c,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN :agencyEstUnqStr and AF_Brand_Estimate__r.AF_Active__c=True])
             {
                 String UEntityTrad= agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'T';
                 String UEntityDigital = agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'D';
@@ -332,15 +332,15 @@ public with sharing class AF_AnnualBonus {
                     }
                 }
             } 
-	}
+    }
    /*********************************************************************************
 *  @Description: this method is used to calculate the Quant Bonus for the Annual Bonus
 *  @name : Calculate_Bonus
 *  @param : none
 *  @return: none.
-***************************************************************************************/	
-	public void annualBonusPilotModel(String agency_id,String Brand_id,String current_year){
-		bonusTradDigitalFee = 0;
+***************************************************************************************/    
+    public void annualBonusPilotModel(String agency_id,String Brand_id,String current_year){
+        bonusTradDigitalFee = 0;
             Decimal renumRating = 0;
             Decimal renumPercentage=0;
             Decimal renumAmt=0.0;
@@ -374,83 +374,24 @@ public with sharing class AF_AnnualBonus {
             catch(Exception ex){
            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AnnualBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString()); 
             }
-	}
+    }
    /*********************************************************************************
 *  @Description: this method is used to calculate the Quant Bonus for the Annual Bonus
-				 on load of the screen,which retrieves the data from backend and display.
-				 On save from the UI,it calculates the Quant and Qual% and update the backend
+                 on load of the screen,which retrieves the data from backend and display.
+                 On save from the UI,it calculates the Quant and Qual% and update the backend
 *  @name : Calculate_Bonus
 *  @param : List<AF_Sub_Result__c>
 *  @return: none.
 ***************************************************************************************/
-	public void annualBonusQualQuantPerCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
-		  Decimal totalbonusval=0;
-		  for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
+    public void annualBonusQualQuantPerCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
+          Decimal totalbonusval=0;
+          for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
             {
                 AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);  
                 string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
                 if(mapBonus_result.containskey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
-                    if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null){
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
-                            qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c;
-                        }
-                        else{
-                            qual_per=0;
-                        }
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
-                            Qual_value=Custom_Qualatative.X1__c;
-                            sum_of_qual_value=sum_of_qual_value + Qual_value;
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X3__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X4__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X5__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                    }
-                    else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
-                            qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual_Per__c;
-                        }
-                        else{
-                            qual_per=0;
-                        }
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
-                            Qual_value=Custom_Qualatative.X1__c;
-                            sum_of_qual_value=sum_of_qual_value + Qual_value;
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X3__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X4__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X5__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                    }
-                }  
+                ifLoop();
+                }
                 else{
                     Qual_value=0;
                     qual_per=0; 
@@ -477,16 +418,94 @@ public with sharing class AF_AnnualBonus {
                     noDisplayQuarterly = false;
                 }
             }
-	}
+    }
+    
+   /*********************************************************************************
+*  @Description: this method is used to calculate the Quant Bonus for the Annual Bonus
+                 on load of the screen,which retrieves the data from backend and display.
+                 On save from the UI,it calculates the Quant and Qual% and update the backend
+*  @name : Calculate_Bonus
+*  @param : List<AF_Sub_Result__c>
+*  @return: none.
+***************************************************************************************/  
+    
+    public void ifLoop(){
+     for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
+            {
+            AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);  
+                string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
+    if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null){
+                  if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
+                      qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c;
+                  }
+                  else{
+                      qual_per=0;
+                  }
+                  if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
+                      Qual_value=Custom_Qualatative.X1__c;
+                      sum_of_qual_value=sum_of_qual_value + Qual_value;
+                  }
+                  else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
+                      if(BonusMeasureShowMap.get(strBM)!=null){
+                          Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X3__c/100;
+                          sum_of_qual_value=sum_of_qual_value + Qual_value;
+                      }
+                  }
+                  else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
+                      if(BonusMeasureShowMap.get(strBM)!=null){
+                          Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X4__c/100;
+                          sum_of_qual_value=sum_of_qual_value + Qual_value;
+                      }
+                  }
+                  else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
+                       if(BonusMeasureShowMap.get(strBM)!=null){
+                          Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X5__c/100;
+                          sum_of_qual_value=sum_of_qual_value + Qual_value;
+                      }
+                  }
+              }
+              else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
+                  if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
+                      qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual_Per__c;
+                  }
+                  else{
+                      qual_per=0;
+                  }
+                  if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
+                      Qual_value=Custom_Qualatative.X1__c;
+                      sum_of_qual_value=sum_of_qual_value + Qual_value;
+                  }
+                  else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
+                      if(BonusMeasureShowMap.get(strBM)!=null){
+                          Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X3__c/100;
+                          sum_of_qual_value=sum_of_qual_value + Qual_value;
+                      }
+                  }
+                  else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
+                      if(BonusMeasureShowMap.get(strBM)!=null){
+                          Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X4__c/100;
+                          sum_of_qual_value=sum_of_qual_value + Qual_value;
+                      }
+                  }
+                  else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
+                       if(BonusMeasureShowMap.get(strBM)!=null){
+                          Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X5__c/100;
+                          sum_of_qual_value=sum_of_qual_value + Qual_value;
+                      }
+                  }
+              }
+              }
+    }
+    
    /*********************************************************************************
 *  @Description: this method is used to calculate the Digital and Traditional amounts of the 
-			     Agency estimates with Bonus Threshold
+                 Agency estimates with Bonus Threshold
 *  @name : annualBonusTotalTradDigitalCalc
 *  @param : none
 *  @return: none.
-***************************************************************************************/	
-	public void annualBonusTotalTradDigitalCalc(){
-		 for(String countryName:Countryname_BT){
+***************************************************************************************/    
+    public void annualBonusTotalTradDigitalCalc(){
+         for(String countryName:Countryname_BT){
                 String countryDigital = countryName + '::' + 'D';
                 String countryTrad = countryName + '::' + 'T';
                 Integer count=0;
@@ -508,16 +527,16 @@ public with sharing class AF_AnnualBonus {
                 }
                 BonusMeasureCalcMap.put(countryTrad,calc);
             }
-	}
+    }
    /*********************************************************************************
 *  @Description: this method is used to calculate the Digital and Traditional amounts of the 
-			     Agency estimates with Bonus Threshold and store it in Map to process in other methods
+                 Agency estimates with Bonus Threshold and store it in Map to process in other methods
 *  @name : annualBonusBMCalc
 *  @param : List<AF_Sub_Result__c>
 *  @return: none.
-***************************************************************************************/		
-	public void annualBonusBMCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
-		Integer totalBMCalc=0;
+***************************************************************************************/        
+    public void annualBonusBMCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
+        Integer totalBMCalc=0;
             Integer BMDiff =0;
             
             for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
@@ -547,7 +566,7 @@ public with sharing class AF_AnnualBonus {
                     loopBM= loopBM+1;
                 }
             }
-	}
+    }
     /*********************************************************************************
 *  @Description: this method is used to calculate the Quant Bonus for the Annual Bonus
 *  @name : Calculate_Bonus
@@ -810,7 +829,7 @@ public with sharing class AF_AnnualBonus {
             }
         }
     }
-	
+    
     /***************************************************************************************
 *  @Description: this method is used to update and Lock the calculated 
    @             Bonus value for the Annual Bonus
@@ -847,7 +866,7 @@ public with sharing class AF_AnnualBonus {
             }
             catch(exception ex){
                 AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'ConfirmBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
-            	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
             }
         }
     }
@@ -897,7 +916,7 @@ public with sharing class AF_AnnualBonus {
                 }
                 catch(exception ex){
                     AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'ConfirmBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
-                	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+                    apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
             }
         }
