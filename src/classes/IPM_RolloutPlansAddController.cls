@@ -1186,7 +1186,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	        List<IPM_Country__c> countryListToDelete = [Select Id,Project_Country__c,IPM_CharterApproved__c,isActive__c from IPM_Country__c where Project_Country__c in :deleteCountriesMap.KeySet() AND isActive__c = true ];
 	        for(IPM_Country__c country : countryListToDelete)
 	        {
-	            if(country.IPM_CharterApproved__c)
+                if(country.IPM_Local_Project__c !=null && country.IPM_Local_Project__r.IPM_PrepareForArchival__c)
+                {
+                	country.isActive__c = true;
+                	mapUpsertCountries.put(country.Project_Country__c,country);
+                }
+                else if(country.IPM_CharterApproved__c)
 	            {
 	                country.isActive__c = false;
 	                mapUpsertCountries.put(country.Project_Country__c,country);
@@ -1231,6 +1236,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
           	
     	List<IPM_Project__c> toBeArchievedRolloutProjects =  database.query(childProjectQuery);
 
+		// checking if the stopped/achieved has an associated gate doc, if it is make rollout active
         if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
         {
        		for(IPM_Project__c rollOutProj : toBeArchievedRolloutProjects) 
@@ -1242,6 +1248,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 	rollOutProj.IPM_Is_Invoked_From_Rollout__c =true; 
                 	rollOutProj.Is_Archieved__c = false;
                	 	rollOutProj.IPM_PrepareForArchival__c = true;
+                    // checking if the corresponding rollout for this project is inactive, if it is make it active to give a window of 72 hours for stopping project.
+                    if(mapUpsertRollouts.containsKey(rollOutProj.IPM_Project_Name__c))
+                    {                   	
+                	 	mapUpsertRollouts.get(rollOutProj.IPM_Project_Name__c).isActive__c = true;
+                    } 
               	}
               	else
               	{

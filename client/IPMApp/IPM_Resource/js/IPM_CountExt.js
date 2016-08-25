@@ -42,7 +42,7 @@ jq(document).ready(function() {
                 CKEDITOR.instances[strFrameParent].on("key", function(event) {
                     event = event || window.event;
                     objTextArea = this.document.$.body;
-                    if(event.data.domEvent.$.keyCode !==17 && event.data.domEvent.$.keyCode !== 86){
+                    if(event.data.domEvent.$.keyCode !==17){
                         return editorCount(objTextArea, event);
                     }
                 });
@@ -204,6 +204,7 @@ jq(document).ready(function() {
             if (rem > 0) {
                 jq("#" + strLabelName).show().text(rem.toString()).prev("span").text(IPMAppSE.charRemaining);
             } else {
+                jq("#" + strLabelName).hide().text('0');
                 jq("#" + strLabelName).hide().prev("span").text(IPMAppSE.exLimitBtmMsg);
             }
         }
