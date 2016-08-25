@@ -168,7 +168,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         IPM_Utils.sendApexJobStatusMail(BC);    
     }
     
-    private IPM_Analytics_OTIF__c prepareAnalyticeRecord(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalyticProj,  map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap){
+    private IPM_Analytics_OTIF__c prepareAnalyticeRecord(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalytic,  map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap){
     	
         IPM_Analytics_OTIF__c otifAnalyticProj=otifAnalytic;
 		otifAnalyticProj.IPM_Project_Id__c = proj.id;
