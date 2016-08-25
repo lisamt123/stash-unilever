@@ -1265,4 +1265,5 @@ public class IPM_ConstantUtils {
     public static final String Nonkey = 'NONKEY';
     public static final String Project = 'PROJECT';
     public static final String Phantom = 'PHANTOM';
+    public static final String PDLAMP =' & PDL';
 }

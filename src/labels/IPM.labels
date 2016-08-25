@@ -1,3 +1,17 @@
+        <labels>
+	        <fullName>IPM_Current_PDL_Document_Status</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>Current PDL Document Status</shortDescription>
+	        <value>Current PDL Document Status</value>
+   	</labels>
+	<labels>
+	        <fullName>IPM_Product_Design_Lock</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>Product Design Lock</shortDescription>
+	        <value>Product Design Lock</value>
+	</labels>
 	<labels>
 		<fullName>IPM_PDL_Due_Date_Before_Contract</fullName>
 		<categories>Milestone</categories>

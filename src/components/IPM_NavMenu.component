@@ -39,6 +39,9 @@
                     <li class="{!IF(activeItem=='charter', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Charter"><span>{!$Label.IPM_CHARTER}</span></a></li>
                     </apex:outputPanel>
                      <!--Below rendered condition provide link to gate document page -->
+					<apex:outputPanel layout="block" rendered="{!AND(projSpan='Global',gkm3Proj='GKM3',OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
+                    <li class="{!IF(activeItem=='contract', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Product Design Lock"><span>{!$Label.IPM_Product_Design_Lock}</span></a></li>
+                    </apex:outputPanel>
                     <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global', OR(gkm='GCLT & RCLT', gkm3Proj='GKM3')),projSpan='Regional',projType='Operational'),OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='contract', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Contract"><span>{!$Label.IPM_Contract}</span></a></li>
                     </apex:outputPanel>

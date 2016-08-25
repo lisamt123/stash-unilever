@@ -55,7 +55,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public List<IPM_Project_Rollout__c> lstprojectRollout{get;set;}
     public boolean isAcessDuetoTeam{get;set;}
     private static final String DATEFORMAT='dd MMMM yyyy';
-
+    private String pld_STR;
+    public transient boolean isPDL{get;set;}
+    public transient String status_PDL{get;set;}
     /****************************************************************************************************************************
     * internal set variables for all the associated project documents, sections, tasks & milestones ids
     */
@@ -254,6 +256,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
        if(currentProjecttype != null && currentProjecttype.IPM_Gate_Document__c != null){
            currGateToDisplay = Label.IPM_IN + IPM_ConstantUtils.IPM_SPACE +   currentProjecttype.IPM_Gate_Document__c;
        }
+	   if(IPM_ConstantUtils.CONTRACT_GATE.Equals(currentProjecttype.IPM_Gate_Document__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3 .equals(project.IPM_ProjectGKM__c))
+	   {
+			currGateToDisplay +=IPM_ConstantUtils.PDLAMP;
+	   }
        
        /*** Logic to Display the "Reactivate Project" button on Project Overview page for IPM Business Partner   
    			For Stopped project in Ideas phase for 38 months, "Reactivate Project" button will be displayed for IPM Business Partner
@@ -369,6 +375,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
 	displayGateDocument=false;
         showStopButton=false;
 	isStopped = false;
+	isPDL = false;
+        status_PDL = BLANK_STR;
     }
     //DEF3195-Earliest Target Launch is not displayed on overview page
     public string getEarlTLD(){
@@ -482,6 +490,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
         // get the stopped date ipm ProjectCancel Page
         for(IPM_Project_Document__c eachDoc : project.Project_Documents__r) {
             projectDocsSet.add(eachDoc.Id);
+			if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.Equals(eachDoc.IPM_GateDocuments__c))
+            {
+            	status_PDL = eachDoc.IPM_Document_Status__c;
+            }
             if(IPM_Utils.phaseGateDocumentMap.containsKey(currPhase)) {
                 currGate = IPM_Utils.phaseGateDocumentMap.get(currPhase);
                 if(eachDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_APPROVED) {
@@ -489,6 +501,14 @@ public with sharing class IPM_ProjectOverviewCtrl {
                 }
                 projectDoc = eachDoc;
             }
+        }
+		if(IPM_ConstantUtils.CONTRACT_GATE.Equals(currGate) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3 .equals(project.IPM_ProjectGKM__c))
+        {
+            pld_STR = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK ;
+            isPDL = true;
+        }
+        else{
+            pld_STR = currGate;
         }
       /*projectDocStatusStyleClass = projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED ?  'greyFont'  
                                                         : projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED ?  IPM_ConstantUtils.IPM_BOSS_CSS_STOPPED 
@@ -763,8 +783,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                                 IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
-                                                                                IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND 
+                                                                                (IPM_Project_Document__r.IPM_GateDocuments__c = :currGate OR IPM_Project_Document__r.IPM_GateDocuments__c = :pld_STR) AND
             (IPM_FunctionalRole__c not in :functionalRoleSet OR IPM_FunctionalRole__c in :plFunctionalRoleSet) AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
@@ -773,8 +793,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
             IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
-                                                                                IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND 
+                                                                                (IPM_Project_Document__r.IPM_GateDocuments__c = :currGate OR IPM_Project_Document__r.IPM_GateDocuments__c = :pld_STR) AND
                                                                                 IPM_FunctionalRole__c =: userRole AND
                                                                                 IPM_Default_Section__c = true 
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000];

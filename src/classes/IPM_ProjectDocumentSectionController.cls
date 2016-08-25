@@ -694,17 +694,20 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			}
 		}
 		
-		//For Storing Filled-In Percentage Calculation in Project Object 
-		Integer NonNegotiableCount=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projDoc.Id 
-                                    AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
-        Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projDoc.Id AND  IPM_Default_Section__c=true 
-                                AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
-		if(NonNegotiableCount!=0){
-			Decimal FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiableCount))*100);
-			project.IPM_FilledIn_Percentage__c=FilledinPer;
+		//For Storing Filled-In Percentage Calculation in Project Object
+		if(!IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.Equals(projDoc.IPM_GateDocuments__c))
+		{
+			Integer NonNegotiableCount=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projDoc.Id 
+										AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
+			Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projDoc.Id AND  IPM_Default_Section__c=true 
+									AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
+			if(NonNegotiableCount!=0){
+				Decimal FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiableCount))*100);
+				project.IPM_FilledIn_Percentage__c=FilledinPer;
+			}
+			project.IPM_Current_Document_Status__c = projDoc.IPM_Document_Status__c;
+			update project;
 		}
-        project.IPM_Current_Document_Status__c = projDoc.IPM_Document_Status__c;
-		update project;
 	}
 	
 	/****************************************************************************************************************************************************************
