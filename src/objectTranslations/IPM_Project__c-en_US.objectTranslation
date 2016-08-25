@@ -66,6 +66,10 @@
         <name>BET_MS_First_Release_Date__c</name>
     </fields>
     <fields>
+        <label><!-- BET Status --></label>
+        <name>BET_Status__c</name>
+    </fields>
+    <fields>
         <label><!-- BET TLD Final Release Date --></label>
         <name>BET_TLD_Final_Release_Date__c</name>
     </fields>
@@ -98,6 +102,10 @@
         <label><!-- Deputy Project Leader --></label>
         <name>Deputy_Project_Leader__c</name>
         <relationshipLabel><!-- IPM Projects (Deputy Project Leader) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Duration @Idea --></label>
+        <name>Duration_Idea__c</name>
     </fields>
     <fields>
         <label><!-- EcoDesign Sync Error --></label>
@@ -301,6 +309,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM Capability Approval Date --></label>
+        <name>IPM_Capability_Approval_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Category Group --></label>
         <name>IPM_Category_Group__c</name>
         <picklistValues>
@@ -433,6 +445,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Define Category Group --></label>
+        <name>IPM_Define_Category_Group__c</name>
+    </fields>
+    <fields>
         <label><!-- Document Update Comments --></label>
         <name>IPM_Document_Update_Comments__c</name>
     </fields>
@@ -441,12 +457,44 @@
         <name>IPM_Document_Update_Date__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Duration @ Bosscard --></label>
+        <name>IPM_Duration_Bosscard__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Capability --></label>
+        <name>IPM_Duration_Capability__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Feasibility --></label>
+        <name>IPM_Duration_Feasibility__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Idea --></label>
+        <name>IPM_Duration_Idea__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ Market Deployment --></label>
+        <name>IPM_Duration_Market_Deployment__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @Market Ready --></label>
+        <name>IPM_Duration_Market_Ready__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Duration @ PLE --></label>
+        <name>IPM_Duration_PLE__c</name>
+    </fields>
+    <fields>
         <label><!-- Exists At Least One Assmnt Per EICountry --></label>
         <name>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</name>
     </fields>
     <fields>
         <label><!-- IPM Fast Track Project --></label>
         <name>IPM_Fast_Track_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Feasibility Approval Date --></label>
+        <name>IPM_Feasibility_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- IPM FilledIn Percentage --></label>
@@ -515,6 +563,10 @@
         <name>IPM_Golbal_Project_OwnerId__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Idea Approval Date --></label>
+        <name>IPM_Idea_Approval_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- IsCompleted --></label>
         <name>IPM_IsCompleted__c</name>
     </fields>
@@ -545,6 +597,14 @@
     <fields>
         <label><!-- IPM MCO Name --></label>
         <name>IPM_MCO_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Deployment Approval Date --></label>
+        <name>IPM_Market_Deployment_Approval_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Ready Approval Date --></label>
+        <name>IPM_Market_Ready_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- Market Type --></label>
@@ -581,6 +641,10 @@
     <fields>
         <label><!-- Org Base URL --></label>
         <name>IPM_Org_Base_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM PLE Approval Date --></label>
+        <name>IPM_PLE_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- PM Approach --></label>
@@ -953,6 +1017,10 @@
     <fields>
         <label><!-- Is Archived --></label>
         <name>Is_Archieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Approval Date --></label>
+        <name>Last_Approval_Date__c</name>
     </fields>
     <fields>
         <label><!-- ManualCheck --></label>

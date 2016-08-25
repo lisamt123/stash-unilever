@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WaveApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <folder>Custom_Dashboards</folder>
-    <masterLabel>Custom Dashboards</masterLabel>
+    <masterLabel>Employee Apps</masterLabel>
     <shares>
         <accessLevel>View</accessLevel>
         <sharedTo>AllInternalUsers</sharedTo>

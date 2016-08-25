@@ -2894,6 +2894,42 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000XceP_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_WINTOUR W2 NR_N&amp;R</label>
+        <queue>IPM_a7IE0000000XceP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xcee_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000Xcee</label>
+        <queue>IPM_a7IE0000000Xcee</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xcet_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MARTINEZY3SEAA_SEAA</label>
+        <queue>IPM_a7IE0000000Xcet</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xcf3_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ESTOPA 2_EU</label>
+        <queue>IPM_a7IE0000000Xcf3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>

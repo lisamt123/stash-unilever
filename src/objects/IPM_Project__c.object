@@ -418,6 +418,20 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>BET_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>if( 
+ (ISBLANK(BET__c)|| ISNULL(BET__c)),
+  false,
+  true
+ )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BET Status</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>BET_TLD_Final_Release_Date__c</fullName>
         <description>To store the final release BET milestone due date as per Project Target Launch Date.</description>
         <externalId>false</externalId>
@@ -513,6 +527,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Duration_Idea__c</fullName>
+        <externalId>false</externalId>
+        <label>Duration @Idea</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>EcoDesign_Sync_Error__c</fullName>
@@ -978,6 +1005,23 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Capability_Approval_Date__c</fullName>
+        <description>This is the rollup summary field which will store &apos;Completed On&apos; of Market Ready gate milestone.</description>
+        <externalId>false</externalId>
+        <label>IPM Capability Approval Date</label>
+        <summarizedField>IPM_Milestone__c.IPM_Completed_On__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Capability</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>IPM_Category_Group__c</fullName>
         <description>To capture the category of the project.</description>
         <externalId>false</externalId>
@@ -1298,6 +1342,20 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Define_Category_Group__c</fullName>
+        <description>Populating the Category Group based on Category</description>
+        <externalId>false</externalId>
+        <formula>IF( IPM_Category_Text__c = &apos;Household Care&apos; ||  IPM_Category_Text__c =&apos;Laundry&apos;, &apos;Home Care&apos;, 
+ IF(IPM_Category_Text__c =&apos;Hair Care&apos; || IPM_Category_Text__c =&apos;Oral Care&apos; || IPM_Category_Text__c =&apos;Skin Care&apos; || IPM_Category_Text__c =&apos;Skin Cleansing&apos; || IPM_Category_Text__c =&apos;Deodorants &amp; Fragrances&apos;, &apos;Personal Care&apos;,&apos;&apos;)
+)</formula>
+        <label>Define Category Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Document_Update_Comments__c</fullName>
         <description>To capture the comments if the documents are updated.</description>
         <externalId>false</externalId>
@@ -1321,6 +1379,104 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IPM_Duration_Bosscard__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate  -  IPM_Bosscard__r.CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Duration @ Bosscard</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Duration_Capability__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Capability_Approval_Date__c -  IPM_Feasibility_Approval_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Duration @ Capability</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Duration_Feasibility__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Feasibility_Approval_Date__c -  IPM_Idea_Approval_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Duration @ Feasibility</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Duration_Idea__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Idea_Approval_Date__c - DATEVALUE(CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Duration @ Idea</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Duration_Market_Deployment__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Market_Deployment_Approval_Date__c -  IPM_Market_Ready_Approval_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Duration @ Market Deployment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Duration_Market_Ready__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Market_Ready_Approval_Date__c -  IPM_Capability_Approval_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Duration @Market Ready</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Duration_PLE__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_PLE_Approval_Date__c -  IPM_Market_Deployment_Approval_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Duration @ PLE</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
         <defaultValue>true</defaultValue>
         <description>If the EICountry has one assessment related to it then this checkbox is checked.</description>
@@ -1341,6 +1497,28 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Feasibility_Approval_Date__c</fullName>
+        <description>This is the rollup summary field which will store &apos;Completed On&apos; of Contract milestone.</description>
+        <externalId>false</externalId>
+        <label>IPM Feasibility Approval Date</label>
+        <summarizedField>IPM_Milestone__c.IPM_Completed_On__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Feasibility</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Name__c</field>
+            <operation>equals</operation>
+            <value>Contract Gate Approval</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>IPM_FilledIn_Percentage__c</fullName>
@@ -1529,6 +1707,23 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Idea_Approval_Date__c</fullName>
+        <description>This is the rollup summary field which will store &apos;Completed On&apos; of Charter milestone.</description>
+        <externalId>false</externalId>
+        <label>IPM Idea Approval Date</label>
+        <summarizedField>IPM_Milestone__c.IPM_Completed_On__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Ideas</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>IPM_IsCompleted__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To check if project is completed.</description>
@@ -1603,6 +1798,40 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Market_Deployment_Approval_Date__c</fullName>
+        <description>This is the rollup summary field which will store &apos;Completed On&apos; of Market Deployment milestone.</description>
+        <externalId>false</externalId>
+        <label>IPM Market Deployment Approval Date</label>
+        <summarizedField>IPM_Milestone__c.IPM_Completed_On__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Market Deployment</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Market_Ready_Approval_Date__c</fullName>
+        <description>This is the rollup summary field which will store &apos;Completed On&apos; of Market Ready milestone.</description>
+        <externalId>false</externalId>
+        <label>IPM Market Ready Approval Date</label>
+        <summarizedField>IPM_Milestone__c.IPM_Completed_On__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Market Ready</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>IPM_Market_Type__c</fullName>
@@ -1685,6 +1914,23 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_PLE_Approval_Date__c</fullName>
+        <description>This is the rollup summary field which will store &apos;Completed On&apos; of PLE milestone.</description>
+        <externalId>false</externalId>
+        <label>IPM PLE Approval Date</label>
+        <summarizedField>IPM_Milestone__c.IPM_Completed_On__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Phase__c</field>
+            <operation>equals</operation>
+            <value>Post Launch Evaluation</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>min</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>IPM_PM_Approach__c</fullName>
@@ -2521,6 +2767,17 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Last_Approval_Date__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <externalId>false</externalId>
+        <label>Last Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>ManualCheck__c</fullName>
@@ -5096,6 +5353,42 @@ OwnerId))</formula>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000XbRf</label>
         <queue>IPM_a7IE0000000XbRf</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000XceP_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_WINTOUR W2 NR_N&amp;R</label>
+        <queue>IPM_a7IE0000000XceP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xcee_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000Xcee</label>
+        <queue>IPM_a7IE0000000Xcee</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xcet_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MARTINEZY3SEAA_SEAA</label>
+        <queue>IPM_a7IE0000000Xcet</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xcf3_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ESTOPA 2_EU</label>
+        <queue>IPM_a7IE0000000Xcf3</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

@@ -2,7 +2,6 @@
 <WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <content xsi:nil="true"/>
     <application>UL_Reports</application>
-    <datasets>VisualforceRequest</datasets>
     <masterLabel>Page Load times 7 Days - Project Search</masterLabel>
     <visualizationType>time</visualizationType>
 </WaveLens>

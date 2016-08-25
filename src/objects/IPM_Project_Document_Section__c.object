@@ -70,6 +70,18 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Gate_With_Sequence__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(IPM_Gate_Document__c) &amp; &apos; &apos; &amp;&apos;Gate&apos;&amp;&apos; &apos;&amp; IPM_Section_Sequence__c &amp; &apos; &apos; &amp; IPM_Section_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Gate With Sequence</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Assortment_CU__c</fullName>
         <description>To store the CU&apos;s selected for assortment channel</description>
         <externalId>false</externalId>
