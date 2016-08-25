@@ -104,7 +104,7 @@
     <fieldUpdates>
         <fullName>GEL_Update_Legacy_Owner</fullName>
         <field>Legacy_Exception_Raiser__c</field>
-        <formula>CreatedBy.FirstName  +  CreatedBy.LastName</formula>
+        <formula>CreatedBy.FirstName</formula>
         <name>GEL_Update Legacy Owner</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
