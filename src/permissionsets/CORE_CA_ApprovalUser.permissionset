@@ -36,7 +36,7 @@
         <apexClass>Core_CA_WrapperUtility</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <label>CoreCAAdminUser</label>
+    <label>CORE_CA_ApprovalUser</label>
     <pageAccesses>
         <apexPage>Core_CA_ChatterPostNavigation</apexPage>
         <enabled>true</enabled>

@@ -1,5 +1,5 @@
 /*
-    Class Name: Core_CA_Header_Handler
+  Class Name: Core_CA_Header_Handler
   Author : Mindtree
   Date: 15 Oct 2014
   Requirement/Project Name: Unilever Salesforce Engagement
@@ -9,42 +9,26 @@
                            3. Trigger notification -after update
 */
 
- /* -- SONAR Issue explanation -- 
-    This is Handler class for the Trigger written on Approval console object.When bunch of records are inserted by the external system with as a non-admin user, and If we use 'Sharing' keyword for this class.    
-    For EntitySubscription SOQL max we can extract 1000 records as a non admin user but the query return more than 1000 records and we cannot exclude other records. We have included the Where cluase already. And following error is thrown     
-    System.QueryException: Implementation restriction: EntitySubscription only allows security evaluation for non-admin users when LIMIT is specified and at most 1000
- */  
 public class Core_CA_Header_Handler{
 
     public void handleBeforeInsert(List<Core_Approval_Header__c > headerList){
-        /* -- SONAR Issue explanation -- 
-          When the Record is inserted by the External system depending on the Source System We are assigning the relevant record type to the record.
-          there are 4 Recordtype for the approval console object.So its been retrived in the below code snippet 
-        */
-        List<RecordType> LstRecordType  = [SELECT Id,Name FROM RecordType where Name IN ('ARIBA','GTES','Clarity','Invoice') AND SobjectType = 'Core_Approval_Header__c'];
-        String aribaId;
-        String gtesId;
-        String clarityId;
-        String invoiceId;
-        for(RecordType recordId : LstRecordType)
-        {
-                if(recordId.Name== 'Ariba')  {aribaId = recordId.Id;}
-                if(recordId.Name== 'GTES')   {gtesId = recordId.Id;}
-                if(recordId.Name== 'Clarity'){clarityId = recordId.Id;}
-                if(recordId.Name== 'Invoice'){invoiceId = recordId.Id;}
-            
-            }
+    
+        List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approval_Header__c'];
+        List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Header__c'];
+        List<RecordType> clarityRecordType  = [SELECT Id FROM RecordType where Name ='Clarity' AND SobjectType = 'Core_Approval_Header__c'];
+        List<RecordType> invoiceRecordType   = [SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Header__c'];
+        
         for(Core_Approval_Header__c headerRec : headerList){
-            
+          
            //Fetching Record Type Id for Selected Source System.
            if(headerRec.Source_System__c == 'GTES')
-                headerRec.RecordTypeId  = gtesId;                             
+                headerRec.RecordTypeId  = gtesRecordType[0].ID;                             
            if(headerRec.Source_System__c == 'Ariba')
-                headerRec.RecordTypeId  = aribaId;
+                headerRec.RecordTypeId  = aribaRecordType[0].ID;
            if(headerRec.Source_System__c == 'Clarity')
-                headerRec.RecordTypeId  = clarityId;                             
+                headerRec.RecordTypeId  = clarityRecordType[0].ID;                             
            if(headerRec.Source_System__c == 'Invoice')
-                headerRec.RecordTypeId  = invoiceId;
+                headerRec.RecordTypeId  = invoiceRecordType[0].ID;
            
            
            // Updating Name field with External System Value.
@@ -52,11 +36,6 @@ public class Core_CA_Header_Handler{
         }
     }
     
-    /* -- SONAR Issue explanation -- 
-      This is handler class for trigger written for AfterInsert instance of Approval Console.
-      Which has Follow/Unfollow logic, Apex sharing and Chatter notification code. 
-      So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
-    */
     public void handleAfterInsert(List<Core_Approval_Header__c > headerList){
         try{
         List<Core_Approval_Header__Share> lstShareHeader=new List<Core_Approval_Header__Share>();
@@ -68,7 +47,7 @@ public class Core_CA_Header_Handler{
         Map<Id,List<Core_Approver_Details__c>> mapApprover = new Map<Id,List<Core_Approver_Details__c>>();
         Set<Core_Approval_Header__c> setHeaderStatus=new Set<Core_Approval_Header__c>();
         Set<Id> userIds= new Set<Id>();
-        
+        //List<EntitySubscription> lstEntitySubDelete=new List<EntitySubscription>();
         
         for(Core_Approval_Header__c id : headerList){
             headerids.add(id.ID);
@@ -94,6 +73,36 @@ public class Core_CA_Header_Handler{
         
         // Iterate through the Header records          
         for(Core_Approval_Header__c headerRec : headerList){       
+           /*
+           Set<Id> setUserId=new Set<Id>();
+           Set<Id> userorGroupIds = new Set<Id>();
+           
+           //create Set of userIds which are having sharing permission for the current record.
+           for(Core_Approval_Header__Share shareid : headerShareObj){
+               if(shareid.ParentId  == headerRec.Id)
+                userorGroupIds.add(shareid.UserOrGroupId);
+           }
+           
+           
+           //Check whether Manager is not null and dont have sharing permission for current record.
+           if(headerRec.Manager__c!=null && !(userorGroupIds.contains(headerRec.Manager__c)))
+              setUserId.add(headerRec.Manager__c);
+           //Check whether Requested By is not null and dont have sharing permission for current record.
+           if(headerRec.Requested_By__c!=null && !(userorGroupIds.contains(headerRec.Requested_By__c)))
+              setUserId.add(headerRec.Requested_By__c);
+           //Check whether Requested For is not null and dont have sharing permission for current record.
+           if(headerRec.Requested_For__c!=null && !(userorGroupIds.contains(headerRec.Requested_For__c))) 
+              setUserId.add(headerRec.Requested_For__c);
+             
+                    
+           for(Id userId:setUserId){
+            //Create Header Share object and assign the userId to whom the current record permission should be given. 
+               Core_Approval_Header__Share shareObj=new Core_Approval_Header__Share();
+               shareObj.ParentId=headerRec.Id;
+               shareObj.UserOrGroupId=userId;
+               shareObj.AccessLevel='Edit';
+               lstShareHeader.add(shareObj);
+           }*/ 
            
            Set<Id> setUserIdForEntity=new Set<Id>();
            Set<Id> subscriberIdForEntity = new Set<Id>();
@@ -104,17 +113,105 @@ public class Core_CA_Header_Handler{
                 subscriberIdForEntity.add(entityid.SubscriberId);
            }
            
+           //Check whether Manager is not null and not following the current record.
+           //Commented Code ((headerRec.Source_System__c=='GTES' && headerRec.Fully_Approved__c!=True) || (headerRec.Source_System__c=='Ariba' && headerRec.Status__c!='Fully Approved'))
+           /*if(headerRec.Manager__c!=null && !(subscriberIdForEntity.contains(headerRec.Manager__c)))
+              setUserIdForEntity.add(headerRec.Manager__c);
+           //Check whether Requested By is not null and not following the current record.
+           if(headerRec.Requested_By__c!=null && !(subscriberIdForEntity.contains(headerRec.Requested_By__c)))
+              setUserIdForEntity.add(headerRec.Requested_By__c);
+           //Check whether Requested For is not null and not following the current record.
+           if(headerRec.Requested_For__c!=null && !(subscriberIdForEntity.contains(headerRec.Requested_For__c))) 
+              setUserIdForEntity.add(headerRec.Requested_For__c);
+                      
+           for(Id userId:setUserIdForEntity){
+            //Create EntitySubscription object and assign the user who need to follow the current record. 
+               EntitySubscription entityObj=new EntitySubscription();
+               entityObj.ParentId=headerRec.Id;
+               entityObj.SubscriberId=userId;
+               lstEntitySubHeader.add(entityObj);
+           }*/
            
            if(headerRec.Source_System__c=='GTES' && CORE_Chatter_Approval__c.getinstance('GTES_Notification').Text_Value__c=='Yes'){
                 //If Fully Approved field is True
                 if(headerRec.Fully_Approved__c){
+                    /*List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
+                    lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
+                    if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);*/
                     setHeaderStatus.add(new Core_Approval_Header__c(id=headerRec.Id,Status__c='Fully Approved'));
-                        
+                    //if( mapApprover.get(headerRec.Id) != null){
+                        //for(Core_Approver_Details__c approverRec : mapApprover.get(headerRec.Id)){
+                            //if((approverRec.role__c=='EMP' || approverRec.role__c=='SUB')&& approverRec.Interested_Party__c!=null){
+                                    /*String strBody=CORE_Chatter_Approval__c.getinstance('GTES-FullyApproved').Text_Value__c;
+                                    strBody=strBody.replace('XXX',headerRec.Name);
+                                    lstFeedItem.add(new FeedItem( Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id,
+                                                                  LinkURL = baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));*/
+                            //}
+                        //} 
+                    //}    
                 }
                 else setHeaderStatus.add(new Core_Approval_Header__c(id=headerRec.Id,Status__c='Submitted'));
             }
            
-           
+           //if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
+                //String strBody;
+                
+                /*trigger notification regarding invalid PR
+                if(headerRec.Invalid_PR__c == true){                   
+                    strBody = CORE_Chatter_Approval__c.getinstance('Ariba-InvalidPR').Text_Value__c; 
+                    strBody = strBody.replace('XXX',headerRec.Name);
+                   
+                    if(headerRec.Invalid_PR_Approver__c != null) strBody = strBody.replace('YYY',mapUser.get(headerRec.Invalid_PR_Approver__c).Name);
+                    else strBody = strBody.replace('YYY','');
+                    
+                    if(headerRec.Invalid_PR_Reason__c != null)strBody = strBody.replace('ZZZ',headerRec.Invalid_PR_Reason__c); 
+                    else strBody = strBody.replace('ZZZ','');  
+                    
+                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL = baseUrl+'/'+headerRec.Id, Title = headerRec.Name, CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));                 
+                    
+                    //Clear the values of all active approver who have blank field value in action.
+                    if( mapApprover.get(headerRec.Id) != null){                                                                          
+                        for(Core_Approver_Details__c approverRec : mapApprover.get(headerRec.Id)){
+                            if(approverRec.role__c=='APP'&& approverRec.Is_Active__c == true && (approverRec.Action__c == '' || approverRec.Action__c == null) ){
+                                lstactiveApprover.add(new Core_Approver_Details__c(Id=approverRec.Id,Send_to_Source_System__c='',Status__c=''));        
+                            }
+                        }
+                    } 
+                }*/ 
+                
+                
+               /* if(headerRec.Status__c=='Submitted'){
+                   
+                  //Notification when Requested For == Requested by
+                  if(headerRec.Requested_For__c != null && (headerRec.Requested_For__c== headerRec.Requested_By__c || headerRec.Requested_By__c==null)){
+                    strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ExpenseClaimSubmitted1').Text_Value__c;
+                    strBody = strBody.replace('XXX',headerRec.Name);
+                    strBody = strBody.replace('YYY',mapUser.get(headerRec.Requested_For__c).Name); 
+                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
+                  }
+                  
+                  //Notification when Requested For <> Requested by
+                  if(headerRec.Requested_For__c != null && headerRec.Requested_By__c!=null && headerRec.Requested_For__c!=headerRec.Requested_By__c){
+                    strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ExpenseClaimSubmitted2').Text_Value__c;
+                    strBody = strBody.replace('XXX',headerRec.Name); 
+                    strBody = strBody.replace('YYY',mapUser.get(headerRec.Requested_By__c).Name);
+                    strBody = strBody.replace('ZZZ',mapUser.get(headerRec.Requested_For__c).Name);  
+                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
+                  }
+                  
+                }
+                //Request Fully Approved
+                if(headerRec.Status__c=='Fully Approved'){
+                    //List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
+                    //lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
+                    //if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);
+                    strBody = CORE_Chatter_Approval__c.getinstance('Ariba-RequestFullyApproved').Text_Value__c;
+                    strBody = strBody.replace('XXX',headerRec.Name);  
+                    //if(headerRec.Requested_For__c!=null ) 
+                        lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
+                } */
+                
+             //}
           }
           //insert the feed item record.
           if(!lstFeedItem.isEmpty()) Database.insert(lstFeedItem);
@@ -127,11 +224,13 @@ public class Core_CA_Header_Handler{
           }
           //insert the active aprover during invalid PR case.
           if(!lstactiveApprover.isempty()) {
-          
+          //system.debug('####'+lstactiveApprover);
               Database.update(lstactiveApprover);
           }
           //insert the entity subscription record.
-          
+          //if(!lstEntitySubHeader.isempty()) Database.insert(lstEntitySubHeader);
+          //delete entity subscription record
+          //if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         }
         catch (Exception ex) {
          while (ex.getCause() != null)
@@ -141,12 +240,6 @@ public class Core_CA_Header_Handler{
       }
     }
     
-    /* -- SONAR Issue explanation -- 
-      This is handler class for trigger written for AfterUpdate instance of Approval Console.
-      Which has Follow/Unfollow logic, Apex sharing and Chatter notification code. 
-      So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
-    */
-    
     public void handleAfterUpdate(map<Id,Core_Approval_Header__c> headerNew, map<Id,Core_Approval_Header__c> headerOld){
         try{
         List<feeditem> lstFeedItem=new List<feeditem>();
@@ -154,7 +247,7 @@ public class Core_CA_Header_Handler{
         Set<Core_Approval_Header__c> setHeaderStatus=new Set<Core_Approval_Header__c>();
         String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
         Set<Id> userIds= new Set<Id>();
-        
+        //List<EntitySubscription> lstEntitySubDelete=new List<EntitySubscription>();
         
         //Create map with Header record along with all the IP's.
         Map<Id,List<Core_Approver_Details__c>> mapApprover = new Map<Id,List<Core_Approver_Details__c>>();
@@ -183,14 +276,34 @@ public class Core_CA_Header_Handler{
                 //If Ledger Extract field not equal to null
                 if(newHeader.Ledger_Extract__c != null && oldHeader.Ledger_Extract__c==null){
                     setHeaderStatus.add(new Core_Approval_Header__c(id=headerRec.Id,Status__c='Sent for Payment'));
-                      
+                    //if( mapApprover.get(headerRec.Id) != null){
+                        //for(Core_Approver_Details__c approverRec : mapApprover.get(headerRec.Id)){
+                            //if((approverRec.role__c=='EMP' || approverRec.role__c=='SUB')&& approverRec.Interested_Party__c!=null){
+                                    /*String strBody=CORE_Chatter_Approval__c.getinstance('GTES-SentforPayment').Text_Value__c;
+                                    strBody=strBody.replace('XXX',headerRec.Name);
+                                    lstFeedItem.add(new FeedItem( Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id,
+                                                                  LinkURL = baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));*/
+                            //}
+                        //} 
+                    //}    
                 }
                 
                 //If Fully Approved field is True
                 if(newHeader.Fully_Approved__c && !oldHeader.Fully_Approved__c){
-                    
+                    /*List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
+                    lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
+                    if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);*/
                     setHeaderStatus.add(new Core_Approval_Header__c(id=headerRec.Id,Status__c='Fully Approved'));
-                       
+                    //if( mapApprover.get(headerRec.Id) != null){
+                        //for(Core_Approver_Details__c approverRec : mapApprover.get(headerRec.Id)){
+                            //if((approverRec.role__c=='EMP' || approverRec.role__c=='SUB')&& approverRec.Interested_Party__c!=null){
+                                    /*String strBody=CORE_Chatter_Approval__c.getinstance('GTES-FullyApproved').Text_Value__c;
+                                    strBody=strBody.replace('XXX',headerRec.Name);
+                                    lstFeedItem.add(new FeedItem( Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id,
+                                                                  LinkURL = baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));*/
+                            //}
+                        //} 
+                    //}    
                 }
             }
            
@@ -223,7 +336,36 @@ public class Core_CA_Header_Handler{
                     } 
                 } 
                 
-                
+                /*if(newHeader.Status__c != oldHeader.Status__c && oldHeader.Status__c=='Withdrawn' && headerRec.Status__c=='Submitted') {
+                   
+                   //Notification when Requested For == Requested by
+                   if(headerRec.Requested_For__c!= null && (headerRec.Requested_For__c==headerRec.Requested_By__c||headerRec.Requested_By__c==null)){
+                       strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ExpenseClaimSubmitted1').Text_Value__c;
+                       strBody = strBody.replace('XXX',headerRec.Name);
+                       strBody = strBody.replace('YYY',mapUser.get(headerRec.Requested_For__c).Name); 
+                         lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
+                   }
+                   
+                   //Notification when Requested For <> Requested by
+                   if(headerRec.Requested_For__c!= null && headerRec.Requested_By__c!=null && headerRec.Requested_For__c!=headerRec.Requested_By__c){
+                        strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ExpenseClaimSubmitted2').Text_Value__c;
+                        strBody = strBody.replace('XXX',headerRec.Name); 
+                        strBody = strBody.replace('YYY',mapUser.get(headerRec.Requested_By__c).Name);
+                        strBody = strBody.replace('ZZZ',mapUser.get(headerRec.Requested_For__c).Name);   
+                            lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
+                    }
+                 }   
+                 
+                //Request Fully Approved
+                if(newHeader.Status__c != oldHeader.Status__c && headerRec.Status__c=='Fully Approved'){
+                    //List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
+                    //lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
+                    //if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);
+                    strBody = CORE_Chatter_Approval__c.getinstance('Ariba-RequestFullyApproved').Text_Value__c;
+                    strBody = strBody.replace('XXX',headerRec.Name);  
+                    //if(headerRec.Requested_For__c!=null ) 
+                        lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
+                }*/
            } 
         }
         //insert the list of feed item record.
@@ -232,11 +374,12 @@ public class Core_CA_Header_Handler{
         
         //insert the active aprover during invalid PR case.
         if(!lstactiveApprover.isempty()) {
-        
+        //system.debug('####'+lstactiveApprover);
         Database.update(lstactiveApprover);
         }
         
-        
+        //delete entity subscription record
+            //if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         
         if(!setHeaderStatus.isempty()){
             List<Core_Approval_Header__c> lstHeaderStatus=new List<Core_Approval_Header__c>();

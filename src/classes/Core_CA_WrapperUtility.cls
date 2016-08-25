@@ -9,7 +9,11 @@
                            3. 
 */
 
-
+/* -- SONAR Issue explanation -- 
+       This Wrapper class is Used to send the the data to the UI.For the entire App single wrapper is been used and 
+       and multiple fields are declared. Thats leading to the Sonar issues.  
+*/
+    
 global with sharing class Core_CA_WrapperUtility { 
     /**** wrapper classes for MyApproval Home page starts ****/
     
@@ -189,9 +193,7 @@ global with sharing class Core_CA_WrapperUtility {
         @AuraEnabled     
         public String InvoiceType; 
         @AuraEnabled
-        public String CompanyCode; 
-        @AuraEnabled
-        public List<InvoiceImage> InvoiceImage; 
+        public String CompanyCode;
     } 
     
     global class ExpenseDetailsDataRequest{
@@ -239,14 +241,6 @@ global with sharing class Core_CA_WrapperUtility {
         public String LocationDetails;
     } 
     
-     public class InvoiceImage{
-        @AuraEnabled
-        public String Contentdata;
-        @AuraEnabled
-        public String body;
-        @AuraEnabled
-        public String attId;
-    }
     /**** wrapper classes for Request detail page ends **** /
     
     

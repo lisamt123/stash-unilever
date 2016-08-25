@@ -107,7 +107,7 @@ public class Core_CA_ApprovalsController {
     
     @AuraEnabled
     public static String getUIThemeDescription() {
-        String themedesc = 'Salesforce1 Mobile';
+        String themedesc;
         String theme = UserInfo.getUiThemeDisplayed();
         if(theme=='Theme3' || theme=='Theme2'){
             themedesc='Salesforce Classic';
