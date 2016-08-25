@@ -1393,7 +1393,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,name,IPM_Project__r.id,Market_Cluster_Name__c,RecordTypeId,MCO_Name__c,Regional_Project__c,Regional_Rollout__c,IPM_Status__c,KeyMCO__c,IPM_Company_Card__r.Name,IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,Target_Launch_Year__c,Regional_Rollout_Phase__c,
 																									Local_Rollout_Phase__c,IPM_Project_Job_Status__c,Target_LaunchMonth__c,Target_LaunchYear__c,Regional_Rollout__r.id,Regional_Rollout__r.Name,IPM_Global_OR_Regional__c,
 																									IPM_Brand__c,IPM_Parent_Project_Name__c,IPM_Regional_PL__c,IPM_Regional_PL__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_Phase__c,
-																									Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id                                                                    
+																									Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id,Target_Launch_Date__c                                                                    
                                                                                                     FROM IPM_Project_Rollout__c 
                                                                                                     WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
             for(IPM_Project_Rollout__c pr:projRolloutList){
