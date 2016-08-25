@@ -202,7 +202,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 	    }
 	    
 	    //setGeography
-        //otifAnalyticProj = setGeography(proj,otifAnalyticProj);
+        otifAnalyticProj = setGeography(proj,otifAnalyticProj);
 
         // populate target launch year & month
         otifAnalyticProj = setTargetLaunchYearandMonth(proj,otifAnalyticProj);
@@ -344,13 +344,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         nonKeyAnalytic.IPM_Market_Place_Activity__c = parentAnalytic.IPM_Market_Place_Activity__c;
         nonKeyAnalytic.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
         nonKeyAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
-        nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
-        nonKeyAnalytic.Contract_Full_Mix__c = parent.Contract_Full_Mix__c;
-        nonKeyAnalytic.Contract_Communication__c = parent.Contract_Communication__c;
-        nonKeyAnalytic.IPM_Contract_Pack__c = parent.IPM_Contract_Pack__c;
-        nonKeyAnalytic.Contract_Product__c = parent.Contract_Product__c;
-        nonKeyAnalytic.Comm_BET_Final_Release_Availability__c = parent.Comm_BET_Final_Release_Availability__c;
-        
+        nonKeyAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;              
         nonKeyAnalytic.IPM_Target_Launch_Month_BD__c = parent.IPM_Target_Launch_Month_BD__c;
         nonKeyAnalytic.IPM_Target_Launch_Year_BD__c = parent.IPM_Target_Launch_Year_BD__c;
             
@@ -762,14 +756,14 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
              if(fr.MR_Approved__c){
                 otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;     //Charter Innovation Y1 iTO             
                 otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;       //Contract Innovation Y1 iTO    
-                otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
+                otifAnalyticObj.IPM_MR_Y1_iTO__c = fr.Turnover_MR__c;
                 
             }
              if(fr.MD_Approved__c){
                 otifAnalyticObj.IPM_Charter_Y1_iTO__c = fr.Turnover_Charter__c;     //Charter Innovation Y1 iTO             
                 otifAnalyticObj.IPM_Contract_Y1_iTO__c = fr.Turnover_Contract__c;       //Contract Innovation Y1 iTO    
-                otifAnalyticObj.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
-                otifAnalyticObj.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;               
+                otifAnalyticObj.IPM_MR_Y1_iTO__c = fr.Turnover_MR__c;
+                otifAnalyticObj.IPM_MD_Y1_iTO__c = fr.Turnover_MD__c;               
             }
             
            return otifAnalyticObj;
@@ -1463,6 +1457,26 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         
         return projRolloutMap;
     	    	
+    }
+    
+    /*********************************************************************************************************************
+     * @Description: To set Geography
+     * @param1: IPM_Project__c proj
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/ 
+    public IPM_Analytics_OTIF__c setGeography(IPM_Project__c proj,IPM_Analytics_OTIF__c otifAnalyticProj){
+    	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalyticProj; 
+        if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
+           otifAnalyticObj.IPM_Geography__c = IPM_Utils.valueGlobal;             
+        } else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
+            otifAnalyticObj.IPM_Geography__c = proj.Market_Cluster_Name__c;
+        }else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
+           otifAnalyticObj.IPM_Geography__c = proj.Market_Cluster_Name__c;
+        }else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
+            if(ipmCountryMap.containskey(proj.id)){otifAnalyticObj.IPM_Geography__c = ipmCountryMap.get(proj.id);}
+        }
+        return otifAnalyticObj;
     }
     
 }
