@@ -131,7 +131,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             IPM_Analytics_OTIF__c otifAnalyticProj = new IPM_Analytics_OTIF__c();
             otifAnalyticProj = prepareAnalyticeRecord(proj,otifAnalyticProj, projDocSecContentMap);
             analyticreclist.add(otifAnalyticProj);  
-            system.debug('>>>>>'+otifAnalyticProj.IPM_Project_Id__c+projRolloutMap);
             if(projRolloutMap.containskey(otifAnalyticProj.IPM_Project_Id__c)){
               List<IPM_Analytics_OTIF__c> rollAnalyticlist = new List<IPM_Analytics_OTIF__c> (addrolloutproject(otifAnalyticProj));
                 if(!rollAnalyticlist.isEmpty()){
@@ -140,14 +139,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             }  
             
             // For Non Key Financials  
-			system.debug('>>>>>'+otifAnalyticProj.IPM_Project_Id__c+regionalProjNKFinMap);
-			system.debug('>>>>>'+otifAnalyticProj.IPM_Project_Id__c+regionalProjNKFinMap);
             if(regionalProjNKFinMap.containskey(otifAnalyticProj.IPM_Project_Id__c)){
-				system.debug('>>>>>'+otifAnalyticProj.IPM_Project_Id__c);
                 IPM_Financial__c nonKeyFinancial = regionalProjNKFinMap.get(otifAnalyticProj.IPM_Project_Id__c);
-                 system.debug('>>>>>'+nonKeyFinancial);
                 IPM_Analytics_OTIF__c nonKeyrollAnalytic = addNonKeyFinancial(otifAnalyticProj, nonKeyFinancial, proj, null,projFinYrMap);
-                system.debug('>>>>>'+nonKeyrollAnalytic);
                 if(nonKeyrollAnalytic != null){
                   analyticreclist.add(nonKeyrollAnalytic);                
                 } 
@@ -176,6 +170,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     
     private IPM_Analytics_OTIF__c prepareAnalyticeRecord(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalyticProj,  map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap){
     	
+        IPM_Analytics_OTIF__c otifAnalyticProj=otifAnalytic;
 		otifAnalyticProj.IPM_Project_Id__c = proj.id;
        	otifAnalyticProj.IPM_Project_Name__c = proj.IPM_Project_Name__c;
 		otifAnalyticProj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Project;
@@ -513,9 +508,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         }
         
         
-        if(projFinYrmap.containskey(finExternalID) && String.isNotBlank(project.IPM_Target_Launch_Year__c)){
+        if(projFinYrmap.containskey(finExternalID) && project.IPM_Target_Launch_Dates__c!=null){
             for(IPM_Financial_Year__c financialYear : projFinYrMap.get(finExternalID)){
-                    populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope,project.IPM_Target_Launch_Year__c);
+                    populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope,project.IPM_Target_Launch_Dates__c);
             }
         }
         return ipmAnalytic; 
@@ -540,17 +535,19 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             }
         }
         
-        if(rolloutFinancialYearmap.containsKey(financialExtId) && String.isNotBlank(projectRollout.Target_LaunchYear__c)){
+        if(rolloutFinancialYearmap.containsKey(financialExtId) && projectRollout.Target_Launch_Date__c!=null){
             // Financial year related to project rollouts
             for(IPM_Financial_Year__c financialYear : rolloutFinancialYearmap.get(financialExtId)){
-                    populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope,projectRollout.Target_LaunchYear__c);
+                    populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope,projectRollout.Target_Launch_Date__c);
             }
         }
         return ipmAnalytic;
     }
     // Method to set the fianancial year details on IPM Analytic object
-    public IPM_Analytics_OTIF__c populateFinancialDetails(IPM_Analytics_OTIF__c analyticObj, IPM_Financial_Year__c financialYear, String strScope, string targetLaunchYear){
+    public IPM_Analytics_OTIF__c populateFinancialDetails(IPM_Analytics_OTIF__c analyticObj, IPM_Financial_Year__c financialYear, String strScope, date targetLaunchYear){
         
+        Date prepYear3=targetLaunchYear.addYears(2);
+        string year3= String.ValueOf(prepYear3.year());
         IPM_Analytics_OTIF__c ipmAnalytic = analyticObj; 
         
         // Calender Financial Year Check 
@@ -559,12 +556,12 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             // PL Type check for Gross
             if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
                 
-                ipmAnalytic = populateGrossForCalendar(ipmAnalytic, financialYear, strScope,targetLaunchYear);           
+                ipmAnalytic = populateGrossForCalendar(ipmAnalytic, financialYear, strScope,year3);           
                 
                 
             } else if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){ // PL Type check for Incremental
             
-                ipmAnalytic = populateIncForCalendar(ipmAnalytic, financialYear, strScope,targetLaunchYear);
+                ipmAnalytic = populateIncForCalendar(ipmAnalytic, financialYear, strScope,year3);
                 
             }
         }   
@@ -587,11 +584,12 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         return ipmAnalytic;
     }
     
-    public IPM_Analytics_OTIF__c populateGrossForCalendar(IPM_Analytics_OTIF__c ipmAnalytic, IPM_Financial_Year__c fr, String strScope,String targetLaunchYear){
+    public IPM_Analytics_OTIF__c populateGrossForCalendar(IPM_Analytics_OTIF__c ipmAnalytic, IPM_Financial_Year__c fr, String strScope,string year3){
         IPM_Analytics_OTIF__c otifAnalyticObj=ipmAnalytic;
         String strFYearTOFieldName = fYearTOFieldMapping.get(strScope);
         String strFYearGMFieldName= fYearGMFieldMapping.get(strScope);
-        if(fr.Name == targetLaunchYear)
+        
+        if(fr.Name == year3)
             {  
                 
                   otifAnalyticObj=snapshotY3Gross(fr,otifAnalyticObj);
@@ -605,12 +603,12 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     }
     
     
-    public IPM_Analytics_OTIF__c populateIncForCalendar(IPM_Analytics_OTIF__c otifAnalytic, IPM_Financial_Year__c fr, String strScope,String targetLaunchYear){
+    public IPM_Analytics_OTIF__c populateIncForCalendar(IPM_Analytics_OTIF__c otifAnalytic, IPM_Financial_Year__c fr, String strScope,String year3){
         
         IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
         String strFYearTOFieldName = fYearTOFieldMapping.get(strScope);     
        
-        if(fr.Name == targetLaunchYear)
+        if(fr.Name == year3)
         {
           // Populating Y3 iTO 
               otifAnalyticObj=snapshotY3Incremental(fr,otifAnalyticObj)  ;
