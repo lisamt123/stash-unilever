@@ -1,13 +1,4 @@
 src
-src/objects
-src/objects/Account.object
-src/objects/FS_Account_Plan__c.object
-src/objects/FS_DistributorType__c.object
-src/objects/FS_MDMEmailRequestDefaultValue__c.object
-src/objects/FS_Monthly_Claimed_Cases__c.object
-src/objects/FS_TemporaryProductDiscount__c.object
-src/objects/Opportunity.object
-src/objects/OpportunityLineItem.object
-src/objects/Product2.object
-src/objects/Task.object
-src/objects/User.object
+src/reports
+src/reports/unfiled$public-meta.xml
+src/reports/unfiled$public/Opportunities_Planned_vs_Actual_Quantity.report
