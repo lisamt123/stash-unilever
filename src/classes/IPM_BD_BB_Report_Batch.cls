@@ -12,7 +12,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global final String query;   
     global map<id,IPM_Project__c> projectIdMap = new map<id,IPM_Project__c>(); 
     global list<IPM_Project__c> scopeProjectList = new list<IPM_Project__c>();   
-    global set<id> projectIdSet = new set<id>();
+    global set<String> projectIdSet = new set<String>();
     global set<id> rolloutprojectIdSet = new set<id>();
     global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap;
     global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;  
