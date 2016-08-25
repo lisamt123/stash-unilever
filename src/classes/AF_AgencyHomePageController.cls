@@ -274,11 +274,11 @@ public with sharing class AF_AgencyHomePageController {
 *  @return: List of AF_Brand_Estimate__c.
 ***********************************************************************************************************/
     public list<AF_Brand_Estimate__c> getbrandEstimateDetailList() {
-        totalAgencyFee = 0;
         list<AF_Brand_Estimate__c> brandEstimateObjList = new list<AF_Brand_Estimate__c>();
         bonusDate = false;
         bonusDateQ2 = false;
         bonusDateQ3 = false;
+        
         if(categoryStr!=null && selectedBrandValue==AF_Constants.ALL_BRANDS && isAgencyFlag){
             Id selectedCatId = categoryStr.split('::').get(1);
             brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c,AF_Category_Finance_Flag__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__r.Name=:AgencyAccountName AND Brand__c !=null order by Brand__r.Name asc];
@@ -311,9 +311,9 @@ public with sharing class AF_AgencyHomePageController {
 ***********************************************************************************************************/  
   public void getOOPDataList(list<AF_Brand_Estimate__c> brandEstimateObjList){
   totalUnileverFee=0;
-  agencySetId.clear();
-  uniqueBrandEstMap.clear();
-  brandEstMap.clear();
+  agencySetId=new Set<Id>();
+  brandEstMap=new map<Id,AF_Brand_Estimate__c>();
+
   for(AF_Brand_Estimate__c brandEstObj :brandEstimateObjList){
             string unq=string.valueOf(brandEstObj.Brand__c).substring(0,15)+'::'+string.valueOf(brandEstObj.AF_Agency__c).substring(0,15)+'::'+brandEstObj.AF_Fiscal_Year__c;
             if(!uniqueBrandEstMap.containsKey(unq)){
@@ -322,6 +322,7 @@ public with sharing class AF_AgencyHomePageController {
             agencySetId.add(brandEstObj.AF_Agency__c);
             brandEstMap.put(brandEstObj.Id,brandEstObj);
             totalUnileverFee+=brandEstObj.Base_Fee_Total__c;
+            //getAgencyEstDataList();
         }
         //set to filter latest OOPs Actual
         set<String> uniqueOOPSSet = new set<String>();
@@ -412,7 +413,7 @@ public void getBonusQuarterlyData(){
                             Quarter= true;
                             uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c=AF_Constants.BASE_FEES_WIHTCMCO; 
                         }
-                        if(bonusResult.AF_Period__c == AF_Constants.QUARTER2 && bonusDateQ2 && (bonusResult.AF_Status__c == AF_Constants.STATUS_DRAFT || bonusResult.AF_Status__c ==AF_Constants.STATUS_NONE)){
+                   if(bonusResult.AF_Period__c == AF_Constants.QUARTER2 && bonusDateQ2 && (bonusResult.AF_Status__c == AF_Constants.STATUS_DRAFT || bonusResult.AF_Status__c ==AF_Constants.STATUS_NONE)){
                             Quarter= true;
                             uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c=AF_Constants.CATEGORY_FINANCE_Bonus_Quarterly;
                         }
@@ -462,7 +463,7 @@ public void getBonusSummaryData(){
 *  @return: none.
 ***********************************************************************************************************/
 public void getAgencyEstDataList(){
-  totalAgencyFee=0;
+        totalAgencyFee=0;
         totalCroBordFee=0;
         totalTraditionalFee=0;
         totalDigitalFee=0;
@@ -472,9 +473,9 @@ public void getAgencyEstDataList(){
         adaptPerStr=0;
         digitPerStr=0;
         Integer noofCrossBord=0;
-        tradDecimalPerStr=0;
-        adaptDecimalPerStr=0;
-        digitDecimalPerStr=0;
+       
+       
+        
     //for Agency fee and crossborder calculation
         //map variable to store crossborder fee and Agency fee related to individual Brands
         map<Id,string> brandAgencyFeeMap = new map<Id,string>();
@@ -485,9 +486,15 @@ public void getAgencyEstDataList(){
         else if(isAgencyFlag){
             agencyEstimateList = [select id, AF_Traditional__c, AF_Digital__c, AF_Adaptation__c, AF_IsCrossborder__c,AF_Total__c,AF_Fiscal_Year__c,AF_Brand_Estimate__c from AF_Agency_Estimate__c where AF_Agency_Entity__r.AF_Agency__c IN:agencySetId and AF_Fiscal_Year__c=:financialYear and AF_Brand_Estimate__c IN :brandEstMap.keyset() order by AF_Brand_Estimate__c];
         }
+        System.debug(agencyEstimateList+'agencyEstimateList*******');
         for(AF_Agency_Estimate__c agencyEstObj:agencyEstimateList){
             //check  wethere Brand Estimate is already there in map or not
+            //Added by gayathri
+                
+            
             if(!brandAgencyFeeMap.containsKey(agencyEstObj.AF_Brand_Estimate__c)){
+            System.debug('before totalAgencyFee...'+totalAgencyFee);
+                //Added by gayathri
                 Decimal agencyFeeDec =0; 
                 Decimal crossBordFeeDec=0;
                 noofCrossBord=0;
@@ -499,6 +506,7 @@ public void getAgencyEstDataList(){
                 }
                 agencyFeeDec+=agencyEstObj.AF_Total__c;
                 totalAgencyFee+=agencyEstObj.AF_Total__c;
+                System.debug('totalAgencyFee...'+totalAgencyFee);
                 brandAgencyFeeMap.put(agencyEstObj.AF_Brand_Estimate__c,string.valueOf(agencyFeeDec)+'::'+string.valueOf(crossBordFeeDec));
             }else {
                 string existingAgencyFeeStr=brandAgencyFeeMap.get(agencyEstObj.AF_Brand_Estimate__c);
@@ -529,8 +537,25 @@ public void getAgencyEstDataList(){
             totalDigitalFee+=agencyEstObj.AF_Digital__c;
             totalAdaptiveFee+=agencyEstObj.AF_Adaptation__c;
         }
+        getAgencyEstDataListCond();
+    }  
+    /******************************************************************************************************
+*  @Description: this method is used to calculate the total of Traditional,Digital,and Adapatation of
+         all the Agency Estimates records for a particular BrandEstimate record.It also calculates the overall
+         total of all the Traditional,Digital and Adapatation.
+*  @name : getAgencyEstDataList
+*  @param : none
+*  @return: none.
+***********************************************************************************************************/  
+        public void getAgencyEstDataListCond(){
+         totalAgencyFee=0;
+         adaptDecimalPerStr=0;
+         tradDecimalPerStr=0;
+         digitDecimalPerStr=0;
         //Calculate total crossborder percentage
-        if(totalAgencyFee!=0){
+        if(totalAgencyFee!=null && totalAgencyFee!=0){
+            System.debug('totalAgencyFee@@@@@@@@'+totalAgencyFee);
+            System.debug('totalTraditionalFee@@@@@@@@'+totalTraditionalFee);
             tradPerStr=math.round(totalTraditionalFee/totalAgencyFee*100);
             tradDecimalPerStr = totalTraditionalFee/totalAgencyFee*100;
             tradDecimalPerStr = tradDecimalPerStr.setScale(2);
