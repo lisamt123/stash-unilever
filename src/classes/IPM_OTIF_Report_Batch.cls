@@ -170,6 +170,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     
     private IPM_Analytics_OTIF__c prepareAnalyticeRecord(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalyticProj,  map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap){
     	
+        IPM_Analytics_OTIF__c otifAnalyticProj=otifAnalytic;
 		otifAnalyticProj.IPM_Project_Id__c = proj.id;
        	otifAnalyticProj.IPM_Project_Name__c = proj.IPM_Project_Name__c;
 		otifAnalyticProj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Project;
