@@ -24,6 +24,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     global Map<Id, IPM_Financial__c> projFinMap = new Map<Id, IPM_Financial__c> ();
     global Map<String, List<IPM_Financial_Year__c>> projFinYrMap =new map<String, List<IPM_Financial_Year__c>>();
     global set<id> financialIdSet = new set<id>();
+    global set<id> regionalRolloutset = new set<id> ();
     global Map<Id, IPM_Financial__c> regionalProjNKFinMap = new Map<Id, IPM_Financial__c> ();
     
     global list<IPM_Analytics_OTIF__c> analyticRecList; 
@@ -94,10 +95,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 projectIdMap.put(p.Id,p);               
             
         }
-        
         // prepare Generic Maps related to Financial Year Object and Analytic object's fields API Name 
         prepareFinancialGenericTemplate();
-        
         //Delete existing analytics records so that the changes made to the existing projects will be recorded again
         try{  
         List<IPM_Analytics_OTIF__c> analyticsRecDelList = new list<IPM_Analytics_OTIF__c>([SELECT id
@@ -111,143 +110,21 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
                  
             } 
-        
-        //Map creation logic 
-        
-         //Fetching Consolidated Financial  records
-        projFinMap = fetchConsolidatedFinancialRecords(projectIdMap);
-
-        //Fetching Financial year records
-       projFinYrMap = fetchFinancialYearRecords(financialIdSet);
-
- 
-
-       system.debug(projFinMap);
-        //Fetching milestone records and creating map 
+        projFinMap = fetchConsolidatedFinancialRecords(projectIdMap); //Fetching Consolidated Financial  records        
+        projFinYrMap = fetchFinancialYearRecords(financialIdSet);//Fetching Financial year records
         projMilestoneMap = fetchMilestoneRecords(projectIdMap);
-        
-        
         /*******************Include Gatedocument related things*************/
         projGateDocumentMap = fetchGateDocumentRecords(projectIdMap);               
         map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap = fetchProjectDocumentSectionContent(projectIdMap);
         
-        
-        //Fetching rollout records for project and creating map
-         projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
-         set<id> regionalRolloutset = new set<id> ();
-         
-        try{
-            list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,
-                                                                                                    name,
-                                                                                                    IPM_Project__r.id,
-                                                                                                    Market_Cluster_Name__c,
-                                                                                                    RecordTypeId,
-                                                                                                    MCO_Name__c,
-                                                                                                    Regional_Project__c,
-                                                                                                    Regional_Rollout__c,
-                                                                                                    IPM_Status__c,
-                                                                                                    KeyMCO__c,
-                                                                                                    IPM_Company_Card__r.Name,
-                                                                                                    IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,
-                                                                                                    Target_Launch_Year__c,
-                                                                                                    Regional_Rollout_Phase__c,
-                                                                                                    Local_Rollout_Phase__c,
-                                                                                                    IPM_Project_Job_Status__c,
-                                                                                                    Target_LaunchMonth__c,
-                                                                                                    Target_LaunchYear__c,
-                                                                                                    Regional_Rollout__r.id,
-                                                                                                    Regional_Rollout__r.Name,
-                                                                                                    IPM_Global_OR_Regional__c,
-                                                                                                    IPM_Brand__c,
-                                                                                                    IPM_Parent_Project_Name__c,
-                                                                                                    IPM_Regional_PL__c,
-                                                                                                    IPM_Regional_PL__r.Name,
-                                                                                                    IPM_Project__r.IPM_Phase__c,
-                                                                                                    IPM_Project__r.IPM_ProjectGKM__c,
-                                                                                                    Regional_Project__r.IPM_Phase__c,
-                                                                                                    Regional_Project__r.IPM_ProjectGKM__c,                                                                                                    
-                                                                                                    Regional_Project__r.IPM_SourceProjectType__c,
-                                                                                                    Regional_Project__r.Id                                                                    
-                                                                                                    FROM IPM_Project_Rollout__c 
-                                                                                                    WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
-            for(IPM_Project_Rollout__c pr:projRolloutList){
-                   
-                  if(pr.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_COMPLETED || String.isBlank(pr.IPM_Regional_PL__c)){
-                    // create map for the Rollouts of the Global Original Project
-                    if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){
-                        projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
-                    }else if(pr.IPM_Project__r.id != null && projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){                            
-                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.IPM_Project__r.id);
-                        rolloutList.add(pr);
-                        projRolloutMap.put(pr.IPM_Project__r.id, rolloutList);                                          
-                    }
-                    // create map for the Rollouts of the Regional Original Project
-                    else if(pr.IPM_Project__r.id == null && pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
-                       projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
-                    }else if(pr.IPM_Project__r.id == null && pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
-                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
-                        rolloutList.add(pr);
-                        projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
-                    }
-                    // create map for the Rollouts of the Regional Rollout Project
-                    else if(pr.IPM_Project__r.id != null && pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
-                       projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
-                    }else if(pr.IPM_Project__r.id != null && pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
-                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
-                        rolloutList.add(pr);
-                        projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
-                    }
-                   
-                    if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE)
-                    {                       
-                        regionalRolloutset.add(pr.Id); 
-                    }
-                    else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){ 
-                
-                      ID regionalRolloutID=pr.Regional_Project__r.id != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.Id;
-                      regionalRolloutset.add(regionalRolloutID); 
-                      localRolloutIDSet.add(pr.Id);                        
-                    } 
-                    
-                    // Prepare the map of Regional Rollout Id to corresponding Non-key local rollouts
-                    if(pr.Regional_Rollout__c != null && !pr.KeyMCO__c){ 
-                        
-                        if(!regRLToNKLocalRolloutMap.containsKey(pr.Regional_Rollout__c)){
-                            regRLToNKLocalRolloutMap.put(pr.Regional_Rollout__c, new set<Id>{pr.Id});
-                        }else{
-                            set<Id> localRolloutIdSet = regRLToNKLocalRolloutMap.get(pr.Regional_Rollout__c);
-                            localRolloutIdSet.add(pr.Id);
-                            regRLToNKLocalRolloutMap.put(pr.Regional_Rollout__c, localRolloutIdSet);
-                        } 
-                        
-                    }
-                 }    
-            }
-        }
-        
-        catch(Exception ex){  
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
-        }
-        
+        projRolloutMap=fetchRolloutRecords(projectIdMap);         
         //To fetch the financials for the rollout project when it is in Ideas phase
         rolloutFinancialmap = new map<id,list<IPM_Financial__c>> ();
         set<id> finIdSet = new set<id>();
         try{
-            list<IPM_Financial__c> projRolloutFinList = new list<IPM_Financial__c>([SELECT  id,
-                                                                                            name,
-                                                                                          Display_Name__c,
-                                                                                          Financial_External_ID__c,
-                                                                                          Business_Impact_Global__c,
-                                                                                          Business_Impact_Regional__c,
-                                                                                          Business_Impact_Local__c, 
-                                                                                          Parent_Project__r.Name,
-                                                                                          Regional_Project__r.id, 
-                                                                                          Local_Project__r.id,
-                                                                                          Parent_Project__r.id, 
-                                                                                          Regional_Project__r.Name, 
-                                                                                          Local_Project__r.Name,
-                                                                                          IPM_Auto_Aligned_Fin_TLD__c,
-                                                                                          IPM_Project_Rollout__r.id 
+            list<IPM_Financial__c> projRolloutFinList = new list<IPM_Financial__c>([SELECT  id,name,Display_Name__c,Financial_External_ID__c,Business_Impact_Global__c,Business_Impact_Regional__c,Business_Impact_Local__c,Parent_Project__r.Name,Regional_Project__r.id, 
+																							Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.Name,Local_Project__r.Name,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id 
+
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
                                                 
@@ -281,38 +158,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         //To fetch the financial year for the rollout project when it is in Ideas phase
         rolloutFinancialYearmap = new map<string,list<IPM_Financial_Year__c>> ();
         try{
-            list<IPM_Financial_Year__c> projRolloutFinYearList = new list<IPM_Financial_Year__c>([SELECT id,
-                                                                                                        name,
-                                                                                                        Financial_External_ID__c,
-                                                                                                        IPM_Financial__r.Parent_Project__r.Id,
-                                                                                                        IPM_Financial__r.Regional_Project__r.Id,
-                                                                                                        IPM_Financial__r.Local_Project__r.Id,
-                                                                                                        IPM_Financial__r.Id,
-                                                                                                        IPM_Financial__r.Business_Impact_Global__c,
-                                                                                                        Year__c,
-                                                                                                        Gross_Profit_Global__c,
-                                                                                                        Gross_Profit_Regional__c,
-                                                                                                        Gross_Profit_Local__c,
-                                                                                                        Turnover_Global__c,
-                                                                                                        Turnover_Local__c,
-                                                                                                        Turnover_Regional__c,
-                                                                                                        Turnover_Charter__c,
-                                                                                                        Turnover_Contract__c,
-                                                                                                        Turnover_MD__c,
-                                                                                                        Turnover_MR__c,
-                                                                                                        Year_Type__c,
-                                                                                                        GM_of_TO_Charter__c,
-                                                                                                        GM_of_TO_Contract__c,
-                                                                                                        GM_of_TO_MD__c,
-                                                                                                        GM_of_TO_MR__c,
-                                                                                                        GM_of_TO_Local__c,
-                                                                                                        GM_of_TO_Global__c,
-                                                                                                        GM_of_TO_Regional__c,
-                                                                                                        Charter_Approved__c,
-                                                                                                        Contract_Approved__c,
-                                                                                                        MD_Approved__c,
-                                                                                                        MR_Approved__c,
-                                                                                                        PL_Type__c
+            list<IPM_Financial_Year__c> projRolloutFinYearList = new list<IPM_Financial_Year__c>([SELECT id,name,Financial_External_ID__c,IPM_Financial__r.Parent_Project__r.Id,IPM_Financial__r.Regional_Project__r.Id,IPM_Financial__r.Local_Project__r.Id,IPM_Financial__r.Id,IPM_Financial__r.Business_Impact_Global__c,
+																										Year__c,Gross_Profit_Global__c,Gross_Profit_Regional__c,Gross_Profit_Local__c,Turnover_Global__c,Turnover_Local__c,Turnover_Regional__c,Turnover_Charter__c,Turnover_Contract__c,Turnover_MD__c,Turnover_MR__c,
+																										Year_Type__c,GM_of_TO_Charter__c,GM_of_TO_Contract__c,GM_of_TO_MD__c,GM_of_TO_MR__c,GM_of_TO_Local__c,GM_of_TO_Global__c,GM_of_TO_Regional__c,Charter_Approved__c,Contract_Approved__c,MD_Approved__c,MR_Approved__c,PL_Type__c
                                                                                                         FROM IPM_Financial_Year__C 
                                                                                                         WHERE IPM_Financial__c IN: finIdSet Limit 50000]);
                                                 
@@ -333,15 +181,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         //Fetching country records and creating map
           
         try{
-        List<IPM_Country__c> ipmCountryList= new list<IPM_Country__c>([SELECT Country_Code__c,
-                                                                       Country_Name__c,
-                                                                       IPM_Project__r.id,
-                                                                       IPM_Project__r.IPMProject_Span__c,
-                                                                       IPM_Local_Project__r.Id,
-                                                                       IPM_Local_Project__r.IPMProject_Span__c,
-                                                                       IPM_Regional_Project__r.Id,
-                                                                       IPM_Regional_Project__r.IPMProject_Span__c,
-                                                                       Local_Rollout__r.id
+        List<IPM_Country__c> ipmCountryList= new list<IPM_Country__c>([SELECT Country_Code__c,Country_Name__c,IPM_Project__r.id,IPM_Project__r.IPMProject_Span__c,IPM_Local_Project__r.Id,IPM_Local_Project__r.IPMProject_Span__c,IPM_Regional_Project__r.Id,IPM_Regional_Project__r.IPMProject_Span__c,Local_Rollout__r.id
                                                                        FROM IPM_Country__c WHERE IPM_Local_Project__r.Id IN : projectIdMap.keyset() or Local_Rollout__r.id IN: localRolloutIDSet Limit 50000]);
             
             for(IPM_Country__c ic:ipmCountryList){
@@ -371,15 +211,12 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         }
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
-        }
-        
+        }        
         //End of Map creation logic ***
-
         //Start - Analytics Object Record Insertion 
         analyticRecList = new list<IPM_Analytics_OTIF__c>();
 
-        for(IPM_Project__c proj:scopeProjectList){ 
-
+        for(IPM_Project__c proj:scopeProjectList){
             //Copyin IPM Project field values
             IPM_Analytics_OTIF__c otifAnalyticProj = new IPM_Analytics_OTIF__c();
             otifAnalyticProj.IPM_Project_Id__c = proj.id;
@@ -409,34 +246,25 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
                otifAnalyticProj.IPM_Market_Cluster__c = proj.Market_Cluster_Name__c;                 
             }
-            
-            //setGeography
-            //otifAnalyticProj = setGeography(proj,otifAnalyticProj);
-    
-            // populate target launch year & month
-            otifAnalyticProj = setTargetLaunchYearandMonth(proj,otifAnalyticProj);
-    
+          // populate target launch year & month
+            otifAnalyticProj = setTargetLaunchYearandMonth(proj,otifAnalyticProj);    
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(proj.Id)){ 
                otifAnalyticProj.IPM_Business_Impact__c = projFinMap.get(proj.id).Business_Impact_Global__c; 
             } 
-            
-             otifAnalyticProj = processMilestoneDetails(projMilestoneMap, otifAnalyticProj, proj);
-             otifAnalyticProj = processProjectDocumentSectionContentDetails(projDocSecContentMap,  otifAnalyticProj, proj);
-             
+              otifAnalyticProj = processMilestoneDetails(projMilestoneMap, otifAnalyticProj, proj);
+             otifAnalyticProj = processProjectDocumentSectionContentDetails(projDocSecContentMap,  otifAnalyticProj, proj);           
             
             if( otifAnalyticProj != null && proj != null){ 
                  otifAnalyticProj = processProjectFinancial(otifAnalyticProj,  proj, projFinYrMap);
-            }
-            
+            }            
              analyticreclist.add(otifAnalyticProj);  
             if(projRolloutMap.containskey(otifAnalyticProj.IPM_Project_Id__c)){
               List<IPM_Analytics_OTIF__c> rollAnalyticlist = new List<IPM_Analytics_OTIF__c> (addrolloutproject(otifAnalyticProj));
                 if(!rollAnalyticlist.isEmpty()){
                   analyticreclist.addall(rollAnalyticlist);                
                 }               
-            }  
-            
+            }              
             // For Non Key Financials  
 			   if(regionalProjNKFinMap.containskey(otifAnalyticProj.IPM_Project_Id__c)){
                 IPM_Financial__c nonKeyFinancial = regionalProjNKFinMap.get(otifAnalyticProj.IPM_Project_Id__c);
@@ -450,7 +278,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         if(!analyticreclist.isEmpty()){ 
             try{
                 upsert analyticreclist;
-
             }
             catch(Exception ex)
             {
@@ -1517,6 +1344,86 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         }
         
         return projMilestoneMap;
+    }
+    
+    /*********************************************************************************************************************
+     * @Description: To fetch rollout Records
+     * @param1: map<id,IPM_Project__c> projectIdMap
+     * @return: map<Id,list<IPM_Project_Rollout__c>> rollout Records
+     *********************************************************************************************************************/         
+    public map<id,list<IPM_Project_Rollout__c>> fetchRolloutRecords(map<id,IPM_Project__c> projectIdMap){
+    	//Fetching rollout records for project and creating map
+         projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
+         regionalRolloutset = new set<id> ();
+         
+        try{
+            list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,name,IPM_Project__r.id,Market_Cluster_Name__c,RecordTypeId,MCO_Name__c,Regional_Project__c,Regional_Rollout__c,IPM_Status__c,KeyMCO__c,IPM_Company_Card__r.Name,IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,Target_Launch_Year__c,Regional_Rollout_Phase__c,
+																									Local_Rollout_Phase__c,IPM_Project_Job_Status__c,Target_LaunchMonth__c,Target_LaunchYear__c,Regional_Rollout__r.id,Regional_Rollout__r.Name,IPM_Global_OR_Regional__c,
+																									IPM_Brand__c,IPM_Parent_Project_Name__c,IPM_Regional_PL__c,IPM_Regional_PL__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_Phase__c,
+																									Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id                                                                    
+                                                                                                    FROM IPM_Project_Rollout__c 
+                                                                                                    WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
+            for(IPM_Project_Rollout__c pr:projRolloutList){
+                   
+                  if(pr.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_COMPLETED || String.isBlank(pr.IPM_Regional_PL__c)){
+                    // create map for the Rollouts of the Global Original Project
+                    if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){
+                        projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
+                    }else if(pr.IPM_Project__r.id != null && projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){                            
+                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.IPM_Project__r.id);
+                        rolloutList.add(pr);
+                        projRolloutMap.put(pr.IPM_Project__r.id, rolloutList);                                          
+                    }
+                    // create map for the Rollouts of the Regional Original Project
+                    else if(pr.IPM_Project__r.id == null && pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
+                       projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
+                    }else if(pr.IPM_Project__r.id == null && pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
+                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
+                        rolloutList.add(pr);
+                        projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
+                    }
+                    // create map for the Rollouts of the Regional Rollout Project
+                    else if(pr.IPM_Project__r.id != null && pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
+                       projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
+                    }else if(pr.IPM_Project__r.id != null && pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
+                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
+                        rolloutList.add(pr);
+                        projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
+                    }
+                   
+                    if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE)
+                    {                       
+                        regionalRolloutset.add(pr.Id); 
+                    }
+                    else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){ 
+                
+                      ID regionalRolloutID=pr.Regional_Project__r.id != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.Id;
+                      regionalRolloutset.add(regionalRolloutID); 
+                      localRolloutIDSet.add(pr.Id);                        
+                    } 
+                    
+                    // Prepare the map of Regional Rollout Id to corresponding Non-key local rollouts
+                    if(pr.Regional_Rollout__c != null && !pr.KeyMCO__c){ 
+                        
+                        if(!regRLToNKLocalRolloutMap.containsKey(pr.Regional_Rollout__c)){
+                            regRLToNKLocalRolloutMap.put(pr.Regional_Rollout__c, new set<Id>{pr.Id});
+                        }else{
+                            set<Id> localRolloutIdSet = regRLToNKLocalRolloutMap.get(pr.Regional_Rollout__c);
+                            localRolloutIdSet.add(pr.Id);
+                            regRLToNKLocalRolloutMap.put(pr.Regional_Rollout__c, localRolloutIdSet);
+                        } 
+                        
+                    }
+                 }    
+            }
+        }
+        
+        catch(Exception ex){  
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
+        }
+        
+        return projRolloutMap;
+    	    	
     }
     
 }
