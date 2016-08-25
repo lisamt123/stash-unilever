@@ -60,7 +60,7 @@
         <aura:if isTrue="{!v.subDivision=='Ariba'}">
             <div class="ProjectInformationSection">
                 <div class="slds-section__title sectionTitle" id="ProductDescription" onclick="{!c.showHide}">
-                    Product Description
+                    {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_PRODUCT_DESCRIPTION}
                     <div style="display:block;" class="up" id="ProductDescription2">
                             <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                     </div>

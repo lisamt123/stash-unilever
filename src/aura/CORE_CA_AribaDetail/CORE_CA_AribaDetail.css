@@ -150,3 +150,8 @@
 .THIS .fieldValueRichTextFormate {
     white-space: pre-line;
 }
+@media screen and (min-width: 1200px){
+.THIS .content {
+    margin-bottom: 100px;
+}
+}

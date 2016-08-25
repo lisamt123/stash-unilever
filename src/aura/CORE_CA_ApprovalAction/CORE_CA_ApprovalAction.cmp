@@ -32,6 +32,13 @@
         :-ms-input-placeholder {  
         	color: #A8B8D0;  
         }       
+        @media screen and (min-width:768px){
+        .Action_container {
+        top: 39% !important;
+        left: 10% !important;
+        right: 10% !important;
+        }
+        }
     </style>
  
     <div class="close-button" onclick="{!c.onCancel}"><img class="image" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg"></img></div>    
@@ -126,7 +133,7 @@
                          	<aura:if isTrue="{!v.actionTaken == 'Reject'}"> You have rejected the request </aura:if>
                          	<aura:if isTrue="{!v.actionTaken == 'Rework'}"> You have sent this back for rework </aura:if>
                          	<aura:if isTrue="{!v.actionTaken == 'RTAP'}"> You have returned this to AP </aura:if>
-                         	<aura:if isTrue="{!v.actionTaken == 'QWV'}"> Your query is sent to the Vendor</aura:if>  
+                         	<aura:if isTrue="{!v.actionTaken == 'QWV'}"> Invoice is put on hold to clarify with vendor.</aura:if>  
                             <a href=""><img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" onclick="{!c.goToHomePage}">
                                 </img></a>
                         </p>

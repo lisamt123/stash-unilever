@@ -26,7 +26,7 @@
         .homePageHeader{
         background:#4F6A92;
         height: 135px;
-    	padding-top: 2px;
+        padding-top: 2px;
         }
         .headerBarIconStyle{
         width: 40px;
@@ -72,13 +72,36 @@
         }
         .font1{
         font-size:12px;
+        width: 80px;
+        }
+        .font2{
+        font-size:12px;
         }
         .slds-tabs--default__link:focus {
-    border-bottom-width: 1px !important;
+        border-bottom-width: 1px !important;
         }
         a#tab-scoped-2__item {
         display: none;
         }
+        .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1){
+        display: none!important;
+        }
+        .slds .slds-icon_container, .slds .slds-icon__container {
+        margin: -8rem;
+        }
+        .slds .slds-tabs--scoped__item:first-child .slds-tabs--scoped__link {
+        background: transparent;
+        border: 0px;
+        }
+        .slds a > p {
+        white-space: pre-line;
+        width: 227px;
+        word-wrap: break-word;
+        }
+        .slds .slds-button__icon ul li button,.slds .slds-button--icon-x-small {
+    	display: none;
+        }
+        
     </style>
     <div>
         <!-- Back button Functionlaity-->
@@ -98,7 +121,7 @@
                         {!detailData.RequestName}
                         <br/>
                         <div class="preparedBy-currency">
-                        <span class="slds-text-heading--small preparedby">{!detailData.PreparedBy}</span>&nbsp;&nbsp;&nbsp; <span class="slds-text-heading--small currency">{!detailData.Currencies}&nbsp; {!detailData.TotalAmount}</span>                    
+                            <span class="slds-text-heading--small preparedby">{!detailData.PreparedBy}</span>&nbsp;&nbsp;&nbsp; <span class="slds-text-heading--small currency">{!detailData.Currencies}&nbsp; {!detailData.TotalAmount}</span>                    
                         </div>
                     </aura:iteration>                
                 </div>
@@ -141,6 +164,7 @@
                     
                     <!--Detail-->
                     <aura:if isTrue="{!v.isDetail}">
+                <div class="content">
                         <div class="ProjectInformationSection">
                             <div class="slds-section__title sectionTitle" id="Summary" onclick="{!c.showHide}">
                                 {!$Label.c.CORE_LBL_DETAIL_SUMMARY}
@@ -227,7 +251,7 @@
                         </div>
                         
                         <div class="ApprovalHistorySection">
-                            <div class="slds-section__title sectionTitle" id="lineItem" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_INV_LINE_ITEMS}
+                            <div class="slds-section__title sectionTitle" id="lineItem" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_EXP_DETAIL_LINE_ITEMS}
                                 <div style="display:block;" class="up" id="lineItem2">
                                     <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                                 </div>
@@ -265,7 +289,7 @@
                             </div>
                         </div>
                         <div class="ApprovalHistorySection sectionTitle">
-                            <div class="slds-section__title" id="ApprovalHistory" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_APPROVAL_HISTORY}
+                            <div class="slds-section__title" id="ApprovalHistory" onclick="{!c.showHide}"> {!$Label.c.CORE_LBL_EXP_DETAIL_APPROVAL_HISTORY}
                                 <div style="display:block;" class="up" id="ApprovalHistory2">
                                     <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                                 </div>
@@ -287,15 +311,15 @@
                                 </aura:iteration>
                             </div>
                         </div>
-                    </aura:if> 
-                    
+                        </div>
+                    </aura:if>            
                     <!-- Feed Tab -->
                     <aura:if isTrue="{!v.isFeed}">
-                         <!--<iframe src="{!'/apex/Core_CA_ChatterFeedPage?id='+detailData.RequestId}"/> -->
-                           <div class="hiddenClass"> {!detailData.RequestId} </div>
-                            <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
-                            <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/> 
-                   </aura:if>                
+                        <!--<iframe src="{!'/apex/Core_CA_ChatterFeedPage?id='+detailData.RequestId}"/> -->
+                        <div class="hiddenClass"> {!detailData.RequestId} </div>
+                        <c:ChatterPublisherCmp subjectId="{!detailData.RequestId}" feedType="Record"/>  
+                        <c:ChatterFeedCmp subjectId="{!detailData.RequestId}" feedType="Record"/> 
+                    </aura:if>                
                     
                     
                     <!--Action Bar-->
@@ -303,18 +327,32 @@
                         <div class="action_bar">
                             <div class="actionBarHeight">                  
                                 <table class="actionBarWidth">
-                                    <tr class="alignCenter"> 
+                                    <tr class="alignCenter">
+                                        <aura:if isTrue="{!(v.showReject==true &amp;&amp; v.showApprove==true)}">
                                         <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
-                                            <div class="slds-truncate font1">App Feedback</div></td>
+                                            <div class="slds-truncate font1">{!$Label.c.CORE_FB_App_Name}</div></td>
                                         <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Comment.svg"/>
                                             <div class="font1">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                        </aura:if>
+                                        <aura:if isTrue="{!(v.showReject==false &amp;&amp; v.showApprove==true)}">
+                                        <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
+                                            <div class="slds-truncate font2">{!$Label.c.CORE_FB_App_Name}</div></td>
+                                        <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Comment.svg"/>
+                                            <div class="font2">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                        </aura:if>
+                                        <aura:if isTrue="{!(v.showReject==false &amp;&amp; v.showApprove==false)}">
+                                        <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
+                                            <div class="slds-truncate font2">{!$Label.c.CORE_FB_App_Name}</div></td>
+                                        <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Comment.svg"/>
+                                            <div class="font2">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                        </aura:if>
                                         <aura:if isTrue="{!v.showReject}">
                                             <td class="alignCenter" onclick ="{!c.RejectAction}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Return.svg" />
                                                 <div class="font1">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</div></td>
                                         </aura:if> 
                                         <aura:if isTrue="{!v.showApprove}">   
                                             <td class="alignCenter" onclick ="{!c.ApproveAction}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Approve.svg" />
-                                                <div class="font1">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</div></td>
+                                                <div class="font2">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</div></td>
                                         </aura:if>                                     
                                     </tr>
                                 </table>

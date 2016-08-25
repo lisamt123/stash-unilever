@@ -53,6 +53,7 @@
     color: white;
     padding-top: 10px;
     padding-bottom: 7px;
+    width: 100%;
 }
 .THIS .preparedby{
     margin-top: 7px;
@@ -91,6 +92,7 @@
     padding-bottom: 8px;
     width: 50%;
     vertical-align: top;
+    min-height: 30px;
 }
 .THIS .fieldAlign{
     float: right;
@@ -120,7 +122,20 @@
 }
 .THIS .lineItemDetail{
     width:150px;
+    min-height: 20px;
 }
 .THIS .preparedBy-currency{
     text-align: center;
+}
+.THIS .msg-text{
+    margin: 8px 0;
+}
+.THIS .msg-text-opt{
+	margin: -4px 0 6px 0;
+}
+
+@media screen and (min-width: 1200px){
+.THIS .content {
+    margin-bottom: 100px;
+}
 }

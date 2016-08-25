@@ -40,7 +40,7 @@
         } 
         @media screen and (max-width:336px){
         .cCORE_CA_Pending .queryWithVendorTextWidth {
-        width: 104px!important;
+        width: 90px!important;
         margin-top: -21px;
         font-size: 10px;
         padding-top: 3px;
@@ -87,36 +87,35 @@
                             {!v.ApprovalData.ExpenseID}<br/>
                             <div class="expenseName truncate">{!v.ApprovalData.ExpenseName} </div>
                             
-                            <aura:if isTrue="{!v.ApprovalData.Action !='QUER'}"> 
-                                <aura:if isTrue="{!v.ApprovalData.Status !='Query With Vendor'}">
-                                    <aura:if isTrue="{!v.ApprovalData.ExpenseType !='Clarity'}">
+                            <aura:if isTrue="{!(v.ApprovalData.Action !='QUER' &amp;&amp; v.ApprovalData.Status !='Query With Vendor')}"> 
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Purchase Request' || v.ApprovalData.ExpenseType =='Expense')}">
                                         <div class="slds-text-body--small right-class">
                                             {!v.ApprovalData.Currencies}&nbsp;
                                             {!v.ApprovalData.Amount} 
                                         </div>
                                     </aura:if>
-                                    <aura:if isTrue="{!v.ApprovalData.ExpenseType =='Clarity'}">
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Clarity' || v.ApprovalData.ExpenseType =='Invoice')}">
                                         <div class="slds-text-body--small right-class">
                                             {!v.ApprovalData.Currencies}&nbsp;
                                             {!v.ApprovalData.ProjectBug} 
                                         </div>
                                     </aura:if>
-                                </aura:if>
                             </aura:if>
-                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
-                                <aura:if isTrue="{!v.ApprovalData.ExpenseType !='Clarity'}">
-                                    <div class="slds-text-body--small right-class">
-                                        {!v.ApprovalData.Currencies}&nbsp;
-                                        {!v.ApprovalData.Amount} 
-                                    </div>
-                                </aura:if>
-                                <aura:if isTrue="{!v.ApprovalData.ExpenseType =='Clarity'}">
-                                    <div class="slds-text-body--small right-class">
-                                        {!v.ApprovalData.Currencies}&nbsp;
-                                        {!v.ApprovalData.ProjectBug} 
-                                    </div>
-                                </aura:if> 
+                            <aura:if isTrue="{!(v.ApprovalData.Action =='QUER' || v.ApprovalData.Status =='Query With Vendor')}"> 
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Purchase Request' || v.ApprovalData.ExpenseType =='Expense')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.Amount} 
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Clarity' || v.ApprovalData.ExpenseType =='Invoice')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.ProjectBug} 
+                                        </div>
+                                    </aura:if>
                             </aura:if>
+                            
                         </div >
                         <div class="slds-text-body--small requestedBy truncate " style="width: 64%">
                             {!v.ApprovalData.RequestedBy}</div>

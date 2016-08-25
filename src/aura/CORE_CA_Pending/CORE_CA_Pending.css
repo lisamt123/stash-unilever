@@ -30,7 +30,7 @@
     height: 19px;
     
     font-weight: Normal;
-    font-size: 18px;
+    font-size: 16px;
     background: #4AB471;
     color: #FFFFFF;
     
@@ -44,8 +44,9 @@
     text-overflow: ellipsis;
 }
 .THIS .queryWithVendorTextWidth {
-    width: 162px !important;
+    width: 90px!important;
     margin-top: -22px;
+    height: 22px;
 }
 .THIS .cls {
     color: #314658;
@@ -125,7 +126,7 @@
 }
 .THIS .sort-box{
     float: right;
-    margin-right: 231px;
+    margin-right: 198px;
     margin-top: -6%;
 }
 .THIS .requestedBy{

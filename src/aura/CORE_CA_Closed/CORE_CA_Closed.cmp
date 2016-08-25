@@ -59,7 +59,7 @@
         margin-bottom: -74px;
         }
         .slds-nubbin--top-left:before, .slds-nubbin--top-left:after { 
-        left: 12.6rem !important;
+        left: 10.5rem !important;
         } 
         .slds-text-body--regular{
         font-size:13px;
@@ -82,7 +82,21 @@
         .slds-text-heading--label-normal{
         font-size:12px;
         }
+        @media screen and (min-width:768px){
+        .sort-box{
+        margin-top: -3% !important;
+        }
+        }
+        @media screen and (min-width:1200px){
+        .sort-box{
+        	margin-top: -1.6% !important;
+            margin-right: 174px !important;
+        }
+        .slds-nubbin--top-left:before, .slds-nubbin--top-left:after { 
+        left: 8.9rem !important;
         
+        } 
+        }
     </style>
     <div class="homePageHeader">
         <div class="defaultLeftSpace">
@@ -110,45 +124,43 @@
                 <img></img>
             </span>
         </div>
-        <aura:if isTrue="{!v.filterview}">
-            
-            
-            <div class = "sort-box">     
+        <aura:if isTrue="{!v.filterview}"> 
+            <div class="sort-box">
                 
                 <div class="slds-dropdown-trigger slds-dropdown-trigger--click slds-is-open " aria-expanded="false">
                     
-                    <div class="slds-dropdown slds-dropdown--left slds-nubbin--top-left" onclick="{!c.HideSelection}">
+                    <div class="slds-dropdown slds-dropdown--left slds-nubbin--top-left" >
                         <ul class="dropdown__list" role="menu" >
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate filterSelected" aura:id="all" ><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ALL}" title="Show All" click="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
                                 <a href="" role="menuitem">
-                                    <span class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="gtes"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_EXPENSES}" title="Show Only Expenses" click="{!c.doInit}" /></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item">
                                 <a href="" role="menuitem">
-                                    <span class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PURCHASE_REQUEST}" title="Show Only Purchase Requests" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="ariba"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PURCHASE_REQUEST}" title="Show Only Purchase Requests" click="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PROJECT_APPROVAL}" title="Show only Project Approval" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="clarity"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_PROJECT_APPROVAL}" title="Show only Project Approval" click="{!c.doInit}"/></span>
                                 </a>
                             </li>
                             <li class="slds-dropdown__item" >
                                 <a href="" role="menuitem">
-                                    <span class="slds-truncate"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_INVOICE}" title="Show only Invoices" click="{!c.doInit}"/></span>
+                                    <span style="width:100%;" class="slds-truncate" aura:id="invoice"><ui:outputText value="{!$Label.c.CORE_LBL_SHOW_ONLY_INVOICE}" title="Show only Invoices" click="{!c.doInit}"/></span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 
-            </div>
+            </div>    
         </aura:if>
         
         <!--  <div class="spin" > </div>-->

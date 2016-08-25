@@ -15,7 +15,7 @@
             var state = response.getState();
             if (state === "SUCCESS") {
                 var arr =[];
-                if(sourceSystem == 'Invoice')
+                if(sourceSystem == 'Invoice' && response.getReturnValue().IntOrder !=null)
                 {
                    for(var i=0; i<2; i++)
                 {

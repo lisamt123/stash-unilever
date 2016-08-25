@@ -22,6 +22,7 @@
     <aura:attribute name="showQwv" type="Boolean" default="true"/>
     <aura:attribute name="spinnercompInvoice" type="boolean" default="true"/>
     <aura:attribute name="LastComment" type="String"/>
+    <aura:attribute name="approvalHistoryCount" type="String"/>
     <aura:attribute name="isFeedBack" type="boolean" default="false"/>
     <style>      
         .homePageHeader{
@@ -73,6 +74,10 @@
         }
         .font1{
         font-size:12px;
+        width: 80px;
+        }
+        .font2{
+        font-size:12px;
         }
         .slds-tabs--default__link:focus {
     border-bottom-width: 1px !important;
@@ -92,9 +97,26 @@
         .DetailSectionTable{
     margin-bottom: -7px;
 }
+        @media screen and (min-width:768px){
+        .feedback_container {
+        top: 39% !important;
+        left: 10% !important;
+        right: 10% !important;
+        }
+        }
+        .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1){
+        display: none!important;
+        }
+        .slds a > p {
+        white-space: pre-line;
+        width: 227px;
+        word-wrap: break-word;
+        }
+        .gallery1 img{
+        height:100px ;
+        }
     </style>
     <!-- Back button Functionlaity-->
-    
     <div>
         <div onclick="{!c.goToHomePage}" class="topBackBar">
             <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
@@ -106,12 +128,12 @@
             <br/>
             <img src="/resource/CORE_CA_ApprovalsLightning/images/Approvals_Logo.svg" alt="Approvals_Logo" class="headerBarIconStyle" />&nbsp;&nbsp;
             <br/>
-            <div class="slds-text-heading--medium clarity-header">
+            <div class="slds-text-heading--medium slds-truncate clarity-header">
                 <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
                     {!detailData.CompanyName}
                     <br/>
                     <div class="preparedBy-currency">
-                    <span class="slds-text-heading--small preparedby">{!detailData.PreparedBy}</span>&nbsp;&nbsp;&nbsp; <span class="slds-text-heading--small currency">{!detailData.Currencies}&nbsp; {!detailData.TotalAmount}</span>  
+                    <span class="slds-text-heading--small preparedby">{!detailData.PreparedBy}</span>&nbsp;&nbsp;&nbsp; <span class="slds-text-heading--small currency">{!detailData.Currencies}&nbsp; {!detailData.ProjectBug}</span>  
                         </div>
                 </aura:iteration>                
             </div>
@@ -153,6 +175,29 @@
         
                     <!-- Detail Tab -->
                     <aura:if isTrue="{!v.isDetail}">
+                        <div class="content">
+                        
+                        <aura:if isTrue="{!(detailData.Cop == ' ')|| (detailData.Cop == null)}">
+                            <div style="clear:both;"></div>
+                            <div style="float:left;width:17px;margin:0px 13px;">
+                            <img src="/resource/Lightning_designing_style/assets/icons/utility/image_60.png"/>
+                                </div>
+                                    <div class="msg-text">{!$Label.c.CORE_LBL_INV_GOTO_FEED_FOR_IMAGE}</div>
+                                </aura:if>
+                        <aura:if isTrue="{!detailData.Cop == 'false'}">
+                            <div style="clear:both;"></div>
+                            <div style="float:left;width:17px;margin:0px 13px;">
+                            <img src="/resource/Lightning_designing_style/assets/icons/utility/image_60.png"/>
+                                </div>
+                                   <div class="msg-text">{!$Label.c.CORE_LBL_INV_GOTO_DCIW_FOR_IMAGE}</div>
+                                </aura:if>
+                        <aura:if isTrue="{!detailData.PreTripDetails.Id}">
+                            <div style="clear:both;"></div>
+                            <div style="float:left;width:17px;margin:-4px 13px;">
+                            <img src="/resource/Lightning_designing_style/assets/icons/utility/attach_60.png"/>
+                                </div>
+                                    <div class="msg-text-opt">{!$Label.c.CORE_LBL_INV_GOTO_DCIW_FOR_ATTACHMENT}</div>
+                                </aura:if>
                         <div class="ProjectInformationSection">
                             <div class="slds-section__title sectionTitle" id="invDetails" onclick="{!c.showHide}">
                                 <aura:if isTrue="{!detailData.InvoiceType == 'INV'}">
@@ -186,13 +231,13 @@
                                     <div class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_TOTAL_AMOUNT_INCL_TAX}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData">{!detailData.Currencies}&nbsp;{!detailData.TotalAmount}</div>
+                                    <div class="slds-text-body--regular DetailData">{!detailData.Currencies}&nbsp;{!detailData.ProjectBug}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_INV_TAX}</div>
                                 </div>
                                 <div>
-                                    <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.Currencies}&nbsp; {!detailData.AdvanceAmount}</div>
+                                    <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.Currencies}&nbsp; {!detailData.RequestedByLang}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_VENDOR_NAME}</div>
@@ -206,20 +251,21 @@
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!detailData.CompanyCode}</div>
                                 </div>
+                                <aura:if isTrue="{!v.LastComment != null}">
                                 <div>
                                     <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_LAST_COMMENT}</div>
                                 </div>
                                 <div>
                                     <div class="slds-text-body--regular DetailData" style="width: 100%;">
-                                        <aura:if isTrue="{!(v.LastComment != null || v.LastComment != '')}">
                                             {!v.LastComment}
-                                        </aura:if>
                                     </div>
                                 </div>
+                                    </aura:if>
+                                <aura:if isTrue="{!v.approvalHistoryCount != 0}">
                                 <div>
                                     <div class="slds-section__title textHighlight" onclick="{!c.goToDocHistory}">{!$Label.c.CORE_LBL_INV_SEE_DOCUMENT_HISTORY}</div>
                                 </div>
-                                
+                                </aura:if>
                             </div>
                             
                         </div>
@@ -238,10 +284,11 @@
                                     {!lineItem.ItemName}
                                 </a>
                             <a class="slds-section__title textLineItem slds-truncate" data-index="{!indx}" onclick="{!c.goToLineItemDetail}">
-                                            {!lineItem.Currencies}&nbsp; {!lineItem.Amount}
+                                            {!lineItem.Currencies}&nbsp; {!lineItem.NetAmount}
                                         </a>   
                             </aura:iteration>
                                 </div>
+                        </div>
                         </div>
                     </aura:if>                      
                     <!-- Feed Tab -->
@@ -257,8 +304,14 @@
                 <div class="actionBarHeight">                  
                     <table class="actionBarWidth">
                         <tr class="alignCenter">
+                            <aura:if isTrue="{!(v.showQwv==true || v.showRtap==true ||  v.showApprove==true)}">
                             <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
-                            <div class="slds-truncate font1">App Feedback</div></td>
+                            <div class="slds-truncate font1 alignCenter">{!$Label.c.CORE_FB_App_Name}</div></td>
+                            </aura:if>
+                            <aura:if isTrue="{!(v.showQwv==false &amp;&amp; v.showRtap==false &amp;&amp;  v.showApprove==false)}">
+                            <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
+                            <div class="slds-truncate font2 alignCenter">{!$Label.c.CORE_FB_App_Name}</div></td>
+                            </aura:if>
                             <aura:if isTrue="{!v.showQwv}">
                             	<td class="alignCenter" onclick ="{!c.querywithvendor}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/querywithvendor.png"/>
                                    <!-- <div class="font1">{!$Label.c.CORE_LBL_QUERY_WITH_VENDOR_SMALL}</div></td> -->
@@ -280,6 +333,7 @@
          </div>    
         </aura:iteration>
     </div>
+        
         <!-- Approval action popup -->
         <aura:if isTrue="{!v.isActionPopup}">
             <aura:iteration items="{!v.ApprovalDetail}" var="detailData">
@@ -295,4 +349,5 @@
             </div>  
         </aura:if>
    </aura:if> 
+        
 </aura:component>

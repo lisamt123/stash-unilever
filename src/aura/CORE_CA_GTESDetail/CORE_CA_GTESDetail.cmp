@@ -72,6 +72,10 @@
         }
         .font1{
         font-size:12px;
+        width:80px;
+        }
+        .font2{
+        font-size:12px;
         }
         .slds-tabs--default__link:focus {
         border-bottom-width: 1px !important;
@@ -80,8 +84,39 @@
         display: none;
         }
         .DetailSectionTable{
-    margin-bottom: -7px;
-}
+        margin-bottom: -7px;
+        }
+        @media screen and (min-width:768px){
+        .feedback_container {
+        top: 39% !important;
+        left: 10% !important;
+        right: 10% !important;
+        }
+        }
+        .slds .slds-publisher .slds-publisher__toggle-visibility li:nth-last-child(1){
+        display: none!important;
+        }
+        .slds .slds-icon_container, .slds .slds-icon__container {
+        margin: -8rem;
+        }
+        .slds .slds-tabs--scoped__item:first-child .slds-tabs--scoped__link {
+        background: transparent;
+        border: 0px;
+        }
+        .slds a > p {
+        white-space: pre-line;
+        width: 227px;
+        word-wrap: break-word;
+        }
+        .slds .slds-button__icon ul li button,.slds .slds-button--icon-x-small {
+    	display: none;
+        }
+        
+        
+        
+        
+        
+        
     </style>
     <!-- Back button Functionlaity-->
     <div>
@@ -143,6 +178,7 @@
                 
                 <!--Detail-->
                 <aura:if isTrue="{!v.isDetail}">
+                    <div class="content">
                     <div class="ProjectInformationSection">
                         <div class="slds-section__title sectionTitle" id="claim" onclick="{!c.showHide}">
                             {!$Label.c.CORE_LBL_DETAIL_CLAIM_DETAILS}
@@ -162,7 +198,7 @@
                                 <div class="slds-text-body--regular DetailData">{!detailData.RequestName}</div>
                             </div>
                             <div>
-                                <div class="slds-text-heading--small DetailHeading splitAcc">{!$Label.c.CORE_LBL_STATUS}</div>
+                                <div class="slds-text-heading--small DetailHeading splitAcc">{!$Label.c.CORE_LBL_EXP_DETAIL_STATUS}</div>
                             </div>
                             <div>
                                 <div class="slds-text-body--regular DetailData fieldValueAlign">{!detailData.RequestStatus}</div>
@@ -191,7 +227,7 @@
                     
                     <div class="ProjectInformationSection">
                         <div class="slds-section__title sectionTitle" id="amount" onclick="{!c.showHide}">
-                            {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT} &amp; {!$Label.c.CORE_LBL_INV_COST_CENTER}
+                            {!$Label.c.CORE_LBL_EXP_DETAIL_AMOUNT_COSTCENTER}
                             <div style="display:block;" class="up" id="amount2">
                                 <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
                             </div>
@@ -348,6 +384,7 @@
                         </aura:iteration>
                     </div>
                     <br/>
+                    </div>
                 </aura:if> 
                 <!-- Feed Tab -->
                 <aura:if isTrue="{!v.isFeed}">  
@@ -362,10 +399,18 @@
                         <div class="actionBarHeight">                  
                             <table class="actionBarWidth">
                                 <tr class="alignCenter"> 
+                                    <aura:if isTrue="{!(v.showReject==true || v.showApprove==true)}">
                                     <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
-                                        <div class="slds-truncate font1">App Feedback</div></td>
+                                        <div class="slds-truncate font1">{!$Label.c.CORE_FB_App_Name}</div></td>
                                     <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Comment.svg"/>
                                         <div class="font1">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                    </aura:if>
+                                    <aura:if isTrue="{!(v.showReject==false &amp;&amp; v.showApprove==false)}">
+                                    <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
+                                        <div class="slds-truncate font2">{!$Label.c.CORE_FB_App_Name}</div></td>
+                                    <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Comment.svg"/>
+                                        <div class="font2">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                    </aura:if>
                                     <aura:if isTrue="{!v.showReject}">
                                         <td class="alignCenter" onclick ="{!c.RejectAction}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Return.svg" />
                                             <div class="font1">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</div></td>

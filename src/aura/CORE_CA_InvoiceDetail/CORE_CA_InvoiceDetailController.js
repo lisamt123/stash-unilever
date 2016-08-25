@@ -29,11 +29,17 @@
                 }
             	component.set("v.Detail",response.getReturnValue().LineItems);
                 var LastComment=[];
+                var approvalHistoryCount =0;
                 for(var i=0; i<response.getReturnValue().ApprovalHistory.length; i++)
                 {
-                    LastComment.push(response.getReturnValue().ApprovalHistory[i].Comment);
+                    if((response.getReturnValue().ApprovalHistory[i].Comment != null) || (response.getReturnValue().ApprovalHistory[i].Comment != undefined))
+                    {
+                        approvalHistoryCount++;
+                        LastComment.push(response.getReturnValue().ApprovalHistory[i].Comment);
+                    }
                 }
                 component.set("v.LastComment",LastComment[0]);
+                component.set("v.approvalHistoryCount",approvalHistoryCount);
                 if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Return to AP'){
                 	component.set("v.showApprove",false); 
                     component.set("v.showRtap",false);
@@ -77,7 +83,7 @@
         for(var i=0; i<approvalDetail.length; i++)
         {            
             approvalDetailList.push(approvalDetail[i]);             
-        } 
+        }
         component.set("v.spinnercompInvoice",true);
         var LineItemId = approvalDetailList[index].LineItemId;        
         var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");

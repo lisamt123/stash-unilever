@@ -47,6 +47,7 @@
 	<aura:iteration items="{!v.ApprovalDetail}" var="detailData"> 
         <aura:if isTrue="{!v.subDivision == 'DocHistory'}">
             <aura:iteration items="{!detailData.ApprovalHistory}" var="approvalHistory"> 
+                <aura:if isTrue="{!approvalHistory.Comment != null}">
                 <div class="ProjectInformationSection">
                 <div class="slds-section__title sectionTitle">{!approvalHistory.ApprovedDate}</div><hr></hr>
                 <table class="DetailSectionTable">
@@ -68,6 +69,7 @@
                     </tr>
                 </table>
             </div>
+                </aura:if>
             </aura:iteration>
          </aura:if>
     </aura:iteration>

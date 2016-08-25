@@ -143,3 +143,9 @@
 .THIS #claimexp1{
     margin-bottom: 7px !important;
 }
+
+@media screen and (min-width: 1200px){
+.THIS .content {
+    margin-bottom: 100px;
+}
+}

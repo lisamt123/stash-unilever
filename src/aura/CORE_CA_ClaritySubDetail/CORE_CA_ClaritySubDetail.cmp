@@ -123,7 +123,7 @@
                     </tr>
                     <tr>
                         <td class="slds-text-body--regular DetailData">
-                            <aura:if isTrue="{!(detailData.ChargeTo != null)}"> 
+                            <aura:if isTrue="{!(detailData.Capex != null)}"> 
                                 {!detailData.Currencies} &nbsp;
                             </aura:if>
                             {!((detailData.Capex !=null) ? (detailData.Capex) : 'NA')}
