@@ -19,6 +19,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     global map<id,list<IPM_Financial__c>> rolloutFinancialmap;
     global map<string,IPM_Financial__c> businessImpactMap= new map<string,IPM_Financial__c>();
     global map<Id,list<IPM_Project_Document__c>> projGateDocumentMap;
+    global map<Id,list<IPM_Milestone__c>> projMilestoneMap;
     
     global Map<Id, IPM_Financial__c> projFinMap = new Map<Id, IPM_Financial__c> ();
     global Map<String, List<IPM_Financial_Year__c>> projFinYrMap =new map<String, List<IPM_Financial_Year__c>>();
@@ -121,46 +122,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
 
  
 
-
+       system.debug(projFinMap);
         //Fetching milestone records and creating map 
-        map<Id,list<IPM_Milestone__c>> projMilestoneMap = new map<id,list<IPM_Milestone__c>>();
-        try{
-        list<IPM_Milestone__c> projMilestoneList = new list<IPM_Milestone__c>([SELECT id,
-                                                                                       Name,
-                                                                                       IPM_Type_of_gate__c,
-                                                                                       IPM_Name__c,
-                                                                                       IPM_Due_Date__c,                                                                            
-                                                                                       IPM_Completed_on__c,
-                                                                                       IPM_Proposed_Date__c,                                                                           
-                                                                                       IPM_Target_Launch_Year__c,
-                                                                                       IPM_Target_Launch_Month__c,
-                                                                                       IPM_Actual_Target_Launch_Year__c,
-                                                                                       IPM_Actual_Target_Launch_Month__c,
-                                                                                       IPM_Project__r.id,
-                                                                                       IPM_Type_of_Milestone__c,
-                                                                                       IPM_Project__r.IPM_Project_Name__c,
-                                                                                       IPM_Due_Date_Capability__c,
-                                                                                       IPM_Due_Date_Feasibility__c,
-                                                                                       IPM_Due_Date_Idea__c,
-                                                                                       IPM_Due_Date_Market_Deployment__c,
-                                                                                       IPM_Due_Date_Market_Ready__c                                                                       
-                                                                               FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
-    
-            for(IPM_Milestone__c im:projMilestoneList){
-                if(String.isNotBlank(im.IPM_Type_of_Milestone__c) && (im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_Utils.Standard) || im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_ConstantUtils.STRING_BET))){            
-                    if(!projMilestoneMap.containskey(im.IPM_Project__r.id)){
-                        projMilestoneMap.put(im.IPM_Project__r.id, new List<IPM_Milestone__c>{im});  
-                    }else{
-                        List<IPM_Milestone__c> milestoneList = projMilestoneMap.get(im.IPM_Project__r.id);
-                        milestoneList.add(im);
-                        projMilestoneMap.put(im.IPM_Project__r.id, milestonelist);              
-                    } 
-                }
-            }
-        }
-        catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null);
-        }
+        projMilestoneMap = fetchMilestoneRecords(projectIdMap);
+        
         
         /*******************Include Gatedocument related things*************/
         projGateDocumentMap = fetchGateDocumentRecords(projectIdMap);               
@@ -449,7 +414,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
             //otifAnalyticProj = setGeography(proj,otifAnalyticProj);
     
             // populate target launch year & month
-            //otifAnalyticProj = setTargetLaunchYearandMonth(proj,otifAnalyticProj);
+            otifAnalyticProj = setTargetLaunchYearandMonth(proj,otifAnalyticProj);
     
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(proj.Id)){ 
@@ -1472,5 +1437,86 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
    	   return finExtID;
    	
    }
+   
+   
+   /*********************************************************************************************************************
+     * @Description: To set TargetLaunchYearandMonth
+     * @param1: IPM_Project__c proj
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/ 
+    public IPM_Analytics_OTIF__c setTargetLaunchYearandMonth(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalyticProj){
+    	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalyticProj; 
+        if(String.isNotBlank(proj.IPM_Project_Type__c) && (proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || proj.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(proj.IPMProject_Span__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
+           otifAnalyticObj.IPM_Target_Launch_Month_BD__c = proj.IPM_Target_Launch_Month__c;
+           if(proj.IPM_Target_Launch_Year__c != null){
+               otifAnalyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
+           }
+              
+        }
+        if (String.isNotBlank(proj.IPMProject_Span__c) && String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)){
+           otifAnalyticObj.IPM_Target_Launch_Month_BB__c = proj.IPM_Target_Launch_Month__c;
+           if(proj.IPM_Target_Launch_Year__c != null){
+               otifAnalyticObj.IPM_Target_Launch_Year_BB__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
+           }
+            //if(String.isNotBlank(string.valueof(proj.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
+            if(String.isNotBlank(string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c))){
+               otifAnalyticObj.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
+               otifAnalyticObj.IPM_Target_Launch_Year_BD__c = proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();   
+            }                  
+        }
+        return otifAnalyticObj;
+    }   
+    
+    
+    /*********************************************************************************************************************
+     * @Description: To fetch milestone Records
+     * @param1: map<id,IPM_Project__c> projectIdMap
+     * @return: map<Id,list<IPM_Milestone__c>> milestone Records
+     *********************************************************************************************************************/     
+    public map<Id,list<IPM_Milestone__c>> fetchMilestoneRecords(map<id,IPM_Project__c> projectIdMap){
+        
+       //Fetching milestone records and creating map 
+        projMilestoneMap = new map<id,list<IPM_Milestone__c>>();
+        try{
+        list<IPM_Milestone__c> projMilestoneList = new list<IPM_Milestone__c>([SELECT id,
+                                                                                       Name,
+                                                                                       IPM_Type_of_gate__c,
+                                                                                       IPM_Name__c,
+                                                                                       IPM_Due_Date__c,                                                                            
+                                                                                       IPM_Completed_on__c,
+                                                                                       IPM_Proposed_Date__c,                                                                           
+                                                                                       IPM_Target_Launch_Year__c,
+                                                                                       IPM_Target_Launch_Month__c,
+                                                                                       IPM_Actual_Target_Launch_Year__c,
+                                                                                       IPM_Actual_Target_Launch_Month__c,
+                                                                                       IPM_Project__r.id,
+                                                                                       IPM_Type_of_Milestone__c,
+                                                                                       IPM_Project__r.IPM_Project_Name__c,
+                                                                                       IPM_Due_Date_Capability__c,
+                                                                                       IPM_Due_Date_Feasibility__c,
+                                                                                       IPM_Due_Date_Idea__c,
+                                                                                       IPM_Due_Date_Market_Deployment__c,
+                                                                                       IPM_Due_Date_Market_Ready__c                                                                       
+                                                                               FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
+    
+            for(IPM_Milestone__c im:projMilestoneList){
+                if(String.isNotBlank(im.IPM_Type_of_Milestone__c) && (im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_Utils.Standard) || im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_ConstantUtils.STRING_BET))){            
+                    if(!projMilestoneMap.containskey(im.IPM_Project__r.id)){
+                        projMilestoneMap.put(im.IPM_Project__r.id, new List<IPM_Milestone__c>{im});  
+                    }else{
+                        List<IPM_Milestone__c> milestoneList = projMilestoneMap.get(im.IPM_Project__r.id);
+                        milestoneList.add(im);
+                        projMilestoneMap.put(im.IPM_Project__r.id, milestonelist);              
+                    } 
+                }
+            }
+        }
+        catch(Exception ex){
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null);
+        }
+        
+        return projMilestoneMap;
+    }
     
 }
