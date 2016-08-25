@@ -148,6 +148,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_ExcelAttachmentFileName__c</fullName>
+        <externalId>false</externalId>
+        <label>Excel Attachment File Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_FinanceManagerName__c</fullName>
         <externalId>false</externalId>
         <label>Finance Manager Name</label>

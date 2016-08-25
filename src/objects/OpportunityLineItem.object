@@ -375,10 +375,10 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>FS_Temporary_Discount__c</fullName>
+        <fullName>FS_TemporaryProductDiscount__c</fullName>
         <description>Value of Temporary Discount of Product with regards to Distributor Type</description>
         <externalId>false</externalId>
-        <label>Temporary Discount</label>
+        <label>Temporary Product Discount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>

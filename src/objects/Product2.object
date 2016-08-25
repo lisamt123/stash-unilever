@@ -1167,99 +1167,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>FS_FI_BFPP__c</fullName>
-        <description>Field is support the Financial reporting for US</description>
-        <externalId>false</externalId>
-        <label>FI-BFPP</label>
-        <picklist>
-            <controllingField>FS_FI_Market__c</controllingField>
-            <picklistValues>
-                <fullName>None</fullName>
-                <default>false</default>
-                <controllingFieldValues>None</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_FI_Category__c</fullName>
-        <description>Field is support the Financial reporting for US</description>
-        <externalId>false</externalId>
-        <label>FI-Category</label>
-        <picklist>
-            <controllingField>FS_FI_Division__c</controllingField>
-            <picklistValues>
-                <fullName>None</fullName>
-                <default>false</default>
-                <controllingFieldValues>None</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_FI_Division__c</fullName>
-        <description>Field is support the Financial reporting for US</description>
-        <externalId>false</externalId>
-        <label>FI-Division</label>
-        <picklist>
-            <picklistValues>
-                <fullName>None</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_FI_Market__c</fullName>
-        <description>Field is support the Financial reporting for US</description>
-        <externalId>false</externalId>
-        <label>FI-Market</label>
-        <picklist>
-            <controllingField>FS_FI_Category__c</controllingField>
-            <picklistValues>
-                <fullName>None</fullName>
-                <default>false</default>
-                <controllingFieldValues>None</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>FS_FI_SPF__c</fullName>
-        <description>Field is support the Financial reporting for US</description>
-        <externalId>false</externalId>
-        <label>FI-SPF</label>
-        <picklist>
-            <controllingField>FS_FI_BFPP__c</controllingField>
-            <picklistValues>
-                <fullName>None</fullName>
-                <default>false</default>
-                <controllingFieldValues>None</controllingFieldValues>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>FS_Focus__c</fullName>
         <description>Purpose : Refers to controlling accounts group code (used for reporting purposes)
 Data Source : NA | Integration : NA | Security Level : Restricted</description>
@@ -1278,6 +1185,31 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
                 <fullName>NON-FOCUS</fullName>
                 <default>false</default>
             </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_L03_Sub_Division__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>L03 Sub Division</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1D:FOODS EXCL SPREADS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1G:REFRESHMENT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1K:SPREADS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1533,12 +1465,12 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>FS_TemporaryTPRTable__c</fullName>
+        <fullName>FS_TemporaryProductDiscountTable__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup field to a custom object called TemporaryTPR which stores the values of TemporaryTPR with their corresponding Distributor Type.</description>
+        <description>Lookup field to a custom object called Temporary Product Discount which stores the values of Temporary Product Discount with their corresponding Distributor Type.</description>
         <externalId>false</externalId>
-        <label>TemporaryTPRTable</label>
-        <referenceTo>FS_TemporaryTPR__c</referenceTo>
+        <label>TemporaryProductDiscountTable</label>
+        <referenceTo>FS_TemporaryProductDiscount__c</referenceTo>
         <relationshipLabel>Products</relationshipLabel>
         <relationshipName>Products</relationshipName>
         <required>false</required>
@@ -6253,41 +6185,6 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_FI_BFPP__c</picklist>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_FI_Category__c</picklist>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_FI_Division__c</picklist>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_FI_Market__c</picklist>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>FS_FI_SPF__c</picklist>
-            <values>
-                <fullName>None</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>FS_Focus__c</picklist>
             <values>
                 <fullName>BOH</fullName>
@@ -6299,6 +6196,21 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </values>
             <values>
                 <fullName>NON-FOCUS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_L03_Sub_Division__c</picklist>
+            <values>
+                <fullName>1D%3AFOODS EXCL SPREADS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1G%3AREFRESHMENT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1K%3ASPREADS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

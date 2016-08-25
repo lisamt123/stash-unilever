@@ -356,6 +356,34 @@
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
+        <fullName>FS_Type_Of_User__c</fullName>
+        <description>This field is used for MABE Approval Process.</description>
+        <externalId>false</externalId>
+        <label>Type Of User</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RSM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Zone Lead</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>true</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Function__c</fullName>
         <description>Unilever Job Function driven from ADAM field: unileverBusinessFunctionDescription</description>
         <externalId>false</externalId>
@@ -2694,6 +2722,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
     </listViews>
     <listViews>
         <fullName>NA_Testing_Users</fullName>
+        <booleanFilter>1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9</booleanFilter>
         <columns>FULL_NAME</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
@@ -2706,7 +2735,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>BTayl</value>
+            <value>BrTayl</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -2724,24 +2753,29 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>MEber</value>
         </filters>
         <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>contains</operation>
-            <value>US Sales Rep</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
+            <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>US Regional Manager</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>equals</operation>
-            <value>US Zone Manager</value>
+            <value>USTEST</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>pbach</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>droed</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>jespa</value>
+        </filters>
+        <filters>
+            <field>FULL_NAME</field>
+            <operation>contains</operation>
+            <value>integration</value>
         </filters>
         <label>NA Testing Users</label>
         <language>en_US</language>

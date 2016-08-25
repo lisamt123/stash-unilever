@@ -2125,6 +2125,39 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_hierarchyLevel__c</fullName>
+        <description>Purpose: Used for the MDM request</description>
+        <externalId>false</externalId>
+        <label>Hierarchy Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KCH Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>FS_offInvoice__c</fullName>
         <description>Default value based on Distributor Type. Use as additional discounts for Opportunity Product in the TPR Calculation</description>
         <externalId>false</externalId>
@@ -2692,10 +2725,16 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>ParentId</fullName>
         <lookupFilter>
             <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
             <filterItems>
                 <field>$Source.RecordTypeId</field>
                 <operation>equals</operation>
                 <valueField>Account.RecordTypeId</valueField>
+            </filterItems>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Operator Russia</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
@@ -3426,7 +3465,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <description>Purpose : This field describes the operator segment (important for reporting)
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
-        <label>Operator Segment</label>
+        <label>Segment</label>
         <picklist>
             <picklistValues>
                 <fullName>Restaurant</fullName>
@@ -3458,14 +3497,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <picklistValues>
                 <fullName>Military</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>A-Center Led</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>B-Local Led</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -3502,6 +3533,58 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <picklistValues>
                 <fullName>QSR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>A-Center Led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B-Local Led</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>C-Liquidator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>D-Redistribution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>E-Office Coffee System</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F-Specialty</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>G-C Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>H-Retail Food Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>I-Meal Replacement Solution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>M-Manufacturers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>O-Operator/Restaurant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R-Club</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S-C&amp;C</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -3720,7 +3803,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <description>Purpose : The value of this field are depended from Operator Segment
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
-        <label>Operator Sub Segment</label>
+        <label>Sub Segment</label>
         <picklist>
             <controllingField>Segment__c</controllingField>
             <picklistValues>
@@ -6306,6 +6389,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -8082,6 +8188,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -9780,6 +9909,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Volga %26 South</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11580,6 +11732,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Gortons_Opt_in__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -12104,6 +12279,50 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>B-Local Led</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C-Liquidator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>D-Redistribution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>E-Office Coffee System</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F-Specialty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G-C Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>H-Retail Food Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>I-Meal Replacement Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M-Manufacturers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O-Operator%2FRestaurant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R-Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S-C%26C</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12793,10 +13012,10 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>Operator</fullName>
+        <fullName>Operator_Russia</fullName>
         <active>true</active>
-        <description>Created to restrict the edit access  from users</description>
-        <label>Operators</label>
+        <description>This is used to make the Page uneditable</description>
+        <label>Operator Russia</label>
         <picklistValues>
             <picklist>AccountSource</picklist>
             <values>
@@ -13974,6 +14193,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Volga %26 South</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -16508,6 +16750,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Gortons_Opt_in__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -19026,6 +19291,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Industry</picklist>
             <values>
                 <fullName>Agriculture</fullName>
@@ -20725,6 +21013,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Volga %26 South</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -22513,6 +22824,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Volga %26 South</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -24655,6 +24989,29 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Volga %26 South</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_hierarchyLevel__c</picklist>
+            <values>
+                <fullName>Customer Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Number</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>KCH Level 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KCH Level 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -264,6 +264,53 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_Distributor_name__c</picklist>
+            <values>
+                <fullName>Alidi-Nord</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East West Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>East West SPb</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Globalfoods Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Integrita SPb</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lotos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MARRusia Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MARRusia S-Pete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TD Global Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uhrenholt Moscow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uhrenholt S-Pete</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_Task_Type__c</picklist>
             <values>
                 <fullName>Centrally Led</fullName>
