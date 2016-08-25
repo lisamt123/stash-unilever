@@ -43,11 +43,11 @@ global with sharing class AF_OopEstimateRemote {
   global static Map<String, String> getOOPSEstimateRecords(String agencyId, String oopsActualId) {
     Set<String> columnsSet = new Set<String>();
     Set<String> rowsSet = new Set<String>();
-    Map<String, String> ulOopsMatrixMap = new Map<String, String>();
+    //Map<String, String> ulOopsMatrixMap = new Map<String, String>();
     AF_Constants.colTotal = 0;
     AF_Constants.colTotalA = 0;
     AF_Constants.colTotalVal=0;
-    Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
+    //Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
     List<AF_OOPS_Estimate__c> agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
     AF_OOPS_Actual__c, AF_Estimate__c, AF_OOPS_Matrix_Currency_Code__c, AF_IsCrossBorder__c,AF_EstimateLocal__c,
     AF_IsCrossBorderImage__c,AF_isCommentImage__c, AF_Agreed_Base_Fees__c
@@ -89,7 +89,8 @@ global with sharing class AF_OopEstimateRemote {
     strongEnd = '</strong>';
     Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
     Map<String, String> ulOopsMatrixMap = new Map<String, String>();
-    List<AF_OOPS_Estimate__c> agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
+    List<AF_OOPS_Estimate__c> agencyEstimates =  new List<AF_OOPS_Estimate__c> ();
+    agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
     AF_OOPS_Actual__c, AF_Estimate__c, AF_OOPS_Matrix_Currency_Code__c, AF_IsCrossBorder__c,AF_EstimateLocal__c,
     AF_IsCrossBorderImage__c,AF_isCommentImage__c, AF_Agreed_Base_Fees__c
     FROM AF_OOPS_Estimate__c
