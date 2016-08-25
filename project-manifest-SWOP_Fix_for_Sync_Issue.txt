@@ -1,5 +1,7 @@
 src
 src/classes
+src/classes/Oblix_SOWCampaignCreateController_Test.cls
+src/classes/Oblix_SOWCampaignCreateController_Test.cls-meta.xml
 src/classes/Oblix_CampaignSummaryController.cls
 src/classes/Oblix_CampaignSummaryController.cls-meta.xml
 src/classes/Oblix_SOWCampaignCreateController.cls
