@@ -41,13 +41,17 @@ global with sharing class AF_OopEstimateRemote {
 *  @return: Map of <String,String>.
 *************************************************************************************/
   global static Map<String, String> getOOPSEstimateRecords(String agencyId, String oopsActualId) {
+    tdCloseTagEst='</td>';
+    String trOpenTag = '<tr>', trCloseTag = '</tr>';
+    strongStrt = '<Strong>';
+    strongEnd = '</strong>';
     Set<String> columnsSet = new Set<String>();
     Set<String> rowsSet = new Set<String>();
-    //Map<String, String> ulOopsMatrixMap = new Map<String, String>();
+    Map<String, String> ulOopsMatrixMap = new Map<String, String>();
     AF_Constants.colTotal = 0;
     AF_Constants.colTotalA = 0;
     AF_Constants.colTotalVal=0;
-    //Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
+    Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
     List<AF_OOPS_Estimate__c> agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
     AF_OOPS_Actual__c, AF_Estimate__c, AF_OOPS_Matrix_Currency_Code__c, AF_IsCrossBorder__c,AF_EstimateLocal__c,
     AF_IsCrossBorderImage__c,AF_isCommentImage__c, AF_Agreed_Base_Fees__c
@@ -70,31 +74,7 @@ global with sharing class AF_OopEstimateRemote {
     String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
     archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
     archiveImg += ' height="18" width="18" />';
-    getOOPSEstimateRecordsEXT(agencyId,oopsActualId);
-    return null;
-}
-/***********************************************************************************
-*  @Description: this method is used to query and display the records in oops matrix 
-*  @             rows and column total of the oopsEstimate records will be displayed.
-         The total of the oops amount will be displayed in matrix cell rowise and colwise. 
-*  @name : getOOPSEstimateRecords
-*  @param : agencyId,oopsActualId
-*  @return: Map of <String,String>.
-*************************************************************************************/
-  global static Map<String, String> getOOPSEstimateRecordsEXT(String agencyId, String oopsActualId) {
     /* This is the first row of the matrix which actually calculates the Columnwise totals.*/
-    tdCloseTagEst='</td>';
-    String trOpenTag = '<tr>', trCloseTag = '</tr>';
-    strongStrt = '<Strong>';
-    strongEnd = '</strong>';
-    Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
-    Map<String, String> ulOopsMatrixMap = new Map<String, String>();
-    List<AF_OOPS_Estimate__c> agencyEstimates =  new List<AF_OOPS_Estimate__c> ();
-    agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
-    AF_OOPS_Actual__c, AF_Estimate__c, AF_OOPS_Matrix_Currency_Code__c, AF_IsCrossBorder__c,AF_EstimateLocal__c,
-    AF_IsCrossBorderImage__c,AF_isCommentImage__c, AF_Agreed_Base_Fees__c
-    FROM AF_OOPS_Estimate__c
-    WHERE AF_OOPS_Actual__c =:oopsActualId];
     rowDetail += trOpenTag;
     rowDetail += '<td class=\"headFirstRow\">' + strongStrt + 'Unilever Entities' + strongEnd + tdCloseTagEst;
     rowDetail += '<td class=\"totalCell\">' + strongStrt + 'Total' + strongEnd + tdCloseTagEst;
