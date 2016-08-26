@@ -57,8 +57,8 @@ public with sharing class ICB_ContactPartnerUserCreation
         System.debug('Entering <createNewUser>' + contact);
         List<User> users = new List<User>();
         
-        try
-        {
+       // try
+        //{
             for(Contact con : contact) 
             { 
                 //create the users
@@ -67,11 +67,11 @@ public with sharing class ICB_ContactPartnerUserCreation
             
             Database.insert(users); 
             definePermissionSetting();
-        }  
+       /* }  
         catch (Exception e)
         {
             system.debug(Label.ICB_ERROR_MESSAGE +  e.getCause());
-        } 
+        } */ 
         System.debug('Exiting <createNewUser>');
     }
     
@@ -124,7 +124,7 @@ public with sharing class ICB_ContactPartnerUserCreation
             
             String userName = contact.email.substringBefore('@').tolowercase() + system.now().day() + userEmail;
             String alias = contact.email.substringBefore('@');
-            
+            system.debug('username? ' + userName);
             newUser = new User(
                 alias = alias.substring(0,4) + system.now().day(),
                 email = contact.email, 
@@ -135,8 +135,8 @@ public with sharing class ICB_ContactPartnerUserCreation
                 localesidkey = 'pt_BR',
                 contactId = contact.Id,
                 timezonesidkey = 'America/Sao_Paulo', 
-                Username =  userName,
-                CommunityNickname = contact.email.substringBefore('@').tolowercase() + system.now().day(),
+                Username =  userName + math.rint(math.random()*1000),
+                CommunityNickname = contact.email.substringBefore('@').tolowercase() + math.rint(math.random()*1000),
                 ProfileId = myProfile.Id,
                 IsActive = true);
             newUser.setOptions(dmo); 

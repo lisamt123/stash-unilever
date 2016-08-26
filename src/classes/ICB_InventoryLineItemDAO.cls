@@ -50,6 +50,6 @@ public with sharing class ICB_InventoryLineItemDAO {
     }
         
     public AggregateResult[] getInventoryReference() {
-        return [SELECT ICB_Inventory__c FROM ICB_Inventory_Line_Item__c WHERE ICB_Active__c = TRUE GROUP BY ICB_Inventory__c]; 
+        return [SELECT  ICB_Inventory__c FROM ICB_Inventory_Line_Item__c WHERE ICB_Active__c = TRUE GROUP BY ICB_Inventory__c]; 
     }    
 }

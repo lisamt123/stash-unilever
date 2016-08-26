@@ -38,7 +38,7 @@ public without sharing class ICB_Cockpit_CC
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem;
     private static Map<Id, String> mapUserPhoto;
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapInventory;
-    private static Map<String,PriceBookEntry> mapPriceBook;
+    @TestVisible private static Map<String,PriceBookEntry> mapPriceBook;
     private static Id contactId;
     private static Id accountId;
     private static Set<Id> setContactId;
@@ -302,7 +302,7 @@ public without sharing class ICB_Cockpit_CC
     Throws [Exceptions]: Exception
     ********************************************************************/
     @AuraEnabled
-    public static void updateOpportunity(Opportunity opp,String listJson, Boolean isClosed)
+    public static Opportunity updateOpportunity(Opportunity opp,String listJson, Boolean isClosed)
     {
         System.debug('Entering <updateOpportunity>: '+ JSON.serializePretty(opp));
         System.debug('Entering <updateOpportunity>: '+ listJson);
@@ -321,13 +321,16 @@ public without sharing class ICB_Cockpit_CC
                     
                 }
             }
-            Database.update(opp); 
+            Database.update(opp);
+            System.debug('Exiting <updateOpportunity>: ' + opp);
+            return opp;
         }
         catch(Exception e)
         {
             System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
+            return null;
         }
-        System.debug('Exiting <updateOpportunity>: ');
+        
     }
     
     /*******************************************************************
@@ -433,6 +436,7 @@ public without sharing class ICB_Cockpit_CC
         {
             for(String priceId : mapPriceBook.keySet())
             {
+                             
                 if(mapPriceBook.get(priceId).Name.equals(ivt.invetoryItem.ICB_Product__r.Name) && 
                    mapPriceBook.get(priceId).Pricebook2.Name.equals(ivt.invetoryItem.ICB_Inventory__r.Name))
                 {
@@ -450,7 +454,6 @@ public without sharing class ICB_Cockpit_CC
                 }
             }
         }
-        
         Database.insert(listOppItem);
         System.debug('Exiting <createOppItem>');
     }
@@ -474,16 +477,19 @@ public without sharing class ICB_Cockpit_CC
         {
             if(ivt.quantity > 0)
             {
-                if(operation.equals(CONST_INCREMENT))
+                /*if(operation.equals(CONST_INCREMENT))
                 {
                     ivt.invetoryItem.ICB_Quantity_Unit__c += ivt.quantity;  
                     listUpdateIvt.add(ivt.invetoryItem);  
                 }
                 else
+                {*/
+                if(!operation.equals(CONST_INCREMENT))
                 {
                     ivt.invetoryItem.ICB_Quantity_Unit__c -= ivt.quantity;  
                     listUpdateIvt.add(ivt.invetoryItem);        
-                }     
+                }
+                // }     
             }
         }
         Database.update(listUpdateIvt);
@@ -569,7 +575,7 @@ public without sharing class ICB_Cockpit_CC
             if((!setContactId.contains(opp.ICB_Contact__c) && opp.ICB_Contact__r.ICB_Type__c == CONST_TYPE_CONTACT_SALES)||
                (!setContactId.contains(opp.ICB_Contact__c) && opp.ICB_Contact__r.ICB_Type__c == CONST_TYPE_CONTACT_SALES && contactId <> opp.ICB_Contact__c && 
                 mapContact.get(contactId).ICB_Type__c == CONST_TYPE_CONTACT_OPERATOR) && mapUserPhoto.keySet().contains(opp.ICB_Contact__c)){
-                    if(mapUserPhoto.keySet().contains(opp.ICB_Contact__c)){
+                    if(mapUserPhoto.keySet().contains(opp.ICB_Contact__c) ){
                         itemWrapper = new ICB_Wrapper_Cockpit_CC();
                         itemWrapper.oppItem = opp;
                         itemWrapper.oppLineItem = mapLineItem.get(opp.id).oppLineItem;
