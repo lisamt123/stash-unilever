@@ -1217,6 +1217,1636 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_L04_Category__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>L04 Category</label>
+        <picklist>
+            <controllingField>FS_L03_Sub_Division__c</controllingField>
+            <picklistValues>
+                <fullName>12:DRESSINGS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D:FOODS EXCL SPREADS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1B:OTHER FOODS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D:FOODS EXCL SPREADS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1F:SAVOURY</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D:FOODS EXCL SPREADS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1I:TEA AND SOY &amp; FRUIT BEVERAGES</fullName>
+                <default>false</default>
+                <controllingFieldValues>1G:REFRESHMENT</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1H:SPREADS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1K:SPREADS</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_L05_Market__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>L05 Market</label>
+        <picklist>
+            <controllingField>FS_L04_Category__c</controllingField>
+            <picklistValues>
+                <fullName>1H:KETCHUP</fullName>
+                <default>false</default>
+                <controllingFieldValues>12:DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1J:MAYONNAISE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12:DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1P:OTHER DRESSINGS</fullName>
+                <default>false</default>
+                <controllingFieldValues>12:DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1X:SALAD DRESSINGS</fullName>
+                <default>false</default>
+                <controllingFieldValues>12:DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2U:MUSTARD</fullName>
+                <default>false</default>
+                <controllingFieldValues>12:DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>13:DESSERTS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1B:OTHER FOODS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1R:OTHER SAVOURY</fullName>
+                <default>false</default>
+                <controllingFieldValues>1F:SAVOURY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1Y:SAUCES</fullName>
+                <default>false</default>
+                <controllingFieldValues>1F:SAVOURY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>21:SOUPS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1F:SAVOURY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>29:COOKING PRODUCTS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1F:SAVOURY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2A:LEAF &amp; INSTANT TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>1H:SPREADS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>25:YELLOW FATS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I:TEA AND SOY &amp; FRUIT BEVERAGES</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_L06_Sector__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>L06 Sector</label>
+        <picklist>
+            <controllingField>FS_L05_Market__c</controllingField>
+            <picklistValues>
+                <fullName>120:KETCHUP</fullName>
+                <default>false</default>
+                <controllingFieldValues>1H:KETCHUP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>122:LOW FAT MAYONNAISE</fullName>
+                <default>false</default>
+                <controllingFieldValues>1J:MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12T:REGULAR MAYONNAISE</fullName>
+                <default>false</default>
+                <controllingFieldValues>1J:MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11K:DIPS/SALSA</fullName>
+                <default>false</default>
+                <controllingFieldValues>1P:OTHER DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12F:OTHER COLD SAUCES</fullName>
+                <default>false</default>
+                <controllingFieldValues>1P:OTHER DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12X:SANDWICH SPREADS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1P:OTHER DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>123:LOW FAT SALAD DRESSINGS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1X:SALAD DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12U:REGULAR SALAD DRESSINGS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1X:SALAD DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>129:MUSTARD</fullName>
+                <default>false</default>
+                <controllingFieldValues>2U:MUSTARD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>110:AMBIENT DESSERTS</fullName>
+                <default>false</default>
+                <controllingFieldValues>13:DESSERTS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>14G:OTHER SAVOURY PRODUCTS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1R:OTHER SAVOURY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12M:PASTA SAUCES</fullName>
+                <default>false</default>
+                <controllingFieldValues>1Y:SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12Q:POUR-OVER SAUCES</fullName>
+                <default>false</default>
+                <controllingFieldValues>1Y:SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>148:GRAVY</fullName>
+                <default>false</default>
+                <controllingFieldValues>1Y:SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>134:SOUPS ALL FORMATS</fullName>
+                <default>false</default>
+                <controllingFieldValues>21:SOUPS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>116:BOUILLONS</fullName>
+                <default>false</default>
+                <controllingFieldValues>29:COOKING PRODUCTS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12Y:SEASONINGS</fullName>
+                <default>false</default>
+                <controllingFieldValues>29:COOKING PRODUCTS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11S:INFUSIONS</fullName>
+                <default>false</default>
+                <controllingFieldValues>2A:LEAF &amp; INSTANT TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>145:BLACK LEAF TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>2A:LEAF &amp; INSTANT TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>149:GREEN LEAF TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>2A:LEAF &amp; INSTANT TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>14C:INSTANT TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>2A:LEAF &amp; INSTANT TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>125:MARGARINES</fullName>
+                <default>false</default>
+                <controllingFieldValues>25:YELLOW FATS</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_L11_BFPP__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>L11 BFPP</label>
+        <picklist>
+            <controllingField>FS_L06_Sector__c</controllingField>
+            <picklistValues>
+                <fullName>17K:HLMN KETCHUP BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>120:KETCHUP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WH:HLMN LGT SNGL SRV PRTNS TBL TP</fullName>
+                <default>false</default>
+                <controllingFieldValues>122:LOW FAT MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WI:HLMN LIGHT BACK HOUSE PACKS</fullName>
+                <default>false</default>
+                <controllingFieldValues>122:LOW FAT MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17R:HLMN REG MAYO JAR BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12T:REGULAR MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WG:HLMN EXTRA HEAVY BULK</fullName>
+                <default>false</default>
+                <controllingFieldValues>12T:REGULAR MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WJ:HLMN REAL BACK OF HOUSE PACKS</fullName>
+                <default>false</default>
+                <controllingFieldValues>12T:REGULAR MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WK:HLMN REAL BULK</fullName>
+                <default>false</default>
+                <controllingFieldValues>12T:REGULAR MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WL:HLMN REAL SNGL SRV PRTN TBL TP</fullName>
+                <default>false</default>
+                <controllingFieldValues>12T:REGULAR MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WM:HLMN XTRA HVY BACK HOUSE PCKS</fullName>
+                <default>false</default>
+                <controllingFieldValues>12T:REGULAR MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2WN:REAL JIMMY JOHNS</fullName>
+                <default>false</default>
+                <controllingFieldValues>12T:REGULAR MAYONNAISE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17I:HLMN DIPS/SALSA BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>11K:DIPS/SALSA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1C0:OTH BRANDS OTH COLD SAUCE BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12F:OTHER COLD SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17T:HLMN SANDWICH SPREADS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12X:SANDWICH SPREADS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17M:HLMN LF SALAD DRESSINGS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>123:LOW FAT SALAD DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17S:HLMN REG SALAD DRESSINGS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12U:REGULAR SALAD DRESSINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17O:HLMN MUSTARD BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>129:MUSTARD</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18I:KNORR AMBIENT DESSERTS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>110:AMBIENT DESSERTS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19Y:LEGOUT AMBIENT DESSERTS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>110:AMBIENT DESSERTS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A1:LEGOUT CANNED ENTREE</fullName>
+                <default>false</default>
+                <controllingFieldValues>14G:OTHER SAVOURY PRODUCTS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16M:FS PASTA SAUCES BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12M:PASTA SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1CX:RAGU PASTA SAUCES BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12M:PASTA SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19A:KNORR POUR-OVER SAUCES BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Q:POUR-OVER SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19B:KNORR POUR-OVER SAUCES DRY</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Q:POUR-OVER SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19C:KNORR POUR-OVER SAUCES WET</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Q:POUR-OVER SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A2:LEGOUT POUR-OVER SAUCES CAN</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Q:POUR-OVER SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A3:LEGOUT POUR-OVER SAUCES DRY</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Q:POUR-OVER SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1E1:STAFFORD POUR-OVER SAUCES DRY</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Q:POUR-OVER SAUCES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1HZ:KNORR GRAVY BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>148:GRAVY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1I0:KNORR GRAVY DRY</fullName>
+                <default>false</default>
+                <controllingFieldValues>148:GRAVY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1I4:LEGOUT GRAVY CAN</fullName>
+                <default>false</default>
+                <controllingFieldValues>148:GRAVY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1I5:LEGOUT GRAVY DRY</fullName>
+                <default>false</default>
+                <controllingFieldValues>148:GRAVY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1I6:STAFFORD GRAVY DRY</fullName>
+                <default>false</default>
+                <controllingFieldValues>148:GRAVY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19G:KNORR REGULAR DRY SOUP BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>134:SOUPS ALL FORMATS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19X:LEGOUT AMB LIQUID SOUPS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>134:SOUPS ALL FORMATS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1AA:LIPTON CAS SOUP BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>134:SOUPS ALL FORMATS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1AV:LIPTON REGULAR DRY SOUP BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>134:SOUPS ALL FORMATS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12I:BOVRIL BOUILLON LIQUID BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18N:KNORR BOUILLON LIQUID BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18O:KNORR BOUILLON PASTE BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18P:KNORR BOUILLON POWDER BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18Q:KNORR BOUILLON POWDER MC</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19Z:LEGOUT BOUILLON PASTE BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0:LEGOUT BOUILLON POWDER BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1BW:ORIGIN BOUILLON PASTE BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1E0:STAFFORD BOUILLON POWDER BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>116:BOUILLONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>196:KNORR HERBS/SPICES/MIXES</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Y:SEASONINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1TD:KNORR PASTE SEASONING</fullName>
+                <default>false</default>
+                <controllingFieldValues>12Y:SEASONINGS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1B2:LIPTON SP HERBAL</fullName>
+                <default>false</default>
+                <controllingFieldValues>11S:INFUSIONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1BA:LIPTON TRADITIONAL HERBAL</fullName>
+                <default>false</default>
+                <controllingFieldValues>11S:INFUSIONS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A8:LIPTON AUTO BREW BLACK</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1AJ:LIPTON MS DECAF TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1AZ:LIPTON SP BLACK</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1B8:LIPTON TRADITIONAL BLACK</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1D4:RED ROSE BLACK TEA BAGS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1D6:SALADA BLACK TEA BAGS BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2YR:LIPTON MS SWEET GALLON TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>325:AUTO BREW PLP</fullName>
+                <default>false</default>
+                <controllingFieldValues>145:BLACK LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A9:LIPTON AUTO BREW GREEN</fullName>
+                <default>false</default>
+                <controllingFieldValues>149:GREEN LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1B1:LIPTON SP GREEN</fullName>
+                <default>false</default>
+                <controllingFieldValues>149:GREEN LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1B9:LIPTON TRADITIONAL GREEN</fullName>
+                <default>false</default>
+                <controllingFieldValues>149:GREEN LEAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1AC:LIPTON ICE POWDER TEA CRYSTALS</fullName>
+                <default>false</default>
+                <controllingFieldValues>14C:INSTANT TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1AD:LIPTON ICED POWDER TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>14C:INSTANT TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1AE:LIPTON ICED TEA</fullName>
+                <default>false</default>
+                <controllingFieldValues>14C:INSTANT TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>122:BECEL REGULAR MARG BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>125:MARGARINES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>13V:COUNTRY CROCK REG MARG BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>125:MARGARINES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16D:FLEISCHMANNS REG MARG BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>125:MARGARINES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16T:FS REGULAR MARG BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>125:MARGARINES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17X:ICBINB REGULAR MARG BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>125:MARGARINES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1CS:PROMISE REG MARG BASE</fullName>
+                <default>false</default>
+                <controllingFieldValues>125:MARGARINES</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_L12_SPF__c</fullName>
+        <description>Field is support the Financial reporting for US</description>
+        <externalId>false</externalId>
+        <label>L12 SPF</label>
+        <picklist>
+            <controllingField>FS_L11_BFPP__c</controllingField>
+            <picklistValues>
+                <fullName>11MR:HLMN KETCHUP BASE 1.5GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17K:HLMN KETCHUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11MT:HLMN KETCHUP BASE 9G</fullName>
+                <default>false</default>
+                <controllingFieldValues>17K:HLMN KETCHUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZO:HLMN LT SNGL SV PRTNS TBL .38Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WH:HLMN LGT SNGL SRV PRTNS TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZP:HLMN LT SNGL SV PRTN  237ML/8Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WH:HLMN LGT SNGL SRV PRTNS TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZR:HLMN LGHT BACK HOUSE PACKS 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WI:HLMN LIGHT BACK HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZS:HLMN LGHT BACK HOUSE PACKS 4GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WI:HLMN LIGHT BACK HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZT:HLMN LGHT BACK HOUSE PACKS 20L</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WI:HLMN LIGHT BACK HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZU:HLMN LIGHT BACK HOUSE PACKS 4L</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WI:HLMN LIGHT BACK HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZV:HLMN LIGHT BACK HOUSE PACKS 2L</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WI:HLMN LIGHT BACK HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11OQ:HLMN REG MAYO BASE 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17R:HLMN REG MAYO JAR BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZL:HLMN EXTRA HEAVY BULK 1950LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WG:HLMN EXTRA HEAVY BULK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZM:HLMN EXTRA HEAVY BULK 24GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WG:HLMN EXTRA HEAVY BULK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZW:HLMN REAL BACK HOUSE PCKS 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZX:HLMN REAL BACK HOUSE PCKS 30LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZY:HLMN REAL BCK HOUSE PCKS 16L</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZZ:HLMN REAL BCK OF HOUSE PCK 20L</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A00:HLMN REAL BCK OF HOUSE PCK 24Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A01:HLMN REAL BCK OF HOUSE PCK 4GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A02:HLMN REAL BCK OF HOUSE PCK 64Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A03:HLMN REAL BCK OF HOUSE PCKS 2L</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A04:HLMN REAL BCK OF HOUSE PCKS 4L</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WJ:HLMN REAL BACK OF HOUSE PACKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A06:HLMN REAL BULK 1100KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WK:HLMN REAL BULK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A07:HLMN REAL BULK 24GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WK:HLMN REAL BULK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A08:HLMN REAL BULK 2000LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WK:HLMN REAL BULK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A09:HLMN RL SNGL SRV PRTN TBL 1.2Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0A:HLMN RL SNGL SRV PRTN TBL 18ML</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0B:HLMN RL SNGL SV PRT TBL 33.5ML</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0C:HLMN RL SNGL SV PRTN TBL 0.38Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0D:HLMN RL SNGL SV PRTN TBL 1.5GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0E:HLMN RL SNGL SV PRTN TBL 16.5Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0F:HLMN RL SNGL SV PRTN TBL 265ML</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0G:HLMN RL SNGL SV PRTN TBL 750ML</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1ADB:HLMN RL SNGL SV PRTN TBL 20Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1ADC:HLMN RL SNGL SV PRTN TBL 11.5Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WL:HLMN REAL SNGL SRV PRTN TBL TP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0H:HLMN X HVY BACK HOUSE PCKS 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WM:HLMN XTRA HVY BACK HOUSE PCKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0I:HLMN X HVY BACK HOUSE PCKS 4GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WM:HLMN XTRA HVY BACK HOUSE PCKS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1A0J:REAL JIMMY JOHNS 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>2WN:REAL JIMMY JOHNS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11MI:HLMN DIPS/SALSA BASE 1.5GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17I:HLMN DIPS/SALSA BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11MJ:HLMN DIPS/SALSA BASE 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17I:HLMN DIPS/SALSA BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11MK:HLMN DIPS/SALSA BASE 44ML/1.5Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17I:HLMN DIPS/SALSA BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ML:HLMN DIPS/SALSA BASE 475ML/16Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17I:HLMN DIPS/SALSA BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11MM:HLMN DIPS/SALSA BASE 4L</fullName>
+                <default>false</default>
+                <controllingFieldValues>17I:HLMN DIPS/SALSA BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1264:OTH BRANDS COLD SAUCE BASE 3LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1C0:OTH BRANDS OTH COLD SAUCE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11QA:HLMN SANDWICH SPREAD 1.89L/64Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17T:HLMN SANDWICH SPREADS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11NQ:HLMN LF SALAD DRESS 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17M:HLMN LF SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11NT:HLMN LF SALAD DRESS 3.79L</fullName>
+                <default>false</default>
+                <controllingFieldValues>17M:HLMN LF SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11NU:HLMN LF SALAD DRESS 32Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17M:HLMN LF SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11NV:HLMN LF SALAD DRESS 44ML/1.5Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17M:HLMN LF SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11PR:HLMN REG SALAD DRESS 1.5GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11PS:HLMN REG SALAD DRESS 11.8Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11PT:HLMN REG SALAD DRESS 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11PX:HLMN REG SALAD DRESS 25LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Q3:HLMN REG SALAD DRESS 3.12Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Q4:HLMN REG SALAD DRESS 3.79L</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Q5:HLMN REG SALAD DRESS 32Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Q6:HLMN REG SALAD DRESS 44ML/1.5Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Q9:HLMN REG SALAD DRESS 9.2Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17S:HLMN REG SALAD DRESSINGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11O0:HLMN MUSTARD BASE 1.5GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>17O:HLMN MUSTARD BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11O4:HLMN MUSTARD BASE 5.8KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>17O:HLMN MUSTARD BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11O5:HLMN MUSTARD BASE 5G</fullName>
+                <default>false</default>
+                <controllingFieldValues>17O:HLMN MUSTARD BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11O6:HLMN MUSTARD BASE 7ML/0.25Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17O:HLMN MUSTARD BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15QY:HLMN MUSTARD BASE 113G/4Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>17O:HLMN MUSTARD BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11S5:KNORR AMB DESSERTS BASE 16Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>18I:KNORR AMBIENT DESSERTS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11S6:KNORR AMB DESSERTS BASE 5.8Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>18I:KNORR AMBIENT DESSERTS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11S8:KNORR AMB DESSERTS BASE 7.3Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>18I:KNORR AMBIENT DESSERTS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11S9:KNORR AMB DESSERTS BASE 8.75Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>18I:KNORR AMBIENT DESSERTS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11XP:LEGOUT AMB DESSERTS BASE 24Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19Y:LEGOUT AMBIENT DESSERTS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Y4:LEGOUT CANNED ENTREE 51Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A1:LEGOUT CANNED ENTREE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11KM:FS PASTA SC BASE 7LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>16M:FS PASTA SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>129P:RAGU PASTA SC BASE 107Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1CX:RAGU PASTA SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>129R:RAGU PASTA SC BASE 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>1CX:RAGU PASTA SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>129Y:RAGU PASTA SC BASE 7LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1CX:RAGU PASTA SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11UQ:KNR POUROVER SC BS 800G/1.75LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11UX:KNORR POUROVER SC BASE 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11UY:KNORR POUROVER SC BASE 1LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11V5:KNORR POUROVER SC BASE 2LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11V6:KNORR POUROVER SC BASE 3.7Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11VH:KNORR POUROVER SC BASE 4Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11VN:KNORR POUROVER SC BASE 7Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15QG:KNR POROVR SC BASE 676G/1.49LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15QH:KNR POROVR SC BASE 803G/1.77LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>161R:KNORR POUROVER SC BASE 1.5LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19A:KNORR POUR-OVER SAUCES BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11VV:KNORR POUROVER SC DRY 508G</fullName>
+                <default>false</default>
+                <controllingFieldValues>19B:KNORR POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11VX:KNORR POUROVER SC DRY 605G</fullName>
+                <default>false</default>
+                <controllingFieldValues>19B:KNORR POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11VZ:KNORR POUROVER SC DRY 750G</fullName>
+                <default>false</default>
+                <controllingFieldValues>19B:KNORR POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11W0:KNORR POUROVER SC DRY 800G</fullName>
+                <default>false</default>
+                <controllingFieldValues>19B:KNORR POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11W1:KNORR POUROVER SC DRY 880G</fullName>
+                <default>false</default>
+                <controllingFieldValues>19B:KNORR POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11W2:KNORR POUROVER SC WET 0.5GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>19C:KNORR POUR-OVER SAUCES WET</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11W4:KNORR POUROVER SC WET 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>19C:KNORR POUR-OVER SAUCES WET</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11W5:KNORR POUROVER SC WET 1L</fullName>
+                <default>false</default>
+                <controllingFieldValues>19C:KNORR POUR-OVER SAUCES WET</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Y7:LEGOUT POUROVER SC CAN 3LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A2:LEGOUT POUR-OVER SAUCES CAN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11YB:LEGOUT POUROVER SC DRY 25.4Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A3:LEGOUT POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11YC:LEGOUT POUROVER SC DRY 30Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A3:LEGOUT POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15EZ:LEGOUT POUROVER SC DRY 3.3Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A3:LEGOUT POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15F0:LEGOUT POUROVER SC DRY 13.7Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A3:LEGOUT POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12DG:STAFFORD POUROVER SC DRY 4.5KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>1E1:STAFFORD POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12DI:STAFFORD POUROVER SC DRY 4KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>1E1:STAFFORD POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12DJ:STAFFORD POUROVER SC DRY 5.5KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>1E1:STAFFORD POUR-OVER SAUCES DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12S1:KNORR GRAVY BASE 1LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1HZ:KNORR GRAVY BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12S3:KNORR GRAVY DRY 121G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I0:KNORR GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12S4:KNORR GRAVY DRY 377G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I0:KNORR GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12S6:KNORR GRAVY DRY 475G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I0:KNORR GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15UF:KNORR GRAVY DRY 430G/.95LBS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I0:KNORR GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15XT:KNORR GRAVY DRY 408G/14.39Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I0:KNORR GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12S9:LEGOUT GRAVY CAN 3LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I4:LEGOUT GRAVY CAN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12SA:LEGOUT GRAVY CAN 48Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I4:LEGOUT GRAVY CAN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12SB:LEGOUT GRAVY DRY 13Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I5:LEGOUT GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12SC:LEGOUT GRAVY DRY 1LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I5:LEGOUT GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12SD:LEGOUT GRAVY DRY 24Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I5:LEGOUT GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15FP:LEGOUT GRAVY DRY 20Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I5:LEGOUT GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12SH:STAFFORD GRAVY DRY 8 PK</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I6:STAFFORD GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12YF:STAFFORD GRAVY DRY 6 PK</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I6:STAFFORD GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15SN:STAFFORD GRAVY DRY 5KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>1I6:STAFFORD GRAVY DRY</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11WD:KNORR REG DRY SOUP BS 1KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>19G:KNORR REGULAR DRY SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11WU:KNORR REG DRY SOUP FS</fullName>
+                <default>false</default>
+                <controllingFieldValues>19G:KNORR REGULAR DRY SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15QI:KNR REGDRY SOUP BS 539G/19.01Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19G:KNORR REGULAR DRY SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15QJ:KNR REGDRY SOUP BS 595G/20.98Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19G:KNORR REGULAR DRY SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11XQ:LEGOUT AMB LIQ SOUPS BASE 3LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19X:LEGOUT AMB LIQUID SOUPS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11XR:LEGOUT AMB LIQ SOUPS BASE 50Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19X:LEGOUT AMB LIQUID SOUPS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11XS:LEGOUT AMB LIQ SOUPS BASE 96Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>19X:LEGOUT AMB LIQUID SOUPS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZT:LIPTON CAS SOUP BASE 15G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AA:LIPTON CAS SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZU:LIPTON CAS SOUP BASE 16G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AA:LIPTON CAS SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZW:LIPTON CAS SOUP BASE 22CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AA:LIPTON CAS SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZX:LIPTON CAS SOUP BASE 22G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AA:LIPTON CAS SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1232:LIPTON REG DRY SOUP FS</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AV:LIPTON REGULAR DRY SOUP BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>115E:BOVRIL BLN LIQ BASE 4L</fullName>
+                <default>false</default>
+                <controllingFieldValues>12I:BOVRIL BOUILLON LIQUID BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ST:KNORR BLN LIQ BASE 900ML/32Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>18N:KNORR BOUILLON LIQUID BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11SU:KNORR BLN LIQ BASE 946ML</fullName>
+                <default>false</default>
+                <controllingFieldValues>18N:KNORR BOUILLON LIQUID BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11SW:KNORR BLN PASTE 10LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18O:KNORR BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11SX:KNORR BLN PASTE 1LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18O:KNORR BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11SY:KNORR BLN PASTE 25LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18O:KNORR BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11T0:KNORR BLN PASTE 40LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18O:KNORR BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15SK:KNORR BLN PASTE 1.99LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18O:KNORR BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15SL:KNORR BLN PASTE 1.82LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18O:KNORR BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19ZK:KNORR BLN PASTE 5LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18O:KNORR BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11T1:KNORR BLN POWDER BASE 10LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11T5:KNORR BLN POWDER BASE 2.2LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11T7:KNORR BLN POWDER BASE 2LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11T8:KNORR BLN POWDER BASE 4.4LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11T9:KNORR BLN POWDER BASE 7.9LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11TA:KNORR BLN POWDER BASE 8.8LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15SP:KNORR BLN POWDER BASE 1KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1ARS:KNORR BLN POWDER BASE 13KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>18P:KNORR BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11TB:KNORR BLN POWDER MC 1.1KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>18Q:KNORR BOUILLON POWDER MC</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11TK:KNORR BLN POWDER MC 4.4LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>18Q:KNORR BOUILLON POWDER MC</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11XT:LEGOUT BLN PASTE 1LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19Z:LEGOUT BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11XW:LEGOUT BLN PASTE 30LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19Z:LEGOUT BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11XY:LEGOUT BLN PASTE 40LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19Z:LEGOUT BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Y0:LEGOUT BLN PASTE 8LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>19Z:LEGOUT BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Y1:LEGOUT BLN POWDER BASE 1.75LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A0:LEGOUT BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11Y2:LEGOUT BLN POWDER BASE 25LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A0:LEGOUT BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>125W:ORIGIN BLN PASTE 1LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1BW:ORIGIN BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>125X:ORIGIN BLN PASTE 4.5LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1BW:ORIGIN BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>125Y:ORIGIN BLN PASTE 5LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1BW:ORIGIN BOUILLON PASTE BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12DB:STAFFORD BLN POWDER 12.1LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1E0:STAFFORD BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12DD:STAFFORD BLN POWDER 6.6LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1E0:STAFFORD BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12DE:STAFFORD BLN POWDER 9.9LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>1E0:STAFFORD BOUILLON POWDER BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11UG:KNORR HERBS/SPICES/MIXES 17Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>196:KNORR HERBS/SPICES/MIXES</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>13GY:KNORR PASTE SEASONING 1KG</fullName>
+                <default>false</default>
+                <controllingFieldValues>1TD:KNORR PASTE SEASONING</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>123J:LIPTON SP HERBAL 28CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1B2:LIPTON SP HERBAL</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>124N:LIPTON TRADITIONAL HERBAL 14CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1BA:LIPTON TRADITIONAL HERBAL</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZK:LIPTON AUTO BREW BLACK 24CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A8:LIPTON AUTO BREW BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZL:LIPTON AUTO BREW BLACK 3GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A8:LIPTON AUTO BREW BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZM:LIPTON AUTO BREW BLACK 3Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A8:LIPTON AUTO BREW BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZN:LIPTON AUTO BREW BLACK 4Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A8:LIPTON AUTO BREW BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZO:LIPTON AUTO BREW BLACK 5GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A8:LIPTON AUTO BREW BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>121V:LIPTON MS DECAF TEA 48CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AJ:LIPTON MS DECAF TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1237:LIPTON SP BLACK 28CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AZ:LIPTON SP BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>124K:LIPTON TRADITIONAL BLACK 100CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1B8:LIPTON TRADITIONAL BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>124L:LIPTON TRADITIONAL BLACK 72CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1B8:LIPTON TRADITIONAL BLACK</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12AE:RR BLACK TEA BAG BASE 1000CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D4:RED ROSE BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12AF:RR BLACK TEA BAG BASE 100CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D4:RED ROSE BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12AI:RR BLACK TEA BAG BASE 250CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D4:RED ROSE BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12AJ:RR BLACK TEA BAG BASE 28CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D4:RED ROSE BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>161I:RR BLACK TEA BAG BASE 240CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D4:RED ROSE BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12AR:SALADA BLACK TEA BAG 2000CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D6:SALADA BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12AS:SALADA BLACK TEA BAG 200CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D6:SALADA BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12AU:SALADA BLACK TEA BAG 250CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D6:SALADA BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12Y7:SALADA BLACK TEA BAG 240CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1D6:SALADA BLACK TEA BAGS BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1ADA:LIPTON MS SWEET GALLN TEA 18CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>2YR:LIPTON MS SWEET GALLON TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1ARF:AUTO BREW PLP 3Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>325:AUTO BREW PLP</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11ZP:LIPTON AUTO BREW GREEN 3GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A9:LIPTON AUTO BREW GREEN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15V0:LIPTON AUTO BREW GREEN 1GL</fullName>
+                <default>false</default>
+                <controllingFieldValues>1A9:LIPTON AUTO BREW GREEN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>123E:LIPTON SP GREEN 28CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1B1:LIPTON SP GREEN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>124M:LIPTON TRADITIONAL GREEN 100CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1B9:LIPTON TRADITIONAL GREEN</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>121C:LIPTON IT POWDER CRYSTALS 425G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AC:LIPTON ICE POWDER TEA CRYSTALS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>121E:LIPTON IT POWDER CRYSTALS 75G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AC:LIPTON ICE POWDER TEA CRYSTALS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>121F:LIPTON IT POWDER CRYSTALS 856G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AC:LIPTON ICE POWDER TEA CRYSTALS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>121G:LIPTON IT POWDER CRYSTALS 863G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AC:LIPTON ICE POWDER TEA CRYSTALS</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1217:LIPTON ICED POWDER TEA 12Z</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AD:LIPTON ICED POWDER TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1218:LIPTON ICED POWDER TEA 4L</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AD:LIPTON ICED POWDER TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1219:LIPTON ICED TEA 24CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AE:LIPTON ICED TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>121A:LIPTON ICED TEA 96CT</fullName>
+                <default>false</default>
+                <controllingFieldValues>1AE:LIPTON ICED TEA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1146:BECEL REG MARG BASE 25LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>122:BECEL REGULAR MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>114B:BECEL REG MARG BASE 7G</fullName>
+                <default>false</default>
+                <controllingFieldValues>122:BECEL REGULAR MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1183:CC REG MARG BASE 10G</fullName>
+                <default>false</default>
+                <controllingFieldValues>13V:COUNTRY CROCK REG MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1184:CC REG MARG BASE 14G</fullName>
+                <default>false</default>
+                <controllingFieldValues>13V:COUNTRY CROCK REG MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>118B:CC REG MARG BASE 3.5LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>13V:COUNTRY CROCK REG MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>118E:CC REG MARG BASE 5G</fullName>
+                <default>false</default>
+                <controllingFieldValues>13V:COUNTRY CROCK REG MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19LX:CC REG MARG BASE 5LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>13V:COUNTRY CROCK REG MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11JR:FLEISCHMANNS REG MARG BASE 7G</fullName>
+                <default>false</default>
+                <controllingFieldValues>16D:FLEISCHMANNS REG MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11LA:FS REG MARG BASE 3.5LB</fullName>
+                <default>false</default>
+                <controllingFieldValues>16T:FS REGULAR MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11R1:ICBINB REG MARG BASE 5G</fullName>
+                <default>false</default>
+                <controllingFieldValues>17X:ICBINB REGULAR MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>128P:PROMISE REG MARG BASE 5G</fullName>
+                <default>false</default>
+                <controllingFieldValues>1CS:PROMISE REG MARG BASE</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>FS_NetWeight__c</fullName>
         <description>Purpose : Net weight of SKU. This field is used in Russia Food Solution 
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -6211,6 +7841,1269 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </values>
             <values>
                 <fullName>1K%3ASPREADS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_L04_Category__c</picklist>
+            <values>
+                <fullName>12%3ADRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B%3AOTHER FOODS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1F%3ASAVOURY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1H%3ASPREADS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1I%3ATEA AND SOY %26 FRUIT BEVERAGES</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_L05_Market__c</picklist>
+            <values>
+                <fullName>13%3ADESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1H%3AKETCHUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1J%3AMAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1P%3AOTHER DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1R%3AOTHER SAVOURY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1X%3ASALAD DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1Y%3ASAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>21%3ASOUPS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>25%3AYELLOW FATS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>29%3ACOOKING PRODUCTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2A%3ALEAF %26 INSTANT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2U%3AMUSTARD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_L06_Sector__c</picklist>
+            <values>
+                <fullName>110%3AAMBIENT DESSERTS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>116%3ABOUILLONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11K%3ADIPS%2FSALSA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11S%3AINFUSIONS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>120%3AKETCHUP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>122%3ALOW FAT MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>123%3ALOW FAT SALAD DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>125%3AMARGARINES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>129%3AMUSTARD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12F%3AOTHER COLD SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12M%3APASTA SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12Q%3APOUR-OVER SAUCES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12T%3AREGULAR MAYONNAISE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12U%3AREGULAR SALAD DRESSINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12X%3ASANDWICH SPREADS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12Y%3ASEASONINGS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>134%3ASOUPS ALL FORMATS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>145%3ABLACK LEAF TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>148%3AGRAVY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>149%3AGREEN LEAF TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14C%3AINSTANT TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>14G%3AOTHER SAVOURY PRODUCTS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_L11_BFPP__c</picklist>
+            <values>
+                <fullName>122%3ABECEL REGULAR MARG BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12I%3ABOVRIL BOUILLON LIQUID BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13V%3ACOUNTRY CROCK REG MARG BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16D%3AFLEISCHMANNS REG MARG BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16M%3AFS PASTA SAUCES BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>16T%3AFS REGULAR MARG BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17I%3AHLMN DIPS%2FSALSA BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17K%3AHLMN KETCHUP BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17M%3AHLMN LF SALAD DRESSINGS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17O%3AHLMN MUSTARD BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17R%3AHLMN REG MAYO JAR BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17S%3AHLMN REG SALAD DRESSINGS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17T%3AHLMN SANDWICH SPREADS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>17X%3AICBINB REGULAR MARG BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18I%3AKNORR AMBIENT DESSERTS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18N%3AKNORR BOUILLON LIQUID BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18O%3AKNORR BOUILLON PASTE BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18P%3AKNORR BOUILLON POWDER BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>18Q%3AKNORR BOUILLON POWDER MC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>196%3AKNORR HERBS%2FSPICES%2FMIXES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19A%3AKNORR POUR-OVER SAUCES BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19B%3AKNORR POUR-OVER SAUCES DRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19C%3AKNORR POUR-OVER SAUCES WET</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19G%3AKNORR REGULAR DRY SOUP BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19X%3ALEGOUT AMB LIQUID SOUPS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19Y%3ALEGOUT AMBIENT DESSERTS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19Z%3ALEGOUT BOUILLON PASTE BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0%3ALEGOUT BOUILLON POWDER BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A1%3ALEGOUT CANNED ENTREE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A2%3ALEGOUT POUR-OVER SAUCES CAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A3%3ALEGOUT POUR-OVER SAUCES DRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A8%3ALIPTON AUTO BREW BLACK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A9%3ALIPTON AUTO BREW GREEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1AA%3ALIPTON CAS SOUP BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1AC%3ALIPTON ICE POWDER TEA CRYSTALS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1AD%3ALIPTON ICED POWDER TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1AE%3ALIPTON ICED TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1AJ%3ALIPTON MS DECAF TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1AV%3ALIPTON REGULAR DRY SOUP BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1AZ%3ALIPTON SP BLACK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B1%3ALIPTON SP GREEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B2%3ALIPTON SP HERBAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B8%3ALIPTON TRADITIONAL BLACK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1B9%3ALIPTON TRADITIONAL GREEN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1BA%3ALIPTON TRADITIONAL HERBAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1BW%3AORIGIN BOUILLON PASTE BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1C0%3AOTH BRANDS OTH COLD SAUCE BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1CS%3APROMISE REG MARG BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1CX%3ARAGU PASTA SAUCES BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1D4%3ARED ROSE BLACK TEA BAGS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1D6%3ASALADA BLACK TEA BAGS BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1E0%3ASTAFFORD BOUILLON POWDER BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1E1%3ASTAFFORD POUR-OVER SAUCES DRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1HZ%3AKNORR GRAVY BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1I0%3AKNORR GRAVY DRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1I4%3ALEGOUT GRAVY CAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1I5%3ALEGOUT GRAVY DRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1I6%3ASTAFFORD GRAVY DRY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1TD%3AKNORR PASTE SEASONING</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WG%3AHLMN EXTRA HEAVY BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WH%3AHLMN LGT SNGL SRV PRTNS TBL TP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WI%3AHLMN LIGHT BACK HOUSE PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WJ%3AHLMN REAL BACK OF HOUSE PACKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WK%3AHLMN REAL BULK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WL%3AHLMN REAL SNGL SRV PRTN TBL TP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WM%3AHLMN XTRA HVY BACK HOUSE PCKS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2WN%3AREAL JIMMY JOHNS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2YR%3ALIPTON MS SWEET GALLON TEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>325%3AAUTO BREW PLP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_L12_SPF__c</picklist>
+            <values>
+                <fullName>1146%3ABECEL REG MARG BASE 25LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>114B%3ABECEL REG MARG BASE 7G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>115E%3ABOVRIL BLN LIQ BASE 4L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1183%3ACC REG MARG BASE 10G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1184%3ACC REG MARG BASE 14G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>118B%3ACC REG MARG BASE 3%2E5LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>118E%3ACC REG MARG BASE 5G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11JR%3AFLEISCHMANNS REG MARG BASE 7G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11KM%3AFS PASTA SC BASE 7LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11LA%3AFS REG MARG BASE 3%2E5LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11MI%3AHLMN DIPS%2FSALSA BASE 1%2E5GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11MJ%3AHLMN DIPS%2FSALSA BASE 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11MK%3AHLMN DIPS%2FSALSA BASE 44ML%2F1%2E5Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ML%3AHLMN DIPS%2FSALSA BASE 475ML%2F16Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11MM%3AHLMN DIPS%2FSALSA BASE 4L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11MR%3AHLMN KETCHUP BASE 1%2E5GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11MT%3AHLMN KETCHUP BASE 9G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11NQ%3AHLMN LF SALAD DRESS 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11NT%3AHLMN LF SALAD DRESS 3%2E79L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11NU%3AHLMN LF SALAD DRESS 32Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11NV%3AHLMN LF SALAD DRESS 44ML%2F1%2E5Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11O0%3AHLMN MUSTARD BASE 1%2E5GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11O4%3AHLMN MUSTARD BASE 5%2E8KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11O5%3AHLMN MUSTARD BASE 5G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11O6%3AHLMN MUSTARD BASE 7ML%2F0%2E25Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11OQ%3AHLMN REG MAYO BASE 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11PR%3AHLMN REG SALAD DRESS 1%2E5GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11PS%3AHLMN REG SALAD DRESS 11%2E8Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11PT%3AHLMN REG SALAD DRESS 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11PX%3AHLMN REG SALAD DRESS 25LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Q3%3AHLMN REG SALAD DRESS 3%2E12Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Q4%3AHLMN REG SALAD DRESS 3%2E79L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Q5%3AHLMN REG SALAD DRESS 32Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Q6%3AHLMN REG SALAD DRESS 44ML%2F1%2E5Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Q9%3AHLMN REG SALAD DRESS 9%2E2Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11QA%3AHLMN SANDWICH SPREAD 1%2E89L%2F64Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11R1%3AICBINB REG MARG BASE 5G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11S5%3AKNORR AMB DESSERTS BASE 16Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11S6%3AKNORR AMB DESSERTS BASE 5%2E8Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11S8%3AKNORR AMB DESSERTS BASE 7%2E3Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11S9%3AKNORR AMB DESSERTS BASE 8%2E75Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ST%3AKNORR BLN LIQ BASE 900ML%2F32Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11SU%3AKNORR BLN LIQ BASE 946ML</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11SW%3AKNORR BLN PASTE 10LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11SX%3AKNORR BLN PASTE 1LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11SY%3AKNORR BLN PASTE 25LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11T0%3AKNORR BLN PASTE 40LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11T1%3AKNORR BLN POWDER BASE 10LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11T5%3AKNORR BLN POWDER BASE 2%2E2LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11T7%3AKNORR BLN POWDER BASE 2LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11T8%3AKNORR BLN POWDER BASE 4%2E4LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11T9%3AKNORR BLN POWDER BASE 7%2E9LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11TA%3AKNORR BLN POWDER BASE 8%2E8LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11TB%3AKNORR BLN POWDER MC 1%2E1KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11TK%3AKNORR BLN POWDER MC 4%2E4LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11UG%3AKNORR HERBS%2FSPICES%2FMIXES 17Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11UQ%3AKNR POUROVER SC BS 800G%2F1%2E75LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11UX%3AKNORR POUROVER SC BASE 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11UY%3AKNORR POUROVER SC BASE 1LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11V5%3AKNORR POUROVER SC BASE 2LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11V6%3AKNORR POUROVER SC BASE 3%2E7Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11VH%3AKNORR POUROVER SC BASE 4Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11VN%3AKNORR POUROVER SC BASE 7Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11VV%3AKNORR POUROVER SC DRY 508G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11VX%3AKNORR POUROVER SC DRY 605G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11VZ%3AKNORR POUROVER SC DRY 750G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11W0%3AKNORR POUROVER SC DRY 800G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11W1%3AKNORR POUROVER SC DRY 880G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11W2%3AKNORR POUROVER SC WET 0%2E5GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11W4%3AKNORR POUROVER SC WET 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11W5%3AKNORR POUROVER SC WET 1L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11WD%3AKNORR REG DRY SOUP BS 1KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11WU%3AKNORR REG DRY SOUP FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11XP%3ALEGOUT AMB DESSERTS BASE 24Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11XQ%3ALEGOUT AMB LIQ SOUPS BASE 3LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11XR%3ALEGOUT AMB LIQ SOUPS BASE 50Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11XS%3ALEGOUT AMB LIQ SOUPS BASE 96Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11XT%3ALEGOUT BLN PASTE 1LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11XW%3ALEGOUT BLN PASTE 30LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11XY%3ALEGOUT BLN PASTE 40LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Y0%3ALEGOUT BLN PASTE 8LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Y1%3ALEGOUT BLN POWDER BASE 1%2E75LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Y2%3ALEGOUT BLN POWDER BASE 25LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Y4%3ALEGOUT CANNED ENTREE 51Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11Y7%3ALEGOUT POUROVER SC CAN 3LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11YB%3ALEGOUT POUROVER SC DRY 25%2E4Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11YC%3ALEGOUT POUROVER SC DRY 30Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZK%3ALIPTON AUTO BREW BLACK 24CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZL%3ALIPTON AUTO BREW BLACK 3GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZM%3ALIPTON AUTO BREW BLACK 3Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZN%3ALIPTON AUTO BREW BLACK 4Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZO%3ALIPTON AUTO BREW BLACK 5GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZP%3ALIPTON AUTO BREW GREEN 3GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZT%3ALIPTON CAS SOUP BASE 15G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZU%3ALIPTON CAS SOUP BASE 16G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZW%3ALIPTON CAS SOUP BASE 22CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11ZX%3ALIPTON CAS SOUP BASE 22G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1217%3ALIPTON ICED POWDER TEA 12Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1218%3ALIPTON ICED POWDER TEA 4L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1219%3ALIPTON ICED TEA 24CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>121A%3ALIPTON ICED TEA 96CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>121C%3ALIPTON IT POWDER CRYSTALS 425G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>121E%3ALIPTON IT POWDER CRYSTALS 75G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>121F%3ALIPTON IT POWDER CRYSTALS 856G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>121G%3ALIPTON IT POWDER CRYSTALS 863G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>121V%3ALIPTON MS DECAF TEA 48CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1232%3ALIPTON REG DRY SOUP FS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1237%3ALIPTON SP BLACK 28CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>123E%3ALIPTON SP GREEN 28CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>123J%3ALIPTON SP HERBAL 28CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>124K%3ALIPTON TRADITIONAL BLACK 100CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>124L%3ALIPTON TRADITIONAL BLACK 72CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>124M%3ALIPTON TRADITIONAL GREEN 100CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>124N%3ALIPTON TRADITIONAL HERBAL 14CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>125W%3AORIGIN BLN PASTE 1LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>125X%3AORIGIN BLN PASTE 4%2E5LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>125Y%3AORIGIN BLN PASTE 5LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1264%3AOTH BRANDS COLD SAUCE BASE 3LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>128P%3APROMISE REG MARG BASE 5G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>129P%3ARAGU PASTA SC BASE 107Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>129R%3ARAGU PASTA SC BASE 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>129Y%3ARAGU PASTA SC BASE 7LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12AE%3ARR BLACK TEA BAG BASE 1000CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12AF%3ARR BLACK TEA BAG BASE 100CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12AI%3ARR BLACK TEA BAG BASE 250CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12AJ%3ARR BLACK TEA BAG BASE 28CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12AR%3ASALADA BLACK TEA BAG 2000CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12AS%3ASALADA BLACK TEA BAG 200CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12AU%3ASALADA BLACK TEA BAG 250CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12DB%3ASTAFFORD BLN POWDER 12%2E1LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12DD%3ASTAFFORD BLN POWDER 6%2E6LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12DE%3ASTAFFORD BLN POWDER 9%2E9LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12DG%3ASTAFFORD POUROVER SC DRY 4%2E5KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12DI%3ASTAFFORD POUROVER SC DRY 4KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12DJ%3ASTAFFORD POUROVER SC DRY 5%2E5KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12S1%3AKNORR GRAVY BASE 1LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12S3%3AKNORR GRAVY DRY 121G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12S4%3AKNORR GRAVY DRY 377G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12S6%3AKNORR GRAVY DRY 475G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12S9%3ALEGOUT GRAVY CAN 3LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12SA%3ALEGOUT GRAVY CAN 48Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12SB%3ALEGOUT GRAVY DRY 13Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12SC%3ALEGOUT GRAVY DRY 1LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12SD%3ALEGOUT GRAVY DRY 24Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12SH%3ASTAFFORD GRAVY DRY 8 PK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12Y7%3ASALADA BLACK TEA BAG 240CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12YF%3ASTAFFORD GRAVY DRY 6 PK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>13GY%3AKNORR PASTE SEASONING 1KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15EZ%3ALEGOUT POUROVER SC DRY 3%2E3Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15F0%3ALEGOUT POUROVER SC DRY 13%2E7Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15FP%3ALEGOUT GRAVY DRY 20Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15QG%3AKNR POROVR SC BASE 676G%2F1%2E49LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15QH%3AKNR POROVR SC BASE 803G%2F1%2E77LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15QI%3AKNR REGDRY SOUP BS 539G%2F19%2E01Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15QJ%3AKNR REGDRY SOUP BS 595G%2F20%2E98Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15QY%3AHLMN MUSTARD BASE 113G%2F4Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15SK%3AKNORR BLN PASTE 1%2E99LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15SL%3AKNORR BLN PASTE 1%2E82LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15SN%3ASTAFFORD GRAVY DRY 5KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15SP%3AKNORR BLN POWDER BASE 1KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15UF%3AKNORR GRAVY DRY 430G%2F%2E95LBS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15V0%3ALIPTON AUTO BREW GREEN 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>15XT%3AKNORR GRAVY DRY 408G%2F14%2E39Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>161I%3ARR BLACK TEA BAG BASE 240CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>161R%3AKNORR POUROVER SC BASE 1%2E5LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19LX%3ACC REG MARG BASE 5LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZK%3AKNORR BLN PASTE 5LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZL%3AHLMN EXTRA HEAVY BULK 1950LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZM%3AHLMN EXTRA HEAVY BULK 24GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZO%3AHLMN LT SNGL SV PRTNS TBL %2E38Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZP%3AHLMN LT SNGL SV PRTN  237ML%2F8Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZR%3AHLMN LGHT BACK HOUSE PACKS 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZS%3AHLMN LGHT BACK HOUSE PACKS 4GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZT%3AHLMN LGHT BACK HOUSE PACKS 20L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZU%3AHLMN LIGHT BACK HOUSE PACKS 4L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZV%3AHLMN LIGHT BACK HOUSE PACKS 2L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZW%3AHLMN REAL BACK HOUSE PCKS 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZX%3AHLMN REAL BACK HOUSE PCKS 30LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZY%3AHLMN REAL BCK HOUSE PCKS 16L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>19ZZ%3AHLMN REAL BCK OF HOUSE PCK 20L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A00%3AHLMN REAL BCK OF HOUSE PCK 24Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A01%3AHLMN REAL BCK OF HOUSE PCK 4GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A02%3AHLMN REAL BCK OF HOUSE PCK 64Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A03%3AHLMN REAL BCK OF HOUSE PCKS 2L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A04%3AHLMN REAL BCK OF HOUSE PCKS 4L</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A06%3AHLMN REAL BULK 1100KG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A07%3AHLMN REAL BULK 24GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A08%3AHLMN REAL BULK 2000LB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A09%3AHLMN RL SNGL SRV PRTN TBL 1%2E2Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0A%3AHLMN RL SNGL SRV PRTN TBL 18ML</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0B%3AHLMN RL SNGL SV PRT TBL 33%2E5ML</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0C%3AHLMN RL SNGL SV PRTN TBL 0%2E38Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0D%3AHLMN RL SNGL SV PRTN TBL 1%2E5GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0E%3AHLMN RL SNGL SV PRTN TBL 16%2E5Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0F%3AHLMN RL SNGL SV PRTN TBL 265ML</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0G%3AHLMN RL SNGL SV PRTN TBL 750ML</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0H%3AHLMN X HVY BACK HOUSE PCKS 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0I%3AHLMN X HVY BACK HOUSE PCKS 4GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1A0J%3AREAL JIMMY JOHNS 1GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1ADA%3ALIPTON MS SWEET GALLN TEA 18CT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1ADB%3AHLMN RL SNGL SV PRTN TBL 20Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1ADC%3AHLMN RL SNGL SV PRTN TBL 11%2E5Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1ARF%3AAUTO BREW PLP 3Z</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1ARS%3AKNORR BLN POWDER BASE 13KG</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

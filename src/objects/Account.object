@@ -445,6 +445,1403 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>CHD_Menu_Items_2__c</fullName>
+        <description>test CHD Package Error</description>
+        <externalId>false</externalId>
+        <label>CHD Menu Items 2</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CHD__Address2__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Address2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Address3__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Address3</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Address__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Alcohol__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Alcohol</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Annual_Sales__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Annual Sales</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Attire__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Attire</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Average_Check__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Average Check</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Average_Daily_Census__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Average Daily Census</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Banquet_Facility__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Banquet Facility</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Bar__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Bar</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Buffet__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Buffet</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Business_Change__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Business Change</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Business_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Business Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CHD_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>true</externalId>
+        <label>CHD ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CHD_PID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD PID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CHD_Previous_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Previous ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Chain_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Chain ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Chain_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Chain Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__City__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Coast__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Coast</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Complimentary_Breakfast__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Complimentary Breakfast</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Confidence_Level__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Confidence Level</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Country__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Country</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__County_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD County Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Creation_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Creation Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CreditSafe_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD CreditSafe ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__CreditSafe_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD CreditSafe Score</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Credit_Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Credit Rating</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Customer_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Customer Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Dayparts__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Dayparts</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Delivery_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Delivery Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Employees__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Employees</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Enrollment__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Enrollment (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Fax__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Fax</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Free_Reduced_Meals__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Free Reduced Meals (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__GPO_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD GPO ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__GPO__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD GPO (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Gas_Station__c</fullName>
+        <deprecated>false</deprecated>
+        <description>a gas station is present</description>
+        <externalId>false</externalId>
+        <label>CHD Gas Station</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__HC_System__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD HC System</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Insee__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Insee</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Latitude__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Latitude</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Legal_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Legal Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Location_PID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Location PID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Longitude__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Longitude</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__MSA__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD MSA</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Market_Segment__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Market Segment</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Menu_Items__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Menu Options</label>
+        <picklist>
+            <picklistValues>
+                <fullName>gluten_free_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>healthy_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>kids_menu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>lowfat_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>organic_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>vegan_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>vegetarian_options</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CHD__Menu__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Menu</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Misc_Services__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Additional Fields</label>
+        <picklist>
+            <picklistValues>
+                <fullName>free_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>garage_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>good_for_groups</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>good_for_kids</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>has_tv</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>open_24_hours</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>parking_lot</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>private_room</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>valet_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>validated_parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>wheelchair_accessible</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CHD__NPAI__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD NPAI</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__National_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD National Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Normalization_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Normalization Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Beds__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Beds (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Meals_Day__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Meals Day (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Meals__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Meals</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Rooms__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Rooms</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Schools__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Schools (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Number_of_Seats__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Number of Seats</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Open_Date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Open Date</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Operation_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Operation Type (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Outdoor_Seating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Outdoor Seating</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Owner_ID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Owner ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Owner_PID__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Owner PID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Ownership_Change_Flag__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Ownership Change Flag</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Ownership__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Ownership (non comm)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Phone_Area_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Phone Area Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Phone</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Plus4__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Plus4</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Pool__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Pool</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Postal_Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Postal Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Postal_Normalized__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Postal Normalized</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Primary_GPO__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Primary GPO</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Rating__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Rating</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Region1__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Region1</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Region__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Region</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Sector__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Sector</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Services_Offered__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Services Required</label>
+        <picklist>
+            <picklistValues>
+                <fullName>accepts_credit_cards</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>catering</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>delivery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>outdoor_seating</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>take_out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>takes_reservations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>wifi</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CHD__Simplified_Menu__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Simplified Menu</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Ski_Station__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Ski Station</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Booking__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Booking</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Delivery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Delivery</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Facebook__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Facebook</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Food_Inspection__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Food Inspection</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Foursquare__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Foursquare</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Google_Places__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Google Places</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Hotels__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Hotels</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Instagram__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Instagram</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Lafourchette__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Lafourchette</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Local_Directory__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Local Directory</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Menu__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Menu</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Michelin__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Michelin</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Opentable__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Opentable</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Reservation__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Reservation</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Tripadvisor__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Tripadvisor</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Twitter__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Twitter</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Yellowpages__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Yellowpages</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Yelp__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Yelp</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Social_Zomato__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Social Zomato</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CHD__Source__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Source</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Square_Footage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Square Footage</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Tennis__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Tennis</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Total_Patient_Days__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Total Patient Days</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Units__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Units</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Urban_Area_Name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Urban Area Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Urban_Area_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Urban Area Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__VAT_Number__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD VAT Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Website__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Website</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CHD__Years_In_Business__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CHD Years In Business</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Channel__c</fullName>
         <externalId>false</externalId>
         <label>Channel</label>
@@ -1320,6 +2717,34 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
+        <fullName>FS_BrandsRelevance__c</fullName>
+        <description>Created for CTM Segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customized Products = 0
+Branded Porducts = 2.5
+Branded are essential = 5</inlineHelpText>
+        <label>Brands Relevance</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>FS_Building__c</fullName>
         <description>Created for Russia specific to generate reports</description>
         <externalId>false</externalId>
@@ -1749,6 +3174,34 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>FS_FOHRelevance__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>No interest in FOH = 0
+Some interest in FOH = 2.5 
+FOH Highly relevant = 5</inlineHelpText>
+        <label>FOH Relevance</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>FS_FoodTurnover__c</fullName>
         <description>Calculating the food turnover based on amount of visitors etc.</description>
         <externalId>false</externalId>
@@ -1772,6 +3225,34 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FS_GrowthTrackRecord__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Below Mkt Avg = 0
+In line with Mkt = 2.5
+Above Mkt Avg = 5</inlineHelpText>
+        <label>Growth Track Record</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>FS_MasterCode__c</fullName>
@@ -1800,6 +3281,34 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_NumberofCategories__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>0-25% = 0
+ &gt;25  &lt;65% = 2.5  
+&gt;65% = 5</inlineHelpText>
+        <label>Number of Categories</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2.5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>FS_OperatorOutlet__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1822,6 +3331,19 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>FS_ParentAccountOwner__c</fullName>
+        <description>Created for displaying the parent account owner  name on child account</description>
+        <externalId>false</externalId>
+        <formula>if(AND(RecordType.Name=&apos;Distributor&apos;,NOT(ISNULL(ParentId))),
+Parent.Owner.FirstName  +&quot; &quot;+ Parent.Owner.LastName,&apos;&apos;)</formula>
+        <inlineHelpText>Displaying Parent Account owner from parentaccount lookup</inlineHelpText>
+        <label>Parent Account Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_Payer__c</fullName>
         <description>Purpose : To display Payer
 Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
@@ -1832,6 +3354,32 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_PotentialReach__c</fullName>
+        <description>Created for CTM segmentation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>According to your local thresholds</inlineHelpText>
+        <label>Potential Reach</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FS_PotentialValueSize__c</fullName>
+        <description>Created for CTM segmentation.</description>
+        <externalId>false</externalId>
+        <label>Potential Value Size</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -3417,41 +4965,65 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Operator Segment(Russia)</label>
         <picklist>
+            <controllingField>SubSegmentRussia__c</controllingField>
             <picklistValues>
                 <fullName>Pubs/Bars/Entertaining center/Caffee</fullName>
-                <default>false</default>
+                <default>true</default>
+                <controllingFieldValues>Бар / Паб</controllingFieldValues>
+                <controllingFieldValues>Кофейни</controllingFieldValues>
+                <controllingFieldValues>Развлекательный центр</controllingFieldValues>
+                <controllingFieldValues>Спорт</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Travel</fullName>
                 <default>false</default>
+                <controllingFieldValues>Бортовое питание - Авиа</controllingFieldValues>
+                <controllingFieldValues>Бортовое питание - Водный транспорт</controllingFieldValues>
+                <controllingFieldValues>Бортовое питание - Ж/Д</controllingFieldValues>
+                <controllingFieldValues>Бортовое питание – Заправки</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Hotels</fullName>
                 <default>false</default>
+                <controllingFieldValues>Гостиница 0-3*</controllingFieldValues>
+                <controllingFieldValues>Гостиница 4-5*</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Take Away</fullName>
                 <default>false</default>
+                <controllingFieldValues>Доставка еды на дом/офис</controllingFieldValues>
+                <controllingFieldValues>Кулинария на точке продаж</controllingFieldValues>
+                <controllingFieldValues>Пищевое производство</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Restaurants</fullName>
                 <default>false</default>
+                <controllingFieldValues>Кейтеринг</controllingFieldValues>
+                <controllingFieldValues>Ресторан гастрономический (премиальный)</controllingFieldValues>
+                <controllingFieldValues>Ресторан повседневный</controllingFieldValues>
+                <controllingFieldValues>Фри-фло, рестораны самообслуживания</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Canteens</fullName>
                 <default>false</default>
+                <controllingFieldValues>Коммерческая столовая</controllingFieldValues>
+                <controllingFieldValues>Социальная столовая</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Wholesalers</fullName>
                 <default>false</default>
+                <controllingFieldValues>Оптовик</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Offices</fullName>
                 <default>false</default>
+                <controllingFieldValues>Офисы</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>QSR</fullName>
                 <default>false</default>
+                <controllingFieldValues>Стрит-фуд</controllingFieldValues>
+                <controllingFieldValues>Фаст-фуд</controllingFieldValues>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -3675,121 +5247,97 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <externalId>false</externalId>
         <label>Operator Sub Segment(Russia)</label>
         <picklist>
-            <controllingField>SegmentRussia__c</controllingField>
             <picklistValues>
                 <fullName>Бар / Паб</fullName>
                 <default>false</default>
-                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Бортовое питание - Авиа</fullName>
                 <default>false</default>
-                <controllingFieldValues>Travel</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Бортовое питание - Водный транспорт</fullName>
                 <default>false</default>
-                <controllingFieldValues>Travel</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Бортовое питание - Ж/Д</fullName>
                 <default>false</default>
-                <controllingFieldValues>Travel</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Бортовое питание – Заправки</fullName>
                 <default>false</default>
-                <controllingFieldValues>Travel</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Гостиница 0-3*</fullName>
                 <default>false</default>
-                <controllingFieldValues>Hotels</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Гостиница 4-5*</fullName>
                 <default>false</default>
-                <controllingFieldValues>Hotels</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Доставка еды на дом/офис</fullName>
                 <default>false</default>
-                <controllingFieldValues>Take Away</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Кейтеринг</fullName>
                 <default>false</default>
-                <controllingFieldValues>Restaurants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Коммерческая столовая</fullName>
                 <default>false</default>
-                <controllingFieldValues>Canteens</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Кофейни</fullName>
                 <default>false</default>
-                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Кулинария на точке продаж</fullName>
                 <default>false</default>
-                <controllingFieldValues>Take Away</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Оптовик</fullName>
                 <default>false</default>
-                <controllingFieldValues>Wholesalers</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Офисы</fullName>
                 <default>false</default>
-                <controllingFieldValues>Offices</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Пищевое производство</fullName>
                 <default>false</default>
-                <controllingFieldValues>Take Away</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Развлекательный центр</fullName>
                 <default>false</default>
-                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ресторан гастрономический (премиальный)</fullName>
                 <default>false</default>
-                <controllingFieldValues>Restaurants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Ресторан повседневный</fullName>
                 <default>false</default>
-                <controllingFieldValues>Restaurants</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Социальная столовая</fullName>
                 <default>false</default>
-                <controllingFieldValues>Canteens</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Спорт</fullName>
                 <default>false</default>
-                <controllingFieldValues>Pubs/Bars/Entertaining center/Caffee</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Стрит-фуд</fullName>
                 <default>false</default>
-                <controllingFieldValues>QSR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Фаст-фуд</fullName>
                 <default>false</default>
-                <controllingFieldValues>QSR</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Фри-фло, рестораны самообслуживания</fullName>
                 <default>false</default>
-                <controllingFieldValues>Restaurants</controllingFieldValues>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
@@ -5399,6 +6947,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -5984,6 +7539,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -6273,6 +7843,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7198,6 +8813,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -7783,6 +9405,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -8072,6 +9709,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9031,6 +10713,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -9508,6 +11197,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -9797,6 +11501,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10723,6 +12472,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -11319,6 +13075,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -11616,6 +13387,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -13196,6 +15012,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -13792,6 +15615,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -14081,6 +15919,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -15749,6 +17632,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -16345,6 +18235,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -16634,6 +18539,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -18301,6 +20251,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -18886,6 +20843,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -19175,6 +21147,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -20135,6 +22152,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -20612,6 +22636,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -20901,6 +22940,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -21827,6 +23911,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -22423,6 +24514,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -22712,6 +24818,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -23992,6 +26143,13 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CHD_Menu_Items_2__c</picklist>
+            <values>
+                <fullName>Healthy Options</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Currency__c</picklist>
             <values>
                 <fullName>Algeria-DZD</fullName>
@@ -24588,6 +26746,21 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>FS_BrandsRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>FS_ChainTargetingModel__c</picklist>
             <values>
                 <fullName>N%2FA</fullName>
@@ -24877,6 +27050,51 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
             <values>
                 <fullName>Strategic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_FOHRelevance__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_GrowthTrackRecord__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FS_NumberofCategories__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -26012,7 +28230,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
     <sharingModel>Private</sharingModel>
     <validationRules>
         <fullName>FS_Account_Owner_Change_Lock</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Created for account owner change lock for other than administrators</description>
         <errorConditionFormula>AND( ISCHANGED( OwnerId ), $Profile.Name &lt;&gt; &quot;System Administrator&quot;, OR( RecordType.DeveloperName=&apos;Distributor&apos;,RecordType.DeveloperName=&apos;Operators&apos; ))</errorConditionFormula>
         <errorMessage>You do not have access to change the account owner.</errorMessage>
@@ -26070,6 +28288,37 @@ Shipping Country</errorMessage>
         <showsLocation>true</showsLocation>
         <showsStatus>true</showsStatus>
         <url>http://news.altavista.com/search?nc=0&amp;q={!Account_Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>CHD__Billing</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Billing</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://www.genwatt.com/genwatt/billing.htm?actname={!Account.Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>E2F__Search_on_FindAPI</fullName>
+        <availability>online</availability>
+        <description>Search for matching operators on FindAPI</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Search on FindAPI</masterLabel>
+        <openType>sidebar</openType>
+        <page>E2F__FindApi_Search</page>
+        <protected>false</protected>
     </webLinks>
     <webLinks>
         <fullName>FS_New_Conatct</fullName>
