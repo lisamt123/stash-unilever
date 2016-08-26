@@ -69,29 +69,7 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-    <fields>
-        <fullName>Contract_Product__c</fullName>
-        <externalId>false</externalId>
-        <label>Contract Product</label>
-        <referenceTo>Contract_Product__c</referenceTo>
-        <relationshipName>Contract_Product_Monthly_Actuals</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
-    </fields>
-    <fields>
-        <fullName>External_Key__c</fullName>
-        <externalId>false</externalId>
-        <formula>Contract_Product__r.Contract__r.ContractNumber +&apos;-&apos;+Contract_Product__r.Product__r.UID_Material_ID__c + &apos;-&apos;+TEXT(FS_First_of_Month__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>External Key</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
+    
     <fields>
         <fullName>FS_Amount_Paid__c</fullName>
         <description>Amount paid to an Account (Operator or Distributor)</description>
@@ -150,15 +128,8 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    <fields>
-        <fullName>FS_Current_Year__c</fullName>
-        <externalId>false</externalId>
-        <formula>YEAR(TODAY()) =  YEAR(FS_First_of_Month__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Current Year</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
+    
+
     <fields>
         <fullName>FS_Delivery_Start_Date__c</fullName>
         <description>Start Date of the Claim Period</description>
@@ -179,19 +150,7 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <fields>
-        <fullName>FS_Distributor_Account__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Entity where claimed product was purchases from.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Entity where claimed product was purchases from.</inlineHelpText>
-        <label>Distributor</label>
-        <referenceTo>Account</referenceTo>
-        <relationshipName>Contract_Product_Monthly_Actuals</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
+    
     <fields>
         <fullName>FS_First_of_Month__c</fullName>
         <externalId>false</externalId>
@@ -282,18 +241,7 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>Product__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Product</label>
-        <referenceTo>Product2</referenceTo>
-        <relationshipName>Actuals</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <label>Monthly Claimed Cases</label>
+        <label>Monthly Claimed Cases</label>
     <nameField>
         <displayFormat>CPMA-{0}</displayFormat>
         <label>Actual Name</label>
