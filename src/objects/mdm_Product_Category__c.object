@@ -444,8 +444,8 @@
         <filterScope>Everything</filterScope>
         <filters>
             <field>L3_Product_Category__c</field>
-            <operation>contains</operation>
-            <value>spreads</value>
+            <operation>equals</operation>
+            <value>AU</value>
         </filters>
         <label>ANZ</label>
         <language>en_US</language>
