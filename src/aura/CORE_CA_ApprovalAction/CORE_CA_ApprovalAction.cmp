@@ -111,7 +111,7 @@
                      
                      <button style="float:right;" class="slds-button slds-button--brand slds-button--neutral" aria-live="assertive" onclick="{!c.onSubmit}">
                          <span class="slds-text-not-selected">
-                             {!$Label.c.CORE_LBL_SUBMIT}
+                             {!$Label.c.CORE_FB_Submit}
                              <!--<aura:if isTrue="{!v.actionTaken == 'Approve'}">{!$Label.c.CORE_LBL_APPREJ_APPR_BTN}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'Reject'}">{!$Label.c.CORE_LBL_APPREJ_REJC_BTN}</aura:if>
                              <aura:if isTrue="{!v.actionTaken == 'Rework'}">{!$Label.c.CORE_LBL_REWORK}</aura:if>

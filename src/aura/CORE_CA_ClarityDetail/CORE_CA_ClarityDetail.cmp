@@ -326,13 +326,13 @@
                                     <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
                                         <div class="slds-truncate font1">{!$Label.c.CORE_FB_App_Name}</div></td>
                                     <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Comment.svg"/>
-                                        <div class="font1">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                        <div class="font1">{!$Label.c.CORE_FB_Comment}</div></td>
                                     </aura:if>
                                     <aura:if isTrue="{!(v.showReWork ==false &amp;&amp; v.showReject==false &amp;&amp; v.showApprove==false)}">
                                     <td class="alignCenter" onclick="{!c.gotoFeedback}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/feedbackIcon.svg"/>
                                         <div class="slds-truncate font2">{!$Label.c.CORE_FB_App_Name}</div></td>
                                     <td class="alignCenter" onclick="{!c.NavigateToFeedViaComment}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/Comment.svg"/>
-                                        <div class="font2">{!$Label.c.CORE_LBL_COMMENT}</div></td>
+                                        <div class="font2">{!$Label.c.CORE_FB_Comment}</div></td>
                                     </aura:if>
                                     <aura:if isTrue="{!v.showReWork}">
                                         <td class="alignCenter" onclick ="{!c.rework}"><img class="img" src="/resource/CORE_CA_ApprovalsLightning/images/rework.png"/>
