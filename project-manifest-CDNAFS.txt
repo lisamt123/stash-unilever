@@ -1,6 +1,6 @@
 src
 src/reportTypes
-src/reportType/src/reportTypes/Activities_with_Account_and_Contacts.reportType
+src/reportTypes/src/reportTypes/Activities_with_Account_and_Contacts.reportType
 src
 src/reports
 src/reports/unfiled$public-meta.xml
