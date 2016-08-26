@@ -116,7 +116,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         //Delete existing analytics records so that the changes made to the existing projects will be recorded again
         try{  
         List<IPM_Analytics__c> analyticsRecDelList = new list<IPM_Analytics__c>([SELECT id
-                                                                                 FROM IPM_Analytics__c WHERE IPM_Project_Id__c IN:projectIdSet Limit 10000]);
+                                                                                 FROM IPM_Analytics__c WHERE IPM_Project_Id__c IN:projectIdSet OR IPM_External_ID__c IN : projectIdSet Limit 10000]);
             if(!analyticsRecDelList.isEmpty()){
                 delete analyticsRecDelList;
             }
