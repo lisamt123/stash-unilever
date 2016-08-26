@@ -114,3 +114,5 @@ src/staticresources/CORE_CA_ApprovalsLightning.resource-meta.xml
 src/permissionsets
 src/permissionsets/CORE_CA_ApprovalUser.permissionset
 src/permissionsets/CoreCAAdminUser.permissionset
+src/objects
+src/objects/CORE_CA_ApprovalReporting__c.object
