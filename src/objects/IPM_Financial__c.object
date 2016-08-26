@@ -5286,6 +5286,33 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000Xd8n_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000Xd8n</label>
+        <queue>IPM_a7IE0000000Xd8n</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xd9b_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_AOKI 2_EU</label>
+        <queue>IPM_a7IE0000000Xd9b</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xd9g_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MAROON5 REGION_EU</label>
+        <queue>IPM_a7IE0000000Xd9g</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>
