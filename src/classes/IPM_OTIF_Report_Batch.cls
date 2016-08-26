@@ -12,7 +12,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     global final String query;   
     global map<id,IPM_Project__c> projectIdMap = new map<id,IPM_Project__c>(); 
     global list<IPM_Project__c> scopeProjectList = new list<IPM_Project__c>();   
-    global set<id> projectIdSet = new set<id>();
+    global set<string> projectIdSet = new set<string>();
     global set<id> rolloutprojectIdSet = new set<id>();
     global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap; 
     global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;   
@@ -87,8 +87,11 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     global void execute(Database.BatchableContext BC,  list<IPM_Project__c> Scope){  
 
         for(IPM_Project__c p:Scope){
-            projectIdSet.add(p.Id);
-          
+            if(String.isNotBlank(p.Project_External_ID__c)){
+                projectIdSet.add(p.Project_External_ID__c);
+            }else {
+                projectIdSet.add(p.Id);
+            } 
                 if(p.IPM_Phase__c != null)
                 {
                     scopeProjectList.add(p);
