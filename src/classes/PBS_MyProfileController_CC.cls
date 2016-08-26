@@ -221,6 +221,10 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     {
         return PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Work_Level__c', false);
     }
+     public List<String> getCategoryOptions()
+    {
+        return PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Category__c', false);
+    }
 
     public List<PBS_Standard_Job_Profile__c> getJobProfileOptions()
     {
@@ -240,15 +244,43 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
     }
 
     @RemoteAction
-    global static boolean storeUserProfile(String geography, String WorkLevel, Id UserRoleId, String Buddy)
+    global static boolean storeUserProfile(String geography, String WorkLevel, Id UserRoleId, String category, String Buddy)
     {
         PBS_Profile__c profile = PBS_ProfileService.getCurrentUserProfile();
         profile.Geography__c   = geography;
         profile.Work_Level__c  = WorkLevel;
         profile.User_Role__c   = UserRoleId;
+        profile.Category__c    = category;
         profile.Buddy__c       = Buddy;
-
+        //To update Userinfo
+        updateUserDetails(profile.Geography__c,profile.Work_Level__c,profile.User_Role__c,profile.Category__c);
         upsert profile;
+        return true;
+    }
+    
+    //Used to Update UserInfo
+    global static boolean updateUserDetails(String geography, String WorkLevel, id UserRoleId, String category)
+    {
+    
+    List<User> userList = [
+            SELECT
+                Id, Name, User_Role__c, Work_Level__c, Geography__c, PC_Category__c
+            FROM
+                User
+            WHERE
+                User.Id = :UserInfo.getUserId()
+            LIMIT 1
+        ];
+        
+        for(User user: userList){
+        user.Geography__c   = geography;
+        user.Work_Level__c  = WorkLevel;
+        for(PBS_Standard_Job_Profile__c userRole : [SELECT Name FROM PBS_Standard_Job_Profile__c WHERE id=:UserRoleId]){
+        user.User_Role__c   = userRole.Name;
+        } 
+        user.PC_Category__c = category;
+        }
+        update userList;
         return true;
     }
 

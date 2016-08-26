@@ -2,7 +2,10 @@
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>CancelEdit</actionName>
@@ -10,7 +13,10 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Clone</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Delete</actionName>
@@ -18,7 +24,10 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -26,11 +35,17 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>New</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain</content>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>SaveEdit</actionName>
@@ -38,11 +53,17 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Tab</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirectToMain_List</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Stop non-admin users from viewing the standard page and fields. Instead take the user to SWOP application where the fields access and permissions are enforced via VF pages.</comment>
+        <content>Oblix_NonCampaignRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -154,7 +175,21 @@ Renamed to Other SOW items in reviews</description>
 OR( 
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, OblixOtherItemFee__c)</formula>
+ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
+IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL))</formula>
+        <label>Activity Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Fee_UL__c</fullName>
+        <description>For use in the Unilever Non Campaign report, to hide values from the field if the record type is not &apos;Activity&apos;</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, OblixOtherItemFee__c, NULL)</formula>
         <label>Activity Fee</label>
         <precision>18</precision>
         <required>false</required>
@@ -498,7 +533,20 @@ OR(
 ISPICKVAL( Oblix_SOWMarketing__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
 ISPICKVAL(Oblix_SOWMarketing__r.SOW_Status__c , &quot;Returned by Agency&quot;)), NULL, 
-Oblix_FTE_Real_Price__c)</formula>
+IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL,OblixOtherItemFee__c ))</formula>
+        <label>Resource Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Fee_UL__c</fullName>
+        <description>For use in Unilever user Non Campaign report. Shows the Resource Fee for a Dedicated Resource</description>
+        <externalId>false</externalId>
+        <formula>IF( RecordType.DeveloperName = &quot;Activity&quot;, NULL, OblixOtherItemFee__c )</formula>
         <label>Resource Fee</label>
         <precision>18</precision>
         <required>false</required>
@@ -2318,6 +2366,10 @@ Oblix_FTE_Real_Price__c)</formula>
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

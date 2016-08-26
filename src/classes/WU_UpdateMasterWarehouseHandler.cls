@@ -3,7 +3,7 @@
 *@Date :            December 2015
 *@Description :     Handler class for trigger WU_SetWarehousePOC
 *************************************************************/
-public class WU_UpdateMasterWarehouseHandler{
+public with sharing class WU_UpdateMasterWarehouseHandler{
 
     private static Set<Id> setMasterWarehouseIds;
     public static Boolean isUpdateFromChild = false;
@@ -131,7 +131,7 @@ public class WU_UpdateMasterWarehouseHandler{
         
         for(WU_Warehouse_Capacity_Detail__c objWUWarehouseCapacityDetail : lstWareHouseCapacity){
             if( mapWUWarehouseCapacityDetail.containsKey(objWUWarehouseCapacityDetail.Master_Warehouse__c)){
-                String UtilizationType;
+                String UtilizationType='';
                 Boolean isUtilizationTypeFound = False;
                 for( WU_Warehouse_Capacity_Detail__c objWCDExisting : mapWUWarehouseCapacityDetail.get(objWUWarehouseCapacityDetail.Master_Warehouse__c)){
                                         
@@ -150,7 +150,7 @@ public class WU_UpdateMasterWarehouseHandler{
                     }
                 }
                 
-                if(isUtilizationTypeFound == TRUE && objWUWarehouseCapacityDetail.WU_Utilization_Type__c != UtilizationType){
+                if(isUtilizationTypeFound && objWUWarehouseCapacityDetail.WU_Utilization_Type__c != UtilizationType){
                     objWUWarehouseCapacityDetail.addError(Label.WU_utilizationTypeCannotChange);
                 }
                 

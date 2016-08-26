@@ -286,7 +286,6 @@ Returns:
 ************************************************************************************************************************************/   
     public PageReference deleteOtherFile(){
         try{
-        system.debug('chosenFileId!!'+chosenFileId);
         FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
         delete feedItemObj;
     getFeedItemAdditionalData();    
@@ -316,7 +315,8 @@ Returns:
     }
     
      public void getCaProcessMangCategory(){
-    system.debug('here');
+        Amr_Saving__c savingObjTemp = new Amr_Saving__c();
+		savingObjTemp.Production_Type__c = '';
     }
     
     /***********************************************************************************************************************************
@@ -349,23 +349,9 @@ Checking mandatory object field validation, which can not be break down into mul
                 savingMessages = true;
                  okayToSave=false;
             }
-           /* if(acceptedQuote.PC_Costs_Euro_Amount__c == 0 || acceptedQuote.PPC_Costs_Euro_Amount__c == 0 || acceptedQuote.CA_Costs_Euro_Amount__c == 0){
-                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Quote (Opening and Closing Quote 1)'));
-                 savingMessages = true;
-                 okayToSave=false;
-            }
-            if(acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c == 0){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Final Costs'));
-                savingMessages = true;
-                okayToSave=false;
-            }
-            if(acceptedQuote.Saving_Type__c == '--None--' || String.isBlank(acceptedQuote.Saving_Type__c)){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter What type of Savings is this?'));
-                savingMessages = true;
-                 okayToSave=false;
-            }*/
+
             if(!okayToSave){
-            system.debug('inside error');
+
             return null;
             
             }else{
@@ -415,26 +401,26 @@ Checking mandatory object field validation, which can not be break down into mul
                 
                 for(integer i=0;i<masterSize;i++){
                     String fieldName = 'Number_Of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
-                    system.debug('field name=='+fieldName);
+
                     savObj.put(fieldName,Integer.valueOf(masterLength.get(i)));
                 }
                 
                 for(integer i=0;i<masterDurationSize;i++){
                     String fieldNameValue = 'Duration_of_Masters_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
-                    system.debug('field name=='+fieldNameValue);
+
                     savObj.put(fieldNameValue,Integer.valueOf(masterLengthDuration.get(i)));
                 } 
                 
                 
                 for(integer i=0;i<masterSizeAdditionalFilms;i++){
                     String fieldName = 'No_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
-                    system.debug('field name=='+fieldName);
+
                     savObj.put(fieldName,Integer.valueOf(masterLengthAdditionalFilm.get(i)));
                 }
                 
                 for(integer i=0;i<masterAdditionalDurationSize;i++){
                     String fieldNameValue = 'Duration_of_Additional_Films_'+(i+1)+ Amr_ConstantForAdManager.SFOBJECTSUFFIX ;
-                    system.debug('field name=='+fieldNameValue);
+
                     savObj.put(fieldNameValue,Integer.valueOf(masterLengthAdditionalDuration.get(i)));
                 } 
           
@@ -482,7 +468,7 @@ Fetching appraisal filelds and validations for the same need to be done at singl
     
     public void AllValues(){
         try{
-        System.debug('SAV ID FROM PAGE ->   ' + savingIdFromPage);
+
      Amr_Saving__c savingObj = [select Folder_Name__c,Shoot_Location__c,PC_Appraisal_Time_Management__c, 
                                 PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
                                  PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,
@@ -492,18 +478,7 @@ Fetching appraisal filelds and validations for the same need to be done at singl
                                  Ca_Process_Manage_Star__c,Ca_Cost_Manage_Star__c
                                  from Amr_Saving__c where Id =:savingIdFromPage];
         
-        System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue);
-        System.debug('PC COST MANAGE MENT -> '+ pcCostMangCategoryValue);
-        System.debug(' PC PROCESS MANAGEMNT -> '+ pcProcessMangCategoryValue );
-        System.debug('PC OUTPUT -> '+ pcOutputQualityCategoryValue );
-        System.debug('PPC TIME MAN --> ' +  pccTimeMangCategoryValue);
-        System.debug('PPC COST -> ' + pccCostMangCategoryValue );
-        System.debug('PPC PROCESS MANG -> '+ pccProcessMangCategoryValue);
-        System.debug('PPC OUTPUT -> ' + pccOutputQualityCategoryValue  );
-        System.debug('CA TIME MANG ->'+ caTimeMangCategoryValue);
-        System.debug('CA COST MANG -> '+ caCostMangCategoryValue );
-        System.debug('CA PROCESS MANG -> ' + caProcessMangCategoryValue);
-        System.debug('CA OUTPUR -> '+ caOutputQualityCategoryValue );
+
        
         if(savingObj.id != null){
             
@@ -715,8 +690,7 @@ Returns:
                                  Ppc_Output_Quality_Star__c,Ppc_Process_Manage_Star__c,Ppc_Cost_Manage_Star__c,Ca_Time_Manage_Star__c,Ca_Output_Quality_Star__c,
                                  Ca_Process_Manage_Star__c,Ca_Cost_Manage_Star__c
                                  from Amr_Saving__c where Id =:savingIdFromPage];
-                                 
-       System.debug('DAGTA -->  ' + JSON.Serialize(lstsavingObj ));
+
        
        return JSON.Serialize(lstsavingObj );
         }catch(Exception ex){

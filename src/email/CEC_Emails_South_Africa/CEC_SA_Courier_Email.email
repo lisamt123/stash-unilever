@@ -1,0 +1,11 @@
+Call ID: {!Case.CaseNumber}, {!Case.CEC_Product__c}, {!CEC_Retrieval_Request__c.Retrieval_Quantity__c}
+
+Special requirements : {!CEC_Retrieval_Request__c.Retrieval_Notes__c} Consumer Name: {!Account.Name}
+
+Physical Address:{!Account.ShippingAddress}
+
+Contact Numbers: {!Account.Phone} , {!Account.PersonMobilePhone} , {!Account.PersonHomePhone} , {!Account.PersonOtherPhone}
+
+Action Description:{!CEC_Retrieval_Request__c.Retrieval_Message__c}
+
+Call logged by: {!Case.CreatedBy}

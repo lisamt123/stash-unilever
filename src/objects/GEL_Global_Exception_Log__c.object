@@ -1,0 +1,1524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Country_Saudi Arabia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_ANZ</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Belgium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_Benelux</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Bulgaria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_USCC CEE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_CEE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_DACH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CountryGroup_South Central Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Germany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Hungary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_India</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_Middle America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Corporate Centre Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_China, Country_Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Poland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_R&amp;D Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Romania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Slovakia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_South Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Spain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_UASCC, MCO_USCC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_UK/Ireland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_North America MCO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_Nordics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Sweden, Country_Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Turkey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Ghana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Nigeria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Kenya</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Russian Federation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Côte D&apos;Ivoire</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Tunisia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_UAPL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Thailand, Country_Vietnam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Vietnam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_UAPL Malaysia and Singapore</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_West Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_UAPL ESA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Czech Republic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_USCC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_Southern Cone MCO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO_Mexico and Greater Caribbean</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country_Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ETC_BO_Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>ETC BO Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>GEL_Global_Exception_Logs1</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Exception_Raiser__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedBy.FirstName +&apos; &apos;+ CreatedBy.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Exception Raiser_v</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expected_Closure_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected Closure Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Legacy Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Created Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Exception_Raiser__c</fullName>
+        <externalId>false</externalId>
+        <label>Exception Raiser</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Open_Exceptions_Categories__c</fullName>
+        <externalId>false</externalId>
+        <label>Open Exceptions Categories</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Under Evaluation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Solution Under Development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPM Updates required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Phased Implementation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complex Solution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 Tier Model Constraints</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legal Requirment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Process Complexity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PPE_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>PPE Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Business Complexity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>System Complexity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legal Requirement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 Tier Model Constraints</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Process Complexity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PoC__c</fullName>
+        <externalId>false</externalId>
+        <label>PoC</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Potential_Solution_at__c</fullName>
+        <externalId>false</externalId>
+        <label>Potential Solution at</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MCO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Process__c</fullName>
+        <externalId>false</externalId>
+        <label>Process</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Financial &amp; Statutory Reporting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Policy &amp; Procedures</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bank Statements</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accounts Reconciliation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Forex Revaluation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inter Company</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Period End</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sundry Invoicing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trintrech Tool</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>REF_Number2__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( REF__c &lt;&gt; null, REF__c , Name )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>REF Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>REF_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;&amp;Id ,
+IF( REF__c  &lt;&gt; null,  REF__c ,  Name )
+,&apos;_self&apos; 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>REF Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>REF__c</fullName>
+        <externalId>false</externalId>
+        <label>REF</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resolution_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Resolution Comments</label>
+        <length>130000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PendingClarification</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proposed Permanent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>GEL Global Exception Log</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>REF_Number__c</columns>
+        <columns>Legacy_Exception_Raiser__c</columns>
+        <columns>Country__c</columns>
+        <columns>Status__c</columns>
+        <columns>Process__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>GEL-{0000}</displayFormat>
+        <label>G_REF Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>GEL Global Exception Logs</pluralLabel>
+    <recordTypes>
+        <fullName>GEL_Exception_Raiser</fullName>
+        <active>true</active>
+        <label>GEL Exception Raiser</label>
+        <picklistValues>
+            <picklist>Country__c</picklist>
+            <values>
+                <fullName>CountryGroup_South Central Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Bangladesh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_China%2C Country_Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Corporate Centre Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Côte D%27Ivoire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Kenya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Nigeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_R%26D Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Russian Federation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Saudi Arabia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Sweden%2C Country_Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Thailand%2C Country_Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Tunisia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_UAPL ESA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_UAPL Malaysia and Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_USCC CEE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_ANZ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Benelux</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_CEE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_DACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Mexico and Greater Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Middle America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Nordics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_North America MCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Southern Cone MCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_UAPL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_UASCC%2C MCO_USCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_UK%2FIreland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_USCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_West Africa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Open_Exceptions_Categories__c</picklist>
+            <values>
+                <fullName>2 Tier Model Constraints</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM Updates required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal Requirment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phased Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Process Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solution Under Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Evaluation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PPE_Category__c</picklist>
+            <values>
+                <fullName>2 Tier Model Constraints</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal Requirement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Process Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Complexity</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Potential_Solution_at__c</picklist>
+            <values>
+                <fullName>BO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Process__c</picklist>
+            <values>
+                <fullName>Accounts Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bank Statements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial %26 Statutory Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forex Revaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Period End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Policy %26 Procedures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sundry Invoicing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trintrech Tool</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PendingClarification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proposed Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>GEL_Final_Layout</fullName>
+        <active>true</active>
+        <label>GEL Final Layout</label>
+        <picklistValues>
+            <picklist>Country__c</picklist>
+            <values>
+                <fullName>CountryGroup_South Central Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Bangladesh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_China%2C Country_Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Corporate Centre Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Côte D%27Ivoire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Kenya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Nigeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_R%26D Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Russian Federation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Saudi Arabia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Sweden%2C Country_Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Thailand%2C Country_Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Tunisia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_UAPL ESA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_UAPL Malaysia and Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_USCC CEE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country_Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_ANZ</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Benelux</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_CEE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_DACH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Mexico and Greater Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Middle America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Nordics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_North America MCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_Southern Cone MCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_UAPL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_UASCC%2C MCO_USCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_UK%2FIreland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_USCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO_West Africa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Open_Exceptions_Categories__c</picklist>
+            <values>
+                <fullName>2 Tier Model Constraints</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complex Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM Updates required</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal Requirment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phased Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Process Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solution Under Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Evaluation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PPE_Category__c</picklist>
+            <values>
+                <fullName>2 Tier Model Constraints</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Business Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal Requirement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Process Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Complexity</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Potential_Solution_at__c</picklist>
+            <values>
+                <fullName>BO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OC</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Process__c</picklist>
+            <values>
+                <fullName>Accounts Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bank Statements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial %26 Statutory Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Forex Revaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inter Company</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Period End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Policy %26 Procedures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sundry Invoicing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trintrech Tool</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PendingClarification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proposed Permanent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>REF_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Legacy_Exception_Raiser__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Country__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Process__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Country__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Process__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>REF_Number__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>REF_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Legacy_Exception_Raiser__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Country__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Process__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Country__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Process__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>REF_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Legacy_Exception_Raiser__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+</CustomObject>

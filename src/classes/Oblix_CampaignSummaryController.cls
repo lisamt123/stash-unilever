@@ -29,12 +29,24 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     }
     public Boolean can_delete_campaign{
         get{
-            return can_edit_campaign && !selected_project.Is_B_Fwd_Campaign__c && selected_sow.SOW_Status__c != Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY;
+            return can_edit_campaign && NULL == selected_project.Original_Campaign__c && selected_sow.SOW_Status__c != Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY;
         }
     }
     public Boolean can_adjust_fee{
         get{
             return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id, selected_project.Campaign_Status__c, selected_sow.Name_Suffix__c);
+        }
+    }
+
+    public Boolean can_set_projected_stage{
+        get{
+            return Oblix_PermissionHandler.canSetProjectedStage(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_set_completion_stage{
+        get{
+            return Oblix_PermissionHandler.canSetCompletionStage(selected_sow.SOW_Status__c);
         }
     }
 
@@ -125,9 +137,9 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
         if (NULL != selected_project && NULL!= selected_sow){
             // get related stage identifier for the given selected project Id
-            stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_edit_campaign, can_edit_campaign && !is_NFY_campaign_in_the_middle_of_rollover);
+            stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_set_projected_stage, can_set_completion_stage && !is_NFY_campaign_in_the_middle_of_rollover);
             //IR - do not move into getter!
-            stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project.clone(true, true, true, true),can_edit_campaign, can_edit_campaign && !is_NFY_campaign_in_the_middle_of_rollover);
+            stage_identifier_pop_up = new Oblix_CampaignStageLogic(selected_project.clone(true, true, true, true),can_set_projected_stage, can_set_completion_stage && !is_NFY_campaign_in_the_middle_of_rollover);
         }
 
 
@@ -227,7 +239,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
  
                 // get related stage identifier for the given selected project Id
-                stage_identifier = new Oblix_CampaignStageLogic(selected_project, can_edit, can_edit);
+                stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_set_projected_stage, can_set_completion_stage);
             }
         }
         catch (Exception ex){
@@ -337,6 +349,10 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public PageReference cancelCampaign(){
 
         try{
+        
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+            me.Manual_Edit_Check__c = True;
+            update me;
 
             selected_project.Completed_Stage_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
             selected_project.Projected_Stage_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
@@ -361,6 +377,10 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             selected_project.Campaign_Status__c = Oblix_Utils.CAMPAIGN_STATUS_CANCELLED;
             selected_project.Name += '(' + Oblix_Utils.CAMPAIGN_STATUS_CANCELLED + ')';
             update selected_project;
+            
+            me.Manual_Edit_Check__c = False;
+            update me;
+            
 
             PageReference nextPage = Page.oblix_sowmaindetail;
             nextPage.getParameters().put('sowId', selected_project.Financial_Year__c);
@@ -388,12 +408,13 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         System.DEBUG('In Here');
         try{
             Oblix_SOW_Projects__c campaignToUpdate = new Oblix_SOW_Projects__c();
-            campaignToUpdate = [SELECT ID, Sync_Status__c FROM Oblix_SOW_Projects__c WHERE Id =:selected_project.Campaign_PFY__c LIMIT 1];
+            campaignToUpdate = [SELECT ID, Sync_Status__c,Campaign_PFY__r.sync_status__c FROM Oblix_SOW_Projects__c WHERE Id =:selected_project.Campaign_PFY__c LIMIT 1];
             campaignToUpdate.Sync_Status__c = Oblix_Utils.JOB_STATUS_SYNC_REQUESTED;
+            Oblix_Utils.updateJobRunningCustomSetting(true);
             system.debug('-- updating campaignToUpdate1: ' + campaignToUpdate);
             update campaignToUpdate;
             system.debug('-- updating campaignToUpdate2: ' + campaignToUpdate);
-
+  
         }catch (DmlException e){
             ApexPages.addMessage(new ApexPages.message(ApexPages.SEVERITY.ERROR, 'Could not sync Campaign'));
             return null;

@@ -47,7 +47,8 @@ public with sharing class PBS_LMSService_CC{
         public static final string TYPE_C = 'Type__c';
         public static final string ACHIEVEMENT_C = 'Achievement__c';
         public static final string COMMENTS_C = 'Comments__c';
-
+        public static final string EVALUATION_RESULT_C ='Evaluation_Result__c';
+        public static final string EVALUATION_SCORE_C='Evaluation_Score__c';
 
 
     //Return a list of aggregate plan progress results for the specified progress filters and user based on Plan Assignments
@@ -398,8 +399,8 @@ public with sharing class PBS_LMSService_CC{
             ,PROGRESS_PERCENTAGE_C
             ,'Approved__c'
             ,'Approved_By__c'
-            ,'Evaluation_Result__c'
-            ,'Evaluation_Score__c'
+            ,EVALUATION_RESULT_C
+            ,EVALUATION_SCORE_C
             ,'Evaluation_Times_Taken__c'
             ,TRAINING_PLAN_C
             ,TRAINING_PLAN_SECTION_C
@@ -437,8 +438,8 @@ public with sharing class PBS_LMSService_CC{
             ,'Approved__c'
             ,'Approved_By__c'
             ,OPTIONAL_C
-            ,'Evaluation_Result__c'
-            ,'Evaluation_Score__c'
+            ,EVALUATION_RESULT_C
+            ,EVALUATION_SCORE_C
             ,'Evaluation_Times_Taken__c'
             ,TRAINING_PLAN_C
             ,TRAINING_PLAN_SECTION_C
@@ -486,8 +487,8 @@ public with sharing class PBS_LMSService_CC{
             ,LEARNING_VERSION_C
             ,PROGRESS_C
             ,PROGRESS_PERCENTAGE_C
-            ,'Evaluation_Result__c'
-            ,'Evaluation_Score__c'
+            ,EVALUATION_RESULT_C
+            ,EVALUATION_SCORE_C
             ,'Evaluation_Times_Taken__c'
             ,'Approved__c'
             ,'Approved_By__c'
@@ -511,8 +512,8 @@ public with sharing class PBS_LMSService_CC{
             ,LEARNING_VERSION_C
             ,PROGRESS_C
             ,PROGRESS_PERCENTAGE_C
-            ,'Evaluation_Result__c'
-            ,'Evaluation_Score__c'
+            ,EVALUATION_RESULT_C
+            ,EVALUATION_SCORE_C
             ,'Evaluation_Times_Taken__c'
             ,'Approved__c'
             ,'Approved_By__c'
@@ -1381,10 +1382,10 @@ public with sharing class PBS_LMSService_CC{
         List<String> lvFields =  new List<String>{'Rating__c',COMMENTS_C};
         Map<Schema.sObjectType,List<String>> relatedFieldsObjectsCreate = new Map<Schema.sObjectType,List<String>>();
         relatedFieldsObjectsCreate.put(PBS_Training_Plan_Feedback__c.sObjectType,lvFields);
-
+        System.debug(lvFields);
         PBS_LMS_ESAPI_CC.isAuthorizedToCreate(relatedFieldsObjectsCreate);
         //END Access Check
-
+        System.debug('relatedFieldsObjectsCreate'+relatedFieldsObjectsCreate);
         PBS_LMSService_CC.WithoutSharingOps wsops = new PBS_LMSService_CC.WithoutSharingOps();
         wsops.insertFeedback(feedback);
 
@@ -1408,6 +1409,9 @@ public with sharing class PBS_LMSService_CC{
             ,'Hide_From_Catalog_Home__c'
             ,ORDER_C
             ,'Is_Internal__c'
+
+
+
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check
@@ -1422,6 +1426,7 @@ public with sharing class PBS_LMSService_CC{
             ,'Hide_From_Catalog_Home__c'
             ,ORDER_C
             ,'Is_Internal__c'
+
         };
 
         String soqlQuery = SELECT_C+String.join(listSOQLFields,',')+' from PBS_Learning_Category__c';
@@ -1616,6 +1621,8 @@ public with sharing class PBS_LMSService_CC{
             ,PROGRESS_C
             ,TRAINING_PLAN_C
             ,'Shared_Learning_Assignment__c'
+            ,EVALUATION_RESULT_C        //Added these 2 fields
+            ,EVALUATION_SCORE_C
         });
         PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
         //END Access Check

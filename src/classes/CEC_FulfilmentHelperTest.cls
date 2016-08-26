@@ -22,7 +22,8 @@ Test class for the Helper class CEC_FulfilmentHelper
 
 @isTest(SeeAllData=false)
 public class CEC_FulfilmentHelperTest {
-    
+    private static final string dollarConst = 'Dollars';
+    private static final string centConst = 'Cents';
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
@@ -44,14 +45,14 @@ public class CEC_FulfilmentHelperTest {
             List<CEC_Case_Market_Mapping__c> cmmList = CEC_TestDataFactory.createMasterCaseMarketMapping();
             CEC_Case_Market_Mapping__c cmmUK = new CEC_Case_Market_Mapping__c();
             for(CEC_Case_Market_Mapping__c cmm : cmmList) {
-                if (cmm.Market__c == 'United Kingdom') {
+                if (cmm.Market__c == CEC_Constants.UK) {
                     cmmUK = cmm;
                     break;
                 }
             }
             
             List<Account> accountList = CEC_TestDataFactory.createTestAccounts(1, 'TestAccount', null, null, null, 
-                                                                               'London', 'United Kingdom', null);
+                                                                               'London', CEC_Constants.UK, null);
             
             insert accountList;
             
@@ -64,7 +65,7 @@ public class CEC_FulfilmentHelperTest {
             }
             insert caseList;
             
-            List<cec_Fulfilment__c> fulfilmentList = CEC_TestDataFactory.createFulfilment(1, 'United Kingdom', null, null,
+            List<cec_Fulfilment__c> fulfilmentList = CEC_TestDataFactory.createFulfilment(1, CEC_Constants.UK, null, null,
                                                                                           null, null, null, caseList[0].Id);
             
             insert fulfilmentList;            
@@ -97,111 +98,14 @@ Test method for beforeInsert() method
             System.debug(''+loggedinuser.Quality_Check_Percentage__c+' '+loggedinuser.FirstName);
             
             Test.startTest();
-            CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
-            fulfilmentHelper.qualityCheck(fulfilmentList);
+            CEC_FulfilmentHelperExtension.qualityCheck(fulfilmentList);
             Test.stopTest();
             
             system.assertEquals(true, fulfilmentList.get(0).QA_flag__c);
         }
         
     }
-    
-    public static testMethod void test_getChequeNumber(){
-        
-        User u = CEC_TestDataFactory.getStandardCECTestUser();
-        System.runAs(u) {
-            
-            CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c WHERE 
-                                                Market__c = 'United Kingdom' LIMIT 1];
-            
-            mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
-            
-            List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, 'CB1', 'USD', 'Dollars', 'Cents',
-                1, 11, 1000, cmmUK.Id, prodCategory.Id);
-            insert chequeBookDetailList;
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [ SELECT Id, Case__c FROM cec_Fulfilment__c LIMIT 1];
-            Test.startTest();
-            CEC_ChequeProcess.generateChequeNumber(fulfilmentList[0].Id);
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Cheque_Number__c, Refund_Currency__c 
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
-            System.assertEquals(fulfilmentObj.Cheque_Number__c, '12');
-            System.assertEquals(fulfilmentObj.Refund_Currency__c, 'USD');
-            Test.stopTest();
-        }
-    }
-    
-    
-    public static testMethod void test_getChequeNumber_maxChequeNumberExceeded(){
-        
-        User u = CEC_TestDataFactory.getStandardCECTestUser();
-        System.runAs(u) {
-            
-            CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c WHERE 
-                                                Market__c = 'United Kingdom' LIMIT 1];
-            
-            mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
-            
-            List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, 'CB1', 'USD', 'Dollars', 'Cents',
-                1, 1000, 1000, cmmUK.Id, prodCategory.Id);
-            insert chequeBookDetailList;
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [ SELECT Id, Case__c FROM cec_Fulfilment__c LIMIT 1];
-            Test.startTest();
-            CEC_ChequeProcess.chequeProcessWrapperResponse resp = CEC_ChequeProcess.generateChequeNumber(fulfilmentList[0].Id);
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Cheque_Number__c, Refund_Currency__c 
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
-            Test.stopTest();                                   
-            System.assertEquals(fulfilmentObj.Cheque_Number__c, null);
-            System.assertEquals(fulfilmentObj.Refund_Currency__c, null);
-            System.assertEquals(resp.status, 'E'); 
-            System.assertEquals(resp.message, Label.CEC_ChequeBook_MaxLimt_reached);  
-        }
-    }
-    
-    public static testMethod void test_getChequeNumber_emptylist(){
-        
-        User u = CEC_TestDataFactory.getStandardCECTestUser();
-        System.runAs(u) {
-            
-            CEC_Case_Market_Mapping__c cmmIndia = [SELECT Id FROM CEC_Case_Market_Mapping__c WHERE 
-                                                   Market__c = 'India' LIMIT 1];
-            
-            mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
-            
-            List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, 'CB1', 'USD', 'Dollars', 'Cents',
-                1, 1000, 1000, cmmIndia.Id, prodCategory.Id);
-            insert chequeBookDetailList;
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [ SELECT Id, Case__c FROM cec_Fulfilment__c LIMIT 1];
-            Test.startTest();
-            CEC_ChequeProcess.chequeProcessWrapperResponse resp = CEC_ChequeProcess.generateChequeNumber(fulfilmentList[0].Id);
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Cheque_Number__c, Refund_Currency__c 
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
-            Test.stopTest();
-            System.assertEquals(fulfilmentObj.Cheque_Number__c, null);
-            System.assertEquals(fulfilmentObj.Refund_Currency__c, null);
-            System.assertEquals(resp.status, 'E'); 
-            System.assertEquals(resp.message, Label.CEC_ChequeBook_DetailsMissing);  
-        }
-    }
-    
-    public static testMethod void test_getChequeNumber_nullCheck(){
-        User u = CEC_TestDataFactory.getStandardCECTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            CEC_ChequeProcess.chequeProcessWrapperResponse chequeProcessWrp = new CEC_ChequeProcess.chequeProcessWrapperResponse();
-            
-            CEC_ChequeProcess.generateChequeNumber(null);
-            Test.stopTest();
-            
-            system.assertEquals(null, chequeProcessWrp.status); 
-        }
-    }
-    
+   
     public static testMethod void test_beforeUpdate(){
         
         User u = CEC_TestDataFactory.getStandardCECTestUser();
@@ -209,7 +113,7 @@ Test method for beforeInsert() method
             
             CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
             
-            List<cec_Enclosure__c> enclousreList = CEC_TestDataFactory.createEnclosure(5, 'UK-Enclosure:', null, 'United Kingdom', null, null, 0, 0);
+            List<cec_Enclosure__c> enclousreList = CEC_TestDataFactory.createEnclosure(5, 'UK-Enclosure:', null, CEC_Constants.UK, null, null, 0, 0);
             insert enclousreList;
             
             Integer enCount = [select count() from cec_Enclosure__c where name like 'UK%' ];
@@ -293,29 +197,29 @@ Test method for beforeInsert() method
             
             // Add Encolsures 
             List<cec_Enclosure__c> enclosureListUK = CEC_TestDataFactory.createEnclosure(6, 'UK-Enclosure:', null, 
-                                                                                         'United Kingdom', null, null, 0, 0);
+                                                                                         CEC_Constants.UK, null, null, 0, 0);
             insert enclosureListUK;
             
             List<cec_Alert_Rule__c> noDayCodeAlertRuleList = 
-                CEC_TestDataFactory.createAlertRule(4,'Safety','0','5','United Kingdom',
+                CEC_TestDataFactory.createAlertRule(4,'Safety','0','5',CEC_Constants.UK,
                                                     reasonCodeList.get(0).Id,prodCategoryList.get(0).Id,
                                                     null,false,false,false,1);
             insert noDayCodeAlertRuleList;
             
             List<cec_Alert_Action__c> masterAlertActionList = new List<cec_Alert_Action__c>();
-            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, 'United Kingdom',
+            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, CEC_Constants.UK,
                                                                                          enclosureListUK[0].Id, null, null, null, enclosureListUK[4].Id,
                                                                                          noDayCodeAlertRuleList[0].Id));
             
-            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, 'United Kingdom',
+            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, CEC_Constants.UK,
                                                                                          enclosureListUK[0].Id, enclosureListUK[1].Id, null, null, 
                                                                                          enclosureListUK[4].Id, noDayCodeAlertRuleList[1].Id));
             
-            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, 'United Kingdom',
+            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, CEC_Constants.UK,
                                                                                          enclosureListUK[0].Id, null, enclosureListUK[2].Id, enclosureListUK[3].Id, 
                                                                                          null, noDayCodeAlertRuleList[2].Id));
             
-            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, 'United Kingdom',
+            masterAlertActionList.addAll(CEC_TestDataFactory.createFulfilmentAlertAction(1, CEC_Constants.UK,
                                                                                          null, enclosureListUK[1].Id, null, null, 
                                                                                          null, noDayCodeAlertRuleList[3].Id));
             insert masterAlertActionList;       
@@ -414,7 +318,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, 'CB1', 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -509,7 +413,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, 'CB1', 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -567,196 +471,4 @@ Test method for beforeInsert() method
             Test.StopTest();
         }
     }
-    
-    public static testMethod void test_AssignNewDebitCardToAccount(){
-        
-        User u = CEC_TestDataFactory.createDebitCardProcessTestUser();
-        System.runAs(u) {
-            mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
-            Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
-            List<CEC_Debit_Card_Detail__c> issuedDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, '82472182382234', CEC_Constants.ISSUED, 
-                                                        accountBeforeNewDebitCard.Id, geographyUK.Id);
-            insert issuedDebitCardDetailList;
-            
-            List<CEC_Debit_Card_Detail__c> newDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, '23847238497238', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
-            insert newDebitCardDetailList; 
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, Account_Card_Number__c, Issue_Card__c FROM cec_Fulfilment__c LIMIT 1];
-            fulfilmentList[0].Account_Card_Number__c = '82472182382234';
-            fulfilmentList[0].Issue_Card__c = true;
-            update fulfilmentList;
-            
-            CEC_DebitCardProcess.getDebitCardNumber(fulfilmentList[0].Id);
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Debit_Card_Number__r.name
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
-            
-            Account accountObj = [SELECT Id, Debit_Card_Number__c FROM Account LIMIT 1];
-            CEC_Debit_Card_Detail__c issuedDebitCardDetail = [SELECT Id, Status__c FROM CEC_Debit_Card_Detail__c 
-                                                              WHERE Name = '23847238497238' LIMIT 1];
-            CEC_Debit_Card_Detail__c cancelledDebitCardDetail = [SELECT Id, Status__c, Active__c FROM 
-                                                                 CEC_Debit_Card_Detail__c WHERE Name = '82472182382234' LIMIT 1];                                            
-            System.assertEquals(fulfilmentObj.Debit_Card_Number__r.name, '23847238497238');
-            System.assertEquals(accountObj.Debit_Card_Number__c, issuedDebitCardDetail.Id);
-            System.assertEquals(issuedDebitCardDetail.Status__c, CEC_Constants.ISSUED);
-            System.assertEquals(cancelledDebitCardDetail.Status__c, CEC_Constants.CANCELLED);
-            System.assertEquals(cancelledDebitCardDetail.Active__c, false);
-        }
-    }    
-    
-    public static testMethod void test_ReissueDebitCardToAccount(){
-        system.debug('in reissueDebitToAccount @#@#@@' );
-        User u = CEC_TestDataFactory.createDebitCardProcessTestUser();
-        System.runAs(u) {
-            
-            mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
-            Account accountBeforeReIssue = [SELECT Id,Debit_Card_Number__c FROM Account LIMIT 1];
-            
-            List<CEC_Debit_Card_Detail__c> issuedDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, '82472182382234', CEC_Constants.ISSUED, 
-                                                        accountBeforeReIssue.Id, geographyUK.Id);
-            insert issuedDebitCardDetailList;
-            
-            List<CEC_Debit_Card_Detail__c> newDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, '23847238497238', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
-            insert newDebitCardDetailList;
-            
-            
-            accountBeforeReIssue.Debit_Card_Number__c = issuedDebitCardDetailList[0].Id;
-            update accountBeforeReIssue;
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, Account_Card_Number__c, Issue_Card__c 
-                                                        FROM cec_Fulfilment__c LIMIT 1];
-            fulfilmentList[0].Account_Card_Number__c = '82472182382234';
-            fulfilmentList[0].Issue_Card__c = false;
-            update fulfilmentList;
-            
-            CEC_DebitCardProcess.getDebitCardNumber(fulfilmentList[0].Id);
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Debit_Card_Number__r.name,Debit_Card_Number__r.Status__c
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
-            Account accountObj = [SELECT Id, Debit_Card_Number__c FROM Account LIMIT 1];
-            System.assertEquals(fulfilmentObj.Debit_Card_Number__r.name, '82472182382234');
-            System.assertEquals(fulfilmentObj.Debit_Card_Number__r.Status__c, CEC_Constants.REACTIVATED);
-            System.assertEquals(accountObj.Debit_Card_Number__c, issuedDebitCardDetailList[0].Id);
-        }
-    } 
-    
-    public static testMethod void test_updateAccountAndDebitCardDetails(){
-        User u = CEC_TestDataFactory.createDebitCardProcessTestUser();
-        System.runAs(u) {
-            
-            mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
-            Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
-            List<CEC_Debit_Card_Detail__c> issuedDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, '82472182382234', CEC_Constants.ISSUED, 
-                                                        accountBeforeNewDebitCard.Id, geographyUK.Id);
-            insert issuedDebitCardDetailList;
-            
-            List<CEC_Debit_Card_Detail__c> newDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
-                                                        1, '23847238497238', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
-            insert newDebitCardDetailList; 
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, Account_Card_Number__c, Issue_Card__c FROM cec_Fulfilment__c LIMIT 1];
-            fulfilmentList[0].Account_Card_Number__c = '82472182382234';
-            fulfilmentList[0].Issue_Card__c = true;
-            fulfilmentList[0].Local_Identifier__c='2112145';            
-            fulfilmentList[0].Date_of_Birth__c=System.today();
-            fulfilmentList[0].Debit_Card_Value__c=93;
-            
-            update fulfilmentList;
-            // issue the new card
-            CEC_DebitCardProcess.getDebitCardNumber(fulfilmentList[0].Id);
-            // update the card value
-            fulfilmentList[0].isApproved__c=true;
-            update fulfilmentList;
-
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, Debit_Card_Number__r.name
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
-            
-            Account accountObj = [SELECT Id, Debit_Card_Number__c, Local_Identifier__c FROM Account LIMIT 1];
-            CEC_Debit_Card_Detail__c issuedDebitCardDetail = [SELECT Id, Status__c, Card_Value__c FROM CEC_Debit_Card_Detail__c 
-                                                              WHERE Name = '23847238497238' LIMIT 1];
-            CEC_Debit_Card_Detail__c cancelledDebitCardDetail = [SELECT Id, Status__c, Active__c FROM 
-                                                                 CEC_Debit_Card_Detail__c WHERE Name = '82472182382234' LIMIT 1];                                            
-            System.assertEquals(fulfilmentObj.Debit_Card_Number__r.name, '23847238497238');
-            System.assertEquals(accountObj.Debit_Card_Number__c, issuedDebitCardDetail.Id);
-            System.assertEquals(issuedDebitCardDetail.Status__c, CEC_Constants.ISSUED);
-            System.assertEquals(issuedDebitCardDetail.Card_Value__c, 218);
-            System.assertEquals(cancelledDebitCardDetail.Status__c, CEC_Constants.CANCELLED);
-            System.assertEquals(cancelledDebitCardDetail.Active__c, false);
-            
-        }
-    }
-    
-    public static testMethod void test_AssignNewEVoucherToAccount(){
-        
-        User u = CEC_TestDataFactory.createEvoucherProcessTestUser();
-        System.runAs(u) {
-            mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
-            Account accountBeforeNewEVoucher = [SELECT Id FROM Account LIMIT 1];
-            List<CEC_E_Voucher_Details__c> issuedEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '11111111', CEC_Constants.ISSUED, 
-                                                        accountBeforeNewEvoucher.Id, geographyUK.Id);
-            insert issuedEvoucherDetailList;
-            
-            List<CEC_E_Voucher_Details__c> newEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '22222222', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
-            insert newEvoucherDetailList; 
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id FROM cec_Fulfilment__c LIMIT 1];
-
-            
-            CEC_EvoucherProcess.getEvoucherNumber(fulfilmentList[0].Id);
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, E_Voucher_Number__r.name 
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
-            
-            
-            CEC_E_Voucher_Details__c issuedEvoucherDetail = [SELECT Id, Status__c FROM CEC_E_Voucher_Details__c 
-                                                              WHERE Name = '22222222' LIMIT 1];
-                                           
-            System.assertEquals(fulfilmentObj.E_Voucher_Number__r.name, '22222222');
-            
-            System.assertEquals(issuedEvoucherDetail.Status__c, CEC_Constants.ISSUED);
-            
-
-        }
-    }  
-    
-    public static testMethod void test_updateAccountAndEvoucherDetails(){
-        User u = CEC_TestDataFactory.createEvoucherProcessTestUser();
-        System.runAs(u) {
-            Account accountBeforeNewEVoucher = [SELECT Id FROM Account LIMIT 1];
-            mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
-            Account accountBeforeNewDebitCard = [SELECT Id FROM Account LIMIT 1];
-             List<CEC_E_Voucher_Details__c> issuedEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '11111111', CEC_Constants.ISSUED, 
-                                                        accountBeforeNewEvoucher.Id, geographyUK.Id);
-            insert issuedEvoucherDetailList;
-            
-            List<CEC_E_Voucher_Details__c> newEvoucherDetailList = CEC_TestDataFactory.createEvoucherDetail(
-                                                        1, '22222222', CEC_Constants.STATUS_NEW, null, geographyUK.Id);
-            insert newEvoucherDetailList;
-            CEC_E_Voucher_Details__c issuedEvoucherDetail = [SELECT Id, Status__c, Voucher_Value__c FROM CEC_E_Voucher_Details__c 
-                                                              WHERE Name = '11111111' LIMIT 1];
-            
-            List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, E_Voucher_Number__r.name FROM cec_Fulfilment__c LIMIT 1];
-            //fulfilmentList[0].E_Voucher_Number__c = issuedEvoucherDetail.id;
-            
-            fulfilmentList[0].Local_Identifier__c='2112145';            
-            fulfilmentList[0].Date_of_Birth__c=System.today();
-            fulfilmentList[0].E_Voucher_Value__c=10;
-                        
-            update fulfilmentList;
-            CEC_EvoucherProcess.getEvoucherNumber(fulfilmentList[0].Id);
-             fulfilmentList[0].isApproved__c=true;    
-             update fulfilmentList;
-             
-            CEC_E_Voucher_Details__c issuedEvoucherDetail1 = [SELECT Id, Status__c, Voucher_Value__c FROM CEC_E_Voucher_Details__c 
-                                                              WHERE Name = '22222222' LIMIT 1];
-                                                              
-            System.assertEquals(issuedEvoucherDetail1.Voucher_Value__c, 10);
-            
-        }
-    }     
 }

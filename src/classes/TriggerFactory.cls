@@ -108,7 +108,7 @@ public with sharing class TriggerFactory
      *
      * Returns:     ITrigger - A trigger handler if one exists or null.
      */
-    private static ITrigger getHandler(Schema.sObjectType soType)
+    @TestVisible private static ITrigger getHandler(Schema.sObjectType soType)
     {
         if (soType == FAU_Participant__c.sObjectType)
         {
@@ -204,7 +204,7 @@ public with sharing class TriggerFactory
 		 if (soType == CFC_Attendee__c.sObjectType){
             return new CFC_Attendee_Handler();
         } 
-		/*if (soType == VEP_Visitor__c.sObjectType)
+		if (soType == VEP_Visitor__c.sObjectType)
         {
             return new VEP_Visitor_TriggerHandler();
         }
@@ -247,7 +247,7 @@ public with sharing class TriggerFactory
         if (soType == AF_PO_Report__c.sObjectType)
         {
             return new AF_PO_ReportHandler();
-        }*/
+        }
         return null;
     }
 

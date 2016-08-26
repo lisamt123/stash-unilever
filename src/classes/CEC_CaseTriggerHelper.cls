@@ -16,6 +16,8 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 4.0 - Mahendra     17/11/2015       CSC-2910                Personal Data Retention
 5.0 - Goverdhan S. 9/12/2015        CSC-2850                Added method to implement CSAT functionality
 6.0 - Masood       16/12/2015       CSC-2986                Added flag for picking account according to retention date
+7.0 - Nagesh       7/19/2016        CSC-4834                Added the logic to populate the contact us fields
+8.0 - Nagesh       7/25/2016                                Added logic to update the owner for social cases
 ****************************************************************************/
 public class CEC_CaseTriggerHelper{
     
@@ -34,6 +36,9 @@ public class CEC_CaseTriggerHelper{
     String sfdcBaseURL = URL.getSalesforceBaseUrl().toExternalForm()+'/';
     map<id, Account> caseToAccountMap = new map<id, Account>();
     list<Id> noAccountCaseIds = new list<Id>();
+    Final String exceptionMsg = 'An exception occurred: ';
+    Final String originNA = 'Web North America';//Updated the origin value to skip the contact us field default
+    Final String caseStatusClosed ='Closed';
     
     
     
@@ -76,7 +81,7 @@ public class CEC_CaseTriggerHelper{
         //Check for cases with null contactId
         for(Case c: newCaseMap.Values()){
             System.debug('c----------------'+c);
-            if(c.ContactId == null && (c.SuppliedEmail != null && c.SuppliedEmail != '') && (c.Origin.contains('Email') || c.Origin.contains('Web North America'))){
+            if(c.ContactId == null && c.SuppliedEmail != null && c.SuppliedEmail != '' && c.Origin.contains('Email')){
                 caseMap.put(c.Id,c.SuppliedEmail);
             }
         }   
@@ -91,8 +96,6 @@ public class CEC_CaseTriggerHelper{
                 if(dupEmailSet.contains(caseMap.get(caseId))){
                     caseRecord = new Case(Id=caseId);
                     caseRecord.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccount;
-                    // Update case brand
-                    caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
                     caseList.add(caseRecord);
                     caseMap.remove(caseId);
                 } // if no duplicates are found, and account already exists, add case to account
@@ -102,10 +105,10 @@ public class CEC_CaseTriggerHelper{
                     caseRecord = new Case(Id=caseId);
                     caseRecord.AccountId = acc.Id;
                     caseRecord.ContactId = acc.PersonContactId;
-                    // update case brand
-                    caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
                     // update related account details from case description
-                    acc = updateAccountDetailsFromCaseDescription(acc, newCaseMap.get(caseId).description);
+                    /*if(newCaseMap.get(caseId).Origin == originNA){
+                        acc = updateAccountDetailsFromCaseDescription(acc, newCaseMap.get(caseId).description);
+                    }*/
                     accntList.add(acc);
                     
                     caseList.add(caseRecord);
@@ -134,9 +137,10 @@ public class CEC_CaseTriggerHelper{
                     accnt.FirstName = FName;
                     
                     // update related account details from case description
-                    if(newCaseMap.get(caseId).Origin == 'Web North America'){
-                        accnt = updateAccountDetailsFromCaseDescription(accnt, newCaseMap.get(caseId).description);
-                    }
+                    //Commented the below code based on Phil H request
+                    /*if(newCaseMap.get(caseId).Origin == originNA){
+                       accnt = updateAccountDetailsFromCaseDescription(accnt, newCaseMap.get(caseId).description);
+                    }*/
                     System.debug('Nagesh I am here'+ accntList);                  
                     accntList.add(accnt);
                 }
@@ -606,7 +610,7 @@ This method identifies date of manufacture from the daycode
         Try{
             
             for(case caseRecord : caseLst){
-                if(caseRecord.Status == 'Closed' && oldMap.get(caseRecord.ID).Status != 'Closed' && (caseRecord.Manual_Override_Reason__c !='' && caseRecord.Manual_Override_Reason__c != NULL)){
+                if(caseRecord.Status == caseStatusClosed && oldMap.get(caseRecord.ID).Status != caseStatusClosed && (caseRecord.Manual_Override_Reason__c !='' && caseRecord.Manual_Override_Reason__c != NULL)){
                     accountIDsset.add(caseRecord.AccountID);
                 }
             }
@@ -636,28 +640,26 @@ This method identifies date of manufacture from the daycode
             }
         }
         Catch(Exception e){
-            System.debug('An exception occurred: ' + e.getMessage());  
+            System.debug(exceptionMsg + e.getMessage());  
         }
     }
     
     public void updateRetentionDate(List<Case> caseLst , Map<id,Case> oldMap){
         
-        List<Case> caseLstUpdate = new List<Case>();
-        
         Try{
             for(Case newCase: caseLst){
-                if(newCase.Status == 'Closed' && oldMap.get(newCase.id).status != 'Closed'&& newCase.Reason_Code_Retention_Days__c!= NULL && String.isEmpty(newCase.Manual_Override_Reason__c)){
+                if(newCase.Status == caseStatusClosed && oldMap.get(newCase.id).status != caseStatusClosed && newCase.Reason_Code_Retention_Days__c!= NULL && String.isEmpty(newCase.Manual_Override_Reason__c)){
                     newCase.Manual_Override_Reason__c = '3-Default';
                     newCase.Manual_Retention_Override__c = Date.Today().addDays(integer.valueof(newCase.Reason_Code_Retention_Days__c));
                 }
-                else if(newCase.Status == 'Closed' && oldMap.get(newCase.id).status != 'Closed' && newCase.Reason_Code_Retention_Days__c== NULL && newCase.Manual_Override_Reason__c == '3-Default'){
+                else if(newCase.Status == caseStatusClosed && oldMap.get(newCase.id).status != caseStatusClosed && newCase.Reason_Code_Retention_Days__c== NULL && newCase.Manual_Override_Reason__c == '3-Default'){
                     newCase.Manual_Override_Reason__c = '';
                     newCase.Manual_Retention_Override__c = null;
                 }
             }       
             
         }Catch(Exception e ){
-            System.debug('An exception occurred: ' + e.getMessage());  
+            System.debug(exceptionMsg + e.getMessage());  
         }        
     }
     
@@ -667,11 +669,11 @@ This method identifies date of manufacture from the daycode
         
         for(Case newCase: newMap.values()){
             // fetch caseIds of closed cases
-            if(newCase.Status == 'Closed' && oldMap.get(newCase.id).status != 'Closed'){                
+            if(newCase.Status == caseStatusClosed && oldMap.get(newCase.id).status != caseStatusClosed){                
                 caseIds.add(newCase.id);
             }
             // if cases are reopened, set Surveyworkflow flag to false
-            if(newCase.Status != 'Closed' && oldMap.get(newCase.id).status == 'Closed'){
+            if(newCase.Status != caseStatusClosed && oldMap.get(newCase.id).status == caseStatusClosed){
                 newCase.ExecuteCaseSurveyWorkflow__c = false;
             }
         }
@@ -713,7 +715,7 @@ This method identifies date of manufacture from the daycode
                 
                 System.debug('Values $$$$$$$$$$$$$$$$' + newCase.Origin + ' ' + newCase.Case_ISO_Country_Code__c + ' ' + oldMap.get(newCase.Id).Case_ISO_Country_Code__c + ' ' + newCase.Country_Name__c + ' ' + oldMap.get(newCase.Id).Country_Name__c);
                 // if case satisfies entry criteria, extract the required detais and update maps
-                if(newCase.Origin == 'Web North America' && newCase.Case_ISO_Country_Code__c != oldMap.get(newCase.Id).Case_ISO_Country_Code__c && newCase.Country_Name__c != oldMap.get(newCase.Id).Country_Name__c){
+                if(newCase.Origin == originNA && newCase.Case_ISO_Country_Code__c != oldMap.get(newCase.Id).Case_ISO_Country_Code__c && newCase.Country_Name__c != oldMap.get(newCase.Id).Country_Name__c){
                     caseUPC = CEC_CaseDescriptionParser.getCaseUPC(newCase.description);
                     // populate case maps
                     if(caseUPC != null){
@@ -746,7 +748,7 @@ This method identifies date of manufacture from the daycode
                 
                 for(case newCase: caseList){
                     
-                    if(newCase.Origin == 'Web North America' && newCase.Case_ISO_Country_Code__c != ''){
+                    if(newCase.Origin == originNA && newCase.Case_ISO_Country_Code__c != ''){
                         // update case product
                         if(caseUPCMap.get(newCase.Id) != null){
                             for(mdm_Case_Product__c caseProd : caseProdList){
@@ -775,7 +777,7 @@ This method identifies date of manufacture from the daycode
             }
             
         }Catch(Exception e ){
-            System.debug('An exception occurred: ' + e.getMessage());  
+            System.debug(exceptionMsg + e.getMessage());  
         }        
     }   
     
@@ -790,7 +792,7 @@ This method identifies date of manufacture from the daycode
             string caseEmail = '';
             string firstName = '', lastName = '';
             
-            if(aCase.Origin == 'Web North America'){
+            if(aCase.Origin == originNA){
                 try{
                     aCase.AccountId = null;
                     aCase.ContactId = null;
@@ -819,15 +821,25 @@ This method identifies date of manufacture from the daycode
                     
                     // update case brand
                     aCase.Brand__c = CEC_CaseDescriptionParser.getBrand(aCase.Description);
-                    
+
+                    //update account search information
+                    aCase.Search_First_Name__c = CEC_CaseDescriptionParser.getFirstName(aCase.Description);
+                    aCase.Search_Last_Name__c = CEC_CaseDescriptionParser.getLastName(aCase.Description);
+                    aCase.Search_Email__c = CEC_CaseDescriptionParser.getCaseEmail(aCase.Description);
+                    aCase.Search_Mailing_Street__c = CEC_CaseDescriptionParser.getPersonMailingStreet(aCase.Description);
+                    aCase.Search_Mailing_City__c = CEC_CaseDescriptionParser.getPersonMailingCity(aCase.Description);
+                    aCase.Search_Mailing_State_Province__c = CEC_CaseDescriptionParser.getPersonMailingState(aCase.Description);
+                    aCase.Search_Mailing_Zip_Postal_Code__c = CEC_CaseDescriptionParser.getPersonMailingPostalCode(aCase.Description);
+                    aCase.Search_Mailing_Country__c = CEC_CaseDescriptionParser.getPersonMailingCountry(aCase.Description);
+
                 }catch(Exception e ){
-                    System.debug('An exception occurred: ' + e.getMessage());  
+                    System.debug(exceptionMsg + e.getMessage());  
                 }
             }
         }
     }
     
-    private account updateAccountDetailsFromCaseDescription(Account accnt, string caseDescription){
+   /* private account updateAccountDetailsFromCaseDescription(Account accnt, string caseDescription){
         // fetch street Address
         accnt.PersonMailingStreet = CEC_CaseDescriptionParser.getPersonMailingStreet(caseDescription);
         // fetch City
@@ -840,7 +852,7 @@ This method identifies date of manufacture from the daycode
         accnt.PersonMailingCountry = CEC_CaseDescriptionParser.getPersonMailingCountry(caseDescription);
         
         return accnt;
-    }
+    }*/
     
     /******  END: Case description parsing *******/
     
@@ -878,14 +890,13 @@ This method identifies date of manufacture from the daycode
                 }
             } 
         }catch(Exception e ){
-            System.debug('An exception occurred: ' + e.getMessage());  
+            System.debug(exceptionMsg + e.getMessage());  
         }
     }
     
     public void updateCaseBrandAndSkillOnInsert(List<Case> newCaseList){
         set<string> emailSet = new set<string>();
         Map<Case, Map<String, Case>> emailMap2 = new Map<Case, Map<String, Case>>();
-        Map<String, String> emailAndSkillMap = new Map<String,String>();
         
         if(newCaseList!=null){
             System.debug('newCaseList~~~~~~~~'+newCaseList);
@@ -921,7 +932,7 @@ This method identifies date of manufacture from the daycode
                 }
             }
         }catch(Exception e ){
-            System.debug('An exception occurred: ' + e.getMessage());  
+            System.debug(exceptionMsg + e.getMessage());  
         }
     }
 }

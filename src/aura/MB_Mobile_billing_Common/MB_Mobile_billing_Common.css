@@ -1,0 +1,30 @@
+.THIS .select_option,.THIS .slds-select:focus,.THIS .slds-select:active{
+    background: #1766A6;
+    border-radius: 20px;
+    height: 42px;
+    color:#fff;
+}
+.THIS .slds-select_container {
+    position: relative;
+    width: 40%;
+    float: right;
+}
+.THIS .select_option{
+    padding-left: 30px !important;
+    border:0px;
+}
+.THIS .dropdown_chevron{
+    position: absolute;
+    right: 25px;
+    width: 15px;
+    top: 14px;
+}
+.THIS .slds-select_container:before,.THIS .slds-select_container:after	 {
+    border-bottom: 0;
+    top: 0;
+    bottom:0;
+    border-top:0;
+}
+.THIS .main-container1{
+    background-color:white;
+}

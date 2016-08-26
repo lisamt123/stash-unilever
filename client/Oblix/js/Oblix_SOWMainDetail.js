@@ -104,7 +104,8 @@ $(document).ready(function() {
           { "sWidth": "450px" },
           { "sWidth": "50px" },
           { "sWidth": "100px" }
-       ]
+       ],
+       'bPaginate' : false
     });
     $('#searchBox').on('keyup', function() {
         sowTable.search(this.value).draw();

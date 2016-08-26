@@ -143,6 +143,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Belgium</fullName>
                 <default>false</default>
             </picklistValues>
@@ -295,6 +299,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Panama</fullName>
                 <default>false</default>
             </picklistValues>
@@ -351,6 +359,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
@@ -364,6 +376,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
