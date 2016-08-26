@@ -1,4 +1,7 @@
 src
+src/reportTypes
+src/reportType/src/reportTypes/Activities_with_Account_and_Contacts.reportType
+src
 src/reports
 src/reports/unfiled$public-meta.xml
 src/reports/unfiled$public/Activity_Report_Top_Client_per_Manager.report
