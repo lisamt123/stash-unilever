@@ -10,6 +10,8 @@ public with sharing class Core_NC_NewsArticleHandler{
         try{
             List<FeedItem> feedItemsToInsert = new List<FeedItem>();
             
+
+            //test to get merge conflict
             String newsCentreAvatarId = CORE_NEWS_ARTICLE__c.getInstance('NEWS_ARTICLE_AVATAR_USER').Text_Value__c;
                  
             for(News_Article__c newsArticle : triggerNew){ 
