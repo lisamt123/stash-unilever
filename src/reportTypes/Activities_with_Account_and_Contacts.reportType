@@ -3,7 +3,7 @@
     <baseObject>Activity</baseObject>
     <category>activities</category>
     <deployed>false</deployed>
-    <description>FS - Activity with Account and Contact information for Food Solutions Russia (Visit Tracking Top Client)</description>
+    <description>FS - Activity with Account and Contact information for Food Solution Russia (Visit Tracking Top Client)</description>
     <label>FS - Activity with Account and Contact</label>
     <sections>
         <columns>
