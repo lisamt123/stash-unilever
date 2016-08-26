@@ -31,9 +31,7 @@ public with sharing class ICB_InventoryProducts_CC
         
         ICB_Inventory__c  inventory = new ICB_Inventory__c();
         List<ICB_Inventory_Line_Item__c> inventoryLineItem = new List<ICB_Inventory_Line_Item__c>();
-        List<Product2> product = new List<Product2>();
         contact contato = new contact();
-        List<User> userList = new List<User>();
         
         try
         {
@@ -47,7 +45,8 @@ public with sharing class ICB_InventoryProducts_CC
         }
         catch (Exception e)
         {
-            system.debug(Label.ICB_ERROR_MESSAGE + ' getProducts: ' +  e.getCause());
+            system.debug(Label.ICB_ERROR_MESSAGE +  e.getCause());
+           
         }
         system.debug('Exiting <inventoryLineItem>: '+ inventoryLineItem);
         return inventoryLineItem;
@@ -60,7 +59,7 @@ public with sharing class ICB_InventoryProducts_CC
     Throws [Exceptions]: Exception
     ********************************************************************/ 
     @AuraEnabled
-    public static void updateOperatorInventory(List<ICB_Inventory_Line_Item__c> lineItems)
+    public static List<ICB_Inventory_Line_Item__c> updateOperatorInventory(List<ICB_Inventory_Line_Item__c> lineItems)
     {
         System.debug('Entering <updateOperatorInventory>: ' + JSON.serializePretty(lineItems));
         try
@@ -71,13 +70,15 @@ public with sharing class ICB_InventoryProducts_CC
                 inventory.ICB_Quantity_ToBe_Updated__c = 0;
             }
             Database.update(lineItems);
-            
+            system.debug('Exiting <updateOperatorInventory>');
+            return lineItems;
         }
         catch(Exception e)
         {
              system.debug(Label.ICB_ERROR_MESSAGE  +  e.getCause());
+            system.debug('Exiting <updateOperatorInventory>');
+            return null;
         }
-        system.debug('Exiting <updateOperatorInventory>');
     }
     
     /*******************************************************************
@@ -100,9 +101,9 @@ public with sharing class ICB_InventoryProducts_CC
             
             strAccountName = ICB_AccountDAO.getInstance().getAccount(contato);
             
-            listPB = PriceBookEntryDAO.getInstance().getPricebook(strAccountName);            
-            
-        } 
+            listPB = PriceBookEntryDAO.getInstance().getPricebook(strAccountName);
+            system.debug('listPB:'+ listPB);
+          } 
         catch (Exception e) 
         {   
             system.debug(Label.ICB_ERROR_MESSAGE +  e.getCause());
@@ -119,18 +120,20 @@ public with sharing class ICB_InventoryProducts_CC
     Throws [Exceptions]: Exception
     ********************************************************************/
     @AuraEnabled
-    public static void updateValues(List<PriceBookEntry> listProduct) 
+    public static List<PriceBookEntry> updateValues(List<PriceBookEntry> listProduct) 
     {
         System.debug('Entering <updateValues>: '+ JSON.serializePretty(listProduct));
         try 
         {
-            Database.update(listProduct);       
+            Database.update(listProduct);
+            System.debug('Exiting <updateValues>');
+            return listProduct;
         } 
         catch (Exception e) 
         {
             system.debug(Label.ICB_ERROR_MESSAGE +  e.getCause());
+            System.debug('Exiting <updateValues>');
+            return null;
         }
-        System.debug('Exiting <updateValues>');
     }
-    
 }

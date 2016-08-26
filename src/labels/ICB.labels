@@ -366,13 +366,6 @@
         <value>Message Error:</value>
     </labels>
     <labels>
-        <fullName>ICB_TITLE_PRODUCT</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Title of the product</shortDescription>
-        <value>Product</value>
-    </labels>
-    <labels>
         <fullName>ICE_Type_Operator</fullName>
         <categories>Setup Ice Cream Operator</categories>
         <language>en_US</language>

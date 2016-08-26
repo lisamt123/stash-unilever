@@ -12,7 +12,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    Thiago Oliveira 05/08/2016  Class creation  
 ***********************************************************************/
-@isTest(seeAllData=true)
+@isTest
 public class ICB_InventoryProducts_CC_Test 
 {
     
@@ -24,7 +24,7 @@ public class ICB_InventoryProducts_CC_Test
     private static ICB_Inventory_Line_Item__c inventoryLineItem;
     private static PriceBook2 priceBook2;
     private static PriceBookEntry priceBookEntry;
-    private static String inventoryList;
+
     
     Static
     {
@@ -36,7 +36,6 @@ public class ICB_InventoryProducts_CC_Test
         inventoryLineItem = new ICB_Inventory_Line_Item__c();
         priceBook2 = new PriceBook2();
         priceBookEntry = new PriceBookEntry();
-        inventoryList = '';
     }
     
 	/*******************************************************************
@@ -47,7 +46,7 @@ public class ICB_InventoryProducts_CC_Test
     ********************************************************************/    
     static testMethod void ICB_getProducts_Test()
     {
-        List<ICB_Inventory_Line_Item__c> inventLineGetProductsCatch = new List<ICB_Inventory_Line_Item__c>();
+        List<ICB_Inventory_Line_Item__c> inventLine = new List<ICB_Inventory_Line_Item__c>();
         createInstances();
         System.runAs(user)
         {
@@ -55,9 +54,8 @@ public class ICB_InventoryProducts_CC_Test
             system.assert(inventoryLineItem != null);
         }
         
-        inventLineGetProductsCatch = null;
-        ICB_InventoryProducts_CC.getProducts();
-      
+       inventLine = ICB_InventoryProducts_CC.getProducts();
+        system.assert(inventLine.isEmpty());
     }
     /*******************************************************************
     Purpose: Test the method updateOperatorInventory, all scenarios
@@ -71,14 +69,15 @@ public class ICB_InventoryProducts_CC_Test
         createInstances();
         List<ICB_Inventory_Line_Item__c> inventLineCatch = new List<ICB_Inventory_Line_Item__c>();
         List<ICB_Inventory_Line_Item__c> inventLine = new List<ICB_Inventory_Line_Item__c>();
+        List<ICB_Inventory_Line_Item__c> inventLineGetreturnCatch = new List<ICB_Inventory_Line_Item__c>();
         
         inventLine.add(inventoryLineItem);
         ICB_InventoryProducts_CC.updateOperatorInventory(inventLine);
         system.assert(inventoryLineItem.ICB_Quantity_Unit__c == 51);
         
         inventLineCatch = null;
-        ICB_InventoryProducts_CC.updateOperatorInventory(inventLineCatch);
-        
+        inventLineGetreturnCatch = ICB_InventoryProducts_CC.updateOperatorInventory(inventLineCatch);
+        system.assert(inventLineGetreturnCatch == null);
     }
     /*******************************************************************
     Purpose: Test the method getProductPrice, all scenarios
@@ -88,16 +87,16 @@ public class ICB_InventoryProducts_CC_Test
     ********************************************************************/ 
     static testMethod void ICB_getProductPrice_Test()
     {
+        List<PriceBookEntry> pbRetrieveList = new List<PriceBookEntry>();
         createInstances();
-        List<PriceBookEntry> listPB = new List<PriceBookEntry>();
         System.runAs(user)
         {
             ICB_InventoryProducts_CC.getProductPrice();
             system.assert(priceBookEntry != null);
         }
-        listPB = null;
-        ICB_InventoryProducts_CC.getProductPrice();
-       
+        pbRetrieveList = ICB_InventoryProducts_CC.getProductPrice();
+        system.assert(pbRetrieveList.isEmpty());
+        
     }
     /*******************************************************************
     Purpose: Test the method updateValues, all scenarios
@@ -109,6 +108,8 @@ public class ICB_InventoryProducts_CC_Test
     {
         List<PriceBookEntry> listPBUpdate = new List<PriceBookEntry>();
         List<PriceBookEntry> listPBUpdateIf = new List<PriceBookEntry>();
+        List<PriceBookEntry> listPBUpdateretriveValue = new List<PriceBookEntry>();
+        
         createInstances();
         System.runAs(user)
         {
@@ -116,8 +117,9 @@ public class ICB_InventoryProducts_CC_Test
             system.assertNotEquals(null,[SELECT id from PriceBookEntry ORDER BY CreatedDate DESC LIMIT 1]);
             ICB_InventoryProducts_CC.updateValues(listPBUpdate);
         }
-       
-        ICB_InventoryProducts_CC.updateValues(listPBUpdateIf);
+        listPBUpdateIf = null;
+        listPBUpdateretriveValue =ICB_InventoryProducts_CC.updateValues(listPBUpdateIf);
+        system.assert(listPBUpdateretriveValue == null);
     }
     
     /*******************************************************************
@@ -128,6 +130,7 @@ public class ICB_InventoryProducts_CC_Test
     ********************************************************************/
      private static void createInstances()
     {
+        Id pricebookId = Test.getStandardPricebookId();
         acc = ICB_SobjectInstance_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
         contact = ICB_SobjectInstance_Test.insertContact('Test', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id, '');
         user = ICB_SobjectInstance_Test.insertUserPartnerCommunity('Partner Community',contact.Id, 'Test','acc','Testac', 'test@accenture.com', 'test@accenture.com.Unilever','testNick');
@@ -135,7 +138,6 @@ public class ICB_InventoryProducts_CC_Test
         inventory2 = ICB_SobjectInstance_Test.insertInventory('Catanduva Distribuidora');
         inventoryLineItem = ICB_SobjectInstance_Test.insertInventoryLineItem(product.Id, inventory2.Id,50,10);
         priceBook2 = ICB_SobjectInstance_Test.insertPriceBook2(product.Name);
-        priceBookEntry = ICB_SobjectInstance_Test.insertPriceBookEntry(product.Id,priceBook2.Id);
-        
+        priceBookEntry = ICB_SobjectInstance_Test.insertPriceBookEntry(product.Id,pricebookId);
     }
 }

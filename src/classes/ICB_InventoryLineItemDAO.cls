@@ -35,7 +35,9 @@ public with sharing class ICB_InventoryLineItemDAO {
                           ICB_Sales_Price__c,
                           ICB_Quantity_ToBe_Updated__c
                           FROM ICB_Inventory_Line_Item__c 
-                          WHERE ICB_Inventory__c =: inventoryParam.id AND ICB_Product__r.Family = 'Impulse'];
+                          WHERE ICB_Inventory__c =: inventoryParam.id 
+               			  AND ICB_Product__r.Family =: Label.ICB_FAMILY_IMPULSE 
+               			  AND ICB_Active__c =: true];
     }
      
     public List<ICB_Inventory_Line_Item__c> getProductInfo(Id productId) {
@@ -48,6 +50,6 @@ public with sharing class ICB_InventoryLineItemDAO {
     }
         
     public AggregateResult[] getInventoryReference() {
-        return [SELECT ICB_Inventory__c FROM ICB_Inventory_Line_Item__c GROUP BY ICB_Inventory__c]; 
+        return [SELECT ICB_Inventory__c FROM ICB_Inventory_Line_Item__c WHERE ICB_Active__c = TRUE GROUP BY ICB_Inventory__c]; 
     }    
 }

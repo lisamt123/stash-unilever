@@ -89,7 +89,7 @@ public class ICB_SobjectInstance_Test
         return doc;
     }
     /*******************************************************************
-    Purpose: Insert Account for using in test methods of classes: ICB_ImportVisits_Test, ICB_Cockpit_CC_Test
+    Purpose: Insert Account for using in test methods of classes: ICB_ImportVisits_Test, ICB_Cockpit_CC_Test,ICB_PhotoMobileChannel_Batch_Test
     Parameters: Name, recordTypeId
     Returns: [Account]
     Throws [Exceptions]: [NONE]  
@@ -103,17 +103,17 @@ public class ICB_SobjectInstance_Test
         return account;
     }
     /*******************************************************************
-    Purpose: Insert Account for using in test methods of classes: ICB_Cockpit_CC_Test
+    Purpose: Insert Account for using in test methods of classes: ICB_Cockpit_CC_Test,ICB_PhotoMobileChannel_Batch_Test
     Parameters: Name, recordTypeId,accountId
     Returns: [Account]
     Throws [Exceptions]: [NONE]  
     ********************************************************************/
-    public static Contact insertContact(String lastName, String recordTypeId, String accountId)
+    public static Contact insertContact(String lastName, String recordTypeId, String accountId, String IcbType)
     {
         Contact contact = new Contact(LastName = lastName,
                                       RecordTypeId = recordTypeId,
                                       AccountId = accountId,
-                                      ICB_Type__c = 'Operator'
+                                      ICB_Type__c = IcbType
                                      );
         insert contact;
         return contact;
@@ -137,98 +137,5 @@ public class ICB_SobjectInstance_Test
         return sales;
     }  
      
-    /*******************************************************************
-    Purpose: Insert User for using in test methods of classes: ICB_Cockpit_CC
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static User insertUserPartnerCommunity(String profileName,String contactId)
-    {
-        Profile profile = [Select Id From Profile Where Name =: profileName];
-        User user = new User(FirstName = 'Test',
-                             LastName = 'USER',
-                             Alias = 'tUser',
-                             Email = 'testUser@email.com',
-                             UserName = 'testUser@email.com.unilever',
-                             CommunityNickname = 'testUser',
-                             TimeZoneSidKey = 'America/Los_Angeles',
-                             LocaleSidKey = 'en_US',
-                             EmailEncodingKey = 'UTF-8',
-                             LanguageLocaleKey='en_US',
-                             ProfileId = profile.id,
-                             ContactId = contactId
-                            );
-        insert user;
-        return user;
-    }
-    /*******************************************************************
-    Purpose: Insert Product2 for using in test methods of classes: ICB_Cockpit_CC
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static Product2 insertProduct2(String name,String family,String image)
-    {
-        Product2 product = new Product2(Name = name, Family = family,Product_Image__c = image,isActive=true,ICB_Price__c = 3.60);
-        insert product;
-        return product;
-    }
-    /*******************************************************************
-    Purpose: Insert ICB_Inventory__c for using in test methods of classes: ICB_Cockpit_CC
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static ICB_Inventory__c insertInventory(String name)
-    {
-        ICB_Inventory__c inventory = new ICB_Inventory__c(Name = name);
-        insert inventory;
-        return inventory;
-    }
-    /*******************************************************************
-    Purpose: Insert ICB_Inventory_Line_Item__c for using in test methods of classes: ICB_Cockpit_CC
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static ICB_Inventory_Line_Item__c insertInventoryLineItem(String productId, String inventoryId,Decimal quantityUnit,Decimal quantityBoxes)
-    {
-        ICB_Inventory_Line_Item__c inventoryLineItem = new ICB_Inventory_Line_Item__c(	ICB_Product__c = productId,
-                                                                                        ICB_Inventory__c = inventoryId,
-                                                                                        ICB_Quantity_Unit__c = quantityUnit,
-                                                                                        ICB_Quantity_Boxes__c = quantityBoxes);
-        insert inventoryLineItem;
-        return inventoryLineItem;
-    }
-    /*******************************************************************
-    Purpose: Insert PriceBook2 for using in test methods of classes: ICB_Cockpit_CC
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static PriceBook2 insertPriceBook2(String name)
-    {
-        PriceBook2 priceBook2 = new PriceBook2(Name = name);
-        insert priceBook2;
-        return priceBook2;
-    }
-    /*******************************************************************
-    Purpose: Insert PriceBookEntry for using in test methods of classes: ICB_Cockpit_CC
-    Parameters: [NONE]
-    Returns: User
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static PriceBookEntry insertPriceBookEntry(String productId, String priceBook2Id)
-    {
-        PriceBookEntry priceBookEntry = new PriceBookEntry(Product2Id = productId,
-                                                           PriceBook2Id = priceBook2Id,
-                                                           UnitPrice = 3.90,
-                                                           UseStandardPrice = false,
-                                                           isActive=true,
-                                                           ICB_Purchase_Price__c = 4,
-                                                           ICB_Manufacture_Price__c = 4);
-        insert priceBookEntry;
-        return priceBookEntry;
-    }
+
 }
