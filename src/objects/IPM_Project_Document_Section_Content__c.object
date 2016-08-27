@@ -4759,6 +4759,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000Xd9l_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PRINCE 4_EU</label>
+        <queue>IPM_a7IE0000000Xd9l</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Project_Document_Section_Content</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>

@@ -6314,7 +6314,18 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Orders_Queue_Case</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
         <filterScope>Queue</filterScope>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>CEC North America Orders Queue</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Nexxus Returns,Nexxus Exchanges,Nexxus Cancellation</value>
+        </filters>
         <label>CEC North America Orders Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Orders_Queue</queue>
