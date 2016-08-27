@@ -101,7 +101,7 @@ public with sharing class ICB_InventoryProducts_CC
             
             strAccountName = ICB_AccountDAO.getInstance().getAccount(contato);
             
-            listPB = PriceBookEntryDAO.getInstance().getPricebook(strAccountName);
+            listPB = ICB_PriceBookEntryDAO.getInstance().getPricebook(strAccountName);
             system.debug('listPB:'+ listPB);
           } 
         catch (Exception e) 

@@ -19,7 +19,6 @@ public class ICB_Cockpit_CC_Test
     private static Contact contactOperator;
     private static Contact contactSales;
     private static User userOperator;
-    private static User userSales;
     private static Product2 product;
     private static ICB_Inventory__c inventory;
     private static PriceBook2 priceBook2;
@@ -33,7 +32,6 @@ public class ICB_Cockpit_CC_Test
         contactOperator = new Contact();
         contactSales = new Contact();
         userOperator = new User();
-        userSales = new User();
         product = new Product2();
         inventory = new ICB_Inventory__c();
         priceBook2 = new PriceBook2();
@@ -225,7 +223,7 @@ public class ICB_Cockpit_CC_Test
         contactSales = ICB_SobjectInstance_SP2_Test.insertContact('Test Sales', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id,'Ice Cream Salesman');
         userOperator = ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactOperator.Id,'Test Operator','User OP','tuop','user.operator@email.com',
                                                                            'user.operator@unilever.com','testOperator');
-        userSales = ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
+        ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
                                                                            'user.sales@unilever.com','testSales');
         
         product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png');

@@ -11,7 +11,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    	Antonio Raul 	25/08/2016  Class creation 
 ***********************************************************************/
-public with sharing class ICB_Cockpit_CC_DAO 
+public class ICB_Cockpit_CC_DAO 
 {
     private static final String CONST_STAGE_CLOSED;
     private static final String CONST_STAGE_PENDING;

@@ -64,7 +64,9 @@ public class ICB_PriceBookCreation {
                     updateInventory(false, ICB_InventoryLineItemDAO.getInstance().getProductInfo(prod.Id), iltList);
                 }
             }
+            
         } catch (Exception e) {
+            
             system.debug(LABEL.ICB_ERROR_MESSAGE + e.getMessage());
             system.debug('Exiting <changeProductStructure>: ');
         }

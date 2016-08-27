@@ -33,10 +33,12 @@ private static Account acc;
         ids.add(products2.id);
         ids2.add(product.id);
         system.debug('priceBook2:'+ priceBook2);
-        ICB_PriceBookCreation.changeProductStructure(ids);
-        
-        ICB_PriceBookCreation.changeProductStructure(ids2);
-        
+        List<ICB_Inventory_Line_Item__c> ivLine = new List<ICB_Inventory_Line_Item__c>();
+        List<ICB_Inventory_Line_Item__c> ivLine3 = new List<ICB_Inventory_Line_Item__c>();
+       	ivLine = ICB_PriceBookCreation.changeProductStructure(ids);
+        system.assert(ivLine != null);
+        ivLine3 = ICB_PriceBookCreation.changeProductStructure(ids2);
+        system.assert(ivLine3 != null);
         
         /*
         String idProd;
@@ -73,6 +75,8 @@ private static Account acc;
     static testMethod void ICB_changeProductStructure2_test()
     {
         ICB_PriceBookCreation Price= new ICB_PriceBookCreation();
+        
+        List<ICB_Inventory_Line_Item__c> ivLine2 = new List<ICB_Inventory_Line_Item__c>();
         List<id> ids2 = new List<id>();
         Product2[] vProducts = new List<Product2> {new Product2(Name = 'Frutare Manga',
                                                                 Family = 'Impulse',
@@ -84,8 +88,8 @@ private static Account acc;
                                                                                                    
         Database.SaveResult[] srList = Database.insert(vProducts, false);
         ids2.add(null);
-        ICB_PriceBookCreation.changeProductStructure(ids2);
-        
+        ivLine2 = ICB_PriceBookCreation.changeProductStructure(ids2);
+        system.assert(ivLine2 == null);
     }
     /*******************************************************************
     Purpose: Method to instance all objects used for tests

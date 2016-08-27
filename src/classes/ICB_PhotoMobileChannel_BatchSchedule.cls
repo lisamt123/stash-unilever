@@ -6,9 +6,9 @@ Copyright © 2016 Salesforce
 Purpose:
 This class scheduler the daily add photo in user.
 /************ Code to schedule ***************
-ICB_CalculatePlanDistance_BatchSchedule sch = new ICB_CalculatePlanDistance_BatchSchedule();
+ICB_PhotoMobileChannel_BatchSchedule sch = new ICB_PhotoMobileChannel_BatchSchedule();
 String cron = '0 0 * * * ?';
-system.schedule('ICB_CalculatePlanDistance_BatchSchedule', cron, sch);
+system.schedule('Setup Photo', cron, sch);
 ********************************************************
 ======================================================
 ======================================================

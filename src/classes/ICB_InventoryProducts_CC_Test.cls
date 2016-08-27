@@ -22,7 +22,6 @@ public class ICB_InventoryProducts_CC_Test
     private static Product2 product;
     private static ICB_Inventory__c inventory2;
     private static ICB_Inventory_Line_Item__c inventoryLineItem;
-    private static PriceBook2 priceBook2;
     private static PriceBookEntry priceBookEntry;
 
     
@@ -34,7 +33,6 @@ public class ICB_InventoryProducts_CC_Test
         product = new Product2();
         inventory2 = new ICB_Inventory__c();
         inventoryLineItem = new ICB_Inventory_Line_Item__c();
-        priceBook2 = new PriceBook2();
         priceBookEntry = new PriceBookEntry();
     }
     
@@ -137,7 +135,7 @@ public class ICB_InventoryProducts_CC_Test
         product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png');
         inventory2 = ICB_SobjectInstance_SP2_Test.insertInventory('Catanduva Distribuidora');
         inventoryLineItem = ICB_SobjectInstance_SP2_Test.insertInventoryLineItem(product.Id, inventory2.Id,50,10);
-        priceBook2 = ICB_SobjectInstance_SP2_Test.insertPriceBook2(product.Name);
+        ICB_SobjectInstance_SP2_Test.insertPriceBook2(product.Name);
         priceBookEntry = ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,pricebookId);
     }
 }

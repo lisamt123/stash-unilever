@@ -12,7 +12,7 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.1    Antonio Raul 25/08/2016  Class Updated  
  1.0    Thiago Oliveira 24/08/2016  Class creation  
 ***********************************************************************/
-global class ICB_PhotoMobileChannel_Batch implements DataBase.Batchable<Sobject> 
+global with sharing class ICB_PhotoMobileChannel_Batch implements DataBase.Batchable<Sobject> 
 {
     
     private static List<String> idRecord;

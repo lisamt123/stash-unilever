@@ -34,7 +34,6 @@ public with sharing class ICB_Cockpit_CC
     private static final String CONST_TYPE_CONTACT_OPERATOR;
     //private static Id idRecTypeStandard;
     private static Map<Id,Contact> mapContact;
-    private static Map<String,Id> mapOptions;
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem;
     private static Map<Id, String> mapUserPhoto;
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapInventory;
@@ -60,7 +59,6 @@ public with sharing class ICB_Cockpit_CC
         CONST_TYPE_LIST = 'List<ICB_Wrapper_Cockpit_CC>';
         CONST_TYPE_CONTACT_SALES = 'Ice Cream Salesman';
         CONST_TYPE_CONTACT_OPERATOR = 'Operator';
-        mapOptions = new Map<String,Id>();
         mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
         mapUserPhoto = new Map<Id, String>();
         mapInventory = new Map<String,ICB_Wrapper_Cockpit_CC>();

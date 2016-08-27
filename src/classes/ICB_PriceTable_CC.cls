@@ -10,13 +10,13 @@ global class ICB_PriceTable_CC {
         String strContactId 	= null;
         
         try {
-            strContactId = ContactDAO.getInstance().getContactId(UserInfo.getUserId());
+            strContactId = ICB_ContactDAO.getInstance().getContactId(UserInfo.getUserId());
             
-            Contact contato = ContactDAO.getInstance().getContact(strContactId);
+            Contact contato = ICB_ContactDAO.getInstance().getContact(strContactId);
             
-            strAccountName = AccountDAO.getInstance().getAccount(contato);
+            strAccountName = ICB_AccountDAO.getInstance().getAccount(contato);
             
-            listPB = PriceBookEntryDAO.getInstance().getPricebook(strAccountName);            
+            listPB = ICB_PriceBookEntryDAO.getInstance().getPricebook(strAccountName);            
             
         } catch (Exception e) {   
             system.debug('Method getProducts error: ' + e.getCause());
