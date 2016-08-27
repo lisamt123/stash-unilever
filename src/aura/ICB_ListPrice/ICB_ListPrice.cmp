@@ -1,0 +1,110 @@
+<aura:component controller="ICB_InventoryProducts_CC" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+	
+    <!-- Handlers --> 
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <!-- Attributes --> 
+    <aura:attribute name="valueUnitPrice" type="String" />
+    <aura:attribute name="products" type="PriceBookEntry[]" />
+	<aura:attribute name="listSize" type="Integer" />
+    <aura:attribute name="HeaderTitle"  type="String"/>
+    
+    <!-- CSS --> 
+    <ltng:require styles="{!$Resource.ICB_SLDS202_CSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    
+    <!-- Component Header -->
+    <c:ICB_PriceTaBleHeader productList="{!v.products}" qtdProducts="{!v.listSize}" HeaderTitle="{!v.HeaderTitle}"/>
+    
+    <!-- Component Body --> 
+    <table class="slds-table slds-table--bordered slds-max-medium-table--stacked" >
+        <!-- Header --> 
+        <thead>
+            <tr class="slds-text-heading--label">
+                <th scope="col">
+                    <div class="slds-truncate" title="{!$Label.c.ICB_TITLE_PRODUCT}">{!$Label.c.ICB_TITLE_PRODUCT}</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="{!$Label.c.ICB_PROD_DESCRIPTION}">{!$Label.c.ICB_PROD_DESCRIPTION}</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="{!$Label.c.ICB_PROD_SALE_VALUE}">{!$Label.c.ICB_PROD_PURCHASE_VALUE}</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="{!$Label.c.ICB_PROD_SALESMAN_VALUE}">{!$Label.c.ICB_PROD_SALESMAN_VALUE}</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="{!$Label.c.ICB_PROD_SALE_VALUE}">{!$Label.c.ICB_PROD_SALE_VALUE}</div>
+                </th>
+            </tr>
+        </thead>
+        <!-- Body --> 
+        <tbody>
+            <aura:iteration items="{!v.products}" var="produto" indexVar="index" >
+                <tr class="slds-hint-parent" >
+                    <td class="slds-truncate" scope="row" data-label="Product Image">
+                        &nbsp;&nbsp;&nbsp;<img  src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/'+produto.Product2.Product_Image__c}" class="Image" />
+                    </td>
+                    <td class="slds-truncate" data-label="Product Name">
+                        <ui:outputText aura:id="productName"
+                                       value="{!produto.Product2.Name}"/>
+                    </td>
+                    
+                    <td class="slds-hint-parent" data-label="Manufacture Price">
+                        <div class="slds-grid slds-grid--pull-padded">
+                            <div class="slds-truncate btnCollor" data-label="Sale Value" data-record="{!index}" onclick="{!c.decreaseManufacturePrice}">
+                                <ui:button aura:id="btnDecreasePurchase" >
+                                    <img id="btnDecreasePurchase" src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/dash_60.png'}" class="dimension"/>
+                                </ui:button>
+                            </div>
+                            <div  class="buttondimension">
+                                <ui:inputNumber format="0.00" class="inputBox" aura:id="purschaseValue" value="{!produto.ICB_Manufacture_Price__c}"/>
+                            </div>
+                            <div  class="slds-truncate btnCollor" scope="row" data-label="Sale Value" data-record="{!index}" onclick="{!c.increaseManufacturePrice}">
+                                <ui:button aura:id="btnIncreasePurchase">
+                                    <img id="purschaseValue" src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/add_60.png'}" class="dimension"  />
+                                </ui:button>
+                            </div>
+                        </div>
+                        
+                    </td>
+                    
+                    <td class="slds-hint-parent" data-label="Valor de Compra">
+                        <div class="slds-grid slds-grid--pull-padded">
+                            <div class="slds-truncate btnCollor" data-label="Sale Value" data-record="{!index}" onclick="{!c.decreasePurchase}">
+                                <ui:button aura:id="btnDecreasePurchase" >
+                                    <img id="btnDecreasePurchase" src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/dash_60.png'}" class="dimension"/>
+                                </ui:button>
+                            </div>
+                            <div  class="buttondimension">
+                                <ui:inputNumber format="0.00" class="inputBox" aura:id="purschaseValue" value="{!produto.ICB_Purchase_Price__c}"/>
+                            </div>
+                            <div  class="slds-truncate btnCollor" scope="row" data-label="Sale Value" data-record="{!index}" onclick="{!c.increasePurchase}">
+                                <ui:button aura:id="btnIncreasePurchase">
+                                    <img id="purschaseValue" src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/add_60.png'}" class="dimension"  />
+                                </ui:button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="slds-hint-parent" data-label="Valor de Venda">
+                        <div class="slds-grid slds-grid--pull-padded">
+                            <div class="slds-truncate btnCollor" data-label="Sale Value" data-record="{!index}" onclick="{!c.decreaseSalesPrice}">
+                                <ui:button aura:id="decreaseButton">
+                                    <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/dash_60.png'}" class="dimension"  />
+                                </ui:button>
+                            </div>
+                            <div  class="buttondimension">
+                                <ui:inputNumber format="0.00" class="inputBox" aura:id="purschaseValue" value="{!produto.UnitPrice}"/>
+                            </div>
+                            <div  class="slds-truncate btnCollor" scope="row" data-label="Sale Value" data-record="{!index}" onclick="{!c.increaseSalesPrice}">
+                                <ui:button aura:id="increaseButton">
+                                    <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/add_60.png'}" class="dimension"  />
+                                </ui:button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </aura:iteration> 
+        </tbody>
+    </table>
+    
+</aura:component>
