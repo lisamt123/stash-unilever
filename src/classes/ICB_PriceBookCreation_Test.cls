@@ -36,9 +36,9 @@ private static Account acc;
         List<ICB_Inventory_Line_Item__c> ivLine = new List<ICB_Inventory_Line_Item__c>();
         List<ICB_Inventory_Line_Item__c> ivLine3 = new List<ICB_Inventory_Line_Item__c>();
        	ICB_PriceBookCreation.changeProductStructure(ids);
-        
+         system.assert(product.IsActive ==true);
         ICB_PriceBookCreation.changeProductStructure(ids2);
-        
+        system.assert(products2.IsActive ==true);
         
         /*
         String idProd;
@@ -78,18 +78,14 @@ private static Account acc;
         
         List<ICB_Inventory_Line_Item__c> ivLine2 = new List<ICB_Inventory_Line_Item__c>();
         List<id> ids2 = new List<id>();
-        Product2[] vProducts = new List<Product2> {new Product2(Name = 'Frutare Manga',
-                                                                Family = 'Impulse',
-                                                                IsActive = true), new Product2(Name = 'Frutare Test',
-                                                                                               Family = 'Impulse',
-                                                                                               IsActive = false) };
+        Product2 vProducts = new Product2(Name = 'Frutare Manga', Family = 'Impulse');
                                                                                                    
                                                                                                    
                                                                                                    
-        Database.SaveResult[] srList = Database.insert(vProducts, false);
+        Database.insert(vProducts);
         ids2.add(null);
         ICB_PriceBookCreation.changeProductStructure(ids2);
-        
+        system.assert(vProducts.IsActive != true);
     }
     /*******************************************************************
     Purpose: Method to instance all objects used for tests

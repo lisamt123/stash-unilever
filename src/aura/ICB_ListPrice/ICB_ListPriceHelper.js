@@ -29,7 +29,7 @@
         if (selectedStore.UnitPrice > 0.99){
             selectedStore.UnitPrice -= 1.00;
         } else {
-             if (selectedStore.UnitPrice <= 0.99 & selectedStore.UnitPrice >= 0.01){
+             if (selectedStore.UnitPrice <= 0.99 && selectedStore.UnitPrice >= 0.01){
              	selectedStore.UnitPrice -= 0.01;
              }
         }
@@ -58,7 +58,7 @@
        if (selectedStore.ICB_Purchase_Price__c > 0.99){
             selectedStore.ICB_Purchase_Price__c -= 1.00;
         } else {
-             if (selectedStore.ICB_Purchase_Price__c < 0.99 & selectedStore.ICB_Purchase_Price__c > 0.01){
+             if (selectedStore.ICB_Purchase_Price__c < 0.99 && selectedStore.ICB_Purchase_Price__c > 0.01){
              	selectedStore.ICB_Purchase_Price__c -= 0.01;
              }
         }
@@ -86,7 +86,7 @@
         if (selectedStore.ICB_Manufacture_Price__c > 0.99){
             selectedStore.ICB_Manufacture_Price__c -= 1.00;
         } else {
-             if (selectedStore.ICB_Manufacture_Price__c < 0.99 & selectedStore.ICB_Manufacture_Price__c > 0.01){
+             if (selectedStore.ICB_Manufacture_Price__c < 0.99 && selectedStore.ICB_Manufacture_Price__c > 0.01){
              	selectedStore.ICB_Manufacture_Price__c -= 0.01;
              }
         }

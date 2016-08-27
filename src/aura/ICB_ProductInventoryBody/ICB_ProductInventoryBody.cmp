@@ -1,0 +1,65 @@
+<aura:component controller="ICB_InventoryProducts_CC" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="GLOBAL">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="Inventory" type="ICB_Inventory_Line_Item__c[]"/>
+    <aura:attribute name="whichButton" type="String" />
+    <aura:attribute name="count" type="Integer"/>
+    <aura:attribute name="HeaderTitle"  type="String"/>
+    <aura:attribute name="HeaderProductInventory" type="Boolean"  default="true"/>
+    <ltng:require styles="{!$Resource.ICB_SLDS202_CSS +'/assets/styles/salesforce-lightning-design-system.css'}"/>
+    <c:ICB_MobileChamelHeader Inventory='{!v.Inventory}' count='{!v.count}' HeaderTitle="{!v.HeaderTitle}" HeaderProductInventory="{!v.HeaderProductInventory}"/>
+    <table class="slds-table slds-table--bordered slds-max-medium-table--stacked" >
+        <thead>
+            <tr class="slds-text-heading--label">
+                <th  scope="col">
+                    <div class="slds-truncate"></div>
+                </th>
+                <th  scope="col">
+                    <div class="slds-truncate" title= "{!$Label.c.ICB_INVENTORY}">{!$Label.c.ICB_INVENTORY_NAME}</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title= "{!$Label.c.ICB_BALANCE_UNIT}">{!$Label.c.ICB_BALANCE_UNIT}</div>
+                </th>
+                <th  scope="col">
+                    <div class="slds-truncate" title= "{!$Label.c.ICB_ENTRY}" >{!$Label.c.ICB_ENTRY}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.Inventory}" var="item" indexVar="index"> 
+                <tr class="slds-hint-parent">
+                    <td class="slds-truncate" scope="row" data-label="">
+                        <!--<img src="{!$Resource.Fruttare_coco}"/>-->
+                        &nbsp;&nbsp;&nbsp;<img  src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/'+item.ICB_Product__r.Product_Image__c}" class="Image" />
+                    </td>
+                    <td class="slds-truncate" data-label="{!$Label.c.ICB_INVENTORY_NAME}">
+                        <ui:outputText aura:id="ProductDescription"
+                                       value="{!item.ICB_Product__r.Name}"/>
+                    </td>
+                    <td class="slds-truncate" data-label="{!$Label.c.ICB_BALANCE_UNIT}">
+                        <ui:outputNumber aura:id="ProductUnitOut"
+                                         value="{!item.ICB_Quantity_Unit__c}"/>
+                    </td>
+                    <td class="slds-hint-parent" data-label="{!$Label.c.ICB_ENTRY}">
+                        <div class="slds-grid slds-grid--pull-padded Align">
+                            <div  class="slds-truncate btnCollor " data-record="{!index}" onclick="{!c.negativeAdd}">
+                                <ui:button >
+                                    <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/dash_60.png'}"  class="dimension" />
+                                </ui:button>
+                            </div>
+                            <div align="center" class="buttondimension"  >
+                                <ui:inputNumber class="inputBox" aura:id="ProductUnit" 
+                                                value="{!item.ICB_Quantity_ToBe_Updated__c}">
+                                </ui:inputNumber>
+                            </div>
+                            <div  class="slds-truncate btnCollor" data-record="{!index}" onclick="{!c.posiviteAdd}">
+                                <ui:button aura:id="pos" press="{!c.whatButton}" >
+                                    <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/add_60.png'}"  class="dimension" />
+                                </ui:button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+</aura:component>

@@ -9,11 +9,8 @@
         action.setCallback(this,function(response){
             var contactsList = response.getReturnValue();
             var state = response.getState();
-            if(contactsList != null){
-                if((contactsList.length > 0) && (component.isValid() && state === "SUCCESS"))
-                {
-                    component.set("v.listContacts", contactsList);        
-                }
+            if((contactsList != null) && (contactsList.length > 0) && (component.isValid() && state === "SUCCESS")){
+               component.set("v.listContacts", contactsList);        
             }
         });
         $A.enqueueAction(action);
@@ -31,18 +28,15 @@
         action.setCallback(this,function(response){
             var state = response.getState();
             var listPricebook = response.getReturnValue();
-            if(listPricebook != null){
-                if((listPricebook.length > 0) && (component.isValid() && state === "SUCCESS")){
-                    component.set("v.inventoryList",listPricebook);
-                   
-                    for(var i=0; i < listPricebook.length; i++){
-                        if(listPricebook[i].quantityMin > 0){
-                            var listContact = component.get("v.listContacts");
-                            listContact[indexContact].isDisabled = false;
-                            component.set("v.listContacts",listContact);
-                        }
+            if((listPricebook != null) && (listPricebook.length > 0) && (component.isValid() && state === "SUCCESS")){
+                component.set("v.inventoryList",listPricebook);
+                for(var i=0; i < listPricebook.length; i++){
+                    if(listPricebook[i].quantityMin > 0){
+                        var listContact = component.get("v.listContacts");
+                        listContact[indexContact].isDisabled = false;
+                        component.set("v.listContacts",listContact);
                     }
-                } 
+                }
             }
             component.set("v.listContacts",list);
         });

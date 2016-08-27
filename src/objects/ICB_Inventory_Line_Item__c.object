@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Indicates the total inventory by product related to a operator.</description>
@@ -52,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -96,6 +98,7 @@
     </fields>
     <fields>
         <fullName>ICB_Purchase_Price__c</fullName>
+        <defaultValue>00.00</defaultValue>
         <description>Price paid to Unilever by product.</description>
         <externalId>false</externalId>
         <label>Purchase Price</label>
@@ -109,6 +112,7 @@
     </fields>
     <fields>
         <fullName>ICB_Quantity_Boxes__c</fullName>
+        <defaultValue>00.00</defaultValue>
         <description>Indicates the number of boxes of products available to sales.</description>
         <externalId>false</externalId>
         <label>Quantity (Boxes)</label>
@@ -122,6 +126,7 @@
     </fields>
     <fields>
         <fullName>ICB_Quantity_ToBe_Updated__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>Field used to store the value to be updated after added some product line item.</description>
         <externalId>false</externalId>
         <label>Quantity Updated</label>
@@ -135,6 +140,7 @@
     </fields>
     <fields>
         <fullName>ICB_Quantity_Unit__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>Indicate the total unit inventory by product.</description>
         <externalId>false</externalId>
         <label>Quantity (Unit)</label>
@@ -148,6 +154,7 @@
     </fields>
     <fields>
         <fullName>ICB_Sales_Price__c</fullName>
+        <defaultValue>0.00</defaultValue>
         <description>Price applied to ice cream salesman sell the product.</description>
         <externalId>false</externalId>
         <label>Sales Price</label>
@@ -161,6 +168,7 @@
     </fields>
     <fields>
         <fullName>ICB_Unit_Convertion__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>Factor to convert boxes in to units.</description>
         <externalId>false</externalId>
         <label>Unit Convertion</label>
