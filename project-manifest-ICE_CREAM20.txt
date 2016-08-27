@@ -71,6 +71,15 @@ src/labels
 src/labels/ICB.labels
 src/networks
 src/networks/Mobile Channel.network
+src/triggers
+src/triggers/ICB_FeedItemMobileChannel.trigger
+src/triggers/ICB_FeedItemMobileChannel.trigger-meta.xml
+src/triggers/ICB_Setup_Mobile_Channel.trigger
+src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
+src/triggers/ICB_SetupMobileChannelPhoto.trigger
+src/triggers/ICB_SetupMobileChannelPhoto.trigger-meta.xml
+src/triggers/ICB_SetupPhotoMobileChannel.trigger
+src/triggers/ICB_SetupPhotoMobileChannel.trigger-meta.xml
 src/aura
 src/aura/ICB_CloseSale/ICB_CloseSale.cmp
 src/aura/ICB_CloseSale/ICB_CloseSale.cmp-meta.xml
