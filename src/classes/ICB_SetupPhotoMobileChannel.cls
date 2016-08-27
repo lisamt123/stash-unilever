@@ -10,7 +10,7 @@ History
 VERSION AUTHOR 				DATE 		DETAIL Description
 1.0 	RONALDO GARCIA		20/08/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
-public without sharing class ICB_SetupPhotoMobileChannel
+public with sharing class ICB_SetupPhotoMobileChannel
 {
     
     public static final ICB_SetupPhotoMobileChannel instance = new ICB_SetupPhotoMobileChannel();
@@ -37,8 +37,6 @@ public without sharing class ICB_SetupPhotoMobileChannel
         String 	strBody 			= null; // Store the post content used to retrieve the hastag used to initiate the process. 
         String 	strCheckHashtag		= Label.ICB_CHECK_HASHTAG; // Store the variable used to entry in the condition. 
         Id 		idContact 			= null; // Store the contact id to retrieve the related user which will be used to reset the photo. 
-        Id 		idDocument 			= null; // Store the content document id which will be used to set the photo on profile. 
-        Id		idFedd				= null; // Store the feedItem id wich will be used to set photo on profile.
         
         // Retrieve the feed
         for(FeedItem fi : feed)

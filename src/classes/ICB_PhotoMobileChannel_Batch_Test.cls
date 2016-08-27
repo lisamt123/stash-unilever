@@ -16,24 +16,16 @@ public class ICB_PhotoMobileChannel_Batch_Test
 {
 
     private static Account acc;
-    private static Contact contactOperator;
     private static Contact contactSales;
-    private static User userOperator;
-    private static User userSales;
     private static FeedItem feedSales;
     private static ContentVersion contentSales;
-    private static ICB_Setup_Photo__c setupPhoto;
     
      Static
     {
         acc = new Account();
-        contactOperator = new Contact();
         contactSales = new Contact();
-        userOperator = new User();
-        userSales = new User();
         feedSales = new FeedItem();
         contentSales = new ContentVersion();
-        setupPhoto = new ICB_Setup_Photo__c();
     }
     /*******************************************************************
     Purpose: Method for test batch ICB_PhotoMobileChannel_Batch
@@ -63,11 +55,11 @@ public class ICB_PhotoMobileChannel_Batch_Test
     {
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
         contactSales = ICB_SobjectInstance_SP2_Test.insertContact('Test Sales', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id,'Ice Cream Salesman');
-        userSales = ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
+        ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
                                                                            'user.sales@unilever.com','testSales');
         contentSales = insertContentVersionFeedItem('Test', 'test.png', Blob.valueOf('Test'));
         feedSales = insertFeedItem(contactSales.Id, contentSales.Id, '#foto');
-        setupPhoto = insertSetupPhoto(feedSales);
+        insertSetupPhoto(feedSales);
     }
       /*******************************************************************
     Purpose: Insert ContentVersion for using in test methods of classes: ICB_PhotoMobileChannel_Batch_Test

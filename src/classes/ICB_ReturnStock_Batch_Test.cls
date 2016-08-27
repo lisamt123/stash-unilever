@@ -23,7 +23,6 @@ public class ICB_ReturnStock_Batch_Test
     ********************************************************************/
     public static testMethod void myUniTest()
     {
-        String cronExp = '0 0 0 15 12 ? 2050';
         createInstances();
         System.Test.startTest();
         

@@ -105,7 +105,7 @@ public class ICB_PriceBookCreation {
             system.debug('Entering <PriceBookcreation>' + value);
             Map<Id, Set<String>> mapProductPB 			= new Map<Id, Set<String>>();
             List<PricebookEntry> pbeList 				= new List<PricebookEntry>();
-            List<PriceBookEntry> listPriceBook 			= PriceBookEntryDAO.getInstance().getPricebookEntry(value);
+            List<PriceBookEntry> listPriceBook 			= ICB_PriceBookEntryDAO.getInstance().getPricebookEntry(value);
             system.debug('listPriceBook:'+ listPriceBook);
             for(PriceBookEntry vPBEntry : listPriceBook)
             {
@@ -122,7 +122,7 @@ public class ICB_PriceBookCreation {
                 
             }
             
-            for(PriceBook2 vPB2 : PriceBookEntryDAO.getInstance().getActivePricebook(value)) 
+            for(PriceBook2 vPB2 : ICB_PriceBookEntryDAO.getInstance().getActivePricebook(value)) 
             {
                 system.debug('vPB2:'+ vPB2);
                 Set<String> lista = mapProductPB.get(vPB2.Id);

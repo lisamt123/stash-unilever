@@ -17,7 +17,6 @@ global with sharing class ICB_PhotoMobileChannel_Batch implements DataBase.Batch
     
     private static List<String> idRecord;
     private static List<String> idParent;
-    private static List<String> idFeed;
     private static Map<Id,user> userMap;
     private static Map<Id,ICB_Setup_Photo__c> idsSetup;
     
@@ -25,7 +24,6 @@ global with sharing class ICB_PhotoMobileChannel_Batch implements DataBase.Batch
     {
         idRecord = new List<String>();
         idParent = new List<String>();
-        idFeed = new List<String>();
         userMap = new Map<Id,user>();
         idsSetup = new Map<Id,ICB_Setup_Photo__c>();
     }
@@ -68,7 +66,7 @@ global with sharing class ICB_PhotoMobileChannel_Batch implements DataBase.Batch
                     imageProfile.cropX 		= 10;
                     imageProfile.cropY 		= 10;
                     imageProfile.fileId 	= cont.ContentDocumentId; 
-                    ConnectApi.Photo photo = ConnectApi.UserProfiles.setPhotoWithAttributes(null, userMap.get(idsSetup.get(cont.Id).ICB_Parent_Id__c).Id, imageProfile); 
+                    ConnectApi.UserProfiles.setPhotoWithAttributes(null, userMap.get(idsSetup.get(cont.Id).ICB_Parent_Id__c).Id, imageProfile); 
                 }
             }
             
@@ -82,7 +80,11 @@ global with sharing class ICB_PhotoMobileChannel_Batch implements DataBase.Batch
         system.debug('Exiting <execute>: ');
     }
     
-    global void finish(Database.BatchableContext BC){}
+    global void finish(Database.BatchableContext BC)
+    {
+        System.debug('Entering <finish>: ');
+        system.debug('Exiting <finish>: ');
+    }
     
     /*******************************************************************
      Purpose: This method set variables for using in batch.

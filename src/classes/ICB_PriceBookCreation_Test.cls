@@ -35,10 +35,10 @@ private static Account acc;
         system.debug('priceBook2:'+ priceBook2);
         List<ICB_Inventory_Line_Item__c> ivLine = new List<ICB_Inventory_Line_Item__c>();
         List<ICB_Inventory_Line_Item__c> ivLine3 = new List<ICB_Inventory_Line_Item__c>();
-       	ivLine = ICB_PriceBookCreation.changeProductStructure(ids);
-        system.assert(ivLine != null);
-        ivLine3 = ICB_PriceBookCreation.changeProductStructure(ids2);
-        system.assert(ivLine3 != null);
+       	ICB_PriceBookCreation.changeProductStructure(ids);
+        
+        ICB_PriceBookCreation.changeProductStructure(ids2);
+        
         
         /*
         String idProd;
@@ -88,8 +88,8 @@ private static Account acc;
                                                                                                    
         Database.SaveResult[] srList = Database.insert(vProducts, false);
         ids2.add(null);
-        ivLine2 = ICB_PriceBookCreation.changeProductStructure(ids2);
-        system.assert(ivLine2 == null);
+        ICB_PriceBookCreation.changeProductStructure(ids2);
+        
     }
     /*******************************************************************
     Purpose: Method to instance all objects used for tests

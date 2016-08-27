@@ -1,12 +1,10 @@
 /**********************************************************************
-Name: ICB_CalculatePlanDistaance_Batch
+Name: ICB_ReturnStock_Batch
 Copyright © 2016 Salesforce
 ======================================================
 ======================================================
 Purpose:
-Esta classe realiza o calculo da distancia planejada 
-onde a distancia da visita anterior até a próxima é 
-gravada na visita subsequente.
+class return the products for the stock
 ======================================================
 ======================================================
 History
@@ -54,5 +52,8 @@ global with sharing class ICB_ReturnStock_Batch implements Database.Batchable<sO
         Database.update(ivtList);
     }
      
-    global void finish (Database.Batchablecontext bc){}
+    global void finish (Database.Batchablecontext bc)
+    {
+        System.debug('Entering<finish>');
+    }
 }
