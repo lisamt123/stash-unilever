@@ -71,3 +71,22 @@ src/labels
 src/labels/ICB.labels
 src/networks
 src/networks/Mobile Channel.network
+src/aura
+src/aura/ICB_CloseSale/ICB_CloseSale.cmp
+src/aura/ICB_CloseSale/ICB_CloseSale.cmp-meta.xml
+src/aura/ICB_CloseSale/ICB_CloseSale.css
+src/aura/ICB_CloseSaleContact/ICB_CloseSaleContact.cmp
+src/aura/ICB_CloseSaleContact/ICB_CloseSaleContact.cmp-meta.xml
+src/aura/ICB_CloseSaleContact/ICB_CloseSaleContact.css
+src/aura/ICB_CloseSaleContact/ICB_CloseSaleContactController.js
+src/aura/ICB_CloseSaleContact/ICB_CloseSaleContactHelper.js
+src/aura/ICB_Cockpit/ICB_Cockpit.cmp
+src/aura/ICB_Cockpit/ICB_Cockpit.cmp-meta.xml
+src/aura/ICB_Cockpit_Header/ICB_Cockpit_Header.cmp
+src/aura/ICB_Cockpit_Header/ICB_Cockpit_Header.cmp-meta.xml
+src/aura/ICB_Cockpit_Header/ICB_Cockpit_Header.css
+src/aura/ICB_CockpitContacts/ICB_CockpitContacts.cmp
+src/aura/ICB_CockpitContacts/ICB_CockpitContacts.cmp-meta.xml
+src/aura/ICB_CockpitContacts/ICB_CockpitContacts.css
+src/aura/ICB_CockpitContacts/ICB_CockpitContactsController.js
+src/aura/ICB_CockpitContacts/ICB_CockpitContactsHelper.js
