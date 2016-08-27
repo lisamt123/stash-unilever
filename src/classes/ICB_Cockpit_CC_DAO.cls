@@ -11,7 +11,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    	Antonio Raul 	25/08/2016  Class creation 
 ***********************************************************************/
-public class ICB_Cockpit_CC_DAO 
+public with sharing class ICB_Cockpit_CC_DAO 
 {
     private static final String CONST_STAGE_CLOSED;
     private static final String CONST_STAGE_PENDING;
@@ -148,7 +148,7 @@ public class ICB_Cockpit_CC_DAO
                                                                     ICB_Quantity_Unit__c 
                                                             FROM ICB_Inventory_Line_Item__c 
                                                             WHERE ICB_Inventory__r.Name =: accountName 
-                                                            AND ICB_Product__r.Family =: CONST_FAMILY_IMPULSE ];
+                                                            AND ICB_Product__r.Family =: CONST_FAMILY_IMPULSE AND ICB_Product__r.isActive = true];
         System.debug('Exiting <getInventoriesIventoryLineItem>: ' + JSON.serializePretty(inventoryList));
         return inventoryList;
     }

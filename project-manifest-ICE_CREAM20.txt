@@ -55,9 +55,19 @@ src/classes/ICB_SetupPhotoMobileChannel_Test.cls
 src/classes/ICB_SetupPhotoMobileChannel_Test.cls-meta.xml
 src/classes/ICB_SobjectInstance_SP2_Test.cls
 src/classes/ICB_SobjectInstance_SP2_Test.cls-meta.xml
+src/classes/ICB_PriceBookCreation_Test.cls
+src/classes/ICB_PriceBookCreation_Test.cls-meta.xml
+src/classes/ICB_PriceBookCreation.cls
+src/classes/ICB_PriceBookCreation.cls-meta.xml
+src/classes/ICB_PriceBookProductsInsert.cls
+src/classes/ICB_PriceBookProductsInsert.cls-meta.xml
+src/classes/ICB_PriceTable_CC.cls
+src/classes/ICB_PriceTable_CC.cls-meta.xml
 src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Operator.permissionset
 src/sites
 src/sites/Mobile_Channel.site
 src/labels
 src/labels/ICB.labels
+src/networks
+src/networks/Mobile Channel.network

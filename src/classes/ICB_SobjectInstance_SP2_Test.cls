@@ -156,47 +156,7 @@ public class ICB_SobjectInstance_SP2_Test
         insert priceBookEntry;
         return priceBookEntry;
     }
-    /*******************************************************************
-    Purpose: Insert ContentVersion for using in test methods of classes: ICB_PhotoMobileChannel_Batch_Test
-    Parameters: [NONE]
-    Returns: ContentVersion
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static ContentVersion insertContentVersionFeedItem(String title, String pathOnClient, Blob versionData)
-    {
-        ContentVersion content = new ContentVersion(Title = title,
-                                                   	PathOnClient = pathOnClient,
-                                                    VersionData = versionData);
-        insert content;
-        return content;
-    }
-    /*******************************************************************
-    Purpose: Insert FeedItem for using in test methods of classes: ICB_PhotoMobileChannel_Batch_Test
-    Parameters: [NONE]
-    Returns: FeedItem
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static FeedItem insertFeedItem(Id parentId, Id relatedRecordId, String body)
-    {
-        FeedItem feed = new FeedItem(ParentId = parentId,
-                                     RelatedRecordId = relatedRecordId,
-                                     Body = body);
-        insert feed;
-        return feed;
-    }
-    /*******************************************************************
-    Purpose: Insert ICB_Setup_Photo__c for using in test methods of classes: ICB_PhotoMobileChannel_Batch_Test
-    Parameters: [NONE]
-    Returns: FeedItem
-    Throws [Exceptions]: [NONE] 
-    ********************************************************************/
-    public static ICB_Setup_Photo__c insertSetupPhoto(FeedItem feed)
-    {
-        ICB_Setup_Photo__c setupPhoto = new ICB_Setup_Photo__c(ICB_Parent_Id__c = feed.ParentId,
-                                                               ICB_Related_Record_Id__c = feed.RelatedRecordId);
-        insert setupPhoto;
-        return setupPhoto;
-    }
+  
      /*******************************************************************
     Purpose: Insert ICB_ContactTypes__c for using in test methods of classes: 
 			 ICB_ContactPartnerUserCreation_Test,

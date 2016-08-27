@@ -20,16 +20,28 @@ public with sharing class ICB_Product2DAO {
     public ICB_Product2DAO() {}
         
     // Get Instance method to return a static final instance of this object. 
-    public static ICB_Product2DAO getInstance(){
+    public static ICB_Product2DAO getInstance()
+    {
     	return instance;
 	}
     
     // Retrieve active products. 
-    public List<Product2> getActiveProducts(){
+    public List<Product2> getActiveProducts()
+    {
         System.debug('Entering <getActiveProducts>');
         return [Select 	Name, 
                		   	Description
                	From 	Product2
                 Where 	isActive =: true];
+    }
+    public Product2 getProduct(String idProductParam)
+    {
+        return [SELECT Name, 
+                    Product_Image__c, 
+                    ICB_Price__c, 
+                    IsActive,
+                    Family
+                    FROM Product2 
+                    WHERE Id =: idProductParam];
     }
 }

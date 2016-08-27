@@ -14,7 +14,7 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 2.0		Antonio Raul 	20/08/2016  Class updated
 2.0		Antonio Raul 	25/08/2016  Finished updated
 ***********************************************************************/
-public without sharing class ICB_Cockpit_CC 
+public with sharing class ICB_Cockpit_CC 
 {    
     
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
@@ -38,7 +38,7 @@ public without sharing class ICB_Cockpit_CC
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem;
     private static Map<Id, String> mapUserPhoto;
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapInventory;
-    @TestVisible private static Map<String,PriceBookEntry> mapPriceBook;
+    private static Map<String,PriceBookEntry> mapPriceBook;
     private static Id contactId;
     private static Id accountId;
     private static Set<Id> setContactId;
@@ -289,8 +289,8 @@ public without sharing class ICB_Cockpit_CC
         }
         catch(Exception e)
         {
-            System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
-            return null;
+           System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
+           return null;
         }
     }
     /*******************************************************************
@@ -436,23 +436,25 @@ public without sharing class ICB_Cockpit_CC
         {
             for(String priceId : mapPriceBook.keySet())
             {
-                             
-                if(mapPriceBook.get(priceId).Name.equals(ivt.invetoryItem.ICB_Product__r.Name) && 
-                   mapPriceBook.get(priceId).Pricebook2.Name.equals(ivt.invetoryItem.ICB_Inventory__r.Name))
-                {
-                    if(ivt.quantity > 0 && mapPriceBook.get(priceId).UnitPrice != null && mapPriceBook.get(priceId).ICB_Purchase_Price__c != null)
+                if(mapPriceBook.get(priceId).Pricebook2.Name != null){
+                    if(mapPriceBook.get(priceId).Name.equals(ivt.invetoryItem.ICB_Product__r.Name) && 
+                       mapPriceBook.get(priceId).Pricebook2.Name.equals(ivt.invetoryItem.ICB_Inventory__r.Name))
                     {
-                        oppItem = new OpportunityLineItem();
-                        oppItem.OpportunityId = oppId; 
-                        oppItem.PricebookEntryId = priceId;
-                        oppItem.Quantity = ivt.quantity;
-                        oppItem.TotalPrice = ivt.quantity * mapPriceBook.get(priceId).UnitPrice;
-                        oppItem.ICB_Total_Purchase_Price__c = ivt.quantity * mapPriceBook.get(priceId).ICB_Purchase_Price__c;
-                        oppItem.ICB_Purchase_Price__c = mapPriceBook.get(priceId).ICB_Purchase_Price__c;
-                        listOppItem.add(oppItem);
+                        if(ivt.quantity > 0 && mapPriceBook.get(priceId).UnitPrice != null && mapPriceBook.get(priceId).ICB_Purchase_Price__c != null)
+                        {
+                            oppItem = new OpportunityLineItem();
+                            oppItem.OpportunityId = oppId; 
+                            oppItem.PricebookEntryId = priceId;
+                            oppItem.Quantity = ivt.quantity;
+                            oppItem.TotalPrice = ivt.quantity * mapPriceBook.get(priceId).UnitPrice;
+                            oppItem.ICB_Total_Purchase_Price__c = ivt.quantity * mapPriceBook.get(priceId).ICB_Purchase_Price__c;
+                            oppItem.ICB_Purchase_Price__c = mapPriceBook.get(priceId).ICB_Purchase_Price__c;
+                            listOppItem.add(oppItem);
+                        }
                     }
                 }
             }
+            
         }
         Database.insert(listOppItem);
         System.debug('Exiting <createOppItem>');
@@ -475,7 +477,7 @@ public without sharing class ICB_Cockpit_CC
         
         for(ICB_Wrapper_Cockpit_CC ivt : listInventory)
         {
-            if(ivt.quantity > 0)
+            if(ivt.quantity <= ivt.invetoryItem.ICB_Quantity_Unit__c)
             {
                 /*if(operation.equals(CONST_INCREMENT))
                 {
@@ -486,7 +488,7 @@ public without sharing class ICB_Cockpit_CC
                 {*/
                 if(!operation.equals(CONST_INCREMENT))
                 {
-                    ivt.invetoryItem.ICB_Quantity_Unit__c -= ivt.quantity;  
+                    ivt.invetoryItem.ICB_Quantity_Unit__c = ivt.quantity == ivt.invetoryItem.ICB_Quantity_Unit__c ? 0 : ivt.invetoryItem.ICB_Quantity_Unit__c - ivt.quantity;  
                     listUpdateIvt.add(ivt.invetoryItem);        
                 }
                 // }     

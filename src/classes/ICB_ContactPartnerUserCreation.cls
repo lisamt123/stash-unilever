@@ -57,8 +57,8 @@ public with sharing class ICB_ContactPartnerUserCreation
         System.debug('Entering <createNewUser>' + contact);
         List<User> users = new List<User>();
         
-       // try
-        //{
+        try
+        {
             for(Contact con : contact) 
             { 
                 //create the users
@@ -67,11 +67,11 @@ public with sharing class ICB_ContactPartnerUserCreation
             
             Database.insert(users); 
             definePermissionSetting();
-       /* }  
+        }  
         catch (Exception e)
         {
             system.debug(Label.ICB_ERROR_MESSAGE +  e.getCause());
-        } */ 
+        }  
         System.debug('Exiting <createNewUser>');
     }
     
@@ -80,7 +80,7 @@ public with sharing class ICB_ContactPartnerUserCreation
     * Parameters: oldTrigger & newTrigger values
     * Returns: none 
     ***************/
-    public void updateUser(List<Contact> contactOld, List<Contact> contactNew) 
+    /*public void updateUser(List<Contact> contactOld, List<Contact> contactNew) 
     {
         System.debug('Entering <updateUser>' + contactOld);
         System.debug('Entering <updateUser>' + contactNew);
@@ -101,7 +101,7 @@ public with sharing class ICB_ContactPartnerUserCreation
             system.debug(Label.ICB_ERROR_MESSAGE +  e.getMessage());
         } 
         System.debug('Exiting <updateUser>');
-    }
+    } */
     
     /***********************************
     * Purpose: Create new User.
@@ -156,7 +156,7 @@ public with sharing class ICB_ContactPartnerUserCreation
     * Parameters: none
     * Returns: void
     ************************************/
-    public static void definePermissionSetting() 
+    private static void definePermissionSetting() 
     {
         System.debug('Entering <definePermissionSetting>');
         Map<Id, String> mapPermission = new Map<Id, String>();
@@ -228,7 +228,6 @@ public with sharing class ICB_ContactPartnerUserCreation
         
         for(Contact valueNew : getContacts())
         {
-
             valueNew.ICB_Community_User__c = true;
             updateContact.add(valueNew);
         }

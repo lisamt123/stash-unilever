@@ -23,9 +23,9 @@ public class ICB_Cockpit_CC_Test
     private static Product2 product;
     private static ICB_Inventory__c inventory;
     private static PriceBook2 priceBook2;
-    private static PriceBookEntry customPrice;
     private static String statusOpen;
     private static String testeOpp;
+    private static Opportunity opp;
     
     Static
     {
@@ -37,7 +37,7 @@ public class ICB_Cockpit_CC_Test
         product = new Product2();
         inventory = new ICB_Inventory__c();
         priceBook2 = new PriceBook2();
-        customPrice = new PriceBookEntry();
+        opp = new Opportunity();
         statusOpen = 'open';
         testeOpp = 'Test Opp';
     }
@@ -54,7 +54,6 @@ public class ICB_Cockpit_CC_Test
         createInstances();  
         System.runAs(userOperator)
         {
-            ICB_Cockpit_CC.mapPriceBook.put(customPrice.id, customPrice);
             ICB_Cockpit_CC.getContacts(false);
             List<ICB_Wrapper_Cockpit_CC> listWrapper = ICB_Cockpit_CC.getInventories(acc.Name, statusOpen, contactSales.Id);
             
@@ -65,68 +64,28 @@ public class ICB_Cockpit_CC_Test
                 System.assertNotEquals(null,wrapper.invetoryItem);
                 wrapper.quantity = 50;
                 System.assertEquals(null, wrapper.oppItem);
-                System.debug('ENTROU NO FOR ####### ');
             }
-            System.debug('FORA DO FOR ####### ' + listWrapper);
-            Opportunity opp = ICB_Cockpit_CC.createOpportunity(contactSales.Id, testeOpp, acc.Name, acc.Id, JSON.serializePretty(listWrapper));
+            opp = ICB_Cockpit_CC.createOpportunity(contactSales.Id, testeOpp, acc.Name, acc.Id, JSON.serializePretty(listWrapper));
             
-            System.assertEquals(null, opp);
+            System.assertNotEquals(null, opp);
             
             ICB_Cockpit_CC.getContacts(false);
             opp = ICB_Cockpit_CC.updateOpportunity(opp, JSON.serializePretty(listWrapper), false);
             
-            //System.assertEquals('Pending',opp.StageName);
+            System.assertEquals('Pending',opp.StageName);
             
             ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), statusOpen);
         }
         System.Test.stopTest();
     }
-     /*******************************************************************
-    Purpose: Test the initial scenario to sales man
-	Parameters: [NONE]
-	Returns: [VOID]
-	Throws [Exceptions]: [NONE]
-    ********************************************************************/
-    /*public static testMethod void initialScenarioSales_Test()
-    {
-        System.Test.startTest();
-       
-        createInstances();  
-        System.runAs(userSales)
-        {
-            ICB_Cockpit_CC.getContacts(false);
-            List<ICB_Wrapper_Cockpit_CC> listWrapper = ICB_Cockpit_CC.getInventories(acc.Name, statusOpen, contactSales.Id);
-            
-            System.assert(!listWrapper.isEmpty());
-            
-            for(ICB_Wrapper_Cockpit_CC wrapper : listWrapper)
-            {
-                System.assertNotEquals(null,wrapper.invetoryItem);
-                wrapper.quantity = 50;
-                System.assertEquals(null, wrapper.oppItem);
-            }
-            
-            ICB_Cockpit_CC.createOpportunity(contactSales.Id, testeOpp, acc.Name, acc.Id, JSON.serializePretty(listWrapper));
-            
-            System.assertEquals(testeOpp, [Select Name From Opportunity Order By CreatedDate DESC LIMIT 1].Name);
-            
-            ICB_Cockpit_CC.getContacts(false);
-            Opportunity opp = [Select Id,ICB_OLD_QUANTITY_RETURNED__c,StageName from Opportunity Order by createdDate desc limit 1];
-            ICB_Cockpit_CC.updateOpportunity(opp, JSON.serializePretty(listWrapper), false);
-            
-            System.assertEquals('Pending', [Select StageName From Opportunity Order By CreatedDate DESC LIMIT 1].StageName);
-            
-            ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), statusOpen);
-        }
-        System.Test.stopTest();
-    }*/
+     
     /*******************************************************************
     Purpose: Test the method getInventories, all scenarios
 	Parameters: [NONE]
 	Returns: [VOID]
 	Throws [Exceptions]: [NONE]
     ********************************************************************/
-    /*public static testMethod void getInventories_Test()
+    public static testMethod void getInventories_Test()
     {
         System.Test.startTest();
         createInstances();  
@@ -145,22 +104,21 @@ public class ICB_Cockpit_CC_Test
                 System.assertEquals(null, wrapper.oppItem);
             }
             
-            ICB_Cockpit_CC.createOpportunity(contactSales.Id, testeOpp, acc.Name, acc.Id, JSON.serializePretty(listWrapper));
+            opp = ICB_Cockpit_CC.createOpportunity(contactSales.Id, testeOpp, acc.Name, acc.Id, JSON.serializePretty(listWrapper));
             
-            //System.assertEquals(testeOpp, [Select Name From Opportunity Order By CreatedDate DESC LIMIT 1].Name);
+            System.assertEquals(testeOpp, opp.Name);
             
-            Opportunity opp = [Select Id,ICB_OLD_QUANTITY_RETURNED__c,StageName from Opportunity Order by createdDate desc limit 1];
             opp.StageName = 'Closed';
             Database.update(opp);
             ICB_Cockpit_CC.updateOpportunity(opp, JSON.serializePretty(listWrapper), true);
             
-            System.assertEquals('Closed', [Select StageName From Opportunity Order By CreatedDate DESC LIMIT 1].StageName);
+            System.assertEquals('Closed', opp.StageName);
             
             ICB_Cockpit_CC.getContacts(true);
             
             System.assertNotEquals(null,ICB_Cockpit_CC.getInventories(acc.Name, 'closed', contactSales.Id));
             
-            OpportunityLineItem oppLineItem = [Select Id,ICB_STATUS_SALES__c,Quantity,ICB_ITEMS_RETURNED__c from OpportunityLineItem Order by createdDate desc limit 1];
+            OpportunityLineItem oppLineItem = [Select Id,ICB_STATUS_SALES__c,Quantity,ICB_ITEMS_RETURNED__c from OpportunityLineItem Where OpportunityId =: opp.Id];
             oppLineItem.ICB_STATUS_SALES__c = 'stock';
             Database.update(oppLineItem);
             
@@ -187,14 +145,14 @@ public class ICB_Cockpit_CC_Test
         }
         
         System.Test.stopTest();
-    }*/
+    }
     /*******************************************************************
     Purpose: Test the method updateOppItem, all scenarios
 	Parameters: [NONE]
 	Returns: [VOID]
 	Throws [Exceptions]: [NONE]
     ********************************************************************/
-    /*public static testMethod void updateOppItem_Test()
+    public static testMethod void updateOppItem_Test()
     {
         System.Test.startTest();
         
@@ -212,35 +170,34 @@ public class ICB_Cockpit_CC_Test
                 wrapper.quantity = 30;
                 System.assertEquals(null, wrapper.oppItem);
             }
-            ICB_Cockpit_CC.createOpportunity(contactSales.Id, testeOpp, acc.Name, acc.Id, JSON.serializePretty(listWrapper));
+            opp = ICB_Cockpit_CC.createOpportunity(contactSales.Id, testeOpp, acc.Name, acc.Id, JSON.serializePretty(listWrapper));
             
-            //System.assertEquals(testeOpp, [Select Name From Opportunity Order By CreatedDate DESC LIMIT 1].Name);
+            System.assertEquals(testeOpp, opp.Name);
             
-            Opportunity opp = [Select Id, ICB_OLD_QUANTITY_RETURNED__c, StageName, Name from Opportunity Order by createdDate desc limit 1];
             opp.StageName = 'Available';
             Database.update(opp);
             
-            //System.assertEquals('Available', [Select StageName From Opportunity Order By CreatedDate DESC LIMIT 1].StageName);
+            System.assertEquals('Available', opp.StageName);
             
             ICB_Cockpit_CC.updateOpportunity(opp, JSON.serializePretty(listWrapper), false);
-            OpportunityLineItem oppLineItem = [Select Id,ICB_STATUS_SALES__c,Quantity,ICB_ITEMS_RETURNED__c from OpportunityLineItem Order by createdDate desc limit 1];
+            OpportunityLineItem oppLineItem = [Select Id,ICB_STATUS_SALES__c,Quantity,ICB_ITEMS_RETURNED__c from OpportunityLineItem Where OpportunityId =: opp.Id];
             oppLineItem.Quantity = 60;
             Database.update(oppLineItem);
             
-            //System.assertEquals(60, [Select Quantity From OpportunityLineItem Order By CreatedDate DESC LIMIT 1].Quantity);
+            System.assertEquals(60, oppLineItem.Quantity);
             
             ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), 'isClosed');
             ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), '');
         }
         System.Test.stopTest();
-    }*/
+    }
     /*******************************************************************
     Purpose: Test the methods for the error scenarios
 	Parameters: [NONE]
 	Returns: [VOID]
 	Throws [Exceptions]: [NONE]
     ********************************************************************/
-    /*public static testMethod void error_Test()
+    public static testMethod void error_Test()
     {
         System.Test.startTest();
         
@@ -254,7 +211,7 @@ public class ICB_Cockpit_CC_Test
             ICB_Cockpit_CC.updateOppItem(null,null);
         }
         System.Test.stopTest();
-    }*/
+    }
     /*******************************************************************
     Purpose: Method to instance all objects used for tests
 	Parameters: [NONE]
@@ -277,7 +234,7 @@ public class ICB_Cockpit_CC_Test
         String priceBook2Id = Test.getStandardPricebookId();
         ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2Id);
         priceBook2 = ICB_SobjectInstance_SP2_Test.insertPriceBook2(acc.Name);
-        customPrice = ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2.Id);
+        ICB_SobjectInstance_SP2_Test.insertPriceBookEntry(product.Id,priceBook2.Id);
         
        
     }
