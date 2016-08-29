@@ -1,4 +1,4 @@
-Hi {!GEL_Global_Exception_Log__c.OwnerFullName},
+Hi {!GEL_Global_Exception_Log__c.Test_Owner_First_Name__c},
 
 W.r.t. the exception "{!GEL_Global_Exception_Log__c.REF_Number2__c}", further details have been provided by the exception raiser as required, please review and update the Global exceptions log as appropriate.
 
