@@ -883,64 +883,47 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     regionalRolloutList = database.query(rolloutWhereClause);
                         
-                    if(!regionalRolloutList.isEmpty())
-                    {
                         for(IPM_Project_Rollout__c rollout : regionalRolloutList)
                         {
                             rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
                             rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
                         }
                     }
-                }
                 
                 if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c)
                 {
                     Id currentProjectId = project.Id;// used in the query  below NO SONAR
+                    String whereClauseAPIName = 'Regional_Project__c';
                     if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-	                {
-	                	String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
-	                    String rolloutWhereClause = ' WHERE IPM_Project__c  =:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
-	                    rolloutWhereClause = rolloutQuery + rolloutWhereClause;
-	                    localRolloutList = database.query(rolloutWhereClause);
+	            {
+	        	whereClauseAPIName = 'IPM_Project__c';
+	            }
+                   
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
+	                String rolloutWhereClause = ' WHERE '+whereClauseAPIName+'=:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
+                    rolloutWhereClause = rolloutQuery + rolloutWhereClause;
+                    localRolloutList = database.query(rolloutWhereClause);
 	                        
-	                    if(!localRolloutList.isEmpty())
-	                    {
-	                        for(IPM_Project_Rollout__c rollout : localRolloutList)
-	                        {
-	                            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-	                            rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
-	                        }
-	                    }	
-	                }
-                    else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) 
-	                {    
-	                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
-	                    String rolloutWhereClause = ' WHERE Regional_Project__c  =:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
-	                    rolloutWhereClause = rolloutQuery + rolloutWhereClause;
-	                    localRolloutList = database.query(rolloutWhereClause);
+                        for(IPM_Project_Rollout__c rollout : localRolloutList)
+                        {
+                            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                            rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
+                        }
+                    }	
 	                        
-	                    if(!localRolloutList.isEmpty())
-	                    {
-	                        for(IPM_Project_Rollout__c rollout : localRolloutList)
-	                        {
-	                            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-	                            rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
-	                        }
-	                    }
-	                }	                   
-            }
-            }
+	           }
+            
 
             
             System.SavePoint sp = Database.SetSavePoint();  
             try
             {   
-                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c && regionalRolloutList!=null && !regionalRolloutList.isEmpty())
+                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c && !regionalRolloutList.isEmpty())
                 {
                     update regionalRolloutList; 
                 }
                 
-                if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c && localRolloutList!=null && !localRolloutList.isEmpty())
+                if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c && !localRolloutList.isEmpty())
                 {
                     update localRolloutList;
                 }

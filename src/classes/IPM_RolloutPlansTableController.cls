@@ -1,3 +1,4 @@
+
 /**
    @Author Cognizant
    @Name IPM_RolloutPlansTableController
@@ -69,7 +70,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public map<id,set<string>> holdRolloutidBrandMap{get;set;}//map of local rollout id and set of brands
     @TestVisible private Map<string,IPM_Country__c> rolloutCountryMap;//map for country name and country details
     public Map<Id,Boolean> showClusterNameMap{get;set;}
-    public List<String> filterfieldValueArray;
     public String filterforProject;
     
     /*******************************************************************************************************
@@ -784,7 +784,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     //  in case of Global Project Rollout assignment.
                     IPM_Project_Rollout__c rollout = lstcompleteRollout.get(rolloutId);
                 
-                    if(projectType!=null && projectType.IPM_CreateRegionalProjects__c && projectType!=null && projectType.IPM_CreateLocalProjects__c)
+                    if(projectType!=null && projectType.IPM_CreateRegionalProjects__c && projectType.IPM_CreateLocalProjects__c)
                     {     
                         // Check Custom Setting to filter Rollout for Project Creation
                         if(checkToLogicToCreateProject(projectType,rollout))
@@ -920,14 +920,14 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     private boolean checkToLogicToCreateProject(IPM_Project_Type__c projectType,IPM_Project_Rollout__c rolloutTemp)
     {
         Boolean filterPassed = true;
-        filterfieldAPINameArray = new List<String>();
-        filterfieldValueArray = new List<String>();
-        if(projectType.Adhoc_Local_Project_Creation__c != null)
+        List<String> filterfieldAPINameArray = new List<String>();
+        List<String> filterfieldValueArray = new List<String>();
+        if(String.isNotBlank(projectType.Adhoc_Local_Project_Creation_Filter__c))
         {     
-            filterforProject = projectType.Adhoc_Local_Project_Creation__c ;        
-            for(String tempExpression : filterforProject.split(','))
+            filterforProject = projectType.Adhoc_Local_Project_Creation_Filter__c ;        
+            for(String tempExpression : filterforProject.split(IPM_ConstantUtils.COMMA_DELIMITER))
             {
-                String[] expressionArray = tempExpression.split('=');
+                String[] expressionArray = tempExpression.split(IPM_ConstantUtils.EQUALS_DELIMITER);
                 if(expressionArray.size() == 2)
                 {
                     filterfieldAPINameArray.add(expressionArray[0]);

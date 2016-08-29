@@ -21,6 +21,7 @@ public with sharing class IPM_BCC_Consolidate_Controller
     public Integer localProjectsCount{get; set;} //used to store count of project where parent project id is equal to current project id
     public String projectSpan{get; set;} // used to store span value of the project
     public String gateDocType{get;set;} // to the the type of gate
+    public boolean showBccTable{get;set;} // colomn visibility 
     /*********************************************************************
     @Description: used for fetching local project count and local financial list
     @Created Date: 15/04/2015
@@ -38,7 +39,11 @@ public with sharing class IPM_BCC_Consolidate_Controller
             if(localProjectsCount>0) {
                 localFinancialList=[SELECT Id,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
                                            Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
-                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c 
+                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c, 
+                                            (SELECT Turnover_Regional__c,Turnover_Contract__c,Turnover_MR__c,Advertising_Promotions_Regional__c,Advertising_Promotions_Contract__c,
+                                        Advertising_Promotions_MR__c,GM_of_TO_Regional__c,GM_of_TO_Contract__c,GM_of_TO_MR__c 
+                                    FROM IPM_Financial_Years__r 
+                                    WHERE Year_Type__c=: CORE_STRATEGIC_INNOVATION AND Year__c=: Year)
                                     FROM IPM_Financial__c 
                                     WHERE isActive__c=true and Regional_Project__r.IPM_Parent_Project__c=:projId and Local_Project_isNull__c = :IPM_ConstantUtils.IPM_false];
                 }

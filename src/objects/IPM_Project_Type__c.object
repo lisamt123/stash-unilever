@@ -4,9 +4,9 @@
     <visibility>Public</visibility>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Adhoc_Local_Project_Creation__c</fullName>
+        <fullName>Adhoc_Local_Project_Creation_Filter__c</fullName>
         <externalId>false</externalId>
-        <label>Adhoc Local Project Creation</label>
+        <label>Adhoc Local Project Creation Filter</label>
         <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
