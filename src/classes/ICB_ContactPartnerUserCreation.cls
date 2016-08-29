@@ -218,6 +218,9 @@ public with sharing class ICB_ContactPartnerUserCreation
         {
             system.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
+        Datetime tempo = system.now().addHours(1);
+                System.schedule('Processa New Contact ' +
+                                system.now().format('yyyy.MM.dd.hh.mm.ss.SSS'), tempo.second() +' '+ tempo.minute() +' '+ tempo.hour() +' '+ tempo.day() +' '+ tempo.month() +' ? '+ tempo.year(), new ICB_PartnerUserCreation_BatchSchedule());
         
     }
     

@@ -41,6 +41,13 @@
         <fullName>Discount</fullName>
     </fields>
     <fields>
+        <fullName>ICB_IS_CLOSED__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Closed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ICB_ITEMS_RETURNED__c</fullName>
         <defaultValue>0</defaultValue>
         <externalId>false</externalId>
