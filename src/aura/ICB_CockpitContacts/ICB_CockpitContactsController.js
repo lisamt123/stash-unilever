@@ -10,11 +10,6 @@
         console.log('Exit <menuOpenClose>');
         
     },
-    menuClose : function(component,event,helper){
-        console.log('Entering <menuClose>');
-        helper.closeButton(component,event); 
-        console.log('Exit <menuClose>');
-    },
     changeCheckBox : function(component, event, helper) {
         console.log('Entering <changeCheckBox>');
         helper.changeCheck(component,event,"checkbox"); 

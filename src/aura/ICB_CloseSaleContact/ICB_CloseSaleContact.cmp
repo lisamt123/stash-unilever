@@ -32,7 +32,7 @@
                             </div>
                             <div class="slds-truncate slds-grid">
                                 <aura:renderIf isTrue="{!wrapper.oppItem.StageName == 'Closed'}">
-                                    <ui:outPutNumber value="{!wrapper.oppLineItem.ICB_Total_Purchase_Price__c}"/>
+                                    <ui:outPutNumber value="{!wrapper.oppItem.ICB_Total_Sold_Price__c}"/>
                                 </aura:renderIf>
                             </div> 
                         </td>

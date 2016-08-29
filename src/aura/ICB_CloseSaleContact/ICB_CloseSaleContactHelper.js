@@ -63,6 +63,7 @@
                 if(selectedStore.oppItem.StageName == "Available"){
                     selectedStore.oppItem.StageName = "Closed"; 
                     selectedStore.check = true;
+                    this.getProducts(component,selectedStore.contactItem.Account.Name,selectedStore.contactItem.Id,list);  
                     this.oppItemUpdate(component);
                 }                
                 var listJSON=JSON.stringify(priceList);
@@ -98,8 +99,9 @@
     },
     oppItemUpdate : function(component){
         console.log('Entering Helper <oppItemUpdate>');
-        var list = component.get("v.inventoryList");
-        var listJSON=JSON.stringify(list);
+        var listIvt = component.get("v.inventoryList");
+        console.log("########## " + JSON.stringify(listIvt));
+        var listJSON=JSON.stringify(listIvt);
         var action = component.get("c.updateOppItem");
         action.setParams({
             "inventoryList" : listJSON,
