@@ -125,7 +125,7 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                  WHERE (Opportunity.CreatedDate <=: System.Now() AND Opportunity.CreatedDate >: System.Now().addDays(-6)) 
                                                  AND (Opportunity.StageName =: CONST_STAGE_CLOSED OR Opportunity.StageName =: CONST_STAGE_PENDING 
                                                       OR Opportunity.StageName =: CONST_STAGE_AVAILABLE) 
-                                                 AND IS_CLOSED__C = FALSE];
+                                                 AND IS_CLOSED__C = FALSE ];
         System.debug('Exiting <getInventoriesOppLineItemList>: ' + JSON.serializePretty(oppLineList));
         return oppLineList;
     }

@@ -63,8 +63,6 @@ src/classes/ICB_PriceBookProductsInsert.cls
 src/classes/ICB_PriceBookProductsInsert.cls-meta.xml
 src/classes/ICB_PriceTable_CC.cls
 src/classes/ICB_PriceTable_CC.cls-meta.xml
-src/classes/ICB_PriceBookEntryDAO.cls
-src/classes/ICB_PriceBookEntryDAO.cls-meta.xml
 src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset

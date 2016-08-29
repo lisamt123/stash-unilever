@@ -38,7 +38,7 @@ public class ICB_PhotoMobileChannel_Batch_Test
         createInstances();
         System.Test.startTest();
         
-        System.assertNotEquals(null, [Select Id From ICB_Setup_Photo__c]);
+        System.assertNotEquals(null, [Select Id From ICB_Setup_Photo__c Limit 10]);
         ICB_PhotoMobileChannel_Batch batch = new ICB_PhotoMobileChannel_Batch();
         Id batchId = Database.executeBatch(batch);
         System.assert(batchId != null);

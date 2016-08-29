@@ -20,10 +20,7 @@ public with sharing class ICB_Cockpit_CC
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
     private static final String CONST_STATUS_ITEM_OPP_SOLD;
     private static final String CONST_STATUS_ITEM_OPP_STOCK;
-    private static final String CONST_EMPTY;
-    private static final String CONST_STAGE_CLOSED;
     private static final String CONST_STAGE_PENDING;
-    private static final String CONST_STAGE_AVAILABLE;
     private static final String CONST_SOLICITATION;
     private static final String CONST_DECREMENT;
     private static final String CONST_INCREMENT;
@@ -47,10 +44,7 @@ public with sharing class ICB_Cockpit_CC
         CONST_STATUS_ITEM_OPP_SOLD_PENDING = 'sold pending stock';
         CONST_STATUS_ITEM_OPP_SOLD = 'sold';
         CONST_STATUS_ITEM_OPP_STOCK = 'stock';
-        CONST_EMPTY = '';
-        CONST_STAGE_CLOSED = 'Closed';
         CONST_STAGE_PENDING = 'Pending';
-        CONST_STAGE_AVAILABLE = 'Available';
         CONST_SOLICITATION = 'Solicitation';
         CONST_DECREMENT = 'decrement';
         CONST_INCREMENT = 'increment';
@@ -87,11 +81,7 @@ public with sharing class ICB_Cockpit_CC
     public static List<ICB_Wrapper_Cockpit_CC> getContacts(Boolean isClosed)
     {
         System.debug('Entering <getContacts>: '+ isClosed);
-        
         List<ICB_Wrapper_Cockpit_CC> listWrapper = new List<ICB_Wrapper_Cockpit_CC>();
-        ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
-        item.quantityIce = 0;
-        
         try
         {
             List<Opportunity> listOpportunity = isClosed ? 	ICB_Cockpit_CC_DAO.returnListOppClosed(mapContact) : 
@@ -103,38 +93,14 @@ public with sharing class ICB_Cockpit_CC
                 mapUserPhoto.put(user.ContactId, user.FullPhotoUrl);
             }
             
-            for(OpportunityLineItem oppItem : listOpportunityLineItem)
-            {
-                if(mapLineItem != null)
-                {
-                    if(!mapLineItem.keySet().contains(oppItem.OpportunityId))
-                    {
-                        item = new ICB_Wrapper_Cockpit_CC();
-                        item.quantityIce = 0;
-                    }
-                }
-                if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && oppItem.ICB_STATUS_SALES__c != CONST_EMPTY)
-                {
-                    item.quantityIce = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : item.quantityIce + oppItem.ICB_ITEMS_RETURNED__c;
-                    item.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                }
-                else
-                {
-                    item.quantityIce = oppItem.Quantity == null ? 0 : item.quantityIce + oppItem.Quantity; 
-                }
-                item.oppLineItem = oppItem;
-                mapLineItem.put(oppItem.OpportunityId, item);
-            } 
-            
+            mapLineItem = ICB_Cockpit_Hellper.returnMapLineItem(listOpportunityLineItem);
             listWrapper.addAll(returnOpportunitiesContacts(listOpportunity));
             listWrapper.addAll(returnContacts());
-            
         }
         catch(Exception e)
         {
             System.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
-        
         System.debug('Exiting <getContacts>: '+ JSON.serializePretty(listWrapper));
         return listWrapper;
     }
@@ -154,85 +120,14 @@ public with sharing class ICB_Cockpit_CC
         System.debug('Entering <getInventories>: '+ operation);
         System.debug('Entering <getInventories>: '+ idContact);
         List<ICB_Wrapper_Cockpit_CC> listWrapper = new List<ICB_Wrapper_Cockpit_CC>();
-        Boolean isStock = false;
-        Boolean isClosed = false;
+        
         try
         {
-            List<OpportunityLineItem> listOppItemUp = new List<OpportunityLineItem>();
             List<OpportunityLineItem> oppLineList = ICB_Cockpit_CC_DAO.getInventoriesOppLineItemList();
             
             for(ICB_Inventory_Line_Item__c ivt : ICB_Cockpit_CC_DAO.getInventoriesIventoryLineItem(accountName))
             {
-                ICB_Wrapper_Cockpit_CC itemWrapper = new ICB_Wrapper_Cockpit_CC();
-                
-                for(OpportunityLineItem oppItem : oppLineList)
-                {
-                    
-                    if(oppItem.Product2Id == ivt.ICB_Product__c && idContact == oppItem.Opportunity.ICB_Contact__c && oppItem.Opportunity.StageName != CONST_STAGE_AVAILABLE)
-                    {
-                        if(operation.equalsIgnoreCase(CONST_STAGE_CLOSED))	
-                        { 
-                            itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                        }
-                        else
-                        {
-                            if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK)
-                            {
-                                itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
-                                itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                                isStock = true;
-                            }
-                            
-                            if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
-                            {
-                                itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                                itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                                oppItem.IS_CLOSED__C = true;
-                                listOppItemUp.add(oppItem);
-                            }
-                            if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
-                            {
-                                itemWrapper.quantity = 0;
-                            }
-                            if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
-                            {
-                                if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING)
-                                {
-                                    itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
-                                }
-                                else
-                                {
-                                    itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                                    itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                                    oppItem.IS_CLOSED__C = true;
-                                    listOppItemUp.add(oppItem);
-                                }
-                                
-                            }
-                        }
-                        
-                    }
-                    else
-                    {
-                        if(oppItem.Product2Id == ivt.ICB_Product__c && idContact == oppItem.Opportunity.ICB_Contact__c){
-                            itemWrapper = new ICB_Wrapper_Cockpit_CC();
-                            itemWrapper.quantityReturned = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
-                            itemWrapper.invetoryItem = ivt;
-                            listWrapper.add(itemWrapper); 
-                            isClosed = true;
-                        }
-                    }
-                }
-                if(!isClosed)
-                {
-                    itemWrapper.invetoryItem = ivt;
-                    listWrapper.add(itemWrapper);
-                }
-                
-            }
-            if(!listOppItemUp.isEmpty() && operation.equals(CONST_SOLICITATION))
-            {
-                Database.update(listOppItemUp);    
+                listWrapper.addAll(ICB_Cockpit_Hellper.returnListWrapper(oppLineList,ivt,operation,idContact));
             }
         }
         catch(Exception e)
@@ -345,21 +240,23 @@ public with sharing class ICB_Cockpit_CC
         System.debug('Entering <updateOppItem>: '+ operation);
        
         List<OpportunityLineItem> oppItem = new List<OpportunityLineItem>();
-        Boolean isIncrement = false;
         
         try
         {
-            List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(inventoryList);
-            setMapsIvtPb(listInventories);
+            if(!inventoryList.equals('[]'))
+            {
+                List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(inventoryList);
+                setMapsIvtPb(listInventories);
+            }
             
             for(OpportunityLineItem opp : ICB_Cockpit_CC_DAO.updateOppItemListOppItem(mapPriceBook))
             {
                 if(operation.equalsIgnoreCase(CONST_OPERATION_IS_CLOSED))
                 {
                     opp.IS_CLOSED__c = true;
-                    oppItem.add(opp);
+                    //oppItem.add(opp);
                 }
-                else if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity > 0 )
+                if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity > 0 )
                 {
                     opp.Quantity = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity + opp.Quantity;
                     opp.TotalPrice = opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
@@ -377,29 +274,27 @@ public with sharing class ICB_Cockpit_CC
                         opp.ICB_ITEMS_RETURNED__c = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity;
                         opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
-                    else if(valueQtd == (Integer)opp.Quantity)
+                    else if((valueQtd == (Integer)opp.Quantity)||inventoryList.equals('[]'))
                     {
                         opp.ICB_STATUS_SALES__c = CONST_STATUS_ITEM_OPP_SOLD;
-                        opp.ICB_Total_Purchase_Price__c = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
+                        opp.ICB_Total_Purchase_Price__c = (Integer)opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
+                        opp.ICB_ITEMS_RETURNED__c = 0;
+                        opp.IS_CLOSED__c = true;
                         opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
                     else
                     {
                         opp.ICB_ITEMS_RETURNED__c = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity;
                         opp.ICB_STATUS_SALES__c = CONST_STATUS_ITEM_OPP_SOLD_PENDING;
-                        opp.ICB_Total_Purchase_Price__c = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
+                        opp.ICB_Total_Purchase_Price__c = opp.ICB_ITEMS_RETURNED__c * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
                         opp.Quantity =  valueQtd;
                         opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
+                    
                     oppItem.add(opp);
-                    isIncrement = true;
                 }
             }
             
-            if(isIncrement)
-            {
-                updateInventory(inventoryList,CONST_INCREMENT);
-            }
             Database.update(oppItem);
         }
         catch(Exception e)
