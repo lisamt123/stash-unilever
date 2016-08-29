@@ -4,6 +4,16 @@
     <visibility>Public</visibility>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>Adhoc_Local_Project_Creation__c</fullName>
+        <externalId>false</externalId>
+        <label>Adhoc Local Project Creation</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FinancialCopyOverPrefix__c</fullName>
         <description>Copy Over prefix for financial</description>
         <externalId>false</externalId>
