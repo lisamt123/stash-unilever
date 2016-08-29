@@ -475,7 +475,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     }
                     else 
                     {
-                    if(project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS && !IPM_Utils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(currentFinancial.Gate_Keeping_Model__c)
+                    if(project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS && !IPM_Utils.GATE_KEEPING_MODEL_3.equalsIgnoreCase(currentFinancial.Gate_Keeping_Model__c))
                     {
                         associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND isActive__c = true LIMIT 50000];    
                     }
