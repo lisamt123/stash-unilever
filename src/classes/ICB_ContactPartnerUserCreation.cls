@@ -258,12 +258,22 @@ public with sharing class ICB_ContactPartnerUserCreation
     
     private static List<Contact> getContacts()
     {
-        return [SELECT Id, FirstName, LastName, Email, Name, ICB_Type__c 
+        List<contact> contato = new List<Contact>();
+        List<User> users = new List<User>();
+        list<Contact> contatoValido = new list<Contact>();
+        
+        contato = [SELECT Id, FirstName, LastName, Email, Name, ICB_Type__c 
                 FROM Contact 
                 WHERE ICB_Type__c =: types 
                 AND RecordTypeId IN: recordTypeId
                 AND Email != NULL
                 AND ICB_Community_User__c = false];
+        
+        users =[select id, ContactId from user where ContactId <>null];
+        
+        
+        
+        return contato;
     }
     
 }

@@ -8,7 +8,6 @@ public class ICB_PriceBookCreation_Test {
     private static ICB_Inventory__c inventory2;
     private static PriceBook2 priceBook2;
     
-    
     Static
     {
         acc = new Account();

@@ -18,8 +18,8 @@ public with sharing class ICB_Cockpit_CC
 {    
     
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
-    private static final String CONST_LITERAL;
     private static final String CONST_STATUS_ITEM_OPP_SOLD;
+    private static final String CONST_EMPTY;
     private static final String CONST_STATUS_ITEM_OPP_STOCK;
     private static final String CONST_STAGE_PENDING;
     private static final String CONST_SOLICITATION;
@@ -43,8 +43,8 @@ public with sharing class ICB_Cockpit_CC
     Static
     {
         CONST_STATUS_ITEM_OPP_SOLD_PENDING = 'sold pending stock';
-        CONST_LITERAL = '[]';
         CONST_STATUS_ITEM_OPP_SOLD = 'sold';
+        CONST_EMPTY = '[]';
         CONST_STATUS_ITEM_OPP_STOCK = 'stock';
         CONST_STAGE_PENDING = 'Pending';
         CONST_SOLICITATION = 'Solicitation';
@@ -245,7 +245,7 @@ public with sharing class ICB_Cockpit_CC
         
         try
         {
-            if(!inventoryList.equals(CONST_LITERAL))
+            if(!inventoryList.equalsIgnoreCase(CONST_EMPTY))
             {
                 List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(inventoryList);
                 setMapsIvtPb(listInventories);
@@ -276,7 +276,7 @@ public with sharing class ICB_Cockpit_CC
                         opp.ICB_ITEMS_RETURNED__c = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity;
                         opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
-                    else if((valueQtd == (Integer)opp.Quantity)||inventoryList.equals(CONST_LITERAL))
+                    else if((valueQtd == (Integer)opp.Quantity)||(inventoryList.equalsIgnoreCase(CONST_EMPTY)))
                     {
                         opp.ICB_STATUS_SALES__c = CONST_STATUS_ITEM_OPP_SOLD;
                         opp.ICB_Total_Purchase_Price__c = (Integer)opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
