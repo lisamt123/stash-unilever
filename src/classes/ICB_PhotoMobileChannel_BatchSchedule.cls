@@ -17,7 +17,7 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.1    Antonio Raul 25/08/2016  Class updated 
 1.0    Thiago Oliveira 24/08/2016  Class creation  
 ***********************************************************************/
-global class ICB_PhotoMobileChannel_BatchSchedule implements Schedulable
+global  with sharing class  ICB_PhotoMobileChannel_BatchSchedule implements Schedulable
 {
      /*******************************************************************
      Purpose: This method execute the batch

@@ -117,7 +117,7 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                          Product2Id,
                                                          Opportunity.StageName,
                                                          Opportunity.OwnerId,
-                                                         IS_CLOSED__C,
+                                                         ICB_IS_CLOSED__c,
                                                          Opportunity.ICB_Contact__c, 
                                                          ICB_STATUS_SALES__c,
                                                          ICB_ITEMS_RETURNED__c
@@ -125,7 +125,7 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                  WHERE (Opportunity.CreatedDate <=: System.Now() AND Opportunity.CreatedDate >: System.Now().addDays(-6)) 
                                                  AND (Opportunity.StageName =: CONST_STAGE_CLOSED OR Opportunity.StageName =: CONST_STAGE_PENDING 
                                                       OR Opportunity.StageName =: CONST_STAGE_AVAILABLE) 
-                                                 AND IS_CLOSED__C = FALSE ];
+                                                 AND ICB_IS_CLOSED__c = FALSE ];
         System.debug('Exiting <getInventoriesOppLineItemList>: ' + JSON.serializePretty(oppLineList));
         return oppLineList;
     }

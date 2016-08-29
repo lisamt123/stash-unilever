@@ -18,6 +18,7 @@ public with sharing class ICB_Cockpit_CC
 {    
     
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
+    private static final String CONST_LITERAL;
     private static final String CONST_STATUS_ITEM_OPP_SOLD;
     private static final String CONST_STATUS_ITEM_OPP_STOCK;
     private static final String CONST_STAGE_PENDING;
@@ -42,6 +43,7 @@ public with sharing class ICB_Cockpit_CC
     Static
     {
         CONST_STATUS_ITEM_OPP_SOLD_PENDING = 'sold pending stock';
+        CONST_LITERAL = '[]';
         CONST_STATUS_ITEM_OPP_SOLD = 'sold';
         CONST_STATUS_ITEM_OPP_STOCK = 'stock';
         CONST_STAGE_PENDING = 'Pending';
@@ -243,7 +245,7 @@ public with sharing class ICB_Cockpit_CC
         
         try
         {
-            if(!inventoryList.equals('[]'))
+            if(!inventoryList.equals(CONST_LITERAL))
             {
                 List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(inventoryList);
                 setMapsIvtPb(listInventories);
@@ -253,7 +255,7 @@ public with sharing class ICB_Cockpit_CC
             {
                 if(operation.equalsIgnoreCase(CONST_OPERATION_IS_CLOSED))
                 {
-                    opp.IS_CLOSED__c = true;
+                    opp.ICB_IS_CLOSED__c = true;
                     //oppItem.add(opp);
                 }
                 if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity > 0 )
@@ -274,12 +276,12 @@ public with sharing class ICB_Cockpit_CC
                         opp.ICB_ITEMS_RETURNED__c = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity;
                         opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
-                    else if((valueQtd == (Integer)opp.Quantity)||inventoryList.equals('[]'))
+                    else if((valueQtd == (Integer)opp.Quantity)||inventoryList.equals(CONST_LITERAL))
                     {
                         opp.ICB_STATUS_SALES__c = CONST_STATUS_ITEM_OPP_SOLD;
                         opp.ICB_Total_Purchase_Price__c = (Integer)opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
                         opp.ICB_ITEMS_RETURNED__c = 0;
-                        opp.IS_CLOSED__c = true;
+                        opp.ICB_IS_CLOSED__c = true;
                         opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
                     else

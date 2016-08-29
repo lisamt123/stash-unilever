@@ -9,7 +9,7 @@ History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    Carlos Henrique 16/08/2016  Class creation  
 ***********************************************************************/
-public class ICB_PriceBookCreation {
+public with sharing class ICB_PriceBookCreation {
     
     private static Product2 prod = null;
     
