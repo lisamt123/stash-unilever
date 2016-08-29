@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customButtons>Revoke_Facebook_Access</customButtons>
+    <customButtons>sf4twitter__Revoke_Facebook_Access</customButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -14,15 +14,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Facebook_Image__c</field>
+                <field>sf4twitter__Facebook_Image__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Likes__c</field>
+                <field>sf4twitter__Likes__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Description__c</field>
+                <field>sf4twitter__Description__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -32,15 +32,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Valid__c</field>
+                <field>sf4twitter__Valid__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Category__c</field>
+                <field>sf4twitter__Category__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Products__c</field>
+                <field>sf4twitter__Products__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -53,41 +53,41 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Last_Time_Run__c</field>
+                <field>sf4twitter__Last_Time_Run__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Search_Lower_Limit_Time__c</field>
+                <field>sf4twitter__Search_Lower_Limit_Time__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Search_Upper_Limit_Time__c</field>
+                <field>sf4twitter__Search_Upper_Limit_Time__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Enable_Facebook_Reply_Comment__c</field>
+                <field>sf4twitter__Enable_Facebook_Reply_Comment__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Unknown_Users__c</field>
+                <field>sf4twitter__Unknown_Users__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Run_Case_Association_Logic__c</field>
+                <field>sf4twitter__Run_Case_Association_Logic__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Enable_Auto_Case_Creation__c</field>
+                <field>sf4twitter__Enable_Auto_Case_Creation__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PM_Bring_In__c</field>
+                <field>sf4twitter__PM_Bring_In__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Post_Hashtag_Chatter__c</field>
+                <field>sf4twitter__Post_Hashtag_Chatter__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -124,24 +124,24 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Message__c</fields>
-        <fields>Twitter_Image__c</fields>
-        <fields>Author_Real_Name__c</fields>
-        <fields>Published_Date__c</fields>
-        <fields>Origin_Icon__c</fields>
-        <fields>Type__c</fields>
-        <fields>Contact__c</fields>
-        <fields>Lead__c</fields>
-        <fields>Likes_Link__c</fields>
-        <relatedList>Twitter_Conversation__c.Facebook_Page__c</relatedList>
+        <fields>sf4twitter__Message__c</fields>
+        <fields>sf4twitter__Twitter_Image__c</fields>
+        <fields>sf4twitter__Author_Real_Name__c</fields>
+        <fields>sf4twitter__Published_Date__c</fields>
+        <fields>sf4twitter__Origin_Icon__c</fields>
+        <fields>sf4twitter__Type__c</fields>
+        <fields>sf4twitter__Contact__c</fields>
+        <fields>sf4twitter__Lead__c</fields>
+        <fields>sf4twitter__Likes_Link__c</fields>
+        <relatedList>sf4twitter__Twitter_Conversation__c.sf4twitter__Facebook_Page__c</relatedList>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>Fcbk_User__c.NAME</fields>
-        <fields>Fcbk_User__c.Facebook_Image__c</fields>
-        <fields>Fcbk_User__c.Valid__c</fields>
-        <relatedList>Fcbk_Page_Admin__c.Facebook_Page__c</relatedList>
+        <fields>sf4twitter__Fcbk_User__c.NAME</fields>
+        <fields>sf4twitter__Fcbk_User__c.sf4twitter__Facebook_Image__c</fields>
+        <fields>sf4twitter__Fcbk_User__c.sf4twitter__Valid__c</fields>
+        <relatedList>sf4twitter__Fcbk_Page_Admin__c.sf4twitter__Facebook_Page__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

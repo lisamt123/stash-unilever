@@ -28,7 +28,7 @@ November 2013   1.0         Vanessa Barros              Initial Release
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-36302283-1']);
-  _gaq.push(['_setDomainName', 'na9.visual.force.com']);
+  _gaq.push(['_setDomainName', 'unilever.my.salesforce.com']);
   _gaq.push(['_setAllowLinker', true]);
   _gaq.push(['_trackPageview']);
 
