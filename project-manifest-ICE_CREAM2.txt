@@ -17,8 +17,6 @@ src/classes/ICB_InventoryProducts_CC.cls
 src/classes/ICB_InventoryProducts_CC.cls-meta.xml
 src/classes/ICB_InventoryProducts_CC_Test.cls
 src/classes/ICB_InventoryProducts_CC_Test.cls-meta.xml
-src/classes/ICB_PriceTable_Test.cls
-src/classes/ICB_PriceTable_Test.cls-meta.xml
 src/classes/ICB_Product2DAO.cls
 src/classes/ICB_Product2DAO.cls-meta.xml
 src/classes/ICB_SetupPhotoMobileChannel.cls
