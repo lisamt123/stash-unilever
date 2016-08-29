@@ -48,15 +48,21 @@ public with sharing class IPM_Gate_RollOuts_Controller
     {
         try
         {
+        	Boolean bIsGKM3Project = false;
             regionalRollOutWrapperList= new List<RegionalRollOutWrapper>();
            
             headers = new List<String> {Label.IPM_RegionalRollout,Label.IPM_Geography,Label.IPM_Status,Label.IPM_TARGET_LAUNCH_DATE,Label.IPM_LocalProjectName,Label.IPM_Local_Brand};
          
-            List<IPM_Project__c> projectList  = [SELECT Id,Name,IPMProject_Span__c FROM IPM_Project__c WHERE Id =:proId LIMIT 1];
+            List<IPM_Project__c> projectList  = [SELECT Id,Name,IPMProject_Span__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE Id =:proId LIMIT 1];
                                                  
             if(projectList != null && !projectList.isEmpty()){
                 
                 IPM_Project__c projectInContext =  projectList[0];
+                
+                bIsGKM3Project= IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectInContext.IPM_GateKeeping_Model__c);
+                if(bIsGKM3Project) {
+                	headers[0] = Label.IPM_Region;
+                }
                 
                 showEntity = String.format(Label.IPM_ShowEntity,new String[]{projectInContext.IPMProject_Span__c});
                 Map<String,List<IPM_Project_Rollout__c>> regionalToLocalRolloutList = new Map<String,List<IPM_Project_Rollout__c>>();
@@ -69,13 +75,19 @@ public with sharing class IPM_Gate_RollOuts_Controller
                 if(projectInContext.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
                 {
                     // Get the List of Regional Rollouts based on passed global project Id.
-                    queryString = 'SELECT Id,Name,IPM_Rollout_Project__c,(SELECT Id,IPM_Brand__c,Name,IPM_Rollout_Project__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c  FROM Local_Rollouts__r WHERE recordTypeId =: localRecordTypeId) FROM IPM_Project_Rollout__c WHERE IPM_Project__c = :proId AND recordTypeId =:regionalRecordTypeId AND  ( isActive__c = true OR '+ showEntity +' = true ) LIMIT 10000';
+                    queryString = 'SELECT Id,Name,IPM_Rollout_Project__c,Market_Cluster_Name__c,(SELECT Id,IPM_Brand__c,Name,IPM_Rollout_Project__c,Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c  FROM Local_Rollouts__r WHERE recordTypeId =: localRecordTypeId) FROM IPM_Project_Rollout__c WHERE IPM_Project__c = :proId AND recordTypeId =:regionalRecordTypeId AND  ( isActive__c = true OR '+ showEntity +' = true ) LIMIT 10000';
                     list<IPM_Project_Rollout__c> listRollouts = Database.Query(queryString); 
                     for(IPM_Project_Rollout__c regRollout : listRollouts)
                     {
                         if(!regRollout.Local_Rollouts__r.isEmpty())
                         {
-                            regionalToLocalRolloutList.put(regRollout.IPM_Rollout_Project__c,regRollout.Local_Rollouts__r);
+                            if(bIsGKM3Project) {
+		                    	regionalToLocalRolloutList.put(regRollout.Market_Cluster_Name__c,regRollout.Local_Rollouts__r);
+		                    }
+		                	else {
+		                    	regionalToLocalRolloutList.put(regRollout.IPM_Rollout_Project__c,regRollout.Local_Rollouts__r);
+		                    }
+		                    
                             completeLocalRolloutMap.putAll(new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>)regRollout.Local_Rollouts__r));
                         }      
                     }

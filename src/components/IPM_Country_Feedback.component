@@ -11,7 +11,7 @@
 		<div class="feedbackContainer">
 			<div class="countryProName">
 				<apex:outputlabel value="{!$Label.IPM_LOCAL_PROJECT}"/>
-				<apex:outputfield value="{!finFeed.Local_Project__r.name}"/>
+				{! IF( finFeed.Local_Project__r.IPM_GateKeeping_Model__c=='GKM3', finFeed.Local_Project__r.Market_Cluster_Name__c, finFeed.Local_Project__r.name)}
 			</div>
 			<div class="bbComments">
 				<apex:outputlabel value="{!$Label.IPM_BB_COMMENTS}"/>

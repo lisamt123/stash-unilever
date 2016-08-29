@@ -17,7 +17,7 @@ public with sharing class IPM_BBCountryList {
     	projectId=Apexpages.currentpage().getparameters().get('Id');
     	
     	if(projectId!=null){
-    		financeList=[SELECT Id,Local_Project__c,Local_Project__r.name,Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c 
+    		financeList=[SELECT Id,Local_Project__c,Local_Project__r.name,Local_Project__r.Market_Cluster_Name__c,Local_Project__r.IPM_GateKeeping_Model__c,Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c 
             		   FROM IPM_Financial__c 
             		   WHERE Local_Project__r.IPM_Parent_Project__c=:projectId AND isActive__c=true LIMIT 50000];   
     	}
