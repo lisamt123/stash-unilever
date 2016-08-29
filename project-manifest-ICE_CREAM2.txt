@@ -19,6 +19,10 @@ src/classes/ICB_InventoryProducts_CC_Test.cls
 src/classes/ICB_InventoryProducts_CC_Test.cls-meta.xml
 src/classes/ICB_Product2DAO.cls
 src/classes/ICB_Product2DAO.cls-meta.xml
+src/classes/ICB_ContactPartnerUserCreation.cls
+src/classes/ICB_ContactPartnerUserCreation.cls-meta.xml
+src/classes/ICB_Cockpit_Hellper.cls
+src/classes/ICB_Cockpit_Hellper.cls-meta.xml
 src/classes/ICB_SetupPhotoMobileChannel.cls
 src/classes/ICB_SetupPhotoMobileChannel.cls-meta.xml
 src/classes/ICB_Wrapper_Cockpit_CC.cls
