@@ -26,7 +26,12 @@
                     <label>Case Actions</label>
                     <page>CEC_CaseActions</page>
                 </sidebarComponents>
-                <style>Tabs</style>
+                <sidebarComponents>
+                    <componentType>VisualForcePage</componentType>
+                    <label>Prompts</label>
+                    <page>dgec__DG_WelcomeEmailPromts</page>
+                </sidebarComponents>
+                <style>Accordion</style>
                 <unit>Pixel</unit>
                 <width>500</width>
             </containers>
@@ -35,7 +40,6 @@
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>CloseCase</excludeButtons>
     <excludeButtons>Edit</excludeButtons>
-    <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <feedLayout>
         <autocollapsePublisher>true</autocollapsePublisher>
@@ -290,6 +294,20 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
+        <label>Social Information</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Social_Media_External_Id__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
         <label>Attachments</label>
         <layoutColumns/>
         <style>OneColumn</style>
@@ -496,11 +514,38 @@
         <relatedList>CEC_Retrieval_Request__c.Case__c</relatedList>
     </relatedLists>
     <relatedLists>
+<<<<<<< HEAD
+=======
+        <relatedList>RelatedTeamMemberList</relatedList>
+    </relatedLists>
+    <relatedLists>
+>>>>>>> develop
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>OBJECT_ID</fields>
         <fields>URL__c</fields>
         <relatedList>cec_Additional_Case_Information__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>sf4twitter__Message__c</fields>
+        <fields>sf4twitter__Twitter_Image__c</fields>
+        <fields>sf4twitter__Author_Real_Name__c</fields>
+        <fields>sf4twitter__Published_Date__c</fields>
+        <fields>sf4twitter__Origin_Icon__c</fields>
+        <fields>sf4twitter__Type__c</fields>
+        <fields>sf4twitter__Contact__c</fields>
+        <fields>sf4twitter__Lead__c</fields>
+        <relatedList>sf4twitter__Twitter_Conversation__c.sf4twitter__Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>Note__c</fields>
+        <relatedList>CEC_Claim_Note__c.Case__c</relatedList>
+        <sortField>NAME</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <excludeButtons>New</excludeButtons>

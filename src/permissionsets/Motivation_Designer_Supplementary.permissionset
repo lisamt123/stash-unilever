@@ -737,10 +737,13 @@
     </userPermissions>
     <userPermissions>
         <enabled>false</enabled>
+<<<<<<< HEAD
         <name>ViewDataAssessment</name>
     </userPermissions>
     <userPermissions>
         <enabled>false</enabled>
+=======
+>>>>>>> develop
         <name>ViewDataCategories</name>
     </userPermissions>
     <userPermissions>

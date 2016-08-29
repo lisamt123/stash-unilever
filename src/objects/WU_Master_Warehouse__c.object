@@ -1658,6 +1658,36 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <label>AAR</label>
         <language>en_US</language>
     </listViews>
+	<listViews>
+        <fullName>AMS</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <filters>
+            <field>WU_Region__c</field>
+            <operation>equals</operation>
+            <value>AMS</value>
+        </filters>
+        <label>AMS</label>
+        <language>en_US</language>
+    </listViews>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
@@ -1713,36 +1743,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <label>Europe</label>
         <language>en_US</language>
     </listViews>
-    <listViews>
-        <fullName>LatAM</fullName>
-        <columns>NAME</columns>
-        <columns>WU_SAPCode_s__c</columns>
-        <columns>WU_SAPName_s__c</columns>
-        <columns>WU_Region__c</columns>
-        <columns>WU_MCO__c</columns>
-        <columns>WU_Country__c</columns>
-        <columns>WU_CityName__c</columns>
-        <columns>WU_Logistics_ServiceProvider__c</columns>
-        <columns>WU_Building_ContractType__c</columns>
-        <columns>WU_Average_Current_Utilization__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
-        </filters>
-        <filters>
-            <field>WU_Region__c</field>
-            <operation>equals</operation>
-            <value>LatAm</value>
-        </filters>
-        <label>LatAM</label>
-        <language>en_US</language>
-    </listViews>
+    
     <listViews>
         <fullName>My_Warehouses</fullName>
         <columns>NAME</columns>
@@ -1768,36 +1769,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <label>My Warehouses</label>
         <language>en_US</language>
     </listViews>
-    <listViews>
-        <fullName>NA</fullName>
-        <columns>NAME</columns>
-        <columns>WU_SAPCode_s__c</columns>
-        <columns>WU_SAPName_s__c</columns>
-        <columns>WU_Region__c</columns>
-        <columns>WU_MCO__c</columns>
-        <columns>WU_Country__c</columns>
-        <columns>WU_CityName__c</columns>
-        <columns>WU_Logistics_ServiceProvider__c</columns>
-        <columns>WU_Building_ContractType__c</columns>
-        <columns>WU_Average_Current_Utilization__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
-        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
-        </filters>
-        <filters>
-            <field>WU_Region__c</field>
-            <operation>equals</operation>
-            <value>NA</value>
-        </filters>
-        <label>NA</label>
-        <language>en_US</language>
-    </listViews>
+    
     <nameField>
         <displayFormat>W{0000}</displayFormat>
         <label>Salesforce Id</label>

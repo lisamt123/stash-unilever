@@ -98,6 +98,7 @@ Test method for beforeInsert() method
             System.debug(''+loggedinuser.Quality_Check_Percentage__c+' '+loggedinuser.FirstName);
             
             Test.startTest();
+<<<<<<< HEAD
             CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
             fulfilmentHelper.qualityCheck(fulfilmentList);
             Test.stopTest();
@@ -130,12 +131,15 @@ Test method for beforeInsert() method
             System.assertEquals(fulfilmentObj.Cheque_Number__c, '12');
             System.assertEquals(fulfilmentObj.Refund_Currency__c, CEC_Constants.USD);
             Test.stopTest();
+=======
+            CEC_FulfilmentHelperExtension.qualityCheck(fulfilmentList);
+            Test.stopTest();
+            
+            system.assertEquals(true, fulfilmentList.get(0).QA_flag__c);
+>>>>>>> develop
         }
-    }
-    
-    
-    public static testMethod void test_getChequeNumber_maxChequeNumberExceeded(){
         
+<<<<<<< HEAD
         User u = CEC_TestDataFactory.getStandardCECTestUser();
         System.runAs(u) {
             
@@ -201,8 +205,10 @@ Test method for beforeInsert() method
             
             system.assertEquals(null, chequeProcessWrp.status); 
         }
+=======
+>>>>>>> develop
     }
-    
+   
     public static testMethod void test_beforeUpdate(){
         
         User u = CEC_TestDataFactory.getStandardCECTestUser();
@@ -496,6 +502,7 @@ Test method for beforeInsert() method
     }
     
     public static testMethod void test_convertRefundValueToWords_Fraction(){
+<<<<<<< HEAD
         
         User u = CEC_TestDataFactory.getStandardCECTestUser();
         System.runAs(u) {
@@ -609,8 +616,16 @@ Test method for beforeInsert() method
     public static testMethod void test_ReissueDebitCardToAccount(){
         system.debug('in reissueDebitToAccount @#@#@@' );
         User u = CEC_TestDataFactory.createDebitCardProcessTestUser();
+=======
+        
+        User u = CEC_TestDataFactory.getStandardCECTestUser();
+>>>>>>> develop
         System.runAs(u) {
+            User loggedinuser = [select Quality_Check_Percentage__c,Max_Refund_Amount__c, FirstName from User where id = :UserInfo.getUserId()];
+            loggedinuser.Refund_Authorization_Limit__c ='Level 4';
+            update loggedinuser;
             
+<<<<<<< HEAD
             mdm_Geography__c  geographyUK = [SELECT Id FROM mdm_Geography__c WHERE name='United Kingdom' LIMIT 1];
             Account accountBeforeReIssue = [SELECT Id,Debit_Card_Number__c FROM Account LIMIT 1];
             
@@ -622,11 +637,30 @@ Test method for beforeInsert() method
             List<CEC_Debit_Card_Detail__c> newDebitCardDetailList = CEC_TestDataFactory.createDebitCardDetail(
                 1, CEC_Constants.newDebitCardNumber, CEC_Constants.STATUS_NEW, null, geographyUK.Id);
             insert newDebitCardDetailList;
+=======
+            CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c WHERE 
+                                                Market__c = 'United Kingdom' LIMIT 1];
+            cmmUK.Cheque_Decimals__c = 'Display as fraction';
+            update cmmUK;
+            mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
+            List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
+                1, 11, 1000, cmmUK.Id, prodCategory.Id);
+            insert chequeBookDetailList;
+>>>>>>> develop
             
-            accountBeforeReIssue.Debit_Card_Number__c = issuedDebitCardDetailList[0].Id;
-            update accountBeforeReIssue;
+            List<cec_Fulfilment__c>  fulfilmentList = [ SELECT Id, Case__c FROM cec_Fulfilment__c LIMIT 1];
+            cec_Fulfilment__c fulfilmentObj = fulfilmentList.get(0);
+            Map<Id, cec_Fulfilment__c> oldFulfilmentMap = new Map<Id, cec_Fulfilment__c>();
+            oldFulfilmentMap.put(fulfilmentObj.Id, fulfilmentObj);
             
+            CEC_ChequeProcess.generateChequeNumber(fulfilmentList[0].Id);
+            Test.StartTest();
+            fulfilmentObj.Refund_Value__c = 10.11;
+            update fulfilmentObj;
+            
+<<<<<<< HEAD
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id, Account_Card_Number__c, Issue_Card__c 
                                                        FROM cec_Fulfilment__c LIMIT 1];
             fulfilmentList[0].Account_Card_Number__c = CEC_Constants.issuedDebitCardNumber;
@@ -707,19 +741,48 @@ Test method for beforeInsert() method
             
             List<cec_Fulfilment__c>  fulfilmentList = [SELECT Id FROM cec_Fulfilment__c LIMIT 1];
             
+=======
+            CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);
             
-            CEC_EvoucherProcess.getEvoucherNumber(fulfilmentList[0].Id);
-            cec_Fulfilment__c fulfilmentObj = [SELECT Id, Case__c, E_Voucher_Number__r.name 
-                                               FROM cec_Fulfilment__c WHERE id = :fulfilmentList[0].Id LIMIT 1];
+            cec_Fulfilment__c assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c,
+                                                        Refund_Value_in_Words__c FROM 
+                                                        cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+            
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 10.11);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'TEN AND 11/100 DOLLARS');
+            
+            fulfilmentObj.Refund_Value__c = 100.33;
+            update fulfilmentObj;
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);            
+            assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c, Refund_Value_in_Words__c 
+                                      FROM cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+>>>>>>> develop
+            
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 100.33);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'ONE HUNDRED AND 33/100 DOLLARS');               
             
             
+<<<<<<< HEAD
             CEC_E_Voucher_Details__c issuedEvoucherDetail = [SELECT Id, Status__c FROM CEC_E_Voucher_Details__c 
                                                              WHERE Name = '22222222' LIMIT 1];
             
             System.assertEquals(fulfilmentObj.E_Voucher_Number__r.name, '22222222');
+=======
+            fulfilmentObj.Refund_Value__c = 100;
+            update fulfilmentObj;            
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);            
+            assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c, Refund_Value_in_Words__c 
+                                      FROM cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+>>>>>>> develop
             
-            System.assertEquals(issuedEvoucherDetail.Status__c, CEC_Constants.ISSUED);
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 100);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'ONE HUNDRED DOLLARS');
             
+<<<<<<< HEAD
             
         }
     }  
@@ -756,7 +819,18 @@ Test method for beforeInsert() method
                                                               WHERE Name = '22222222' LIMIT 1];
             
             System.assertEquals(issuedEvoucherDetail1.Voucher_Value__c, 10);
+=======
+            fulfilmentObj.Refund_Value__c = 3000.23;
+            update fulfilmentObj;            
+            fulfilmentHelper.ConvertRefundValueToWords(fulfilmentList, oldFulfilmentMap);            
+            assertFulfilmentResult = [SELECT ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c, Refund_Value_in_Words__c 
+                                      FROM cec_Fulfilment__c WHERE id = :fulfilmentObj.Id];
+>>>>>>> develop
             
+            System.assertEquals(assertFulfilmentResult.Refund_Value__c, 3000.23);
+            System.assertEquals(assertFulfilmentResult.Cheque_Number__c, '12');
+            System.assertEquals(assertFulfilmentResult.Refund_Value_in_Words__c, 'THREE THOUSAND AND 23/100 DOLLARS');
+            Test.StopTest();
         }
-    }     
+    }
 }

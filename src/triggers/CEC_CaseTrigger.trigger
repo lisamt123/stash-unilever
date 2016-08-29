@@ -29,6 +29,7 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
     if(trigger.isBefore && trigger.isUpdate){
         System.debug('Before Update'); 
         CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
+        CEC_CaseTriggerHelperExtension caseHelperExtn = new CEC_CaseTriggerHelperExtension();
         caseHelper.updateAccountOwner(trigger.new);
         caseHelper.updateCaseDetailsIfRecordTypeIsSpam(trigger.newMap,trigger.oldMap); 
         caseHelper.updateProductAndReasonCode(trigger.newMap);
@@ -45,6 +46,7 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
         /* Start -  US-097 Personal data not included in Pulse */
         caseHelper.updatePIIWarningForUpdate(Trigger.New, Trigger.oldMap);
         /* End -  US-097 Personal data not included in Pulse */
+        caseHelperExtn.updateCaseOwner(trigger.new, trigger.oldMap);
     }
     
     // Create & Send Safety Alerts for the updated Case Product and Reason codes. 
@@ -70,9 +72,13 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
         caseHelper.insertCountryDetail(trigger.new);
         caseHelper.updatePIIWarningForInsert(trigger.new);
         System.debug('$$$$$$$$$$InsertValues' + trigger.new[0].Country_Name__c + ' ' + trigger.new[0].Brand__C);
+<<<<<<< HEAD
         caseHelper.updateCaseBrandAndSkillOnInsert(trigger.new);
         
         
+=======
+        caseHelper.updateCaseBrandAndSkillOnInsert(trigger.new);        
+>>>>>>> develop
     }
     
     /* Support team change ends*/

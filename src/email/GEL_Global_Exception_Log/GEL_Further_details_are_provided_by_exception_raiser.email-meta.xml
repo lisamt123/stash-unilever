@@ -4,6 +4,10 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>GEL_Further details are provided by exception raiser</name>
     <style>none</style>
+<<<<<<< HEAD
     <subject>GPM Exception Notification_Process -  {!GEL_Global_Exception_Log__c.Name}</subject>
+=======
+    <subject>GPM Exception Notification_Process -  {!GEL_Global_Exception_Log__c.REF_Number2__c}</subject>
+>>>>>>> develop
     <type>text</type>
 </EmailTemplate>

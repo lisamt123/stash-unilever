@@ -10,7 +10,6 @@
     <aura:attribute name="SortType" type="String"/>
     <aura:attribute name="ErrorMessage" type="Boolean" default="false"/>
     <!-- Wire up the bootstrap static resource -->
-    <ltng:require styles="/resource/lightningBootStrap"/>
     <!--<aura:attribute name="newsArticles" type="UL_News__c[]"/>-->
     <aura:attribute name="wrapper" type="Core_NC_NewsWrapperClass"/>
     <aura:attribute name="loadMoreDisplay" type="Boolean" default="false"/>

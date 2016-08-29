@@ -16,6 +16,8 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 4.0 - Mahendra     17/11/2015       CSC-2910                Personal Data Retention
 5.0 - Goverdhan S. 9/12/2015        CSC-2850                Added method to implement CSAT functionality
 6.0 - Masood       16/12/2015       CSC-2986                Added flag for picking account according to retention date
+7.0 - Nagesh       7/19/2016        CSC-4834                Added the logic to populate the contact us fields
+8.0 - Nagesh       7/25/2016                                Added logic to update the owner for social cases
 ****************************************************************************/
 public class CEC_CaseTriggerHelper{
     
@@ -35,7 +37,11 @@ public class CEC_CaseTriggerHelper{
     map<id, Account> caseToAccountMap = new map<id, Account>();
     list<Id> noAccountCaseIds = new list<Id>();
     Final String exceptionMsg = 'An exception occurred: ';
+<<<<<<< HEAD
     Final String originNA = 'Web North America - Deffered';//Updated the origin value to skip the contact us field default
+=======
+    Final String originNA = 'Web North America';//Updated the origin value to skip the contact us field default
+>>>>>>> develop
     Final String caseStatusClosed ='Closed';
     
     
@@ -79,7 +85,11 @@ public class CEC_CaseTriggerHelper{
         //Check for cases with null contactId
         for(Case c: newCaseMap.Values()){
             System.debug('c----------------'+c);
+<<<<<<< HEAD
             if(c.ContactId == null && (c.SuppliedEmail != null && c.SuppliedEmail != '') && (c.Origin.contains('Email') || c.Origin.contains(originNA))){
+=======
+            if(c.ContactId == null && c.SuppliedEmail != null && c.SuppliedEmail != '' && c.Origin.contains('Email')){
+>>>>>>> develop
                 caseMap.put(c.Id,c.SuppliedEmail);
             }
         }   
@@ -94,8 +104,11 @@ public class CEC_CaseTriggerHelper{
                 if(dupEmailSet.contains(caseMap.get(caseId))){
                     caseRecord = new Case(Id=caseId);
                     caseRecord.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccount;
+<<<<<<< HEAD
                     // Update case brand
                     //caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
+=======
+>>>>>>> develop
                     caseList.add(caseRecord);
                     caseMap.remove(caseId);
                 } // if no duplicates are found, and account already exists, add case to account
@@ -105,10 +118,14 @@ public class CEC_CaseTriggerHelper{
                     caseRecord = new Case(Id=caseId);
                     caseRecord.AccountId = acc.Id;
                     caseRecord.ContactId = acc.PersonContactId;
+<<<<<<< HEAD
                     // update case brand
                     //caseRecord.Brand__c = CEC_CaseDescriptionParser.getBrand(newCaseMap.get(caseId).description);
                     // update related account details from case description
                     //Commented the code based on Phil H request
+=======
+                    // update related account details from case description
+>>>>>>> develop
                     /*if(newCaseMap.get(caseId).Origin == originNA){
                         acc = updateAccountDetailsFromCaseDescription(acc, newCaseMap.get(caseId).description);
                     }*/
@@ -833,7 +850,17 @@ This method identifies date of manufacture from the daycode
                     
                     // update case brand
                     aCase.Brand__c = CEC_CaseDescriptionParser.getBrand(aCase.Description);
-                    
+
+                    //update account search information
+                    aCase.Search_First_Name__c = CEC_CaseDescriptionParser.getFirstName(aCase.Description);
+                    aCase.Search_Last_Name__c = CEC_CaseDescriptionParser.getLastName(aCase.Description);
+                    aCase.Search_Email__c = CEC_CaseDescriptionParser.getCaseEmail(aCase.Description);
+                    aCase.Search_Mailing_Street__c = CEC_CaseDescriptionParser.getPersonMailingStreet(aCase.Description);
+                    aCase.Search_Mailing_City__c = CEC_CaseDescriptionParser.getPersonMailingCity(aCase.Description);
+                    aCase.Search_Mailing_State_Province__c = CEC_CaseDescriptionParser.getPersonMailingState(aCase.Description);
+                    aCase.Search_Mailing_Zip_Postal_Code__c = CEC_CaseDescriptionParser.getPersonMailingPostalCode(aCase.Description);
+                    aCase.Search_Mailing_Country__c = CEC_CaseDescriptionParser.getPersonMailingCountry(aCase.Description);
+
                 }catch(Exception e ){
                     System.debug(exceptionMsg + e.getMessage());  
                 }

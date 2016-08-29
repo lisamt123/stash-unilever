@@ -15,7 +15,11 @@ VERSION  AUTHOR              DATE            DETAIL                        Descr
 3.0       mahesh konar       2nd june 2016   CSC-4518                      To calculate Total Enclosure Value
                                                                            added method beforeInsUpdCalcEnclosure,
 																		   getEnclosureIds and calcTotalEnclosure
+<<<<<<< HEAD
 
+=======
+4.0       mahesh konar       25th july 2016   Sonar Issue                      
+>>>>>>> develop
 ***********************************************************************/
 
 /**
@@ -25,6 +29,7 @@ public with sharing class CEC_FulfilmentHelper {
 
     final String resultSuccess = 'Success';
 
+<<<<<<< HEAD
     /**
     This method is used to check quality and update QA flag
     @param : fulfilmentList - List of cec_Fulfilment__c objects that are to be inserted
@@ -82,6 +87,9 @@ public with sharing class CEC_FulfilmentHelper {
 
     }
     // Commented for CSC - 3135
+=======
+       // Commented for CSC - 3135
+>>>>>>> develop
     /* public void refundApprovalCheck(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
 
     User loggedinuser = [select Max_Refund_Amount__c from User where id = :UserInfo.getUserId()];
@@ -601,6 +609,7 @@ public with sharing class CEC_FulfilmentHelper {
         }
     }
 
+<<<<<<< HEAD
     /**
     This method is used to update Account details for DOB and Local Identifier
     @param :fulfilment List- List of new values from trigger context variable
@@ -643,6 +652,8 @@ public with sharing class CEC_FulfilmentHelper {
     }
 
 
+=======
+>>>>>>> develop
     /**
     This method is used to get the e voucher number from ChequeBook_Detail__c.
     This method is being called from CEC_EvoucherProcess class which is called from "Add E-Voucher Details" button on Fulfillment object.
@@ -710,6 +721,7 @@ public with sharing class CEC_FulfilmentHelper {
         }
         System.debug('@@@@ result@@@@' + result);
         return result;
+<<<<<<< HEAD
     }
 
     /**
@@ -859,4 +871,8 @@ public with sharing class CEC_FulfilmentHelper {
 
         }
     }
+=======
+    }
+
+>>>>>>> develop
 }

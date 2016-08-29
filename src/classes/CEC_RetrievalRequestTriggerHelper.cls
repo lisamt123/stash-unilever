@@ -100,9 +100,15 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
             map<string, EmailTemplate> emailTemplateMap = new map <string, EmailTemplate>();
             
             // obtain email template names
+<<<<<<< HEAD
             for(case aCase :parentCaseMap.values()){
                 templateNames.add(aCase.Country__r.Product_Factory_Email_Template__c);
                 templateNames.add(aCase.Country__r.Textile_Factory_Email_Template__c);
+=======
+            for(case caseEmailTempName :parentCaseMap.values()){
+                templateNames.add(caseEmailTempName.Country__r.Product_Factory_Email_Template__c);
+                templateNames.add(caseEmailTempName.Country__r.Textile_Factory_Email_Template__c);
+>>>>>>> develop
             }
             
             // query email templates

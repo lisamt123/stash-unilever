@@ -61,19 +61,26 @@ public with sharing class GEL_Global_Exception_TriggerHandler implements ITrigge
     public void beforeUpdate(SObject oldSo, SObject so){   
         //This method has been included as the class implements the ITrigger interface
         set<string> setUserEmails = new set<string>();
+<<<<<<< HEAD
         List<user> listUsers = new list<User>();
         Map<string,id> mapuserid = new map<String,id>();
+=======
+>>>>>>> develop
         List<Global_Exception_Users__c> listuseremails = Global_Exception_Users__c.getall().values(); 
        if(trigger.isUpdate){
             for(Global_Exception_Users__c geu : listuseremails){            
                     setUserEmails.add(geu.Email__c);                
             }        
+<<<<<<< HEAD
             listUsers = [select id,Username from user where Username in:setUserEmails];
             if(!listUsers.isEmpty()){
                 for(user u: listUsers){
                     mapuserid.put(u.Username,u.id);
                 }
             }
+=======
+
+>>>>>>> develop
             for(GEL_Global_Exception_Log__c GE : (List<GEL_Global_Exception_Log__c>) Trigger.new){
                 Map<id, GEL_Global_Exception_Log__c> oldMap1 = (Map<Id,GEL_Global_Exception_Log__c >) Trigger.oldMap;
                 if(GE.ETC_BO_Owner__c != null && GE.ETC_BO_Owner__c != oldMap1.get(GE.id).ETC_BO_Owner__c ){

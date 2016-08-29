@@ -4,6 +4,10 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>GEL_Details requested by Process Owner</name>
     <style>none</style>
+<<<<<<< HEAD
     <subject>GPM Exception_Details Required - {!GEL_Global_Exception_Log__c.Name}</subject>
+=======
+    <subject>GPM Exception_Details Required - {!GEL_Global_Exception_Log__c.REF_Number2__c}</subject>
+>>>>>>> develop
     <type>text</type>
 </EmailTemplate>

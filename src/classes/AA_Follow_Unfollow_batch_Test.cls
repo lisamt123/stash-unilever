@@ -2,7 +2,11 @@
 public class AA_Follow_Unfollow_batch_Test {    
     public static testMethod void testMethodFollowUnfollowBatch(){
     test.starttest();
+<<<<<<< HEAD
     //AA_Follow_Unfollow_batch obj= new AA_Follow_Unfollow_batch();
+=======
+    AA_Follow_Unfollow_batch obj= new AA_Follow_Unfollow_batch();
+>>>>>>> develop
   
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
 
@@ -135,11 +139,19 @@ public class AA_Follow_Unfollow_batch_Test {
         
          AA_Follow_Unfollow_class.ExecuteFollow(UserSet);
         system.assert(UserSet!=null);
+<<<<<<< HEAD
   //  Database.BatchableContext BC //= new  Database.BatchableContext();
   //  obj.start(BC);
   //  obj.execute(BC,objAgent);
   //  obj.finish(BC);
   //  test.stoptest();
+=======
+  Database.BatchableContext BC; //= new  Database.BatchableContext();
+    obj.start(BC);
+    obj.execute(BC,objAgent);
+    obj.finish(BC);
+    test.stoptest();
+>>>>>>> develop
     
    }
   }

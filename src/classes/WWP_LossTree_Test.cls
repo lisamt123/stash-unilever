@@ -75,11 +75,17 @@ public class WWP_LossTree_Test {
         wwp.selectedWeek= '201512';
         wwp.dispalyAll = true;
         
+<<<<<<< HEAD
+        
+        
+        
+=======
+>>>>>>> develop
         
         
         
         
-        
+        wwp.showPanelsDiv();
         wwp.fetchLossTree();
         
         system.assertEquals(wwp.listLossTree.size(),1);

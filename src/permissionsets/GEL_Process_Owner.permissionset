@@ -82,6 +82,24 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+<<<<<<< HEAD
+=======
+        <editable>false</editable>
+        <field>GEL_Global_Exception_Log__c.REF_Number2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>GEL_Global_Exception_Log__c.REF_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>GEL_Global_Exception_Log__c.REF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+>>>>>>> develop
         <editable>true</editable>
         <field>GEL_Global_Exception_Log__c.Resolution_Comments__c</field>
         <readable>true</readable>

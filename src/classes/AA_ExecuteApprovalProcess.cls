@@ -69,6 +69,7 @@ global with sharing class AA_ExecuteApprovalProcess{
                 AgentReportObj.ownerId=queueID.get('CI Manager Africa Queue');
           
              }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_EUROPE){
+<<<<<<< HEAD
                  
                 AgentReportObj.ownerId=queueID.get('CI Manager Europe Queue');
          
@@ -99,6 +100,38 @@ global with sharing class AA_ExecuteApprovalProcess{
          
              }else{
                  
+=======
+                 
+                AgentReportObj.ownerId=queueID.get('CI Manager Europe Queue');
+         
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_LATIN_AMERICA){
+                
+                AgentReportObj.ownerId=queueID.get('CI Manager Latin America Queue');
+             
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NAMET_RUB){
+                
+                AgentReportObj.ownerId=queueID.get('CI Manager NametRub Queue');
+             
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_AMERICA){
+                
+                AgentReportObj.ownerId=queueID.get('CI Manager North America Queue');
+         
+             }else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SOUTH_ASIA){
+               
+                AgentReportObj.ownerId=queueID.get('CI Manager South Asia Queue');
+                
+             } else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_NORTH_ASIA){
+                
+                AgentReportObj.ownerId=queueID.get('CI Manager North Asia Queue');
+                
+             } else if(AgentReportObj.ClusterId__r.Name==AA_Constants.CLUSTER_SEAA){
+              
+              
+                AgentReportObj.ownerId=queueID.get('CI Manager SEAA Queue');
+         
+             }else{
+                 
+>>>>>>> develop
                  AgentReportObj.ownerId = queueID.get('CI Manager Default Queue');
                               }         
                  }
@@ -232,8 +265,13 @@ global with sharing class AA_ExecuteApprovalProcess{
               
         
       String redirect = AgentReportObj.id;
+<<<<<<< HEAD
       //String ListView = redirect.subString(0,3);
       PageReference pageRef = new PageReference('/' + redirect );     
+=======
+      String ListView = redirect.subString(0,3);
+      PageReference pageRef = new PageReference('/' + ListView );     
+>>>>>>> develop
       return pageRef;
          }
          
@@ -399,12 +437,23 @@ global with sharing class AA_ExecuteApprovalProcess{
              
              update AgentReportObj;
              
+             //String redirect = AgentReportObj.id;
+             //pageRef =AgentReportObj.id;
+             //String ListView = redirect.subString(0,3);
+             //pageRef = new PageReference('/' + ListView );
+             //pageRef = Page.Agent_App_Report;
+             
              String redirect = AgentReportObj.id;
+<<<<<<< HEAD
            //  pageRef =AgentReportObj.id;
             // String ListView = redirect.subString(0,3);
              pageRef = new PageReference('/' + redirect );
              //pageRef = Page.Agent_App_Report;
              
+=======
+             String ListView = redirect.subString(0,3);
+             pageRef = new PageReference('/' + ListView );
+>>>>>>> develop
              
          }catch(DMLException ex){
             system.debug('=====>'+ ex.getMessage());

@@ -265,8 +265,8 @@
         <name>AF_UBFLB_Type_of_Fees</name>
     </customLabels>
     <customLabels>
-        <label><!-- AF_UrlLink --></label>
-        <name>AF_UrlLink</name>
+        <label><!--  --></label>
+        <name></name>
     </customLabels>
     <customLabels>
         <label><!-- ViewAllHistory_AgencyEstimates --></label>

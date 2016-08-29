@@ -1,11 +1,19 @@
 Hi {!GEL_Global_Exception_Log__c.Exception_Raiser__c},
 
+<<<<<<< HEAD
 W.r.t. to the exception “{!GEL_Global_Exception_Log__c.Name}”, the description provided doesn’t contain complete details to understand the issue, please share further details on the exception.
+=======
+W.r.t. to the exception “{!GEL_Global_Exception_Log__c.REF_Number2__c}”, the description provided doesn’t contain complete details to understand the issue, please share further details on the exception.
+>>>>>>> develop
 Please note that the timelines to provide the details is one week, failing which the exception will be rejected. 
 
 The Exception details are as follows.
 Status : {!GEL_Global_Exception_Log__c.Status__c}
+<<<<<<< HEAD
 REF Number : {!GEL_Global_Exception_Log__c.Name}
+=======
+REF Number : {!GEL_Global_Exception_Log__c.REF_Number2__c}
+>>>>>>> develop
 Description : {!GEL_Global_Exception_Log__c.Description__c}
 
 Thank you

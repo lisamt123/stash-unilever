@@ -5,6 +5,10 @@ Please note that there is a new exception raised in your process area, please re
 Exception details are as follows.
 
 Status    -   {!GEL_Global_Exception_Log__c.Status__c}
+<<<<<<< HEAD
 REF Number -  {!GEL_Global_Exception_Log__c.Name}
+=======
+REF Number -  {!GEL_Global_Exception_Log__c.REF_Number2__c}
+>>>>>>> develop
 
 Thank You

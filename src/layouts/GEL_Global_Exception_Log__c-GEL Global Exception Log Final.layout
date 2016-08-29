@@ -9,7 +9,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
+<<<<<<< HEAD
                 <field>Name</field>
+=======
+                <field>REF_Number__c</field>
+>>>>>>> develop
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>

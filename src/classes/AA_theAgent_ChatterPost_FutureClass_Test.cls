@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 @IsTest
+=======
+@IsTest(SeeAllData=true)
+
+>>>>>>> develop
 public class AA_theAgent_ChatterPost_FutureClass_Test {
 
     static testMethod void CallSendToChatterTest() {
@@ -21,7 +26,11 @@ public class AA_theAgent_ChatterPost_FutureClass_Test {
        Map<string,string> reportMap=new Map<string,string>();
        reportMap.put(unileverReport.Country__c ,JSON.serialize(unileverReport));
        test.starttest();
+<<<<<<< HEAD
       // AA_theAgent_ChatterPost_FutureClass.CallSendToChatter(reportMap);
+=======
+      AA_theAgent_ChatterPost_FutureClass.CallSendToChatter(reportMap);
+>>>>>>> develop
       system.assert(unileverReport.id!=null);
        test.stoptest();
     }
