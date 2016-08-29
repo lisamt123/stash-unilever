@@ -5,7 +5,6 @@ Copyright © 2016 Unilever
 Purpose:
 DAO class for retrieve queries in objet PriceBookEntry
 
-
 History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
  1.0    Thiago Oliveira 12/08/2016  Class creation  
