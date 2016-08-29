@@ -185,6 +185,7 @@ public without sharing class IPM_Utils {
     public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
     public static final String UPDATE_FINANCIAL_YEAR_STR='updateFinancialYear';
     
+    public static List<IPM_Project_Type__c> projectTypeSetting = null;
     /*******************************************************************************************************
     * @description: Convert Javascript array sent to apex in the form of string to apex array
     * @param1 : String input for the conversion
@@ -628,31 +629,55 @@ public without sharing class IPM_Utils {
         Used for Project back Ground Process.
       @param1 project : Project Object.
     */
+   	public static void  populateProjectType()
+	{
+		if(projectTypeSetting == null)
+        {
+        	projectTypeSetting = IPM_Project_Type__c.getAll().values();
+        }
+	}
     public static IPM_Project_Type__c retrieveProjectType(IPM_Project__c project)
     {
         IPM_Project_Type__c targetProjectType = null;
         // Get incoming Project Type 
         String projectType = project.IPM_Project_Type__c;
-        // Get project GateKeeping Model
-        String projectGKModel = project.IPM_GateKeeping_Model__c;
+        // Get project GateKeeping Question
+        String projectGKMQuestion = project.IPM_GateKeeping_Model__c;
         // Get Project Span 
         String projectSpan = project.IPMProject_Span__c;
         // Get project current Phase
         String projectPhase = project.IPM_Phase__c; 
+        // Get GMK Model 
+        String projectGKModel = project.IPM_ProjectGKM__c;
         // Get Source Company Card
         String projectSourceCC = project.IPM_CompanyCardText__c;  
         
-        for(IPM_Project_Type__c projectTypeObj : IPM_Project_Type__c.getAll().values())
+        populateProjectType();
+        if(projectGKModel != null)
         {
-             if(projectTypeObj.IPM_Project_Type__c == projectType && projectTypeObj.IPM_GateKeeping_Model__c == projectGKModel && 
+    		for(IPM_Project_Type__c projectTypeObj : projectTypeSetting)
+        {
+	        	if(projectTypeObj.IPM_Project_Type__c == projectType && projectTypeObj.GKM_Model__c == projectGKModel && 
                 projectTypeObj.IPM_Project_Span__c == projectSpan && projectTypeObj.IPM_Phase__c == projectPhase && 
                 projectTypeObj.IPM_Source_Company_Card__c == projectSourceCC )
              {
                  targetProjectType = projectTypeObj;
+	            }	
+	        }
+        }
+        if(targetProjectType == null) 
+        {
+        	for(IPM_Project_Type__c projectTypeObj : projectTypeSetting )
+	        {
+	             if(projectTypeObj.IPM_Project_Type__c == projectType && projectTypeObj.IPM_GateKeeping_Model__c == projectGKMQuestion && 
+	                projectTypeObj.IPM_Project_Span__c == projectSpan && projectTypeObj.IPM_Phase__c == projectPhase && 
+	                projectTypeObj.IPM_Source_Company_Card__c == projectSourceCC )
+	             {
+	                 targetProjectType = projectTypeObj;
                  break;
              }               
         } 
-        
+        }
         
         return  targetProjectType;     
     }
@@ -716,10 +741,11 @@ public without sharing class IPM_Utils {
       
         if(currentProjectType!=null)
         {
-            for(IPM_Project_Type__c projectTypeObj : IPM_Project_Type__c.getAll().values())
+        	populateProjectType();
+            for(IPM_Project_Type__c projectTypeObj :projectTypeSetting )
             {
                 if(projectTypeObj.IPM_Project_Type__c == currentProjectType.IPM_Project_Type__c && 
-                    projectTypeObj.IPM_GateKeeping_Model__c == currentProjectType.IPM_GateKeeping_Model__c && 
+                    projectTypeObj.GKM_Model__c == currentProjectType.GKM_Model__c && 
                     projectTypeObj.IPM_Project_Span__c == currentProjectType.IPM_Project_Span__c && 
                     projectTypeObj.IPM_Source_Company_Card__c == currentProjectType.IPM_Source_Company_Card__c   
                    )
@@ -758,10 +784,11 @@ public without sharing class IPM_Utils {
       
         if(currentProjectType!=null)
         {
-            for(IPM_Project_Type__c projectTypeObj : IPM_Project_Type__c.getAll().values())
+        	populateProjectType();
+            for(IPM_Project_Type__c projectTypeObj : projectTypeSetting )
             {
                 if(projectTypeObj.IPM_Project_Type__c == currentProjectType.IPM_Project_Type__c && 
-                    projectTypeObj.IPM_GateKeeping_Model__c == currentProjectType.IPM_GateKeeping_Model__c && 
+                    projectTypeObj.GKM_Model__c == currentProjectType.GKM_Model__c && 
                     projectTypeObj.IPM_Project_Span__c == currentProjectType.IPM_Project_Span__c && 
                     projectTypeObj.IPM_Source_Company_Card__c == currentProjectType.IPM_Source_Company_Card__c
                    )
@@ -821,14 +848,29 @@ public without sharing class IPM_Utils {
     {
     	List<IPM_Project_Type__c> filteredProjectTypeList = new List<IPM_Project_Type__c>();
     	
-    	System.debug('project-->>'+project);
     	
     	if(project!=null && project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null && project.IPM_GateKeeping_Model__c != null )
         {  
-            // Get Previous Phase for intiation. 
-            List<IPM_Project_Type__c> projectTypeList = IPM_Project_Type__c.getAll().values();
+        	populateProjectType();
             
-            for(IPM_Project_Type__c projectType : projectTypeList)
+        	if(project.IPM_ProjectGKM__c !=null)
+        	{
+	            for(IPM_Project_Type__c projectType : projectTypeSetting)
+	            {
+	                if( String.isNotBlank(projectType.IPM_Gate_Document__c) &&  
+	                    projectType.IPM_Gate_Document__c == gateDocument && 
+	                    projectType.Source_Project_Type__c == project.IPM_SourceProjectType__c &&  
+	                    projectType.GKM_Model__c == project.IPM_ProjectGKM__c && 
+	                    projectType.IPM_Source_Company_Card__c == project.IPM_CompanyCardText__c &&
+	                    projectType.IPM_Phase__c == project.IPM_Phase__c )
+	                    {
+	                        filteredProjectTypeList.add(projectType);    
+	                    }
+	            }
+        	}
+        	else
+        	{
+        		for(IPM_Project_Type__c projectType : projectTypeSetting)
             {
             	if( String.isNotBlank(projectType.IPM_Gate_Document__c) &&  
             		projectType.IPM_Gate_Document__c == gateDocument && 
@@ -841,8 +883,8 @@ public without sharing class IPM_Utils {
                     }
             } 
         }
+        }
         
-        System.debug('filteredProjectTypeList-->>'+filteredProjectTypeList);
         return filteredProjectTypeList;
         
     }

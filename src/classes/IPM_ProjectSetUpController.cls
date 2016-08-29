@@ -264,6 +264,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
             if(!resultantCompanyCardMap.isEmpty())
             {
+                resultantCompanyCardMap.remove(null);
                 Set<ID> companyCardSet = resultantCompanyCardMap.keySet();
                 Integer counter =0 ;
                 for(Id companyCardID : companyCardSet)

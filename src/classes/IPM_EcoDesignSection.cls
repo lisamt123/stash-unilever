@@ -77,7 +77,7 @@ public with sharing class IPM_EcoDesignSection {
         noRolloutSubmittedYet = false;
         firstSyncToEcoDesign = false;
         if(String.isNotBlank(projId)) {
-            project = [Select id, IPM_Project_Type__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
+            project = [Select id, IPM_Project_Type__c,IPM_ProjectGKM__c,IPM_GateKeepingModel__c,First_Sync_To_EcoDesign__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,Success_Timestamp_EcoDesign__c,IPM_CompanyCardText__c,IPM_Category_Group__c,IPM_Category_Text__c  From IPM_Project__c Where id =:projId Limit 1];
             countriesList = [Select IPM_Project__c, Country_Name__c, IS_EI_Country__c,CreatedDate,
                            IPM_Regional_Proj_Association_Timestamp__c,IPM_Local_Project_Association_Timestamp__c
                            From IPM_Country__c 

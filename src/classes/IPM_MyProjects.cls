@@ -60,7 +60,7 @@ public with sharing class IPM_MyProjects{
         try {
            // @@ Design Review - Change to get the list of all project user has acess to                                  
           lstProjects =[SELECT Name,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPM_Brand_Positioning__c, IPM_Project_Type__c, IPM_GateKeeping_Model__c, IPMProject_Span__c,
-                            IPM_CompanyCardText__c ,
+                            IPM_CompanyCardText__c ,IPM_ProjectGKM__c,
                                             IPM_Bosscard__r.IPM_Filled_In_Percent__c,IPMRegion__c,IPM_Bosscard__r.Name,
                                             IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Bosscard__r.IPM_Bosscard_Status__c,IPM_Project_Logo__c,IPM_Brand__c,
                                             IPM_Category_Text__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Job_Status__c,IPM_IsSaved__c,IPM_Project_Name__c,IPM_Target_Launch_Dates__c 
