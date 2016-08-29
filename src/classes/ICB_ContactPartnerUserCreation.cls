@@ -266,8 +266,6 @@ System.debug('Exiting <updateUser>');
                                  AND RecordTypeId IN: recordTypeId
                                  AND Email != NULL
                                  AND ICB_Community_User__c = false];
-        List<User> users = new List<User>();
-        list<Contact> contatoValido = new list<Contact>();
         Integer i = 0;
         for(User user : [select id, ContactId from user where ContactId IN: contato])
         {
