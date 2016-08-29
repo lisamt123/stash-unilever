@@ -69,7 +69,7 @@ src/objects/Product2.object
 src/objects/User.object
 src/objects/Account.object
 src/objects/Contact.object
-src/objects/PriceBookEntry.object
+src/objects/PricebookEntry.object
 src/objects/PriceBook2.object
 src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
