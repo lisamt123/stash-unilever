@@ -597,6 +597,26 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>Gender__c</fullName>
+        <description>Indicates the gender.</description>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>HasOptedOutOfEmail</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
@@ -1177,7 +1197,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Man</fullName>
+                <fullName>Male</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1827,7 +1847,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Man</fullName>
+                <fullName>Male</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2575,7 +2595,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Man</fullName>
+                <fullName>Male</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3288,7 +3308,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Man</fullName>
+                <fullName>Male</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4029,6 +4049,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Homebase__c</picklist>
             <values>
                 <fullName>Amsterdam</fullName>
@@ -4322,7 +4353,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Man</fullName>
+                <fullName>Male</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
