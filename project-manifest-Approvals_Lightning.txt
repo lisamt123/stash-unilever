@@ -18,6 +18,8 @@ src/classes/Core_CA_Header_Handler.cls
 src/classes/Core_CA_Header_Handler.cls-meta.xml
 src/classes/Core_CA_InterestedParty_Handler.cls
 src/classes/Core_CA_InterestedParty_Handler.cls-meta.xml
+src/classes/Core_CA_RemoteServiceCallControllerTest.cls
+src/classes/Core_CA_RemoteServiceCallControllerTest.cls-meta.xml
 src/pages
 src/pages/Core_CA_ChatterPostNavigation.page
 src/pages/Core_CA_ChatterPostNavigation.page-meta.xml
