@@ -1,0 +1,18 @@
+<apex:page standardController="Core_Approval_Header__c" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false" docType="html-5.0" extensions="Core_CA_ChatterPostNavigationController" >
+   
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    <apex:includeLightning />
+    <style>
+        body {
+            margin: 0px !important;
+        }
+    </style>
+    <div id="lightning" />
+    <script>
+        $Lightning.use("c:CORE_CA_App", function() 
+        {
+            $Lightning.createComponent("c:CORE_CA_BaseComponents", { "RequestId" : '{!requestId}', "ApproverId" : '{!approverId}' ,"Sourcesystem" : '{!sourceSystem}' } ,"lightning", function(cmp) { });
+        });
+    </script>
+  
+</apex:page>
