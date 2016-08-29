@@ -8,6 +8,7 @@
 @reference : none
 ****************************************************************************************************************************/
 global with sharing class AF_OopEstimateRemote {
+  static Map<String, String> ulOopsMatrixMap = new Map<String, String>();
   static List<String> orderedColumn = new List<String>();
   static List<String> orderedRow = new List<String>();
   //static Integer colTotal;
@@ -47,7 +48,7 @@ global with sharing class AF_OopEstimateRemote {
     strongEnd = '</strong>';
     Set<String> columnsSet = new Set<String>();
     Set<String> rowsSet = new Set<String>();
-    Map<String, String> ulOopsMatrixMap = new Map<String, String>();
+    //Map<String, String> ulOopsMatrixMap = new Map<String, String>();
     AF_Constants.colTotal = 0;
     AF_Constants.colTotalA = 0;
     AF_Constants.colTotalVal=0;
@@ -81,6 +82,19 @@ global with sharing class AF_OopEstimateRemote {
     orderedRowMethodOOPs();
     rowDetail += trCloseTag;
     orderedColMethodOOPs();
+    return null;
+}
+/***********************************************************************************
+*  @Description: this method is used to query and display the records in oops matrix 
+*  @             rows and column total of the oopsEstimate records will be displayed.
+         The total of the oops amount will be displayed in matrix cell rowise and colwise. 
+*  @name : getOOPSEstimateRecords
+*  @param : agencyId,oopsActualId
+*  @return: Map of <String,String>.
+*************************************************************************************/
+  global static Map<String, String> getOOPSEstimateRecordsEXT(String agencyId, String oopsActualId) {
+     String trOpenTag = '<tr>', trCloseTag = '</tr>';
+     Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
     /* Columns part is completed. */
     /* Following displays all the rows in the matrix.*/
     for(String eachRow : orderedRow) {
@@ -170,7 +184,6 @@ global with sharing class AF_OopEstimateRemote {
 *************************************************************************************/
   public static String processOopsRow(Boolean isValue, AF_OOPS_Estimate__c agSObj, 
     String aId, String uId, String bId) {
-    String tdCloseTag = '</td>';
     AF_Constants.rowDetailToReturn = '';
     if(isValue) {
       total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c/1000);
@@ -179,6 +192,20 @@ global with sharing class AF_OopEstimateRemote {
       AF_Constants.totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c);
       AF_Constants.totalWithoutRounding = agSObj.AF_Estimate__c/1000;
       AF_Constants.currCode = agSObj.AF_OOPS_Matrix_Currency_Code__c != null ? agSObj.AF_OOPS_Matrix_Currency_Code__c : '';
+     }
+     return null;
+}
+/***********************************************************************************
+*  @Description: this method is used to frame the HTML of the matrix cell display
+*  @             the total displayed on row and column will be round to it's nearest integer
+         by dividing it with thousand
+*  @name : processOopsRow
+*  @param : isValue,agSObj,oopsULRelationMap
+*  @return: String.
+*************************************************************************************/
+  public static String processOopsRowEXT(Boolean isValue, AF_OOPS_Estimate__c agSObj){
+      if(isValue) {
+      String tdCloseTag = '</td>';
       String spacer = ' ';
       String href;
       String disptotal = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
