@@ -21,7 +21,7 @@ public with sharing class AF_AnnualBonus {
     public Decimal sum_of_qual_value { get; set; }//To get sum of Qualatative value
     public Boolean isAgency{get;set;} //To check the logged in user is Agency
     public Integer Totals_Traditional { get; set; }// To get total traditional values for all display list
-    public Boolean isQuantEmpty;// To ensure that quant inputbox can not be empty;
+    //public Boolean isQuantEmpty;// To ensure that quant inputbox can not be empty;
     public Boolean isTraditional { get; set; }//Check for traditional value
     public Integer Totals_Digital { get; set; }// To get total digital values for all display list
     public Boolean isDigital { get; set; }//Check for digital value
@@ -30,19 +30,19 @@ public with sharing class AF_AnnualBonus {
     public list<wrapbonus> QuartelyBonus {get;set;}//List to hold multiple object data
     public list<AF_Bonus_Results__c>AF_Bonus_Result{get;set;}//list of bonus result records
     public list<AF_Bonus_Threshold__c> AF_Bonus_Threshold{get;set;}// list of bonus threshold records
-    public string Country_name;//store Unilever Entity name
-    public integer Traditional_value;// To hold traditional value from agency estimates
-    public integer Digital_value;// To hold digital value from agency estimates
-    public integer TotalTraditionalValue;//To hold total traditional value from agency estimates
-    public integer TotalDigitalValue;// To hold total digital value from agency estimates
+    //public string Country_name;//store Unilever Entity name
+    //public integer Traditional_value;// To hold traditional value from agency estimates
+    //public integer Digital_value;// To hold digital value from agency estimates
+    //public integer TotalTraditionalValue;//To hold total traditional value from agency estimates
+    //public integer TotalDigitalValue;// To hold total digital value from agency estimates
     public integer total_bonus_fees;//To hold total bonusable fee which is sum of Traditional and Digital value
-    public id threshold_id;// hold threshold id
-    public string agency_name;// hold agency name
-    public string Brand_name;// hold brand name
+    //public id threshold_id;// hold threshold id
+    //public string agency_name;// hold agency name
+    //public string Brand_name;// hold brand name
     public list<AF_Agency_Estimate__c>Agency_Estimate=new list<AF_Agency_Estimate__c>();// list of agency estimate
     public Boolean IsEditable{get;set;}// check for CMCO super user or category finance user
     public map<id,string>bonus_thresholdid=new  map<id,string>(); // map of bonus threshold with bonus threshold id alog with combination of agency id,brand id,unilever country and fiscal year
-    set<string> Threshold = new set<string>();// store threshold id
+    //set<string> Threshold = new set<string>();// store threshold id
     public Decimal qual_per=0;// to hold Qualatative percentage
     public Decimal Qual_value=0;// to hold Qualatative value
     Public Set<String> Countryname_BT=new set<String>();
@@ -57,12 +57,12 @@ public with sharing class AF_AnnualBonus {
     public Integer Totals_BonusMeasureTrad { get; set; }
     public Integer Totals_BonusMeasureDigital { get; set; }
     /*Start code refactoring*/
-    private static String Digital =AF_Constants.DIGITAL;
-    private static String Trad = AF_Constants.TRADITIONAL;
-    private static String AF_AnnualBonus = AF_Constants.TEST_ANNUAL_BONUS;
-    private static String AF_BonusThershold=AF_Constants.TEST_BONUS_THRESHOLD;
-    private static String AF_Qualitative_value=AF_Constants.TEST_QUAL_VALUE;
-    private static string className_STR=AF_Constants.TEST_ANNUAL_BONUS;
+    //private static String Digital =AF_Constants.DIGITAL;
+    //private static String Trad = AF_Constants.TRADITIONAL;
+    //private static String AF_AnnualBonus = AF_Constants.TEST_ANNUAL_BONUS;
+    //private static String AF_BonusThershold=AF_Constants.TEST_BONUS_THRESHOLD;
+    //private static String AF_Qualitative_value=AF_Constants.TEST_QUAL_VALUE;
+    //private static string className_STR=AF_Constants.TEST_ANNUAL_BONUS;
     public Boolean showSubmit{get;set;}
     private set<string> agencyEstUnqStr = new set<string>();
     Map<String,Integer> countryBMMap= new Map<String,Integer>();
@@ -82,6 +82,12 @@ public with sharing class AF_AnnualBonus {
 *  @return : none
 *************************************************************************/
     public  AF_AnnualBonus() {
+        Boolean isQuantEmpty;
+        string Country_name;
+        integer Traditional_value;
+        integer Digital_value;
+        string agency_name;
+        string Brand_name;
         noDisplay=true;
         noDisplayQuarterly=true;
         IsDraft=True;
@@ -107,8 +113,8 @@ public with sharing class AF_AnnualBonus {
         sum_of_bonus_val =0;
         Totals_Traditional=0;
         Totals_Digital=0;
-        TotalTraditionalValue=0;
-        TotalDigitalValue=0;
+        //TotalTraditionalValue=0;
+        //TotalDigitalValue=0;
         isQuantEmpty=false;
         AF_Pilot_Model = false;
         No_Bonus_Check= false;
@@ -229,8 +235,8 @@ public with sharing class AF_AnnualBonus {
                     }
                     String BMStr = bonus_SubResult_Obj.AF_Unique_Thresholds__c;
                     map<String,boolean> tradDigMapBM = new map<String,boolean>();
-                    tradDigMapBM.put(Digital,bonus_SubResult_Obj.AF_Digital__c);
-                    tradDigMapBM.put(Trad,bonus_SubResult_Obj.AF_Traditional__c);
+                    tradDigMapBM.put(AF_Constants.DIGITAL,bonus_SubResult_Obj.AF_Digital__c);
+                    tradDigMapBM.put(AF_Constants.TRADITIONAL,bonus_SubResult_Obj.AF_Traditional__c);
                     bonus_Threshold_Trad_Dig_BM_Map.put(BMStr,tradDigMapBM);
                 }
     }
@@ -249,16 +255,16 @@ public with sharing class AF_AnnualBonus {
                     String StrTemp = agencyname_id+'::'+ brandname_id+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.AF_Bonus_Threshold__r.Year__c;
                     if(countryBMMap.size()>0){
                         if(countryBMMap.get(countryDigital)>0 && countryBMMap.get(countryTrad) >0){
-                            tradDigMapBMtemp.put(Trad,true);
-                            tradDigMapBMtemp.put(Digital,true);
+                            tradDigMapBMtemp.put(AF_Constants.TRADITIONAL,true);
+                            tradDigMapBMtemp.put(AF_Constants.DIGITAL,true);
                         }
                         else if(countryBMMap.get(countryDigital)>0){
-                            tradDigMapBMtemp.put(Digital,true);
-                            tradDigMapBMtemp.put(Trad,false);
+                            tradDigMapBMtemp.put(AF_Constants.DIGITAL,true);
+                            tradDigMapBMtemp.put(AF_Constants.TRADITIONAL,false);
                         }
                         else if(countryBMMap.get(countryTrad)>0){
-                            tradDigMapBMtemp.put(Trad,true);
-                            tradDigMapBMtemp.put(Digital,false);
+                            tradDigMapBMtemp.put(AF_Constants.TRADITIONAL,true);
+                            tradDigMapBMtemp.put(AF_Constants.DIGITAL,false);
                         }
                         bonus_Threshold_Trad_Dig_BM_MapTemp.put(StrTemp,tradDigMapBMtemp);
                     }
@@ -320,14 +326,14 @@ public with sharing class AF_AnnualBonus {
                     EntityAmtMap.put(UEntityTrad,TradValue);
                 }
                 if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c)!=null){
-                    if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital) && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
+                    if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.DIGITAL) && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.TRADITIONAL)){
                         Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
                         Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                     }
-                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital)){
+                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.DIGITAL)){
                         Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
                     }
-                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
+                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.TRADITIONAL)){
                         Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                     }
                 }
@@ -340,7 +346,9 @@ public with sharing class AF_AnnualBonus {
 *  @return: none.
 ***************************************************************************************/    
     public void annualBonusPilotModel(String agency_id,String Brand_id,String current_year){
-        bonusTradDigitalFee = 0;
+            bonusTradDigitalFee = 0;
+            integer TotalTraditionalValue=0;
+            integer TotalDigitalValue=0;
             Decimal renumRating = 0;
             Decimal renumPercentage=0;
             Decimal renumAmt=0.0;
@@ -372,7 +380,7 @@ public with sharing class AF_AnnualBonus {
                 }
             }
             catch(Exception ex){
-           AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AnnualBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString()); 
+           AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.TEST_ANNUAL_BONUS,'AF_AnnualBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString()); 
             }
     }
    /*********************************************************************************
@@ -387,7 +395,7 @@ public with sharing class AF_AnnualBonus {
           Decimal totalbonusval=0;
           for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
             {
-                AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);  
+                //AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Constants.TEST_QUAL_VALUE);  
                 string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
                 if(mapBonus_result.containskey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
                 ifLoop();
@@ -399,10 +407,10 @@ public with sharing class AF_AnnualBonus {
                 Integer count=0;
                 String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                 String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(AF_Constants.DIGITAL)){
                     count = BonusMeasureCalcMap.get(countryDigital);
                 }
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(AF_Constants.TRADITIONAL)){
                     count = count+BonusMeasureCalcMap.get(countryTrad);
                 }
                 if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && (mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null)){
@@ -432,7 +440,7 @@ public with sharing class AF_AnnualBonus {
     public void ifLoop(){
      for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
             {
-            AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);  
+            AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Constants.TEST_QUAL_VALUE);  
                 string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
     if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null){
                   if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
@@ -544,10 +552,10 @@ public with sharing class AF_AnnualBonus {
                 Integer count=0;
                 String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                 String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(AF_Constants.DIGITAL)){
                     count = BonusMeasureCalcMap.get(countryDigital);
                 }
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(AF_Constants.TRADITIONAL)){
                     count = count+BonusMeasureCalcMap.get(countryTrad);
                 }
                 BonusMeasureShowMap.put(strBM,count);
@@ -584,20 +592,20 @@ public with sharing class AF_AnnualBonus {
             if(newbonus.total_bonus_fees!=null){
                 sum_of_bonusable_fees=sum_of_bonusable_fees+newbonus.total_bonus_fees;
                 if (newbonus.bonusResObj.AF_Quant__c>=newbonus.Outstanding_bonus) {
-                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(AF_BonusThershold);
+                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(AF_Constants.TEST_BONUS_THRESHOLD);
                     Decimal bonus_outstanding=Custom_Bonusthreshold.Outstanding__c; 
                     Quantvalue=bonus_outstanding;
                     newbonus.bonusResObj.AF_Quant_Bonus__c=Quantvalue.setScale(2, RoundingMode.HALF_UP);
                 } 
                 else if (newbonus.bonusResObj.AF_Quant__c>=newbonus.Streching_bonus & newbonus.bonusResObj.AF_Quant__c<newbonus.Outstanding_bonus) {
-                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(AF_BonusThershold);
+                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(AF_Constants.TEST_BONUS_THRESHOLD);
                     Decimal bonus_stretching=Custom_Bonusthreshold.Stretching__c; 
                     Decimal bonus_min=Custom_Bonusthreshold.Minimum__c;
                     Quantvalue=bonus_stretching+ bonus_min* (newbonus.bonusResObj.AF_Quant__c-newbonus.Streching_bonus)/(newbonus.Outstanding_bonus-newbonus.Streching_bonus)  ;
                     newbonus.bonusResObj.AF_Quant_Bonus__c=Quantvalue.setScale(2, RoundingMode.HALF_UP);
                 } 
                 else if (newbonus.bonusResObj.AF_Quant__c>=newbonus.Minimum_bonus & newbonus.bonusResObj.AF_Quant__c<newbonus.Streching_bonus) {
-                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(AF_BonusThershold);
+                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(AF_Constants.TEST_BONUS_THRESHOLD);
                     Decimal bonus_minimum=Custom_Bonusthreshold.Minimum__c; 
                     Quantvalue=bonus_minimum + bonus_minimum * (newbonus.bonusResObj.AF_Quant__c-newbonus.Minimum_bonus)/(newbonus.Streching_bonus-newbonus.Minimum_bonus)  ;
                     newbonus.bonusResObj.AF_Quant_Bonus__c=Quantvalue.setScale(2, RoundingMode.HALF_UP);
@@ -638,7 +646,7 @@ public with sharing class AF_AnnualBonus {
         //30-08-2014
         sum_of_bonusable_fees=0;
         //up to here
-        AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);
+        AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Constants.TEST_QUAL_VALUE);
         for(wrapbonus newbonus:QuartelyBonus ){
             if(newbonus.total_bonus_fees!=null){
                 //30-08-2014
@@ -684,7 +692,7 @@ public with sharing class AF_AnnualBonus {
 *  @return: none.
 ***************************************************************************************/
     public void Calculate_Remun2() {
-        AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);
+        AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Constants.TEST_QUAL_VALUE);
         for(wrapRenumartionbonus newbonus:renumBonus ){
             if(newbonus.bonusableFees!=null){ 
                 if (newbonus.renumRating==1||newbonus.renumRating==2) {
@@ -773,7 +781,7 @@ public with sharing class AF_AnnualBonus {
                     apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Record_Save));
                 }
                 catch(exception ex){
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), className_STR,'UpdateBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());   
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), AF_Constants.TEST_ANNUAL_BONUS,'UpdateBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());   
                     apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_System_Admin));
                 }
              }  
@@ -795,7 +803,7 @@ public with sharing class AF_AnnualBonus {
             bonusResult = [select AF_Total_Bonus_Value__c,AF_Remuneration_Percentage__c,AF_Remuneration_Rating__c,AF_Locked__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c=:bonusThresholdRenumeration[0].Id];
         }
         catch(Exception ex){
-        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.TEST_ANNUAL_BONUS,'UpdateBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
         }
         for(wrapRenumartionbonus w_bonus:renumBonus){
             if(w_bonus.renumPercentage==null ){
@@ -823,7 +831,7 @@ public with sharing class AF_AnnualBonus {
                     apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Record_Save));
                 }
                 catch(exception ex){
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.TEST_ANNUAL_BONUS,'UpdateBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
             }
@@ -865,7 +873,7 @@ public with sharing class AF_AnnualBonus {
                 apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Record_Submitted));
             }
             catch(exception ex){
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'ConfirmBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.TEST_ANNUAL_BONUS,'ConfirmBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
                 apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
             }
         }
@@ -886,7 +894,7 @@ public with sharing class AF_AnnualBonus {
         try{
             bonusResult = [select AF_Total_Bonus_Value__c,AF_Remuneration_Percentage__c,AF_Remuneration_Rating__c,AF_Locked__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c=:bonusThresholdRenumeration[0].Id];
         }catch(Exception ex){
-        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'ConfirmBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+        AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.TEST_ANNUAL_BONUS,'ConfirmBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
         }
         for(wrapRenumartionbonus w_bonus:renumBonus){
             if(w_bonus.renumPercentage==null ){
@@ -915,7 +923,7 @@ public with sharing class AF_AnnualBonus {
                     apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Record_Submitted));
                 }
                 catch(exception ex){
-                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'ConfirmBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Constants.TEST_ANNUAL_BONUS,'ConfirmBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
                     apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
                 }
             }
