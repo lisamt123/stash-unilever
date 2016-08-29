@@ -41,6 +41,65 @@
         <fullName>Discount</fullName>
     </fields>
     <fields>
+        <fullName>ICB_ITEMS_RETURNED__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Items Returned</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_Purchase_Price__c</fullName>
+        <description>Used to indicate how the operator spends with Unilever products.</description>
+        <externalId>false</externalId>
+        <label>Purchase Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ICB_STATUS_SALES__c</fullName>
+        <externalId>false</externalId>
+        <label>Status Sales</label>
+        <picklist>
+            <picklistValues>
+                <fullName>sold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>sold pending stock</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stock</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Total_Purchase_Price__c</fullName>
+        <description>Used to indicate the total of how the operator spends with Unilever by unit product.</description>
+        <externalId>false</externalId>
+        <label>Total Purchase Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>IS_CLOSED__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Closed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>ListPrice</fullName>
     </fields>
     <fields>
