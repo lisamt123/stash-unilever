@@ -247,21 +247,23 @@ global with sharing class AF_BonusSummaryRemote {
             String dispLocalTotal = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
             String disptotalA = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
             String dispLocalTotalA = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
-            rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
+            
             rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
             rowDetailToReturn += '<a data-src=\"' + href +  '\"';
-            rowDetailToReturn += 'data-toggle=\"modal\"';
-            rowDetailToReturn += 'data-backdrop=\"static\"';
-            rowDetailToReturn += 'data-keyboard=\"false\"';
-            rowDetailToReturn += 'data-target=\"#myModal3\"';
             rowDetailToReturn += ' e=\"' + disptotal + '\"';
             rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
-            rowDetailToReturn += ' class=\"modalButton3\">';
+            
             processBonusRow();
         
     }
     public static void processBonusRow(){
     String lBreak = '<br/>';
+            rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
+            rowDetailToReturn += 'data-toggle=\"modal\"';
+            rowDetailToReturn += 'data-backdrop=\"static\"';
+            rowDetailToReturn += 'data-keyboard=\"false\"';
+            rowDetailToReturn += 'data-target=\"#myModal3\"'; 
+            rowDetailToReturn += ' class=\"modalButton3\">';   
     if(total != 0) {
                 rowDetailToReturn += '<div style=float:left;>' + AF_Constants.crsBrdrImg + '<br/>' + AF_Constants.cmntImg;
                 rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(total);
