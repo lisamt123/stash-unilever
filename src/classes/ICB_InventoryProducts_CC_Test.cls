@@ -1,8 +1,7 @@
 /**********************************************************************
 Name: ICB_InventoryProducts_CC_Test
-Copyright © 2016 Salesforce
-======================================================
-======================================================
+Copyright © 2016 Unilever
+
 Purpose:
 Class responsible for test: 
 ICB_getProducts_CC.apx

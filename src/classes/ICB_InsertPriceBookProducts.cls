@@ -1,11 +1,10 @@
 /**********************************************************************
 Name: ICB_InsertPriceBookProducts
 Copyright © 2016 Unilever
-======================================================
 
 Purpose:
 Class used when fire the Process Builder to insert the products on the PriceBook
-======================================================
+
 History
 VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    Carlos Henrique 08/08/2016  Class creation  
@@ -32,14 +31,14 @@ public with sharing class ICB_InsertPriceBookProducts
         {
             
             //Return the standard PriceBook to insert the product. 
-            for(Pricebook2 pb1 : PriceBookEntryDAO.getInstance().getActivePricebook(true)) 
+            for(Pricebook2 pb1 : ICB_PriceBookEntryDAO.getInstance().getActivePricebook(true)) 
             {            
                 pbeList.add(createsObject(pb1.Id, product.get(0)));
             }
             Database.insert(pbeList);
             
             //Method to create the pricebookEntry
-            for(Pricebook2 pb2 : PriceBookEntryDAO.getInstance().getActivePricebook(false)) 
+            for(Pricebook2 pb2 : ICB_PriceBookEntryDAO.getInstance().getActivePricebook(false)) 
             {
                 pbeList2.add(createsObject(pb2.Id, product.get(0)));
             }

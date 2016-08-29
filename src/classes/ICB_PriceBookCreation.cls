@@ -106,7 +106,7 @@ public with sharing class ICB_PriceBookCreation {
             Map<Id, Set<String>> mapProductPB 			= new Map<Id, Set<String>>();
             List<PricebookEntry> pbeList 				= new List<PricebookEntry>();
             List<PriceBookEntry> listPriceBook 			= ICB_PriceBookEntryDAO.getInstance().getPricebookEntry(value);
-            system.debug('listPriceBook:'+ listPriceBook);
+
             for(PriceBookEntry vPBEntry : listPriceBook)
             {
                 if(mapProductPB.containsKey(vPBEntry.PriceBook2Id)) 
@@ -115,19 +115,18 @@ public with sharing class ICB_PriceBookCreation {
                     valueId.add(vPBEntry.Name);
                     mapProductPB.put(vPBEntry.PriceBook2Id, valueId);
                     
-                } else {
+                } 
+                else 
+                {
                     mapProductPB.put(vPBEntry.PriceBook2Id, new Set<String> { vPBEntry.Name });
-                    
                 }
-                
             }
             
             for(PriceBook2 vPB2 : ICB_PriceBookEntryDAO.getInstance().getActivePricebook(value)) 
             {
-                system.debug('vPB2:'+ vPB2);
                 Set<String> lista = mapProductPB.get(vPB2.Id);
-                system.debug('lista:'+ lista);
-                if(!lista.contains(prod.Name)) {
+                if(!lista.contains(prod.Name)) 
+                {
                     pbeList.add(create(vPB2.Id, prod));
                 }
             }  

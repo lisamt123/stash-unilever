@@ -18,6 +18,7 @@ public with sharing class ICB_InventoryProducts_CC
     {
         listPB = new List<PriceBookEntry>();
     }
+    
     /*******************************************************************
     Purpose: Retrieve products to show in component productInventoryBody
     Parameters: None
@@ -99,8 +100,7 @@ public with sharing class ICB_InventoryProducts_CC
             
             Contact contato = ICB_ContactDAO.getInstance().getContact(strContactId);
             
-            strAccountName = ICB_AccountDAO.getInstance().getAccount(contato);
-            
+            strAccountName = ICB_AccountDAO.getInstance().getAccount(contato); 
             listPB = ICB_PriceBookEntryDAO.getInstance().getPricebook(strAccountName);
             system.debug('listPB:'+ listPB);
           } 
