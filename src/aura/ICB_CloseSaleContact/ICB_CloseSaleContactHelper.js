@@ -100,13 +100,15 @@
     oppItemUpdate : function(component){
         console.log('Entering Helper <oppItemUpdate>');
         var listIvt = component.get("v.inventoryList");
-        console.log("########## " + JSON.stringify(listIvt));
         var listJSON=JSON.stringify(listIvt);
         var action = component.get("c.updateOppItem");
+        
         action.setParams({
             "inventoryList" : listJSON,
             "operation" : "closed"
         });
+        
+        
         $A.enqueueAction(action);
         console.log('Exit Helper <oppItemUpdate>');
     }/*,

@@ -73,6 +73,7 @@ public with sharing class ICB_Cockpit_CC
                                           WHERE AccountId =: accountId]);
     }
     
+    
     /*******************************************************************
     Purpose: Retrieve Contacts on the first load components ICB_Cockpit and ICB_CloseSale
     Parameters: @isClosed(information if the screem is ICB_CloseSale or not)

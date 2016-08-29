@@ -2841,6 +2841,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OpportunityLineItem.ICB_IS_CLOSED__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OpportunityLineItem.ICB_ITEMS_RETURNED__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2857,11 +2862,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.ICB_Total_Purchase_Price__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.IS_CLOSED__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

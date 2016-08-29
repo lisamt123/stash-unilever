@@ -1790,9 +1790,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.ICB_Additional_Source_Income__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1860,9 +1860,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.MobilePhone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2841,6 +2841,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>OpportunityLineItem.ICB_IS_CLOSED__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>OpportunityLineItem.ICB_ITEMS_RETURNED__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -2857,11 +2862,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.ICB_Total_Purchase_Price__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.IS_CLOSED__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
