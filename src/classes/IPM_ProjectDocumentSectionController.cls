@@ -78,6 +78,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	public boolean isTaskReadOnly{get;set;}
 	public String showEntity{get;set;} // field API name of 'Show At Global /Regional / Loacal" fields. 
 	public Integer characterLimitValue{get;set;}
+ 	public boolean showBBCtable{get; set;} // flag to check the BBC table is applicble 
 	/****************************************************************************************************************************************************************
 	* @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
 	*/
@@ -107,6 +108,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		showEcoDesign = false;
 		isEditMarketPerformance=false;
         isTaskReadOnly = false;
+	 	showBBCtable = false;
 		characterLimitValue=0;  
 		Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);
 		projectResource=new list<IPM_Project_Resource__c>();
@@ -313,6 +315,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 		else if(projDocSec.IPM_Section_Sequence__c==lastSec){
 			showNext=false;
 		}
+		if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+      	        {
+        		showBBCtable = true;
+       		}
 		renderedConditions();
 		
 	}

@@ -133,7 +133,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public boolean isWithAppendix{get;set;}//set boolean value to display appendix on gate document PDF page
     public boolean isDisplayWithoutAppendix{get;set;}//check whether without appendix pdf to display on page or not
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
-    
+    public boolean showBBCtable{get; set;} // flag to check the BBC table is applicble     
     public boolean isRedStylingApplicable{get;set;} 
     
     /****************************************************************************************************************************************************
@@ -155,6 +155,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         bDocStatusNotStartedOrApproved = false;
         isDisplayWithoutAppendix=false;//phase 2.0
         isWithAppendix=true;
+	showBBCtable = false;
         //Total filter counts
         NonNegotiableCount=0;
         OptionalCount=0;
@@ -284,6 +285,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
              if(filterCount.IPM_FunctionalRole__c==IPM_ConstantUtils.FUNCTIONAL_ROLE_PL){
                 PLCount++;
             }
+        }
+	   if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {
+        	showBBCtable = true;
         }
         
         //Getting Local Project Country feedbacks
