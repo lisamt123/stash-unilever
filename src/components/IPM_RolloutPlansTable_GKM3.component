@@ -387,7 +387,8 @@
                                                                 <span class="" >{!$Label.IPM_Select_MCO_Rollout_Leader}</span>
                                                             </div>
                                                         </apex:outputPanel>
-                                                        <apex:outputField value="{!localRollout.IPM_Regional_PL__r.Name}"/> 
+                                                        <apex:outputField rendered="{!localRollout.Local_Project__c==Null}"  value="{!localRollout.IPM_Regional_PL__r.Name}"/>
+                                                        <apex:outputField rendered="{!localRollout.Local_Project__c!=Null}" value="{!localRollout.Local_Project__r.IPM_Project_Leader__r.Name}"/>
                                                     </apex:outputPanel>
                                                 </div>
                                             </td>
@@ -401,7 +402,8 @@
                                                             <span class="">{!$Label.IPM_Select_Finance_Leader}</span>
                                                         </div>
                                                     </apex:outputPanel>
-                                                    <apex:outputField value="{!localRollout.Finance_Member__r.Name}"  />
+                                                    <apex:outputField rendered="{!localRollout.Local_Project__c==Null}" value="{!localRollout.Finance_Member__r.Name}"  />
+                                                    <apex:outputField rendered="{!localRollout.Local_Project__c!=Null}" value="{!localRollout.Local_Project__r.IPM_Finance_Lead__r.Name}"  />
                                                 
                                                 </div>
                                             </td>                
