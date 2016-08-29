@@ -62,6 +62,11 @@ private with sharing class IPM_ProjectHelper_Test
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList;
             
+            for(IPM_Project__c project : projectList)
+            {
+                project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+            }  
+            update projectList;
             List<IPM_Project__c> dbProjectList =  [Select Id from IPM_Project__c where id in :projectList];
             System.assertEquals(dbProjectList.size(),projectList.size(),ASSERT_ERROR_STR+projectList.size());
         }
@@ -82,7 +87,7 @@ private with sharing class IPM_ProjectHelper_Test
         
         User globalProjectLeader = null;
         User regionalProjectLeader = null;
-        
+        User localProjectLeader = null;
         Test.startTest();
         // Get the list of user's for project leaders.
         List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
@@ -100,11 +105,15 @@ private with sharing class IPM_ProjectHelper_Test
             {
                 regionalProjectLeader = lUser;
             }
+            if(lUser.lastName == 'LOCAL_PL')
+            {
+                localProjectLeader = lUser;
+            }
         }
         
         System.RunAs(globalProjectLeader)
         {
-            createProjectGlobal(projectNameSet, globalProjectIdList, projectMap,globalProjectLeader,regionalProjectLeader); 
+            createRegionalProjects(projectNameSet, globalProjectIdList, projectMap,globalProjectLeader,regionalProjectLeader); 
         }
         Test.stopTest();
         List<IPM_Project__c> regionalProjects = new List<IPM_Project__c>();
@@ -118,8 +127,11 @@ private with sharing class IPM_ProjectHelper_Test
                regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
             }
             
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
+            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,IPM_Regional_PL__c,IPM_Project_Job_Status__c,IPM_RolloutJobType__c,IPM_Rollout_Project__c from Regional_Project_Rollout__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
                 
+            List<IPM_Project_Rollout__c> localRolloutsTobeProcessed = new List<IPM_Project_Rollout__c>();
+            Set<Id> regionalProjectsTobeProcessed = new Set<Id>();
+            System.assert(DBRegionalProjects.size() > 0 , 'Regional Projects Generated from Transaction Management');
             for(IPM_Project__c regionalProject : DBRegionalProjects) 
             {
                Id parentGlobalProjectId = regionalProject.IPM_Parent_Project__c;
@@ -131,39 +143,112 @@ private with sharing class IPM_ProjectHelper_Test
    
                // MileStones would Copy from Parent Project. 
                System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Milestones didnt copy from Parent Project Properly');
+                List<IPM_Project_Rollout__c> localRolloutList = regionalProject.Regional_Project_Rollout__r;
+                System.assert(localRolloutList.size() > 0 ,'Local Rollouts not Associated '); // Phase would be feasibility for Regional Projects.
+                for(IPM_Project_Rollout__c localRollout : localRolloutList)
+                {
+                    localRollout.IPM_Regional_PL__c = localProjectLeader.Id;
+                    localRollout.IPM_Project_Job_Status__c = 'Eligible For Processing';
+                    localRollout.IPM_RolloutJobType__c = 'Adhoc - Rollout Project Creation';
+                    localRolloutsTobeProcessed.add(localRollout);  
             }
+                regionalProjectsTobeProcessed.add(regionalProject.Id);
         }
         
-        /******************************** Regional Project Leader View for Regional Projects  ****************************************/
-        System.RunAs(regionalProjectLeader)
+            System.assert(localRolloutsTobeProcessed.size() > 0,'Process Local Rollouts for Local Project Creation failed');
+
+            if(!localRolloutsTobeProcessed.isEmpty())
         {
-            // Update phase for Local Rollouts. 
-            List<IPM_Project__c> regionalProjectsFR = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id from Regional_Project_Rollout__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];
+                IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED  = true; // To make sure that we dont invoke Queueable interface.
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+                update localRolloutsTobeProcessed;
+
+                Set<Id> rolloutIdSet = new Set<Id>(); 
+                Set<String> rolloutNameSet = new Set<String>(); 
             
-            for(IPM_Project__c regionalProject : regionalProjectsFR)
+                for(IPM_Project_Rollout__c rollout : localRolloutsTobeProcessed)
             {
-                // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not generated by transaction management');
+                    rolloutIdSet.add(rollout.Id);
+                    rolloutNameSet.add(rollout.IPM_Rollout_Project__c); 
+                }
+
+                updateRegionalProjectPhase(rolloutIdSet,regionalProjectsTobeProcessed,rolloutNameSet,DBRegionalProjects,projectMap);
                 
-                for(IPM_Task__c task : regionalProject.Tasks__r)
+                updateGlobalProjectPhase(DBRegionalProjects,projectMap); 
+            }
+        } 
+     } 
+
+     private static void updateRegionalProjectPhase(Set<Id> rolloutIdSet,Set<Id> regionalProjectsTobeProcessed, Set<String> rolloutNameSet,List<IPM_Project__c> DBRegionalProjects,Map<Id,IPM_Project__c> projectMap)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity doesnt match Project complexity.');
-                    System.assertEquals(task.IPM_Phase__c,regionalProject.IPM_Phase__c,'Task Phase is not equal to Project Phase');   
+        Map<Id,IPM_Project__c> projectDetailMap = IPM_ProjectJobHelper.populateProjectDetails(regionalProjectsTobeProcessed);
+
+        // Get newly Created Rollout Projects and insert them into Database.
+        IPM_ProjectJobHelper.processRollouts(projectDetailMap,rolloutIdSet,null); 
+
+        List<IPM_Project__c> localProjects = [Select Id,Name,IPM_Project_Name__c from IPM_Project__c where  IPM_Project_Name__c IN :rolloutNameSet ];
+        System.assert(localProjects.size() > 0,'Local Projects not created');
+        projectDetailMap = IPM_ProjectJobHelper.populateProjectDetails(regionalProjectsTobeProcessed);
+        IPM_ProjectJobHelper.processProjects(projectDetailMap,null); 
+        Set<Id> capabilityProcessingSet = new Set<Id>();
+        for(IPM_Project__c regionalProject : DBRegionalProjects) 
+        {
+            regionalProject.IPM_Temporary_Phase__c  = 'Capability';
+            capabilityProcessingSet.add(regionalProject.Id);
                 }
                 
-                // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not present or not visible to Regional Project Leader');
-                
-                // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Regional has more financials than expected'); // One for Global consolidated Financials and 2 for individual Rollouts
-                
-                // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility','Regional Project Phase not equal to feasiblity.'); // Phase would be feasibility for Regional Projects.
-                
-            }
-      
-            
+        update DBRegionalProjects; 
+        // Start Processing incoming Projects now and We would be performing Phase specific updates on projects.
+        projectDetailMap = IPM_ProjectJobHelper.populateProjectDetails(capabilityProcessingSet);
+        IPM_Project_Type__c regionalProjectType =  IPM_Utils.retrieveProjectType(projectDetailMap.values().get(0));
+        regionalProjectType.IPM_Fast_Forward_Phase_Change__c = true;
+        update regionalProjectType;
+        IPM_ProjectJobHelper.processProjects(projectDetailMap,null);   
+        Set<Id> MarketReadyProcessingSet = new Set<Id>();
+        for(IPM_Project__c localProject : localProjects)
+        {
+            localProject.IPM_Temporary_Phase__c  = 'Market Ready';
+            MarketReadyProcessingSet.add(localProject.Id);
         }
+                
+        update localProjects;
+        // Start Processing incoming Projects now and We would be performing Phase specific updates on projects.
+        projectDetailMap = IPM_ProjectJobHelper.populateProjectDetails(MarketReadyProcessingSet);
+        IPM_ProjectJobHelper.processProjects(projectDetailMap,null);  
+
+                
+        Set<Id> MarketDeployProcessingSet = new Set<Id>(); 
+
+        for(IPM_Project__c localProject : localProjects)
+        {
+            localProject.IPM_Temporary_Phase__c  = 'Market Deployment';
+            MarketDeployProcessingSet.add(localProject.Id);
+        }
+                
+        update localProjects;
+            }
+     private static void updateGlobalProjectPhase(List<IPM_Project__c> DBRegionalProjects,Map<Id,IPM_Project__c> projectMap)
+     {
+        // Start Processing incoming Projects now and We would be performing Phase specific updates on projects.
+        for(IPM_Project__c globalProject : projectMap.values())
+        {
+            globalProject.IPM_Temporary_Phase__c  = 'Capability';
+        }
+      
+        update projectMap.values(); 
+            
+        Map<Id,IPM_Project__c> projectDetailMap = IPM_ProjectJobHelper.populateProjectDetails(projectMap.keySet());
+        IPM_ProjectJobHelper.processProjects(projectDetailMap,null); 
+        for(IPM_Project__c globalProject : projectMap.values())
+        {
+            globalProject.IPM_Temporary_Phase__c  = 'Market Ready';
+        }
+        update projectMap.values();
+        projectDetailMap = IPM_ProjectJobHelper.populateProjectDetails(projectMap.keySet());
+        IPM_Project_Type__c globalProjectType =  IPM_Utils.retrieveProjectType(projectDetailMap.values().get(0));
+        globalProjectType.IPM_Fast_Forward_Phase_Change__c = true;
+        update globalProjectType;
+        IPM_ProjectJobHelper.processProjects(projectDetailMap,null);  
      } 
      
      public static testmethod void testEcodesignSyncStatus()
@@ -527,7 +612,7 @@ private with sharing class IPM_ProjectHelper_Test
         
      }
      
-     public static void createProjectGlobal(set<String> projectNameSet, List<Id> globalProjectIdList, Map<Id,IPM_Project__c> projectMap,User globalProjectLeader,User regionalProjectLeader){
+     public static void createRegionalProjects(set<String> projectNameSet, List<Id> globalProjectIdList, Map<Id,IPM_Project__c> projectMap,User globalProjectLeader,User regionalProjectLeader){
          
          	List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),

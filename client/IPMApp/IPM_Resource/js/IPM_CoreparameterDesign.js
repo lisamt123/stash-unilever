@@ -9,7 +9,7 @@ jq(document).ready(function() {
     if (IPMProAppCP.addtnlParameter === 'true') {
         jq('#myCarousel').carousel(4);
     }
-    if (window.location.search.indexOf('coreId=coreparameters') > -1) {
+    if (window.location.search.indexOf('coreId=coreparameters') > -1 || (window.parent.location.href.indexOf('CoreParameters') > -1 && IPMProAppCP.addtnlParameter !== 'true')) {
         sliderCP('.slide-bar');
     }
 });

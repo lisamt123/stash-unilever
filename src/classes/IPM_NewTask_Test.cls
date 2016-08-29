@@ -568,6 +568,60 @@ private class IPM_NewTask_Test{
     }    
     
     /***********************************
+      @name: testTodoWithStandardPhase
+      @Description: when standard phase is selected for the ToDos 
+    ***********************************/
+    private static TestMethod void testTodoWithStandardPhase(){
+        
+        Test.startTest();
+        
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
+            initializedData(); 
+            createProjectResource(projectDetailList[0].Id,userBD.id);
+            
+            system.runAs(userBD)
+            {
+                 list<IPM_Project__c> projDetailList11 = [SELECT id,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Type__c,IPM_SourceProjectType__c,IPM_CompanyCardText__c,IPMProject_Span__c,Name,IPM_Phase__c, IPM_Company_Card__c, IPM_Category_Text__c, IPM_ProjectSubType__c FROM IPM_Project__c WHERE Name='TestComments1'];
+                 IPM_Section__c ipmSection = IPM_TestFactory_Helper.createIPMSection(true);
+                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projDetailList11[0].Id, false);
+                 task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+                 task.IPM_Task_Name__c = 'Feasibility Task';
+                 task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 task.IPM_TaskSpan__c = 'Regional';
+                 task.IPM_Section__c = ipmSection.id;
+                 task.IPM_Function__c = 'BD';
+                 task.RecordTypeId = PROJECT_TASK_ID;
+                 
+                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
+                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
+                
+                 IPM_NewTask newTask = new IPM_NewTask(sc); 
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.tasks = task;
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD;
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.getPhaselist();
+                 newTask.getGateSections();
+                 newTask.tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 newTask.getGateSpecificSpan();
+                 newTask.getFuntionalRolelist();
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.getSections();
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 newTask.doSaveTasks(); 
+               
+                 list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Function__c,IPM_Type_of_Task__c FROM IPM_Task__c WHERE IPM_Project__c =:projDetailList11[0].Id AND IsSystemGenerated__c=false and IPM_Task_Name__c =: 'Feasibility Task' ];
+                 for(IPM_Task__c tsk: taskList)
+                 {
+                     system.assertEquals(tsk.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS, 'Future AdHoc Task not saved');
+                 }
+            }
+      Test.stopTest();               
+    }    
+    
+    /***********************************
       @name: testTodoWithStandardTasks
       @Description: test tasks with standard tasks
     ***********************************/
@@ -599,7 +653,8 @@ private class IPM_NewTask_Test{
                  newTask.projectObject = projDetailList11[0];
                  newTask.tasks = task;
                  newTask.projectObject = projDetailList11[0];
-                 task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD;
+                 task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
+                 newTask.getPhaselist();
                  system.assertEquals(task.IPM_Phase__c!= null,true,'Task Phase List for standard tasks not populated as expected');
             }	  
         Test.stopTest();      

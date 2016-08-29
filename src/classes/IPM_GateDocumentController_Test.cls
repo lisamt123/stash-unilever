@@ -98,7 +98,8 @@ private class IPM_GateDocumentController_Test{
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
-        system.runAs(globalUser){
+        system.runAs(globalUser)
+        {
             projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
             from IPM_Project__c where Name in:projectNameSet];
@@ -474,11 +475,16 @@ private class IPM_GateDocumentController_Test{
     static testMethod void IPM_PDocAttachmentListCtrlTest(){
        initializeTestMethodData();
         system.runAs(globalUser){
-        attachment att = new attachment(name='Gate_Document', ParentId= projectDocSecListObj[0].Id, body=blob.ValueOf('test'));
+        ApexPages.StandardController sc = new ApexPages.StandardController(project);
+        IPM_PDocAttachmentListCtrl docCtrl = new IPM_PDocAttachmentListCtrl(sc);
+        System.assert(docCtrl.documentList.size() == 0,'Attachment Exists!!');
+        attachment att = new attachment(name='Gate_Document', ParentId= projDocList[0].Id, body=blob.ValueOf('test'));
         insert att;
         pRef = Page.IPM_GateDocAttchList;
         pRef.getParameters().put('id', project.Id);
         Test.setCurrentPage(pRef);
+        docCtrl = new IPM_PDocAttachmentListCtrl(sc); 
+        System.assert(docCtrl.documentList.size() > 0,'Attachment Doesnt Exists!!');
         Test.startTest();
         List<Attachment> lstAttachment = [Select Id,Name from attachment where Name like :IPM_ConstantUtils.GD_ATTACHMENT_SUFFIX limit 1];
         System.assertEquals(lstAttachment.size(),1,'Attachment missing for Gate doc.');// Negative Test

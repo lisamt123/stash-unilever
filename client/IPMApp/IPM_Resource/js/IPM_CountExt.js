@@ -42,65 +42,76 @@ jq(document).ready(function() {
                 CKEDITOR.instances[strFrameParent].on("key", function(event) {
                     event = event || window.event;
                     objTextArea = this.document.$.body;
-                    if(event.data.domEvent.$.keyCode !==17 && event.data.domEvent.$.keyCode !== 86){
+                    if(event.data.domEvent.$.keyCode !==17){
                         return editorCount(objTextArea, event);
                     }
                 });
                 CKEDITOR.instances[strFrameParent].on("paste", function(event) {
-                    var selectedText;                  
-                    if (document.getSelection){ // all modern browsers and IE9+
-                        selectedText = document.getSelection().toString();
-                    }
-                    if (!countSpacesAsChars) {
-                        normalizedText = selectedText.replace(/\s/g, "").replace(/&nbsp;/g, "");
-                    }
-                    strText = normalizedText.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
-                    //Strip Html tags
-                    strText = normalizedText.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");
-                    event = event || window.event;
-                    objTextArea = this.document.$.body;
-                    var cplength = strText.length;
-                    var strText1;
-                    var objTextareaText = objTextArea.innerText;
-                    var normalizedText1 = objTextareaText;
-                    if (!countSpacesAsChars) {
-                        normalizedText1 = objTextareaText.replace(/\s/g, "").replace(/&nbsp;/g, "");
-                    }
-                    strText1 = normalizedText1.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
-                    //Strip Html tags
-                    strText1 = normalizedText1.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");       
-                    var strFullText = strText1.length;
-                   return editorPaste(strFullText,cplength,event);                   
-                });
-                var editorPaste = function(strFullText,cplength,event){
-                    var totCount = cplength + strFullText;
-                    if(totCount >= MaxLength){
+                        var strText;
+                        event = event || window.event;
                         if (strBrowser === "IE") {
-                            jq('#ipmDeleteModal').modal();
-                            jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
-                            jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
-                            jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
-                            jq('#ipmDeleteModal').find('.green').hide();
-                            jq('#ipmDeleteModal .modal-body').css({
-                                "height": "120px",
-                                "margin-right": "15px"
-                            });
-                            event.preventDefault();
+                            strText = window.clipboardData.getData('Text');
+                            if (!countSpacesAsChars) {
+                                var normalizedText = strText.replace(/\s/g, "").replace(/&nbsp;/g, "");
+                            }
+                            strText = normalizedText.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
+                            //Strip Html tags
+                            strText = normalizedText.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");
                         } else if (strBrowser === "CHROME") {
-                            jq('#ipmDeleteModal').modal();
-                            jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
-                            jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
-                            jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
-                            jq('#ipmDeleteModal').find('.green').hide();
-                            jq('#ipmDeleteModal .modal-body').css({
-                                "height": "120px",
-                                "margin-right": "15px"
-                            });
-                            event.preventDefault();
+                            var selectedText;                  
+                            if (document.getSelection){ // all modern browsers and IE9+
+                                selectedText = document.getSelection().toString();
+                                var selCount = selectedText.length;
+                            }
+                            if (!countSpacesAsChars) {
+                                normalizedText = selectedText.replace(/\s/g, "").replace(/&nbsp;/g, "");
+                            }
+                            strText = normalizedText.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
+                            //Strip Html tags
+                            strText = normalizedText.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");
                         }
-                    }
-                    showCharacterCount();
-                }                
+                        var strText1;
+                        var element = this.document.$.body;
+                        var objTextareaText = element.innerText;
+                        if (!countSpacesAsChars) {
+                            var normalizedText1 = objTextareaText.replace(/\s/g, "").replace(/&nbsp;/g, "");
+                        }
+                        strText1 = normalizedText1.replace(/(\r\n|\n|\r)/gm, "").replace(/&nbsp;/gi, " ");         
+                        //Strip Html tags
+                        strText1 = normalizedText1.replace(/(<([^>]+)>)/ig,"").replace(/^([\t\r\n]*)$/, "");       
+                        strFullText = strText1.length;
+                        var elCount2 = strText.length;
+                        strFullText = strFullText + elCount2;
+                        if (strFullText >= MaxLength) {
+                            if (strBrowser === "IE") {                               
+                                jq('#ipmDeleteModal').modal();
+                                jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
+                                jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
+                                jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
+                                jq('#ipmDeleteModal').find('.green').hide();
+                                jq('#ipmDeleteModal .modal-body').css({
+                                    "height": "120px",
+                                    "margin-right": "15px"
+                                });
+                                window.clipboardData.clearData("Text");
+                                 event.preventDefault();
+                            } else if (strBrowser === "CHROME") {
+                                jq('#ipmDeleteModal').modal();
+                                jq('#ipmDeleteModal').find('.modal-title').html(IPMAppSE.CountTitle);
+                                jq('#ipmDeleteModal').find('.confirmMsg').html(IPMAppSE.CountMessage);
+                                jq('#ipmDeleteModal').find('.delTaskGatebtn').html("Ok");
+                                jq('#ipmDeleteModal').find('.green').hide();
+                                jq('#ipmDeleteModal .modal-body').css({
+                                    "height": "120px",
+                                    "margin-right": "15px"
+                                });
+                                 event.preventDefault();
+                            }
+                        }
+                    setTimeout(function() {
+                        showCharacterCount();
+                    }, 100);
+                });                
                 var editorCount = function(objTextArea, e){
                     var objTextareaText = objTextArea.innerText;
                     var normalizedText = objTextareaText;
@@ -122,6 +133,7 @@ jq(document).ready(function() {
                     }
                     // Reaches Max Length - Shows error MAX_VALUE Reached Error Msg.
                     if (strText.length >= MaxLength) {
+                        showCharacterCount();
                         e.cancelBubble = true;
                         e.returnValue = false;
                         e.cancel();
@@ -192,6 +204,7 @@ jq(document).ready(function() {
             if (rem > 0) {
                 jq("#" + strLabelName).show().text(rem.toString()).prev("span").text(IPMAppSE.charRemaining);
             } else {
+                jq("#" + strLabelName).hide().text('0');
                 jq("#" + strLabelName).hide().prev("span").text(IPMAppSE.exLimitBtmMsg);
             }
         }

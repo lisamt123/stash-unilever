@@ -221,7 +221,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Refreshment</fullName>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1040,7 +1040,7 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Refreshment</fullName>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1160,7 +1160,7 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Refreshment</fullName>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1279,7 +1279,7 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
                 <default>false</default>
             </values>
             <values>
-                <fullName>Refreshment</fullName>
+                <fullName>Refreshments</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

@@ -474,7 +474,7 @@
                                                                         <apex:inputText html-placeholder="{!$Label.IPM_No_Market_selected}" value="{!market_STR}" rendered="{!!editSubSector}" disabled="true" />
                                                                         <!-- To display below outputPanel when current user has edit access on page   -->
                                                                         <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" rendered="{!editSubSector}" >
-                                                                            <div class="ipmDropDownSelect">
+                                                                            <div class="ipmDropDownSelect marketField">
                                                                                 <span class='marketSelValues'>{!$label.IPM_SelectMarket}</span>
                                                                                 <a class="listArrow"></a>    
                                                                             </div>
@@ -521,7 +521,7 @@
                                                                         <apex:inputText html-placeholder="{!if(ipm_CategoryVal.IPM_Sub_Sector__c,$Label.IPM_No_Sub_Sector_selected,$Label.IPM_No_Sector_is_selected)}" value="{!subSector_STR}" rendered="{!!editSubSector}" disabled="true" />
                                                                         <!-- To display below outputPanel when current user has edit access on page   -->
                                                                         <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" rendered="{!editSubSector}" >
-                                                                            <div class="ipmDropDownSelect">
+                                                                            <div class="ipmDropDownSelect sectorField">
                                                                                 <span class='sectorSelValues'>{!if(ipm_CategoryVal.IPM_Sub_Sector__c,$label.IPM_SelectSubSector,$label.IPM_Select_Sector)}</span>
                                                                                 <a class="listArrow"></a>    
                                                                             </div>                                                                            
@@ -552,7 +552,7 @@
                                                     </apex:outputPanel>
                                                 <!-- Platform Field Added-->   
                                                                                <div class="col-sm-3 noPadleft noPadright">
-                                        <span class="coreSectionFtitle">{!$Label.IPM_Platform}
+                                        <span class="coreSectionFtitle fontB">{!$Label.IPM_Platform}
                                          <span class="SecButtonSet custButton infoMarTop">
                                                  <a class="icoButton info smallllinfo pos-icon" title="{!$Label.IPM_Platform_Title}">i</a>
                                              </span></span>
@@ -1010,7 +1010,7 @@
             src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}"
             type="text/javascript"></script>
         <script>
-			var IPMAppPS = {sectorLabel: '{!$Label.IPM_SelectSubSector}', selectmarketLabel: '{!$Label.IPM_Market}'};
+			var IPMAppPS = {sectorLabel: '{!$Label.IPM_SelectSubSector}', selectmarketLabel: '{!$label.IPM_SelectMarket}'};
             var IPMProAppCP = {select: '{!$Label.IPM_Select_Text}',iscompleted:'{!IPM_Coreparameter.IPM_IsCompleted__c}', setupurl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', projectUrl:'{!URLFOR($Page.IPM_CoreparameterPage)}', projectName:'{!projectID}', prosubtype:'{!Project.IPM_ProjectSubType__c}', oprtnLabel:'{!$Label.IPM_Operational}', blgLabel:'{!$Label.IPM_Brand_Led_Growth}', addtnlParameter:'{!isAdditionalCoreparameter}', coreParameter: '{!isEditCoreparameter}', bduser: '{!editCPVByBD}', tpluser: '{!editETByTPL}'};
       </script>
     </apex:outputPanel>

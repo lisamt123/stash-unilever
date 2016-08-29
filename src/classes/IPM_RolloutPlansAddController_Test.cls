@@ -790,9 +790,9 @@ private class IPM_RolloutPlansAddController_Test
 	* Constructor logic for the controller is tested for regional projects (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
 	* @name :  testRegionalProjRolloutAdd2
 	***************************************************************************************/
-	private static testmethod void testRegionalProjRolloutAdd2()
+	/*private static testmethod void testRegionalProjRolloutAdd2()
 	{
 		GlobalProjRolloutAdd(true,true,false,false); 
 		System.assert(actualPageRef.getURL().contains(expectedPageRef.getURL()),FAILED_ASSERT_MSG);
-	}
+	}*/
 }

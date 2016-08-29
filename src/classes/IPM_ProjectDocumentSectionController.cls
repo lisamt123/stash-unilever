@@ -594,10 +594,13 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 					projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
 					showmsg=false;
 				}
-				if(String.IsNotBlank(projDocSec.IPM_Gate_Document_Summary__c) && !projDocSec.IPM_Negotiable__c && integer.valueof(summary)>=15){
-					projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
-					showmsg=false;
-				}
+				else if(String.IsNotBlank(projDocSec.IPM_Gate_Document_Summary__c) && !projDocSec.IPM_Negotiable__c && integer.valueof(summary)>=15){
+                    projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
+                    showmsg=false;
+                }
+                else{
+                	projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
+                }
 			}
 			
 			if(String.IsNotBlank(projDocSec.IPM_PDP_Document_Summary__c) && projDocSec.IPM_PDP_Document_Summary__c.length() >=15)
