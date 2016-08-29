@@ -1,3 +1,4 @@
+
 /**
    @Author Cognizant
    @Name IPM_RolloutPlansTableController
@@ -783,7 +784,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     //  in case of Global Project Rollout assignment.
                     IPM_Project_Rollout__c rollout = lstcompleteRollout.get(rolloutId);
                 
-                    if(projectType!=null && projectType.IPM_CreateRegionalProjects__c && projectType!=null && projectType.IPM_CreateLocalProjects__c)
+                    if(projectType!=null && projectType.IPM_CreateRegionalProjects__c && projectType.IPM_CreateLocalProjects__c)
                     {     
                         // Check Custom Setting to filter Rollout for Project Creation
                         if(checkToLogicToCreateProject(projectType,rollout))
