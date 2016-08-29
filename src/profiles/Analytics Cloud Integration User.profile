@@ -25568,12 +25568,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Idea.Attachment</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Idea.Description__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -25583,7 +25583,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Idea.Idea_Theme__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -25598,7 +25598,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Idea.StatusFormula__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -38973,6 +38973,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Idea-Idea Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.InternalIdeasIdeaRecordType</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Idea-Idea Layout</layout>

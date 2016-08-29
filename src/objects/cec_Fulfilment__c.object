@@ -1708,14 +1708,6 @@ Case__r.Account.PersonContact.MailingCountry</formula>
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Benelux_Quality_Check</fullName>
-        <columns>NAME</columns>
-        <filterScope>Queue</filterScope>
-        <label>CEC Benelux Quality Check</label>
-        <language>nl_NL</language>
-        <queue>CEC_Benelux_Quality_Check</queue>
-    </listViews>
-    <listViews>
         <fullName>CEC_Brazil_Quality_Check_Queue_cec_Fulfilment</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Brazil Quality Check Queue</label>
