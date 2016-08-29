@@ -16,6 +16,7 @@ public class ICB_PriceBookCreation_Test {
         inventory2 = new ICB_Inventory__c();
         priceBook2 = new PriceBook2();
     }   
+    
 	/*******************************************************************
     Purpose: Test the method ICB_changeProductStructure, with pricebbok
 	Parameters: [NONE]
@@ -37,6 +38,7 @@ public class ICB_PriceBookCreation_Test {
         system.assert(products2.IsActive);
          System.Test.stopTest();
     }
+    
     /*******************************************************************
     Purpose: Test the method ICB_changeProductStructure, whitout pricebook
 	Parameters: [NONE]

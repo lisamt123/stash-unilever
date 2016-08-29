@@ -22,6 +22,7 @@ public class ICB_ContactPartnerUserCreation_Test
         contactNew = new Contact();
         contactOld = new Contact();
     }
+    
     /*******************************************************************
     Purpose: Test the success scenario
 	Parameters: [NONE]
@@ -35,7 +36,7 @@ public class ICB_ContactPartnerUserCreation_Test
         ICB_ContactPartnerUserCreation contactUser = new ICB_ContactPartnerUserCreation();
         System.assertNotEquals(null,ICB_ContactPartnerUserCreation.getInstance());
         contactUser.createNewUser(new List<Contact>{contactOld});
-        contactUser.updateUser(new List<Contact>{contactOld}, new List<Contact>{contactNew});
+        //contactUser.updateUser(new List<Contact>{contactOld}, new List<Contact>{contactNew});
         contactUser.userCreation();
         System.assertNotEquals(null, [Select Id From User where ContactId =: contactOld.Id]);
         System.Test.stopTest();
@@ -52,7 +53,7 @@ public class ICB_ContactPartnerUserCreation_Test
         System.Test.startTest();
         ICB_ContactPartnerUserCreation contactUser = new ICB_ContactPartnerUserCreation();
         contactUser.createNewUser(null);
-        contactUser.updateUser(null, null);
+       // contactUser.updateUser(null, null);
         List<User> listUser = [Select Id From User Where ContactId =:contactOld.Id];
         System.assertEquals(0, listUser.size());
         System.Test.stopTest();

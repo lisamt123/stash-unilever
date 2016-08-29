@@ -524,3 +524,10 @@
         <shortDescription>ICB HeaderCloseSale</shortDescription>
         <value>Close Sales</value>
     </labels>
+    <labels>
+        <fullName>ICB_FAMILY_IMPULSE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Impulse Family</shortDescription>
+        <value>Impulse</value>
+    </labels>
