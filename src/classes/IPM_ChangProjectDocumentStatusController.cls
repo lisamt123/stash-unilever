@@ -900,7 +900,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 	            }
                    
                     String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
-                    String rolloutWhereClause = ' WHERE IPM_Project__c  =:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
+	                String rolloutWhereClause = ' WHERE '+whereClauseAPIName+'=:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     localRolloutList = database.query(rolloutWhereClause);
 	                        
