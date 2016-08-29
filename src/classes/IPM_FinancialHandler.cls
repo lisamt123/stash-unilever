@@ -6,7 +6,7 @@
 */
 public with sharing class IPM_FinancialHandler implements ITrigger
 {   
-    private Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>();
+	
     
     //removed DEFAULT_FINANCIAL_RECORDTYPE for SONAR Issue
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();

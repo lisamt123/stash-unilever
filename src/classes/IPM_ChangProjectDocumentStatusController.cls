@@ -883,15 +883,12 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     regionalRolloutList = database.query(rolloutWhereClause);
                         
-                    if(!regionalRolloutList.isEmpty())
-                    {
                         for(IPM_Project_Rollout__c rollout : regionalRolloutList)
                         {
                             rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
                             rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
                         }
                     }
-                }
                 
                 if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c)
                 {
@@ -907,8 +904,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     localRolloutList = database.query(rolloutWhereClause);
 	                        
-                    if(!localRolloutList.isEmpty())
-                    {
                         for(IPM_Project_Rollout__c rollout : localRolloutList)
                         {
                             rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
@@ -917,19 +912,18 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     }	
 	                        
 	           }
-            }
             
 
             
             System.SavePoint sp = Database.SetSavePoint();  
             try
             {   
-                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c && regionalRolloutList!=null && !regionalRolloutList.isEmpty())
+                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c && !regionalRolloutList.isEmpty())
                 {
                     update regionalRolloutList; 
                 }
                 
-                if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c && localRolloutList!=null && !localRolloutList.isEmpty())
+                if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c && !localRolloutList.isEmpty())
                 {
                     update localRolloutList;
                 }
