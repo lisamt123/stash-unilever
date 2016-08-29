@@ -63,6 +63,12 @@ src/objects/ICB_Sales_Locale__c.object
 src/objects/ICB_Setup_Photo__c.object
 src/objects/ICB_Inventory_Line_Item__c.object
 src/objects/ICB_Inventory__c.object
+src/objects/OpportunityLineItem.object
+src/objects/Opportunity.object
+src/objects/Product2.object
+src/objects/User.object
+src/PriceBookEntry.object
+src/PriceBook2.object
 src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset
