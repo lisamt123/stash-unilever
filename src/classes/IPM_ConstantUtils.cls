@@ -880,7 +880,14 @@ public class IPM_ConstantUtils {
     public static final Integer BET_DUEDATE_H2_MONTH=6;
     public static final Integer BET_DUEDATE_H2_DAY=30;
     
-    
+    public static final String GKM_1 = 'GKM1';
+    public static final String GKM_2 = 'GKM2';
+    public static final String GKM_3 = 'GKM3';
+    public static final String GKM_4 = 'GKM4';
+    public static final String GKM_5 = 'GKM5';
+    public static final String GKM_6 = 'GKM6';
+    public static final String GKM_7 = 'GKM7';
+    public static final String GKM_8 = 'GKM8';
     
      
     
