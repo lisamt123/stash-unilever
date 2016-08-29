@@ -105,6 +105,17 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>Product_Image__c</fullName>
+        <description>Indicate the name of image used to source the image from static resource.</description>
+        <externalId>false</externalId>
+        <label>Product Image</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UID_Barcode__c</fullName>
         <description>Barcode of SKU</description>
         <externalId>false</externalId>
