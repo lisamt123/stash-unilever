@@ -147,3 +147,7 @@ src/aura/ICB_Static_LineItem_Inventory/ICB_Static_LineItem_Inventory.evt
 src/aura/ICB_Static_LineItem_Inventory/ICB_Static_LineItem_Inventory.evt-meta.xml
 src/aura/ICB_ProductLineItemInventory/ICB_ProductLineItemInventory.evt
 src/aura/ICB_ProductLineItemInventory/ICB_ProductLineItemInventory.evt-meta.xml
+src/flow
+src/flows/ICB_Insert_PriceBook_Produts-1.flow
+src/flows/ICB_Insert_PriceBook_Produts-2.flow
+src/flows/ICB_Insert_PriceBook_Produts-3.flow
