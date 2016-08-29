@@ -54,7 +54,7 @@
             <div class="slds-grid " >
                 <div class="slds-col header-align">
                     
-                    <h1 class="slds-text-heading--medium">Solicitação de Kits </h1>
+                    <h1 class="slds-text-heading--medium">{!$Label.c.ICB_CockPitHeader} </h1>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <div class="slds-grid " >
                 <div class="slds-col header-align">
                     
-                    <h1 class="slds-text-heading--medium">Batimento de vendas </h1>
+                    <h1 class="slds-text-heading--medium">{!$Label.c.ICB_HeaderCloseSale} </h1>
                 </div>
             </div>
         </div>

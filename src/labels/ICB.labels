@@ -508,3 +508,19 @@
         <shortDescription>ICB CHECK HASHTAG</shortDescription>
         <value>#foto</value>
     </labels>
+     <labels>
+        <fullName>ICB_CockPitHeader</fullName>
+        <categories>Cook Pit Screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB CockPitHeader</shortDescription>
+        <value>Kits request</value>
+    </labels>
+    <labels>
+        <fullName>ICB_HeaderCloseSale</fullName>
+        <categories>Close Sales Screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB HeaderCloseSale</shortDescription>
+        <value>Close Sales</value>
+    </labels>
