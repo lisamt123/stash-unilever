@@ -56,7 +56,7 @@ global with sharing class AF_BonusSummaryRemote {
         Map<String, String> ulbonusMatrixMap  = new Map<String, String>();
         colTotal = 0;
         colTotalA=0;
-        Integer rowTotal = 0, rowLocalTotal=0, rowTotalA = 0;
+        
         List<AF_Bonus_Matrix__c> bonusEstimates  = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
         AF_Bonus_Summary__c, AF_Value__c, AF_BonusMatrixCode__c, AF_IsCrossBorderImage__c,
         AF_Bonus_Local_Value__c,AF_isCommentImage__c
@@ -88,7 +88,27 @@ global with sharing class AF_BonusSummaryRemote {
         orderedRowMethodBonus();
         rowDetail += trCloseTag;
         orderedColMethodBonus();
-        /* Columns part is completed. */
+        getBonusMatrixRecordsext(agencyId,bonusSummaryId);
+        ulbonusMatrixMap .put('1', colDetail);
+        ulbonusMatrixMap .put('2', rowDetail);
+        return ulbonusMatrixMap ;
+    }
+   /***********************************************************************************
+*  @Description: this method is used to query and frame the rows and columns of the 
+*  @             agency and unilerver entity of Bonus Matrix records and display's
+*  @             Total of the each entity and sub-total of the row and column
+*  @name : getBonusMatrixRecords
+*  @param : agencyId,bonusSummaryId
+*  @return: Map of <String,String>.
+*************************************************************************************/    
+    
+     public static void getBonusMatrixRecordsext(String agencyId, String bonusSummaryId) {
+     Set<String> rowsSet = new Set<String>();
+     String trOpenTag = '<tr>', trCloseTag = '</tr>';
+     orderedRow = AF_BrandEstimateRemote.fillList(rowsSet);
+     Integer rowTotal = 0, rowLocalTotal=0, rowTotalA = 0;
+        orderedRow.sort();
+      /* Columns part is completed. */
         /* Following displays all the rows in the matrix.*/
         for(String eachRow : orderedRow) {
             rowDetail += trOpenTag;
@@ -115,10 +135,10 @@ global with sharing class AF_BonusSummaryRemote {
             getBonusRecordsExt(bonusSummaryId,eachRow);
             rowDetail += trCloseTag;
         }
-        ulbonusMatrixMap .put('1', colDetail);
-        ulbonusMatrixMap .put('2', rowDetail);
-        return ulbonusMatrixMap ;
+    
     }
+    
+    
     /***********************************************************************************
 *  @Description: this method is used display add the row detail total
 *  @name : orderedRowMethodBonus
@@ -219,7 +239,7 @@ global with sharing class AF_BonusSummaryRemote {
     }
     
     public static void processBonusRowExt(AF_Bonus_Matrix__c agSObj){
-        String lBreak = '<br/>';
+        
         String href;
         String spacer = ' ';
         href = 'apex/af_bonusEstimate?id='+agSObj.Id;
@@ -237,7 +257,12 @@ global with sharing class AF_BonusSummaryRemote {
             rowDetailToReturn += ' e=\"' + disptotal + '\"';
             rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
             rowDetailToReturn += ' class=\"modalButton3\">';
-        if(total != 0) {
+            processBonusRow();
+        
+    }
+    public static void processBonusRow(){
+    String lBreak = '<br/>';
+    if(total != 0) {
                 rowDetailToReturn += '<div style=float:left;>' + AF_Constants.crsBrdrImg + '<br/>' + AF_Constants.cmntImg;
                 rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(total);
                 rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
