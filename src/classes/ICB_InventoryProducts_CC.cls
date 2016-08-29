@@ -14,7 +14,6 @@ public with sharing class ICB_InventoryProducts_CC
 {
     public static List<PriceBookEntry> listPB;
     
-    
     Static
     {
         listPB = new List<PriceBookEntry>();

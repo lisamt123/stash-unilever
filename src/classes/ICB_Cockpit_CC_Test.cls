@@ -26,6 +26,7 @@ public class ICB_Cockpit_CC_Test
     private static String testeOpp;
     private static Opportunity opp;
     
+    
     Static
     {
         acc = new Account();

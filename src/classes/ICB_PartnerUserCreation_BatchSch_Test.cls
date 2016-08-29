@@ -24,6 +24,7 @@ public class ICB_PartnerUserCreation_BatchSch_Test
         contactNew = new Contact();
         contactOld = new Contact();
     }
+    
     /********************************************************************
     Purpose: Test the Schedulable class ICB_PartnerUserCreation_BatchSchedule
     Parameters: [NONE]

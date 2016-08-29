@@ -24,7 +24,6 @@ public class ICB_InventoryProducts_CC_Test
     private static ICB_Inventory_Line_Item__c inventoryLineItem;
     private static PriceBookEntry priceBookEntry;
 
-    
     Static
     {
         acc = new Account();

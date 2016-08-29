@@ -32,12 +32,12 @@ public with sharing class ICB_ContactPartnerUserCreation
     static 
     {
         permissions 		= new List<String> { ICB_ContactTypes__c.getValues('Permission_Salesman').Value__c, ICB_ContactTypes__c.getValues('Permission_Operator').Value__c};
-        types 				= new List<String> { ICB_ContactTypes__c.getValues('Type_Salesman').Value__c, ICB_ContactTypes__c.getValues('Type_Operator').Value__c };
-        recordTypeId 		= new List<String> {Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Operator').getRecordTypeId(), Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Salesman').getRecordTypeId()};
-        userEmail 			= ICB_ContactTypes__c.getValues('User_Email').Value__c;
+            types 				= new List<String> { ICB_ContactTypes__c.getValues('Type_Salesman').Value__c, ICB_ContactTypes__c.getValues('Type_Operator').Value__c };
+                recordTypeId 		= new List<String> {Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Operator').getRecordTypeId(), Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Salesman').getRecordTypeId()};
+                    userEmail 			= ICB_ContactTypes__c.getValues('User_Email').Value__c;
         profileCommunity 	= ICB_ContactTypes__c.getValues('Profile_Community').Value__c;
         recorTypeName		= new List<String> { 'Ice Cream Operator', 'Ice Cream Salesman'};
-        myProfile 			=  [SELECT id FROM Profile WHERE name =: profileCommunity];
+            myProfile 			=  [SELECT id FROM Profile WHERE name =: profileCommunity];
         
     }
     
@@ -47,10 +47,10 @@ public with sharing class ICB_ContactPartnerUserCreation
     }
     
     /*********************************************************
-    * Purpose: Create new User when new contact is created
-    * Parameters: oldTrigger & newTrigger values
-    * Returns: none 
-    *********************************************************/
+* Purpose: Create new User when new contact is created
+* Parameters: oldTrigger & newTrigger values
+* Returns: none 
+*********************************************************/
     public void createNewUser(List<Contact> contact) 
     {
         
@@ -65,7 +65,9 @@ public with sharing class ICB_ContactPartnerUserCreation
                 users.add(create(con));
             } 
             
-            Database.insert(users); 
+            Database.SaveResult[] save =  Database.insert(users,false); 
+            System.debug('SAVEEEEEEEEE ########### ' + save);
+            
             definePermissionSetting();
         }  
         catch (Exception e)
@@ -76,38 +78,38 @@ public with sharing class ICB_ContactPartnerUserCreation
     }
     
     /****************
-    * Purpose: Create new User when contacts updated with an Email.
-    * Parameters: oldTrigger & newTrigger values
-    * Returns: none 
-    ***************/
+* Purpose: Create new User when contacts updated with an Email.
+* Parameters: oldTrigger & newTrigger values
+* Returns: none 
+***************/
     /*public void updateUser(List<Contact> contactOld, List<Contact> contactNew) 
-    {
-        System.debug('Entering <updateUser>' + contactOld);
-        System.debug('Entering <updateUser>' + contactNew);
-        List<User> users = new List<User>();
-        try {
-            
-            for(Integer i = 0; i < contactOld.size(); i++) 
-            {
-                if(contactOld.get(i).email == null && contactNew.get(i).email != null) 
-                {
-                    users.add(create(contactNew.get(i)));
-                }
-            }
-            Database.insert(users);
-        } 
-        catch (Exception e) 
-        {
-            system.debug(Label.ICB_ERROR_MESSAGE +  e.getMessage());
-        } 
-        System.debug('Exiting <updateUser>');
-    } */
+{
+System.debug('Entering <updateUser>' + contactOld);
+System.debug('Entering <updateUser>' + contactNew);
+List<User> users = new List<User>();
+try {
+
+for(Integer i = 0; i < contactOld.size(); i++) 
+{
+if(contactOld.get(i).email == null && contactNew.get(i).email != null) 
+{
+users.add(create(contactNew.get(i)));
+}
+}
+Database.insert(users);
+} 
+catch (Exception e) 
+{
+system.debug(Label.ICB_ERROR_MESSAGE +  e.getMessage());
+} 
+System.debug('Exiting <updateUser>');
+} */
     
     /***********************************
-    * Purpose: Create new User.
-    * Parameters: contacts
-    * Returns: A created User 
-    ************************************/
+* Purpose: Create new User.
+* Parameters: contacts
+* Returns: A created User 
+************************************/
     private User create(Contact contact) 
     {
         
@@ -151,11 +153,11 @@ public with sharing class ICB_ContactPartnerUserCreation
     }
     
     /***********************************
-    * Purpose: Define the permissionSet used based on the Contact that has been created.
-    * It Considered the list of Users by the recordType, type of the User and the value of the community User 
-    * Parameters: none
-    * Returns: void
-    ************************************/
+* Purpose: Define the permissionSet used based on the Contact that has been created.
+* It Considered the list of Users by the recordType, type of the User and the value of the community User 
+* Parameters: none
+* Returns: void
+************************************/
     private static void definePermissionSetting() 
     {
         System.debug('Entering <definePermissionSetting>');
@@ -218,9 +220,9 @@ public with sharing class ICB_ContactPartnerUserCreation
         {
             system.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
-        Datetime tempo = system.now().addHours(1);
-                System.schedule('Processa New Contact ' +
-                                system.now().format('yyyy.MM.dd.hh.mm.ss.SSS'), tempo.second() +' '+ tempo.minute() +' '+ tempo.hour() +' '+ tempo.day() +' '+ tempo.month() +' ? '+ tempo.year(), new ICB_PartnerUserCreation_BatchSchedule());
+        // Datetime tempo = system.now().addHours(1);
+        //      System.schedule('Processa New Contact ' +
+        //                    system.now().format('yyyy.MM.dd.hh.mm.ss.SSS'), tempo.second() +' '+ tempo.minute() +' '+ tempo.hour() +' '+ tempo.day() +' '+ tempo.month() +' ? '+ tempo.year(), new ICB_PartnerUserCreation_BatchSchedule());
         
     }
     
@@ -251,26 +253,27 @@ public with sharing class ICB_ContactPartnerUserCreation
         } catch(Exception e) 
             
         {
-           system.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
+            system.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
         system.debug('Exiting <userCreation>');
     }
     
     private static List<Contact> getContacts()
     {
-        List<contact> contato = new List<Contact>();
+        List<Contact> contato = [SELECT Id, FirstName, LastName, Email, Name, ICB_Type__c 
+                                 FROM Contact 
+                                 WHERE ICB_Type__c =: types 
+                                 AND RecordTypeId IN: recordTypeId
+                                 AND Email != NULL
+                                 AND ICB_Community_User__c = false];
         List<User> users = new List<User>();
         list<Contact> contatoValido = new list<Contact>();
-        
-        contato = [SELECT Id, FirstName, LastName, Email, Name, ICB_Type__c 
-                FROM Contact 
-                WHERE ICB_Type__c =: types 
-                AND RecordTypeId IN: recordTypeId
-                AND Email != NULL
-                AND ICB_Community_User__c = false];
-        
-        users =[select id, ContactId from user where ContactId <>null];
-        
+        Integer i = 0;
+        for(User user : [select id, ContactId from user where ContactId IN: contato])
+        {
+            contato.remove(i);
+            i++;
+        }
         
         
         return contato;

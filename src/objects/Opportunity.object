@@ -337,6 +337,40 @@
                 <probability>0</probability>
                 <won>false</won>
             </picklistValues>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+                <description>Ice cream Brazil status, to identify when there are a open sales on mobile channel.</description>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <description>Ice cream Brazil status, to identify when there are a closed sales on mobile channel.</description>
+                <closed>true</closed>
+                <forecastCategory>Closed</forecastCategory>
+                <probability>100</probability>
+                <won>true</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>10</probability>
+                <won>false</won>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Available</fullName>
+                <default>false</default>
+                <closed>false</closed>
+                <forecastCategory>Pipeline</forecastCategory>
+                <probability>20</probability>
+                <won>false</won>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>true</trackFeedHistory>
