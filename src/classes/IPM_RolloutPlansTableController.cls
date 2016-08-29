@@ -69,6 +69,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public map<id,set<string>> holdRolloutidBrandMap{get;set;}//map of local rollout id and set of brands
     @TestVisible private Map<string,IPM_Country__c> rolloutCountryMap;//map for country name and country details
     public Map<Id,Boolean> showClusterNameMap{get;set;}
+    public List<String> filterfieldValueArray;
+    public String filterforProject;
     
     /*******************************************************************************************************
     * @description  Constructor
@@ -616,7 +618,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id ,IPM_Regional_PL__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Finance_Member__r.Name FROM Local_Rollouts__r';   
+            queryString+= ' Id ,Local_Project__r.IPM_Project_Leader__c,Local_Project__r.IPM_Project_Leader__r.Name, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Finance_Lead__r.Name,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Regional_PL__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl,Finance_Member__r.Name FROM Local_Rollouts__r';   
             queryString+= ' WHERE Regional_Project__c =: nullRegionalProject AND ( isActive__c = true OR '+ showEntity + ' = true ) ';
             queryString+= ' ORDER BY IPM_Rollout_Project__c),';
             queryString+= ' IPM_Project__r.IPM_Phase__c, IPM_Regional_PL__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE IPM_Project__c =: projectId AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setRegionalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true ) ';
@@ -782,24 +784,27 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     //  in case of Global Project Rollout assignment.
                     IPM_Project_Rollout__c rollout = lstcompleteRollout.get(rolloutId);
                 
-                    if(projectType!=null && projectType.IPM_CreateRegionalProjects__c || projectType!=null && projectType.IPM_CreateLocalProjects__c)
-                    {
-                        rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                        rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
-                         
+                    if(projectType!=null && projectType.IPM_CreateRegionalProjects__c && projectType!=null && projectType.IPM_CreateLocalProjects__c)
+                    {     
+                        // Check Custom Setting to filter Rollout for Project Creation
+                        if(checkToLogicToCreateProject(projectType,rollout))
+                        {                           
+                            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;   
+                            rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
+                        }
                     }
                     
                     
                     Date minimalDate = null;
                     // Check for child Rollouts if any. In case of regional Rollout Assignment, you will get local Projects.
-                    if(rollOut.Local_Rollouts__r!=null && !rollOut.Local_Rollouts__r.isEmpty())  
+                    if(rollOut.Local_Rollouts__r!=null && !rollOut.Local_Rollouts__r.isEmpty() && projectType!=null)  
                     {
                         for(IPM_Project_Rollout__c tempLocalRollout : rollOut.Local_Rollouts__r)
                         {
                             Id localRolloutId = tempLocalRollout.Id;
                             IPM_Project_Rollout__c localRollout = lstcompleteRollout.get(localRolloutId);
                             
-                            if(projectType!=null &&  projectType.IPM_CreateLocalProjects__c && (projectType.IPM_GateKeeping_Model__c!=IPM_ConstantUtils.GKM_3  || (projectType.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GKM_3 && localRollout.keyMCO__c)))
+                            if(projectType!=null &&  projectType.IPM_CreateLocalProjects__c && checkToLogicToCreateProject(projectType,tempLocalRollout))
                             {
                                 localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
                                 localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;
@@ -912,6 +917,36 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         }
         return null;
     }
+    private boolean checkToLogicToCreateProject(IPM_Project_Type__c projectType,IPM_Project_Rollout__c rolloutTemp)
+    {
+        Boolean filterPassed = true;
+        filterfieldAPINameArray = new List<String>();
+        filterfieldValueArray = new List<String>();
+        if(projectType.Adhoc_Local_Project_Creation__c != null)
+        {     
+            filterforProject = projectType.Adhoc_Local_Project_Creation__c ;        
+            for(String tempExpression : filterforProject.split(','))
+            {
+                String[] expressionArray = tempExpression.split('=');
+                if(expressionArray.size() == 2)
+                {
+                    filterfieldAPINameArray.add(expressionArray[0]);
+                    filterfieldValueArray.add(expressionArray[1]);
+                }
+            }
+    
+            for(Integer counter=0;counter < filterfieldAPINameArray.size();counter++)
+            {
+                String fieldAPIName = filterfieldAPINameArray[counter];
+                String fieldValue = filterfieldValueArray[counter];
+                if(rolloutTemp.get(fieldAPIName) !=  Boolean.valueOf(fieldValue))
+                {
+                    filterPassed = false;
+                }
+            }
+        }
+        return filterPassed;
+    } 
 
     /*******************************************************************************************************
     * @description  Method to Validate Non-Key TLD misalignment
