@@ -17,6 +17,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>ICB_Cockpit_Hellper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ICB_ContactDAO</apexClass>
         <enabled>false</enabled>
     </classAccesses>

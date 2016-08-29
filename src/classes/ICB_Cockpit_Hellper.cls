@@ -1,0 +1,195 @@
+/**********************************************************************
+Name: ICB_Cockpit_Helper
+Copyright © 2016 Unilever
+======================================================
+======================================================
+Purpose:
+Helper class for controller ICB_Cockpit
+======================================================
+======================================================
+History
+VERSION AUTHOR    		DATE 		DETAIL 			Description
+1.0    	Antonio Raul 	27/08/2016  Class creation 
+1.0    	Antonio Raul 	28/08/2016  Class finished
+***********************************************************************/
+public with sharing class ICB_Cockpit_Hellper 
+{
+    private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
+    private static final String CONST_STAGE_CLOSED;
+    private static final String CONST_STAGE_AVAILABLE;
+    private static final String CONST_STATUS_ITEM_OPP_STOCK;
+    private static final String CONST_STAGE_PENDING;
+    private static final String CONST_EMPTY;
+    private static final String CONST_SOLICITATION;
+    
+    Static
+    {
+        CONST_STATUS_ITEM_OPP_SOLD_PENDING = 'sold pending stock';
+        CONST_EMPTY = '';
+        CONST_STAGE_CLOSED = 'Closed';
+        CONST_STAGE_AVAILABLE = 'Available';
+        CONST_STAGE_PENDING = 'Pending';
+        CONST_STATUS_ITEM_OPP_STOCK = 'stock';
+        CONST_SOLICITATION = 'Solicitation';
+    }
+    /*******************************************************************
+    Purpose: Return teh map of wrapper class for method getContacts
+    Parameters: @listOpportunityLineItem(list the opportunity line item returned of method getcontacts)
+    Returns: Map<String,ICB_Wrapper_Cockpit_CC>
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    public static Map<String,ICB_Wrapper_Cockpit_CC> returnMapLineItem(List<OpportunityLineItem> listOpportunityLineItem)
+    {
+        System.debug('Entering <returnMapLineItem>: '+ JSON.serializePretty(listOpportunityLineItem));
+        Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
+        ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
+        item.quantityIce = 0;
+        for(OpportunityLineItem oppItem : listOpportunityLineItem)
+        {
+            if(mapLineItem != null)
+            {
+                if(!mapLineItem.keySet().contains(oppItem.OpportunityId))
+                {
+                    item = new ICB_Wrapper_Cockpit_CC();
+                    item.quantityIce = 0;
+                }
+            }
+            if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && oppItem.ICB_STATUS_SALES__c != CONST_EMPTY)
+            {
+                item.quantityIce = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : item.quantityIce + oppItem.ICB_ITEMS_RETURNED__c;
+                item.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            }
+            else
+            {
+                item.quantityIce = oppItem.Quantity == null ? 0 : item.quantityIce + oppItem.Quantity; 
+            }
+            item.oppLineItem = oppItem;
+            mapLineItem.put(oppItem.OpportunityId, item);
+        } 
+        System.debug('Exiting <returnMapLineItem>: '+ JSON.serializePretty(mapLineItem));
+        return mapLineItem;
+    }
+    /*******************************************************************
+    Purpose: Return teh list of wrapper class for method getInventories
+    Parameters: @oppLineList(list the opportunity line item returned of method getInventories)
+				@ivt(variable returned of for of method getInventories)
+				@operation(current operation)
+				@idContact(current contact)
+    Returns: List<ICB_Wrapper_Cockpit_CC>
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    public static List<ICB_Wrapper_Cockpit_CC> returnListWrapper(List<OpportunityLineItem> oppLineList,ICB_Inventory_Line_Item__c ivt,String operation,String idContact)
+    {
+        System.debug('Entering <returnListWrapper><oppLineList>: '+ JSON.serializePretty(oppLineList));
+        System.debug('Entering <returnListWrapper><ivt>: '+ JSON.serializePretty(ivt));
+        System.debug('Entering <returnListWrapper><operation>: '+ operation);
+        System.debug('Entering <returnListWrapper><idContact>: '+ idContact);
+        ICB_Wrapper_Cockpit_CC itemWrapper = new ICB_Wrapper_Cockpit_CC();
+        List<OpportunityLineItem> listOppItemUp = new List<OpportunityLineItem>();
+        List<ICB_Wrapper_Cockpit_CC> listWrapper = new List<ICB_Wrapper_Cockpit_CC>();
+        Boolean isStock = false;
+        Boolean isClosed = false;
+        
+        for(OpportunityLineItem oppItem : oppLineList)
+        {
+            
+            if(oppItem.Product2Id == ivt.ICB_Product__c && idContact == oppItem.Opportunity.ICB_Contact__c && oppItem.Opportunity.StageName != CONST_STAGE_AVAILABLE)
+            {
+                if(operation.equalsIgnoreCase(CONST_STAGE_CLOSED))	
+                { 
+                    itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                }
+                else
+                {
+                    if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK )
+                    {
+                        itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+                        itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                        isStock = true;
+                    }
+                    
+                    if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
+                    {
+                        itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                        itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                        oppItem.ICB_IS_CLOSED__c = true;
+                        listOppItemUp.add(oppItem);
+                    }
+                    if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
+                    {
+                        itemWrapper.quantity = 0;
+                    }
+                    if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
+                    {
+                        if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING)
+                        {
+                            itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+                        }
+                        else
+                        {
+                            itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                            itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                            oppItem.ICB_IS_CLOSED__c = true;
+                            listOppItemUp.add(oppItem);
+                        }
+                        
+                    }
+                }
+                
+            }
+            else
+            {
+                if(oppItem.Product2Id == ivt.ICB_Product__c && idContact == oppItem.Opportunity.ICB_Contact__c)
+                {
+                    listWrapper.addAll(listWrapperClosed(oppItem,ivt)); 
+                    isClosed = true;
+                }
+            }
+            
+        }
+        if(!isClosed )
+        {
+            itemWrapper.invetoryItem = ivt;
+            listWrapper.add(itemWrapper);
+        }
+        updateOppItem(listOppItemUp,operation);
+        System.debug('Exiting <returnListWrapper>: '+ JSON.serializePretty(listWrapper));
+        return listWrapper;
+    }
+    /*******************************************************************
+    Purpose: Updated opportunity line item
+    Parameters: @listOppItemUp(list the opportunity line item returned of method getInventories)
+				@operation(current operation)
+    Returns: VOID
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    private static void updateOppItem(List<OpportunityLineItem> listOppItemUp, String operation)
+    {
+        System.debug('Entering <updateOppItem><listOppItemUp>: '+ JSON.serializePretty(listOppItemUp));
+        System.debug('Entering <updateOppItem><operation>: '+ operation);
+        if(!listOppItemUp.isEmpty() && operation.equals(CONST_SOLICITATION))
+        {
+            Database.update(listOppItemUp);    
+        }
+        System.debug('Exiting <updateOppItem>');
+    }
+    /*******************************************************************
+    Purpose: Return the list wrapper class for used in methodo getinventories
+    Parameters: @oppItem(current opportunity line item)
+				@ivt(variable returned of for of method getInventories)
+    Returns: List<ICB_Wrapper_Cockpit_CC>
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    private static List<ICB_Wrapper_Cockpit_CC> listWrapperClosed(OpportunityLineItem oppItem,ICB_Inventory_Line_Item__c ivt)
+    {
+        System.debug('Entering <listWrapperClosed><oppItem>: '+ JSON.serializePretty(oppItem));
+        System.debug('Entering <listWrapperClosed><ivt>: '+ JSON.serializePretty(ivt));
+        List<ICB_Wrapper_Cockpit_CC> wrapperList = new List<ICB_Wrapper_Cockpit_CC>();
+        ICB_Wrapper_Cockpit_CC itemWrapper = new ICB_Wrapper_Cockpit_CC();
+        itemWrapper.quantityReturned = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+        itemWrapper.invetoryItem = ivt;
+        wrapperList.add(itemWrapper);
+        System.debug('Exiting <listWrapperClosed>: ' + JSON.serializePretty(wrapperList));
+        return wrapperList;
+    }
+}
