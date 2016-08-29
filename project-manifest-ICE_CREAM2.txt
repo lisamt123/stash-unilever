@@ -9,6 +9,8 @@ src/classes/ICB_ContactDAO.cls
 src/classes/ICB_ContactDAO.cls-meta.xml
 src/classes/ICB_InsertPriceBookProducts.cls
 src/classes/ICB_InsertPriceBookProducts.cls-meta.xml
+src/classes/ICB_PriceBookEntryDAO.cls
+src/classes/ICB_PriceBookEntryDAO.cls-meta.xml
 src/classes/ICB_InventoryDAO.cls
 src/classes/ICB_InventoryDAO.cls-meta.xml
 src/classes/ICB_InventoryLineItemDAO.cls
@@ -25,6 +27,8 @@ src/classes/ICB_Wrapper_Cockpit_CC.cls
 src/classes/ICB_Wrapper_Cockpit_CC.cls-meta.xml
 src/classes/ICB_Cockpit_CC_DAO.cls
 src/classes/ICB_Cockpit_CC_DAO.cls-meta.xml
+src/classes/ICB_ContactPartnerUserCreation.cls
+src/classes/ICB_ContactPartnerUserCreation.cls-meta.xml
 src/classes/ICB_ContactPartnerUserCreation_Test.cls
 src/classes/ICB_ContactPartnerUserCreation_Test.cls-meta.xml
 src/classes/ICB_PartnerUserCreation_BatchSch_Test.cls
@@ -57,6 +61,8 @@ src/classes/ICB_PriceBookCreation.cls
 src/classes/ICB_PriceBookCreation.cls-meta.xml
 src/classes/ICB_PriceBookProductsInsert.cls
 src/classes/ICB_PriceBookProductsInsert.cls-meta.xml
+src/classes/ICB_Cockpit_Hellper.cls
+src/classes/ICB_Cockpit_Hellper.cls-meta.xml
 src/objects
 src/objects/ICB_ContactTypes__c.object
 src/objects/ICB_Sales_Locale__c.object
