@@ -123,7 +123,10 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         }
         set;
     }
-        public String marketClusterName{get {
+    // Boolean used to disable the MCO selection- Currently It has been used only for GKM3
+    public Boolean disableMCOSelection{get; set;}
+    
+    public String marketClusterName{get {
             if(project.Market_Cluster_Name__c != '') {
                 return project.Market_Cluster_Name__c;
             } else{ 
@@ -146,6 +149,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         localProjCnt = 0;
         invokedFromRollouts = false;
         initializeRollouts();
+        // To disable the MCO selection on Add/Manage Rollout Screen
+        IPM_Project_Type__c currentProjecttype = IPM_Utils.retrieveProjectType(project);
+        
+        if(currentProjecttype != null && currentProjecttype.IPM_Disable_Key_NonKey__c){
+        	disableMCOSelection = true;
+        }else {
+        	disableMCOSelection = false; 
+        }
     }
     /**
     *  @Description Method invoked from class constructor
@@ -240,9 +251,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SEARCH_ROLLOUT_COUNTRY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             
-            lstClusterWrappers.clear();
-            lstMCOWrappers.clear();
-            lstCountryWrappers.clear();
+            lstClusterWrappers = new List<GeographyWrapper>();
+            lstMCOWrappers = new List<GeographyWrapper>();
+            lstCountryWrappers = new List<GeographyWrapper>();
             isNoResult=true;
         }
     }
@@ -382,7 +393,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     //Country
                     GeographyWrapper countryWrapper = new GeographyWrapper(country.ISO_3166_1_Code__c, country.Name, MDOMCOCode);
                     
-                    
+                    // If country has been selected update the wrapper list
                     if(mapIPMCountries.containsKey(country.ISO_3166_1_Code__c))
                     {
                         //Key MCO
@@ -1223,7 +1234,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	    {   
 	        Map<Id,IPM_Country__c> filteredDeleteCountryMap = new Map<Id,IPM_Country__c>();
 	        // Before deleting Query the Countries again to validate whether certain countries got deleted as part of Rollout Deletion.
-	        List<IPM_Country__c> countryListToDelete = [Select Id,Project_Country__c,IPM_CharterApproved__c,isActive__c from IPM_Country__c where Project_Country__c in :deleteCountriesMap.KeySet() AND isActive__c = true ];
+            List<IPM_Country__c> countryListToDelete = [Select Id,Project_Country__c,IPM_CharterApproved__c,isActive__c,IPM_Local_Project__c,IPM_Local_Project__r.IPM_PrepareForArchival__c from IPM_Country__c where Project_Country__c in :deleteCountriesMap.KeySet() AND isActive__c = true ];
+            
 	        for(IPM_Country__c country : countryListToDelete)
 	        {
                 if(country.IPM_Local_Project__c !=null && country.IPM_Local_Project__r.IPM_PrepareForArchival__c)
@@ -1276,7 +1288,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
           	
     	List<IPM_Project__c> toBeArchievedRolloutProjects =  database.query(childProjectQuery);
 
-		// checking if the stopped/achieved has an associated gate doc, if it is make rollout active
+	// checking if the stopped/achieved has an associated gate doc, if it is make rollout active
         if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
         {
        		for(IPM_Project__c rollOutProj : toBeArchievedRolloutProjects) 
@@ -1452,7 +1464,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapUpsertRollouts.put(mcoRolloutName, mcoRollout);
                 }
                 
-                if(mcoRollout.KeyMCO__c == null || (mcoRollout.KeyMCO__c != KeyMCO) )
+                if(mcoRollout.KeyMCO__c != KeyMCO)
                 {
                     mcoRollout.KeyMCO__c = KeyMCO;
                     mapUpsertRollouts.put(mcoRolloutName, mcoRollout);  

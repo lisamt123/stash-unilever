@@ -778,7 +778,7 @@ public with sharing class IPM_ProjectHelper
                                 }
                                 
                                 // Update Country References.
-                                if(sourceRollOutToCountryListMap.containsKey(localRollout.Id) && sourceRollOutToCountryListMap.get(localRollout.Id) !=null)
+                                if(sourceRollOutToCountryListMap.containsKey(localRollout.Id) && sourceRollOutToCountryListMap.get(localRollout.Id) !=null && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
                                 {
                                     Map<Id,IPM_Country__c> associatedCountryMap =  sourceRollOutToCountryListMap.get(localRollout.Id);
                                     for(IPM_Country__c associatedCountry : associatedCountryMap.values())
@@ -819,7 +819,7 @@ public with sharing class IPM_ProjectHelper
                                     updateCountry = true;
                                 }
                                 
-                                if(project.IPM_Parent_Project__c !=null && associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c)
+                                if(project.IPM_Parent_Project__c !=null && associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3)
                                 {
                                     if(associatedCountry.IPM_Regional_Project__c != project.IPM_Parent_Project__c)
                                     {

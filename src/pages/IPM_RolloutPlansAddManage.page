@@ -28,7 +28,7 @@
                         </div>
                     </apex:outputPanel>
                     
-                    <apex:outputPanel layout="block" rendered="{!NOT(isError)}">
+                    <apex:outputPanel layout="block" rendered="{!NOT(isError)}" id="clusterSectionId">
                         <div class="ipmContent">
                             <div class="row finwrapper">
                                 <div class="col-sm-12">
@@ -101,15 +101,8 @@
                                              </span>
                                                 <span class="btext pull-right ieAlign">
                                                     {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
-                                                    <!-- <apex:outputPanel rendered="{!nonKeyDisbaled}">
                                                     <div class="btm2 ipmCheckbox">
-                                                        T<input class="notselected {!IF( mapMCOWrappers[selectedMCO].key, 'selected', '')} {!IF(mapMCOWrappers[selectedMCO].mcoDisabled, 'disabled', '')}" id="keyMCO" type="checkbox"/> 
-                                                        <label class="notselected left13" for="keyMCO"></label>
-                                                    </div>
-                                                    
-                                                    </apex:outputPanel> -->
-                                                    <div class="btm2 ipmCheckbox">
-                                                        <input class="notselected  {!IF( mapMCOWrappers[selectedMCO].key, 'selected', '')} {!IF(mapMCOWrappers[selectedMCO].mcoDisabled, 'disabled', '')}" id="keyMCO" type="checkbox" /> 
+                                                        <input class="notselected  {!IF( mapMCOWrappers[selectedMCO].key, 'selected', '')} {!IF( OR(mapMCOWrappers[selectedMCO].mcoDisabled, disableMCOSelection), 'disabled', '')}" id="keyMCO" type="checkbox" /> 
                                                         <label class="notselected left13" for="keyMCO"></label>
                                                     </div>
                                                 </span>
@@ -182,7 +175,7 @@
                     </apex:outputPanel>
 
     <c:IPM_ConfirmModal />
-    <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="theForm,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();">
+    <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="clusterSectionId,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();">
      <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
      <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
      <apex:param name="p3" assignTo="{!selectedCluster}" value=""/>
@@ -202,6 +195,7 @@
          <apex:param name="p9" assignTo="{!selectedMCO}" value=""/>
          <apex:param name="p10" assignTo="{!previouselectedMCO}" value=""/>
          <apex:param name="p11" assignTo="{!retainedCountries}" value=""/>
+         <apex:param name="p12" assignTo="{!selectedKey}" value=""/>
      </apex:actionFunction>
      
      <apex:actionFunction name="generateRollouts" action="{!generateRollouts}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" oncomplete="setRedirect();" >

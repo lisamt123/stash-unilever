@@ -79,10 +79,11 @@ var jq=jQuery.noConflict();
         jq(document).off('click', '.changeMCOTab').on('click','.changeMCOTab', function()
         {
             var mcoCode = jq(this).attr('id')
+            var keyMCO = jq('#keyMCO').is(":checked");
             var previousMcoCode = IPMregionalApp.SelectedMCO;
             getRecentCountrySelection();
             retainVal();
-            changeMCO(selectedCountries1.toString(), unselectedCountries1.toString(), selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString(),mcoCode, previousMcoCode, retainedCountries.toString());
+            changeMCO(selectedCountries1.toString(), unselectedCountries1.toString(), selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString(),mcoCode, previousMcoCode, retainedCountries.toString(), keyMCO);
             retainVal();
         });
     }
@@ -232,8 +233,30 @@ var jq=jQuery.noConflict();
         {
             invokeRolloutGeneration();
         }
-    });
-
+		        else
+		        {
+		            jq('#ipmDeleteModal').modal('show');
+		            jq('#ipmDeleteModal .modal-title').text(IPMregionalApp.warningTitle);
+		            if(jq(':radio[name ^=grp]').length/3 === selectedNoRollouts.length) {
+		                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeAllCountriesWarningMsg); 
+		            }
+		            else{
+		                jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeCountryWarningMsg);
+		            }
+		            jq('#ipmDeleteModal .cancelAction').text(IPMregionalApp.cancelBtnText);
+		            jq('#ipmDeleteModal .confirmAction').text(IPMregionalApp.acceptBtnText);
+		            
+		            jq('#ipmDeleteModal .modal-body').css({
+		            "height": "120px",
+		            "margin-right": "15px"
+		            });
+		            
+		            jq('#ipmDeleteModal .confirmAction').on("click",function(){ invokeRolloutGeneration();});
+		            jq('#ipmDeleteModal .cancelAction').on("click",function(){
+		                window.top.location = IPMregionalApp.baseUrl+'?Id='+IPMregionalApp.proid;
+		            });
+		        }
+		    });
     function hilightTaskScript(){
         jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
         jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    

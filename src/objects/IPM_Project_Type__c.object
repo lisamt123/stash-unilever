@@ -163,6 +163,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Disable_Key_NonKey__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This flag will be used to disable key/non-key option on Add/Manage Rollout Screen.</description>
+        <externalId>false</externalId>
+        <label>Disable Key/NonKey</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Dont_Sync_Proj_To_EcoDesign__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Do Not Set Sync Project/Country/Members flags on the Project Record.</description>
