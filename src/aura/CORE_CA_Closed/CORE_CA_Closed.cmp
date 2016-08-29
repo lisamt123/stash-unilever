@@ -197,7 +197,7 @@
     <!-- FeedBack popup -->
     <aura:if isTrue="{!v.isFeedBackPopup}">          
         <div class="slds-backdrop slds-backdrop--open">
-            <c:Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" ></c:Feedback>
+            <c:CORE_FB_Feedback Appname="Approval" EventName="CORE_CA_FeedbackEvent" ></c:CORE_FB_Feedback>
         </div>  
     </aura:if>
 </aura:component>
