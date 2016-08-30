@@ -1,6 +1,4 @@
 src
 src/classes
-src/classes/IPM_FinancialHandler.cls
-src/classes/IPM_FinancialHandler.cls-meta.xml
-src/classes/IPM_ProjectOverviewCtrl.cls
-src/classes/IPM_ProjectOverviewCtrl.cls-meta.xml
+src/classes/IPM_RolloutPlansTableController.cls
+src/classes/IPM_RolloutPlansTableController.cls-meta.xml
