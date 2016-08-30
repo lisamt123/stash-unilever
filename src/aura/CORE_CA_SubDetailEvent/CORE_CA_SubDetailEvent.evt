@@ -1,0 +1,14 @@
+<!--
+  Component Name: Core_CA_SubDetailEvent
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: navigation to clarity and invoice sub detail page .
+-->
+<aura:event type="APPLICATION" description="Event template" >
+	<aura:attribute name="compName" type="String"/> 
+    <aura:attribute name="subDivision" type="String"/>
+    <aura:attribute name="lineItemId" type="String"/>
+    <aura:attribute name="sourcePage" type="String"/>
+    <aura:attribute name="filterValue" type="String"/>
+    <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+</aura:event>
