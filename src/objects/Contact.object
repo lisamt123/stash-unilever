@@ -1274,17 +1274,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
@@ -2706,13 +2695,6 @@
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
                 <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -4159,17 +4141,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
@@ -4371,28 +4342,6 @@
             </values>
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

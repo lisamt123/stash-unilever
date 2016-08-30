@@ -89,10 +89,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ICB_PriceBookProductsInsert</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ICB_PriceTable_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>

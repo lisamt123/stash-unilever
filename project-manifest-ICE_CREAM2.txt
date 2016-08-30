@@ -176,7 +176,8 @@ src/layouts/ICB_Inventory__c-Inventory Layout.layout
 src/layouts/ICB_Inventory_Line_Item__c-Inventory Line Item Layout.layout
 src/layouts/ICB_Sales_Locale__c-Sales Locale Layout.layout
 src/layouts/ICB_Setup_Photo__c-Setup Photo Layout.layout
+src/tabs
 src/tabs/ICB_Sales_Locale__c.tab
-src/SiteDotComSites
+src/siteDotComSites
 src/siteDotComSites/Mobile_Channel1.site
-src/SiteDotComSites/Mobile_Channel1.site-meta.xml
+src/siteDotComSites/Mobile_Channel1.site-meta.xml
