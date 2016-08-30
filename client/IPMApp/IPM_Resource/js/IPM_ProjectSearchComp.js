@@ -15,7 +15,7 @@ Also variables have to be kept global to make the functionality work. */
     var countries = [];
     var unAssigned = 'false';
     var iTORange1 = -1;
-    var brandPositions = [];
+    var brandPositionsnew = [];
     var iTORange2 = -1;
 /* Below function calls the filter function. Filter works based on the value passed to the function. */
     function filterTLDs() {
@@ -54,6 +54,51 @@ Also variables have to be kept global to make the functionality work. */
     jq("#applyFilter").on("click", function() { 
         applyFilter();
     });
+	
+	
+                
+				jq("div.brandSearchResultsClass").on("click", "div", function(event){
+					brandsVal = jq(this).text();
+					jq('.filterBrand').val(brandsVal);
+					jq('.brandSearchResultsClass').hide();
+					jq("#brandSearchResults div").remove();
+
+					jq('<li class="brndFilter"></li>').append('<div class="selectedBrand">' + brandsVal + '</div>').appendTo(jq('ul.filterBrandList')); 
+					
+					var seen = {};
+                    var i=0;
+					jq   ('div.selectedBrand').each(function() {
+						var txt = jq(this).text();
+						if (seen[txt])
+						jq(this).parent().remove();
+						else{
+						seen[txt] = true;
+                        brandPositionsnew[i]=txt;
+                        ++i;
+                        }
+					});
+                  
+				});
+    
+				jq(document).click(function(e) {   
+					if(e.target.id != 'brandSearchResults') {
+						jq("#brandSearchResults").hide();   
+					} 
+			});
+			
+						jq('.filterBrand').on('keyup',function(){
+							   var txtCount =   jq(this).val().length; 
+							   if(txtCount >= 2)
+							   {
+							   jq('.brandSearchResultsClass').show();
+							   }else{
+							   jq('.brandSearchResultsClass').hide();
+							   }
+			           });
+
+
+	
+	
     function applyFilter() {
             var checkedPhases = [];
             var checkedProjectTypes = [];
@@ -76,24 +121,14 @@ Also variables have to be kept global to make the functionality work. */
             if (jq('.iTORange2').val() !== '') {
                 iTORange2 = jq('.iTORange2').val();
             }
-            applyFltr(checkedPhases.toString(), jq('.tldFrom').val(), jq('.tldTo').val(), jq('.my').is(":checked"), jq('.aPro').is(":checked"), geoAll, clusters, mcos, countries.toString(), iTORange1, iTORange2, brandPositions.toString(),checkedProjectTypes.toString(),jq('#ActiveProjects').is(':checked'),jq('#StoppedProjects').is(':checked'),unAssigned);   
+            applyFltr(checkedPhases.toString(), jq('.tldFrom').val(), jq('.tldTo').val(), jq('.my').is(":checked"), jq('.aPro').is(":checked"), geoAll, clusters, mcos, countries.toString(), iTORange1, iTORange2,brandPositionsnew.toString(),checkedProjectTypes.toString(),jq('#ActiveProjects').is(':checked'),jq('#StoppedProjects').is(':checked'),unAssigned);   
         }
     chkAll();
     chkSub();
-/* Below script is for the auto complete functionality. It returns a set of results based on the key words entered by the user. */   
-    jq(".filterBrand").autocomplete({
-        source: brandList,
-        select: function(event, ui) {
-            jq('.filterBrand').html('');
-            if(jq.inArray( ui.item.value, brandPositions) === -1) {
-                brandPositions.push(ui.item.value);
-                return jq('<li class="brndFilter"></li>').append('<div class="selectedBrand">' + ui.item.value + '</div>').appendTo(jq('ul.filterBrandList'));
-            }
-        }
-    });
+
     /* Below works on click event. It removes the list when clicked on it */
      jq(".filterBrandList").on("click", ".brndFilter", function() {
-        brandPositions.splice( jq.inArray(jq(this).text(), brandPositions), 1 );
+        brandPositionsnew.splice( jq.inArray(jq(this).text(), brandPositionsnew), 1 );
         jq(this).remove();
     });  
 });
@@ -137,7 +172,7 @@ function chkAll(){
 function chkSub(){
     /* Below script works on click event. It reloads the current page. */
     jq(document).on('click', '#resetFilterBtnNew', function() {
-        location.reload();
+		window.location.href = window.location.href;
     });
     /* Below script works on click event. Based on condition it checks for a specific class in below conditions.
 Also if the checkbox is checked it will check its own related child checkboxes. */
