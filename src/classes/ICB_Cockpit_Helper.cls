@@ -127,21 +127,21 @@ public with sharing class ICB_Cockpit_Helper
     Returns: ICB_Wrapper_Cockpit_CC
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static ICB_Wrapper_Cockpit_CC firstItemWrapper(String operation,ICB_Wrapper_Cockpit_CC wrapperFirst, OpportunityLineItem oppItem)
+    private static ICB_Wrapper_Cockpit_CC firstItemWrapper(String operation,ICB_Wrapper_Cockpit_CC firstItem, OpportunityLineItem oppItem)
     {
         System.debug('Entering <firstItemWrapper><operation>: '+ operation);
-        System.debug('Entering <firstItemWrapper><wrapperFirst>: '+ JSON.serializePretty(wrapperFirst));
+        System.debug('Entering <firstItemWrapper><wrapperFirst>: '+ JSON.serializePretty(firstItem));
         System.debug('Entering <firstItemWrapper><oppItem>: '+ JSON.serializePretty(oppItem));
         ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         if(operation.equalsIgnoreCase(CONST_STAGE_CLOSED))	
         { 
-            wrapperFirst.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            firstItem.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
         }
         else
         {
-            wrapperFirst = secondItemWrapper(operation,wrapperFirst,oppItem);
+            firstItem = secondItemWrapper(operation,firstItem,oppItem);
         }
-        item = wrapperFirst;
+        item = firstItem;
         System.debug('Exiting <firstItemWrapper><item>: '+ JSON.serializePretty(item));
         return item;
     }
@@ -153,22 +153,22 @@ public with sharing class ICB_Cockpit_Helper
     Returns: ICB_Wrapper_Cockpit_CC
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static ICB_Wrapper_Cockpit_CC secondItemWrapper(String operation,ICB_Wrapper_Cockpit_CC wrapperSecond, OpportunityLineItem oppItem)
+    private static ICB_Wrapper_Cockpit_CC secondItemWrapper(String operation,ICB_Wrapper_Cockpit_CC secondItem, OpportunityLineItem oppItem)
     {
         System.debug('Entering <secondItemWrapper><operation>: '+ operation);
-        System.debug('Entering <secondItemWrapper><wrapperSecond>: '+ JSON.serializePretty(wrapperSecond));
+        System.debug('Entering <secondItemWrapper><wrapperSecond>: '+ JSON.serializePretty(secondItem));
         System.debug('Entering <secondItemWrapper><oppItem>: '+ JSON.serializePretty(oppItem));
         ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         Boolean isStock = false;
         if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK )
         {
-            wrapperSecond.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
-            wrapperSecond.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            secondItem.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+            secondItem.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
             isStock = true;
         }
-        wrapperSecond = thirdItemWrapper(operation,wrapperSecond,oppItem,isStock); 
-        wrapperSecond = fourthItemWrapper(operation,wrapperSecond,oppItem);
-        item = wrapperSecond;
+        secondItem = thirdItemWrapper(operation,secondItem,oppItem,isStock); 
+        secondItem = fourthItemWrapper(operation,secondItem,oppItem);
+        item = secondItem;
         System.debug('Exiting <secondItemWrapper><item>: '+ JSON.serializePretty(item));
         return item;
     }
@@ -181,20 +181,20 @@ public with sharing class ICB_Cockpit_Helper
     Returns: ICB_Wrapper_Cockpit_CC
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static ICB_Wrapper_Cockpit_CC thirdItemWrapper(String operation,ICB_Wrapper_Cockpit_CC wrapperThird, OpportunityLineItem oppItem, Boolean isStock)
+    private static ICB_Wrapper_Cockpit_CC thirdItemWrapper(String operation,ICB_Wrapper_Cockpit_CC thirdItem, OpportunityLineItem oppItem, Boolean isStock)
     {
         System.debug('Entering <thirdItemWrapper><operation>: '+ operation);
-        System.debug('Entering <thirdItemWrapper><wrapperThird>: '+ JSON.serializePretty(wrapperThird));
+        System.debug('Entering <thirdItemWrapper><wrapperThird>: '+ JSON.serializePretty(thirdItem));
         System.debug('Entering <thirdItemWrapper><oppItem>: '+ JSON.serializePretty(oppItem));
         ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
         {
-            wrapperThird.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-            wrapperThird.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            thirdItem.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            thirdItem.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
             oppItem.ICB_IS_CLOSED__C = true;
             listOppItemUp.add(oppItem);
         }
-        item = wrapperThird;
+        item = thirdItem;
         System.debug('Exiting <thirdItemWrapper><item>: '+ JSON.serializePretty(item));
         return item;
     }
@@ -206,28 +206,28 @@ public with sharing class ICB_Cockpit_Helper
     Returns: ICB_Wrapper_Cockpit_CC
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static ICB_Wrapper_Cockpit_CC fourthItemWrapper(String operation,ICB_Wrapper_Cockpit_CC wrapperFourth, OpportunityLineItem oppItem)
+    private static ICB_Wrapper_Cockpit_CC fourthItemWrapper(String operation,ICB_Wrapper_Cockpit_CC fourthItem, OpportunityLineItem oppItem)
     {
         System.debug('Entering <fourthItemWrapper><operation>: '+ operation);
-        System.debug('Entering <fourthItemWrapper><wrapperFourth>: '+ JSON.serializePretty(wrapperFourth));
+        System.debug('Entering <fourthItemWrapper><wrapperFourth>: '+ JSON.serializePretty(fourthItem));
         System.debug('Entering <fourthItemWrapper><oppItem>: '+ JSON.serializePretty(oppItem));
         ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
         {
             if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING)
             {
-                wrapperFourth.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+                fourthItem.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
             }
             else
             {
-                wrapperFourth.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                wrapperFourth.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                fourthItem.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                fourthItem.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
                 oppItem.ICB_IS_CLOSED__C = true;
                 listOppItemUp.add(oppItem);
             }
             
         }
-        item = wrapperFourth;
+        item = fourthItem;
         System.debug('Exiting <fourthItemWrapper><item>: '+ JSON.serializePretty(item));
         return item;
     }

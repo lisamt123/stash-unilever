@@ -263,6 +263,7 @@ public with sharing class ICB_Cockpit_CC
                 {
                     opp.Quantity = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity + opp.Quantity;
                     opp.TotalPrice = opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
+                    opp.ICB_Total_Purchase_Price__c = opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c; 
                     oppItem.add(opp);
                 }
                 else if(mapInventory.get(opp.PriceBookEntry.Name).quantity <= opp.Quantity)
