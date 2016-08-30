@@ -136,6 +136,7 @@ public with sharing class ICB_Cockpit_Helper
         if(operation.equalsIgnoreCase(CONST_STAGE_CLOSED))	
         { 
             firstItem.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            item = firstItem;
         }
         else
         {
@@ -164,8 +165,8 @@ public with sharing class ICB_Cockpit_Helper
             secondItem.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
             secondItem.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
             isStock = true;
+            item = secondItem;
         }
-        item = secondItem;
         item = thirdItemWrapper(operation,secondItem,oppItem,isStock); 
         item = fourthItemWrapper(operation,secondItem,oppItem);
         System.debug('Exiting <secondItemWrapper><item>: '+ JSON.serializePretty(item));
