@@ -26,28 +26,7 @@
         <shortDescription>Download All Attachments</shortDescription>
         <value>Download All</value>
     </labels> 
-    <labels>
-        <fullName>IPM_NoAttachment_ForDownload_Msg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Message when no summary attachments are available for download</shortDescription>
-        <value>No Summary Attachments to download</value>
-    </labels>
-    <labels>
-        <fullName>IPM_Assumption_GM</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM Assumption GM%</shortDescription>
-        <value>GM%</value>
-    </labels>
-    <labels>
-        <fullName>IPM_FunctionalInput_minChar</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Functional input</shortDescription>
-        <value>There is no minimum or maximum character count on this text box</value>
-    </labels>
-	<labels>
+   	<labels>
         <fullName>IPM_Platform</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -62,41 +41,13 @@
         <value>Optional - please liaise with your IPM Business Partner to determine whether this parameter needs to be filled in</value>
     </labels>
     <labels>
-        <fullName>ipmFinTableAdvertisingPromotions</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableAdvertisingPromotions</shortDescription>
-        <value>BMI</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableGDgTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGDgTO</shortDescription>
-        <value>gTO</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableGDiTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGDiTO</shortDescription>
-        <value>iTO</value>
-    </labels>
-    <labels>
 	<fullName>IPM_Brand_Not_Found</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
 	<shortDescription>Brand Not Found</shortDescription>
 	<value>No matching brand (yet), please contact your IPM BP</value>
     </labels>
-    <labels>
-	<fullName>IPM_Rollout_Brand</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>Brand</shortDescription>
-	<value>Brand</value>
-    </labels>
-    <labels>
+     <labels>
         <fullName>IPM_ShowEntity</fullName>
         <language>en_US</language>
         <protected>false</protected>
