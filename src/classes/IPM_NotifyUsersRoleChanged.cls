@@ -27,8 +27,8 @@ public with sharing class IPM_NotifyUsersRoleChanged {
         
         try{
         Map<Id, IPM_Project__c> projectMap = new Map <Id, IPM_Project__c>([
-                                      SELECT Id, IPM_Project_Leader__c, Deputy_Project_Leader__c, IPM_Technical_Project_Leader__c,IPM_Project_Gatekeeper__c, IPM_Finance_Member__c,
-                                      IPM_Project_Leader__r.Name, Deputy_Project_Leader__r.Name, IPM_Technical_Project_Leader__r.Name,IPM_Project_Gatekeeper__r.Name, IPM_Finance_Member__r.Name
+                                      SELECT Id, IPM_Project_Leader__c, Deputy_Project_Leader__c, IPM_Technical_Project_Leader__c,IPM_Project_Gatekeeper__c, IPM_Finance_Lead__c,
+                                      IPM_Project_Leader__r.Name, Deputy_Project_Leader__r.Name, IPM_Technical_Project_Leader__r.Name,IPM_Project_Gatekeeper__r.Name, IPM_Finance_Lead__r.Name
                                       FROM IPM_Project__c
                                       WHERE IPM_Project_Leader__c IN : changedUserIdSet
                                       OR Deputy_Project_Leader__c IN : changedUserIdSet
@@ -68,9 +68,9 @@ public with sharing class IPM_NotifyUsersRoleChanged {
                 	{
                 		userName = project.IPM_Project_Gatekeeper__r.Name;
                 	}
-                	else if(userId == project.IPM_Finance_Member__c) 
+                	else if(userId == project.IPM_Finance_Lead__c) 
                 	{
-                		userName = project.IPM_Finance_Member__r.Name;
+                		userName = project.IPM_Finance_Lead__r.Name;
                 	} 
                 
                 if(string.isNotBlank(userName))

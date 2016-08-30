@@ -105,6 +105,30 @@ function apprwithedits(){
   });
 }
 
+/* Display the Pop Up for Confirmation when user clicks on  Stop Project. */
+function intiateStopProjectDisclaimer(docStatus)  
+{
+  jq('#ipmDeleteModal').modal('show');
+  jq('#ipmDeleteModal .modal-title').text('Stop Project Disclaimer');
+  jq('#ipmDeleteModal .confirmMsg').text(IPMApp.StopDeclaimer);  // Label.IPM_StopDisclaimer
+  jq('#ipmDeleteModal .modal-body').css({
+    "margin-right": "15px"
+  });
+  jq('#ipmDeleteModal .modal-dialog').css({
+      "width" : "80%",
+    });
+  jq('#ipmDeleteModal .modal-body .ipmButton').css({
+      "display" : "inline",
+      "margin-right" : "10px"
+  });
+  jq('#ipmDeleteModal .confirmAction').on("click",function(){ 
+    changeStatusFromJS(docStatus);
+    jq('#ipmDeleteModal').modal('hide');  
+  });
+  jq('#ipmDeleteModal .cancelAction').on("click",function(){
+    jq('#ipmDeleteModal').modal('hide');
+  });
+}
 function postponed(){
   /* Below script works on click event. This opens the Postponed Modal */ 
   jq(document).on('click', '.postponedModal', function(e) {
@@ -117,6 +141,13 @@ function postponed(){
       'z-index': '999'
     });
   });
+}
+function navigateToHome()
+{
+   if(makeStop == true)
+   {
+      goToParentPage();
+   }
 }
 /* Below function validates the status of the current gate document and performs the redirection to respective pages based on the status */
 function goToParentPage() {

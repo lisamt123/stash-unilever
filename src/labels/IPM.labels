@@ -1,4 +1,60 @@
-﻿    <labels>
+﻿	<labels>
+        <fullName>IPM_No_Sector_is_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Sector is selected</shortDescription>
+        <value>No Sector is selected</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Select_Sector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Sector</shortDescription>
+        <value>Select Sector</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Sector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sector</shortDescription>
+        <value>Sector</value>
+    </labels>
+   <labels>
+        <fullName>IPM_Download_All_AttachmentsBttnName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Download All Attachments</shortDescription>
+        <value>Download All</value>
+    </labels> 
+   	<labels>
+        <fullName>IPM_Platform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform</shortDescription>
+        <value>Platform</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Platform_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Platform Field Title</shortDescription>
+        <value>Optional - please liaise with your IPM Business Partner to determine whether this parameter needs to be filled in</value>
+    </labels>
+    <labels>
+	<fullName>IPM_Brand_Not_Found</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Brand Not Found</shortDescription>
+	<value>No matching brand (yet), please contact your IPM BP</value>
+    </labels>
+     <labels>
+        <fullName>IPM_ShowEntity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ShowEntity</shortDescription>
+        <value>IPM_ShowAt{0}__c</value>
+    </labels>
+    <labels>
         <fullName>IPM_BETIdNullMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2544,8 +2600,8 @@ If approved your project will be linked after your Charter gate has been approve
         <fullName>IPM_Country_Project_leader_and_Target_Launch_Date</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM Country Project leader and Target Launch Date</shortDescription>
-        <value>Country Project leader and Target Launch Date</value>
+        <shortDescription>IPM MCO Rollout Leader and Target Launch Date</shortDescription>
+        <value>MCO Rollout Leader and Target Launch Date</value>
     </labels>
     <labels>
         <fullName>IPM_CreateBETMsg</fullName>
@@ -2616,7 +2672,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM CurrentDocument</shortDescription>
-        <value>Current document</value>
+        <value>Current Gate Document</value>
     </labels>
     <labels>
         <fullName>IPM_CurrentInstanceURL</fullName>
@@ -3307,14 +3363,14 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM EcoDesign EI Country With No Assessment</shortDescription>
-        <value>This EI country has not yet had an environmental impact assessment created in Eco-Design.</value>
+        <value>This country has not yet had an Environmental and Social Impact assessment created in Eco-Design.</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Environmental_metric</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Environmental_metric</shortDescription>
-        <value>Environmental metric</value>
+        <value>Environmental and Social Impact</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Expected</fullName>
@@ -3584,7 +3640,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_FAST_TRACK_WHITE_SPACE</shortDescription>
-        <value>Fast Track projects are not expected to meet On Time requirements of 6 months between Market Ready Approval and Launch.
+        <value>Fast Track projects are not expected to meet On Time requirements of 6 months between Market Ready Approval and Launch.
 
 
 White Space is a strategic classifier – it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer, market development, or growth opportunity (i.e. it can be an easy win).</value>
@@ -4274,7 +4330,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Gate_Doc_Milestone</shortDescription>
-        <value>Gate Document Milestone</value>
+        <value>Document Milestone</value>
     </labels>
     <labels>
         <fullName>IPM_Gate_Document_Summary</fullName>
@@ -4519,7 +4575,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_INCREMENTAL_P&amp;L</shortDescription>
-        <value>Incremental P &amp;amp; L</value>
+        <value>Incremental P &amp; L</value>
     </labels>
     <labels>
         <fullName>IPM_INITIAL_HUNCHES_AND_HYPOTHESES</fullName>
@@ -4659,7 +4715,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM ITO should not be greater than GTO</shortDescription>
-        <value>ITO should not be greater than GTO.</value>
+        <value>iTO should not be greater than gTO.</value>
     </labels>
     <labels>
         <fullName>IPM_Ideas</fullName>
@@ -6472,9 +6528,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Local</shortDescription>
-        <value>If you have assigned your Country Leader/s, clicking Save here will begin creation of your Local Rollout Project/s.You will receive a notification via Email once the process is complete.</value>
+        <value>If you have assigned your MCO Rollout Leader/s, clicking Save here will begin creation of your Local Rollout Project/s.You will receive a notification via Email once the process is complete.</value>
     </labels>
-    
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Regional</fullName>
         <language>en_US</language>
@@ -6503,13 +6558,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_Phase_Change</shortDescription>
         <value>Confirmation: Project Phase Change Request</value>
     </labels>
-    <labels>
-        <fullName>IPM_Phase_Gate</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_Phase_Gate</shortDescription>
-        <value>Phase &amp; Gate document</value>
-    </labels>
+    
     <labels>
         <fullName>IPM_Phase_Label</fullName>
         <language>en_US</language>
@@ -9141,7 +9190,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>ipmFinSummaryGMbps</shortDescription>
-        <value>GM Y1 bps vs DNDS</value>
+        <value>GM Y1 vs Av Cannibalised GM bps</value>
     </labels>
     <labels>
         <fullName>ipmFinSummaryIRR</fullName>
@@ -9277,6 +9326,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_TaskNameErrorMsg</shortDescription>
         <value>Enter Task Name.</value>
     </labels>
+	<labels>
+		<fullName>IPM_Phase_Gate</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_Phase_Gate</shortDescription>
+		<value>Document &amp; Phase</value>
+	</labels>
+	<labels>
+		<fullName>IPM_Project_Full_Lite</fullName>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM Project Full/Lite</shortDescription>
+		<value>Project Lite/Full</value>
+	</labels>
     <labels>
         <fullName>IPM_FunctionalRoleErrorMsg</fullName>
         <language>en_US</language>
@@ -9290,4 +9353,390 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Export_Milestones</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export Milestones</shortDescription>
+        <value>Export Milestones</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Export_ToDos</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Export ToDos</shortDescription>
+        <value>Export To-do&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>IPM_UPDATE_ROLLOUTS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM UPDATE ROLLOUTS</shortDescription>
+        <value>Update Rollouts</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Select_MCO_Rollout_Leader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Select MCO Rollout Leader</shortDescription>
+        <value>Select MCO Rollout Leader</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Before_Rollout_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Before_Rollout_TLDMilestone_HelpText</shortDescription>
+        <value>Until your Rollout Plan is created you can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_After_RolloutPlanCreation_TLDMilestone_HelpText</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of your earliest MCO rollout - you can change the TLD of this project via your Rollout Plan.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_GKM1_OtherPhases</shortDescription>
+        <value>The Target Launch Date (TLD) of this project is synched to match the TLD of the earliest MCO in your earliest Regional Rollout Project - please check on the rollout plan which regional rollout is 1st and contact the relevant Regional Project Leader.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLDMilestoneHelpText_LocalRollout_Operational</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLDMilestoneHelpText_LocalRollout_Operational</shortDescription>
+        <value>You can edit the Target Launch Date of this project via Project Parameters.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Download_with_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download with Appendix</shortDescription>
+        <value>Download with Appendix</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Download_without_Appendix</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Download without Appendix</shortDescription>
+        <value>Download without Appendix</value>
+    </labels>
+    <labels>
+        <fullName>IPM_No_Market_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Market is selected</shortDescription>
+        <value>No Market is selected</value>
+    </labels>
+    <labels>
+        <fullName>IPM_No_Sub_Sector_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Used when No Sub-Sector is selected</shortDescription>
+        <value>No Sub-Sector is selected</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Above_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Above_Threshold</shortDescription>
+        <value>Above Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BelowThreshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BelowThreshold</shortDescription>
+        <value>Below Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Category_Threshold</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Category Threshold</shortDescription>
+        <value>Category Threshold</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Exempt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Exempt</shortDescription>
+        <value>Exempt</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Project_Cluster</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Cluster</shortDescription>
+        <value>Project Cluster:</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Threshold_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Threshold Status</shortDescription>
+        <value>Threshold Status</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Y3_iTO_notation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Y3 iTO (mn €):</shortDescription>
+        <value>Y3 iTO (mn €):</value>
+    </labels>
+    <labels>
+        <fullName>IPM_MCO_Rollout_Leader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MCO Rollout Leader</shortDescription>
+        <value>MCO Rollout Leader</value>
+   </labels>
+    <labels>
+        <fullName>ipmFinSummaryGMbpsHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryGMbpsHelp</shortDescription>
+        <value>This is the difference between the Y1 GM of the project, compared against the average GM of the products (CUs) that are being replaced on shelf. Calculation: GM Y1 – DNDS GM Y1</value>
+    </labels>
+	<labels>
+        <fullName>IPM_BelowThresholdError_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BelowThresholdError_Msg</shortDescription>
+        <value>Please be aware that your project is Below Threshold and has not been given Exempt status. If you wish for your Project to have Exempt status please contact your IPM Business Partner.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Current_Gate_Document_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Current Gate Document Status</shortDescription>
+        <value>Current Gate Document Status</value>
+    </labels>
+	<labels>
+        <fullName>IPM_StopDisclaimer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer1</shortDescription>
+        <value>This Project will be stopped after 72 hours.
+
+
+If you discover that stopping this Project was a mistake you can undo this action in the next 72 hours by using the Cancel Stopping Project button on the Project Overview Page.
+
+
+If you take no further action after 72 hours from now this Project {0} will be stopped. Please note Stopped Projects cannot be reactivated.</value>
+    </labels>
+
+<labels>
+        <fullName>IPM_NoOfMonths_ForReactivation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Of Months For Reactivation</shortDescription>
+        <value>38</value>
+    </labels> 
+	  <labels>
+        <fullName>IPM_stop_project_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM stop project msg</shortDescription>
+        <value>Please confirm you wish to stop this Project. Once stopped the Project cannot be re-activated at any time.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Stop_Project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Stop Project</shortDescription>
+        <value>Stop Project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Stop_project_hover_text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stop  project  hover text</shortDescription>
+        <value>All the Rollouts for this {0} Project have been Stopped. Use this button to stop this {1} Project or create a new Rollout Plan to continue with the Project.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReactivateProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivate Project</shortDescription>
+        <value>Reactivate Project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_CancelStoppingProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Stopping Project</shortDescription>
+        <value>Cancel Stopping Project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_EcoDesign_Health_and_Hygiene</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Health and Hygiene</shortDescription>
+        <value>Health &amp; Hygeine</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Ecodesign_Nutrition</fullName>
+        <categories>EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Ecodesign Nutrition</shortDescription>
+        <value>Nutrition</value>
+    </labels>
+	 <labels>
+        <fullName>IPM_Passed_Cancellation_Widnow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Passed Cancellation Widnow</shortDescription>
+        <value>Your Project has passed applicable cancellation window.</value>
+    </labels>
+    <labels>
+	<fullName>IPM_ReactivateProjectMessage</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Reactivate Project Message</shortDescription>
+	<value>To reactivate this project you must complete the Project Initiation Wizard. Closing the Wizard now will stop reactivation. Any updates you have saved using the ‘Save and continue’ button will be retained.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReactivatingProject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reactivating Project</shortDescription>
+        <value>Reactivating Project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_CloseWizard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Wizard</shortDescription>
+        <value>Close Wizard</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ReturnToWizard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Return to Wizard</shortDescription>
+        <value>Return to Wizard</value>
+    </labels>
+     <labels>
+        <fullName>IPM_RegionalRolloutAlertMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_RegionalRolloutAlertMsg</shortDescription>
+        <value>This project will be stopped after 72 hours. No changes will be implemented until then. To reverse this decision use the button on the Project Overview Page. Once stopped the project cannot be reactivated.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_RemoveAllCountriesForReg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_RemoveAllCountriesForReg</shortDescription>
+        <value>You have chosen to mark all the countries in this MCO as  \&apos;No Rollout\&apos;. This will stop the associated Local rollout project if it exists. Additionally any associated financials at the Regional level will be removed.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_StopDisclaimer2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer2</shortDescription>
+        <value>This project will be stopped after 72 hours. 
+
+After this period only your IPM Business Partner can reactivate this project. 
+
+If you discover that stopping this project was a mistake you can undo this action in the next 72 hours by using the &apos;Cancel Stopping Project&apos; button on the Project Overview Page.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_StopDisclaimer3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer3</shortDescription>
+        <value>This project will be stopped after 72 hours. No changes will be implemented until then. To reverse this decision use the button on the Project Overview Page.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_StopDisclaimer4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_StopDisclaimer4</shortDescription>
+        <value>This project will be stopped after 72 hours. No changes will be implemented until then. To reverse this decision use the button on the Project Overview Page. Once stopped the project cannot be reactivated.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_AgreeAndProceed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agree and Proceed</shortDescription>
+        <value>Agree and Proceed</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ParentProjectStopDisclaimer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Parent Project Stop Disclaimer</shortDescription>
+        <value>and all its Rollout Projects</value>
+    </labels>
+    <labels>
+        <fullName>IPM_AllSummaryAttachDwnldBttn_Hovertext</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gate Document All Summary Attachments download button hover text</shortDescription>
+        <value>Download all Summary section attachments</value>
+    </labels>
+		<labels>
+        <fullName>IPM_DwnldAllSummaryAttachBttn_ModalHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gate Document download all summary section attachment modal header</shortDescription>
+        <value>Download  Summary section attachments</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Local_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Label forBrand of Local project</shortDescription>
+        <value>Brand</value>
+    </labels>
+    <labels>
+        <fullName>IPM_SVF_CAPEX</fullName>
+        <categories>Soft Validations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SVF_CAPEX</shortDescription>
+        <value>CAPEX values are automatically considered to be negative values - if this field shows a negative number it will be treated as an asset rather than a cost</value>
+    </labels>
+    <labels>
+        <fullName>IPM_SVF_Please_check_your_MCO_financials</fullName>
+        <categories>Soft Validations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SVF_Please check your MCO financials</shortDescription>
+        <value>Please check your MCO financials</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Rollout_Brand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Brand</shortDescription>
+        <value>Brand</value>
+    </labels>
+	<labels>
+        <fullName>IPM_FunctionalInput_minChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Functional input</shortDescription>
+        <value>There is no minimum or maximum character count on this text box</value>
+    </labels>
+    <labels>
+        <fullName>IPM_NoAttachment_ForDownload_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Message when no summary attachments are available for download</shortDescription>
+        <value>No Summary Attachments to download</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Team_Members_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM  Team Members Report</shortDescription>
+        <value>IPM  Team Members Report&apos;s Extract</value>
     </labels>

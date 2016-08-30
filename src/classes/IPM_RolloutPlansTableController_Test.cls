@@ -264,7 +264,7 @@ static testMethod void RegionalOrignalTest()
            irp.deleteMCORollout();
            List<IPM_Project_Rollout__c>proRoll=[select Id,IPM_Project__c from IPM_Project_Rollout__c where Id=:irp.selectedMCORollout];
            System.assertEquals(proRoll.size(),0,'rollout not deleted');
-         
+           irp.holdLocalRolloutBrandVal();
            Test.stopTest();
          }
      }

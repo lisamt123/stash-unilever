@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <alerts>
+   <alerts>
         <fullName>IPM_BET_EA_Archived</fullName>
         <description>IPM BET Linked BET Archived</description>
         <protected>false</protected>
@@ -27,7 +27,7 @@
         <description>IPM Notify Finance Leader the TLD changed</description>
         <protected>false</protected>
         <recipients>
-            <field>IPM_Finance_Member__c</field>
+            <field>IPM_Finance_Lead__c</field>
             <type>userLookup</type>
         </recipients>
         <senderType>DefaultWorkflowUser</senderType>
@@ -162,6 +162,118 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>IPM_Emails/IPM_Successful_Phase_Change_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Send_email_to_PL_DPL_TPL_and_Gatekeeper_when_project_stopped</fullName>
+        <description>IPM Send email to PL,DPL,TPL and Gatekeeper when project stopped</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Gatekeeper__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Technical_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_team_members_when_project_stopped</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_to_PL_DPL_TPL_and_Gatekeeper_when_project_reactivated</fullName>
+        <description>IPM send email to PL,DPL,TPL and Gatekeeper when project reactivated</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Gatekeeper__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Technical_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_send_email_when_project_reactivated</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_to_RPL_and_BBPL_when_Global_project_stopped</fullName>
+        <description>IPM send email to RPL and BBPL when Global project stopped</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_RPL_and_BBPL_when_Global_project_stopped</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_to_RPL_when_local_project_is_ready_for_archival_from_rollout_plan</fullName>
+        <description>IPM send email to RPL when local project is ready for archival from rollout plan</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Stopped_By__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_RPL_when_local_project_is_ready_for_archival_from_rollout_plan</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_when_current_project_is_stopped</fullName>
+        <description>IPM send email when current project is stopped</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_when_current_project_is_stopped</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_send_email_when_current_project_is_stopped_in_ideas_phase</fullName>
+        <description>IPM send email when current project is stopped in ideas phase</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_when_current_project_is_stopped_in_ideas_phase</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_BBPL_When_Regional_PL_initiates_Archival</fullName>
+        <description>Notify BBPL When Regional PL initiates Archival</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_BBPL_when_Regional_PL_initiates_Archival</template>
+    </alerts>
+    <alerts>
+        <fullName>Notify_RPL_When_local_PL_Unarchives_Local_Project</fullName>
+        <description>Notify RPL When local PL Unarchives Local Project</description>
+        <protected>false</protected>
+        <recipients>
+            <field>IPM_PreviouslyStoppedBy__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>IPM_Emails/IPM_send_email_to_RPL_when_local_project_is_marked_unarchived</template>
     </alerts>
     <fieldUpdates>
         <fullName>Bosscard_Status</fullName>
@@ -301,6 +413,16 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Project_As_Archieved</fullName>
+        <field>Is_Archieved__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Project As Archieved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+	<reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Update_Rollout_TLD_on_Project</fullName>
@@ -563,6 +685,21 @@ ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;),
 ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;),
 ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Stop Project After 72 Hours</fullName>
+        <active>true</active>
+        <formula>AND(IPM_PrepareForArchival__c,IPM_StoppedByProject__c == NULL)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Update_Project_As_Archieved</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>IPM_Project__c.IPM_CancelStoppingProjectTill__c</offsetFromField>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>Successful Project Phase</fullName>

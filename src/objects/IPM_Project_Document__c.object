@@ -93,6 +93,19 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Category_Status_while_Approved__c</fullName>
+        <description>Category Status while Approved</description>
+        <externalId>false</externalId>
+        <label>Category Status while Approved</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Comments__c</fullName>
         <description>To capture document comments</description>
         <externalId>false</externalId>

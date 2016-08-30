@@ -316,12 +316,17 @@ function isNumber(e,ele) {
 var editorunsaved = false;
 var ckedited = false;
 var inputchanged = false;
+var rld = false;
 
 jq(function(){
     editorunsaved = false;
-    jq('.ipmSectionEditor :input').change(function(){
-        editorunsaved = true;
-        inputchanged = true;
+    jq('.listContainer :input').change(function(){
+        editorunsaved = false;
+        inputchanged = false;
+    });
+    jq('.compcustchannelContainer :input').change(function(){
+        editorunsaved = false;
+        inputchanged = false;
     });
     
     jq('.secEditorNavList :input').change(function(){
@@ -351,6 +356,9 @@ function unloadPageseceditor()
 if((ckedited === true || inputchanged === true) && editorunsaved === true)
 {
         return IPMAppSE.wmessage;            
+}else if(rld)
+{
+     return IPMAppSE.wmessage;  
 }
 } 
 
@@ -376,4 +384,5 @@ jq('#ipmModal').on('show.bs.modal', function (e) {
             e.stopPropagation();
         }
     }
-})
+});
+function setFocusOnLoad() {}  

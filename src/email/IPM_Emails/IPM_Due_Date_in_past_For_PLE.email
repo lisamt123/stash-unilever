@@ -1,0 +1,6 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial">Dear {!IPM_Milestone__c.IPM_Project_Leader_Name__c} &amp; {!IPM_Milestone__c.IPM_Deputy_Project_Leader_Name__c} &amp; {!IPM_Milestone__c.IPM_Gatekeeper_Name__c}</font></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial"><br></font></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial">This is a reminder that your expected {!IPM_Milestone__c.IPM_Name__c} date for {!IPM_Milestone__c.IPM_Project_Name__c} has passed with no action for {!IPM_Milestone__c.IPM_Name__c} taken in IPM Navigator.</font></div><div><font face="arial">Please press the "launch" button in Inoplan if {!IPM_Milestone__c.IPM_Project_Name__c} has shipped to trade or correct the Target Launch Date.</font></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><font face="arial">You will receive weekly reminders until you have taken appropriate action in IPM Navigator</font></div>]]></td>
+</tr>
+</table>
