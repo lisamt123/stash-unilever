@@ -54,6 +54,12 @@
         <fullName>Name</fullName>
         <trackHistory>false</trackHistory>
     </fields>
+    <recordTypes>
+        <fullName>Price_Book</fullName>
+        <active>true</active>
+        <description>Standard price book.</description>
+        <label>Price Book</label>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>PRICEBOOK2.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRICEBOOK2.DESCRIPTION</customTabListAdditionalFields>

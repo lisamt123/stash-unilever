@@ -61,6 +61,7 @@ trigger ICB_Setup_Mobile_Channel on Contact (after insert, after update) {
                 p.Description 	= Label.ICB_Price_Book_Description + ' ' + accountName;
                 
                 try{
+                    
                     database.insert(i);
                     database.insert(p);
                     isCreated 	= true;
@@ -69,6 +70,7 @@ trigger ICB_Setup_Mobile_Channel on Contact (after insert, after update) {
                     System.debug('Entering <isCreated>'+isCreated);
                     System.debug('Entering <priceBookId>'+priceBookId);
                     System.debug('Entering <inventoryId>'+inventoryId);
+                    
                 }
                 catch(System.DmlException e){
                    System.debug(e);
