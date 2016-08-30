@@ -1,31 +1,31 @@
 global with sharing class AF_BrandEstimateRemote {
     static List<String> orderedColumn = new List<String>();
-	static List<String> orderedRow = new List<String>();
-	static Integer colTotal;
-	static Integer colTraditional;
-	static Integer colDigital;
-	static Integer colAdaptation;
-	static Map<String, AF_Agency_Estimate__c> agencyULRelationMap = new Map<String, AF_Agency_Estimate__c>();
-	static String rowDetail;
-	static String  colDetail;
-	static String strongStrt;
-	static String strongEnd;
-	static String tdCloseTagEst;
-	static Boolean isLocked;
-	static Decimal colTotalA;
-	static String archiveImg;
-	static String trOpenTag;
-	static String trCloseTag;
-	static Map<String, AF_Entity__c> agencyNameMap = new Map<String, AF_Entity__c>();
-	static Map<String, String> ulNameMap = new Map<String, String>();
-	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
-	static String rowDetailToReturn;
-	static Integer total;
-	static String crsBrdrImg;
-	static String cmntImg;
-	static String currCode;
-	static Integer totalLocal;
-	static Decimal totalWithoutRounding;
+    static List<String> orderedRow = new List<String>();
+    static Integer colTotal;
+    static Integer colTraditional;
+    static Integer colDigital;
+    static Integer colAdaptation;
+    static Map<String, AF_Agency_Estimate__c> agencyULRelationMap = new Map<String, AF_Agency_Estimate__c>();
+    static String rowDetail;
+    static String  colDetail;
+    static String strongStrt;
+    static String strongEnd;
+    static String tdCloseTagEst;
+    static Boolean isLocked;
+    static Decimal colTotalA;
+    static String archiveImg;
+    static String trOpenTag;
+    static String trCloseTag;
+    static Map<String, AF_Entity__c> agencyNameMap = new Map<String, AF_Entity__c>();
+    static Map<String, String> ulNameMap = new Map<String, String>();
+    private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
+    static String rowDetailToReturn;
+    static Integer total;
+    static String crsBrdrImg;
+    static String cmntImg;
+    static String currCode;
+    static Integer totalLocal;
+    static Decimal totalWithoutRounding;
     public AF_BrandEstimateRemote(ApexPages.StandardController stdController) {
         
     }
@@ -67,17 +67,16 @@ global with sharing class AF_BrandEstimateRemote {
         trCloseTag = '</tr>';
         isLocked = false;
         strongStrt = '<Strong>';
-		strongEnd = '</strong>';
+        strongEnd = '</strong>';
         Set<String> columnsSet = new Set<String>();
         Set<String> rowsSet = new Set<String>();
         Map<String, String> ulAgenciesMatrixMap = new Map<String, String>();
-		colTotal=0;
-		colTraditional=0;
-		colDigital=0;
-		colAdaptation=0;
-		colTotalA = 0;
-        Integer rowTotal = 0, rowTraditional = 0, rowDigital = 0, rowAdaptation =0;
-        Decimal rowTotalA = 0;
+        colTotal=0;
+        colTraditional=0;
+        colDigital=0;
+        colAdaptation=0;
+        colTotalA = 0;
+       
         List<AF_Agency_Estimate__c> agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
                                                                 AF_Total_Local__c,AF_Total__c, AF_IsCrossborder__c, AF_isComment__c, AF_Brand_Estimate__r.AF_Locked__c,
                                                                Matrix_Currency_Code__c,AF_Brand_Estimate__c, AF_Brand_Estimate__r.AF_Agency__c,AF_IsCrossBorderImage__c,
@@ -107,13 +106,28 @@ global with sharing class AF_BrandEstimateRemote {
         rowDetail += trOpenTag;
         rowDetail += '<td class=\"headFirstRow\">' + strongStrt + 'Unilever Entities' + strongEnd + tdCloseTagEst;
         rowDetail += '<td class=\"totalCell\">' + strongStrt + 'Total' + strongEnd + tdCloseTagEst;
-		//Calling the ordered Column method
-		orderedColMethod();
+        //Calling the ordered Column method
+        orderedColMethod();
         rowDetail += trCloseTag;
         //Display the distinct Columns from the agency estimates.
-		orderedRowMethod();
-             
-        /* Columns part is completed. */
+        orderedRowMethod();
+        getAgencyEstimateRecExt(agencyId,brandEstimateId);
+         ulAgenciesMatrixMap.put('1', colDetail);
+        ulAgenciesMatrixMap.put('2', rowDetail);
+        return ulAgenciesMatrixMap;
+    }
+        /*****************************************************************************
+*  @Description: this method is to query the records from Agency estiamte 
+*  @ and arranges the unilerver and agency entities in base fees matrix cells
+*  @ also calculates the local values and display's on moseover 
+*  @name : getAgencyEstimateRecords
+*  @param : agencyId, brandEstimateId
+*  @return : none
+*************************************************************************/  
+ public static void getAgencyEstimateRecExt(String agencyId, String brandEstimateId){
+  Integer rowTotal = 0, rowTraditional = 0, rowDigital = 0, rowAdaptation =0;
+        Decimal rowTotalA = 0;
+  /* Columns part is completed. */
         /* Following displays all the rows in the matrix.*/
         for(String eachRow : orderedRow) {
             rowDetail += trOpenTag;
@@ -137,21 +151,20 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell mydisplaytotal details-control" t=\"' + dispRowTraditional + '\" d=\"' + dispRowDigital;
             rowDetail += '\" a=\"' + dispRowAdaptation + '\"><a class="margin0" l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTagEst;
             getAgencyEstimateRecordsExt(brandEstimateId,eachRow);
-			rowDetail += trCloseTag;
+            rowDetail += trCloseTag;
         }
-        ulAgenciesMatrixMap.put('1', colDetail);
-        ulAgenciesMatrixMap.put('2', rowDetail);
-        return ulAgenciesMatrixMap;
-    }
+
+ }
+
      /*****************************************************************************
 *  @Description: this method hold the logic calculate the row totals of the matrix page cells
-				 also it adds up the agenycestimate figures traditional,Digital and Adaptation
+                 also it adds up the agenycestimate figures traditional,Digital and Adaptation
 *  @name : orderedColMethod
 *  @param : none
 *  @return : none
 *************************************************************************/
-	public static void orderedColMethod(){
-		for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
+    public static void orderedColMethod(){
+        for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
             colTotal = 0;colTraditional = 0;colDigital = 0;colAdaptation = 0;
             for(String eachRow : orderedRow) {
                 String keyMatch = eachCol+'-'+eachRow; //column Vs row
@@ -173,19 +186,19 @@ global with sharing class AF_BrandEstimateRemote {
             }
             rowDetail += '</a>' + tdCloseTagEst;
         }
-	} 
+    } 
      /*****************************************************************************
 *  @Description: this method is to calculate the row totals
 *  @name : orderedRowMethod
 *  @param : none
 *  @return : none
 *************************************************************************/
-	public static void orderedRowMethod(){
-	Integer i=2;
-	String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
+    public static void orderedRowMethod(){
+    Integer i=2;
+    String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
     archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
     archiveImg += ' height="18" width="18" />';
-	for(String eachCol : orderedColumn) {
+    for(String eachCol : orderedColumn) {
             colTotal = 0;colTotalA = 0;
             for(String eachRow : orderedRow) {
                 String keyMatch = eachCol+'-'+eachRow; //column Vs row
@@ -198,15 +211,15 @@ global with sharing class AF_BrandEstimateRemote {
             colDetail += '<th id=\'' + i + '\' isDisplay=\'y\'>' + eachCol + dispArchiveImg + '</th>';
             i++;
         }
-	} 
+    } 
      /*****************************************************************************
 *  @Description: this method is to as an Extension of the getAgencyEstimateRecords
 *  @name : getAgencyEstimateRecordsExt
 *  @param : none
 *  @return : none
 *************************************************************************/
-	public static void getAgencyEstimateRecordsExt(String brandEstimateId,String eachRow){
-		for(String eachCol : orderedColumn) { //Display the agency estimate records
+    public static void getAgencyEstimateRecordsExt(String brandEstimateId,String eachRow){
+        for(String eachCol : orderedColumn) { //Display the agency estimate records
                 String keyMatch = eachCol+'-'+eachRow; //column Vs row
                 if(agencyULRelationMap.containsKey(keyMatch)) {
                     rowDetail += processAgencyRow(true, agencyULRelationMap.get(keyMatch),null, null, null);
@@ -216,7 +229,7 @@ global with sharing class AF_BrandEstimateRemote {
                     rowDetail += processAgencyRow(false, null,aId, uId, brandEstimateId);
                 }
             }
-	}
+    }
      /*****************************************************************************
 *  @Description: this method is to calculate the total of each row and column  
 *  @ and display's the row and column total on mouseover, the total value
@@ -288,17 +301,17 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetailToReturn += 'data-target=\"#myModal3\"';
             rowDetailToReturn += ' e=\"' + dispTotal + '\" l=\"' + dispLocalTotal + '\"';
             rowDetailToReturn += ' class=\"modalButton3\">';
-            processAgencyRowExt(agSObj);			        
+            processAgencyRowExt(agSObj);                    
             rowDetailToReturn += '</div></a>';
             rowDetailToReturn += tdCloseTag;
         }
 
         return rowDetailToReturn;
     }
-	
-	public static void processAgencyRowExt(AF_Agency_Estimate__c agSObj){
-		String lBreak = '<br/>';
-		if(total != 0) {
+    
+    public static void processAgencyRowExt(AF_Agency_Estimate__c agSObj){
+        String lBreak = '<br/>';
+        if(total != 0) {
                 rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + cmntImg;
                 rowDetailToReturn += '</div><div>' + AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(total);
                 rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
@@ -309,7 +322,7 @@ global with sharing class AF_BrandEstimateRemote {
             } else {
                 rowDetailToReturn += cmntImg != null ? cmntImg : ' ';
             }
-	}
+    }
     
     public static Map<String, String> getAgencyEntitiesFromName(Set<String> agencyNames, String agencyId) {
         
@@ -606,32 +619,32 @@ global with sharing class AF_BrandEstimateRemote {
         }
         
         if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
-        	try{
+            try{
             insert entityListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
-        	try{
+            try{
             insert entityOopsListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
-        	try{
+            try{
             insert entityBonusListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }
     }
     
@@ -651,7 +664,7 @@ global with sharing class AF_BrandEstimateRemote {
             }
             catch(Exception e){
                 AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerUnileverEntity(rowName, sObjectId)) {
@@ -662,7 +675,7 @@ global with sharing class AF_BrandEstimateRemote {
             }
             catch(Exception e){
                 AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerUnileverEntity(rowName, sObjectId)) {
@@ -673,14 +686,14 @@ global with sharing class AF_BrandEstimateRemote {
             }
             catch(Exception e){
                 AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }
     }
     
     @remoteAction
     global static void archiveUnileverEntityToEstimates(String sObjectId, String sObjectName, String colsArr, String agencyId) {
-    	string archiveUnileverEntityToEstimates='archiveUnileverEntityToEstimates';
+        string archiveUnileverEntityToEstimates='archiveUnileverEntityToEstimates';
         Id agRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Agency);
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
@@ -724,7 +737,7 @@ global with sharing class AF_BrandEstimateRemote {
 *  @Description: this method is to add the unilerver entity to the object based 
 *  @ on their object API name and creates the estimates ,its helpd the users to add
  the unilever entities from the Ui of Matrix page and create the combination in the
- 	backend.
+    backend.
 *  @name : addUnileverEntityToEstimates
 *  @param : String
 *  @return : none.
@@ -786,32 +799,32 @@ global with sharing class AF_BrandEstimateRemote {
         }
         
         if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
-        	try{
+            try{
             insert entityListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }else if(sobjectName ==AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
-        	try{
+            try{
             insert entityOopsListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
-        	try{
+            try{
             insert entityBonusListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }
     }
     
@@ -859,23 +872,23 @@ global with sharing class AF_BrandEstimateRemote {
         }
         
         if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
-        	try{
+            try{
             insert entityListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addSingleULAGEntity',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addSingleULAGEntity',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
-        	try{
+            try{
             insert entityBonusListsToCreate;
-        	}
-        	catch(Exception e)
-	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addSingleULAGEntity',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-	        }
+            }
+            catch(Exception e)
+            {
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addSingleULAGEntity',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+            }
         }
         
     }
@@ -1003,14 +1016,14 @@ global with sharing class AF_BrandEstimateRemote {
             }
             
             if(!lstBonusThresholdToInsert.isEmpty()){
-            	try{
+                try{
                 insert lstBonusThresholdToInsert;
-            	}
-            	catch(Exception e)
-		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'createThresholds',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
-		        }
+                }
+                catch(Exception e)
+                {
+                    AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'createThresholds',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                    apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+                }
             }
        }
     }

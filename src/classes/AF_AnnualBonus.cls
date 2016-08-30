@@ -82,12 +82,12 @@ public with sharing class AF_AnnualBonus {
 *  @return : none
 *************************************************************************/
     public  AF_AnnualBonus() {
-        Boolean isQuantEmpty;
-        string Country_name;
-        integer Traditional_value;
-        integer Digital_value;
-        string agency_name;
-        string Brand_name;
+        //Boolean isQuantEmpty;
+        //string Country_name;
+        //integer Traditional_value;
+        //integer Digital_value;
+        //string agency_name;
+        //string Brand_name;
         noDisplay=true;
         noDisplayQuarterly=true;
         IsDraft=True;
@@ -103,11 +103,11 @@ public with sharing class AF_AnnualBonus {
         Qual_value=0;
         IsEditable=false;
         isAgency = false;
-        agency_name='';
-        Brand_name=''; 
-        Country_name='';
-        Traditional_value=0;
-        Digital_value=0;
+        //agency_name='';
+        //Brand_name=''; 
+        //Country_name='';
+        //Traditional_value=0;
+        //Digital_value=0;
         total_bonus_fees=0;
         sum_of_bonus_per=0;
         sum_of_bonus_val =0;
@@ -115,7 +115,7 @@ public with sharing class AF_AnnualBonus {
         Totals_Digital=0;
         //TotalTraditionalValue=0;
         //TotalDigitalValue=0;
-        isQuantEmpty=false;
+        //isQuantEmpty=false;
         AF_Pilot_Model = false;
         No_Bonus_Check= false;
         Totals_BonusMeasureTrad =0;
