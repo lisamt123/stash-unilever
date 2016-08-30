@@ -51,7 +51,6 @@ global with sharing class AF_OopEstimateRemote {
     AF_Constants.colTotal = 0;
     AF_Constants.colTotalA = 0;
     AF_Constants.colTotalVal=0;
-    Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
     List<AF_OOPS_Estimate__c> agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
     AF_OOPS_Actual__c, AF_Estimate__c, AF_OOPS_Matrix_Currency_Code__c, AF_IsCrossBorder__c,AF_EstimateLocal__c,
     AF_IsCrossBorderImage__c,AF_isCommentImage__c, AF_Agreed_Base_Fees__c
@@ -81,7 +80,23 @@ global with sharing class AF_OopEstimateRemote {
     orderedRowMethodOOPs();
     rowDetail += trCloseTag;
     orderedColMethodOOPs();
-    /* Columns part is completed. */
+    getOOPSEstimateRecordsExt(oopsActualId,agencyId);
+    ulOopsMatrixMap.put('1', colDetail);
+    ulOopsMatrixMap.put('2', rowDetail);
+    return ulOopsMatrixMap;
+  }
+  /***********************************************************************************
+*  @Description: this method is used to query and display the records in oops matrix 
+*  @             rows and column total of the oopsEstimate records will be displayed.
+         The total of the oops amount will be displayed in matrix cell rowise and colwise. 
+*  @name : getOOPSEstimateRecords
+*  @param : agencyId,oopsActualId
+*  @return: Map of <String,String>.
+*************************************************************************************/
+  public static void getOOPSEstimateRecordsExt(String oopsActualId, String agencyId){
+  String trOpenTag = '<tr>', trCloseTag = '</tr>';
+   Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
+   /* Columns part is completed. */
     /* Following displays all the rows in the matrix.*/
     for(String eachRow : orderedRow) {
       rowDetail += trOpenTag;
@@ -106,10 +121,8 @@ global with sharing class AF_OopEstimateRemote {
       getOOPSRecordsExt(oopsActualId,eachRow);
       rowDetail += trCloseTag;
     }
-    ulOopsMatrixMap.put('1', colDetail);
-    ulOopsMatrixMap.put('2', rowDetail);
-    return ulOopsMatrixMap;
   }
+  
   public static void orderedRowMethodOOPs(){
     for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
       AF_Constants.colTotal = 0; AF_Constants.colTotalA = 0;
