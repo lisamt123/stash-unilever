@@ -75,7 +75,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     }
 
     //Query locator
-    global Database.QueryLocator start(Database.BatchableContext BC){  
+    global Database.QueryLocator start(Database.BatchableContext BC)
+    {  
         return Database.getQueryLocator(query);
     }
 	
@@ -99,9 +100,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         for(IPM_Project__c p:Scope){
             if(String.isNotBlank(p.Project_External_ID__c)){
                 projectIdSet.add(p.Project_External_ID__c);
-            }else {
-                projectIdSet.add(p.Id);
             } 
+            projectIdSet.add(p.Id);
+            
             if(p.IPM_Phase__c != null)
 			{
 				scopeProjectList.add(p);
@@ -133,6 +134,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         set<id> financialIdSet = new set<id>();
         Map<Id, IPM_Financial__c> projFinMap = new map<Id,IPM_Financial__c>();  // this map will hold project id and corresponding Consolidated financial records
         Map<Id, IPM_Financial__c> regionalProjNKFinMap = new Map<Id, IPM_Financial__c>(); // this map will hold project id and corresponding Non Key financial records
+        set<id> regionalRolloutset = new set<id> ();
         
         try{   
         list<IPM_Financial__c> projectFinancialList = new list<IPM_Financial__c>([SELECT id,
@@ -147,6 +149,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                   Local_Project__r.id,
                                                                                   Parent_Project__r.id, 
                                                                                   Regional_Project__r.Name, 
+                                                                                  Regional_Project__r.IPM_Project_Rollout__c,
                                                                                   Regional_Project__r.IPM_Project_Type__c,
                                                                                   Parent_Project__r.IPM_Project_Type__c,
                                                                                   Local_Project__r.IPM_Project_Type__c,
@@ -158,20 +161,30 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                   IPM_CPP_Local__c                                                                                  
                                                                                   FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
         
-            for(IPM_Financial__c fi:projectFinancialList){
-                if(fi.Local_Project__r.id !=null && (fi.Local_Project__r.Name == fi.Financial_External_ID__c  || fi.Local_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
+            for(IPM_Financial__c fi:projectFinancialList)
+            {
+                if(fi.Local_Project__r.id !=null && (fi.Local_Project__r.Name == fi.Financial_External_ID__c  || fi.Local_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))
+                {
                     projFinMap.put(fi.Local_Project__r.id,fi);
                     financialIdSet.add(fi.id);
-                }else if(fi.Regional_Project__r.id !=null &&  (fi.Financial_External_ID__c ==  fi.Regional_Project__r.Name + IPM_Utils.CONSOLIDATED || fi.Regional_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ){
+                }
+                else if(fi.Regional_Project__r.id !=null &&  (fi.Financial_External_ID__c ==  fi.Regional_Project__r.Name + IPM_Utils.CONSOLIDATED || fi.Regional_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )
+                {
                     projFinMap.put(fi.Regional_Project__r.id,fi);
                     financialIdSet.add(fi.id);
-                }else if(fi.Parent_Project__r.id != null && (fi.Financial_External_ID__c == fi.Parent_Project__r.Name + IPM_Utils.CONSOLIDATED || fi.Parent_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) {
+                }
+                else if(fi.Parent_Project__r.id != null && (fi.Financial_External_ID__c == fi.Parent_Project__r.Name + IPM_Utils.CONSOLIDATED || fi.Parent_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) 
+                {
                     projFinMap.put(fi.Parent_Project__r.id,fi);
                     financialIdSet.add(fi.id);
-                }else if(fi.Regional_Project__r.id !=null &&  fi.Financial_External_ID__c == fi.Regional_Project__r.Name + IPM_ConstantUtils.FINANCIAL_NONKEY){
+                }
+                else if(fi.Regional_Project__r.id !=null &&  fi.Financial_External_ID__c == fi.Regional_Project__r.Name + IPM_ConstantUtils.FINANCIAL_NONKEY)
+                {
                 	regionalProjNKFinMap.put(fi.Regional_Project__r.id, fi);
+                	regionalRolloutset.add(fi.Regional_Project__r.IPM_Project_Rollout__c);
                 }
             }
+            
         } 
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null);
@@ -281,7 +294,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         
         //Fetching rollout records for project and creating map
          projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
-         set<id> regionalRolloutset = new set<id> ();
+         
         try{
             list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,
                                                                                                     name,
@@ -313,12 +326,16 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                                    Regional_Project__r.IPM_Phase__c,
 		                                                                                    Regional_Project__r.IPM_ProjectGKM__c,                                                                                                    
                                                                                                     Regional_Project__r.IPM_SourceProjectType__c,
-                                                                                                    Regional_Project__r.Id                                                                    
+                                                                                                    Regional_Project__r.Id,
+                                                                                                     Target_Launch_Date__c                                                                     
                                                                                                     FROM IPM_Project_Rollout__c 
                                                                                                     WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
-            for(IPM_Project_Rollout__c pr:projRolloutList){
+            
+            for(IPM_Project_Rollout__c pr:projRolloutList)
+            {
                    
-                  if(pr.IPM_Project_Job_Status__c!=IPM_ConstantUtils.JOB_STATUS_COMPLETED || String.isBlank(pr.IPM_Regional_PL__c)){
+                  if(pr.IPM_Project_Job_Status__c!=IPM_ConstantUtils.JOB_STATUS_COMPLETED || String.isBlank(pr.IPM_Regional_PL__c))
+                  {
                   	// create map for the Rollouts of the Global Original Project
                     if(pr.IPM_Project__r.id != null && !projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){
                         projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
@@ -348,9 +365,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     {                       
                         regionalRolloutset.add(pr.Id); 
                     }
-                    else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){ 
-                
-                      ID regionalRolloutID=pr.Regional_Project__r.id != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.Id;
+                    else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                    { 
+                      ID regionalRolloutID = pr.Regional_Project__r.id != null?pr.Regional_Project__r.id:pr.Regional_Rollout__r.Id;
                       regionalRolloutset.add(regionalRolloutID); 
                       localRolloutIDSet.add(pr.Id);                        
                     } 
@@ -369,6 +386,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     	
                     	
                     }
+                 }
+                 else
+                 {
+                 	if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE)
+                    {                       
+                        regionalRolloutset.add(pr.Id); 
+                    }
                  }    
             }
         }
@@ -381,6 +405,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         rolloutFinancialmap = new map<id,list<IPM_Financial__c>> ();
         set<id> finIdSet = new set<id>();
         try{
+        	
             list<IPM_Financial__c> projRolloutFinList = new list<IPM_Financial__c>([SELECT  id,
                                                                                             name,
                                                                                             RecordTypeId,  
@@ -398,19 +423,27 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
                                                 
-            for(IPM_Financial__c fir:projRolloutFinList){
+            for(IPM_Financial__c fir:projRolloutFinList)
+            {
               
-                if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id)){
+                if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id))
+                {
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id, new List<IPM_Financial__c>{fir});  
-                }else{
+                }
+                else
+                {
                     List<IPM_Financial__c> finrList = rolloutFinancialmap.get(fir.IPM_Project_Rollout__r.Id);
                     finrList.add(fir);
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id,finrList);              
                 }
+                
                 // to fetch the financials details for Regional Original Projects with Phantom Rollouts
-                if(!rolloutFinancialmap.containskey(fir.Regional_Project__r.id)){
+                if(!rolloutFinancialmap.containskey(fir.Regional_Project__r.id))
+                {
                     rolloutFinancialmap.put(fir.Regional_Project__r.id, new List<IPM_Financial__c>{fir});  
-                }else{
+                }
+                else
+                {
                     List<IPM_Financial__c> finrList = rolloutFinancialmap.get(fir.Regional_Project__r.id);
                     finrList.add(fir);
                     rolloutFinancialmap.put(fir.Regional_Project__r.id,finrList);              
@@ -418,6 +451,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                
                 finIdSet.add(fir.id);
             }
+            
             
         }   
         catch(Exception ex){
@@ -455,7 +489,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     finyrList.add(fiyr);
                     rolloutFinancialYearmap.put(fiyr.Financial_External_ID__c,finyrList);               
                 }                
-            }                         
+            }  
+            
         }   
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR,null,null,null,null); 
@@ -713,7 +748,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	else if(projectRollout!=null){
     		nonKeyAnalytic.IPM_Market_Cluster__c = projectRollout.Market_Cluster_Name__c;
     	}
-    	nonKeyAnalytic = processProjectRolloutFinancial(nonKeyAnalytic, nonKeyFinancial.Financial_External_ID__c, projectRollout);
+    	nonKeyAnalytic = processProjectRolloutFinancial(nonKeyAnalytic, nonKeyFinancial.Financial_External_ID__c, projectRollout,project);
     	
     	return nonKeyAnalytic;
     }
@@ -785,7 +820,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		// Financial related details to be copied 
 			 
 		if(finExtId != ''){    
-			processProjectRolloutFinancial(analyticObject1, finExtId, pr);
+			processProjectRolloutFinancial(analyticObject1, finExtId, pr,null);
 		}
     }
     /*********************************************************************************************************************
@@ -861,45 +896,63 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	// Financial year related to Global/Regional/Local Projects
     	if(projFinYrmap.containskey(project.id) && String.isNotBlank(project.IPMProject_Span__c)){
 	    	for(IPM_Financial_Year__c financialYear : projFinYrMap.get(project.Id)){
-					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope);
+					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope, project.IPM_Target_Launch_Dates__c);
 	    	}
     	}
     	return ipmAnalytic; 
     }
     // Method to set project rollout related financial records
-    public IPM_Analytics__c processProjectRolloutFinancial(IPM_Analytics__c analyticObj, String financialExtId, IPM_Project_Rollout__c projectRollout){
+    public IPM_Analytics__c processProjectRolloutFinancial(IPM_Analytics__c analyticObj, String financialExtId, IPM_Project_Rollout__c projectRollout,IPM_Project__c project)
+    {
     	
     	IPM_Analytics__c ipmAnalytic = analyticObj; 
     	String strFinancialScope = IPM_ConstantUtils.IPMGLOBAL; 
+    	Date targetLaunchDate = null; 
     	
     	// Set financial scope for Local rollouts
-    	if(projectRollout != null && projectRollout.Regional_Project__r != null){
+    	if(projectRollout != null && projectRollout.Regional_Project__r != null)
+    	{
     		
-    		if(String.isNotBlank(projectRollout.Regional_Project__r.IPM_Phase__c) &&  String.isNotBlank(projectRollout.Regional_Project__r.IPM_ProjectGKM__c)){
+    		if(String.isNotBlank(projectRollout.Regional_Project__r.IPM_Phase__c) &&  String.isNotBlank(projectRollout.Regional_Project__r.IPM_ProjectGKM__c))
+    		{
     			strFinancialScope = projectRollout.Regional_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.Regional_Project__r.IPM_Phase__c;
     			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
     		}
-    	}else if(projectRollout != null && projectRollout.IPM_Project__r != null){ // For Regional Rollouts
+    		targetLaunchDate = projectRollout.Target_Launch_Date__c;
+    	}
+    	else if(projectRollout != null && projectRollout.IPM_Project__r != null){ // For Regional Rollouts
     		
     		if(String.isNotBlank(projectRollout.IPM_Project__r.IPM_Phase__c) &&  String.isNotBlank(projectRollout.IPM_Project__r.IPM_ProjectGKM__c)){
     			strFinancialScope = projectRollout.IPM_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.IPM_Project__r.IPM_Phase__c;
     			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
     		}
+    		targetLaunchDate = projectRollout.Target_Launch_Date__c;
+    	}
+    	else if(project !=null)
+    	{
+    		if(String.isNotBlank(project.IPM_Phase__c) &&  String.isNotBlank(project.IPM_ProjectGKM__c))
+    		{
+    			strFinancialScope = project.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + project.IPM_Phase__c;
+    			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
+    		}
+    		targetLaunchDate = project.IPM_Target_Launch_Dates__c;
     	}
     	
     	
     	if(rolloutFinancialYearmap.containsKey(financialExtId)){
 	    	// Financial year related to project rollouts
 	    	for(IPM_Financial_Year__c financialYear : rolloutFinancialYearmap.get(financialExtId)){
-					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope);
+					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope, targetLaunchDate);
 	    	}
     	}
     	return ipmAnalytic;
     }
     // Method to set the fianancial year details on IPM Analytic object
-    public IPM_Analytics__c populateFinancialDetails(IPM_Analytics__c analyticObj, IPM_Financial_Year__c financialYear, String strScope){
+    public IPM_Analytics__c populateFinancialDetails(IPM_Analytics__c analyticObj, IPM_Financial_Year__c financialYear, String strScope ,date targetLaunchYear){
     	
     	IPM_Analytics__c ipmAnalytic = analyticObj; 
+    	Date prepYear3 =targetLaunchYear.addYears(2);
+        string year3= String.ValueOf(prepYear3.year());
     	
     	// Calender Financial Year Check 
     	if(String.isNotBlank(financialYear.Year_Type__c) && financialYear.Year_Type__c.equalsignorecase(IPM_Utils.Calendar)){
@@ -907,12 +960,12 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     		// PL Type check for Gross
     		if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
     			
-    			ipmAnalytic = populateGrossForCalendar(ipmAnalytic, financialYear, strScope);    		
+    			ipmAnalytic = populateGrossForCalendar(ipmAnalytic, financialYear, strScope, year3);    		
     			
     			
     		} else if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){ // PL Type check for Incremental
     		
-				ipmAnalytic = populateIncForCalendar(ipmAnalytic, financialYear, strScope);
+				ipmAnalytic = populateIncForCalendar(ipmAnalytic, financialYear, strScope, year3);
 				
 			}
     	}	
@@ -935,7 +988,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	return ipmAnalytic;
     }
     
-    public IPM_Analytics__c populateGrossForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope){
+    public IPM_Analytics__c populateGrossForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope,String year3){
     	String strAnalyticTOFieldName = grossTOCalYrFieldMapping.get(financialYear.Name);
     	String strAnalyticGPFieldName = grossGPCalYrFieldMapping.get(financialYear.Name);
     	
@@ -951,7 +1004,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		}
 		
 		// Calendar Y3 gTO(BD) 
-		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Name == year3){
 			ipmAnalytic.put( 'IPM_Y3_gTO_BD__c' , financialYear.get(strFYearTOFieldName));
 		}
 		
@@ -959,7 +1012,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     }
     
     
-    public IPM_Analytics__c populateIncForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope){
+    public IPM_Analytics__c populateIncForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope,String year3){
     	String strAnalyticTOFieldName = incTOCalYrFieldMapping.get(financialYear.Name);
     	String strAnalyticGPFieldName = incGPCalYrFieldMapping.get(financialYear.Name); 
     	    	
@@ -975,7 +1028,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		}
 		
 		// Calendar Y3 iTO(BD)	
-		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Name == year3){
 			ipmAnalytic.put( 'IPM_Y3_iTO_BD__c' , financialYear.get(strFYearTOFieldName));
 		}
 		
