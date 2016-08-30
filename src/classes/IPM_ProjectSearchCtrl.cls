@@ -6,7 +6,7 @@
 public with sharing class IPM_ProjectSearchCtrl{
     
     public String searchTxt{get;set;} //Search text
-    public List<IPM_Project__c> projects; //List of projects which gets displayed as a search results
+    public transient List<IPM_Project__c> projects; //List of projects which gets displayed as a search results    
     public Integer allProjects{get;set;} // number of all projects in the page
     public Integer myProjects{get;set;} // number of projects that current user has
     public Integer bcPendings{get;set;} // number of projects with pending bosscards
@@ -19,7 +19,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     public Integer stoppedProjects{get;set;} // Number of stopped projects
     //public String bPending{get;set;} // Checked bosscard project sent from page to controller
     public set<String> masterBrandArr{get;set;} //Brings out the master data from the brand
-    public list<IPM_Country__c> allCountries{get;set;}
+    public transient list<IPM_Country__c> allCountries{get;set;}
     public String bPositionings{get;set;} //Array of selected brand positionings to be selected for a project.
     
     public Map<String, Integer> clusterCountMap{get;set;}//Counter collection which counts the number of projects per cluster
@@ -48,7 +48,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     public Integer size{get;set;} //page size
     public Date tFrm; //inputs accepted from user for TLD FROm
     public Date tTo; //inputs accepted from user for TLD TO
-    public list<IPM_ClusterMCO> clusterMCOList{get;set;} //Wrapped data of Cluster MCO & Country
+    public transient list<IPM_ClusterMCO> clusterMCOList{get;set;} //Wrapped data of Cluster MCO & Country
     public Boolean isAsc{get;set;}//bool value for ascending or descending othterwise
     public Integer noOfRecords{get; set;} //Total number of records used for pagination
     public boolean isEditable{get;set;}  //used by security
@@ -59,24 +59,33 @@ public with sharing class IPM_ProjectSearchCtrl{
     public static final String THISFLD_STR = 'thisFld';
     public static final String IPM_PROJECT_NAME_C_STR = 'IPM_Project_Name__c';
     public Set<string> shareProjIdSet;
-    public Map<Id,Decimal> projIdYear3iTO{get; set;}
-    public string projIdString;
+    public transient List<IPM_Project__c> projIdYear3iTO{get; set;}
+    public transient string projIdString;
     public IPM_Project__c projectForTLDFrom{get;set;}
     public IPM_Project__c projectForTLDTo{get;set;}
     //public boolean checkFilter{get;set;}
     public Integer unAssignedCount{get;set;}
     Set<String> clusterSet = new Set<String>();
     public String unassigned{get;set;}
+    public static boolean mainProjSectionBool{get;set;}
     //constructor
     public IPM_ProjectSearchCtrl() {
         String browserType = Apexpages.currentPage().getHeaders().get('USER-AGENT'); //gets the browser name 
         if(String.isNotBlank(browserType) && browserType.contains('MSIE')){ // browser values can be taken from salesforce custom setting if required
             Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE= edge');  // apply IE hack in the constructor
         }
-
-        List<IPM_Country__c> lstCountires = new List<IPM_Country__c>();
-        //Initialising variables
-        masterBrandArr = IPM_Utils.getMasterBrandData();
+        
+        Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=edge');//prevent browser incomptibility
+        initializeVariables();
+    }
+    
+    /*******************************************************************************************************
+    * @description: This method initialises all required variables on page load.
+    */    
+    public void initializeVariables() {        
+        //Initialising variables      
+        projects = new List<IPM_Project__c>(); 
+        shareProjIdSet =  new  Set<string>();
         str_Hyphen = '-';
         bPositionings = IPM_ConstantUtils.BLANK;
         noRecords = false;
@@ -103,57 +112,123 @@ public with sharing class IPM_ProjectSearchCtrl{
         selectedActiveProject = TRUE_STR;
         selectedStoppedProject = true;
         unassigned = TRUE_STR;
-        
-        IPM_GeoWrapper geoCon = new IPM_GeoWrapper();
+                
         clusterCountMap = new Map<String, Integer>(); //Key = 'cluster'
         mcoCountMap = new Map<String, Integer>(); //Key = 'cluster-mco'
         countryCountMap = new Map<String, Integer>(); //Key = 'cluster-mco-country'
-        allCountries = new list<IPM_Country__c>();
-        Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=edge');//prevent browser incomptibility
+        currentSort = new Map<String, String>{THISFLD_STR => IPM_PROJECT_NAME_C_STR}; //this field will actually define what is the current sorting column applies to, default is Project name
+        phasesCountMap = new Map<String, Integer>();
+        projectPhases = new list<String>();
+        allProjects = 0;myProjects = 0;bcPendings=0;originalProjects = 0; rolloutProjects = 0; operationalProjects = 0; activeProjects =0; stoppedProjects=0;unAssignedCount=0;
+        projectForTLDFrom = new IPM_Project__c();
+        projectForTLDTo = new IPM_Project__c(); 
+        mainProjSectionBool = false;        
+    }
+        
+    /*******************************************************************************************************
+    * @description: geocon is used in various methods
+    */
+    
+    public void getMainProjSection() {
+        mainProjSectionBool = true;
+    }
+    
+    
+    /*******************************************************************************************************
+    * @description: geocon is used in various methods
+    */
+    IPM_GeoWrapper geoCon = new IPM_GeoWrapper();
+        
+    /*******************************************************************************************************
+    * @description: This method gets geogeography filters - only clusters
+    */
+    public void getGeoInfoAndCount() {
+        
         clusterMCOList = geoCon.getclusterMCOWrapper();//initialising geographical data
-        projects = new List<IPM_Project__c>();
-        //Lets add all the countries with 0 values so we increment them as we find respective projects for respective area
-
+        
+        //Lets add clusters with 0 values so we increment them as we find respective projects for respective area
+        
         for(IPM_ClusterMCO eachCluster : clusterMCOList) {
             clusterCountMap.put(eachCluster.clusterName, 0);
             for(IPM_MCO eachMCO : eachCluster.mcos) {
                 mcoCountMap.put(eachCluster.clusterName + str_hyphen + eachMCO.mcoName, 0);
                 for(MDO_Geography__c eachCountry : eachMCO.countries) {
                     countryCountMap.put(eachCluster.clusterName + str_hyphen + eachMCO.mcoName 
-                                                  + str_hyphen + eachCountry.Name, 0);
+                                        + str_hyphen + eachCountry.Name, 0);
                 }
             }
         }
-        
-        //this field will actually define what is the current sorting column applies to, default is Project name
-        currentSort = new Map<String, String>{THISFLD_STR => IPM_PROJECT_NAME_C_STR};
-        phasesCountMap = new Map<String, Integer>();
-        projectPhases = new list<String>();
+        getGeoCounts();
+    }
+    
+    /*******************************************************************************************************
+    * @description: This method gets counts for geography
+    */
+    public void getGeoCounts() {
+        //Two for loops are used separately because these are asynchronously run on DOM ready and these need to be separate
+        allCountries = new list<IPM_Country__c>();
+        list<IPM_Project__c> countProjects = Database.query(countQuery());
+        for(IPM_Project__c eachProject : countProjects) {
+            
+            List<IPM_Country__c> lstCountires = new List<IPM_Country__c>();
+            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL ? eachProject.IPM_Countries__r : lstCountires ;
+            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ? eachProject.IPM_Countries1__r : lstCountires ;
+            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL ? eachProject.IPM_Countries2__r : lstCountires ;
+            
+            if( lstCountires.isEmpty()){ unAssignedCount++; }
+            
+            Map<string, boolean> mapCountryAdded = new Map<String, boolean>();mapCountryAdded.put('a',true);
+            Map<string, boolean> mapMCOAdded = new Map<String, boolean>();mapMCOAdded.put('a',true);
+            Map<string, boolean> mapClusterAdded = new Map<String, boolean>();mapClusterAdded .put('a',true);
+            
+            for(IPM_Country__c eachCountry : lstCountires) {
+                String countryKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c + str_hyphen + eachCountry.Country_Name__c;
+                if(countryCountMap != NULL && !mapCountryAdded.containsKey(countryKey) && countryCountMap.containsKey(countryKey)){
+                    countryCountMap.put(countryKey, countryCountMap.get(countryKey)+1);
+                    mapCountryAdded.put(countryKey , true);
+                }
+                String mcoKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c ;
+                if(mcoCountMap!= NULL && !mapMCOAdded.containsKey(mcoKey) && mcoCountMap.containsKey(mcoKey)){
+                    mcoCountMap.put(mcoKey, mcoCountMap.get(mcoKey)+1);
+                    mapMCOAdded.put(mcoKey, true);
+                }
+                String clusterKey = eachCountry.Market_Cluster_Name__c;
+                if(clusterCountMap != NULL && !mapClusterAdded.containsKey(clusterKey) && clusterCountMap.containsKey(clusterKey)){
+                    clusterCountMap.put(clusterKey, clusterCountMap.get(clusterKey)+1);
+                    mapClusterAdded.put(clusterKey, true);
+                }
+            }                        
+            allCountries.addAll(eachProject.IPM_Countries__r);//we need collection of all countries with all projects for future use and to display
+        }
+        clusterCountMap.put('Unassigned',unAssignedCount);
+    }
+    
+    public void getFiltersCount() {
         projectPhases.addAll(IPM_Utils.getPicklistValues(new IPM_Project__c(), 'IPM_Phase__c'));//Adds all the general phases & ordering
-        allProjects = 0;myProjects = 0;bcPendings=0;originalProjects = 0; rolloutProjects = 0; operationalProjects = 0; activeProjects =0; stoppedProjects=0;unAssignedCount=0;
-        projects = new List<IPM_Project__c>();
+        
         for(String eachPhase : projectPhases) {
             phasesCountMap.put(eachPhase, 0);
         }
         
         //gives back ids of the projects which belongs to current user or he/she is a team member
-        shareProjIdSet =  new  Set<string>();
+        
         for(IPM_Project_Resource__c res : [SELECT Id,IPM_User__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_User__c  =:userinfo.getuserid()]){
             shareProjIdSet.add(res.IPM_Project__c);
         }
         
         for(IPM_Project__c project : [Select Id from IPM_Project__c where
-                                                        IPM_Project_Leader__c  =:userinfo.getuserid() OR
-                                                        Deputy_Project_Leader__c=:userinfo.getuserid() OR
-                                                        IPM_Technical_Project_Leader__c =:userinfo.getuserid() OR
-                                                        IPM_Project_Gatekeeper__c =:userinfo.getuserid() OR
-                                                        IPM_Finance_Lead__c = : UserInfo.getUserId() LIMIT 9999 ]){
-             shareProjIdSet.add(project.Id);                                                    
-        }
+                                      IPM_Project_Leader__c  =:userinfo.getuserid() OR
+                                      Deputy_Project_Leader__c=:userinfo.getuserid() OR
+                                      IPM_Technical_Project_Leader__c =:userinfo.getuserid() OR
+                                      IPM_Project_Gatekeeper__c =:userinfo.getuserid() OR
+                                      IPM_Finance_Lead__c = : UserInfo.getUserId() LIMIT 9999 ]){
+                                          shareProjIdSet.add(project.Id);                                                    
+                                      }
         shareProjIdSet.remove(null);
         shareProjIdSet.remove('');
         //Initialise everything to the projectList variable from the query
-        for(IPM_Project__c eachProject : Database.query(query())) {
+        list<IPM_Project__c> lProjects = Database.query(query());
+        for(IPM_Project__c eachProject : lProjects) {
             
             myProjects = (eachProject.OwnerId == Userinfo.getUserId() || (shareProjIdSet != null && !shareProjIdSet.isEmpty() && shareProjIdSet.contains(eachProject.id)))? myProjects+1 : myProjects;
             originalProjects =  eachProject.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ?  originalProjects + 1 : originalProjects;
@@ -167,52 +242,14 @@ public with sharing class IPM_ProjectSearchCtrl{
             allProjects++;
             Integer cnt = phasesCountMap != null && phasesCountMap.get(eachProject.IPM_Phase__c) != null ? phasesCountMap.get(eachProject.IPM_Phase__c)+1 : 0;
             phasesCountMap.put(eachProject.IPM_Phase__c, cnt);
-            
-            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL ? eachProject.IPM_Countries__r : lstCountires ;
-            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ? eachProject.IPM_Countries1__r : lstCountires ;
-            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL ? eachProject.IPM_Countries2__r : lstCountires ;
-                
-            Map<string, boolean> mapCountryAdded = new Map<String, boolean>();mapCountryAdded.put('a',true);
-            Map<string, boolean> mapMCOAdded = new Map<String, boolean>();mapMCOAdded.put('a',true);
-            Map<string, boolean> mapClusterAdded = new Map<String, boolean>();mapClusterAdded .put('a',true);
-            
-            for(IPM_Country__c eachCountry : lstCountires) {
-                              
-                String countryKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c + str_hyphen + eachCountry.Country_Name__c;
-                if(countryCountMap != NULL && !mapCountryAdded.containsKey(countryKey) && countryCountMap.containsKey(countryKey)){
-                    countryCountMap.put(countryKey, countryCountMap.get(countryKey)+1);
-                    mapCountryAdded.put(countryKey , true);
-                }
-                   
-                String mcoKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c ;
-                if(mcoCountMap!= NULL && !mapMCOAdded.containsKey(mcoKey) && mcoCountMap.containsKey(mcoKey)){
-                    mcoCountMap.put(mcoKey, mcoCountMap.get(mcoKey)+1);
-                    mapMCOAdded.put(mcoKey, true);
-                }
-                    
-                String clusterKey = eachCountry.Market_Cluster_Name__c;
-                if(clusterCountMap != NULL && !mapClusterAdded.containsKey(clusterKey) && clusterCountMap.containsKey(clusterKey)){
-                    clusterCountMap.put(clusterKey, clusterCountMap.get(clusterKey)+1);
-                    mapClusterAdded.put(clusterKey, true);
-                }
-            }
-            
-            if( lstCountires.isEmpty()){
-                unAssignedCount++;
-            }
-            allCountries.addAll(eachProject.IPM_Countries__r);//we need collection of all countries with all projects for future use and to display
         }
-        
-        clusterCountMap.put('Unassigned',unAssignedCount);
-        getusertype();//security
-        projectForTLDFrom = new IPM_Project__c();
-        projectForTLDTo = new IPM_Project__c();
     }
     
     /*******************************************************************************************************
     * @description: It loads the projects whenever the submit or any action happens from the page.
     */
     public void loadProjects() {
+        mainProjSectionBool = true;
         noRecords = true;
         getProjects();
         refresh();
@@ -224,11 +261,10 @@ public with sharing class IPM_ProjectSearchCtrl{
     public List<IPM_Project__c> getProjects() {
         
         projects = new List<IPM_Project__c>();
-        for(IPM_Project__c eachProject : (List<IPM_Project__c>)setCon.getRecords()) {
-            projects.add(eachProject);  
-        }
+        projects = (List<IPM_Project__c>)setCon.getRecords();
         return projects;
     }
+    
     
     /**************************************************************
     * @description: PageNumber property getter with Page number
@@ -250,14 +286,30 @@ public with sharing class IPM_ProjectSearchCtrl{
         return (Integer)pages.round(System.RoundingMode.CEILING);
     }
     
+    public string countQuery() {
+        string tSoql = query();
+        string xsoql = 'SELECT IPM_Project_Y3iTO__c,IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c, IPM_Stopped_Date_Time__c,';
+           xsoql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
+           xsoql +=  '(SELECT Year3_ITO__c,Year_3_iTO_Charter__c,Year_3_iTO_Global__c FROM IPM_Financials_Consolidated__r WHERE RecordTypeId = \'' + IPM_Utils.getFinancialRecordType('Consolidated') + '\' LIMIT 1),';
+           xsoql += 'IPM_Target_Launch_Dates__c,IPM_Project_Description__c, (Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries1__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries2__r)';
+        tSoql = tSoql.removeStart(xsoql);
+        tSoql = 'SELECT IPMProject_Span__c, (Select MCO_Name__c, Market_Cluster_Name__c, Country_Name__c From IPM_Countries__r),(Select MCO_Name__c, Market_Cluster_Name__c, Country_Name__c From IPM_Countries1__r),(Select MCO_Name__c, Market_Cluster_Name__c, Country_Name__c From IPM_Countries2__r) ' + tSoql;
+        return tSoql;
+    }
+    
     /**************************************************************
     * @description: dynamic query method preparation happens here
     * @return: query string
     */
     private string query() {
         noRecords = false;
-        //map conataining project id and  iTO value
-        projIdString = iTOWiseSearch();
+        //map containing project id and iTO value - will be null at page load - so put condition for iTO1 & iTO2
+        if(iTO1 >= 0 && iTO2 >= 0) {
+            projIdString = iTOWiseSearch();
+        }
+        else {
+            projIdString = null;
+        }
         
         string shareProj = IPM_ConstantUtils.BLANK;
         if(shareProjIdSet != null && !shareProjIdSet.isEmpty()){
@@ -266,8 +318,8 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
        
        Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
-        
-    String soql  =  'SELECT IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c, IPM_Stopped_Date_Time__c,';
+    
+    String soql  =  'SELECT IPM_Project_Y3iTO__c,IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c, IPM_Stopped_Date_Time__c,';
            soql +=  'IPM_Sub_Category__c,IPM_Category_Text__c,IPM_Project_Logo__c,IPM_Bosscard__c,IPM_Bosscard_Status__c, IPM_Bosscard__r.Name,IPMProject_Span__c,Is_Archieved__c,IPM_Brand_Positioning__c,';
            soql +=  '(SELECT Year3_ITO__c,Year_3_iTO_Charter__c,Year_3_iTO_Global__c FROM IPM_Financials_Consolidated__r WHERE RecordTypeId = \'' + IPM_Utils.getFinancialRecordType('Consolidated') + '\' LIMIT 1),';
            soql += 'IPM_Target_Launch_Dates__c,IPM_Project_Description__c, (Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries1__r),(Select Country_Name__c, MCO_Name__c, Market_Cluster_Name__c  From IPM_Countries2__r) FROM IPM_Project__c ';
@@ -275,7 +327,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        
        /*******************************************************
        Prepare the search query for input from search box
-       *******************************************************/   
+       *******************************************************/    
        if(String.IsNotBlank(searchTxt)) {
            noRecords = !noRecords ? false : noRecords;
            soql += ' AND (IPM_Project_Name__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\' OR IPM_Project_Leader__r.Name LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\'';
@@ -494,14 +546,14 @@ public with sharing class IPM_ProjectSearchCtrl{
         Set<String> projectIds = new Set<String>();
        
         // get project id and its ito year value map
-        projIdYear3iTO = IPM_Utils.createProjectITOValueMap();
+        projIdYear3iTO = [SELECT ID, IPM_Project_Y3iTO__c FROM IPM_Project__c WHERE IPM_Project_Y3iTO__c >0];
         
         if(projIdYear3iTO != null && !projIdYear3iTO.isEmpty()){
-            for(Id projId : projIdYear3iTO.keySet()){
-                iTOValue = projIdYear3iTO.get(projId);  
+            for(IPM_Project__c proj : projIdYear3iTO){
+                iTOValue = proj.IPM_Project_Y3iTO__c;  
                 //add project ids to set, whose iTO range is between the user specified range
                 if(iTO1 >= 0 && iTO2 >= 0 && iTOValue >= Decimal.valueOf(iTO1) &&  iTOValue <= Decimal.valueOf(iTO2)){
-                        projectIds.add(projId);
+                        projectIds.add(proj.Id);
                 }
             }
         }
@@ -519,7 +571,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: toggling sort with project name and adding back to the currentSort map & ordering the result
     */
     public void toggleSortProjects() {
-        
+        mainProjSectionBool = true;
         isAsc = isAsc? false : true;
         currentSort.put(THISFLD_STR, IPM_PROJECT_NAME_C_STR);
         getProjects();
@@ -530,7 +582,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: toggling sort with phase and adding back to the currentSort map & ordering the result
     */
     public void toggleSortPhases() {
-        
+        mainProjSectionBool = true;
         isAsc = isAsc? false : true;
         currentSort.put(THISFLD_STR, 'IPM_Phase__c');
         getProjects();
@@ -541,7 +593,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: toggling sort with Project Leaders and adding back to the currentSort map & ordering the result
     */
     public void toggleSortPLs() {
-        
+        mainProjSectionBool = true;
         isAsc = isAsc? false : true;
         currentSort.put(THISFLD_STR, 'IPM_Project_Leader__r.Name');
         getProjects();
@@ -552,7 +604,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: toggling sort with Gate Keeper and adding back to the currentSort map & ordering the result
     */
     public void toggleSortGKs() {
-        
+        mainProjSectionBool = true;
         isAsc = isAsc? false : true;
         currentSort.put(THISFLD_STR, 'IPM_Project_Gatekeeper__r.Name');
         getProjects();
@@ -563,7 +615,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: toggling sort with iTO and adding back to the currentSort map & ordering the result (this is functionality tht needs to be rebuilt)
     */
     public void toggleSortITOs() {
-        
+        mainProjSectionBool = true;
         isAsc = isAsc? false : true;
         currentSort.put(THISFLD_STR, IPM_PROJECT_NAME_C_STR);
         getProjects();
@@ -574,7 +626,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: toggling sort with TLD and adding back to the currentSort map & ordering the result
     */
     public void toggleSortTLDs() {
-        
+        mainProjSectionBool = true;
         isAsc = isAsc? false : true;
         currentSort.put(THISFLD_STR, 'IPM_Target_Launch_Dates__c');
         getProjects();
@@ -601,6 +653,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: The first most page 
     */
     public void first() {
+        mainProjSectionBool = true;
         setCon.first();
     }
   
@@ -608,6 +661,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description: Last page
     */
     public void last() {
+        mainProjSectionBool = true;
         setCon.last();
     }
     
@@ -658,6 +712,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description:  previous page navigation property
     */
     public void previous(){
+        mainProjSectionBool = true;
         setCon.previous();
     }
     
@@ -665,6 +720,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @description:  next page navigation property
     */
     public void next(){
+        mainProjSectionBool = true;
         setCon.next();
     }
     
@@ -676,15 +732,15 @@ public with sharing class IPM_ProjectSearchCtrl{
                                                  FROM IPM_User_Profile__c 
                                                  WHERE IPM_User__c=:userinfo.getuserid() AND IPM_User_Role_Function_isNull__c = :IPM_ConstantUtils.IPM_false LIMIT 50000];
         
-         if(lstuserprofile != null && !lstuserprofile.isEmpty()){
+        if(lstuserprofile != null && !lstuserprofile.isEmpty()){
             for(IPM_User_Profile__c up:lstuserprofile){
                 if(up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_BD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI|| 
-                    up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE|| 
-                    up.IPM_User_Role__c == IPM_ConstantUtils.IPM_ROLE_SUPPLY_CHAIN || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD || 
-                    up.IPM_User_Function__c == IPM_ConstantUtils.GATEKEEPER_CONSTANT || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_BB){
-                    IsProjectEditable=false;
-                    isBossCardEditable=false;
-                }
+                   up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE|| 
+                   up.IPM_User_Role__c == IPM_ConstantUtils.IPM_ROLE_SUPPLY_CHAIN || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD || 
+                   up.IPM_User_Function__c == IPM_ConstantUtils.GATEKEEPER_CONSTANT || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_BB){
+                       IsProjectEditable=false;
+                       isBossCardEditable=false;
+                   }
                 
                 if(up.IPM_User_Function__c==IPM_ConstantUtils.TEAM_PROJECT_LEADER || up.IPM_User_Function__c==IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER){
                     isProjectEditable=true;isBossCardEditable=true;
@@ -713,67 +769,66 @@ public with sharing class IPM_ProjectSearchCtrl{
     }
     
     public class IPM_GeoWrapper {
-    
-    private Map<String, Set<String>> clusterMCOMap; //internally used map to store mcos cluster wise
-    //private Map<String, MDO_Geography__c[]> mcoCountryMap;//internally used map to store countries mco wise
-    private list<IPM_ClusterMCO> clusterMCOWrapperList;//final returning variable to the external classes from a method
-    
-    //constructor
-    public IPM_GeoWrapper() {
         
-        //initialise them!
-        clusterMCOMap = new Map<String, Set<String>>();
-        //mcoCountryMap = new Map<String, MDO_Geography__c[]>();
-    }
-    
-    /*******************************************************************************************************
-    * @description: the getter of the clusterMCOwrapper 
-    * @returns : wrapped list of clusterMCOs
-    */
-    public list<IPM_ClusterMCO> getclusterMCOWrapper() {
-      list<IPM_MCO> mcoList;
-      for(MDO_Geography__c geography : [SELECT  Name, parent_L2__c, geography_type__c, parent_L2__r.Name,Status__c FROM MDO_Geography__c limit 1000]){
-      }
-      
-      list<MDO_Geography__c> goegraphiesMCO = [SELECT  Name, parent_L2__r.Name
-                                               FROM MDO_Geography__c where geography_type__c = 'Country Group' and Status__c = 'Active' and parent_L2__c <> ''
-                                               LIMIT 500];//extract the data from the master-data object MDO_Geography__c
-        for(MDO_Geography__c eachCountry : goegraphiesMCO) { //Add Clusters
-            if(!clusterMCOMap.containsKey(eachCountry.parent_L2__r.Name)) {
-                Set<String> tmpLst = new Set<String>();
-                tmpLst.add(eachCountry.Name);
-                clusterMCOMap.put(eachCountry.parent_L2__r.Name, tmpLst);
-            } else {
-                clusterMCOMap.get(eachCountry.parent_L2__r.Name).add(eachCountry.Name);
-            }
+        private Map<String, Set<String>> clusterMCOMap; //internally used map to store mcos cluster wise
+        //private Map<String, MDO_Geography__c[]> mcoCountryMap;//internally used map to store countries mco wise
+        private transient list<IPM_ClusterMCO> clusterMCOWrapperList;//final returning variable to the external classes from a method
+        
+        //constructor
+        public IPM_GeoWrapper() {
+            
+            //initialise them!
+            clusterMCOMap = new Map<String, Set<String>>();
+            //mcoCountryMap = new Map<String, MDO_Geography__c[]>();
         }
         
-        list<MDO_Geography__c> goegraphiesCountry = [SELECT  Name, parent_L2__r.Name
-                                               FROM MDO_Geography__c where geography_type__c = 'Country' and Status__c = 'Active' and parent_L2__c <> ''
-                                               LIMIT 500];//extract the data from the master-data object MDO_Geography__c
-        clusterMCOWrapperList = new list<IPM_ClusterMCO>();//this is clustermcowrapper list used internally
-        String[] sortedCluster = new list<String>();//sorted Clusters which would help us in definning them on the page.
-        sortedCluster.addAll(clusterMCOMap.keySet());
-        sortedCluster.sort();//sort them
-        
-        // Now that we have all information in various variables, now lets try to club 'em together to make a 3-tier Cluster-->MCO-->Country wrapper
-        for(String eachCluster : sortedCluster) {
-            mcoList = new list<IPM_MCO>();
-            for(String eachMCO : IPM_Utils.convertSetToSortedList(clusterMCOMap.get(eachCluster))) {
-                MDO_Geography__c[] countryList = new list<MDO_Geography__c>();
-                for(MDO_Geography__c eachCountry : goegraphiesCountry) {
-                    if(eachMCO == eachCountry.parent_L2__r.Name) {
-                        countryList.add(eachCountry);
-                    }
+        /*******************************************************************************************************
+        * @description: the getter of the clusterMCOwrapper 
+        * @returns : wrapped list of clusterMCOs
+        */
+        public list<IPM_ClusterMCO> getclusterMCOWrapper() {
+            list<IPM_MCO> mcoList;
+            
+            list<MDO_Geography__c> goegraphiesMCO = [SELECT  Name, parent_L2__r.Name
+                                                     FROM MDO_Geography__c where geography_type__c = 'Country Group' and Status__c = 'Active'
+                                                     LIMIT 500];//extract the data from the master-data object MDO_Geography__c
+            for(MDO_Geography__c eachCountry : goegraphiesMCO) { //Add Clusters
+                if(!clusterMCOMap.containsKey(eachCountry.parent_L2__r.Name)) {
+                    Set<String> tmpLst = new Set<String>();
+                    tmpLst.add(eachCountry.Name);
+                    clusterMCOMap.put(eachCountry.parent_L2__r.Name, tmpLst);
+                } else {
+                    clusterMCOMap.get(eachCountry.parent_L2__r.Name).add(eachCountry.Name);
                 }
-                mcoList.add(new IPM_MCO(eachMCO, countryList));
             }
-            clusterMCOWrapperList.add(new IPM_ClusterMCO(eachCluster, mcoList));
+            
+            list<MDO_Geography__c> goegraphiesCountry = [SELECT  Name, parent_L2__r.Name
+                                                         FROM MDO_Geography__c where geography_type__c = 'Country' and Status__c = 'Active'
+                                                         LIMIT 500];//extract the data from the master-data object MDO_Geography__c
+            clusterMCOWrapperList = new list<IPM_ClusterMCO>();//this is clustermcowrapper list used internally
+            String[] sortedCluster = new list<String>();//sorted Clusters which would help us in definning them on the page.
+            sortedCluster.addAll(clusterMCOMap.keySet());
+            sortedCluster.sort();//sort them
+            
+            // Now that we have all information in various variables, now lets try to club 'em together to make a 3-tier Cluster-->MCO-->Country wrapper
+            for(String eachCluster : sortedCluster) {
+                mcoList = new list<IPM_MCO>();
+                for(String eachMCO : IPM_Utils.convertSetToSortedList(clusterMCOMap.get(eachCluster))) {
+                    MDO_Geography__c[] countryList = new list<MDO_Geography__c>();
+                    for(MDO_Geography__c eachCountry : goegraphiesCountry) {
+                        if(eachMCO == eachCountry.parent_L2__r.Name) {
+                            countryList.add(eachCountry);
+                        }
+                    }
+                    mcoList.add(new IPM_MCO(eachMCO, countryList));
+                }
+                clusterMCOWrapperList.add(new IPM_ClusterMCO(eachCluster, mcoList));
+            }
+            mcoList = new list<IPM_MCO>();
+            clusterMCOWrapperList.add(new IPM_ClusterMCO('Unassigned', mcoList));
+            return clusterMCOWrapperList;
         }
-        mcoList = new list<IPM_MCO>();
-        clusterMCOWrapperList.add(new IPM_ClusterMCO('Unassigned', mcoList));
-        return clusterMCOWrapperList;
-    }
+        
     }
     
     /***************************************************************

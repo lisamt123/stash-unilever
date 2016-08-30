@@ -45,6 +45,14 @@
 		<value>The Charter Gate due date must be on or before both Product Design Lock and Contract Gate due date.</value>
 	</labels>
    <labels>
+	<fullName>IPM_Input_Dont_Use_Char</fullName>
+	<categories>IPM_ProjectSearchPage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM_Input_Dont_Use_Char</shortDescription>
+	<value>Please do not use the character &apos;%&apos;. It will not be considered.</value>
+    </labels>
+   <labels>
         <fullName>IPM_Download_All_AttachmentsBttnName</fullName>
         <language>en_US</language>
         <protected>false</protected>

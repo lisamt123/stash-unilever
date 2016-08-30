@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+	<fullName>IPM_Input_Dont_Use_Char</fullName>
+	<categories>IPM_ProjectSearchPage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM_Input_Dont_Use_Char</shortDescription>
+	<value>Please do not use the character &apos;%&apos;. It will not be considered.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Current_PDL_Document_Status</fullName>
         <language>en_US</language>
         <protected>false</protected>
