@@ -238,8 +238,24 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
+        <tab>Batimento_de_Vendas</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Cockpit</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>ICB_Sales_Locale__c</tab>
         <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Inventory</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Lista_de_Pre_os</tab>
+        <visibility>None</visibility>
     </tabSettings>
     <userLicense>Salesforce</userLicense>
     <userPermissions>

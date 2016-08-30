@@ -211,7 +211,23 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabSettings>
+        <tab>Batimento_de_Vendas</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Cockpit</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>ICB_Sales_Locale__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Inventory</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Lista_de_Pre_os</tab>
         <visibility>None</visibility>
     </tabSettings>
     <userLicense>Partner Community Login</userLicense>
