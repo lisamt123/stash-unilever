@@ -181,3 +181,5 @@ src/tabs/ICB_Sales_Locale__c.tab
 src/siteDotComSites
 src/siteDotComSites/Mobile_Channel1.site
 src/siteDotComSites/Mobile_Channel1.site-meta.xml
+src/profiles/
+src/profiles/Partner Community Login Basic.profile

@@ -24,7 +24,7 @@
                         
                         &nbsp;&nbsp;
                         <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Pending')}">
-                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/truck.png'}" class="ImageSimbol ImageHidden ImageShow" />  
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/Car.png'}" class="ImageSimbol ImageHidden ImageShow" />  
                         </aura:if>
                         <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Available')}">
                             <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/sunVector3.png'}" class="ImageSimbol ImageHidden ImageShow" />  
@@ -136,12 +136,12 @@
                                         </div>
                                     </aura:renderIf>
                                     <div> &nbsp;&nbsp;</div>
-                                    <div align="center"  data-label="{!$Label.c.ICB_ENTRY}">
+                                    <div align="center" class="border-div" data-label="{!$Label.c.ICB_ENTRY}">
                                         <aura:renderIf isTrue="{!wrapper.oppItem.StageName == 'Available' || wrapper.oppItem == null}">
-                                            <ui:inputNumber class="input-size" aura:id="QuantityUnitIn" 
-                                                            value="{!inventory.quantity}" disabled="true" />
+                                            <br /><ui:outputNumber class="input-size" aura:id="QuantityUnitIn" 
+                                                            value="{!inventory.quantity}"  />
                                             <aura:set attribute="else">
-                                            	<ui:outputNumber class="input-size" aura:id="QuantityUnitOut" 
+                                            	<br /><ui:outputNumber class="input-size" aura:id="QuantityUnitOut" 
                                                             value="{!inventory.quantity}" />
                                             </aura:set>
                                         </aura:renderIf>

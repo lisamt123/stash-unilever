@@ -115,18 +115,21 @@
                                             </div>
                                             <div> &nbsp;&nbsp;</div>
                                             
-                                            <div align="center" data-label="{!$Label.c.ICB_ENTRY}">
-                                                <ui:inputNumber class="input-size" aura:id="QuantityUnit" 
-                                                                value="{!inventory.quantity}" disabled="true" />
+                                            <div align="center" class="border-div" data-label="{!$Label.c.ICB_ENTRY}">
+                                                <br /><ui:outputNumber class="input-size" aura:id="QuantityUnit" 
+                                                                value="{!inventory.quantity}"  />
+                                                
                                             </div>
-                                            <div  class="slds-truncate ButtonInventory" data-record="{!index}" onclick="{!c.incrementValue}" >
+                                            <div  class="slds-truncate ButtonInventory " data-record="{!index}" onclick="{!c.incrementValue}" >
                                                 <ui:button aura:id="pos" >
                                                     <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/add_60.png'}"  class="buttons-left" />
                                                 </ui:button>
                                             </div>
                                             <aura:set attribute="else">
-                                                <ui:outputNumber class="input-size" aura:id="QuantityUnit" 
-                                                                 value="{!inventory.quantity}" />
+                                                <div align="center" class="border-div">
+                                                    <br /><ui:outputNumber class="input-size" aura:id="QuantityUnit" 
+                                                                           value="{!inventory.quantity}" />
+                                                </div>
                                             </aura:set>
                                         </aura:renderIf>
                                     </div>
