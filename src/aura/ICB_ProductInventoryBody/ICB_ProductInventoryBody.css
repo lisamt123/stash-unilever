@@ -3,8 +3,11 @@
         display : none !important;
     }
     .THIS .Align{
-    float: right;
-}
+        float: right;
+    }
+    .THIS .BorderWhite{
+        border-color: white;
+    }
 }
 .THIS .btnCollor button {
     

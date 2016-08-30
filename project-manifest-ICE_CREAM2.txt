@@ -136,10 +136,10 @@ src/aura/ICB_ListPrice/ICB_ListPriceController.js
 src/aura/ICB_ListPrice/ICB_ListPriceHelper.js
 src/aura/ICB_ListPrice_APP/ICB_ListPrice_APP.app
 src/aura/ICB_ListPrice_APP/ICB_ListPrice_APP.app-meta.xml
-src/aura/ICB_MobileChamelHeader/ICB_MobileChamelHeader.cmp
-src/aura/ICB_MobileChamelHeader/ICB_MobileChamelHeader.cmp-meta.xml
-src/aura/ICB_MobileChamelHeader/ICB_MobileChamelHeader.css
-src/aura/ICB_MobileChamelHeader/ICB_MobileChamelHeaderController.js
+src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeader.cmp
+src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeader.cmp-meta.xml
+src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeader.css
+src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeaderController.js
 src/aura/ICB_OperatorInventory/ICB_OperatorInventory.app
 src/aura/ICB_OperatorInventory/ICB_OperatorInventory.app-meta.xml
 src/aura/ICB_PriceTable/ICB_PriceTable.cmp
@@ -177,3 +177,6 @@ src/layouts/ICB_Inventory_Line_Item__c-Inventory Line Item Layout.layout
 src/layouts/ICB_Sales_Locale__c-Sales Locale Layout.layout
 src/layouts/ICB_Setup_Photo__c-Setup Photo Layout.layout
 src/tabs/ICB_Sales_Locale__c.tab
+src/SiteDotComSites
+src/SiteDotComSites/Mobile_Channel1.site
+src/SiteDotComSites/Mobile_Channel1.site-meta.xml

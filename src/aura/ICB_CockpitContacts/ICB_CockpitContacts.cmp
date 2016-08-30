@@ -12,7 +12,7 @@
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
-    <c:ICB_MobileChamelHeader HeaderCockPit="{!v.HeaderCockPit}"/>
+    <c:ICB_MobileChannelHeader HeaderCockPit="{!v.HeaderCockPit}"/>
     
     <table class="slds-table slds-table--bordered slds-max-medium-table--stacked">
         <tbody>
@@ -139,7 +139,7 @@
                                     <div align="center"  data-label="{!$Label.c.ICB_ENTRY}">
                                         <aura:renderIf isTrue="{!wrapper.oppItem.StageName == 'Available' || wrapper.oppItem == null}">
                                             <ui:inputNumber class="input-size" aura:id="QuantityUnitIn" 
-                                                            value="{!inventory.quantity}" />
+                                                            value="{!inventory.quantity}" disabled="true" />
                                             <aura:set attribute="else">
                                             	<ui:outputNumber class="input-size" aura:id="QuantityUnitOut" 
                                                             value="{!inventory.quantity}" />

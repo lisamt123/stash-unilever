@@ -15,7 +15,7 @@
     
     <!-- Component Header -->
    <!-- <c:ICB_PriceTaBleHeader productList="{!v.products}" qtdProducts="{!v.listSize}" HeaderTitle="{!v.HeaderTitle}"/>-->
-    <c:ICB_MobileChamelHeader productList="{!v.products}" qtdProducts="{!v.listSize}" HeaderTitle="{!v.HeaderTitle}" HeaderPriceTable="{!v.HeaderPriceTable}"/>
+    <c:ICB_MobileChannelHeader productList="{!v.products}" qtdProducts="{!v.listSize}" HeaderTitle="{!v.HeaderTitle}" HeaderPriceTable="{!v.HeaderPriceTable}"/>
     <!-- Component Body --> 
     <table class="slds-table slds-table--bordered slds-max-medium-table--stacked" >
         <!-- Header --> 

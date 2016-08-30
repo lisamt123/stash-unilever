@@ -67,23 +67,18 @@ public with sharing class ICB_InventoryProducts_CC
         System.debug('Entering <updateOperatorInventory>: ' + JSON.serializePretty(listJson));
         List<ICB_Inventory_Line_Item__c> lineItems = deserializeJSON(listJson);
         system.debug('Lista de Inventory:'+ lineItems);
-      //  try
-       // {
-            //for(ICB_Inventory_Line_Item__c inventory: lineItems)
-         //   {
-            //    inventory.ICB_Quantity_Unit__c += inventory.ICB_Quantity_ToBe_Updated__c;
-             //   inventory.ICB_Quantity_ToBe_Updated__c = 0;
-          //  }
+        try
+        {
             Database.update(lineItems);
             system.debug('Exiting <updateOperatorInventory>');
             return lineItems;
-        //}
-        //catch(Exception e)
-      //  {
-         //    system.debug(Label.ICB_ERROR_MESSAGE  +  e.getCause());
-         //   system.debug('Exiting <updateOperatorInventory>');
-         //   return null;
-      //  }
+        }
+        catch(Exception e)
+        {
+            system.debug(Label.ICB_ERROR_MESSAGE  +  e.getCause());
+            system.debug('Exiting <updateOperatorInventory>');
+            return null;
+        }
     }
     
     /*******************************************************************

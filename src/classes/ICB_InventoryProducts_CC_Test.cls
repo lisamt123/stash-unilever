@@ -63,17 +63,11 @@ public class ICB_InventoryProducts_CC_Test
     static testMethod void ICB_updateOperatorInventory_Test()
     {
         createInstances();
-        List<ICB_Inventory_Line_Item__c> inventLineCatch = new List<ICB_Inventory_Line_Item__c>();
-        List<ICB_Inventory_Line_Item__c> inventLine = new List<ICB_Inventory_Line_Item__c>();
         List<ICB_Inventory_Line_Item__c> inventLineGetreturnCatch = new List<ICB_Inventory_Line_Item__c>();
         
-        inventLine.add(inventoryLineItem);
-       // ICB_InventoryProducts_CC.updateOperatorInventory(inventLine);
-        system.assert(inventoryLineItem.ICB_Quantity_Unit__c == 51);
-        
-        inventLineCatch = null;
-       // inventLineGetreturnCatch = ICB_InventoryProducts_CC.updateOperatorInventory(inventLineCatch);
-        system.assert(inventLineGetreturnCatch == null);
+        ICB_InventoryProducts_CC.updateOperatorInventory( JSON.serializePretty(inventLineGetreturnCatch));
+        system.assert(inventLineGetreturnCatch.isEmpty());
+       
     }
     /*******************************************************************
     Purpose: Test the method getProductPrice, all scenarios
