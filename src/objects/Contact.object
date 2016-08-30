@@ -3438,17 +3438,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>ICB_Type__c</picklist>
-            <values>
-                <fullName>Ice Cream Salesman</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Operator</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>

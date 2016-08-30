@@ -77,10 +77,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ICB_PhotoTest_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ICB_PriceBookCreation</apexClass>
         <enabled>false</enabled>
     </classAccesses>
