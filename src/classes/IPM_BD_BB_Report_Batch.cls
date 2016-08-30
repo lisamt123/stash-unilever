@@ -326,7 +326,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		                                                                                    Regional_Project__r.IPM_Phase__c,
 		                                                                                    Regional_Project__r.IPM_ProjectGKM__c,                                                                                                    
                                                                                                     Regional_Project__r.IPM_SourceProjectType__c,
-                                                                                                    Regional_Project__r.Id                                                                    
+                                                                                                    Regional_Project__r.Id,
+                                                                                                     Target_Launch_Date__c                                                                     
                                                                                                     FROM IPM_Project_Rollout__c 
                                                                                                     WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
             
@@ -895,7 +896,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	// Financial year related to Global/Regional/Local Projects
     	if(projFinYrmap.containskey(project.id) && String.isNotBlank(project.IPMProject_Span__c)){
 	    	for(IPM_Financial_Year__c financialYear : projFinYrMap.get(project.Id)){
-					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope);
+					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope, project.IPM_Target_Launch_Dates__c);
 	    	}
     	}
     	return ipmAnalytic; 
@@ -906,6 +907,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	
     	IPM_Analytics__c ipmAnalytic = analyticObj; 
     	String strFinancialScope = IPM_ConstantUtils.IPMGLOBAL; 
+    	Date targetLaunchDate = null; 
     	
     	// Set financial scope for Local rollouts
     	if(projectRollout != null && projectRollout.Regional_Project__r != null)
@@ -916,6 +918,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     			strFinancialScope = projectRollout.Regional_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.Regional_Project__r.IPM_Phase__c;
     			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
     		}
+    		targetLaunchDate = projectRollout.Target_Launch_Date__c;
     	}
     	else if(projectRollout != null && projectRollout.IPM_Project__r != null){ // For Regional Rollouts
     		
@@ -923,6 +926,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     			strFinancialScope = projectRollout.IPM_Project__r.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + projectRollout.IPM_Project__r.IPM_Phase__c;
     			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
     		}
+    		targetLaunchDate = projectRollout.Target_Launch_Date__c;
     	}
     	else if(project !=null)
     	{
@@ -931,21 +935,24 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     			strFinancialScope = project.IPM_ProjectGKM__c + IPM_ConstantUtils.HYPHEN_DELIMITER + project.IPM_Phase__c;
     			strFinancialScope = IPM_Reporting__c.getValues(strFinancialScope).IPM_FinancialScope__c;
     		}
+    		targetLaunchDate = project.IPM_Target_Launch_Dates__c;
     	}
     	
     	
     	if(rolloutFinancialYearmap.containsKey(financialExtId)){
 	    	// Financial year related to project rollouts
 	    	for(IPM_Financial_Year__c financialYear : rolloutFinancialYearmap.get(financialExtId)){
-					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope);
+					populateFinancialDetails(ipmAnalytic, financialYear, strFinancialScope, targetLaunchDate);
 	    	}
     	}
     	return ipmAnalytic;
     }
     // Method to set the fianancial year details on IPM Analytic object
-    public IPM_Analytics__c populateFinancialDetails(IPM_Analytics__c analyticObj, IPM_Financial_Year__c financialYear, String strScope){
+    public IPM_Analytics__c populateFinancialDetails(IPM_Analytics__c analyticObj, IPM_Financial_Year__c financialYear, String strScope ,date targetLaunchYear){
     	
     	IPM_Analytics__c ipmAnalytic = analyticObj; 
+    	Date prepYear3 =targetLaunchYear.addYears(2);
+        string year3= String.ValueOf(prepYear3.year());
     	
     	// Calender Financial Year Check 
     	if(String.isNotBlank(financialYear.Year_Type__c) && financialYear.Year_Type__c.equalsignorecase(IPM_Utils.Calendar)){
@@ -953,12 +960,12 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     		// PL Type check for Gross
     		if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
     			
-    			ipmAnalytic = populateGrossForCalendar(ipmAnalytic, financialYear, strScope);    		
+    			ipmAnalytic = populateGrossForCalendar(ipmAnalytic, financialYear, strScope, year3);    		
     			
     			
     		} else if(String.isNotBlank(financialYear.PL_Type__c) && financialYear.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){ // PL Type check for Incremental
     		
-				ipmAnalytic = populateIncForCalendar(ipmAnalytic, financialYear, strScope);
+				ipmAnalytic = populateIncForCalendar(ipmAnalytic, financialYear, strScope, year3);
 				
 			}
     	}	
@@ -981,7 +988,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	return ipmAnalytic;
     }
     
-    public IPM_Analytics__c populateGrossForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope){
+    public IPM_Analytics__c populateGrossForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope,String year3){
     	String strAnalyticTOFieldName = grossTOCalYrFieldMapping.get(financialYear.Name);
     	String strAnalyticGPFieldName = grossGPCalYrFieldMapping.get(financialYear.Name);
     	
@@ -997,7 +1004,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		}
 		
 		// Calendar Y3 gTO(BD) 
-		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Name == year3){
 			ipmAnalytic.put( 'IPM_Y3_gTO_BD__c' , financialYear.get(strFYearTOFieldName));
 		}
 		
@@ -1005,7 +1012,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     }
     
     
-    public IPM_Analytics__c populateIncForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope){
+    public IPM_Analytics__c populateIncForCalendar(IPM_Analytics__c ipmAnalytic, IPM_Financial_Year__c financialYear, String strScope,String year3){
     	String strAnalyticTOFieldName = incTOCalYrFieldMapping.get(financialYear.Name);
     	String strAnalyticGPFieldName = incGPCalYrFieldMapping.get(financialYear.Name); 
     	    	
@@ -1021,7 +1028,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 		}
 		
 		// Calendar Y3 iTO(BD)	
-		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Year__c == IPM_Utils.n3){
+		if(strFYearTOFieldName != null && String.isNotBlank(financialYear.Year__c) && financialYear.Name == year3){
 			ipmAnalytic.put( 'IPM_Y3_iTO_BD__c' , financialYear.get(strFYearTOFieldName));
 		}
 		
