@@ -24,16 +24,17 @@ global with sharing class Core_CA_RequestDetail{
             List<Core_Approval_Header__Share> lstHeaderShare = [SELECT Id FROM Core_Approval_Header__Share WHERE ParentId = : appWrapperObj.expenseDetailRequest.RequestId];
             
             if(!lstHeaderShare.isEmpty()){
+                system.debug('##### test inside not empty');
                 Map<Id,Core_Approver_Details__c> mapApprover = new Map<Id,Core_Approver_Details__c> ([SELECT id FROM Core_Approver_Details__c WHERE Approval_Header__c  =: appWrapperObj.expenseDetailRequest.RequestId]); 
                 
-                if(mapApprover.containsKey(appWrapperObj.expenseDetailRequest.ApproverId)){
+                if(mapApprover.containsKey(appWrapperObj.expenseDetailRequest.ApproverId)){ 
                     List<Core_Approver_Details__c> approver = [select Interested_Party__c from Core_Approver_Details__c where Id =: appWrapperObj.expenseDetailRequest.ApproverId ];    
                     
-                    if(approver[0].Interested_Party__c  ==  UserInfo.getUserId()){
+                    if(approver[0].Interested_Party__c  ==  UserInfo.getUserId()){ system.debug('##### test inside approver');
                         objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,appWrapperObj.expenseDetailRequest.ApproverId);
                     }
                     
-                    if(approver[0].Interested_Party__c  !=  UserInfo.getUserId()){                                 
+                    if(approver[0].Interested_Party__c  !=  UserInfo.getUserId()){   system.debug('##### test inside non approver');                              
                         PermissionSet perSet = [SELECT Id FROM PermissionSet WHERE Name = 'CoreCAAdminUser'];
                         List<PermissionSetAssignment> lstPerSetAsgn =[SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: UserInfo.getUserId() AND PermissionSetId =: perSet.Id];
                         
@@ -62,7 +63,7 @@ global with sharing class Core_CA_RequestDetail{
                 }
                 
             }
-            else{
+            else{system.debug('##### test inside empty');
                 objRequestDetailResponseAribaGTES.accessStatus = false;
                 objRequestDetailResponseAribaGTES.StatusCode = Core_CA_AppConstants.RESPONSE_SUCCESS_CODE;
                 objRequestDetailResponseAribaGTES.Message = Core_CA_AppConstants.RESPONSE_SUCCESS_MSG;
@@ -75,7 +76,9 @@ global with sharing class Core_CA_RequestDetail{
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: CoreCA_REST_GetHeaderDetails : getRequestDetail method ', ex);
        }    
-       return objRequestDetailResponseAribaGTES;
+      
+       system.debug('##### test inside empty'+objRequestDetailResponseAribaGTES);
+        return objRequestDetailResponseAribaGTES;
     }
       
     /*******************************************************************************************************
@@ -107,6 +110,7 @@ global with sharing class Core_CA_RequestDetail{
            objRequestDetailResponseAribaGTES.CompanyName= objApprovalHeader.Ariba_Company_Code__c;
            objRequestDetailResponseAribaGTES.Purpose=objApprovalHeader.Purpose__c;
            objRequestDetailResponseAribaGTES.approvalhistory= processApprovalHistory(HeaderId,objApprovalHeader.Source_System__c);
+           
            if(objApprovalHeader.Source_System__c == strInvoiceSystem)
                objRequestDetailResponseAribaGTES.url = '/apex/Core_CA_InvoiceChatterFeedPage?id='+objApprovalHeader.Id;
            else
@@ -164,11 +168,20 @@ global with sharing class Core_CA_RequestDetail{
           else if(objApprovalHeader.Source_System__c == strInvoiceSystem){
                 objRequestDetailResponseAribaGTES.RequestType =  strInvoiceSystem;
                 objRequestDetailResponseAribaGTES.InvoiceType = objApprovalHeader.Category__c;
+                objRequestDetailResponseAribaGTES.Cop = objApprovalHeader.Invalid_PR_Reason__c;
+                
+                Core_CA_WrapperUtility.PreTripDetails objPreTripDetails = new Core_CA_WrapperUtility.PreTripDetails();
+                objPreTripDetails.Id= objApprovalHeader.PreTrip_Id__c;               
+                objRequestDetailResponseAribaGTES.pretripdetails= objPreTripDetails;
+                
                 if(objApprovalHeader.External_Created_Date__c != null){
                     objRequestDetailResponseAribaGTES.CreatedOn = objApprovalHeader.External_Created_Date__c.format('dd/MM/yyyy');
                 }
                 objRequestDetailResponseAribaGTES.lineitems= processLineItemDetails(HeaderId);
                 objRequestDetailResponseAribaGTES.CompanyCode = objApprovalHeader.Impact__c;
+                
+                
+                
                 
            }
            /* Invoice App : Data binding end*/  
@@ -278,7 +291,6 @@ global with sharing class Core_CA_RequestDetail{
        }   
        return lstApprovalHistory;
     }
-    
    /*******************************************************************************************************
     * @description this method retrives the header detail for the given header Id.
     * @param Core_Approval_Header__c Id  
