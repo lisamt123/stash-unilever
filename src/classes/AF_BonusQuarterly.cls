@@ -12,7 +12,7 @@ public with sharing class AF_BonusQuarterly {
     public String Bonus_Measure { get; set; }
     public Boolean showmainblock{get;set;}
     public Integer Totals_Traditional { get; set; }
-    public Boolean isQuantEmpty;
+    //public Boolean isQuantEmpty;
     public Boolean isTraditional { get; set; }
     public Integer Totals_Digital { get; set; }
     public Boolean isDigital { get; set; }
@@ -21,29 +21,29 @@ public with sharing class AF_BonusQuarterly {
     public list<wrapbonus> QuartelyBonus {get;set;}
     public list<AF_Bonus_Results__c>AF_Bonus_Result{get;set;}
     public list<AF_Bonus_Threshold__c> AF_Bonus_Threshold{get;set;}
-    public String Country_Full_Name;
-    public Boolean AF_Digital;
-    public Integer AF_Minimum;
-    public Integer AF_Outstanding;
-    public Integer AF_Stretching;
-    public Boolean AF_Traditional;
-    public Integer Quant;
-    public Decimal Bonus_Percent;
-    public decimal Bonus_value;
-    public string brandestimate_id;
-    public string Country_name;
-    public integer Traditional_value;
-    public integer Digital_value;
-    public integer TotalTraditionalValue;
-    public integer TotalDigitalValue;
+    //public String Country_Full_Name;
+    //public Boolean AF_Digital;
+    //public Integer AF_Minimum;
+    //public Integer AF_Outstanding;
+    //public Integer AF_Stretching;
+    //public Boolean AF_Traditional;
+    //public Integer Quant;
+    //public Decimal Bonus_Percent;
+    //public decimal Bonus_value;
+    //public string brandestimate_id;
+    //public string Country_name;
+    //public integer Traditional_value;
+    //public integer Digital_value;
+    //public integer TotalTraditionalValue;
+    //public integer TotalDigitalValue;
     public integer total_bonus_fees;
-    public id threshold_id;
-    public string agency_name;
-    public string Brand_name;
+    //public id threshold_id;
+    //public string agency_name;
+    //public string Brand_name;
     public list<AF_Agency_Estimate__c>Agency_Estimate=new list<AF_Agency_Estimate__c>();
     public Boolean IsEditable{get;set;}
-    public map<id,string>bonus_thresholdid=new  map<id,string>(); 
-    set<string> Threshold = new set<string>();
+    //public map<id,string>bonus_thresholdid=new  map<id,string>(); 
+    //set<string> Threshold = new set<string>();
     public Set<String> Countryname_BT=new set<String>();
     public Boolean IsSave{get;set;}
     public Boolean isNoRecord{get;set;}
@@ -84,26 +84,26 @@ public with sharing class AF_BonusQuarterly {
         IsDraft=True;
         IsSave=false;
         IsEditable=false;
-        agency_name='';
-        Brand_name='';
-        Country_Full_Name='';
-        AF_Digital=false;
-        AF_Minimum=0;
-        AF_Outstanding=0;
-        AF_Stretching=0;
-        AF_Traditional=false;
-        brandestimate_id='';
-        Country_name='';
-        Traditional_value=0;
-        Digital_value=0;
+        //agency_name='';
+        //Brand_name='';
+        //Country_Full_Name='';
+        //AF_Digital=false;
+        //AF_Minimum=0;
+        //AF_Outstanding=0;
+        //AF_Stretching=0;
+        //AF_Traditional=false;
+        //brandestimate_id='';
+        //Country_name='';
+        //Traditional_value=0;
+        //Digital_value=0;
         total_bonus_fees=0;
         sum_of_bonus_per=0;
         sum_of_bonus_val =0;
         Totals_Traditional=0;
         Totals_Digital=0;
-        TotalTraditionalValue=0;
-        TotalDigitalValue=0;
-        isQuantEmpty=false;
+        //TotalTraditionalValue=0;
+        //TotalDigitalValue=0;
+        //isQuantEmpty=false;
         isNoRecord=True;
         sum_of_bonus_basefee=0;
         sum_of_bonus_basefee_onload=0;

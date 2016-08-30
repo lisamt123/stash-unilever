@@ -18,8 +18,8 @@ global with sharing class AF_BonusSummaryRemote {
     //static String strongStrt;
     //static String strongEnd;
     //static String tdCloseTagEst;
-    static String archiveImg;
-    static String  colDetail;
+    //static String archiveImg;
+    //static String colDetail;
     static Map<String, AF_Entity__c> agencyNameMap= new Map<String, AF_Entity__c>();
     static Map<String, String> ulNameMap = new Map<String, String>();
     static Integer total;
@@ -76,11 +76,11 @@ global with sharing class AF_BonusSummaryRemote {
         ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName(); 
         // These are the Agency Entities which are not created as Agency Estimates.
         // These are those Unilever Entities which are not created as a record for Agency Estimates.
-        colDetail = ''; //Column variable which gets added to the map finally.
+        AF_Constants.colDetail = ''; //Column variable which gets added to the map finally.
         rowDetail = ''; //Row variable which gets added to the map finally.
         String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
-        archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
-        archiveImg += ' height="18" width="18" />';
+        AF_Constants.archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
+        AF_Constants.archiveImg += ' height="18" width="18" />';
         /* This is the first row of the matrix which actually calculates the Columnwise totals.*/
         rowDetail += trOpenTag;
         rowDetail += '<td class=\"headFirstRow\">' + AF_Constants.strongStrt + 'Unilever Entities' + AF_Constants.strongEnd + AF_Constants.tdCloseTagEst;
@@ -89,7 +89,7 @@ global with sharing class AF_BonusSummaryRemote {
         rowDetail += trCloseTag;
         orderedColMethodBonus();
         getBonusMatrixRecordsext(agencyId,bonusSummaryId);
-        ulbonusMatrixMap .put('1', colDetail);
+        ulbonusMatrixMap .put('1', AF_Constants.colDetail);
         ulbonusMatrixMap .put('2', rowDetail);
         return ulbonusMatrixMap ;
     }
@@ -122,7 +122,7 @@ global with sharing class AF_BonusSummaryRemote {
                     rowTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
                 }
             }
-            String dispArchiveImg = rowTotalA > 0 ?  '' : archiveImg;
+            String dispArchiveImg = rowTotalA > 0 ?  '' : AF_Constants.archiveImg;
             rowDetail += '<td align=\"center\" class=\"headRow">'+ AF_Constants.strongStrt +  eachRow + dispArchiveImg + AF_Constants.strongEnd + AF_Constants.tdCloseTagEst;
             /* Added for incident No:INC000097270556 */
             rowTotal = AF_BrandEstimateRemote.truncateDecimal(Decimal.valueOf(rowTotalA)/1000);
@@ -184,8 +184,8 @@ global with sharing class AF_BonusSummaryRemote {
                     colTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap.get(keyMatch).AF_Value__c);
                 }
             }
-            String dispArchiveImg = colTotalA > 0 ?  '' : archiveImg;
-            colDetail += '<th id=\'' + i + '\' isDisplay=\'y\'>' + eachCol + dispArchiveImg + '</th>';
+            String dispArchiveImg = colTotalA > 0 ?  '' : AF_Constants.archiveImg;
+            AF_Constants.colDetail += '<th id=\'' + i + '\' isDisplay=\'y\'>' + eachCol + dispArchiveImg + '</th>';
             i++;
         }
     }
@@ -240,21 +240,16 @@ global with sharing class AF_BonusSummaryRemote {
     
     public static void processBonusRowExt(AF_Bonus_Matrix__c agSObj){
         
-        String href;
-        String spacer = ' ';
-        href = 'apex/af_bonusEstimate?id='+agSObj.Id;
+        AF_Constants.href = 'apex/af_bonusEstimate?id='+agSObj.Id;
         String disptotal = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
-            String dispLocalTotal = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
+            String dispLocalTotal = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + AF_Constants.spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
             String disptotalA = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
-            String dispLocalTotalA = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
+            String dispLocalTotalA = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + AF_Constants.spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
             
             rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
-            rowDetailToReturn += '<a data-src=\"' + href +  '\"';
+            rowDetailToReturn += '<a data-src=\"' + AF_Constants.href +  '\"';
             rowDetailToReturn += ' e=\"' + disptotal + '\"';
-            rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
-            
-            processBonusRow();
-        
+            rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';  
     }
     public static void processBonusRow(){
     String lBreak = '<br/>';
