@@ -4800,6 +4800,10 @@
         <apexClass>uw_uploadBCImage</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<customPermissions>
+        <enabled>true</enabled>
+        <name>CEC_User_CosmetoVigilance</name>
+    </customPermissions>
     <description>Permission access to CosmeToVigilance links</description>
     <externalDataSourceAccesses>
         <enabled>false</enabled>
@@ -10531,6 +10535,16 @@
         <editable>false</editable>
         <field>Case.Country__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.CV_Questionaire_Added__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.CV_Status__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

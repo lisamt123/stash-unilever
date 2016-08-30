@@ -286,6 +286,11 @@
         <field>CEC_Case_Market_Mapping__c.CSAT_Web_Percentage__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.CSAT_Survey_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.CaseOrigin__c</field>

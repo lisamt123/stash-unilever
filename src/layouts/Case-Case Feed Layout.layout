@@ -283,6 +283,10 @@
                 <behavior>Readonly</behavior>
                 <field>Ingestion__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CV_Status__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -297,6 +301,15 @@
                 <field>Social_Media_External_Id__c</field>
             </layoutItems>
         </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>SMS Information</label>
+        <layoutColumns/>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -371,6 +384,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Case_Brand_Mapping__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Transient_External_Id__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

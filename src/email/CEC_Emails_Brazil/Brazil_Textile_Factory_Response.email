@@ -1,0 +1,99 @@
+<center>
+    <table width="500" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td height="300">
+                    <table border="0" width="600" cellspacing="5" cellpadding="5">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <h1  style="text-align: center;"><strong>Textile Factory Response Request</strong></h1>
+                                        <h2><strong>Case Information:</strong></h2>
+                                    </div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Number</strong>: {!Case.CaseNumber}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Número retrieval</strong>:{!CEC_Retrieval_Request__c.Name}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Date Case Created</strong>: {!Case.CreatedDate}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Adviser Name</strong>: {!User.Name}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Product</strong>: {!Case.Product_Code__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Production Code</strong>: {!Case.Production_Code__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Reason code (Local)</strong>: {!Case.Reason_L5_desc__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Reason code (English)</strong>: {!Case.Global_Reason_L5_desc__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>EAN Code</strong>: {!Case.Product_UPC__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Verbatim</strong>: {!Case.Subject}</span></div>
+                                     <div><span style="font-family: Arial, sans-serif;"><strong>Observações Retirada</strong>: {!CEC_Retrieval_Request__c.Retrieval_Notes__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Description</strong>: {!Case.Description}</span></div>
+                                    <h3><strong>-------------- End of Description ---------------</strong></h3>
+                                    <h2>Please complete the questions below</h2>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h3><strong>Careline</strong>:</h3>
+                                    <div>1) Date Item Received</div>
+									<div>
+										<ul>
+											<li>&nbsp;</li>
+										</ul>
+									</div>
+                                    <div>2) Does the consumer want to know something specific?</div>
+									<div>
+										<ul>
+											<li>&nbsp;</li>
+										</ul>
+                                    </div>
+                                    <div>3) Attachments included?</div>
+                                    <div>    
+										<ul>
+                                            <li>Yes / No (delete as needed)</li>
+                                        </ul>
+									</div>
+									<div><span style="font-family: Arial, sans-serif; font-size: large;">----------------------------------------------------------------------</span></div>
+									<h3><strong>Textile lab Response</strong>:</h3>
+									<div>1) Person Completing response</div>
+									<div>
+										<ul>
+											<li>&nbsp;</li>
+										</ul>
+									</div>
+									<div>2) Date investigated completed</div>
+									<div>
+										<ul>
+											<li>&nbsp;</li>
+										</ul>
+									</div>
+									<div>3) Outcome of Investigation (Identify material - size, shape, analysis, etc)</div>
+									<div>
+										<ul>
+											<li> Proceed/Not Proceed</li>
+										</ul>
+									</div>
+									<div>4) Why? (explain the answer)</div>
+									<div>
+										<ul>
+											<li>&nbsp;</li>
+										</ul>
+									</div>
+									<div>5) Do we need to send the product to the factory?</div>
+									<div>
+										<ul>
+											<li>&nbsp;Yes/No</li>
+										</ul>
+									</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span style="font-family: arial;">Please complete the above information and return the response by reply.<br/>Thank You</span>
+                                    <div>&nbsp;</div>
+                                    <div>&nbsp;</div>
+                                    <div><span style="font-family: arial;">{!Case.Thread_Id}</span></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</center>
