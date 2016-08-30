@@ -418,7 +418,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         ,(SELECT Id,Is_Archieved__c,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r)
         ,(SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
-                             limit 10000),IPM_Project_Rollout__r.IPM_Brand__c ,IPM_Project_Rollout__r.isActive__c
+                             limit 10000)
                              FROM IPM_Project__c 
                              WHERE Id =:projectId];
                             
