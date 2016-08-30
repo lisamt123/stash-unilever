@@ -142,6 +142,21 @@ global with sharing class AF_BrandEstimateRemote {
                     rowAdaptation += truncateDecimal(agencyULRelationMap.get(keyMatch).AF_Adaptation__c);
                 }
             }
+            getAgencyEstimateRecExtension(agencyId,brandEstimateId);
+        }
+}       
+  /*****************************************************************************
+*  @Description: this method is to query the records from Agency estiamte 
+*  @ and arranges the unilerver and agency entities in base fees matrix cells
+*  @ also calculates the local values and display's on moseover 
+*  @name : getAgencyEstimateRecords
+*  @param : agencyId, brandEstimateId
+*  @return : none
+*************************************************************************/  
+ public static void getAgencyEstimateRecExtension(String agencyId, String brandEstimateId){
+            Integer rowTotal = 0, rowTraditional = 0, rowDigital = 0, rowAdaptation =0;
+            Decimal rowTotalA = 0;
+            for(String eachRow : orderedRow) {
             String dispArchiveImg = (rowTotalA > 0 || isLocked) ?  '' : archiveImg;
             rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTagEst;
             String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(rowTotal) : '';
@@ -175,6 +190,18 @@ global with sharing class AF_BrandEstimateRemote {
                     colAdaptation += truncateDecimal(agencyULRelationMap.get(keyMatch).AF_Adaptation__c);
                 }
             }
+            orderedColMethodEXT();
+        }
+    }
+            /*****************************************************************************
+*  @Description: this method hold the logic calculate the row totals of the matrix page cells
+                 also it adds up the agenycestimate figures traditional,Digital and Adaptation
+*  @name : orderedColMethod
+*  @param : none
+*  @return : none
+*************************************************************************/
+    public static void orderedColMethodEXT(){
+            for(String eachCol : orderedColumn) {
             String dispColTotal = colTotal > 0 ? AF_Constants.AF_CURRENCY_EUR1    + currencyFormatted(colTotal) : '';
             String dispColDigital = colDigital > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(colDigital) : '';
             String dispColTraditional = colTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR1    + currencyFormatted(colTraditional) : '';
