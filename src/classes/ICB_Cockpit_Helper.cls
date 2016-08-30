@@ -1,6 +1,6 @@
 /**********************************************************************
 Name: ICB_Cockpit_Helper
-Copyright © 2016 Unilever
+Copyright © 2016 Salesforce
 ======================================================
 ======================================================
 Purpose:
@@ -12,7 +12,7 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    	Antonio Raul 	27/08/2016  Class creation 
 1.0    	Antonio Raul 	28/08/2016  Class finished
 ***********************************************************************/
-public with sharing class ICB_Cockpit_Hellper 
+public class ICB_Cockpit_Helper 
 {
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
     private static final String CONST_STAGE_CLOSED;
@@ -21,6 +21,7 @@ public with sharing class ICB_Cockpit_Hellper
     private static final String CONST_STAGE_PENDING;
     private static final String CONST_EMPTY;
     private static final String CONST_SOLICITATION;
+    private static List<OpportunityLineItem> listOppItemUp;
     
     Static
     {
@@ -31,6 +32,7 @@ public with sharing class ICB_Cockpit_Hellper
         CONST_STAGE_PENDING = 'Pending';
         CONST_STATUS_ITEM_OPP_STOCK = 'stock';
         CONST_SOLICITATION = 'Solicitation';
+        listOppItemUp = new List<OpportunityLineItem>();
     }
     /*******************************************************************
     Purpose: Return teh map of wrapper class for method getContacts
@@ -85,9 +87,9 @@ public with sharing class ICB_Cockpit_Hellper
         System.debug('Entering <returnListWrapper><operation>: '+ operation);
         System.debug('Entering <returnListWrapper><idContact>: '+ idContact);
         ICB_Wrapper_Cockpit_CC itemWrapper = new ICB_Wrapper_Cockpit_CC();
-        List<OpportunityLineItem> listOppItemUp = new List<OpportunityLineItem>();
+        
         List<ICB_Wrapper_Cockpit_CC> listWrapper = new List<ICB_Wrapper_Cockpit_CC>();
-        Boolean isStock = false;
+        
         Boolean isClosed = false;
         
         for(OpportunityLineItem oppItem : oppLineList)
@@ -96,36 +98,7 @@ public with sharing class ICB_Cockpit_Hellper
             if(oppItem.Product2Id == ivt.ICB_Product__c && idContact == oppItem.Opportunity.ICB_Contact__c && oppItem.Opportunity.StageName != CONST_STAGE_AVAILABLE)
             {
                 
-                if((oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK ) || (operation.equalsIgnoreCase(CONST_STAGE_CLOSED)))
-                {
-                    itemWrapper.quantity = operation.equalsIgnoreCase(CONST_STAGE_CLOSED) ? oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity :
-                    					   oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c; 
-                 
-                    itemWrapper.quantityMin = operation.equalsIgnoreCase(CONST_STAGE_CLOSED) ? 0 : 
-                    						  oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                    
-                    isStock = !operation.equalsIgnoreCase(CONST_STAGE_CLOSED);
-                }
-                
-                if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
-                {
-                    itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                    itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                    oppItem.ICB_IS_CLOSED__c = true;
-                    listOppItemUp.add(oppItem);
-                }
-                
-                if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
-                {
-                    itemWrapper.quantity = oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING ? oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity : 
-           						           oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                    
-                    itemWrapper.quantityMin = oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING ? 0 :
-                    						  oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                    
-                    oppItem.ICB_IS_CLOSED__c = oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING;
-                    listOppItemUp.add(oppItem);
-                }
+                itemWrapper = firstItemWrapper(operation,itemWrapper,oppItem);
             }
             else
             {
@@ -135,9 +108,8 @@ public with sharing class ICB_Cockpit_Hellper
                     isClosed = true;
                 }
             }
-            
         }
-        if(!isClosed )
+        if(!isClosed)
         {
             itemWrapper.invetoryItem = ivt;
             listWrapper.add(itemWrapper);
@@ -147,19 +119,98 @@ public with sharing class ICB_Cockpit_Hellper
         return listWrapper;
     }
     /*******************************************************************
+    Purpose: Method helper the returnListWrapper
+    Parameters: @operation(current operation)
+				@itemWrapper(item returned)
+				@oppItem(oppotunity line item pass for the controller class)
+    Returns: ICB_Wrapper_Cockpit_CC
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    private static ICB_Wrapper_Cockpit_CC firstItemWrapper(String operation,ICB_Wrapper_Cockpit_CC itemWrapper, OpportunityLineItem oppItem)
+    {
+        if(operation.equalsIgnoreCase(CONST_STAGE_CLOSED))	
+        { 
+            itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+        }
+        else
+        {
+            itemWrapper = secondItemWrapper(operation,itemWrapper,oppItem);
+        }
+        return itemWrapper;
+    }
+    /*******************************************************************
+    Purpose: Method helper the returnListWrapper
+    Parameters: @operation(current operation)
+				@itemWrapper(item returned)
+				@oppItem(oppotunity line item pass for the controller class)
+    Returns: ICB_Wrapper_Cockpit_CC
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    private static ICB_Wrapper_Cockpit_CC secondItemWrapper(String operation,ICB_Wrapper_Cockpit_CC itemWrapper, OpportunityLineItem oppItem)
+    {
+        Boolean isStock = false;
+        if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK )
+        {
+            itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+            itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            isStock = true;
+        }
+        
+        if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
+        {
+            itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            oppItem.ICB_IS_CLOSED__C = true;
+            listOppItemUp.add(oppItem);
+        }
+        if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
+        {
+            itemWrapper.quantity = 0;
+        }
+        itemWrapper = thirdItemWrapper(operation,itemWrapper,oppItem); 
+        return itemWrapper;
+    }
+    /*******************************************************************
+    Purpose: Method helper the returnListWrapper
+    Parameters: @operation(current operation)
+				@itemWrapper(item returned)
+				@oppItem(oppotunity line item pass for the controller class)
+    Returns: ICB_Wrapper_Cockpit_CC
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    private static ICB_Wrapper_Cockpit_CC thirdItemWrapper(String operation,ICB_Wrapper_Cockpit_CC itemWrapper, OpportunityLineItem oppItem)
+    {
+        if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
+        {
+            if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING)
+            {
+                itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+            }
+            else
+            {
+                itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                oppItem.ICB_IS_CLOSED__C = true;
+                listOppItemUp.add(oppItem);
+            }
+            
+        }
+        return itemWrapper;
+    }
+    /*******************************************************************
     Purpose: Updated opportunity line item
     Parameters: @listOppItemUp(list the opportunity line item returned of method getInventories)
 				@operation(current operation)
     Returns: VOID
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static void updateOppItem(List<OpportunityLineItem> listOppItemUp, String operation)
+    private static void updateOppItem(List<OpportunityLineItem> listOppItem, String operation)
     {
-        System.debug('Entering <updateOppItem><listOppItemUp>: '+ JSON.serializePretty(listOppItemUp));
+        System.debug('Entering <updateOppItem><listOppItemUp>: '+ JSON.serializePretty(listOppItem));
         System.debug('Entering <updateOppItem><operation>: '+ operation);
-        if(!listOppItemUp.isEmpty() && operation.equals(CONST_SOLICITATION))
+        if(!listOppItem.isEmpty() && operation.equals(CONST_SOLICITATION))
         {
-            Database.update(listOppItemUp);    
+            Database.update(listOppItem);    
         }
         System.debug('Exiting <updateOppItem>');
     }

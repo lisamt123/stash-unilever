@@ -12,7 +12,10 @@
         console.log("Entering <updateList>");
     	var action = component.get("c.updateOperatorInventory");
         var inventoryToBeUpdate = component.get('v.Inventory');
-        action.setParams({ lineItems : inventoryToBeUpdate });
+        console.log("inventoryToBeUpdate <List>"+ inventoryToBeUpdate);
+        var listJSON=JSON.stringify(inventoryToBeUpdate);
+        console.log("listJSON"+ listJSON);
+        action.setParams({ "listJson" : listJSON });
         
         // Add callback behavior for when response is received
         action.setCallback(this, function(response) {

@@ -39,7 +39,7 @@
                     </td>
                     <td class ="hidden">
                         <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Pending')}">
-                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/truck.png'}" class="ImageSimbol hidden" />  
+                            <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/Car.png'}" class="ImageSimbol hidden" />  
                         </aura:if>
                         <aura:if isTrue="{!(wrapper.oppItem.StageName == 'Available')}">
                             <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/sunVector3.png'}" class="ImageSimbol hidden" />  

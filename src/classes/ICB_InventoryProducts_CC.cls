@@ -13,10 +13,11 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 public with sharing class ICB_InventoryProducts_CC
 {
     public static List<PriceBookEntry> listPB;
-    
+    private static final String CONST_TYPE_LIST;
     Static
     {
         listPB = new List<PriceBookEntry>();
+        CONST_TYPE_LIST = 'List<ICB_Inventory_Line_Item__c>';
     }
     
     /*******************************************************************
@@ -60,11 +61,13 @@ public with sharing class ICB_InventoryProducts_CC
     Throws [Exceptions]: Exception
     ********************************************************************/ 
     @AuraEnabled
-    public static List<ICB_Inventory_Line_Item__c> updateOperatorInventory(List<ICB_Inventory_Line_Item__c> lineItems)
+    public static List<ICB_Inventory_Line_Item__c> updateOperatorInventory(String listJson)
     {
-        System.debug('Entering <updateOperatorInventory>: ' + JSON.serializePretty(lineItems));
-        try
-        {
+        System.debug('Entering <222>: ' + listJson);
+        System.debug('Entering <updateOperatorInventory>: ' + JSON.serializePretty(listJson));
+        List<ICB_Inventory_Line_Item__c> lineItems = deserializeJSON(listJson);
+      //  try
+       // {
             for(ICB_Inventory_Line_Item__c inventory: lineItems)
             {
                 inventory.ICB_Quantity_Unit__c += inventory.ICB_Quantity_ToBe_Updated__c;
@@ -73,13 +76,13 @@ public with sharing class ICB_InventoryProducts_CC
             Database.update(lineItems);
             system.debug('Exiting <updateOperatorInventory>');
             return lineItems;
-        }
-        catch(Exception e)
-        {
-             system.debug(Label.ICB_ERROR_MESSAGE  +  e.getCause());
-            system.debug('Exiting <updateOperatorInventory>');
-            return null;
-        }
+        //}
+        //catch(Exception e)
+      //  {
+         //    system.debug(Label.ICB_ERROR_MESSAGE  +  e.getCause());
+         //   system.debug('Exiting <updateOperatorInventory>');
+         //   return null;
+      //  }
     }
     
     /*******************************************************************
@@ -136,4 +139,14 @@ public with sharing class ICB_InventoryProducts_CC
             return null;
         }
     }
+    
+     private static List<ICB_Inventory_Line_Item__c> deserializeJSON(String jsonList)
+    {
+        System.debug('Entering <deserializeJSON>: '+ jsonList);
+        Type idArrType=Type.forName(CONST_TYPE_LIST);
+        List<ICB_Inventory_Line_Item__c> listInventories = (List<ICB_Inventory_Line_Item__c>) JSON.deserialize(jsonList, idArrType);
+        System.debug('Exiting <deserializeJSON>: ' + JSON.serializePretty(listInventories));
+        return listInventories;
+    } 
+    
 }

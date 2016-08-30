@@ -96,7 +96,7 @@ public with sharing class ICB_Cockpit_CC
                 mapUserPhoto.put(user.ContactId, user.FullPhotoUrl);
             }
             
-            mapLineItem = ICB_Cockpit_Hellper.returnMapLineItem(listOpportunityLineItem);
+            mapLineItem = ICB_Cockpit_Helper.returnMapLineItem(listOpportunityLineItem);
             listWrapper.addAll(returnOpportunitiesContacts(listOpportunity));
             listWrapper.addAll(returnContacts());
         }
@@ -130,7 +130,7 @@ public with sharing class ICB_Cockpit_CC
             
             for(ICB_Inventory_Line_Item__c ivt : ICB_Cockpit_CC_DAO.getInventoriesIventoryLineItem(accountName))
             {
-                listWrapper.addAll(ICB_Cockpit_Hellper.returnListWrapper(oppLineList,ivt,operation,idContact));
+                listWrapper.addAll(ICB_Cockpit_Helper.returnListWrapper(oppLineList,ivt,operation,idContact));
             }
         }
         catch(Exception e)

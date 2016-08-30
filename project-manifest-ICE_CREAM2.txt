@@ -23,8 +23,8 @@ src/classes/ICB_Product2DAO.cls
 src/classes/ICB_Product2DAO.cls-meta.xml
 src/classes/ICB_ContactPartnerUserCreation.cls
 src/classes/ICB_ContactPartnerUserCreation.cls-meta.xml
-src/classes/ICB_Cockpit_Hellper.cls
-src/classes/ICB_Cockpit_Hellper.cls-meta.xml
+src/classes/ICB_Cockpit_Helper.cls
+src/classes/ICB_Cockpit_Helper.cls-meta.xml
 src/classes/ICB_SetupPhotoMobileChannel.cls
 src/classes/ICB_SetupPhotoMobileChannel.cls-meta.xml
 src/classes/ICB_Wrapper_Cockpit_CC.cls
@@ -78,7 +78,10 @@ src/objects/Contact.object
 src/objects/PricebookEntry.object
 src/objects/Pricebook2.object
 src/permissionsets
+src/permissionsets/ICB_Mobile_Channel_Operator.permissionset
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
+src/permissionsets/ICB_Mobile_Channel_Salesman.permissionset
+src/permissionsets/ICB_Mobile_Channel_Salesman_Partner_Community.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset
 src/sites
 src/sites/Mobile_Channel.site
@@ -158,6 +161,7 @@ src/aura/ICB_ProductInventoryBody/ICB_ProductInventoryBody.css
 src/aura/ICB_ProductInventoryBody/ICB_ProductInventoryBody.svg
 src/aura/ICB_ProductInventoryBody/ICB_ProductInventoryBodyController.js
 src/aura/ICB_ProductInventoryBody/ICB_ProductInventoryBody.design
+src/aura/ICB_ProductInventoryBody/ICB_ProductInventoryBodyHelper.js
 src/aura/ICB_ProductList/ICB_ProductList.cmp
 src/aura/ICB_ProductList/ICB_ProductList.cmp-meta.xml
 src/aura/ICB_ProductList/ICB_ProductListController.js

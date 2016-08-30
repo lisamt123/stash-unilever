@@ -2,7 +2,6 @@
     doInit : function(component, event, helper) {
         console.log('Entering <doInit>');
         helper.getContacts(component);
-        //helper.getOptions(component);
         console.log('Exit <doInit>');
     },
     menuOpenClose : function(component, event, helper) {
@@ -25,10 +24,5 @@
         console.log('Entering <incrementValue>');
         helper.ascDescValue(component,event,"increment");
         console.log('Exit <incrementValue>');
-    },
-    updatedPriceBook : function(component, event, helper) {
-		console.log('Entering <updatedPriceBook>'); 
-        helper.priceBookUpdate(component);
-        console.log('Exit <updatedPriceBook>');
     }
 })

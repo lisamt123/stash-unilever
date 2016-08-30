@@ -111,30 +111,5 @@
         
         $A.enqueueAction(action);
         console.log('Exit Helper <oppItemUpdate>');
-    }/*,
-    getOptions : function(component){
-        var action = component.get("c.returnOptions");
-        action.setCallback(this,function(response){
-            var state = response.getState();
-            var options = response.getReturnValue();
-            if(options != null){
-                if((options.length > 0) && (component.isValid() && state === "SUCCESS")){
-                    component.set("v.optionsList",options);
-                } 
-            }
-        });
-       $A.enqueueAction(action);
-    },
-    changeOption : function(component){
-        var selectedItem = event.currentTarget;
-        var index = selectedItem.dataset.record;
-        var selectedStore = component.get("v.listContacts")[index];
-        var action = component.get("c.updateOpportunity");
-        action.setParams({
-            "opp" :  selectedStore.oppItem,
-            "listJson" : "",
-            "isClosed" : true,
-            "nameLocale" : ""
-        });
-    }*/
+    }
 })
