@@ -10715,6 +10715,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.CNPJ__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Contact.CPF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Contact.Day_Rate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10765,11 +10775,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Contact.Has_Smartphone__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Contact.HomePhone</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10781,16 +10786,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.ICB_Additional_Source_Income__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.ICB_CNPJ__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.ICB_CPF__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -10811,11 +10806,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contact.ICB_Marital_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Contact.ICB_Marital__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
