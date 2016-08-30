@@ -762,6 +762,7 @@
         <columns>Total_Used_Quantity__c</columns>
         <columns>Active__c</columns>
         <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <language>en_US</language>

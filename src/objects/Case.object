@@ -3526,6 +3526,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>ANZ_CEC_Spam</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L3_desc__c</field>
+            <operation>equals</operation>
+            <value>Hang up</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>ANZ Queue</value>
+        </filters>
+        <label>ANZ CEC Spam</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_ANZ</role>
+            <role>CEC_User_ANZ</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>ANZ_My_Emails</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -3603,6 +3630,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Case_ISO_Country_Code__c</field>
             <operation>equals</operation>
             <value>AU,NZ</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>spam</value>
         </filters>
         <label>CEC ANZ All closed cases</label>
         <language>en_US</language>
@@ -7762,28 +7794,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_Brazil</role>
             <role>CEC_User_Brazil</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Casos_cerrados_spam_2015</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Global_Reason_L3_desc__c</field>
-            <operation>equals</operation>
-            <value>Hang up</value>
-        </filters>
-        <label>Casos cerrados spam 2015</label>
-        <language>es</language>
-        <sharedTo>
-            <role>CEC_Manager_Spain</role>
-            <role>CEC_User_Spain</role>
         </sharedTo>
     </listViews>
     <listViews>
