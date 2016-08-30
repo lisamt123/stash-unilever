@@ -9,6 +9,8 @@ src/classes/ICB_ContactDAO.cls
 src/classes/ICB_ContactDAO.cls-meta.xml
 src/classes/ICB_InsertPriceBookProducts.cls
 src/classes/ICB_InsertPriceBookProducts.cls-meta.xml
+src/classes/ICB_PriceBookEntryDAO.cls
+src/classes/ICB_PriceBookEntryDAO.cls-meta.xml
 src/classes/ICB_InventoryDAO.cls
 src/classes/ICB_InventoryDAO.cls-meta.xml
 src/classes/ICB_InventoryLineItemDAO.cls
