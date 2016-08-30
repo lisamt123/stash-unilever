@@ -95,47 +95,37 @@ public with sharing class ICB_Cockpit_Hellper
             
             if(oppItem.Product2Id == ivt.ICB_Product__c && idContact == oppItem.Opportunity.ICB_Contact__c && oppItem.Opportunity.StageName != CONST_STAGE_AVAILABLE)
             {
-                if(operation.equalsIgnoreCase(CONST_STAGE_CLOSED))	
-                { 
-                    itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                }
-                else
+                
+                if((oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK ) || (operation.equalsIgnoreCase(CONST_STAGE_CLOSED)))
                 {
-                    if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK )
-                    {
-                        itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
-                        itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                        isStock = true;
-                    }
+                    itemWrapper.quantity = operation.equalsIgnoreCase(CONST_STAGE_CLOSED) ? oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity :
+                    					   oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c; 
+                 
+                    itemWrapper.quantityMin = operation.equalsIgnoreCase(CONST_STAGE_CLOSED) ? 0 : 
+                    						  oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
                     
-                    if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
-                    {
-                        itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                        itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                        oppItem.ICB_IS_CLOSED__c = true;
-                        listOppItemUp.add(oppItem);
-                    }
-                    if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
-                    {
-                        itemWrapper.quantity = 0;
-                    }
-                    if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
-                    {
-                        if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING)
-                        {
-                            itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
-                        }
-                        else
-                        {
-                            itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                            itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-                            oppItem.ICB_IS_CLOSED__c = true;
-                            listOppItemUp.add(oppItem);
-                        }
-                        
-                    }
+                    isStock = !operation.equalsIgnoreCase(CONST_STAGE_CLOSED);
                 }
                 
+                if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
+                {
+                    itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                    itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                    oppItem.ICB_IS_CLOSED__c = true;
+                    listOppItemUp.add(oppItem);
+                }
+                
+                if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
+                {
+                    itemWrapper.quantity = oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING ? oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity : 
+           						           oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                    
+                    itemWrapper.quantityMin = oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING ? 0 :
+                    						  oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+                    
+                    oppItem.ICB_IS_CLOSED__c = oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING;
+                    listOppItemUp.add(oppItem);
+                }
             }
             else
             {
