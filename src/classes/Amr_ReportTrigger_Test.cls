@@ -18,10 +18,10 @@ public with sharing class Amr_ReportTrigger_Test{
          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
          insert customSetting;
           
-         MDO_Category__c productCategory = new MDO_Category__c(name = 'Soups');
+         MDO_Category__c productCategory = new MDO_Category__c(name = 'Soups', category_type__c = ‘Category’);
          insert productCategory;
          
-         MDO_Category__c productCategory1 = new MDO_Category__c(name = 'Advanced Toothpaste');
+         MDO_Category__c productCategory1 = new MDO_Category__c(name = 'Advanced Toothpaste', category_type__c = ‘Category’);
          insert productCategory1;    
          
          Amr_Summary_Plan__c plan = new Amr_Summary_Plan__c(ProductCategory__c = productCategory.id,Year__c = String.valueOf(System.Today().year()));
