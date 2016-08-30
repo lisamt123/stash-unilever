@@ -12,7 +12,7 @@ VERSION AUTHOR    		DATE 		DETAIL 			Description
 1.0    	Antonio Raul 	27/08/2016  Class creation 
 1.0    	Antonio Raul 	28/08/2016  Class finished
 ***********************************************************************/
-public class ICB_Cockpit_Helper 
+public with sharing class ICB_Cockpit_Helper 
 {
     private static final String CONST_STATUS_ITEM_OPP_SOLD_PENDING;
     private static final String CONST_STAGE_CLOSED;
@@ -126,17 +126,19 @@ public class ICB_Cockpit_Helper
     Returns: ICB_Wrapper_Cockpit_CC
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static ICB_Wrapper_Cockpit_CC firstItemWrapper(String operation,ICB_Wrapper_Cockpit_CC itemWrapper, OpportunityLineItem oppItem)
+    private static ICB_Wrapper_Cockpit_CC firstItemWrapper(String operation,ICB_Wrapper_Cockpit_CC wrapperFirst, OpportunityLineItem oppItem)
     {
+        ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         if(operation.equalsIgnoreCase(CONST_STAGE_CLOSED))	
         { 
-            itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            wrapperFirst.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
         }
         else
         {
-            itemWrapper = secondItemWrapper(operation,itemWrapper,oppItem);
+            wrapperFirst = secondItemWrapper(operation,wrapperFirst,oppItem);
         }
-        return itemWrapper;
+        item = wrapperFirst;
+        return item;
     }
     /*******************************************************************
     Purpose: Method helper the returnListWrapper
@@ -146,29 +148,42 @@ public class ICB_Cockpit_Helper
     Returns: ICB_Wrapper_Cockpit_CC
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static ICB_Wrapper_Cockpit_CC secondItemWrapper(String operation,ICB_Wrapper_Cockpit_CC itemWrapper, OpportunityLineItem oppItem)
+    private static ICB_Wrapper_Cockpit_CC secondItemWrapper(String operation,ICB_Wrapper_Cockpit_CC wrapperSecond, OpportunityLineItem oppItem)
     {
+        ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         Boolean isStock = false;
         if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_STOCK )
         {
-            itemWrapper.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
-            itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            wrapperSecond.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
+            wrapperSecond.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
             isStock = true;
         }
-        
+        wrapperSecond = thirdItemWrapper(operation,wrapperSecond,oppItem,isStock) == null ? fourthItemWrapper(operation,wrapperSecond,oppItem) : 
+        																					thirdItemWrapper(operation,wrapperSecond,oppItem,isStock); 
+		item = wrapperSecond;
+        return item;
+    }
+    /*******************************************************************
+    Purpose: Method helper the returnListWrapper
+    Parameters: @operation(current operation)
+				@itemWrapper(item returned)
+				@oppItem(oppotunity line item pass for the controller class)
+				@isStock
+    Returns: ICB_Wrapper_Cockpit_CC
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    private static ICB_Wrapper_Cockpit_CC thirdItemWrapper(String operation,ICB_Wrapper_Cockpit_CC wrapperThird, OpportunityLineItem oppItem, Boolean isStock)
+    {
+        ICB_Wrapper_Cockpit_CC item = new ICB_Wrapper_Cockpit_CC();
         if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
         {
-            itemWrapper.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
-            itemWrapper.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            wrapperThird.quantity = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            wrapperThird.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
             oppItem.ICB_IS_CLOSED__C = true;
             listOppItemUp.add(oppItem);
         }
-        if(oppItem.ICB_STATUS_SALES__c != CONST_STATUS_ITEM_OPP_SOLD_PENDING && !isStock)
-        {
-            itemWrapper.quantity = 0;
-        }
-        itemWrapper = thirdItemWrapper(operation,itemWrapper,oppItem); 
-        return itemWrapper;
+        item = wrapperThird;
+        return item;
     }
     /*******************************************************************
     Purpose: Method helper the returnListWrapper
@@ -178,7 +193,7 @@ public class ICB_Cockpit_Helper
     Returns: ICB_Wrapper_Cockpit_CC
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static ICB_Wrapper_Cockpit_CC thirdItemWrapper(String operation,ICB_Wrapper_Cockpit_CC itemWrapper, OpportunityLineItem oppItem)
+    private static ICB_Wrapper_Cockpit_CC fourthItemWrapper(String operation,ICB_Wrapper_Cockpit_CC itemWrapper, OpportunityLineItem oppItem)
     {
         if(oppItem.Opportunity.StageName == CONST_STAGE_PENDING)
         {

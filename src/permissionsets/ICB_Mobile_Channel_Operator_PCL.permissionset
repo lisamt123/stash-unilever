@@ -17,7 +17,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ICB_Cockpit_Hellper</apexClass>
+        <apexClass>ICB_Cockpit_Helper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
