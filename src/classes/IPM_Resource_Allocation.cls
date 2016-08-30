@@ -150,7 +150,7 @@ public with sharing class IPM_Resource_Allocation {
                 }
                 else if(leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE && rolloutSpan == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL)
                 {
-                    ButtonLabel=IPM_ConstantUtils.USER_FUNCTON_CL;
+                    ButtonLabel=Label.IPM_MCO_Rollout_Leader;
                 }
             }
             else if(leaderType==IPM_ConstantUtils.ROLLOUT_FL_TYPE)
@@ -756,6 +756,10 @@ public with sharing class IPM_Resource_Allocation {
     
     public static void createFinanceMember(Map<Id,Id>newproAndUserMap)
     {
+        if(newproAndUserMap == null || newproAndUserMap.isEmpty()){
+        	return;
+        }
+        
         list<IPM_Project_Resource__c>lstnewResource=new list<IPM_Project_Resource__c>();
         for(Id projid:newproAndUserMap.keySet())
         {
@@ -829,10 +833,7 @@ public with sharing class IPM_Resource_Allocation {
     public void assignLeaderMember()
     {
         IPM_Project_Rollout__c inContextRollout = null;
-        Id companyCardRecordTypeId = null;
         
-        List<String> locationFilter = new List<String>();
-        List<Id> filteredCompanyCardList = new List<Id>();
         
         // Get Project Specific information 
         IPM_Project__c ipmproject = [SELECT id,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
@@ -842,7 +843,8 @@ public with sharing class IPM_Resource_Allocation {
        
         String projectManagedCategory = ipmproject.IPM_Category_Text__c;
         // Get In context Rollout Information
-        List<IPM_Project_Rollout__c> lstRegRollout = [SELECT Id,IPM_Company_Card__c,Name,RecordTypeId,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(SELECT Id,Country_Name__c FROM IPM_Countries_Local__r) FROM IPM_Project_Rollout__c WHERE ID =: rolloutId LIMIT 1];
+        List<IPM_Project_Rollout__c> lstRegRollout = [SELECT Id,IPM_Company_Card__c,Name,IPM_Regional_PL__c,IPM_Rollout_Gatekeeper__c,
+                                                        Finance_Member__c,RecordTypeId,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(SELECT Id,Country_Name__c FROM IPM_Countries_Local__r) FROM IPM_Project_Rollout__c WHERE ID =: rolloutId LIMIT 1];
       
         List<User> lstUser = [SELECT Id,Name FROM User WHERE Id =:selectedLeaderMember LIMIT 1];
         if(!lstRegRollout.isEmpty())
@@ -914,7 +916,6 @@ public with sharing class IPM_Resource_Allocation {
     {
         String project_Leader=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
         String function_Leader = IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;
-        map<id,id>uniqueUsers=new map<id,id>();
         
         list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
         string uQuery=IPM_ConstantUtils.BLANK; 
@@ -1025,7 +1026,6 @@ public with sharing class IPM_Resource_Allocation {
     public void filterLeaderMember()
     {
         lstUserProfile=new list<IPM_User_Profile__c>();
-        string strCoreMem=IPM_ConstantUtils.BLANK; // used in the query
         string UQuery=IPM_ConstantUtils.BLANK;
         string querySearchLeader = String.escapeSingleQuotes(SearchLeader) +PERCENTAGE_SLASH;//used in the query below
         UQuery=BEGIN_QUERY;

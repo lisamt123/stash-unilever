@@ -39,8 +39,7 @@
                     </div>
                     <div class="col-xs-12 middlePanel">
                         <div class="">
-                            <apex:outputLabel value="Phase & Gate document"
-                                styleClass="fieldLabel fieldFont" id="documentPhase"/>
+                            <apex:outputLabel value="{!$Label.IPM_Phase_Gate}" styleClass="fieldLabel fieldFont" id="documentPhase"/>
                         </div>
                         <div class="gatedocModal">
                            <div class="inputField">

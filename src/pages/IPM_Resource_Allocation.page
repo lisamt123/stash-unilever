@@ -27,6 +27,7 @@
         <apex:pageBlock id="pgb1">
             <apex:pagemessages id="pgmsg"/>            
             <div class="addmember">    
+             <!--Below rendered condition is used for executing output panel -->    
                 <apex:outputPanel rendered="">
                     <div class="col-xs-5" >
                         <div class="basic">            
@@ -46,14 +47,17 @@
                         </div>
                     </div>
                 </apex:outputPanel>
+                <!--Below rendered condition is for executing output panel --> 
                 <apex:outputPanel id="pgbt_pre" rendered="false">
                     <apex:outputPanel id="pgbt_pre2" styleClass="pgbtPre2" layout="block">
                     </apex:outputPanel> 
                 </apex:outputPanel> 
             </div>
             <div class="addMemberContainer">
+            <!--Below rendered condition is used for executing output panel --> 
                 <apex:outputPanel rendered="{! if(OR(CoreMembers !='',isInvokedFromRollouts), 'false','true')}">
                <!-- <apex:outputPanel rendered="{! if(OR(CoreMembers !=''), 'false','true')}">-->
+                   <!--Below rendered condition is used for showing user for guest user--> 
                     <apex:outputPanel rendered="{! if(RoleType='Guest','false','true')}">
                         <div class="col-sm-12 radioContainer clearfix">
                             <div class="categoryButtons">
@@ -81,7 +85,9 @@
                     <div class="col-sm-12">
                         <span class="categoryTitle">
                             <apex:outputPanel id="mycatNallcat">
+                            <!--Below rendered condition is used for showing output text --> 
                                 <apex:outputText value="{!$Label.IPM_Select_members_from_my_category}" rendered="{! if(SearchTeambyCat='mycategory','true','false')}" id="mycat"/> 
+                               <!--Below rendered condition is used for showing output text --> 
                                 <apex:outputText value="{!$Label.IPM_Select_members_from_all_categories}" rendered="{! if(SearchTeambyCat='allcategory','true','false')}" id="allcat"/> 
                             </apex:outputPanel>   
                         </span> 
@@ -96,7 +102,9 @@
                             </div>
                             <apex:outputPanel layout="block" id="SameCat">
                                 <div class="teamMemberList" >
+                                <!--Below rendered condition is used for showing output text --> 
                                  <apex:outputText rendered="{! if(IsNoMatchfound !='','true','false')}" value="{!$Label.IPM_NO_MATCHES_FOUND}" id="notfound1" />
+                                    <!--Below rendered condition is used for showing user list if IsNoMatchfound is empty --> 
                                     <apex:outputPanel layout="block" rendered="{! if(IsNoMatchfound !='','false','true')}">
                                         <table class="ipmTable table table-bordered">
                                             <tbody>
@@ -104,6 +112,7 @@
                                                     <tr>
                                                         <td>
                                                             <div class="col-xs-2">                               
+                                                             <!--Below rendered condition is used for showing input checkbox-->                              
                                                                 <apex:inputCheckbox styleClass="teamCheck" value="{!TM.checkboxuser}" rendered="{!NOT(isInvokedFromRollouts)}"/>
                                                             </div>
                                                         </td>
@@ -132,6 +141,7 @@
                         <apex:commandLink styleClass="ipmButton convertLowercase primary" status="Loading" action="{!AddMemberToWrapper}" value="{!$Label.IPM_ADD_SELECTED_MEMBERS}" html-data-dismiss="modal" rerender="none" onComplete="closepopup()"/>
                      </div>
                 </apex:outputPanel>
+                <!--Below rendered condition is used for executing output panel if both condition is true--> 
                 <apex:outputPanel rendered="{! if(AND(CoreMembers !='', NOT(isInvokedFromRollouts)),'true','false')}">
                 <div class="cust-overlay"></div>
                 <div class="greyContainer">
@@ -146,6 +156,7 @@
                             <span class="categoryTitle">{!$Label.IPM_SELECT_FROM_LIST}</span>
                         </div>
                         <apex:outputPanel layout="block" id="SearchCoreMem">
+                        <!--Below rendered condition is used for showing output text --> 
                             <apex:outputText rendered="{! if(IsNoMatchfound !='','true','false')}" value="{!$Label.IPM_NO_MATCHES_FOUND}" id="notfound" />
                             <div class="editList ipmRadioButton">
                                 <table class="ipmTable table table-bordered">
@@ -208,13 +219,16 @@
                     <div class="col-sm-12 pull-left">
                          <span class="categoryTitle">
                             <apex:outputPanel id="mycatNallcatRolloutProfs">
+                            <!--Below rendered condition is used for showing output text --> 
                                <apex:outputText value="Select members from my category" rendered="{! if(SearchLeaderbyCat='mycategory','true','false')}" id="mycatRolloutProf"/>
+                              <!--Below rendered condition is used for showing output text --> 
                                <apex:outputText value="Select members from all categories" rendered="{! if(SearchLeaderbyCat='allcategory','true','false')}" id="allcatRolloutProf"/>
                             </apex:outputPanel>
                          </span>
                       </div> 
                  </div>
               </apex:outputPanel>
+              <!--Below rendered condition is used for executing output panel is isInvokedFromRollouts is true --> 
             <apex:outputPanel rendered="{!isInvokedFromRollouts}">
                 <div class="cust-overlay"></div>
                 <div class="greyContainer">
@@ -247,6 +261,7 @@
                                   </tbody>
                               </table>
                           </div>
+                          <!--Below rendered condition is used for showing output text --> 
                           <apex:outputText rendered="{! if(IsNoMatchfound !='','true','false')}" value="No Matches Found" id="leaderNotFound" />
                       </apex:outputPanel>
                       <apex:actionFunction action="{!holdLeader}" name="selectedLeaderMem" reRender="none">
@@ -263,7 +278,7 @@
             <apex:outputPanel id="redirectToRolloutsPage">
              <script>
                 function backToRollouts(){
-                    window.parent.location.href="{!URLFOR($Page.IPM_RolloutPlans)}?id={!projectId}&RolloutLeaderType={!leaderType}&RolloutSpan={!rolloutSpan}&EditMode=true";
+                     window.parent.location.href="{!URLFOR($Page.IPM_RolloutPlans)}?id={!projectId}&RolloutLeaderType={!leaderType}&RolloutSpan={!rolloutSpan}&EditMode=true";
                 }
              </script>
          </apex:outputPanel>

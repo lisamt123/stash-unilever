@@ -26,9 +26,12 @@ public with sharing class IPM_BETSuggestedMembersController{
                update project;
             }
         }catch(Exception ex){
-		  //Call future method in case there is an exception due to concurrent update
-		  IPM_BETHelper.updateBETlinktoProject(betId,projectId);
-        }
+		  //Enqueue IPM_UpdateBETOnProject_Queueable class  in case there is an exception due to concurrent update
+		  IPM_UpdateBETOnProject_Queueable updateBETOnProjectQ = new IPM_UpdateBETOnProject_Queueable(); 
+          updateBETOnProjectQ.betId =betId;
+          updateBETOnProjectQ.projectId =projectId; 
+          System.enqueueJob(updateBETOnProjectQ);  
+        } 
         return pageRef ;
     }
     public class IPM_CustomException extends Exception{

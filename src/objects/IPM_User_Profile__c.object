@@ -144,7 +144,17 @@
         <fullName>IPM_HoldCategory__c</fullName>
         <externalId>false</externalId>
         <formula>IF(INCLUDES( IPM_User_Category__c ,&quot;Household Care&quot;), &quot;Household Care,&quot;, &quot;&quot;) &amp;
-IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &quot;&quot;)</formula>
+IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &quot;&quot;) &amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Savoury&quot;), &quot;Savoury,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Ice Cream&quot;), &quot;Ice Cream,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Skin Care&quot;), &quot;Skin Care,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Hair Care&quot;), &quot;Hair Care,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Oral Care&quot;), &quot;Oral Care,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Skin Cleansing&quot;), &quot;Skin Cleansing,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Deodorants &amp; Fragrances&quot;), &quot;Deodorants &amp; Fragrances,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Dressings&quot;), &quot;Dressings,&quot;, &quot;&quot;) &amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Spreads&quot;), &quot;Spreads,&quot;, &quot;&quot;)&amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Tea and Soy &amp; Fruit Beverages&quot;), &quot;Tea and Soy &amp; Fruit Beverages,&quot;, &quot;&quot;)</formula>
         <label>HoldCategory</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -157,6 +167,17 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>IT Contacts</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Is_RoleorFunction_Blank__c</fullName>
+        <description>To help in the perfomance eliminating Negative Condition checking</description>
+        <externalId>false</externalId>
+        <formula>IF(OR( ISPICKVAL( IPM_User_Function__c , &apos;&apos;),ISPICKVAL(  IPM_User_Function__c ,&apos;&apos;) ), false, true)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is RoleorFunction Blank</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -181,6 +202,20 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+	 <fields>
+        <fullName>IPM_Region_isNull__c</fullName>
+        <description>This field will advice if Region is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_Region__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Region is null or not</inlineHelpText>
+        <label>IPM_Region_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Region__c</fullName>
@@ -221,6 +256,42 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
                 <fullName>Ice Cream</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -255,6 +326,20 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+	<fields>
+        <fullName>IPM_User_Role_Function_isNull__c</fullName>
+        <description>This field is true when both User Role and User Function are Null</description>
+        <externalId>false</externalId>
+        <formula>IF( AND( ISBLANK(  TEXT(IPM_User_Role__c ) ) , ISBLANK(  TEXT(IPM_User_Function__c ) ) ), &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is true when both User Role and User Function are Null</inlineHelpText>
+        <label>IPM_User_Role_Function_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_User_Role__c</fullName>

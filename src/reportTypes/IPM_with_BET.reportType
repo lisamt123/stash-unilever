@@ -123,7 +123,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Finance_Member__c</field>
+            <field>IPM_Finance_Lead__c</field>
             <table>IPM_Project__c</table>
         </columns>
         <columns>

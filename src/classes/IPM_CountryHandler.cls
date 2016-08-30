@@ -125,7 +125,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(trigger.isInsert)
         {
-        	IPM_ProjectCountryDetails.assignCompanyCardLocal((Map<id,IPM_Country__c>) Trigger.newMap);
+        	IPM_ProjectCountryDetails.assignBrandToRollout((List<IPM_Country__c>)trigger.new);
+			IPM_ProjectCountryDetails.assignCompanyCardLocal((Map<id,IPM_Country__c>) Trigger.newMap);
             for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New)
             {
                 countryListIds.add(c.Id);
@@ -176,7 +177,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(trigger.isUpdate)
         {
-            IPM_ProjectCountryDetails.assignCompanyCardLocal((Map<id,IPM_Country__c>) Trigger.newMap);
+            list<IPM_Country__c> countryListForBrand = new list<IPM_Country__c>();
+			IPM_ProjectCountryDetails.assignCompanyCardLocal((Map<id,IPM_Country__c>) Trigger.newMap);
 			countryListIds=new Set<Id>();
             oldCountriesMap = ((Map<Id,IPM_Country__c>)Trigger.OldMap);
             projectIdSet.clear();
@@ -198,7 +200,12 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                 {
                     projectIdSet.add(coun.IPM_Local_Project__c);
                 }
-                
+                //local countries are separate as new rollout
+                if(coun.Local_Rollout__c !=null && oldCountriesMap.get(coun.Id).Local_Rollout__c != coun.Local_Rollout__c)
+                {
+                	countryListForBrand.add(coun);
+                }
+				
                 //find list of all countries that have been made inactive
                 if(coun.isActive__c != oldCountriesMap.get(coun.Id).isActive__c && !coun.isActive__c)
                 {
@@ -229,7 +236,12 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             //Update the sync flag on regional/Local projects populated on the country records.
             //When countries get Updated, Normally Regional & Local field should get populated on them.
             IPM_ProjectCountryDetails.setSyncProjAftUpdate((Map<Id,IPM_Country__c>)Trigger.oldMap,(List<IPM_Country__c>)Trigger.New); 
-            //check if there is atleast one assessment per EI country of the project and check the flag existsAtLeastOneAssmntPerEICountry if yes
+            //call method to update brand value for local rollout
+            if(!countryListForBrand.isEmpty())
+            {
+            	IPM_ProjectCountryDetails.assignBrandToRollout(countryListForBrand);
+			}	
+			//check if there is atleast one assessment per EI country of the project and check the flag existsAtLeastOneAssmntPerEICountry if yes
             if(projectIdSet != null && !projectIdSet.isEmpty())
             {
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);

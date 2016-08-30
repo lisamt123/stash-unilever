@@ -1,0 +1,28 @@
+<!--  
+*************************************************************************
+*@Description:This page is used to provide the confirm dialogue box for the user to provide a confirmation input to proceed
+*@Author: Cognizant
+*@Created Date: 15/7/2016
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+<apex:component id="ipmStopConfirmation">
+<div id="stopProjectConfirmation" class="modal fade ipmDeleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <div class="modal-title"></div>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="confirmMsg"></div>
+                    <div class="ipmButtonGroup ipmFromAction pull-right">
+                        <a class="ipmButton green confirmAction" >{!$Label.IPM_CONFIRM_MODAL_YES}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+</apex:component>

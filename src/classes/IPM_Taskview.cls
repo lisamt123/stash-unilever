@@ -26,6 +26,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
     private final String IPM_TASKVIEW_STR = IPM_Taskview.class.getName();
     private static final String ERROR_STR = 'Error';
     public boolean isCreateTask{get;set;}
+    public boolean isTaskVisible{get;set;}
     
     /****************************************************************************
 @Description : Initialization of the parameterized constructor 
@@ -46,6 +47,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
             isAllTask = false;
             updateComplexity = false;
             projectId = apexpages.currentpage().getparameters().get(IPM_Utils.Id);
+            isTaskVisible =true;
             getIpmuserType();
             
             complexityType = project.IPM_Complexity__c;
@@ -58,8 +60,10 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
             if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE)
             {
                 isMilestoneEditable = isTaskeditable = isupdateDates = false;
-            }   
-
+            }
+            if(project.Is_Archieved__c){
+                isTaskVisible = false;
+            }
             projectType = IPM_Utils.retrieveProjectType(project);
                      
         }catch(Exception eX){ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);ApexPages.addMessage(myMsg); }
@@ -111,8 +115,6 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                 }
             } 
             
-            // Checking the user List
-            if(!project.Is_Archieved__c){
                 // To check the Project Leader
                if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
                 {
@@ -132,7 +134,7 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                             updateComplexity = true;
                         }
                }
-            }
+          
             //security for central team and BP users
                 IPM_CustomPermission cpr = new IPM_CustomPermission();
                 boolean isCentralTeam=false;
@@ -146,6 +148,9 @@ public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController
                     updateComplexity = true;
                     isCreateTask=true;
                     isAllTask=true;
+                } 
+             if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c){
+             	isTaskeditable = isCreateTask = isAllTask = isMilestoneEditable = isTaskeditable = updateApproach = updateComplexity =  false;
                 } 
             
             
