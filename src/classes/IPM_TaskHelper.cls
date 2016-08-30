@@ -520,10 +520,18 @@ public with sharing class IPM_TaskHelper {
     * @param1 projectDocToSectionMap : project specific document section
     */
  public static void setSectionWiseTaskVisibility(Map<Id,IPM_Project__c> projectMap,Map<Id,IPM_Project_Document__c> projectToDocumentMap,Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,List<IPM_Task__c>> projectToTaskListMap)
- {
- 	
+ { 	
+ 	Map<Id,Map<Id,IPM_Project_Document_Section__c>> projectToPDLSectionMap = getPDLSpecificSection(projectMap);
+ 	 	
  	for(Id projectId : projectMap.keySet())
  	{
+ 		List<IPM_Project_Document_Section__c> pdlSectionsList = new List<IPM_Project_Document_Section__c>();
+ 		
+ 		if( projectToPDLSectionMap.containsKey(projectId) )
+ 		{
+ 			Map<Id,IPM_Project_Document_Section__c> pdlSectionsMap = projectToPDLSectionMap.get(projectId);
+	 		pdlSectionsList = pdlSectionsMap.values(); 
+ 		}
  		List<IPM_Project_Document_Section__c> projectDocSectionList = new List<IPM_Project_Document_Section__c>();
  		//task list for project
  		List<IPM_Task__c> taskList =  ProjectToTaskListMap != null && !ProjectToTaskListMap.isEmpty() && ProjectToTaskListMap.containsKey(projectId) ? ProjectToTaskListMap.get(projectId) : new List<IPM_Task__c>();
@@ -544,7 +552,7 @@ public with sharing class IPM_TaskHelper {
 	 				
 	 				complexityMatch= checkComplexityMatch(projectDetail,task);
 	 				  
-	    			updateTaskSections(complexityMatch,task,projectDocSectionList);
+	    			updateTaskSections(complexityMatch,task,projectDocSectionList,pdlSectionsList);
 	 			}
 	 			else
 	 			{
@@ -741,6 +749,25 @@ public with sharing class IPM_TaskHelper {
 		     	}
 			}	
 	 	}
+ 	}
+ 	
+ 	private static Map<Id,Map<Id,IPM_Project_Document_Section__c>> getPDLSpecificSection(Map<Id,IPM_Project__c> projectMap)
+ 	{
+ 		
+ 		
+ 		Map<Id,Map<Id,IPM_Project_Document_Section__c>> tempProjectToProjectDocSectionMap = new Map<Id,Map<Id,IPM_Project_Document_Section__c>>();
+ 		
+ 		Set<Id> projectIdSet = projectMap.keySet();
+ 		
+ 		for(IPM_Project_Document__c projectDocument : [SELECT Id,IPM_Project__c,(SELECT id, IPM_Default_Section__c, IPM_Section_Name__c, IPM_Section_Sequence__c, IPM_Section__c from IPM_Project_Sections__r) from IPM_Project_Document__c WHERE IPM_GateDocuments__c = 'Product Design Lock' AND IPM_Project__c =:projectIdSet])
+ 		{
+ 			tempProjectToProjectDocSectionMap.put(projectDocument.IPM_Project__c,new Map<Id,IPM_Project_Document_Section__c>(projectDocument.IPM_Project_Sections__r));
+ 		}
+		
+		
+		
+        return tempProjectToProjectDocSectionMap; 
+       
  	}
  	
  	/**************************************************************
@@ -1060,7 +1087,12 @@ public with sharing class IPM_TaskHelper {
     * @param2 task : current project tasks
     * @param3 projectDocSectionList : project document sections
     */
- private static void updateTaskSections(Boolean complexityMatch,IPM_Task__c task ,List<IPM_Project_Document_Section__c> projectDocSectionList){
+ private static void updateTaskSections(Boolean complexityMatch,IPM_Task__c task ,List<IPM_Project_Document_Section__c> projectDocSectionList,List<IPM_Project_Document_Section__c> pdlSectionsList)
+ {
+ 	if(pdlSectionsList !=null && !pdlSectionsList.isEmpty())
+ 	{
+ 		projectDocSectionList.addAll(pdlSectionsList);	
+ 	}
  	
  	if(complexityMatch ||String.isBlank(task.IPM_Task_Complexity__c))
 		{

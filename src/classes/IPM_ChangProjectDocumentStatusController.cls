@@ -503,10 +503,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 if(rolloutFilledCount>0 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                     showValidation=false;
-                     if(project.IPM_ProjectGKM__c != IPM_ConstantUtils.GKM_3) 
-		     {
-                     	rolloutRegionalPLFilledError=true;
-		     }
+                    rolloutRegionalPLFilledError=true;
                 }
             
                 if(rolloutCount<1 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
