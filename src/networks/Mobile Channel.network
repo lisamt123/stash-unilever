@@ -48,7 +48,7 @@
         <profile>partner community</profile>
         <profile>partner community login basic</profile>
     </networkMemberGroups>
-    <picassoSite>Mobile_Channel1</picassoSite>
+    <picassoSite>Mobile_Channel</picassoSite>
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>true</sendWelcomeEmail>
     <site>Mobile_Channel</site>
