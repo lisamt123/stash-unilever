@@ -70,6 +70,15 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>Milestone_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Milestone Description</label>
+        <length>131072</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
         <fullName>RAG_Color__c</fullName>
         <externalId>false</externalId>
         <formula>IF( ISPICKVAL(RAG__c, &apos;Green&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvi&quot;, &quot;Green&quot;), 
@@ -113,11 +122,12 @@ IF ( ISPICKVAL(RAG__c, &apos;Red&apos;), IMAGE(&quot;/servlet/servlet.FileDownlo
         <label>All</label>
     </listViews>
     <nameField>
-        <label>CI_R2R Milestones Name</label>
+        <label>Milestones Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>CI_R2R Milestones</pluralLabel>
     <searchLayouts>
+        <customTabListAdditionalFields>Milestone_Description__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>RAG__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>RAG_Color__c</customTabListAdditionalFields>
     </searchLayouts>

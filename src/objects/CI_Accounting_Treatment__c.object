@@ -187,11 +187,11 @@
     <searchLayouts>
         <customTabListAdditionalFields>Year__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>CI_R2R_Budget__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Actuals__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Capex__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>P_L__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Pre_Paytm__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Total__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Actuals__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>Year__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Actuals__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CI_R2R_Budget__c</searchResultsAdditionalFields>

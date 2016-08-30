@@ -27,16 +27,22 @@
         <permissionSet>GEL_Exception_Raiser</permissionSet>
         <permissionSet>GEL_Process_Owner</permissionSet>
         <permissionSet>GEL_Admin</permissionSet>
+        <permissionSet>CI_R2R_Admin</permissionSet>
+        <permissionSet>CI_R2R_KUN_user</permissionSet>
+        <permissionSet>CI_R2R_SME_End_User</permissionSet>
         <profile>admin</profile>
-        <profile>standard</profile>
+        <profile>unilever - force multiapp standard</profile>
     </networkMemberGroups>
-    
+    <picassoSite>Global_Finance1</picassoSite>
     <selfRegistration>false</selfRegistration>
     <sendWelcomeEmail>false</sendWelcomeEmail>
     <site>Global_Finance</site>
     <status>Live</status>
     <tabs>
         <customTab>GEL_Global_Exception_Log__c</customTab>
+        <customTab>CI_R2R_Budget__c</customTab>
+        <customTab>CI_R2R_Innovation__c</customTab>
+        <customTab>CI_SMS_Weekly_Update__c</customTab>
         <defaultTab>home</defaultTab>
         <standardTab>home</standardTab>
         <standardTab>report</standardTab>

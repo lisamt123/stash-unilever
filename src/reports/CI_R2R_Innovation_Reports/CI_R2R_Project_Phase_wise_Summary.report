@@ -25,22 +25,22 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>CI_R2R_Innovation__c.Geographical_Scope__c</field>
-    </columns>
-    <columns>
-        <field>CI_R2R_Innovation__c.Project__c</field>
-    </columns>
-    <columns>
-        <field>CI_R2R_Innovation__c.Project_Description__c</field>
+        <field>CI_R2R_Innovation__c.Project2__c</field>
     </columns>
     <columns>
         <field>CI_R2R_Innovation__c.Project_Name__c</field>
     </columns>
     <columns>
+        <field>CI_R2R_Innovation__c.Project_Description__c</field>
+    </columns>
+    <columns>
         <field>CI_R2R_Innovation__c.R2R_SME_Area__c</field>
     </columns>
     <columns>
-        <field>CI_R2R_Innovation__c.RAG_Color__c</field>
+        <field>CI_R2R_Innovation__c.Landscape__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.RAG__c</field>
     </columns>
     <format>Summary</format>
     <groupingsDown>

@@ -36,6 +36,14 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CI_R2R_Update_PE_Null</fullName>
+        <field>Proj_Cat__c</field>
+        <name>CI_R2R Update PE_Null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CI_R2R_Update_RAG2_R</fullName>
         <field>RAG__c</field>
         <literalValue>Red</literalValue>
@@ -97,15 +105,6 @@
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>test12</fullName>
-        <field>Test_Name__c</field>
-        <formula>CIR2R_Innovation__r.Project__c</formula>
-        <name>test12</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>CI_R2R Populate Project Name and Project Description</fullName>
         <actions>
@@ -161,6 +160,10 @@
             <type>FieldUpdate</type>
         </actions>
         <actions>
+            <name>CI_R2R_Update_PE_Null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CI_R2R_Update_RAG_Null</name>
             <type>FieldUpdate</type>
         </actions>
@@ -173,7 +176,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <formula>CIR2R_Innovation__c = null</formula>
+        <formula>AND(CIR2R_Innovation__c = null, RecordType.DeveloperName = &apos;CI_SME_with_CI&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

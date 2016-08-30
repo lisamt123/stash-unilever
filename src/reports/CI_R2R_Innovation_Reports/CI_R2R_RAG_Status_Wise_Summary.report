@@ -35,13 +35,13 @@
         <field>CI_R2R_Innovation__c.Project_Description__c</field>
     </columns>
     <columns>
-        <field>CI_R2R_Innovation__c.R2R_SME_Area__c</field>
+        <field>CI_R2R_Innovation__c.Project_Category__c</field>
     </columns>
     <columns>
         <field>CI_R2R_Innovation__c.Funnel_Status__c</field>
     </columns>
     <columns>
-        <field>CI_R2R_Innovation__c.RAG_Color__c</field>
+        <field>CI_R2R_Innovation__c.Landscape__c</field>
     </columns>
     <format>Summary</format>
     <groupingsDown>

@@ -17,23 +17,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Project_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Proj_Cat__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Description__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Comments__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Project_Name_2__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -47,22 +43,38 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>R2R_SME_Area__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>RAG_Color__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>R2R_SME_Area__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Scope__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Project_Category__c</field>
+                <behavior>Edit</behavior>
+                <field>Status__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>SME Weekly Comments</label>
+        <layoutColumns>
+            <layoutItems>
+                <height>200</height>
+                <page>CI_R2R_Comments_Section_for_SME</page>
+                <showLabel>false</showLabel>
+                <showScrollbars>true</showScrollbars>
+                <width>100%</width>
+            </layoutItems>
+        </layoutColumns>
+        <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -95,6 +107,7 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Milestone_Description__c</fields>
         <fields>RAG__c</fields>
         <fields>RAG_Color__c</fields>
         <relatedList>CI_R2R_Milestones__c.CI_SME_Weekly_Update__c</relatedList>

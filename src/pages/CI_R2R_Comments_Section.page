@@ -1,20 +1,87 @@
+<!----------------------------------------------------------------------
+Name: CI_R2R Comments Section
+Purpose:
+This Visualforce page is used to display the comments captured through tracking history.
+VERSION   AUTHOR   DATE    
+1.0       Chandana July-2016   
+------------------------------------------------------------------------->
 <apex:page standardController="CI_R2R_Innovation__c" extensions="CI_R2R_GetHistory" showChat="false">
-  <apex:form >
-   <apex:pageBlock >
-      <!--<apex:pageBlockSection title="r2rcomments" collapsible="false" >-->
-          
-          <!--<apex:pageBlockTable value="{!rrvalues}" var="rr"> 
-            
-           <apex:column headerValue="Comments"> <div> <b> {!changedby} </b> Changed Comments from  <b>{!rr.OldValue} </b> to <b>{!rr.NewValue} </b></div></apex:column>
-                  
-          </apex:pageBlockTable>-->
-          
-          <apex:pageBlockTable value="{!wrappervalues}" var="rr">            
-              <apex:column headerValue="Comments"> <div> <b> {!rr.changedby} </b> Changed Comments from <b>{!rr.name1} </b> to <b>{!rr.name}</b> on {!rr.cDate}</div></apex:column>
-          </apex:pageBlockTable>
-          
-      <!--</apex:pageBlockSection>-->
-          
-   </apex:pageBlock> 
-  </apex:form>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+  <script>
+  
+  $(document).ready(function() { 
+    
+    var showChar = 0;  
+    var ellipsestext = "...";
+    var moretext = "more";
+    var lesstext = "less";
+    
+    $('.more').each(function() {
+        var content = $(this).html();
+
+        if(content.length > showChar) {
+
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+            $(this).html(html);
+        }
+
+    });
+
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+});
+
+</script>
+  
+  <apex:pageBlock >
+  <apex:pageBlockTable value="{!wrappervalues}" var="rr">
+  <apex:column headerValue="Comments"> 
+  <apex:outputPanel rendered="{!IF(AND(rr.oldvalue==null,panel==true),'true','false')}"><b> {!rr.changedby} </b> Added Comments  
+      <span class="more"> {!rr.newvalue} </span> on {!rr.cDate}
+  </apex:outputPanel>
+  <apex:outputPanel rendered="{!IF(AND(rr.oldvalue!=null,panel==true),'true','false')}"><b> {!rr.changedby} </b> Changed Comments 
+     <span class="more">from {!rr.oldvalue}  to {!rr.newvalue} </span> on {!rr.cDate}
+  </apex:outputPanel>      
+  </apex:column>
+  </apex:pageBlockTable>
+  
+  </apex:pageBlock>    
+  
+<style>
+a {
+    color: #0254EB
+}
+a:visited {
+    color: #0254EB
+}
+.morecontent span {
+    display: none;    
+}
+.more {
+    font-weight: bold;
+}
+.morelink {
+    display: inline-block;    
+    text-decoration: none;
+}
+.morelink:hover {
+    text-decoration: none;
+}
+</style>
+
 </apex:page>

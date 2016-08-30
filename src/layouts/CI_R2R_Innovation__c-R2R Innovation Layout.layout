@@ -9,7 +9,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Project2__c</field>
+                <field>Project__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -45,6 +45,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Alternate_Scope__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Comments__c</field>
             </layoutItems>
         </layoutColumns>
@@ -59,7 +63,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Project_Lead__c</field>
+                <field>Project_Lead_del__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -72,6 +76,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>RAG_Color__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Currency__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -134,11 +142,10 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>NAME</fields>
         <fields>Funnel_Ref__c</fields>
         <fields>Project_Name__c</fields>
+        <fields>R2R_SME_Area__c</fields>
         <fields>RAG_Color__c</fields>
-        <fields>Scope__c</fields>
         <relatedList>CI_SMS_Weekly_Update__c.CIR2R_Innovation__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -146,11 +153,9 @@
         <fields>Budget_Line__c</fields>
         <fields>Project_Name__c</fields>
         <fields>Cost_Type_Description__c</fields>
-        <fields>ICC_Number__c</fields>
+        <fields>ICC_Number2__c</fields>
         <fields>Company_Code__c</fields>
-        <fields>DO__c</fields>
-        <fields>Legal_Entity__c</fields>
-        <fields>SoW_CCN_PWO_SP__c</fields>
+        <fields>DO_PWO_SP_NPR__c</fields>
         <fields>Vendor_Cross_charging_team__c</fields>
         <relatedList>CI_R2R_Budget__c.CI_R2R_Innovation__c</relatedList>
     </relatedLists>

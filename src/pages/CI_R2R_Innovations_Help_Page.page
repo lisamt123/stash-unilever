@@ -1,3 +1,11 @@
+<!-----------------------------------------------------------------------
+Name:CIR2R Innovations Help Page
+Purpose:
+This Visualforce page is used to display the needed information for user when they want any help regarding CI Innovation Object.
+This Information is displayed when they clicked on help.
+VERSION   AUTHOR   DATE    
+1.0       Chandana June-2016   
+---------------------------------------------------------------------------->
 <apex:page sidebar="false" showHeader="false">
   
   <apex:pageBlock title="GuideLines">

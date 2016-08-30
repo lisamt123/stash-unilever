@@ -16,7 +16,7 @@
         <field>CI_R2R_Innovation__c.R2R_SME_Area__c</field>
     </columns>
     <columns>
-        <field>CI_R2R_Innovation__c.RAG_Color__c</field>
+        <field>CI_R2R_Innovation__c.RAG__c</field>
     </columns>
     <columns>
         <field>CI_R2R_Innovation__c.Target_Completion_Date__c</field>

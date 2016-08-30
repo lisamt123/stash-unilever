@@ -9,6 +9,14 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>Budget_Line__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Innovation_Funnel_No__c</field>
             </layoutItems>
             <layoutItems>
@@ -17,23 +25,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>Project_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Legal_Entity__c</field>
+                <field>Company_Code__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Budget_Line__c</field>
+                <behavior>Edit</behavior>
+                <field>Cost_Centre__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Vendor_Cross_charging_team__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ICC_Number2__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -42,20 +50,32 @@
                 <field>Cost_Type_Description__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>DO__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>ICC_Number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Company_Code__c</field>
+                <behavior>Edit</behavior>
+                <field>DO_PWO_SP_NPR__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SoW_CCN_PWO_SP__c</field>
+                <field>Local_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Conversion_Rate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Forecast_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Forecast_Amount_in_EUR__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Committed_Amount__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Committed_Amount_in_EUR__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -92,11 +112,11 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Year__c</fields>
-        <fields>Actuals__c</fields>
         <fields>Capex__c</fields>
         <fields>P_L__c</fields>
         <fields>Pre_Paytm__c</fields>
         <fields>Total__c</fields>
+        <fields>Actuals__c</fields>
         <relatedList>CI_Accounting_Treatment__c.CI_R2R_Budget__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

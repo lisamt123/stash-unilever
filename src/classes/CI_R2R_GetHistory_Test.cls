@@ -1,6 +1,6 @@
 @isTest
 private class CI_R2R_GetHistory_Test {
-    static testMethod void myUnitTest() {
+     static testMethod void myUnitTest() {
         Test.startTest();                
         //List<CI_R2R_Innovation__History> rrlist;
         CI_R2R_Innovation__c CIR2R = new CI_R2R_Innovation__c();        
@@ -24,5 +24,5 @@ private class CI_R2R_GetHistory_Test {
         
         Historycls.changedby = 'test1';        
         Test.stopTest();
-    }
+    } 
 }
