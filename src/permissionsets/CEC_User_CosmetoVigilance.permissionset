@@ -30929,11 +30929,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Project__c.IPM_Duration_Bosscard__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Project__c.IPM_Duration_Capability__c</field>
         <readable>false</readable>
     </fieldPermissions>
