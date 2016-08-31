@@ -292,6 +292,14 @@
         <protected>false</protected>
         <shortDescription>ICB UNPLANNED VISIT</shortDescription>
         <value>Unplanned</value>
+    </labels>    
+    <labels>
+        <fullName>ICB_WARNING_CHECKIN_SUCCESSFULLY</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB WARNING CHECKIN SUCCESSFULLY</shortDescription>
+        <value>Warning! Check-In it has been performed!</value>
     </labels>
     <labels>
         <fullName>ICB_WARNING_CANT_POSSIBLE_RETURN_GEO</fullName>
@@ -300,14 +308,6 @@
         <protected>false</protected>
         <shortDescription>ICB WARNING CANT POSSIBLE RETURN GEO</shortDescription>
         <value>Warning! It can&apos;t possible to return localization!</value>
-    </labels>
-    <labels>
-        <fullName>ICB_WARNING_CHECKIN_SUCCESSFULLY</fullName>
-        <categories>ICB</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ICB WARNING CHECKIN SUCCESSFULLY</shortDescription>
-        <value>Warning! Check-In it has been performed!</value>
     </labels>
     <labels>
         <fullName>ICB_WARNING_CHECKOUT_SUCCESSFULLY</fullName>
