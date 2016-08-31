@@ -10091,22 +10091,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CEC_ChequeBook_Detail__c.Currency__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CEC_ChequeBook_Detail__c.Max_Cheque_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_ChequeBook_Detail__c.Product_Category_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_ChequeBook_Detail__c.Starting_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29457,11 +29442,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Fulfilment__c.Country_BrandLogo__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Country__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
