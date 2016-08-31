@@ -316,7 +316,7 @@
                                                 <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">   
                                                                                           
                                                     <apex:outputPanel id="financeLeaderPanel" rendered="{!AND(isEditMode,isEditable)}"> 
-                                                        <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
+                                                        <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Local_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
                                                             <span class="">{!$Label.IPM_Select_Finance_Leader}</span>
                                                         </div>
                                                     </apex:outputPanel>
@@ -398,7 +398,7 @@
                                                         <apex:image styleClass="rounded" url="{!localRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                                 </apex:outputPanel>
                                                 <apex:outputPanel id="financeLeaderPanel" rendered="{!AND(isEditMode,isEditable,localRollout.Local_Project__c==Null)}"> 
-                                                        <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
+                                                        <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Local_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
                                                             <span class="">{!$Label.IPM_Select_Finance_Leader}</span>
                                                         </div>
                                                     </apex:outputPanel>
