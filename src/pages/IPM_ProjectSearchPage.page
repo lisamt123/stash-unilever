@@ -6,7 +6,7 @@
 *@Copyright Â© 2015  Unilever  
 *************************************************************************
 -->
-<apex:page sidebar="false" standardStylesheets="true" controller="IPM_ProjectSearchCtrl" extensions="IPM_GetHelpDoc">
+<apex:page sidebar="false" standardStylesheets="true" controller="IPM_ProjectSearchCtrl" extensions="IPM_GetHelpDoc" readOnly="true">
     <apex:composition template="IPM_TemplateRevamp">
         <apex:define name="body">        
             <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_DropDown.css')}"/>
@@ -40,6 +40,12 @@
                                         {!$Label.IPM_CREATE_NEW} {!$Label.IPM_ProjectLabel}
                                     </a>
                                 </div>
+                                <apex:outputPanel rendered="{!OR($Permission.IPM_TeamMembers_ExtractDownloadable,$Permission.IPM_Business_Partner,$Permission.IPM_CentralTeam )}">  
+	                            	<div class=" col-xs-2 SecButtonSet pull-right downloadbtnmilestone">
+	                       				<!-- Below commandlink is used to provide excel download button only when user is assigned custom permissions for that  -->   
+	                        			<apex:OutputLink styleClass="icoButton download" target="_blank"  value="{!$Page.IPM_ExportTeamMembersReport}" title="{!$Label.IPM_Team_Members_Report }"  />    
+	                     			</div> 
+                            	</apex:outputPanel> 
                             </div>
                             </apex:outputPanel>
                         </div>
@@ -503,23 +509,32 @@
                                                             <a href="{!URLFOR($Page.IPM_ProjectSetupView,null,[Pid=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
                                                         <!--If the IPM_Project_Type__c is Original, then the respective icon will be displayed -->
-                                                        <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Original'}">
+                                                        <apex:outputPanel layout="block" rendered="{!AND(p.IPM_Project_Type__c='Original', !p.Is_Archieved__c) }">
                                                             <span class="orgIcon"></span>
                                                         </apex:outputPanel>
                                                         <!--If the IPM_Project_Type__c is Rollout, then the respective icon will be displayed -->
-                                                        <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Rollout'}">
-                                                            <span class="rollIcon"></span>
+                                                        <apex:outputPanel layout="block" rendered="{!AND(p.IPM_Project_Type__c='Rollout', !p.Is_Archieved__c )}">
+                                                            <span class="rollIcon"></span> 
                                                         </apex:outputPanel>
                                                         <!--If the IPM_Project_Type__c is Operational, then the respective icon will be displayed -->
-                                                        <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Operational'}">
+                                                        <apex:outputPanel layout="block" rendered="{!AND(p.IPM_Project_Type__c='Operational', !p.Is_Archieved__c)}">
                                                             <span class="oprtnIcon"></span>
                                                         </apex:outputPanel>
-                                                            
+                                                        <!--If the IPM_Project_Type__c is Archieved, then the respective icon will be displayed -->
+                                                        <apex:outputPanel layout="block" rendered="{!p.Is_Archieved__c}">
+                                                            <span class="stopicon"></span>
+                                                        </apex:outputPanel>
+                                                        
                                                     </div>
                                                 </div> 
                                             </td>
                                             <td>
-                                                {!p.IPM_Phase__c}   
+                                                <apex:outputPanel rendered="{!p.Is_Archieved__c}">
+                                                	{!$Label.IPM_GD_STOPPED}
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!Not(p.Is_Archieved__c)}">
+                                                	{!p.IPM_Phase__c}
+                                                </apex:outputPanel>   
                                             </td>
                                             <td>
                                                 {!p.IPM_Project_Leader__r.Name}
@@ -608,7 +623,7 @@
                        </apex:actionFunction>
                        <apex:actionFunction name="allProjects" action="{!loadProjects}" rerender="prjPanel,jsLoad,paginationSec" status="myStatus" />
                        <apex:actionFunction name="myProjects" action="{!loadProjects}" rerender="prjPanel,jsLoad,paginationSec" status="myStatus"/>
-                       <apex:actionFunction name="applyFltr" action="{!loadProjects}" rerender="prjPanel,paginationSec" status="myStatus">
+                       <apex:actionFunction name="applyFltr" action="{!loadProjects}" rerender="prjPanel,paginationSec,jsLoad" status="myStatus">
                            <apex:param name="mytsk" assignTo="{!selectedPhase}" value="" />
                            <apex:param name="tldFrom" assignTo="{!tldFrom}" value="" />
                            <apex:param name="tldTo" assignTo="{!tldTo}" value="" />

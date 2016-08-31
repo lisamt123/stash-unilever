@@ -37,8 +37,8 @@
         <fullName>Global_Regional_Finance_Leader_Update</fullName>
         <description>Global Regional Finance Leader Update</description>
         <field>Global_Regional_Finance_Leader_Email__c</field>
-        <formula>IF( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp;ISPICKVAL(IPM_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(IPM_Project__r.IPM_Finance_Member__c ) ) ,  IPM_Project__r.IPM_Finance_Member__r.Email ,  
-IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp; ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( ISBLANK(Regional_Project__r.IPM_Finance_Member__c )), Regional_Project__r.IPM_Finance_Member__r.Email, &apos;&apos;))</formula>
+        <formula>IF( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp;ISPICKVAL(IPM_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(IPM_Project__r.IPM_Finance_Lead__c ) ) ,  IPM_Project__r.IPM_Finance_Lead__r.Email ,  
+IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp; ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( ISBLANK(Regional_Project__r.IPM_Finance_Lead__c )), Regional_Project__r.IPM_Finance_Lead__r.Email, &apos;&apos;))</formula>
         <name>Global Regional Finance Leader Update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -119,8 +119,7 @@ IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp
         </actions>
         <active>true</active>
         <description>Notification to Global Finance Leader for TLD change in MCO/Country Plan</description>
-        <formula>IF( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp;ISPICKVAL(IPM_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(IPM_Project__r.IPM_Finance_Member__c ) &amp;&amp; ISCHANGED(Previous_Target_Launch_Date__c) ) ,  true ,  
-IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp; ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(Regional_Project__r.IPM_Finance_Member__c )), true, false))</formula>
+        <formula>IF( ISPICKVAL(IPM_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp;ISPICKVAL(IPM_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(IPM_Project__r.IPM_Finance_Lead__c ) &amp;&amp; ISCHANGED(Previous_Target_Launch_Date__c) ) ,  true ,   IF(ISPICKVAL(Regional_Project__r.IPM_Project_Type__c, &apos;Original&apos;) &amp;&amp; ISPICKVAL(Regional_Project__r.IPM_Phase__c, &apos;Ideas&apos;) &amp;&amp; ( !ISBLANK(Regional_Project__r.IPM_Finance_Lead__c )), true, false))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

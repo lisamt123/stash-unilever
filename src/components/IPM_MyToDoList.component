@@ -294,8 +294,14 @@
                                                 </td> 
                                                 <td class="colCompleted">
                                                     <div class="col-xs-2 ipmCheckbox taskCheck">
-                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
-                                                        <label for="{!p.Id}"></label>
+                                                    	<apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+	                                                        <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" DISABLED="True"/>
+	                                                        <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel>
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
@@ -394,8 +400,14 @@
                                                 </td>
                                                 <td class="colCompleted">
                                                     <div class="col-xs-2 ipmCheckbox taskCheck">
-                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
-                                                        <label for="{!p.Id}"></label>
+                                                    	<apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+	                                                        <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" disabled="true"/>
+	                                                        <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel>
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
@@ -489,8 +501,14 @@
                                                 </td>
                                                 <td class="colCompleted">
                                                     <div class="col-xs-2 ipmCheckbox taskCheck">
+                                                    	<apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
                                                         <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
                                                         <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" disabled="true"/>
+                                                        <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel>
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
@@ -584,8 +602,14 @@
                                                 </td>
                                                 <td class="colCompleted">
                                                     <div class="col-xs-2 ipmCheckbox taskCheck">
-                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
-                                                        <label for="{!p.Id}"></label>
+                                                    	<apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+	                                                        <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" disabled="true"/>
+	                                                        <label for="{!p.Id}"></label>
+                                                        </apex:outputPanel> 
                                                     </div>
                                                 </td>
                                                 <td class="colProname">
@@ -680,8 +704,14 @@
                                                 <td class="colCompleted">
                                                     
                                                     <div class="col-xs-2 ipmCheckbox taskCheck">
-                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" checked="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
-                                                        <label for="{!p.Id}"></label>
+	                                                    <apex:outputPanel rendered="{!!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" checked="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)"/>
+	                                                        <label for="{!p.Id}"></label>
+	                                                    </apex:outputPanel>
+	                                                    <apex:outputPanel rendered="{!p.IPM_Project__r.IPM_PrepareForArchival__c}">
+	                                                        <input type="checkbox" value="{!p.IPM_Completed__c}" checked="{!p.IPM_Completed__c}" id="{!p.Id}" onClick="myAssignedTasks('{!p.Id}',this.checked)" disabled="true"/>
+	                                                        <label for="{!p.Id}"></label>
+	                                                    </apex:outputPanel>
                                                     </div>
                                                 </td>
                                                 <td class="colProname">

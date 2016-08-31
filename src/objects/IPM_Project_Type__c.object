@@ -260,6 +260,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Go_To_Change_TLD_Link__c</fullName>
+        <description>Link to be displayed along with the help text.</description>
+        <externalId>false</externalId>
+        <label>Go To Change TLD Link</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_InsertFinancialsAPIName__c</fullName>
         <description>Financial API for insertion</description>
         <externalId>false</externalId>
@@ -354,6 +365,16 @@
         <label>Source Company Card</label>
         <length>255</length>
         <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_TLD_Milestone_Help_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>TLD Milestone Help Text</label>
+        <length>255</length>
+        <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>

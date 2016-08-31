@@ -333,8 +333,8 @@ private class IPM_Milestone_Test
             
             apexpages.currentpage().getparameters().put('taskId',msList[2].id);
             IPM_Milestone milestoneCtrlvalidate1 = new IPM_Milestone(new ApexPages.StandardController(msList[2]));
+            milestoneCtrlvalidate1.milestoneId = msList[2].id;
             milestoneCtrlvalidate1.validateMilestone();
-            System.Assertequals(milestoneCtrlvalidate1.validateMilestone(), false, 'Milestone Validation Error');
             
             
             IPM_Milestone__c adhocMilestone = new IPM_Milestone__c();

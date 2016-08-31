@@ -37,16 +37,19 @@
         <field>IPM_Analytics__c$IPM_Geography__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics__c$IPM_Status__c</field>
-    </columns>
-    <columns>
         <field>IPM_Analytics__c$IPM_Category_Group__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Category__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_Sub_Category__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_Brand_Positioning__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Brand__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Market_Place_Activity__c</field>
@@ -61,9 +64,11 @@
         <field>IPM_Analytics__c$IPM_Strategic_Intent__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics__c$IPM_Auto_Aligned_Fin_TLD__c</field>
+        <field>IPM_Analytics__c$IPM_Target_Launch_Date_Aligned__c</field>
     </columns>
-	
+    <columns>
+        <field>IPM_Analytics__c$IPM_Financials_Aligned__c</field>
+    </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Project_Description__c</field>
     </columns>
@@ -131,16 +136,10 @@
         <field>IPM_Analytics__c$IPM_Business_Impact_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics__c$IPM_Company_Priority__c</field>
+        <field>IPM_Analytics__c$IPM_Company_Project_Priority_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics__c$IPM_1st_Full_Year_Gross_TO_BD__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics__c$IPM_1st_Full_Year_iTO_BD__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics__c$IPM_1st_Full_Year_iGP_BD__c</field>
+        <field>IPM_Analytics__c$IPM_Company_Project_Priority_BB__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Gross_TO_Y0_BD__c</field>
@@ -197,6 +196,33 @@
         <field>IPM_Analytics__c$IPM_iTO_Y8_BD__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y0BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y1BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y2BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y3BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y4BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y5BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y6BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y7BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_GP_Y8BD__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_iGP_Y0_BD__c</field>
     </columns>
     <columns>
@@ -224,6 +250,66 @@
         <field>IPM_Analytics__c$IPM_iGP_Y8_BD__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_Y1_Gross_TO_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y2_Gross_TO_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y3_Gross_TO_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y4_Gross_TO_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y5_Gross_TO_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y1_iTOBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y2_iTOBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y3_iTOBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y4_iTOBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y5_iTOBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y1_GPBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y2_GPBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y3_GPBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y4_GPBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y5_GPBD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y1_iGP_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y2_iGP_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y3_iGP_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y4_iGP_BD__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Y5_iGP_BD__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_Actual_Launch_Date__c</field>
     </columns>
     <columns>
@@ -245,6 +331,15 @@
         <field>IPM_Analytics__c$IPM_Exemptfrom_Threshold__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_BET_Name__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_BETOwner__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_BET_Current_Status__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_BET_First_Release_Due_Date__c</field>
     </columns>
     <columns>
@@ -257,6 +352,9 @@
         <field>IPM_Analytics__c$IPM_BET_Final_Released_On_date__c</field>
     </columns>
     <columns>
+        <field>IPM_Analytics__c$IPM_Reason_for_No_BET__c</field>
+    </columns>
+    <columns>
         <field>IPM_Analytics__c$IPM_Fast_Track_Project__c</field>
     </columns>
     <columns>
@@ -265,6 +363,16 @@
     <columns>
         <field>IPM_Analytics__c$IPM_Key_NonKey__c</field>
     </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Gate_Keeping_Model__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_White_Space_Project__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Project_Route__c</field>
+    </columns>
+    <currency>EUR</currency>
     <format>Tabular</format>
     <name>BD BB Alignment Report</name>
     <params>

@@ -31,10 +31,10 @@ public class IPM_ProjectTriggerHandler_Test {
         project.IPM_Technical_Project_Leader__c=u.Id;
         project.Deputy_Project_Leader__c=u.Id;
         project.IPM_Project_Gatekeeper__c=u.Id;
-        project.IPM_Finance_Member__c=u.Id;
+        project.IPM_Finance_Lead__c=u.Id;
         insert project;
         system.assertNotEquals(project.id, null);
-        system.assertEquals(project.IPM_Finance_Member__c, u.Id);
+        system.assertEquals(project.IPM_Finance_Lead__c, u.Id);
         
         String strRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name='Regional Rollout'].Id;
         proRoll = IPM_TestFactory_Helper.createIPMProjectRollout(False);

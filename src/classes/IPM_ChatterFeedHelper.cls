@@ -150,7 +150,7 @@ public without sharing class IPM_ChatterFeedHelper {
         Map<String, Boolean> existingProjectUserMap = new Map<String, Boolean>(); //var to return
         //find out if this user is any team member currently in the project
         IPM_Project__c[] ipmTeam = [SELECT IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, Deputy_Project_Leader__c, 
-                                                   IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,
+                                                   IPM_Finance_Lead__c, IPM_Project_Gatekeeper__c,
                                            (SELECT IPM_User__c FROM IPM_Project_Resources__r)
                                                FROM IPM_Project__c 
                                                WHERE Id IN :projectUserMap.keySet() LIMIT:IPM_ConstantUtils.MaxLimit];
@@ -177,8 +177,8 @@ public without sharing class IPM_ChatterFeedHelper {
                 String key = eachProject.Id + IPM_ConstantUtils.HYPHEN_DELIMITER + eachProject.Deputy_Project_Leader__c;
                 existingProjectUserMap.put(key, true);
             }
-            if(eachProject.IPM_Finance_Member__c != null) {
-                String key = eachProject.Id + IPM_ConstantUtils.HYPHEN_DELIMITER + eachProject.IPM_Finance_Member__c;
+            if(eachProject.IPM_Finance_Lead__c != null) {
+                String key = eachProject.Id + IPM_ConstantUtils.HYPHEN_DELIMITER + eachProject.IPM_Finance_Lead__c;
                 existingProjectUserMap.put(key, true);
             }
         }
@@ -271,7 +271,7 @@ public without sharing class IPM_ChatterFeedHelper {
                 oldProject = oldProjectMap.get(incomingProject.Id);
             }
             List<String> apiNames = new List<String> {'IPM_Project_Leader__c','IPM_Technical_Project_Leader__c','IPM_Project_Gatekeeper__c',
-                'Deputy_Project_Leader__c','IPM_Finance_Member__c'};
+                'Deputy_Project_Leader__c','IPM_Finance_Lead__c'};
             
             for(String apiName : apiNames)
             {
@@ -318,6 +318,10 @@ public without sharing class IPM_ChatterFeedHelper {
     */
     
     public static void notifyProjectIsFasttrack(List<IPM_Project__c> updatedProjects){
+        if(updatedProjects == null || updatedProjects.isEmpty()){
+        	return;
+        }
+        
         clearData();
         Set<Id> fasttrackProjects = new Map<Id,IPM_Project__c>(updatedProjects).keySet();
         String posttext;
@@ -460,12 +464,12 @@ public without sharing class IPM_ChatterFeedHelper {
                       
                        projectIds.add(fin.Regional_Project__c);
                        mentionIdRegional.add(fin.Regional_Project__r.IPM_Finance_Lead__c);
-	                   mentionIdRegional.add(fin.Regional_Project__r.IPM_Project_Leader__c);
-	                   mentionIdRegional.add(fin.Regional_Project__r.Deputy_Project_Leader__c);
-	                   mentionIdRegional.remove(null);
-	                   subjectIdMentionIdMap.put(fin.Regional_Project__c,mentionIdRegional);
-	                   subjectIdMessageMap.put(fin.Regional_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR5);
-	                     
+                       mentionIdRegional.add(fin.Regional_Project__r.IPM_Project_Leader__c);
+                       mentionIdRegional.add(fin.Regional_Project__r.Deputy_Project_Leader__c);
+                       mentionIdRegional.remove(null);
+                       subjectIdMentionIdMap.put(fin.Regional_Project__c,mentionIdRegional);
+                       subjectIdMessageMap.put(fin.Regional_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR5);
+                         
                        projectIds.add(fin.Local_Project__c);
                        mentionIdLocal.add(fin.Local_Project__r.IPM_Finance_Lead__c);
                        mentionIdLocal.add(fin.Local_Project__r.IPM_Project_Leader__c);
@@ -491,10 +495,9 @@ public without sharing class IPM_ChatterFeedHelper {
      String chatterPostMessage ='';
      Map<Id, Set<Id>> projectIdUserSetMap = new Map<Id, Set<Id>>(); 
      subjectIdMessageMap = new map<id,string>();
-     List<IPM_Project__c> tldUpdatedProjects = [SELECT IPMProject_Span__c,id,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_Finance_Lead__c,IPM_Finance_Member__c,IPM_Project_Name__c,
+     List<IPM_Project__c> tldUpdatedProjects = [SELECT IPMProject_Span__c,id,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_Finance_Lead__c,IPM_Project_Name__c,
                                 IPM_Parent_Project__r.IPM_Project_Leader__c,IPM_Parent_Project__r.Deputy_Project_Leader__c,
-                                IPM_Parent_Project__r.IPM_Finance_Member__c,IPM_Parent_Project__r.IPM_Project_Name__c,
-                                IPM_Parent_Project__r.IPM_Finance_Lead__c,
+                                IPM_Parent_Project__r.IPM_Finance_Lead__c,IPM_Parent_Project__r.IPM_Project_Name__c,
                                 Rollout_Plan_Target_Launch_Date__c,IPM_Target_Launch_Dates__c
                                 FROM IPM_Project__c
                                 WHERE id IN :updatedProjects
@@ -511,14 +514,14 @@ public without sharing class IPM_ChatterFeedHelper {
             Set<Id> regionalUserSet = new Set<Id> ();
             regionalUserSet.add(localProj.IPM_Parent_Project__r.IPM_Project_Leader__c);
             regionalUserSet.add(localProj.IPM_Parent_Project__r.Deputy_Project_Leader__c);
-            regionalUserSet.add(localProj.IPM_Parent_Project__r.IPM_Finance_Member__c);
+            regionalUserSet.add(localProj.IPM_Parent_Project__r.IPM_Finance_Lead__c);
             regionalUserSet.add(localProj.IPM_Parent_Project__r.IPM_Finance_Lead__c);
              
             regionalUserSet.remove(null);
             Set<Id> localUserSet = new Set<Id> ();
             localUserSet.add(localProj.IPM_Project_Leader__c);
             localUserSet.add(localProj.Deputy_Project_Leader__c);
-            localUserSet.add(localProj.IPM_Finance_Member__c);
+            localUserSet.add(localProj.IPM_Finance_Lead__c);
             localUserSet.add(localProj.IPM_Finance_Lead__c);
             
             localUserSet.remove(null);     
@@ -714,8 +717,8 @@ public without sharing class IPM_ChatterFeedHelper {
                 if(eachproject.Deputy_Project_Leader__c != null) {
                     tmpStr.add(eachproject.Deputy_Project_Leader__c);
                 }
-                if(eachproject.IPM_Finance_Member__c != null) {
-                    tmpStr.add(eachproject.IPM_Finance_Member__c);
+                if(eachproject.IPM_Finance_Lead__c != null) {
+                    tmpStr.add(eachproject.IPM_Finance_Lead__c);
                 }
             }
             if(tmpStr != null && !tmpStr.isEmpty()) {
