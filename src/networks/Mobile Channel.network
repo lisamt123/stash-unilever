@@ -38,7 +38,6 @@
         <permissionSet>ICB_Mobile_Channel_Salesmen_PCL</permissionSet>
         <permissionSet>ICB_Mobile_Channel_Operator_PCL</permissionSet>
         <permissionSet>ICB_Backoffice_Salesforce</permissionSet>
-        <profile>partner community login basic</profile>
     </networkMemberGroups>
     <picassoSite>Mobile_Channel1</picassoSite>
     <selfRegistration>false</selfRegistration>
