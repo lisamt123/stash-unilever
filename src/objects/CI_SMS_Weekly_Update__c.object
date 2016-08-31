@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -73,10 +73,11 @@
         <fullName>Comments__c</fullName>
         <externalId>false</externalId>
         <label>SME Weekly Comments</label>
-        <required>false</required>
+        <length>130000</length>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Description__c</fullName>
@@ -90,7 +91,10 @@
     <fields>
         <fullName>Funnel_Ref__c</fullName>
         <externalId>false</externalId>
-        <formula>CIR2R_Innovation__r.Project__c</formula>
+        <formula>HYPERLINK(&quot;/&quot;&amp;Id ,
+IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
+(&quot;Manual-&quot;  + Name) )
+,&apos;_self&apos; )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Funnel Ref#</label>
         <required>false</required>
@@ -100,7 +104,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Project_Category_2__c</fullName>
+        <fullName>Proj_Cat__c</fullName>
         <externalId>false</externalId>
         <label>Project Category</label>
         <picklist>
@@ -156,32 +160,9 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Project_Category__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(CIR2R_Innovation__r.Project_Category__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Project Category</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Project_Name_2__c</fullName>
-        <externalId>false</externalId>
-        <label>Project Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Project_Name__c</fullName>
         <externalId>false</externalId>
-        <label>Project Name</label>
+        <label>Project/Task Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -192,14 +173,82 @@
     <fields>
         <fullName>R2R_SME_Area__c</fullName>
         <externalId>false</externalId>
-        <formula>Text(CIR2R_Innovation__r.R2R_SME_Area__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>R2R SME Area</label>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Continuous Improvement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Financial Reporting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FX Revaluation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intercompany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Period-End</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAP Roles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCOA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>RAG_Color__c</fullName>
@@ -246,39 +295,163 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
         <label>Scope</label>
         <picklist>
             <picklistValues>
-                <fullName>Global</fullName>
+                <fullName>AAR</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>u2k2</fullName>
+                <fullName>All Countries</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cordilliera - SoCo</fullName>
+                <fullName>America</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cordilliera - CAR</fullName>
+                <fullName>Arabia*ANZ also</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Sirius - Denmark</fullName>
+                <fullName>Benelux</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Sirius - Finland (SP 2013069)</fullName>
+                <fullName>BENELUX &amp; DACH</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Fusion</fullName>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cordillera</fullName>
+                <fullName>China</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Sirius</fullName>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GCAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grater Caribbean</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HK and TW</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India &amp; Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India - Branch and HO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latam excluding Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico, UASCC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MYSG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America and Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>P&amp;H</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PHP(phillipines)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius Phase I (CEE, NORDICS, DACH)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Souther cone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAPL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Various</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius Phase II (Benelux, France)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius Phase III (Spain)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -287,6 +460,34 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Target_Closure__c</fullName>
@@ -298,24 +499,13 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
-    <fields>
-        <fullName>Test_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Test Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>CI_SME Weekly Update</label>
     <listViews>
         <fullName>All</fullName>
         <columns>Funnel_Ref__c</columns>
         <columns>Project_Name__c</columns>
+        <columns>R2R_SME_Area__c</columns>
         <columns>RAG_Color__c</columns>
-        <columns>Scope__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -329,11 +519,11 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
     <pluralLabel>CI_SME Weekly Update</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
-        <fullName>Without_CI_Funnel</fullName>
+        <fullName>CI_SME_with_CI</fullName>
         <active>true</active>
-        <label>Without CI Funnel</label>
+        <label>Record with CI reference</label>
         <picklistValues>
-            <picklist>Project_Category_2__c</picklist>
+            <picklist>Proj_Cat__c</picklist>
             <values>
                 <fullName>APM%2FSCOA%2FReporting updates</fullName>
                 <default>false</default>
@@ -380,6 +570,77 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>R2R_SME_Area__c</picklist>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Continuous Improvement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FX Revaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intercompany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Period-End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP Roles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCOA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>RAG__c</picklist>
             <values>
                 <fullName>Amber</fullName>
@@ -397,49 +658,192 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
         <picklistValues>
             <picklist>Scope__c</picklist>
             <values>
-                <fullName>Cordillera</fullName>
+                <fullName>AAR</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cordilliera - CAR</fullName>
+                <fullName>All Countries</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cordilliera - SoCo</fullName>
+                <fullName>America</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Fusion</fullName>
+                <fullName>Arabia*ANZ also</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Global</fullName>
+                <fullName>BENELUX %26 DACH</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sirius</fullName>
+                <fullName>Benelux</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sirius - Denmark</fullName>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sirius - Finland %28SP 2013069%29</fullName>
+                <fullName>China</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>u2k2</fullName>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GCAD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grater Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HK and TW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India %26 Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India - Branch and HO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latam excluding Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MYSG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico%2C UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America and Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P%26H</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PHP%28phillipines%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase I %28CEE%2C NORDICS%2C DACH%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase II %28Benelux%2C France%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase III %28Spain%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Souther cone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAPL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Various</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
-        <fullName>with_CI_Funnel</fullName>
+        <fullName>CI_SME_without_CI</fullName>
         <active>true</active>
-        <label>with CI Funnel</label>
+        <label>Independent task</label>
         <picklistValues>
-            <picklist>Project_Category_2__c</picklist>
+            <picklist>Proj_Cat__c</picklist>
             <values>
                 <fullName>APM%2FSCOA%2FReporting updates</fullName>
                 <default>false</default>
@@ -486,6 +890,77 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>R2R_SME_Area__c</picklist>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Continuous Improvement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FX Revaluation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GPM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Intercompany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Period-End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP Roles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SCOA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>RAG__c</picklist>
             <values>
                 <fullName>Amber</fullName>
@@ -503,39 +978,182 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
         <picklistValues>
             <picklist>Scope__c</picklist>
             <values>
-                <fullName>Cordillera</fullName>
+                <fullName>AAR</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cordilliera - CAR</fullName>
+                <fullName>All Countries</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cordilliera - SoCo</fullName>
+                <fullName>America</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Fusion</fullName>
+                <fullName>Arabia*ANZ also</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Global</fullName>
+                <fullName>BENELUX %26 DACH</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sirius</fullName>
+                <fullName>Benelux</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sirius - Denmark</fullName>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Sirius - Finland %28SP 2013069%29</fullName>
+                <fullName>China</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>u2k2</fullName>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GCAD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grater Caribbean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HK and TW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India %26 Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India - Branch and HO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latam excluding Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MYSG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico%2C UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America and Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P%26H</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PHP%28phillipines%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase I %28CEE%2C NORDICS%2C DACH%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase II %28Benelux%2C France%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius Phase III %28Spain%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Souther cone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UAPL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Various</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -543,12 +1161,10 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
     <searchLayouts>
         <customTabListAdditionalFields>Funnel_Ref__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Project_Name__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields>R2R_SME_Area__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>RAG_Color__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>Scope__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>Funnel_Ref__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>RAG_Color__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Scope__c</searchResultsAdditionalFields>
     </searchLayouts>

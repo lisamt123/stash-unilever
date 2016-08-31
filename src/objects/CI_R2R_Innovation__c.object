@@ -59,6 +59,18 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Alternate_Scope__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If you select &apos;Others&apos; in Geographical Scope please provide details</inlineHelpText>
+        <label>Alternate Scope</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Benifit_Amount__c</fullName>
         <externalId>false</externalId>
         <label>Benifit Amount</label>
@@ -67,8 +79,7 @@
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Benifit_Type__c</fullName>
@@ -81,10 +92,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Audit reference</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Benifit Type</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -108,7 +115,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>GL_hygiene</fullName>
+                <fullName>GL hygiene</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -147,7 +154,7 @@
         <label>Business Cost</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -157,10 +164,11 @@
         <fullName>Comments__c</fullName>
         <externalId>false</externalId>
         <label>Comments</label>
-        <required>false</required>
+        <length>130000</length>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Count_for_Budget__c</fullName>
@@ -171,6 +179,34 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Funnel_Status__c</fullName>
@@ -187,11 +223,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>3 Feasibility</fullName>
+                <fullName>3 Capability</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>4 Capability</fullName>
+                <fullName>4 Feasibility</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -199,35 +235,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Funnel Stage</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>On-Hold</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Pre-ideas</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>6 Implemented</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>9 Closed</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>0 On-hold</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>4 Launch</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>ON HOLD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CLOSED</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -362,6 +378,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>P&amp;H</fullName>
                 <default>false</default>
             </picklistValues>
@@ -434,19 +454,7 @@
         <label>Landscape</label>
         <picklist>
             <picklistValues>
-                <fullName>All</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CODA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Cordillera</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cordillera &amp; Sirius</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -454,40 +462,60 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Global</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Landscape</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>NA</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Sirius</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>TBC</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>U2K2</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TBC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
     </fields>
     <fields>
         <fullName>Project2__c</fullName>
-        <externalId>true</externalId>
+        <externalId>false</externalId>
         <label>Project#</label>
         <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project3__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(R2R_SME_Area__c, &apos;Account Reconciliation&apos;), ( text(YEAR(today())) +&apos;.AR.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;FX Revaluation&apos;), (text(YEAR(today())) +&apos;.FX.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Intercompany&apos;), (text(YEAR(today())) +&apos;.IC.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Period-End&apos;), (text(YEAR(today())) +&apos;.PE.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Project&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SAP Roles&apos;), (text(YEAR(today())) +&apos;.SR.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tax&apos;), (text(YEAR(today())) +&apos;.TX.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tools&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Continuous Improvement&apos;), (text(YEAR(today())) +&apos;.CI.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Fixed Assets&apos;), (text(YEAR(today())) +&apos;.FA.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Financial Reporting&apos;), (text(YEAR(today())) +&apos;.FR.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Journal Entries&apos;), (text(YEAR(today())) +&apos;.FA.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;GL MDM&apos;), (text(YEAR(today())) +&apos;.MDM.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Direct Tax&apos;), (text(YEAR(today())) +&apos;.DT.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) +&apos;.IDT.&apos;+ Name),
+(text(YEAR(today())) +&apos;.&apos;+ text( R2R_SME_Area__c ) +&apos;.&apos;+ Name))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project3#</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -553,13 +581,14 @@
         <fullName>Project_Description__c</fullName>
         <externalId>false</externalId>
         <label>Project Description</label>
-        <required>false</required>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>TextArea</type>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
     </fields>
     <fields>
-        <fullName>Project_Lead__c</fullName>
+        <fullName>Project_Lead_del__c</fullName>
         <externalId>false</externalId>
         <label>Project Lead</label>
         <picklist>
@@ -567,69 +596,71 @@
             <picklistValues>
                 <fullName>Kamila Marzetz</fullName>
                 <default>false</default>
-                <controllingFieldValues>AccRec</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Tomasz Mis</fullName>
-                <default>false</default>
-                <controllingFieldValues>AccRec</controllingFieldValues>
+                <controllingFieldValues>Account Reconciliation</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Niraj Kothari</fullName>
                 <default>false</default>
-                <controllingFieldValues>JE</controllingFieldValues>
-                <controllingFieldValues>MDM</controllingFieldValues>
+                <controllingFieldValues>Direct Tax</controllingFieldValues>
+                <controllingFieldValues>FX Revaluation</controllingFieldValues>
+                <controllingFieldValues>GL MDM</controllingFieldValues>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
                 <controllingFieldValues>Period-End</controllingFieldValues>
                 <controllingFieldValues>SAP Roles</controllingFieldValues>
+                <controllingFieldValues>Tax</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Padma Prasad</fullName>
                 <default>false</default>
-                <controllingFieldValues>FA</controllingFieldValues>
+                <controllingFieldValues>Fixed Assets</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Cristina Butu</fullName>
                 <default>false</default>
-                <controllingFieldValues>FR</controllingFieldValues>
+                <controllingFieldValues>Financial Reporting</controllingFieldValues>
+                <controllingFieldValues>SCOA</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Valeria Gulyas</fullName>
                 <default>false</default>
-                <controllingFieldValues>CI</controllingFieldValues>
-                <controllingFieldValues>SAP Roles</controllingFieldValues>
+                <controllingFieldValues>Continuous Improvement</controllingFieldValues>
+                <controllingFieldValues>GPM</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Ana Paula Moura</fullName>
+                <fullName>Sankarnarayanan V</fullName>
                 <default>false</default>
-                <controllingFieldValues>SAP Roles</controllingFieldValues>
-                <controllingFieldValues>Tax</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Henry Cardenas</fullName>
-                <default>false</default>
-                <controllingFieldValues>Project</controllingFieldValues>
-                <controllingFieldValues>Tools</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sankar</fullName>
-                <default>false</default>
-                <controllingFieldValues>Inter-co</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Sankar/ Cristina</fullName>
-                <default>false</default>
-                <controllingFieldValues>Inter-co</controllingFieldValues>
+                <controllingFieldValues>Intercompany</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Nikoletta Pinter</fullName>
                 <default>false</default>
-                <controllingFieldValues>FR</controllingFieldValues>
+                <controllingFieldValues>Financial Reporting</controllingFieldValues>
+                <controllingFieldValues>Indirect Tax</controllingFieldValues>
                 <controllingFieldValues>Tax</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>Niraj/ Murali</fullName>
+                <fullName>Vivekaa Arumugam</fullName>
                 <default>false</default>
-                <controllingFieldValues>FX Reval</controllingFieldValues>
+                <controllingFieldValues>Continuous Improvement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Veerabhadran VK</fullName>
+                <default>false</default>
+                <controllingFieldValues>FX Revaluation</controllingFieldValues>
+                <controllingFieldValues>GL MDM</controllingFieldValues>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+                <controllingFieldValues>Period-End</controllingFieldValues>
+                <controllingFieldValues>SAP Roles</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ashwathi Upalakkal</fullName>
+                <default>false</default>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sheetal Pinjarkar</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tools</controllingFieldValues>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -651,16 +682,10 @@
     <fields>
         <fullName>Project__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISPICKVAL(R2R_SME_Area__c, &apos;AccRec&apos;), ( text(YEAR(today()))  +&apos;.AR.&apos;+ Name), 
-IF ( ISPICKVAL(R2R_SME_Area__c, &apos;FX Reval&apos;), (text(YEAR(today())) +&apos;.FX.&apos;+ Name), 
-IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Inter-co&apos;), (text(YEAR(today())) +&apos;.IC.&apos;+ Name), 
-IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Period-End&apos;), (text(YEAR(today())) +&apos;.PE.&apos;+ Name), 
-IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Project&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
-IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SAP Roles&apos;), (text(YEAR(today())) +&apos;.SR.&apos;+ Name), 
-IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tax&apos;), (text(YEAR(today())) +&apos;.TX.&apos;+ Name), 
-IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tools&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
-(text(YEAR(today())) +&apos;.&apos;+ text( R2R_SME_Area__c ) +&apos;.&apos;+ Name)))))))))</formula>
-        <label>Project Num</label>
+        <formula>HYPERLINK(&quot;/&quot;&amp;Id , 
+ Project2__c 
+,&apos;_self&apos;)</formula>
+        <label>Project#</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -673,35 +698,35 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tools&apos;), (text(YEAR(today())) +&apos;
         <label>R2R SME Area</label>
         <picklist>
             <picklistValues>
-                <fullName>AccRec</fullName>
+                <fullName>Account Reconciliation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CI</fullName>
+                <fullName>Continuous Improvement</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>FA</fullName>
+                <fullName>Fixed Assets</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>FR</fullName>
+                <fullName>Financial Reporting</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>FX Reval</fullName>
+                <fullName>FX Revaluation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Inter-co</fullName>
+                <fullName>Intercompany</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>JE</fullName>
+                <fullName>Journal Entries</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>MDM</fullName>
+                <fullName>GL MDM</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -724,6 +749,22 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tools&apos;), (text(YEAR(today())) +&apos;
                 <fullName>Tools</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>GPM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCOA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -735,7 +776,8 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tools&apos;), (text(YEAR(today())) +&apos;
         <externalId>false</externalId>
         <formula>IF( ISPICKVAL(RAG__c, &apos;Green&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvi&quot;, &quot;Green&quot;),
 IF ( ISPICKVAL(RAG__c, &apos;Amber&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvd&quot;, &quot;Yellow&quot;),
-IF ( ISPICKVAL(RAG__c, &apos;Red&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvY&quot;, &quot;Red&quot;),
+IF ( ISPICKVAL(RAG__c, &apos;Red&apos;),  IMAGE(&apos;/servlet/servlet.FileDownload?file=015c0000000cPvY&apos;,
+&quot;Red&quot;),
 &apos;&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>RAG Color</label>
@@ -783,25 +825,25 @@ Green- On track</inlineHelpText>
     <fields>
         <fullName>Total_Cost__c</fullName>
         <externalId>false</externalId>
-        <formula>Business_cost__c  +  IT_Cost__c</formula>
+        <formula>text(Business_cost__c  +  IT_Cost__c) &amp; &apos; &apos; &amp; text( Currency__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cost</label>
-        <precision>18</precision>
         <required>false</required>
-        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <label>CI_R2R Innovation</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
         <columns>Project__c</columns>
         <columns>Project_Name__c</columns>
         <columns>R2R_SME_Area__c</columns>
+        <columns>Landscape__c</columns>
+        <columns>Funnel_Status__c</columns>
         <columns>RAG_Color__c</columns>
+        <columns>Project2__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -814,18 +856,21 @@ Green- On track</inlineHelpText>
     </nameField>
     <pluralLabel>CI_R2R Innovations</pluralLabel>
     <searchLayouts>
+        <customTabListAdditionalFields>Project__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Project_Name__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>R2R_SME_Area__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Landscape__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Funnel_Status__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>RAG_Color__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>Project_Name__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>Project2__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Project__c</lookupDialogsAdditionalFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Project_Name__c</searchFilterFields>
-        <searchFilterFields>Project2__c</searchFilterFields>
+        <searchFilterFields>Project__c</searchFilterFields>
+        <searchResultsAdditionalFields>Project__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>R2R_SME_Area__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>RAG_Color__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Project2__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
