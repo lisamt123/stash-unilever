@@ -14,6 +14,8 @@ src/classes/CEC_NewAccountControllerExtension.cls
 src/classes/CEC_NewAccountControllerExtension.cls-meta.xml
 src/classes/CEC_RetrievalRequestTriggerHelper.cls
 src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
+src/classes/CEC_FulfilmentHelperExtension.cls
+src/classes/CEC_FulfilmentHelperExtension.cls-meta.xml
 src/customPermissions/CEC_User_CosmetoVigilance.customPermission
 src/email/AA_Email_Templates
 src/email/AA_Email_Templates-meta.xml
@@ -43,6 +45,7 @@ src/layouts/cec_Additional_Case_Information__c-Additional Information Layout.lay
 src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
 src/objects/Case.object
 src/objects/CEC_Case_Market_Mapping__c.object
+src/objects/cec_Enclosure__c.object
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
 src/permissionsets/CEC_User_CosmetoVigilance.permissionset
