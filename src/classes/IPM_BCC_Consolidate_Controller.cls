@@ -38,23 +38,32 @@ public with sharing class IPM_BCC_Consolidate_Controller
             localProjectsCount=[SELECT Count() FROM IPM_Project__c WHERE IPM_Parent_Project__r.IPM_Parent_Project__c=:projId];
             if(localProjectsCount>0) {
                 localFinancialList=[SELECT Id,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
-                                           Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
-                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c, 
-                                            (SELECT Turnover_Regional__c,Turnover_Contract__c,Turnover_MR__c,Advertising_Promotions_Regional__c,Advertising_Promotions_Contract__c,
-                                        Advertising_Promotions_MR__c,GM_of_TO_Regional__c,GM_of_TO_Contract__c,GM_of_TO_MR__c 
-                                    FROM IPM_Financial_Years__r 
-                                    WHERE Year_Type__c=: CORE_STRATEGIC_INNOVATION AND Year__c=: Year)
+                                           Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,Contract_Approved__c,MR_Approved__c, 
+                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c
                                     FROM IPM_Financial__c 
                                     WHERE isActive__c=true and Regional_Project__r.IPM_Parent_Project__c=:projId and Local_Project_isNull__c = :IPM_ConstantUtils.IPM_false];
                 }
+             else if(showBccTable)
+             {
+             	   localFinancialList=[SELECT Id,Local_Project__r.IPM_Phase__c,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
+                                           Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
+                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c,Contract_Approved__c, MR_Approved__c,
+                                            (SELECT Turnover_Regional__c,Turnover_Contract__c,Turnover_MR__c,Advertising_Promotions_Regional__c,Advertising_Promotions_Contract__c,
+                                        Advertising_Promotions_MR__c,GM_of_TO_Regional__c,GM_of_TO_Contract__c,GM_of_TO_MR__c,Turnover_Global__c,Advertising_Promotions_Global__c,GM_of_TO_Global__c 
+                                    FROM IPM_Financial_Years__r 
+                                    WHERE Year_Type__c=: CORE_STRATEGIC_INNOVATION AND Year__c=: Year)
+                                    FROM IPM_Financial__c 
+                                    WHERE isActive__c=true and IPM_Project_Rollout__r.IPM_Project__c=:projId and Local_Project_isNull__c = :IPM_ConstantUtils.IPM_false];
+             	
+             }   
         }
         else if(projectSpan==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && projId!=null){
             localProjectsCount=[SELECT Count() FROM IPM_Project__c WHERE IPM_Parent_Project__c=:projId];
             if(localProjectsCount>0) {
                 localFinancialList=[SELECT Id,Local_Project__c,Local_Project__r.IPM_Phase__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
-                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c,
+                                           Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c,Contract_Approved__c, MR_Approved__c,
                                        (SELECT Turnover_Regional__c,Turnover_Contract__c,Turnover_MR__c,Advertising_Promotions_Regional__c,Advertising_Promotions_Contract__c,
-                                        Advertising_Promotions_MR__c,GM_of_TO_Regional__c,GM_of_TO_Contract__c,GM_of_TO_MR__c 
+                                        Advertising_Promotions_MR__c,GM_of_TO_Regional__c,GM_of_TO_Contract__c,GM_of_TO_MR__c,Turnover_Global__c,Advertising_Promotions_Global__c,GM_of_TO_Global__c 
                                     FROM IPM_Financial_Years__r 
                                     WHERE Year_Type__c=: CORE_STRATEGIC_INNOVATION AND Year__c=: Year)
                                     FROM IPM_Financial__c 
@@ -65,7 +74,7 @@ public with sharing class IPM_BCC_Consolidate_Controller
         }
         else if(projectSpan==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projId!=null){
             localFinancialList=[SELECT Id,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
-                                       Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,
+                                       Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,Contract_Approved__c, MR_Approved__c,
                                        Misaligned__c,IPM_Business_Case_Confirmed__c,IPM_Country_Feedback__c,Is_BC_Confirmed_Capability__c 
                                 FROM IPM_Financial__c 
                                 WHERE isActive__c=true and Local_Project__c=:projId];
