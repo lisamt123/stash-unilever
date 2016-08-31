@@ -35,18 +35,10 @@
         </navigationMenuItem>
     </navigationLinkSet>
     <networkMemberGroups>
-        <permissionSet>ICB_Mobile_Channel_Operator_OLD</permissionSet>
-        <permissionSet>ICB_Mobile_Channel_Salesman</permissionSet>
-        <permissionSet>ICB_Mobile_Channel_Backoffice</permissionSet>
         <permissionSet>ICB_Mobile_Channel_Salesmen_PCL</permissionSet>
         <permissionSet>ICB_Mobile_Channel_Operator_PCL</permissionSet>
-        <permissionSet>ICB_Mobile_Channel_Salesman_Partner_Community</permissionSet>
-        <permissionSet>ICB_Mobile_Channel_Backoffice_Salesforce</permissionSet>
-        <profile>admin</profile>
-        <profile>mobile channel partner community</profile>
-        <profile>partner community login</profile>
-        <profile>partner community</profile>
-        <profile>Partner Community Login Basic</profile>
+        <permissionSet>ICB_Backoffice_Salesforce</permissionSet>
+        <profile>partner community login basic</profile>
     </networkMemberGroups>
     <picassoSite>Mobile_Channel1</picassoSite>
     <selfRegistration>false</selfRegistration>
@@ -55,7 +47,6 @@
     <status>Live</status>
     <tabs>
         <customTab>Cockpit</customTab>
-        <customTab>Closed_Opportunity</customTab>
         <customTab>Inventory</customTab>
         <customTab>Lista_de_Pre_os</customTab>
         <customTab>ICB_Sales_Locale__c</customTab>
