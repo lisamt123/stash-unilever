@@ -193,3 +193,11 @@ src/flexipages/ICB_Sales_Locale.flexipage
 src/flexipages/ICB_TablePrice.flexipage
 src/flexipages/Inventory.flexipage
 src/flexipages/Lista_de_Pre_os.flexipage
+src/documents/
+src/documents/Communities_Shared_Document_Folder/Mobile_Channel_App_Logo.png-meta.xml
+src/documents/Communities_Shared_Document_Folder/Mobile_Channel_App_Logo.png
+src/documents/Communities_Shared_Document_Folder/Kibon_Logo_55.png-meta.xml
+src/documents/Communities_Shared_Document_Folder/Kibon_Logo_55.png
+src/documents/Communities_Shared_Document_Folder/kibon_logo_125_png.png-meta.xml
+src/documents/Communities_Shared_Document_Folder/kibon_logo_125_png.png
+src/documents/Communities_Shared_Document_Folder-meta.xml
