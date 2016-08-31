@@ -146,3 +146,6 @@ jq(document).ready(function() {
    function skipValidation() {
        unsaved = false;
    }
+   function pageclosemilestone(){
+    window.top.location.href = IPMAppComp.pageRef + '?id=' + IPMAppComp.projectId + '&name=newMstone';
+}

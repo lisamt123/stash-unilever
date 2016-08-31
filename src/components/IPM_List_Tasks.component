@@ -40,7 +40,7 @@
                     <apex:outputPanel layout="block" rendered="{!projectObj.IPM_PM_Approach__c='Internal'}">  
                         <div class="assignedCheckboxes">                 
                         <div class="col-xs-2 ipmCheckbox">
-                            <input type="checkbox" value="{!toggleTask}" id="assignedToMe" name="Assigned to me" onClick="myTasks(this.checked)"/>
+                       		<input type="checkbox" value="{!toggleTask}" id="assignedToMe" name="Assigned to me" onClick="myTasks(this.checked)" isDisabled="{!isTaskReadOnly}"/>
                             <label class="taskTop" for="assignedToMe"></label>
                         </div>
                         <div class="staticLabel2">{!$Label.IPM_TaskAssignedToMe}</div>                  
@@ -54,16 +54,22 @@
                     <apex:actionFunction name="saveApproach" action="{!saveIPMApproach}" reRender="showtask,nonnego,statsPanel,showInfoMsg,tmpPanel,cmdBtnPanel,newblock,tskPanel,ipmTableDiv,checkBoxScript" status="displayTasksChkBoxStatus" oncomplete="callbackLoadAction();checkBoxScript();location.reload();"/>     
                     <div class="pull-left askManageTodos Todosalign">
                         <div class="ipmCheckbox"> 
-                            <input id="displayTasksChkBox"  value="{!IF(projectObj.IPM_PM_Approach__c='Internal','true','false')}"  isChecked="{!projectObj.IPM_PM_Approach__c}" type="checkbox"  onchange="saveApproach();" isDisabled="{! if(isApproachEdit=true,'false','true')}"/>
+                            <input id="displayTasksChkBox"  value="{!IF(projectObj.IPM_PM_Approach__c='Internal','true','false')}"  isChecked="{!projectObj.IPM_PM_Approach__c}" type="checkbox"  onchange="saveApproach();" isDisabled="{! if(isApproachEdit=true && isTaskReadOnly=false,'false','true')}"/>
                             <label for="displayTasksChkBox"></label>   
                         </div>  
                         <span class="raLabelTodo">{!$Label.IPM_TO_DOs_VIA_NAVIGATOR}</span> 
                     </div> 
                     <!-- Comment : If Current user having access to create task record and project aoppproach is internal then Add tOdo link is visible  -->
-                    <apex:outputPanel styleClass="pull-left" layout="block" rendered="{!if(AND(isCreateTask=true,projectObj.IPM_PM_Approach__c='Internal'),'true','false')}">
+                    <apex:outputPanel styleClass="pull-left" layout="block" rendered="{!if(AND(isCreateTask=true,projectObj.IPM_PM_Approach__c='Internal',isTaskReadOnly=false),'true','false')}">
                         <div class="addLink toDoLink noPadright addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}" title="Add To-dos" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText">&nbsp;{!$Label.IPM_AddTaskLabel}</span></div>
                     </apex:outputPanel>
-                </apex:outputPanel>
+                    <apex:outputPanel styleClass="pull-left downloadbtntodo" layout="block" >
+                        <div class="SecButtonSet pull-right">
+                                <!-- Below commandlink is used to provide excel download button -->   
+                                <apex:commandLink styleClass="icoButton download" target="_blank" action="{!exportToExcel}" oncomplete="window.close();" title="{!$Label.IPM_Export_ToDos}"  /> 
+                        </div>
+                    </apex:outputPanel>
+                </apex:outputPanel> 
                 
                 <apex:outputPanel layout="block" rendered="{!!pmApproachMessage}">
                 <div class="row ipmTaskRow toDoMarginTop pull-left">
@@ -111,7 +117,7 @@
                                 </apex:facet>
                                 <div class="ipmCheckbox taskCheck">
                                 <apex:outputPanel id="checkdiv">
-                                    <input type="checkbox" value="{!p.isChecked}" id="{!p.record['Id']}" onClick="myAssignedTasks('{!p.record['Id']}',this.checked)" isDisabled="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'false','true')}"/>
+                                    <input type="checkbox" value="{!p.isChecked}" id="{!p.record['Id']}" onClick="myAssignedTasks('{!p.record['Id']}',this.checked)" isDisabled="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'false','true')}"/>
                                     <label for="{!p.record['Id']}"></label>
                                  </apex:outputPanel>  
                                 </div>
@@ -128,12 +134,12 @@
                                     <div class="col-sm-11 noPadleft noPadright">
                                     <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then user can edit the task by double clicking on task name -->
-                                        <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'true','false')}" >
+                                        <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false),'true','false')}" >
                                         <div class="editTask" id="editTask" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}" title="Edit Task"><apex:outputfield value="{!p.record['IPM_Task_Name__c']}" /></div>
                                         </apex:outputPanel>
                                         <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is not equal to
                                         tasks' functional role + current user is having access for edit task then user cannot edit the task by double clicking on task name -->
-                                        <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'false','true')}" >
+                                        <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'false','true')}" >
                                         <div><apex:outputfield value="{!p.record['IPM_Task_Name__c']}" /></div>
                                         </apex:outputPanel>
                                     </div>
@@ -155,12 +161,12 @@
                                 </apex:facet>
                                 <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then user can edit the task by double clicking on phase  -->
-                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'true','false')}" >
+                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'true','false')}" >
                                     <div class="editTask" id="editTask" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}" title="Edit Task"><apex:outputfield value="{!p.record['IPM_Phase__c']}" /></div>
                                 </apex:outputPanel>
                                 <!-- Comment : if any of the condition fails (functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task) then user cannot edit the task by double clicking on phase -->
-                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'false','true')}">
+                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'false','true')}">
                                     <apex:outputfield value="{!p.record['IPM_Phase__c']}" />
                                 </apex:outputPanel>
                             </apex:column>
@@ -173,18 +179,18 @@
                                     <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.record['IPM_Project__r']}&projDocSecId={!p.record['IPM_Project_Document_Section__c']}" target="_blank">
                                         {!p.record['IPM_Project_Document_Section__r']['IPM_Section_Sequence__c']} {!p.record['IPM_Project_Document_Section__r']['IPM_Section_Name__c']} </a>
                                 </apex:outputPanel>
-                                 <apex:outputPanel rendered="{! AND(p.record['IPM_Section__c'] != NULL,p.record['IPM_Project_Document_Section__c'] == NULL)}">
+                                <apex:outputPanel rendered="{! AND(p.record['IPM_Section__c'] != NULL,p.record['IPM_Project_Document_Section__c'] == NULL)}">
                                         {!p.record['IPM_Section__r']['IPM_Section_Sequence__c']} {!p.record['IPM_Section__r']['IPM_Section_Name__c']}  
                                 </apex:outputPanel>
                                 <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then user can edit the task by double clicking on task function -->
-                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'true','false')}">
+                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'true','false')}">
                                     <div class="editTask" id="editTask" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}" title="Edit Task"><apex:outputPanel rendered="{!p.record['IPM_Function__c'] != NULL}">
                                     [{!p.record['IPM_Function__c']}]</apex:outputPanel></div>
                                 </apex:outputPanel>
                                 <!-- Comment : if any of the condition fails (functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task) then user cannot edit the task by double clicking on task function -->
-                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'false','true')}">
+                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'false','true')}">
                                     <apex:outputPanel rendered="{!p.record['IPM_Function__c'] != NULL}">
                                         [{!p.record['IPM_Function__c']}]</apex:outputPanel>
                                 </apex:outputPanel>
@@ -213,12 +219,12 @@
                                 </apex:facet>
                                 <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then user can edit the task by double clicking on task due date -->
-                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'true','false')}">
+                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'true','false')}">
                                     <div class="editTask" id="editTask" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}" title="Edit Task"><apex:outputField value="{!p.record['IPM_Due_Date1__c']}"/></div>
                                 </apex:outputPanel>
                                 <!-- Comment : if any of the condition fails (functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task) then user cannot edit the task by double clicking on task due date -->
-                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'false','true')}">
+                                <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,isTaskReadOnly=false ),'false','true')}">
                                     <apex:outputField value="{!p.record['IPM_Due_Date1__c']}"/>
                                 </apex:outputPanel>
                             </apex:column>                         
@@ -226,13 +232,13 @@
                                 <apex:outputPanel styleClass="SecButtonSet">
                                  <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then edit button is visible -->
-                                    <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,!p.isChecked ),'true','false')}">
+                                    <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,!p.isChecked,isTaskReadOnly=false ),'true','false')}">
                                     <a class="icoButton edit1 editTaskBtn" id="editTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}" data-backdrop="static" data-keyboard="false"></a>
                                     
                                     </apex:outputPanel>
                                     <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then delete button is visible -->
-                                     <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,!p.isChecked ),'true','false')}">
+                                     <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,!p.isChecked,isTaskReadOnly=false ),'true','false')}">
                                       <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!p.record['Id']}" id="{!p.record['Id']}" 
                                         onclick="var isLast ='false'; if( '{!ProjectTasks.size}' == 1 ) { isLast = 'true'; }  myFunc('{!JSENCODE(p.record['Id'])}',isLast,'{!JSENCODE(p.record['IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c'])}','{!JSENCODE(p.record['IPM_Project_Document_Section__r.IPM_Section_Sequence__c'])}');" 
                                         title="Delete" 

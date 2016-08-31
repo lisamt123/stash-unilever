@@ -122,8 +122,8 @@
                     </apex:outputPanel>
                     </div> 
                     <div class="buttonMarginRight marginTop ipmButtonGroup pull-right">               
-                        <apex:commandLink action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onclick="skipValidation();" onComplete="{!if(AND(validate),'pagecloseNewTask()','')};"/>
-                        <apex:commandLink action="{!doSaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onclick="skipValidation();" onComplete="pagecloseNewTask();"/>
+                        <apex:commandLink action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onclick="skipValidation();" onComplete="{!if(AND(validate),'pagecloseNewTask();pageclosetodo();','')};"/>
+                        <apex:commandLink action="{!doSaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onclick="skipValidation();" onComplete="pagecloseNewTask();pageclosetodo();"/>
                     </div>
                                
             </apex:form>

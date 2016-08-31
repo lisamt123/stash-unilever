@@ -381,7 +381,7 @@ public with sharing class IPM_FinancialYearHelper
             set<string> setAllFinacials = new set<string>(); //Set to store all Financial External Ids.
             
             //Get all Financial Year records for the related Financial records
-            for(IPM_Financial_Year__c finYr :[select id, Name,Turnover_Global__c, Turnover_Regional__c, Turnover_Local__c, Financial_External_ID__c, External_Id__c, IPM_Financial__r.Global_External_Id__c, IPM_Financial__r.Regional_Project__c, IPM_Financial__r.Local_Project__c, IPM_Financial__r.Financial_External_ID__c from IPM_Financial_Year__c where Financial_External_ID__c in : setFinExtId AND IPM_Financial__r.RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE and Name!= :IPM_ConstantUtils.Y0_LABEL and isActive__c = TRUE and IPM_Financial__r.isActive__c = TRUE  LIMIT 50000]){
+            for(IPM_Financial_Year__c finYr :[select id, Name,Turnover_Global__c, Turnover_Regional__c, Turnover_Local__c, Financial_External_ID__c, External_Id__c, IPM_Financial__r.Global_External_Id__c, IPM_Financial__r.Regional_Project__c, IPM_Financial__r.Local_Project__c, IPM_Financial__r.Financial_External_ID__c from IPM_Financial_Year__c where Financial_External_ID__c in : setFinExtId AND IPM_Financial__r.RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE and Name_isY0__c = :IPM_ConstantUtils.IPM_false and isActive__c = TRUE and IPM_Financial__r.isActive__c = TRUE  LIMIT 50000]){
                 mapExtIdFinYear.put(finYr.External_Id__c, finYr);
 		setAllFinacials.add(finYr.IPM_Financial__r.Financial_External_ID__c);
 				
@@ -490,5 +490,6 @@ public with sharing class IPM_FinancialYearHelper
                }         
     		}
     }
+    
     
 }

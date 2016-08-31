@@ -42,7 +42,7 @@
                                 <apex:outputText rendered="{!AND(project.IPM_Project_Type__c != 'Operational' ,NOT(isError))}">
                                     <div class="finArrow"><span class="fa fa-angle-left"></span></div>
                                 </apex:outputText>
-                                   <div class="ipmAccordion">
+                                   <div class="ipmAccordion currency">
                                       <div class="projectContainer">   
                                          <!--Rendered when project span is global and map is loaded with consolidated or default mapping-->
                                          <apex:outputPanel layout="block" styleClass="pHead" rendered="{!AND(project.IPMProject_Span__c == 'Global',renderMapGlobal)}">
@@ -198,7 +198,7 @@
                                                             </div> 
                                                              
                                                                 
-                                                                <c:IPM_FinancialTable_Currency ipmFinancial="{!currentFinancial}"
+                                                                 <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
                                                                     finWrapper="{!financialsInnovation}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -206,22 +206,49 @@
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
                                                                     fieldSuffix="{!fieldSuffix}"                                                                    
-                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
                                                                     isValidationError="{!isValidationError}"
                                                                     validationErrorMessage="{!validationErrorMessage}"
-                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
-                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                     
+                                                                    isEditable="{!isEditable}"
+                                                                    showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
+                                                                    project="{!project}"
+                                                                    isTLDYearMisaligned="{!isTLDYearMisaligned}"
+                                                                    isITOgrtGTO="{!isITOgrtGTO}"
+                                                                    isITOgrtGTOCal="{!isITOgrtGTOCal}" 
+                                                                    isValidationErrorCal="{!isValidationErrorCal}" 
+                                                                    validationErrorMessageCal="{!validationErrorMessageCal}" 
+                                                                    isNonkey="{!isNonkey}"
+                                                                    isProjectStop="{!isProjectStop}"
                                                                 />
-                                                        
-                                                                <c:IPM_FinancialSummaryTable_Currency ipmFinancial="{!currentFinancial}"
+                                                        		
+                                                                
+                                                                <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
                                                                     fieldSuffix="{!fieldSuffix}"
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
-                                                                    exRate="{!exRate}"                                  
+                                                                    isCAPEXInvalid="{!isCAPEXInvalid}"
+                                                                    isIRRInvalid="{!isIRRInvalid}"
+                                                                    isNPVInvalid="{!isNPVInvalid}"
+                                                                    isPaybackInvalid="{!isPaybackInvalid}"
+                                                                    exRate="{!exRate}"
                                                                 />
-                                                        
-                                                                <c:IPM_FinancialTable_Currency ipmFinancial="{!currentFinancial}"
+                                                                
+                                                                    <!-- DEF2676 fix Start -->
+                                                                <apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">
+                                                                    <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Earlier_Years}" id="financialYearNavLeft" layout="block" styleClass="financialYearNavLeftDiv pull-left" rendered="{!showPrevious}">
+                                                                        <apex:outputPanel id="financialYearNavLeftArrow">
+                                                                           &#x21da; <apex:actionSupport event="onclick" action="{!previous}"  reRender="financialYearNav, financialYearCalendar"  status="loadingStatus" oncomplete="finScriptCallBack()" />
+                                                                        </apex:outputPanel>
+                                                                    </apex:outputPanel>
+                                                                    <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Later_Years}" id="financialYearNavRight" layout="block" styleClass="financialYearNavRightDiv pull-right"  rendered="{!showNext}">
+                                                                        <apex:outputPanel id="financialYearNavRightArrow">
+                                                                           &#x21db; <apex:actionSupport event="onclick" action="{!next}" reRender="financialYearNav, financialYearCalendar"  status="loadingStatus" oncomplete="finScriptCallBack()" />
+                                                                        </apex:outputPanel>
+                                                                    </apex:outputPanel>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel id="financialYearCalendar">
+                                                                <!-- DEF2676 fix End --> 
+                                                                <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
                                                                     finWrapper="{!financialsCalendar}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -229,12 +256,21 @@
                                                                     isEditMode="{!isEditMode}"
                                                                     showMisalignment="{!showMisalignment}"
                                                                     fieldSuffix="{!fieldSuffix}"                                                                    
-                                                                    isy0TurnoverInvalid="{!isy0TurnoverInvalid}"
                                                                     isValidationError="{!isValidationError}"
                                                                     validationErrorMessage="{!validationErrorMessage}"
-                                                                    isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
-                                                                    isy0ProfitInvalid="{!isy0ProfitInvalid}"
+                                                                        isEditable="{!isEditable}"
+                                                                        showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
+                                                                    project="{!project}"
+                                                                    isTLDYearMisaligned="{!isTLDYearMisaligned}"
+                                                                        isITOgrtGTO="{!isITOgrtGTO}"
+                                                                        isITOgrtGTOCal="{!isITOgrtGTOCal}"
+                                                                    isValidationErrorCal="{!isValidationErrorCal}"
+                                                                    validationErrorMessageCal="{!validationErrorMessageCal}"
+                                                                    isNonkey="{!isNonkey}"
+                                                                    isProjectStop="{!isProjectStop}"
                                                                 />
+                                                                </apex:outputPanel>
+                                                                 
                                                         </div>
 
                                                         <!-- Top Down Summary Tab -->
@@ -279,6 +315,5 @@
             </div>     
         </apex:define>
     </apex:composition>    
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Financial.js')}" type="text/javascript"></script> 
 </apex:page>

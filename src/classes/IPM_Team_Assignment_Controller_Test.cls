@@ -144,6 +144,7 @@ private class IPM_Team_Assignment_Controller_Test{
             Test.setCurrentPage(pRef);
             IPM_Team_Assignment_Controller sic = new IPM_Team_Assignment_Controller (); 
             sic.projectID=project.id;
+            sic.isStopped=false;
             sic.getGuestUser(); //checking if logged in user is a guest user 
             system.assert(sic.isGuestUser,System.Label.IPM_FUNC_CALLED_SUCCESSFULLY);//positive test
             

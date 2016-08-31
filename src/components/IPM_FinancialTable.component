@@ -22,11 +22,14 @@
     <apex:attribute name="isITOgrtGTOCal" type="Boolean" description="Flag to check if iTO greater than GTO for Calendar year"/>
     <apex:attribute name="isValidationErrorCal" type="Boolean" description="Flag to check if there is validation error for financial values of calendar table"/>
     <apex:attribute name="validationErrorMessageCal" type="string" description="Flag to check if there is validation error message for financial values of calendar table"/>
+	<apex:attribute name="isNonkey" type="Boolean" description="Identify whether Financial is NONKEY." />
+    <apex:attribute name="isProjectStop" type="Boolean" description="Identify whether project is stopped." /> 
+    
     <!-- Validation Message -->
     <!--
         Renders if there any validation error for innovation financial year records
     -->
-    <apex:outputPanel id="errorPanel" rendered="{!AND(OR(isValidationError, isValidationErrorCal), isInnovation)}">
+    <apex:outputPanel id="errorPanel" rendered="{!AND(NOT(isProjectStop),OR(isValidationError, isValidationErrorCal, ipmFinancial.IsFinancialInvalid__c), validationErrorMessage != '',  isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <div class="col-sm-11 finalerttext">
@@ -74,7 +77,7 @@
         <tbody>
             <apex:variable value="{!0}" var="rowCount"/>
 
-            <!-- Sub Headers -->
+            <!-- Sub Headers --> 
             <tr class="fintleblubg">
                 <td colspan="3" rowspan="2" class="blueBorder btmBleBorder"></td>
                 <td class="y0BorderGay"></td>
@@ -104,7 +107,7 @@
                 
                 
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0ValueMarketShareMisaligned), 'misaligned', '')}" >
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0ValueMarketShareMisaligned,NOT(isProjectStop)), 'misaligned', '')}" >
                     <!--
                         Renders for innovation financial year records
                     -->
@@ -113,8 +116,8 @@
                             Renders if the Y0 Market Share value is misaligned in non-edit mode
                         -->
                         <apex:outputText rendered="{! AND( Y0ValueMarketShareMisaligned, NOT(isEditMode) ) }">
-                            <span class="info" title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ValueMarketShareRegional}%
-                                                                     {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0ValueMarketShareLocal}%"> 
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ValueMarketShareRegional}%
+                                                      							     <br/>{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0ValueMarketShareLocal}%"> 
                                 {!finWrapper.y0ValueMarketShare}
                             </span>
                         </apex:outputText>
@@ -138,13 +141,13 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference == 0 )}" var="GrossValueMarketShareAligned" />  
                 
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( GrossValueMarketShareMisaligned,'misaligned', '' )}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),GrossValueMarketShareMisaligned),'misaligned', '' )}">
                         <!--
                             Renders if the Gross Value Market Share value is misaligned in non-edit mode
                         -->
                         <apex:outputText rendered="{!AND(GrossValueMarketShareMisaligned, NOT(isEditMode))}">
-                            <span class="info" title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
-                                                                     {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
+                                                      								<br/>{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
                                 {!valueWrapper.value}
                             </span>
                         </apex:outputText>
@@ -157,7 +160,8 @@
                         <!--
                             Renders Gross Value Market Share value in edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)" />
+                        
                     </td>
                 </apex:repeat>
                 <!-- INCREMENTAL -->
@@ -167,13 +171,13 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), isConsolidated,isNonKey , valueWrapper.difference == 0 )}" var="IncrementalValueMarketShareAligned" /> 
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementalValueMarketShareMisaligned, 'misaligned', '') }">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementalValueMarketShareMisaligned), 'misaligned', '') }">
                          <!--
                             Renders if the Incremental Value Market Share value is misaligned in non-edit mode 
                         -->
                         <apex:outputText rendered="{! AND( IncrementalValueMarketShareMisaligned, NOT(isEditMode ) )}">
-                            <span class="info" title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
-                                                                     {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
+                                                      								<br/>{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
                                 {!valueWrapper.value}
                             </span>
                         </apex:outputText>
@@ -185,7 +189,7 @@
                         <!--
                             Renders Incremental Value Market Share value in edit mode
                         -->
-                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)"/>
+                        <apex:inputText value="{!valueWrapper.value}" size="3" rendered="{!isEditMode}" onkeypress="return isNumber(event,this.value)" />
                     </td>
                 </apex:repeat>
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
@@ -209,7 +213,7 @@
                                 <!--
                                     This block will be rendered for Global project records
                                 -->
-                                <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
+                                <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}" >
                                     <!--
                                         This block will be rendered for non-edit mode
                                     -->
@@ -290,7 +294,7 @@
                 
                         <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeDifference==0 )}" var="Y0VolumeUnitsAligned" /> 
                 
-                        <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0VolumeUnitsMisAligned), 'misaligned', '')}">
+                        <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0VolumeUnitsMisAligned), 'misaligned', '')}">
                             <!--
                                 This block will be rendered for innovation records
                             -->
@@ -299,9 +303,9 @@
                                     Renders if the Y0 Volume units value is misaligned in non-edit mode
                                 -->
                                 <apex:outputText rendered="{! AND(Y0VolumeUnitsMisAligned, NOT(isEditMode) ) }">
-                                    <span class="info" title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeRegional}
-                                                                             {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0VolumeLocal}">
-                                        <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <span class="info" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeRegional}
+                                                              								<br/>{!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0VolumeLocal}">
+                                        <apex:outputText value="{0, number,###,###,###.##}">
                                             <apex:param value="{!finWrapper.y0Volume}" />
                                         </apex:outputText>
                                     </span>
@@ -311,7 +315,7 @@
                                     1. Consolidated and Edit mode
                                     2. Volume units aligned and non-edit mode
                                 -->
-                                <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( Y0VolumeUnitsAligned,NOT(isEditMode)) )}">
+                                <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( Y0VolumeUnitsAligned,NOT(isEditMode)) )}">
                                     <apex:param value="{!finWrapper.y0Volume}" />
                                 </apex:outputText>
                                 
@@ -330,15 +334,15 @@
                 
                             <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossVolumeUnitsAligned" /> 
                         
-                            <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossVolumeUnitsMisAligned, 'misaligned', '') }">
+                            <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossVolumeUnitsMisAligned), 'misaligned', '') }">
                                 <!--
                                     This block will be rendered when the following condition is met
                                     Gross volume units aligned and non-Edit mode
                                 -->
                                 <apex:outputText rendered="{! AND(GrossVolumeUnitsMisAligned, NOT(isEditMode) ) }">
-                                    <span class="info" title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                             {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                        <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <span class="info" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                              								<br/>{!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
+                                        <apex:outputText value="{0, number,###,###,###.##}">
                                             <apex:param value="{!valueWrapper.value}" />
                                         </apex:outputText>
                                     </span>
@@ -349,7 +353,7 @@
                                     1. Consolidated and Edit mode
                                     2. Gross Volume units aligned and non-edit mode
                                 -->
-                                <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( GrossVolumeUnitsAligned,NOT(isEditMode)) )}">
+                                <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( GrossVolumeUnitsAligned,NOT(isEditMode)) )}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                                 <!--
@@ -368,15 +372,15 @@
                             <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementalVolumeUnitsAligned" /> 
                         
                         
-                            <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementalVolumeUnitsMisAligned, 'misaligned', '')}">
+                            <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementalVolumeUnitsMisAligned), 'misaligned', '')}">
                                 <!--
                                     This block will be rendered when the following condition is met
                                     Incremental volume units aligned and non-Edit mode
                                 -->
                                 <apex:outputText rendered="{!AND(IncrementalVolumeUnitsMisAligned, NOT(isEditMode))}">
-                                    <span class="info" title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                             {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                        <apex:outputText value="{0, number, ###,###,###.##}">
+                                    <span class="info" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                              								<br/>{!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
+                                        <apex:outputText value="{0, number,###,###,###.##}">
                                             <apex:param value="{!valueWrapper.value}" />
                                         </apex:outputText>
                                     </span>
@@ -386,7 +390,7 @@
                                     1. Consolidated and Edit mode
                                     2. Incremental Volume units aligned and non-edit mode
                                 -->
-                                <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND(IncrementalVolumeUnitsAligned,NOT(isEditMode)))}">
+                                <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND(IncrementalVolumeUnitsAligned,NOT(isEditMode)))}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                                 <!--
@@ -484,7 +488,7 @@
                 
                             <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0VolumeTonsDifference==0 )}" var="Y0VolumeTonsAligned" />
                         
-                            <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(isInnovation,Y0VolumeTonsMisAligned),'misaligned', '')}">
+                            <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(isInnovation,NOT(isProjectStop),Y0VolumeTonsMisAligned),'misaligned', '')}">
                                 <!--
                                     Renders for innovation financial year records
                                 -->
@@ -493,9 +497,9 @@
                                         Renders if the Y0 Market Share value is misaligned in non-edit mode
                                     -->
                                     <apex:outputText rendered="{! AND( Y0VolumeTonsMisAligned,NOT(isEditMode) ) }">
-                                        <span class="info" title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeTonsRegional}
-                                                                                 {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0VolumeTonsLocal}">
-                                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <span class="info" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeTonsRegional}
+                                                                  								<br/>{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0VolumeTonsLocal}">
+                                            <apex:outputText value="{0, number,###,###,###.##}">
                                                 <apex:param value="{!finWrapper.y0VolumeTons}" />
                                             </apex:outputText>
                                         </span>
@@ -505,7 +509,7 @@
                                         1. Consolidated and Edit mode
                                         2. Volume Tones aligned and non-edit mode
                                     -->
-                                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( Y0VolumeTonsAligned,NOT(isEditMode)) ) }">
+                                    <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( Y0VolumeTonsAligned,NOT(isEditMode)) ) }">
                                         <apex:param value="{!finWrapper.y0VolumeTons}" />
                                     </apex:outputText>
                                     <!--
@@ -522,15 +526,15 @@
                 
                                 <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossVolumeTonsAligned" />
                             
-                                <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossVolumeTonsMisAligned,'misaligned', '')}">
+                                <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossVolumeTonsMisAligned),'misaligned', '')}">
                                     <!--
                                         This block will be rendered when the following condition is met
                                         Gross volume Tones aligned and non-Edit mode
                                     -->
                                     <apex:outputText rendered="{!AND(GrossVolumeTonsMisAligned,NOT(isEditMode) ) }">
-                                        <span class="info" title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                                 {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <span class="info" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                                  								<br/>{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
+                                            <apex:outputText value="{0, number,###,###,###.##}">
                                                 <apex:param value="{!valueWrapper.value}" />
                                             </apex:outputText>
                                         </span>
@@ -540,7 +544,7 @@
                                         1. Consolidated and Edit mode
                                         2. Gross Volume Tons aligned and non-edit mode
                                     -->
-                                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( GrossVolumeTonsAligned,NOT(isEditMode)) )}">
+                                    <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND( GrossVolumeTonsAligned,NOT(isEditMode)) )}">
                                         <apex:param value="{!valueWrapper.value}" />
                                     </apex:outputText>
                                     <!--
@@ -557,15 +561,15 @@
                 
                                 <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementVolumeTonsAligned" />
                                 
-                                <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementVolumeTonsMisAligned, 'misaligned', '')}">
+                                <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementVolumeTonsMisAligned), 'misaligned', '')}">
                                     <!--
                                         This block will be rendered when the following condition is met
                                         Incremental volume Tons aligned and non-Edit mode
                                     -->
                                     <apex:outputText rendered="{!AND( IncrementVolumeTonsMisAligned,NOT(isEditMode) ) }">
-                                        <span class="info" title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                                 {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                            <apex:outputText value="{0, number, ###,###,###.##}">
+                                        <span class="info" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                                  								<br/>{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
+                                            <apex:outputText value="{0, number,###,###,###.##}">
                                                 <apex:param value="{!valueWrapper.value}" />
                                             </apex:outputText>
                                         </span>
@@ -575,7 +579,7 @@
                                         1. Consolidated and Edit mode
                                         2. Incremental Volume Tons aligned and non-edit mode
                                     -->
-                                    <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND(IncrementVolumeTonsAligned,NOT(isEditMode) ) ) }">
+                                    <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR(AND(isConsolidated,isEditMode),AND(IncrementVolumeTonsAligned,NOT(isEditMode) ) ) }">
                                         <apex:param value="{!valueWrapper.value}" />
                                     </apex:outputText>
                                     <!--
@@ -600,7 +604,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0TurnoverDifference==0 )}" var="Y0TurnoverAligned" />
                                 
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND( isInnovation,Y0TurnoverMisAligned  ), 'misaligned', '')} ">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND( isInnovation,NOT(isProjectStop),Y0TurnoverMisAligned  ), 'misaligned', '')} ">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -609,9 +613,9 @@
                             Renders if theTurnover value is misaligned in non-edit mode  for Y0
                         -->
                         <apex:outputText rendered="{! AND(Y0TurnoverMisAligned,NOT(isEditMode) ) }">
-                            <span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0TurnoverRegional}
-                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0TurnoverLocal}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0TurnoverRegional}
+                                                      								<br/>{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0TurnoverLocal}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0Turnover}" />
                                 </apex:outputText>
                             </span>
@@ -622,7 +626,7 @@
                             1. Consolidated and Edit mode
                             2. Turnover aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode),AND( Y0TurnoverAligned,NOT(isEditMode) ) )}"> 
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode),AND( Y0TurnoverAligned,NOT(isEditMode) ) )}"> 
                             <apex:param value="{!finWrapper.y0Turnover}" />
                         </apex:outputText>
                         <!--
@@ -638,110 +642,45 @@
                     <apex:variable value="{!AND(showMisalignment,valueWrapper.difference > 0)}" var="GrossTurnoverMisAligned" />    
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="GrossTurnoverAligned" />
-                
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid,AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational'), valueWrapper.isGrossTOGRTIto), 'misaligned', '')}" >
+                    
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),OR(valueWrapper.isValueInvalid,AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational'), valueWrapper.isGrossTOGRTIto)), 'misaligned', '')}" > 
                         <!--
                             Renders if the Gross Turnover value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational', NOT(isEditMode),NOT(valueWrapper.isValueInvalid), NOT(valueWrapper.isGrossTOGRTIto))}">
-                            <span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c != 'Operational', NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                      								<br/>{!valueWrapper.redValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-			<apex:outputText rendered="{!AND(GrossTurnoverMisAligned, project.IPM_Project_Type__c == 'Operational', NOT(isEditMode),NOT(valueWrapper.isValueInvalid), NOT(valueWrapper.isGrossTOGRTIto))}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto), NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+
+                        <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational',NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.redValidationErrorMessage}"> 
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(valueWrapper.isGrossTOGRTIto,NOT(valueWrapper.isValueInvalid), NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_ITO_should_not_be_greater_than_GTO}"> 
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        
+                         <apex:outputText rendered="{!AND(NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.redValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c != 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto))}">
-                        	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-			<apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,NOT(valueWrapper.isGrossTOGRTIto))}">
-                        	<span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(valueWrapper.isGrossTOGRTIto,valueWrapper.isValueInvalid, NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative} {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c != 'Operational'),NOT(isEditMode), NOT(valueWrapper.isValueInvalid),valueWrapper.isGrossTOGRTIto)}">
-                        	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-			<apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational'),NOT(isEditMode), NOT(valueWrapper.isValueInvalid),valueWrapper.isGrossTOGRTIto)}">
-                        	<span class="info" title="{!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c != 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)}">
-                        	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}
-                                                                     {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-			<apex:outputText rendered="{!AND(AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational'),NOT(isEditMode), valueWrapper.isValueInvalid,valueWrapper.isGrossTOGRTIto)}">
-                        	<span class="info" title="{!$Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative}
-                                                                     {!$Label.IPM_ITO_should_not_be_greater_than_GTO}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
+                        
+                        
                         <!--
                             This block will be rendered when one of the following conditions is met
                             1. Consolidated and Edit mode
                             2. Gross Turnover aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(AND(isConsolidated,isEditMode), OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto,GrossTurnoverMisAligned)) }">
-                            <apex:param value="{!valueWrapper.value}" />
-                        </apex:outputText>
-			<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isConsolidated),NOT(isEditMode), GrossTurnoverAligned, NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto) ), NOT(GrossTurnoverMisAligned)) }"> <!-- OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto),NOT(GrossTurnoverMisAligned) --> 
-                            <apex:param value="{!valueWrapper.value}" />
-                        </apex:outputText>
-						<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(AND(isConsolidated,NOT(isEditMode)), NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto,GrossTurnoverMisAligned))) }"> 
-                            <apex:param value="{!valueWrapper.value}" />
-                        </apex:outputText>
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(AND(isConsolidated,isEditMode), NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto,GrossTurnoverMisAligned))) }"> 
+                        
+                        <apex:outputText value="{0,number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode) }">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -758,46 +697,35 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference==0 )}" var="IncrementalTurnoverAligned" />
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(IncrementalTurnoverMisAligned,valueWrapper.isGrossTOGRTIto), 'misaligned', IF((valueWrapper.isMinorValueInvalid),'yellowmisaligned',''))} ">
+                    <td class=" iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),OR(IncrementalTurnoverMisAligned,valueWrapper.isGrossTOGRTIto)), 'misaligned', IF(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid),'yellowmisaligned',''))} "> 
                         <!--
                             Renders if the Incremental Turnover value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND( IncrementalTurnoverMisAligned,NOT(isEditMode),NOT(OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto))) }">
-                            <span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText> 
-                         <apex:outputText rendered="{!AND(OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto), NOT(isEditMode),NOT(IncrementalTurnoverMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(NOT(isEditMode),NOT(IncrementalTurnoverMisAligned))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(IncrementalTurnoverMisAligned,NOT(isEditMode), OR(valueWrapper.isMinorValueInvalid,valueWrapper.isGrossTOGRTIto))}">
-                        	<span class="info" title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        
+                        <apex:outputText rendered="{!AND(IncrementalTurnoverMisAligned,NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                      								<br/>{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
+                        
+                        
                         <!--
                             This block will be rendered when one of the following conditions is met
                             1. Consolidated and Edit mode
                             2. Incremental Turnover aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(isConsolidated, NOT(AND(valueWrapper.isMinorValueInvalid, valueWrapper.isMinorValueInvalid)))}"> 
-                            <apex:param value="{!valueWrapper.value}" />
-                        </apex:outputText>
-			<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(isConsolidated, isEditMode, OR(valueWrapper.isMinorValueInvalid, valueWrapper.isMinorValueInvalid))}">
-                            <apex:param value="{!valueWrapper.value}" />
-                        </apex:outputText>
-            		<apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(isConsolidated),NOT(isEditMode), IncrementalTurnoverAligned, NOT(OR(valueWrapper.isValueInvalid, valueWrapper.isGrossTOGRTIto) ), NOT(IncrementalTurnoverMisAligned)) }">
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated, isEditMode)}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -819,7 +747,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0GrossProfitDifference==0 )}" var="Y0ProfitAligned" />
                 
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0ProfitMisAligned  ),'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0ProfitMisAligned  ),'misaligned', '')}">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -828,9 +756,9 @@
                             Renders if the Profit value is misaligned in non-edit mode  for Y0
                         -->
                         <apex:outputText rendered="{!AND(Y0ProfitMisAligned,NOT(isEditMode) ) }">
-                            <span class="info" title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0GrossProfitRegional}
-                                                                     {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0GrossProfitLocal}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0GrossProfitRegional}
+                                                      								<br/>{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0GrossProfitLocal}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0GrossProfit}" />
                                 </apex:outputText>
                             </span>
@@ -840,7 +768,7 @@
                             1. Consolidated and Edit mode
                             2. Profit aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode), AND( Y0ProfitAligned, NOT(isEditMode) ) ) }"> 
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{! OR(AND(isConsolidated,isEditMode), AND( Y0ProfitAligned, NOT(isEditMode) ) ) }"> 
                             <apex:param value="{!finWrapper.y0GrossProfit}" />
                         </apex:outputText>
                         <!--
@@ -856,41 +784,35 @@
                     <apex:variable value="{!AND(showMisalignment,valueWrapper.difference != NULL,valueWrapper.difference > 0)}" var="GrossProfitMisAligned" />    
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="GrossProfitAligned" />
-                
-                    <td class=" {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossProfitMisAligned, 'misaligned', If(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class=" {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossProfitMisAligned), 'misaligned', If(AND(NOT(isProjectStop),OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid)), 'yellowmisaligned', ''))}">
                         <!--
                             Renders if the Gross Profit value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(GrossProfitMisAligned,NOT(isEditMode),NOT(valueWrapper.isMinorValueInvalid) )}">
-                            <span class="info" title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(GrossProfitMisAligned,NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                      								<br/>{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), NOT(isEditMode),NOT(GrossProfitMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(NOT(GrossProfitMisAligned),NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
-                            </span>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(AND(GrossProfitMisAligned,NOT(isEditMode)), OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid))}">
-                        	<span class="info" title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
+                            </span >
                         </apex:outputText>
                         <!--
                             This block will be rendered when one of the following conditions is met
                             1. Consolidated and Edit mode
                             2. Gross Profit aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{! AND(NOT(valueWrapper.isMinorValueInvalid),OR( AND(isConsolidated,isEditMode),AND(GrossProfitAligned,NOT(isEditMode) ) ) )}"> 
+                        <!-- apex:outputText value="{0, number, ###,###,###.##}" rendered="{! AND(NOT(valueWrapper.isMinorValueInvalid),OR( AND(isConsolidated,isEditMode),AND(GrossProfitAligned,NOT(isEditMode) ) ) )}"> 
+                            <apex:param value="{!valueWrapper.value}" />
+                        </apex:outputText-->
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{! AND(isConsolidated,isEditMode) }"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -907,30 +829,22 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="IncrementalProfitAligned" />
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR( IncrementalProfitMisAligned), 'misaligned', If(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="iPLBorderGay { !IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( AND(NOT(isProjectStop),IncrementalProfitMisAligned), 'misaligned', If( AND(NOT(isProjectStop),OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid)), 'yellowmisaligned', '')) }"> 
                         <!--
                             Renders if the Incremental Profit value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(IncrementalProfitMisAligned,NOT(isEditMode), NOT(valueWrapper.isMinorValueInvalid))}">
-                            <span class="info" title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(IncrementalProfitMisAligned,NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                     								<br/>{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid), NOT(isEditMode),NOT(IncrementalProfitMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(AND(IncrementalProfitMisAligned,NOT(isEditMode)), OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid))}">
-                        	<span class="info" title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(NOT(IncrementalProfitMisAligned),NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
@@ -940,7 +854,7 @@
                             1. Consolidated and Edit mode
                             2. Incremental Profit aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR( AND(isConsolidated,isEditMode),AND(IncrementalProfitAligned,NOT(isEditMode) ) ))}"> 
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -962,7 +876,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0AdvertisingDifference==0 )}" var="Y0AdvertisingAligned" />
                 
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0AdvertisingMisAligned), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0AdvertisingMisAligned), 'misaligned', '')}">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -971,9 +885,9 @@
                             Renders if the Advertising value is misaligned in non-edit mode  for Y0
                         -->
                         <apex:outputText rendered="{!AND(Y0AdvertisingMisAligned,NOT(isEditMode))}">
-                            <span class="info" title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0AdvertisingRegional}
-                                                                      {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0AdvertisingLocal}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0AdvertisingRegional}
+                                                      								<br/>{!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0AdvertisingLocal}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0Advertising}" />
                                 </apex:outputText>
                             </span>
@@ -983,7 +897,7 @@
                             1. Consolidated and Edit mode
                             2. Advertising aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR( AND(isConsolidated,isEditMode),AND(Y0AdvertisingAligned,NOT(isEditMode) ) )}">
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR( AND(isConsolidated,isEditMode),AND(Y0AdvertisingAligned,NOT(isEditMode) ) )}">
                             <apex:param value="{!finWrapper.y0Advertising}" />
                         </apex:outputText>
                         <!--
@@ -1001,30 +915,22 @@
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="GrossAdvertisingAligned" />
                     
                     
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(GrossAdvertisingMisAligned, 'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),GrossAdvertisingMisAligned), 'misaligned', If(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
                         <!--
                             Renders if the Gross Advertising value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(GrossAdvertisingMisAligned,NOT(isEditMode),NOT(valueWrapper.isMinorValueInvalid))}" >
-                            <span class="info" title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(GrossAdvertisingMisAligned,NOT(isEditMode))}" >
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                      								<br/>{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(GrossAdvertisingMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(AND(GrossAdvertisingMisAligned,NOT(isEditMode)), OR(valueWrapper.isValueInvalid,valueWrapper.isMinorValueInvalid))}">
-                        	<span class="info" title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(NOT(GrossAdvertisingMisAligned),NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
@@ -1034,7 +940,7 @@
                             1. Consolidated and Edit mode
                             2. Gross Advertising aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR(AND(isConsolidated,isEditMode),AND(GrossAdvertisingAligned,NOT(isEditMode) ) ) )}">
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -1052,30 +958,22 @@
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="IncrementalAdvertisingAligned" />
                     
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(IncrementalAdvertisingMisAligned,'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))} ">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),IncrementalAdvertisingMisAligned),'misaligned', If(AND(NOT(isProjectStop),OR(valueWrapper.isMinorValueInvalid)), 'yellowmisaligned', ''))} "> 
                         <!--
                             Renders if the Incremental Advertising value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(IncrementalAdvertisingMisAligned,NOT(isEditMode),NOT(valueWrapper.isMinorValueInvalid))}">
-                            <span class="info" title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(IncrementalAdvertisingMisAligned,NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                      								<br/>{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(IncrementalAdvertisingMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
-                        <apex:outputText rendered="{!AND(IncrementalAdvertisingMisAligned,NOT(isEditMode), valueWrapper.isMinorValueInvalid)}">
-                        	<span class="info" title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(NOT(IncrementalAdvertisingMisAligned),NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
@@ -1085,7 +983,7 @@
                             1. Consolidated and Edit mode
                             2. Incremental Advertising aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR( AND(isConsolidated,isEditMode),AND(IncrementalAdvertisingAligned,NOT(isEditMode) ) ))}">
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}">
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -1108,7 +1006,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0ProfitDifference ==0 )}" var="Y0POBAligned" />
                      
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,Y0POBMisAligned), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,NOT(isProjectStop),Y0POBMisAligned), 'misaligned', '')}">
                     <!--
                         This block will be rendered for innovation records  for Y0
                     -->
@@ -1117,9 +1015,9 @@
                             Renders if the POB value is misaligned in non-edit mode  for Y0
                         -->
                         <apex:outputText rendered="{!AND(Y0POBMisAligned,NOT(isEditMode))}">
-                            <span class="info" title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ProfitRegional}
-                                                                     {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0ProfitLocal}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ProfitRegional}
+                                                      								<br/>{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!finWrapper.y0ProfitLocal}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!finWrapper.y0Profit}" />
                                 </apex:outputText>
                             </span>
@@ -1129,7 +1027,7 @@
                             1. Consolidated and Edit mode
                             2. POB aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!OR( AND(isConsolidated,isEditMode),AND(Y0POBAligned,NOT(isEditMode) ) )}"> 
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!OR( AND(isConsolidated,isEditMode),AND(Y0POBAligned,NOT(isEditMode) ) )}"> 
                             <apex:param value="{!finWrapper.y0Profit}" />
                         </apex:outputText>
                         <!--
@@ -1146,40 +1044,33 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="GrossPOBAligned" />
                 
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg ', '')} {!IF(OR(GrossPOBMisAligned), 'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg ', '')} {!IF( AND(NOT(isProjectStop),GrossPOBMisAligned), 'misaligned', If(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
                         <!--
                             Renders if the Gross POB value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(GrossPOBMisAligned,NOT(isEditMode),NOT(valueWrapper.isMinorValueInvalid))}">
-                            <span class="info" title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(GrossPOBMisAligned,NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                      								<br/>{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(GrossPOBMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(NOT(isEditMode),NOT(GrossPOBMisAligned))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(GrossPOBMisAligned,NOT(isEditMode), valueWrapper.isMinorValueInvalid)}">
-                        	<span class="info" title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
+
                         <!--
                             This block will be rendered when one of the following conditions is met
                             1. Consolidated and Edit mode
                             2. Gross POB aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR(AND(isConsolidated,isEditMode),AND(GrossPOBAligned,NOT(isEditMode) )) )}"> 
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--
@@ -1196,40 +1087,33 @@
                 
                     <apex:variable value="{!OR( NOT(showMisalignment), valueWrapper.difference ==0 )}" var="IncrementalPOBAligned" />
                     
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(IncrementalPOBMisAligned), 'misaligned', If(OR(valueWrapper.isMinorValueInvalid), 'yellowmisaligned', ''))}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isProjectStop),IncrementalPOBMisAligned), 'misaligned', If(AND(NOT(isProjectStop),valueWrapper.isMinorValueInvalid), 'yellowmisaligned',''))} ">
                         <!--
                             Renders if the Incremental POB value is misaligned in non-edit mode
                         -->
-                        <apex:outputText rendered="{!AND(IncrementalPOBMisAligned,NOT(isEditMode),NOT(valueWrapper.isMinorValueInvalid))}">
-                            <span class="info" title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(IncrementalPOBMisAligned,NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
+                                                      								<br/>{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
+                                                      								<br/>{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(valueWrapper.isMinorValueInvalid, NOT(isEditMode),NOT(IncrementalPOBMisAligned))}">
-                            <span class="info" title="{!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
+                        <apex:outputText rendered="{!AND(NOT(IncrementalPOBMisAligned),NOT(isEditMode))}">
+                            <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
+                                <apex:outputText value="{0, number,###,###,###.##}">
                                     <apex:param value="{!valueWrapper.value}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
-                        <apex:outputText rendered="{!AND(IncrementalPOBMisAligned,NOT(isEditMode), valueWrapper.isMinorValueInvalid)}">
-                        	<span class="info" title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
-                                                                     {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}
-                                                                     {!$Label.IPM_Possible_Error_Will_Not_Block_Progress}">
-                                <apex:outputText value="{0, number, ###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
-                                </apex:outputText>
-                            </span>
-                        </apex:outputText>
+
                         <!--
                             This block will be rendered when one of the following conditions is met
                             1. Consolidated and Edit mode
                             2. Incremental POB aligned and non-edit mode
                         -->
-                        <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(NOT(valueWrapper.isMinorValueInvalid), OR( AND(isConsolidated,isEditMode),AND(IncrementalPOBAligned,NOT(isEditMode) ) ))}"> 
+                        <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}"> 
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText>
                         <!--

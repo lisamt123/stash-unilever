@@ -68,18 +68,18 @@ private class IPM_EcoDesignSection_Test
 			
 			List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
 			update userList;
-			
-			// Create Company Card information(Master Data)
-			IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
-			IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
-			IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
-			
-			companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
-			insert companyCardList;
-			
-			// Inserting Master Data whose OWD are set to readOnly/View All    
-			IPM_TestFactory_Helper.getProjectMasterData();
 		} 
+		
+		// Create Company Card information(Master Data)
+		IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+		IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+		IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+		
+		companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+		insert companyCardList;
+		
+		// Inserting Master Data whose OWD are set to readOnly/View All    
+		IPM_TestFactory_Helper.getProjectMasterData();
 		
 		// Insert the project as a Global project Leader.
 		projectList = IPM_TestFactory_Helper.projectSetUp(8,globalProjectLeader);
@@ -100,6 +100,7 @@ private class IPM_EcoDesignSection_Test
 				proj.IPM_Project_Leader__c = UserInfo.getUserId();
 				proj.IPM_SourceProjectType__c = ORIGINAL;
 				proj.Success_Timestamp_EcoDesign__c = System.now().addHours(2);
+				proj.IPM_Category_Group__c = 'Home Care';
 
 			}
 			insert projectList;

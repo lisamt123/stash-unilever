@@ -335,7 +335,7 @@ public with sharing class IPM_Milestone {
                 Id mileStoneRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMMilestones).getRecordTypeId(); 
                 con = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id,IPM_Project__c,IPM_Due_Date__c,IPM_Name__c,IPM_Category__c,IPM_Planned_Date__c,
                         IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c,IPM_Phase_Order__c FROM IPM_Milestone__c 
-                        WHERE IPM_Name__c != null And RecordTypeId= : mileStoneRecordType AND IPM_Type_of_Milestone__c=: IPM_ConstantUtils.MINI 
+                        WHERE RecordTypeId= : mileStoneRecordType AND IPM_Type_of_Milestone__c=: IPM_ConstantUtils.MINI 
                         AND IPM_Project_Type__c =: sourceProjectType order by IPM_Phase_Order__c, IPM_Name__c])); 
                 
                 // sets the number of records in each page set
@@ -366,13 +366,13 @@ public with sharing class IPM_Milestone {
     public void getduedate(){
         try{
             if(String.IsNotEmpty(milestoneObj.IPM_Phase__c)){
-                integer milescount=[SELECT count() FROM IPM_Milestone__c WHERE IPM_Project__c = :projectId AND IPM_Milestone__c = null AND IPM_Phase__c = : milestoneObj.IPM_Phase__c AND IPM_Planned_Date__c != null];
+                integer milescount=[SELECT count() FROM IPM_Milestone__c WHERE IPM_Project__c = :projectId AND IPM_Milestone__c = null AND IPM_Phase__c = : milestoneObj.IPM_Phase__c AND IPM_Planned_Date_isNull__c = :IPM_ConstantUtils.IPM_false];
                 if(milescount < 0){
                     return;
                 }
                 List<IPM_Milestone__c> milestoneList = new List<IPM_Milestone__c>();
                 
-                milestoneList =[SELECT Id,IPM_Category__c,IPM_Planned_Date__c,IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE IPM_Project__c = :projectId AND IPM_Milestone__c = null and IPM_Phase__c = : milestoneObj.IPM_Phase__c and IPM_Planned_Date__c != null limit 1];
+                milestoneList =[SELECT Id,IPM_Category__c,IPM_Planned_Date__c,IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c WHERE IPM_Project__c = :projectId AND IPM_Milestone__c = null and IPM_Phase__c = : milestoneObj.IPM_Phase__c and IPM_Planned_Date_isNull__c = :IPM_ConstantUtils.IPM_false limit 1];
                 
                 for(IPM_Milestone__c miles : milestoneList)
                 {

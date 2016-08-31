@@ -180,3 +180,5 @@ src/objects
 src/objects/ChatterPublisherSettings__c.object
 src/permissionsets
 src/permissionsets/LightningFeed_Permission.permissionset
+src/permissionsets/News_Centre_Admin.permissionset
+src/permissionsets/News_Centre_User.permissionset
