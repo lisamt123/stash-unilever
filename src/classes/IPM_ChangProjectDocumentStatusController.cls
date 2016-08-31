@@ -954,7 +954,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,
             Local_Project__r.IPM_Project_Name__c,Local_Project__c,Gate_Keeping_Model__c FROM IPM_Financial__c WHERE isActive__c=true AND 
             Local_Project__r.IPM_Parent_Project__c=:projectId AND RecordType.Name=:IPM_ConstantUtils.DEFAULT_FINANCIAL_RT LIMIT 1000];
-            if(!finList.isEmpty()){
+            
                 for(IPM_Financial__c fin:finList){
                     //Business case alignment
                     if(IPM_ConstantUtils.PHASE_FEASIBILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.IPM_Business_Case_Confirmed__c && !fin.Local_Project__r.Is_Archieved__c ){
@@ -967,24 +967,26 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         businessCasePending=true;
                         showValidation=false;
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
-                    }  
-                    //Financial alignment
-					//bypassed the check for GKM3 - Interim
-                    if(fin.Misaligned__c  && fin.Gate_Keeping_Model__c != 'GKM3'){
-                        localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
-                        showValidation=false;  
-                        financialAlignment=true;
-                        totalFinProject=totalFinProject+1;
-                        
-                    }
-                    //Target launch date alignment
-					//bypassed the check for GKM3 - Interim
-                    if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c  && fin.Gate_Keeping_Model__c != 'GKM3'){
-                        localTLDProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
-                        showValidation=false;  
-                        tldAlignment=true;  
-                        totalTLDProject=totalTLDProject+1;
-                    }
+                    } 
+					if(fin.Gate_Keeping_Model__c != 'GKM3'){
+						//Financial alignment
+						//bypassed the check for GKM3 - Interim
+						if(fin.Misaligned__c){
+							localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+							showValidation=false;  
+							financialAlignment=true;
+							totalFinProject=totalFinProject+1;
+							
+						}
+						//Target launch date alignment
+						if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
+							localTLDProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+							showValidation=false;  
+							tldAlignment=true;  
+							totalTLDProject=totalTLDProject+1;
+						}
+					}
+                    
                 }
                 //to display bd/bb alignment section on page
                 List<IPM_Project_Document_Section__c> projectSectionList=new List<IPM_Project_Document_Section__c>();
@@ -995,7 +997,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 if(!projectSectionList.isEmpty()){
                     documentSectionId=projectSectionList[0].id;
                 }
-            }
+            
         }
     }
 }
