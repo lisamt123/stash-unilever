@@ -10091,11 +10091,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CEC_ChequeBook_Detail__c.Currency_Text__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CEC_ChequeBook_Detail__c.Currency__c</field>
         <readable>false</readable>
     </fieldPermissions>
