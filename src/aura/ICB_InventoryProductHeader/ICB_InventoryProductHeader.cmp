@@ -1,0 +1,50 @@
+<aura:component controller="ICB_InventoryProducts_CC" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="GLOBAL">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"/>
+    <!-- Attributes --> 
+    <aura:attribute name="Inventory" type="ICB_Inventory_Line_Item__c[]"/>
+    <aura:attribute name="count" type="Integer"/>
+    
+    <aura:attribute name="HeaderTitle"  type="String"/>
+    
+    <aura:attribute name="HeaderPriceTable" type="Boolean"/>
+    <aura:attribute name="productList" type="PriceBookEntry[]" />
+    <aura:attribute name="qtdProducts" type="Integer" />
+    
+    <!-- PAGE HEADER -->
+    <aura:if isTrue="{!v.HeaderPriceTable}">
+        <div class="slds-page-header" role="banner">
+            <div class="slds-grid " >
+                <!-- <div class = "slds-icon icon__svg slds-icon-custom-01 slds-media__figure">
+                <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/pricebook.png'}" style="width:30px" />
+            </div> --> 
+                <div class="slds-col">
+                    {!$Label.c.ICB_PRICELIST_HEADER_SUB_TITLE}
+                    <h1 class="slds-text-heading--medium">
+                        <ui:outputNumber value="{!v.qtdProducts}"/>
+                        &nbsp;<ui:outputText value="{!v.HeaderTitle}"/>
+                    </h1>
+                </div>
+                <ui:button label="Atualizar" press="{!c.updateList}">
+                    
+                </ui:button>
+            </div>
+        </div>
+        <aura:set attribute="else">
+            <div class="slds-page-header" role="banner">
+                <div class="slds-grid " >
+                    <div class="slds-col">
+                        {!$Label.c.ICB_INVENTORY_HEADER}
+                        <h1 class="slds-text-heading--medium">
+                            <ui:outputNumber value="{!v.count}"/>
+                            &nbsp;<ui:outputText value="{!v.HeaderTitle}"/>
+                        </h1>
+                    </div>
+                    <ui:button label="{!$Label.c.ICB_UPDATE_INVENTORY}" press="{!c.updateList}">
+                    </ui:button>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>  
+    
+    <!-- / PAGE HEADER -->
+</aura:component>
