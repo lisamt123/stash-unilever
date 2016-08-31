@@ -34475,10 +34475,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>AF_Assign_Category_Brand</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>AF_Assigncategories</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
