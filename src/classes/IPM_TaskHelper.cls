@@ -542,6 +542,13 @@ public with sharing class IPM_TaskHelper {
  		}
  		
  		IPM_Project__c projectDetail = projectMap.get(projectId);
+ 		
+ 		getTaskSections(projectDetail, taskList, projectDocSectionList, pdlSectionsList);
+ 			
+ 	}
+ }
+ 
+ public static void getTaskSections(IPM_Project__c projectDetail, List<IPM_Task__c> taskList, List<IPM_Project_Document_Section__c> projectDocSectionList, List<IPM_Project_Document_Section__c> pdlSectionsList){
 		for(IPM_Task__c task : taskList)
  		{
  			if(task.IPM_Active__c)
@@ -567,7 +574,6 @@ public with sharing class IPM_TaskHelper {
 	 			}
  			}
  			makeNullDocumentSectionTaskInactive(task);
- 		}
  	}
  }
  
