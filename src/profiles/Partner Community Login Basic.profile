@@ -34482,10 +34482,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>AF_Bonusthresholds</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>AF_BrandAgencyCombination</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
