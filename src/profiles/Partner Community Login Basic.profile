@@ -33363,9 +33363,6 @@
         <layout>IPM_CorePara_helps_example__c-IPM CoreParameter helps Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>IPM_CoreParameters__c-IPM CoreParameters Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>IPM_Country__c-IPM Country Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
