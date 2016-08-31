@@ -93,7 +93,7 @@ public with sharing class FS_TPRWithGivenPriceUtil {
         //Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
         Double temporaryTPRDecimal = oppProd.FS_TemporaryProductDiscount__c / 100;                                                
         Double onInvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_onInvoice__c / 100;
-        Double onOffnvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_offInvoice__c / 100;
+        //Double onOffnvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_offInvoice__c / 100;
         Double distributorMarkupDecimal = oppProd.FS_DistributorMarkup__c / 100;
             
         if(opportunityMap.get(oppProd.OpportunityId).FS_onInvoice__c > 0) {

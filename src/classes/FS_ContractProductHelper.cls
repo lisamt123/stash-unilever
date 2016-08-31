@@ -4,7 +4,7 @@ History :
 VERSION AUTHOR         DATE         DETAIL Description
 1.0     Accenture    12/Jul/2016     Draft                     
 ***********************************************************************/
-public class FS_ContractProductHelper {
+public with sharing class FS_ContractProductHelper {
     public void createClaimedCases(List<Contract_Product__c> ContractProdList){
         List<ID> ConProIdList = new List<ID>();
         List<ID> ProductIdList = new List<ID>();
@@ -73,7 +73,7 @@ public class FS_ContractProductHelper {
                 OppIdList.add(id.ValueOf(cs.FS_Opportunity__c));
             }
             system.debug('OppIdList-->'+OppIdList);
-            OppList = [SELECT Id FROM Opportunity WHERE ContractId IN : ContractIdList and Id in : OppIdList];
+            OppList = [SELECT Id FROM Opportunity WHERE ContractId IN : ContractIdList and Id in : OppIdList and RecordTypeId =:newRecordTypeId];
             system.debug('OppList -->'+OppList);
             OLIList = [select id, Opportunity.AccountId, Product2Id from OpportunityLineItem where OpportunityId in : OppList and Product2Id in : ProductIdList];
             system.debug('OLIList -->'+OLIList);

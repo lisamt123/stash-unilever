@@ -70,6 +70,11 @@ public without sharing class FS_CreateContact_CC {
     
     Public PageReference createContact()
     {
+        if((!String.Isblank(varContactDetail.phone) && (varContactDetail.phone.length()<20)) ||
+                (!String.Isblank(workPhoneNumber) && (workPhoneNumber.length()<20)) ||
+                    (!String.Isblank(personalPhoneNumber) && (personalPhoneNumber.length()<20))
+            )
+        {
         try
         {
             varAccountName=[select id,name from Account where id=:varContactDetail.AccountiD limit 1].name;
@@ -247,6 +252,13 @@ public without sharing class FS_CreateContact_CC {
         {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.ERRORMESSAGE));
             return null;
+        }
+        
+        }
+        else
+        {
+        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Please Enter valid Phone number'));
+                return null;
         }
         return null;
     }

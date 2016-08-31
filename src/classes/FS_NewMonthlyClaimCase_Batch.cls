@@ -4,7 +4,7 @@
 *  @return 
 *  @throws
 */
-Global class FS_NewMonthlyClaimCase_Batch implements database.Batchable<sObject>{
+Global with sharing class FS_NewMonthlyClaimCase_Batch implements database.Batchable<sObject>{
     global String query;
     global Map<Id,FS_Monthly_Claimed_Cases__c> MapClaimCase;
 /* * Start method for batch class

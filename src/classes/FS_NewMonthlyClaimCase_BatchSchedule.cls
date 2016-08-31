@@ -4,7 +4,7 @@
 *  @return 
 *  @throws
 */
-Global class FS_NewMonthlyClaimCase_BatchSchedule implements Schedulable {
+Global with sharing class FS_NewMonthlyClaimCase_BatchSchedule implements Schedulable {
 /* * Execute Method for NewMonthlyClaimCase_BatchSchedule scheduler class
 *  @name Execute
 *  @param SchedulableContext SC

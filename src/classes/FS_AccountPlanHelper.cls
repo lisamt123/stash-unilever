@@ -4,7 +4,7 @@ History :
 VERSION AUTHOR         DATE         DETAIL Description
 1.0     Accenture    12/Jul/2016     Draft                     
 ***********************************************************************/
-public without sharing class FS_AccountPlanHelper {
+public with sharing class FS_AccountPlanHelper {
     
 /* * approveDefinedObjective Method for approve defined objective
 *  @name approveDefinedObjective
@@ -14,9 +14,7 @@ public without sharing class FS_AccountPlanHelper {
 */
  Private static final string STATUS_APPROVED='Approved';
  Private static final string STATUS_APPROVAL_REQUESTED='Approval Requested';
- Private static final string STATUS_PLANNING='Planning';
- Private static final string STAGE_04='04 - Verbal Commitment';
- Private Static final string Stage_03='03 - Proposal';
+ Private static final string STATUS_PLANNING='Planning'; 
  public void approveDefinedObjective(List<FS_Account_Plan__c> accountPlanList,Map<Id, FS_Account_Plan__c> accountplanOldMap){
             //List<FS_Defined_Objective__C> objList=new List<FS_Defined_Objective__C>();
             List<FS_Defined_Objective__C> objToUpdate=new List<FS_Defined_Objective__C>();

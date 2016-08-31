@@ -19,7 +19,7 @@ Private FS_AccountPlanHelper helper=new FS_AccountPlanHelper();
 *  @return 
 *  @throws 
 */
-    public void onAfterInsert(List<FS_Account_Plan__c> newAccountPlanList,Map<id,FS_Account_Plan__c> newAccountPlanOldMap){
+    public void onAfterUpdate(List<FS_Account_Plan__c> newAccountPlanList,Map<id,FS_Account_Plan__c> newAccountPlanOldMap){
         try{
             //Call helper method for approval
             helper.approveDefinedObjective(newAccountPlanList,newAccountPlanOldMap);            

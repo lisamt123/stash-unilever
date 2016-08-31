@@ -11,7 +11,7 @@ VERSION AUTHOR         DATE         DETAIL Description
 *  @return N/A
 *  @throws N/A
 */
-public class FS_TPRCalculationHelper {
+public with sharing class FS_TPRCalculationHelper {
 
     public static void calculateTPR(List<OpportunityLineItem> oppProdList, boolean isUpdate) {
     	

@@ -203,13 +203,6 @@ public with sharing class FS_TPRUtil {
         Double offnvoiceDecimal = opportunityMap.get(oppProd.OpportunityId).FS_offInvoice__c / 100;
         Double scDecimal = opportunityMap.get(oppProd.OpportunityId).FS_supplyCost__c / 100;
         
-        /*
-        Formula:
-        ((((GSV*(1 – temporary TPR ))*(1-PPR on-invoice)) *(1-PPR off-invoice))   - PC – SC)
-        ------------------------------------------------------------------------------------
-        ((((GSV*(1 – temporary TPR ))*(1-PPR on-invoice)) *(1-PPR off-invoice)))
-        */
-        
         /* Correct Formula
          GM when TPR = 0% = (GSV * (1 - temporary discount) * (1 - on invoice) 
 							- GSV * (1 - temporary discount) * (1 - on invoice) * off invoice)
@@ -220,8 +213,7 @@ public with sharing class FS_TPRUtil {
 							- GSV * (1 - temporary discount) * (1 - on invoice) * off invoice)
 
 		*/
-        Double sc = (opportunityMap.get(oppProd.OpportunityId).FS_supplyCost__c / 100);
-        
+                
         gm = ((oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal)
               	- oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) * offnvoiceDecimal)
              	- oppProd.FS_productCost__c - scDecimal * (oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal)
@@ -231,17 +223,6 @@ public with sharing class FS_TPRUtil {
              (oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) 
                 - oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) * offnvoiceDecimal);
         
-        /*        
-        gm = ((((oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal)) 
-                * (1 - onInvoiceDecimal))
-               * (1 - offnvoiceDecimal))
-              - oppProd.FS_productCost__c - oppProd.FS_supplyCost__c)              
-              
-            / 
-            (((oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal))
-              * (1 - onInvoiceDecimal))
-             * (1 - offnvoiceDecimal));
-        */
         System.debug('gm FS_grossSalesValue__c: ' + oppProd.FS_grossSalesValue__c);
         System.debug('gm temporaryTPRDecimal: ' + temporaryTPRDecimal);
         System.debug('gm onInvoiceDecimal: ' + onInvoiceDecimal);

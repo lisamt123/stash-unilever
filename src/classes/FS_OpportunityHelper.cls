@@ -12,10 +12,12 @@ VERSION  AUTHOR         DATE          DETAIL Description
 *  @return 
 *  @throws 
 */ 
-public without sharing class FS_OpportunityHelper {
+public with sharing class FS_OpportunityHelper {
 Private static final string STATUS_WON='05 – Won';
 Private static final string STATUS_CLOSED_WON='Closed Won';
 Private static final string STATUS_CLOSED_LOST='Closed Lost';
+Private static final string ERROR_MESSAGE='The following exception has occurred: ';
+Private static final string FOOD_SOLUTION='Food Solution';
 /* * Method rollUpOpportunityLineItem to update Opportunity with Opp Line Item Value (MABE process)
 *  @name rollUpOpportunityLineItem
 *  @param List<Opportunity> listNewTrigger
@@ -82,8 +84,8 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
               }
           }
           Catch(DmlException e){
-              System.debug( 'The following exception has occurred: '+e.getMessage() );
-              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
+              System.debug( ERROR_MESSAGE +e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
           }
       }
     }
@@ -99,18 +101,14 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
          Integer opportunity_Gain = 0;
          Integer opportunity_Potential=0;
          Integer record_Count;
-         List<Id> listAccPlanId = new List<Id>();
-         List<FS_Account_Plan__c> accPlanList = new List<FS_Account_Plan__C>();
-         List<FS_Account_Plan__c> accPlanToUpdate = new List<FS_Account_Plan__C>();
-         List<Opportunity> oppList = new List<Opportunity>();
+         List<Id> listAccPlanId = new List<Id>();         
+         List<FS_Account_Plan__c> accPlanToUpdate = new List<FS_Account_Plan__C>();         
          for(Opportunity opp : listNewTrigger2){
               if(opp.Account_Plan__c !=null){
                   listAccPlanId.add(opp.Account_Plan__c);
               }
             }
-        //Get Accoun Plan deatils where associated opportunities have been modified
-        //accPlanList=[select id,name,FS_Opportunity_Gain__c,FS_No_of_Opportunities__c,FS_Opportunity_Amount__c from FS_Account_Plan__c where id in : listAccPlanId ];
-        //oppList=[select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId];
+        //Get Accoun Plan deatils where associated opportunities have been modified        
         Map<Id,List<Opportunity>> mapAccPlanOpportunity=New Map<Id,List<Opportunity>>();
         List<Opportunity> tempOppList=new List<Opportunity>();
             for(Opportunity opp : [select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId]){
@@ -128,7 +126,7 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
             opportunity_Potential=0;
             record_Count=0;
             tempOppList=new List<Opportunity>();
-            tempOppList=MapAccPlanOpportunity.get(AccPlan.Id);           
+            tempOppList=mapAccPlanOpportunity.get(AccPlan.Id);           
              for(Opportunity opp : tempOppList)
              {
                  if(opp.amount !=null){
@@ -153,8 +151,8 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
               }
           }
           Catch(DmlException e){
-              System.debug( 'The following exception has occurred: '+e.getMessage() );
-              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
+              System.debug( ERROR_MESSAGE +e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
           }
         
         }
@@ -169,18 +167,14 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
         if(FS_Utility.runObjOnce()){
          List<Id> listObjId = new List<Id>();
          Integer gross_Amount;
-         Integer record_Count;
-         List<FS_Defined_Objective__c> objList = new List<FS_Defined_Objective__c>();
-         List<FS_Defined_Objective__c> objToUpdate = new List<FS_Defined_Objective__c>();
-         List<Opportunity> oppList = new List<Opportunity>();
+         Integer record_Count;         
+         List<FS_Defined_Objective__c> objToUpdate = new List<FS_Defined_Objective__c>();         
          for(Opportunity opp : listNewTrigger2){
               if(opp.Defined_Objective__c !=null){
                   listObjId.add(opp.Defined_Objective__c);
               }
             }
-        //Get Accoun Plan deatils where associated opportunities have been modified
-        ObjList=[select id,name,FS_No_of_Opportunities__c from FS_Defined_Objective__c where id in : listObjId];
-        //OppList=[select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId];
+        //Get Accoun Plan deatils where associated opportunities have been modified        
         Map<Id,List<Opportunity>> mapObjOpportunity=New Map<Id,List<Opportunity>>();
         List<Opportunity> tempOppList=new List<Opportunity>();
             for(Opportunity Opp : [select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId]){
@@ -215,8 +209,8 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
               }
           }
           Catch(DmlException e){
-              System.debug( 'The following exception has occurred: '+e.getMessage() );
-              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,'Food Solution');
+              System.debug( ERROR_MESSAGE +e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'UpdateOppField', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
           }        
         }
     }
@@ -229,38 +223,32 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
     public void copyLineItemToExistingOpp(List<Opportunity> listNewTrigger,Map<id,Opportunity> OppOldMap){ 
       //To avoid recurson in trigger used static variable NAFS_Utility.runOnce
       //if(FS_Utility.runOnce()){          
-          List<Id> listOppId = new List<Id>();
-          List<Id> listAccountId= new List<Id>();
-          List<Opportunity> tempOppList=new List<Opportunity>();
+          
+          List<Id> listAccountId= new List<Id>();          
           List<Opportunity> listNewOpportunity=new List<Opportunity>();//List of opportunities which marked as 'Closed Won'
           List<Opportunity> listExistingOpportunity=new List<Opportunity>();//List of Existing opportunities associated with closed New opportunities
-          List<OpportunityLineItem> listExistingOppLineItem = new List<OpportunityLineItem>();//List of line items for existing opportunities
-          List<OpportunityLineItem> listNewOppLineItem = new List<OpportunityLineItem>();//List of line items created for New opportunities
+          List<OpportunityLineItem> listExistingOppLineItem = new List<OpportunityLineItem>();//List of line items for existing opportunities          
           List<OpportunityLineItem> oppLineItemToInsert = new List<OpportunityLineItem>();//Opporutnity line item to be created for existing opportunties
           List<OpportunityLineItem> oppLineItemforExisting = new List<OpportunityLineItem>();//Temporary variable used in loop for each existing opportunity
           List<OpportunityLineItem> oppLineItemToUpdate = new List<OpportunityLineItem>();//Opportunity line items to be updated
           List<OpportunityLineItem> oppLineItemUpsert = new List<OpportunityLineItem>();//Opportunity line items that are updated   
-          List<Contract_Product__c>  listNewContractProduct=new  List<Contract_Product__c>();
-          List<Contract_Product__c>  listExistingContractProduct=new  List<Contract_Product__c>();
+          List<Contract_Product__c>  listNewContractProduct=new  List<Contract_Product__c>();          
           List<Contract_Product__c>  listContractProductInsert=new  List<Contract_Product__c>(); 
           List<Contract_Product__c>  listContractProductUpdate=new  List<Contract_Product__c>();
-          Set<Id> listExistingOli=new Set<Id>();
+          
           Set<Id> listPriceBookEntry=new Set<Id>();
-          Set<Id> setContractId=new Set<Id>();
-          Set<Id> setProductId=new Set<Id>();
+          Set<Id> setContractId=new Set<Id>();          
           Set<Id> setoppLineItemUpsert=new Set<Id>();
-          Map<Id,List<Opportunity>> mapRelatedOpportunity=new Map<Id,List<Opportunity>>();
+          
           Map<Id,List<OpportunityLineItem>> mapRelatedOppLineItem=new Map<Id,List<OpportunityLineItem>>();
-          Map<Id,List<OpportunityLineItem>> mapRelatedExistingOppLineItem=new Map<Id,List<OpportunityLineItem>>();
-          Map<Id,List<OpportunityLineItem>> mapRelatedNewOppLineItem=new Map<Id,List<OpportunityLineItem>>();
+          Map<Id,OpportunityLineItem> mapListExistingOppLineItem=new Map<Id,OpportunityLineItem>(listExistingOppLineItem);
+          Map<Id,List<OpportunityLineItem>> mapExistingOppLineItemOpportunity=new Map<Id,List<OpportunityLineItem>>();
           
           Integer total_Quantity;
-          Integer total_Price;
-          Integer unit_Price;
+          Integer total_Price;          
           Integer existing_Oli_Flag;
           Integer existing_Contract_Product_Flag;
-          Id oliId;      
-        
+          Id oliId; 
           OpportunityLineItem oppLineItem=new OpportunityLineItem();
           List<OpportunityLineItem> tempOppLineItemList=new List<OpportunityLineItem>();
           List<FS_Contract_Product_Opportunity_Map__c> listNewCustomSetting=New List<FS_Contract_Product_Opportunity_Map__c>();
@@ -283,9 +271,7 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
               listExistingOppLineItem = [select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,
                                          Product2Id,Opportunity.contractId,Contract_Product__c
                                          from OpportunityLineItem where opportunityId in : listExistingOpportunity limit 49999];              
-              }          
-              
-            Map<Id,OpportunityLineItem> mapListExistingOppLineItem=new Map<Id,OpportunityLineItem>(listExistingOppLineItem);
+              }           
             
             //Create Map between New Closed Opportunity and corresponding line items
             For(OpportunityLineItem oli: [select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,UnitPrice,
@@ -301,19 +287,17 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
                     mapRelatedOppLineItem.put(oli.Opportunity.contractId,tempOppLineItemList);
                }             
              //Create Map between Contract and related New Closed Opportunities
-              List<Opportunity> tempOpportunityList=new List<Opportunity>();       
-              Map<Id,List<OpportunityLineItem>> mapExistingOppLineItemOpportunity=new Map<Id,List<OpportunityLineItem>>();
-              
+              //List<Opportunity> tempOpportunityList=new List<Opportunity>();       
+                            
               //Create Map between Existing Opportunity and related line items which already exists
               For(OpportunityLineItem oli: [select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,
                                          Product2Id,Opportunity.contractId,Contract_Product__c
                                          from OpportunityLineItem where opportunityId in :ListExistingOpportunity limit 49999]){
-                tempOppLineItemList=new List<OpportunityLineItem>();
-                //system.debug(oli.Opportunity.contractId);
-                if(mapExistingOppLineItemOpportunity.containskey(oli.Opportunity.contractId))
-                    {
-                        tempOppLineItemList=mapExistingOppLineItemOpportunity.get(oli.Opportunity.contractId);
-                    }               
+              tempOppLineItemList=new List<OpportunityLineItem>();
+              //system.debug(oli.Opportunity.contractId);
+              if(mapExistingOppLineItemOpportunity.containskey(oli.Opportunity.contractId)){
+                 tempOppLineItemList=mapExistingOppLineItemOpportunity.get(oli.Opportunity.contractId);
+              }               
                     tempOppLineItemList.add(oli);
                     //system.debug(tempOppLineItemList);
                     mapExistingOppLineItemOpportunity.put(oli.Opportunity.contractId,tempOppLineItemList);
@@ -438,8 +422,8 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
               }                  
               }           
           Catch(DmlException e){
-              System.debug( 'The following exception has occurred: '+e.getMessage() );
-              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'MA-BE Process', e.getMessage(), e, null, null, null, 0,'Food Solution');
+              System.debug( ERROR_MESSAGE +e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
           } 
        
         oppLineItemUpsert=[select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,
@@ -500,8 +484,8 @@ Private static final string STATUS_CLOSED_LOST='Closed Lost';
                      
           }
           Catch(DmlException e){
-              System.debug( 'The following exception has occurred: '+e.getMessage() );
-              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'MA-BE Process', e.getMessage(), e, null, null, null, 0,'Food Solution');
+              System.debug( ERROR_MESSAGE +e.getMessage() );
+              ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_OpportunityHelper', 'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
           }
       }//End of method for MA-BE
       

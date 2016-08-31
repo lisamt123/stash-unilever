@@ -4,7 +4,7 @@
 *  @return 
 *  @throws 
 */
-public without sharing class FS_CentrallyLedChildAccount_Picklist_CX {
+public with sharing class FS_CentrallyLedChildAccount_Picklist_CX {
    public list<string> centrallyLedList {get;set;}   
    public List<SelectOption> childAccList=new List<SelectOption>();
    private task centrallyledtask;
@@ -54,27 +54,20 @@ public without sharing class FS_CentrallyLedChildAccount_Picklist_CX {
     public pagereference createTask(){        
         List<task> tasktoinsert=new list<task>();        
         List<account> accList=[select id,name,ownerid from account where id in : centrallyLedList limit 49999];//Fetch all the selected accounts
-        task parentTask=[select id,accountid,subject,status,activitydate from task where id=:centrallyledtask.id limit 49999];
-        list<task> childtasklist=[select id,subject,accountid from task where subject=:parentTask.subject and accountid in: acclist limit 49999];
-        set<id> childactivityset=new set<id>();
-        //string existingaccountlist;        
+        task parentTask=[select id,accountid,subject,status,activitydate from task where id=:centrallyledtask.id limit 49999];        
+        set<id> childactivityset=new set<id>();                
         for(task childtask : [select id,subject,accountid from task where subject=:parentTask.subject and accountid in: acclist limit 49999]){
         childactivityset.add(childtask.accountid);            
-        }        
-        //system.debug(childtasklist);        
+        }          
         for(account acc: accList){            
             if(!(childactivityset.contains(acc.id))){
                 tasktoinsert.add(new Task(whatid=acc.id,ownerid=acc.ownerid,subject=parentTask.subject,status=parentTask.Status,activitydate=parentTask.ActivityDate));
             }
             //Add warning if task already created for any of the selected accounts
-            if((childactivityset.contains(acc.id))){
-              //ApexPages.Message MyMsg= new ApexPages.Message(ApexPages.Severity.Warning,'Task already created for one of the selected account');
-              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning,'Task already created for one of the selected account'));
-              //system.debug(MyMsg);
+            if((childactivityset.contains(acc.id))){              
+              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Warning,'Task already created for one of the selected account'));              
             } 
-          }        
-        //system.debug(tasktoinsert.size());
-        //system.debug(tasktoinsert);
+          }       
         try{
             if(!(tasktoinsert.isEmpty())){
                insert tasktoinsert;

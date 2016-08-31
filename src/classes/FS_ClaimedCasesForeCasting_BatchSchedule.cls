@@ -4,7 +4,7 @@
 *  @return 
 *  @throws
 */ 
-Global class FS_ClaimedCasesForeCasting_BatchSchedule implements Schedulable{
+Global with sharing class FS_ClaimedCasesForeCasting_BatchSchedule implements Schedulable{
 /* * Execute Method for ClaimedCasesForeCasting_BatchSchedule scheduler class
 *  @name Execute
 *  @param SchedulableContext SC

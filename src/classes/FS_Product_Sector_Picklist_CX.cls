@@ -4,7 +4,7 @@
 *  @return 
 *  @throws 
 */
-public without sharing class FS_Product_Sector_Picklist_CX {
+public with sharing class FS_Product_Sector_Picklist_CX {
     Public List<SelectOption> listSector_Picklist {get;set;}
     Public String selectedSector {get;set;}
     Public Boolean refreshPage {get;set;}

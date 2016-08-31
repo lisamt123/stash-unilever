@@ -60,10 +60,11 @@ Public with sharing class FS_ContactDetail_CC {
         
         varContactDetail=new Contact();
         String accountId = apexpages.currentpage().getparameters().get(FS_ContactUtility.IDTEXTFORACCOUNT );
-        String mode= apexpages.currentpage().getparameters().get('mode');
+        String mode= apexpages.currentpage().getparameters().get(FS_ContactUtility.MODETEXT);
         
-        if(mode=='edit')
+        if(mode==FS_ContactUtility.EDITTEXT){
             EditMode=true;
+        }
         
         varContactDetail = [select id,FirstName, LastName,FS_PIEncryptKey__c,Phone,Email,FS_Position__c,FS_Decision_Maker__c,MailingStreet,MailingCity,MailingPostalCode,MailingCountry, OwnerId,Owner.name, FS_RefId__c,Account.Name, AccountId from Contact where FS_RefId__c=:accountId limit 1];
         
@@ -90,8 +91,8 @@ Public with sharing class FS_ContactDetail_CC {
             if(Test.isRunningTest())
             {
                 varResponse.setBody(jsonresponse);
-                varResponse.setStatusCode(200);
-                varResponse.setStatus('Ok'); 
+                varResponse.setStatusCode(FS_ContactUtility.STATUSCODE);
+                varResponse.setStatus(FS_ContactUtility.STATUSVALUEOK); 
             }
             else
             {
@@ -157,24 +158,26 @@ Public with sharing class FS_ContactDetail_CC {
             
             for(FS_ContactDetailHelper_CC.FS_ExtraParameters str: varContactDetailHelper.GetSiteLeadResult.SiteLead.extraParameters)
             {
-                if(str.name.equals('Email'))        
+               if(!String.isblank(str.name))
+               {
+                if(str.name.equals(FS_ContactUtility.MYEMAILTEXT))        
                 {       
                     varContactDetail.Email=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();        
                 }       
-                if(str.name.equals('PostalCode'))       
+                if(str.name.equals(FS_ContactUtility.CODEPOSTALTEXT))       
                 {       
                     varContactDetail.MailingPostalCode=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();       
                 }
                 
-                if(str.name.equals('Mobile'))        
+                if(str.name.equals(FS_ContactUtility.MOBILEPHONETEXT))        
                 {       
                     varContactDetail.Phone=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();        
                 }       
-                if(str.name.equals('workPhoneNumber'))       
+                if(str.name.equals(FS_ContactUtility.WORKPHONETEXT))       
                 {       
                     workPhoneNumber=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();       
                 }
-                if(str.name.equals('personalPhoneNumber'))       
+                if(str.name.equals(FS_ContactUtility.PERSONALPHONETEXT))       
                 {       
                     personalPhoneNumber=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();       
                 }
@@ -183,6 +186,8 @@ Public with sharing class FS_ContactDetail_CC {
                 {
                     varContactDetail.MailingState=(Crypto.decryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c),  EncodingUtil.base64Decode(str.Value))).toString();
                 }
+              
+              }
                 
             }    
         }    

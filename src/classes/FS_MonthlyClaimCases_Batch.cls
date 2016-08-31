@@ -4,7 +4,7 @@
 *  @return 
 *  @throws
 */ 
-global class FS_MonthlyClaimCases_Batch implements database.Batchable<sObject>{
+global with sharing class FS_MonthlyClaimCases_Batch implements database.Batchable<sObject>{
     global String query;
     global Map<Id,List<FS_Monthly_Claimed_Cases__c>> mapClaimCase;
     //global monthlyClaimCasesBatch(){     
@@ -31,8 +31,7 @@ global class FS_MonthlyClaimCases_Batch implements database.Batchable<sObject>{
         List<FS_Monthly_Claimed_Cases__c> relatedClaimCaseList  = new List<FS_Monthly_Claimed_Cases__c>();
         //Set<Id> conProdIdList=new Set<Id>();
         Integer count;
-        Integer totalActual;
-        
+        Integer totalActual;        
         //Map<id,List<FS_Monthly_Claimed_Cases__c>> epdLeadMap=new Map<id,List<FS_Monthly_Claimed_Cases__c>>();
         Map<id,List<FS_Monthly_Claimed_Cases__c>> mapClaimCase=new Map<id,List<FS_Monthly_Claimed_Cases__c>>();
         List<FS_Monthly_Claimed_Cases__c> tempList  = new List<FS_Monthly_Claimed_Cases__c>();
@@ -71,7 +70,7 @@ global class FS_MonthlyClaimCases_Batch implements database.Batchable<sObject>{
             }
             If(count>0){           
             claimed_case.FS_Forecast_Quantity__c=TotalActual/count;
-            ClaimCaseToUpdate.add(claimed_case);
+            claimCaseToUpdate.add(claimed_case);
         }
         }        
         }        

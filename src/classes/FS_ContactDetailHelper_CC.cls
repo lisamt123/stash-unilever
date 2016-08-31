@@ -16,38 +16,38 @@ VERSION AUTHOR   DATE        DETAIL Description
 public with sharing class FS_ContactDetailHelper_CC{
     public FS_GetSiteLeadResult GetSiteLeadResult {get;set;}
     public with sharing class FS_GetSiteLeadResult {
-        private Integer errorCode;   //0
-        Private String message;  //???????? ?????????
+        public Integer errorCode;   //0
+        public String message;  //???????? ?????????
         public FS_SiteLead SiteLead{get;set;}
-        Private boolean success;
-        Private List<FS_Warnings> warnings = new list<FS_Warnings>();
+        public boolean success;
+        public List<FS_Warnings> warnings = new list<FS_Warnings>();
     }
     public with sharing  class FS_SiteLead {
         public String Address{get;set;}  //address-1, 4 - 33
-        Private Integer age; //28
-        Private String birthDate;    //1987-01-12
-        Private String businessAddress;  //
-        Private String businessName; //OOO MTC
+        public Integer age; //28
+        public String birthDate;    //1987-01-12
+        public String businessAddress;  //
+        public  String businessName; //OOO MTC
         public String BusinessPostalCode{get;set;}   //449543
         public String City{get;set;} //city1
         public String Country{get;set;}  //Russia
         public String Email{get;set;}   //
         Public List<FS_ExtraParameters> extraParameters = new list<FS_ExtraParameters>();
-        Private String facebookId;   //897384
+        public String facebookId;   //897384
         public String Firstname{get;set;}    //
        // public Blob Firstname{get;set;}    //
-        Private String gender;   //Male
-        Private String id;   //414c01d6-48fa-4578-9bfb-cf1b9c01335c
-        Private Integer income;  //70000
-        Private String jobTitle; //
-        Private String landlinePhone;    //
+        public String gender;   //Male
+        public String id;   //414c01d6-48fa-4578-9bfb-cf1b9c01335c
+        public Integer income;  //70000
+        public String jobTitle; //
+        public String landlinePhone;    //
         public String MaritalStatus{get;set;}    //Married
         public String Middlename{get;set;}   //middleName
-        Private  String okId; //0294485
-        Private String passportNumber;   //3606789654
-        Private boolean personalDataAgree;
+        public String okId; //0294485
+        public String passportNumber;   //3606789654
+        public boolean personalDataAgree;
         public String Phone{get;set;}    //
-        Private String propertyStatus;   //propertyStatus
+        public String propertyStatus;   //propertyStatus
         Public String socialStatus; //socialStatus
         public String Surname{get;set;} //Machev
         Public String username; //

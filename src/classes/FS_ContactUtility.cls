@@ -20,6 +20,7 @@ Public  Class FS_ContactUtility  {
     Public Static Final String IDTEXTFOREXTRAPARAMETERS = 'Id';
     Public Static Final String STATUSVALUEOK = 'Ok';
     Public Static Final Integer STATUSCODE = 200;
+    Public Static Final Integer VALIDPHONELENGTH = 20;
     Public Static Final Integer ENCRYPTINTEGER= 256;
     Public Static Final String ERRORMESSAGE = 'An issue was received while saving the record. Please try again or notify support team in case of repeating.';
     Public Static Final String ERRORMESSAGERETRIVE = 'An issue was received while retriving the record. Please try again or notify support team in case of repeating.';
@@ -65,6 +66,10 @@ Public  Class FS_ContactUtility  {
     Public Static Final String MYOWNERTEXT= 'Owner';
     Public Static Final String MYLASTNAMETEXT= 'Last Name';
     Public Static Final String MYTRUETEXT= 'true';
+    Public Static Final String MODETEXT= 'mode';
+    Public Static Final String EDITTEXT= 'edit';
+    
+   
     
     
     
