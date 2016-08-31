@@ -275,7 +275,6 @@
         <apexClass>AF_AfterUpdateBonusResHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-       
     <classAccesses>
         <apexClass>AF_AgencyEstimateController</apexClass>
         <enabled>false</enabled>
@@ -34468,10 +34467,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>AF_AnnualBonus</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>AF_Assigncategories</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
