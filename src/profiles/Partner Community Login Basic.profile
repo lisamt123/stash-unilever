@@ -37414,7 +37414,7 @@
     </tabVisibilities>
     <userLicense>Partner Community Login</userLicense>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>EnableNotifications</name>
     </userPermissions>
     <userPermissions>
