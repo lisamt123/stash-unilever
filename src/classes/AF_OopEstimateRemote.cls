@@ -94,7 +94,7 @@ global with sharing class AF_OopEstimateRemote {
 *  @return: Map of <String,String>.
 *************************************************************************************/
   public static void getOOPSEstimateRecordsExt(String oopsActualId, String agencyId){
-  String trOpenTag = '<tr>', trCloseTag = '</tr>';
+  String trOpenTag = '<tr>';
    Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
    /* Columns part is completed. */
     /* Following displays all the rows in the matrix.*/
@@ -124,7 +124,7 @@ global with sharing class AF_OopEstimateRemote {
 *************************************************************************************/
   public static void getOOPSEstimateRecordsExtension(String oopsActualId, String agencyId){
       Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
-      String trOpenTag = '<tr>', trCloseTag = '</tr>';
+      String trCloseTag = '</tr>';
       for(String eachRow : orderedRow) {
       String dispArchiveImg = (rowTotalVal > 0 || rowTotalA > 0)?  '' : archiveImg;
       rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTagEst;
