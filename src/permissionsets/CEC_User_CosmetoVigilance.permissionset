@@ -30669,11 +30669,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Project__c.Duration_Idea__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Project__c.EcoDesign_Sync_Error__c</field>
         <readable>false</readable>
     </fieldPermissions>
