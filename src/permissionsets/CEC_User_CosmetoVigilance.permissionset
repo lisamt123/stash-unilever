@@ -29769,11 +29769,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Project_Document_Section__c.Gate_With_Sequence__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Project_Document_Section__c.IPM_Assortment_CU__c</field>
         <readable>false</readable>
     </fieldPermissions>
