@@ -24,8 +24,8 @@ src/email/CEC_Emails_Indonesia
 src/email/CEC_Emails_Philippines
 src/email/CEC_Emails_Thailand
 src/email/CEC_Emails_Vietnam
-src/email/AA_Email_Templates/Close_Case_Survey.email
-src/email/AA_Email_Templates/Close_Case_Survey.email-meta.xml
+src/email/Close_Case_Survey.email
+src/email/Close_Case_Survey.email-meta.xml
 src/email/CEC_Emails_Brazil/Brazil_Product_Factory_Response.email
 src/email/CEC_Emails_Brazil/Brazil_Product_Factory_Response.email-meta.xml
 src/email/CEC_Emails_Brazil/Brazil_Textile_Factory_Response.email
