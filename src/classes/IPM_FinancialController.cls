@@ -1242,16 +1242,42 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             // DEF2676 fix start
             consolidatedYearCount = 0;
             if(currentFinancial.RecordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE) {
-                 for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
-                    if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS) {
-                        consolidatedYearCount ++;
-                    }
-                }
+                getConsolidatedYearCount();
+                 
                 if( consolidatedYearCount>sustainabilityPeriod && nextIndex==0 && previousIndex==0 ) {
                     previousIndex = 1;
                     nextIndex = sustainabilityPeriod;
                 }
             }
+           
+           	generateFinancialsFromCY();
+           
+            getCountryList();
+            calculateIsNonKeyBusinessCaseChanged();
+        }
+            setMisalignedValue();        
+        
+    }
+    
+    /****************************************************************************************************************
+    * @description  Get consolidated Year Count  
+    * @param        NONE
+    * @return       NONE
+    ****************************************************************************************************************/
+    private void getConsolidatedYearCount(){
+                 for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
+                    if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS) {
+                        consolidatedYearCount ++;
+                    }
+                }
+    }
+    
+    /****************************************************************************************************************
+    * @description  Generate financials itrating on current financial years   
+    * @param        NONE
+    * @return       NONE
+    ****************************************************************************************************************/
+    private void generateFinancialsFromCY(){
            // DEF2676 fix end
             for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
                 //Add to Map
@@ -1281,15 +1307,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     } else {
                         generateFinancials(finYear, financialsCalendar);
                     }
-
-                    
-               }
-            }
-            getCountryList();
-            calculateIsNonKeyBusinessCaseChanged();
+           }
         }
-            setMisalignedValue();        
-        
     }
     
     /*******************************************************************************************************
@@ -2766,6 +2785,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                   
         isTargetLaunchDateMisaligned =  flag; 
         //check for the operational type project to check for the misalignment.                              
+            checkOperationPrjMisAlignment();
+        } 
+        
+	/************************************************************************************************************** 
+    * This method check operation project misalignment 
+    * @parmas
+    * @param        NONE
+    * @return       NONE
+    **************************************************************************************************************/
+	private void checkOperationPrjMisAlignment(){
         if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=null && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) 
         {
             showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
