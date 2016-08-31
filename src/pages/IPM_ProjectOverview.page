@@ -489,7 +489,15 @@
 								</div>
 								<div class="greyborder"></div>
 							</apex:outputpanel>
-
+							<apex:outputpanel rendered="{!isPDL}">
+                                <div class="row">
+                                    <div class="col-sm-8 pr0">
+                                        <div class="keycontent">{!$Label.IPM_Current_PDL_Document_Status}</div>
+                                    </div>
+                                    <div class="col-sm-3 pl0">{!status_PDL}</div>
+                                </div>
+                                <div class="greyborder"></div>
+                            </apex:outputpanel>
 							<div class="row mt20">
 								<div class="col-sm-2">
 									<img class="cirimg" alt="Project Leader"
