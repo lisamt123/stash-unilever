@@ -952,7 +952,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             finList=new List<IPM_Financial__c>();
             finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Local_Project__r.Is_Archieved__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
             Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,
-            Local_Project__r.IPM_Project_Name__c,Local_Project__c FROM IPM_Financial__c WHERE isActive__c=true AND 
+            Local_Project__r.IPM_Project_Name__c,Local_Project__c,Gate_Keeping_Model__c FROM IPM_Financial__c WHERE isActive__c=true AND 
             Local_Project__r.IPM_Parent_Project__c=:projectId AND RecordType.Name=:IPM_ConstantUtils.DEFAULT_FINANCIAL_RT LIMIT 1000];
             if(!finList.isEmpty()){
                 for(IPM_Financial__c fin:finList){
@@ -969,7 +969,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
                     }  
                     //Financial alignment
-                    if(fin.Misaligned__c){
+					//bypassed the check for GKM3 - Interim
+                    if(fin.Misaligned__c  && fin.Gate_Keeping_Model__c != 'GKM3'){
                         localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
                         showValidation=false;  
                         financialAlignment=true;
@@ -977,7 +978,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         
                     }
                     //Target launch date alignment
-                    if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
+					//bypassed the check for GKM3 - Interim
+                    if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c  && fin.Gate_Keeping_Model__c != 'GKM3'){
                         localTLDProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
                         showValidation=false;  
                         tldAlignment=true;  
