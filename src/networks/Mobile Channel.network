@@ -47,7 +47,6 @@
     <status>Live</status>
     <tabs>
         <customTab>Cockpit</customTab>
-        <customTab>Closed_Opportunity</customTab>
         <customTab>Inventory</customTab>
         <customTab>Lista_de_Pre_os</customTab>
         <customTab>ICB_Sales_Locale__c</customTab>
