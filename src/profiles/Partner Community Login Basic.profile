@@ -154,7 +154,7 @@
     <applicationVisibilities>
         <application>standard__Insights</application>
         <default>false</default>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__Marketing</application>
@@ -168,8 +168,8 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__Sales</application>
-        <default>fakse</default>
-        <visible>false</visible>
+        <default>true</default>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>standard__Service</application>
@@ -1650,15 +1650,15 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_CA_ReminderAlert_Batch</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_CA_ReminderAlert_Batch_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_CA_ReminderAlert_Scheduler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_ChatterGroupFeed_Page_Test</apexClass>
@@ -1670,19 +1670,19 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_ChatterIdeaThemesTrigger_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_IC_Batch_ICampaignStatusUpdate</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_IC_Scheduler_ICampaignStatusUpdate</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_IC_Test_Batch_CampaignStatus</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CORE_NewsArticle_Test</apexClass>
@@ -1822,39 +1822,39 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_AutoComplete_Con</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_AppConstants</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_ApplicationWrapper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_ApprovalDetailsController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_ApproveRejectAction</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approve_Reject_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approver_ApproveController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approver_RejectController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseApplicationServices</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseApplicationServicesTest</apexClass>
@@ -1862,11 +1862,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseApplicationWrapper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseServiceException</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseServiceException_Test</apexClass>
@@ -1874,15 +1874,15 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HeaderApproveController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HeaderRejectController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Header_Handler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HelpContentController</apexClass>
@@ -1890,31 +1890,31 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_IBaseAppicationServices</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_InterestedParty_Handler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_LineItemDetail</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Line_ApproveController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Line_RejectController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_MiniPageView_Override_Controller</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_MyApprovalData</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RemoteServiceCallControllerTest</apexClass>
@@ -1922,63 +1922,63 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RequestDetail</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RequestDetailsController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Test_MobileAPP</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_WrapperUtility</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_AppConstants</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_CampaignDetail</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_FAQData</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_IdeaDetail</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_LandingPage</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_PostCommentForAnIdea</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_PostSubmitIdea</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_PostVoteForIdeas</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_Test_IdeationApp</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_WrapperUtility</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsCenterController</apexClass>
@@ -2002,35 +2002,35 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_SendToChatterController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_SendToChatter_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_WP_EmailService</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_WP_SustaiabilityWrapper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_WP_Test_WorkplaceApp</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_WP_WorkPlaceController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_WP_WorkPlaceControllerHelper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_WP_WorkplaceGAWrapperClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CustomChatterConfig</apexClass>
@@ -2038,7 +2038,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Constants</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_ConstantsTestClass</apexClass>
@@ -2046,7 +2046,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_ControllerClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_ControllerTestClass</apexClass>
@@ -2054,7 +2054,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_FeedbackNotificationBatch</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_FeedbackNotificationBatchTestclass</apexClass>
@@ -2062,11 +2062,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_FeedbackNotificationScheduler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Feedback_Controller</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Feedback_ControllerTestClass</apexClass>
@@ -2082,7 +2082,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_LookupSObjectController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_LookupSObjectControllerTestclass</apexClass>
@@ -2090,7 +2090,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Notification_Controller</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Notification_ControllerTestClass</apexClass>
@@ -2098,7 +2098,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Utils</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_UtilsTestClass</apexClass>
@@ -2106,7 +2106,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Wrapper_Class</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>EA_Wrapper_ClassTestClass</apexClass>
@@ -4074,7 +4074,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>RemoteServiceCallController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>SSOSharepointController</apexClass>
@@ -4158,7 +4158,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Utility</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>UtilityClass</apexClass>
@@ -8610,9 +8610,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.AccountSource</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8650,9 +8650,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.AnnualRevenue</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8670,9 +8670,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.BillingAddress</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8730,9 +8730,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8750,9 +8750,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Fax</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8770,14 +8770,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Industry</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Jigsaw</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8830,9 +8830,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.NumberOfEmployees</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8850,14 +8850,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.ParentId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Phone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8940,9 +8940,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.ShippingAddress</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8950,9 +8950,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.SicDesc</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -8970,9 +8970,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Subcategories__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9005,9 +9005,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Type</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9045,9 +9045,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.Website</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9310,39 +9310,39 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.AccountId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.ContactId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.InstallDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.IsCompetitorProduct</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.Price</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.Product2Id</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9360,29 +9360,29 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.PurchaseDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.Quantity</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.SerialNumber</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.Status</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset.UsageEndDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -9965,9 +9965,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Brand_Master__c.Primary_Category__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10630,34 +10630,34 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.ActualCost</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.BudgetedCost</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.EndDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.ExpectedResponse</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.ExpectedRevenue</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10720,34 +10720,34 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.IsActive</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.NumberSent</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.ParentId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.StartDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.Status</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Campaign.Type</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10757,7 +10757,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.AccountId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10892,7 +10892,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.ClosedDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10915,9 +10915,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.ContactId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10960,9 +10960,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11067,7 +11067,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.IsEscalated</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11210,9 +11210,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Origin</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11240,9 +11240,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.ParentId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11250,9 +11250,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Priority</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11290,9 +11290,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Reason</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11395,29 +11395,29 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Subject</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.SuppliedCompany</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.SuppliedEmail</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.SuppliedName</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.SuppliedPhone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11425,9 +11425,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Case.Type</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11690,24 +11690,24 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.AccountId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.AssistantName</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.AssistantPhone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Birthdate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11715,14 +11715,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Department</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11730,9 +11730,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Email</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11740,9 +11740,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Fax</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11755,9 +11755,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.HomePhone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11765,39 +11765,39 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Jigsaw</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.LeadSource</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.MailingAddress</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.MobilePhone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.OtherAddress</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.OtherPhone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Phone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11810,9 +11810,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.ReportsToId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11820,9 +11820,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contact.Title</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11852,57 +11852,57 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract.ActivatedById</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract.ActivatedDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.BillingAddress</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.CompanySignedDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.CompanySignedId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.ContractTerm</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.CustomerSignedDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.CustomerSignedId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.CustomerSignedTitle</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Contract.EndDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11910,9 +11910,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.OwnerExpirationNotice</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11920,724 +11920,724 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.ShippingAddress</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.SpecialTerms</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Contract.StartDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Air_Fare_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Allowance_details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Attachment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Attendees_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.CA_Payment_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Car_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Charge_To__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.City__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Commodity_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Currency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Description__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.End_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_Country__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_VAT_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_VAT_Rate__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Expense_VAT__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Limo_Vendor__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Line_Item_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Merchant__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Miles__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.PONumber__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Parent_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Payment_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Per_Diem_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Per_Diem_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Policy_Exceptions__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Price__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Private_Km_s__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Purpose__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Quantity__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Reason__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Receipt_Number__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Receipt__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Reimbursable__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Room_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.SAPMaterialMaster__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Source_System__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Split_Accounting_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Supplier_ERP_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Supplier_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Tax_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Unit_of_Measure__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Details__c.Valid_Tax_Receipt__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Active__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Advance_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Amount_Paid_Card__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Amount_Paid_Employee__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Amount_to_Card__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Amount_to_Company__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Amount_to_Employee__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Application_URL__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Ariba_Company_Code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Attachment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Category__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Charge_To__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Comment__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Currency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Days__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Delegatee__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.DelegationEnd__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.DelegationStart__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Description__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Expected_Completion__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.External_Created_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.External_System_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Fully_Approved__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Impact__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.International__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Invalid_PR_Approver__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Invalid_PR_Reason__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Invalid_PR__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Ledger_Extract__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Manager__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Multi_Approver__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Net_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Non_Reimbursable_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Other_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Policy_Exception__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.PreTrip_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.PreTrip_Location_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.PreTrip_Passenger_Info__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Priority__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Purpose__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Reason__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Reminder_Alert_Days__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Reminder_Alert_Needed__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_By_Chatter_Preference__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_By_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_By_Language__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_By__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_For_Chatter_Preference__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_For_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_For_Language__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requested_For__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Requestor_Employee_No__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Source_System__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.TF_Currency1__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.TF_Currency2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.TF_Currency3__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.TF_Currency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Title_Summary__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Total_Expenses_Amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Total_amount__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Turnaround_Time__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Urgency__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Action_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Action__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Alternate_Approver__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Approver_Chatter_Preference__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Ariba_Role__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.CA_Action__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.CA_Role__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Chatter_Notification_Sent__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approver_Details__c.Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.CurrentDateTime__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Employee_No__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Header_ExternalId__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Interested_Party_Details__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Interested_Party_Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Interested_Party__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Is_Active__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Rank__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Reason__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Received_on__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Role__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approver_Details__c.Send_to_Source_System__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Sort_Order__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Source_System__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approver_Details__c.Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.TF_Header_Status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.TF_Requested_By__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.TF_Requestor_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.User_Language__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Core_Approver_Details__c.Visible_to_Supplier__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -12755,14 +12755,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Event.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Event.IsAllDayEvent</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -12770,9 +12770,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Event.Location</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -12780,14 +12780,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Event.WhatId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Event.WhoId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -12810,9 +12810,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Event__c.Chatter_Group_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -14540,14 +14540,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>FA_UserPreference__c.FA_Company_code__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>FA_UserPreference__c.FA_Cost_Centre_nr__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -20665,149 +20665,149 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Idea.Attachment</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Idea.Description__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Idea.Function__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Idea.Idea_Theme__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Idea.Platform__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Idea.Status</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Idea.StatusFormula__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Active_Challenge__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Active__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.BatchInvoked__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IdeaTheme.Categories</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Chatter_Post__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.CommunityId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Dashboard__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IdeaTheme.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Description__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IdeaTheme.EndDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Groups_to_Post__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.IdeaCount</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Idea_Theme_Poster_URL__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Idea_Theme_Title__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Idea_Themes_Banner__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.LeaderboardId__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Promoted__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IdeaTheme.StartDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>IdeaTheme.Status</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Video_URL__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.View__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IdeaTheme.Zone_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22070,14 +22070,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Address</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.AnnualRevenue</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22085,9 +22085,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22095,9 +22095,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Email</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22115,14 +22115,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Industry</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Jigsaw</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22130,9 +22130,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.LeadSource</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22140,9 +22140,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.NumberOfEmployees</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22150,34 +22150,34 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Phone</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Rating</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.SFGA__CorrelationID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.SFGA__Correlation_Data__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.SFGA__Web_Source__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Title</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22185,9 +22185,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Lead.Website</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -24820,19 +24820,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.AccountId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.Amount</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.CampaignId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -24840,9 +24840,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -24855,14 +24855,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.LeadSource</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.NextStep</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -24875,14 +24875,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Opportunity.Type</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>OpportunityLineItem.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -24892,17 +24892,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.ListPrice</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.ProductCode</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>OpportunityLineItem.ServiceDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -24912,7 +24912,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.TotalPrice</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25330,19 +25330,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Pinnovate_Preference__c.Background_Color__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Pinnovate_Preference__c.Background_Image__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Pinnovate_Preference__c.Background_Preview__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25350,14 +25350,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Pinnovate_Preference__c.Header_Banner__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Pinnovate_Preference__c.Header_Preview__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25372,22 +25372,22 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Pinnovate_Preference__c.Pinnovate_Wall__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Product2.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Product2.Family</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Product2.ProductCode</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25740,19 +25740,19 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Solution.IsPublished</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Solution.IsPublishedInPublicKb</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Solution.SolutionNote</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25920,9 +25920,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Task.ActivityDate</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25935,9 +25935,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Task.Description</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -25950,14 +25950,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Task.WhatId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Task.WhoId</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26365,9 +26365,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>User.Accepted_Terms_of_Use__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26392,7 +26392,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Function__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26437,12 +26437,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.MCO__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Market_Cluster__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26462,7 +26462,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Person_Type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -26492,7 +26492,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.Sub_Function__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -29445,9 +29445,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>cec_Alert_Tracker_Item__c.Case_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32745,9 +32745,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>uw_BET__c.Market_Clusters__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32805,9 +32805,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>uw_BET__c.Scope__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -32892,7 +32892,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_Brand__c.Brand_Centre_Page__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -33050,14 +33050,14 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>uw_Links__c.Category_Image_URL__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>uw_Links__c.Link_Category_New__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -33070,9 +33070,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>uw_Links__c.Link_Icon__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -33593,7 +33593,7 @@
         <recordType>Core_Approval_Details__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approval_Details__c-Line Details Ariba_FeedBased</layout>
+        <layout>Core_Approval_Details__c-Line Details GTES_FeedBased</layout>
         <recordType>Core_Approval_Details__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -33604,7 +33604,7 @@
         <recordType>Core_Approval_Header__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
+        <layout>Core_Approval_Header__c-GTES_FeedBased</layout>
         <recordType>Core_Approval_Header__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -33615,7 +33615,7 @@
         <recordType>Core_Approver_Details__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
+        <layout>Core_Approver_Details__c-Approver_GTES_FeedBased</layout>
         <recordType>Core_Approver_Details__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -33972,6 +33972,10 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Idea-Idea Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+        <recordType>Idea.InternalIdeasIdeaRecordType</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Idea-Idea Layout</layout>
@@ -34796,44 +34800,20 @@
     <layoutAssignments>
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
-	<layoutAssignments>
-        <layout>ICB_Inventory_Line_Item__c-Inventory Line Item Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>ICB_Inventory_Line_Item__c-Inventory Line Item Layout</layout>
-        <recordType>ICB_Inventory_Line_Item__c.ICB_Inventory_Line_Item</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>ICB_Inventory__c-Inventory Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>ICB_Inventory__c-Inventory Layout</layout>
-        <recordType>ICB_Inventory__c.ICB_Inventory</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>ICB_Sales_Locale__c-Sales Locale Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>ICB_Sales_Locale__c-Sales Locale Layout</layout>
-        <recordType>ICB_Sales_Locale__c.ICB_Sales_Locale</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>ICB_Setup_Photo__c-Setup Photo Layout</layout>
-    </layoutAssignments>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Account</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Asset</object>
         <viewAllRecords>false</viewAllRecords>
@@ -34842,43 +34822,43 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Campaign</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Case</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Contact</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Contract</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Idea</object>
         <viewAllRecords>false</viewAllRecords>
@@ -34887,25 +34867,25 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>IdeaTheme</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Lead</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Opportunity</object>
         <viewAllRecords>false</viewAllRecords>
@@ -34914,7 +34894,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Pricebook2</object>
         <viewAllRecords>false</viewAllRecords>
@@ -34923,7 +34903,7 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Product2</object>
         <viewAllRecords>false</viewAllRecords>
@@ -34932,36 +34912,9 @@
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
+        <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>Solution</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>WorkBadge</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>WorkBadgeDefinition</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
-        <allowRead>false</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>WorkThanks</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
@@ -35434,7 +35387,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>ChatterIdeaThemes</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>ChatterIdeasThemesList</apexPage>
@@ -35474,15 +35427,15 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreChatterGroupFeedResponsive</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreChatterMyNewsfeedResponsive</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreChatterTopicFeedResponsive</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>CoreNTImport</apexPage>
@@ -35502,139 +35455,139 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalDetailPage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalDetails</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalFilter</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalHomePage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalRequestAribaLineDetail</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalRequestGETSLineDetail</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApproveRejectActionPage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Approver_Approve</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Approver_Reject</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ChatterFeedPage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_HeaderApprove</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_HeaderReject</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_IPHelp</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_LineDetailsHelp</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Line_Approve</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_Line_Reject</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_MiniPageView_Override</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_MyApprovalsHome</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_RequestDetails</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_SocialBusinessHelp</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_FAQPage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_FeaturedCampaignDetails</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_FeaturedCampaignFilter</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_FeaturedCampaignList</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_FeaturedCampaignSort</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_IdeaDetail</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_IdeasList</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_IdeasListFilter</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_IdeasListSort</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_IdeationCacheImages</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_IdeationCacheImagesManifest</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_IdeationHomePage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_LandingPage</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_IC_SubmitIdea</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Course_Detail</apexPage>
@@ -36178,7 +36131,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>SendToChatter</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>SiteLogin</apexPage>
@@ -36382,11 +36335,11 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>approvalscacheimages</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>approvalscacheimagesmanifest</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>bc_help_pop_up</apexPage>
@@ -36798,32 +36751,35 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Core_Approval_Details__c.Ariba</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Core_Approval_Details__c.GTES</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Core_Approval_Header__c.Ariba</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Core_Approval_Header__c.GTES</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Core_Approver_Details__c.Ariba</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Core_Approver_Details__c.GTES</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
@@ -37365,16 +37321,12 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>FA_Course_ChatterGroup__c</tab>
-        <visibility>DefaultOff</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>IPM_Project__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>standard-IdeaTheme</tab>
-        <visibility>Hidden</visibility>
+        <tab>Ideas</tab>
+        <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Lead</tab>
@@ -37415,50 +37367,46 @@
     <userLicense>Partner Community Login</userLicense>
     <userPermissions>
         <enabled>true</enabled>
-        <name>EnableNotifications</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>false</enabled>
         <name>AllowUniversalSearch</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>AssignTopics</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>ChatterOwnGroups</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>ConvertLeads</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>CreateTopics</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>EditOppLineItemUnitPrice</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>EditTask</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>EditTopics</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+        <name>EnableNotifications</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>RunReports</name>
     </userPermissions>
     <userPermissions>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
         <name>SelectFilesFromSalesforce</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>false</enabled>
-        <name>ViewGlobalHeader</name>
     </userPermissions>
 </Profile>
