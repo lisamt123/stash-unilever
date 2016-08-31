@@ -94,32 +94,32 @@ global with sharing class AF_OopEstimateRemote {
 *  @return: Map of <String,String>.
 *************************************************************************************/
   public static void getOOPSEstimateRecordsExt(String oopsActualId, String agencyId){
-  String trOpenTag = '<tr>', trCloseTag = '</tr>';
-   Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
+  //String trOpenTag = '<tr>', trCloseTag = '</tr>';
+   //Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
    /* Columns part is completed. */
     /* Following displays all the rows in the matrix.*/
     for(String eachRow : orderedRow) {
-      rowDetail += trOpenTag;
-      rowTotal = 0;rowTotalVal=0;rowTotalA=0;
+      rowDetail += AF_Constants.trOpenTag;
+      AF_Constants.rowTotal = 0;AF_Constants.rowTotalVal=0;AF_Constants.rowTotalA=0;
       for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
         String keyMatch = eachCol+'-'+eachRow; //column Vs row
         if(oopsULRelationMap.containsKey(keyMatch)) {
-          rowTotal += AF_BrandEstimateRemote.truncateDecimal(oopsULRelationMap.get(keyMatch).AF_Estimate__c/1000);
+          AF_Constants.rowTotal += AF_BrandEstimateRemote.truncateDecimal(oopsULRelationMap.get(keyMatch).AF_Estimate__c/1000);
           Decimal agreedBaseFee = oopsULRelationMap.get(keyMatch).AF_Agreed_Base_Fees__c != null ? 
           oopsULRelationMap.get(keyMatch).AF_Agreed_Base_Fees__c : 0;
-          rowTotalVal += AF_BrandEstimateRemote.truncateDecimal(agreedBaseFee);
-          rowTotalA += AF_BrandEstimateRemote.truncateDecimal(oopsULRelationMap .get(keyMatch).AF_Estimate__c);
+          AF_Constants.rowTotalVal += AF_BrandEstimateRemote.truncateDecimal(agreedBaseFee);
+          AF_Constants.rowTotalA += AF_BrandEstimateRemote.truncateDecimal(oopsULRelationMap .get(keyMatch).AF_Estimate__c);
         }
       }
-      String dispArchiveImg = (rowTotalVal > 0 || rowTotalA > 0)?  '' : archiveImg;
+      String dispArchiveImg = (AF_Constants.rowTotalVal > 0 || AF_Constants.rowTotalA > 0)?  '' : archiveImg;
       rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTagEst;
-      String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(rowTotal) : '';
-      String dispRowTotalA = (rowTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(rowTotalA) : '';
+      String dispRowTotal = (AF_Constants.rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(AF_Constants.rowTotal) : '';
+      String dispRowTotalA = (AF_Constants.rowTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(AF_Constants.rowTotalA) : '';
       rowDetail += '<td title=\"\" class=\"totalCell details-control';
       rowDetail += '\" t=\"' + dispRowTotalA + '\" d=\"tot\" a=\"ob\">';
       rowDetail += '<a l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTagEst;
       getOOPSRecordsExt(oopsActualId,eachRow);
-      rowDetail += trCloseTag;
+      rowDetail += AF_Constants.trCloseTag;
     }
   }
   
