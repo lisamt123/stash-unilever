@@ -258,7 +258,7 @@ public with sharing class IPM_NewTask {
             
             checkTaskValidations(tasks);
             
-            tasks.IPM_Type_of_Gate__c = (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)) ? sIPM_Type_of_Gate : tasks.IPM_Type_of_Gate__c;
+            tasks.IPM_Type_of_Gate__c = getIPMTypeofGate();
                 
             if(String.isNotBlank(tasks.IPM_Task_Name__c) && validate)
             {
@@ -497,6 +497,16 @@ public with sharing class IPM_NewTask {
         getSectionlist();
     }
     
+    public string getIPMTypeofGate()
+	{
+		if (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)){ 
+		 	return sIPM_Type_of_Gate; 
+		}
+		else{
+		 	return tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate');
+		}
+	}
+    
     /********************************************************************************
      *@Description : create dependent picklist of section sequence and section name, which is depenedent on functional role value selection
      *@Param: Present projectid
@@ -522,7 +532,7 @@ public with sharing class IPM_NewTask {
                 String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
                 
                 projectType = projectObject.IPM_SourceProjectType__c;
-                string sIPMTypeofGate = (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)) ? sIPM_Type_of_Gate : tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate');
+                string sIPMTypeofGate = getIPMTypeofGate();
                 		        
                 if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
                 {
@@ -686,7 +696,7 @@ public with sharing class IPM_NewTask {
 		
     	String projectType = String.IsNotBlank(projectObject.IPM_SourceProjectType__c) ? projectObject.IPM_SourceProjectType__c : IPM_ConstantUtils.BLANK;
         String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
-        string sIPMTypeofGate = (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)) ? sIPM_Type_of_Gate : tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate');
+        string sIPMTypeofGate = getIPMTypeofGate();
              
         //check if phase selected is future phase     
         if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
