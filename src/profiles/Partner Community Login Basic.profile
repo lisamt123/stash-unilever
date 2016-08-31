@@ -39569,11 +39569,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Vep_Answer__c.Is_false__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Vep_Factory__c.Air_Connectivity__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -51602,11 +51597,7 @@
         <recordType>Account.UID_Secondary_Account</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Amr_Summary_Plan__c.Actual</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
+
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Article__c.Brand_Centre_Article</recordType>
