@@ -15,21 +15,18 @@ function rerenderAccordion(){
         jq(document).on('click', 'li.clusterCheckLi', function(){
          jq('blockquote').each(function() { jq(this).replaceWith("<ul>"+jq(this).html()+"</ul>") });
          jq( "div.projectContainer.gfirstLevel ul" ).addClass( "docFilter accordionFilters clusterListUl" );
-      });
-		
+       });
 		jq('.geographyFilters input:checkbox, .projectContainer input:checkbox, ul.docFilter.typeLabel input:checkbox').each(function(){
             var mvalue = jq(this).attr('id');
             var cvalue = mvalue.replace('amp;','&');
             jq(this).attr('id',cvalue);
-        });
-    
+        });  
     jq(document).ready(function() {
-        
         /*accordion Geography*/
-    var ipmAccordion = jq(".ipmAccordion");
-/* Below script calls a function accordion on click event */
-    jq(document).on("click", ".ipmAccordion .pHead span.expico, .ipmAccordion .pHead span.expico-square", function() {
-        accordion(this);
+		var ipmAccordion = jq(".ipmAccordion");
+	    /* Below script calls a function accordion on click event */
+		jq(document).on("click", ".ipmAccordion .pHead span.expico, .ipmAccordion .pHead span.expico-square", function() {
+			accordion(this);
     });
     
 /* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
@@ -50,11 +47,9 @@ function rerenderAccordion(){
         ipmAccordion.find(".pHead .expico").removeClass("fa-minus");
         ipmAccordion.find(".pHead .expico-square").addClass("fa-plus");
         ipmAccordion.find(".pHead .expico-square").removeClass("fa-minus");
-    });
-    
+    });  
 /* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. It also adds the + mark for the collapsed one's and adds - for the expanded one */
     jq(".ipmAcrdnExpand").show();
-
     //jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();
     jq(".projectContainer.geographyFilters .ipmAcrdnExpand .projectContainer.gfirstLevel .ipmAcrdnExpand").hide();
     ipmAccordion.find(".pHead .expico-square").addClass("fa-plus");
@@ -68,7 +63,6 @@ function rerenderAccordion(){
     ipmAccordion.find(".pHead .recCount").addClass("collapsed");
 
 });
-
 /* Below function is called above upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
 function accordion(elem) {
     if (jq(elem).closest(".pHead").next(".ipmAcrdnExpand").is(":visible")) {
@@ -85,14 +79,33 @@ function accordion(elem) {
         jq(elem).next('.recCount').addClass('expanded');
     }
 }
+        
+	  Delaygeography();
+	  checboxSelect();
+    }
+	
+function sortProjectsJsFunc(){
+jq("#sortProjects").on("click",function(){toggleSortProjects()}),
+jq("#sortPhases").on("click",function(){toggleSortPhases()}),
+jq("#sortPLs").on("click",function(){toggleSortPLs()}),
+jq("#sortGKs").on("click",function(){toggleSortGKs()}),
+jq("#sortITOs").on("click",function(){toggleSortITOs()}),
+jq("#sortTLDs").on("click",function(){toggleSortTLDs()})
+}
 
-     
-      
-      
-      
-      
-      
-      function unCheckChildren(str) {
+function projectTypeCheck(){
+jq('.docFilter.accordionFilters input:checkbox').attr('checked', 'checked');
+jq('ul.docFilter.typeLabel input:checkbox').attr('checked', 'checked');
+}
+function Delaygeography(){
+/*Delay Geography*/
+      jq("ul.docFilter.accordionFilters.geographyAllUl").hide().delay(200).queue(function (next) {
+        jq(this).show();
+        next();
+     });
+}
+function checboxSelect(){
+ function unCheckChildren(str) {
         jq('.' + str).each(function() {
             if (jq(this).val() !== 'all') {
                 jq(this).attr("checked", false);
@@ -112,26 +125,5 @@ function accordion(elem) {
                 jq(this).attr("checked", false);
             }
         });
-    }   
-        
-      /*Delay Geography*/
-      jq("ul.docFilter.accordionFilters.geographyAllUl").hide().delay(200).queue(function (next) {
-        jq(this).show();
-        next();
-     });
-    
-    }
-	
-function sortProjectsJsFunc(){
-jq("#sortProjects").on("click",function(){toggleSortProjects()}),
-jq("#sortPhases").on("click",function(){toggleSortPhases()}),
-jq("#sortPLs").on("click",function(){toggleSortPLs()}),
-jq("#sortGKs").on("click",function(){toggleSortGKs()}),
-jq("#sortITOs").on("click",function(){toggleSortITOs()}),
-jq("#sortTLDs").on("click",function(){toggleSortTLDs()})
-}
-
-function projectTypeCheck(){
-jq('.docFilter.accordionFilters input:checkbox').attr('checked', 'checked');
-jq('ul.docFilter.typeLabel input:checkbox').attr('checked', 'checked');
+    } 
 }
