@@ -9,24 +9,6 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CI_R2R_Update_Cost_Centre14</fullName>
-        <field>Cost_Centre__c</field>
-        <literalValue>A956001279</literalValue>
-        <name>CI_R2R Update Cost Centre14</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CI_R2R_Update_Cost_Centre15</fullName>
-        <field>Cost_Centre__c</field>
-        <literalValue>A956001281</literalValue>
-        <name>CI_R2R Update Cost Centre15</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>CI_R2R Budget Line</fullName>
         <actions>
