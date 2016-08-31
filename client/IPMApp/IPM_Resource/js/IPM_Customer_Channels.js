@@ -68,6 +68,9 @@ function selectCheckboxScript() {
             });
         }
     }
+    jq(document).on('keypress', '.commentBoxsmall', function() {
+        rld = true;
+    });
   /* Below function works on page load. If the condition is true it checks the checkboxes and disables it and vice versa */
     function checkBoxRec() {
         if (selectedValuesArr.length !== 0) {
@@ -90,23 +93,20 @@ function selectCheckboxScript() {
     jq(document).on('show.bs.dropdown', '.customerChannelList', function() {
         checkBoxRec1();
     });
-    checkBoxRec();
-    
+    checkBoxRec();    
     /* Below function works on page load. If the checked check boxes are greater than three then the users will not be able to check the check boxes */
     jq('.ccCheck').change(function(e) {
         if (jq('.ccListbox input[type=checkbox]:checked').length > 3) {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
         }
-    });
-    
+    });    
     /* Below script works on click event. When clicked on remove button it calls a function which removes the Customer channels */
     jq(document).on('click', '#ipmChannelDelete .removeChannel', function() {
         var questionId = jq(this).attr('data-result');
         deleteChannel(questionId);
         jq("#ipmChannelDelete").modal('hide');
-    });
-    
+    });    
     /* Below script works on click event. If the condition is true it unchecks the check boxes and enables it and vice versa */ 
     jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
         e.stopPropagation();
@@ -132,8 +132,7 @@ function selectCheckboxScript() {
             jq(this).next('label').removeClass('selected');
         });
         createCustomChannels('');
-    }
-    
+    }    
     /* Below script works on tooltip functionality */
     jq(".info").tooltip({
         position: {
@@ -185,6 +184,7 @@ function checkboxScript() {
 }
 /* Below function perfoms the Image hover animation for uploading image */
 function ccimageloadstatus() {
+    rld = false;
     jq('.uploadImage').hover(function() {
         jq(this).find('.updateDeletimg').toggle("slide", {
             direction: "left"

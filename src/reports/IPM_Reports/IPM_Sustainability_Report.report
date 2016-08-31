@@ -13,7 +13,7 @@
         <field>IPM_Project__c.Deputy_Project_Leader__c</field>
     </columns>
     <columns>
-        <field>IPM_Project__c.IPM_Finance_Member__c</field>
+        <field>IPM_Project__c.IPM_Finance_Lead__c</field>
     </columns>
     <columns>
         <field>IPM_Project__c.IPMProject_Span__c</field>
@@ -86,6 +86,9 @@
     </columns>
     <columns>
         <field>IPM_Assessment__c.IPM_Country_Name__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c.IPM_LocalProject_Brand__c</field>
     </columns>
     <columns>
         <field>IPM_Assessment__c.IPM_Assessment_GHG_PCU__c</field>
@@ -234,6 +237,7 @@
     <columns>
         <field>CHILD_LAST_UPDATE</field>
     </columns>
+    <currency>EUR</currency>
     <description>Sustainability Report utilizing Eco-Design Data</description>
     <format>Summary</format>
     <groupingsDown>
@@ -241,7 +245,7 @@
         <field>CUST_NAME</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>IPM Sustainability Report</name>
+    <name>Environmental and Social Impact Report</name>
     <params>
         <name>co</name>
         <value>1</value>

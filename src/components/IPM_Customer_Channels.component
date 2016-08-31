@@ -56,7 +56,7 @@
     </apex:outputPanel>  
     <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/> 
     <!-- Render condition for displaying read only or editable customer channel sections -->
-    <apex:outputPanel rendered="{!isEditable}">
+    <apex:outputPanel styleClass="compcustchannelContainer" rendered="{!isEditable}">
         <div class="ccContainer">
             
             <div class="row noMargin">
@@ -771,7 +771,7 @@
             </apex:outputPanel>            
         </apex:outputPanel>
     </apex:outputPanel>    
-    <apex:actionFunction status="Loading" action="{!updateSectionContent}" name="updateContent" reRender="">
+    <apex:actionFunction status="Loading" action="{!updateSectionContent}" oncomplete="ccimageloadstatus();" name="updateContent" reRender="">
         <apex:param name="cid" assignTo="{!secConId}" value="" />
         <apex:param name="con" assignTo="{!content}" value="" />
         <apex:param name="ctype" assignTo="{!channelType}" value="" />

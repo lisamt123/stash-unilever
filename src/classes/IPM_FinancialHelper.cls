@@ -222,6 +222,10 @@ public with sharing class IPM_FinancialHelper
     
     public static void initializeConsolidation(List<IPM_Financial__c> consolidationChangedFinancialList,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,Set<String> fieldsToConsolidate) 
     {
+        if(consolidationChangedFinancialList.isEmpty()){
+        	return;
+        }
+        
         Map<String,Map<Id,sObject>> consolidatedToRelatedFinancialMap = new Map<String,Map<Id,sObject>>();
         Map<String,sObject> consolidatedFinancialMap = new Map<String,sObject>();
         
@@ -280,6 +284,9 @@ public with sharing class IPM_FinancialHelper
         
     public static void updateFinancialYearVolumeType(Map<Id,IPM_Financial__c> volumeTypeChangedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
+        if(volumeTypeChangedFinancialMap.isEmpty()){
+        	return;
+        }
         for(IPM_Financial__c financial : volumeTypeChangedFinancialMap.values())
         { 
             if(financialDetailMap.containsKey(financial.Id))
@@ -314,6 +321,9 @@ public with sharing class IPM_FinancialHelper
     ************************************************************************************************************/
     public static void processSustainabilityPeriod(Map<Id,IPM_Financial__c> changedSustainabilityMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
+        if(changedSustainabilityMap.isEmpty()){
+        	return;
+        }
         for(IPM_Financial__c financial : changedSustainabilityMap.values())
         {
             if(financialDetailMap.containsKey(financial.Id))
@@ -616,6 +626,10 @@ public with sharing class IPM_FinancialHelper
     ***************************************************************************************************************/
     public static void copyOverFinancialFields(Map<Id,IPM_Financial__c> changedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<Id,Set<String>> financialToChangedFeilds)
     {
+        if(changedFinancialMap.isEmpty()){
+        	return;
+        }
+        
         for(Id financialID : changedFinancialMap.KeySet()) 
         {
             IPM_Financial__c changedFinancialDetail = financialDetailMap.get(financialID);
@@ -808,5 +822,32 @@ public with sharing class IPM_FinancialHelper
         	update updateFinActionStdsList;
         }            
    	  }  
+   	/************************************************************************************************************************
+    * @description          Method to  sync project y3iTo with financial's Global,Regional and Local Y3iTo's
+    * @param                financial Ids 
+    *************************************************************************************************************************/
+    public static void updateAssoProjectY3iToValue(Set<Id> financialIds) 
+    {
+    		List<Id> projIdsforY3iToSync = new  List<Id>();
+    		for(IPM_Financial__c  ipmFinRec: [Select Id ,Local_Project__c,Regional_Project__c,Parent_Project__c from  IPM_Financial__c where Id IN: financialIds])
+    		{
+               if(ipmFinRec.Local_Project__c!=null)
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Local_Project__c);
+               }
+               if(ipmFinRec.Regional_Project__c!=null)
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Regional_Project__c);
+               }
+               if(ipmFinRec.Parent_Project__c!=null)  
+               {
+               		projIdsforY3iToSync.add(ipmFinRec.Parent_Project__c);  
+               } 
+    		} 
+    		if(!projIdsforY3iToSync.isEmpty()) 
+    		{ 
+    		 	IPM_Utils.updateProjectY3ITOValue(projIdsforY3iToSync); 
+    		}
+    }  
     
 }

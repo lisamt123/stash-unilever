@@ -520,9 +520,33 @@
         <fullName>IPM_Global_Category_Average_View_GHG__c</fullName>
         <description>Stores Global Category Average GHG value</description>
         <externalId>false</externalId>
-        <label>Global Category Average View GHG</label>
+        <label>Qualitative Metric for GHG</label>
         <precision>18</precision>
         <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Global_Category_Average_View_HlthHyg__c</fullName>
+        <externalId>false</externalId>
+        <label>Global Category Average View HealthHygne</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Global_Category_Average_View_Nutri__c</fullName>
+        <externalId>false</externalId>
+        <label>Global Category Average View Nutrition</label>
+        <precision>18</precision>
+        <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -533,7 +557,7 @@
         <fullName>IPM_Global_Category_Average_View_Waste__c</fullName>
         <description>Stores Global Category Average Waste  value</description>
         <externalId>false</externalId>
-        <label>Global Category Average View Waste</label>
+        <label>Qualitative Metric for Waste</label>
         <precision>18</precision>
         <required>true</required>
         <scale>2</scale>
@@ -546,7 +570,7 @@
         <fullName>IPM_Global_Category_Average_View_Water__c</fullName>
         <description>Stores Global Category Average water value</description>
         <externalId>false</externalId>
-        <label>Global Category Average View Water</label>
+        <label>Qualitative Metric for Water</label>
         <precision>18</precision>
         <required>true</required>
         <scale>2</scale>
@@ -747,6 +771,39 @@
         <externalId>false</externalId>
         <label>Project Phase</label>
         <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QM_Global_Category_Average_View_GHG__c</fullName>
+        <externalId>false</externalId>
+        <label>QM Global Category Average View GHG</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QM_Global_Category_Average_View_Waste__c</fullName>
+        <externalId>false</externalId>
+        <label>QM Global Category Average View Waste</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>QM_Global_Category_Average_View_Water__c</fullName>
+        <externalId>false</externalId>
+        <label>QM Global Category Average View Water</label>
+        <length>50</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
