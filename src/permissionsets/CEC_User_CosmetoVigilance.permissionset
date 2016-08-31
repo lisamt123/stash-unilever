@@ -29769,6 +29769,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project_Document_Section__c.Gate_With_Sequence__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project_Document_Section__c.IPM_Assortment_CU__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30629,6 +30634,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Project__c.BET_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Project__c.BET_TLD_Final_Release_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30665,6 +30675,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.Deputy_Project_Leader__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.Duration_Idea__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30915,6 +30930,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_Document_Update_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Duration_Bosscard__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -51730,6 +51750,10 @@
     </tabSettings>
     <tabSettings>
         <tab>standard-Case</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>standard-Document</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
