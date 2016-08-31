@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-    <custom>false</custom>
+    <custom>true</custom>
     <description>A basic profile with very few permissions, to allow Partner configuration using Permission Sets.</description>
     <fieldPermissions>
         <editable>false</editable>
@@ -7226,7 +7226,6 @@
         <apexClass>uw_uploadBCImage</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <custom>false</custom>
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Agency_Estimate__c.AF_1stSave__c</field>
