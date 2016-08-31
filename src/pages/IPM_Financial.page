@@ -334,10 +334,10 @@
                                                                 </apex:outputPanel>
                                                             </div> 
                                                             
-                                                             <apex:outputText rendered="{!AND((associatedCountryList.size >0))}">
+                                                             <apex:outputText rendered="{!associatedCountryList.size >0}">
                                                              <div class="countryListDiv">
                                                                 <!-- Rendered when there is rollout countries available and size is more than 0--> 
-                                                                <apex:outputPanel styleClass="countryLabel" rendered="{!AND(isProjectStop,associatedCountryList.size >0) }">{!$Label.IPM_RolloutCountriesLabel}
+                                                                <apex:outputPanel styleClass="countryLabel" rendered="{!associatedCountryList.size >0 }">{!$Label.IPM_RolloutCountriesLabel}
                                                                 <span class="SecButtonSet infoMarTop">
                                                  						<a class="icoButton info smalllinfo" title="{!$Label.IPM_THE_SELECTION_HERE_DOES_NOT}"></a>
                                             					 </span>
