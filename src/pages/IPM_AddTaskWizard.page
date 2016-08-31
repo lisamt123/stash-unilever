@@ -53,7 +53,15 @@
                         </div>
                         <div class="phaseModal">
                             <div class="inputField">
-                                <apex:inputText id="GatedocumentText" value="{!tasks.IPM_Type_of_Gate__c}" rendered="{!!redirectToGateDocument}" disabled="true"/> 
+                            <apex:outputPanel id="idGateDocumentType">
+                                <apex:inputText id="GatedocumentText" value="{!tasks.IPM_Type_of_Gate__c}" rendered="{!!redirectToGateDocument && NOT(projectObject.IPM_GateKeeping_Model__c=='GKM3' && tasks.IPM_Phase__c=='Feasibility')}" disabled="true"/> 
+                                <apex:actionRegion > 
+                            		<apex:selectList size="1" value="{!sIPM_Type_of_Gate}" styleClass="fieldFont" rendered="{!!redirectToGateDocument && projectObject.IPM_GateKeeping_Model__c=='GKM3' && tasks.IPM_Phase__c=='Feasibility'}">
+                         				<apex:selectOptions value="{!FeasibilityDocumentTypes}" />
+                         				<apex:actionSupport event="onchange" action="{!getGateSections}" rerender="GatedocumentText,projectSpanBlock,functionalBlock,blockToRerender,idGateDocumentType" status="gateloading" />
+                         			</apex:selectList>
+                        		</apex:actionRegion>
+                        	</apex:outputPanel>
                             </div>
                         </div>
 

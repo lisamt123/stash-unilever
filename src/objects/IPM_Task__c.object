@@ -629,6 +629,10 @@
                 <fullName>PLE/Learnings</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Product Design Lock</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>true</trackHistory>

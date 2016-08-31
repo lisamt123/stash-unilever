@@ -36,7 +36,7 @@ public with sharing class IPM_NewTask {
     
     
     private Map<String,String> phaseGateMapping;
-    
+    public String sIPM_Type_of_Gate{get;set;}
     
     private static final Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
     
@@ -257,6 +257,8 @@ public with sharing class IPM_NewTask {
             checkTaskDueDateGreaterThanMilestone(projectObject);
             
             checkTaskValidations(tasks);
+            
+            tasks.IPM_Type_of_Gate__c = (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)) ? sIPM_Type_of_Gate : tasks.IPM_Type_of_Gate__c;
                 
             if(String.isNotBlank(tasks.IPM_Task_Name__c) && validate)
             {
@@ -438,7 +440,14 @@ public with sharing class IPM_NewTask {
         //tasks.IPM_Function__c = '';
         
    }
-   
+   public List<SelectOption> getFeasibilityDocumentTypes()
+   {
+   	List<SelectOption> options = new List<SelectOption>();
+   	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+   	options.add(new SelectOption(IPM_ConstantUtils.CONTRACT_GATE,IPM_ConstantUtils.CONTRACT_GATE));
+   	options.add(new SelectOption(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT));
+   	return options;
+   }
    public List<SelectOption> getGateSpecificSpan()
    {
         List<SelectOption> projectSpanOptionList = new List<SelectOption>();
@@ -502,8 +511,8 @@ public with sharing class IPM_NewTask {
             {
             	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
             }
-             
-            if(string.isNotBlank(tasks.IPM_Function__c)  && string.isNotBlank(tasks.IPM_Type_of_Gate__c) )
+            
+            if(string.isNotBlank(tasks.IPM_Function__c)  && (string.isNotBlank(tasks.IPM_Type_of_Gate__c)|| String.isNotBlank(sIPM_Type_of_Gate)))
             {        
                 String functionalRole = IPM_ConstantUtils.BLANK;
                 String projectType = IPM_ConstantUtils.BLANK;
@@ -513,7 +522,8 @@ public with sharing class IPM_NewTask {
                 String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
                 
                 projectType = projectObject.IPM_SourceProjectType__c;
-                
+                string sIPMTypeofGate = (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)) ? sIPM_Type_of_Gate : tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate');
+                		        
                 if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
                 {
                     for(IPM_Section__c docsections :[SELECT IPM_Document_Template__r.IPM_Document_Type__c,External_ID__c,Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_IS_Default_Section__c 
@@ -521,7 +531,7 @@ public with sharing class IPM_NewTask {
                                                     WHERE  
                                                     IPM_FunctionalRole__c =: functionalRole  
                                                     AND IPM_IS_Default_Section__c = true 
-                                                    AND IPM_Document_Template__r.IPM_Document_Type__c =: tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+                                                    AND IPM_Document_Template__r.IPM_Document_Type__c =: sIPMTypeofGate                                                    
                                                     AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c =: projectObject.IPM_Complexity__c
                                                     AND IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
                                                     AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
@@ -540,7 +550,7 @@ public with sharing class IPM_NewTask {
                  {
                     for(IPM_Project_Document_Section__c docsections : [SELECT Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Default_Section__c 
                                                                             FROM IPM_Project_Document_Section__c 
-                                                                            WHERE IPM_Gate_Document__c=:tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+                                                                            WHERE IPM_Gate_Document__c=:sIPMTypeofGate
                                                                             AND IPM_FunctionalRole__c =: FunctionalRole  
                                                                             AND IPM_Default_Section__c = true
                                                                             AND IPM_Project_Document__r.IPM_Project_Complexity__c =: projectObject.IPM_Complexity__c 
@@ -676,7 +686,8 @@ public with sharing class IPM_NewTask {
 		
     	String projectType = String.IsNotBlank(projectObject.IPM_SourceProjectType__c) ? projectObject.IPM_SourceProjectType__c : IPM_ConstantUtils.BLANK;
         String sSectionSequence = IPM_Utils.eightvalue + PERCENT_SIGN;
-        
+        string sIPMTypeofGate = (IPM_ConstantUtils.FEASIBILITY_PHASE.Equals(tasks.IPM_Phase__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(projectObject.IPM_GateKeeping_Model__c)) ? sIPM_Type_of_Gate : tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate');
+             
         //check if phase selected is future phase     
         if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS  || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_STANDARD_TASKS) 
 	    {
@@ -685,7 +696,7 @@ public with sharing class IPM_NewTask {
 	                                        FROM IPM_Section__c 
 	                                        WHERE  
 	                                        IPM_IS_Default_Section__c = true 
-	                                        AND IPM_Document_Template__r.IPM_Document_Type__c =: tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+	                                        AND IPM_Document_Template__r.IPM_Document_Type__c =: sIPMTypeofGate
 	                                        AND IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c =: projectObject.IPM_Complexity__c
 	                                        AND IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
 	                                        AND ( NOT IPM_Section_Sequence__c like :sSectionSequence)
@@ -704,7 +715,7 @@ public with sharing class IPM_NewTask {
 	     	//as project documnet section is present for current phase add it to option
 	        for(IPM_Project_Document_Section__c docsections : [SELECT Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Default_Section__c 
 	                                                                FROM IPM_Project_Document_Section__c 
-	                                                                WHERE IPM_Gate_Document__c=:tasks.IPM_Type_of_Gate__c.removeEndIgnoreCase(' Gate')
+	                                                                WHERE IPM_Gate_Document__c=:sIPMTypeofGate
 	                                                                AND IPM_Default_Section__c = true
 	                                                                AND IPM_Project_Document__r.IPM_Project_Complexity__c =: projectObject.IPM_Complexity__c 
 	                                                                AND IPM_Section__r.IPM_Section_Type__c NOT IN (:IPM_ConstantUtils.SECTION_TYPE_HEADER,:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)

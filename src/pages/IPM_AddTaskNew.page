@@ -46,12 +46,21 @@
                         </div>  
                         <apex:actionStatus startText="" id="gateloading" startStyleClass="proInit"/>
                         </div>
-                        <div class="phaseModal">
-                             <div class="inputField"> 
-                           <apex:inputText id="GatedocumentText" value="{!tasks.IPM_Type_of_Gate__c}" rendered="{!!redirectToGateDocument}" disabled="true"/>  
-                           <apex:inputText value="{!tasks.IPM_Type_of_Gate__c}" styleClass="fieldFont"  disabled="true" rendered="{!redirectToGateDocument}"/>
-                           </div>
-                        </div> 
+                       <div class="phaseModal">
+                       <div class="inputField" > 
+                       		<apex:outputPanel id="idGateDocumentType">
+                       			<apex:inputText id="GatedocumentText" value="{!tasks.IPM_Type_of_Gate__c}" rendered="{!!redirectToGateDocument && NOT(projectObject.IPM_GateKeeping_Model__c=='GKM3' && tasks.IPM_Phase__c='Feasibility')}" disabled="true"/>                            
+                         		<apex:inputText value="{!tasks.IPM_Type_of_Gate__c}" styleClass="fieldFont"  disabled="true" rendered="{!redirectToGateDocument && NOT(projectObject.IPM_GateKeeping_Model__c=='GKM3' && tasks.IPM_Phase__c='Feasibility')}"/>
+                      			<apex:actionRegion > 
+                            		<apex:selectList size="1" value="{!sIPM_Type_of_Gate}" styleClass="fieldFont" rendered="{!projectObject.IPM_GateKeeping_Model__c=='GKM3' && tasks.IPM_Phase__c='Feasibility'}">
+                         				<apex:selectOptions value="{!FeasibilityDocumentTypes}" />
+                         				<apex:actionSupport event="onchange" action="{!getGateSections}" rerender="GatedocumentText,projectSpanBlock,functionalBlock,blockToRerender" status="gateloading" />
+                         			</apex:selectList>
+                        		</apex:actionRegion>
+                        	</apex:outputPanel>
+                       </div>
+                       </div> 
+                         
                     </div>  
                     <apex:actionRegion >
                         <apex:outputPanel id="projectSpanBlock" layout="block" styleClass="col-xs-12" > 

@@ -47,6 +47,7 @@ public class IPM_ConstantUtils {
     public static final String MARKET_READY_GATE='Market Ready';
     public static final String MARKET_DEPLOYMENT_GATE='Market Deployment';
     
+    public static final String PRODUCT_DESIGN_LOCK_DOCUMENT='Product Design Lock';
     //used across classes to get the Section Status
     public static final String GATE='Gate';
     public static final String GATEKEEPING_MODEL_GCLT='GCLT';
