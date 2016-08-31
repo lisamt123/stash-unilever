@@ -183,8 +183,6 @@ src/tabs/Batimento_de_Vendas.tab
 src/siteDotComSites
 src/siteDotComSites/Mobile_Channel1.site
 src/siteDotComSites/Mobile_Channel1.site-meta.xml
-src/profiles/
-src/profiles/Partner Community Login Basic.profile
 src/flexipages/
 src/flexipages/Batimento_de_Vendas.flexipage
 src/flexipages/Cockpit.flexipage
