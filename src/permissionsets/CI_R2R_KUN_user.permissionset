@@ -50,6 +50,36 @@
     </classAccesses>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CI_Accounting_Treatment__c.Actuals__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_Accounting_Treatment__c.Capex__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_Accounting_Treatment__c.P_L__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_Accounting_Treatment__c.Pre_Paytm__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_Accounting_Treatment__c.Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_Accounting_Treatment__c.Year__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CI_R2R_Budget__c.Budget_Line__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -275,7 +305,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CI_SMS_Weekly_Update__c.Proj_Cat__c</field>
+        <field>CI_SMS_Weekly_Update__c.Project_Cat__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

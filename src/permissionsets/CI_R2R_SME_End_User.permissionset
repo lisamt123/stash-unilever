@@ -49,6 +49,36 @@
         <enabled>false</enabled>
     </classAccesses>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>CI_Accounting_Treatment__c.Actuals__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CI_Accounting_Treatment__c.Capex__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CI_Accounting_Treatment__c.P_L__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CI_Accounting_Treatment__c.Pre_Paytm__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_Accounting_Treatment__c.Total__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CI_Accounting_Treatment__c.Year__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>CI_R2R_Budget__c.Budget_Line__c</field>
         <readable>true</readable>
@@ -275,7 +305,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CI_SMS_Weekly_Update__c.Proj_Cat__c</field>
+        <field>CI_SMS_Weekly_Update__c.Project_Cat__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -314,6 +344,15 @@
         <readable>true</readable>
     </fieldPermissions>
     <label>CI_R2R SME End User</label>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>CI_Accounting_Treatment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

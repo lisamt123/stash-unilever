@@ -37,7 +37,7 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CI_R2R_Update_PE_Null</fullName>
-        <field>Proj_Cat__c</field>
+        <field>Project_Cat__c</field>
         <name>CI_R2R Update PE_Null</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>

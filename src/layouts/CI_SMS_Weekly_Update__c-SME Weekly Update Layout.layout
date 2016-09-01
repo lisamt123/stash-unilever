@@ -21,7 +21,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Proj_Cat__c</field>
+                <field>Project_Cat__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

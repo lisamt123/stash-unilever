@@ -10,7 +10,7 @@
         <field>CI_SMS_Weekly_Update__c.Description__c</field>
     </columns>
     <columns>
-        <field>CI_SMS_Weekly_Update__c.Proj_Cat__c</field>
+        <field>CI_SMS_Weekly_Update__c.Project_Cat__c</field>
     </columns>
     <columns>
         <field>CI_SMS_Weekly_Update__c.RAG__c</field>

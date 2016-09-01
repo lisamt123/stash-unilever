@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -512,7 +512,6 @@ CI_R2R_Innovation__r.Project3__c
         <searchResultsAdditionalFields>Innovation_Funnel_No__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Budget_Line__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>Cost_Type_Description__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
