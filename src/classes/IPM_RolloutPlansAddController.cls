@@ -1183,7 +1183,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	    {   
 	        Map<Id,IPM_Country__c> filteredDeleteCountryMap = new Map<Id,IPM_Country__c>();
 	        // Before deleting Query the Countries again to validate whether certain countries got deleted as part of Rollout Deletion.
-	        List<IPM_Country__c> countryListToDelete = [Select Id,Project_Country__c,IPM_CharterApproved__c,isActive__c from IPM_Country__c where Project_Country__c in :deleteCountriesMap.KeySet() AND isActive__c = true ];
+	        List<IPM_Country__c> countryListToDelete = [Select Id,Project_Country__c,IPM_CharterApproved__c,isActive__c,IPM_Local_Project__c,IPM_Local_Project__r.IPM_PrepareForArchival__c from IPM_Country__c where Project_Country__c in :deleteCountriesMap.KeySet() AND isActive__c = true ];
 	        for(IPM_Country__c country : countryListToDelete)
 	        {
                 if(country.IPM_Local_Project__c !=null && country.IPM_Local_Project__r.IPM_PrepareForArchival__c)
