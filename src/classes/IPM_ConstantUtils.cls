@@ -227,8 +227,10 @@ public class IPM_ConstantUtils {
     public static set<String> PHASE_SET_WO_PLE = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_MARKET_DEPLOYMENT} ;
         public static set<String> PHASE_SET_WO_MARKET_DEPLOYMENT = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_PLE} ;
             
-            public static String IPMGLOBAL = 'Global';
+    public static String IPMGLOBAL = 'Global';
     public static String IPMREGIONAL = 'Regional';
+    public static String IPMLOCAL = 'Local';
+    public static String IPMDIFFERENCE = 'Difference';
     
     public static String FUNCTIONAL_ROLE_ALL='All';
     public static String FUNCTIONAL_ROLE_BD='BD';
@@ -503,6 +505,10 @@ public class IPM_ConstantUtils {
      public static final String FIELD_SUFFIX_MARKET_READY = 'MR';
      public static final String FIELD_SUFFIX_MARKET_DEPLOYMENT = 'MD';
     
+    //soft Validations - Financials
+    public static final String FIELD_RED_VALIDATION_CELLS = 'Red_Validation_Cells_';
+    public static final String FIELD_YELLOW_VALIDATION_CELLS = 'Yellow_Validation_Cells_';
+    public static final String FIELD_IS_FINANCIAL_INVALID = 'isFinancialInvalid';
      //Custom Field Suffix
      public static final String CUSTOM_FIELD_SUFFIX = '__c';
      

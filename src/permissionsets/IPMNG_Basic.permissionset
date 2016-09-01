@@ -3378,7 +3378,37 @@
 		<field>IPM_Financial_Year__c.Gate_Keeping_Model__c</field>
 		<readable>true</readable>
 	</fieldPermissions>
-	
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells_Global__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells_Regional__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells_Local__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Yellow_Validation_Cells_Global__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Yellow_Validation_Cells_Regional__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Yellow_Validation_Cells_Local__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
 		<editable>false</editable>
 		<field>IPM_Financial__c.Gate_Keeping_Model__c</field>

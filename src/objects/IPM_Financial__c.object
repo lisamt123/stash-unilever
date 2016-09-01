@@ -2338,6 +2338,39 @@ IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Red_Validation_Cells_Global__c</fullName>
+        <externalId>false</externalId>
+        <label>Red Validation Cells Global</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Red_Validation_Cells_Local__c</fullName>
+        <externalId>false</externalId>
+        <label>Red Validation Cells Local</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Red_Validation_Cells_Regional__c</fullName>
+        <externalId>false</externalId>
+        <label>Red Validation Cells Regional</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Red_Validation_Cells__c</fullName>
         <description>To store all the cells on the consolidated financials where the red validations are because of red validations on the rollup financials</description>
         <externalId>false</externalId>
@@ -3066,6 +3099,39 @@ IF(Gate_Keeping_Model__c==&apos;GKM3&apos;,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells_Global__c</fullName>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells Global</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells_Local__c</fullName>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells Local</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Yellow_Validation_Cells_Regional__c</fullName>
+        <externalId>false</externalId>
+        <label>Yellow Validation Cells Regional</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Yellow_Validation_Cells__c</fullName>

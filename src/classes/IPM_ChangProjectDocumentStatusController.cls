@@ -366,7 +366,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     
                     if(rolloutCount>0 && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
                     {
-            	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Global_External_Id__c=:project.IPM_Project_Name__c AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            	invalidFinancialsCount = [Select count() FROM IPM_Financial__c where IsFinancialInvalidGlobal__c=true AND Global_External_Id__c=:project.IPM_Project_Name__c AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
                 
                     }
                 }
@@ -378,7 +378,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE Regional_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null) AND  isActive__c=true];
                     if(rolloutCount>0)
                     {
-            	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Regional_Project__c=:projectId AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidRegional__c=true AND Regional_Project__c=:projectId AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
                 
             }
                     
@@ -386,8 +386,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                   
-                    finExternalID=project.IPM_Project_Name__c;
-            invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalid__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
+            finExternalID=project.IPM_Project_Name__c;
+        	invalidFinancialsCount=[Select count() FROM IPM_Financial__c where IsFinancialInvalidLocal__c=true AND Financial_External_ID__c=:finExternalID AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND  isActive__c=true];
             
                 }
     }
