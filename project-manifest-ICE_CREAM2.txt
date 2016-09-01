@@ -77,6 +77,7 @@ src/objects/Account.object
 src/objects/Contact.object
 src/objects/PricebookEntry.object
 src/objects/Pricebook2.object
+src/objects/Asset.object
 src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset
@@ -176,21 +177,18 @@ src/layouts/ICB_Sales_Locale__c-Sales Locale Layout.layout
 src/layouts/ICB_Setup_Photo__c-Setup Photo Layout.layout
 src/tabs
 src/tabs/ICB_Sales_Locale__c.tab
-src/tabs/Cockpit.tab
-src/tabs/Inventory.tab
-src/tabs/Lista_de_Pre_os.tab
-src/tabs/Batimento_de_Vendas.tab
+src/tabs/ICB_Close_Sales.tab
+src/tabs/ICB_Cockpit.tab
+src/tabs/ICB_Inventory.tab
+src/tabs/ICB_Price_List.tab
 src/siteDotComSites
 src/siteDotComSites/Mobile_Channel1.site
 src/siteDotComSites/Mobile_Channel1.site-meta.xml
 src/flexipages
-src/flexipages/Batimento_de_Vendas.flexipage
-src/flexipages/Cockpit.flexipage
-src/flexipages/ICB_Assets.flexipage
-src/flexipages/ICB_Sales_Locale.flexipage
-src/flexipages/ICB_TablePrice.flexipage
-src/flexipages/Inventory.flexipage
-src/flexipages/Lista_de_Pre_os.flexipage
+src/flexipages/ICB_Cockpit.flexipage
+src/flexipages/ICB_Inventory.flexipage
+src/flexipages/ICB_Close_Sales.flexipage
+src/flexipages/ICB_Price_List.flexipage
 src/documents
 src/documents/Communities_Shared_Document_Folder/Mobile_Channel_App_Logo.png-meta.xml
 src/documents/Communities_Shared_Document_Folder/Mobile_Channel_App_Logo.png
