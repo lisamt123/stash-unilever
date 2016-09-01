@@ -311,7 +311,7 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Proj_Cat__c</field>
+            <field>Project_Cat__c</field>
             <value>
                 <elementReference>myVariable_current.CIR2R_Innovation__r.Project_Category__c</elementReference>
             </value>

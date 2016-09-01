@@ -359,7 +359,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>CI_R2R_Comments_Section_for_SME</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>CI_R2R_Innovations_Help_Page</apexPage>
@@ -367,7 +367,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>CI_R2R_SME_Weekly_Update_Help_Page</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <recordTypeVisibilities>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_with_CI</recordType>

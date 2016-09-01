@@ -46,6 +46,8 @@ src/pages/CI_R2R_Comments_Section.page
 src/pages/CI_R2R_Comments_Section.page-meta.xml
 src/pages/CI_R2R_Innovations_Help_Page.page
 src/pages/CI_R2R_Innovations_Help_Page.page-meta.xml
+src/pages/CI_R2R_SME_Weekly_Update_Help_Page.page
+src/pages/CI_R2R_SME_Weekly_Update_Help_Page.page-meta.xml
 src/permissionsets/CI_R2R_Admin.permissionset
 src/permissionsets/CI_R2R_KUN_user.permissionset
 src/permissionsets/CI_R2R_SME_End_User.permissionset
