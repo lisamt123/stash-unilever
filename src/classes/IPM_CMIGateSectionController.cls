@@ -81,7 +81,7 @@ public with sharing Class IPM_CMIGateSectionController{
             countryList=new List<IPM_Country__c>();
             mapCountryNameWithCode=new map<String,String>();
             //Getting Project
-            project=[SELECT Id,IPM_Parent_Project__c FROM IPM_Project__c WHERE Id=:projectId];  
+            project=[SELECT Id,IPM_ProjectGKM__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE Id=:projectId];   
             if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
                 //Getting Gate CMI Records
                 gateCMIList=[SELECT Id,Gate__c,IPM_CMI_Overall_Colour_Score_Method__c,Element__c,Test__c,KPI__c,Input__c,Results__c,Country__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
@@ -121,9 +121,14 @@ public with sharing Class IPM_CMIGateSectionController{
             string projectId=string.escapeSingleQuotes(project.Id);//exception of unused local varaibale of Sonar. Used in below query
             if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
             	string parentProjectId=string.escapeSingleQuotes(project.IPM_Parent_Project__c);//exception of unused local varaibale of Sonar. Used in below query
-            	countryList=Database.Query(query+' WHERE IPM_Regional_Project__c=:parentProjectId');
+            	
+            	String projParentRefOnCountry = project.IPM_ProjectGKM__c == 'GKM3' ?' IPM_Project__c ' : ' IPM_Regional_Project__c ';
+            	
+            	countryList=Database.Query(query+' WHERE ' + projParentRefOnCountry + ' = : parentProjectId');
+            
             }
-            else{
+            
+            else {
             	countryList=Database.Query(query+' WHERE IPM_Project__c=:projectId OR IPM_Regional_Project__c=:projectId');
             }
 
