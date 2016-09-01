@@ -4,9 +4,11 @@ src/customPermissions
 src/email
 src/flows
 src/layouts
+src/labels
 src/objects
-src/package.xml
 src/permissionsets
+src/pages
+src/sharingRules
 src/workflows
 src/classes/CEC_NewAccountController.cls
 src/classes/CEC_NewAccountController.cls-meta.xml
@@ -16,7 +18,11 @@ src/classes/CEC_RetrievalRequestTriggerHelper.cls
 src/classes/CEC_RetrievalRequestTriggerHelper.cls-meta.xml
 src/classes/CEC_FulfilmentHelperExtension.cls
 src/classes/CEC_FulfilmentHelperExtension.cls-meta.xml
+src/classes/CEC_CaseTriggerHelperExtension.cls
+src/classes/CEC_CaseTriggerHelperExtension.cls-meta.xml
 src/customPermissions/CEC_User_CosmetoVigilance.customPermission
+src/customPermissions/CEC_SMS_Magic_Process.customPermission
+src/labels/CEC.labels
 src/email/AA_Email_Templates
 src/email/AA_Email_Templates-meta.xml
 src/email/CEC_Emails_Brazil
@@ -38,13 +44,32 @@ src/email/CEC_Emails_Vietnam/CSAT_Vietnam_Email.email
 src/email/CEC_Emails_Vietnam/CSAT_Vietnam_Email.email-meta.xml
 src/flows/CEC_Close_Case_Survey-1.flow
 src/flows/CEC_Update_CV_Questionare_on_Case-1.flow
+src/flows/CEC_Update_Incoming_SMS_Owner_Flow-1.flow
+src/flows/CEC_Update_Incoming_SMS_Owner_Process-1.flow
+src/flows/CEC_SMS_Case_Creation_Flow-4.flow
+src/flows/CEC_SMS_Case_Creation_Process-6.flow
+src/flows/CEC_SMS_Case_Creation_Flow-4.flow
 src/layouts/Case-Case Feed Layout.layout
 src/layouts/cec_Additional_Case_Information__c-Additional Information Layout.layout
 src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
+src/layouts/Case-Case Feed Layout.layout
+src/layouts/smagicinteract__SMS_SenderId__c-smagicinteract__SMS SenderId Layout.layout
 src/objects/Case.object
 src/objects/CEC_Case_Market_Mapping__c.object
 src/objects/cec_Enclosure__c.object
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
 src/permissionsets/CEC_User_CosmetoVigilance.permissionset
+src/pages/CEC_CaseConversationView.page
+src/pages/CEC_CaseConversationView.page-meta.xml
+src/pages/CEC_NewAccountContact.page
+src/pages/CEC_NewAccountContact.page-meta.xml
+src/pages/CEC_PreChatForm.page
+src/pages/CEC_PreChatForm.page-meta.xml
+src/pages/CEC_PreChatFormSpanish.page
+src/pages/CEC_PreChatFormSpanish.page-meta.xml
+src/sharingRules/smagicinteract__Incoming_SMS__c.sharingRules
+src/sharingRules/smagicinteract__smsMagic__c.sharingRules
+src/sharingRules/smagicinteract__SMS_SenderId__c.sharingRules
+src/sharingRules/smagicinteract__SMS_Template__c.sharingRules
 src/workflows/Case.workflow

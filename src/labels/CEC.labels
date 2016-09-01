@@ -1052,6 +1052,30 @@
         <shortDescription>CEC_SurveyResults</shortDescription>
         <value>Survey Results</value>
     </labels>
+	<labels>
+        <fullName>CEC_Home_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Home Phone</shortDescription>
+        <value>Home Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Mobile_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Mobile Phone</shortDescription>
+        <value>Mobile Phone</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Other_Phone</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC Other Phone</shortDescription>
+        <value>Other Phone</value>
+    </labels>
     <labels>
         <fullName>CEC_Task_Description</fullName>
         <language>en_US</language>

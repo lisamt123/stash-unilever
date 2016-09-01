@@ -2954,6 +2954,27 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	 <fields>
+        <fullName>SMS_Inbound_Number__c</fullName>
+        <description>CEC: To store the inbound number for SMS</description>
+        <externalId>false</externalId>
+        <label>SMS Inbound Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>SMS_Mobile_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>SMS Mobile Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
     <fields>
         <fullName>Transient_External_Id__c</fullName>
         <description>Contains the external Id value which is used to populate the CBM for Transient case</description>
@@ -10656,6 +10677,31 @@ var openSuccess = function openSuccess(result) {
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
+    </webLinks>
+	<webLinks>
+        <fullName>Send_SMS</fullName>
+        <availability>online</availability>
+        <description>Send SMS from service console tab - Created by SMS Magic</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send SMS</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/support/console/36.0/integration.js&quot;)} 
+
+var url = &apos;/apex/CEC_CaseConversationView?id={!Case.Id}&apos;; 
+
+if ({!$Permission.CEC_SMS_Magic_Process}) { 
+      if (sforce.console.isInConsole()) { 
+               srcUp(url); 
+
+       } else { 
+             window.open(url, &apos;&apos;, &apos;width=600,height=400&apos;);  
+       } 
+
+}else { 
+    alert(&apos;{!$Label.CEC_NoAccessForSMSProcess}&apos;); 
+}</url>
     </webLinks>
     <webLinks>
         <fullName>TransferCase</fullName>

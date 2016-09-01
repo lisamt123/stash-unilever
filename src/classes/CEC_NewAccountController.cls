@@ -77,10 +77,21 @@ global with sharing class CEC_NewAccountController{
             newConsumer.PersonMailingState = currentCase.Search_Mailing_State_Province__c;
             newConsumer.PersonMailingPostalCode = currentCase.Search_Mailing_Zip_Postal_Code__c;
             newConsumer.PersonMailingCountry = currentCase.Search_Mailing_Country__c;
+            
+            if(currentCase.Search_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Phone__c;
+            }else if(currentCase.Search_Mobile__c != null){
+                newConsumer.Phone = currentCase.Search_Mobile__c ;
+            }else if(currentCase.Search_Home_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Home_Phone__c;
+            }else if(currentCase.Search_Other_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Other_Phone__c;
+            }
+            
             newConsumer.PersonHomePhone = currentCase.Search_Home_Phone__c;
             newConsumer.PersonMobilePhone = currentCase.Search_Mobile__c;
             newConsumer.PersonOtherPhone = currentCase.Search_Other_Phone__c;
-            newConsumer.Phone = currentCase.Search_Phone__c;
+            
             newConsumer.PersonBirthdate = currentCase.Search_Birthdate__c; 
             resultsOutputLabel = Label.CEC_ConsumerNotFoundInfo;
         }        
@@ -129,6 +140,7 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        newConsumer.Mobile_Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
                        newConsumer.Other_Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
                        System.debug('****other phone****'+ newConsumer.Other_Phone_No_Special_Char__c);
+                       
                    }
                    
                    
@@ -180,6 +192,17 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        if (duplicateConsumerList.size() > 0) {
                            hasResultToDisplayFlag = true;
                        } 
+                       
+                       if (String.isNotBlank(newConsumer.Phone)) {
+                               newConsumer.Phone_No_Special_Char__c = '';
+                               newConsumer.Home_Phone_No_Special_Char__c = '';
+                               newConsumer.Mobile_Phone_No_Special_Char__c = '';
+                               newConsumer.Other_Phone_No_Special_Char__c ='';
+                       }
+                       
+                       if (String.isNotBlank(newConsumer.Local_Identifier__c)) {
+                               newConsumer.Local_Identifier_No_Special_Char__c = '';
+                       }
                        
                    } 
                    searchPerformed = true;    

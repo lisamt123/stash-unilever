@@ -3,6 +3,7 @@
     <customButtons>Add_Issue</customButtons>
     <customButtons>Social_Response_URL</customButtons>
     <customButtons>TransferCase</customButtons>
+    <customButtons>Send_SMS</customButtons>
     <customConsoleComponents>
         <subtabComponents>
             <containers>
@@ -183,6 +184,10 @@
                 <behavior>Readonly</behavior>
                 <field>PII_Data_Check__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Legacy_Reference__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -298,10 +303,19 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Search_Phone__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Social_Media_External_Id__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Search_Mobile__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -309,8 +323,18 @@
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>SMS Information</label>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SMS_Mobile_Number__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SMS_Inbound_Number__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -471,6 +495,9 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
+            <quickActionName>Case.Email</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
             <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -532,6 +559,16 @@
         <fields>OBJECT_ID</fields>
         <fields>URL__c</fields>
         <relatedList>cec_Additional_Case_Information__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>smagicinteract__Mobile_Number__c</fields>
+        <fields>smagicinteract__SMS_Text__c</fields>
+        <fields>smagicinteract__Inbound_Number__c</fields>
+        <fields>CREATEDBY_USER</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>smagicinteract__Incoming_SMS__c.smagicinteract__Case__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -633,6 +670,16 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>smagicinteract__Name__c</fields>
+        <fields>NAME</fields>
+        <fields>smagicinteract__SenderId__c</fields>
+        <fields>smagicinteract__PhoneNumber__c</fields>
+        <fields>smagicinteract__SMSText__c</fields>
+        <fields>CREATED_DATE</fields>
+        <relatedList>smagicinteract__smsMagic__c.Case__c</relatedList>
     </relatedLists>
     <relatedObjects>ContactId</relatedObjects>
     <relatedObjects>AccountId</relatedObjects>
