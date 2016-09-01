@@ -1618,10 +1618,6 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabSettings>
-        <tab>ICB_Batimento_Vendas</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>ICB_Close_Sales</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -1635,10 +1631,6 @@
     </tabSettings>
     <tabSettings>
         <tab>ICB_Price_List</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>ICB_Sales_Locale__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
