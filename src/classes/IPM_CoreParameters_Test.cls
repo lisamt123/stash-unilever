@@ -115,7 +115,6 @@ private with sharing class IPM_CoreParameters_Test {
             insert corehelpsList;
             List < IPM_CorePara_helps_example__c > coreParamHelpList = [SELECT id, IPM_Answer__c FROM IPM_CorePara_helps_example__c WHERE IPM_Answer__c = : IPM_ConstantUtils.IMPROVEMENT LIMIT 1];
             system.assertEquals(coreParamHelpList[0].IPM_Answer__c, IPM_ConstantUtils.IMPROVEMENT, common_STR + space_STR + IPM_ConstantUtils.IMPROVEMENT);
-            IPM_Coreparameters corPrm=new IPM_Coreparameters();
             List < IPM_Company_Card__c > companyCardList = new List < IPM_Company_Card__c > ();
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
             companyCardList.add(globalCompanyCard);
@@ -236,8 +235,6 @@ private with sharing class IPM_CoreParameters_Test {
             sic.getStrategicGraph();
             system.assertEquals(sic.coretickMark, operationalGraph, 'coretickMark value should be' + space_STR + operationalGraph);
             sic.IPM_Coreparameter.IPM_Category_Text__c = Laundry_STR;
-            sic.getMarket();
-            system.assertEquals(sic.selCat, Laundry_STR, 'Project category should be ' + space_STR + Laundry_STR);
             sic.answerthree_STR = IPM_ConstantUtils.BASE;
             sic.resetAnswer();
             system.assertEquals(String.isBlank(sic.answerthree_STR), false, 'answer three value should be reset');
@@ -248,8 +245,6 @@ private with sharing class IPM_CoreParameters_Test {
             sic.projbetlink = 'testProjectName';
             sic.betName = 'testBetName';
             // Test class constructor invocation : NO SONAR 
-            IPM_Coreparameters.IPM_BET_BETWrapper sicWrap = new IPM_Coreparameters.IPM_BET_BETWrapper(bWrapper);
-
             Test.stopTest();
 
         }
@@ -261,7 +256,7 @@ private with sharing class IPM_CoreParameters_Test {
     static testmethod void  testgetCoreStrategicIntent(){
          initializedData();
          system.RunAs(userInitialize) {
-         	Test.startTest();
+            Test.startTest();
              sic.answerone_STR=IPM_ConstantUtils.IMPROVEMENT;
              sic.answertwo_STR=IPM_ConstantUtils.NOCHANGE;
              sic.answerthree_STR=IPM_ConstantUtils.BASE;
@@ -271,7 +266,7 @@ private with sharing class IPM_CoreParameters_Test {
              sic.IPM_Coreparameter.IPM_ProjectSubType__c = IPM_ConstantUtils.IPM_BLG;
              sic.getCoreStrategicIntent();
             system.assertEquals(sic.IPM_Coreparameter.IPM_ProjectSubType__c,IPM_ConstantUtils.IPM_BLG,'Load Strategic Intent For BLG Project'); 
-         	Test.stopTest();
+            Test.stopTest();
          }
     }
         
@@ -502,6 +497,7 @@ private with sharing class IPM_CoreParameters_Test {
         sic.betName = 'testBetName';
         // Test class constructor invocation : NO SONAR 
         IPM_Coreparameters.IPM_BET_BETWrapper sicWrap = new IPM_Coreparameters.IPM_BET_BETWrapper(bWrapper);
+        system.assert(sicWrap != null, 'Error in wrapper class instantiation');
 
         apexpages.currentpage().getparameters().put(IPM_ConstantUtils.EDITPARAMETER, 'editcore');
         apexpages.currentpage().getparameters().put(IPM_ConstantUtils.ADDITIONALPARAMETER, 'additional');
@@ -517,7 +513,7 @@ private with sharing class IPM_CoreParameters_Test {
             testProject.IPM_Project_Leader__c = userInitialize.id;
             testProject.Name = 'ProjectWithOut';
             testProject.IPM_ProjectSubType__c = 'Innovation/Renovation';
-            testProject.IPM_Category_Text__c = 'TestCategory';
+            testProject.IPM_Category_Text__c = 'Household care';
             testProject.IPM_Phase__c = 'Ideas';
             testProject.IPMProject_Span__c = 'Global';
             testProject.IPM_CompanyCardText__c = 'Global Company Card';
@@ -530,8 +526,7 @@ private with sharing class IPM_CoreParameters_Test {
         
             uw_bet__c bet1 = BET_TestUtils.getTestBet();
             insert bet1;
-            List<uw_bet__c>betLists=[SELECT ID FROM uw_bet__c WHERE ID=:bet1.id LIMIT 1];
-            system.assertEquals(betLists[0].id,bet1.id,'bet id is:'+betLists[0].id);
+            
             testProject.BET_Link_Requested__c = bet1.id;
             testProject.bet__c = bet1.id;
 
@@ -542,9 +537,7 @@ private with sharing class IPM_CoreParameters_Test {
             ProjectWithOutBoss.BET_Link_Requested__c = '';
             //update ProjectWithOutBoss;
             update testProject;
-            List < IPM_Project__c > ProjectsLists = [SELECT Id, BET_Link_Requested__c FROM IPM_Project__c WHERE id=: testProject.id 
-                                                    LIMIT 1];
-            system.assertEquals(ProjectsLists[0].BET_Link_Requested__c, testProject.BET_Link_Requested__c, 'project bet link should be' + ProjectsLists[0].BET_Link_Requested__c);
+            
         
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, testProject.id);
             IPM_CoreParameters sic2 = new IPM_CoreParameters();
@@ -553,6 +546,7 @@ private with sharing class IPM_CoreParameters_Test {
             string proBET = [select bet__c from IPM_Project__c where id = : testProject.id].bet__c;
             Test.stopTest();
             system.assertEquals(null, proBET, 'BET not unlinked from IPM Project!');
+            System.assertEquals(null, sic2.PreSelectedBet);
             apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,''); 
             
            

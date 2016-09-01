@@ -238,7 +238,7 @@
                         </apex:outputPanel> 
                         <div class="buttonmarRight backButton pull-left">
                                     
-                            <input type="button" onclick="skipTab(this)" class="coreparameters ipmButton" value="{!$Label.IPM_Back}"/>
+                            <input type="button" class="coreparameters ipmButton" value="{!$Label.IPM_Back}"/>
                         </div>
                         <div class="buttonmarRight pull-left">
                                   

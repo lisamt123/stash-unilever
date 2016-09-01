@@ -21,7 +21,7 @@
                                 <div class="col-sm-6 noPadleft pageTitlefont">
                                     {!$Label.IPM_Team}
                                 </div>
-                                <apex:outputPanel rendered="{! if(OR(isCoreMemEditable=true,isEditable=true),'true','false')}">
+                                <apex:outputPanel rendered="{! IF(AND(OR(isCoreMemEditable=true,isEditable=true),NOT(isStopped)),'true','false')}">
                                 <apex:outputPanel rendered="{!!isShowEditmode}">
                                     <div class="txtRight pull-right editButton">
                                         <input type="button" class="ipmButton primary" data-dismiss="modal" onclick="refreshTeam()" value="{!$Label.IPM_Edit_Team}"/>

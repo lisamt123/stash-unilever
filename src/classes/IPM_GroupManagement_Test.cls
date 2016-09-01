@@ -70,7 +70,7 @@ private class IPM_GroupManagement_Test
             project.IPM_Technical_Project_Leader__c=projectResource2.Id;
             project.Deputy_Project_Leader__c=projectResource3.Id;
             project.IPM_Project_Gatekeeper__c=projectResource4.Id;
-            project.IPM_Finance_Member__c=projectResource1.Id;
+            project.IPM_Finance_Lead__c=projectResource1.Id;
             insert project;//insert project
             listProject.add(project);//add project to list for sharing
             List<IPM_Project__c>lstProject=[SELECT IPM_Project_Leader__c,Sustainability_Period__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c 

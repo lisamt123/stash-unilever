@@ -93,12 +93,13 @@ private class IPM_MyProjects_Test{
             ipmMileStoneTestList[i].recordtypeid = mileMRecordType;
             ipmMileStoneTestList[i].IPM_Project__c = projectDetailList[i].Id;
             ipmMileStoneTestList[i].IPM_Phase__c = projectDetailList[i].IPM_Phase__c;
+            ipmMileStoneTestList[i].IPM_Type_of_Milestone__c = IPM_ConstantUtils.STANDARD;
         }
         insert ipmMileStoneTestList;
         
         List<IPM_Milestone__c> milestoneList = [Select id from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100];
         
-        system.assertEquals(30, milestoneList.size(),'Milestones are not created');
+        system.assertEquals(35, milestoneList.size(),'Milestones are not created');
         
     }
     

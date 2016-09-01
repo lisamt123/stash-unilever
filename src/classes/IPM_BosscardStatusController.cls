@@ -154,6 +154,9 @@ global with sharing class IPM_BosscardStatusController{
                     bosscardFeedBackParameter=bosscardFeedBackParameter.substring(0,255);
                 }
                 BOSSCARD_Record=lstbosscard[0];
+                
+                List<IPM_Company_Card__c> compCardList = [SELECT Id, RecordType.Name FROM IPM_Company_Card__c WHERE id=: BOSSCARD_Record.IPM_Company_Card__c ];
+               
                 BOSSCARD_Record.IPM_Is_Draft__c = false;
                 BOSSCARD_Record.IPM_Is_Accepted__c=true;
                 BOSSCARD_Record.IPM_Is_Archived__c=false;
@@ -171,6 +174,9 @@ global with sharing class IPM_BosscardStatusController{
                 NewProject.IPM_Project_Logo__c=BOSSCARD_Record.IPM_Bosscard_Logo__c;
                 NewProject.IPM_Project_Logo_Id__c=BOSSCARD_Record.IPM_Bosscard_Logo_Id__c;
                 NewProject.IPM_Company_Card__c=BOSSCARD_Record.IPM_Company_Card__c;
+                if(!compCardList.isEmpty()){
+                	NewProject.IPM_CompanyCardText__c=compCardList[0].RecordType.Name;
+                }
                 NewProject.IPM_Region_Shr__c=BOSSCARD_Record.IPM_Region_Shr__c;
                 
                 

@@ -2,10 +2,9 @@
 <html>
 <head>   
     <style type="text/css" media="print">
-    
         @page { 
-            margin-top: 30mm; 
-            margin-bottom: 30mm;          
+            margin-top:15mm; 
+            margin-bottom:25mm;          
             margin-left: 0mm; 
             margin-right: 0mm;     
             background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/pebbleline.png')}');
@@ -57,13 +56,13 @@
          body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);border-collapse:collapse}
          table td {text-align:left; vertical-align:top;}
          .bold {font-weight: bold; font-family: sans-serif;}
-         .header {margin-left:5mm!important; margin-right:5mm!important; margin-top:5mm!important; margin-bottom:5mm!important;}
+         .header {margin-left:5mm!important; margin-right:5mm!important;}
         .secLogo{width:550px;float:left; min-height:40px; overflow:hidden;}
         .secProd{width:30%;float:right; color:#253b78; text-align:left; display:block;}
         .secProd .subText {color:#666666; font-size:8pt!important; display:block;}        
-        .secCategory {padding-right:5px;margin-top:5px;font-size:13pt;color:#0d0d99;text-transform: uppercase;}
+        .secCategory {padding-right:5px;font-size:13pt;color:#0d0d99;text-transform: uppercase;}
         .secCategory img {max-width:100%; width:100%;}
-        .spacer{padding:0!important;  height:20px; border-bottom:0.5pt solid #e6e533;clear:both;margin-top:50mm !important; }
+        .spacer{padding:0!important; border-bottom:0.5pt solid #e6e533;clear:both;}
         .pdfTitle{float-left;color:#007dbb; font-size:17pt; padding-right:8px; padding-left:8px; margin:0; line-height:30px; font-weight: bold; font-family: sans-serif; white-space: nowrap;}         
         .dataTableTop {background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_top.png')}'); background-repeat:no-repeat;height:51px;}
         .dataTableBottom {background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/Printview_pebble_bottom.png')}'); background-repeat:no-repeat;height:58px;}
@@ -72,12 +71,12 @@
         .dataTable td {font-family: sans-serif; font-size:9pt!important; color:#000; vertical-align:middle; border-bottom:0.25pt solid #a2b868; padding-top:5px;padding-bottom:5px; }
         .dataTable td.label {color:#000!important; text-align:right; padding-right:3px;  font-weight: bold; font-family: sans-serif; }
         .dataTable td span.ps {font-size:7pt;font-weight:normal!important;}
-        #wrapper {margin-left:5mm!important; margin-right:5mm!important;margin-top:10mm !important;float:left;}
+        #wrapper {margin-left:5mm!important; margin-right:5mm!important;margin-top:0mm !important;float:left;}
         .headSecBlock {display:inline-block; padding-left:8px; text-transform:uppercase; padding-right:8px; margin-top:6px; color:#555!important; border-left:0.25pt solid #a8a8a8!important; }        
-        .headSecBlock.smallText {font-size:9pt!important;font-weight:normal;} 
-        .headSecBlock.global{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/star_s.png')}'); background-repeat:no-repeat;background-position:10px 3px;} 
-        .headSecBlock.operational{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/hammer_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
-        .headSecBlock.local{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/location_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.smallText {font-size:10px!important;font-weight:normal;} 
+        .headSecBlock.global{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/star_s.png')}'); background-repeat:no-repeat;background-position:10px 0px;} 
+        .headSecBlock.operational{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/hammer_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.local{font-size:10px!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/location_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
          h5 {font-size:13px!important;}        
         .projLogo{width:100%!important;}        
         .floatLeft{float:left;}
@@ -101,6 +100,9 @@
         
          /* gatekeeperlist table styling */
         .gateKeeperlist{table-layout:fixed;}
+        .ipmTable.table.gateKeeperlist>thead>tr>th{padding:0px;}
+        .ipmTable.table.gateKeeperlist>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
+        .ipmTable.table.gateKeeperlist>tbody>tr>td{padding:2px 2px;height:10px;}
         .incHeight{height: 17px;}
         .gateKeeperlist>thead>tr>th:first-child {padding-left: 5px !important;}
         .gateKeeperlist>tbody>tr>td:first-child{text-align:left !important;}
@@ -118,28 +120,41 @@
         .uploadImage {width: 50px; height: 50px;}
         img.ipmImage{width: 100%;height: 100%;}
         /* Appendix reference styling*/
-        .appBlock {color: #797979;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 13px 10px 14px;}
+        .appBlock {color: #797979;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 2px 10px 2px;margin-top:2px;}
         
-        /Table Style*/
-        .ipmTable.table{border-left:none; border-right:none;}
+        /* otif 5.1 table styling */
+        .ipmTable.table.otifTable>thead>tr>th{padding:0px;}
+        .ipmTable.table.otifTable>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
+        .ipmTable.table.otifTable>tbody>tr>td{padding:2px 5px;height:10px;}
+        
+        /* 6.1,6.2 Finance Table table styling */
+        .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>thead>tr>th{padding:0px 5px;height:10px;}
+        .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>thead>tr>th>div{border-right:0px;padding: 2px 10px 2px 0;}
+        .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign>tbody>tr>td{padding:2px 5px;height:10px;}
+        .fintable.table.ipmFinancetable.textareabig.ipmFintableAlign tr{height:10px;}
+		.fintable.inverse.table.ipmFinancetable.textareabig.ipmFintableAlign{table-layout:inherit;}
+        .ipmFinancetable.inverse thead th{width:auto;}
+        .algnCenter{text-align:center;}
+        
+        /*Table Style*/
+        .ipmTable.table{border-left:none; border-right:none;width:100%;}
         .ipmTable.table>thead>tr>th{background:#f2f8fc;color:#3b516d; font-size:1em;font-weight:bold;}
         .ipmTable>thead>tr>th, .ipmTable>tbody>tr>th, .ipmTable>tfoot>tr>th, .ipmTable>thead>tr>td, .ipmTable>tbody>tr>td, .ipmTable>tfoot>tr>td{border-left:none; border-right:none;border-top:0.5pt #9ab4b1 solid;border-bottom:none;}
        .ipmTable.table-bordered{border-top: 0.5pt solid #7fa19e;border-bottom: 0.5pt solid #7fa19e;}
-        .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{height: 40px;padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
+        .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding: 2px 5px;vertical-align: middle;word-wrap:break-word;word-break: break-word;color: rgb(102, 102, 102);}
         .table>thead>tr>td>a, .table>tbody>tr>td a, .table>tfoot>tr>td>a{color:#428bca; text-decoration: none;word-break: break-word;}
-        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 9px 5px;vertical-align: middle;}
-        //.table>tbody>tr>td:first-child{text-align:center;}
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th{padding: 2px 5px;vertical-align: middle;}
         .table>thead>tr>th:first-child{padding-left:0;}
-        .table>thead>tr>th>div{padding: 7px 10px 7px 0;border-right: 0.5pt #ddd solid;}
+        .table>thead>tr>th>div{padding: 2px 10px 2px 0;}
         .table>thead>tr>th:last-child>div{border-right:none;}
         .table>tbody>tr:nth-child(even){background:#f8f8f8;}
         .table>tbody>tr>td.selected{background:#e1f9dd;border-top:0.5pt #007DBB solid;}
         .table>tbody>tr.selected{background:#e1f9dd;}
-        //.table>tbody>tr.selected td{border-top:1pt #007DBB solid;}
         .table>thead>tr>th span {float:left;display:inline-block;}
         .table>thead>tr>th .btn-group, .ipmTable>thead>tr>th span.sortIcon, .ipmTable>thead>tr>th span.sortIcon1{float:right!important;}
         .ipmFinancetable.table>tbody>tr>td.textleft{text-align:left; background-color: #f3ffe7;font-weight: bold;}
-        .ipmFinancetable.table{table-layout:fixed;}
+        .ipmFinancetable.table{width:100%;table-layout:fixed;}
+        .ipmFinancetable.table.inEstmateTable,.ipmFinancetable.table.inEstmateCharter,.ipmFinancetable.table.nofixedlayout{table-layout:inherit;width:100%;}
     
           table.innertable td {border: 0.5pt solid #ddd;padding: 5px;table-layout: fixed;word-wrap: break-word;}
           table.innertable {border-spacing: 15px; width:100%;table-layout: fixed;}
@@ -148,8 +163,8 @@
          .noborder{border:0px !important;}
          .borleft{border-left:0.5pt solid #ddd;}
          .gatedoctable thead th {background-color: #dceefa;color: #253b78;}
-         .ipmFinancetable tr { height: 35px;}
          table.ipmTable>tbody>tr:nth-child(even) {background: #f8f8f8;}
+         
         /* Customer Channel Styles*/
         #upImg .modal-body{padding:0;}
         .customerSelect{padding: 5px 5px;background:#fff;border: 0.5pt solid #dddddd;}
@@ -157,7 +172,6 @@
         .listContainer{border:0.5pt solid #636363; margin-bottom:15px;}
         .noPadleft{padding-left:0px !important;}
         .noPadright{padding-right:0px !important;}
-        .channelText{line-height:28px;}
         .customerSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size: 1.4em;position: absolute;top: 3px;right: 0px;margin-right: 25px;top: 0.5pt\9;right: 1px\9;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
         .keep-open1{height: 18px;width: 25px;position: relative;left: 45px;cursor: pointer;}
         .dropdown-toggle1{padding: 0px;position: relative;top: -11px;left: 2px;}
@@ -177,19 +191,41 @@
         /*channel container */
         .channelContainer{border:0.2pt solid #636363; margin-bottom:15px; }
         .channelType{padding-right:10px;color:#364354;font-size:1.2em;font-weight:bold;}
-        .priorityNumber{color:#555E6B;font-weight: normal;border-left:0.5pt solid #BDBDBD;padding-left: 10px;line-height: 28px;display:block;float:left;}
-        .channelContainer .typeBorderbottom{border-bottom:0.5pt solid #ddd;padding:10px 15px;margin-left: 15px;width: 95% !important;margin-right: 15px;height:43px;width:100%;}
+        .priorityNumber{color:#555E6B;font-weight: normal;border-left:0.5pt solid #BDBDBD;padding-left: 10px;line-height: 15px;display:block;float:left;}
+        .channelContainer .typeBorderbottom{border-bottom:0.5pt solid #ddd;padding:2px 15px;margin-right:5px;height:13px;width:100%;}
         .channelContainer  .uploadImage {width: 60px; height: 50px;}
         .channelContainer .uploadImage img{max-width:100%; height:100%; cursor:pointer;}
         .frstImage{margin-right:20px;}
         .commentBox{margin-bottom:10px;}
         .commentBox textarea{width:100%;border-radius: 2px;border: 0.5pt solid #ddd;}
-        .channelText{display:block;float:left;padding-right: 15px;}
-        .channelOptions{color:#364354;font-size:1.2em;font-weight:bold;display: block;margin-top: 10px;margin-bottom: 10px;text-align: left !important;padding-left: 15px;}
+        .channelText{display:block;float:left;padding-right: 15px;margin-left:5px;}
+        .channelOptions{color:#364354;font-size:1.2em;font-weight:bold;display: block;margin-top: 2px;margin-bottom: 5px;text-align: left !important;padding-left: 15px;}
         .custImageContainer{margin:20px;width:100%; height:50px;}
         .noMtop{margin-top:0px !important;}
         .greyArrow{cursor:pointer;display: inline-block;width: 23px;height: 23px;margin-left: 4px;margin-top: -5px;position: relative;top: 6px;}
         
+        .ccPurpleBox span {  border-bottom: 0.5pt solid #B2C6C5;  display: block;  padding-bottom: 2px;  color: #565E6B;  text-align: center;}
+        .infobox {padding-top: 2px;  padding-right: 10px;  padding-bottom: 15px;  text-align: center;}
+        .col-sm-4 {  width: 32%;float:left;}
+        .ccPurpleBox{clear:both;margin-bottom:-10px;}
+        .channelContainer{clear:both;}
+        .custImageContainer{margin-bottom:5px;margin-top:5px;}
+        .frstImage,.secImage {  margin-right: 20px;width:25%;margin-bottom: 20px;}
+        .frstImage .ipmImage,.secImage .ipmImage{  max-width: 100%;}
+        .commentBox span {  margin-top:5px;margin-bottom: 2px;display:block;}
+       .commentBox{ clear:both;}
+       .col-sm-12 .channelOptions{clear:both;}
+      
+       .categoryContainer{min-width:125px;text-align:right; max-width:200px; margin-top:10px;}
+       .cImage{width:20px;height:20px;}
+       .cImage img{display:block;text-align:right;}
+       .pull-left{float:left;}
+       .gaterollouts th{white-space:initial;}
+       .gaterollouts thead{width:100%;}
+       .gaterollouts th:last-child {display:none;}
+       .gaterollouts>thead>tr>td, .gaterollouts>tbody>tr>td, .gaterollouts>tfoot>tr>td {  color: #666;  height: 40px;  padding: 2px 5px;  vertical-align: middle;  word-wrap: break-word;word-break: break-all;}
+       .empty-column-content {display: none; }
+       .riskMainHead {  font-weight: bold;  padding: 2px 0px;  color: #344454;}
         .col-sm-12{with:100%;float:none;}
         .col-sm-3{with:25%;float:left;}
         .col-sm-1{width:10px;}
@@ -200,7 +236,7 @@
         .Amber{max-width:40px;color:#fff;text-align:center;font-size:10px; background: #f1993e;}
         .Not.Apllicable{max-width:60px;color:#fff;text-align:center;font-size:10px;background: orange;}
         .pageTitle{border-right:0px !important;}
-        .colHeight{height:20px;}
+        .colHeight{height:0px;}
         .noteimg .icoButton {display: inline-block;width: 15px;cursor: text;margin: 2px 6px -9px 0px; height: 30px;float:left; }
         a.icoButton.document {position: relative;background-image:url("{!URLFOR($Resource.IPM_Resource, 'images/icon-document.png')}"); background-repeat:no-repeat;}
         a.icoButton.document-grey {position: relative;background-image:url("{!URLFOR($Resource.IPM_Resource, 'images/icon-document-grey.png')}"); background-repeat:no-repeat;margin-left:5px;}
@@ -220,17 +256,18 @@
         .gaterollouts{width:100%;table-layout:fixed;border-top:0px !important;border-spacing: 0;border-collapse: collapse;}
        
        /* financial estimate oppurtunity styles 6.2 */
-           .table-responsive{margin-bottom:10px;}
-       .col-sm-4 .table {width: 100%;  max-width: 100%;  margin-bottom: 20px;}
+       .table-responsive{margin-bottom:10px;}
+       .col-sm-4 .table {width: 100%;  max-width: 100%;  }
        .col-sm-4 .table>tbody>tr:nth-child(even) {  background: #f8f8f8;}
        .ipmFinancetable tbody>tr>td{border:0.5pt #ddd solid;word-wrap: break-word;}
-       .col-sm-4 .fintable td{border:0.5pt #ddd solid;color: #666;  height: 40px;  padding: 2px 5px;  vertical-align: middle;  word-wrap: break-word;}
+       .col-sm-4 .fintable td{border:0.5pt #ddd solid;color: #666;  height: 10px;  padding: 2px 5px;  vertical-align: middle;  word-wrap: break-word;}
        .col-sm-4 .fintable{padding-right:10px;}
          tr.innertd td{padding-left:11px;font-weight:Bold;font-size:15px;color:#3b516d;}
-        .ipmFinancetable thead th{width:100%;background-color:#dceefa;border: 0.5pt #ddd solid;padding: 9px 5px;vertical-align: middle;  }
-       .ipmFinancetable tr{height:35px;}
+        .ipmFinancetable thead th{width:100%;background-color:#dceefa;border: 0.5pt #ddd solid;padding: 2px 5px;vertical-align: middle;  }
+       .ipmFinancetable.inEstmateCharter thead th{width:auto;}
+       .ipmFinancetable tr{height:11px;}
         .finproject{font-weight:bold !important;font-size:15px;color:#3b516d !important;}
-        .fintotal{font-weight:Bold;font-size:19px;color:#253b78;line-height:22px;}
+        .fintotal{font-weight:Bold;font-size:12px;color:#253b78;line-height:10px;}
         .fintable td{font-size:15px;color:#364354 !important;}
         .ipmFinancetable>tbody>tr>td{border:0.4pt solid #ddd;}
         .col-sm-4 .fintable td{border:0.4pt solid #ddd;}
@@ -251,35 +288,8 @@
         .fintable td div {font-size: 15px;color: #364354;font-weight:bold;}
         .pl15{padding-left:15px !important;}
         
-        /* customer channel */
-        .ccPurpleBox span {  border-bottom: 0.5pt solid #B2C6C5;  display: block;  padding-bottom: 10px;  color: #565E6B;  text-align: center;}
-        .infobox {  padding-top: 15px;  padding-right: 10px;  padding-bottom: 15px;  text-align: center;  margin-top: 15px;}
-        .col-sm-4 {  width: 32%;float:left;}
-        .ccPurpleBox{clear:both;}
-        .channelContainer{clear:both;}
-        .custImageContainer {  margin-bottom: 20px;  margin-top: 20px;}
-        .frstImage,.secImage {  margin-right: 20px;width:25%;margin-bottom: 20px;}
-        .frstImage .ipmImage,.secImage .ipmImage{  max-width: 100%;}
-        .commentBox span {  margin-top:20px;margin-bottom: 10px;display:block;}
-       .commentBox{ clear:both;}
-       .col-sm-12 .channelOptions{clear:both;}
-      
-       .categoryContainer{min-width:125px;text-align:right; max-width:200px; margin-top:10px;}
-       .cImage{width:20px;height:20px;}
-       .cImage img{display:block;text-align:right;}
-       .pull-left{float:left;}
-       .gaterollouts th{white-space:initial;}
-       .gaterollouts thead{width:100%;}
-       .gaterollouts th:last-child {display:none;}
-       .gaterollouts>thead>tr>td, .gaterollouts>tbody>tr>td, .gaterollouts>tfoot>tr>td {  color: #666;  height: 40px;  padding: 2px 5px;  vertical-align: middle;  word-wrap: break-word;word-break: break-all;}
-       .empty-column-content {display: none; }
-       .riskMainHead {  font-weight: bold;  padding: 10px 0px;  color: #344454;}
-       .finGateCustTable .fintleblubg{width:20% !important;}
-       
-       
-        
         /* dropdown styles 1 */
-        .channelText{line-height:28px;}
+        .channelText{line-height:15px;}
         .customerSelect:after{display: block;font-family: FontAwesome;content: "\f107";font-size:20px!important;;position: absolute;top:1px!important;right: 0px;margin-right: 25px; top: -1px\9; right: -1px\9;width: 20px;height: 20px;text-align: center;background: #fff;color: #000;}
         .keep-open1{height: 18px;width: 25px;position: relative;left: 45px;cursor: pointer;}
         .dropdown-toggle1{padding: 0px;position: relative;top: -11px;left: 2px;}
@@ -348,25 +358,26 @@
         .threshold{display:block;}
         
         /* consumer evidence styles */
-.consumerContainer{clear:both;}
-        .ceContainer{border:1px solid #ddd;margin-bottom:20px;margin-top:20px;}
-        .cevidenceborder{border-bottom: 3px solid #E8E848;padding: 10px 15px;float:left;width:100%;clear: both;margin-top:30px;}
+        .consumerContainer{clear:both;}
+        .ceContainer{border:1px solid #ddd;margin-bottom:5px;margin-top:5px;}
+        .cevidenceborder{border-bottom: 3px solid #E8E848;padding: 2px 15px;float:left;width:100%;clear: both;}
         .evidenceType{color: #344356;font-size: 1.2em;font-weight: bold;margin-left: 20px;}
-        .consumerImgContainer{margin-bottom: 20px;border-top: 0px !important;padding-top: 20px;clear: both;}
+        .consumerImgContainer{margin-bottom: 5px;border-top: 0px !important;padding-top: 2px;clear: both;}
         .evidenceHead{float:left;  margin-top: 3px;}
         .evidenceHead > span.expico{display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;font-size: 0.8em;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;color: #fff;}
         .consumerContainer .uploadImage img {  max-width: 100%;height:100%;}
         .consumerContainer .uploadImage {width: 60px;height: 50px;}
-        .ceImage{margin-right: 20px;  float: left;  margin-left: 20px;margin-bottom:10px;clear: both;}
-        .ceInfoContainer{margin-bottom: 10px;width:100%;clear:both;}
-        .ceCommentBox{float:left;margin:0px 20px;width: 97%;clear:both;}
+        .ceImage{margin-right: 10px; margin-left: 20px;margin-bottom:5px;width:100%;}
+        .ceInfoContainer{margin-bottom: 3px;width:100%;clear:both;}
+        .ceCommentBox{width: 97%;clear:both;}
         .ceCommentBox textarea{  width: 100%;  height: 90px;  border-radius: 2px;  border: 1px solid #A8A8A8;}
         .conceptLink{font-weight: bold;cursor: pointer;color: #027DC1;  margin-right: 10px;  margin-top: 5px;}
         .ceImgDel{position: absolute;  bottom: 96px;  left: 47px;}
         .consumerimgloader{width:120px;height:120px;cursor:pointer;}
         
         .ceImageBig div > div.uploadImagebig {width:80px;height:80px;border:0 !important;text-align: center;position:relative;}
-        .delTitlecon{width: 100%;padding: 0px 21px 10px 21px;}
+        .delTitlecon{width: 94%;padding: 0px 21px 0px 21px;}
+        .marginL0 {margin-left: 0px;}
         .delTitlecon > span{font-size:1.2em;font-weight:bold;color:#344356;}
         .floatR{float:right}
         .ceCommentBox > textarea.smallTextarea{width: 100%;height: 120px;}
@@ -374,25 +385,17 @@
         .ceContainer .selectBackground,.evidenceHead > span.expico{display:none;}
         .gateRolloutPadding{padding-left:5px;}
         .gateRolloutTable{width:100%;table-layout:fixed;}
-        .gateRCountry{display:block;word-break:break-word;width:80%;}
+        .gateRCountry{display:block;word-break:break-word;width:80%;}   
         
-        .fintable{margin-bottom:25px;}
-        .finGateCustTable>tbody>tr>td:first-child{width:31.75mm !important;}
-        .finGateCustTable>tbody>tr>td:first-child + td{width:30mm !important;}
-        .finGateCustTable>tbody>tr>td:first-child + td + td{width:30mm !important;}
         .gateRname span{font-size:12px;word-break:break-word;white-space: pre-wrap;display:block;width:100px;}
         
         .noOfCu{width:100%;}
         .altBGcolor{width:100%;float:none !important;}
-.cusText{display:block;}
-      
+        .cusText{display:block;}
         
         /* Assortment Styles */
- 
         .viewassortpriority {display: block;font-weight: 700;}
- 
         .viewDistribType, .viewDataPeriod {margin-right: 10px;font-weight: 700;}
- 
         .cmiGateSectionTable{width:100%;}
         
         /* ===CMI GATE SECTION STYLES=== */
@@ -416,7 +419,7 @@
         .cmiCountryWidth{width: 45px;}
         .cmiValContainer{width:100%;}
         .charterCmiTable{clear:both;width:100%;}
-        .mainCmiTable{width:100%;clear:both;margin-top:20px;display:table;}
+        .mainCmiTable{width:100%;clear:both;margin-top:5px;display:table;}
         .cmiColumnTitle{display:block;float:left;padding: 5px;}
         .cmiColumnDesc {text-align: center;width: 85%;display: inline-block;float: left;padding: 5px;}
         .cmiCountryValue{width: 45px;padding:5px;font-size: 9px;display:block;}
@@ -458,48 +461,13 @@
         .ipmFintableAlign .finproject,.ipmFintableAlign tr.fintleblubg div,.ipmFintableAlign tr td.fintleblubg div{font-size:10px !important;}
         .ipmFintableAlign tr td.fintleblubg div{padding-left:10px;}
         
-        td.bggray:first-child 
-        {
-           width:27.5%
-        } 
-        
-        td.bggray:first-child + td
-        {
-           width:16.5%
-        } 
-        td.bggray:first-child + td +td
-        {
-           width:55%
-        }
-        .riskCustBackground
-        {
-            background: #dceefa;
-            color: #3b516d;
-            font-weight: bold;
-            padding:8px 0;
-            border-top:#9ab4b1 solid 1px;
-            border-bottom:#9ab4b1 solid 3px;      
-        }
-.noMargin .ipmAcrdnExpand:first-child
- 
-        {
- 
-           background-color:red
- 
-        }
- 
-        .Consumer_Evidence_Concept
- 
-        {
- 
-           clear:both
- 
-        }
-        .ceContainer
-        {
- 
-           clear:both !important;
-        }
+        td.bggray:first-child{width:27.5%}         
+        td.bggray:first-child + td{width:16.5%} 
+        td.bggray:first-child + td +td{width:55%}
+        .riskCustBackground{background: #dceefa;color: #3b516d;font-weight: bold;padding:2px 0;border-top:#9ab4b1 solid 1px;border-bottom:#9ab4b1 solid 3px;}
+        .noMargin .ipmAcrdnExpand:first-child{background-color:red}
+        .Consumer_Evidence_Concept{clear:both}
+        .ceContainer{clear:both !important;}
         .ipmFinancetable tbody tr td
         {
             font-size:10px
@@ -515,90 +483,103 @@
         }
          .consumerImgContainer
         {
-           min-height:160px;
+           min-height:25px;
            display:block;
         }
-		.ipmFinancetable thead th .finproject{font-size:11px;}
-		.ipmFinancetable thead th .fintotal{font-size:12px;}		
-        .performanceTable table{font-size:10px;}		
-        .performanceTableHead{font-weight: bold;background-color:#dceefa;}		
-        		
-        .bPageBlock .list.monitor {		
-            width: 100%;		
-        }		
-        .bPageBlock .list.ipmTable.monitor thead th {		
-            background-color: #dceefa;		
-        }		
-        .bPageBlock .list.monitor tr.odd {		
-            background-color: #f8f8f8;		
-        }		
-        .errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {		
-            background-color: transparent;		
-        }		
-        body .pbBody table.list.monitor tr.headerRow td, 		
-        body .pbBody table.list.monitor tr.headerRow th {		
-           font-size: 8.5px;		
-        }		
-        body .pbBody table.list.monitor tr.dataRow th, 		
-        body .pbBody table.list.monitor tr.dataRow td {		
-            font-size:8.5px;		
-        }		
-        		
-        /* Performance Breakdown Styles */		
-        .performanceContainer1{background-color:#dceefa;float: left;}		
-        .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}		
-        .performanceContainer2,.performanceContainer3{width: 760px;}		
-        .performanceContainer2{background: #f8f8f8;float:left;clear:both;}		
-        .performanceContainer3{clear:both;display:table;table-layout:fixed;}		
-        .breakdown_Container{margin-bottom: 10px;}		
-        .performanceSecHead{float:left;width:43px;padding: 5px;font-size:10px;}		
-        .performanceCell{float:left;width:44px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}		
-        .emptyCell{min-height:14px;}		
-        .misaligned{border:2px solid red;min-height:51px;}		
-        .performanceDrpdownContainer{margin-top:10px;}		
-        .SecButtonSet a.icoButton.download{margin-top:10px;}		
-        .panel .ipmButtonSet{margin-bottom:10px;}		
-        input.misalignedField{border:1px solid red;}		
+        .ipmFinancetable thead th .finproject{font-size:11px;}
+        .ipmFinancetable thead th .fintotal{font-size:12px;}        
+        .performanceTable table{font-size:10px;}        
+        .performanceTableHead{font-weight: bold;background-color:#dceefa;}      
+                
+        .bPageBlock .list.monitor {     
+            width: 100%;        
+        }       
+        .bPageBlock .list.ipmTable.monitor thead th {       
+            background-color: #dceefa;      
+        }       
+        .bPageBlock .list.monitor tr.odd {      
+            background-color: #f8f8f8;      
+        }       
+        .errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {     
+            background-color: transparent;      
+        }       
+        body .pbBody table.list.monitor tr.headerRow td,        
+        body .pbBody table.list.monitor tr.headerRow th {       
+           font-size: 8.5px;        
+        }       
+        body .pbBody table.list.monitor tr.dataRow th,      
+        body .pbBody table.list.monitor tr.dataRow td {     
+            font-size:8.5px;        
+        }       
+                
+        /* Performance Breakdown Styles */      
+        .performanceContainer1{background-color:#dceefa;float: left;}       
+        .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}      
+        .performanceContainer2,.performanceContainer3{width: 760px;}        
+        .performanceContainer2{background: #f8f8f8;float:left;clear:both;}      
+        .performanceContainer3{clear:both;display:table;table-layout:fixed;}        
+        .breakdown_Container{margin-bottom: 10px;}      
+        .performanceSecHead{float:left;width:43px;padding: 5px;font-size:10px;}     
+        .performanceCell{float:left;width:44px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}        
+        .emptyCell{min-height:14px;}        
+        .misaligned{border:2px solid red;min-height:51px;}      
+        .performanceDrpdownContainer{margin-top:10px;}      
+        .SecButtonSet a.icoButton.download{margin-top:10px;}        
+        .panel .ipmButtonSet{margin-bottom:10px;}       
+        input.misalignedField{border:1px solid red;}        
         .breakdown_Container{width: 762px;font-size:10px;clear:both;}
-		
-	/* Global Financial Action Standards Styles */
-		.gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
-		.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
-		.glbHeadLeft{min-width: 100px;float: left;height: 113px;border: 1px solid #ddd;}
-		.glbHeadRight{width:658px;float: left;min-height: 100px;border: 1px solid #ddd;}
-		.glbHeadtop1{width:325px;float:left;min-height: 98px;}
-		.glbHeadtop2{width:330px;float:left;min-height: 98px;}
-		.glbfrstyear,.glbinnovation{padding-bottom: 5px;text-align: center;color: #364354;font-weight: bold;margin-top: 5px;border-bottom: 1px solid #ddd;}
-		.glbsubHeadM{float:left;width:64px;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
-		.glbsubHeadM2{float:left;width:33%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 11px;}
-		.glbHeadtop1{border-right: 1px solid #ddd;}
-		.glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
-		.glbValLeft{height: 43px;width: 100px;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
-		.glbValRight{width:762px;height: 42px;}
-		.glbValSubLeft{width:327px;display:block;height: 40px;float:left;}
-		.glbValSubRight{width:332px;display:block;height: 50px;float:left;border-right: 1px solid #ddd;}
-		.glbValM{width:54px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
-		.glbValM2{width:99px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px;min-height: 40px;}
-		.glbVal8{border-right: 1px solid #ddd;width:100px;}
-		.glbVal5{width:56px;}
-		.glbsecContainer .glbVal8{border-right:1px solid #ddd;width:102px;}
-		.glbValLeft.othValleft{height:44px !important;}
-		.glbsecContainer{float:left;width:100%;}
-		.glbfrstContainer{float:left;width:100%;display:table;}
-		.glbsubHeadM,.glbsubHeadM2{font-size: 11px;color: #364354;font-weight: bold;}
-		.glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
-		.glbSeclist{width:50%;float:left;}
-		.glbfinvalContainer{float:left;display:table;width:100%;}
-	
-	/* Financial Action Standards Inverse styles */
-		.ipmFinancetable.inverse{width:100%;max-width:100%;}
-		.ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;float: none;}
-		.ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
-		
-		@media print
-		{
-			div.gkcStatus{page-break-inside: avoid;}
-		}
+        
+    /* Global Financial Action Standards Styles */
+        .gatefinancialbg{background-color:#EBF8FC;padding: 10px;}
+        .glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
+        .glbHeadLeft{min-width: 135px;float: left;height: 50px;border: 1px solid #ddd;border-bottom:0px;}
+        .glbHeadRight{width:623px;float: left;min-height: 35px;border: 1px solid #ddd;}
+        .glbHeadtop1{width:325px;float:left;min-height: 40px;}
+        .glbHeadtop2{width:290px;float:left;min-height: 40px;}
+        .glbfrstyear,.glbinnovation{padding-bottom: 2px;text-align: center;color: #364354;font-weight: bold;margin-top: 2px;border-bottom: 1px solid #ddd;}
+        .glbsubHeadM{float:left;width:64px;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;min-height: 20px;font-size: 11px;min-height: 30px;}
+        .glbsubHeadM2{float:left;width:33%;padding-top: 2px;text-align: center;border-right: 1px solid #ddd;min-height: 20px;font-size: 11px;min-height: 30px;}
+        .glbHeadtop1{border-right: 1px solid #ddd;}
+        .glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
+        .glbValLeft{height: 20px;width: 136px;float: left;display: block;text-align:center;border: 1px solid #ddd;padding-top: 5px;}
+        .glbValRight{width:762px;height: 20px;}
+        .glbValSubLeft{width:325px;display:block;height: 20px;float:left;}
+        .glbValSubRight{width:298px;display:block;height: 24px;float:left;border-right: 1px solid #ddd;}
+        .glbValM{width:60px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
+        .glbValM2{width:93px;float:left;border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 2px;min-height: 22px;}
+        .glbVal8{border-right: 1px solid #ddd;float:left;width:96px;}        
+        .glbsecContainer .glbVal8{border-right:1px solid #ddd;width:98px;}
+        .glbValLeft.othValleft{height:20px !important;}
+        .glbsecContainer{float:left;width:100%;}
+        .glbfrstContainer{float:left;width:100%;display:table;}
+        .glbsubHeadM,.glbsubHeadM2{font-size: 11px;color: #364354;font-weight: bold;}
+        .glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
+        .glbSeclist{width:50%;float:left;}
+        .glbfinvalContainer{float:left;display:table;width:100%;}
+    
+    /* Financial Action Standards Inverse styles */
+        .ipmFinancetable.inverse .finproject{font-size: 11px;color: #364354;font-weight: bold;display:block;}
+        .ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+        
+        @media print
+        {
+            div.gkcStatus{page-break-inside: avoid;}
+        }
+        .cTitle{text-align:left;}
+        .alertimg
+        {
+            background-image: url('{!URLFOR($Resource.IPM_Resource, 'images/alert_ico.png')}');
+            float:right;
+            margin:-18px 0px -10px -30px;
+            height:20px;
+            width:20px;
+        }
+        .redtxt{
+          color:red !important;
+        }
+		table.ipmTable.table.table-bordered.ecoDesignCountry tbody td div.inputField.cellWidth {float: left; width: 50%;}
+		.dataTable table tr.lastchild td.tldfontchange span{font-size:12px !important;}
+        .dataTable table td.tldfontchange span{font-size:12px !important;}
     </style>
 </head>
 <body class="docBody">
@@ -635,13 +616,12 @@
             </div>
                                     
             <div class="categoryContainer pull-right"> 
-                <div class="cImage pull-left secCategory">
-                    <apex:outputField styleClass="categoryImage"  value="{!project.IPM_Category_Icon__c}" rendered="{!if(ISBLANK(project.IPM_Category_Icon__c),'false','true')}"/>
-                </div>
-                <div class="cTitle pull-right">
-                                
+                <div class="cTitle pull-right">         
                     <apex:outputText value="{!project.IPM_Category_Text__c}" styleClass="secCategory"/>                               
-                </div>                                
+                </div> 
+				<div class="cImage pull-right secCategory">
+                    <apex:outputField styleClass="categoryImage"  value="{!project.IPM_Category_Icon__c}" rendered="{!if(ISBLANK(project.IPM_Category_Icon__c),'false','true')}"/>
+                </div>				
             </div>   
             <div class="spacer"></div>  
         </div>
@@ -662,33 +642,51 @@
             <div class="dataTable">
             <table width="100%" cellpadding="0" cellspacing="0">            
                 <tr>
-                    <td class="label" width="20%">
-                      {!$Label.IPM_BRAND_POSITIONING}{!$Label.IPM_COLON}
+                    <td class="label" width="15%">
+                      {!IF(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment',project.IPM_Project_Type__c !='Operational'),$Label.IPM_Local_Brand,$Label.IPM_BRAND_POSITIONING)}{!$Label.IPM_COLON}
                     </td>      
-                    <td width="10%">
+                    <td width="15%">
                      
-                       <apex:outputText value="{!brandPosition}"/> 
-                    </td> 
+                       <apex:outputText value="{!IF(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment',project.IPM_Project_Type__c !='Operational'),project.IPM_LocalProject_Brand__c,brandPosition)}"/> 
+                    </td>  
+                    
                     <td class="label" width="20%">
                        {!$Label.IPM_Project_Leader}{!$Label.IPM_COLON}
                     </td>      
                     <td width="15%">                    
                         <apex:outputText value="{!project.IPM_Project_Leader__r.Name}"/>
                     </td> 
-                    <td class="label" width="15%">
-                        {!$Label.IPM_PROJECT_PRIORITY}
-                    </td>      
-                    <td width="20%">
-                        <!--<apex:outputPanel rendered="{!if(ShowFinanceMember=True, TRUE,False)}">
-                            <apex:outputText value="{!projectResource.IPM_User__r.Name}"/>  
-                        </apex:outputPanel>
-                        <apex:outputPanel rendered="{!if(ShowFinanceMember=False, TRUE,False)}">
-                            <apex:outputText value="{!project.IPM_Project_Leader__r.Name}"/>
-                        </apex:outputPanel>-->
-                        <!--CR0405 New CPP for regional/local rollout-->
-						<apex:outputText value="{!IF(localCPP != null, localCPP, regionalCPP)}" />
-                         
+                    <apex:outputpanel layout="none" rendered="{!if(AND(project.IPM_Project_Type__c!='Original',project.IPMProject_Span__c!='Regional'),true,false)}">
+                        <td class="label" width="15%">
+                            {!$Label.IPM_PROJECT_PRIORITY}
+                        </td>      
+                        <td width="20%">
+                            <!--<apex:outputPanel rendered="{!if(ShowFinanceMember=True, TRUE,False)}">
+                                <apex:outputText value="{!projectResource.IPM_User__r.Name}"/>  
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!if(ShowFinanceMember=False, TRUE,False)}">
+                                <apex:outputText value="{!project.IPM_Project_Leader__r.Name}"/>
+                            </apex:outputPanel>-->
+                            <!--CR0405 New CPP for regional/local rollout-->
+                            <apex:outputText value="{!IF(localCPP != null, localCPP, regionalCPP)}" />  
+                        </td>
+                    </apex:outputpanel>
+                    <apex:outputpanel layout="none" rendered="{!if(AND(project.IPM_Project_Type__c!='Original',project.IPMProject_Span__c=='Regional'),true,false)}">
+                        <td width="15%"></td>
+                        <td width="20%"></td> 
+                    </apex:outputpanel>
+                    <apex:outputpanel layout="none" rendered="{!if(AND(project.IPM_Project_Type__c=='Original',!ISBLANK(project.IPM_Cluster__r.name)),true,false)}" >
+                        <td class="label" width="15%">      
+                            {!$Label.IPM_Project_Cluster }      
                     </td>
+                        <td width="20%">        
+                            {!project.IPM_Cluster__r.name }         
+                        </td>
+                    </apex:outputpanel>
+                    <apex:outputpanel layout="none" rendered="{!if(AND(project.IPM_Project_Type__c=='Original',ISBLANK(project.IPM_Cluster__r.name)),true,false)}">
+                        <td width="15%"></td>
+                        <td width="20%"></td>
+                    </apex:outputpanel>
                 </tr>
                 <tr>     
                     <td class="label">
@@ -738,37 +736,25 @@
                     <td>                    
                         <apex:outputText value="{!project.IPM_Complexity__c}"/>
                     </td>
-                    <td class="label">
-                     {!$Label.IPM_Y3_ITO} <span class="ps">{!$Label.IPM_IN_THOUSAND_POUNDS}</span>
-                    </td>
                     
-                    
-                     <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
-                    <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                    </td>
-                    </apex:outputText>
-                      
-                       <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
-                    <td>
-                    
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                    </td>
-                    </apex:outputText>
-                   
-                    <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
-                    <td>
-                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                    </td>
-                    </apex:outputText>
-                   
-                    
+                        <td class="label textleftalign">
+                                <span class="{!if(isRedStylingApplicable,'redtxt','')}" >{!$Label.IPM_Y3_iTO_notation}</span> 
+                        </td>
+                        <td>
+                                    <apex:outputText value="{!year3ITO}" styleClass="{!if(isRedStylingApplicable,'redtxt','')}"/>
+                                    <apex:outputText rendered="{!if(project.IPM_Project_Type__c=='Original',true,false)}" styleClass="threshold {!if(isRedStylingApplicable,'redtxt','')}"  value="{!if(projectDoc.IPM_Document_Status__c=='Approved',projectDoc.IPM_Category_Status_while_Approved__c,project.IPM_Threshold_Status__c)}" />
+                                <apex:outputText styleClass="threshold" rendered="{!AND(isExemptFromThresholdITO,project.IPM_Project_Type__c!='Original')}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                                <apex:outputpanel rendered="{!if(isRedStylingApplicable,true,false)}" >  
+                                    <span class="alertimg"></span>  
+                                </apex:outputpanel>
+                             
+                        </td>
                 </tr>
                 <tr class="lastchild">    
                     <td class="label">
                         {!$Label.IPM_TARGET_LAUNCH_DATE}{!$Label.IPM_COLON}
                     </td>      
-                    <td>
+                    <td class="tldfontchange">
                         <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}"/>
                     </td>
                     <td class="label">
@@ -797,7 +783,7 @@
                          <td class="label" width="20%">
                             {!$Label.IPM_TARGET_LAUNCH_DATE}{!$Label.IPM_COLON}
                         </td>      
-                        <td>
+                        <td class="tldfontchange">
                             <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}"/>
                         </td>
                         <td class="label" >
@@ -807,25 +793,14 @@
                             <apex:outputText value="{!project.IPM_Project_Leader__r.Name}"/>
                         </td> 
                         <td class="label" >
-                         {!$Label.IPM_Y3_ITO} <span class="ps">{!$Label.IPM_IN_THOUSAND_POUNDS}</span>
+                         {!$Label.IPM_Y3_iTO_notation} 
                         </td>
-                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
+                        <apex:outputText >
                             <td>
-                              <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                              <apex:outputText value="{!year3Ito}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                             </td>
                         </apex:outputText>
-                         <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
-                            <td>
-                               
-                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                                
-                            </td>
-                        </apex:outputText>
-                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
-                            <td>
-                                <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
-                            </td>      
-                        </apex:outputText>
+                       
                     </tr>
                     <tr>     
                         <td class="label" >
@@ -905,7 +880,7 @@
                <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
                 <c:IPM_OTIFStatusTableView otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableView>
                 <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',true,false)}"></c:IPM_GateKeeperListView> 
-           
+           		<c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!pds.Id}"  rendered="{!pds.IPM_Master_Section_External_Id__c=='Environmental_Impact'}"></c:IPM_EcoDesignSection>
            
            <!---Components To BE Displayed within Sections END-->
            <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}" styleClass="bdText" />
@@ -922,8 +897,8 @@
        
         </apex:repeat>
         
-         <apex:outputText value="Appendix" styleClass="heading2 bold"/>
-         <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" >
+         <apex:outputText value="Appendix" styleClass="heading2 bold" rendered="{!isWithAppendix}"/>
+         <apex:repeat value="{!projDocAppdxSectionList}" var="apxSec" rendered="{!isWithAppendix}">
                                                             
                         <apex:outputPanel rendered="{!IF(apxSec.IPM_Section__r.IPM_Section_Type__c='Header',true,false)}"> 
                 <apex:outputText value="{!apxSec.IPM_Section_Sequence__c} {!apxSec.IPM_Section_Name__c}" styleClass="heading2 bold"/>
@@ -933,9 +908,9 @@
                 <apex:outputText value="{!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
                     <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',project.IPM_Project_Type__c!='Operational')}"></c:IPM_FinInitialEstOfOppCharter>
                     <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
-                    <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
+                    <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}"></c:IPM_EcoDesignSection>
                     <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
-                    <c:IPM_Risk_QuestionnaireView getProjectId="{!projectId}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
+                    <c:IPM_Risk_QuestionnaireView getProjectId="{!if(AND(project.IPMProject_Span__c=='Local',project.IPM_Project_Type__c=='Rollout'),project.IPM_Parent_Project__c,projectId)}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
                     <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}"></c:IPM_Gate_RollOuts>
                     <c:IPM_MilestoneList_PDF pId="{!projectId}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" gateDocStatus="{!projectDoc.IPM_Document_Status__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
                     <c:IPM_Country_Feedback rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}" > </c:IPM_Country_Feedback> 
@@ -944,7 +919,7 @@
                     <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
                     <c:IPM_ViewAssortmentStrategy ProSecID="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Assortment_Strategy'}"></c:IPM_ViewAssortmentStrategy>
                     <c:IPM_MarketPerformance projId="{!projectId}" isEditable="false" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
-                    <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.3' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
+                    <c:IPM_PerformanceBreakdown isAppendix="true" isEditable="false" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market',apxSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational')}"></c:IPM_PerformanceBreakdown>
         </apex:repeat> 
     
 
