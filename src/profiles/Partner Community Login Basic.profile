@@ -30354,12 +30354,12 @@
         <enabled>true</enabled>
         <name>EnableNotifications</name>
     </userPermissions>
-    <userPermissions>
+     <userPermissions>
         <enabled>true</enabled>
-        <name>RunReports</name>
+        <name>SelectFilesFromSalesforce</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>SelectFilesFromSalesforce</name>
+        <name>RunReports</name>
     </userPermissions>
 </Profile>
