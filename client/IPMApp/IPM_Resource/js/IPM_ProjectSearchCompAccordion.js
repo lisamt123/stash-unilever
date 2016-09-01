@@ -1,10 +1,3 @@
-/*  
-*************************************************************************
-*@Description:This script is used for project search page specific interaction
-*@Author: Cognizant
-*@Created Date: 17/08/2015 
-*************************************************************************
-*/ 
 function rerenderAccordion(){
         /*accordion All checkbox Checked Geography*/
 		jq('.geographyFilters input:checkbox').attr('checked', 'checked');

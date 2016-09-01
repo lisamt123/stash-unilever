@@ -8,7 +8,7 @@
 /* Since we are using global variables we will not be able to create multiple functions. 
 If we split the script to multiple functions the functionality will break. 
 Also variables have to be kept global to make the functionality work. */
-var geoAll;
+    var geoAll;
     var clusters = [];
     var mcos = [];
     var countries = [];
@@ -30,11 +30,7 @@ jq(document).ready(function() {
     jq("#applyFilter").on("click", function() {
         applyFilter();
     });
-   
-    
-	
-	applyFilter();
-	dropDownFilter()
+	dropDownFilter();
     chkAll();
     chkSub();
    
