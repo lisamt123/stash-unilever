@@ -46,7 +46,7 @@
                                <apex:actionRegion > 
                                    <apex:selectList size="1" value="{!tasks.IPM_Phase__c}" styleClass="fieldFont" rendered="{!!redirectToGateDocument}">
                                        <apex:selectOptions value="{!Phaselist}" /> 
-                                       <apex:actionSupport event="onchange" action="{!getGateSections}" rerender="GatedocumentText,projectSpanBlock,functionalBlock,blockToRerender" status="gateloading" />  
+                                       <apex:actionSupport event="onchange" action="{!getGateSections}" rerender="GatedocumentText,projectSpanBlock,functionalBlock,blockToRerender,idGateDocumentType" status="gateloading" />  
                                    </apex:selectList>
                                </apex:actionRegion>
                             </div>  
