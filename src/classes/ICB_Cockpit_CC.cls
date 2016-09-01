@@ -290,8 +290,8 @@ public with sharing class ICB_Cockpit_CC
                     {
                         opp.ICB_ITEMS_RETURNED__c = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity;
                         opp.ICB_STATUS_SALES__c = CONST_STATUS_ITEM_OPP_SOLD_PENDING;
-                        opp.ICB_Total_Purchase_Price__c = mapInventory.get(opp.PriceBookEntry.Name).quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
-                        opp.Quantity =  valueQtd;
+                        opp.ICB_Total_Purchase_Price__c = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
+                        //opp.Quantity =  valueQtd;
                         opp.TotalPrice = mapInventory.get(opp.PriceBookEntry.Name).quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
                     

@@ -1634,6 +1634,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>ICB_Sales_Locale__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>standard-Account</tab>
         <visibility>Visible</visibility>
     </tabSettings>
