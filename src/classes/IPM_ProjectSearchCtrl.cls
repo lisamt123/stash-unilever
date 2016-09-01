@@ -116,6 +116,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         clusterCountMap = new Map<String, Integer>(); //Key = 'cluster'
         mcoCountMap = new Map<String, Integer>(); //Key = 'cluster-mco'
         countryCountMap = new Map<String, Integer>(); //Key = 'cluster-mco-country'
+	
         currentSort = new Map<String, String>{THISFLD_STR => IPM_PROJECT_NAME_C_STR}; //this field will actually define what is the current sorting column applies to, default is Project name
         phasesCountMap = new Map<String, Integer>();
         projectPhases = new list<String>();
@@ -171,36 +172,40 @@ public with sharing class IPM_ProjectSearchCtrl{
         for(IPM_Project__c eachProject : countProjects) {
             
             List<IPM_Country__c> lstCountires = new List<IPM_Country__c>();
-            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL ? eachProject.IPM_Countries__r : lstCountires ;
-            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ? eachProject.IPM_Countries1__r : lstCountires ;
-            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL ? eachProject.IPM_Countries2__r : lstCountires ;
-            
+            lstCountires = eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL ? eachProject.IPM_Countries__r : (eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ? eachProject.IPM_Countries1__r : (eachProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL ? eachProject.IPM_Countries2__r : lstCountires)) ;
+                        
             if( lstCountires.isEmpty()){ unAssignedCount++; }
             
-            Map<string, boolean> mapCountryAdded = new Map<String, boolean>();mapCountryAdded.put('a',true);
-            Map<string, boolean> mapMCOAdded = new Map<String, boolean>();mapMCOAdded.put('a',true);
-            Map<string, boolean> mapClusterAdded = new Map<String, boolean>();mapClusterAdded .put('a',true);
-            
-            for(IPM_Country__c eachCountry : lstCountires) {
-                String countryKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c + str_hyphen + eachCountry.Country_Name__c;
-                if(countryCountMap != NULL && !mapCountryAdded.containsKey(countryKey) && countryCountMap.containsKey(countryKey)){
-                    countryCountMap.put(countryKey, countryCountMap.get(countryKey)+1);
-                    mapCountryAdded.put(countryKey , true);
-                }
-                String mcoKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c ;
-                if(mcoCountMap!= NULL && !mapMCOAdded.containsKey(mcoKey) && mcoCountMap.containsKey(mcoKey)){
-                    mcoCountMap.put(mcoKey, mcoCountMap.get(mcoKey)+1);
-                    mapMCOAdded.put(mcoKey, true);
-                }
-                String clusterKey = eachCountry.Market_Cluster_Name__c;
-                if(clusterCountMap != NULL && !mapClusterAdded.containsKey(clusterKey) && clusterCountMap.containsKey(clusterKey)){
-                    clusterCountMap.put(clusterKey, clusterCountMap.get(clusterKey)+1);
-                    mapClusterAdded.put(clusterKey, true);
-                }
-            }                        
+            getGeoCountsForLoop(lstCountires);                        
             allCountries.addAll(eachProject.IPM_Countries__r);//we need collection of all countries with all projects for future use and to display
         }
         clusterCountMap.put('Unassigned',unAssignedCount);
+    }
+    //Method created to avoid NPATH complexity
+    public void getGeoCountsForLoop(List<IPM_Country__c> lstCountires) {
+        Map<string, boolean> mapCountryAdded = new Map<String, boolean>();mapCountryAdded.put('a',true);
+        Map<string, boolean> mapMCOAdded = new Map<String, boolean>();mapMCOAdded.put('a',true);
+        Map<string, boolean> mapClusterAdded = new Map<String, boolean>();mapClusterAdded .put('a',true);
+        
+        for(IPM_Country__c eachCountry : lstCountires) {
+            String countryKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c + str_hyphen + eachCountry.Country_Name__c;
+            String mcoKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c ;
+            String clusterKey = eachCountry.Market_Cluster_Name__c;
+            if(countryCountMap != NULL && !mapCountryAdded.containsKey(countryKey) && countryCountMap.containsKey(countryKey)){
+                countryCountMap.put(countryKey, countryCountMap.get(countryKey)+1);
+                mapCountryAdded.put(countryKey , true);
+            }
+            
+            if(mcoCountMap!= NULL && !mapMCOAdded.containsKey(mcoKey) && mcoCountMap.containsKey(mcoKey)){
+                mcoCountMap.put(mcoKey, mcoCountMap.get(mcoKey)+1);
+                mapMCOAdded.put(mcoKey, true);
+            }
+            
+            if(clusterCountMap != NULL && !mapClusterAdded.containsKey(clusterKey) && clusterCountMap.containsKey(clusterKey)){
+                clusterCountMap.put(clusterKey, clusterCountMap.get(clusterKey)+1);
+                mapClusterAdded.put(clusterKey, true);
+            }
+        }
     }
     
     public void getFiltersCount() {
@@ -227,22 +232,29 @@ public with sharing class IPM_ProjectSearchCtrl{
         shareProjIdSet.remove(null);
         shareProjIdSet.remove('');
         //Initialise everything to the projectList variable from the query
+        getFiltersCountForLoop();
+    }
+    //Method created to avoid NPATH complexity
+    public void getFiltersCountForLoop() {
         list<IPM_Project__c> lProjects = Database.query(query());
         for(IPM_Project__c eachProject : lProjects) {
             
             myProjects = (eachProject.OwnerId == Userinfo.getUserId() || (shareProjIdSet != null && !shareProjIdSet.isEmpty() && shareProjIdSet.contains(eachProject.id)))? myProjects+1 : myProjects;
-            originalProjects =  eachProject.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ?  originalProjects + 1 : originalProjects;
-            rolloutProjects =  eachProject.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT ?  rolloutProjects + 1 : rolloutProjects;
-            operationalProjects =  eachProject.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL ?  operationalProjects + 1 : operationalProjects;
+            if(eachProject.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) {originalProjects++;}
+            else if(eachProject.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) {rolloutProjects++;}
+            else if(eachProject.IPM_Project_Type__c ==  IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {operationalProjects++;}
             
-            activeProjects = !eachProject.Is_Archieved__c ? activeProjects + 1: activeProjects;
-            stoppedProjects = eachProject.Is_Archieved__c ? stoppedProjects + 1: stoppedProjects;
+            if(eachProject.Is_Archieved__c) {stoppedProjects++;} else {activeProjects++;}
             
-            bcPendings = eachProject.IPM_Bosscard__c != null && !eachProject.IPM_Bosscard_Status__c? bcPendings+1 : bcPendings;
-            allProjects++;
-            Integer cnt = phasesCountMap != null && phasesCountMap.get(eachProject.IPM_Phase__c) != null ? phasesCountMap.get(eachProject.IPM_Phase__c)+1 : 0;
-            phasesCountMap.put(eachProject.IPM_Phase__c, cnt);
+            getFiltersCountForLoop2(eachProject);            
         }
+    }
+    
+    public void getFiltersCountForLoop2(IPM_Project__c eachProject) {
+        bcPendings = eachProject.IPM_Bosscard__c != null && !eachProject.IPM_Bosscard_Status__c? bcPendings+1 : bcPendings;
+        allProjects++;
+        Integer cnt = phasesCountMap != null && phasesCountMap.get(eachProject.IPM_Phase__c) != null ? phasesCountMap.get(eachProject.IPM_Phase__c)+1 : 0;
+        phasesCountMap.put(eachProject.IPM_Phase__c, cnt);
     }
     
     /*******************************************************************************************************
