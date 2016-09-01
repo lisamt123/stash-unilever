@@ -28,12 +28,4 @@
             <translation><!-- stock --></translation>
         </picklistValues>
     </fields>
-    <fields>
-        <label>Preço de Compra Total</label>
-        <name>ICB_Total_Purchase_Price__c</name>
-    </fields>
-    <fields>
-        <label>Chave do Item de Linha da Oportunidade</label>
-        <name>Opp_Line_Item_Key__c</name>
-    </fields>
 </CustomObjectTranslation>
