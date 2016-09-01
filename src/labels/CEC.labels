@@ -52,6 +52,14 @@
         <shortDescription>CEC_Brand</shortDescription>
         <value>Brand</value>
     </labels>
+	<labels>
+        <fullName>CEC_NoAccessForSMSProcess</fullName>
+        <categories>CEC:SMSError</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_NoAccessForSMSProcess</shortDescription>
+        <value>No Access for SMS Process</value>
+    </labels>
     <labels>
         <fullName>CEC_CBM_NotificationBodyFooter</fullName>
         <categories>CEC : Notification</categories>
