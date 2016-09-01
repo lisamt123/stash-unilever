@@ -175,11 +175,11 @@ src/layouts/ICB_Inventory_Line_Item__c-Inventory Line Item Layout.layout
 src/layouts/ICB_Sales_Locale__c-Sales Locale Layout.layout
 src/layouts/ICB_Setup_Photo__c-Setup Photo Layout.layout
 src/tabs
-src/tabs/ICB_Sales_Locale__c.tab
-src/tabs/Cockpit.tab
-src/tabs/Inventory.tab
-src/tabs/Lista_de_Pre_os.tab
-src/tabs/Batimento_de_Vendas.tab
+src/tabs/ICB_Batimento_Vendas.tab
+src/tabs/ICB_Close_Sales.tab
+src/tabs/ICB_Cockpit.tab
+src/tabs/ICB_Inventory.tab
+src/tabs/ICB_Price_List.tab
 src/siteDotComSites
 src/siteDotComSites/Mobile_Channel1.site
 src/siteDotComSites/Mobile_Channel1.site-meta.xml
