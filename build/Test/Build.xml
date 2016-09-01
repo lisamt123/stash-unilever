@@ -1,0 +1,75 @@
+<!--    *******************************************************************************************************************-->
+<!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN                                               -->
+<!--    ******************************************************************************************************************* -->
+<project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+
+  <!-- *************************************************************** -->
+  <!--   Properties for Salesforce ANT targets                         -->
+  <!-- *************************************************************** -->
+  <property file="${basedir}/build.properties"/>
+  <property environment="env"/>
+  <!-- Properties for salesforce dataloader CLI for IPM NG-->
+  <property name="dataLoaderAPIVersion" value="35.0.0-uber" />
+  <!-- *************************************************************** -->
+  <!--   Set-Up of Salesforce Ant / CLI Jar Classpath for IPM NG       -->
+  <!-- *************************************************************** -->
+  <!-- Define required jars for salesforce dataloder CLI-->
+  <path id="taskDependencies">
+    <pathelement location="${basedir}/lib/ant.jar"/>
+    <pathelement location="${basedir}/lib/antutils.jar"/>
+    <pathelement location="${basedir}/lib/commons-io-2.4.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang-2.6.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.3.jar"/>
+    <pathelement location="${basedir}/lib/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/lib/httpclient-4.3.5.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.3.2.jar"/>
+    <pathelement location="${basedir}/lib/json-20080701.jar"/>
+  </path>
+  <!-- Define salesforce Ant Jar-->
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce">
+    <classpath>
+      <pathelement location="${basedir}/lib/ant-salesforce.jar" />
+    </classpath>
+  </taskdef>
+  <!-- ***************************************************************************** -->
+  <!-- ANT Import Files for invoking APEX inside ANT Scripts                         -->
+  <!-- ***************************************************************************** -->
+  <import file="${basedir}/lib/exec_anon.xml"/>
+  <import file="${basedir}/lib/deploy.xml"/>
+  <import file="${basedir}/lib/undeploy.xml"/>
+  <import file="${basedir}/lib/run_tests.xml"/>
+  <import file="${basedir}/lib/package_generator.xml"/>
+
+
+<!-- ***************************************************************************** -->
+  <!-- Validate the  set of BET meta-data before deployment                          -->
+  <!-- ***************************************************************************** -->
+  <target name="validate">
+    <echo level="info">Testing the deployment of BET</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="10000"
+      maxPoll="4000">
+	   <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
+      <runTest>LimitsDebugUtil_Test</runTest>
+  </sf:deploy>
+  <!--<antcall target="generatePackage"/>-->
+  </target>
+</project>
