@@ -1263,7 +1263,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>ICB_CNPJ__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <description>Number of the Cadastro Nacional de Pessoa Jurídica of the customer.</description>
         <externalId>false</externalId>
         <label>CNPJ</label>
@@ -1273,6 +1272,16 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_Mobile_Channel__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicate which the account is a partner operator channel.</description>
+        <externalId>false</externalId>
+        <label>Mobile Channel</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Industry</fullName>

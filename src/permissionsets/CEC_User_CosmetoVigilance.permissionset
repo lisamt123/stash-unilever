@@ -25264,6 +25264,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+<<<<<<< HEAD
         <field>Home_Page_Feed__c.Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31954,6 +31955,8 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+=======
+>>>>>>> feature/CEC_Dev
         <field>Idea.Attachment</field>
         <readable>false</readable>
     </fieldPermissions>
