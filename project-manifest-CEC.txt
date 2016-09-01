@@ -57,6 +57,7 @@ src/layouts/smagicinteract__SMS_SenderId__c-smagicinteract__SMS SenderId Layout.
 src/objects/Case.object
 src/objects/CEC_Case_Market_Mapping__c.object
 src/objects/cec_Enclosure__c.object
+src/objects/smagicinteract__smsMagic__c.object
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
 src/permissionsets/CEC_User_CosmetoVigilance.permissionset
