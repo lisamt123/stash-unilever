@@ -1,0 +1,56 @@
+<apex:page sidebar="false" showHeader="false">
+     <apex:pageBlock title="ETS BO R2R - Financial Accounting & Reporting Dimensions" >
+         <apex:pageBlockSection title="SME">
+             <table style="width:100%">
+              <tr><td><h1>KUN</h1></td> <td>Leadership of KUN organisation</td></tr>
+              <tr><td><h1>GPM</h1></td><td>CI - initiatives funneling</td></tr>
+              <tr><td></td><td>Development and update</td></tr>
+              <tr><td></td><td>Exception management</td></tr>
+              <tr><td><h1>Controls</h1></td><td>ZBC - annual update</td></tr>
+              <tr><td></td><td>GRC- annual scoping</td></tr>
+              <tr><td></td><td>GRC - deficiency remediation</td></tr>
+              <tr><td></td><td>Audit</td></tr>
+              <tr><td><h1>SAP roles</h1></td><td>FF Access</td></tr>
+              <tr><td><h1>BAU</h1></td><td>Query and issue resolution</td></tr>
+             </table>
+         </apex:pageBlockSection>
+         <apex:pageBlockSection title="Projects">
+             Dependency<br/>Efficiency<br/>Exception resolution<br/>EFCR roll out<br/>Business / Global Functions initiated<br/>
+                Yearly SCOA updates<br/>Controls embedding / enhancement<br/>Local / Fiscal projects<br/>Continuous Improvements<br/>
+                System upgrades 
+         </apex:pageBlockSection>
+         <apex:pageBlockSection title="Tools">
+         <table style="width:100%">
+             <tr><td>4 SAP landscapes and Coda</td></tr>
+             <tr><td>R2R tools</td></tr>
+             <tr><td></td><td>Trintech – JE</td></tr>
+             <tr><td></td><td>Trintech – AR </td></tr>
+             <tr><td></td><td>BMC and templates</td></tr>
+             <tr><td></td><td>Inter-company reconciliation</td></tr>
+             <tr><td>SAP scripts - FA</td></tr>
+             <tr><td>Change management systems</td></tr>
+             <tr><td>Clarity</td></tr>
+             <tr><td></td><td>GChaRM</td></tr>
+             <tr><td></td><td>ARIS (GPM)</td></tr>
+             <tr><td>GRC: Controls and Access</td></tr>
+         </table>
+         </apex:pageBlockSection>
+         <apex:pageBlockSection title="Networks">
+             <table>
+                 <tr><td>OCs</td></tr>
+                 <tr><td>Financial Service Providers (IBM and CG)</td></tr>
+                 <tr><td>Business Partnering</td></tr>
+                 <tr><td></td><td>GCAD and PandH</td></tr>
+                 <tr><td></td><td>Indirect and Direct Tax</td></tr>
+                 <tr><td></td><td>Pensions and Insurance</td></tr>
+                 <tr><td>CET and CSC</td></tr>
+                 <tr><td>ETS BO Integration team (Controls/Audit and GPM)</td></tr>
+                 <tr><td>Forums</td></tr>
+                 <tr><td></td><td>Continuous Improvement Authority</td></tr>
+                 <tr><td></td><td>CPIM </td></tr>
+                 <tr><td>IT: ES IT / Landscape SME / GSD / AM</td></tr>
+                 <tr><td>IT Service Providers (Accenture / RAC / Fusion)</td></tr>
+             </table>
+         </apex:pageBlockSection>
+     </apex:pageBlock>
+</apex:page>
