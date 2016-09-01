@@ -20,6 +20,7 @@ src/classes/CI_R2R_SME_GetHistory_Test.cls-meta.xml
 src/classes/CI_R2R_SME_GetHistory.cls
 src/classes/CI_R2R_SME_GetHistory.cls-meta.xml
 src/dashboards/CI_R2R_Dashboard-meta.xml
+src/dashboards/CI_R2R_Dashboard/CI_R2R_Dashboard.dashboard
 src/documents/CI_R2R_Documents-meta.xml
 src/documents/CI_R2R_Documents/CI_R2R_Color_Amber.png
 src/documents/CI_R2R_Documents/CI_R2R_Color_Amber.png-meta.xml
