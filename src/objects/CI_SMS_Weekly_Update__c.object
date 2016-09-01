@@ -104,7 +104,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Project_Cat__c</fullName>
+        <fullName>Proj_Cat__c</fullName>
         <externalId>false</externalId>
         <label>Project Category</label>
         <picklist>
@@ -523,7 +523,7 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
         <active>true</active>
         <label>Record with CI reference</label>
         <picklistValues>
-            <picklist>Project_Cat__c</picklist>
+            <picklist>Proj_Cat__c</picklist>
             <values>
                 <fullName>APM%2FSCOA%2FReporting updates</fullName>
                 <default>false</default>
@@ -843,7 +843,7 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
         <active>true</active>
         <label>Independent task</label>
         <picklistValues>
-            <picklist>Project_Cat__c</picklist>
+            <picklist>Proj_Cat__c</picklist>
             <values>
                 <fullName>APM%2FSCOA%2FReporting updates</fullName>
                 <default>false</default>
