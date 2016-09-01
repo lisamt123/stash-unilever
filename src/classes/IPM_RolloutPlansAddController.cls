@@ -60,6 +60,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     
     @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRegionalRollouts; //Map of Regional Rollouts that need to be upserted
     @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertRollouts; //Map of Local Rollouts that need to be upserted
+    @TestVisible private Map<String, IPM_Project_Rollout__c> mapUpsertKeyNKRollouts; //Map of Local Rollouts Key/Non-Key to be updated for GKM3
     @TestVisible private Map<String,IPM_Country__c> mapUpsertCountries; //List of countries that need to be upserted
     
     @TestVisible private Map<String,IPM_Project_Rollout__c> deleteRolloutsMap; //List of Rollouts that need to be deleted
@@ -941,6 +942,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         mapExistingCountries = new Map<String,IPM_Country__c>();
         mapUpsertRegionalRollouts = new Map<String, IPM_Project_Rollout__c>();
         mapUpsertRollouts = new Map<String, IPM_Project_Rollout__c>();
+        mapUpsertKeyNKRollouts = new Map<String, IPM_Project_Rollout__c>();
         mapUpsertCountries = new Map<String,IPM_Country__c>();
         deleteRolloutsMap = new Map<String,IPM_Project_Rollout__c>();
         actualDeleteRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -949,7 +951,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         localRolloutProjectIds = new Set<Id>();
         
         //Existing Rollouts
-        String queryString = 'SELECT Id,name,Local_Project__c, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
+        String queryString = 'SELECT Id,name,Local_Project__c, Market_Cluster__c, MCO__c,  RecordTypeId, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
         queryString+= '(SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Countries_Local__r) ';
         queryString+= 'FROM IPM_Project_Rollout__c ';
         queryString+= filterCondition(project.IPMProject_Span__c, STR_ROLLOUT);
@@ -957,6 +959,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         Set<String> regionalLocalRegional = new Set<String>();
         for(IPM_Project_Rollout__c ipmRollout : Database.query(queryString))
         {
+        	
+        	// To update the Key/Non-Key for all the local rollouts under MCO
+        	if(isProjectGKM3 && ipmRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
+        		Boolean KeyMCO = mapMCOWrappers.get(ipmRollout.MCO__c).key;
+        		ipmRollout.KeyMCO__c = KeyMCO;
+        		mapUpsertKeyNKRollouts.put(ipmRollout.IPM_Rollout_Project__c,ipmRollout);
+        		
+        	}
             mapExistingRollouts.put(ipmRollout.IPM_Rollout_Project__c, ipmRollout);
             regionalLocalRegional.add(ipmRollout.name);
             existingPrjList.add(ipmRollout.Local_Project__c);
@@ -1213,6 +1223,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     { 
 	 	if(!mapUpsertRollouts.isEmpty())
         {
+            
+            if(isProjectGKM3 && !mapUpsertKeyNKRollouts.isEmpty()){
+            	for(IPM_Project_Rollout__c localRollout : mapUpsertKeyNKRollouts.values()){
+            		if(!mapUpsertRollouts.containsKey(localRollout.IPM_Rollout_Project__c)){
+            			mapUpsertRollouts.put(localRollout.IPM_Rollout_Project__c, localRollout);
+            		}
+            	}
+            }
+             
             // Remove Id from Upsert call in case it is an insert that might happen for record which got deleted as part of above operation
             for(IPM_Project_Rollout__c localRollout : mapUpsertRollouts.values())
             {
