@@ -1,0 +1,6 @@
+src
+src/objects
+src/objects/Everyday_Activity__c.object
+src/permissionsets
+src/permissionsets/Everyday_Action_Admin.permissionset
+src/permissionsets/Everyday_Action_User.permissionset
