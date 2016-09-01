@@ -1,26 +1,29 @@
 ({
     makeRequest : function(component, event, helper) {
+        component.set("v.latitude",null);
+        component.set("v.longitude",null);
         var map = L.map('map');
        	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
         
         map.locate({setView: true, maxZoom: 16})
         
-        var lat;
-        var lng;
+        var lat=component.get("v.latitude");
+        var lng=component.get("v.longitude");
         
         map.on('locationfound', onLocationFound);
         function onLocationFound(e) {
             lat = e.latlng.lat;
             lng = e.latlng.lng;
-       
             component.set("v.latitude",lat);
-            component.set("v.longitude",lng)
+            component.set("v.longitude",lng);
                 
             var latlongString = e.latlng.lat+','+e.latlng.lng;
             
             function onLocationError(e) {
-                console.log(e.message);
+                console.log("ERROR: "+e.message);
             }
+           // var abc=component.get("v.path")+encodeURIComponent(latlongString);
+          
             map.on('locationerror', onLocationError);
             var action = component.get("c.service");
             action.setParams({

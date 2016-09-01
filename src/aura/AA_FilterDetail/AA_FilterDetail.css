@@ -7,7 +7,9 @@
     border-right: 1px solid #D1D1D4;
     border-left: 1px solid #D1D1D4;
 }
-
+.THIS .comp_name{
+        padding-top: 0.8rem;
+}
 .THIS .leftAlign{
         padding: 8px 8px 8px 15px;
 }
@@ -34,9 +36,6 @@
 }
 /*Filter option pannel*/
 .THIS .filtePannel{ 
-    /*color: #344A5F !important; */
-    /* background: #f0f0f0; */
-    background: #fff;
     position: relative;
     padding: 15px 15px 20px 15px;
     border-top: 2px solid #CFD7E6;
@@ -115,4 +114,7 @@
     border-radius: 4px;
     border-width: 0 1px 1px 1px;
     margin-top: -13px;
+}
+.THIS .barnd-list {
+    border: 0px !important;
 }

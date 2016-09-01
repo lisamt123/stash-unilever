@@ -81,4 +81,41 @@
             $A.enqueueAction(action);
         }     
     },
+    checkImageUpload : function(component, event, helper){
+        var urlOfImage= component.get("v.objReport.DocumentUrl");
+        var recordType=component.get("v.objReport.recordType");
+         var action = component.get("c.defaultImageId");
+        if(recordType==='UL'){
+            action.setParams({ customSettingName :'UL Logo Id'});
+        }else if(recordType==='CI'){
+            action.setParams({ customSettingName :'CI Logo Id'});
+        }
+        action.setCallback(this, function(a) {
+            var responseData = a.getReturnValue();
+            console.log("report Type: "+component.get("v.objReport.recordType"));
+            console.log("response Data: "+responseData);
+            if(urlOfImage.includes(responseData)){
+                console.log("inside default image");
+                if(recordType==='UL'){
+                    var isMobileDiv=component.find("isMobileDiv");
+                   $A.util.addClass(isMobileDiv, "first-image-base-desktop-unilever");
+                   $A.util.removeClass(isMobileDiv, "first-image-base-deskto-comp");
+                    var baseImageDiv=component.find("baseImageDiv");
+                    $A.util.addClass(baseImageDiv, "baseImage-unilever");
+                }
+                if (recordType==='CI'){
+                    var isMobileDiv=component.find("isMobileDiv");
+                   $A.util.removeClass(isMobileDiv, "first-image-base-desktop-unilever");
+                   $A.util.addClass(isMobileDiv, "first-image-base-deskto-comp");
+                    var baseImageDiv=component.find("baseImageDiv");
+                    $A.util.addClass(baseImageDiv, "baseImage-comp");
+                }
+            }
+            else{
+                console.log("outside Default image");
+            }
+        });
+            $A.enqueueAction(action); 
+			component.set("v.isMobile",true); 
+    },
 })

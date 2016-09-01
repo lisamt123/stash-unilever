@@ -206,9 +206,66 @@ Purpose:Method to test the execution of Approval Process, Owner Assignment,Repor
 		insert competitorReport10;
 		AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
     	
+        clusterData10 = new aa_Cluster__c(Name = 'Europe');
+        upsert clusterData10;
+        
+         competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
+         clusterData10 = new aa_Cluster__c(Name = 'Latin America');
+        upsert clusterData10;
+        
+         competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
+         clusterData10 = new aa_Cluster__c(Name = 'NAMET & RUB');
+        upsert clusterData10;
+        
+         competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
+         clusterData10 = new aa_Cluster__c(Name = 'North America');
+        upsert clusterData10;
+        
+        competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
+        clusterData10 = new aa_Cluster__c(Name = 'North Asia');
+        upsert clusterData10;
+        
+        competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
+        clusterData10 = new aa_Cluster__c(Name = 'SEAA');
+        upsert clusterData10;
+        
+        competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
+          clusterData10 = new aa_Cluster__c(Name = 'South Asia');
+        upsert clusterData10;
+        
+        competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
+          clusterData10 = new aa_Cluster__c(Name = 'Test Cluster');
+        upsert clusterData10;
+        
+        competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+        upsert competitorReport10;
+        AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
+        
     	ApexPages.currentPage().getParameters().put('id',competitorReport10.id);
     	AA_ExecuteApprovalProcess processapp10 =new AA_ExecuteApprovalProcess();
-    	processapp10.OwnerAssginment();
+        processapp10.executeApprovalfromMobile();
+        processapp10.OwnerAssginment();
     	processapp10.reportValues();
     	processapp10.cancel();
         

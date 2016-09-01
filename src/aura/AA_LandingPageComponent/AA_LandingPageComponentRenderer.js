@@ -1,11 +1,6 @@
 ({
-    afterRender : function(component, helper){
-        this.superAfterRender();
+    rerender: function(cmp, helper) {
+        console.log('rerender'); 
+        return this.superRerender();
     },
-    rerender : function(component, helper){
-        this.superRerender();
-    },
-    unrender: function(component, helper) {
-        this.superUnrender();
-    }
 })

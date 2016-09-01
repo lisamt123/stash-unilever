@@ -1,4 +1,5 @@
-<aura:component controller="AA_AgentAppService">
+<aura:component controller="AA_FileUploadUtility">
+    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/load-image.all.min.js" />
     <aura:attribute name="contentId" type="String" default="null" description=""/>
     <aura:attribute name="versionId" type="String" default="null" description=""/>
     <aura:attribute name="cafeteriaMenuDetail" type="String" />
@@ -6,15 +7,18 @@
     <aura:handler event="aura:waiting" action="{!c.waiting}"/>
     <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}"/>
     <aura:registerEvent name="uploadContentVersion" type="c:AA_ContentVersionEvent" />
-    <!--ltng:require scripts="{!$Resource.LoadImage}" />
-    <ltng:require scripts="/resource/AA_forcetk/forcetk.js" /-->
+    <style>
+        .image-icon{
+        width:20px;
+        }
+    </style>
     <div aura:id="errorContainer"></div>
     <div class="slds">
-        <label class="slds-form-element__label">Insert image or file </label>
+        <label class="slds-form-element__label">Insert Image or File </label>
         <div class="slds-grid slds-wrap insert-img-file desktop-view insert-img-file">
             <div class="slds-col slds-size--1-of-2">
                 <div class="img-upload common-style-upload">
-                    <input class="img-upload-input" type="file" accept="image/*;capture=camera" onchange="{!c.uploadImage}" aura:id="fileImg" />
+                    <input class="img-upload-input" type="file" accept="image/*;capture=camera" onchange="{!c.uploadImageDesktop}" aura:id="fileImg" resize-max-height="300" resize-max-width="250" resize-quality="0.7" />
                 </div>
             </div>
             <div class="slds-col slds-size--1-of-2">
@@ -25,8 +29,8 @@
         </div>
         <div class="slds-grid slds-wrap insert-img-file mobile-view insert-img-file">
             <div class="slds-col slds-size--1-of-1">
-                <div class="photo-upload common-style-upload">
-                    <input class="img-upload-input" type="file" accept="image/*;capture=camera" onchange="{!c.upload}" aura:id="file" />
+                <div class="photo-upload common-style-upload slds-icon-text-default">
+                    <input class="img-upload-input" type="file" accept="image/*;capture=camera" onchange="{!c.uploadImageMobile}" aura:id="file" />
                 </div>
             </div>
         </div>
@@ -34,17 +38,19 @@
             Uploading...
         </div>
         <div aura:id="previewPlaceholder" class="slds-hide uploaded-contents">
-            <aura:if isTrue="{!(v.cafeteriaMenuDetail !='')}">
+             <!--<aura:if isTrue="{!(v.cafeteriaMenuDetail !='')}">
                 <img id="menuDetail" src="{!v.cafeteriaMenuDetail}" height="100" width="100"/> 
+                <div class="productImage" id="previewFile">--> 
+                    <img class="img-responsive pull-left prodImage" id="preview" alt=" " height="100" width="100" src=""/>
+
                 <div class="pull-right" onclick="{!c.closeUploadImg}">
-                    <c:svg class="slds-icon--small" xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#close"  />
+                    <img class="image-icon" src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png" />
                 </div>
-            </aura:if>
         </div>
         <div aura:id="previewPlaceholderMsg" class="slds-hide uploaded-contents">
             File uploaded successfully
             <div class="pull-right" onclick="{!c.closeUploadMsg}">
-                <c:svg class="slds-icon--small" xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#close"  />
+                 <img class="image-icon" src="/resource/Lightning_designing_style/assets/icons/utility/close_60.png" />
             </div>
         </div> 
     </div>

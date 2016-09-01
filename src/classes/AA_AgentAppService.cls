@@ -247,6 +247,8 @@ public with sharing class AA_AgentAppService  {
                soqlquery +='  LIMIT 1000';
        }else
            soqlquery +='  LIMIT 1000';
+        
+        system.debug('Soql query =====>'+soqlquery);
         List <aa_Agent_Report__c> tmpList=  database.query(soqlquery); 
         List<AA_WrapperClass.agentReportDetail> objFinalReport = new List<AA_WrapperClass.agentReportDetail>();        
         // To check whether current user has liked report or not 

@@ -57,8 +57,9 @@ public with sharing class AA_Constants {
     public static final String StringfilterReports='filterReports';
     public static final String SVC_AGENT_APP_AUTOCOMPLETELIST='getAutocompleteList';
     public static final String nullString='null';
-     public static final String fromString=' from ';   
-   //cluster names Constants
+    public static final String fromString=' from '; 
+    public static final String selectString='select '; 
+    //cluster names Constants
    public static final String CLUSTER_AFRICA='Africa';
        public static final String CLUSTER_EUROPE='Europe';
        public static final String CLUSTER_LATIN_AMERICA='Latin America';

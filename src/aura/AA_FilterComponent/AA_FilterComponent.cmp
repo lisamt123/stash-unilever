@@ -6,7 +6,12 @@
     <aura:attribute name="offSet" type="Integer"/>
     <aura:attribute name="clusterId" type="String"/>
     <aura:attribute name="countryId" type="String"/>
-   <div onclick="{!c.filterRecord}">
-            <img src="/resource/AA_Agent_LightningAppStatic/images/Filter_steel.svg" ></img>
+    <style>
+        .image-slds{
+        width:21px;
+        }
+    </style>
+    <div onclick="{!c.filterRecord}">
+        <img class="image-slds" src="/resource/Lightning_designing_style/assets/icons/utility/filterList_60.png" ></img>
     </div>
 </aura:component>

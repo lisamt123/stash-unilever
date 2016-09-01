@@ -10,12 +10,12 @@
     border-bottom: 1px solid #D1D1D4;
 }
 
-.THIS.container{
+.THIS.containerq{
     padding-bottom: 10px;
     max-width: 1200px;
     margin: 0 auto;
-    overflow-x: hidden;
-    background: white;
+    height: 95%;     
+	overflow-y : auto;  
 }
 
 .THIS .unilever-frm-content{
@@ -31,6 +31,8 @@
 
 .THIS .unilever-submit-btn .slds-button {
     width: 100%;
+    line-height: 2.5rem;
+    font-size: 16px;
 }
 
 .THIS .slds-form-element {
@@ -38,12 +40,21 @@
 }
 .THIS .red-color{
     color: red;
+    font-size:1rem;
+}
+.THIS .mandatory{
+    font-size:0.7rem;
 }
 .THIS .hide-form{
     display: none;
 }
+.THIS .success-msg-div{
+    top: -60% !important;
+}
 .THIS .green-color{
     color: green;
+    padding-top: 12px;
+    margin-bottom: -12px;
 }
 .THIS .text-align{
     text-align: center;
@@ -62,5 +73,10 @@
 
 }
 .THIS .red-color{
-    color: red;
+    color: rgb(194, 57, 52);
+    font-weight: 900;
+    font-size: 14px;
+}
+.THIS .red-color-star{
+font-size:21px;
 }

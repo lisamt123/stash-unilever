@@ -1,9 +1,2 @@
 .THIS{
 }
-
-@media (max-width: 395PX){
-    .THIS .UnileverButton .slds-button--neutral{
-    	padding-left: 0.4rem;
-    	padding-right: 0.4rem;
-	}
-}

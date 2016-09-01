@@ -17,7 +17,7 @@ Purpose: Method to test if we could add data to the Application Wrapper Object.
         obj.objAgentAppDataRequest=datarequest;
         AA_WrapperClass.AgentAppDataResponse dataresponse=new AA_WrapperClass.AgentAppDataResponse();
         obj.objGetAgentDataResponse=dataresponse;
-        List<AA_WrapperUtility.agentReportDetail> lstDatarequest=new List<AA_WrapperUtility.agentReportDetail>();        
+        List<AA_WrapperClass.agentReportDetail> lstDatarequest=new List<AA_WrapperClass.agentReportDetail>();        
         obj.objPassAgentReportsToNG=lstDatarequest;
         obj.requestType='post';
         obj.serviceJSONObjectasString='test';

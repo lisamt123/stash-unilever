@@ -13,7 +13,7 @@
             <!-- This is the Input form markup -->
             <div class="slds-form-element">
                 <label class="slds-form-element__label">Add Notify User</label>
-                    <ui:inputText aura:id="lookup" value="{!v.searchString}" placeholder="Type @ followed by user name" class="slds cust-input" updateOn="keyup" keyup="{!c.search}" />
+                    <ui:inputText aura:id="lookup" value="{!v.searchString}" placeholder="Type @ followed by User Name" class="slds cust-input" updateOn="keyup" keyup="{!c.search}" />
                     <!-- This markup is for when searching for a string -->
             </div>
             <!-- This is the lookup list markup. Initially it's hidden -->

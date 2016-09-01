@@ -1,5 +1,8 @@
-({
+({  
+   
     doInit: function(component, event, helper) {
+        component.set("v.clusterId",null);
+        component.set("v.countryId",null);
         var action = component.get("c.getAutoPopulatedValues_UnileverReport");
         action.setCallback(this, function(a) {
             var responseData = a.getReturnValue();component.set("v.clusterList",responseData.clusterList);
@@ -30,6 +33,7 @@
                 helper.savedFilterData(component, event, helper);
             }
         });
+        
         $A.enqueueAction(actionUserPref);
     },
     onSelectChangeView : function(component, event, helper) {
@@ -135,10 +139,10 @@
         var reportType=component.find("reportType").get("v.value");
         var cluster=component.find("clusterId").get("v.value");
         var country=component.find("countryId").get("v.value");
-        if(component.find("clusterId").get("v.value") === 'Select a Cluster')
-        {cluster='null';}
-        if(component.find("countryId").get("v.value") === 'Select a Country')
-        {country='null';}
+        if(component.find("clusterId").get("v.value") === "Select a Cluster")
+        {cluster=null;}
+        if(component.find("countryId").get("v.value") === "Select a Country")
+        {country=null;}
         var unileverBrand='';
         var retailer='';
         var reportingOn='';
@@ -199,8 +203,30 @@
                 "topicId":topic,
             }).fire();
         }
+        if(navigator.userAgent.match(/Android/i)
+           || navigator.userAgent.match(/webOS/i)
+           || navigator.userAgent.match(/iPhone/i)
+           || navigator.userAgent.match(/iPad/i)){
+            helper.scrollToLocation(component, "top");            
+        }
+        if(navigator.userAgent.match(/iPod/i)
+           || navigator.userAgent.match(/BlackBerry/i)
+           || navigator.userAgent.match(/Windows Phone/i)){
+            helper.scrollToLocation(component, "top");
+        }
     },
     cancelFilter: function(component, event, helper) {
+        if(navigator.userAgent.match(/Android/i)
+           || navigator.userAgent.match(/webOS/i)
+           || navigator.userAgent.match(/iPhone/i)
+           || navigator.userAgent.match(/iPad/i)){
+            helper.scrollToLocation(component, "top");            
+        }
+        if(navigator.userAgent.match(/iPod/i)
+           || navigator.userAgent.match(/BlackBerry/i)
+           || navigator.userAgent.match(/Windows Phone/i)){
+            helper.scrollToLocation(component, "top");
+        }
         var selectEvent = $A.get("e.c:AA_FilterEvent");
         selectEvent.setParams({"filterType":component.get("v.filterType"),"limitRecords": component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"applyFilter":'false',"sortType":component.get("v.sortType"),"countryId":component.get("v.countryId"),"clusterId":component.get("v.clusterId")}).fire(); 
     },

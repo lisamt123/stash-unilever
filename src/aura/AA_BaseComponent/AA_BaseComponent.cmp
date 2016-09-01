@@ -1,4 +1,9 @@
-<aura:component controller="AA_AgentAppService" implements="flexipage:availableForAllPageTypes,force:appHostable">
+<aura:component controller="AA_AgentAppService" implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+   <!-- <ltng:require scripts="/resource/EA_StaticResource/jquery/jquery.js"  afterScriptsLoaded="{!c.checkBusinessPrinciple}"/>-->
+    
     <c:AA_CommonComponent />
     <aura:attribute name="filterType" type="String" default="AllReports"/>
     <aura:attribute name="sortType" type="String" default="ShowLatestFirst"/>
@@ -16,7 +21,6 @@
     <aura:attribute name="competitorId" type="String" default="null"/>
     <aura:attribute name="categoryId" type="String" default="null"/>
     <aura:attribute name="topicId" type="String" default="null"/>
-    
     <aura:attribute name="objAgentAppDataResponse" type="AA_WrapperClass.AgentAppDataResponse" description="Agent app report list get stored here" />
     <aura:attribute name="objPassAgentReportsToNG" type="AA_WrapperClass.agentReportDetail" />
     <aura:attribute name="totalReportCount" type="Integer" />
@@ -24,19 +28,58 @@
     <aura:attribute name="showLandingPageFlag" type="Boolean" default="false"  description="Initialize Landing page"/>
     
     
-    <aura:handler name="init" value="{!this}" action="{!c.checkBusinessPrinciple}" />
+    <aura:handler name="init" value="{!this}" action="{!c.checkBusinessPrinciple}" />  
     <aura:handler name="businessPrincipleEvent" event="c:AA_BusinessPrincipleEvent" action="{!c.handleBusinessPrincipleEvent}"/>
     
     <aura:handler event="c:AA_FilterEvent" action="{!c.getDetail}" />
     <aura:handler event="c:AA_NavigateToPageDetail" action="{!c.getForm}" />
     <aura:handler event="c:AA_NavigateToLandingPageEvent" name="LandingPageEventFeedBack"  action="{!c.getshowPage}" />
     <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
-    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>  
     <style>
         body{
         font: 100%/1.5 "Salesforce Sans",Arial,sans-serif;
         }
+        .spinner {
+        background: none !important;
+        width: 86px;
+        }
+        .uiInput--default input, input.uiInput--default, .uiInput--default textarea, textarea.uiInput--default, .uiInput--select select:not([multiple]), select.uiInput--select:not([multiple]) {
+        font-family: Salesforce Sans !important;
+        }
+        ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-weight: 400;
+        font-size: 1rem;
+        
+        }
+        ::-moz-placeholder { /* Firefox 19+ */
+        font-weight: 400;
+        font-size: 1rem;
+        
+        }
+        :-ms-input-placeholder { /* IE 10+ */
+        font-weight: 400;
+        font-size: 1rem;
+        
+        }
+        :-moz-placeholder { /* Firefox 18- */
+        font-weight: 400;
+        font-size: 1rem;
+        
+        }
+        .slds-form-element__label {
+        font-size: 1rem !important;
+        }
+        .slds-button{
+        font-size: 4.2vw;
+        }
+        @media screen and (min-width:768px){
+        .slds-button{
+        font-size: 1rem;
+        }
+        }
     </style>
+    
     <div class="container">
         <div class="spinner-location"><ui:spinner aura:id="spinner" /></div>
         <div aura:id="baseComponentContainer">

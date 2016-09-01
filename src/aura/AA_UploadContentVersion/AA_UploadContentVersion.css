@@ -17,10 +17,12 @@
 .THIS .insert-img-file{
     border: 1px solid #d1d1d4;
     border-radius: 3px;
+    Background:#fff;
 }
 
 .THIS .notUploading {
     visibility: hidden;
+    display:none;
 }
 
 .THIS .uploading {
@@ -85,4 +87,20 @@
 
 .THIS .pull-right{
    float: right; 
+}
+.THIS .productImage {
+    background: #FFF;
+    padding: 8px 8px 8px 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #d1d1d4;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.THIS .img-responsive{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    float: left !important;
 }

@@ -16,10 +16,10 @@ public class AA_AutoCompleteController {
          // Build our SOSL query
         if(sanitizedSObjectFieldName == 'null' )
         {
-            searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name ORDER BY Name) Limit 50 '; 
+            searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name) Limit 10 '; 
         }
         else {
-             searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name where RecordType.Name=\''+ sanitizedSObjectFieldName +'\' ORDER BY Name) Limit 50'; 
+             searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + sanitizedSObjectAPIName + '(id,name where RecordType.Name=\''+ sanitizedSObjectFieldName +'\') Limit 10'; 
         }
        
         // Execute the Query

@@ -1,6 +1,6 @@
 ({
     search : function(component, event, helper) {
-        helper.doSearch(component);        
+        helper.doSearch(component, event, helper);        
     },
     select: function(component, event, helper) {
         helper.handleSelection(component, event);

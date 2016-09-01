@@ -1,12 +1,12 @@
 <aura:component controller="AA_RestRequestController">
-    <aura:attribute name="path" type="String" required="true" default="https://maps.googleapis.com/maps/api/geocode/json?latlng="/>
+    <aura:attribute name="path" type="String" required="true" default="/maps/api/geocode/json?latlng="/>
     <aura:attribute name="method" type="String" default="GET"/>
     <aura:attribute name="responseFormat" type="String" default="application/json"/>
     <aura:attribute name="bodyContent" type="Object" />
     <aura:attribute name="bodyContentType" type="String" default="application/json"/>
     <aura:attribute name="latitude" type="Decimal" />
-    <aura:attribute name="longitude" type="Decimal" />
-    <aura:attribute name="countryName" type="string" />
+    <aura:attribute name="longitude" type="Decimal" />  
+    <aura:attribute name="countryName" type="string" />  
     <aura:attribute name="townName" type="string" />
     <aura:registerEvent name="getCountryCityLatLng" type="c:AA_GoogleMapEvent"/> 
     <!--aura:handler name="init" value="{!this}" action="{!c.makeRequest}"/-->

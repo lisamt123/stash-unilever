@@ -20,10 +20,12 @@ public with sharing class AA_RestRequestController {
         String baseURL = path;
         baseUrl +='&language=en';
        // baseUrl +='&client='+Label.GoogleAPIClientID;
-        baseUrl +='&client='+AA_GoogleMap__c.getInstance(csName).ClientID__c;
+       // baseUrl +='&client='+AA_GoogleMap__c.getInstance(csName).ClientID__c;
+        baseUrl +='&client='+aa_agent_app_custom_setting__c.getInstance('GoogleMap ClientID').Key__c;
         
         //string privateKey = 'DS-2wns6FR5hcaXPy5liVFfwKek=';
-      	string privateKey = AA_GoogleMap__c.getInstance(csName).PrivateKey__c;
+      //	string privateKey = AA_GoogleMap__c.getInstance(csName).PrivateKey__c;
+       string privateKey = aa_agent_app_custom_setting__c.getInstance('GoogleMap PrivateKey').Key__c;
         privateKey = privateKey.replace('-', '+');
         privateKey = privateKey.replace('_', '/');
         
@@ -38,7 +40,8 @@ public with sharing class AA_RestRequestController {
         baseUrl += '&signature=' + signature;
 
        // baseUrl = 'https://maps.googleapis.com' + baseUrl;
-         baseUrl = AA_GoogleMap__c.getInstance(csName).BaseUrl__c + baseUrl;
+       //  baseUrl = AA_GoogleMap__c.getInstance(csName).BaseUrl__c + baseUrl;
+         baseUrl = aa_agent_app_custom_setting__c.getInstance('GoogleMap BaseUrl').Key__c + baseUrl;
         request.setEndpoint(baseUrl);
         
         request.setMethod(method);

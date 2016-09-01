@@ -1,6 +1,6 @@
 ({
     scrollToLocation : function(component, location) {
-        var scroller = this.getScroller(component),
+      var scroller = this.getScroller(component),
             payload = {
                 time: 300,
             };

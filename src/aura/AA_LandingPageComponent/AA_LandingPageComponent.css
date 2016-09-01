@@ -1,33 +1,48 @@
 .THIS .img-banner{
 	max-width: 100%;
     max-height: 100%;
-    margin-bottom: 5px;
-    text-align: center;
+    min-height: 67px;
+    margin: 0px 0px 8px 0px;
+    text-align: left;
     position: relative;
+    padding-left: 10px;
+    font-weight: bold;
+    background: url('../resource/AA_Agent_LightningAppStatic/images/AgentApp_BannerImage.svg') no-repeat;
+    padding-top: 16px;
+    font-size: 1.3rem;
+    padding-left: 20px !important;
 }
 
 .THIS .show-more-rslt-btn{
     width: 100%;
+    margin-top: 15px;
+    font-size: 4.2vw;
+    height: 2.5rem;
 }
 
 .THIS .show-more-btn-div{
-	margin: 10px;
+    margin: 10px;
 }
 
 .THIS .all-report-filter img{
-	width: 30px;
+    width: 30px;
 }
 .THIS .all-report-filter-other{
-	text-align: right;
+    text-align: right;
 }
 .THIS .all-report-filter-other > img{
-	padding-left: 10px;
+    padding-left: 10px;
 }
 .THIS .report-detail{
-    padding: 4px;
-    background-color: #fff;
+	background-color: #fff;
     border: 5px solid #f0f0f0;
-    border-radius: 10px;
+    margin: 0 10px;
+    border: 1px solid #d8dde6;
+    margin-bottom: 9px;
+    padding: 5px;
+    -webkit-box-shadow: 0 8px 6px -6px black;
+    -moz-box-shadow: 0 8px 6px -6px black;
+    box-shadow: 0 8px 6px -6px #9c9b9b;
 }
 .THIS .user-image{
     background:white;
@@ -49,12 +64,12 @@
     padding:8px;
 }
 .THIS .comment-num{
-	text-align:right;
+    text-align:right;
 }
 .THIS .profile-detail{
-     margin-top: 2px;
+    margin-top: 2px;
 }
-.THIS .logo { position:absolute; left:0; top:0;width:10%;}
+.THIS .logo { position:absolute; left:0; top:0;width: 40px;}
 
 /*toggleCss.css*/
 .THIS .toggle {
@@ -78,4 +93,14 @@
 }
 .THIS .rest-body{
     margin-bottom: -7px;
+}
+.THIS #loading{display:none;text-align:center;width:3rem;margin:0 auto;}
+ 
+.THIS .NoMore{
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #d8dde6;
+    width: 94%;
+    text-align: center;
+    line-height:2rem;
 }

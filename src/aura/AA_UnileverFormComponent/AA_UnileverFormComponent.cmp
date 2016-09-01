@@ -1,5 +1,7 @@
-<aura:component controller="AA_AgentAppService" >
+<aura:component implements="force:appHostable" controller="AA_AgentAppService">   
+    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-3.0.0.min.js" />
     <!--Attributes-->
+    
     <aura:attribute name="objGetAgentDataResponse" type="AA_WrapperClass.AgentAppDataResponse" />
     <aura:attribute name="clusterList" type="Object" description="List of Cluster values" />
     <aura:attribute name="allCountryList" type="Object" description="List of all Countries values which will be used while selection based on the cluster list"/>
@@ -24,146 +26,176 @@
     <aura:attribute name="clusterId" type="String"/>
     <aura:attribute name="countryId" type="String"/>
     <aura:attribute name="applyFilter" type="String"/>
+    <aura:attribute name="latitude" type="Decimal" />
+    <aura:attribute name="longitude" type="Decimal" />
+    <aura:attribute name="disableButton" type="Boolean" default="false"/> 
+    <aura:attribute name="submitButtonError" type="Boolean" default="false"/>
     <!--Handlers-->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <aura:handler name="updateLookupIdEvent" event="c:AA_UpdateLookupId" action="{!c.handleIdUpdate}"/>
     <aura:handler name="updateUserListEvent" event="c:AA_UpdateUserList" action="{!c.handleSelectedUsers}"/>
     <aura:handler name="uploadContentVersion" event="c:AA_ContentVersionEvent" action="{!c.handleContentVersionData}"/>
     <aura:handler name="getCountryCityLatLng" event="c:AA_GoogleMapEvent" action="{!c.getLocationDetails}"/>
-    <div class="container">
-        <div class="row">
-            <table class="formHeader">
-                <tr>
-                    <td class="leftAlign">
-                        <button onclick="{!c.cancel}" class="slds-button slds-button--neutral">Cancel</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="unilever-frm-content">
-            <c:AA_UploadContentVersion />
-            <div class="slds-m-vertical--x-small">
-                <div class="slds-grid slds-grid--align-spread">
-                    <div class="slds-col">
-                        <c:svg class="slds-icon--small slds-m-left--x-small" 
-                               xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#checkin"  />
-                        <label class="slds-form-element__label"> Use my location </label>
-                    </div>
-                    <div class="slds-col">
-                        <div onclick="{!c.gotoMap}"> 
-                            <aura:if isTrue="{!v.showMap}">
-                                <img src="/resource/AgentAppStaticResource/images/onOff.svg"/>
-                            </aura:if>
-                            <aura:if isTrue="{!v.showMap==false}">
-                                <img src="/resource/AgentAppStaticResource/images/off-btn.svg"/>
-                            </aura:if>
-                        </div>
-                    </div>                    
-                </div>
-                <aura:if isTrue="{!v.showMap==true}"> 
-                    <c:AA_GoogleMap />
-                </aura:if>  
+   <style></style>
+    <aura:if isTrue="{!$Browser.isAndroid}">
+       <style>
+            .container{
+            height: 95% !important;     
+            overflow-y : auto !important;
+            }
+            div.pullToRefresh + div {  
+            height: 100% !important; 
+            } 
+            .viewport {   height: 100% !important;   
+            }
+            .scroller.actionBarPlugin { 
+            height:106% !important;
+            padding-bottom: 0px !important;   
+            }
+            .slds-button{
+            line-height: 2.5rem;
+            }
+        </style>
+    </aura:if>
+    <div class="slds containerq" aura:id="containerDiv"> 
+        <div class="slds-scrollable--y"> 
+            <div class="row">
+                <table class="formHeader">
+                    <tr>
+                        <td class="leftAlign">
+                            <button onclick="{!c.cancel}" class="slds-button slds-button--neutral">Back</button>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <div aura:id="ManualLocation" class="hide-form">
-                <label class="slds-form-element__label"> Cluster </label>
-                <div>
-                    <ui:inputSelect aura:id="clusterId" change="{!c.onSelectChangeCountry}" class="slds-select inputWidth">
-                        <ui:inputSelectOption text="Select a Cluster" label="Select Cluster" value="true"/>
-                        <aura:iteration var="cluster" items="{!v.clusterList}">
-                            <ui:inputSelectOption text="{!cluster.Id}" label="{!cluster.Name}" />
-                        </aura:iteration>
-                    </ui:inputSelect>
-                </div>
-                <div class="slds-form-element" >
-                    <span>
-                        <label class="slds-form-element__label"> Country </label>
-                        <div class="slds-form-element__control">
-                            <div >
-                                <ui:inputSelect aura:id="countryId" disabled="{!v.check}" class="slds-select">
-                                    <ui:inputSelectOption text="Select a Country" label="Select Country" value="true"/>
-                                    <aura:iteration var="country" items="{!v.countryList}">
-                                        <ui:inputSelectOption text="{!country.Id}" label="{!country.Name}" />
-                                    </aura:iteration>
-                                </ui:inputSelect>
+            
+            <div class="unilever-frm-content">
+                <c:AA_UploadContentVersion />
+                <div class="slds-m-vertical--x-small">
+                    <div class="slds-grid slds-grid--align-spread">
+                        <div class="slds-col">
+                            <img style="width:15%;" src="/resource/Lightning_designing_style/assets/icons/utility/checkin_60.png"></img>
+                            <label class="slds-form-element__label"> Use my Location </label>
+                        </div>
+                        <div class="slds-col">
+                            <div onclick="{!c.gotoMap}"> 
+                                <aura:if isTrue="{!v.showMap}">
+                                    <img src="/resource/AgentAppStaticResource/images/onOff.svg"/>
+                                </aura:if>
+                                <aura:if isTrue="{!v.showMap==false}">
+                                    <img src="/resource/AgentAppStaticResource/images/off-btn.svg"/>
+                                </aura:if>
                             </div>
-                        </div>
-                    </span>
-                </div>
-                <div class="slds-form-element" >
-                    <label class="slds-form-element__label"> Town </label>
-                    <div class="slds-form-element__control">
-                        <div >
-                            <ui:inputText aura:id="townValue" disabled="{!v.check}"  class="slds-input" placeholder="Town" value="{!v.townName}" />
-                        </div>
+                        </div>                    
                     </div>
+                    <aura:if isTrue="{!v.showMap==true}"> 
+                        <c:AA_GoogleMap />
+                    </aura:if>  
                 </div>
-            </div>
-            <div class="slds-form-element" >
-                <label class="slds-form-element__label"> Report title <span class="red-color">*</span> </label>
-                <div class="slds-form-element__control">
-                    <div >
-                        <ui:inputText aura:id="reportTitle" class="slds-input" placeholder="Add brand,location and activity in the report Title " value="{!v.reportTitle}" required="true" />
-                    </div>
-                </div>
-            </div>
-            <div class="slds-form-element" >
-                <label class="slds-form-element__label">Report Description</label>
-                <div >
-                    <div >
-                        <ui:inputTextArea aura:id="reportDesc" class="slds-input"  value="{!v.reportDescription}" rows="3" required="true"/>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <c:AA_NotifyUser />
-            </div>
-            <div class="slds-form-element" >
-                <div class="slds-form-element__control">
-                    <div >
-                        <c:AA_AutoComplete label="Unilever brand" pluralLabel="Unilever brands" placeholderValue="Type to search Unilever Brand" sObjAttributeName="unileverBrandId" sObjectRecordType="Unilever Brand" sObjectAPIName="aa_Agent_App_Competitor_Brand__c" />                </div>
-                </div>
-            </div>
-            <div class="slds-form-element" >
-                <div class="slds-form-element__control">
+                <div aura:id="ManualLocation" class="hide-form">
+                    <label class="slds-form-element__label"> Cluster </label>
                     <div>
-                        <c:AA_AutoComplete label="Retailer" pluralLabel="Retailers" placeholderValue="Type to search Retailer" sObjAttributeName="retailerId" sObjectRecordType="null" sObjectAPIName="aa_Agent_Retailer__c" />               
-                    </div>
-                </div>
-            </div>
-            <div class="slds-form-element" >
-                <label class="slds-form-element__label" > Reporting On </label>
-                <div  class="slds-form-element__control">
-                    <div >
-                        <ui:inputSelect aura:id="reportingOnId"  class="slds-select">
-                            <ui:inputSelectOption text="Reporting on" label="Select Reporting On" value="true"/>
-                            <aura:iteration var="reporting" items="{!v.reportingOnList}">
-                                <ui:inputSelectOption text="{!reporting}" label="{!reporting}"/>
+                        <ui:inputSelect aura:id="clusterId" change="{!c.onSelectChangeCountry}" class="slds-select inputWidth">
+                            <ui:inputSelectOption text="Select a Cluster" label="Select Cluster" value="true"/>
+                            <aura:iteration var="cluster" items="{!v.clusterList}">
+                                <ui:inputSelectOption text="{!cluster.Id}" label="{!cluster.Name}" />
                             </aura:iteration>
                         </ui:inputSelect>
                     </div>
-                </div>
-            </div> 
-        </div>
-        <div class="unilever-submit-btn">    
-            <button class="slds-button slds-button--brand" onclick="{!c.submitReport}">Submit this Report</button>
-        </div>
-        <div aura:id="successMessage" class="hide-form">
-            <div class="slds-modal slds-fade-in-open success-msg-div" aria-hidden="true" role="dialog">
-                <div class="slds-modal__container">
-                    <div class="slds-modal__header">
-                        <div class="slds-text-heading--medium green-color">
-                            <img class="slds-m-right--x-small" src="/resource/AA_Agent_LightningAppStatic/images/Approve.svg" style="height: 26px; width: 26px;"/>
-                            Sucess
+                    <div class="slds-form-element" >
+                        <span>
+                            <label class="slds-form-element__label"> Country </label>
+                            <div class="slds-form-element__control">
+                                <div >
+                                    <ui:inputSelect aura:id="countryId" disabled="{!v.check}" class="slds-select">
+                                        <ui:inputSelectOption text="Select a Country" label="Select Country" value="true"/>
+                                        <aura:iteration var="country" items="{!v.countryList}">
+                                            <ui:inputSelectOption text="{!country.Id}" label="{!country.Name}" />
+                                        </aura:iteration>
+                                    </ui:inputSelect>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="slds-form-element" >
+                        <label class="slds-form-element__label"> Town </label>
+                        <div class="slds-form-element__control">
+                            <div >
+                                <ui:inputText aura:id="townValue" disabled="{!v.check}"  class="slds-input" placeholder="Town" value="{!v.townName}" />
+                            </div>
                         </div>
                     </div>
-                    <div class="slds-modal__content slds-p-around--medium">
+                </div>
+                <div class="slds-form-element" >
+                    <label class="slds-form-element__label"><span class="red-color red-color-star">*</span>  Report Title <span class="mandatory">(Mandatory)</span></label>
+                    <div class="slds-form-element__control">
+                        <div >
+                            <ui:inputText aura:id="reportTitle" class="slds-input"  placeholder="Add a Report Title" value="{!v.reportTitle}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-form-element" >
+                    <label class="slds-form-element__label">Report Description</label>
+                    <div >
+                        <div >
+                            <ui:inputTextArea aura:id="reportDesc" class="slds-input"  value="{!v.reportDescription}" rows="3" required="true"/>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <c:AA_NotifyUser />
+                </div>
+                <div class="slds-form-element" >
+                    <div class="slds-form-element__control">
+                        <div >
+                            <c:AA_AutoComplete label="Unilever brand" pluralLabel="Unilever brands" placeholderValue="Type to search Unilever Brand" sObjAttributeName="unileverBrandId" sObjectRecordType="Unilever Brand" sObjectAPIName="aa_Agent_App_Competitor_Brand__c" />                </div>
+                    </div>
+                </div>
+                <div class="slds-form-element" >
+                    <div class="slds-form-element__control">
                         <div>
-                            <p class="text-align">The report is submitted <br/> successfully.</p>
+                            <c:AA_AutoComplete label="Retailer" pluralLabel="Retailers" placeholderValue="Type to search Retailer" sObjAttributeName="retailerId" sObjectRecordType="null" sObjectAPIName="aa_Agent_Retailer__c" />               
                         </div>
                     </div>
                 </div>
+                <div class="slds-form-element" >
+                    <label class="slds-form-element__label" > Reporting On </label>
+                    <div  class="slds-form-element__control">
+                        <div >
+                            <ui:inputSelect aura:id="reportingOnId"  class="slds-select">
+                                <ui:inputSelectOption text="Reporting on" label="Select Reporting On" value="true"/>
+                                <aura:iteration var="reporting" items="{!v.reportingOnList}">
+                                    <ui:inputSelectOption text="{!reporting}" label="{!reporting}"/>
+                                </aura:iteration>
+                            </ui:inputSelect>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+            <div class="unilever-submit-btn" aura:id="submitButton">
+                <aura:if isTrue="{!v.submitButtonError}">
+                    <p> <span class="slds-text-body--regular slds-p-top--x-small red-color">Please fill in all mandatory fields to submit report</span></p>
+                </aura:if>
+                <ui:button disabled="{!v.disableButton}" class="slds-button slds-button--brand" press="{!c.submitReport}">Submit this Report</ui:button>
             </div>
-            <div class="slds-backdrop slds-backdrop--open"></div>
+            <div aura:id="successMessage" class="hide-form">
+                <div class="slds-modal slds-fade-in-open success-msg-div" aria-hidden="true" role="dialog">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                            <div class="slds-text-heading--medium green-color">
+                                <img class="slds-m-right--x-small" src="/resource/AA_Agent_LightningAppStatic/images/Approve.svg" style="height: 26px; width: 26px;"/>
+                                
+                            </div>
+                        </div>
+                        <div class="slds-modal__content slds-p-around--medium">
+                            <div>
+                                <p class="text-align">Report submitted  <br/> successfully</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-backdrop slds-backdrop--open"></div>
+            </div>
         </div>
-    </div>
+    </div>  
 </aura:component>

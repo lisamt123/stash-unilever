@@ -1,9 +1,4 @@
 <aura:component >
-    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-2.2.3.min.js" />
-    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
-    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts" />
-    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
-    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/load-image.all.min.js" />
     <!--ltng:require scripts="resource/LoadImage/"/-->
     <!--ltng:require scripts="/resource/AA_forcetk/forcetk.js" /-->
 </aura:component>

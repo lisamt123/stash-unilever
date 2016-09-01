@@ -34,8 +34,14 @@
         width:10px;
         color:white;
         }
-        .slds-button--neutral {
+        .button-home {
         border-radius: 30px;
+        padding: 0 7px;
+        font-size: 10.8px;
+        font-size: 3.5vw;
+        width: 46%;
+        height: 36px;
+        font-weight: bold;
         }
         .unilever-report,.unilever-report:hover, .unilever-report:focus  {
         background-color: #0070d2;
@@ -60,22 +66,29 @@
         font-size: 22px;
         color: #FFF;
         }
+        .UnileverButton{
+        margin: 0 auto;
+        text-align: center;
+        }
+        @media screen and (min-width:768px){
+        .UnileverButton {
+        margin: 0 auto;
+        text-align: left;
+        margin-left: 16px;
+        }
+        .button-home {
+        width: 14%;
+        font-size:12.8px !important;
+        }
+        }
     </style>
     <div class="header">
-        <div class="img-banner"> 
-            <img class="img-banner" src="/resource/AA_Agent_LightningAppStatic/images/Large_1200px.jpg"/>
+        <div class="slds-text-heading--medium img-banner"> 
+            Agent
         </div>
-        <div class="UnileverButton slds-grid slds-wrap slds-grid--align-end slds-m-right--x-small">
-            <button class="unilever-report slds-button slds-button--neutral slds-not-selected" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <div onclick="{!c.goToUnileverForm}"> Unilever Report > </div>
-                </span>
-            </button>
-            <button class="compitetor-report  slds-button slds-button--neutral slds-not-selected" aria-live="assertive">
-                <span class="slds-text-not-selected">
-                    <div onclick="{!c.goToCompetitorpage}"> Competitor Report > </div>
-                </span>
-            </button>
+        <div class="UnileverButton">
+            <button class="unilever-report slds-button button-home slds-not-selected" onclick="{!c.goToUnileverForm}"><img src="/resource/AA_Agent_LightningAppStatic/images/icon_unilever.png" style="width:26px;margin-right: 2px;margin-left:-13px;"></img> Unilever Report</button>
+            <button class="compitetor-report  slds-button button-home slds-not-selected" onclick="{!c.goToCompetitorpage}"><img src="/resource/AA_Agent_LightningAppStatic/images/icon_competitor.png" style="width:26px;margin-right: 1px;"></img>Competitor Report</button>
         </div>
     </div>  
 </aura:component>

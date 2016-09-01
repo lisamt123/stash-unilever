@@ -1,48 +1,52 @@
 .THIS .slds-has-dividers--right>.slds-list__item:after{
-	background-color: inherit;
+    background-color: inherit;
 }
-
-.THIS .like-btn-reports{
-    width: 20px;
-    height: 20px;
+.THIS .com_image{
+    width: 2.1rem;
 }
-
+.THIS .Like{
+    padding-top: 2px !important;
+    margin-top: -3px !important;
+}
+.THIS .comment-like{
+    margin-top: -3px !important;
+}
+.THIS .highlight{
+    color: rgb(88, 144, 255);
+}
 .THIS .place-likes{
-	/* color: #d1d1d4; */
+    /* color: #d1d1d4; */
     color: #4F6A92;
     /*vertical-align: bottom;*/
 }
 
 .THIS .caption-likes{
-	/*vertical-align: bottom;*/
+    /*vertical-align: bottom;*/
 }
 
 .THIS .place-region{
-    /*color: #d1d1d4;
-    background: white;
-    padding: 0 8px 8px 8px;*/
-    color: #4F6A92;
+    color: #c4ccd8;
     padding-left: 9px;
+    padding-bottom: 7px;
+     font-size: .7rem;
 }
 
 .THIS .report-titles{
     padding-right: 10px;
     padding-left: 9px;
+    margin-top: 20px;
 }
 
 .THIS .caption-media{
-    padding: 9px;
+    padding: 6px;
+        width: 61%;
 }
 
 .THIS .comment-num{
-	width: 64%;
-}
-
-.THIS .reporter-name{
-	color: #0070D2;
+    width: 64%;
 }
 .THIS .avoid-clicks {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 .THIS .like-btn-cust{
@@ -50,4 +54,39 @@
     border-style: none;
     padding: 0;
     margin: 0;
+}
+.THIS .new111{
+    min-height:36px;
+    font-size: 0.7rem;
+    margin-top: -4px;
+    color:#c4ccd8;
+}
+.THIS .new1112{
+    color: #0C8EFF;
+    font-weight: bold;
+}
+.THIS .first-image-base-Mobile{
+    border-style: none;
+    min-height: 320px;
+    background-size: contain !important;
+    width: 100%;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+
+.THIS .first-image-base-desktop-unilever{
+    visibility: hidden;
+}
+.THIS .first-image-base-deskto-comp{          
+    visibility: hidden;
+}
+.THIS .baseImage-unilever{        
+    height: 40px;
+    min-height: 32px !important;
+    background-color:#adcae0 !important;
+}
+.THIS .baseImage-comp{        
+    height: 40px;
+    min-height: 32px !important;
+    background-color:#b2e0f1 !important;   
 }

@@ -8,15 +8,26 @@ public class AA_AutoCompleteController_Test{
   
     static testMethod void LookupTest(){
     
-    	Test.startTest();
-      	String searchStringBrand='ti';
+    	
+      	String searchStringBrand='dov';
        	String searchStringRetailer='bi';
        	String searchStringUser='ra';
        	String objectName='aa_Agent_App_Competitor_Brand__c';
        	String objectName1='aa_Agent_Retailer__c';
        	String objectName2='User';
-       
-       	String recordType1='CompetitorBrand';
+        Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
+        Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
+        Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
+        
+        aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
+        insert uniBrand;
+        
+        aa_Agent_App_Competitor_Brand__c uniBrand1 = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
+        insert uniBrand1;
+        aa_Agent_App_Competitor_Brand__c uniBrand2 = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
+        insert uniBrand2;
+        	String recordType1='Unilever Brand';
+       	//String recordType1='CompetitorBrand';
        	//String recordType2='UnileverBrand';
        	String recordType3= 'null';
        	//String recordType4='ti';
@@ -24,7 +35,7 @@ public class AA_AutoCompleteController_Test{
         List<AA_AutoCompleteController.Result> results = new List<AA_AutoCompleteController.Result>();
         List<AA_AutoCompleteController.Result> results1 = new List<AA_AutoCompleteController.Result>();
         List<AA_AutoCompleteController.Result> results2 = new List<AA_AutoCompleteController.Result>();
-    	
+    	Test.startTest();
     	results = AA_AutoCompleteController.lookup(searchStringBrand, objectName, recordType1);
     	System.assert(results.isEmpty());
     	results1 =AA_AutoCompleteController.lookup(searchStringRetailer,objectName1,recordType3);

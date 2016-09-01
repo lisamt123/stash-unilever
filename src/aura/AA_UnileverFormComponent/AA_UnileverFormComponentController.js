@@ -1,5 +1,7 @@
 ({
     doInit: function(component, event, helper) {
+        component.set("v.latitude",null);
+        component.set("v.longitude",null);
         component.set("v.contentId",null);
         component.set("v.versionId",null);
         var action = component.get("c.getAutoPopulatedValues_UnileverReport");
@@ -12,12 +14,13 @@
             component.set("v.reportingOnList",responseData.reportingOnPicklistValues);
         });
         $A.enqueueAction(action);
-        var actionCluster = component.get("c.getGlobalClusterId");
+        var actionCluster = component.get("c.getfiterDataIds");
         actionCluster.setCallback(this, function(a) {
             var responseId = a.getReturnValue();
-            component.set("v.globalClusterId",responseId);
+            component.set("v.globalClusterId",responseId.GlobalClusterId);
             component.set("v.showMap",true);
         });
+       
         $A.enqueueAction(actionCluster);
     },
     onSelectChangeCountry : function(component, event, helper) {
@@ -70,37 +73,67 @@
     },
     cancel: function(component, event, helper) {
         var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
-        selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterTypeLabel":"All Reports", "filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
+        selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterTypeLabel":"All Reports", "filterType":component.get("v.filterType"),"applyFilter":component.get("v.applyFilter"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
     },
     submitReport: function(component, event, helper) {
+        var lat=component.get("v.latitude");
+        var lng=component.get("v.longitude");
         var title=component.find("reportTitle");
         var titleVal=title.get("v.value");
         var cluster=component.find("clusterId");
         var clusterVal=cluster.get("v.value");
         var country=component.find("countryId");
         var countryVal=country.get("v.value");
+         if(component.get("v.showMap")){
+         if(lat === null && lng === null  && (clusterVal==="Select a Cluster" && countryVal === "Select a Country")){
+             var toastEvent = $A.get("e.force:showToast");
+            toastEvent.setParams({
+                "title": "Error!",
+                "type":"error",
+                "mode":"sticky",
+                "message": 'Map view is not working properly. Either Turn off map view to enter manually or Try again.'
+            });
+            toastEvent.fire();
+        }
+            }
         if(titleVal === '' && (clusterVal==="Select a Cluster" && countryVal === "Select a Country") )
         {
-            title.set("v.errors", [{message:"This field is required."}]);
-            cluster.set("v.errors", [{message:"This field is required.Select either cluster or country."}]);
-            country.set("v.errors", [{message:"This field is required.Select either cluster or country."}]);
+            component.set("v.submitButtonError",true);
+            title.set("v.errors", [{message:"Please enter a report title"}]);
+            cluster.set("v.errors", [{message:"Please select either cluster or country"}]);
+            country.set("v.errors", [{message:"Please select either cluster or country"}]);
         }
         else if(titleVal === '')
-        {
-            title.set("v.errors", [{message:"This field is required."}]);
+        {	
+            component.set("v.submitButtonError",true);
+            title.set("v.errors", [{message:"Please enter a report title"}]);
             cluster.set("v.errors", null);
             country.set("v.errors", null);
         }
             else if(clusterVal==="Select a Cluster" && countryVal === "Select a Country")
             {
+                component.set("v.submitButtonError",true);
                 title.set("v.errors", null);
-                cluster.set("v.errors", [{message:"This field is required.Select either cluster or country."}]);
-                country.set("v.errors", [{message:"This field is required.Select either cluster or country."}]);            
+                cluster.set("v.errors", [{message:"Please select either cluster or country"}]);
+                country.set("v.errors", [{message:"Please select either cluster or country"}]);            
             }
                 else{
+                    if(navigator.userAgent.match(/Android/i)
+                       || navigator.userAgent.match(/webOS/i)
+                       || navigator.userAgent.match(/iPhone/i)
+                       || navigator.userAgent.match(/iPad/i)){
+                        helper.scrollToLocation(component, "top");            
+                    }
+                    if(navigator.userAgent.match(/iPod/i)
+                       || navigator.userAgent.match(/BlackBerry/i)
+                       || navigator.userAgent.match(/Windows Phone/i)){
+                        helper.scrollToLocation(component, "top");
+                    }
+                    component.set("v.submitButtonError",false);
                     title.set("v.errors", null);
                     cluster.set("v.errors", null);
                     country.set("v.errors", null);
+                    component.set("v.disableButton",true);
                     var selectedUsers=component.get("v.selectedUsers");
                     //var addIds=[];
                     var userIdString="";
@@ -133,15 +166,23 @@
                     action.setCallback(this, function(a) {
                         var state = a.getState();
                         if (state === "SUCCESS") {
+                            component.set("v.disableButton",false);
                             var successMessage = component.find("successMessage");
                             $A.util.removeClass(successMessage, "hide-form");
                             setTimeout(function() {
                                 var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
                                 selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
-                            },5000);
+                            },3000);
                         }
                         else{
-                            console.log("Record Not Saved..!");
+                            component.set("v.disableButton",false);
+                            var toastEvent = $A.get("e.force:showToast");
+                            toastEvent.setParams({
+                                "title": "Error!",
+                                "type":"error",
+                                "message": 'Your report was not saved successfully. Please try again later'
+                            });
+                            toastEvent.fire();
                         }
                     });
                     $A.enqueueAction(action);
@@ -187,4 +228,7 @@
             }
         }
     },
+    
+    
+
 })

@@ -1,1 +1,17 @@
 .THIS{}
+
+.THIS .red-color{
+    color: red;
+}
+.THIS .uiInputDefaultError .form-element__help {
+    font-size: .75rem;
+    margin-top: 0rem;
+    color: red;
+    margin-bottom: 1.5rem;
+}
+.THIS .comp_name{
+        padding-top: 0.8rem;
+}
+.THIS .uni_name{
+        padding:0;
+}

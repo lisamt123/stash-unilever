@@ -13,6 +13,7 @@
     <aura:attribute name="clusterId" type="String" default="null"/>
     <aura:attribute name="previousFilterType" type="String"/>
     <aura:attribute name="unileverBrandId" type="String" />
+    <aura:attribute name="showmore" type="String" default="Show More"/>
     <aura:attribute name="retailerId" type="String" />
     <aura:attribute name="reportingOnId" type="String"/>
     <aura:attribute name="recordType" type="String"/>
@@ -22,6 +23,7 @@
     <aura:attribute name="topicId" type="String"/>
     <!-- Attributes & Handlers for filter and sort popup Start-->
     <aura:attribute name="filterPopUp" type="Boolean" default="false"/>
+    <aura:attribute name="NoReports" type="Boolean" default="false"/>
     <aura:attribute name="sortPopUp" type="Boolean" default="false"/>
     <aura:attribute name="newSelectedFilter" type="String"/> 
     <aura:attribute name="previousSortType" type="String"/>
@@ -30,72 +32,120 @@
     <aura:registerEvent name="callFilterPageEvent" type="c:AA_FilterEventAllReport"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:AA_FilterEventAllReport" action="{!c.changeComponent}" />
-    
+    <style>
+        @media screen and (max-width:351px){
+        .img-banner {
+        min-height: 3.5rem !important;
+        }
+        }
+        @media screen and (min-width:768px){
+        .img-banner {
+        min-height: 192px !important;
+        padding-top: 91px !important;
+        font-size: 1.5rem !important;
+        padding-left: 20px!important;
+        }
+        .report-detail {
+        width: 24%;
+        float: left;
+        }
+       .report-detail{
+        margin: 0 0px 9px 9px !important;
+        }
+        .THIS .show-more-rslt-btn{
+        width: 100%;
+        margin-top: 15px;
+        font-size: 0.75rem !important;
+        }
+        }
+        .show-more-rslt-btn {        
+            font-size: 1rem !important;
+        }
+    </style>
+    <style>
+        .image-slds{
+        width:21px;
+        }
+    </style>
     <div aura:id="content">
         <div aura:id="topBannerContainer">
             <c:AA_TopBannerComponent sortType="{!v.sortType}" filterType="{!v.filterType}" limitRecords="{!v.limitRecords}" offSet="{!v.offSet}"  countryId="{!v.countryId}" clusterId="{!v.clusterId}" applyFilter="{!v.applyFilter}"/>
         </div>
         <div class="rest-body" aura:id="filterContainer">
-            <div class="slds-grid slds-grid--align-spread">
+            <div class="slds-grid slds-grid--align-spread" >
                 <!-- Code for the FilterPopUP Start -->
                 <div class="slds-col">
                     <div class="slds-text-heading--medium"  >
                         <span onclick="{!c.goToPopUpFilter}">
                             {!v.filterTypeLabel} 
-                            <c:svg class="slds-icon--small slds-m-left--x-small" 
-                                   xlinkHref="/resource/Lightning_designing_style/assets/icons/utility-sprite/svg/symbols.svg#chevrondown"  />
+                            <img style="width: 17px;margin-left: 5px;" src="/resource/Lightning_designing_style/assets/icons/utility/chevrondown_60.png"></img>
                         </span>
-                    </div>                    
-                    <div class="slds-form-element toggle slds-dropdown all-report-filter" aura:id="filterPopUp">
-                        <ul class="dropdown__list" role="menu">
-                            <li class="slds-dropdown__item sort-bold" aura:id ="showAll" onclick="{!c.showAllActive}">
-                                <a  role="menuitem menuItem_width">
-                                    <p class="slds-truncate">All reports</p>
-                                </a>
-                            </li>
-                            <li class="slds-dropdown__item" aura:id ="FilteredReports" onclick="{!c.FilteredReport}">
-                                <a  role="menuitem menuItem_width">
-                                    <p class="slds-truncate">Filtered reports</p>
-                                </a>
-                            </li>
-                            <li class="slds-dropdown__item" aura:id ="MyReports" onclick="{!c.MyReport}">
-                                <a  role="menuitem menuItem_width">
-                                    <p class="slds-truncate">My reports</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>                  
+                    </div>  
+                    <aura:if isTrue="{!v.filterPopUp}">
+                        <div class="slds-form-element toggle slds-dropdown all-report-filter" aura:id="filterPopUp">
+                            <ul class="dropdown__list" role="menu">
+                                <li class="slds-dropdown__item" aura:id ="showAll" onclick="{!c.showAllActive}">
+                                    <a  role="menuitem menuItem_width">
+                                        <p class="slds-truncate">All Reports</p>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" aura:id ="FilteredReports" onclick="{!c.FilteredReport}">
+                                    <a  role="menuitem menuItem_width">
+                                        <p class="slds-truncate">Filtered Reports</p>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" aura:id ="MyReports" onclick="{!c.MyReport}">
+                                    <a  role="menuitem menuItem_width">
+                                        <p class="slds-truncate">My Reports</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div> 
+                    </aura:if>
                 </div>
                 <!-- Code for the FilterPopUP End -->
                 <div class="slds-col sort-filter-cust">
                     <span class="sort-filter-filters">
                         <c:AA_FilterComponent sortType="{!v.sortType}" filterType="{!v.filterType}" limitRecords="{!v.limitRecords}" offSet="{!v.offSet}" countryId="{!v.countryId}" clusterId="{!v.clusterId}" applyFilter="{!v.applyFilter}"/>
                         <!-- Code for the SortPopUP Start -->
-                        <div class="slds-m-left--small" onclick="{!c.gotoPopUpSort}"><img src="/resource/AgentAppStaticResource/images/Sort_steel.svg"></img></div>
+                        <div class="slds-m-left--small" onclick="{!c.gotoPopUpSort}"><img class="image-slds" src="/resource/Lightning_designing_style/assets/icons/utility/sort_60.png"></img></div>
                     </span>
-                    <div class="slds-form-element toggle slds-dropdown slds-dropdown--right   dorpdown-right" aura:id="sortPopUp">
-                        <ul class="dropdown__list" role="menu">
-                            <li class="slds-dropdown__item sort-bold" aura:id ="ShowLatestFirst" onclick="{!c.ShowLatestFirst}">
-                                <a  role="menuitem menuItem_width">
-                                    <p class="slds-truncate">Show Latest First</p>
-                                </a>
-                            </li>
-                            <li class="slds-dropdown__item" aura:id ="ShowMostlikedFirst" onclick="{!c.ShowMostlikedFirst}">
-                                <a  role="menuitem menuItem_width">
-                                    <p class="slds-truncate">Show Most Liked First</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <aura:if isTrue="{!v.sortPopUp}">
+                        <div class="slds-form-element toggle slds-dropdown slds-dropdown--right   dorpdown-right" aura:id="sortPopUp">
+                            <ul class="dropdown__list" role="menu">
+                                <li class="slds-dropdown__item sort-bold" aura:id ="ShowLatestFirst" onclick="{!c.ShowLatestFirst}">
+                                    <a  role="menuitem menuItem_width">
+                                        <p class="slds-truncate">Show Latest First</p>
+                                    </a>
+                                </li>
+                                <li class="slds-dropdown__item" aura:id ="ShowMostlikedFirst" onclick="{!c.ShowMostlikedFirst}">
+                                    <a  role="menuitem menuItem_width">
+                                        <p class="slds-truncate">Show Most Liked First</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aura:if>
                 </div>
                 <!-- Code for the SortPopUP end -->
             </div>
         </div>
         <c:AA_ReportContainerComponent totalReportCount="{!v.totalReportCount}" objPassAgentReportsToNG="{!v.objPassAgentReportsToNG}"/>
+        <div id="loading"> 
+            <img src="/resource/Lightning_designing_style/assets/images/spinners/slds_spinner_brand.gif" />
+        </div>
         <aura:if isTrue="{! (v.totalReportCount > v.limitRecords)}">
             <div aura:id="showMoreResultButtonContainer" class="show-more-btn-div">
-                <button class="slds-button slds-button--brand show-more-rslt-btn" onclick="{!c.showMore}">Show More</button>
-            </div>
+                <ui:button class="slds-button slds-button--brand show-more-rslt-btn" aura:id="showbtn" press="{!c.showMore}">{!v.showmore}</ui:button>
+            </div> 
+        </aura:if>
+        <aura:if isTrue="{! (v.limitRecords > v.totalReportCount)}">
+            <aura:if isTrue="{!(v.NoReports)}">
+                <div class="NoMore">
+                    No more reports
+                </div>
+            </aura:if>        	
         </aura:if>
     </div>
+    
 </aura:component>

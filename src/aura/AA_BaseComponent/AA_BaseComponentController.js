@@ -7,7 +7,7 @@
             } else if (a.getState() === "ERROR") {
                 console.log("Errors"+ a.getError());
             }
-        });
+        }); 
         $A.enqueueAction(action);
     },
     handleBusinessPrincipleEvent: function(component, event, helper) {
@@ -19,6 +19,11 @@
     getDetail :function(component, event, helper) {
         var destination = "c:AA_LandingPageComponent";
         var content = component.find("baseComponentContainer");
+        console.log("Apply filter in base component: "+event.getParam("applyFilter"));
+        console.log("countryId in base component: "+event.getParam("countryId"));
+        console.log("clusterId in base component: "+event.getParam("clusterId"));
+        console.log("filterType in base component: "+event.getParam("filterType"));
+        console.log("recordType in base component: "+event.getParam("recordType"));
         $A.createComponent(destination,
                            {"filterType":event.getParam("filterType"),
                             "sortType":event.getParam("sortType"),
@@ -41,6 +46,7 @@
                            }); 
     },
     getForm :function(component, event, helper) {
+        console.log("getForm baseComponent");
         var destination = "c:"+ event.getParam("navigate");
         var content = component.find("baseComponentContainer");
         $A.createComponent(destination,
@@ -55,18 +61,20 @@
                                content.set("v.body", [cmp]);
                            }); 
     },
-    showSpinner : function (component, event, helper) {
+   showSpinner : function (component, event, helper) {
+        
         var spinner = component.find('spinner');
         var evt = spinner.get("e.toggle");
         evt.setParams({ isVisible : true });
         evt.fire();    
     },
     hideSpinner : function (component, event, helper) {
+       
         var spinner = component.find('spinner');
         var evt = spinner.get("e.toggle");
         evt.setParams({ isVisible : false });
         evt.fire();    
-    },
+    }, 
     getshowPage: function (component, event, helper){
         var showPage=event.getParam("showLandingPage");
         component.set("v.showLandingPageFlag",showPage);

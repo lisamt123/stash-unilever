@@ -1,7 +1,17 @@
-.THIS {
-    
+.THIS .pop-up-text{
+    padding: 32px;
+    background: #eaeaea;
+    margin: 10px 0px; 
 }
-
+.THIS .font-text{
+    font-size:15px;
+    width: 15px;
+}
+.THIS .new1{
+    width: 22px;
+    margin-top: -11px;
+    margin-right: 7px;
+}
 /*Filter option page header bar left align the content*/
 .THIS .leftAlign {
     padding: 10px;   
@@ -37,23 +47,23 @@
 }
 
 .THIS div.fileinputs {
-	position: relative;
+    position: relative;
 }
 
 .THIS div.fakefile {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
 }
 
 .THIS input.file {
-	position: relative;
-	text-align: right;
-	-moz-opacity:0 ;
-	filter:alpha(opacity: 0);
-	opacity: 0;
-	z-index: 2;
+    position: relative;
+    text-align: right;
+    -moz-opacity:0 ;
+    filter:alpha(opacity: 0);
+    opacity: 0;
+    z-index: 2;
 }
 .THIS.container {
     padding-bottom: 10px;
@@ -61,7 +71,6 @@
     margin: 0 auto;   
     overflow-x: hidden;
     overflow-y: auto;
-    background: white;
 }
 .THIS .competitor-content{
     position: relative;
@@ -75,11 +84,13 @@
 
 .THIS .competitor-submit-btn{
     text-align: center;
-	padding: 15px;
+    padding: 15px;
 }
 
 .THIS .competitor-submit-btn .slds-button{
     width: 100%;
+    line-height: 2.5rem;
+    font-size: 16px;
 }
 
 .THIS .insert-img-file{
@@ -88,34 +99,34 @@
 }
 
 .THIS .insert-img-file .slds-col{
-   text-align: center; 
+    text-align: center; 
 }
 /* CSS to identify mobile or desktop view */
 
 /* Portrait */
 @media only screen and (max-device-width: 480px) {
-	.THIS .desktop-view {display:none}
+    .THIS .desktop-view {display:none}
 }
 
 @media only screen and (max-device-width: 1024px){
-	.THIS .desktop-view {display:none}
+    .THIS .desktop-view {display:none}
 }
 
 @media only screen and (min-device-width: 1025px) {
-	.THIS .mobile-view {display:none; border:none;}
+    .THIS .mobile-view {display:none; border:none;}
 }
 
 /*.THIS .form-element-cust .slds-select_container:after {
-    	border-top: none;
-    }
+border-top: none;
+}
 
 .THIS .slds-select_container:before {
-        border-bottom: none;
-        top: 0;
-    }*/
+border-bottom: none;
+top: 0;
+}*/
 
 .THIS .desktop-view .img-clo-div{
-        border-right: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
 }
 
 .THIS .img-icons{
@@ -138,15 +149,15 @@
     width: 25px;
 }
 .THIS .header-color{
-        	color: #2A94D6;
-        }
+    color: #2A94D6;
+}
 .THIS .btn-container{
-        	position: fixed;
-    		z-index: 1000;
-        	padding: 8px 8px 8px 15px;
-            width: 100%;
-        	background: #FFF;
-        }
+    position: fixed;
+    z-index: 1000;
+    padding: 8px 8px 8px 15px;
+    width: 100%;
+    background: #FFF;
+}
 
 .THIS.business-princpls {
     position: relative;
@@ -162,12 +173,12 @@
     overflow-y: auto;
 }
 .THIS body {
-  font-family: Arial,sans-serif;
+    font-family: Arial,sans-serif;
 }
 .THIS .container {background:#f0f0f0; position:relative}
 .THIS .needMarginBottom{margin-bottom:50px}
 .THIS  .needbottom{
-margin-bottom:50px;
+    margin-bottom:50px;
 }
 .THIS .needMargin{margin-top:50px}
 .THIS .col-xs-12.topSection {margin:0; padding:0 0 13px}
@@ -187,17 +198,17 @@ margin-bottom:50px;
 .THIS .like_img{width:10px;height:10px;display:inline-block}
 .THIS .likeBlue_img{width:10px;height:10px;display:inline-block}
 .THIS .business-principle-link{
-                cursor:pointer;
+    cursor:pointer;
     color:blue;
     text-decoration:none;
 }
 .THIS .business-principle-link:hover{
-                cursor:pointer;
+    cursor:pointer;
     color:blue;
     text-decoration:underline;
 }
 
-          
+
 .THIS 	.titleOne {font-size:17px}/* 15 sept */
 .THIS .caption h3, .THIS .userInfo .name {font-size:13px;}/* 15 sept */
 .THIS .caption p {font-size:12px;}
@@ -208,18 +219,26 @@ margin-bottom:50px;
 .THIS .hide-form{
     display: none;
 }
-
+.THIS .success-msg-div{
+    top: -60% !important;
+}
 .THIS .agree-submit-btn{
-	text-align: center;  
+    text-align: center;  
     color: #4bb371;
 }
 
 .THIS .agree-submit-btn img{
-	width: 50px;
-    height: 50px;   
+    width: 32px;
+    height: 32px;   
 }
 .THIS .red-color{
-    color: red;
+    color: rgb(194, 57, 52);
+    color: rgb(194, 57, 52);
+    font-weight: 900;
+    font-size: 14px;
+}
+.THIS .red-color-star{
+font-size:21px;
 }
 .THIS .green-color{
     color: green;
@@ -232,7 +251,9 @@ margin-bottom:50px;
     border-bottom: none;
     padding: 0.5rem 1rem;
 }
-
+.THIS .slds-modal{
+    display:block !important;
+}
 .THIS .slds-p-around--medium {
     padding: 0.5rem;
 }

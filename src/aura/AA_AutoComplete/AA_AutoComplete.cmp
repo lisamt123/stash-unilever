@@ -24,7 +24,7 @@
         <div aura:id="lookup-div" data-select="single" data-typeahead="true">
             <!-- This is the Input form markup -->
             <div class="slds-form-element">
-                <label class="slds-form-element__label">{!v.label}</label>
+                <label class="slds-form-element__label comp_name uni_name">{!v.label}</label>
                 <div class="slds-form-element__control">
                     <!-- This markup is for when searching for a string -->
                     <ui:inputText aura:id="lookup" value="{!v.searchString}" placeholder="{!v.placeholderValue}" class="slds-input" updateOn="keyup" keyup="{!c.search}" />
@@ -35,7 +35,7 @@
             <div aura:id="lookuplist"  >
                 <div >
                     <aura:if isTrue="{!v.wrongBrandName}">
-                        Please select appropriate values from the list for Competitor Brand.
+                       <span class="red-color"> Please select appropriate values from the list for Competitor Brand.</span>
                     </aura:if> 
                 </div> 
                 <div>

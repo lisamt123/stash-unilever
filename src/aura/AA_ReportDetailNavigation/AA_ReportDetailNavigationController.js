@@ -1,5 +1,17 @@
 ({
     landingPageDate : function(component, event, helper) { 
+        if(navigator.userAgent.match(/Android/i)
+           || navigator.userAgent.match(/webOS/i)
+           || navigator.userAgent.match(/iPhone/i)
+           || navigator.userAgent.match(/iPad/i)){
+            helper.checkImageUpload(component, event, helper);
+        }
+        if(navigator.userAgent.match(/iPod/i)
+           || navigator.userAgent.match(/BlackBerry/i)
+           || navigator.userAgent.match(/Windows Phone/i)){
+            helper.checkImageUpload(component, event, helper);
+        }
+    	
         var likeBtn = component.find("like");
         $A.util.removeClass(likeBtn,"slds-button--neutral");
         var unlikeBtn = component.find("unlike");
@@ -14,6 +26,16 @@
         else{
             agentReportDetail.UserLike = 'false';
         }
+        
+    },
+    openReport : function(component, event, helper) {  
+        var reportId = component.find("recordId").get("v.value");
+        var navToSObjEvt = $A.get("e.force:navigateToSObject");
+        navToSObjEvt.setParams({
+            recordId: reportId,
+            slideDevName: "detail"
+        }); 
+        navToSObjEvt.fire();      
     },
     doInit : function(component, event, helper) {  
         var reportId = component.find("recordId").get("v.value");
