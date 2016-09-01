@@ -1,3 +1,828 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <help><!-- This field is for Agency contact who will receive the notification after approval process. --></help>
+        <label><!-- Send Email Notifcation --></label>
+        <name>AF_Send_Email_Notification__c</name>
+    </fields>
+    <fields>
+        <help>Digite apenas números</help>
+        <label><!-- CNPJ --></label>
+        <name>CNPJ__c</name>
+    </fields>
+    <fields>
+        <help>Digite apenas números</help>
+        <label><!-- CPF --></label>
+        <name>CPF__c</name>
+    </fields>
+    <fields>
+        <label><!-- Day Rate --></label>
+        <name>Day_Rate__c</name>
+        <picklistValues>
+            <masterLabel>0- 250</masterLabel>
+            <translation><!-- 0- 250 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1k- 2.5k</masterLabel>
+            <translation><!-- 1k- 2.5k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2.5- 5k</masterLabel>
+            <translation><!-- 2.5- 5k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>250- 500</masterLabel>
+            <translation><!-- 250- 500 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>500- 1k</masterLabel>
+            <translation><!-- 500- 1k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5k +</masterLabel>
+            <translation><!-- 5k + --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Especialidade</label>
+        <name>Expertise__c</name>
+        <picklistValues>
+            <masterLabel>Accessory design</masterLabel>
+            <translation><!-- Accessory design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Acupuncture</masterLabel>
+            <translation><!-- Acupuncture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agency</masterLabel>
+            <translation><!-- Agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Architecture</masterLabel>
+            <translation><!-- Architecture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aromatherapy</masterLabel>
+            <translation><!-- Aromatherapy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Art Consultant</masterLabel>
+            <translation><!-- Art Consultant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Art Direction</masterLabel>
+            <translation><!-- Art Direction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Artist in residence</masterLabel>
+            <translation><!-- Artist in residence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Artist, Other</masterLabel>
+            <translation><!-- Artist, Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Athlete</masterLabel>
+            <translation><!-- Athlete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Audio</masterLabel>
+            <translation><!-- Audio --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beautician</masterLabel>
+            <translation><!-- Beautician --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Blogger</masterLabel>
+            <translation><!-- Blogger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carpenter</masterLabel>
+            <translation><!-- Carpenter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catering</masterLabel>
+            <translation><!-- Catering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chef</masterLabel>
+            <translation><!-- Chef --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cinematographer</masterLabel>
+            <translation><!-- Cinematographer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cocktail Maker</masterLabel>
+            <translation><!-- Cocktail Maker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Comedian</masterLabel>
+            <translation><!-- Comedian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consultant</masterLabel>
+            <translation><!-- Consultant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Copywriter</masterLabel>
+            <translation><!-- Copywriter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cosmetic Surgeon</masterLabel>
+            <translation><!-- Cosmetic Surgeon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dancer</masterLabel>
+            <translation><!-- Dancer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dental Hygienist</masterLabel>
+            <translation><!-- Dental Hygienist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dentist</masterLabel>
+            <translation><!-- Dentist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dermatologist</masterLabel>
+            <translation><!-- Dermatologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Digital</masterLabel>
+            <translation><!-- Digital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dry Cleaner</masterLabel>
+            <translation><!-- Dry Cleaner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Economist</masterLabel>
+            <translation><!-- Economist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Editor</masterLabel>
+            <translation><!-- Editor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Energy Healer</masterLabel>
+            <translation><!-- Energy Healer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Facialist</masterLabel>
+            <translation><!-- Facialist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Facilitator</masterLabel>
+            <translation><!-- Facilitator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fashion Designer</masterLabel>
+            <translation><!-- Fashion Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Filming &amp; Production</masterLabel>
+            <translation><!-- Filming &amp; Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Florist</masterLabel>
+            <translation><!-- Florist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gastronomy</masterLabel>
+            <translation><!-- Gastronomy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Graffiti Artist</masterLabel>
+            <translation><!-- Graffiti Artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Graphic Designer</masterLabel>
+            <translation><!-- Graphic Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair Salon</masterLabel>
+            <translation><!-- Hair Salon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair Stylist</masterLabel>
+            <translation><!-- Hair Stylist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hairdresser</masterLabel>
+            <translation><!-- Hairdresser --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Illustrator &amp; Sketch Artist</masterLabel>
+            <translation><!-- Illustrator &amp; Sketch Artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interior Designer</masterLabel>
+            <translation><!-- Interior Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jewellery design</masterLabel>
+            <translation><!-- Jewellery design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Journalist, Lifestyle</masterLabel>
+            <translation><!-- Journalist, Lifestyle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Journalist, Reporter</masterLabel>
+            <translation><!-- Journalist, Reporter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leadership</masterLabel>
+            <translation><!-- Leadership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Makeup Artist</masterLabel>
+            <translation><!-- Makeup Artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male Grooming</masterLabel>
+            <translation><!-- Male Grooming --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Massage</masterLabel>
+            <translation><!-- Massage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medispa</masterLabel>
+            <translation><!-- Medispa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Midwife</masterLabel>
+            <translation><!-- Midwife --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mobile Beauty</masterLabel>
+            <translation><!-- Mobile Beauty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Model</masterLabel>
+            <translation><!-- Model --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Model Agency</masterLabel>
+            <translation><!-- Model Agency --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motivational Speaker</masterLabel>
+            <translation><!-- Motivational Speaker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Music</masterLabel>
+            <translation><!-- Music --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Musician</masterLabel>
+            <translation><!-- Musician --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nail artist</masterLabel>
+            <translation><!-- Nail artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Naturopath</masterLabel>
+            <translation><!-- Naturopath --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neurologist</masterLabel>
+            <translation><!-- Neurologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nutritionist</masterLabel>
+            <translation><!-- Nutritionist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Painter</masterLabel>
+            <translation><!-- Painter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Performance Artist</masterLabel>
+            <translation><!-- Performance Artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Perfumer</masterLabel>
+            <translation><!-- Perfumer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Trainer</masterLabel>
+            <translation><!-- Personal Trainer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Photographer, Beauty</masterLabel>
+            <translation><!-- Photographer, Beauty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Photographer, Fashion</masterLabel>
+            <translation><!-- Photographer, Fashion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Photographer, Fine Art</masterLabel>
+            <translation><!-- Photographer, Fine Art --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Photographer, Other</masterLabel>
+            <translation><!-- Photographer, Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Photographer, Portraiture</masterLabel>
+            <translation><!-- Photographer, Portraiture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Physiotherapist</masterLabel>
+            <translation><!-- Physiotherapist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pitch</masterLabel>
+            <translation><!-- Pitch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poet</masterLabel>
+            <translation><!-- Poet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product &amp; Pack Designer</masterLabel>
+            <translation><!-- Product &amp; Pack Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Psychologist</masterLabel>
+            <translation><!-- Psychologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Relations</masterLabel>
+            <translation><!-- Public Relations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Speaking</masterLabel>
+            <translation><!-- Public Speaking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sailor</masterLabel>
+            <translation><!-- Sailor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sculptor</masterLabel>
+            <translation><!-- Sculptor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semiotician</masterLabel>
+            <translation><!-- Semiotician --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Set Design</masterLabel>
+            <translation><!-- Set Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shiatsu</masterLabel>
+            <translation><!-- Shiatsu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sleep Expert</masterLabel>
+            <translation><!-- Sleep Expert --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sociologist</masterLabel>
+            <translation><!-- Sociologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sommelier</masterLabel>
+            <translation><!-- Sommelier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sound Artist</masterLabel>
+            <translation><!-- Sound Artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sound Designer</masterLabel>
+            <translation><!-- Sound Designer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spa</masterLabel>
+            <translation><!-- Spa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sports Psychologist</masterLabel>
+            <translation><!-- Sports Psychologist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Storyteller</masterLabel>
+            <translation><!-- Storyteller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stylist, Hair</masterLabel>
+            <translation><!-- Stylist, Hair --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stylist, Wardrobe</masterLabel>
+            <translation><!-- Stylist, Wardrobe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sustainability</masterLabel>
+            <translation><!-- Sustainability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TV Presenter</masterLabel>
+            <translation><!-- TV Presenter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Teacher</masterLabel>
+            <translation><!-- Teacher --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Theatre</masterLabel>
+            <translation><!-- Theatre --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trend Expert</masterLabel>
+            <translation><!-- Trend Expert --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever</masterLabel>
+            <translation><!-- Unilever --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visualiser</masterLabel>
+            <translation><!-- Visualiser --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Writer</masterLabel>
+            <translation><!-- Writer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yoga Teacher</masterLabel>
+            <translation><!-- Yoga Teacher --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Sexo</label>
+        <name>Gender__c</name>
+        <picklistValues>
+            <masterLabel>Female</masterLabel>
+            <translation><!-- Female --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male</masterLabel>
+            <translation><!-- Male --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Homebase --></label>
+        <name>Homebase__c</name>
+        <picklistValues>
+            <masterLabel>Amsterdam</masterLabel>
+            <translation><!-- Amsterdam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Berlin</masterLabel>
+            <translation><!-- Berlin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brussels</masterLabel>
+            <translation><!-- Brussels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buenos Aires</masterLabel>
+            <translation><!-- Buenos Aires --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Geneva</masterLabel>
+            <translation><!-- Geneva --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hong Kong</masterLabel>
+            <translation><!-- Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>London</masterLabel>
+            <translation><!-- London --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Miami</masterLabel>
+            <translation><!-- Miami --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New York</masterLabel>
+            <translation><!-- New York --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paris</masterLabel>
+            <translation><!-- Paris --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sao Paulo</masterLabel>
+            <translation><!-- Sao Paulo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seoul</masterLabel>
+            <translation><!-- Seoul --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shanghai</masterLabel>
+            <translation><!-- Shanghai --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tokyo</masterLabel>
+            <translation><!-- Tokyo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>Tem outra fonte de renda ou atividade econômica?</help>
+        <label>Outra Fonte de Renda</label>
+        <name>ICB_Additional_Source_Income__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation>Não</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Work only with Ice Cream sales</masterLabel>
+            <translation>Trabalho apenas com venda de picolés</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation>Sim</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help>É usuário da Comunidade de Ice Cream?</help>
+        <label><!-- Ice Cream Community User --></label>
+        <name>ICB_Community_User__c</name>
+    </fields>
+    <fields>
+        <label>Grau de Escolaridade</label>
+        <name>ICB_Education_Level__c</name>
+        <picklistValues>
+            <masterLabel>Fundamental Education (Complete)</masterLabel>
+            <translation>Ensino Fundamental completo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fundamental Education (Incomplete)</masterLabel>
+            <translation>Ensino Fundamental incompleto</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle Education (Complete)</masterLabel>
+            <translation>Ensino Médio completo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle Education (Incomplete)</masterLabel>
+            <translation>Ensino Médio incompleto</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Never been to school</masterLabel>
+            <translation>Nunca fui a escola</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University (Complete)</masterLabel>
+            <translation>Ensino Universitário completo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>University (Incomplete)</masterLabel>
+            <translation>Ensino Universitário incompleto</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Acesso à Internet</label>
+        <name>ICB_Internet_Access__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation>Não</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, at home (3G or 4G via mobile phone)</masterLabel>
+            <translation>Sim, em casa com 3G ou 4G (via celular)</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, at home (Broadband)</masterLabel>
+            <translation>Sim, em casa com banda larga</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, using a Lan House or in other places</masterLabel>
+            <translation>Sim, na Lan House ou outros lugares</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Estado Civil</label>
+        <name>ICB_Marital_Status__c</name>
+        <picklistValues>
+            <masterLabel>Divorced, Widowed, Separated</masterLabel>
+            <translation>Separado, divorciado ou viúvo</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Married (Formal or Informal)</masterLabel>
+            <translation>Casado formal ou informalmente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Single</masterLabel>
+            <translation>Solteiro</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Telefone Celular</label>
+        <name>ICB_Mobile_Phone__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation>Não tenho</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, one or more Smartphones</masterLabel>
+            <translation>Sim, um ou mais aparelhos smartphone</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes, one or more regular devices</masterLabel>
+            <translation>Sim, um ou mais aparelhos comuns</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Rota</label>
+        <name>ICB_Sales_Locale__c</name>
+        <relationshipLabel>Contatos</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Tipo</label>
+        <name>ICB_Type__c</name>
+        <picklistValues>
+            <masterLabel>Ice Cream Salesman</masterLabel>
+            <translation>Sorveteiro</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operator</masterLabel>
+            <translation>Operador</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>LeadSource</name>
+        <picklistValues>
+            <masterLabel>Advertisement</masterLabel>
+            <translation><!-- Advertisement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee Referral</masterLabel>
+            <translation><!-- Employee Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>External Referral</masterLabel>
+            <translation><!-- External Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Relations</masterLabel>
+            <translation><!-- Public Relations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Internal</masterLabel>
+            <translation><!-- Seminar - Internal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Seminar - Partner</masterLabel>
+            <translation><!-- Seminar - Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show</masterLabel>
+            <translation><!-- Trade Show --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web</masterLabel>
+            <translation><!-- Web --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Word of mouth</masterLabel>
+            <translation><!-- Word of mouth --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Referred By --></label>
+        <name>Referred_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Relationship --></label>
+        <name>Relationship__c</name>
+        <picklistValues>
+            <masterLabel>Do not recommend</masterLabel>
+            <translation><!-- Do not recommend --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Have met but not worked with</masterLabel>
+            <translation><!-- Have met but not worked with --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Highly recommend</masterLabel>
+            <translation><!-- Highly recommend --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Never met / No connection</masterLabel>
+            <translation><!-- Never met / No connection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Never met but share a mutual connection</masterLabel>
+            <translation><!-- Never met but share a mutual connection --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Language Preference --></label>
+        <name>Sapient_Language_Preference__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Id --></label>
+        <name>hoot2sf_FacebookId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Username --></label>
+        <name>hoot2sf_FacebookUsername__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Id --></label>
+        <name>hoot2sf_TwitterId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Username --></label>
+        <name>hoot2sf_TwitterUsername__c</name>
+    </fields>
+    <recordTypes>
+        <label>Contato da Agência</label>
+        <name>Agency_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ice Cream Operator --></label>
+        <name>ICB_Operator</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ice Cream Salesman --></label>
+        <name>ICB_Salesman</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ice Cream --></label>
+        <name>Ice_Cream</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Contato de Campo</label>
+        <name>Pitch_Contact</name>
+    </recordTypes>
+    <recordTypes>
+        <label>Contato Padrão</label>
+        <name>Standard_Contact</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage>Verifique se o CNPJ está correto.</errorMessage>
+        <name>CNPJ_Validation_Spark</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Verifique se o CPF está correto.</errorMessage>
+        <name>CPF_Validation_Spark</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>A Data de Nascimento é obrigatória.</errorMessage>
+        <name>Mandatory_Birthdate_Spark_Salesman</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>O CPF é obrigatório.</errorMessage>
+        <name>Mandatory_CPF_Spark_Salesman</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>O E-Mail é obrigatório.</errorMessage>
+        <name>Mandatory_Email_Spark_Operator</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter an email address or a phone number. --></errorMessage>
+        <name>Pitch_Email_or_Phone_Mandatory</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- GoogleMaps --></label>
+        <name>GoogleMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- GoogleSearch --></label>
+        <name>GoogleSearch</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- SendGmail --></label>
+        <name>SendGmail</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- YahooMaps --></label>
+        <name>YahooMaps</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- YahooWeather --></label>
+        <name>YahooWeather</name>
+    </webLinks>
+</CustomObjectTranslation>
