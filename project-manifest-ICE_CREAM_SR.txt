@@ -1,3 +1,0 @@
-src/staticresources
-src/staticresources/ICB_SLDS202_CSS.resource
-src/staticresources/ICB_SLDS202_CSS.resource-meta.xml
