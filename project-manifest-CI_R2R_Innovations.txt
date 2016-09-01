@@ -111,7 +111,6 @@ src/triggers/CI_R2R_Update_Cost_Centre.trigger-meta.xml
 src/workflows/CI_Accounting_Treatment__c.workflow
 src/workflows/CI_R2R_Budget__c.workflow
 src/workflows/CI_R2R_Innovation__c.workflow
-src/workflows/CI_R2R_Project_Leads__c.workflow
 src/workflows/CI_SMS_Weekly_Update__c.workflow
 src/sites/Global_Finance.site
 src/networks/Global Finance.network
