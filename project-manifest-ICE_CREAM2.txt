@@ -175,6 +175,7 @@ src/layouts/ICB_Inventory_Line_Item__c-Inventory Line Item Layout.layout
 src/layouts/ICB_Sales_Locale__c-Sales Locale Layout.layout
 src/layouts/ICB_Setup_Photo__c-Setup Photo Layout.layout
 src/tabs
+src/tabs/ICB_Sales_Locale__c.tab
 src/tabs/ICB_Close_Sales.tab
 src/tabs/ICB_Cockpit.tab
 src/tabs/ICB_Inventory.tab
