@@ -184,13 +184,10 @@ src/siteDotComSites
 src/siteDotComSites/Mobile_Channel1.site
 src/siteDotComSites/Mobile_Channel1.site-meta.xml
 src/flexipages
-src/flexipages/Batimento_de_Vendas.flexipage
-src/flexipages/Cockpit.flexipage
-src/flexipages/ICB_Assets.flexipage
-src/flexipages/ICB_Sales_Locale.flexipage
-src/flexipages/ICB_TablePrice.flexipage
-src/flexipages/Inventory.flexipage
-src/flexipages/Lista_de_Pre_os.flexipage
+src/flexipages/ICB_Cockpit.flexipage
+src/flexipages/ICB_Inventory.flexipage
+src/flexipages/ICB_Close_Sales.flexipage
+src/flexipages/ICB_Price_List.flexipage
 src/documents
 src/documents/Communities_Shared_Document_Folder/Mobile_Channel_App_Logo.png-meta.xml
 src/documents/Communities_Shared_Document_Folder/Mobile_Channel_App_Logo.png
