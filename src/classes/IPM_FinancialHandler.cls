@@ -16,7 +16,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     private static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
     
     private static Set<Id> finCopyOverAlreadyInitiatedSet = new Set<Id>();
-    Integer repeatCount =0;
+    public static Integer repeatCount =0;
     
     private Set<Id> finIdsforProjY3iToSync = new Set<Id> (); 
     //@description:Constructor
