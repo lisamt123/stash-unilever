@@ -77,6 +77,7 @@ src/objects/Account.object
 src/objects/Contact.object
 src/objects/PricebookEntry.object
 src/objects/Pricebook2.object
+src/objects/Asset.object
 src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset
@@ -198,16 +199,3 @@ src/documents/Communities_Shared_Document_Folder/kibon_logo_125_png.png
 src/documents/Communities_Shared_Document_Folder-meta.xml
 src/profiles
 src/profiles/Partner Community Login Basic.profile
-src/objectTranslations
-src/objectTranslations/Account-pt_BR.objectTranslation
-src/objectTranslations/Asset-pt_BR.objectTranslation
-src/objectTranslations/Contact-pt_BR.objectTranslation
-src/objectTranslations/ICB_ContactTypes__c-en_US.objectTranslation
-src/objectTranslations/ICB_Inventory__c-en_US.objectTranslation
-src/objectTranslations/ICB_Inventory__c-pt_BR.objectTranslation
-src/objectTranslations/ICB_Inventory_Line_Item__c-en_US.objectTranslation
-src/objectTranslations/ICB_Inventory_Line_Item__c-pt_BR.objectTranslation
-src/objectTranslations/ICB_Sales_Locale__c-en_US.objectTranslation
-src/objectTranslations/ICB_Sales_Locale__c-pt_BR.objectTranslation
-src/objectTranslations/ICB_Setup_Photo__c-en_US.objectTranslation
-src/objectTranslations/OpportunityLineItem-pt_BR.objectTranslation
