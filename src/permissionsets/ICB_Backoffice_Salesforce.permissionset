@@ -59,7 +59,6 @@
     <classAccesses>
         <apexClass>ICB_PartnerUserCreation_BatchSchedule</apexClass>
         <enabled>false</enabled>
-<<<<<<< HEAD
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_PhotoMobileChannel_Batch</apexClass>
@@ -82,30 +81,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-=======
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PhotoMobileChannel_Batch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PhotoMobileChannel_BatchSch_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PhotoMobileChannel_BatchSchedule</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PhotoMobileChannel_Batch_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PriceBookCreation</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
->>>>>>> develop
         <apexClass>ICB_PriceBookCreation_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -164,9 +139,6 @@
     <description>Permission set for backoffice ice cream project</description>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Active__c</field>
-=======
         <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -393,67 +365,63 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Legacy_Reference__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Product__c</field>
+        <field>Account.Legal_Designation__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Purchase_Price__c</field>
+        <field>Account.Length_of_client_relationship__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Boxes__c</field>
+        <field>Account.Local_Identifier_No_Special_Char__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_ToBe_Updated__c</field>
+        <field>Account.Local_Identifier__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Unit__c</field>
+        <field>Account.Machine_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Sales_Price__c</field>
+        <field>Account.Next_Review_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Unit_Convertion__c</field>
+        <field>Account.No_of_Tea_drinkers__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Sales_Locale__c.ICB_County__c</field>
+        <field>Account.NumberOfEmployees</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Sales_Locale__c.ICB_Zip_Code__c</field>
+        <field>Account.Overall_Rating__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Setup_Photo__c.ICB_Parent_Id__c</field>
+        <field>Account.Ownership</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>ICB_Setup_Photo__c.ICB_Related_Record_Id__c</field>
+        <field>Account.Ownership_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
-<<<<<<< HEAD
-    <label>ICB Backoffice Salesforce</label>
-=======
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.ParentId</field>
@@ -1588,21 +1556,11 @@
         <recordType>Account.UID_Primary_Account</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
->>>>>>> develop
     <recordTypeVisibilities>
-        <recordType>ICB_Inventory_Line_Item__c.ICB_Inventory_Line_Item</recordType>
+        <recordType>Account.UID_Secondary_Account</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-<<<<<<< HEAD
-        <recordType>ICB_Inventory__c.ICB_Inventory</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>ICB_Sales_Locale__c.ICB_Sales_Locale</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-=======
         <recordType>Asset.ICB_Operator</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -1670,35 +1628,17 @@
         <tab>ICB_Sales_Locale__c</tab>
         <visibility>None</visibility>
     </tabSettings>
->>>>>>> develop
     <tabSettings>
-        <tab>Batimento_de_Vendas</tab>
-        <visibility>None</visibility>
+        <tab>standard-Account</tab>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>Cockpit</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>ICB_Sales_Locale__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Inventory</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-<<<<<<< HEAD
-        <tab>Lista_de_Pre_os</tab>
-        <visibility>None</visibility>
-=======
         <tab>standard-Asset</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>standard-Contact</tab>
         <visibility>Visible</visibility>
->>>>>>> develop
     </tabSettings>
     <tabSettings>
         <tab>standard-Opportunity</tab>

@@ -47,21 +47,13 @@ public class ICB_SobjectInstance_SP2_Test
     Returns: [Account]
     Throws [Exceptions]: [NONE]  
     ********************************************************************/
-<<<<<<< HEAD
-    public static Contact insertContact(String lastName, String recordTypeId, String accountId, String IcbType)
-=======
     public static Contact insertContact(String lastName, String recordTypeId, String accountId, String IcbType, String email)
->>>>>>> develop
     {
         Contact contact = new Contact(LastName = lastName,
                                       RecordTypeId = recordTypeId,
                                       AccountId = accountId,
-<<<<<<< HEAD
-                                      ICB_Type__c = IcbType
-=======
                                       ICB_Type__c = IcbType,
                                       Email = email
->>>>>>> develop
                                      );
         insert contact;
         return contact;
@@ -78,12 +70,8 @@ public class ICB_SobjectInstance_SP2_Test
     ********************************************************************/
     public static User insertUserPartnerCommunity(String profileName,String contactId,String firstName, String lastName, String alias,String email,String userName,String nickName)
     {
-<<<<<<< HEAD
-        Profile profile = [Select Id From Profile Where Name =: profileName];
-=======
         String profile2 = 'Partner Community Login Basic';
         Profile profile = [Select Id From Profile Where Name =: profileName OR Name=: profile2 LIMIT 1];
->>>>>>> develop
         User user = new User(FirstName = firstName,
                              LastName = lastName,
                              Alias = alias,

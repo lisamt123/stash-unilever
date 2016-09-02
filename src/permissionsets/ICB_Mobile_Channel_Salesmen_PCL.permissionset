@@ -139,8 +139,6 @@
     <description>Spark Project - Mobility to Mobile Channel - Permission Set for the Salesmen to access the solution. The PCL suffix stands for Partner Community Login - to be assigned to users with the Partner Community Login license type.</description>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-=======
         <field>Account.AccountNumber</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -931,15 +929,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
->>>>>>> develop
         <field>ICB_Inventory_Line_Item__c.ICB_Active__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Product__c</field>
-=======
         <field>ICB_Inventory_Line_Item__c.ICB_Product__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1241,98 +1235,55 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Product2.UID_Product_Hierarchy__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Purchase_Price__c</field>
-=======
         <field>Product2.UID_Purchase_Order_Unit__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Boxes__c</field>
-=======
         <field>Product2.UID_Remaining_Shelf_Life__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_ToBe_Updated__c</field>
-=======
         <field>Product2.UID_Shelf_Life__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Unit__c</field>
-=======
         <field>Product2.UID_Unit_of_Dimension__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Sales_Price__c</field>
-=======
         <field>Product2.UID_Volume_Unit__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Unit_Convertion__c</field>
-=======
         <field>Product2.UID_Volume__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Sales_Locale__c.ICB_County__c</field>
-=======
         <field>Product2.UID_Weight_Unit__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Sales_Locale__c.ICB_Zip_Code__c</field>
-=======
         <field>Product2.UID_Width__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Setup_Photo__c.ICB_Parent_Id__c</field>
-=======
         <field>User.AF_Agency_Fees_User_Type__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Setup_Photo__c.ICB_Related_Record_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <label>ICB Mobile Channel Salesmen PCL</label>
-=======
         <field>User.AF_Agency_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1660,7 +1611,6 @@
         <recordType>Contact.Standard_Contact</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
->>>>>>> develop
     <recordTypeVisibilities>
         <recordType>ICB_Inventory_Line_Item__c.ICB_Inventory_Line_Item</recordType>
         <visible>false</visible>
@@ -1673,14 +1623,6 @@
         <recordType>ICB_Sales_Locale__c.ICB_Sales_Locale</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-<<<<<<< HEAD
-    <tabSettings>
-        <tab>Batimento_de_Vendas</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Cockpit</tab>
-=======
     <recordTypeVisibilities>
         <recordType>Opportunity.ICB_Mobile_Channel</recordType>
         <visible>true</visible>
@@ -1707,7 +1649,6 @@
     </tabSettings>
     <tabSettings>
         <tab>ICB_Price_List</tab>
->>>>>>> develop
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
@@ -1715,13 +1656,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
-        <tab>Inventory</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Lista_de_Pre_os</tab>
-=======
         <tab>standard-Account</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -1743,7 +1677,6 @@
     </tabSettings>
     <tabSettings>
         <tab>standard-Product2</tab>
->>>>>>> develop
         <visibility>None</visibility>
     </tabSettings>
     <userLicense>Partner Community Login</userLicense>

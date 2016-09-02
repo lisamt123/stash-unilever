@@ -138,15 +138,6 @@
     </classAccesses>
     <description>Spark Project - Mobility to Mobile Channel - Permission set to allow community users (with the Partner Community Login license) use the solution. The PCL suffix stands for Partner Community Login</description>
     <fieldPermissions>
-<<<<<<< HEAD
-        <editable>true</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Active__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>ICB_Inventory_Line_Item__c.ICB_Product__c</field>
-=======
         <editable>false</editable>
         <field>Account.AccountNumber</field>
         <readable>true</readable>
@@ -1299,77 +1290,45 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.AF_Brand__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Purchase_Price__c</field>
-=======
         <field>User.AF_Categories__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Boxes__c</field>
-=======
         <field>User.AF_Category__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_ToBe_Updated__c</field>
-=======
         <field>User.AF_UserTypeText__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Quantity_Unit__c</field>
-=======
         <field>User.Accepted_Terms_of_Use__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Sales_Price__c</field>
-=======
         <field>User.Advisor_Correspondence_Display_Name__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Inventory_Line_Item__c.ICB_Unit_Convertion__c</field>
-=======
         <field>User.CEC_User_Reference__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Sales_Locale__c.ICB_County__c</field>
-=======
         <field>User.Debit_Card_Refund_Limit__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-<<<<<<< HEAD
-        <field>ICB_Sales_Locale__c.ICB_Zip_Code__c</field>
-=======
         <field>User.E_Voucher_Refund_Limit__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1446,14 +1405,10 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>User.Market__c</field>
->>>>>>> develop
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Setup_Photo__c.ICB_Parent_Id__c</field>
-=======
         <field>User.Max_Refund_Amount__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1505,18 +1460,10 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.User_License__c</field>
->>>>>>> develop
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>ICB_Setup_Photo__c.ICB_Related_Record_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <label>ICB Mobile Channel Operator PCL</label>
-    <objectPermissions>
-=======
         <field>User.User_Unique__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1599,7 +1546,6 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
->>>>>>> develop
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
@@ -1626,8 +1572,6 @@
         <object>ICB_Sales_Locale__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-<<<<<<< HEAD
-=======
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -1703,7 +1647,6 @@
         <recordType>Contact.Standard_Contact</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
->>>>>>> develop
     <recordTypeVisibilities>
         <recordType>ICB_Inventory_Line_Item__c.ICB_Inventory_Line_Item</recordType>
         <visible>true</visible>
@@ -1716,14 +1659,6 @@
         <recordType>ICB_Sales_Locale__c.ICB_Sales_Locale</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-<<<<<<< HEAD
-    <tabSettings>
-        <tab>Batimento_de_Vendas</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Cockpit</tab>
-=======
     <recordTypeVisibilities>
         <recordType>Opportunity.ICB_Mobile_Channel</recordType>
         <visible>true</visible>
@@ -1750,7 +1685,6 @@
     </tabSettings>
     <tabSettings>
         <tab>ICB_Price_List</tab>
->>>>>>> develop
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
@@ -1758,15 +1692,6 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
-        <tab>Inventory</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Lista_de_Pre_os</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-=======
         <tab>standard-Account</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -1790,7 +1715,6 @@
         <tab>standard-Product2</tab>
         <visibility>None</visibility>
     </tabSettings>
->>>>>>> develop
     <userLicense>Partner Community Login</userLicense>
     <userPermissions>
         <enabled>true</enabled>

@@ -266,11 +266,6 @@
         <field>CEC_Case_Market_Mapping__c.Product_Factory_Email_Template__c</field>
         <readable>true</readable>
     </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>CEC_Case_Market_Mapping__c.CSAT_Survey_Id__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>CEC_Case_Market_Mapping__c.Tag__c</field>
@@ -379,16 +374,6 @@
 	<fieldPermissions>
         <editable>true</editable>
         <field>Case.Country__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-	<fieldPermissions>
-        <editable>true</editable>
-        <field>Case.CV_Questionaire_Added__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Case.CV_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

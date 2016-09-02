@@ -46,16 +46,10 @@
     <site>Mobile_Channel</site>
     <status>Live</status>
     <tabs>
-<<<<<<< HEAD
-        <customTab>Cockpit</customTab>
-        <customTab>Inventory</customTab>
-        <customTab>Lista_de_Pre_os</customTab>
-=======
         <customTab>ICB_Cockpit</customTab>
         <customTab>ICB_Close_Sales</customTab>
         <customTab>ICB_Inventory</customTab>
         <customTab>ICB_Price_List</customTab>
->>>>>>> develop
         <customTab>ICB_Sales_Locale__c</customTab>
         <defaultTab>Chatter</defaultTab>
         <standardTab>Chatter</standardTab>

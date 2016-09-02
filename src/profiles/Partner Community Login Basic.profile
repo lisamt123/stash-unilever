@@ -30317,31 +30317,7 @@
         <tab>standard-WorkBadgeDefinition</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-<<<<<<< HEAD
-	<tabVisibilities>
-        <tab>Batimento_de_Vendas</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Cockpit</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>ICB_Sales_Locale__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Inventory</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Lista_de_Pre_os</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <userLicense>Partner Community Login</userLicense>
-=======
 	<userLicense>Partner Community Login</userLicense>
->>>>>>> develop
     <userPermissions>
         <enabled>true</enabled>
         <name>AllowUniversalSearch</name>
@@ -30378,15 +30354,6 @@
         <enabled>true</enabled>
         <name>EnableNotifications</name>
     </userPermissions>
-<<<<<<< HEAD
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>RunReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>SelectFilesFromSalesforce</name>
-=======
      <userPermissions>
         <enabled>true</enabled>
         <name>SelectFilesFromSalesforce</name>
@@ -30394,6 +30361,5 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
->>>>>>> develop
     </userPermissions>
 </Profile>

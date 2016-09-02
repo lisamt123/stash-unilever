@@ -102,10 +102,6 @@
                 <fullName>E-Voucher</fullName>
                 <default>false</default>
             </picklistValues>
-			<picklistValues>
-                <fullName>SMS Credit</fullName>
-                <default>false</default>
-            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>

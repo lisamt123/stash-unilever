@@ -219,14 +219,6 @@ public class ICB_Cockpit_CC_Test
     ********************************************************************/
     private static void createInstances()
     {
-<<<<<<< HEAD
-        acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
-        contactOperator = ICB_SobjectInstance_SP2_Test.insertContact('Test Operator', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id,'Operator');
-        contactSales = ICB_SobjectInstance_SP2_Test.insertContact('Test Sales', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id,'Ice Cream Salesman');
-        userOperator = ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactOperator.Id,'Test Operator','User OP','tuop','user.operator@email.com',
-                                                                           'user.operator@unilever.com','testOperator');
-        ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
-=======
         
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
         contactOperator = ICB_SobjectInstance_SP2_Test.insertContact('Test', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), String.valueOf(acc.Id), 'Operator', 'emailunilever@unilever.com');
@@ -234,7 +226,6 @@ public class ICB_Cockpit_CC_Test
         userOperator = ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community Login User',contactOperator.Id,'Test Operator','User OP','tuop','user.operator@email.com',
                                                                            'user.operator@unilever.com','testOperator');
         ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community Login User',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
->>>>>>> develop
                                                                            'user.sales@unilever.com','testSales');
         
         product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png');

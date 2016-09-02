@@ -66,50 +66,6 @@
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/Close_Case_Survey</template>
     </alerts>
-	<alerts>
-        <fullName>CEC_Close_Case_Survey_Indonesia</fullName>
-        <description>CEC: Close Case Survey Indonesia</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ContactEmail</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CEC_Emails_Indonesia/CSAT_Indonesia_Email</template>
-    </alerts>
-    <alerts>
-        <fullName>CEC_Close_Case_Survey_Philippines</fullName>
-        <description>CEC: Close Case Survey Philippines</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ContactEmail</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CEC_Emails_Philippines/CSAT_Philippines_Email</template>
-    </alerts>
-    <alerts>
-        <fullName>CEC_Close_Case_Survey_Thailand</fullName>
-        <description>CEC: Close Case Survey Thailand</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ContactEmail</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CEC_Emails_Thailand/CSAT_Thailand_Email</template>
-    </alerts>
-    <alerts>
-        <fullName>CEC_Close_Case_Survey_Vietnam</fullName>
-        <description>CEC: Close Case Survey Vietnam</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ContactEmail</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>CEC_Emails_Vietnam/CSAT_Vietnam_Email</template>
-    </alerts>
     <alerts>
         <fullName>CEC_Send_Auto_Response</fullName>
         <description>CEC Send Auto Response</description>
@@ -392,7 +348,7 @@
     </rules>
     <rules>
         <fullName>CEC Close Case Survey</fullName>
-        <active>false</active>
+        <active>true</active>
         <description>CEC: to send CSAT survey link</description>
         <formula>ExecuteCaseSurveyWorkflow__c &amp;&amp;  ISBLANK(ParentId) &amp;&amp; ISPICKVAL( Status, &apos;Closed&apos;)&amp;&amp; NOT(ISBLANK(Case_Market_Mapping_Country_Id__c)) &amp;&amp; NOT(Reason_Code__r.Global_Listening_Tree__r.Exclude_From_CSAT__c) &amp;&amp; IF(ISPICKVAL(Origin, &apos;Email&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Email_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Phone&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Phone_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Social&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Social_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Web&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Web_Percentage__c * 100), FALSE))))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>

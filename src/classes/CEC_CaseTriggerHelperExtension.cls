@@ -14,53 +14,23 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 ****************************************************************************/
 public with sharing class CEC_CaseTriggerHelperExtension {
 
-    Set<String> caseSMSTransExtIdSet = new Set<String>();
-    Set<String> caseSocialTransExtIdSet = new Set<String>();
     Set<String> caseTransExtIdSet = new Set<String>();
     Map<Id, cec_Case_Brand_Mapping__c> cbmMap;
-    Map<String, Id> transCBMMap = new Map<String, Id>();    
+    Map<String, Id> transCBMMap = new Map<String, Id>();
     Final String originSocialMedia = 'Social';
 
 
     public void updateCaseOwner(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
 
         try{
-            
             System.debug('Inside updateCaseOwner' + newCaseList);
-            System.debug('Inside updateCaseOwner' + oldCaseMap);
-
-            if(oldCaseMap == null){
-
-                for(Case caseRec: newCaseList){
-                    if(caseRec.Social_Media_External_Id__c != null){
-                        caseSocialTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                    }
-                    else if(caseRec.SMS_Inbound_Number__c != null){
-                        caseSMSTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                    }
-
+            for(Case caseRec: newCaseList){
+                if(caseRec.Social_Media_External_Id__c != null && OldCaseMap.get(caseRec.Id).Social_Media_External_Id__c == null){
+                    caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
                 }
-
-            }
-            else{
-
-                for(Case caseRec: newCaseList){
-                    if(caseRec.Social_Media_External_Id__c != null && OldCaseMap.get(caseRec.Id).Social_Media_External_Id__c == null){
-                        caseSocialTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                    }
-                    else if(caseRec.SMS_Inbound_Number__c != null && OldCaseMap.get(caseRec.Id).SMS_Inbound_Number__c  == null){
-                        caseSMSTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                    }
-
-                }
-
             }
 
-            System.debug('caseTransExtIdSet    ' + caseTransExtIdSet);
+            System.debug('CaseTransExtIdSet    ' + caseTransExtIdSet);
 
             if(caseTransExtIdSet.size()>0){
             
@@ -79,25 +49,15 @@ public with sharing class CEC_CaseTriggerHelperExtension {
                 for(Case caseRec: newCaseList){
                     if(transCBMMap.containsKey(caseRec.Transient_External_Id__c.toLowerCase())){
                         System.debug('Inside For Loop');
-
                         caseRec.Case_Brand_Mapping__c = transCBMMap.get(caseRec.Transient_External_Id__c.toLowerCase());
                         caseRec.Country__c = cbmMap.get(caseRec.Case_Brand_Mapping__c).Country__c;
-
-                        if(caseSMSTransExtIdSet.contains(caseRec.Transient_External_Id__c.toLowerCase())){
-                            caseRec.OwnerId = cbmMap.get(caseRec.Case_Brand_Mapping__c).Country__r.OwnerId;
-                        }
-
-                        if(caseSocialTransExtIdSet.contains(caseRec.Transient_External_Id__c.toLowerCase())){
-                            caseRec.Origin = originSocialMedia;
-                        }
-
+                        //caseRec.OwnerId = cbmMap.get(caseRec.Case_Brand_Mapping__c).Country__r.OwnerId;
+                        caseRec.Origin = originSocialMedia;
                         System.debug('Updated Case Record' + caseRec);
-
                     }
 
                 }
             }
-
         }
         catch(Exception e){
             System.debug('updateCaseOwner Failure :' + e.getMessage());

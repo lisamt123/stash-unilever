@@ -94,18 +94,6 @@
                         <apex:inputField value="{!newConsumer.Phone}" id="consumerPhoneField" />
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="{!$Label.CEC_Mobile_Phone}"/>
-                        <apex:inputField value="{!newConsumer.PersonMobilePhone}" id="consumerMobilePhoneField" />
-                    </apex:pageBlockSectionItem>
-                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="{!$Label.CEC_Home_Phone}"/>
-                        <apex:inputField value="{!newConsumer.PersonHomePhone}" id="consumerMobilePhoneField" />
-                    </apex:pageBlockSectionItem>
-                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="{!$Label.CEC_Other_Phone}"/>
-                        <apex:inputField value="{!newConsumer.PersonOtherPhone}" id="consumerMobilePhoneField" />
-                    </apex:pageBlockSectionItem>
-                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
                         <apex:outputLabel value="{!$Label.CEC_Unilever_Opt_In}"/>
                         <apex:inputField value="{!newConsumer.Unilever_Opt_In__c}"/>
                     </apex:pageBlockSectionItem>      
