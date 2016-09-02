@@ -61,6 +61,7 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
     
     /* Support team change starts
 
+
 -> Changes for incident INC000096161554 - [Information not transmitted in Salesforce]
 -> To populate Country Name field when case is created by Contact-us form
 
@@ -68,11 +69,13 @@ trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after 
     if(trigger.isBefore && trigger.isInsert){ 
         System.debug('Before Insert'); 
         CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
+        CEC_CaseTriggerHelperExtension caseHelperExtn = new CEC_CaseTriggerHelperExtension();
         caseHelper.updateSuppliedEmail(trigger.new);//To update the suppliedEmail for Web Cases
         caseHelper.insertCountryDetail(trigger.new);
         caseHelper.updatePIIWarningForInsert(trigger.new);
         System.debug('$$$$$$$$$$InsertValues' + trigger.new[0].Country_Name__c + ' ' + trigger.new[0].Brand__C);
-        caseHelper.updateCaseBrandAndSkillOnInsert(trigger.new);        
+        caseHelper.updateCaseBrandAndSkillOnInsert(trigger.new); 
+        caseHelperExtn.updateCaseOwner(trigger.new, null);       
     }
     
     /* Support team change ends*/
