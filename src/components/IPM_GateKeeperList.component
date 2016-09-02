@@ -73,8 +73,8 @@
      <apex:outputText value="{!gk.IPM_Section_Sequence_Number__c} {!gk.IPM_Project_Document_Section__r.IPM_Section_Name__c}"/> </a>
     </td>
     <td>     <!--Below rendered condition is used for showing slider  -->
-            <apex:outputPanel id="gkSlide" styleClass="sliderGk" rendered="{!IF(AND(editTable,gk.IPM_Section_Sequence_Number__c=null, gk.IPM_Section_Sequence_Number__c='',isEditable) ,true,false)}">
-               <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
+            <apex:outputPanel id="gkSlide" styleClass="sliderGk2" rendered="{!IF(AND(editTable,gk.IPM_Section_Sequence_Number__c=null, gk.IPM_Section_Sequence_Number__c='',isEditable) ,true,false)}">
+               <input type="hidden" name="secGkans2" value="{!gk.IPM_GK_Answers__c}"/>
                <div class="legendSld gateKeeperSlider">
                    <label for="s0"  onclick="updateGKList('{!gk.Id}','0','{!JSENCODE(gk.IPM_Comments__c)}',false);">{!$Label.IPM_SELECT}</label>
                    <input type="radio" name="score" id="s0" value="{!$Label.IPM_SELECT}" />
@@ -112,5 +112,5 @@
 <script>
 var IPMAppGKC = {select:'{!$Label.IPM_SELECT}', yes:'{!$Label.IPM_YES}', partly:'{!$Label.IPM_PARTLY}', no:'{!$Label.IPM_NO}', na:'{!$Label.IPM_NO_APPLICABLE}' };
 </script>
-<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Section_GateChecklist.js')}" type="text/javascript"></script>
+<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_GateCheckList.js')}" type="text/javascript"></script>
 </apex:component>

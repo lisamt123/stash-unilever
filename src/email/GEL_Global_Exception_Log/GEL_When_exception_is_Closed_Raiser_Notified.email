@@ -1,11 +1,11 @@
-Hi {!GEL_Global_Exception_Log__c.Exception_Raiser__c},
+Hi {!GEL_Global_Exception_Log__c.Legacy_Exception_Raiser__c},
 
-W.r.t. to the exception “{!GEL_Global_Exception_Log__c.Name}”, please note that the exceptions has been closed as per the sign-off received.
+W.r.t. to the exception “{!GEL_Global_Exception_Log__c.REF_Number2__c}”, please note that the exceptions has been closed as per the sign-off received.
 
 The Exception details are as follows.
 Status : {!GEL_Global_Exception_Log__c.Status__c} 
-REF Number : {!GEL_Global_Exception_Log__c.Name} 
+REF Number : {!GEL_Global_Exception_Log__c.REF_Number2__c} 
 Description :  {!GEL_Global_Exception_Log__c.Description__c} 
 
 Thank you
-{!GEL_Global_Exception_Log__c.OwnerFullName}
+{!GEL_Global_Exception_Log__c.Test_Owner_First_Name__c}

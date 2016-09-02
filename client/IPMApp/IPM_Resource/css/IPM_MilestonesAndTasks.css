@@ -252,13 +252,15 @@
          width: 130px ;
      }
      .addmilelink .addMilestone {
-         margin-top: 5px;
+		margin-top: 0px;
          padding-right: 0 ;
-         float: right;
-         border-left: 1px grey solid;
-         width: 54%;
-         height: 24px;
-         line-height: 24px;
+		float: left;
+		border-left: 1px solid #D6D6D6;
+		width: auto;
+		height: auto;
+		line-height: 17px;
+		margin-left: 10px;
+		padding-top: 12px;
      }
      .ipmTable.table-bordered {
          border-bottom: 1px solid #7fa19e;
@@ -480,7 +482,7 @@
          margin-left: 20px;
      }
      .addmilelink {
-            width: 24%;
+            width: 27%;
      }
      .ipmCheckbox {
          width: 20px;
@@ -608,7 +610,10 @@
 	 .ipmTable .ipmCheckbox label{
 	 top:-6px ;
 	 }
-	 .toDoLink{margin-top:22px;}
+	 .toDoLink {
+		margin-top: 10px;
+		padding-top: 10px;
+	}
 	 .Todosalign{
         margin-top: 22px;
 		margin-right: 10px;
@@ -643,11 +648,48 @@
 	}
 	
 	
-	.tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
+	
+	
+.font-Small
+{
+	  font-size:11px;
+}
+.edittaskModal .modal-body{height: 90%;}
+.ipmCheckbox label{z-index:0;}
+.ipmAddMilestoneTabList{margin-top:20px;position:relative;}
+    .ipmMilestoneTabList .ipmMilestonetodosTabs li {top: 8px;width: 180px;position: relative;padding: 14px;background-repeat: no-repeat ;text-align: center;margin-right: 0.5%;display: inline-block;color: #fff;margin-left: 0 ;font-weight: bold;cursor: pointer;}
+    .ipmAddMilestoneTabList .tabEven{background-position: -188px -247px ;}
+    .tabOdd{  background-position: -5px -247px ;}
+    .ipmMilestoneTabList .ipmMilestonetodosTabs {padding: 0 0 0 20px;border-bottom:1px solid #7ea19d;margin-bottom:20px;}
+    .ipmMilestoneTabList .ipmMilestonetodosTabs li.active {color: #343434;position: relative;cursor: pointer;top:9px;}
+    .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding:10px 5px;}
+    .addMilestoneList .input-group-addon{left: 97%;margin-top:6px;}
+    .addMilestoneDueDate .input-group-addon{top:43px;}
+    .dateInputBox.dateInputBoxAdd{background-position-x: 99%;width: 40%;}
+    .ipmMilestoneTabList .ipmMilestonetodosTabs li span {font-size:14px;}
+    .martop_cust{margin-top:20px;}
+    .pos_help{
+     position: absolute;
+    right: 0;
+    top: 27px;
+    background-color: #fff;
+    padding-left: 10px;}
+.downloadbtnmilestone {
+    border-left: 1px solid #D6D6D6;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+.downloadbtntodo {
+    border-left: 1px solid #D6D6D6;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
     .tooltip > .tooltip-arrow {border-top-color:#00b1a5;}
     .tooltip.bottom .tooltip-arrow {border-bottom-color:#00b1a5;}
-      .ui-tooltip {
-    -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+.ui-tooltip.info_tooltips{
+	 -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     font-weight: normal;
@@ -656,32 +698,50 @@
     border: none;
     text-align: left;
     color:#fff;
-    padding:3px 7px;
     opacity:0.9;
-    width:200px;
+    max-width: 160px;
 }
 .ui-tooltip-content {
     position: relative;
     padding: 0;    
     font-size:12px;
+	padding-right:22px
 }
-.ui-tooltip-content::after {
-    content: '';
-    position: absolute;
-    border-style: solid;
-    display: block;
+.ui-tooltip-content::after, .ui-tooltip-content::before {
+    top: 105%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
     width: 0;
-    top: -10px;
-    left: 44%;
+    position: absolute;
+}
+.bottom .ui-tooltip-content::after {
+    border-color:transparent;
+    border-top-color: #01B1A6;
+    border-width: 10px;
+    left: 50%;
+    margin-left: -10px;
+}
+.bottom .ui-tooltip-content::before {
+    border-color: rgba(118, 118, 118, 0);
+    border-top-color: #767676;
+    border-width: 11px;
+    left: 50%;
+    margin-left: -11px;
+}
+.top .ui-tooltip-content::after {
+    top: -17px;
+    left: 50%;
     border-color: #01B1A6 transparent;
     border-width: 0 10px 10px;
+    margin-left: -10px;
 }
-.ui-lefttip .ui-tooltip-content::after{left: 20px ;}
-.ui-lefttip{left: 10px ;}
-	
-.font-Small
-{
-	  font-size:11px;
-}
-.edittaskModal .modal-body{height: 90%;}
-.ipmCheckbox label{z-index:0;}
+.top .ui-tooltip-content::before {
+     border-color: rgba(118, 118, 118, 0);
+     border-bottom-color: #767676;
+     top: -18px;
+     left: 48%;
+     border-width: 0 11px 11px;
+     margin-left: -8px;
+ }
+ .displaynone{ display:none;}

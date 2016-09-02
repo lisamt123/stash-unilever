@@ -1,0 +1,495 @@
+<aura:component controller="Core_CA_ApprovalsController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="LineItemDetail" type="Core_CA_WrapperUtility.LineItemDetailResponseAriba[]"/>
+    <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="PricingSuplierDetails" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="ExpenseDetails" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="TravelDetails" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+    <aura:attribute name="LineItemDetailInternalOrder" type="string"/>
+    <aura:attribute name="subDivision" type="string"/>
+    <aura:attribute name="lineItemId" type="string"/>
+    <aura:attribute name="sourcePage" type="string"/>
+    <aura:attribute name="filterValue" type="string"/>
+    <aura:attribute name="spinnercompline" type="boolean" default="true"/>
+    
+    <style>      
+        .homePageHeader{
+        background:#4F6A92;
+        height: 150px;
+        padding-top: 13px;
+        }
+        .headerBarIconStyle{
+        width: 40px;
+        margin-left: 152px;
+        float: left;
+        margin-right:20px;
+        margin-top: -9px;
+        }
+        .backIconStyle{
+        width: 36px;
+        margin-top: 5px;
+        padding-left: 13px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        }
+        .hiddenClass{
+        color: red;
+        display: none;
+        }
+    </style>
+    <!-- Back button Functionlaity-->
+    <div>
+        <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
+            <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
+        </div>
+    </div>
+    <aura:if isTrue="{!v.spinnercompline}">
+           <center>
+                <div class="slds-spinner_container">
+                    <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </center>
+        </aura:if>
+    <aura:iteration items="{!v.LineItemDetail}" var="lineItemData">
+        <aura:if isTrue="{!(v.subDivision=='Ariba' || v.subDivision=='GTES')}">
+            <div Style="background:#fff;text-align: center;">{!lineItemData.RequestId}<br/></div>
+        </aura:if>
+        <aura:if isTrue="{!v.subDivision=='Ariba'}">
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle" id="ProductDescription" onclick="{!c.showHide}">
+                    {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_PRODUCT_DESCRIPTION}
+                    <div style="display:block;" class="up" id="ProductDescription2">
+                            <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                    </div>
+                    <div style="display:none;" class="up" id="ProductDescription3">
+                            <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                    </div>
+                </div>
+                <hr></hr>
+                <div class="DetailSectionTable" id="ProductDescription1" >
+                    <div>
+                        <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.ProductDesc}</div>
+                    </div>
+                </div>
+            </div>
+            <aura:iteration items="{!v.PricingSuplierDetails}" var="pricingSuplierDetails">
+                <div class="ProjectInformationSection">
+                    <div class="slds-section__title sectionTitle" id="Pricing" onclick="{!c.showHide}">
+                        {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_PRICING_SUPPLIER_DETAILS}
+                        <div style="display:block;" class="up" id="Pricing2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="Pricing3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div class="DetailSectionTable" id="Pricing1">
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_QUANTITY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!pricingSuplierDetails.Quantity}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_ORDER_UNIT}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!pricingSuplierDetails.OrderUnit}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_PRICE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!pricingSuplierDetails.Price}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!pricingSuplierDetails.Currencies}&nbsp;</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!pricingSuplierDetails.Amount}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_COMMODITY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular splitAcc">{!pricingSuplierDetails.Commodity}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_SUPPLIER_NAME}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular splitAcc">{!pricingSuplierDetails.SupplierName}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_SUPPLIER_ERP_ID}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular splitAcc">{!pricingSuplierDetails.SupplierERPId}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_TAX_CODE_RATE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!pricingSuplierDetails.TaxCodeRate}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_SAP_MATERIAL_NO}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!pricingSuplierDetails.SAPMaterialNumber}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ProjectInformationSection">
+                    <div class="slds-section__title sectionTitle" style="width:100%" id="SplitAccounting" onclick="{!c.showHide}">
+                        {!$Label.c.CORE_LBL_PUR_LINEITEM_DETAIL_SPLIT_ACCOUNTING}
+                        <div style="display:block;" class="up" id="SplitAccounting2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="SplitAccounting3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div class="DetailSectionTable" id="SplitAccounting1">
+                        <div>
+                            <div class="slds-text-body--regular fieldValueRichTextFormate">{!lineItemData.SplitAccountingDetails}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ProjectInformationSection">
+                    <div class="slds-section__title sectionTitle" id="Comments" onclick="{!c.showHide}">
+                        {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
+                        <div style="display:block;" class="up" id="Comments2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="Comments3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div class="DetailSectionTable" id="Comments1">
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Comments}</div>
+                        </div>
+                    </div>
+                </div>
+            </aura:iteration>
+        </aura:if>
+        <aura:if isTrue="{!v.subDivision=='GTES'}">
+            <aura:iteration items="{!v.ExpenseDetails}" var="ExpenseDetails">
+                <div class="ProjectInformationSection">
+                    <div class="slds-section__title sectionTitle" id="expnseDetails" onclick="{!c.showHide}">
+                        {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DETAILS}
+                        <div style="display:block;" class="up" id="expnseDetails2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="expnseDetails3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div class="DetailSectionTable" id="expnseDetails1">
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_EXPENSE_TYPE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.ExpenseType}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_AMOUNT}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.Amount}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_CURRENCY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.Currencies}&nbsp;</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_DETAIL_CHARGE_TO}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.ChargeTo}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PAYMENT_TYPE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.PaymentType}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_REIMBURSABLE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.Reimbursable}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_CITY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.City}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COUNTRY}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.Country}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DATE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.ExpenseDate}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading fieldAlign">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_END_DATE}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData fieldValueAlign">{!ExpenseDetails.EndDate}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_RECEIPT}</div>
+                        </div>
+                        <div>
+                            <div class="slds-text-body--regular DetailData">{!ExpenseDetails.Receipt}</div>
+                        </div>
+                    </div>
+                </div>
+            </aura:iteration>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle" id="purposeReason" onclick="{!c.showHide}">
+                    {!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE_REASON}
+                    	<div style="display:block;" class="up" id="purposeReason2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="purposeReason3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                </div>
+                <hr></hr>
+                <table class="DetailSectionTable" id="purposeReason1">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_PURPOSE}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Purpose}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_DETAIL_REASON}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Reason}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle" id="expDescrp" onclick="{!c.showHide}">
+                    {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_EXPENSE_DESCRIPTION}
+                    	<div style="display:block;" class="up" id="expDescrp2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="expDescrp3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                </div>
+                <hr></hr>
+                <table class="DetailSectionTable" id="expDescrp1">
+                    <tr>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.ExpenseDescription}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle" id="attendees" onclick="{!c.showHide}">
+                    {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_ATTENDEES}
+                    <div style="display:block;" class="up" id="attendees2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="attendees3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                </div>
+                <hr></hr>
+                <table class="DetailSectionTable" id="attendees1">
+                    <tr>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Attendees}</td>
+                    </tr>
+                </table>
+            </div>
+            <aura:iteration items="{!v.TravelDetails}" var="TravelDetails">
+                <div class="ProjectInformationSection">
+                    <div class="slds-section__title sectionTitle" id="carDetails" onclick="{!c.showHide}">
+                        {!$Label.c.CORE_LBL_EXP_LINETEMS_DETAIL_CAR_DETAILS}
+                        <div style="display:block;" class="up" id="carDetails2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="carDetails3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <table class="DetailSectionTable" id="carDetails1">
+                        <tr>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!TravelDetails.CarDetails}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="ProjectInformationSection">
+                    <div class="slds-section__title sectionTitle" id="flightDetails" onclick="{!c.showHide}"> 
+                        {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_FLIGHT_DETAILS}
+                        <div style="display:block;" class="up" id="flightDetails2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="flightDetails3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <table class="DetailSectionTable" id="flightDetails1">
+                        <tr>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!TravelDetails.FlightDetails}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="ProjectInformationSection">
+                    <div class="slds-section__title sectionTitle" id="hotel" onclick="{!c.showHide}">
+                        {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_ROOM_DETAILS}
+                        <div style="display:block;" class="up" id="hotel2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="hotel3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <table class="DetailSectionTable" id="hotel1">
+                        <tr>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!TravelDetails.RoomDetails}</td>
+                        </tr>
+                    </table>
+                </div>
+            </aura:iteration>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle" id="preDime" onclick="{!c.showHide}">
+                    {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS}
+                    <div style="display:block;" class="up" id="preDime2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="preDime3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                </div>
+                <hr></hr>
+                <table class="DetailSectionTable" id="preDime1">
+                    <aura:if isTrue="{!(lineItemData.IsPerDiem == false)}">
+                        <tr>
+                            <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_AMOUNT}</td>
+                        </tr>
+                        <tr>
+                            <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.PerDiemAmount}</td>
+                        </tr>
+                    </aura:if>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_PER_DIEM_DETAILS}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.PerDiemDetails}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle" id="commentsGtes" onclick="{!c.showHide}">
+                    {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_COMMENTS}
+                    <div style="display:block;" class="up" id="commentsGtes2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="commentsGtes3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                </div>
+                <hr></hr>
+                <table class="DetailSectionTable" id="commentsGtes1">
+                    <tr>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.Comments}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle" id="policy" onclick="{!c.showHide}">
+                    {!$Label.c.CORE_LBL_EXP_LINEITEM_DETAIL_POLICY_EXCEPTIONS}
+                    <div style="display:block;" class="up" id="policy2">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevronup.png"  id="up"/>
+                        </div>
+                        <div style="display:none;" class="up" id="policy3">
+                                <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png" id="down"/>
+                        </div>
+                </div>
+                <hr></hr>
+                <table class="DetailSectionTable" id="policy1">
+                    <tr>
+                        <td class="slds-text-body--regular DetailData fieldValueRichTextFormate">{!lineItemData.PolicyExceptions}</td>
+                    </tr>
+                </table>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.subDivision=='Invoice'}">
+            <div class="ProjectInformationSection">
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_DESCRIPTION}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.Description}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_NET_AMOUNT}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.Currencies}&nbsp;{!lineItemData.NetAmnt}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_INTERNAL_ORDER}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            <aura:iteration items="{!v.LineItemDetailInternalOrder}" var="LineItemDetailInternalOrder">
+                                <div> {!LineItemDetailInternalOrder}</div>
+                            </aura:iteration>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_GL_ACCOUNT}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.GLAccount}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">{!$Label.c.CORE_LBL_INV_COST_CENTER}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.CstCntr}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">{!$Label.c.CORE_LBL_INV_PROFIT_CENTER}</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">{!lineItemData.ProfitCntr}</td>
+                    </tr>
+                </table>
+            </div>
+        </aura:if>
+    </aura:iteration>  
+</aura:component>

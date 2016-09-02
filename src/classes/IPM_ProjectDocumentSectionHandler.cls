@@ -116,7 +116,7 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
             List<IPM_Task__c> masterTasks = [SELECT Id,IPM_Task_Name__c,IPM_Task_Type__c,IPM_Type_of_Gate__c,IPM_Phase__c,IPM_Function__c,IPM_Version_Number__c,
                                                 IPM_Section__c,IPM_Master_Task__c,IPM_Task_Complexity__c,IPM_Project_Document_Section__c,IPM_Is_Master__c,
                                                 IPM_Project_Template__c, IPM_Active__c,ExternalField__c,IPM_Master_Section_Name__c,IPM_Master_Section_Sequence__c,IPM_Assignee__c,
-                                                IsSystemGenerated__c,RecordTypeId,IPM_Type_of_Task__c,IPM_SectionExternalIDFormula__c
+                                                IsSystemGenerated__c,RecordTypeId,IPM_Type_of_Task__c,IPM_SectionExternalIDFormula__c,IPM_Multiple_Functional_Role__c
                                                 FROM IPM_Task__c 
                                                 WHERE (IPM_Project_Template__c in :addedSectionRelatedTempaltes and IPM_Is_Master__c = true) 
                                                 OR (IPM_Project__c in :projectToRemovedSectionMap.keySet() )  LIMIT 50000];

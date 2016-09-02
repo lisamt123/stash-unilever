@@ -108,7 +108,7 @@ public with sharing class TriggerFactory
      *
      * Returns:     ITrigger - A trigger handler if one exists or null.
      */
-    private static ITrigger getHandler(Schema.sObjectType soType)
+    @TestVisible private static ITrigger getHandler(Schema.sObjectType soType)
     {
         if (soType == FAU_Participant__c.sObjectType)
         {

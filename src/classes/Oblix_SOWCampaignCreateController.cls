@@ -29,7 +29,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         if (campaignHelper.isEdit) {
             stage_identifier = new Oblix_CampaignStageLogic(selected_project, Oblix_PermissionHandler.canSetProjectedStage(selected_sow.SOW_Status__c), Oblix_PermissionHandler.canSetCompletionStage(selected_sow.SOW_Status__c));
         } else if(NULL != selected_sow) {
-        	system.debug('### selected_sow2: ' + selected_sow);
+            system.debug('### selected_sow2: ' + selected_sow);
             stage_identifier = new Oblix_CampaignStageLogic(selected_sow.Id);
         }
     }
@@ -50,7 +50,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         System.DEBUG('Set Countries : ' + selected_project.Campaign_Countries__c);
         System.DEBUG('All Regions : ' + selected_project.OblixRegion__c);
         System.DEBUG('Main Regions : ' + selectedMainRegions);
-        List < String > regionList = new List < String > ();
+        //List < String > regionList = new List < String > ();
         String tempCountries = selected_project.Campaign_Countries__c;
         if (selectedMainRegions != null && selected_project.Campaign_Countries__c.length() > 0) {
             selected_project.Campaign_Countries__c = selectedMainRegions + '/' + selected_project.Campaign_Countries__c;
@@ -86,7 +86,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         }
 
         //Prepare a list of up to 3 first clusters and/or countries
-        List<String> first3Countries = new List<String>();
+        //List<String> first3Countries = new List<String>();
         Integer countryCounter = 0;
         System.debug('Selected Countries: ' + selectedCountries);
         for(String country : selectedCountries.split('[/,]')){
@@ -120,8 +120,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
 
     private void setCampaignScaleOne(String selectedMainRegions, String selectedCountriesLoc) {
-        String countriesSelected = '';
-        List < String > splitRegion = new List < String > ();
+        //String countriesSelected = '';
+        //List < String > splitRegion = new List < String > ();
         System.DEBUG('###selectedCountriesLoc save : ' + selectedCountriesLoc);
         List < String > lstCountriesString = new List < String > ();
         if (!selectedCountriesLoc.equalsIgnoreCase(''))
@@ -288,9 +288,13 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     @return : page reference  7 if new ,6 if Edit
     */
     public pageReference saveProjectAction() {
+        Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+        me.Manual_Edit_Check__c = True;
+        update me; 
+        
         Savepoint sp;
         try {
-            
+
             sp = Database.setSavepoint();
             // set b_initiated_from_vf_page on trigger to avoid setting Project_Scale_2__c value
             Oblix_SplitHandler.b_initiated_from_vf_page = true;
@@ -320,16 +324,21 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 if (agencyHubSplitListToInsert != null && !agencyHubSplitListToInsert.isEmpty()) insert agencyHubSplitListToInsert;
 
                 update selected_project;
+                me.Manual_Edit_Check__c = False;
+                update me; 
                 return reDirectToCampaignSummary();
 
             } else if(!campaignHelper.doClone && !campaignHelper.is_NFY_campaign_in_the_middle_of_rollover){ //New campaign
                 System.debug('### New campaign');
 
                 insert selected_project;
-
+                
                 setProjectInAgencyHubSplitList(selected_project.Id);
                 insert agencyHubSplitListToInsert;
-
+                
+                me.Manual_Edit_Check__c = False;
+                update me; 
+                
                 return reDirectToAddAsset();
 
             } else if (campaignHelper.doClone) { //Clone
@@ -350,14 +359,23 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 List<Oblix_Project_Assets__c> assets = cloneCampaignAssets(projectClone.Id);
                 insert assets;
                 selected_project = projectClone;
+                
+                me.Manual_Edit_Check__c = False;
+                update me;
+                 
                 return reDirectToCampaignSummary();
 
             } else { //Editing NFY campaign in the middle of Roll Over
                 System.debug('### Editing NFY campaign in the middle of Roll Over');
 
                 update selected_project;
+                
+               me.Manual_Edit_Check__c = False;
+               update me;
+                  
                 return reDirectToCampaignSummary();
             }
+            
 
         } catch (DMLException le) {
             if (le.getMessage().contains('DUPLICATES_DETECTED') || le.getMessage().contains('DUPLICATE_VALUE')) {
@@ -369,8 +387,13 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             System.debug('###Error Occured : ' + le.getMessage());
 
             if(sp != null) Database.rollback(sp);
-            return null;
+            
+            me.Manual_Edit_Check__c = False;
+            update me; 
+           
+           return null;
         }
+        
 
     }
 

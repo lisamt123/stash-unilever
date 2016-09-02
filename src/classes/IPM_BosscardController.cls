@@ -80,6 +80,11 @@ Global with sharing class IPM_BosscardController {
     public boolean isBosscardNameBlank{get;set;}//is bosscard name is blank
     public boolean isNoSuccessMsg{get;set;}//hide successful message
     public boolean defaultTrue{get;set;}//default true value
+	@Testvisible private integer count;
+	@Testvisible private Boolean validBossName_Booln;
+	@Testvisible private Boolean validBossComp;
+	@Testvisible private Boolean validBossCat;
+	@Testvisible private Boolean isUniqueBosscard;
     /**************************************************************************************
     *@Description :Constructor to read the information from the page paramaters , 
     *To Auto suggest the names and bind the field information
@@ -201,7 +206,7 @@ Global with sharing class IPM_BosscardController {
             if(String.isNotBlank(CatName) && String.isNotBlank(geoScope_STR))
             {
                 String Query_STR=IPM_ConstantUtils.BLANK;
-                Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(catName) +'\' ';
+                Query_STR='SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c WHERE status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and brand_position_id__r.status__c=\''+string.escapeSingleQuotes(ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE) +'\' and (product_category_id__r.parent_id__r.name=\''+ string.escapeSingleQuotes(catName) +'\' or product_category_id__r.name=\''+ string.escapeSingleQuotes(catName) +'\') ';
                 if(REType.contains(IPM_ConstantUtils.COMPANY_CARD_REGIONAL)){
                    Query_STR+=' and geo_id__r.parent_L4__r.name=:geoScope_STR ';
                 }
@@ -306,7 +311,6 @@ Global with sharing class IPM_BosscardController {
         try{
             ipmcompanycard=[SELECT ID,IPM_Company_Card__c,IPM_Central_Team__c,IPM_User_Function__c,IPM_Company_Card__r.name FROM
                             IPM_User_Profile__c WHERE IPM_User__c=:userinfo.getuserid()
-                            and  IPM_Company_Card__c <>null and IPM_Company_Card__r.name!=null 
                             order by IPM_Company_Card__r.name ASC LIMIT 1000]; 
             bpUserCCList=[SELECT id,Name FROM IPM_Company_Card__c WHERE IPM_Business_Partner__c=:userinfo.getuserid() Order By name ASC LIMIT 1000];
         }
@@ -353,10 +357,10 @@ Global with sharing class IPM_BosscardController {
     *@return:null
     *********************************************************************************/
     public void save(){
-        Boolean validBossName_Booln=false;
-        Boolean validBossComp=false;
-        Boolean validBossCat=false;
-        Boolean isUniqueBosscard=false;
+        validBossName_Booln=false;
+        validBossComp=false;
+        validBossCat=false;
+        isUniqueBosscard=false;
         if(bosscard.IPM_BosscardName__c!=null && Pattern.matches(IPM_ConstantUtils.IPM_BOSSCARD_PATTERN,bosscard.IPM_BosscardName__c)){
             validBossName_Booln=false;
         }else{
@@ -369,7 +373,12 @@ Global with sharing class IPM_BosscardController {
             company_Booln=false;
             validBossComp=false;
         }
-        if(string.isBlank(selCat)){
+		checkMandatoryFields();
+        checkRequiredFields();
+    }
+    @Testvisible private void checkMandatoryFields()
+	{
+		if(string.isBlank(selCat)){
             category_Booln=true;
             validBossCat=true;
         }
@@ -385,10 +394,13 @@ Global with sharing class IPM_BosscardController {
         }else{
             isDuplicateBoss=false;
         }
-        if(String.isNotBlank(bosscard.IPM_BosscardName__c) || bosscard.IPM_BosscardName__c!=null){
+		if(String.isNotBlank(bosscard.IPM_BosscardName__c) || bosscard.IPM_BosscardName__c!=null){
             isNameMandatory=false;    
         }
-        //If project name is null show warning message
+	}
+	@Testvisible private void checkRequiredFields()
+	{
+		//If project name is null show warning message
         if(String.isBlank(bosscard.IPM_BosscardName__c) || bosscard.IPM_BosscardName__c==null){
             isNameMandatory=true;
             isDuplicateBoss=false;
@@ -408,11 +420,10 @@ Global with sharing class IPM_BosscardController {
         else if(validBossCat){
             category_Booln=true;
         }
-                          
         else {
            splitSaveMethod();
          }       
-    }
+	}
     
     /********************************************************************************
     *@Description :Download as PDF when Bossacard is approved
@@ -505,12 +516,12 @@ Global with sharing class IPM_BosscardController {
     } 
     
     /********************************************************************************
-    *@Description :For Saving the Bosscard
-    *@return:List
+    *@Description :calculate bosscard filled in percentage
+    *@return:void
     *********************************************************************************/
     public void splitSaveMethod(){
         isContainSpecialChars=false;
-        Integer count=0;
+        count=0;
         if(bosscard.IPM_Assumptions__c!=null && bosscard.IPM_Assumptions__c.trim().length()>15){
             count++;
         }
@@ -526,7 +537,17 @@ Global with sharing class IPM_BosscardController {
         if(bosscard.IPM_Deliverables__c!=null && bosscard.IPM_Deliverables__c.trim().length()>15){
             count++;
         }
-        if(bosscard.IPM_Potential_Business_Opportunity__c!=null && bosscard.IPM_Potential_Business_Opportunity__c.trim().length()>15){
+		filledInPercentage();
+		saveMainBosscard();
+        
+    }
+	/********************************************************************************
+    *@Description :calculate bosscard filled in percentage
+    *@return:void
+    *********************************************************************************/
+	@Testvisible private void filledInPercentage()
+	{
+		if(bosscard.IPM_Potential_Business_Opportunity__c!=null && bosscard.IPM_Potential_Business_Opportunity__c.trim().length()>15){
             count++;
         }
         if(bosscard.IPM_Resources__c!=null && bosscard.IPM_Resources__c.trim().length()>15){
@@ -539,10 +560,14 @@ Global with sharing class IPM_BosscardController {
             count++;
         }
         bosscard.IPM_Filled_In_Percent__c=Math.round((Decimal.valueOf(count)/9.0)*100);
-        list<IPM_Bosscard__c>Bossupdatedlst=new list<IPM_Bosscard__c>();
-        Bossupdatedlst=new list<IPM_Bosscard__c>();
-        isNameMandatory=false;
-        isSave=true;      
+	}
+	/********************************************************************************
+    *@Description :For Saving the Bosscard
+    *@return:None
+    *********************************************************************************/
+	@Testvisible private void saveMainBosscard()
+	{
+		list<IPM_Bosscard__c>Bossupdatedlst=new list<IPM_Bosscard__c>();
         bosscard.IPM_Brand__c=selBrand;
         bosscard.IPM_Category__c=selCat;
         bosscard.IPM_Brand_Positioning__c=selBrandPos;
@@ -551,35 +576,26 @@ Global with sharing class IPM_BosscardController {
         bosscard.IPM_Company_Card__c=selectedCompany;
         bosscard.IPMBosscard_Span__c=CompanyType;
         bosscard.IPM_Region_Shr__c=geoScope_STR;
-        
-        if(String.isNotBlank(BossCUrl_ID))
-        {
-            bosscard.id=BossCUrl_ID;
-        }
-        if(String.isNotBlank(bosscard.id))
-        {
-            Bossupdatedlst.add(bossCard);
-            try{
-                update bossCard;
-            }
-            catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
-            }   
-            category_Booln=false;
-            company_Booln=false;
-            isSave=true; 
-            isAccept=false;
-            saveMsg=true;
-            isDuplicateBoss=false;
-            if(!isNoSuccessMsg){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_Record_Insert_Success));
-            }
-            isNoSuccessMsg=false;
-            
-                  
-        }
-        
-    }
+        bosscard.id=BossCUrl_ID;
+        Bossupdatedlst.add(bossCard);
+		try{
+			update Bossupdatedlst;
+		}
+		catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
+		} 
+		isNameMandatory=false;
+		category_Booln=false;
+		company_Booln=false;
+		isSave=true; 
+		isAccept=false;
+		saveMsg=true;
+		isDuplicateBoss=false;
+		if(!isNoSuccessMsg){
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_Record_Insert_Success));
+		}
+		isNoSuccessMsg=false;
+	}
     
     
     /********************************************************************************
@@ -665,7 +681,6 @@ Global with sharing class IPM_BosscardController {
     *@Param: NA
     *@return:Void.
     *********************************************************************************/
-    
     public void renderedConditions(){
         if(bosscard.IPM_Bosscard_Status__c.equals(IPM_ConstantUtils.IPM_BOSS_INPROGRESS) && isEditable && isPL){
             isSkipBosscard=true;
@@ -679,7 +694,16 @@ Global with sharing class IPM_BosscardController {
         if(isEditable && bosscard.IPM_Gate_Keeper__c==null){
             isAddApprover=true; 
         }
-        if(bosscard.IPM_Bosscard_Status__c.equals(IPM_ConstantUtils.IPM_BOSS_DISCARD)){
+        renderedConditionCSS();
+    }
+	/********************************************************************************
+    *@Description :check rendered conditions
+    *@Param: NA
+    *@return:Void.
+    *********************************************************************************/
+    public void renderedConditionCSS()
+	{
+		if(bosscard.IPM_Bosscard_Status__c.equals(IPM_ConstantUtils.IPM_BOSS_DISCARD)){
             changeBossStatusCCS=IPM_ConstantUtils.IPM_BOSS_CSS_STOPPED;
         }
         if(bosscard.IPM_Bosscard_Status__c.equals(IPM_ConstantUtils.IPM_BOSS_INPROGRESS) || bosscard.IPM_Bosscard_Status__c.equals(IPM_ConstantUtils.IPM_BOSS_NOT_APPROVED)){
@@ -688,8 +712,7 @@ Global with sharing class IPM_BosscardController {
         if(bosscard.IPM_Bosscard_Status__c.equals(IPM_ConstantUtils.IPM_BOSS_APPROVED)){
             changeBossStatusCCS=IPM_ConstantUtils.IPM_BOSS_CSS_COMPLETED;
         }
-        
-    }
+	}
     
     /********************************************************************************
     *@Description :check duplicate bosscard name

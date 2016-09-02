@@ -192,3 +192,107 @@
 	.thresholdBox{background:#fff15a;border-radius: 3px;padding: 5px 10px 10px 10px;margin-top: 20px;}
 	.thresholdBox input{margin-right: 10px; position: relative;float:left;} 
 	.thresholdMsg{color:#7A9D62;position: absolute;background:#F6FFEC;border:1px solid #55823D;padding:5px;border-radius:4px;width:135px;margin:0 auto;float:left;left: 47%;}
+/* New multipicklist styles */
+.ipmDropDownSelect { padding: 5px 5px;background: #fff;border: 1px solid #ddd;}
+	.ipmDropDownSelect:after {
+    display: block;
+    font-family: FontAwesome;
+    content: "\f107";
+    font-size: 14px;
+    position: absolute;
+    top: 6px;
+    right: 0;
+    margin-right: 6px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background: #fff;
+    color: #000;
+}
+.brandposListContainer, .subsectorListcontainer{margin-bottom:15px;}
+.ipmDropDown .dropdown-menu {
+    border: 1px solid #252525;
+    z-index: 1000;
+    min-width: 190px;
+    border-radius: 4px 0 4px 4px;
+    background: #f9f9f9;
+    margin-top: 0;
+    margin-right: -3px;
+}
+.ipmDropDown .brandposList ul, .ipmDropDown .sectorposList ul{
+    padding: 0;
+    list-style: none;
+    z-index: 1000;
+    min-width: 190px;
+    border-radius: 4px 0 4px 4px;
+    background: #fff;
+	margin-bottom:0 ;
+}
+.ipmDropDown .brandposList ul>li, .ipmDropDown .sectorposList ul>li {
+    padding: 10px 0 36px 10px ;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+}
+.brandPosLabel, .sectorPosLabel {
+    display: block;
+    float: left;
+    margin-left: 7px;
+}
+.filterActionscc {
+    border-top: 1px solid #ddd;
+}
+.ipmButtonGroup .ipmSectorDropbuttonscc, .ipmButtonGroup .ipmDropcompletebuttons {
+    border-right: 1px solid #252525;
+}
+.ipmButtonGroup .ipmSectorDropbuttonscc,.ipmButtonGroup .ipmSectorDropresetcc{
+    text-align: center;
+    padding: 5px 21px;
+    width: 100%;
+    display: inline-block;
+    margin: 5px 0;
+}
+.brandposList a, .sectorposList a {
+    color: #007dbb;
+    font-weight: bold;
+    cursor: pointer;
+}
+.ipmDropDownList:before {
+    left: 8%;
+    top: -8px;
+    position: absolute;
+    border-top: 1px #c9c9c9 solid;
+    border-right: 1px #c9c9c9 solid;
+    background: #fff;
+    content: " ";
+    height: 15px;
+    width: 15px;
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.ipmDropDown .ipmDropDownList {
+    border: 1px solid #c9c9c9 ;
+    background: #fff ;
+    left: 1px ;
+    top: 41px ;
+}
+.brandposList .ipmCheckbox, .sectorposList .ipmCheckbox{width:35px ;}
+.brandposList{margin-bottom:20px;}
+.cccmiList {height: 200px;overflow: auto;} 
+input.hiddenBrand {
+    border: none;
+    outline: none;
+}
+.hiddenBrand,.hiddensectorfield{display:none;}
+.ipmDropDown .brandposList ul.ccm-new, .ipmDropDown .sectorposList ul.ccm-new {
+    height: 220px;
+    overflow-y: scroll;
+} 
+a.icoButton.info.pos-icon.smallllinfo {
+    margin-left: 23px;
+}
+a.icoButton.info.pos-icon1.smallllinfo {
+    margin-left: 35px;
+}
+label.ipmSelect.pos-tool {
+    z-index: 0;
+}

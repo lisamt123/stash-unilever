@@ -336,7 +336,7 @@ public class Oblix_SOWNonCampaignCreateCtrl_Test {
 
         //Refernce to first TEST_RESOURCE_NAME item in the basket
         Oblix_NonCampaignWrapper item = controller.helper.basket.get(BRAND_BOOK.toUpperCase()).items.values()[0];
-
+        system.assert(true,item!=null);
         Test.startTest();
 
             controller.helper.currentTab = controller.helper.RESOURCE_DEV_NAME;

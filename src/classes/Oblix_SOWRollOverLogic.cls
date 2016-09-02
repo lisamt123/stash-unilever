@@ -275,9 +275,9 @@ public with sharing class Oblix_SOWRollOverLogic {
             // when sync is in progress, also make sure that the records being synced are "locked" by setting the status to "In Progress"
             
             if (String.isNotBlank(job_component.attrib_5)){
-                String query_string2 = 'SELECT Sync_Status__c FROM '+ job_component.attrib_3 +' WHERE Sync_Status__c =\'' + job_component.attrib_1 
+                /*String query_string2 = 'SELECT Sync_Status__c FROM '+ job_component.attrib_3 +' WHERE Sync_Status__c =\'' + job_component.attrib_1 
                     + SOQL_AND + job_component.attrib_5 +' in : set_original_ids AND Id NOT in: set_original_ids ' 
-                    + ' ORDER BY Id LIMIT ' + job_component.query_limit; 
+                    + ' ORDER BY Id LIMIT ' + job_component.query_limit; */
                 for (SObject obj: database.query(query_string)){
                     obj.put('Sync_Status__c',job_component.attrib_2);
                     map_objects_update.put(obj.Id, obj);
@@ -1717,8 +1717,8 @@ public with sharing class Oblix_SOWRollOverLogic {
                 set_cloned_parent_id.add(attch.ParentId);
             }
 
-            Map<Id, Marketing_SOW__c> map_parents_to_update = new Map<Id, Marketing_SOW__c>(
-                (List<Marketing_SOW__c>)[SELECT Attachments_Cloned__c FROM Marketing_SOW__c WHERE Id in: set_cloned_parent_id]);
+            //Map<Id, Marketing_SOW__c> map_parents_to_update = new Map<Id, Marketing_SOW__c>(
+                //(List<Marketing_SOW__c>)[SELECT Attachments_Cloned__c FROM Marketing_SOW__c WHERE Id in: set_cloned_parent_id]);
 
             String query_string2 = 'SELECT ' + job_component.attrib_1 + ', ' + job_component.attrib_2 + ' FROM Marketing_SOW__c WHERE Id in: set_cloned_parent_id ';
             Map<Id,Marketing_SOW__c> map_original_to_cloned = new Map<Id, Marketing_SOW__c>((List<Marketing_SOW__c>)

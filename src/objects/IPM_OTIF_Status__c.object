@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
-    <visibility>Public</visibility>
     <description>Contents of OTIF Status for Gate Documents</description>
     <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Dependent_Field__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependent Field</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_Carry_GK_Section_Answer__c</fullName>
         <description>To be deleted</description>
@@ -114,6 +123,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>OTIF_Question_Readonly_Help_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>OTIF Question Readonly Help Text</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>OTIF_Responsibility__c</fullName>
         <description>Contains OTIF responsibility</description>
         <externalId>false</externalId>
@@ -148,4 +165,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM OTIF Status</label>
+    <visibility>Public</visibility>
 </CustomObject>
