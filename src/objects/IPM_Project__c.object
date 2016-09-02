@@ -5448,6 +5448,15 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000XeaZ_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000XeaZ</label>
+        <queue>IPM_a7IE0000000XeaZ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Project</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>
