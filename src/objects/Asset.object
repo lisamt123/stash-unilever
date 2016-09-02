@@ -49,6 +49,34 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>ICB_Type__c</fullName>
+        <description>Indicate which type of cart is the asset.</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cart P</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cart G</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cart F</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tricycle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>InstallDate</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -85,6 +113,18 @@
         <picklist>
             <picklistValues>
                 <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Impulse</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Take Home</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scoop</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -145,6 +185,43 @@
         <filterScope>Everything</filterScope>
         <label>All Assets</label>
     </listViews>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>ICB_Operator</fullName>
+        <active>true</active>
+        <description>Ice Cream operator asset from Brazil marketing.</description>
+        <label>Ice Cream Operator</label>
+        <picklistValues>
+            <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Cart F</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cart G</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cart P</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tricycle</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Obsolete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Registered</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>ASSET.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ASSET.SERIAL_NUMBER</customTabListAdditionalFields>
