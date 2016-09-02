@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label>Preço de Fábrica</label>
+        <name>ICB_Manufacture_Price__c</name>
+    </fields>
+    <fields>
+        <label>Preço de Compra</label>
+        <name>ICB_Purchase_Price__c</name>
+    </fields>
+</CustomObjectTranslation>
