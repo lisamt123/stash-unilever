@@ -73,4 +73,5 @@ src/sharingRules/smagicinteract__smsMagic__c.sharingRules
 src/sharingRules/smagicinteract__SMS_SenderId__c.sharingRules
 src/sharingRules/smagicinteract__SMS_Template__c.sharingRules
 src/triggers/CEC_CaseTrigger.trigger
+src/triggers/CEC_CaseTrigger.trigger/CEC_CaseTrigger.trigger-meta.xml
 src/workflows/Case.workflow
