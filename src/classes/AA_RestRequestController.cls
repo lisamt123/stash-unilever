@@ -16,7 +16,7 @@ public with sharing class AA_RestRequestController {
     
     private static HttpRequest buildRequest(String path, String method, String responseFormat, String bodyContent, String bodyContentType) {
         HttpRequest request = new HttpRequest();
-		String csName=AA_constants.CUSTOM_SETTING_NAME;
+        //String csName=AA_constants.CUSTOM_SETTING_NAME;
         String baseURL = path;
         baseUrl +='&language=en';
        // baseUrl +='&client='+Label.GoogleAPIClientID;
@@ -24,7 +24,7 @@ public with sharing class AA_RestRequestController {
         baseUrl +='&client='+aa_agent_app_custom_setting__c.getInstance('GoogleMap ClientID').Key__c;
         
         //string privateKey = 'DS-2wns6FR5hcaXPy5liVFfwKek=';
-      //	string privateKey = AA_GoogleMap__c.getInstance(csName).PrivateKey__c;
+      //    string privateKey = AA_GoogleMap__c.getInstance(csName).PrivateKey__c;
        string privateKey = aa_agent_app_custom_setting__c.getInstance('GoogleMap PrivateKey').Key__c;
         privateKey = privateKey.replace('-', '+');
         privateKey = privateKey.replace('_', '/');
