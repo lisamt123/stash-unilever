@@ -9,7 +9,7 @@ src/objects
 src/permissionsets
 src/pages
 src/sharingRules
-src/triggers/
+src/triggers
 src/workflows
 src/classes/CEC_NewAccountController.cls
 src/classes/CEC_NewAccountController.cls-meta.xml
