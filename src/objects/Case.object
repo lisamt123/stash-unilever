@@ -2979,7 +2979,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>Transient_External_Id__c</fullName>
         <description>Contains the external Id value which is used to populate the CBM for Transient case</description>
         <externalId>false</externalId>
-        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,&apos;&apos;)</formula>
+        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,If( SMS_Inbound_Number__c &lt;&gt; &apos;&apos;,SMS_Inbound_Number__c + &apos;@unilever.com&apos;,&apos;&apos;))</formula>
         <label>Transient External Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
