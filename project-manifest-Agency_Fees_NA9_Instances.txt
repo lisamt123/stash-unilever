@@ -1,2 +1,2 @@
 src/labels
-src/labels/AF_labels.AF_UrlLink
+src/labels/AF.labels
