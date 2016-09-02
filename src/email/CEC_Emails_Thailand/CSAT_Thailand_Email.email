@@ -1,0 +1,13 @@
+เรียน {!Account.Name}
+
+ขอขอบคุณที่สละเวลาในการติดต่อกับศูนย์บริการผู้บริโภค บริษัทยูนิลีเวอร์  การติดต่อเลขที่
+{!Case.CaseNumber} เกี่ยวกับเรื่อง {!Case.Subject} 
+
+เพื่อให้มีการปรับปรุงการบริการอย่างต่อเนื่อง โปรดกรุณาทำแบบสำรวจความพึงพอใจของลูกค้าของเรา โดยการคลิ๊กลิ้ง ดังต่อไปนี้
+
+http://survey.clicktools.com/go?iv={!Case.CSAT_Survey_Id__c}&q1={!Case.Id}&q5={!Case.OwnerId}
+
+Many thanks. 
+
+Consumer Engagement Team 
+Unilever

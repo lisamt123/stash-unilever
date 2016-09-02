@@ -1,0 +1,143 @@
+<center>
+    <table id="topTable" width="500" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr valign="top">
+                <td height="300">
+                    <table border="0" width="600" cellspacing="5" cellpadding="5">
+                        <tbody>
+                            <tr valign="top">
+                                <td>
+                                    <div>
+                                        <h1 style="text-align: center;"><strong>Product Factory Response Request</strong></h1>
+                                        <h2><strong>Case Information:</strong></h2>
+                                    </div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Number</strong>: {!Case.CaseNumber}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Número retrieval</strong>: {!CEC_Retrieval_Request__c.Name}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Date Case Created</strong>: {!Case.CreatedDate}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Adviser Name</strong>: {!User.Name}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Product</strong>: {!Case.Product_Code__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Production Code</strong>: {!Case.Production_Code__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Reason code (Local)</strong>: {!Case.Reason_L5_desc__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Reason code (English)</strong>: {!Case.Global_Reason_L5_desc__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>EAN Code</strong>: {!Case.Product_UPC__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Verbatim</strong>: {!Case.Subject}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Observações Retirada</strong>: {!CEC_Retrieval_Request__c.Retrieval_Notes__c}</span></div>
+                                    <div><span style="font-family: Arial, sans-serif;"><strong>Description</strong>: {!Case.Description}</span></div>
+                                    <h3><strong>-------------- End of Description ---------------</strong></h3>
+                                    <h2>Please complete the questions below</h2>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td>
+                                    <h3><strong>Careline</strong>:</h3>
+                                    <div>1) Date Item Received</div>
+									<div>
+										<ul>
+											<li>&nbsp;</li>
+										</ul>
+									</div>
+                                    <div>2) Is a response needed?</div>
+                                    <div>
+                                        <ul>
+                                            <li>Yes / No (delete as needed)</span></li>
+                                        </ul>
+									</div>
+                                    <div>3) Does the consumer want to know something specific?</div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+                                    <div>4) When did consumer notice the problem/find the FB?</div>
+                                        <ul>
+                                            <li>After opening / During preparation / During consumption (delete as needed)</li>
+                                        </ul>
+                                    </div>
+                                    <div>5) Is it a foreign body or not?</div>
+                                    <div>
+                                        <ul>
+                                            <li>Yes / No (delete as needed)</li>
+                                        </ul>
+                                    </div>
+                                    <div>6) Description of sample (Include size/colour/shape)</div>
+                                    <div>
+										<ul>
+											<li>&nbsp;</li>
+										</ul>
+									</div>
+                                    <div>7) Where was the item found and in which item?</div>
+                                    <div>
+                                        <ul>
+                                            <li>Surface / Middle / Bottom</li>
+                                            <li>Other: </li>
+                                        </ul>
+                                    <div>8) When was it found?</div>
+                                        <ul>
+                                            <li>Before Use / On First Use / On Subsequent Use</li>
+                                        </ul>
+                                    </div>
+                                    <div>9) Attachments included?</div>
+                                    <div>
+										<ul>
+                                            <li>Yes / No <span style="font-size: xx-small;">(delete as needed)</span></li>
+                                        </ul>
+                                    </div>
+									<div><span style="font-family: Arial, sans-serif; font-size: large;">----------------------------------------------------------------------</span></div>
+									<h3><strong>Factory Response</strong>: (only required if Response Needed = Yes)</h3>
+                                    <div>10) Person Completing response</div>
+									<div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+									</div>
+                                    <div>11) Date investigated completed</div>
+                                    <div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+									</div>
+                                    <div>12) Outcome of Investigation (Identify material - size, shape, analysis, etc)</div>
+                                    <div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+									</div>
+                                    <div>13) Likely Origin of Foreign Material</div>
+                                    <div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+									</div>
+                                    <div>14) What precautions are in place to prevent this? (Only brief details needed)</div>
+                                    <div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+									</div>
+                                    <div>15) What preventive actions have been introduced?</div>
+                                    <div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+									</div>
+                                    <div>16) Are any changes needed to Product or Reason? (Please advise if the details above are wrong)</div>
+                                    <div>
+                                        <ul>
+                                            <li>&nbsp;</li>
+                                        </ul>
+									</div>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <td>
+                                    <span style="font-family: arial;">Please complete the above information and return the response by reply.<br/>Thank You</span>
+                                    <div>&nbsp;</div>
+                                    <div>&nbsp;</div>
+                                    <div><span style="font-family: arial;">{!Case.Thread_Id}</span></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</center>
