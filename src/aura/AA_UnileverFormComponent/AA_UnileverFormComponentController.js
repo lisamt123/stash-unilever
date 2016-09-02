@@ -20,7 +20,7 @@
             component.set("v.globalClusterId",responseId.GlobalClusterId);
             component.set("v.showMap",true);
         });
-       
+        
         $A.enqueueAction(actionCluster);
     },
     onSelectChangeCountry : function(component, event, helper) {
@@ -84,9 +84,8 @@
         var clusterVal=cluster.get("v.value");
         var country=component.find("countryId");
         var countryVal=country.get("v.value");
-         if(component.get("v.showMap")){
-         if(lat === null && lng === null  && (clusterVal==="Select a Cluster" && countryVal === "Select a Country")){
-             var toastEvent = $A.get("e.force:showToast");
+        if(component.get("v.showMap") && (lat === null && lng === null  && (clusterVal==="Select a Cluster" && countryVal === "Select a Country"))){
+            var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
                 "title": "Error!",
                 "type":"error",
@@ -95,98 +94,87 @@
             });
             toastEvent.fire();
         }
-            }
-        if(titleVal === '' && (clusterVal==="Select a Cluster" && countryVal === "Select a Country") )
-        {
-            component.set("v.submitButtonError",true);
+        var noErrors = true;
+        title.set("v.errors", null);
+        cluster.set("v.errors", null);
+        country.set("v.errors", null);
+        component.set("v.submitButtonError",false);
+        if(titleVal === ''){
             title.set("v.errors", [{message:"Please enter a report title"}]);
+            component.set("v.submitButtonError",true);
+            noErrors=false;
+        }
+        if(clusterVal==="Select a Cluster" && countryVal === "Select a Country"){
             cluster.set("v.errors", [{message:"Please select either cluster or country"}]);
             country.set("v.errors", [{message:"Please select either cluster or country"}]);
-        }
-        else if(titleVal === '')
-        {	
             component.set("v.submitButtonError",true);
-            title.set("v.errors", [{message:"Please enter a report title"}]);
-            cluster.set("v.errors", null);
-            country.set("v.errors", null);
+            noErrors=false;
         }
-            else if(clusterVal==="Select a Cluster" && countryVal === "Select a Country")
-            {
-                component.set("v.submitButtonError",true);
-                title.set("v.errors", null);
-                cluster.set("v.errors", [{message:"Please select either cluster or country"}]);
-                country.set("v.errors", [{message:"Please select either cluster or country"}]);            
+        if(noErrors){
+            if(navigator.userAgent.match(/Android/i)
+               || navigator.userAgent.match(/webOS/i)
+               || navigator.userAgent.match(/iPhone/i)
+               || navigator.userAgent.match(/iPad/i)){
+                helper.scrollToLocation(component, "top");            
             }
-                else{
-                    if(navigator.userAgent.match(/Android/i)
-                       || navigator.userAgent.match(/webOS/i)
-                       || navigator.userAgent.match(/iPhone/i)
-                       || navigator.userAgent.match(/iPad/i)){
-                        helper.scrollToLocation(component, "top");            
+            if(navigator.userAgent.match(/iPod/i)
+               || navigator.userAgent.match(/BlackBerry/i)
+               || navigator.userAgent.match(/Windows Phone/i)){
+                helper.scrollToLocation(component, "top");
+            }
+            component.set("v.submitButtonError",false);
+            component.set("v.disableButton",true);
+            var selectedUsers=component.get("v.selectedUsers");
+            var userIdString="";
+            for (var sel in selectedUsers) {
+                if (selectedUsers.hasOwnProperty(sel)) {
+                    var ob = selectedUsers[sel];
+                    if(userIdString.length === 0) {
+                        userIdString=ob.Id;
                     }
-                    if(navigator.userAgent.match(/iPod/i)
-                       || navigator.userAgent.match(/BlackBerry/i)
-                       || navigator.userAgent.match(/Windows Phone/i)){
-                        helper.scrollToLocation(component, "top");
+                    else{
+                        userIdString=userIdString+","+ob.Id;
                     }
-                    component.set("v.submitButtonError",false);
-                    title.set("v.errors", null);
-                    cluster.set("v.errors", null);
-                    country.set("v.errors", null);
-                    component.set("v.disableButton",true);
-                    var selectedUsers=component.get("v.selectedUsers");
-                    //var addIds=[];
-                    var userIdString="";
-                    for (var sel in selectedUsers) {
-                        if (selectedUsers.hasOwnProperty(sel)) {
-                            var ob = selectedUsers[sel];
-                            if(userIdString.length === 0)
-                            {
-                                userIdString=ob.Id;
-                            }
-                            else{
-                                userIdString=userIdString+","+ob.Id;
-                            }
-                        }
-                    } 
-                    var action=component.get("c.insertAgentApp");
-                    action.setParams({ "clusterId" :component.find("clusterId").get("v.value") , 
-                                      "countryId" :component.find("countryId").get("v.value") ,
-                                      "town":component.find("townValue").get("v.value") ,
-                                      "reportName":component.find("reportTitle").get("v.value") ,
-                                      "reportDescription": component.find("reportDesc").get("v.value"),
-                                      "userIds": userIdString,
-                                      "unileverBrandId": component.get("v.unileverBrandId"),
-                                      "retailerId": component.get("v.retailerId"),
-                                      "reportingOnId": component.find("reportingOnId").get("v.value"),
-                                      "recordType":'Unilever',
-                                      "status":'Published (Public)',
-                                      "contentId": component.get("v.contentId"),
-                                     });
-                    action.setCallback(this, function(a) {
-                        var state = a.getState();
-                        if (state === "SUCCESS") {
-                            component.set("v.disableButton",false);
-                            var successMessage = component.find("successMessage");
-                            $A.util.removeClass(successMessage, "hide-form");
-                            setTimeout(function() {
-                                var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
-                                selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
-                            },3000);
-                        }
-                        else{
-                            component.set("v.disableButton",false);
-                            var toastEvent = $A.get("e.force:showToast");
-                            toastEvent.setParams({
-                                "title": "Error!",
-                                "type":"error",
-                                "message": 'Your report was not saved successfully. Please try again later'
-                            });
-                            toastEvent.fire();
-                        }
-                    });
-                    $A.enqueueAction(action);
                 }
+            } 
+            var action=component.get("c.insertAgentApp");
+            action.setParams({ "clusterId" :component.find("clusterId").get("v.value") , 
+                              "countryId" :component.find("countryId").get("v.value") ,
+                              "town":component.find("townValue").get("v.value") ,
+                              "reportName":component.find("reportTitle").get("v.value") ,
+                              "reportDescription": component.find("reportDesc").get("v.value"),
+                              "userIds": userIdString,
+                              "unileverBrandId": component.get("v.unileverBrandId"),
+                              "retailerId": component.get("v.retailerId"),
+                              "reportingOnId": component.find("reportingOnId").get("v.value"),
+                              "recordType":'Unilever',
+                              "status":'Published (Public)',
+                              "contentId": component.get("v.contentId"),
+                             });
+            action.setCallback(this, function(a) {
+                var state = a.getState();
+                if (state === "SUCCESS") {
+                    component.set("v.disableButton",false);
+                    var successMessage = component.find("successMessage");
+                    $A.util.removeClass(successMessage, "hide-form");
+                    setTimeout(function() {
+                        var selectEvent = $A.get("e.c:AA_NavigateToPageDetail");
+                        selectEvent.setParams({"navigate":"AA_LandingPageComponent","filterType":component.get("v.filterType"),"sortType":component.get("v.sortType"),"limitRecords":component.get("v.limitRecords"),"offSet":component.get("v.offSet"),"clusterId":component.get("v.clusterId"),"countryId":component.get("v.countryId")}).fire();
+                    },3000);
+                }
+                else{
+                    component.set("v.disableButton",false);
+                    var toastEvent = $A.get("e.force:showToast");
+                    toastEvent.setParams({
+                        "title": "Error!",
+                        "type":"error",
+                        "message": 'Your report was not saved successfully. Please try again later'
+                    });
+                    toastEvent.fire();
+                }
+            });
+            $A.enqueueAction(action);
+        }
     },
     handleContentVersionData:function(component,event,helper){
         component.set("v.contentId",event.getParam("cId"));    
@@ -230,5 +218,5 @@
     },
     
     
-
+    
 })

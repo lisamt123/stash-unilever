@@ -97,11 +97,13 @@
             var nST='';
             var newSubTopicList=[];
             for(var sT in subTopicList){
-                nST = JSON.stringify(subTopicList[sT]);
-                nST = nST.replace(/(\\r\\n)|( \\r\\n)/g,'')
-                nST = nST.replace('"','');
-                nST = nST.replace('"','');
-                newSubTopicList.push(nST);
+                if(subTopicList.hasOwnProperty(sT)){
+                    nST = JSON.stringify(subTopicList[sT]);
+                    nST = nST.replace(/(\\r\\n)|( \\r\\n)/g,'')
+                    nST = nST.replace('"','');
+                    nST = nST.replace('"','');
+                    newSubTopicList.push(nST);
+                }
             }
             component.set("v.subTopicList", newSubTopicList);
             component.set("v.SubTopiccheck", false);
@@ -208,8 +210,7 @@
         cluster.set("v.errors", null);
         country.set("v.errors", null);
         
-        if(component.get("v.showMap")){
-            if(lat === null && lng === null  && (clusterVal==="Select Cluster" && countryVal === "Select Country")){
+        if(component.get("v.showMap") && (lat === null && lng === null  && (clusterVal==="Select Cluster" && countryVal === "Select Country"))){
                 noErrors=false;
                 var toastEvent = $A.get("e.force:showToast");
                 toastEvent.setParams({
@@ -219,7 +220,6 @@
                     "message": 'Map view is not working properly. Either Turn off map view to enter manually or Try again.'
                 });
                 toastEvent.fire();
-            }
         }
         if((clusterVal==="Select Cluster" && countryVal === "Select Country"))
         {
@@ -294,21 +294,10 @@
         component.set("v.successMessage","false");
     },
     submitReport: function(component, event, helper) {
-        
         component.set("v.disableButton",true);
         var selectedUsers=component.get("v.selectedUsers");
         var userIdString="";
-        for(var sel in selectedUsers){
-            if(selectedUsers.hasOwnProperty(sel)){
-                var ob=selectedUsers[sel];
-                if(userIdString.length === 0){
-                    userIdString = ob.Id;
-                }
-                else{
-                    userIdString=userIdString+","+ob.Id;
-                }
-            }
-        }
+        userIdString=helper.getUsersString(component, event, helper);
         var clusterId=component.find("clusterId").get("v.value");
         var countryId=component.find("countryId").get("v.value");
         var competitorId="";
@@ -377,7 +366,6 @@
                           "status":'ETS Approval Pending',
                           "contentId": component.get("v.contentId"),
                          });
-        
         action.setCallback(this, function(a) {
             var state = a.getState();
             if (state === "SUCCESS") {
