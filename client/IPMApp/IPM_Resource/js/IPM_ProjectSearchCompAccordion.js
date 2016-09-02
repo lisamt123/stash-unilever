@@ -1,6 +1,6 @@
 function rerenderAccordion(){
         /*accordion All checkbox Checked Geography*/
-		jq('.geographyFilters input:checkbox').attr('checked', 'checked');
+        jq('.geographyFilters input:checkbox').attr('checked', 'checked');
         /*blockquote tag to ul tag Geography*/
         jq('blockquote').each(function() { jq(this).replaceWith("<ul>"+jq(this).html()+"</ul>") });
         jq( "div.projectContainer.gfirstLevel ul" ).addClass( "docFilter accordionFilters clusterListUl" );
@@ -9,17 +9,17 @@ function rerenderAccordion(){
          jq('blockquote').each(function() { jq(this).replaceWith("<ul>"+jq(this).html()+"</ul>") });
          jq( "div.projectContainer.gfirstLevel ul" ).addClass( "docFilter accordionFilters clusterListUl" );
        });
-		jq('.geographyFilters input:checkbox, .projectContainer input:checkbox, ul.docFilter.typeLabel input:checkbox').each(function(){
+        jq('.geographyFilters input:checkbox, .projectContainer input:checkbox, ul.docFilter.typeLabel input:checkbox').each(function(){
             var mvalue = jq(this).attr('id');
             var cvalue = mvalue.replace('amp;','&');
             jq(this).attr('id',cvalue);
         });  
     jq(document).ready(function() {
         /*accordion Geography*/
-		var ipmAccordion = jq(".ipmAccordion");
-	    /* Below script calls a function accordion on click event */
-		jq(document).on("click", ".ipmAccordion .pHead span.expico, .ipmAccordion .pHead span.expico-square", function() {
-			accordion(this);
+        var ipmAccordion = jq(".ipmAccordion");
+        /* Below script calls a function accordion on click event */
+        jq(document).on("click", ".ipmAccordion .pHead span.expico, .ipmAccordion .pHead span.expico-square", function() {
+            accordion(this);
     });
     
 /* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
@@ -73,10 +73,10 @@ function accordion(elem) {
     }
 }
         
-	  Delaygeography();
-	  checboxSelect();
+      delayGeography();
+      checboxSelect();
     }
-	
+    
 function sortProjectsJsFunc(){
 jq("#sortProjects").on("click",function(){toggleSortProjects()}),
 jq("#sortPhases").on("click",function(){toggleSortPhases()}),
@@ -90,7 +90,7 @@ function projectTypeCheck(){
 jq('.docFilter.accordionFilters input:checkbox').attr('checked', 'checked');
 jq('ul.docFilter.typeLabel input:checkbox').attr('checked', 'checked');
 }
-function Delaygeography(){
+function delayGeography(){
 /*Delay Geography*/
       jq("ul.docFilter.accordionFilters.geographyAllUl").hide().delay(200).queue(function (next) {
         jq(this).show();
