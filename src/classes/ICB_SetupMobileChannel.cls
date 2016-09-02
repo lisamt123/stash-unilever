@@ -1,4 +1,15 @@
-public class ICB_SetupMobileChannel {
+/**********************************************************************
+Name: ICB_SetupMobileChannel
+Copyright © 2016 Unilever
+
+Purpose: Class used on the trigger SetupMobileChannel
+
+History 
+
+VERSION AUTHOR 				DATE 		DETAIL Description
+1.0 	CARLOS HENRIQUE  02/09/2016  INITIAL DEVELOPMENT.
+***********************************************************************/
+public with sharing class ICB_SetupMobileChannel {
     
     public static final ICB_SetupMobileChannel instance = new ICB_SetupMobileChannel();
     
@@ -12,14 +23,14 @@ public class ICB_SetupMobileChannel {
     
     public void initiateMethod(List<Contact> vContact) {    
         // Set the parameters used to validate the criteria trigger.
-        Boolean isPartner; // Indicates if is a partner account.
-        Boolean isCreated; // Indicates if the creation of inventory and price book was successfully.
-        String	isOperator; // Indicates if is a operator contact type. 
-        String 	accountName; // Store the accont name. 
-        String 	accountId; // Store the contact Id to retrieve account info. 
-        Id 		priceBookId; // Store the price book Id created. 
-        Id 		inventoryId; // Store the inventory Id creatd.        
-        String  IdRecType;
+        Boolean isPartner	= null; // Indicates if is a partner account.
+        Boolean isCreated	= null; // Indicates if the creation of inventory and price book was successfully.
+        String	isOperator	= null; // Indicates if is a operator contact type. 
+        String 	accountName	= null; // Store the accont name. 
+        String 	accountId	= null; // Store the contact Id to retrieve account info. 
+        Id 		priceBookId = null; // Store the price book Id created. 
+        Id 		inventoryId	= null; // Store the inventory Id creatd.        
+        String  IdRecType	= null;
         String salesmanId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(ICB_ContactTypes__c.getValues('Type_Salesman').Value__c).getRecordTypeId();
         String operatorId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(ICB_ContactTypes__c.getValues('RecordType_Operator').Value__c).getRecordTypeId();
         
