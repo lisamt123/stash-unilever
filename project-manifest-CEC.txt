@@ -9,6 +9,7 @@ src/objects
 src/permissionsets
 src/pages
 src/sharingRules
+src/triggers/
 src/workflows
 src/classes/CEC_NewAccountController.cls
 src/classes/CEC_NewAccountController.cls-meta.xml
@@ -71,4 +72,5 @@ src/sharingRules/smagicinteract__Incoming_SMS__c.sharingRules
 src/sharingRules/smagicinteract__smsMagic__c.sharingRules
 src/sharingRules/smagicinteract__SMS_SenderId__c.sharingRules
 src/sharingRules/smagicinteract__SMS_Template__c.sharingRules
+src/triggers/CEC_CaseTrigger.trigger
 src/workflows/Case.workflow
