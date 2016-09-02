@@ -63,6 +63,8 @@ src/classes/ICB_PriceBookCreation.cls
 src/classes/ICB_PriceBookCreation.cls-meta.xml
 src/classes/ICB_PriceBookProductsInsert.cls
 src/classes/ICB_PriceBookProductsInsert.cls-meta.xml
+src/classes/ICB_SetupMobileChannel.cls
+src/classes/ICB_SetupMobileChannel.cls-meta.xml
 src/objects
 src/objects/ICB_ContactTypes__c.object
 src/objects/ICB_Sales_Locale__c.object
