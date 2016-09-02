@@ -1,6 +1,4 @@
 src
-src/pages
-src/pages/IPM_AddTaskNew.page
-src/pages/IPM_AddTaskNew.page-meta.xml
-src/pages/IPM_AddTaskWizard.page
-src/pages/IPM_AddTaskWizard.page-meta.xml
+src/classes
+src/classes/IPM_ProjectHandler.cls
+src/classes/IPM_ProjectHandler.cls-meta.xml
