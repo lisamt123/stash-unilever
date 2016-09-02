@@ -1,3 +1,2 @@
 src/labels
-
-src/labels/CustomLabels.labels
+src/labels/AF_labels
