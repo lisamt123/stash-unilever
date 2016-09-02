@@ -7,7 +7,7 @@
     </values>
     <values>
         <field>IPM_Category__c</field>
-        <value xsi:type="xsd:string">Oral</value>
+        <value xsi:type="xsd:string">Oral Care</value>
     </values>
     <values>
         <field>IPM_Category_threshhold__c</field>
