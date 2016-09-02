@@ -120,37 +120,37 @@ public with sharing class FS_CreateContact_CC {
             }
             addExtraParameter(FS_ContactUtility.DECISIONMAKER,string.valueOf(varContactDetail.FS_Decision_Maker__c));
             
-            if( !String.isBlank(varContactDetail.Email))       
+           // if( !String.isBlank(varContactDetail.Email))       
                 addExtraParameter(FS_ContactUtility.MYEMAILTEXT,varContactDetail.Email);     
             
-            if( !String.isBlank(varContactDetail.MailingPostalCode))
+         //   if( !String.isBlank(varContactDetail.MailingPostalCode))
                 addExtraParameter(FS_ContactUtility.CODEPOSTALTEXT,varContactDetail.MailingPostalCode);        
             
-            if( !String.isBlank(varContactDetail.phone))
+        //    if( !String.isBlank(varContactDetail.phone))
                 addExtraParameter(FS_ContactUtility.MOBILEPHONETEXT,varContactDetail.phone); 
             
             
-            if( !String.isBlank(workPhoneNumber))
+          //  if( !String.isBlank(workPhoneNumber))
                 addExtraParameter(FS_ContactUtility.WORKPHONETEXT,workPhoneNumber); 
             
-            if( !String.isBlank(personalPhoneNumber))
+           // if( !String.isBlank(personalPhoneNumber))
                 addExtraParameter(FS_ContactUtility.PERSONALPHONETEXT,personalPhoneNumber);
             
-            if( !String.isBlank(varContactDetail.FS_Position__c))
+          //  if( !String.isBlank(varContactDetail.FS_Position__c))
                 addExtraParameter(FS_ContactUtility.POSITIONTEXT,varContactDetail.FS_Position__c);
             
-            if(!String.isBlank(varContactDetail.MailingState))
+          //  if(!String.isBlank(varContactDetail.MailingState))
                 addExtraParameter(FS_ContactUtility.STATETEXT,varContactDetail.MailingState);
             
             addExtraParameter(FS_ContactUtility.OWNERIDTEXT,UserInfo.getUserId());
             
-            if(!String.isBlank(UserInfo.getName()))
+        //    if(!String.isBlank(UserInfo.getName()))
                 addExtraParameter(FS_ContactUtility.OWNERNAMETEXT,UserInfo.getName());
             
-            if(!String.isBlank(varContactDetail.AccountId))
+        //    if(!String.isBlank(varContactDetail.AccountId))
                 addExtraParameter(FS_ContactUtility.ACCOUNTIDTEXT,varContactDetail.AccountId);
             
-            if(!String.isBlank(varAccountName))
+          //  if(!String.isBlank(varAccountName))
                 addExtraParameter(FS_ContactUtility.ACCOUNTNAMETEXT,varAccountName);
             
             if(moreListItem.size()!=0)
@@ -266,14 +266,15 @@ public with sharing class FS_CreateContact_CC {
     
     Private void addExtraParameter(String Name,String Value)
     {
-        if(!String.isBlank(Value))
-        {
+       
             FS_ExtraParameters varExtraParameters = new FS_ExtraParameters();
             varExtraParameters.Name=Name;
+             if(!String.isBlank(Value))
             varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(Value)));
+            else
+             varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf('')));
             moreListItem.add(varExtraParameters);
-        }
-        
+       
     }
     
     /* * Wrapper cals for creating Contact to intract with Brandton though mulesoft
