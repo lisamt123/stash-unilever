@@ -22,7 +22,7 @@
         }
         function dataURItoBlob(a) {
             console.log("Error in Custom function");
-            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) c.push(b.charCodeAt(d));
+            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++){ c.push(b.charCodeAt(d));}
             return new Blob([new Uint8Array(c)], {
                 type:'image/jpeg'
             })
@@ -46,14 +46,14 @@
                             var g = document.createElement("canvas");
                             g.width = tempW, g.height = tempH;
                             var h = g.getContext("2d");
-                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);
-                            else if ("right" === d) h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);
+                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) {h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);}
+                            else if ("right" === d) { h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);}
                                 else if ("flip" === d) {
                                     var i = Math.PI,
                                         j = .5 * g.width,
                                         k = .5 * g.height;
                                     h.translate(j, k), h.rotate(i), h.translate(.5 * -tempW, .5 * -tempH), h.drawImage(b, 0, 0, tempW, tempH)
-                                } else h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);
+                                } else { h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);}
                             h.setTransform(1, 0, 0, 1, 0, 0);
                             var l = g.toDataURL("image/jpeg"),
                                 m = dataURItoBlob(l);
@@ -128,7 +128,7 @@
         }
         function dataURItoBlob(a) {
             console.log("Error in Custom function");
-            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) c.push(b.charCodeAt(d));
+            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
             return new Blob([new Uint8Array(c)], {
                 type:'image/jpeg'
             })
@@ -152,14 +152,14 @@
                             var g = document.createElement("canvas");
                             g.width = tempW, g.height = tempH;
                             var h = g.getContext("2d");
-                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);
-                            else if ("right" === d) h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);
+                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) { h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);}
+                            else if ("right" === d) { h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);}
                                 else if ("flip" === d) {
                                     var i = Math.PI,
                                         j = .5 * g.width,
                                         k = .5 * g.height;
                                     h.translate(j, k), h.rotate(i), h.translate(.5 * -tempW, .5 * -tempH), h.drawImage(b, 0, 0, tempW, tempH)
-                                } else h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);
+                                } else { h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);}
                             h.setTransform(1, 0, 0, 1, 0, 0);
                             var l = g.toDataURL("image/jpeg"),
                                 m = dataURItoBlob(l);

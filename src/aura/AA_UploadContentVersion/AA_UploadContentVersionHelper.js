@@ -8,16 +8,12 @@
         var filename = a.name;
         var extension = filename.replace(/^.*\./, '');
         extension = extension.toLowerCase();
-        
         function dataURItoBlob(a) {
-            console.log("Error in Custom function");
-            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) c.push(b.charCodeAt(d));
+            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
             return new Blob([new Uint8Array(c)], {
                 type:'image/jpeg'
             })
         }
-        
-        console.log("File type:"+ file.type + '== Size:'+ file.size);
         if (file.size > this.MAX_FILE_SIZE) {
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
@@ -30,17 +26,6 @@
         }
         var n = file.type.indexOf("image");
         if(n !== -1){
-            /*var fr = new FileReader();
-            var self = this;
-            fr.onload = function() {
-                var fileContents = fr.result;
-                var base64Mark = 'base64,';
-                var dataStart = fileContents.indexOf(base64Mark) + base64Mark.length;
-                fileContents = fileContents.substring(dataStart);
-                component.set("v.cafeteriaMenuDetail","data:image/png;base64,"+encodeURIComponent(fileContents));   
-                self.upload(component, file, fileContents);
-            };
-            fr.readAsDataURL(file);*/
             if(extension=='jpg' || extension=='jpeg' || extension=='png' || extension=='gif'){
                 var self = this;
                 return void loadImage.parseMetaData(a, function(b) {
@@ -59,43 +44,25 @@
                             var g = document.createElement("canvas");
                             g.width = tempW, g.height = tempH;
                             var h = g.getContext("2d");
-                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW);
-                            else if ("right" === d) h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW);
+                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) { h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW); }
+                            else if ("right" === d) { h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW); }
                                 else if ("flip" === d) {
                                     var i = Math.PI,
                                         j = .5 * g.width,
                                         k = .5 * g.height;
                                     h.translate(j, k), h.rotate(i), h.translate(.5 * -tempW, .5 * -tempH), h.drawImage(b, 0, 0, tempW, tempH)
-                                } else h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH);
+                                } else { h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH); }
                             h.setTransform(1, 0, 0, 1, 0, 0);
                             var l = g.toDataURL("image/jpeg"),
                                 m = dataURItoBlob(l);
                             console.log(m);
                             console.log("Type:"+ a.type);
                             self.upload(component, a, l);
-
-                            //displayPreviewImage(a);
-                            /*client.createBlob("ContentVersion", {
-                                Origin: "H",
-                                PathOnClient: a.name
-                            }, a.name, "VersionData", m, function(a) {
-                                displayPreviewImage(a);
-                                console.log("ContentId : " + a.id); 
-                                chatterid = a.id;
-                                $("#submitButton").prop("disabled", !1);
-                                window.ImageRes = a;
-                                var imageId = JSON.stringify(ImageRes);
-                            }, function(a, b, c) {
-                                closeLoading();  
-                                alert("Upload failed - Sorry"), console.log(c)
-                            })*/
                         }
                     }, d.readAsDataURL(a)
                 })
-                
             }
         }else{
-            console.log("inside else part of uploadFile");
             var fr = new FileReader();
             var self = this;
             fr.onload = function() {

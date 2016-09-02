@@ -33,4 +33,20 @@
             return false;
         }
     },
+    getUsersString : function(component, event, helper){
+         var selectedUsers=component.get("v.selectedUsers");
+            var userIdString="";
+            for (var sel in selectedUsers) {
+                if (selectedUsers.hasOwnProperty(sel)) {
+                    var ob = selectedUsers[sel];
+                    if(userIdString.length === 0) {
+                        userIdString=ob.Id;
+                    }
+                    else{
+                        userIdString=userIdString+","+ob.Id;
+                    }
+                }
+            } 
+        return userIdString;
+    },
 })

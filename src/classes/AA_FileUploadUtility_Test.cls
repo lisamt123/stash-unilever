@@ -12,12 +12,13 @@ public class AA_FileUploadUtility_Test {
          String myString = 'StringToBlob';
          Blob myBlob = Blob.valueof(myString);
        
-         Id testId=AA_FileUploadUtility.saveTheChunk(fileName,base64Data,contentType,fileId);
+         AA_FileUploadUtility.saveTheChunk(fileName,base64Data,contentType,fileId);
          ContentVersion cv= new ContentVersion(title='test',PathOnClient='test.png',VersionData=myBlob);
          insert cv;
          
        // fileId='068180000002gM7AAI';
         AA_FileUploadUtility.saveTheChunk(fileName,base64Data,contentType,cv.Id);
+        System.Assert(cv.Id!=null);
         Test.stopTest();
     }
 }

@@ -125,18 +125,7 @@
             component.set("v.submitButtonError",false);
             component.set("v.disableButton",true);
             var selectedUsers=component.get("v.selectedUsers");
-            var userIdString="";
-            for (var sel in selectedUsers) {
-                if (selectedUsers.hasOwnProperty(sel)) {
-                    var ob = selectedUsers[sel];
-                    if(userIdString.length === 0) {
-                        userIdString=ob.Id;
-                    }
-                    else{
-                        userIdString=userIdString+","+ob.Id;
-                    }
-                }
-            } 
+            var userIdString=helper.getUsersString(component, event, helper);           
             var action=component.get("c.insertAgentApp");
             action.setParams({ "clusterId" :component.find("clusterId").get("v.value") , 
                               "countryId" :component.find("countryId").get("v.value") ,

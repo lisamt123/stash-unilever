@@ -8,9 +8,6 @@
 private class AA_WrapperClass_Test {
 
     static testMethod void myUnitTest() {
-    /*********************************************************************************************************************
-      Purpose: Method to test if we could get request, send Respose and provide List of Reports to AngularJS from Salesorce .
-    ************************************************************************************************************************/
         AA_WrapperClass.AgentAppDataRequest req= new AA_WrapperClass.AgentAppDataRequest();
         AA_WrapperClass.AgentAppDataResponse res = new AA_WrapperClass.AgentAppDataResponse();
         AA_WrapperUtility.AgentReportDataResponse repResp = new AA_WrapperUtility.AgentReportDataResponse();
@@ -33,7 +30,6 @@ private class AA_WrapperClass_Test {
         req.LimitRecords=12;
         req.SortOnMostLike='true';
         
-       List<aa_Agent_Report__c> reportList=new List<aa_Agent_Report__c>();
        aa_Country__c country =new aa_Country__c();
        aa_Agent_Report__c report1=new aa_Agent_Report__c(Report_Title__c='test report',country__c=country.id);
        aa_Agent_Report__c report2=new aa_Agent_Report__c(Report_Title__c='test report1',country__c=country.id); 
