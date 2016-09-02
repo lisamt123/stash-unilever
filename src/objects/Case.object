@@ -819,6 +819,66 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+	<fields>
+        <fullName>CSAT_Survey_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Country__r.CSAT_Survey_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CSAT Survey Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CV_Questionaire_Added__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC CV Questionaire Added is a flag that specifies that advisor has added the CV Questionnaires.</description>
+        <externalId>false</externalId>
+        <label>CV Questionaire Added</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+	<fields>
+        <fullName>CV_Status__c</fullName>
+        <description>CEC CV Status is used to capture CV status</description>
+        <externalId>false</externalId>
+        <label>CV Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed(Customer Non-cooperative)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed(Permanent Nature Symptoms)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Consumer Feedback(Attempt1)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Consumer Feedback(Attempt2)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Consumer Feedback(Attempt3)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>CurrencyIsoCode</fullName>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2894,11 +2954,32 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	 <fields>
+        <fullName>SMS_Inbound_Number__c</fullName>
+        <description>CEC: To store the inbound number for SMS</description>
+        <externalId>false</externalId>
+        <label>SMS Inbound Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>SMS_Mobile_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>SMS Mobile Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
     <fields>
         <fullName>Transient_External_Id__c</fullName>
         <description>Contains the external Id value which is used to populate the CBM for Transient case</description>
         <externalId>false</externalId>
-        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,&apos;&apos;)</formula>
+        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,If( SMS_Inbound_Number__c &lt;&gt; &apos;&apos;,SMS_Inbound_Number__c + &apos;@unilever.com&apos;,&apos;&apos;))</formula>
         <label>Transient External Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -8809,6 +8890,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
+		<picklistValues>
+            <picklist>CV_Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Customer Non-cooperative%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Permanent Nature Symptoms%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt1%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt2%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt3%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
@@ -9522,6 +9630,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
         </picklistValues>
+		<picklistValues>
+            <picklist>CV_Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Customer Non-cooperative%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Permanent Nature Symptoms%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt1%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt2%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt3%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
@@ -10187,6 +10322,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <errorConditionFormula>AND(  AccountId !=Null, PRIORVALUE(AccountId)= AccountId, OR( Subject =Null, Country__c =Null),NOT( ISPICKVAL( Status , &apos;New&apos;)), PRIORVALUE( OwnerId )= OwnerId)</errorConditionFormula>
         <errorMessage>Country and Verbatim is mandatory for this case.</errorMessage>
     </validationRules>
+	<validationRules>
+        <fullName>CEC_Check_CV_Status</fullName>
+        <active>true</active>
+        <description>CEC Check CV Status is used to check if 1. Advisor has added the CV Questionaire 
+2. Status is either blank/Pending Consumer Feedback(Attempt1)/Pending Consumer Feedback(Attempt2)</description>
+        <errorConditionFormula>IF($Permission.CEC_User_CosmetoVigilance  &amp;&amp;   ISPICKVAL(Status , &quot;Closed&quot;) , IF( CV_Questionaire_Added__c=true  &amp;&amp;  ( ISPICKVAL(CV_Status__c, &quot;&quot;) || ISPICKVAL(CV_Status__c,&quot;Pending Consumer Feedback(Attempt1)&quot;)  || ISPICKVAL(CV_Status__c,&quot;Pending Consumer Feedback(Attempt2)&quot;)), true, false), false)</errorConditionFormula>
+        <errorMessage>Case cannot be closed unless symptoms are resolved</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>CEC_RetentionDetailCheck</fullName>
         <active>true</active>
@@ -10534,6 +10677,31 @@ var openSuccess = function openSuccess(result) {
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
+    </webLinks>
+	<webLinks>
+        <fullName>Send_SMS</fullName>
+        <availability>online</availability>
+        <description>Send SMS from service console tab - Created by SMS Magic</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send SMS</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/support/console/36.0/integration.js&quot;)} 
+
+var url = &apos;/apex/CEC_CaseConversationView?id={!Case.Id}&apos;; 
+
+if ({!$Permission.CEC_SMS_Magic_Process}) { 
+      if (sforce.console.isInConsole()) { 
+               srcUp(url); 
+
+       } else { 
+             window.open(url, &apos;&apos;, &apos;width=600,height=400&apos;);  
+       } 
+
+}else { 
+    alert(&apos;{!$Label.CEC_NoAccessForSMSProcess}&apos;); 
+}</url>
     </webLinks>
     <webLinks>
         <fullName>TransferCase</fullName>

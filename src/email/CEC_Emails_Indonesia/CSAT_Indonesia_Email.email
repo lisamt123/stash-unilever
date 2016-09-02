@@ -1,0 +1,10 @@
+Yang Terhormat Bapak/Ibu {!Account.Name}, 
+
+Terima kasih telah menghubungi Suara Konsumen Unilever sehubungan dengan {!Case.CaseNumber} mengenai {!Case.Subject}.
+
+Agar dapat lebih meningkatkan kualitas pelayanan kami, mohon kesediaan Bapak/Ibu untuk melengkapi survey kepuasan pelanggan dengan mengklik dibawah ini
+
+http://survey.clicktools.com/go?iv={!Case.CSAT_Survey_Id__c}&q1={!Case.Id}&q5={!Case.OwnerId} 
+
+Terima kasih dan Salam,
+Suara Konsumen Unilever Indonesia

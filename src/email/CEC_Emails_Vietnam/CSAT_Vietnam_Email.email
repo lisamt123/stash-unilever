@@ -1,0 +1,9 @@
+Kính gửi {!Account.Name},
+
+Cảm ơn quý khách đã liên lạc với Phòng thông tin khách hàng công ty Unilever Việt Nam cho trường hợp {!Case.CaseNumber} Quý khách {!Case.Subject}. 
+
+http://survey.clicktools.com/go?iv={!Case.CSAT_Survey_Id__c}&q1={!Case.Id}&q5={!Case.OwnerId} 
+
+Chân thành cảm ơn Quý khách,
+ 
+Phòng thông tin khách hàng công ty Unilever Việt Nam.
