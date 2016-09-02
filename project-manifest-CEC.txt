@@ -23,8 +23,6 @@ src/classes/CEC_CaseTriggerHelperExtension.cls-meta.xml
 src/customPermissions/CEC_User_CosmetoVigilance.customPermission
 src/customPermissions/CEC_SMS_Magic_Process.customPermission
 src/labels/CEC.labels
-src/email/AA_Email_Templates
-src/email/AA_Email_Templates-meta.xml
 src/email/CEC_Emails_Brazil
 src/email/CEC_Emails_Indonesia
 src/email/CEC_Emails_Philippines
@@ -46,13 +44,11 @@ src/flows/CEC_Close_Case_Survey-1.flow
 src/flows/CEC_Update_CV_Questionare_on_Case-1.flow
 src/flows/CEC_Update_Incoming_SMS_Owner_Flow-1.flow
 src/flows/CEC_Update_Incoming_SMS_Owner_Process-1.flow
-src/flows/CEC_SMS_Case_Creation_Flow-4.flow
 src/flows/CEC_SMS_Case_Creation_Process-6.flow
 src/flows/CEC_SMS_Case_Creation_Flow-4.flow
 src/layouts/Case-Case Feed Layout.layout
 src/layouts/cec_Additional_Case_Information__c-Additional Information Layout.layout
 src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
-src/layouts/Case-Case Feed Layout.layout
 src/layouts/smagicinteract__SMS_SenderId__c-smagicinteract__SMS SenderId Layout.layout
 src/objects/Case.object
 src/objects/CEC_Case_Market_Mapping__c.object
@@ -61,6 +57,8 @@ src/objects/smagicinteract__smsMagic__c.object
 src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_User.permissionset
 src/permissionsets/CEC_User_CosmetoVigilance.permissionset
+src/permissionsets/CEC_SMS_Magic_Admin.permissionset
+src/permissionsets/CEC_SMS_Magic_User.permissionset
 src/pages/CEC_CaseConversationView.page
 src/pages/CEC_CaseConversationView.page-meta.xml
 src/pages/CEC_NewAccountContact.page
