@@ -47,7 +47,6 @@ src/flows/CEC_Update_Incoming_SMS_Owner_Flow-1.flow
 src/flows/CEC_Update_Incoming_SMS_Owner_Process-1.flow
 src/flows/CEC_SMS_Case_Creation_Process-6.flow
 src/flows/CEC_SMS_Case_Creation_Flow-4.flow
-src/layouts/Case-Case Feed Layout.layout
 src/layouts/cec_Additional_Case_Information__c-Additional Information Layout.layout
 src/layouts/CEC_Case_Market_Mapping__c-Case Market Mapping Layout.layout
 src/layouts/smagicinteract__SMS_SenderId__c-smagicinteract__SMS SenderId Layout.layout
