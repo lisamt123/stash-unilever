@@ -3138,7 +3138,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 existingNonCurrentFinancialYellowValues = getExistingNonCurrentFinancialValues(conFin,IPM_ConstantUtils.YELLOW);
                 
                 conFin.put(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialRedValues + redValidationCellsString);
-                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialRedValues + redValidationCellsString);
+                conFin.put(IPM_ConstantUtils.FIELD_YELLOW_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,existingNonCurrentFinancialYellowValues + redValidationCellsString);
                 conFin.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,(((String)conFin.get(IPM_ConstantUtils.FIELD_RED_VALIDATION_CELLS+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)).length()>1));
     
             }

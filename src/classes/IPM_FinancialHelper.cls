@@ -72,6 +72,9 @@ public with sharing class IPM_FinancialHelper
         List<IPM_Financial_Year__c> deleteIPMFinancialYears = new List<IPM_Financial_Year__c>();
         Id consolidatedFinRecordTypeId = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId();
         
+        List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
+        
+        
         List<IPM_Financial__c> finListWithRollout = [Select Id,IPM_Project_Rollout__c,Regional_Project__c,Global_External_Id__c from IPM_Financial__c where Id in :newFinancials];
         
         List<Id> rolloutIds = new List<Id>();
@@ -86,14 +89,14 @@ public with sharing class IPM_FinancialHelper
         		regionalProjIds.add(fin.Regional_Project__c);
         	}
         	if(fin.Global_External_Id__c != null){
-        		globalConsilidatedExtIds.add(fin.Global_External_Id__c+'_CONSOLIDATED');
+        		globalConsilidatedExtIds.add(fin.Global_External_Id__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
         	}
         }
         
-        List<IPM_Financial__c> finList = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c 
+        finList = [Select Id ,recordtypeId,Financial_External_ID__c,Target_Launch_Date__c ,Project_Sustainability_Period__c,Global_External_Id__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.IPM_Rollout_Project__c,Regional_Project__c , Regional_Project__r.IPM_Project_Name__c, Parent_Project__c , Parent_Project__r.IPM_Project_Name__c, ( Select Id,Name from IPM_Financial_Years__r where Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR AND  (NOT Name like '%Y%') order by Name) from IPM_Financial__c 
         								  where IPM_Project_Rollout__c IN :rolloutIds OR Regional_Project__c IN :regionalProjIds or Financial_External_ID__c IN :globalConsilidatedExtIds Limit 1000 ];
         
-        System.debug('finList ==>'+finList);
+        
         
         List<IPM_Financial__c> nonConsolidatedFinList = new List<IPM_Financial__c>();
         List<IPM_Financial__c> consolidatedFinList = new List<IPM_Financial__c>();
@@ -109,69 +112,12 @@ public with sharing class IPM_FinancialHelper
         	}
         }
         
-        Integer TLDYear = 0 ;
-        String regionalConsoltdKey = '';
-        String globalConsoltdKey = '';
         
-        for(IPM_Financial__c nonConsltdfin: nonConsolidatedFinList){
-        	
-        	TLDYear = nonConsltdfin.Target_Launch_Date__c.year();
-        	//newFinYearNames.clear();
-        	Set<String> newFinYearNames = new Set<String>();
-        	for(Integer i=0; i<Integer.valueOf(nonConsltdfin.Project_Sustainability_Period__c) ; i++){
-        		newFinYearNames.add(String.valueOf(TLDYear+i));
-        	}
-        	
-        	if(nonConsltdfin.Regional_Project__c != null){
-        		regionalConsoltdKey = nonConsltdfin.Regional_Project__r.IPM_Project_Name__c+'_CONSOLIDATED';
-        	}
-        	else if(nonConsltdfin.IPM_Project_Rollout__c != null){
-        		regionalConsoltdKey = nonConsltdfin.IPM_Project_Rollout__r.IPM_Rollout_Project__c+'_CONSOLIDATED';
-        	}
-        	
-        	if(nonConsltdfin.Global_External_Id__c != null){
-        		globalConsoltdKey = nonConsltdfin.Global_External_Id__c + '_CONSOLIDATED';
-        	}
-        	
-        	System.debug('regionalConsoltdKey ==> '+regionalConsoltdKey);
-        	System.debug('globalConsoltdKey ==> '+globalConsoltdKey);
-        	
-        	if(regionalConsoltdKey != ''){
-        		if(consoltdFinNameToValidCalendarYearsMap.containsKey(regionalConsoltdKey)){
-        			system.debug('Says true ==> '+regionalConsoltdKey);
-        			system.debug('consoltdFinNameToValidCalendarYearsMap containsKey'+consoltdFinNameToValidCalendarYearsMap);
-	        		consoltdFinNameToValidCalendarYearsMap.get(regionalConsoltdKey).addAll(newFinYearNames);
-	        	}
-	        	else{
-	        		system.debug('Says false ==> '+regionalConsoltdKey);
-        			system.debug('consoltdFinNameToValidCalendarYearsMap not containsKey'+consoltdFinNameToValidCalendarYearsMap);
-	        		consoltdFinNameToValidCalendarYearsMap.put(regionalConsoltdKey,newFinYearNames);
-	        	}
-        	}
-        	
-        	if(consoltdFinNameToValidCalendarYearsMap.containsKey(globalConsoltdKey)){
-        		system.debug('Says true ==> '+globalConsoltdKey);
-        		system.debug('consoltdFinNameToValidCalendarYearsMap containsKey'+consoltdFinNameToValidCalendarYearsMap);
-        		consoltdFinNameToValidCalendarYearsMap.get(globalConsoltdKey).addAll(newFinYearNames);
-        	}
-        	else{
-        		system.debug('Says false ==> '+globalConsoltdKey);
-        		system.debug('consoltdFinNameToValidCalendarYearsMap not containsKey'+consoltdFinNameToValidCalendarYearsMap);
-        		consoltdFinNameToValidCalendarYearsMap.put(globalConsoltdKey,newFinYearNames);
-        	}
-        	
-        	System.debug('consoltdFinNameToValidCalendarYearsMap ==>'+consoltdFinNameToValidCalendarYearsMap);
-        	
-        	
-        }
-        
-        System.debug('consoltdFinNameToValidCalendarYearsMap ==>'+consoltdFinNameToValidCalendarYearsMap);
-        System.debug('consolidatedFinList ==>'+consolidatedFinList);
+        consoltdFinNameToValidCalendarYearsMap = getConsoltdFinNameToValidCalendarYearsMap(nonConsolidatedFinList);
+
         for(IPM_Financial__c consltdfin: consolidatedFinList){
-        	system.debug('consltdfin.Financial_External_ID__c ==>'+consltdfin.Financial_External_ID__c);
         	if(consoltdFinNameToValidCalendarYearsMap.containsKey(consltdfin.Financial_External_ID__c)){
 				for(IPM_Financial_Year__c finYear :consltdfin.IPM_Financial_Years__r){
-					System.debug('(finYear.Name==>'+finYear.Name);
 	            	if(!consoltdFinNameToValidCalendarYearsMap.get(consltdfin.Financial_External_ID__c).contains(finYear.Name)){
 	            		deleteIPMFinancialYears.add(finYear);
 	            	}
@@ -180,12 +126,12 @@ public with sharing class IPM_FinancialHelper
         	
         }
         
-        System.debug('deleteIPMFinancialYears ==>'+deleteIPMFinancialYears);
         
         if(deleteIPMFinancialYears!=null && !deleteIPMFinancialYears.isEmpty()) 
         {
           delete deleteIPMFinancialYears;
         } 
+           
     }
     
       /******************************************************************************************************************
@@ -980,5 +926,57 @@ public with sharing class IPM_FinancialHelper
         
         return updatedFinancials;
     } 
+    
+
+    //Helper method for deleteFinancialyears() method 
+    //This method prepares map of the consolidated Financial Extrenal id v/s the list of financial Years that are valid for that consolidated finanical
+    public static Map<String, Set<String>> getConsoltdFinNameToValidCalendarYearsMap(List<IPM_Financial__c> nonConsolidatedFinList){
+		Integer TLDYear = 0 ;
+        String regionalConsoltdKey = '';
+        String globalConsoltdKey = '';
+        Map<String, Set<String>> consoltdFinNameToValidCalendarYearsMap  = new Map<String, Set<String>>();
+        
+        for(IPM_Financial__c nonConsltdfin: nonConsolidatedFinList){
+        	
+        	TLDYear = nonConsltdfin.Target_Launch_Date__c.year();
+        	//newFinYearNames.clear();
+        	Set<String> newFinYearNames = new Set<String>();
+        	for(Integer i=0; i<Integer.valueOf(nonConsltdfin.Project_Sustainability_Period__c) ; i++){
+        		newFinYearNames.add(String.valueOf(TLDYear+i));
+        	}
+        	
+        	if(nonConsltdfin.Regional_Project__c != null){
+        		regionalConsoltdKey = nonConsltdfin.Regional_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+        	}
+        	else if(nonConsltdfin.IPM_Project_Rollout__c != null){
+        		regionalConsoltdKey = nonConsltdfin.IPM_Project_Rollout__r.IPM_Rollout_Project__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+        	}
+        	
+        	if(nonConsltdfin.Global_External_Id__c != null){
+        		globalConsoltdKey = nonConsltdfin.Global_External_Id__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+        	}
+
+        	
+        	if(regionalConsoltdKey != ''){
+        		if(consoltdFinNameToValidCalendarYearsMap.containsKey(regionalConsoltdKey)){
+	        		consoltdFinNameToValidCalendarYearsMap.get(regionalConsoltdKey).addAll(newFinYearNames);
+	        	}
+	        	else{
+	        		consoltdFinNameToValidCalendarYearsMap.put(regionalConsoltdKey,newFinYearNames);
+	        	}
+        	}
+        	
+        	if(consoltdFinNameToValidCalendarYearsMap.containsKey(globalConsoltdKey)){
+        		consoltdFinNameToValidCalendarYearsMap.get(globalConsoltdKey).addAll(newFinYearNames);
+        	}
+        	else{
+        		consoltdFinNameToValidCalendarYearsMap.put(globalConsoltdKey,newFinYearNames);
+        	}
+        	
+        }
+        
+        return consoltdFinNameToValidCalendarYearsMap;
+
+    }
     
 }
