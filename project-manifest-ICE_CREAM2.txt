@@ -81,6 +81,7 @@ src/objects/PricebookEntry.object
 src/objects/Pricebook2.object
 src/objects/Asset.object
 src/permissionsets
+src/permissionsets/ICB_Mobile_Channel_Backoffice_Salesforce.permissionset
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset
 src/sites
