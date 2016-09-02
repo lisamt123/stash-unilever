@@ -177,12 +177,7 @@ function scriptPanelLoad(){
         unsaved = false;
         saveChangedTLDjs();
     }
-    
-    /* Below function assigns a variable to the value. */
-    function revertTLDValue(){
-        selectedDateField.value = tldOrignalValue;
-    }
-    
+        
     /* Below function hides the tld warning modal. */
     function hideTldWarningDialog(){
         jq('#tldWarningDialog').modal('hide'); 

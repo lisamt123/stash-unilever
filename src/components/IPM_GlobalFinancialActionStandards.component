@@ -118,42 +118,28 @@
                   </div>
                   <div class="glbValRight ">
                     <div class="glbValM glbVal1">
-                        <apex:outputText value="{0, number, ###,###,###.#}">
-                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
-                        </apex:outputText>
+                        <apex:outputField value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Value_Market_Share_Global__c}" />
                     </div>
                     <div class="glbValM glbVal2">
-                        <apex:outputText value="{0, number, ###,###,###.#}">
-                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
-                        </apex:outputText>
+                        <apex:outputField value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Value_Market_Share_Global__c}" />
                     </div>
                     <div class="glbValM glbVal3">
-                        <apex:outputText value="{0, number, ###,###,###.##}">
-                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
-                        </apex:outputText>
+                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.Turnover_Global__c}" />
                     </div>
                     <div class="glbValM glbVal4">
-                        <apex:outputText value="{0, number, ###,###,###.##}">
-                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
-                        </apex:outputText>
+                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Incremental__r.Turnover_Global__c}" />
                     </div>
                     <div class="glbValM glbVal5">
-                        {!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}
+                        <apex:outputField value="{!finAction.IPM_Financial_Year_Y1_Gross__r.GM_of_TO_Global__c}"/>
                     </div>
                     <div class="glbValM2 glbVal6">
-                        <apex:outputText value="{0, number, ###,###,###.##}">
-                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
-                        </apex:outputText>
+                        <apex:outputText value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.NPV_Global__c}" />
                     </div>
                     <div class="glbValM2 glbVal7">
-                        <apex:outputText value="{0, number, ###,###,###.###}">
-                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
-                        </apex:outputText>
-                    </div>
+                        <apex:outputField value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.IRR_Global__c}" />
+					</div>
                     <div class="glbValM2 glbVal8">
-                        <apex:outputText value="{0, number, ###,###,###.##}">
-                            <apex:param value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
-                        </apex:outputText>
+                        <apex:outputField value="{!finAction.IPM_Financial_Year_Y1_Gross__r.IPM_Financial__r.Payback_Global__c}" />
                     </div>
                   </div>
                 </div>
@@ -172,4 +158,3 @@ function updateFinAction(Id,Span,Field,Value){
 }
 </script>
 </apex:component>
-                                     
