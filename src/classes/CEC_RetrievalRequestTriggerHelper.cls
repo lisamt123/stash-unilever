@@ -132,7 +132,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                     // if textile factory is present factory template is defined, prepare email
                     if(string.IsNotBlank(aCase.Country__r.Textile_Factory_Email_Template__c)){
                         if(emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c) != null){
-                            updatedHTMLBody = formatEmail(aCase, emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c).HtmlValue);
+                            updatedHTMLBody = formatEmail(aCase, rr, emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c).HtmlValue);
                             updatedSubject = emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c).Subject;
                             toEmailAdresses = extractToEmailAddresses(factoryMap.get(rr.Textile_Factory__c).Email__c);
                         }else{ // update error message on retrieval record
@@ -147,7 +147,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                     // if product factory is present factory template is defined, prepare email
                     if(string.IsNotBlank(aCase.Country__r.Product_Factory_Email_Template__c)){
                         if(emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c) != null){
-                            updatedHTMLBody = formatEmail(aCase, emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c).HtmlValue);
+                            updatedHTMLBody = formatEmail(aCase,rr, emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c).HtmlValue);
                             updatedSubject = emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c).Subject;
                             toEmailAdresses = extractToEmailAddresses(factoryMap.get(rr.Product_Factory__c).Email__c);
                         }else{ // update error message on retrieval record
@@ -225,10 +225,11 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
     
     
     // to format email body
-    private string formatEmail(Case aCase, string emailBody){
+    private string formatEmail(Case aCase, CEC_Retrieval_Request__c rr, string emailBody){
         string returnString = emailBody;        
         returnString = searchAndReplace(returnString, '{!Case.CaseNumber}', string.ValueOf(aCase.CaseNumber));
         returnString = searchAndReplace(returnString, '{!Case.CreatedDate}', string.ValueOf(aCase.CreatedDate));
+        returnString = searchAndReplace(returnString, '{!CEC_Retrieval_Request__c.Name}', rr.Name);
         returnString = searchAndReplace(returnString, '{!User.Name}', UserInfo.getName());
         returnString = searchAndReplace(returnString, '{!Case.Product_Code__c}', aCase.Product_Code__c);
         returnString = searchAndReplace(returnString, '{!Case.Production_Code__c}', aCase.Production_Code__c);
@@ -236,6 +237,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
         returnString = searchAndReplace(returnString, '{!Case.Global_Reason_L5_desc__c}', aCase.Global_Reason_L5_desc__c);
         returnString = searchAndReplace(returnString, '{!Case.Product_UPC__c}', aCase.Product_UPC__c);
         returnString = searchAndReplace(returnString, '{!Case.Subject}', aCase.Subject);
+        returnString = searchAndReplace(returnString, '{!CEC_Retrieval_Request__c.Retrieval_Notes__c}', rr.Retrieval_Notes__c);
         returnString = searchAndReplace(returnString, '{!Case.Description}', aCase.Description);
         
         return returnString;
