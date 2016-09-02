@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <interviewLabel>CEC SMS Case Creation {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>CEC SMS Case Creation</label>
+    <description>TO update the case information on Incoming SMS Text</description>
+    <interviewLabel>CEC SMS Case Creation Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CEC SMS Case Creation Flow</label>
     <processType>AutoLaunchedFlow</processType>
     <recordCreates>
         <name>Create_Case_Id</name>
         <label>Create Case Id</label>
-        <locationX>425</locationX>
-        <locationY>171</locationY>
+        <locationX>654</locationX>
+        <locationY>152</locationY>
         <assignRecordIdToReference>CaseId</assignRecordIdToReference>
         <connector>
             <targetReference>Update_Incoming_SMS_Record</targetReference>
@@ -15,7 +16,7 @@
         <inputAssignments>
             <field>Origin</field>
             <value>
-                <stringValue>SMS / Text Messages</stringValue>
+                <stringValue>SMS / text Messages</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -31,6 +32,18 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <field>Search_Mobile__c</field>
+            <value>
+                <elementReference>IncomingSMSMobileNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Search_Phone__c</field>
+            <value>
+                <elementReference>IncomingSMSMobileNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Subject</field>
             <value>
                 <elementReference>IncomingSMSText</elementReference>
@@ -41,8 +54,8 @@
     <recordUpdates>
         <name>Update_Incoming_SMS_Record</name>
         <label>Update Incoming SMS Record</label>
-        <locationX>426</locationX>
-        <locationY>335</locationY>
+        <locationX>658</locationX>
+        <locationY>297</locationY>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -60,7 +73,7 @@
     </recordUpdates>
     <startElementReference>Create_Case_Id</startElementReference>
     <variables>
-        <description>To store the new case Id</description>
+        <description>To store the case Id</description>
         <name>CaseId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -68,7 +81,7 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <description>To store the inbound SMS Id</description>
+        <description>To store the incoming SMS Id</description>
         <name>IncomingSMSId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -76,7 +89,7 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <description>To store the incoming SMS inbound number</description>
+        <description>To store Incoming Inbound Number</description>
         <name>IncomingSMSInboundNumber</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
