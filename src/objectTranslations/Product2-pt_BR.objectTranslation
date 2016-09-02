@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <name>Family</name>
+        <picklistValues>
+            <masterLabel>Impulse</masterLabel>
+            <translation><!-- Impulse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation>Nenhuma</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scoop</masterLabel>
+            <translation><!-- Scoop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Take Home</masterLabel>
+            <translation><!-- Take Home --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Preço</label>
+        <name>ICB_Price__c</name>
+    </fields>
+    <fields>
+        <label>Unidade de Referência</label>
+        <name>ICB_Reference_Unit__c</name>
+    </fields>
+    <fields>
+        <label>Imagem do Produto</label>
+        <name>Product_Image__c</name>
+    </fields>
+    <fields>
+        <label>Código de Barras</label>
+        <name>UID_Barcode__c</name>
+    </fields>
+    <fields>
+        <label>Marca</label>
+        <name>UID_Brand__c</name>
+        <picklistValues>
+            <masterLabel>ALGIDA</masterLabel>
+            <translation><!-- ALGIDA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALSA</masterLabel>
+            <translation><!-- ALSA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AMORA</masterLabel>
+            <translation><!-- AMORA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ASTRA</masterLabel>
+            <translation><!-- ASTRA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AXE</masterLabel>
+            <translation><!-- AXE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BALTIMOR</masterLabel>
+            <translation><!-- BALTIMOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BANGO</masterLabel>
+            <translation><!-- BANGO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BEN &amp; JERRY&apos;S</masterLabel>
+            <translation><!-- BEN &amp; JERRY&apos;S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BERTOLLI</masterLabel>
+            <translation><!-- BERTOLLI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BESTFOODS</masterLabel>
+            <translation><!-- BESTFOODS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BLOCK &amp; WHITE</masterLabel>
+            <translation><!-- BLOCK &amp; WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BLUE BAND</masterLabel>
+            <translation><!-- BLUE BAND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BLUE RIBBON</masterLabel>
+            <translation><!-- BLUE RIBBON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOVRIL</masterLabel>
+            <translation><!-- BOVRIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRU</masterLabel>
+            <translation><!-- BRU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRUT</masterLabel>
+            <translation><!-- BRUT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRYLCREEM</masterLabel>
+            <translation><!-- BRYLCREEM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BUAVITA</masterLabel>
+            <translation><!-- BUAVITA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BUSHELLS</masterLabel>
+            <translation><!-- BUSHELLS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAJOLINE</masterLabel>
+            <translation><!-- CAJOLINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CALIPPO</masterLabel>
+            <translation><!-- CALIPPO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CALVE</masterLabel>
+            <translation><!-- CALVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CARESS</masterLabel>
+            <translation><!-- CARESS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CARTE D&apos;OR</masterLabel>
+            <translation><!-- CARTE D&apos;OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CIF</masterLabel>
+            <translation><!-- CIF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CITRA</masterLabel>
+            <translation><!-- CITRA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLEAR</masterLabel>
+            <translation><!-- CLEAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLOSE UP</masterLabel>
+            <translation><!-- CLOSE UP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COLMANS</masterLabel>
+            <translation><!-- COLMANS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COMFORT</masterLabel>
+            <translation><!-- COMFORT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CONTINENTAL</masterLabel>
+            <translation><!-- CONTINENTAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CORNETTO</masterLabel>
+            <translation><!-- CORNETTO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CREAM SILK</masterLabel>
+            <translation><!-- CREAM SILK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DEGREE</masterLabel>
+            <translation><!-- DEGREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DOMESTOS</masterLabel>
+            <translation><!-- DOMESTOS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DOMEX</masterLabel>
+            <translation><!-- DOMEX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DOVE</masterLabel>
+            <translation><!-- DOVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DOVE MEN+CARE</masterLabel>
+            <translation><!-- DOVE MEN+CARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DR KAUFMANN</masterLabel>
+            <translation><!-- DR KAUFMANN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DRIVE</masterLabel>
+            <translation><!-- DRIVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELEPHANT (FOODS)</masterLabel>
+            <translation><!-- ELEPHANT (FOODS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ESKINOL</masterLabel>
+            <translation><!-- ESKINOL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FAIR &amp; LOVELY</masterLabel>
+            <translation><!-- FAIR &amp; LOVELY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FISSAN</masterLabel>
+            <translation><!-- FISSAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FLORA</masterLabel>
+            <translation><!-- FLORA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FRUIT D&apos;OR</masterLabel>
+            <translation><!-- FRUIT D&apos;OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FRUTTARE</masterLabel>
+            <translation><!-- FRUTTARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HB (FOODS)</masterLabel>
+            <translation><!-- HB (FOODS) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HELLMANNS</masterLabel>
+            <translation><!-- HELLMANNS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IMPULSE</masterLabel>
+            <translation><!-- IMPULSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JIF (HPC)</masterLabel>
+            <translation><!-- JIF (HPC) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KNORR</masterLabel>
+            <translation><!-- KNORR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LADY&apos;S CHOICE</masterLabel>
+            <translation><!-- LADY&apos;S CHOICE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LEVER 2000</masterLabel>
+            <translation><!-- LEVER 2000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIFEBUOY</masterLabel>
+            <translation><!-- LIFEBUOY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIPTON BRISK</masterLabel>
+            <translation><!-- LIPTON BRISK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIPTON HERBAL INFUSIONS</masterLabel>
+            <translation><!-- LIPTON HERBAL INFUSIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIPTON ICE TEA</masterLabel>
+            <translation><!-- LIPTON ICE TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIPTON TEA</masterLabel>
+            <translation><!-- LIPTON TEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIPTON YELLOW LABEL</masterLabel>
+            <translation><!-- LIPTON YELLOW LABEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LUX</masterLabel>
+            <translation><!-- LUX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LYNX</masterLabel>
+            <translation><!-- LYNX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAGNUM</masterLabel>
+            <translation><!-- MAGNUM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAILLE</masterLabel>
+            <translation><!-- MAILLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAIZENA</masterLabel>
+            <translation><!-- MAIZENA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MARMITE</masterLabel>
+            <translation><!-- MARMITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MASTER</masterLabel>
+            <translation><!-- MASTER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MIKO</masterLabel>
+            <translation><!-- MIKO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MOLTO</masterLabel>
+            <translation><!-- MOLTO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MONSAVON</masterLabel>
+            <translation><!-- MONSAVON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NEXXUS</masterLabel>
+            <translation><!-- NEXXUS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOXZEMA</masterLabel>
+            <translation><!-- NOXZEMA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OMO</masterLabel>
+            <translation><!-- OMO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER BRANDS</masterLabel>
+            <translation><!-- OTHER BRANDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER NON-BRANDED</masterLabel>
+            <translation><!-- OTHER NON-BRANDED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P/S</masterLabel>
+            <translation><!-- P/S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PADDLEPOP</masterLabel>
+            <translation><!-- PADDLEPOP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PEARS</masterLabel>
+            <translation><!-- PEARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PENTO</masterLabel>
+            <translation><!-- PENTO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PEPSODENT</masterLabel>
+            <translation><!-- PEPSODENT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PERSIL</masterLabel>
+            <translation><!-- PERSIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PG TIPS</masterLabel>
+            <translation><!-- PG TIPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLANTA</masterLabel>
+            <translation><!-- PLANTA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PONDS</masterLabel>
+            <translation><!-- PONDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>POT NOODLE</masterLabel>
+            <translation><!-- POT NOODLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRO ACTIV</masterLabel>
+            <translation><!-- PRO ACTIV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q TIPS</masterLabel>
+            <translation><!-- Q TIPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RADOX</masterLabel>
+            <translation><!-- RADOX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RAGULETTO</masterLabel>
+            <translation><!-- RAGULETTO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RAMA</masterLabel>
+            <translation><!-- RAMA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>REXONA</masterLabel>
+            <translation><!-- REXONA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RINSO</masterLabel>
+            <translation><!-- RINSO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROYAL</masterLabel>
+            <translation><!-- ROYAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROYCO</masterLabel>
+            <translation><!-- ROYCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SARIWANGI</masterLabel>
+            <translation><!-- SARIWANGI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SELECTION</masterLabel>
+            <translation><!-- SELECTION --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIGNAL</masterLabel>
+            <translation><!-- SIGNAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIMPLE</masterLabel>
+            <translation><!-- SIMPLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKIP</masterLabel>
+            <translation><!-- SKIP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKIPPY</masterLabel>
+            <translation><!-- SKIPPY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOLERO</masterLabel>
+            <translation><!-- SOLERO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPLICE</masterLabel>
+            <translation><!-- SPLICE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ST IVES</masterLabel>
+            <translation><!-- ST IVES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STREETS</masterLabel>
+            <translation><!-- STREETS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUAVE</masterLabel>
+            <translation><!-- SUAVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUN</masterLabel>
+            <translation><!-- SUN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUNLIGHT</masterLabel>
+            <translation><!-- SUNLIGHT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUNSILK</masterLabel>
+            <translation><!-- SUNSILK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SURF</masterLabel>
+            <translation><!-- SURF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TIMOTEI</masterLabel>
+            <translation><!-- TIMOTEI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TRESEMME</masterLabel>
+            <translation><!-- TRESEMME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UNILEVER OTHER</masterLabel>
+            <translation><!-- UNILEVER OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VASELINE</masterLabel>
+            <translation><!-- VASELINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VASELINE MEN</masterLabel>
+            <translation><!-- VASELINE MEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VEGETALINE</masterLabel>
+            <translation><!-- VEGETALINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIENNETTA</masterLabel>
+            <translation><!-- VIENNETTA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VISO</masterLabel>
+            <translation><!-- VISO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIXAL</masterLabel>
+            <translation><!-- VIXAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VO5</masterLabel>
+            <translation><!-- VO5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WALLS</masterLabel>
+            <translation><!-- WALLS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WILLIAMS</masterLabel>
+            <translation><!-- WILLIAMS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WIPOL</masterLabel>
+            <translation><!-- WIPOL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ZWITSAL</masterLabel>
+            <translation><!-- ZWITSAL --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Categoria</label>
+        <name>UID_Category__c</name>
+        <picklistValues>
+            <masterLabel>BAKING COOKING AND SPREADING</masterLabel>
+            <translation><!-- BAKING COOKING AND SPREADING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COFFEE &amp; SNACKS</masterLabel>
+            <translation><!-- COFFEE &amp; SNACKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DEODORANTS &amp; FRAGRANCES</masterLabel>
+            <translation><!-- DEODORANTS &amp; FRAGRANCES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DRESSINGS</masterLabel>
+            <translation><!-- DRESSINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HAIR CARE</masterLabel>
+            <translation><!-- HAIR CARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOUSEHOLD CARE</masterLabel>
+            <translation><!-- HOUSEHOLD CARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ICE CREAM</masterLabel>
+            <translation><!-- ICE CREAM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LAUNDRY</masterLabel>
+            <translation><!-- LAUNDRY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NON CORPORATE PERSONAL CARE CAT</masterLabel>
+            <translation><!-- NON CORPORATE PERSONAL CARE CAT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ORAL CARE</masterLabel>
+            <translation><!-- ORAL CARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHER FOODS</masterLabel>
+            <translation><!-- OTHER FOODS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAVOURY</masterLabel>
+            <translation><!-- SAVOURY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKIN CARE</masterLabel>
+            <translation><!-- SKIN CARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SKIN CLEANSING</masterLabel>
+            <translation><!-- SKIN CLEANSING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TEA AND SOY &amp; FRUIT BEVERAGES</masterLabel>
+            <translation><!-- TEA AND SOY &amp; FRUIT BEVERAGES --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Peso Bruto</label>
+        <name>UID_Gross_Weight__c</name>
+    </fields>
+    <fields>
+        <label>Altura</label>
+        <name>UID_Height__c</name>
+    </fields>
+    <fields>
+        <label>Idioma</label>
+        <name>UID_Language__c</name>
+        <picklistValues>
+            <masterLabel>EN</masterLabel>
+            <translation><!-- EN --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Comprimento</label>
+        <name>UID_Length__c</name>
+    </fields>
+    <fields>
+        <label>Fabricante</label>
+        <name>UID_Manufacturer__c</name>
+    </fields>
+    <fields>
+        <label>Grupo de Material</label>
+        <name>UID_Material_Group__c</name>
+        <picklistValues>
+            <masterLabel>F070</masterLabel>
+            <translation><!-- F070 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>F150</masterLabel>
+            <translation><!-- F150 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>ID do Material</label>
+        <name>UID_Material_ID__c</name>
+    </fields>
+    <fields>
+        <label>Tipo de Material</label>
+        <name>UID_Material_Type__c</name>
+        <picklistValues>
+            <masterLabel>FERT</masterLabel>
+            <translation><!-- FERT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Peso Líquido</label>
+        <name>UID_Net_Weight__c</name>
+    </fields>
+    <fields>
+        <label>Hierarquia de Produto</label>
+        <name>UID_Product_Hierarchy__c</name>
+    </fields>
+    <fields>
+        <label>Unidade da Ordem de Compra</label>
+        <name>UID_Purchase_Order_Unit__c</name>
+        <picklistValues>
+            <masterLabel>CS</masterLabel>
+            <translation><!-- CS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Remaining Shelf Life --></label>
+        <name>UID_Remaining_Shelf_Life__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf Life --></label>
+        <name>UID_Shelf_Life__c</name>
+    </fields>
+    <fields>
+        <label>Unidade da Dimensão</label>
+        <name>UID_Unit_of_Dimension__c</name>
+        <picklistValues>
+            <masterLabel>MM</masterLabel>
+            <translation><!-- MM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Unidade de Volume</label>
+        <name>UID_Volume_Unit__c</name>
+        <picklistValues>
+            <masterLabel>CCM</masterLabel>
+            <translation><!-- CCM --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Volume --></label>
+        <name>UID_Volume__c</name>
+    </fields>
+    <fields>
+        <label>Unidade de Peso</label>
+        <name>UID_Weight_Unit__c</name>
+        <picklistValues>
+            <masterLabel>G</masterLabel>
+            <translation><!-- G --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Width --></label>
+        <name>UID_Width__c</name>
+    </fields>
+    <recordTypes>
+        <label><!-- Products --></label>
+        <name>Products</name>
+    </recordTypes>
+</CustomObjectTranslation>

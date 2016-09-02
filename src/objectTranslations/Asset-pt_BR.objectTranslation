@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label>Tipo</label>
+        <name>ICB_Type__c</name>
+        <picklistValues>
+            <masterLabel>Cart F</masterLabel>
+            <translation>Carrinho F</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cart G</masterLabel>
+            <translation>Carrinho G</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cart P</masterLabel>
+            <translation>Carrinho P</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tricycle</masterLabel>
+            <translation>Triciclo</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>ProductFamily</name>
+        <picklistValues>
+            <masterLabel>Impulse</masterLabel>
+            <translation><!-- Impulse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation>Nenhuma</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scoop</masterLabel>
+            <translation><!-- Scoop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Take Home</masterLabel>
+            <translation><!-- Take Home --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Status</name>
+        <picklistValues>
+            <masterLabel>Installed</masterLabel>
+            <translation>Instalado</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Obsolete</masterLabel>
+            <translation>Obsoleto</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchased</masterLabel>
+            <translation>Comprado</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Registered</masterLabel>
+            <translation>Registrado</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipped</masterLabel>
+            <translation>Despachado</translation>
+        </picklistValues>
+    </fields>
+    <recordTypes>
+        <label><!-- Ice Cream Operator --></label>
+        <name>ICB_Operator</name>
+    </recordTypes>
+</CustomObjectTranslation>

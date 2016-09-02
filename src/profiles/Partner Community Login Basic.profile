@@ -30317,6 +30317,7 @@
         <tab>standard-WorkBadgeDefinition</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
+<<<<<<< HEAD
 	<tabVisibilities>
         <tab>Batimento_de_Vendas</tab>
         <visibility>Hidden</visibility>
@@ -30338,6 +30339,9 @@
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <userLicense>Partner Community Login</userLicense>
+=======
+	<userLicense>Partner Community Login</userLicense>
+>>>>>>> develop
     <userPermissions>
         <enabled>true</enabled>
         <name>AllowUniversalSearch</name>
@@ -30374,6 +30378,7 @@
         <enabled>true</enabled>
         <name>EnableNotifications</name>
     </userPermissions>
+<<<<<<< HEAD
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
@@ -30381,5 +30386,14 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>SelectFilesFromSalesforce</name>
+=======
+     <userPermissions>
+        <enabled>true</enabled>
+        <name>SelectFilesFromSalesforce</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+>>>>>>> develop
     </userPermissions>
 </Profile>

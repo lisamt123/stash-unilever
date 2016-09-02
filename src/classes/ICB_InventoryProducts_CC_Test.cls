@@ -122,8 +122,13 @@ public class ICB_InventoryProducts_CC_Test
     {
         Id pricebookId = Test.getStandardPricebookId();
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
+<<<<<<< HEAD
         contact = ICB_SobjectInstance_SP2_Test.insertContact('Test', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id, '');
         user = ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contact.Id, 'Test','acc','Testac', 'test@accenture.com', 'test@accenture.com.Unilever','testNick');
+=======
+        contact = ICB_SobjectInstance_SP2_Test.insertContact('Test', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), String.valueOf(acc.Id), '', 'emailunilever@unilever.com');
+        user = ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community Login User',contact.Id, 'Test','acc','Testac', 'test@accenture.com', 'test@accenture.com.Unilever','testNick');
+>>>>>>> develop
         product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png');
         inventory2 = ICB_SobjectInstance_SP2_Test.insertInventory('Catanduva Distribuidora');
         inventoryLineItem = ICB_SobjectInstance_SP2_Test.insertInventoryLineItem(product.Id, inventory2.Id,50,10);

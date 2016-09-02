@@ -64,7 +64,11 @@ public class ICB_PriceBookCreation_Test {
     {
         Id pricebookId = Test.getStandardPricebookId();
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
+<<<<<<< HEAD
         contact = ICB_SobjectInstance_SP2_Test.insertContact('Test', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id, '');
+=======
+        contact = ICB_SobjectInstance_SP2_Test.insertContact('Test Sales', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), String.valueOf(acc.Id), 'Ice Cream Salesman','emiluser@unilever.com');
+>>>>>>> develop
         ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contact.Id, 'Test','acc','Testac', 'test@accenture.com', 'test@accenture.com.Unilever','testNick');
         product = ICB_SobjectInstance_SP2_Test.insertProduct2('Frutare Coco', 'impulse', 'Frutare_coco.png');
         products2 = ICB_SobjectInstance_SP2_Test.insertProduct2('Magnum', 'impulse', 'Magnum.png');

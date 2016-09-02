@@ -54,8 +54,13 @@ public class ICB_PhotoMobileChannel_Batch_Test
     private static void createInstances()
     {
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
+<<<<<<< HEAD
         contactSales = ICB_SobjectInstance_SP2_Test.insertContact('Test Sales', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id,'Ice Cream Salesman');
         ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
+=======
+        contactSales = ICB_SobjectInstance_SP2_Test.insertContact('Test Sales', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, Label.ICB_REC_TYPE_STANDARD_CONTACT), acc.Id,'Ice Cream Salesman', 'emailunilever@unilever.com');
+        ICB_SobjectInstance_SP2_Test.insertUserPartnerCommunity('Partner Community Login User',contactSales.Id,'Test Sales','User SL','tusl','user.sales@email.com',
+>>>>>>> develop
                                                                            'user.sales@unilever.com','testSales');
         contentSales = insertContentVersionFeedItem('Test', 'test.png', Blob.valueOf('Test'));
         feedSales = insertFeedItem(contactSales.Id, contentSales.Id, '#foto');

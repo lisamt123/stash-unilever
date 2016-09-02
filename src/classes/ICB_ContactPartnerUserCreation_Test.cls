@@ -67,12 +67,21 @@ public class ICB_ContactPartnerUserCreation_Test
     private static void createInstances()
     {
         acc = ICB_SobjectInstance_SP2_Test.insertAccount('Catanduva Distribuidora', ICB_RecordTypeMemory.getRecType('Account', 'Standard'));
+<<<<<<< HEAD
         contactNew = ICB_SobjectInstance_SP2_Test.insertContact('Test New', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), acc.Id,'Operator');
         contactNew.Email = 'teste.new@unilever.com';
         contactNew.FirstName = 'Test New';
         Database.update(contactNew);
         contactOld = ICB_SobjectInstance_SP2_Test.insertContact('Test Old', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), acc.Id,'Operator');
         contactOld.Email = 'teste.old@unilever.com';
+=======
+        contactNew = ICB_SobjectInstance_SP2_Test.insertContact('Test New', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), acc.Id,'Operator', 'teste.new@unilever.com');
+        //contactNew.Email = 'teste.new@unilever.com';
+        contactNew.FirstName = 'Test New';
+        Database.update(contactNew);
+        contactOld = ICB_SobjectInstance_SP2_Test.insertContact('Test Old', ICB_RecordTypeMemory.getRecType(Label.ICB_SOBJECT_CONTACT, 'ICB_Operator'), acc.Id,'Operator', 'teste.old@unilever.com');
+        //contactOld.Email = 'teste.old@unilever.com';
+>>>>>>> develop
         contactOld.FirstName = 'Test Old';
         Database.update(contactOld);
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Permission_Salesman','ICB Mobile Channel Salesman');
