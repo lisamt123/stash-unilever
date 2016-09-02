@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 src/classes
 src/classes/ICB_AccountDAO.cls
 src/classes/ICB_AccountDAO.cls-meta.xml
@@ -201,7 +199,6 @@ src/documents/Communities_Shared_Document_Folder/kibon_logo_125_png.png
 src/documents/Communities_Shared_Document_Folder-meta.xml
 src/profiles
 src/profiles/Partner Community Login Basic.profile
->>>>>>> develop
 src/staticresources
 src/staticresources/ICB_SLDS202_CSS.resource
 src/staticresources/ICB_SLDS202_CSS.resource-meta.xml
