@@ -1,6 +1,13 @@
 ({
     MAX_FILE_SIZE: 4500000,/* 5 MB => Bytes*/
     CHUNK_SIZE: 250000,
+    dataURItoBlob : function(component,a) {
+            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
+            return new Blob([new Uint8Array(c)], {
+                type:'image/jpeg'
+            })
+        },
+    
     uploadFile : function(component,event,inputFileFieldName) {
         var fileInput = component.find(inputFileFieldName).getElement();
         var file = fileInput.files[0];
@@ -8,12 +15,12 @@
         var filename = a.name;
         var extension = filename.replace(/^.*\./, '');
         extension = extension.toLowerCase();
-        function dataURItoBlob(a) {
+    /*    function dataURItoBlob(a) {
             for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
             return new Blob([new Uint8Array(c)], {
                 type:'image/jpeg'
             })
-        }
+        }*/
         if (file.size > this.MAX_FILE_SIZE) {
             var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
@@ -54,7 +61,7 @@
                                 } else { h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH); }
                             h.setTransform(1, 0, 0, 1, 0, 0);
                             var l = g.toDataURL("image/jpeg"),
-                                m = dataURItoBlob(l);
+                                m = this.dataURItoBlob(component,l);
                             console.log(m);
                             console.log("Type:"+ a.type);
                             self.upload(component, a, l);
