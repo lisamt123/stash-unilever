@@ -22,7 +22,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
         
         oppProd = createOLI();
         insert oppProd;
-        
+        system.assert(oppProd.Id <> null);
         }
         
         PageReference pageRef = Page.FS_SendEmailWithMDMRequest;
@@ -33,7 +33,12 @@ Public class FS_GenerateMDMRequest_CX_Test{
         
         controller.getDefaultCSValue();
         controller.getHeaderCSValue();
-
+        DateTime dSent = controller.dateSent;
+        Opportunity oppRec = controller.opportunityRecord;
+        Account accRec = controller.accountRecord;
+        Map<Id, Product2> prodMap = controller.product2Map;
+        List<OpportunityLineItem> oli = controller.opportunityProducts;
+        //system.assert
     } 
     
         

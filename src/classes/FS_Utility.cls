@@ -7,17 +7,16 @@ VERSION AUTHOR         DATE         DETAIL Description
 ***********************************************************************/
 
 public Class FS_Utility{
-    //Purpose: Used in Opportunity trigger to avoid recursion.Class NAFS_OpportunityHelper, update Opp with Opp Line Item Value
-    private static boolean run = true;
+    private static boolean OppProduct= true;//Used in after update trigger - FS_OpportunityHelper
     private static boolean runaccPlan = true;
     private static boolean runobj = true;
-    private static boolean run4 = true;
-    public static boolean runOnce(){
-        if(run){
-            run=false;
+    private static boolean ContractProduct= true;//Used in after update trigger - FS_ContractProductHelper
+    public static boolean runOnceOppProduct(){
+        if(OppProduct){
+            OppProduct=false;
             return true;
         }else{
-            return run;
+            return OppProduct;
         }
     }
     public static boolean runaccPlanOnce(){
@@ -36,12 +35,12 @@ public Class FS_Utility{
             return runobj;
         }
     } 
-    public static boolean run4Once(){
-        if(run4){
-            run4=false;
+    public static boolean runOnceContractProduct(){
+        if(ContractProduct){
+            ContractProduct=false;
             return true;
         }else{
-            return run4;
+            return ContractProduct;
         }
     }
    }

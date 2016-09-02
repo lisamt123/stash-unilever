@@ -72,7 +72,7 @@ Public with sharing class FS_ContactDetail_CC {
         String urlId =Label.FS_UrlId+FS_ContactUtility.SITELEADID+accountId;
         String clientId =Label.FS_PIIClientId; 
         String clientSecretKey=Label.FS_ClientSecretKey; 
-        Http h = new Http();
+        Http varHttp = new Http();
         
         // Instantiate a new HTTP request, specify the method (GET) as well as the endpoint
         HttpRequest varRequest = new HttpRequest();
@@ -96,7 +96,7 @@ Public with sharing class FS_ContactDetail_CC {
             }
             else
             {
-                varResponse = h.send(varRequest);
+                varResponse = varHttp.send(varRequest);
             }
         }
         catch(Exception e)
@@ -214,8 +214,6 @@ Public with sharing class FS_ContactDetail_CC {
         String  varAccountName=[select id,name from Account where id=:varContactDetail.AccountiD limit 1].name;   
         FS_UserData varSiteLead= new FS_UserData();
         
-        FS_ExtraParameters varExtraParameters = new FS_ExtraParameters();
-        
         varSiteLead.Firstname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(varContactDetail.firstname)));
         varSiteLead.Surname= EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(varContactDetail.lastname)));
         varSiteLead.SecretKey=SecretKey;
@@ -301,14 +299,14 @@ Public with sharing class FS_ContactDetail_CC {
         }
         
         if(Integer.valueOf(res.getStatusCode())==FS_ContactUtility.STATUSCODE){
-            JSONParser parser1 = JSON.createParser(String.valueOf(res.getBody()));
+            JSONParser varParserForCode = JSON.createParser(String.valueOf(res.getBody()));
             String errorCode;
-            while (parser1 .nextToken() != null) {
-                if ((parser1 .getCurrentToken() == JSONToken.FIELD_NAME)) {
-                    String fieldName = parser1.getText();
-                    parser1.nextToken();
-                    if (fieldName.equals('ErrorCode')) {
-                        errorCode= parser1.getText();
+            while (varParserForCode.nextToken() != null) {
+                if ((varParserForCode.getCurrentToken() == JSONToken.FIELD_NAME)) {
+                    String fieldName = varParserForCode.getText();
+                    varParserForCode.nextToken();
+                    if (!String.isBlank(fieldName) && fieldName.equals('ErrorCode')) {
+                        errorCode= varParserForCode.getText();
                     } 
                 }
             }

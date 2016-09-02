@@ -16,10 +16,10 @@ public with sharing class FS_GenerateMDMRequest_CX{
     
     
     private Id opportunityId;
-    private static final String SystemAdmin = 'System Administrator';
+    //private static final String SystemAdmin = 'System Administrator';
     private static final String RoleUFSRussia = 'UFS Russia';
     private static final String StepStatusStarted = 'Started';
-    private static final Id SYS_ADMIN_PROFILE_ID = [SELECT ProfileId FROM User WHERE Profile.Name = :SystemAdmin Limit 1].ProfileId;
+    //private static final Id SYS_ADMIN_PROFILE_ID = [SELECT ProfileId FROM User WHERE Profile.Name = :SystemAdmin Limit 1].ProfileId;
     
     /*******************************************************************
     Purpose: Constructor method
@@ -31,8 +31,6 @@ public with sharing class FS_GenerateMDMRequest_CX{
          opportunityId = stdController.getId();
     }
     
-    public void identifyAction(){
-    }
     
     /*******************************************************************
     Purpose: Variable for DateSent
@@ -98,7 +96,8 @@ public with sharing class FS_GenerateMDMRequest_CX{
     Throws [Exceptions]: N/A
     ********************************************************************/
     public FS_MDMEmailRequestDefaultValue__c getDefaultCSValue(){
-        FS_MDMEmailRequestDefaultValue__c mdmDefaultValue = FS_MDMEmailRequestDefaultValue__c.getOrgDefaults();         
+        //FS_MDMEmailRequestDefaultValue__c mdmDefaultValue = FS_MDMEmailRequestDefaultValue__c.getOrgDefaults();
+        FS_MDMEmailRequestDefaultValue__c mdmDefaultValue = FS_MDMEmailRequestDefaultValue__c.getInstance(UserInfo.getProfileId());          
         return mdmDefaultValue;
     }
      
@@ -109,7 +108,8 @@ public with sharing class FS_GenerateMDMRequest_CX{
     Throws [Exceptions]: N/A
     ********************************************************************/   
     public FS_MDMEmailRequestTemplate__c getHeaderCSValue(){
-        FS_MDMEmailRequestTemplate__c mdmHeader = FS_MDMEmailRequestTemplate__c.getOrgDefaults();
+        //FS_MDMEmailRequestTemplate__c mdmHeader = FS_MDMEmailRequestTemplate__c.getOrgDefaults();
+        FS_MDMEmailRequestTemplate__c mdmHeader = FS_MDMEmailRequestTemplate__c.getInstance(UserInfo.getProfileId());
         return mdmHeader;
     }
     

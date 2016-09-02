@@ -20,12 +20,14 @@ public with sharing class FS_ContractProductHelper {
             ProductIdList.add(cp.Product__c);
         }
         
+        //Retrieve the product schedule from the associated Opportunity Product
         Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
         OppList = [SELECT Id FROM Opportunity WHERE RecordTypeId =:newRecordTypeId and isWOn = true and ContractId in : ContractIdList];
         system.debug('OppList -->'+OppList ); 
         OLIList = [select id, Opportunity.AccountId, Product2Id, Contract_Product__c from OpportunityLineItem where OpportunityId in : OppList and Product2Id in : ProductIdList];
         ScheduleList = [SELECT OpportunityLineItemId,Quantity,ScheduleDate FROM OpportunityLineItemSchedule where OpportunityLineItemId in : OLIList AND Quantity > 0];
         
+        //Create Monthly Claimed Cases for each Product Schedule
         for(OpportunityLineItem oli : OLIList){
             for(Contract_Product__c conPro : ContractProdList){
                 if(oli.Product2Id == conPro.Product__c){
@@ -48,7 +50,7 @@ public with sharing class FS_ContractProductHelper {
     } 
     
     public void updateClaimedCases(List<Contract_Product__c> ContractProdList){
-         if(FS_Utility.run4Once()){
+         if(FS_Utility.runOnceContractProduct()){//To prevent recursion in after update trigger
             List<ID> ProductIdList = new List<ID>();
             List<ID> ContractIdList = new List<ID>();
             List<ID> OppIdList = new List<ID>();
@@ -65,22 +67,22 @@ public with sharing class FS_ContractProductHelper {
             }
             system.debug(ContractIdList);
             Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-            //CustomSettingList = [select FS_Opportunity__c from FS_Contract_Product_Opportunity_Map__c];
+            
+            //While updating Contract Product custom setting record is inserted, fetching and deleting those
             CustomSettingList = FS_Contract_Product_Opportunity_Map__c.getall().values();
             system.debug('CustomSettingList -->'+CustomSettingList);
             OppIdList.clear();
             for(FS_Contract_Product_Opportunity_Map__c cs :CustomSettingList ){
                 OppIdList.add(id.ValueOf(cs.FS_Opportunity__c));
             }
-            system.debug('OppIdList-->'+OppIdList);
+            
+            //Retrieve the existing Monthly Claimed Case
             OppList = [SELECT Id FROM Opportunity WHERE ContractId IN : ContractIdList and Id in : OppIdList and RecordTypeId =:newRecordTypeId];
-            system.debug('OppList -->'+OppList);
             OLIList = [select id, Opportunity.AccountId, Product2Id from OpportunityLineItem where OpportunityId in : OppList and Product2Id in : ProductIdList];
-            system.debug('OLIList -->'+OLIList);
             ScheduleList = [SELECT OpportunityLineItemId,Quantity,ScheduleDate FROM OpportunityLineItemSchedule where OpportunityLineItemId in : OLIList AND Quantity > 0];
-            system.debug('ScheduleList -->'+ScheduleList);
             MCCList = [SELECT Id, FS_First_of_Month__c, Account__c, FS_Planned_Quantity__c, Product__c  FROM FS_Monthly_Claimed_Cases__c where Contract_Product__r.Contract__c in : ContractIdList];
-                    
+            
+            //Updating the planned quantity of related monthly claimed case        
             for(OpportunityLineItem oli : OLIList){
                 for(OpportunityLineItemSchedule Schedule : ScheduleList){
                     if(oli.Id == Schedule.OpportunityLineItemId){
@@ -92,7 +94,7 @@ public with sharing class FS_ContractProductHelper {
                     }
                 } 
             }
-            system.debug(MCCList);
+            //system.debug(MCCList);
             Update MCCList;
             Delete CustomSettingList ;      
         }  

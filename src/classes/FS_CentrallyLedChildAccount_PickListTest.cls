@@ -81,18 +81,10 @@ private class FS_CentrallyLedChildAccount_PickListTest {
             List<SelectOption> tf = fscc.ChildAccountList;
             List<Task> tf1 = fscc.ChildAccountTaskList;
             List<String> str1 = fscc.CentrallyLedList;
-            fscc.CentrallyLedList = stringList;
-            //FS_CentrallyLedChildAccount_Picklist fscc1 = new FS_CentrallyLedChildAccount_Picklist();
-            //List<SelectOption> tf = new List<SelectOption>();//FS_CentrallyLedChildAccount_Picklist.getChildAccountList();
-            //FS_CentrallyLedChildAccount_Picklist.ChildAccountList=tf;
-             pagereference page1 = fscc.CreateTask();
-             pagereference page2 = fscc.CreateTask();
-            //fscc.CreateTask();
-            //fscc.CreateTask();
-            system.assertEquals((task)sc.getRecord(), tsk);
-        }   
-        
-    }
-    
-    
+            //fscc.CentrallyLedList = stringList;            
+            fscc.CreateTask();
+            fscc.CreateTask();            
+            system.assertEquals((task)sc.getRecord(), tsk);            
+        }      
+    }   
 }

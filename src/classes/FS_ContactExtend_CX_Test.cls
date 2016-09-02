@@ -45,7 +45,7 @@ public class FS_ContactExtend_CX_Test{
         tempobj.createContact();
         
         ApexPages.StandardController sc = new ApexPages.StandardController(varAccount);
-        FS_ContactExtend_CX controller = new FS_ContactExtend_CX();
+      //  FS_ContactExtend_CX controller = new FS_ContactExtend_CX();
         FS_ContactExtend_CX instance = new FS_ContactExtend_CX(sc);
         instance.createContact();
         
@@ -61,7 +61,7 @@ public class FS_ContactExtend_CX_Test{
 }
     
     public static testMethod void FS_ContactExtend_CE_TestMethod1() {
-       Account varAccount =new Account(name = 'Account name',CurrencyIsoCode='USD');
+      // Account varAccount =new Account(name = 'Account name',CurrencyIsoCode='USD');
         Account acc = new Account();
           //varAccount.name='Account name';
           //varAccount.CurrencyIsoCode='USD';

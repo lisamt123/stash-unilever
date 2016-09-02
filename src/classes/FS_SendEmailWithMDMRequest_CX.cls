@@ -16,12 +16,12 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
     
     
     private Id opportunityId;
-    public final static FS_MDMEmailRequestDefaultValue__c MDMDefaultValue = FS_MDMEmailRequestDefaultValue__c.getOrgDefaults();
-    
+    //public final static FS_MDMEmailRequestDefaultValue__c MDMDefaultValue = FS_MDMEmailRequestDefaultValue__c.getOrgDefaults();
+    public final static FS_MDMEmailRequestDefaultValue__c MDMDefaultValue = FS_MDMEmailRequestDefaultValue__c.getInstance(UserInfo.getProfileId());
     private static final String SystemAdmin = 'System Administrator';
     private static final String RoleUFSRussia = 'UFS Russia';
     //Holds the System Administrator profile id
-    private static final Id SYS_ADMIN_PROFILE_ID = [SELECT ProfileId FROM User WHERE Profile.Name = :SystemAdmin Limit 1].ProfileId;
+    //private static final Id SYS_ADMIN_PROFILE_ID = [SELECT ProfileId FROM User WHERE Profile.Name = :SystemAdmin Limit 1].ProfileId;
     public boolean sendButton{get; set;}
     
         /*******************************************************************
@@ -81,8 +81,8 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
                         UserRole uRole = [SELECT Id, Name  
                                             FROM UserRole 
                                             WHERE Id = :UserInfo.getUserRoleId() Limit 1];
-                        if (uRole.Name.equalsIgnoreCase(RoleUFSRussia) || UserInfo.getProfileId().equals(SYS_ADMIN_PROFILE_ID) ){
-                                sendButton = true;
+                        if (uRole.Name.equalsIgnoreCase(RoleUFSRussia)) { // || UserInfo.getProfileId().equals(SYS_ADMIN_PROFILE_ID) ){
+                             sendButton = true;
                         }else{
                             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING, mdmPageMessages.FS_NoAccessMessage__c));
                         }
@@ -182,14 +182,15 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
         emailWithAttach.setToaddresses(emailRecipientList);
         emailWithAttach.setSubject(emailSubject);
         emailWithAttach.setPlainTextBody(emailBody);
+        emailWithAttach.setCharSet('UTF-8');
         
         //Attach the excel in the email to be sent
         emailWithAttach.setFileAttachments(new Messaging.EmailFileAttachment[]{attach, attachExcel});
         
         // Sends the email
         if(!Test.isRunningTest()){
-        	Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {emailWithAttach});
-        	}
+                Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {emailWithAttach});
+                }
         opportunityRecord.FS_MDMRequestSent__c = true;
         try {
                 //tag opportunity as MDM request email sent

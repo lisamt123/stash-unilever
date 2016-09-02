@@ -14,7 +14,7 @@ VERSION AUTHOR   DATE        DETAIL Description
 
 
 
-public without sharing class FS_CreateContact_CC {
+public with sharing class FS_CreateContact_CC {
     
     
     Public Contact varContactDetail{get;set;}

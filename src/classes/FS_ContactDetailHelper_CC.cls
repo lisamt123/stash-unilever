@@ -35,7 +35,6 @@ public with sharing class FS_ContactDetailHelper_CC{
         Public List<FS_ExtraParameters> extraParameters = new list<FS_ExtraParameters>();
         public String facebookId;   //897384
         public String Firstname{get;set;}    //
-       // public Blob Firstname{get;set;}    //
         public String gender;   //Male
         public String id;   //414c01d6-48fa-4578-9bfb-cf1b9c01335c
         public Integer income;  //70000

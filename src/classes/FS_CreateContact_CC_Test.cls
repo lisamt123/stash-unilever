@@ -139,9 +139,9 @@ public class FS_CreateContact_CC_Test{
         varSiteLead.BusinessPostalCode ='1234'; 
         varSiteLead.Country='US'; 
         
-        FS_CreateContact_CC.FS_SiteLeadMain FS_SiteLeadMain=new FS_CreateContact_CC.FS_SiteLeadMain();
-        FS_CreateContact_CC.FS_SiteLead SiteLead;
-        SiteLead=varSiteLead; 
+      //  FS_CreateContact_CC.FS_SiteLeadMain FS_SiteLeadMain=new FS_CreateContact_CC.FS_SiteLeadMain();
+       // FS_CreateContact_CC.FS_SiteLead SiteLead;
+       // SiteLead=varSiteLead; 
         
         Test.setCurrentPageReference(new PageReference('Page.FS_CreateContact')); 
         System.currentPageReference().getParameters().put('id', varAccount.id);

@@ -4,70 +4,117 @@ public class FS_Monthly_Planning_Russia_CX {
     Private List<Event> listEvents;
     Private List<Event> tempEvents;
     Private date startdate;
-    Private date endDate;    
-    Public Map<Id,List<Event>> userEventsMap=new Map<Id,List<Event>>();  
-    Private FS_MonthlyPlanner monthly_Planner=new FS_MonthlyPlanner();    
+    Private date endDate; 
+    Private integer nonworkingDays {get;set;}
+    Private integer weekend_Count {get;set;}
+    Public Map<Id,List<Event>> userEventsMap=new Map<Id,List<Event>>();
+    Public Map<Id,Set<String>> userActivityDateMap=new Map<Id,Set<String>>();
+    Private FS_MonthlyPlanner monthly_Planner=new FS_MonthlyPlanner();
+    Public Integer noofHolidays{get;set;}
+    Public Integer noofWeekends{get;set;}
+    Public Integer noofDays{get;set;}    
+    Public Date monthStartDate{get;set;}
+    Public Date monthEndDate{get;set;}
+    Public Date dateName{get;set;}
+    Public Integer workingDays{get;set;}
+    Public Boolean isVisible{get;set;}
+    Public Integer noofHolidaysTillDate{get;set;}
+    Public integer i{get;set;}
+    Public Integer workingDaysTillDate{get;set;}
+    Public void FS_Monthly_Planning_Russia_CX(){
+       isVisible=false; 
+    }
     Public void setlistMonthlyPlanner(){}
-    Public List<FS_MonthlyPlanner> getlistMonthlyPlanner(){
-       //listRussiaUsers=[select id,name from user limit 10];
-       //listEvents=[select id,Ownerid from event where Ownerid in : listRussiaUsers];
-       Integer holidaysCount = 0;
-       BusinessHours temp = [SELECT ID, Name, IsDefault, IsActive From BusinessHours 
+    Public pagereference refreshPage(){
+        nonworkingDays= 0;
+        weekend_Count = 0;
+        isVisible=true;        
+        monthStartDate=dateName.toStartOfMonth();
+        monthEndDate=monthStartDate.addDays(date.daysInMonth(dateName.year(),dateName.month())-1);
+        BusinessHours temp = [SELECT ID, Name, IsDefault, IsActive From BusinessHours 
                                     WHERE name=:'Russia Business Hours'];
-       startDate=System.today().toStartOfMonth();
-       endDate=startdate.addDays(date.daysInMonth(System.today().year(),System.today().month())-1); 
-       Date txnDate = startDate;
-       BusinessHours bh=temp;
-       While(txnDate!=endDate){
-       Datetime now = Datetime.newInstance(txnDate.year(), txnDate.month(), txnDate.day(), 0, 0, 0);        
-       Boolean isHoliday = !BusinessHours.isWithin(bh.Id, now);
-       System.debug('The value of isHoliday is : '+isHoliday);
-       if (isHoliday) {
-            holidaysCount++;
+        Date txnDate = monthStartDate;
+        BusinessHours bh=temp;
+        While(txnDate!=monthEndDate){
+        Datetime now = Datetime.newInstance(txnDate.year(), txnDate.month(), txnDate.day(), 0, 0, 0);        
+        Boolean isHoliday = !BusinessHours.isWithin(bh.Id, now);
+        System.debug('The value of now is : '+isHoliday);
+        if (isHoliday) {
+            weekend_Count++;
         }
         txnDate = txnDate.addDays(1);
         }
-        system.debug(holidaysCount);
+        //system.debug(weekend_Count);
+        noofWeekends=weekend_Count;
+        weekend_Count=0;
+        txnDate = monthStartDate;
+        bh=temp;
+        While(txnDate!=dateName){
+        Datetime now = Datetime.newInstance(txnDate.year(), txnDate.month(), txnDate.day(), 0, 0, 0);        
+        Boolean isHoliday = !BusinessHours.isWithin(bh.Id, now);
+        System.debug('The value of now is : '+isHoliday);
+        if (isHoliday) {
+            weekend_Count++;
+        }
+        txnDate = txnDate.addDays(1);
+        }
+        //system.debug(weekend_Count);
+        noofHolidaysTillDate=weekend_Count;       
+        noofDays=monthStartDate.daysBetween(monthEndDate)+1;
+        workingDays=noofDays-noofWeekends;
+        return page.FS_Monthly_Planning_Russia_Detail;
+    }
+    Public List<FS_MonthlyPlanner> getlistMonthlyPlanner(){       
+       
        tempEvents=new List<Event>();
-       listMonthlyPlanner=new List<FS_MonthlyPlanner>();
-       Id userId='005E000000473oY';       
-       listRussiaUsers=[select id,name from user where id=:userId];            
-       listEvents=[select id,Ownerid from event where Ownerid in : listRussiaUsers and ActivityDate>:startDate and ActivityDate<:endDate]; // Need to put filter on StartDateTime  
+       listMonthlyPlanner=new List<FS_MonthlyPlanner>();         
+       listRussiaUsers=[select id,name from user  where managerId=:userInfo.getUserId()];         
+       listEvents=[select id,Ownerid,ActivityDate from event where Ownerid in : listRussiaUsers and ActivityDate>:monthStartDate and ActivityDate<:dateName]; // Need to put filter on StartDateTime  
        tempEvents=new List<Event>();
-       system.debug(listEvents);
+       //system.debug(listEvents);
        For(Event eventRecord : listEvents){
+            tempEvents=new List<Event>();
             If(userEventsMap.containsKey(eventRecord.OwnerId)){
               tempEvents=userEventsMap.get(eventRecord.OwnerId);
             }
             tempEvents.add(eventRecord);
             userEventsMap.put(eventRecord.OwnerId, tempEvents);
-        }           
+        }
+        Set<String> tempDates=new Set<String>();
+        For(Event eventRecord : listEvents){
+            tempDates=new Set<String>();
+            If(userActivityDateMap.containsKey(eventRecord.OwnerId)){
+              tempDates=userActivityDateMap.get(eventRecord.OwnerId);
+            }
+            tempDates.add(String.ValueOf(eventRecord.ActivityDate));
+            userActivityDateMap.put(eventRecord.OwnerId, tempDates);
+        }      
        For(User userRecord : listRussiaUsers){
-            system.debug(userRecord);           
+            system.debug(userRecord);
+            tempEvents=new list<Event>();
+            tempDates=new Set<String>();
             monthly_Planner=new FS_MonthlyPlanner();
             If(userEventsMap.containsKey(userRecord.Id)){
-               tempEvents=userEventsMap.get(userRecord.Id);
-               system.debug(tempEvents);
+               tempEvents=userEventsMap.get(userRecord.Id);              
             }
-         // List<Holiday> listHoliday=[select id, ActivityDate, RecurrenceStartDate from holiday where ActivityDate>:startDate and ActivityDate<:endDate];  
-         List<AggregateResult> listHoliday=[select Count(id) from holiday where ActivityDate>:startDate and ActivityDate<=:endDate];
-           listHoliday.size();
-           System.debug('------------' +listHoliday);
-           startDate=System.today().toStartOfMonth();
-           endDate=startdate.addDays(date.daysInMonth(System.today().year(),System.today().month())-1);
+            If(userActivityDateMap.containsKey(userRecord.Id)){
+               tempDates=userActivityDateMap.get(userRecord.Id);              
+            }
             //Assign value to new monthly planned record            
-            monthly_Planner.userName=userRecord.Name;
-            monthly_Planner.monthStartDate=startDate;
-            monthly_Planner.monthEndDate=endDate;
-            monthly_Planner.WorkingDays=startDate.daysBetween(endDate)-holidaysCount+1;
+            monthly_Planner.userName=userRecord.Name;           
             monthly_Planner.actual=tempEvents.size();
-            monthly_Planner.plan=monthly_Planner.WorkingDays*8;
-            system.debug(monthly_Planner);
-            monthly_Planner.average=monthly_Planner.actual/monthly_Planner.WorkingDays;
-           IF(monthly_Planner!=null){
-             listMonthlyPlanner.add(monthly_Planner);
-               
-               //list<Holiday> h1=[select id, ActivityDate, RecurrenceStartDate from holiday where ActivityDate >THIS_MONTH 
+            i=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate-tempDates.size()+1;
+            workingDaysTillDate=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate+1;            
+            monthly_Planner.plan=workingDays*8;
+            monthly_Planner.actualWorkingDays=tempDates.size();
+            If(tempDates.size()>0){
+              //monthly_Planner.average=(monthly_Planner.actual*100)/monthly_Planner.workingDaysTillDate;
+              monthly_Planner.average=(monthly_Planner.actual*100)/tempDates.size();
+              monthly_Planner.target=((tempDates.size()*100)/workingDaysTillDate);
+              monthly_Planner.criticalTarget=monthly_Planner.target-10; 
+            }           
+            IF(monthly_Planner!=null){
+            listMonthlyPlanner.add(monthly_Planner);
            }            
         }       
        return listMonthlyPlanner;

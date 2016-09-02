@@ -72,7 +72,7 @@ public class FS_ContactDetail_Test {
         varAccount.CurrencyIsoCode='USD';
         insert varAccount; 
       
-        Http http = new Http();
+     //   Http http = new Http();
         HTTPResponse res = new HTTPResponse();
         res.setBody(varResonseResult);
         res.setStatusCode(200);
@@ -92,14 +92,14 @@ public class FS_ContactDetail_Test {
         Test.setCurrentPageReference(new PageReference('Page.FS_ContactDetailPage')); 
         System.currentPageReference().getParameters().put('id',  con.FS_RefId__c);
         
-        FS_ContactDetail_CC tempdetail = new FS_ContactDetail_CC();
+      //  FS_ContactDetail_CC tempdetail = new FS_ContactDetail_CC();
         
          Test.setCurrentPageReference(new PageReference('Page.FS_ContactDetailPage')); 
         System.currentPageReference().getParameters().put('id',  con.FS_RefId__c);
         
-        FS_ContactDetail_CC tempdetail1 = new FS_ContactDetail_CC();
-        tempdetail1.editPage();
-        tempdetail1.updateContact();
+        FS_ContactDetail_CC tempdetail = new FS_ContactDetail_CC();
+        tempdetail.editPage();
+        tempdetail.updateContact();
         
     }
     

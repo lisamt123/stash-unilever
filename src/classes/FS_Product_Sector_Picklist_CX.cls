@@ -20,7 +20,7 @@ public with sharing class FS_Product_Sector_Picklist_CX {
         selectedSector=risk.FS_Sector__c;
     }    
     Public pagereference autorun(){
-        Schema.DescribeFieldResult picklist_Detail= Product2.ProductCategory__c.getDescribe();        
+        Schema.DescribeFieldResult picklist_Detail= Product2.SubSector__c.getDescribe();        
         listSector_Picklist=new List<SelectOption>();        
         For(Schema.PicklistEntry picklistEntry : picklist_Detail.getPicklistValues()){
         listSector_Picklist.add(new SelectOption(picklistEntry.getValue(),picklistEntry.getLabel()));
