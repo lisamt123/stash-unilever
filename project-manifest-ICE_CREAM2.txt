@@ -65,6 +65,8 @@ src/classes/ICB_PriceBookProductsInsert.cls
 src/classes/ICB_PriceBookProductsInsert.cls-meta.xml
 src/classes/ICB_SetupMobileChannel.cls
 src/classes/ICB_SetupMobileChannel.cls-meta.xml
+src/classes/ICB_SetupMobileChannel_Test.cls
+src/classes/ICB_SetupMobileChannel_Test.cls-meta.xml
 src/objects
 src/objects/ICB_ContactTypes__c.object
 src/objects/ICB_Sales_Locale__c.object
@@ -91,14 +93,8 @@ src/labels/ICB.labels
 src/networks
 src/networks/Mobile Channel.network
 src/triggers
-src/triggers/ICB_FeedItemMobileChannel.trigger
-src/triggers/ICB_FeedItemMobileChannel.trigger-meta.xml
 src/triggers/ICB_Setup_Mobile_Channel.trigger
 src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
-src/triggers/ICB_SetupMobileChannelPhoto.trigger
-src/triggers/ICB_SetupMobileChannelPhoto.trigger-meta.xml
-src/triggers/ICB_SetupPhotoMobileChannel.trigger
-src/triggers/ICB_SetupPhotoMobileChannel.trigger-meta.xml
 src/aura
 src/aura/ICB_CloseSale/ICB_CloseSale.cmp
 src/aura/ICB_CloseSale/ICB_CloseSale.cmp-meta.xml
@@ -111,6 +107,8 @@ src/aura/ICB_CloseSaleContact/ICB_CloseSaleContactController.js
 src/aura/ICB_CloseSaleContact/ICB_CloseSaleContactHelper.js
 src/aura/ICB_Cockpit/ICB_Cockpit.cmp
 src/aura/ICB_Cockpit/ICB_Cockpit.cmp-meta.xml
+src/aura/ICB_Cockpit/ICB_CockpitController.js
+src/aura/ICB_Cockpit/ICB_CockpitHelper.js
 src/aura/ICB_Cockpit_Header/ICB_Cockpit_Header.cmp
 src/aura/ICB_Cockpit_Header/ICB_Cockpit_Header.cmp-meta.xml
 src/aura/ICB_Cockpit_Header/ICB_Cockpit_Header.css
@@ -170,13 +168,18 @@ src/aura/ICB_Static_LineItem_Inventory/ICB_Static_LineItem_Inventory.evt
 src/aura/ICB_Static_LineItem_Inventory/ICB_Static_LineItem_Inventory.evt-meta.xml
 src/aura/ICB_ProductLineItemInventory/ICB_ProductLineItemInventory.evt
 src/aura/ICB_ProductLineItemInventory/ICB_ProductLineItemInventory.evt-meta.xml
-src/flows
-src/flows/ICB_Product_PriceBook_Insert-1.flow
 src/layouts
 src/layouts/ICB_Inventory__c-Inventory Layout.layout
 src/layouts/ICB_Inventory_Line_Item__c-Inventory Line Item Layout.layout
 src/layouts/ICB_Sales_Locale__c-Sales Locale Layout.layout
 src/layouts/ICB_Setup_Photo__c-Setup Photo Layout.layout
+src/layouts/Account-Secondary Account.layout
+src/layouts/Asset-Asset Layout.layout
+src/layouts/Contact-Contact Layout.layout
+src/layouts/Opportunity-Opportunity Layout.layout
+src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/layouts/PricebookEntry-Price Book Entry Layout.layout
+src/layouts/Product2-Product Layout.layout
 src/tabs
 src/tabs/ICB_Sales_Locale__c.tab
 src/tabs/ICB_Close_Sales.tab
@@ -201,3 +204,23 @@ src/documents/Communities_Shared_Document_Folder/kibon_logo_125_png.png
 src/documents/Communities_Shared_Document_Folder-meta.xml
 src/profiles
 src/profiles/Partner Community Login Basic.profile
+src/sharingRules
+src/sharingRules/Account.sharingRules
+src/applications
+src/applications/ICB_Mobile_Channel.app
+src/groups
+src/groups/ICB_Mobile_Channel.group
+src/objectTranslations
+src/objectTranslations/Account-en_US.objectTranslation
+src/objectTranslations/Asset-en_US.objectTranslation
+src/objectTranslations/Asset-pt_BR.objectTranslation
+src/objectTranslations/Contact-en_US.objectTranslation
+src/objectTranslations/OpportunityLineItem-pt_BR.objectTranslation
+src/objectTranslations/PricebookEntry-pt_BR.objectTranslation
+src/objectTranslations/Product2-pt_BR.objectTranslation
+src/translations
+src/translations/pt_BR.translation
+src/translations/en_US.translation
+src/staticresources
+src/staticresources/ICB_SLDS202_CSS.resource
+src/staticresources/ICB_SLDS202_CSS.resource-meta.xml

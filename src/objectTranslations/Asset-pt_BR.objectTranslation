@@ -62,6 +62,13 @@
             <translation>Despachado</translation>
         </picklistValues>
     </fields>
+    <layouts>
+        <layout>Asset Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Ice Cream Operator --></label>
         <name>ICB_Operator</name>

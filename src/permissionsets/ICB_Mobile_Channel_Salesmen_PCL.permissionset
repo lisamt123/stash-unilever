@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>ICB_Mobile_Channel</application>
+        <visible>false</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>ICB_AccountDAO</apexClass>
         <enabled>false</enabled>
@@ -114,6 +118,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_ReturnStock_Batch_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ICB_SetupMobileChannel</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ICB_SetupMobileChannel_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1601,7 +1613,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Contact.ICB_Salesman</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Contact.Pitch_Contact</recordType>
@@ -1609,7 +1621,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Contact.Standard_Contact</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>ICB_Inventory_Line_Item__c.ICB_Inventory_Line_Item</recordType>

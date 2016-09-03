@@ -699,6 +699,13 @@
         <label><!-- Width --></label>
         <name>UID_Width__c</name>
     </fields>
+    <layouts>
+        <layout>Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Products --></label>
         <name>Products</name>
