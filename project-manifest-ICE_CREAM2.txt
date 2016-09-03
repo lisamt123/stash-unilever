@@ -170,6 +170,7 @@ src/aura/ICB_ProductLineItemInventory/ICB_ProductLineItemInventory.evt
 src/aura/ICB_ProductLineItemInventory/ICB_ProductLineItemInventory.evt-meta.xml
 src/flows
 src/flows/ICB_Product_PriceBook_Insert-1.flow
+src/flows/ICB_Product_PriceBook_Insert-2.flow
 src/layouts
 src/layouts/ICB_Inventory__c-Inventory Layout.layout
 src/layouts/ICB_Inventory_Line_Item__c-Inventory Line Item Layout.layout
