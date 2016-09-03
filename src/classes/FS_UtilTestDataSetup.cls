@@ -93,14 +93,14 @@ return accounts;
         //Create 10 opportunities for each objective
         for(FS_Defined_Objective__c Obj : Objlist){
             for(integer i=0;i<1;i++){
-                opportunities.add(new Opportunity (Name ='FS Account Planning Test Opportunity',Reason__c='Price',FS_ReasonDescription__c='Field Activity',AccountId = Obj.FS_Customer__c,StageName = '01 – Universe',CloseDate = Date.today(),Account_Plan__c=Obj.FS_Account_Plan__c,Defined_Objective__c=obj.id));
+                opportunities.add(new Opportunity (Name ='FS Account Planning Test Opportunity',Reason__c='Price',FS_ReasonDescription__c='Field Activity',AccountId = Obj.FS_Customer__c,StageName = '01 – Universe',CloseDate = Date.today(),Account_Plan__c=Obj.FS_Account_Plan__c,Defined_Objective__c=obj.id,recordtypeId=newRecordTypeId));
             }
         }
         insert opportunities; 
         return opportunities;
     }
     
-    Public List<OpportunityLineItem> setUpOpportunityLineItemData(List<Opportunity> opportunities){
+    Public void setUpOpportunityLineItemData(List<Opportunity> opportunities){
         List<Product2> products=new  List<Product2>();
         
         for(Integer i=0;i < 2;i++){
@@ -119,23 +119,21 @@ return accounts;
             pricebookentries.add(new priceBookEntry ( pricebook2id = pricebookId,Product2Id = prod.id,  unitPrice = 1000, IsActive = true,UseStandardPrice = false,FS_Bracket_1__c=1)); 
         }
         insert pricebookentries;
-        List<Opportunity> oppList=new List<Opportunity>();
-        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-        oppList=[select id,name,stagename,contractid,recordtypeid,DealApproved__c from opportunity where recordtypeid=:newRecordTypeId and stagename='03 – In the funnel' limit 1];
-        
+        //List<Opportunity> oppList=new List<Opportunity>();
+        //Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+        //oppList=[select id,name,stagename,contractid,recordtypeid,DealApproved__c from opportunity where recordtypeid=:newRecordTypeId and stagename='03 – In the funnel' limit 1];
         List<OpportunityLineItem> listOli=new List<OpportunityLineItem>();
         For(Opportunity Opp : opportunities){             
             For(PriceBookEntry Pbe: pricebookentries){
                 listOli.add(new OpportunityLineItem(OpportunityId=Opp.Id,PriceBookEntryId=Pbe.Id,Quantity=1200,totalPrice=Pbe.unitPrice,Distributor__c='CA GFS')); 
             }                
         }         
-        Insert listOli;
-        return listOli;
+        Insert listOli;        
     }
     
-    Public void setUpSchedule(List<OpportunityLineItem> listoli){
+    Public void setUpSchedule(List<OpportunityLineItem> listOli){
         List<OpportunityLineItemSchedule> listScheduletoinsert=new List<OpportunityLineItemSchedule>();
-        For(OpportunityLineItem Oli : listoli){
+        For(OpportunityLineItem oli : listOli){
             system.assertNotEquals(null, oli.Id);                
             For(Integer i=1;i<=12;i++){
                 listScheduletoinsert.add(new OpportunityLineItemSchedule(OpportunityLineItemId=oli.id,quantity=100,scheduledate=Date.newinstance(system.today().year(),i, 1),Type='Quantity'));                

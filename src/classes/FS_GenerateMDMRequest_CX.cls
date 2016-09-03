@@ -16,10 +16,9 @@ public with sharing class FS_GenerateMDMRequest_CX{
     
     
     private Id opportunityId;
-    //private static final String SystemAdmin = 'System Administrator';
-    private static final String RoleUFSRussia = 'UFS Russia';
     private static final String StepStatusStarted = 'Started';
-    //private static final Id SYS_ADMIN_PROFILE_ID = [SELECT ProfileId FROM User WHERE Profile.Name = :SystemAdmin Limit 1].ProfileId;
+	private static final String FoodSolution = 'Food Solution';
+	private static final String ClassName = 'FS_GenerateMDMRequest_CX';
     
     /*******************************************************************
     Purpose: Constructor method
@@ -50,7 +49,7 @@ public with sharing class FS_GenerateMDMRequest_CX{
                                 
                               dateSent = pis.CreatedDate;
                     }catch(Exception e){
-                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), 'FS_GenerateMDMRequest_CX', 'dateSent', e.getMessage(), e, null, null, null, 0,'Food Solution');
+                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), ClassName , 'dateSent', e.getMessage(), e, null, null, null, 0, FoodSolution);
                     }          
              }
              return dateSent;           
@@ -81,7 +80,7 @@ public with sharing class FS_GenerateMDMRequest_CX{
                                                 LIMIT 1];
                             opportunityRecord.FS_internalOrder__c = opportunityRecord.FS_internalOrder__c.replaceAll('[^0-9]', '');
                         }catch(Exception e){
-                            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), 'FS_GenerateMDMRequest_CX', 'opportunityRecord', e.getMessage(), e, null, null, null, 0,'Food Solution');
+                            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), ClassName, 'opportunityRecord', e.getMessage(), e, null, null, null, 0, FoodSolution);
                         }  
                 }
             return opportunityRecord;
@@ -96,7 +95,6 @@ public with sharing class FS_GenerateMDMRequest_CX{
     Throws [Exceptions]: N/A
     ********************************************************************/
     public FS_MDMEmailRequestDefaultValue__c getDefaultCSValue(){
-        //FS_MDMEmailRequestDefaultValue__c mdmDefaultValue = FS_MDMEmailRequestDefaultValue__c.getOrgDefaults();
         FS_MDMEmailRequestDefaultValue__c mdmDefaultValue = FS_MDMEmailRequestDefaultValue__c.getInstance(UserInfo.getProfileId());          
         return mdmDefaultValue;
     }
@@ -108,7 +106,6 @@ public with sharing class FS_GenerateMDMRequest_CX{
     Throws [Exceptions]: N/A
     ********************************************************************/   
     public FS_MDMEmailRequestTemplate__c getHeaderCSValue(){
-        //FS_MDMEmailRequestTemplate__c mdmHeader = FS_MDMEmailRequestTemplate__c.getOrgDefaults();
         FS_MDMEmailRequestTemplate__c mdmHeader = FS_MDMEmailRequestTemplate__c.getInstance(UserInfo.getProfileId());
         return mdmHeader;
     }
@@ -127,12 +124,12 @@ public with sharing class FS_GenerateMDMRequest_CX{
                                         Name,
                                         FS_SoldToCode__c,
                                         FS_hierarchyLevel__c,
-                                        FS_CustomerLegalNameRussia__c
+                                        CustomerLegalName__c
                                     FROM Account
                                     WHERE Id = :opportunityRecord.ShipToCode__c
                                     LIMIT 1];
                         }catch(Exception e){
-                            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), 'FS_GenerateMDMRequest_CX', 'accountRecord', e.getMessage(), e, null, null, null, 0,'Food Solution');
+                            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), ClassName, 'accountRecord', e.getMessage(), e, null, null, null, 0, FoodSolution);
                         }              
                 }
              return accountRecord;
@@ -158,7 +155,7 @@ public with sharing class FS_GenerateMDMRequest_CX{
                                                         WHERE OpportunityId = :opportunityRecord.Id
                                                     )]);
                         }catch(Exception e){
-                            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), 'FS_GenerateMDMRequest_CX', 'product2Map', e.getMessage(), e, null, null, null, 0,'Food Solution');
+                            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), ClassName, 'product2Map', e.getMessage(), e, null, null, null, 0, FoodSolution);
                         }                                                
                     }
                  return product2Map;
@@ -183,7 +180,7 @@ public with sharing class FS_GenerateMDMRequest_CX{
                                             FROM OpportunityLineItem
                                             WHERE OpportunityId = :opportunityRecord.Id];
                     }catch(Exception e){
-                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), 'FS_GenerateMDMRequest_CX', 'opportunityProducts', e.getMessage(), e, null, null, null, 0,'Food Solution');
+                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), ClassName, 'opportunityProducts', e.getMessage(), e, null, null, null, 0, FoodSolution);
                     } 
                 }
                 return opportunityProducts;

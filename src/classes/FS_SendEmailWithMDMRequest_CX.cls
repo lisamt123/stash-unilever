@@ -16,12 +16,8 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
     
     
     private Id opportunityId;
-    //public final static FS_MDMEmailRequestDefaultValue__c MDMDefaultValue = FS_MDMEmailRequestDefaultValue__c.getOrgDefaults();
     public final static FS_MDMEmailRequestDefaultValue__c MDMDefaultValue = FS_MDMEmailRequestDefaultValue__c.getInstance(UserInfo.getProfileId());
-    private static final String SystemAdmin = 'System Administrator';
     private static final String RoleUFSRussia = 'UFS Russia';
-    //Holds the System Administrator profile id
-    //private static final Id SYS_ADMIN_PROFILE_ID = [SELECT ProfileId FROM User WHERE Profile.Name = :SystemAdmin Limit 1].ProfileId;
     public boolean sendButton{get; set;}
     
         /*******************************************************************
@@ -48,6 +44,7 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
                     try{
                             opportunityRecord = [SELECT Id,
                                                     Owner.Email,
+                                                    Owner.Id,
                                                     FS_MDMRequestSent__c,
                                                     FS_TPRApproved__c 
                                                  FROM Opportunity
@@ -81,7 +78,7 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
                         UserRole uRole = [SELECT Id, Name  
                                             FROM UserRole 
                                             WHERE Id = :UserInfo.getUserRoleId() Limit 1];
-                        if (uRole.Name.equalsIgnoreCase(RoleUFSRussia)) { // || UserInfo.getProfileId().equals(SYS_ADMIN_PROFILE_ID) ){
+                        if (uRole.Name.equalsIgnoreCase(RoleUFSRussia) || opportunityRecord.Owner.Id==UserInfo.getUserId()) { // || UserInfo.getProfileId().equals(SYS_ADMIN_PROFILE_ID) ){
                              sendButton = true;
                         }else{
                             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING, mdmPageMessages.FS_NoAccessMessage__c));
@@ -144,7 +141,6 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
         
         PageReference opportunityPage = null;
 
-        FS_MDMRequestRecipient__c emailRecipients = FS_MDMRequestRecipient__c.getOrgDefaults(); //Hold the email recipients from custom setting
         List<String> emailRecipientList = new List<String>();   //Holds the list of email recipient
         
         PageReference pdfPage = Page.FS_GenerateMDMRequest;
@@ -189,8 +185,8 @@ public with sharing class FS_SendEmailWithMDMRequest_CX{
         
         // Sends the email
         if(!Test.isRunningTest()){
-                Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {emailWithAttach});
-                }
+        	Messaging.SendEmailResult [] r = Messaging.sendEmail(new Messaging.SingleEmailMessage[] {emailWithAttach});
+        	}
         opportunityRecord.FS_MDMRequestSent__c = true;
         try {
                 //tag opportunity as MDM request email sent

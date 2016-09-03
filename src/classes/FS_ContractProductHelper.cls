@@ -46,7 +46,15 @@ public with sharing class FS_ContractProductHelper {
             }    
         }
         system.debug('Insert - >'+ MCCList);
-        Insert MCCList;        
+        try{           
+            If(!MCCList.isEmpty()){                
+                Insert MCCList;                
+            }                      
+        }
+        Catch(DmlException e){
+            System.debug( 'The following exception has occurred: '+e.getMessage());
+            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),'Contract Product','MA-BE Process', e.getMessage(), e, null, null, null, 0,'FOOD SOLUTION');
+        }               
     } 
     
     public void updateClaimedCases(List<Contract_Product__c> ContractProdList){
@@ -63,7 +71,6 @@ public with sharing class FS_ContractProductHelper {
             For(Contract_Product__c cp : ContractProdList){
                 ContractIdList.add(cp.Contract__c);
                 ProductIdList.add(cp.Product__c);
-                OppIdList.add(cp.FS_ReferenceOpportunity__c);
             }
             system.debug(ContractIdList);
             Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
@@ -71,7 +78,6 @@ public with sharing class FS_ContractProductHelper {
             //While updating Contract Product custom setting record is inserted, fetching and deleting those
             CustomSettingList = FS_Contract_Product_Opportunity_Map__c.getall().values();
             system.debug('CustomSettingList -->'+CustomSettingList);
-            OppIdList.clear();
             for(FS_Contract_Product_Opportunity_Map__c cs :CustomSettingList ){
                 OppIdList.add(id.ValueOf(cs.FS_Opportunity__c));
             }
@@ -89,14 +95,25 @@ public with sharing class FS_ContractProductHelper {
                         for(FS_Monthly_Claimed_Cases__c MCCObj: MCCList){
                             if(MCCObj.Account__c == oli.Opportunity.AccountId && MCCObj.Product__c == oli.Product2Id && mccObj.FS_First_of_Month__c == (Schedule.ScheduleDate).toStartOfMonth()){
                                 mccObj.FS_Planned_Quantity__c = mccObj.FS_Planned_Quantity__c + Schedule.Quantity;
+                                system.debug(mccObj);
                             }
                         }        
                     }
                 } 
             }
             //system.debug(MCCList);
-            Update MCCList;
-            Delete CustomSettingList ;      
+            try{           
+            If(!MCCList.isEmpty()){                
+                Update MCCList;                
+            }
+                If(!CustomSettingList.isEmpty()){                
+                Delete CustomSettingList;         
+            } 
+        }
+        Catch(DmlException e){
+            System.debug( 'The following exception has occurred: '+e.getMessage());
+            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),'Contract Product','MA-BE Process', e.getMessage(), e, null, null, null, 0,'FOOD SOLUTION');
+        }                
         }  
     }
 }

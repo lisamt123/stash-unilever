@@ -11,9 +11,9 @@ VERSION AUTHOR         DATE         DETAIL Description
 *  @throws 
 */ 
 public without sharing class FS_AccountPlanHandler{
- //New instance for Helper class
-Private FS_AccountPlanHelper helper=new FS_AccountPlanHelper(); 
-/* * accountPlanApproval Method to approve defined objective and opportunity on account plan approval
+    //New instance for Helper class
+    Private FS_AccountPlanHelper helper=new FS_AccountPlanHelper(); 
+    /* * accountPlanApproval Method to approve defined objective and opportunity on account plan approval
 *  @name accountPlanApproval
 *  @param List<FS_Account_Plan__c> newAccountPlanList,Map<id,FS_Account_Plan__c> newAccountPlanOldMap
 *  @return 
@@ -25,11 +25,11 @@ Private FS_AccountPlanHelper helper=new FS_AccountPlanHelper();
             helper.approveDefinedObjective(newAccountPlanList,newAccountPlanOldMap);            
             //Call method for rejection
             helper.rejectDefinedObjective(newAccountPlanList,newAccountPlanOldMap);
-            }
-            Catch(DmlException e){
-                System.debug( 'The following exception has occurred: '+e.getMessage() );
-                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_AccountplanHandler', 'UpdateFieldOnApproval', e.getMessage(), e, null, null, null, 0,'Food Solution');
-            }
+        }
+        Catch(DmlException e){
+            System.debug( 'The following exception has occurred: '+e.getMessage() );
+            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_AccountplanHandler', 'UpdateFieldOnApproval', e.getMessage(), e, null, null, null, 0,'Food Solution');
+        }
         
     }  
 }

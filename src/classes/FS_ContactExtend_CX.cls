@@ -19,7 +19,7 @@ public with sharing class FS_ContactExtend_CX{
     private final Id acctVarId;
     Public String varContactIdForDeletion{get;set;}
     Public String varContactRefIdForEdit{get;set;}
-   public List<Contact> myContacts { get; private set; }
+    public List<Contact> myContacts { get; private set; }
     
     /*******************************************************************
 Purpose: Standard Controller for caprting the page id and getting the contact 
@@ -30,10 +30,7 @@ Returns: String
     public FS_ContactExtend_CX(ApexPages.StandardController controller) {
         
         acctVarId = controller.getRecord().Id;
-        
-        
         myContacts=new List<Contact>();
-        
         myContacts = [ SELECT Id, Name,Email,FS_Position__c,FS_Decision_Maker__c,FS_RefId__c, Account.Name from Contact WHERE  Account.id=:acctVarId and FS_RefId__c!=null limit 1000];
         
     }
@@ -45,14 +42,14 @@ Returns:
 ********************************************************************/
     public FS_ContactExtend_CX(){
         myContacts=new List<Contact>();
-   }
+    }
     
     /*******************************************************************
 Purpose: Creating new Contact
 Parameters:
 Returns: Pagereference 
 ********************************************************************/
-   Public Pagereference createContact()
+    Public Pagereference createContact()
     {
         try
         {
@@ -68,7 +65,7 @@ Returns: Pagereference
         
     }
     
-/*******************************************************************
+    /*******************************************************************
 Purpose: Deleting Contact
 Parameters:
 Returns: Pagereference 
@@ -87,24 +84,6 @@ Returns: Pagereference
         }
         return null;
     }
-    /*******************************************************************
-    Purpose: For Edit Contact
-    Parameters:
-    Returns: Pagereference 
-    ********************************************************************/
-  /*  Public Pagereference EditContact()
-    {
-        try
-        {
-            PageReference varEditContact = new PageReference(FS_ContactUtility.CONTACTDETAILURL+varContactRefIdForEdit+FS_ContactUtility.MODEEDITTEXT); 
-            varEditContact.setRedirect(true);
-            return varEditContact;
-        }
-        Catch(Exception e)
-        {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,FS_ContactUtility.ERRORTRYAGINTEXT));
-        }
-        return null;
-    } */
+    
     
 }

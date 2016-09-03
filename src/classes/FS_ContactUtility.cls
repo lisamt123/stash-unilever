@@ -68,6 +68,7 @@ Public  Class FS_ContactUtility  {
     Public Static Final String MYTRUETEXT= 'true';
     Public Static Final String MODETEXT= 'mode';
     Public Static Final String EDITTEXT= 'edit';
+    Public Static Final String MOBILEERRORTEXT= 'Please Enter valid Phone number.';
     
    
     

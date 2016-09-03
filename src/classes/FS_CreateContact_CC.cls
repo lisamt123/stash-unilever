@@ -10,12 +10,12 @@ History
 -------
 VERSION AUTHOR   DATE        DETAIL Description
 1.0     Dinesh  20/07/2016   INITIAL DEVELOPMENT 
+2.0     Dinesh  23/08/2016   INITIAL DEVELOPMENT 
 ***********************************************************************/
 
 
 
 public with sharing class FS_CreateContact_CC {
-    
     
     Public Contact varContactDetail{get;set;}
     Public ID accId ;
@@ -38,14 +38,12 @@ public with sharing class FS_CreateContact_CC {
 *  @throws 
 */ 
     Public FS_CreateContact_CC()
-    {
-        
+    { 
         SAVETEXT=FS_ContactUtility.MYSAVETEXT;
         OWNEREXT=FS_ContactUtility.MYOWNERTEXT;
         lASTNAMETEXT=FS_ContactUtility.MYLASTNAMETEXT;
         TRUETEXT=FS_ContactUtility.MYTRUETEXT;
         TELEPHONETEXT=FS_ContactUtility.MYTELEPHONETEXT;
-        
         varContactDetail=new Contact();
         try
         {
@@ -70,211 +68,184 @@ public with sharing class FS_CreateContact_CC {
     
     Public PageReference createContact()
     {
-        if((!String.Isblank(varContactDetail.phone) && (varContactDetail.phone.length()<20)) ||
-                (!String.Isblank(workPhoneNumber) && (workPhoneNumber.length()<20)) ||
-                    (!String.Isblank(personalPhoneNumber) && (personalPhoneNumber.length()<20))
-            )
+        if(  (String.Isblank(varContactDetail.phone) || (varContactDetail.phone.length()<FS_ContactUtility.VALIDPHONELENGTH)) &&
+           (String.Isblank(workPhoneNumber) || (workPhoneNumber.length()<FS_ContactUtility.VALIDPHONELENGTH)) &&
+           (String.Isblank(personalPhoneNumber) || (personalPhoneNumber.length()<FS_ContactUtility.VALIDPHONELENGTH))
+          )
         {
-        try
-        {
-            varAccountName=[select id,name from Account where id=:varContactDetail.AccountiD limit 1].name;
-            cryptoKey = Crypto.generateAesKey(256);
-            FS_SiteLead varSiteLead = new FS_SiteLead();
-            if(!String.isBlank(varContactDetail.firstname))
+            try
             {
-                varSiteLead.Firstname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey,Blob.valueOf(varContactDetail.firstname)));
-            }
-            else
-            {
-                varSiteLead.Firstname=null;
-            }
-            
-            if(!String.isBlank(varContactDetail.Lastname))
-            {
-                varSiteLead.Surname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.lastname)));
-            }
-            else
-            {
-                varSiteLead.Surname=null;
-            }
-            if(!String.isBlank(varContactDetail.MailingStreet))
-            {
-                
-                varSiteLead.Address=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingStreet)));
-            } 
-            else
-            {
-                varSiteLead.Address=null;
-            }
-            if(!String.isBlank(varContactDetail.mailingcity))
-            {
-                varSiteLead.City=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.mailingcity)));          
-            } 
-            else
-            {
-                varSiteLead.City=null;
-            }
-            if(!String.isBlank(varContactDetail.MailingCountry))
-            {
-                varSiteLead.Country=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingCountry)));   
-            }
-            addExtraParameter(FS_ContactUtility.DECISIONMAKER,string.valueOf(varContactDetail.FS_Decision_Maker__c));
-            
-           // if( !String.isBlank(varContactDetail.Email))       
-                addExtraParameter(FS_ContactUtility.MYEMAILTEXT,varContactDetail.Email);     
-            
-         //   if( !String.isBlank(varContactDetail.MailingPostalCode))
-                addExtraParameter(FS_ContactUtility.CODEPOSTALTEXT,varContactDetail.MailingPostalCode);        
-            
-        //    if( !String.isBlank(varContactDetail.phone))
-                addExtraParameter(FS_ContactUtility.MOBILEPHONETEXT,varContactDetail.phone); 
-            
-            
-          //  if( !String.isBlank(workPhoneNumber))
-                addExtraParameter(FS_ContactUtility.WORKPHONETEXT,workPhoneNumber); 
-            
-           // if( !String.isBlank(personalPhoneNumber))
-                addExtraParameter(FS_ContactUtility.PERSONALPHONETEXT,personalPhoneNumber);
-            
-          //  if( !String.isBlank(varContactDetail.FS_Position__c))
-                addExtraParameter(FS_ContactUtility.POSITIONTEXT,varContactDetail.FS_Position__c);
-            
-          //  if(!String.isBlank(varContactDetail.MailingState))
-                addExtraParameter(FS_ContactUtility.STATETEXT,varContactDetail.MailingState);
-            
-            addExtraParameter(FS_ContactUtility.OWNERIDTEXT,UserInfo.getUserId());
-            
-        //    if(!String.isBlank(UserInfo.getName()))
-                addExtraParameter(FS_ContactUtility.OWNERNAMETEXT,UserInfo.getName());
-            
-        //    if(!String.isBlank(varContactDetail.AccountId))
-                addExtraParameter(FS_ContactUtility.ACCOUNTIDTEXT,varContactDetail.AccountId);
-            
-          //  if(!String.isBlank(varAccountName))
-                addExtraParameter(FS_ContactUtility.ACCOUNTNAMETEXT,varAccountName);
-            
-            if(moreListItem.size()!=0)
-                varSiteLead.ExtraParameters=moreListItem;
-            else
-                varSiteLead.ExtraParameters=null;
-            
-            FS_SiteLeadMain varSiteLeadMain = new FS_SiteLeadMain();
-            varSiteLeadMain.SiteLead=varSiteLead;
-            
-            String reqString;
-            reqString=JSON.serialize(varSiteLeadMain);
-            
-            String clientId =Label.FS_PIIClientId; 
-            String clientSecret=Label.FS_ClientSecretKey;
-            
-            
-            HttpRequest req = new HttpRequest();
-            
-            req.setHeader(FS_ContactUtility.CONTENTTYPETEXT, FS_ContactUtility.APPPLICATIONJSONTEXT);
-            req.setHeader(FS_ContactUtility.CLIENTIDTEXT, clientId);
-            req.setHeader(FS_ContactUtility.CLIENTSECRETTEXT, clientSecret);
-            
-            req.setEndpoint(Label.FS_UrlId);
-            req.setMethod(FS_ContactUtility.POSTTEXTVALUE);         
-            req.setBody(reqString);
-            
-            Http http = new Http();
-            HTTPResponse res = new HTTPResponse();
-            try{
-                if(Test.isRunningTest())
+                varAccountName=[select id,name from Account where id=:varContactDetail.AccountiD limit 1].name;
+                cryptoKey = Crypto.generateAesKey(FS_ContactUtility.ENCRYPTINTEGER);
+                FS_SiteLead varSiteLead = new FS_SiteLead();
+                if(!String.isBlank(varContactDetail.firstname))
                 {
-                    res.setBody(varResonseResult);
-                    res.setStatusCode(FS_ContactUtility.STATUSCODE);
-                    res.setStatus(FS_ContactUtility.STATUSVALUEOK);
+                    varSiteLead.Firstname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey,Blob.valueOf(varContactDetail.firstname)));
                 }
                 else
                 {
-                    res = http.send(req);
+                    varSiteLead.Firstname=null;
+                }
+                
+                if(!String.isBlank(varContactDetail.Lastname))
+                {
+                    varSiteLead.Surname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.lastname)));
+                }
+                else
+                {
+                    varSiteLead.Surname=null;
+                }
+                if(!String.isBlank(varContactDetail.MailingStreet))
+                {
+                    varSiteLead.Address=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingStreet)));
+                } 
+                else
+                {
+                    varSiteLead.Address=null;
+                }
+                if(!String.isBlank(varContactDetail.mailingcity))
+                {
+                    varSiteLead.City=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.mailingcity)));          
+                } 
+                else
+                {
+                    varSiteLead.City=null;
+                }
+                if(!String.isBlank(varContactDetail.MailingCountry))
+                {
+                    varSiteLead.Country=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingCountry)));   
+                }
+                
+                addExtraParameter(FS_ContactUtility.DECISIONMAKER,string.valueOf(varContactDetail.FS_Decision_Maker__c));
+                addExtraParameter(FS_ContactUtility.MYEMAILTEXT,varContactDetail.Email);     
+                addExtraParameter(FS_ContactUtility.CODEPOSTALTEXT,varContactDetail.MailingPostalCode);        
+                addExtraParameter(FS_ContactUtility.MOBILEPHONETEXT,varContactDetail.phone); 
+                addExtraParameter(FS_ContactUtility.WORKPHONETEXT,workPhoneNumber); 
+                addExtraParameter(FS_ContactUtility.PERSONALPHONETEXT,personalPhoneNumber);
+                addExtraParameter(FS_ContactUtility.POSITIONTEXT,varContactDetail.FS_Position__c);
+                addExtraParameter(FS_ContactUtility.STATETEXT,varContactDetail.MailingState);
+                addExtraParameter(FS_ContactUtility.OWNERIDTEXT,UserInfo.getUserId());
+                addExtraParameter(FS_ContactUtility.OWNERNAMETEXT,UserInfo.getName());
+                addExtraParameter(FS_ContactUtility.ACCOUNTIDTEXT,varContactDetail.AccountId);
+                addExtraParameter(FS_ContactUtility.ACCOUNTNAMETEXT,varAccountName);
+                
+                if(moreListItem.size()!=0)
+                    varSiteLead.ExtraParameters=moreListItem;
+                else
+                    varSiteLead.ExtraParameters=null;
+                
+                FS_SiteLeadMain varSiteLeadMain = new FS_SiteLeadMain();
+                varSiteLeadMain.SiteLead=varSiteLead;
+                
+                String reqString;
+                reqString=JSON.serialize(varSiteLeadMain);
+                
+                String clientId =Label.FS_PIIClientId; 
+                String clientSecret=Label.FS_ClientSecretKey;
+                
+                HttpRequest req = new HttpRequest();
+                req.setHeader(FS_ContactUtility.CONTENTTYPETEXT, FS_ContactUtility.APPPLICATIONJSONTEXT);
+                req.setHeader(FS_ContactUtility.CLIENTIDTEXT, clientId);
+                req.setHeader(FS_ContactUtility.CLIENTSECRETTEXT, clientSecret);
+                req.setEndpoint(Label.FS_UrlId);
+                req.setMethod(FS_ContactUtility.POSTTEXTVALUE);         
+                req.setBody(reqString);
+                
+                Http http = new Http();
+                HTTPResponse res = new HTTPResponse();
+                try{
+                    if(Test.isRunningTest())
+                    {
+                        res.setBody(varResonseResult);
+                        res.setStatusCode(FS_ContactUtility.STATUSCODE);
+                        res.setStatus(FS_ContactUtility.STATUSVALUEOK);
+                    }
+                    else
+                    {
+                        res = http.send(req);
+                    }
+                }
+                catch(System.CalloutException e) {
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.ERRORMESSAGE));
+                    return null;
+                }
+                
+                
+                if(Integer.valueOf(res.getStatusCode())==FS_ContactUtility.STATUSCODE){
+                    JSONParser parser1 = JSON.createParser(String.valueOf(res.getBody()));
+                    String errorCode;
+                    while (parser1 .nextToken() != null) {
+                        if ((parser1 .getCurrentToken() == JSONToken.FIELD_NAME)) {
+                            String fieldName = parser1.getText();
+                            parser1.nextToken();
+                            if (fieldName.equals(FS_ContactUtility.CODEERROR)){
+                                errorCode= parser1.getText();
+                            } 
+                        }
+                    }
+                    
+                    if(errorCode==FS_ContactUtility.THREEHUNTEXT){
+                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.TELEPHONETEXT));
+                        return null;
+                    }else if(errorCode==FS_ContactUtility.ZEROTEXT){
+                        JSONParser parser = JSON.createParser(String.valueOf(res.getBody()));
+                        String resId;
+                        while (parser.nextToken() != null) {
+                            if ((parser.getCurrentToken() == JSONToken.FIELD_NAME)) {
+                                String fieldName = parser.getText();
+                                parser.nextToken();
+                                if (fieldName.equals(FS_ContactUtility.IDTEXTFOREXTRAPARAMETERS)) {
+                                    resId = parser.getText();
+                                } 
+                            }
+                            
+                        }
+                        Contact newCon = new Contact();
+                        newCon.AccountID =varContactDetail.AccountiD;
+                        newCon.FirstName =varContactDetail.FirstName ;
+                        newCon.LastName =varContactDetail.LastName ;
+                        newCon.FS_PIEncryptKey__c=EncodingUtil.base64Encode(cryptoKey);
+                        newCon.FS_Position__c=varContactDetail.FS_Position__c;
+                        newCon.FS_Decision_Maker__c =varContactDetail.FS_Decision_Maker__c;
+                        newCon.FS_RefId__c=resId;
+                        insert newCon ;
+                        
+                        PageReference acctPage = new PageReference(FS_ContactUtility.CONTACTDETAILURL+resId);
+                        acctPage.setRedirect(true);
+                        return acctPage;
+                    }  
+                    
+                }else {
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.ERRORMESSAGE));
                 }
             }
-            catch(System.CalloutException e) {
+            Catch(Exception e)
+            {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.ERRORMESSAGE));
                 return null;
             }
             
-            
-            if(Integer.valueOf(res.getStatusCode())==FS_ContactUtility.STATUSCODE){
-                JSONParser parser1 = JSON.createParser(String.valueOf(res.getBody()));
-                String errorCode;
-                while (parser1 .nextToken() != null) {
-                    if ((parser1 .getCurrentToken() == JSONToken.FIELD_NAME)) {
-                        String fieldName = parser1.getText();
-                        parser1.nextToken();
-                        if (fieldName.equals(FS_ContactUtility.CODEERROR)){
-                            errorCode= parser1.getText();
-                        } 
-                    }
-                }
-                
-                if(errorCode==FS_ContactUtility.THREEHUNTEXT){
-                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.TELEPHONETEXT));
-                    return null;
-                }else if(errorCode==FS_ContactUtility.ZEROTEXT){
-                    JSONParser parser = JSON.createParser(String.valueOf(res.getBody()));
-                    String resId;
-                    while (parser.nextToken() != null) {
-                        if ((parser.getCurrentToken() == JSONToken.FIELD_NAME)) {
-                            String fieldName = parser.getText();
-                            parser.nextToken();
-                            if (fieldName.equals(FS_ContactUtility.IDTEXTFOREXTRAPARAMETERS)) {
-                                resId = parser.getText();
-                            } 
-                        }
-                        
-                    }
-                    
-                    
-                    Contact newCon = new Contact();
-                    newCon.AccountID =varContactDetail.AccountiD;
-                    newCon.FirstName =varContactDetail.FirstName ;
-                    newCon.LastName =varContactDetail.LastName ;
-                    newCon.FS_PIEncryptKey__c=EncodingUtil.base64Encode(cryptoKey);
-                    newCon.FS_Position__c=varContactDetail.FS_Position__c;
-                    newCon.FS_Decision_Maker__c =varContactDetail.FS_Decision_Maker__c;
-                    newCon.FS_RefId__c=resId;
-                    insert newCon ;
-                    
-                    PageReference acctPage = new PageReference(FS_ContactUtility.CONTACTDETAILURL+resId);
-                    acctPage.setRedirect(true);
-                    return acctPage;
-                }  
-                
-            }else {
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.ERRORMESSAGE));
-            }
-        }
-        Catch(Exception e)
-        {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.ERRORMESSAGE));
-            return null;
-        }
-        
         }
         else
         {
-        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Please Enter valid Phone number'));
-                return null;
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.MOBILEERRORTEXT));
+            return null;
         }
         return null;
     }
     
-    
+    /* * Function for adding extra parameter 
+*  @name addExtraParameter
+*  @param String,String
+*  @return Void 
+*  @throws 
+*/    
     Private void addExtraParameter(String Name,String Value)
     {
-       
-            FS_ExtraParameters varExtraParameters = new FS_ExtraParameters();
-            varExtraParameters.Name=Name;
-             if(!String.isBlank(Value))
-            varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(Value)));
-            else
-             varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf('')));
-            moreListItem.add(varExtraParameters);
-       
+        FS_ExtraParameters varExtraParameters = new FS_ExtraParameters();
+        varExtraParameters.Name  =Name;
+        varExtraParameters.Value =EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(Value)));
+        moreListItem.add(varExtraParameters);
     }
     
     /* * Wrapper cals for creating Contact to intract with Brandton though mulesoft

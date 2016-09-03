@@ -97,8 +97,7 @@ private class FS_OpportunityHelperTest {
             list<OpportunityLineItem> oli=new list<OpportunityLineItem>();
             
             pricebookentries2=[select id,unitPrice from pricebookentry where product2.name like 'FS Test Product%'];
-            opportunities2=[select id,name,AverageGrossProfit__c,MarketTarget__c,accountid,FS_TotalNumberOfCases__c from opportunity where name='FS Test Opportunity'];
-                                   
+            opportunities2=[select id,name,FS_MarketTarget__c,FS_AverageGrossProfit__c,accountid,FS_TotalNumberOfCases__c from opportunity where name='FS Test Opportunity'];
             //Set up Opportunity Line Item
             for (Opportunity opportunity:opportunities2){
                 i++;
@@ -121,7 +120,7 @@ private class FS_OpportunityHelperTest {
             
             olilist=[select id,name,FS_MarketTarget__c,OpportunityId,GPPercent__c,GrossProfit__c, FS_Sample__c,Turnover__c from OpportunityLineItem where opportunity.Name='FS Test Opportunity'];
             system.debug(olilist);
-            opportunities3=[select id,name,AccountId,AverageGrossProfit__c,MarketTarget__c,FS_TotalNumberOfCases__c from opportunity where name='FS Test Opportunity']; 
+            opportunities3=[select id,name,FS_MarketTarget__c,FS_AverageGrossProfit__c, AccountId,FS_TotalNumberOfCases__c from opportunity where name='FS Test Opportunity']; 
             system.debug('Size:'+opportunities3.size());
             
             //Set up Map for all Opportunity records and associated Opportunity Line Item records
@@ -159,8 +158,8 @@ private class FS_OpportunityHelperTest {
                     AvgMrktTarget=MrktTarget/opplineItem.size();
                     
                     //Check if opportunity records got updated as expected
-                    system.assertEquals(AvgGrossProfit, opportunity.AverageGrossProfit__c);
-                    system.assertEquals(AvgMrktTarget, opportunity.MarketTarget__c);
+                    system.assertEquals(AvgGrossProfit, opportunity.FS_AverageGrossProfit__c);
+                    system.assertEquals(AvgMrktTarget, opportunity.FS_MarketTarget__c);
                  }
             }
          }//end of system.runAs() 
