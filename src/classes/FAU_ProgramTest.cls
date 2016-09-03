@@ -37,7 +37,7 @@ private class FAU_ProgramTest {
     private static void completeProgramTest(){
         FAU_Program__c program = FAU_TestUtil.buildProgram('Test Program', Date.today(), 'Test Location');
         insert program;
-      //  FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
+      FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
         program.FAU_Status__c = 'Active';
         program.FAU_Participant_Chatter_Group_Id__c  = 'test1234test';
         update program;
@@ -70,24 +70,24 @@ private class FAU_ProgramTest {
             
             Test.stopTest();
             
-            Integer iNoPartShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
+            List<FAU_Participant__Share> iNoPartShare =[Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
                                                                     AND UserOrGroupId = :users[0].Id  
-                                                                    AND AccessLevel = 'Edit'  LIMIT 1].size();
-            System.assertEquals(1, iNoPartShare);
+                                                                    AND AccessLevel = 'Edit'  LIMIT 1];
+            System.assertEquals(1,iNoPartShare.size());
     
             //module partcipant
-            Integer iNoPartMod = [Select Id FROM FAU_Module_Participant__c WHERE FAU_Participant__c = :participantRecord.Id LIMIT 1].size();
-            System.assertEquals(1, iNoPartMod);     
+            List<FAU_Module_Participant__c> iNoPartMod = [Select Id FROM FAU_Module_Participant__c WHERE FAU_Participant__c = :participantRecord.Id LIMIT 1];
+            System.assertEquals(1, iNoPartMod.size());     
     
             //webinar partcipant
-            Integer iNoWebMod = [Select Id FROM FAU_Webinar_Participant__c WHERE FAU_Participant__c = :participantRecord.Id LIMIT 1].size();
+            List<FAU_Webinar_Participant__c> iNoWebMod = [Select Id FROM FAU_Webinar_Participant__c WHERE FAU_Participant__c = :participantRecord.Id LIMIT 1];
               
-            System.assertEquals(1, iNoWebMod);   
+            System.assertEquals(1, iNoWebMod.size());   
     
              //milestone partcipant
-            Integer iNoMileMod = [Select Id FROM FAU_Milestone_Participant__c WHERE FAU_Participant__c = :participantRecord.Id LIMIT 1].size();
+            List<FAU_Milestone_Participant__c> iNoMileMod = [Select Id FROM FAU_Milestone_Participant__c WHERE FAU_Participant__c = :participantRecord.Id LIMIT 1];
               
-            System.assertEquals(1, iNoMileMod); 
+            System.assertEquals(1, iNoMileMod.size()); 
         }
     }
 
@@ -140,10 +140,10 @@ private class FAU_ProgramTest {
             
             Test.stopTest();
             
-            Integer iNoShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
+            List<FAU_Participant__Share> iNoShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
                                                                     AND UserOrGroupId = :users[1].Id  
-                                                                    AND AccessLevel = 'Edit'  LIMIT 1].size();
-            System.assertEquals(1, iNoShare);
+                                                                    AND AccessLevel = 'Edit'  LIMIT 1];
+            System.assertEquals(1, iNoShare.size());
         }
              
     }
@@ -174,10 +174,10 @@ private class FAU_ProgramTest {
             
             Test.stopTest();
             
-            Integer iNoShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
+            List<FAU_Participant__Share> iNoShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
                                                                     AND UserOrGroupId = :users[0].Id  
-                                                                    AND AccessLevel = 'Edit'  LIMIT 1].size();
-            System.assertEquals(0, iNoShare);
+                                                                    AND AccessLevel = 'Edit'  LIMIT 1];
+            System.assertEquals(0, iNoShare.size());
         }
              
     }
@@ -211,10 +211,10 @@ private class FAU_ProgramTest {
             
             Test.stopTest();
             
-            Integer iNoShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
+            List<FAU_Participant__Share> iNoShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
                                                                     AND UserOrGroupId = :users[0].Id  
-                                                                    AND AccessLevel = 'Edit'  LIMIT 1].size();
-            System.assertEquals(1, iNoShare);
+                                                                    AND AccessLevel = 'Edit'  LIMIT 1];
+            System.assertEquals(1, iNoShare.size());
         }
              
     }
@@ -277,10 +277,10 @@ private class FAU_ProgramTest {
                 update participantRecord;
             Test.stopTest();
             
-            Integer iNoPartShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
+            List<FAU_Participant__Share> iNoPartShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
                                                                     AND UserOrGroupId = :user1[0].Id  
-                                                                    AND AccessLevel = 'Edit'  LIMIT 1].size();
-            System.assertEquals(0, iNoPartShare);
+                                                                    AND AccessLevel = 'Edit'  LIMIT 1];
+            System.assertEquals(0, iNoPartShare.size());
         }
              
     }
@@ -319,10 +319,10 @@ private class FAU_ProgramTest {
             insert webinarParticipant;
             Test.stopTest(); 
             //webinar partcipant
-            Integer iNoWebPart = [Select Id FROM FAU_Webinar_Participant__c WHERE FAU_Participant__c = :participantRecord.Id 
-                                                                            AND FAU_Webinar__c = :webinarRecord.Id LIMIT 1].size();
+            List<FAU_Webinar_Participant__c> iNoWebPart = [Select Id FROM FAU_Webinar_Participant__c WHERE FAU_Participant__c = :participantRecord.Id 
+                                                                            AND FAU_Webinar__c = :webinarRecord.Id LIMIT 1];
              
-            System.assertEquals(1, iNoWebPart);  
+            System.assertEquals(1, iNoWebPart.size());  
         } 
     }
 
@@ -351,10 +351,10 @@ private class FAU_ProgramTest {
                 update participantRecord;
             Test.stopTest();
             
-            Integer iNoPartShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
+            List<FAU_Participant__Share> iNoPartShare = [Select Id FROM FAU_Participant__Share WHERE ParentId = :participantRecord.Id 
                                                                     AND UserOrGroupId = :users[1].Id  
-                                                                    AND AccessLevel = 'Edit'  LIMIT 1].size();
-            System.assertEquals(0, iNoPartShare);
+                                                                    AND AccessLevel = 'Edit'  LIMIT 1];
+            System.assertEquals(0, iNoPartShare.size());
         }
              
     }
@@ -449,6 +449,8 @@ private class FAU_ProgramTest {
         participantRecord.FAU_User__c = user.Id;
  
         insert participantRecord;
+        FAU_Participant__c createdParticipantr = [SELECT Id, FAU_Invite_State__c FROM FAU_Participant__c WHERE Id = :participantRecord.Id];
+        System.assertEquals(createdParticipantr.FAU_Invite_State__c, participantRecord.FAU_Invite_State__c);
         
         return participantRecord;
     }
