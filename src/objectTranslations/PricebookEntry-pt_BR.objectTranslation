@@ -8,4 +8,15 @@
         <label>Preço de Compra</label>
         <name>ICB_Purchase_Price__c</name>
     </fields>
+    <layouts>
+        <layout>Price Book Entry Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
 </CustomObjectTranslation>

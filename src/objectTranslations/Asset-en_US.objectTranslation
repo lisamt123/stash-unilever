@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
-        <label>Tipo</label>
+        <label><!-- Type --></label>
         <name>ICB_Type__c</name>
         <picklistValues>
             <masterLabel>Cart F</masterLabel>
@@ -28,7 +28,7 @@
         </picklistValues>
         <picklistValues>
             <masterLabel>None</masterLabel>
-            <translation>Nenhuma</translation>
+            <translation><!-- None --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Scoop</masterLabel>
@@ -43,23 +43,23 @@
         <name>Status</name>
         <picklistValues>
             <masterLabel>Installed</masterLabel>
-            <translation>Instalado</translation>
+            <translation><!-- Installed --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Obsolete</masterLabel>
-            <translation>Obsoleto</translation>
+            <translation><!-- Obsolete --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Purchased</masterLabel>
-            <translation>Comprado</translation>
+            <translation><!-- Purchased --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Registered</masterLabel>
-            <translation>Registrado</translation>
+            <translation><!-- Registered --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Shipped</masterLabel>
-            <translation>Despachado</translation>
+            <translation><!-- Shipped --></translation>
         </picklistValues>
     </fields>
     <layouts>
