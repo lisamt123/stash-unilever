@@ -8,12 +8,12 @@
                  <div class="textSectionPadding">
                      <ui:outputText value="{!v.newsArticle.PublishedDate}" class="SubText"/>
                      <div class="RightFloat">
-                         <aura:if isTrue="{!v.newsType == 'PaulsBlog' ? false : true}">
+                         <!--<aura:if isTrue="{!v.newsType == 'PaulsBlog' ? false : true}">-->
                              <img src="/resource/NewsCenterIcons/Like_inactive.svg" height="12" width="12"/>
                              &nbsp;<ui:outputText value="{!v.newsArticle.LikeCount}" class="SubText"/>
                              &nbsp;&nbsp;&nbsp;<img src="/resource/NewsCenterIcons/Comment_inactive.svg" height="12" width="12"/>
                              &nbsp;<ui:outputText value="{!v.newsArticle.CommentCount}" class="SubText"/>
-                         </aura:if>
+                         <!--</aura:if>-->
                      </div>
                  </div>
                  <div class="textSectionPadding Title">
