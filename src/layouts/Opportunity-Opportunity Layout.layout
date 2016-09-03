@@ -200,7 +200,6 @@
         <relatedList>RelatedOrderList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>MemberName</fields>
         <fields>OppAccessLevel</fields>
         <fields>TeamMemberRole</fields>
         <relatedList>RelatedOpportunitySalesTeam</relatedList>
