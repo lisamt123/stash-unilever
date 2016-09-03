@@ -1,26 +1,9 @@
 ({
 	getGlobalNewsMostRecent : function(component, event, helper) {
 		var action = component.get("c.getGlobalNewsForMostRecent");
-        var selectedFilterType;
+        var selectedFilterType = component.get("v.filterType");
         var selectedNewsType = component.get("v.NewsType");
         console.log(selectedNewsType+'------------0----------------'+component.get("v.filterType"));
-        switch (component.get("v.filterType")) {
-            case "showCategories":  selectedFilterType = "Categories & Brands";
-                					break;
-            case "showInnovation":  selectedFilterType = "Innovation";
-                					break;
-            case "showLeadership":  selectedFilterType = "Leadership";
-                					break;
-            case "showMarketplace":  selectedFilterType = "Marketplace";
-                					break;
-            case "showPeople":  selectedFilterType = "Our People";
-                					break;
-            case "showPerformance":  selectedFilterType = "Performance & Strategy";
-                					break;
-            case "showSustainable":  selectedFilterType = "Sustainable Living";
-                					break;
-            default: selectedFilterType = "all";
-        }
         action.setParams({
 			"NewsType": component.get("v.NewsType")
 		});
@@ -28,11 +11,13 @@
         	var state = response.getState();
             console.log('------------0----------------'+state);
         	if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){      
+                if(response.getReturnValue()!=''){  
+                              
+                    component.set("v.showspinner",false);
                     console.log('------------1----------------'+selectedFilterType);  
                     var updatedData = []; 
                     var responseData = [];
-                    if(selectedNewsType=='GlobalNews' && selectedFilterType!='all'){ 
+                    if(selectedNewsType=='GlobalNews' && selectedFilterType!='Show All'){ 
                         responseData = response.getReturnValue();
                         for(var count=0;count<responseData.length;count++){
                             console.log(responseData[count]);    
@@ -45,6 +30,7 @@
                             component.set("v.ErrorMessage", true); 
                         } 
                         component.set("v.wrapper", updatedData);
+                         
                     } else {
                         updatedData = response.getReturnValue(); 
                     }
@@ -64,7 +50,9 @@
                         component.set("v.NewsList",updatedData); 
                     }                   
                 } else {
+                    //change for spinner error
                     component.set("v.ErrorMessage", true);
+                    component.set("v.showspinner",false);                    
                 }
         	}
         });
