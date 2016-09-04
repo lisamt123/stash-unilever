@@ -234,6 +234,11 @@
         <name>NameYearPLtype__c</name>
     </fields>
     <fields>
+        <help><!-- This field will advice if Name = Y0 or not --></help>
+        <label><!-- Name_isY0 --></label>
+        <name>Name_isY0__c</name>
+    </fields>
+    <fields>
         <label><!-- PBO (% of T/O) Charter --></label>
         <name>PBO_of_TO_Charter__c</name>
     </fields>

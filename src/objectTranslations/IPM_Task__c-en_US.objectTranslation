@@ -34,8 +34,13 @@
         <name>IPM_Completed__c</name>
     </fields>
     <fields>
-        <label><!-- Due Date1 --></label>
+        <label><!-- Due Date --></label>
         <name>IPM_Due_Date1__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field will advice if the Due Date is null or not --></help>
+        <label><!-- IPM_Due_Date1_isNull --></label>
+        <name>IPM_Due_Date1_isNull__c</name>
     </fields>
     <fields>
         <label><!-- Milestone Due Date --></label>
@@ -76,6 +81,10 @@
             <masterLabel>Supply Chain</masterLabel>
             <translation><!-- Supply Chain --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>TPL</masterLabel>
+            <translation><!-- TPL --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- is Master --></label>
@@ -93,6 +102,46 @@
         <label><!-- Master Task --></label>
         <name>IPM_Master_Task__c</name>
         <relationshipLabel><!-- IPM Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Multiple Functional Role --></label>
+        <name>IPM_Multiple_Functional_Role__c</name>
+        <picklistValues>
+            <masterLabel>BB</masterLabel>
+            <translation><!-- BB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BD</masterLabel>
+            <translation><!-- BD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CD</masterLabel>
+            <translation><!-- CD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMI</masterLabel>
+            <translation><!-- CMI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PL</masterLabel>
+            <translation><!-- PL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R&amp;D</masterLabel>
+            <translation><!-- R&amp;D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply Chain</masterLabel>
+            <translation><!-- Supply Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPL</masterLabel>
+            <translation><!-- TPL --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- IPM Phase Task Added --></label>
@@ -155,6 +204,10 @@
         <relationshipLabel><!-- IPM Tasks --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Stopped By Project --></label>
+        <name>IPM_StoppedByProject__c</name>
+    </fields>
+    <fields>
         <label><!-- Task Span --></label>
         <name>IPM_TaskSpan__c</name>
         <picklistValues>
@@ -181,6 +234,10 @@
             <masterLabel>Lite</masterLabel>
             <translation><!-- Lite --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status(Completed) --></label>
+        <name>IPM_Task_Is_Completed__c</name>
     </fields>
     <fields>
         <label><!-- Task Name --></label>

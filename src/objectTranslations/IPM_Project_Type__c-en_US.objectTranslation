@@ -113,6 +113,10 @@
         <name>IPM_Gate_Sequence__c</name>
     </fields>
     <fields>
+        <label><!-- Go To Change TLD Link --></label>
+        <name>IPM_Go_To_Change_TLD_Link__c</name>
+    </fields>
+    <fields>
         <label><!-- Insert Financials API Name --></label>
         <name>IPM_InsertFinancialsAPIName__c</name>
     </fields>
@@ -148,6 +152,10 @@
     <fields>
         <label><!-- Source Company Card --></label>
         <name>IPM_Source_Company_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- TLD Milestone Help Text --></label>
+        <name>IPM_TLD_Milestone_Help_Text__c</name>
     </fields>
     <fields>
         <label><!-- Update Financials API Name --></label>

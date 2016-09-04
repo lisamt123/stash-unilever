@@ -92,7 +92,7 @@ public with sharing Class IPM_CMIGateSectionController{
                 secConList=[SELECT Id,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Colour_Achieved__c ,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Free_Text__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result_Timing__c,IPM_CMI_Country__c,IPM_Gate_CMI__c,IPM_CMI_Input__c,IPM_CMI_Comments__c,IPM_CMI_Result__c,
                                    IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                             FROM IPM_Project_Document_Section_Content__c 
-                            WHERE IPM_CMI_Country__c!=NULL AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c=:project.IPM_Parent_Project__c LIMIT 1000];
+                            WHERE IPM_CMI_Country_isNull__c = :IPM_ConstantUtils.IPM_false AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c=:project.IPM_Parent_Project__c LIMIT 1000];
             }
             else{
                 //Getting Gate CMI Records
@@ -104,7 +104,7 @@ public with sharing Class IPM_CMIGateSectionController{
                 secConList=[SELECT Id,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Colour_Achieved__c ,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Free_Text__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result_Timing__c,IPM_CMI_Country__c,IPM_Gate_CMI__c,IPM_CMI_Input__c,IPM_CMI_Comments__c,IPM_CMI_Result__c,
                                    IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                             FROM IPM_Project_Document_Section_Content__c 
-                            WHERE IPM_CMI_Country__c!=NULL AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__c=:projDocSecId LIMIT 1000];
+                            WHERE IPM_CMI_Country_isNull__c = :IPM_ConstantUtils.IPM_false AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__c=:projDocSecId LIMIT 1000];
             }       
             for(IPM_Gate_CMI__c cmi:gateCMIList){
                  count=1;   

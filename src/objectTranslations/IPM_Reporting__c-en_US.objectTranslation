@@ -13,6 +13,14 @@
         <name>Batch_Size__c</name>
     </fields>
     <fields>
+        <label><!-- Financial Scope --></label>
+        <name>IPM_FinancialScope__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Year --></label>
+        <name>IPM_Start_Year__c</name>
+    </fields>
+    <fields>
         <label><!-- Last Batch RunDate --></label>
         <name>Last_Batch_RunDate__c</name>
     </fields>

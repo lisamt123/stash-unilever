@@ -58,6 +58,14 @@
         <name>Global_Regional_Finance_Leader_Email__c</name>
     </fields>
     <fields>
+        <label><!-- Brand Position --></label>
+        <name>IPM_Brand_Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>IPM_Brand__c</name>
+    </fields>
+    <fields>
         <label><!-- CharterApproved --></label>
         <name>IPM_CharterApproved__c</name>
     </fields>
@@ -200,6 +208,18 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Show At Global --></label>
+        <name>IPM_ShowAtGlobal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Local --></label>
+        <name>IPM_ShowAtLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Regional --></label>
+        <name>IPM_ShowAtRegional__c</name>
+    </fields>
+    <fields>
         <label><!-- Small C --></label>
         <name>IPM_Small_C__c</name>
     </fields>
@@ -214,6 +234,10 @@
             <masterLabel>Leader</masterLabel>
             <translation><!-- Leader --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Stopped By Project --></label>
+        <name>IPM_StoppedByProject__c</name>
     </fields>
     <fields>
         <label><!-- Key MCO At Charter --></label>

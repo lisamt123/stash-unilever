@@ -3333,7 +3333,7 @@
         <name>IPM_CoreParameters_validation</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Country Project leader and Target Launch Date --></label>
+        <label><!-- IPM MCO Rollout Leader and Target Launch Date --></label>
         <name>IPM_Country_Project_leader_and_Target_Launch_Date</name>
     </customLabels>
     <customLabels>
@@ -9473,18 +9473,6 @@
                 <name> Market Ready Approved </name>
             </columns>
             <columns>
-                <label><!-- 1st Full Year Gross TO (BD) --></label>
-                <name>1st Full Year Gross TO (BD)</name>
-            </columns>
-            <columns>
-                <label><!-- 1st Full Year iGP (BD) --></label>
-                <name>1st Full Year iGP (BD)</name>
-            </columns>
-            <columns>
-                <label><!-- 1st Full Year iTO (BD) --></label>
-                <name>1st Full Year iTO (BD)</name>
-            </columns>
-            <columns>
                 <label><!-- Actual Launch Date --></label>
                 <name>Actual Launch Date</name>
             </columns>
@@ -9497,12 +9485,16 @@
                 <name>Actual Launch Year</name>
             </columns>
             <columns>
-                <label><!-- Auto Aligned Fin &amp; TLD --></label>
-                <name>Auto Aligned Fin &amp; TLD</name>
+                <label><!-- BET Current Status --></label>
+                <name>BET Current Status</name>
             </columns>
             <columns>
-                <label><!-- Auto Aligned Fin &amp; TLD for financial --></label>
-                <name>Auto Aligned Fin &amp; TLD for financial</name>
+                <label><!-- BET Name --></label>
+                <name>BET Name</name>
+            </columns>
+            <columns>
+                <label><!-- Brand --></label>
+                <name>Brand</name>
             </columns>
             <columns>
                 <label><!-- Brand Positioning --></label>
@@ -9511,6 +9503,14 @@
             <columns>
                 <label><!-- Business Impact (BD) --></label>
                 <name>Business Impact (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Calendar Y3 gTO(BD) --></label>
+                <name>Calendar Y3 gTO(BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Calendar Y3 iTO(BD) --></label>
+                <name>Calendar Y3 iTO(BD)</name>
             </columns>
             <columns>
                 <label><!-- Category --></label>
@@ -9535,6 +9535,14 @@
             <columns>
                 <label><!-- Company --></label>
                 <name>Company</name>
+            </columns>
+            <columns>
+                <label><!-- Company Project Priority (BB) --></label>
+                <name>Company Project Priority (BB)</name>
+            </columns>
+            <columns>
+                <label><!-- Company Project Priority (BD) --></label>
+                <name>Company Project Priority (BD)</name>
             </columns>
             <columns>
                 <label><!-- Consumer Value Perception --></label>
@@ -9585,6 +9593,46 @@
                 <name>Finance Member</name>
             </columns>
             <columns>
+                <label><!-- GP 2013 (BD) --></label>
+                <name>GP 2013 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2014 (BD) --></label>
+                <name>GP 2014 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2015 (BD) --></label>
+                <name>GP 2015 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2016 (BD) --></label>
+                <name>GP 2016 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2017 (BD) --></label>
+                <name>GP 2017 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2018 (BD) --></label>
+                <name>GP 2018 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2019 (BD) --></label>
+                <name>GP 2019 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2020 (BD) --></label>
+                <name>GP 2020 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- GP 2021 (BD) --></label>
+                <name>GP 2021 (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Gate Keeping Model --></label>
+                <name>Gate Keeping Model</name>
+            </columns>
+            <columns>
                 <label><!-- Geography --></label>
                 <name>Geography</name>
             </columns>
@@ -9629,6 +9677,10 @@
                 <name>IC / NBU</name>
             </columns>
             <columns>
+                <label><!-- Key MCO --></label>
+                <name>Key MCO</name>
+            </columns>
+            <columns>
                 <label><!-- Market Cluster --></label>
                 <name>Market Cluster</name>
             </columns>
@@ -9661,8 +9713,16 @@
                 <name>Platform</name>
             </columns>
             <columns>
+                <label><!-- Product Design Lock - Due Date --></label>
+                <name>Product Design Lock - Due Date</name>
+            </columns>
+            <columns>
                 <label><!-- Project Description --></label>
                 <name>Project Description</name>
+            </columns>
+            <columns>
+                <label><!-- Project Id --></label>
+                <name>Project Id</name>
             </columns>
             <columns>
                 <label><!-- Project Id --></label>
@@ -9677,6 +9737,10 @@
                 <name>Project Name</name>
             </columns>
             <columns>
+                <label><!-- Project Route --></label>
+                <name>Project Route</name>
+            </columns>
+            <columns>
                 <label><!-- Project Span --></label>
                 <name>Project Span</name>
             </columns>
@@ -9689,12 +9753,16 @@
                 <name>Project Type</name>
             </columns>
             <columns>
-                <label><!-- Status --></label>
-                <name>Status</name>
+                <label><!-- Reason for No BET --></label>
+                <name>Reason for No BET</name>
             </columns>
             <columns>
                 <label><!-- Strategic Intent --></label>
                 <name>Strategic Intent</name>
+            </columns>
+            <columns>
+                <label><!-- Sub-Category --></label>
+                <name>Sub-Category</name>
             </columns>
             <columns>
                 <label><!-- Target Launch Month (BB) --></label>
@@ -9717,12 +9785,28 @@
                 <name>Technical Project Leader</name>
             </columns>
             <columns>
-                <label><!-- Y3 gTO(BD) --></label>
-                <name>Y3 gTO(BD)</name>
+                <label><!-- White Space --></label>
+                <name>White Space</name>
             </columns>
             <columns>
-                <label><!-- Y3 iTO(BD) --></label>
-                <name>Y3 iTO(BD)</name>
+                <label><!-- Y1 Gross TO (BD) --></label>
+                <name>Y1 Gross TO (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Y2 Gross TO (BD) --></label>
+                <name>Y2 Gross TO (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Y3 Gross TO (BD) --></label>
+                <name>Y3 Gross TO (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Y4 Gross TO (BD) --></label>
+                <name>Y4 Gross TO (BD)</name>
+            </columns>
+            <columns>
+                <label><!-- Y5 Gross TO (BD) --></label>
+                <name>Y5 Gross TO (BD)</name>
             </columns>
             <columns>
                 <label><!-- iGP 2013 (BD) --></label>
@@ -9785,8 +9869,8 @@
                 <name>iTO 2018 (BD)</name>
             </columns>
             <columns>
-                <label><!-- iTO 2019 (BD) --></label>
-                <name>iTO 2019 (BD)</name>
+                <label><!-- iTO 2019(BD) --></label>
+                <name>iTO 2019(BD)</name>
             </columns>
             <columns>
                 <label><!-- iTO 2020 (BD) --></label>
