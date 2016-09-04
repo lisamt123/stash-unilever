@@ -33,6 +33,11 @@
         <name>IPM_BosscardName__c</name>
     </fields>
     <fields>
+        <help><!-- This field will advice if Bosscard Name is null or not --></help>
+        <label><!-- IPM_BosscardName_isNull --></label>
+        <name>IPM_BosscardName_isNull__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Bosscard Approver Comments --></label>
         <name>IPM_Bosscard_Approver_Comments__c</name>
     </fields>
@@ -47,6 +52,11 @@
     <fields>
         <label><!-- Bosscard Logo --></label>
         <name>IPM_Bosscard_Logo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bosscard Owner --></label>
+        <name>IPM_Bosscard_Owner__c</name>
+        <relationshipLabel><!-- IPM Bosscard (Bosscard Owner) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Bosscard Span Logo --></label>

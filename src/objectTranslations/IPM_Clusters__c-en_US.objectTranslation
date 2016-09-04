@@ -13,6 +13,10 @@
         <label><!-- Project Cluster Name --></label>
         <name>IPM_Cluster_Name__c</name>
     </fields>
+    <fields>
+        <label><!-- Sum of Y3 iTO&apos;s of Original Projects --></label>
+        <name>IPM_Sum_Y3iTO__c</name>
+    </fields>
     <layouts>
         <layout>IPM_Clusters_Layout</layout>
         <sections>

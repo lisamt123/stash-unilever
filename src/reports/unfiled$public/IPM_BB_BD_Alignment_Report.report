@@ -70,9 +70,6 @@
         <field>IPM_Analytics__c$IPM_Actual_Launch_Year__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics__c$IPM_Auto_Aligned_Fin_TLD__c</field>
-    </columns>
-    <columns>
         <field>IPM_Analytics__c$IPM_Brand_Positioning__c</field>
     </columns>
     <columns>
@@ -154,15 +151,6 @@
         <field>IPM_Analytics__c$IPM_Gross_TO_Y5_BD__c</field>
     </columns>
     <columns>
-        <field>IPM_Analytics__c$IPM_1st_Full_Year_iGP_BD__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics__c$IPM_1st_Full_Year_Gross_TO_BD__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics__c$IPM_1st_Full_Year_iTO_BD__c</field>
-    </columns>
-    <columns>
         <field>IPM_Analytics__c$IPM_Gross_TO_Y6_BD__c</field>
     </columns>
     <columns>
@@ -242,9 +230,6 @@
     </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Project_Type__c</field>
-    </columns>
-    <columns>
-        <field>IPM_Analytics__c$IPM_Status__c</field>
     </columns>
     <columns>
         <field>IPM_Analytics__c$IPM_Strategic_Intent__c</field>

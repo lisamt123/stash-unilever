@@ -41,6 +41,14 @@
         <name>IPM_Auto_Aligned_Fin_TLD_for_financial__c</name>
     </fields>
     <fields>
+        <label><!-- BET Owner --></label>
+        <name>IPM_BETOwner__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM BET Current Status --></label>
+        <name>IPM_BET_Current_Status__c</name>
+    </fields>
+    <fields>
         <label><!-- BET Final Release Due date --></label>
         <name>IPM_BET_Final_Release_Due_date__c</name>
     </fields>
@@ -57,8 +65,16 @@
         <name>IPM_BET_First_Released_On_Date__c</name>
     </fields>
     <fields>
+        <label><!-- IPM BET Name --></label>
+        <name>IPM_BET_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Brand Positioning --></label>
         <name>IPM_Brand_Positioning__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Brand --></label>
+        <name>IPM_Brand__c</name>
     </fields>
     <fields>
         <label><!-- IPM Business Impact (BD) --></label>
@@ -87,6 +103,14 @@
     <fields>
         <label><!-- Company Priority --></label>
         <name>IPM_Company_Priority__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Company Project Priority (BB) --></label>
+        <name>IPM_Company_Project_Priority_BB__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Company Project Priority (BD) --></label>
+        <name>IPM_Company_Project_Priority_BD__c</name>
     </fields>
     <fields>
         <label><!-- IPM Company --></label>
@@ -147,6 +171,50 @@
     <fields>
         <label><!-- IPM Finance Member --></label>
         <name>IPM_Finance_Member__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financials Aligned --></label>
+        <name>IPM_Financials_Aligned__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y0(BD) --></label>
+        <name>IPM_GP_Y0BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y1(BD) --></label>
+        <name>IPM_GP_Y1BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y2(BD) --></label>
+        <name>IPM_GP_Y2BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y3(BD) --></label>
+        <name>IPM_GP_Y3BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y4(BD) --></label>
+        <name>IPM_GP_Y4BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y5(BD) --></label>
+        <name>IPM_GP_Y5BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y6(BD) --></label>
+        <name>IPM_GP_Y6BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y7(BD) --></label>
+        <name>IPM_GP_Y7BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GP Y8(BD) --></label>
+        <name>IPM_GP_Y8BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Gate Keeping Model --></label>
+        <name>IPM_Gate_Keeping_Model__c</name>
     </fields>
     <fields>
         <label><!-- IPM Geography --></label>
@@ -233,6 +301,14 @@
         <name>IPM_Platform__c</name>
     </fields>
     <fields>
+        <label><!-- Product Design Lock - Completed On Date --></label>
+        <name>IPM_Product_DesignLock_Completed_On_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Product Design Lock - Due Date --></label>
+        <name>IPM_Product_Design_Lock_Due_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Project Description --></label>
         <name>IPM_Project_Description__c</name>
     </fields>
@@ -249,6 +325,10 @@
         <name>IPM_Project_Name__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Project Route --></label>
+        <name>IPM_Project_Route__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Project Span --></label>
         <name>IPM_Project_Span__c</name>
     </fields>
@@ -261,6 +341,10 @@
         <name>IPM_Project_Type__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Reason for No BET --></label>
+        <name>IPM_Reason_for_No_BET__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Status --></label>
         <name>IPM_Status__c</name>
     </fields>
@@ -271,6 +355,14 @@
     <fields>
         <label><!-- IPM Strategic Intent --></label>
         <name>IPM_Strategic_Intent__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Sub-Category --></label>
+        <name>IPM_Sub_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date Aligned --></label>
+        <name>IPM_Target_Launch_Date_Aligned__c</name>
     </fields>
     <fields>
         <label><!-- IPM Target Launch Month (BB) --></label>
@@ -293,12 +385,96 @@
         <name>IPM_Technical_Project_Leader__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Y3 gTO(BD) --></label>
+        <label><!-- IPM White Space --></label>
+        <name>IPM_White_Space_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y1 GP (BD) --></label>
+        <name>IPM_Y1_GPBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Y1 Gross TO (BD) --></label>
+        <name>IPM_Y1_Gross_TO_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y1 iGP (BD) --></label>
+        <name>IPM_Y1_iGP_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y1 iTO (BD) --></label>
+        <name>IPM_Y1_iTOBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y2 GP (BD) --></label>
+        <name>IPM_Y2_GPBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Y2 Gross TO (BD) --></label>
+        <name>IPM_Y2_Gross_TO_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y2 iGP (BD) --></label>
+        <name>IPM_Y2_iGP_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y2 iTO (BD) --></label>
+        <name>IPM_Y2_iTOBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y3 GP (BD) --></label>
+        <name>IPM_Y3_GPBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Y3 Gross TO (BD) --></label>
+        <name>IPM_Y3_Gross_TO_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Calendar Y3 gTO(BD) --></label>
         <name>IPM_Y3_gTO_BD__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Y3 iTO(BD) --></label>
+        <label><!-- Y3 iGP (BD) --></label>
+        <name>IPM_Y3_iGP_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y3 iTO (BD) --></label>
+        <name>IPM_Y3_iTOBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Calendar Y3 iTO(BD) --></label>
         <name>IPM_Y3_iTO_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y4 GP (BD) --></label>
+        <name>IPM_Y4_GPBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Y4 Gross TO (BD) --></label>
+        <name>IPM_Y4_Gross_TO_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y4 iGP (BD) --></label>
+        <name>IPM_Y4_iGP_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y4 iTO (BD) --></label>
+        <name>IPM_Y4_iTOBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y5 GP (BD) --></label>
+        <name>IPM_Y5_GPBD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Y5 Gross TO (BD) --></label>
+        <name>IPM_Y5_Gross_TO_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y5 iGP (BD) --></label>
+        <name>IPM_Y5_iGP_BD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Y5 iTO (BD) --></label>
+        <name>IPM_Y5_iTOBD__c</name>
     </fields>
     <fields>
         <label><!-- IPM iGP Y0(BD) --></label>

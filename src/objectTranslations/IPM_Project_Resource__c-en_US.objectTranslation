@@ -21,12 +21,20 @@
         <name>IPM_Docmnt_Sec_FunctionalorSummary_Inpt__c</name>
     </fields>
     <fields>
+        <label><!-- Is Lead --></label>
+        <name>IPM_Is_Lead__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Locale Time --></label>
         <name>IPM_Locale_Time__c</name>
     </fields>
     <fields>
         <label><!-- IPM Member Email --></label>
         <name>IPM_Member_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notify Project Stop --></label>
+        <name>IPM_NotifyProjectStop__c</name>
     </fields>
     <fields>
         <label><!-- IPM Project Document Section Name --></label>

@@ -5,8 +5,16 @@
         <value>IPM Category</value>
     </caseValues>
     <fields>
+        <label><!-- Category Group --></label>
+        <name>IPM_Category_Group__c</name>
+    </fields>
+    <fields>
         <label><!-- Market --></label>
         <name>IPM_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sector --></label>
+        <name>IPM_Sector__c</name>
     </fields>
     <fields>
         <label><!-- Sub Sector --></label>

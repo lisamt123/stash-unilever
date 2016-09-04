@@ -154,6 +154,11 @@
         <name>Financial_Countries__c</name>
     </fields>
     <fields>
+        <help><!-- This field return true if Financial External ID has NONKEY --></help>
+        <label><!-- Financial_External_ID_Check_If_NONKEY --></label>
+        <name>Financial_External_ID_Check_If_NONKEY__c</name>
+    </fields>
+    <fields>
         <label><!-- Financial External ID --></label>
         <name>Financial_External_ID__c</name>
     </fields>
@@ -312,6 +317,22 @@
         <name>IPM_Project_Type__c</name>
     </fields>
     <fields>
+        <label><!-- Show At Global --></label>
+        <name>IPM_ShowAtGlobal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Local --></label>
+        <name>IPM_ShowAtLocal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Show At Regional --></label>
+        <name>IPM_ShowAtRegional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stopped By Project --></label>
+        <name>IPM_StoppedByProject__c</name>
+    </fields>
+    <fields>
         <label><!-- IRR Charter --></label>
         <name>IRR_Charter__c</name>
     </fields>
@@ -418,6 +439,11 @@
         <label><!-- Local Project --></label>
         <name>Local_Project__c</name>
         <relationshipLabel><!-- IPM Financials (Local) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field will advice whether Local_Project__c is Null or not --></help>
+        <label><!-- Local_Project_isNull --></label>
+        <name>Local_Project_isNull__c</name>
     </fields>
     <fields>
         <label><!-- MD Approved --></label>
@@ -563,6 +589,10 @@
     <fields>
         <label><!-- Project Sustainability Period --></label>
         <name>Project_Sustainability_Period__c</name>
+    </fields>
+    <fields>
+        <label><!-- Red Validation Cells --></label>
+        <name>Red_Validation_Cells__c</name>
     </fields>
     <fields>
         <label><!-- Regional External Id --></label>
@@ -808,6 +838,10 @@
     <fields>
         <label><!-- Year 3 iTO Regional --></label>
         <name>Year_3_iTO_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Yellow Validation Cells --></label>
+        <name>Yellow_Validation_Cells__c</name>
     </fields>
     <fields>
         <label><!-- isActive --></label>

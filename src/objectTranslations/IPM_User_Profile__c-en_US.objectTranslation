@@ -51,6 +51,10 @@
         <name>IPM_IT_Contacts__c</name>
     </fields>
     <fields>
+        <label><!-- Is RoleorFunction Blank --></label>
+        <name>IPM_Is_RoleorFunction_Blank__c</name>
+    </fields>
+    <fields>
         <label><!-- Job title --></label>
         <name>IPM_Job_title__c</name>
     </fields>
@@ -63,12 +67,29 @@
         <name>IPM_Region__c</name>
     </fields>
     <fields>
+        <help><!-- This field will advice if Region is null or not --></help>
+        <label><!-- IPM_Region_isNull --></label>
+        <name>IPM_Region_isNull__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Reporting --></label>
         <name>IPM_Reporting__c</name>
     </fields>
     <fields>
         <label><!-- Category --></label>
         <name>IPM_User_Category__c</name>
+        <picklistValues>
+            <masterLabel>Deodorants &amp; Fragrances</masterLabel>
+            <translation><!-- Deodorants &amp; Fragrances --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dressings</masterLabel>
+            <translation><!-- Dressings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hair Care</masterLabel>
+            <translation><!-- Hair Care --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>Household Care</masterLabel>
             <translation><!-- Household Care --></translation>
@@ -80,6 +101,30 @@
         <picklistValues>
             <masterLabel>Laundry</masterLabel>
             <translation><!-- Laundry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oral Care</masterLabel>
+            <translation><!-- Oral Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Savoury</masterLabel>
+            <translation><!-- Savoury --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Care</masterLabel>
+            <translation><!-- Skin Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skin Cleansing</masterLabel>
+            <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spreads</masterLabel>
+            <translation><!-- Spreads --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tea and Soy &amp; Fruit Beverages</masterLabel>
+            <translation><!-- Tea and Soy &amp; Fruit Beverages --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -101,6 +146,11 @@
             <masterLabel>Team-worker</masterLabel>
             <translation><!-- Team-worker --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is true when both User Role and User Function are Null --></help>
+        <label><!-- IPM_User_Role_Function_isNull --></label>
+        <name>IPM_User_Role_Function_isNull__c</name>
     </fields>
     <fields>
         <label><!-- User Function --></label>

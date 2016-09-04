@@ -631,6 +631,20 @@
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Parent_Section_isNull__c</fullName>
+        <description>This field informs if IPM_Section__r.IPM_Parent_Section__c is null or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field informs if IPM_Section__r.IPM_Parent_Section__c is null or not</inlineHelpText>
+        <label>IPM_Parent_Section_isNull</label>
+        <length>5</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_ProjectTemplate__c</fullName>
         <description>To Refer Document Template</description>
         <externalId>false</externalId>
