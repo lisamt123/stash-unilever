@@ -78,7 +78,15 @@ public with sharing class FS_CreateContact_CC {
                 varAccountName=[select id,name from Account where id=:varContactDetail.AccountiD limit 1].name;
                 cryptoKey = Crypto.generateAesKey(FS_ContactUtility.ENCRYPTINTEGER);
                 FS_SiteLead varSiteLead = new FS_SiteLead();
-                if(!String.isBlank(varContactDetail.firstname))
+                
+                
+                varSiteLead.Firstname=chekingNullValue(varContactDetail.firstname);
+                varSiteLead.Surname  =chekingNullValue(varContactDetail.Lastname);
+                varSiteLead.Address  =chekingNullValue(varContactDetail.MailingStreet);
+                varSiteLead.City     =chekingNullValue(varContactDetail.mailingcity);
+                varSiteLead.Country  =chekingNullValue(varContactDetail.MailingCountry);
+                
+              /*  if(!String.isBlank(varContactDetail.firstname))
                 {
                     varSiteLead.Firstname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey,Blob.valueOf(varContactDetail.firstname)));
                 }
@@ -115,7 +123,7 @@ public with sharing class FS_CreateContact_CC {
                 {
                     varSiteLead.Country=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingCountry)));   
                 }
-                
+                */
                 addExtraParameter(FS_ContactUtility.DECISIONMAKER,string.valueOf(varContactDetail.FS_Decision_Maker__c));
                 addExtraParameter(FS_ContactUtility.MYEMAILTEXT,varContactDetail.Email);     
                 addExtraParameter(FS_ContactUtility.CODEPOSTALTEXT,varContactDetail.MailingPostalCode);        
@@ -234,6 +242,25 @@ public with sharing class FS_CreateContact_CC {
         return null;
     }
     
+    
+    
+     /* * Function for adding extra parameter 
+*  @name addExtraParameter
+*  @param String,String
+*  @return Void 
+*  @throws 
+*/    
+    Private String chekingNullValue(String Value)
+    {
+        if(!String.isBlank(Value))
+        {
+         return EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey,Blob.valueOf(Value)));
+        }
+        
+        return null;
+    }
+    
+    
     /* * Function for adding extra parameter 
 *  @name addExtraParameter
 *  @param String,String
@@ -244,8 +271,13 @@ public with sharing class FS_CreateContact_CC {
     {
         FS_ExtraParameters varExtraParameters = new FS_ExtraParameters();
         varExtraParameters.Name  =Name;
+        if(!String.isBlank(Value))
+        {
         varExtraParameters.Value =EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(Value)));
-        moreListItem.add(varExtraParameters);
+        }
+        else
+        varExtraParameters.Value =EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf('')));
+         moreListItem.add(varExtraParameters);
     }
     
     /* * Wrapper cals for creating Contact to intract with Brandton though mulesoft
