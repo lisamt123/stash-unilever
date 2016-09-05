@@ -57,28 +57,46 @@ private class FS_ContractProductHelper_Test {
         INSERT oppExisting;
         
         Id oppRecType2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-        Opportunity oppNew = new Opportunity(Name = 'Opp1', recordtypeid=oppRecType2,AccountId = acc.Id,StageName = '03 - Proposal',CloseDate = Date.today(), Contract=con);
-        INSERT oppNew;
+        //Set up Opportunity records
+        List<Opportunity> listOpportunities = new List<Opportunity>();
+        for(integer i=0;i<10;i++){
+            listOpportunities.add(new Opportunity(Name = 'Opp'+i, recordtypeid=oppRecType2,AccountId = acc.Id,StageName = '03 - Proposal',CloseDate = Date.today(), Contract=con));
+        }
+        INSERT listOpportunities;
         
+        //Set up Product and pricebook
         Product2 prod = new Product2(Name = 'Test Prod',isActive=true,MarketType__c='BOH MAYO',StartDate__c=date.today(),EndDate__c=date.today()+1,CanUseQuantitySchedule=true);
         Insert Prod;
         Id pricebookId = Test.getStandardPricebookId();
         PriceBookEntry pbe = new priceBookEntry ( pricebook2id = pricebookId,Product2Id = prod.id,  unitPrice = 1000, IsActive = true,UseStandardPrice = false); 
         insert pbe;
         
-        OpportunityLineItem oppProd = new OpportunityLineItem(OpportunityId = oppNew.Id, Quantity = 500, PricebookEntryId = pbe.Id, TotalPrice = 3946725);
-        insert oppProd;
+        //Set up Opportunity Product
+        List<OpportunityLineItem> listOLIs = new List<OpportunityLineItem>();
+        For(Opportunity opp: listOpportunities){
+            listOLIs.add(new OpportunityLineItem(OpportunityId = opp.Id, Quantity = 500, PricebookEntryId = pbe.Id, TotalPrice = 3946725));
+        }    
+        INSERT listOLIs;
         
-        OpportunityLineItemSchedule schedule = new OpportunityLineItemSchedule(OpportunityLineItemId = oppProd.Id, Quantity= 500,ScheduleDate=date.today(), Type = 'Quantity');
-        Insert schedule;
+        //Set up Quantity Schefuling
+        List<OpportunityLineItemSchedule> listOLISchedule = new List<OpportunityLineItemSchedule>();
+        For(OpportunityLineItem oli: listOLIs){
+            listOLISchedule.add(new OpportunityLineItemSchedule(OpportunityLineItemId = oli.Id, Quantity= 500,ScheduleDate=date.today(), Type = 'Quantity'));
+        }    
+        INSERT listOLISchedule;
         
-        oppNew.DealApproved__c = true;
-        oppNew.AgreementDate__c = date.today();
-        oppNew.StageName = '04 - Verbal Commitment';
-        UPDATE oppNew;
-        oppNew.StageName = '05 – Won';
-        UPDATE oppNew;
-        
+        For(Opportunity opp: listOpportunities){
+            opp.DealApproved__c = true;
+            opp.AgreementDate__c = date.today();
+            opp.StageName = '04 - Verbal Commitment';
+        }    
+        UPDATE listOpportunities;
+        For(Opportunity opp: listOpportunities){
+            opp.StageName = '05 – Won';
+        }
+        UPDATE listOpportunities;
+        List<FS_Monthly_Claimed_Cases__c> listMCC = [SELECT Id from FS_Monthly_Claimed_Cases__c WHERE Account__c =: acc.Id and Product__c =: Prod.Id];
+        System.debug('listMCC-->'+ listMCC );
         
     }}
 }

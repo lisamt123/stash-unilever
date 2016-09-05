@@ -21,6 +21,13 @@ public class FS_CreateContact_CC_Test{
         varAccount.name='Account name';
         varAccount.CurrencyIsoCode='USD';
         insert varAccount; 
+        contact con = new contact();
+        con.FirstName = 'test';
+        con.LastName = 'Last';
+        con.AccountId = varAccount.id;
+        con.FS_RefId__c = '86fda35a-3d3f-4e49-a6aa-bcc5779f1e17';
+        con.FS_PIEncryptKey__c = 'Kx6nJNIC3mEFbiIGNG+YELANLyA7Qj45uY5F1SqX264=';
+        insert con;
         Test.StopTest();   
         
         FS_CreateContact_CC.FS_SiteLead varSiteLead = new FS_CreateContact_CC.FS_SiteLead();
@@ -55,10 +62,13 @@ public class FS_CreateContact_CC_Test{
         tempobj.varContactDetail.MailingCountry='India';
         tempobj.createContact();
         
+        
+        
         Contact varContact=[select id,FS_RefId__c from contact where FS_RefId__c!=null ];
         
         Test.setCurrentPageReference(new PageReference('Page.FS_ContactDetailPage')); 
         System.currentPageReference().getParameters().put('id', varContact.FS_RefId__c);  
+        System.assert(varContact.FS_RefId__c <> null);
     }
     
 }

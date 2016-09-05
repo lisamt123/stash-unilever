@@ -39,6 +39,7 @@ public with sharing class FS_ContractProductHelper {
                             mccObj.FS_Planned_Quantity__c = Schedule.Quantity;
                             mccObj.Product__c = oli.Product2Id;
                             mccObj.FS_First_of_Month__c= (Schedule.ScheduleDate).toStartOfMonth();
+                            system.debug(mccObj);
                             MCCList.add(mccObj);
                         }
                     }        
@@ -58,62 +59,61 @@ public with sharing class FS_ContractProductHelper {
     } 
     
     public void updateClaimedCases(List<Contract_Product__c> ContractProdList){
-         if(FS_Utility.runOnceContractProduct()){//To prevent recursion in after update trigger
-            List<ID> ProductIdList = new List<ID>();
-            List<ID> ContractIdList = new List<ID>();
-            List<ID> OppIdList = new List<ID>();
-            List<Opportunity> OppList=new List<Opportunity>();
-            List<OpportunityLineItem> OLIList=new List<OpportunityLineItem>();
-            List<FS_Monthly_Claimed_Cases__c> MCCList = new List<FS_Monthly_Claimed_Cases__c>();
-            List<OpportunityLineItemSchedule> ScheduleList = new List<OpportunityLineItemSchedule>();
+        if(FS_Utility.runOnceContractProduct()){//To prevent recursion in after update trigger
             List<FS_Contract_Product_Opportunity_Map__c> CustomSettingList = new List<FS_Contract_Product_Opportunity_Map__c>();
-            
-            For(Contract_Product__c cp : ContractProdList){
-                ContractIdList.add(cp.Contract__c);
-                ProductIdList.add(cp.Product__c);
-            }
-            system.debug(ContractIdList);
-            Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-            
             //While updating Contract Product custom setting record is inserted, fetching and deleting those
             CustomSettingList = FS_Contract_Product_Opportunity_Map__c.getall().values();
-            system.debug('CustomSettingList -->'+CustomSettingList);
-            for(FS_Contract_Product_Opportunity_Map__c cs :CustomSettingList ){
-                OppIdList.add(id.ValueOf(cs.FS_Opportunity__c));
-            }
-            
-            //Retrieve the existing Monthly Claimed Case
-            OppList = [SELECT Id FROM Opportunity WHERE ContractId IN : ContractIdList and Id in : OppIdList and RecordTypeId =:newRecordTypeId];
-            OLIList = [select id, Opportunity.AccountId, Product2Id from OpportunityLineItem where OpportunityId in : OppList and Product2Id in : ProductIdList];
-            ScheduleList = [SELECT OpportunityLineItemId,Quantity,ScheduleDate FROM OpportunityLineItemSchedule where OpportunityLineItemId in : OLIList AND Quantity > 0];
-            MCCList = [SELECT Id, FS_First_of_Month__c, Account__c, FS_Planned_Quantity__c, Product__c  FROM FS_Monthly_Claimed_Cases__c where Contract_Product__r.Contract__c in : ContractIdList];
-            
-            //Updating the planned quantity of related monthly claimed case        
-            for(OpportunityLineItem oli : OLIList){
-                for(OpportunityLineItemSchedule Schedule : ScheduleList){
-                    if(oli.Id == Schedule.OpportunityLineItemId){
-                        for(FS_Monthly_Claimed_Cases__c MCCObj: MCCList){
-                            if(MCCObj.Account__c == oli.Opportunity.AccountId && MCCObj.Product__c == oli.Product2Id && mccObj.FS_First_of_Month__c == (Schedule.ScheduleDate).toStartOfMonth()){
-                                mccObj.FS_Planned_Quantity__c = mccObj.FS_Planned_Quantity__c + Schedule.Quantity;
-                                system.debug(mccObj);
-                            }
-                        }        
+            If(!CustomSettingList.isEmpty()){
+                List<ID> ProductIdList = new List<ID>();
+                List<ID> ContractIdList = new List<ID>();
+                List<ID> OppIdList = new List<ID>();
+                List<Opportunity> OppList=new List<Opportunity>();
+                List<OpportunityLineItem> OLIList=new List<OpportunityLineItem>();
+                List<FS_Monthly_Claimed_Cases__c> MCCList = new List<FS_Monthly_Claimed_Cases__c>();
+                List<OpportunityLineItemSchedule> ScheduleList = new List<OpportunityLineItemSchedule>();               
+                For(Contract_Product__c cp : ContractProdList){
+                    ContractIdList.add(cp.Contract__c);
+                    ProductIdList.add(cp.Product__c);
+                }
+                system.debug(ContractIdList);
+                Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+                system.debug('CustomSettingList -->'+CustomSettingList);
+                for(FS_Contract_Product_Opportunity_Map__c cs :CustomSettingList ){
+                    OppIdList.add(id.ValueOf(cs.FS_Opportunity__c));
+                }                
+                //Retrieve the existing Monthly Claimed Case
+                OppList = [SELECT Id FROM Opportunity WHERE ContractId IN : ContractIdList and Id in : OppIdList and RecordTypeId =:newRecordTypeId];
+                OLIList = [select id, Opportunity.AccountId, Product2Id from OpportunityLineItem where OpportunityId in : OppList and Product2Id in : ProductIdList];
+                ScheduleList = [SELECT OpportunityLineItemId,Quantity,ScheduleDate FROM OpportunityLineItemSchedule where OpportunityLineItemId in : OLIList AND Quantity > 0];
+                MCCList = [SELECT Id, FS_First_of_Month__c, Account__c, FS_Planned_Quantity__c, Product__c  FROM FS_Monthly_Claimed_Cases__c where Contract_Product__r.Contract__c in : ContractIdList];
+                
+                //Updating the planned quantity of related monthly claimed case        
+                for(OpportunityLineItem oli : OLIList){
+                    for(OpportunityLineItemSchedule Schedule : ScheduleList){
+                        if(oli.Id == Schedule.OpportunityLineItemId){
+                            for(FS_Monthly_Claimed_Cases__c MCCObj: MCCList){
+                                if(MCCObj.Account__c == oli.Opportunity.AccountId && MCCObj.Product__c == oli.Product2Id && mccObj.FS_First_of_Month__c == (Schedule.ScheduleDate).toStartOfMonth()){
+                                    mccObj.FS_Planned_Quantity__c = mccObj.FS_Planned_Quantity__c + Schedule.Quantity;
+                                    system.debug(mccObj);
+                                }
+                            }        
+                        }
+                    } 
+                }
+                //system.debug(MCCList);
+                try{           
+                    If(!MCCList.isEmpty()){                
+                        Update MCCList;                
                     }
-                } 
-            }
-            //system.debug(MCCList);
-            try{           
-            If(!MCCList.isEmpty()){                
-                Update MCCList;                
-            }
-                If(!CustomSettingList.isEmpty()){                
-                Delete CustomSettingList;         
-            } 
-        }
-        Catch(DmlException e){
-            System.debug( 'The following exception has occurred: '+e.getMessage());
-            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),'Contract Product','MA-BE Process', e.getMessage(), e, null, null, null, 0,'FOOD SOLUTION');
-        }                
+                    If(!CustomSettingList.isEmpty()){                
+                        Delete CustomSettingList;         
+                    } 
+                }
+                Catch(DmlException e){
+                    System.debug( 'The following exception has occurred: '+e.getMessage());
+                    ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),'Contract Product','MA-BE Process', e.getMessage(), e, null, null, null, 0,'FOOD SOLUTION');
+                }   
+            }                           
         }  
     }
 }

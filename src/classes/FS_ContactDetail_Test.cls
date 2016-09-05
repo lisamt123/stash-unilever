@@ -39,6 +39,7 @@ Public class FS_ContactDetail_Test {
         FS_ContactDetail_CC tempdetail = new FS_ContactDetail_CC();
         tempdetail.editPage();
         tempdetail.updateContact();
+        System.assert(con.FS_PIEncryptKey__c <> null);
         
     }
     

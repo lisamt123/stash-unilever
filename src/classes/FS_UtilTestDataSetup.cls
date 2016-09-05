@@ -103,7 +103,7 @@ return accounts;
     Public void setUpOpportunityLineItemData(List<Opportunity> opportunities){
         List<Product2> products=new  List<Product2>();
         
-        for(Integer i=0;i < 2;i++){
+        for(Integer i=0;i < 1;i++){
             products.add(new Product2(Name = 'FS Test Product_'+i,COGS__c=(i+1),isActive=true,MarketType__c='BOH MAYO',StartDate__c=date.today(),EndDate__c=date.today()+1,CanUseQuantitySchedule=true));
         }
         insert products;
@@ -136,7 +136,7 @@ return accounts;
         For(OpportunityLineItem oli : listOli){
             system.assertNotEquals(null, oli.Id);                
             For(Integer i=1;i<=12;i++){
-                listScheduletoinsert.add(new OpportunityLineItemSchedule(OpportunityLineItemId=oli.id,quantity=100,scheduledate=Date.newinstance(system.today().year(),i, 1),Type='Quantity'));                
+                listScheduletoinsert.add(new OpportunityLineItemSchedule(OpportunityLineItemId=oli.id,quantity=100,scheduledate=Date.newinstance(system.today().year(),i,1),Type='Quantity'));                
             }                
         }            
         try{              

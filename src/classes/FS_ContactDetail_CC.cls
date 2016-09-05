@@ -335,7 +335,10 @@ Public with sharing class FS_ContactDetail_CC {
     {
         FS_ExtraParameters varExtraParameters = new FS_ExtraParameters();
         varExtraParameters.Name=Name;
+        if(String.isBlank(Value))
         varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(value)));
+        else
+        varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf('')));
         moreListItem.add(varExtraParameters);
     }
     
