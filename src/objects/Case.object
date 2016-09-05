@@ -3873,12 +3873,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>Country_Name__c</columns>
         <columns>Language__c</columns>
-        <columns>Brand__c</columns>
+        <columns>First_Response_Date__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -3918,9 +3916,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,Review Needed,In Progress</value>
+            <value>New,In Progress,Review Needed</value>
         </filters>
-        <label>CEC Benelux queue (niet gebruiken) WH</label>
+        <label>CEC Benelux queue Nieuw/herzien/voortg</label>
+        <language>nl_NL</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Benelux_queue_In_afwachting</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Pending with Courier,Awaiting Factory Response,Awaiting Knowledge Response</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>On Hold,Escalated,Awaiting Information from Consumer</value>
+        </filters>
+        <label>CEC Benelux queue In afwachting</label>
         <language>nl_NL</language>
     </listViews>
     <listViews>
