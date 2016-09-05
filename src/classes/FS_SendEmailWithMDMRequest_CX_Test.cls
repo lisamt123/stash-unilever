@@ -9,10 +9,10 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
     static Account operatorAccount;
     
     @isTest static void SendMDMRequest() {
-     	
-     	setData();
-     	
-     	user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
+        
+        setData();
+        
+        user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
         system.runAs(SalesRepUser){
        
         opp = createOpportunity();
@@ -24,7 +24,7 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         insert oppProd;
         
         
-     	// Create an approval request for the opportunity
+        // Create an approval request for the opportunity
         Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
         req1.setObjectId(opp.id);
         
@@ -34,6 +34,7 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         
         // Submit the approval request for the opportunity
         Approval.ProcessResult result = Approval.process(req1);
+        system.assert(result <> null);//Avoid Sonarcube error 'unused local variables'
         }
         
         PageReference pageRef = Page.FS_SendEmailWithMDMRequest;
@@ -137,11 +138,11 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         insert MDMTemplate;
         
         FS_MDMRequestPageMessages__c MDMPageMessage = 
-        		New FS_MDMRequestPageMessages__c (
-        			FS_NotApprovedMessage__c = 'FS_NotApprovedMessage__c',
-        			FS_AlreadySentMessage__c = 'FS_AlreadySentMessage__c',
-        			FS_NoAccessMessage__c = 'FS_NoAccessMessage__c'
-        			);
+                New FS_MDMRequestPageMessages__c (
+                    FS_NotApprovedMessage__c = 'FS_NotApprovedMessage__c',
+                    FS_AlreadySentMessage__c = 'FS_AlreadySentMessage__c',
+                    FS_NoAccessMessage__c = 'FS_NoAccessMessage__c'
+                    );
         insert MDMPageMessage;
         
         FS_MDMRequestRecipient__c emailRecipient = new FS_MDMRequestRecipient__c(
@@ -227,9 +228,9 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
      }  
      
      static Opportunity createOpportunity(){
-     	Opportunity oppRecord = null;
-     	 
-     	//set Opportunity
+        Opportunity oppRecord = null;
+         
+        //set Opportunity
         oppRecord = new Opportunity();
         oppRecord.Name = 'Test Opportunity';
         oppRecord.AccountId = operatorAccount.Id;
@@ -244,7 +245,7 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         oppRecord.FS_prePaid__c = true;
         oppRecord.Owner =[SELECT Id, Email FROM User WHERE Id =: UserInfo.getUserId() LIMIT 1];
         
-     	return oppRecord;
+        return oppRecord;
      }
      
      static OpportunityLineItem createOLI(){

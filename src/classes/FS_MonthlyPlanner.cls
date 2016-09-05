@@ -6,6 +6,5 @@ public class FS_MonthlyPlanner {
     public integer workingDays{get;set;}
     Public decimal target{get;set;}
     Public decimal criticalTarget{get;set;}
-    public integer actualWorkingDays{get;set;}    
-    Public void FS_MonthlyPlanner(){}
+    public integer actualWorkingDays{get;set;}  
 }

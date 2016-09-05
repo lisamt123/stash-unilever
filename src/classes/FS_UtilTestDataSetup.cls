@@ -77,7 +77,7 @@ return accounts;
         List<Risk__c> riskList=new List<Risk__c>(); 
         for(FS_Account_Plan__C accPlan:AccPlanList){
             for(FS_Defined_Objective__c obj : objList){
-                riskList.add(new Risk__c(Account_Plan__c=accPlan.id,Defined_Objective__c=obj.id,FS_Sector__c='Test'));  
+                riskList.add(new Risk__c(Account_Plan__c=accPlan.id,Defined_Objective__c=obj.id,FS_Sub_Sector__c='Test'));  
             }
         }
         Insert riskList;

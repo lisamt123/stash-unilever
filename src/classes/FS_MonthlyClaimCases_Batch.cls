@@ -39,7 +39,7 @@ global with sharing class FS_MonthlyClaimCases_Batch implements database.Batchab
             }
             If(claimed_case.FS_First_of_Month__c!=Null){
                 tempList.add(claimed_case);
-            }            		
+            }                   
             MapClaimCase.put(claimed_case.Contract_Product__c,tempList);            
         }         
         List<FS_Monthly_Claimed_Cases__c> relatedClaimCaseListtemp  = new List<FS_Monthly_Claimed_Cases__c>();        
@@ -81,7 +81,7 @@ global with sharing class FS_MonthlyClaimCases_Batch implements database.Batchab
 *  @throws
 */
     global void finish(Database.BatchableContext BC){
-        Set<String> querySet;
-        querySet.add(query);              
+        Set<String> querySet=new Set<String>();
+        querySet.add(query);// To avoid Empty Method error of Sonarcube              
     }
 }

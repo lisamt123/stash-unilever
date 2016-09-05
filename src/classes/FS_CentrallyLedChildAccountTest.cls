@@ -56,7 +56,7 @@ private class FS_CentrallyLedChildAccountTest {
             Insert accounts;
             List<String> stringList = new List<String>{acc1.id,acc2.id,acc3.id};
             
-            Id rectypeId = Schema.SObjectType.FS_Account_Plan__c.getRecordTypeInfosByName().get('Operator').getRecordTypeId();
+            //Id rectypeId = Schema.SObjectType.FS_Account_Plan__c.getRecordTypeInfosByName().get('Operator').getRecordTypeId();
             
             //Set up Account Plan records
             FS_Account_Plan__c accplan = new FS_Account_Plan__c();
@@ -81,13 +81,15 @@ private class FS_CentrallyLedChildAccountTest {
             List<SelectOption> tf = fscc.ChildAccountList;
             List<Task> tf1 = fscc.ChildAccountTaskList;
             List<String> str1 = fscc.CentrallyLedList;
-            //fscc.CentrallyLedList = stringList;            
+            fscc.CentrallyLedList = stringList;            
             fscc.CreateTask();
             fscc.CreateTask();            
             system.assertEquals((task)sc.getRecord(), tsk); 
             tf.clear();
             tf1.clear();
-            str1.clear();           
+            str1.clear();
+            //fscc.clear();
+            stringList.clear();
         }      
     }   
 }

@@ -36,8 +36,13 @@ Public class FS_GenerateMDMRequest_CX_Test{
         DateTime dSent = controller.dateSent;
         Opportunity oppRec = controller.opportunityRecord;
         Account accRec = controller.accountRecord;
+        system.assert(dSent <> null);//Avoid Sonarcube error 'Unused local variable'
+        system.assert(oppRec <> null);
+        system.assert(accRec <> null);
         Map<Id, Product2> prodMap = controller.product2Map;
+        system.assert(prodMap <> null);
         List<OpportunityLineItem> oli = controller.opportunityProducts;
+        system.assert(oli.size()>0);
         //system.assert
     } 
     
