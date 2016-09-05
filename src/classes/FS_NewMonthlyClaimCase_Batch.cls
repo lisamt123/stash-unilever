@@ -76,6 +76,8 @@ Global with sharing class FS_NewMonthlyClaimCase_Batch implements database.Batch
 *  @return 
 *  @throws
 */
-    global void finish(Database.BatchableContext BC){        
+    global void finish(Database.BatchableContext BC){
+        Set<String> querySet;
+        querySet.add(query);
     }
 }

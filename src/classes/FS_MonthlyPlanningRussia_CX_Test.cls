@@ -1,7 +1,7 @@
 @isTest
 
 /**********************************************************************
-Name: FS_Monthly_Planning_Russia_CX_Test
+Name: FSMonthlyPlanningRussiaCX_Test
 ======================================================
 ======================================================
 Purpose: Test class for Monthly Planning Russia controller class
@@ -19,7 +19,7 @@ Public Class FS_MonthlyPlanningRussia_CX_Test
    public static testMethod void FS_MonthlyPlanningRussia_TestMethod()
     {
         String profile='System Administrator';
-        String permissionset='FS_Sales_Rep';         
+               
         Profile p = [SELECT Id FROM Profile WHERE Name=:profile];
         Userrole role=[SELECT Id FROM UserRole WHERE Name = 'FS 59040 Sales Rep'];
         User SalesRepUserMgr = new User(Alias = 'newUser', Email='newuser1@testorg.com',
@@ -47,11 +47,7 @@ Public Class FS_MonthlyPlanningRussia_CX_Test
             varMonthlyPlanningRussia.dateName=Date.newInstance(2016,09,22);
             varMonthlyPlanningRussia.refreshPage();
             varMonthlyPlanningRussia.getlistMonthlyPlanner();
-            List<Event> listEventquery=[select id,OwnerID,ActivityDate from Event ];
-            
-            System.debug('SalesRepUserMgr'+SalesRepUserMgr.id);
-            System.debug('SalesRepUser'+SalesRepUser.id);
-            System.debug('listEventquery'+listEventquery);
+           System.assert(varMonthlyPlanningRussia.dateName <> null);
         }
         
     }  

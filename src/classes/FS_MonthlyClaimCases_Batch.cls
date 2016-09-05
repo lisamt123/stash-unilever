@@ -80,6 +80,8 @@ global with sharing class FS_MonthlyClaimCases_Batch implements database.Batchab
 *  @return 
 *  @throws
 */
-    global void finish(Database.BatchableContext BC){        
+    global void finish(Database.BatchableContext BC){
+        Set<String> querySet;
+        querySet.add(query);              
     }
 }

@@ -11,7 +11,7 @@ private class FS_MABETest {
             List<Opportunity> opportunities=testData.setUpMABEOpportunityData(listContract);  
             List<Opportunity> listNewOpp=new List<Opportunity>();
             Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-            listNewOpp=[select id,ContractId,DealApproved__c,stagename from Opportunity where recordtypeId=:newRecordTypeId and Name='FS Test Opportunity'];
+            listNewOpp=[select id,ContractId,DealApproved__c,stagename from Opportunity where recordtypeId=:newRecordTypeId and Name='FS Test Opportunity' and id in : opportunities];
             testdata.setUpOpportunityLineItemData(listNewOpp);
             List<OpportunityLineItem> listOli;
             listNewOpp=[select id,ContractId,DealApproved__c,stagename from Opportunity where recordtypeId=:newRecordTypeId and Name='FS Test Opportunity' limit 1];
@@ -53,7 +53,7 @@ private class FS_MABETest {
             List<OpportunityLineItem> listOppLineItemCreated=New List<OpportunityLineItem>();
             listOppLineItemCreated=[select Id,OpportunityId,Product2Id,Opportunity.ContractId,contract_product__c,Quantity from OpportunityLineItem where opportunityId in : listExistingOpp];
             List<Contract_Product__c> listNewContractProduct=New List<Contract_Product__c>();
-            listNewContractProduct=[select contract__c,product__c from contract_product__c];        
+            listNewContractProduct=[select contract__c,product__c from contract_product__c where contract__c in :contractList];        
             system.assertEquals(true,!listOppLineItemCreated.isEmpty());
             system.assertEquals(true,!listNewContractProduct.isEmpty());        
             For(OpportunityLineItem oli : listOppLineItemCreated){

@@ -12,7 +12,7 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
     Private List<Event> tempEvents;
     //Private date startdate;
     //Private date endDate; 
-    Private integer nonworkingDays {get;set;}
+    //Private integer nonworkingDays {get;set;}
     Private integer weekend_Count {get;set;}
     Public Map<Id,List<Event>> userEventsMap=new Map<Id,List<Event>>();
     Public Map<Id,Set<String>> userActivityDateMap=new Map<Id,Set<String>>();
@@ -33,7 +33,7 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
     }
     //Public void setlistMonthlyPlanner(){}
     Public pagereference refreshPage(){
-        nonworkingDays= 0;
+        //nonworkingDays= 0;
         weekend_Count = 0;
         isVisible=true;        
         monthStartDate=dateName.toStartOfMonth();

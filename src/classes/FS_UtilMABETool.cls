@@ -1,5 +1,26 @@
 public class FS_UtilMABETool {
     
+    Private static final string STATUS_WON='05 – Won';
+    
+    Public List<Opportunity> getNewClosedOpportunity(List<Opportunity> listNewTrigger,Map<id,Opportunity> oppOldMap,Id newRecordTypeId){
+        List<Opportunity> listNewOpportunity=new List<Opportunity>();
+        for(Opportunity opp : listNewTrigger){           
+            //Check if stage has been changed to Closed Won for New opportunities
+            if(OppOldMap.get(opp.id).stagename!=opp.stagename && opp.StageName.equals(STATUS_WON) && opp.recordtypeid==newRecordTypeId && opp.ContractId!=Null){               
+                listNewOpportunity.add(opp);//List of new opportunities which has been Won               
+            }             
+        }
+        return listNewOpportunity;
+    }
+    
+    Public Set<Id> getContractList(List<Opportunity> listNewOpportunity){
+       Set<Id> listContract=new Set<Id>();
+        For(Opportunity opp: listNewOpportunity){
+           listContract.add(opp.ContractId); 
+        }
+        return listContract;
+    }
+    
     public Map<Id,List<OpportunityLineItem>> createMapOliOpp(List<OpportunityLineItem> listExistingOppLineItem){
         Map<Id,List<OpportunityLineItem>> mapRelatedOppLineItem=new Map<Id,List<OpportunityLineItem>>();
         List<OpportunityLineItem> tempOppLineItemList=new List<OpportunityLineItem>();
@@ -61,10 +82,10 @@ public class FS_UtilMABETool {
         }
         For(OpportunityLineItem oli : tempExistingOliList){
             listPriceBookEntry.add(oli.PricebookEntryId);
-            For(OpportunityLineItem newOli : tempExistingOliList){
+            For(OpportunityLineItem newOli : tempNewOliList){
                 If(newOli.product2Id==oli.Product2Id){
                     oli.Quantity=oli.Quantity+newOli.quantity;
-                    oli.TotalPrice=oli.TotalPrice+total_Price;
+                    oli.TotalPrice=oli.TotalPrice+newOli.TotalPrice;
                 }
             }
             tempOliListUpsert.add(oli);
@@ -103,12 +124,9 @@ public class FS_UtilMABETool {
     }
     
     Public List<Contract_Product__c> getContractProduct(Opportunity existingOpp,List<Opportunity> listNewOpportunity,Map<Id,List<OpportunityLineItem>> mapRelatedOppLineItem){
-        List<Contract_Product__c> tempconProductList=new List<Contract_Product__c>();
-        List<Contract_Product__c> listConProdInsert=new List<Contract_Product__c>();
-        
+        List<Contract_Product__c> tempconProductList=new List<Contract_Product__c>();       
         List<OpportunityLineItem> listOli=new List<OpportunityLineItem>();
-        Integer flag;
-        
+               
         For(Opportunity opp: listNewOpportunity){
             If(mapRelatedOppLineItem.containsKey(opp.Id)){
                 listOli=mapRelatedOppLineItem.get(opp.Id); 
@@ -149,22 +167,25 @@ public class FS_UtilMABETool {
         List<Contract_Product__c> tempExistingConProductList=new List<Contract_Product__c>();
         List<Contract_Product__c> listContractProductUpdate=new List<Contract_Product__c>();
         Integer flag=0;
-        For(Contract_Product__c conprod : conProdList){
-            If(mapExistingContractConProd.containsKey(conProd.contract__c)){
-                tempExistingConProductList=mapExistingContractConProd.get(conProd.contract__c);  
-            }            
+        Set<Id> productList=new Set<Id>();
+        Set<Id> contractList=new Set<Id>();        
+        For(Contract_Product__c conProd : conProdList){
             flag=0;
-            If(!tempExistingConProductList.isEmpty()){
+            If(mapExistingContractConProd.containsKey(conProd.contract__c)){
+                tempExistingConProductList=mapExistingContractConProd.get(conProd.contract__c);                
                 For(Contract_Product__c existingConProd : tempExistingConProductList){
                     If(existingConProd.product__c==conProd.product__c){
-                        flag=1;  
+                        flag=1;
+                        listContractProductUpdate.add(existingConProd);
+                        break;
                     }
                 }  
             }            
-            If(flag==1){                
-                listContractProductUpdate.add(conProd);                
-            }  
-        }
+            If(flag==1 && !productList.contains(conProd.Product__c) && !contractList.contains(conProd.Contract__c)){                
+                productList.add(conProd.Product__c);
+                contractList.add(conProd.Contract__c);
+            }               
+        }        
         return listContractProductUpdate;       
     }
     
@@ -193,17 +214,18 @@ public class FS_UtilMABETool {
     Public List<FS_Contract_Product_Opportunity_Map__c> getCustomSetting(List<Contract_Product__c> listContractProductUpdate,Map<Id,List<OpportunityLineItem>> mapContractRelatedOppLineItem){
         List<FS_Contract_Product_Opportunity_Map__c> listNewCustomsetting=new List<FS_Contract_Product_Opportunity_Map__c>();
         List<OpportunityLineItem> tempOppLineItemList=new List<OpportunityLineItem>();
-        For(Contract_Product__c ConProd : listContractProductUpdate){
+        For(Contract_Product__c conProd : listContractProductUpdate){
             tempOppLineItemList=new List<OpportunityLineItem>();
             If(mapContractRelatedOppLineItem.containsKey(ConProd.Contract__c)){
                 tempOppLineItemList=mapContractRelatedOppLineItem.get(ConProd.Contract__c); 
             }              
             For(OpportunityLineItem Oli : tempOppLineItemList){
                 If(Oli.Product2Id==ConProd.Product__c){              
-                    listNewCustomsetting.add(New FS_Contract_Product_Opportunity_Map__c(Name=String.valueof(ConProd.Id),FS_Contract_Product__c=ConProd.Id,FS_Opportunity__c=OLi.OpportunityId));
+                    listNewCustomsetting.add(New FS_Contract_Product_Opportunity_Map__c(Name=String.valueof(conProd.Id),FS_Contract_Product__c=ConProd.Id,FS_Opportunity__c=OLi.OpportunityId));
                 }
             }
         }
+        system.debug(listNewCustomsetting);
         return listNewCustomsetting;
     }
 }
