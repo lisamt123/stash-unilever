@@ -5,7 +5,7 @@
 *  @throws 
 */
 public with sharing class FS_RiskProductSubSector_CX {
-    Public List<SelectOption> listSubSector_Picklist {get;set;}
+ Public List<SelectOption> listSubSector_Picklist {get;set;}
     Public String selectedSubSector {get;set;}
     Public Boolean refreshPage {get;set;}
     Private Risk__c risk_Record;
@@ -16,8 +16,8 @@ public with sharing class FS_RiskProductSubSector_CX {
         refreshPage=false;
         stndrdController=stdController;
         risk_Record=(Risk__c)stdController.getRecord();
-        risk=[select id,FS_Sector__c from Risk__c where id=:risk_Record.Id];
-        selectedSubSector=risk.FS_Sector__c;
+        risk=[select id,FS_Sub_Sector__c from Risk__c where id=:risk_Record.Id];
+        selectedSubSector=risk.FS_Sub_Sector__c;
     }    
     Public pagereference autorun(){
         Schema.DescribeFieldResult picklist_Detail= Product2.SubSector__c.getDescribe();        
@@ -31,10 +31,10 @@ public with sharing class FS_RiskProductSubSector_CX {
     }    
     Public pagereference updateSubSector(){
       //risk_Record=(Risk__c)stndrdController.getRecord();
-      risk_Record.FS_Sector__c=selectedSubSector;
+      risk_Record.FS_Sub_Sector__c=selectedSubSector;
       stndrdController.save();
       refreshPage=true;
       //update risk_Record;          
       return null;
-    }
+    }   
 }
