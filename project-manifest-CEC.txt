@@ -21,6 +21,8 @@ src/classes/CEC_FulfilmentHelperExtension.cls
 src/classes/CEC_FulfilmentHelperExtension.cls-meta.xml
 src/classes/CEC_CaseTriggerHelperExtension.cls
 src/classes/CEC_CaseTriggerHelperExtension.cls-meta.xml
+src/classes/CEC_TestAlertActionBatchScheduler.cls
+src/classes/CEC_TestAlertActionBatchScheduler.cls-meta.xml
 src/customPermissions/CEC_User_CosmetoVigilance.customPermission
 src/customPermissions/CEC_SMS_Magic_Process.customPermission
 src/labels/CEC.labels
