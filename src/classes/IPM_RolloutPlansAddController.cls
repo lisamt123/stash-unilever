@@ -359,6 +359,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             Set<String> setDisabledClusterCodes = new Set<String>();
             Set<String> setDisabledMCOCodes = new Set<String>();
+            Map<String,String> mapClusterToMCOCode = new map<String,String>();
             
             setCountryCodesGlobal = new Set<String>();
             setCountryCodes = new Set<String>();
@@ -423,7 +424,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         //Existing Regional Rollouts for Global Projects
                         if(countryObj.IPM_Regional_Project__c != null && project.IPMProject_Span__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL))
                         {
-                            setDisabledClusterCodes.add(MDOClusterCode);  
+                        	setDisabledClusterCodes.add(MDOClusterCode);
+                        }
+                        else if(countryObj.IPM_Local_Project__c!=null && project.IPM_ProjectGKM__c=='GKM3')
+                        {
+                        	mapClusterToMCOCode.put(countryObj.MCO_Code__c,countryObj.Market_Cluster_Name__c);
                         }
                     }
                     
@@ -462,6 +467,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mcoWrapper.mcoDisabled = true;
                     mapMCOWrappers.put(mcoWrapper.code, mcoWrapper);
                     setDisabledMCOCodes.add(mcoWrapper.code);
+                }
+                else if(!mapClusterToMCOCode.isEmpty() && mapClusterToMCOCode.containskey(mcoWrapper.code))
+                {
+                	mcoWrapper.mcoDisabled = true;
+                	mapMCOWrappers.put(mcoWrapper.code, mcoWrapper);
+                	setDisabledMCOCodes.addAll(mapClusterToMCOCode.values());
                 }
             }
             For (GeographyWrapper countryWrapper : mapCountryWrappers.values())
