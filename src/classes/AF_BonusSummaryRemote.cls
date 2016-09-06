@@ -7,7 +7,7 @@
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
-global with sharing class AF_BonusSummaryRemote {
+  global with sharing class AF_BonusSummaryRemote {
     static List<String> orderedColumn = new List<String>();
     static List<String> orderedRow = new List<String>();
     static Integer colTotalA;
