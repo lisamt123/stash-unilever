@@ -46,6 +46,5 @@ public with sharing class CI_R2R_SME_GetHistory {
            changedby = c;
            sDate = sd;
        }
-   } 
-        
+   }         
 }
