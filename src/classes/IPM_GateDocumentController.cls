@@ -332,14 +332,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     } 
     
     
-      public void getBCCtableFlag()
+    public boolean getBCCtableFlag()
     {
-    	
-    	  if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+      if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
         {
             return true;
         }
-    	 
     	 	return false;
     }
     /*************************************************************************************************************************************************************
