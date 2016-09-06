@@ -40,6 +40,7 @@ src/objects/CI_R2R_Innovation__c.object
 src/objects/CI_R2R_Milestones__c.object
 src/objects/CI_Accounting_Treatment__c.object
 src/objects/CI_SMS_Weekly_Update__c.object
+src/objects/CI_R2R_Budget_Mapping__c.object
 src/pages/CI_R2R_Comments_Section_for_SME.page
 src/pages/CI_R2R_Comments_Section_for_SME.page-meta.xml
 src/pages/CI_R2R_Comments_Section.page
