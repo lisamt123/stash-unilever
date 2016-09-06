@@ -20,14 +20,12 @@ public with sharing class ICB_Cockpit_Helper
     private static final String CONST_STAGE_AVAILABLE;
     private static final String CONST_STATUS_ITEM_OPP_STOCK;
     private static final String CONST_STAGE_PENDING;
-    private static final String CONST_EMPTY;
     private static final String CONST_SOLICITATION;
     private static List<OpportunityLineItem> listOppItemUp;
     
     Static
     {
         CONST_STATUS_ITEM_OPP_SOLD_PENDING = 'sold pending stock';
-        CONST_EMPTY = '';
         CONST_STAGE_CLOSED = 'Closed';
         CONST_STAGE_AVAILABLE = 'Available';
         CONST_STAGE_PENDING = 'Pending';
@@ -41,7 +39,7 @@ public with sharing class ICB_Cockpit_Helper
     Returns: Map<String,ICB_Wrapper_Cockpit_CC>
     Throws [Exceptions]: NONE
     ********************************************************************/
-    public static Map<String,ICB_Wrapper_Cockpit_CC> returnMapLineItem(List<OpportunityLineItem> listOpportunityLineItem)
+    public static Map<String,ICB_Wrapper_Cockpit_CC> returnMapLineItem(List<OpportunityLineItem> listOpportunityLineItem,Boolean isClosed)
     {
         System.debug('Entering <returnMapLineItem>: '+ JSON.serializePretty(listOpportunityLineItem));
         Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
@@ -57,15 +55,16 @@ public with sharing class ICB_Cockpit_Helper
                     item.quantityIce = 0;
                 }
             }
-            if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && oppItem.ICB_STATUS_SALES__c != CONST_EMPTY)
+            if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING )
             {
                 item.quantityIce = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : item.quantityIce + oppItem.ICB_ITEMS_RETURNED__c;
                 item.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
             }
             else
             {
-                item.quantityIce = oppItem.Quantity == null ? 0 : item.quantityIce + oppItem.Quantity; 
+                item.quantityIce = isClosed ? item.quantityIce + oppItem.ICB_ITEMS_RETURNED__c : item.quantityIce + oppItem.Quantity; 
             }
+            
             item.oppLineItem = oppItem;
             mapLineItem.put(oppItem.OpportunityId, item);
         } 

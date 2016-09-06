@@ -38,7 +38,7 @@ global with sharing class CEC_NewAccountController{
     public Boolean isContactPopulated {get;set;}
     public Boolean isTransactionSuccess {get;set;}
     //public List<SelectOption> unileverOptInOptions { get;set; } 
-    
+    //RecordType recType;
     transient public Map<Id, ConsumerWrapper> duplicateConsumers {get; set;}
     public String caseId {get; set;}
     
@@ -77,10 +77,21 @@ global with sharing class CEC_NewAccountController{
             newConsumer.PersonMailingState = currentCase.Search_Mailing_State_Province__c;
             newConsumer.PersonMailingPostalCode = currentCase.Search_Mailing_Zip_Postal_Code__c;
             newConsumer.PersonMailingCountry = currentCase.Search_Mailing_Country__c;
+            
+            if(currentCase.Search_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Phone__c;
+            }else if(currentCase.Search_Mobile__c != null){
+                newConsumer.Phone = currentCase.Search_Mobile__c ;
+            }else if(currentCase.Search_Home_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Home_Phone__c;
+            }else if(currentCase.Search_Other_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Other_Phone__c;
+            }
+            
             newConsumer.PersonHomePhone = currentCase.Search_Home_Phone__c;
             newConsumer.PersonMobilePhone = currentCase.Search_Mobile__c;
             newConsumer.PersonOtherPhone = currentCase.Search_Other_Phone__c;
-            newConsumer.Phone = currentCase.Search_Phone__c;
+            
             newConsumer.PersonBirthdate = currentCase.Search_Birthdate__c; 
             resultsOutputLabel = Label.CEC_ConsumerNotFoundInfo;
         }        
@@ -129,6 +140,7 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        newConsumer.Mobile_Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
                        newConsumer.Other_Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
                        System.debug('****other phone****'+ newConsumer.Other_Phone_No_Special_Char__c);
+                       
                    }
                    
                    
@@ -179,14 +191,19 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        
                        if (duplicateConsumerList.size() > 0) {
                            hasResultToDisplayFlag = true;
-                       }  
-
-					   if (String.isNotBlank(newConsumer.Phone)) {
+                       } 
+                       
+                       if (String.isNotBlank(newConsumer.Phone)) {
                                newConsumer.Phone_No_Special_Char__c = '';
                                newConsumer.Home_Phone_No_Special_Char__c = '';
                                newConsumer.Mobile_Phone_No_Special_Char__c = '';
                                newConsumer.Other_Phone_No_Special_Char__c ='';
-                   	   }
+                       }
+                       
+                       if (String.isNotBlank(newConsumer.Local_Identifier__c)) {
+                               newConsumer.Local_Identifier_No_Special_Char__c = '';
+                       }
+                       
                    } 
                    searchPerformed = true;    
                    isTransactionSuccess = true;
@@ -326,19 +343,19 @@ The rest of the Consumer records are ignored.
         System.debug('The Consumer List to be filtered/Ordered :: ' + duplicateConsumerList);
         
         // Order 1 : Check the Local Identifier match
-        checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 2 : Check the email match
-        checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 3 : Check the phone match
-        checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 4 : Check the PostCode match
-        checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 5 : Check the Street & LastName match
-        checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         //Order 6 : Display Street fuzzy match
         if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.PersonMailingCity)) {
@@ -352,117 +369,5 @@ The rest of the Consumer records are ignored.
         
         return finalOrderedConsumerList;
     }
-    
-    
-    //Check the Local Identifier match
-    private void checkLocalidentifierMatch(List<ConsumerWrapper> duplicateConsumerList, List<ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet){      
-        if(String.isNotBlank(newConsumer.Local_Identifier_No_Special_Char__c)) {
-            // fetch local Identifier
-            String searchLocalIdentifier = newConsumer.Local_Identifier_No_Special_Char__c;
-            for(ConsumerWrapper account : duplicateConsumerList) {
-                if (!account.resultOrderFlag && String.isNotBlank(account.consumer.Local_Identifier_No_Special_Char__c) && account.consumer.Local_Identifier_No_Special_Char__c == searchLocalIdentifier) {
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                }
-            }
-        }       
-    }
-    
-    //Check the email match
-    private void checkEmailMatch(List<ConsumerWrapper> duplicateConsumerList, List<ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet){
-        if(String.isNotBlank(newConsumer.PersonEmail)) {
-            // fetch person email
-            String searchEmailStr = newConsumer.PersonEmail;
-            for(ConsumerWrapper account : duplicateConsumerList) {
-                if (!account.resultOrderFlag && String.isNotBlank(account.consumer.PersonEmail) && account.consumer.PersonEmail == searchEmailStr) {
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                }
-            }
-        }       
-    }
-    
-    //Check the phone match
-    private void checkPhoneMatch(List<ConsumerWrapper> duplicateConsumerList, List<ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet){
-        String searchPhoneStr = '',searchHomePhoneStr = '' ,searchMobilePhoneStr = '' ,searchOtherPhoneStr = '';
-        
-        if(String.isNotBlank(newConsumer.Phone_No_Special_Char__c) && newConsumer.Phone_No_Special_Char__c.length() >= 6) {
-            // Get last 6 characters of the phone.
-            searchPhoneStr = newConsumer.Phone_No_Special_Char__c.right(6);
-        }
-        
-        if(String.isNotBlank(newConsumer.Home_Phone_No_Special_Char__c) && newConsumer.Home_Phone_No_Special_Char__c.length() >= 6) {
-            // Get last 6 characters of the phone.
-            searchHomePhoneStr = newConsumer.Home_Phone_No_Special_Char__c.right(6);
-        }
-        
-         if(String.isNotBlank(newConsumer.Mobile_Phone_No_Special_Char__c) && newConsumer.Mobile_Phone_No_Special_Char__c.length() >= 6) {
-            // Get last 6 characters of the phone.
-            searchMobilePhoneStr = newConsumer.Mobile_Phone_No_Special_Char__c.right(6);
-        }
-       
-        if(String.isNotBlank(newConsumer.Other_Phone_No_Special_Char__c) && newConsumer.Other_Phone_No_Special_Char__c.length() >= 6) {
-            // Get last 6 characters of the phone.
-            searchOtherPhoneStr = newConsumer.Other_Phone_No_Special_Char__c.right(6);
-            System.debug('***searchOtherPhoneStr***'+ searchOtherPhoneStr);
-        }
-        
-            for(ConsumerWrapper account : duplicateConsumerList) {
-                
-                if (!account.resultOrderFlag && String.isNotBlank(account.consumer.Phone_No_Special_Char__c) && account.consumer.Phone_No_Special_Char__c.contains(searchPhoneStr)) {
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                }
-                else if (!account.resultOrderFlag && String.isNotBlank(account.consumer.Home_Phone_No_Special_Char__c) && account.consumer.Home_Phone_No_Special_Char__c.contains(searchHomePhoneStr)){
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                }else if (!account.resultOrderFlag && String.isNotBlank(account.consumer.Mobile_Phone_No_Special_Char__c) && account.consumer.Mobile_Phone_No_Special_Char__c.contains(searchMobilePhoneStr)){
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                }else if (!account.resultOrderFlag && String.isNotBlank(account.consumer.Other_Phone_No_Special_Char__c) && account.consumer.Other_Phone_No_Special_Char__c.contains(searchOtherPhoneStr)){
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                    System.debug('*****accountIdSet******'+accountIdSet);
-                }
-                
-            }
-       
-    }
-    
-    
-    //Check the PostCode match
-    private void checkPostCodeMatch(List<ConsumerWrapper> duplicateConsumerList, List<ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet){
-        if(String.isNotBlank(newConsumer.PersonMailingPostalCode)) {
-            String searchPostalCodeStr = newConsumer.PersonMailingPostalCode;
-            for(ConsumerWrapper account : duplicateConsumerList) {
-                if (!account.resultOrderFlag && String.isNotBlank(account.consumer.PersonMailingPostalCode) && account.consumer.PersonMailingPostalCode == searchPostalCodeStr) {
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                }
-            }
-        }
-    }
-    
-    //Check the Street & LastName match
-    private void checkStreetAndLastName(List<ConsumerWrapper> duplicateConsumerList, List<ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet){
-        if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.LastName)) {
-            String searchStreetStr = newConsumer.PersonMailingStreet;
-            String searchLastNameStr = newConsumer.LastName;
-            for(ConsumerWrapper account : duplicateConsumerList) {
-                if (!account.resultOrderFlag && String.isNotBlank(account.consumer.PersonMailingStreet) && String.isNotBlank(account.consumer.LastName) && account.consumer.PersonMailingStreet == searchStreetStr && account.consumer.LastName == searchLastNameStr) {
-                    account.resultOrderFlag = true;
-                    finalOrderedConsumerList.add(account);
-                    accountIdSet.add(account.consumer.Id);
-                }
-            }
-        }       
-    }
-    
+ 
 }

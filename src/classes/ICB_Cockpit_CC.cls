@@ -96,7 +96,7 @@ public with sharing class ICB_Cockpit_CC
                 mapUserPhoto.put(user.ContactId, user.FullPhotoUrl);
             }
             
-            mapLineItem = ICB_Cockpit_Helper.returnMapLineItem(listOpportunityLineItem);
+            mapLineItem = ICB_Cockpit_Helper.returnMapLineItem(listOpportunityLineItem,isClosed);
             listWrapper.addAll(returnOpportunitiesContacts(listOpportunity));
             listWrapper.addAll(returnContacts());
         }
@@ -265,6 +265,7 @@ public with sharing class ICB_Cockpit_CC
                     opp.TotalPrice = opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     opp.ICB_Total_Purchase_Price__c = opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c; 
                     oppItem.add(opp);
+                    updateInventory(inventoryList,CONST_DECREMENT);
                 }
                 else if(mapInventory.get(opp.PriceBookEntry.Name).quantity <= opp.Quantity)
                 {
@@ -284,7 +285,7 @@ public with sharing class ICB_Cockpit_CC
                         opp.ICB_Total_Purchase_Price__c = (Integer)opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
                         opp.ICB_ITEMS_RETURNED__c = 0;
                         opp.ICB_IS_CLOSED__c = true;
-                        opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
+                        opp.TotalPrice = (Integer)opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
                     else
                     {
@@ -292,7 +293,7 @@ public with sharing class ICB_Cockpit_CC
                         opp.ICB_STATUS_SALES__c = CONST_STATUS_ITEM_OPP_SOLD_PENDING;
                         opp.ICB_Total_Purchase_Price__c = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
                         //opp.Quantity =  valueQtd;
-                        opp.TotalPrice = mapInventory.get(opp.PriceBookEntry.Name).quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
+                        opp.TotalPrice = valueQtd * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
                     
                     oppItem.add(opp);
@@ -300,6 +301,7 @@ public with sharing class ICB_Cockpit_CC
             }
             
             Database.update(oppItem);
+             
         }
         catch(Exception e)
         {
