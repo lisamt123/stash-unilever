@@ -1,0 +1,15 @@
+src
+src/classes
+src/classes/Core_CA_Test_MobileAPP.cls
+src/classes/Core_CA_Test_MobileAPP.cls-meta.xml
+src/classes/Core_CA_ChatterPostNavCont_Test.cls
+src/classes/Core_CA_ChatterPostNavCont_Test.cls-meta.xml
+src/aura
+src/aura/CORE_CA_AribaDetail/CORE_CA_AribaDetailController.js
+src/aura/CORE_CA_ClarityDetail/CORE_CA_ClarityDetailController.js
+src/aura/CORE_CA_ClaritySubDetail/CORE_CA_ClaritySubDetailController.js
+src/aura/CORE_CA_GTESDetail/CORE_CA_GTESDetail.cmp
+src/aura/CORE_CA_GTESDetail/CORE_CA_GTESDetail.cmp-meta.xml
+src/aura/CORE_CA_GTESDetail/CORE_CA_GTESDetailController.js
+src/aura/CORE_CA_InvoiceDetail/CORE_CA_InvoiceDetailController.js
+src/aura/CORE_CA_LineItemDetail/CORE_CA_LineItemDetailController.js
