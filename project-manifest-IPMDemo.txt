@@ -334,6 +334,7 @@ src/classes/IPM_ProjectSearchCtrl_Test.cls
 src/classes/IPM_ProjectSearchCtrl_Test.cls-meta.xml
 src/classes/IPM_ProjectSectionContentHelper.cls
 src/classes/IPM_ProjectSectionContentHelper.cls-meta.xml
+src/classes/IPM_ProjectSetUpController.cls
 src/classes/IPM_ProjectSetUpController.cls-meta.xml
 src/classes/IPM_ProjectSetUpController_Test.cls
 src/classes/IPM_ProjectSetUpController_Test.cls-meta.xml
@@ -928,8 +929,7 @@ src/reports/IPM_Reports/In_Market_Performance_Capability.report
 src/reports/IPM_Reports/In_Market_Performance_Market_Ready.report
 src/reports/IPM_Reports/OTIF_Report.report
 src/reports/IPM_Reports/Project_Parameters.report
-src/sharingRules
-src/sharingRules/IPM_Project__c.sharingRules
+
 src/staticresources
 src/staticresources/IPM_Category.resource
 src/staticresources/IPM_Category.resource-meta.xml
