@@ -259,6 +259,7 @@ System.debug('Exiting <updateUser>');
     
     private static List<Contact> getContacts()
     {
+        system.debug('QUEM É VOCÊ? ' + types);
         List<Contact> contato = [SELECT Id, FirstName, LastName, Email, Name, ICB_Type__c 
                                  FROM Contact 
                                  WHERE ICB_Type__c =: types 

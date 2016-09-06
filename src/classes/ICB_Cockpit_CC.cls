@@ -67,8 +67,8 @@ public with sharing class ICB_Cockpit_CC
                                                   Name,
                                                   AccountId,
                                                   Account.Name,
-                                                  ICB_Type__c
-                                                  //ICB_Sales_Locale__c
+                                                  ICB_Type__c,
+                                                  ICB_Sales_Locale__c
                                           FROM Contact
                                           WHERE AccountId =: accountId]);
     }
@@ -174,7 +174,7 @@ public with sharing class ICB_Cockpit_CC
             opp.Pricebook2Id = priceBookId;
             opp.ICB_OLD_QUANTITY_RETURNED__c = 0;
             opp.ICB_Contact__c = idContact;
-            //opp.ICB_Sales_Locale__c = mapContact.get(idContact).ICB_Sales_Locale__c;
+            opp.ICB_Sales_Locale__c = mapContact.get(idContact).ICB_Sales_Locale__c;
             
             Database.insert(opp);
             createOppItem(opp.id,inventoryList, opp.Name);
@@ -259,7 +259,7 @@ public with sharing class ICB_Cockpit_CC
                     opp.ICB_IS_CLOSED__c = true;
                     //oppItem.add(opp);
                 }
-                if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity > 0 )
+                if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity >= 0 )
                 {
                     opp.Quantity = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity + opp.Quantity;
                     opp.TotalPrice = opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
@@ -281,10 +281,12 @@ public with sharing class ICB_Cockpit_CC
                     }
                     else if((valueQtd == (Integer)opp.Quantity)||(inventoryList.equalsIgnoreCase(CONST_EMPTY)))
                     {
+                        System.debug('Entering <valueQtd>: '+valueQtd);
+                        System.debug('Entering <inventoryList>: '+inventoryList);
                         opp.ICB_STATUS_SALES__c = CONST_STATUS_ITEM_OPP_SOLD;
                         opp.ICB_Total_Purchase_Price__c = (Integer)opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).ICB_Purchase_Price__c;
                         opp.ICB_ITEMS_RETURNED__c = 0;
-                        opp.ICB_IS_CLOSED__c = true;
+                        opp.ICB_IS_CLOSED__c = (mapInventory.get(opp.PriceBookEntry.Name).quantity == 0)||(inventoryList.equalsIgnoreCase(CONST_EMPTY));
                         opp.TotalPrice = (Integer)opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
                     }
                     else
@@ -376,11 +378,12 @@ public with sharing class ICB_Cockpit_CC
         
         for(ICB_Wrapper_Cockpit_CC ivt : listInventory)
         {
-            if(ivt.quantity <= ivt.invetoryItem.ICB_Quantity_Unit__c)
+            if(ivt.quantity <= (ivt.invetoryItem.ICB_Quantity_Unit__c + ivt.quantityMin))
             {
                 if(!operation.equals(CONST_INCREMENT))
                 {
-                    ivt.invetoryItem.ICB_Quantity_Unit__c = ivt.quantity == ivt.invetoryItem.ICB_Quantity_Unit__c ? 0 : ivt.invetoryItem.ICB_Quantity_Unit__c - ivt.quantity;  
+                     ivt.invetoryItem.ICB_Quantity_Unit__c = ivt.quantity == ivt.invetoryItem.ICB_Quantity_Unit__c ? 0 : 
+                    										 ivt.invetoryItem.ICB_Quantity_Unit__c - (ivt.quantity - ivt.quantityMin);  
                     listUpdateIvt.add(ivt.invetoryItem);        
                 }
             }

@@ -91,4 +91,5 @@
         location.reload(true);
         console.log("Exit <updateList>");
 	}
+    
 })

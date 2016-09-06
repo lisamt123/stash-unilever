@@ -20,12 +20,14 @@ public with sharing class ICB_Cockpit_Helper
     private static final String CONST_STAGE_AVAILABLE;
     private static final String CONST_STATUS_ITEM_OPP_STOCK;
     private static final String CONST_STAGE_PENDING;
+    private static final String CONST_EMPTY;
     private static final String CONST_SOLICITATION;
     private static List<OpportunityLineItem> listOppItemUp;
     
     Static
     {
         CONST_STATUS_ITEM_OPP_SOLD_PENDING = 'sold pending stock';
+        CONST_EMPTY = '';
         CONST_STAGE_CLOSED = 'Closed';
         CONST_STAGE_AVAILABLE = 'Available';
         CONST_STAGE_PENDING = 'Pending';
