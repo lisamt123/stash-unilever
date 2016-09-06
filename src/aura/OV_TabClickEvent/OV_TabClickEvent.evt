@@ -1,0 +1,4 @@
+<!-- Idea is that the tabs know the id of their corresponding views-->
+<aura:event type="APPLICATION" description="A tab was clicked" >
+    <aura:attribute name="targetViewId" type="String" />
+</aura:event>
