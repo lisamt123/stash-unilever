@@ -87,8 +87,7 @@ src/classes/IPM_CheckRecursive_Test.cls
 src/classes/IPM_CheckRecursive_Test.cls-meta.xml
 src/classes/IPM_CommentsListController.cls
 src/classes/IPM_CommentsListController.cls-meta.xml
-src/classes/IPM_CommentsListController_Test.cls
-src/classes/IPM_CommentsListController_Test.cls-meta.xml 
+ 
 src/classes/IPM_CompanyCard_Test.cls
 src/classes/IPM_CompanyCard_Test.cls-meta.xml
 src/classes/IPM_ConstantUtils.cls
