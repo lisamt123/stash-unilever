@@ -280,8 +280,8 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
     
     //search
      String   addNumber = jobDetails.AdManagerText__c;
-       String  projEmail = jobDetails.Unilever_Project_Leader_Email__c;
-       String projectName = jobDetails.Project_Details__c;
+     //  String  projEmail = jobDetails.Unilever_Project_Leader_Email__c;
+  //     String projectName = jobDetails.Project_Details__c;
    // soqlForCancel = soql;
      
      /*
@@ -509,7 +509,7 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
                Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
-                DateTime endDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0).addDays(1);
+          //      DateTime endDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0).addDays(1);
          
       //         soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) + ' and createdDate'+  ' < '+ endDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
         //       soqlForCancel += ' and createdDate'+  ' = '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;

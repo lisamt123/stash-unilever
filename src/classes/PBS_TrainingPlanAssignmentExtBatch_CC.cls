@@ -56,7 +56,7 @@ public with sharing class PBS_TrainingPlanAssignmentExtBatch_CC{
             tpbo.Additional_Information__c = null;
             insert tpbo;
 
-            Id batchInstanceId = Database.executeBatch(new PBS_TrainingPlanAsgmtsRecalclatBatch_CC(trainingPlanId,tpbo.Id),20);
+             Database.executeBatch(new PBS_TrainingPlanAsgmtsRecalclatBatch_CC(trainingPlanId,tpbo.Id),20);
             PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Batch_Updated_Queued_Success);
         }catch(Exception e){
             tpbo.Status__c = 'Failed';
@@ -83,7 +83,7 @@ public with sharing class PBS_TrainingPlanAssignmentExtBatch_CC{
             tpbo.Additional_Information__c = null;
             insert tpbo;
 
-            Id batchInstanceId = Database.executeBatch(new PBS_TrainingPlanAsgmtsUpdateBatch_CC(trainingPlanId,tpbo.Id),20);
+           Database.executeBatch(new PBS_TrainingPlanAsgmtsUpdateBatch_CC(trainingPlanId,tpbo.Id),20);
             PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Batch_Updated_Queued_Success);
         }catch(Exception e){
             tpbo.Status__c = 'Failed';
@@ -110,7 +110,7 @@ public with sharing class PBS_TrainingPlanAssignmentExtBatch_CC{
             tpbo.Additional_Information__c = null;
             insert tpbo;
 
-            Id batchInstanceId = Database.executeBatch(new PBS_TrainingPlanAsgmtsDeleteBatch_CC(trainingPlanId,tpbo.Id),20);
+           Database.executeBatch(new PBS_TrainingPlanAsgmtsDeleteBatch_CC(trainingPlanId,tpbo.Id),20);
             PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Batch_Delete_Queued_Success);
         }catch(Exception e){
             tpbo.Status__c = 'Failed';

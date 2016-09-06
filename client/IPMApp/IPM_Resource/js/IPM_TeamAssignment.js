@@ -13,7 +13,7 @@ function ipmTeamModal(el, title) {
         var url = jq(this).attr('value');
         jq("#ipmAddMemberModal .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "' + url + '"></iframe>');
         jq('#ipmAddMemberModal .modal-dialog').width('700px');
-        jq('#ipmAddMemberModal .modal-dialog').height('550px');
+        jq('#ipmAddMemberModal .modal-dialog').height('590px');
         jq('#ipmAddMemberModal .modal-dialog').css({
             'margin-top': '2%',
             'z-index': '999'
@@ -29,7 +29,7 @@ jq(document).on('click', '.addTeamMember', function(e) {
     var rollType = jq(this).closest(".teamContainer").find(".pHead .teamHead").text();
     jq("#ipmAddMemberModal .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "' + url + '"></iframe>');
     jq('#ipmAddMemberModal .modal-dialog').width('700px');
-    jq('#ipmAddMemberModal .modal-dialog').height('550px');
+    jq('#ipmAddMemberModal .modal-dialog').height('590px');
     jq('#ipmAddMemberModal .modal-dialog').css({
         'margin-top': '2%',
         'z-index': '999'

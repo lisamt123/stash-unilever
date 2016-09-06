@@ -12,6 +12,8 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @testSetup static void initCommonData() {
         insert Oblix_TestUtils.createOblixCustomSettings();
+        Oblix_Check_For_Manual_Edit_Of_Campaign__c c = new Oblix_Check_For_Manual_Edit_Of_Campaign__c(Manual_Edit_Check__c = False);
+        insert c;
     }
 
 

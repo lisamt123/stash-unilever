@@ -4,6 +4,7 @@
         component.set('v.status', $A.get("$Label.c.ICB_STATUS_GEOLOCATING"));
         
         helper.locateGoldenMinute(component, event, helper);
+        helper.locateVisit(component, event, helper);
         console.log('Exit <doInit>');
 	},
     setLatLng : function(component, event, helper) {

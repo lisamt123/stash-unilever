@@ -57,8 +57,8 @@ public with sharing class PBS_SFDCCreditCardValidationRule_CC extends PBS_SFDCBa
   public void assertValid(String input ) {
 
       if ( PBS_SFDCStringUtils_CC.isEmpty(input) ) {
-      if (isAllowNull())
-        return;
+      if (isAllowNull()){
+        return;}
       throw new PBS_SFDCValidator_CC.SFDCValidationException('Input credit card required');
       }
       
@@ -86,7 +86,7 @@ public with sharing class PBS_SFDCCreditCardValidationRule_CC extends PBS_SFDCBa
   private boolean validCreditCardFormat(String ccNum) {
     
       String digitsOnly = '';
-      String log = '';
+      
     PBS_SFDCCharacter_CC c = new PBS_SFDCCharacter_CC('a'); // start with a temp value that we don't care about - we will overwrite it for each character in the string
     for (Integer i = 0; i < ccNum.length(); i++) {
       c.updateVal(ccNum.substring(i, i + 1));

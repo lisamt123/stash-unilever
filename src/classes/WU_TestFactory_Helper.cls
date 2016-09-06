@@ -4,7 +4,7 @@
 *@Description :     Handler class for WU_SetWarehousePOCHandler_Test
 *************************************************************/
 
-public class WU_TestFactory_Helper{
+public with sharing class WU_TestFactory_Helper{
     /**CONSTANTS **/
     public static String WAREHOUSE_POC = 'WU-Warehouse Excellence Operations';  //'';
     public static final string EMPTY_STRING = '';
@@ -74,16 +74,16 @@ public class WU_TestFactory_Helper{
             
             lstWRHSCU[1].WU_Current_Utilization__c=50;
             
-			try
-			{
-				database.update(lstWRHSCU,false);
-			}
-			
-			catch(exception e)
-			{
-				Boolean expectedExceptionThrown =  e.getMessage().contains(Label.WU_DuplicateCapacityDetailWhileInsert) ? true : false;
-				System.AssertEquals(expectedExceptionThrown, true);
-			}
+            try
+            {
+                database.update(lstWRHSCU,false);
+            }
+            
+            catch(exception e)
+            {
+                Boolean expectedExceptionThrown =  e.getMessage().contains(Label.WU_DuplicateCapacityDetailWhileInsert) ? true : false;
+                System.AssertEquals(expectedExceptionThrown, true);
+            }
             
                         
 
@@ -189,14 +189,14 @@ public class WU_TestFactory_Helper{
     
     public Static void assignPermSet()
     {
-    	PermissionSetAssignment psa = new PermissionSetAssignment();
-    	psa.AssigneeId = ur.Id;
-    	if(perms!=null)
-    	{
-    		psa.PermissionSetId = perms.Id;
-	    	insert psa;
-    	}
-	    
-	    //return psa;
+        PermissionSetAssignment psa = new PermissionSetAssignment();
+        psa.AssigneeId = ur.Id;
+        if(perms!=null)
+        {
+            psa.PermissionSetId = perms.Id;
+            insert psa;
+        }
+        
+        //return psa;
     }
 }

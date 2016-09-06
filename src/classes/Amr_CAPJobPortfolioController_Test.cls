@@ -147,7 +147,7 @@ public class Amr_CAPJobPortfolioController_Test{
     jobPortFolio.totalSizeForActiveJobs=2;
     
    //   jobPortFolio.WrapperList[0].SelectBox=true;
-   Amr_CAPJobPortfolioController_CC.WrapperClass wrap = new Amr_CAPJobPortfolioController_CC.WrapperClass(true,jobAllocation);
+   //Amr_CAPJobPortfolioController_CC.WrapperClass wrap = new Amr_CAPJobPortfolioController_CC.WrapperClass(true,jobAllocation);
    List<Amr_CAPJobPortfolioController_CC.WrapperClass> wrapList=new List<Amr_CAPJobPortfolioController_CC.WrapperClass>();
    for(Amr_Job_Allocation__c sObj:jobList1){
     wrapList.add(new Amr_CAPJobPortfolioController_CC.WrapperClass(true,sObj));

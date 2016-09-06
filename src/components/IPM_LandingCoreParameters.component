@@ -41,6 +41,13 @@
                                 <span class="coreMtitle">{!$Label.IPM_BRAND_POSITIONING}</span>
                                 <span class="coreMvalue"><apex:outputtext value="{!IPM_Coreparameter.IPM_Brand_Positioning__c}"/></span>    
                             </div>
+                            <apex:outputpanel rendered="{!isBrandVisible}"> 
+                                
+                                <div class="col-sm-2 custCoreparmborder">  
+                                    <span class="coreMtitle">{!$Label.IPM_Local_Brand}</span>
+                                        <span class="coreMvalue"><apex:outputtext value="{!IPM_Coreparameter.IPM_LocalProject_Brand__c}"/></span>    
+                                </div>
+                            </apex:outputpanel>
                             <div class="col-sm-2">    
                                 <span class="coreMtitle">{!$Label.IPM_TARGET_LAUNCH_DATE}</span>
                                 <span class="coreMvalue"><apex:outputField value="{!IPM_Coreparameter.IPM_Target_Launch_Dates__c}"/></span>
@@ -292,31 +299,58 @@
                 <div class="col-sm-12">
                     <div class="col-sm-12 noPadleft coreBg noPadright additionalMarbottom aboutProContainer">
                         <div class="col-sm-12 noPadleft noPadright fieldSection">
-                            <div class="col-sm-6 noPadright custFieldsborder">
+                            <div class="col-sm-12 custFieldsborder">
                                 <!--check whether project is applicable for sub sector or not-->
                                 <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sub_Sector__c}">
                                 <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-3 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Sub_Sector}
                                          <span class="SecButtonSet infoMarTop">
                                                  <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
                                              </span></span>
                                     </div>
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-9 noPadleft noPadright">
                                         <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Sub_sector__c}</span>
                                     </div>
                                 </div>
                                 </apex:outputPanel>
+								<apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sector__c}">
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-3 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">{!$Label.IPM_Sector}
+                                         <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                             </span></span>
+                                    </div>
+                                    <div class="col-sm-9 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Sector__c}</span>
+                                    </div>
+                                </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel >
+                                <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
+                                    <div class="col-sm-3 noPadleft noPadright">
+                                        <span class="coreSectionFtitle">{!$Label.IPM_Platform}
+                                         <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_Platform_Title}"></a>
+                                             </span></span>
+                                    </div>
+                                    <div class="col-sm-9 noPadleft noPadright">
+                                        <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Platform_Formula__c}</span>
+                                    </div>
+                                </div>
+                                </apex:outputPanel>
+                                
                                 <!--check whether project is applicable for market or not-->
                                  <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Market__c}">
                                      <div class="col-sm-12 noPadleft noPadright coreFieldContainer">
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-3 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Market}
                                         <span class="SecButtonSet infoMarTop">  
                                         <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>   
                                         </span></span>
                                     </div>
-                                    <div class="col-sm-6 noPadleft noPadright">
+                                    <div class="col-sm-9 noPadleft noPadright">
                                         <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Market__c}</span>
                                     </div>
                                 </div>

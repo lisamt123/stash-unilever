@@ -34,7 +34,11 @@ public with sharing class AA_TriggerFactory
      * Arguments:   AA_Interface_Trigger handler - A Trigger Handler to execute
      */ 
     private static void execute(AA_Interface_Trigger  handler)
+<<<<<<< HEAD
     {	
+=======
+    {
+>>>>>>> develop
         // Before Trigger
         if (Trigger.isBefore)
         {

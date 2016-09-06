@@ -334,8 +334,8 @@ global with sharing class PBS_SFDCValidator_CC {
    * @throws Exception
    */
   global String getValidListItem(String input, Set<String> validItems) {
-    if (validItems.contains(input))
-      return input;    
+    if (validItems.contains(input)){
+      return input;    }
     throw new SFDCValidationException('Invalid list item');
   }
   
@@ -383,13 +383,13 @@ global with sharing class PBS_SFDCValidator_CC {
    */
   global String getValidFileContent(String input, Integer maxBytes, Boolean allowNull) {
     if (PBS_SFDCStringUtils_CC.isEmpty(input)) {
-      if (allowNull)
-        return null;
+      if (allowNull){
+        return null;}
          throw new SFDCValidationException('Input required');
     }
     
-    if (input.length() > maxBytes )
-      throw new SFDCValidationException('Invalid file content can not exceed ' + maxBytes + ' bytes');
+    if (input.length() > maxBytes ){
+      throw new SFDCValidationException('Invalid file content can not exceed ' + maxBytes + ' bytes');}
     
     return input;
   }
@@ -438,8 +438,8 @@ global with sharing class PBS_SFDCValidator_CC {
   global String getValidPrintable(String input, Integer maxLength, Boolean allowNull) {
     
     if (PBS_SFDCStringUtils_CC.isEmpty(input)) {
-      if (allowNull)
-        return null;
+      if (allowNull){
+        return null;}
          throw new SFDCValidationException('Input bytes required');
     }
 
@@ -536,8 +536,8 @@ global with sharing class PBS_SFDCValidator_CC {
    */
   global String SFDC_getValidFileName(String input, List<String> allowedExtensions, Boolean allowNull) {
     if (PBS_SFDCStringUtils_CC.isEmpty(input)) {
-      if (allowNull)
-        return null;
+      if (allowNull){
+        return null;}
          throw new SFDCValidationException('Input file name required');
     }
     
@@ -667,16 +667,16 @@ global with sharing class PBS_SFDCValidator_CC {
    */
   global void assertValidHTTPRequestParameterSet(PageReference request, Set<String> required, Set<String> optional) {
     
-    if (request == null || required == null || optional == null)
-         throw new SFDCValidationException('null parameter');
+    if (request == null || required == null || optional == null){
+         throw new SFDCValidationException('null parameter');}
     
     Set<String> actualNames = request.getParameters().keySet();
     
     // verify ALL required parameters are present
     Set<String> missing = new Set<String>(required);
     missing.removeAll(actualNames);
-    if (missing.size() > 0)
-      throw new SFDCValidationException('Invalid HTTP request missing parameters');
+    if (missing.size() > 0){
+      throw new SFDCValidationException('Invalid HTTP request missing parameters');}
     
     // verify ONLY optional + required parameters are present
     Set<String> extra = new Set<String>(actualNames);
@@ -745,11 +745,11 @@ global with sharing class PBS_SFDCValidator_CC {
     try {
       currentDomain = ApexPages.currentPage().getHeaders().get('Host');
 
-      if (currentDomain != null)
-        currentDomain = currentDomain.trim();
+      if (currentDomain != null){
+        currentDomain = currentDomain.trim();}
       
-      if (PBS_SFDCStringUtils_CC.isEmpty(currentDomain))
-        currentDomain = null;
+      if (PBS_SFDCStringUtils_CC.isEmpty(currentDomain)){
+        currentDomain = null;}
         
     } catch (Exception e) {
       currentDomain = null;
@@ -790,11 +790,11 @@ global with sharing class PBS_SFDCValidator_CC {
     Integer endPos = 0;
     Boolean allowEmptyURI = false;
     
-    if (PBS_SFDCStringUtils_CC.isEmpty(input))
-      throw new SFDCValidationException('Input URL required');
+    if (PBS_SFDCStringUtils_CC.isEmpty(input)){
+      throw new SFDCValidationException('Input URL required');}
       
-    if (input.length() > 512)
-      throw new SFDCValidationException('Input URL must not exceed 512 characters');
+    if (input.length() > 512){
+      throw new SFDCValidationException('Input URL must not exceed 512 characters');}
       
     // check if starts with http:// or https://
     if (input.toLowerCase().startsWith('http://')) {
@@ -822,11 +822,11 @@ global with sharing class PBS_SFDCValidator_CC {
       
       // restrict domain to 100 characters (officialy domains are allowed to have up to 255 characters after setting it into DNS packet format. So in the regular string representation it must be up to 253 - See RFC 1034 Sec 3.1)
       
-      if (PBS_SFDCStringUtils_CC.isEmpty(tmp))
-        throw new SFDCValidationException('Input domain required in URL');
+      if (PBS_SFDCStringUtils_CC.isEmpty(tmp)){
+        throw new SFDCValidationException('Input domain required in URL');}
         
-      if (tmp.length() > 100)
-        throw new SFDCValidationException('Input domain in URL must not exceed 100 characters');
+      if (tmp.length() > 100){
+        throw new SFDCValidationException('Input domain in URL must not exceed 100 characters');}
       
       // check domain layout with regex. Domain may consist of a-zA-Z0-9 and hiphen (and dots to separate labels). 
       // we will not enforce other domain rules
@@ -854,11 +854,11 @@ global with sharing class PBS_SFDCValidator_CC {
     
     // continue to check rest of URL
     endPos = input.length();
-    if (startPos < endPos)
+    if (startPos < endPos){
       // only attempt to read rest of url if we have any more bytes (otherwise we will get an exception of out of boundaries read on input)
-      tmp = input.substring(startPos, endPos);
-    else
-      tmp = null;
+      tmp = input.substring(startPos, endPos);}
+    else{
+      tmp = null;}
     
     try {
       PBS_SFDCStringValidationRule_CC svr = new PBS_SFDCStringValidationRule_CC('url');

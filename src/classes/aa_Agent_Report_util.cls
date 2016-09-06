@@ -97,6 +97,7 @@ public with sharing class aa_Agent_Report_util {
                        // }
                         return sendTochatterMap;
     }
+<<<<<<< HEAD
     
   public static void CallDeleteAgentReport(List<aa_Agent_Report__c> reportlist)
   {  
@@ -278,4 +279,6 @@ public with sharing class aa_Agent_Report_util {
         Messaging.sendEmail(mailList);
         //system.debug('======>'+Messaging.sendEmail(mailList));
     }
+=======
+>>>>>>> develop
 }

@@ -1,0 +1,33 @@
+<aura:component >
+  <aura:attribute name="componentName" type="string"></aura:attribute>
+  <aura:attribute name="selectedMonth" type="string"></aura:attribute>
+    <style>
+    .action_bar{
+        background: #fff;
+        height: 63px;
+        Position: fixed;
+        bottom: 0;
+        width: 100%;
+        }
+        .font1{
+        font-size:12px;
+        }
+       .action_bar>div {
+        width: 50%;
+        float: left;
+        }
+        .action_bar >div img {
+            width: 40px;
+    		padding-top: 6px;
+        }
+        .feedback,.question,.information{
+        width:50%;
+        text-align:center;
+        }
+    </style>
+	  <div class="action_bar">
+            <div class="feedback" onclick="{!c.gotoFeedback}"> <img src="/resource/MB_Charts/TEM_icon-01.svg"/><div class="font1"> App Feedback</div></div>
+            <!--<div class="question"><img src="/resource/charts/TEM_icon-03.svg"/></div>-->
+            <div class="information" onclick="{!c.gotoFaq}"><img src="/resource/MB_Charts/TEM_icon-02.svg"/><div class="font1">Information</div></div>
+        </div>
+</aura:component>

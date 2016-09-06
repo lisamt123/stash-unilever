@@ -47,7 +47,7 @@ private class PBS_TrainingTracksController_Test{
         params.add(new PBS_Params_Test.TrainingTrackParam());
         params.add(new PBS_Params_Test.TrainingTrackParam());
 
-        List<PBS_Training_Track__c> tracks = PBS_TrainingTrackData_Test.createTrainingTracks(params);
+        PBS_TrainingTrackData_Test.createTrainingTracks(params);
 
         Test.startTest();
 

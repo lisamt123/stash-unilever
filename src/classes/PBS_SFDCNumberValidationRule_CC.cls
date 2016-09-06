@@ -41,8 +41,8 @@ global with sharing class PBS_SFDCNumberValidationRule_CC extends PBS_SFDCBaseVa
   public PBS_SFDCNumberValidationRule_CC ( String typeName, Double minValue, Double maxValue ) {
     super(typeName);
     
-    if (minValue > maxValue)
-      throw new PBS_SFDCValidator_CC.SFDCValidationException('maxValue must be larger than minValue');
+    if (minValue > maxValue){
+      throw new PBS_SFDCValidator_CC.SFDCValidationException('maxValue must be larger than minValue');}
     
     this.minValue = minValue;
     this.maxValue = maxValue;

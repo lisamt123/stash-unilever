@@ -10,6 +10,10 @@ public with sharing class aa_Agent_Report_Trigger_Handler
 {   
     
    aa_Trigger_pattern__c objAttachmentPattern = aa_Trigger_pattern__c.getValues('aa_Agent_Report_Trigger');
+<<<<<<< HEAD
+=======
+    
+>>>>>>> develop
     boolean triggerShouldExecute = objAttachmentPattern.chk_Check_Run__c;
     
     // Constructor
@@ -27,16 +31,21 @@ public with sharing class aa_Agent_Report_Trigger_Handler
     {   
         System.debug('Entering aa_Agent_Report_Trigger_Handler.bulkBefore');     
         System.debug('Exiting aa_Agent_Report_Trigger_Handler.bulkBefore');
+<<<<<<< HEAD
          if(Trigger.isDelete){
          system.debug('Inside TRigger.isDelete -  Calling aa_Agent_Report_util.AgentReportRejected_Email');
          aa_Agent_Report_util.AgentReportRejected_Email(trigger.old);   
          }
+=======
+        
+>>>>>>> develop
     }
     
     public void bulkAfter()
     {
         System.debug('Entering aa_Agent_Report_Trigger_Handler.bulkAfter');     
         System.debug('Exiting aa_Agent_Report_Trigger_Handler.bulkAfter');
+<<<<<<< HEAD
         if (Trigger.isUpdate)
         {
            aa_Agent_Report_util.CallDeleteAgentReport(trigger.new);
@@ -45,6 +54,8 @@ public with sharing class aa_Agent_Report_Trigger_Handler
          {
             aa_Agent_Report_util.Agent_After_Insert(trigger.new); 
          }
+=======
+>>>>>>> develop
         
     }
         
@@ -53,7 +64,10 @@ public with sharing class aa_Agent_Report_Trigger_Handler
         System.debug('Entering aa_Agent_Report_Trigger_Handler.beforeInsert');     
         System.debug('Exiting aa_Agent_Report_Trigger_Handler.beforeInsert');
         
+<<<<<<< HEAD
         
+=======
+>>>>>>> develop
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)

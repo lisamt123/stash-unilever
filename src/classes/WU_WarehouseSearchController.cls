@@ -3,7 +3,7 @@
 *@Date :            December 2015
 *@Description :     controller class for VF Page WU WarehouseSearch
 *************************************************************/
-public class WU_WarehouseSearchController {
+public with sharing class WU_WarehouseSearchController {
 
      
     private Integer PAGESIZE= 30;

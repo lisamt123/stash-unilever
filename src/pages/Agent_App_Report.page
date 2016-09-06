@@ -306,6 +306,9 @@ function upload(obj,eleName) {
       
     
 </script>
+<script>
+window.onkeydown=function(){window.focus();} 
+</script>
 
 </body>
 </html>
