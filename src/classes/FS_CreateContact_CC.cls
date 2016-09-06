@@ -291,13 +291,36 @@ public with sharing class FS_CreateContact_CC {
         FS_SiteLead SiteLead;
     }
     
+    
+    public virtual without sharing class FS_SiteLeadMainchild {
+    
+              
+                public String MaritalStatus;    //Married
+                public String SocialStatus; //socialStatus
+                public String PropertyStatus;   //propertyStatus
+                public String Profession;   //Developer
+                public Integer Income;   //70000
+                public String PassportNumber;   //3606789654
+              
+    }
+    
+    public virtual without sharing class FS_SiteLeadMainchildAdress extends FS_SiteLeadMainchild  {
+    
+                public String Address;  //address-1, 4 - 33
+                public String City; //city1
+                public String BusinessPostalCode;   //449543 
+                public String Country;  //Russia
+    }
+    
+    
+    
     /* * Wrapper cals for creating Contact to intract with Brandton though mulesoft
 *  @name FS_SiteLead 
 *  @param 
 *  @return  
 *  @throws 
 */    
-    public without sharing class FS_SiteLead {
+    public without sharing class FS_SiteLead extends FS_SiteLeadMainchildAdress  {
         public String Email;
         public String Phone;
         public String Firstname;
@@ -305,22 +328,14 @@ public with sharing class FS_CreateContact_CC {
         public String Surname;  //Machev
         public Integer Age; //28
         public String BirthDate;    //1987-01-12Z
-        public String Country;  //Russia
-        public String Address;  //address-1, 4 - 33
-        public String City; //city1
         public boolean PersonalDataAgree;
         public String Gender;   //Male
         public String BusinessName; //OOO MTC
-        public String BusinessPostalCode;   //449543
         public String FacebookId;   //897384
         public String VkId; //789347503
         public String OkId; //0294485
-        public String MaritalStatus;    //Married
-        public String SocialStatus; //socialStatus
-        public String PropertyStatus;   //propertyStatus
-        public String Profession;   //Developer
-        public Integer Income;   //70000
-        public String PassportNumber;   //3606789654
+       
+      
         public List<FS_ExtraParameters > ExtraParameters;
         public FS_SiteLead(){
             Age=0;
@@ -331,12 +346,12 @@ public with sharing class FS_CreateContact_CC {
             FacebookId=FS_ContactUtility.BLANKTEXT;
             VkId=FS_ContactUtility.BLANKTEXT;
             OkId=FS_ContactUtility.BLANKTEXT;
-            MaritalStatus=FS_ContactUtility.BLANKTEXT;
-            SocialStatus=FS_ContactUtility.BLANKTEXT;
-            PropertyStatus=FS_ContactUtility.BLANKTEXT;
-            Profession=FS_ContactUtility.BLANKTEXT;
-            Income=0;
-            PassportNumber=FS_ContactUtility.BLANKTEXT;      
+           // MaritalStatus=FS_ContactUtility.BLANKTEXT;
+           // SocialStatus=FS_ContactUtility.BLANKTEXT;
+          //  PropertyStatus=FS_ContactUtility.BLANKTEXT;
+          //  Profession=FS_ContactUtility.BLANKTEXT;
+          //  Income=0;
+            //PassportNumber=FS_ContactUtility.BLANKTEXT;      
         }
     }
     
