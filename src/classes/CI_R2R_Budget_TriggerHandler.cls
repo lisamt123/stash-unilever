@@ -25,10 +25,10 @@ public with sharing class CI_R2R_Budget_TriggerHandler implements ITrigger{
          Map<id,CI_R2R_Innovation__c> mapinn = new Map<id,CI_R2R_Innovation__c>();
 
          List<CI_R2R_Budget_Mapping__c> listrec = CI_R2R_Budget_Mapping__c.getall().values();
-         Id cid;
+         
          set<id> setinnovation = new set<id>();
          for(CI_R2R_Budget__c r2r: (List<CI_R2R_Budget__c>)trigger.new){       
-           cid = r2r.id;   
+           //cid = r2r.id;   
            setinnovation.add(r2r.CI_R2R_Innovation__c); 
          }
          List<CI_R2R_Innovation__c> innList = [select R2R_SME_Area__c,id from CI_R2R_Innovation__c where id=:setinnovation];

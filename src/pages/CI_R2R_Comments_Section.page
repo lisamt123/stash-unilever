@@ -8,30 +8,21 @@ VERSION   AUTHOR   DATE
 <apex:page standardController="CI_R2R_Innovation__c" extensions="CI_R2R_GetHistory" showChat="false">
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-  <script>
-  
+  <script>  
   $(document).ready(function() { 
-    
     var showChar = 0;  
     var ellipsestext = "...";
     var moretext = "more";
     var lesstext = "less";
-    
     $('.more').each(function() {
         var content = $(this).html();
-
         if(content.length > showChar) {
-
             var c = content.substr(0, showChar);
             var h = content.substr(showChar, content.length - showChar);
-
             var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-
             $(this).html(html);
         }
-
     });
-
     $(".morelink").click(function(){
         if($(this).hasClass("less")) {
             $(this).removeClass("less");
@@ -45,7 +36,6 @@ VERSION   AUTHOR   DATE
         return false;
     });
 });
-
 </script>
   
   <apex:pageBlock >

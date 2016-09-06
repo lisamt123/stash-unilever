@@ -52,57 +52,57 @@ public with sharing class CI_R2R_Innovation_TriggerHandler implements ITrigger{
         if(CI.R2R_SME_Area__c == 'Fixed Assets'){
             clist.Project2__c = yearstr +'.'+ 'FA'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Account Reconciliation'){
+        else if(CI.R2R_SME_Area__c == 'Account Reconciliation'){
             clist.Project2__c = yearstr +'.'+ 'AR'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Continuous Improvement'){
+        else if(CI.R2R_SME_Area__c == 'Continuous Improvement'){
             clist.Project2__c = yearstr +'.'+ 'CI'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Financial Reporting'){
+        else if(CI.R2R_SME_Area__c == 'Financial Reporting'){
             clist.Project2__c = yearstr +'.'+ 'FR'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'FX Revaluation'){
+        else if(CI.R2R_SME_Area__c == 'FX Revaluation'){
             clist.Project2__c = yearstr +'.'+ 'FX'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Intercompany'){
+        else if(CI.R2R_SME_Area__c == 'Intercompany'){
             clist.Project2__c = yearstr +'.'+ 'IC'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Journal Entries'){
+        else if(CI.R2R_SME_Area__c == 'Journal Entries'){
             clist.Project2__c = yearstr +'.'+ 'JE'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'GL MDM'){
+        else if(CI.R2R_SME_Area__c == 'GL MDM'){
             clist.Project2__c = yearstr +'.'+ 'MDM'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Period-End'){
+        else if(CI.R2R_SME_Area__c == 'Period-End'){
             clist.Project2__c = yearstr +'.'+ 'PE'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Project'){
+        else if(CI.R2R_SME_Area__c == 'Project'){
             clist.Project2__c = yearstr +'.'+ 'PT'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'SAP Roles'){
+        else if(CI.R2R_SME_Area__c == 'SAP Roles'){
             clist.Project2__c = yearstr +'.'+ 'SR'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Tax'){
+        else if(CI.R2R_SME_Area__c == 'Tax'){
             clist.Project2__c = yearstr +'.'+ 'Tx'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Tools'){
+        else if(CI.R2R_SME_Area__c == 'Tools'){
             clist.Project2__c = yearstr +'.'+ 'PT'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'GPM'){
+        else if(CI.R2R_SME_Area__c == 'GPM'){
             clist.Project2__c = yearstr +'.'+ 'GPM'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'SCOA'){
+        else if(CI.R2R_SME_Area__c == 'SCOA'){
             clist.Project2__c = yearstr +'.'+ 'SCOA'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Direct Tax'){
+        else if(CI.R2R_SME_Area__c == 'Direct Tax'){
             clist.Project2__c = yearstr +'.'+ 'DT'+'.'+ count;
         }
-        if(CI.R2R_SME_Area__c == 'Indirect Tax'){
+        else if(CI.R2R_SME_Area__c == 'Indirect Tax'){
             clist.Project2__c = yearstr +'.'+ 'IDT'+'.'+ count;
         }
         r2rList.add(clist);
     }
-    if(r2rList.size()>0){
+    if(r2rList.size()!=0){
         update r2rList;    
     }
     }
