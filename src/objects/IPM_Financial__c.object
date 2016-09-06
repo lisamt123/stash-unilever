@@ -785,17 +785,6 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
-	 <fields>
-        <fullName>IsFinancialInvalidGlobal__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Checked if the global financial is Invalid</description>
-        <externalId>false</externalId>
-        <label>IsFinancialInvalidGlobal</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <fields>
         <fullName>Gross_Y1_Gross_Profit_Local__c</fullName>
         <description>Gross Y1 Gross Profit Local</description>
@@ -1651,6 +1640,38 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>IsFinancialInvalidGlobal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checked if the global financial is Invalid</description>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalidGlobal</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsFinancialInvalidLocal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>checked if the local financial is invalid</description>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalidLocal</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsFinancialInvalidRegional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IsFinancialInvalidRegional</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IsFinancialInvalid__c</fullName>
