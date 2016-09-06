@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Change event on dropdown">
+	<aura:attribute name="selectboxName" type="String" />
+    <aura:attribute name="selectboxValue" type="String" />
+    <aura:attribute name="selectboxLabel" type="String" />
+</aura:event>

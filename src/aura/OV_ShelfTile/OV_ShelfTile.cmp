@@ -1,0 +1,30 @@
+<aura:component >
+    <!-- register event -->
+    <aura:registerEvent name="OV_ShelfTileExpandEvent" type="c:OV_ShelfTileExpandEvent" />
+    <!-- register event -->
+    <aura:registerEvent name="OV_ShelfTileFolderExpandEvent" type="c:OV_ShelfTileExpandEvent" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:OV_ShelfToggleEvent" action="{!c.handleToggleEvent}"/>
+
+    <aura:dependency resource="markup://c:OV_ShelfTileContent" />
+
+    <aura:attribute name="filters" type="Object"/>
+    <aura:attribute name="shelfTile" type="OV_Wrapper.ShelfTileWrapper"/>
+    <aura:attribute name="reportListShown" type="Boolean"/>
+    <aura:attribute name="shelfColour" type="String"/>
+    <aura:attribute name="shelfTitle" type="String"/>
+
+    <aura:attribute name="activeShelfTileId" type="String" default="" />
+    <aura:attribute name="activeFolderTileId" type="String" default="" />
+    <aura:attribute name="activeFolderName" type="String" default="" />
+
+    <div class="{!'col-tile  ' + (v.reportListShown?'reportListShown':'')}">
+        <div class="cOV_ShelfTile-base clickable" onclick="{!c.showReportsList}" style="{! v.shelfColour?($Browser.formFactor!='PHONE'?(v.reportListShown?('border-color: '+v.shelfColour+';'):('background-color: '+v.shelfColour +'; border-color: '+v.shelfColour+';')):''):''}">
+            <div class="{! 'cOV_ShelfTile-icon SF1-custom-icon-' + v.shelfTile.shelfTileIconName }" style="{! v.shelfColour?'background-color:'+v.shelfColour:''}"></div>
+            <div class="{! 'cOV_ShelfTile-iconBig SF1-custom-icon-' + v.shelfTile.shelfTileIconName }" style="{! v.shelfColour?(v.reportListShown?'color: '+v.shelfColour :''):''}"></div>
+            <div class="cOV_ShelfTile-title" style="{! v.shelfColour?(v.reportListShown?'color: '+v.shelfColour :''):''}">{!v.shelfTile.shelfTileTitle}</div>
+            <span class="cOV_ShelfTile-viewTally"><i class="glyphicon glyphicon-eye-open"></i>{!v.reportViews || 0}</span>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,7 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="eventId" type="String"/>    
+    <aura:attribute name="componentName" type="String"/>    
+    <aura:attribute name="filterType" type="String"/>
+    <aura:attribute name="sortType" type="String"/>
+    <aura:attribute name="DefaultRecordTypeId" type="String"/>
+</aura:event>

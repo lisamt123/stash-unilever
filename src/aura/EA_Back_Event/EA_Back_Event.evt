@@ -1,0 +1,5 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="pagename"  type="string"/>
+    <aura:attribute name="index" type="integer"/>
+    <aura:attribute name="navigatePageIndex" type="integer"/> 
+</aura:event>

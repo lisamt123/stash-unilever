@@ -1,0 +1,106 @@
+<aura:component controller="OV_RemoteController">
+    <!-- register handlers -->
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:OV_SelectboxChange" action="{!c.selectboxHandler}"/>
+
+    <!-- register event -->
+    <aura:registerEvent name="OV_FiltersEvent" type="c:OV_FiltersEvent" />
+
+    <!-- show/hide parameters -->
+    <aura:attribute name="showcategoryLevel1" type="Boolean" default="false"/>
+    <aura:attribute name="showgeographyLevel2" type="Boolean" default="false"/>
+    <aura:attribute name="showgeographyLevel3" type="Boolean" default="false"/>
+
+    <!-- filters for category -->
+    <aura:attribute name="filterscategory1Options" type="Object[]"/>
+    <aura:attribute name="filterscategory1Objects" type="OV_Wrapper.CategoryWrapper[]"/>
+    <aura:attribute name="filterscategory1Selected" type="String"/>
+    <aura:attribute name="filterscategory1SelectedLabel" type="String"/>
+
+    <aura:attribute name="filterscategory2Options" type="Object[]"/>
+    <aura:attribute name="filterscategory2Objects" type="OV_Wrapper.CategoryWrapper[]"/>
+    <aura:attribute name="filterscategory2Selected" type="String"/>
+    <aura:attribute name="filterscategory2SelectedLabel" type="String"/>
+
+    <!-- filters for geoghraphy -->
+    <aura:attribute name="filtersgeography1Options" type="Object[]"/>
+    <aura:attribute name="filtersgeography1Objects" type="OV_Wrapper.GeographyWrapper[]"/>
+    <aura:attribute name="filtersgeography1Selected" type="String"/>
+    <aura:attribute name="filtersgeography1SelectedLabel" type="String"/>
+
+    <aura:attribute name="filtersgeography2Options" type="Object[]"/>
+    <aura:attribute name="filtersgeography2Objects" type="OV_Wrapper.GeographyWrapper[]"/>
+    <aura:attribute name="filtersgeography2Selected" type="String"/>
+    <aura:attribute name="filtersgeography2SelectedLabel" type="String"/>
+
+    <aura:attribute name="filtersgeography3Options" type="Object[]"/>
+    <aura:attribute name="filtersgeography3Objects" type="OV_Wrapper.GeographyWrapper[]"/>
+    <aura:attribute name="filtersgeography3Selected" type="String"/>
+    <aura:attribute name="filtersgeography3SelectedLabel" type="String"/>
+
+    <!-- filters for function -->
+    <aura:attribute name="filtersfunction1Options" type="Object[]"/>
+    <aura:attribute name="filtersfunction1Objects" type="OV_Wrapper.FunctionWrapper[]"/>
+    <aura:attribute name="filtersfunction1Selected" type="String"/>
+    <aura:attribute name="filtersfunction1SelectedLabel" type="String"/>
+
+    <aura:attribute name="allMineSelected" type="String" default="all" />
+
+    <aura:attribute name="selectedGeographyName" type="String"/>
+    <aura:attribute name="selectedCategoryName" type="String"/>
+    <aura:attribute name="selectedFunctionName" type="String"/>
+
+    <!-- row counter -->
+    <aura:attribute name="rowIdx" type="Integer" default="0" />
+
+    <div class="OV_phone">
+        <div class="kpiControls-dialogBody filtersBar">
+
+            <!-- Reports  all / mine  -->
+            <!--
+            <div class="card-list collapsed">
+                <div class="card-list-heading">
+                    <h3>Show reports<div class="all_mine_filter">
+                            <span class="{#'clickable' + (v.allMineSelected == 'all' ? ' selected ' : '')}" onclick="{!c.onAllMineFilterChange}" aura:id="all">All</span><span class="{#'clickable' + (v.allMineSelected == 'mine' ? ' selected ' : '')}" onclick="{!c.onAllMineFilterChange}" aura:id="mine">Mine</span>
+                        </div>
+                    </h3>
+                </div>
+            </div>
+            -->
+
+            <!-- Geography Dropdowns  -->
+            <div class="card-list collapsed">
+                <div class="card-list-heading clickable" onclick="{!c.toggle}">
+                    <h3><div class="title">Geography</div><span class="selectedVal">{!v.selectedGeographyName}&nbsp;</span></h3>
+                </div>
+                <c:OV_KpiCreateDialogCard cardHeading="Geography level 1" selectboxName="FilterGeography1" optionList="{!v.filtersgeography1Options}" selectedValue="{!v.filtersgeography1Selected}" />
+                <aura:renderIf isTrue="{!v.showgeographyLevel2}">
+                    <c:OV_KpiCreateDialogCard cardHeading="Geography level 2" selectboxName="FilterGeography2" optionList="{!v.filtersgeography2Options}" selectedValue="{!v.filtersgeography2Selected}" />
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.showgeographyLevel3}">
+                    <c:OV_KpiCreateDialogCard cardHeading="Geography level 3" selectboxName="FilterGeography3" optionList="{!v.filtersgeography3Options}" selectedValue="{!v.filtersgeography3Selected}" />
+                </aura:renderIf>
+            </div>
+
+            <!-- Category Dropdowns  -->
+            <div class="card-list collapsed">
+                <div class="card-list-heading clickable" onclick="{!c.toggle}">
+                    <h3><div class="title">Category</div><span class="selectedVal">{!v.selectedCategoryName}&nbsp;</span></h3>
+                </div>
+                <c:OV_KpiCreateDialogCard cardHeading="Category Level 1" selectboxName="FilterCategory1" optionList="{!v.filterscategory1Options}"  selectedValue="{!v.filterscategory1Selected}"/>
+                <aura:renderIf isTrue="{!v.showcategoryLevel2}">
+                    <c:OV_KpiCreateDialogCard cardHeading="Category Level 2" selectboxName="FilterCategory2" optionList="{!v.filterscategory2Options}"  selectedValue="{!v.filterscategory2Selected}"/>
+                </aura:renderIf>
+            </div>
+
+            <!-- Function Dropdowns  -->
+            <div class="card-list collapsed">
+                <div class="card-list-heading clickable" onclick="{!c.toggle}">
+                    <h3><div class="title">Function</div><span class="selectedVal">{!v.selectedFunctionName}&nbsp;</span></h3>
+                </div>
+                <c:OV_KpiCreateDialogCard cardHeading="Function" selectboxName="FilterFunction1" optionList="{!v.filtersfunction1Options}"  selectedValue="{!v.filtersfunction1Selected}" />
+            </div>
+        </div>
+    </div>
+
+</aura:component>

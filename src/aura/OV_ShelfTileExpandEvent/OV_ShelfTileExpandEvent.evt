@@ -1,0 +1,11 @@
+<aura:event type="APPLICATION" description="Event fired when report shelf tile is expanded">
+	<aura:attribute name="shelfId" type="String" />
+    <aura:attribute name="shelfTileShelfId" type="String" />
+    <aura:attribute name="filters" type="Object" />
+    <aura:attribute name="shelfTile" type="Object" />
+    <aura:attribute name="shelfColour" type="String" />
+    <aura:attribute name="shelfIcon" type="String" />
+    <aura:attribute name="shelfTitle" type="String" />
+    <aura:attribute name="shelfTileTitle" type="String" />
+    <aura:attribute name="isVisible" type="Boolean" />
+</aura:event>

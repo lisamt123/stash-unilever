@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION">
+    <aura:attribute name="reportId" type="String"/>
+    <aura:attribute name="isFav" type="Boolean"/>
+</aura:event>

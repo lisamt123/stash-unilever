@@ -1,0 +1,48 @@
+<aura:component controller="EA_ControllerClass">	
+ <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" />
+   
+<aura:attribute name="Themes" type="RecordType[]"/>
+<aura:attribute name="index" type="decimal"/>
+<aura:attribute name="temp" type="string"  />
+<aura:attribute name="previous" type="string" default="theme"/> 
+ <aura:handler event="c:EverydayAction_Active_Filter_Event" action="{!c.activeFilter}"/> 
+ <aura:handler name="init" value="{!this}" action="{!c.getThemes1}" />  
+<div class="slds">
+    <div class="filtePannel"> 
+       
+       <aura:if isTrue="{!v.temp == 'All Themes' ? true:false}">
+             
+           <c:EverydayAction_Active_Filter_component themeName="All Themes"/> 
+            <!--   <c:Theme_Filter_comp themeName="All Theme"/> -->
+              
+           </aura:if>
+      
+
+      <aura:if isTrue="{!v.temp != 'All Themes' ? true:false}">
+        
+            <c:EverydayAction_InActive_Filter_component themeName="All Themes"/>
+          
+        </aura:if> 
+         
+        <span>
+          <aura:iteration items="{!v.Themes}" var="themenames">
+             <SPAN> 
+             <aura:if isTrue="{!v.temp == themenames.Name ? true:false}">
+              <span>
+               <c:EverydayAction_Active_Filter_component themeName="{!v.temp}"/>
+                <!-- <c:Theme_Filter_comp themeName="All Theme"/> -->
+                </span> 
+               </aura:if> 
+              <aura:if isTrue="{!v.temp != themenames.Name ? true:false}"> 
+                <span>
+               <c:EverydayAction_InActive_Filter_component themeName="{!themenames.Name}"/>
+                    <!--     <c:Theme_InActiveFilter_comp themeName="{!themenames.Name}"/>  -->
+                </span>
+             </aura:if> 
+              </SPAN>
+             
+        </aura:iteration>
+        </span>
+    </div>     
+    </div>     
+</aura:component>

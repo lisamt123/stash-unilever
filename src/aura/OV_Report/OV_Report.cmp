@@ -1,0 +1,66 @@
+<aura:component controller="OV_RemoteController">
+    <aura:dependency resource="markup://c:OV_ReportDetail" />
+    <aura:dependency resource="markup://c:OV_ReportComments" />
+    <aura:dependency resource="markup://c:OV_ReportKPIs" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="reportIsFavourite" type="Boolean" default="false" />
+    <aura:attribute name="reportId" type="String"/>
+    <aura:attribute name="shelfColour" type="String"/>
+    <aura:attribute name="shelfTileId" type="String"/>
+    <aura:attribute name="shelfIcon" type="String" default="Custom3"/>
+    <aura:attribute name="documentIcon" type="String" default="/resource/bootstrapSF1/icons/doctype/link_120.png"/>
+    <aura:attribute name="reportData" type="OV_Wrapper.ReportWrapper"/>
+    <aura:attribute name="favInProgress" type="Boolean"/>
+    <aura:attribute name="menuItems" type="String[]" default="DETAILS,COMMENTS"/>
+    <aura:attribute name="defaultReportMenuItem" type="String" default="DETAILS"/>
+
+    <div class="{! 'OVBS bootstrap-sf1' + ($Browser.isPhone?' OV_phone':'') + ((!$Browser.isPhone &amp;&amp; ($Browser.isIOS || $Browser.isAndroid) )?' OV_tablet':'' ) + ((!$Browser.isPhone &amp;&amp; !$Browser.isIOS &amp;&amp; !$Browser.isAndroid )?' OV_desktop':'') }">
+        <div class="report">
+            <div class="row report-header">
+                <div class="col-xs-12">
+                    <div class="{! 'icon SF1-custom-icon-' + (v.shelfIcon?v.shelfIcon:'Custom3') }" style="{! v.shelfColour?'background-color:'+v.shelfColour:''}">
+                    </div>
+                    <div class="title">
+                        {!v.reportData.reportTitle}
+                    </div>
+
+                    <div class="{! 'details-social ' + (!!v.reportData.reportDocument || !v.reportData.reportIsStatic ? '' : ' no-file-link ')}">
+                        <div class="details-social-favourite" style="{! v.shelfColour?('color:'+v.shelfColour+';'):''}">
+                            <aura:renderIf isTrue="{! v.reportIsFavourite == false}">
+                                <span class="SF1-custom-icon-custom11_stroke clickable" onclick="{!c.addToFavourite}"></span>
+                            </aura:renderIf>
+                            <aura:renderIf isTrue="{! v.reportIsFavourite == true}">
+                                <span class="SF1-custom-icon-custom11 clickable" onclick="{!c.removeFromFavourite}"></span>
+                            </aura:renderIf>
+                        </div>
+                    </div>
+
+                    <aura:renderIf isTrue="{! !!v.reportData.reportDocument || !v.reportData.reportIsStatic}">
+                        <div class="link-icon clickable" onclick="{!c.showContent}">
+                            <img src="{!v.documentIcon}"/>
+                        </div>
+                    </aura:renderIf>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <c:OV_TabView navbarUid="jsReportTabSet"
+                        tabLabels="{!v.menuItems}"
+                        tabClick="{!c.changeViews}"
+                        selectedTab="DETAILS"
+                        shelfColour="{!v.shelfColour}"
+                        tabsJustified="true"
+                    />
+                    <c:OV_ReportTabContent currentView="{!v.defaultReportMenuItem}"
+                        panelIds="{!v.menuItems}"
+                        aura:id="reportTabContent"
+                        reportData="{!v.reportData}"
+                        shelfColour="{!v.shelfColour}"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

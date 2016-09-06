@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable">
+    isTablet=={!$Browser.isTablet}<br/>
+    isPhone=={!$Browser.isPhone}<br/>
+    isAndroid=={!$Browser.isAndroid}<br/>
+    formFactor=={!$Browser.formFactor}<br/>
+    isIPad=={!$Browser.isIPad}<br/>
+    isIOS=={!$Browser.isIOS}<br/>
+   
+    OV_isDesktop=={! !$Browser.isAndroid &amp;&amp; 
+    !$Browser.isIOS &amp;&amp; !$Browser.isPhone  }
+</aura:component>

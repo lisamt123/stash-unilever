@@ -1,0 +1,21 @@
+<aura:component >
+    <aura:registerEvent name="selectboxChange" type="c:OV_SelectboxChange" />
+
+    <aura:attribute name="optionList" type="Object[]" />
+    <aura:attribute name="selectboxName" type="String" />
+    <aura:attribute name="selectedValue" type="String" />
+
+    <aura:attribute name="cardHeading" type="String" default="Undefined" />
+
+    <div class="card">
+        <ul class="card-detail">
+            <li>
+            	<ui:inputSelect class="form-control" change="{!c.onSelectChange}" aura:id="selectboxElement" value="{!v.selectedValue}">
+                    <aura:iteration items="{!v.optionList}" var="option">
+                         <ui:inputSelectOption text="{!option.value}" label="{!option.label}" />
+                    </aura:iteration>
+            	</ui:inputSelect>
+            </li>
+        </ul>
+    </div>
+</aura:component>

@@ -1,0 +1,80 @@
+.THIS .regular_font{
+    font-weight: 100;
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+    padding-top: 1rem;
+    color: #4f6a92;
+    margin-left: 15px;
+    width: 100%;
+    text-transform: uppercase;
+}
+.THIS .list_name{
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-left: 15px;
+    margin-top: -20px;
+    color: black;
+    padding-top: 18px;
+}
+.THIS .list_name_msg{
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2;
+    margin-left: 15px;
+    color: black;
+    padding-top: 14px;
+}
+.THIS .divider {
+  height: 1px;
+  width: 100%;
+  display: block;
+  margin-left: 0px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+
+.THIS div.feedback , .THIS div.invitation{
+    float: right;
+    padding-right: 0!important;
+    margin-top: -19px!important;
+    width: 113px!important;
+    margin-left: 59%;
+    position: absolute;
+    display: block;
+    padding: 3px 0;
+    height: 22px;
+}
+
+.THIS .inv_img {
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+}
+
+.THIS .invitation{
+  width: 12rem;
+  height: 2rem;
+  background:#70dbdb ;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: white;
+  font-weight: 600;
+  margin-left:1rem;
+    padding-right:8px;
+    margin-top:20px;
+}
+
+  .THIS .right_arrow_img{
+    float: right;
+    padding-right: 5%;
+    position:relative;
+  
+    
+}   
+.THIS   .right_arrow{
+    width:10px;
+    height:10px;
+    margin-left: 300px;
+    margin-top: -36px;
+    }
