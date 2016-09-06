@@ -1,4 +1,0 @@
-<aura:event type="APPLICATION">
-    <aura:attribute name="componentDef" type="String"/>
-    <aura:attribute name="componentAttributes" type="Object"/>
-</aura:event>

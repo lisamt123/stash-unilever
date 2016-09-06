@@ -1,6 +1,0 @@
-<aura:event type="APPLICATION" description="Event template" >
-
-
-    <aura:attribute name="showmyactions" type="boolean" ></aura:attribute>
-    
-</aura:event>
