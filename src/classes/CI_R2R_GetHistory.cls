@@ -5,7 +5,7 @@ This Controoler is used to capture the tracking history of comments.
 VERSION   AUTHOR   DATE    
 1.0       Chandana June-2016   
 ***********************************************************************/
-public class CI_R2R_GetHistory {    
+public with sharing class CI_R2R_GetHistory {    
     
   public string rrid {get; set;}    
    public string changedby {get; set;}
@@ -20,12 +20,10 @@ public class CI_R2R_GetHistory {
    public List<wrapper> wrapperList {get; set;}
    public List<wrapper> getWrappervalues(){
        wrapperlist = new List<wrapper>();
-       set<id> sIds = new set<id>();       
        string newcomment;
        string oldcomment;
        string cDate;
        string cName;           
-       Id crId;
        List<CI_R2R_Innovation__History> rrlist = [SELECT ParentId,createdBy.Name,OldValue,CreatedById,CreatedDate,NewValue, Field FROM CI_R2R_Innovation__History where parentId =:rrid and Field = 'Comments__c'];
       
        for(CI_R2R_Innovation__History cr : rrList){       

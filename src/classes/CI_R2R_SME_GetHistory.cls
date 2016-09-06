@@ -5,7 +5,7 @@ This Controoler is used to capture the tracking history of comments.
 VERSION   AUTHOR   DATE    
 1.0       Chandana June-2016   
 ***********************************************************************/
-public class CI_R2R_SME_GetHistory {
+public with sharing class CI_R2R_SME_GetHistory {
     
     
     public string smeid {get; set;}
@@ -20,12 +20,10 @@ public class CI_R2R_SME_GetHistory {
    public List<wrapper> wrapperList {get; set;}
    public List<wrapper> getWrappervalues(){
        wrapperlist = new List<wrapper>();
-       set<id> sIds = new set<id>();
        string newcomment;
        string oldcomment;
        string sDate;
        string sName;
-       Id SmId;
        List<CI_SMS_Weekly_Update__History> smelist = [SELECT ParentId,createdBy.Name,OldValue,CreatedById,CreatedDate,NewValue, Field FROM CI_SMS_Weekly_Update__History where parentId =:smeid and Field = 'Comments__c'];
        for(CI_SMS_Weekly_Update__History sme : smeList){
                newcomment = string.valueof(sme.NewValue);

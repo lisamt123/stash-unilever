@@ -10,7 +10,7 @@ private class CI_R2R_SME_GetHistory_Test{
         system.assertEquals('Green', CISME.RAG__c);
         
         
-        List<CI_SMS_Weekly_Update__History> inHistory = new List<CI_SMS_Weekly_Update__History>();               
+        //List<CI_SMS_Weekly_Update__History> inHistory = new List<CI_SMS_Weekly_Update__History>();               
         
         PageReference pageRef = Page.CI_R2R_Comments_Section_for_SME;            
         test.setcurrentpage(pageRef);       
@@ -18,7 +18,7 @@ private class CI_R2R_SME_GetHistory_Test{
                
         ApexPages.StandardController sc = new ApexPages.standardController(CISME);        
         CI_R2R_SME_GetHistory Historycls = new CI_R2R_SME_GetHistory(sc);
-        CI_R2R_SME_GetHistory.wrapper R2Rwrap = new CI_R2R_SME_GetHistory.wrapper('name','name1','changedby','cDate');
+        //CI_R2R_SME_GetHistory.wrapper R2Rwrap = new CI_R2R_SME_GetHistory.wrapper('name','name1','changedby','cDate');
         Historycls.getWrappervalues();
         
         Historycls.changedby = 'test1';   

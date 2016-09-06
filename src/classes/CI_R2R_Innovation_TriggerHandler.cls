@@ -20,6 +20,7 @@ public with sharing class CI_R2R_Innovation_TriggerHandler implements ITrigger{
     */
     public void bulkBefore(){
             
+                //This method has been included as the class implements the ITrigger interface
     }
      /***********************************************************************************************************************************
     * bulkAfter
