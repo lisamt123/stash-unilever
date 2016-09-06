@@ -3405,6 +3405,15 @@ Case(Global_Project_Phase__c,
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000XfOI_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TOBEDELETED</label>
+        <queue>IPM_a7IE0000000XfOI</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Project_Rollout</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>
