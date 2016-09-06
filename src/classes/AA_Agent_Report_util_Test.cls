@@ -3,7 +3,6 @@
 public class AA_Agent_Report_util_Test {
 
     static testMethod void CallSendToChatterTest() {
-<<<<<<< HEAD
         User user = new User();
         user.Username ='testagentuserLightning307@gmail.com';
         user.LastName = 'LastTestName';
@@ -27,8 +26,6 @@ public class AA_Agent_Report_util_Test {
         user1.ProfileId = [select id from Profile where Name='System Administrator'].Id;
         user1.LanguageLocaleKey = AA_Constants.Stringen_us;
         insert user1;
-=======
->>>>>>> develop
     
        Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
        Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
@@ -43,7 +40,6 @@ public class AA_Agent_Report_util_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-<<<<<<< HEAD
        aa_Agent_Report__c unileverReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,
                                                                    Country__c =countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,
                                                                    Retailer__c =retailerData.id,Agent_App_Unilever_Brand__c =uniBrand.id,TF_Mention_User__c=AA_Constants.StringFirstRandomNumber,TF_Topic_Name__c=AA_Constants.StringSecondRandomNumber,
@@ -52,13 +48,6 @@ public class AA_Agent_Report_util_Test {
          aa_Agent_Report__c unileverReport2 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c =countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c =retailerData.id,Agent_App_Unilever_Brand__c =uniBrand.id,TF_Mention_User__c=AA_Constants.StringFirstRandomNumber,TF_Topic_Name__c=AA_Constants.StringSecondRandomNumber,Status__c='Published (Public)',CreatedById=user.Id);
        insert unileverReport2;
          aa_Agent_Report__c unileverReport3 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c =countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c =retailerData.id,Agent_App_Unilever_Brand__c =uniBrand.id,TF_Mention_User__c=AA_Constants.StringFirstRandomNumber,TF_Topic_Name__c=AA_Constants.StringSecondRandomNumber,Status__c='Published (Public)',CreatedById=user1.Id);
-=======
-       aa_Agent_Report__c unileverReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c =countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c =retailerData.id,Agent_App_Unilever_Brand__c =uniBrand.id,TF_Mention_User__c='1234',TF_Topic_Name__c='2345',Status__c='Published (Public)',CreatedById=userinfo.getUserid());
-       insert unileverReport1;
-         aa_Agent_Report__c unileverReport2 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c =countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c =retailerData.id,Agent_App_Unilever_Brand__c =uniBrand.id,TF_Mention_User__c='1234',TF_Topic_Name__c='2345',Status__c='Published (Public)',CreatedById=userinfo.getUserid());
-       insert unileverReport2;
-         aa_Agent_Report__c unileverReport3 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c =countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c =retailerData.id,Agent_App_Unilever_Brand__c =uniBrand.id,TF_Mention_User__c='1234',TF_Topic_Name__c='2345',Status__c='Published (Public)',CreatedById=userinfo.getUserid());
->>>>>>> develop
        insert unileverReport3;
         List<aa_Agent_Report__c> listAgentNew =new List<aa_Agent_Report__c>();
         listAgentNew.add(unileverReport1);
@@ -68,11 +57,7 @@ public class AA_Agent_Report_util_Test {
         update unileverReport1;
            unileverReport2.Status__c= 'New';
         update unileverReport2;
-<<<<<<< HEAD
         unileverReport3.Status__c= 'New'; 
-=======
-        unileverReport3.Status__c= 'New';
->>>>>>> develop
         update unileverReport3;
         List<aa_Agent_Report__c> listAgentOld =new List<aa_Agent_Report__c>();
         listAgentOld.add(unileverReport1);
@@ -81,15 +66,11 @@ public class AA_Agent_Report_util_Test {
        test.starttest();
         aa_Agent_Report_util.addTosendChatter(unileverReport1);
         aa_Agent_Report_util.create_Chatter_posting(listAgentNew, listAgentOld);
-<<<<<<< HEAD
         aa_Agent_Report_util.Agent_After_Insert(listAgentNew);
-=======
->>>>>>> develop
     //  AA_theAgent_ChatterPost_FutureClass.CallSendToChatter(reportMap);
       system.assert(unileverReport1.id!=null);
        test.stoptest();
     }
-<<<<<<< HEAD
     
     static testMethod void CallDeleteAgentReportTest() {
          User user = new User();
@@ -152,6 +133,4 @@ public class AA_Agent_Report_util_Test {
         
     }
          
-=======
->>>>>>> develop
 }

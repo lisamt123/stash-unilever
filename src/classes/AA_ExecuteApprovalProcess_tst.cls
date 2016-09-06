@@ -199,7 +199,6 @@ Purpose:Method to test the execution of Approval Process, Owner Assignment,Repor
         system.assert(processapp9!=null);
       
       // Test to Execute Approval Process with only Cluster Id.
-<<<<<<< HEAD
         aa_Cluster__c clusterData10 = new aa_Cluster__c(Name = 'Africa');
         insert clusterData10;
 
@@ -269,29 +268,11 @@ Purpose:Method to test the execution of Approval Process, Owner Assignment,Repor
         processapp10.OwnerAssginment();
         processapp10.reportValues();
         processapp10.cancel();
-=======
- 		aa_Cluster__c clusterData10 = new aa_Cluster__c(Name = 'Africa');
-		insert clusterData10;
-
-       aa_Agent_Report__c competitorReport10 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,ClusterId__c = clusterData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
-		insert competitorReport10;
-		AA_ExecuteApprovalProcess.executeApproval(competitorReport10.id);
-    	
-    	ApexPages.currentPage().getParameters().put('id',competitorReport10.id);
-    	AA_ExecuteApprovalProcess processapp10 =new AA_ExecuteApprovalProcess();
-    	processapp10.OwnerAssginment();
-    	processapp10.reportValues();
-    	processapp10.cancel();
->>>>>>> develop
         
       }
      
       static testMethod void executeApprovalfromMobile() {
-<<<<<<< HEAD
     /**********************************************************************************************************************
-=======
-  	/**********************************************************************************************************************
->>>>>>> develop
 Purpose:Method to test the execution of Approval Process From Mobile , Owner Assignment,Reporting values and the cancellation of the process.
 ************************************************************************************************************************/
        // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -330,11 +311,7 @@ Purpose:Method to test the execution of Approval Process From Mobile , Owner Ass
         controller.AgentReportObjNew.Comments__c=AA_Constants.testString;
         controller.executeApprovalfromMobile();
         
-<<<<<<< HEAD
          aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(status__c='New',Report_Title__c = 'Competitor Report 21',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample , Source__c = AA_Constants.SourceSample,Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
-=======
-         aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(status__c='New',Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample , Source__c = AA_Constants.SourceSample,Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
->>>>>>> develop
         insert competitorReport1;
          ApexPages.currentPage().getParameters().put('id',competitorReport1.id);
         AA_ExecuteApprovalProcess controller1 = new AA_ExecuteApprovalProcess();
@@ -349,11 +326,7 @@ Purpose:Method to test the execution of Approval Process From Mobile , Owner Ass
         aa_Country__c countryData2 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData2.id);
         insert countryData2;
        
-<<<<<<< HEAD
         aa_Agent_Report__c competitorReport2= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 22',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,Country__c = countryData2.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
-=======
-        aa_Agent_Report__c competitorReport2= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,Country__c = countryData2.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
->>>>>>> develop
         insert competitorReport2;
         ApexPages.currentPage().getParameters().put('id',competitorReport2.id);
         AA_ExecuteApprovalProcess controller2 = new AA_ExecuteApprovalProcess();
@@ -441,11 +414,7 @@ Purpose:Method to test the execution of Approval Process From Mobile , Owner Ass
          controller8.AgentReportObjNew.Comments__c=AA_Constants.testString;
         controller8.executeApprovalfromMobile();
         
-<<<<<<< HEAD
          aa_Agent_Report__c competitorReport9= new aa_Agent_Report__c(status__c='New',Report_Title__c = 'Competitor Report 81',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,Country__c = countryData8.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
-=======
-         aa_Agent_Report__c competitorReport9= new aa_Agent_Report__c(status__c='New',Report_Title__c = 'Competitor Report 8',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = AA_Constants.SourceSample,Country__c = countryData8.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
->>>>>>> develop
         insert competitorReport9;
         ApexPages.currentPage().getParameters().put('id',competitorReport9.id);
         AA_ExecuteApprovalProcess controller9 = new AA_ExecuteApprovalProcess();
@@ -458,11 +427,7 @@ Purpose:Method to test the execution of Approval Process From Mobile , Owner Ass
         aa_Country__c countryData10 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData10.id);
         insert countryData10;
        
-<<<<<<< HEAD
         aa_Agent_Report__c competitorReport10= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 109',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample ,Source__c = AA_Constants.SourceSample,Country__c = countryData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
-=======
-        aa_Agent_Report__c competitorReport10= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample ,Source__c = AA_Constants.SourceSample,Country__c = countryData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
->>>>>>> develop
         insert competitorReport10;
         ApexPages.currentPage().getParameters().put('id',competitorReport10.id);
         AA_ExecuteApprovalProcess controller10 = new AA_ExecuteApprovalProcess();
@@ -472,11 +437,7 @@ Purpose:Method to test the execution of Approval Process From Mobile , Owner Ass
      }
      
      static testMethod void OwnerAssignement() {
-<<<<<<< HEAD
         /**********************************************************************************************************************
-=======
-     	/**********************************************************************************************************************
->>>>>>> develop
 Purpose:Method to test the execution Owner Assignment.
 ************************************************************************************************************************/
        // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -518,11 +479,7 @@ Purpose:Method to test the execution Owner Assignment.
      }
      
      static testMethod void reportApproved() {
-<<<<<<< HEAD
     /***************************************************************
-=======
- 	/***************************************************************
->>>>>>> develop
 Purpose:Method to test the execution of the report approved process.
 *********************************************************************/
         //Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -558,11 +515,7 @@ Purpose:Method to test the execution of the report approved process.
         
         ApexPages.currentPage().getParameters().put('id',competitorReport.id);
         AA_ExecuteApprovalProcess controller = new AA_ExecuteApprovalProcess();
-<<<<<<< HEAD
         controller.reportApproved();
-=======
-      	controller.reportApproved();
->>>>>>> develop
         
         aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample ,Source__c = AA_Constants.SourceSample,Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,status__c ='CI Manager Approval Pending');
         insert competitorReport1;
@@ -574,11 +527,7 @@ Purpose:Method to test the execution of the report approved process.
      }
      
      static testMethod void reportReject() {
-<<<<<<< HEAD
         /***************************************************************
-=======
- 	 	/***************************************************************
->>>>>>> develop
 Purpose:Method to test the execution of the report rejected process.
 *********************************************************************/
       // Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
