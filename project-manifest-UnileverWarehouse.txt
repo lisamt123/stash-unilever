@@ -7,7 +7,8 @@ src/classes/WU_CreateCapacityDetails.cls
 src/classes/WU_CreateCapacityDetails.cls-meta.xml
 src/classes/WU_CreateCapacityDetails_Test.cls
 src/classes/WU_CreateCapacityDetails_Test.cls-meta.xml
-
+src/classes/WU_MultiCreateMultiEdit_Test.cls
+src/classes/WU_MultiCreateMultiEdit_Test.cls-meta.xml
 src/classes/WU_MultiCreateMultiEdit3.cls
 src/classes/WU_MultiCreateMultiEdit3.cls-meta.xml
 src/classes/WU_MultiCreateMultiEdit3_Test.cls
@@ -24,7 +25,8 @@ src/classes/WU_SetCurrentMonthBatch_Scheduler.cls
 src/classes/WU_SetCurrentMonthBatch_Scheduler.cls-meta.xml
 src/classes/WU_SetWarehousePOCHandler.cls
 src/classes/WU_SetWarehousePOCHandler.cls-meta.xml
-
+src/classes/WU_SetWarehousePOCHandler_Test.cls
+src/classes/WU_SetWarehousePOCHandler_Test.cls-meta.xml
 src/classes/WU_TestFactory_Helper.cls
 src/classes/WU_TestFactory_Helper.cls-meta.xml
 src/classes/WU_UpdateMasterWarehouseHandler.cls
