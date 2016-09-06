@@ -10,16 +10,16 @@
 	<div class="slds-page-header" role="banner">
                 <div class="slds-grid " >
                     <div class="slds-col">
-                        {!$Label.c.ICB_INVENTORY_HEADER}
+                        <br/>
                         <h1 class="slds-text-heading--medium">
-                            <ui:outputNumber value="{!v.count}"/>
-                            &nbsp;<ui:outputText value="{!v.HeaderTitle}"/>
+                            <br/>
+                            
                         </h1>
                     </div>
                     <ui:button label="{!$Label.c.ICB_UPDATE_INVENTORY}" press="{!c.updateList}">
                     </ui:button>
                 </div>
-            </div>    
+            </div>
 
     <!--<c:ICB_MobileChamelHeader Inventory='{!v.Inventory}' count='{!v.count}' HeaderTitle="{!v.HeaderTitle}" HeaderProductInventory="{!v.HeaderProductInventory}"/>-->
     <table class="slds-table slds-table--bordered slds-max-medium-table--stacked" >
@@ -59,10 +59,11 @@
                                     <img src="{!$Resource.ICB_SLDS202_CSS +'/assets/icons/utility/dash_60.png'}"  class="dimension" />
                                 </ui:button>
                             </div>
-                            <div align="center" class="buttondimension"  >
-                                <ui:inputNumber class="inputBox" aura:id="ProductUnit" 
-                                                value="{!item.ICB_Quantity_Unit__c}">
-                                </ui:inputNumber>
+                            &nbsp;&nbsp;<div align="center" class="border-div"  >
+                                <br/>
+                                <ui:outputNumber format="0" class="inputBox" aura:id="ProductUnit" 
+                                                  value="{!item.ICB_Quantity_Unit__c}">
+                                </ui:outputNumber>
                             </div>
                             <div  class="slds-truncate btnCollor" data-record="{!index}" onclick="{!c.posiviteAdd}">
                                 <ui:button aura:id="pos" press="{!c.whatButton}" >

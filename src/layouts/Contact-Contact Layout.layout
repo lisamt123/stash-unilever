@@ -93,6 +93,10 @@
                 <behavior>Edit</behavior>
                 <field>ICB_Mobile_Phone__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ICB_Additional_Source_Income__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

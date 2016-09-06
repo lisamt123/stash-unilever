@@ -1,2 +1,0 @@
-src
-src/objects/aa_Trigger_pattern__c.object
