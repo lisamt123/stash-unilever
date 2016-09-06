@@ -19,6 +19,7 @@ public with sharing class Core_CA_ChatterPostNavCont_Test {
 
   ApexPages.StandardController sc = new ApexPages.standardController(objApproverclr);
   Core_CA_ChatterPostNavigationController test = new Core_CA_ChatterPostNavigationController(sc);
+    System.assert(test != null);
 
 
  }
