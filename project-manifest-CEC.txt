@@ -45,7 +45,7 @@ src/flows/CEC_Close_Case_Survey-1.flow
 src/flows/CEC_Update_CV_Questionare_on_Case-1.flow
 src/flows/CEC_Update_Incoming_SMS_Owner_Flow-1.flow
 src/flows/CEC_Update_Incoming_SMS_Owner_Process-1.flow
-src/flows/CEC_SMS_Case_Creation_Process-6.flow
+src/flows/CEC_SMS_Case_Creation_Process-8.flow
 src/flows/CEC_SMS_Case_Creation_Flow-4.flow
 src/layouts/Case-Case Feed Layout.layout
 src/layouts/cec_Additional_Case_Information__c-Additional Information Layout.layout
@@ -60,6 +60,7 @@ src/permissionsets/CEC_User.permissionset
 src/permissionsets/CEC_User_CosmetoVigilance.permissionset
 src/permissionsets/CEC_SMS_Magic_Admin.permissionset
 src/permissionsets/CEC_SMS_Magic_User.permissionset
+src/permissionsets/CEC_Enable_Audit_Fields.permissionset
 src/pages/CEC_CaseConversationView.page
 src/pages/CEC_CaseConversationView.page-meta.xml
 src/pages/CEC_NewAccountContact.page

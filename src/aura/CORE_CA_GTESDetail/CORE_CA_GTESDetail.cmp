@@ -369,8 +369,8 @@
                                 <img src="/resource/CORE_CA_ApprovalsLightning/images/chevrondown.png"  id="down"/>
                             </div>
                         </div><hr></hr>
-                        <aura:iteration items="{!detailData.ApprovalHistory}" var="appHistoryData">
                             <div class="DetailSectionTable" id="approvalHist1">
+                        <aura:iteration items="{!detailData.ApprovalHistory}" var="appHistoryData">
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!appHistoryData.ApproverName}</div>
                                 </div>
@@ -380,8 +380,8 @@
                                 <div>
                                     <div class="slds-text-body--regular DetailData">{!appHistoryData.ApproverAction}</div>
                                 </div>
-                            </div>
                         </aura:iteration>
+                            </div>
                     </div>
                     <br/>
                     </div>
