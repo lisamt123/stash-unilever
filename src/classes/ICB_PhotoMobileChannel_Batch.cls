@@ -66,7 +66,7 @@ global with sharing class ICB_PhotoMobileChannel_Batch implements DataBase.Batch
                     imageProfile.cropX 		= 10;
                     imageProfile.cropY 		= 10;
                     imageProfile.fileId 	= cont.ContentDocumentId; 
-                    ConnectApi.UserProfiles.setPhotoWithAttributes(null, userMap.get(idsSetup.get(cont.Id).ICB_Parent_Id__c).Id, imageProfile); 
+                    ConnectApi.UserProfiles.setPhotoWithAttributes(null,  userMap.get(idsSetup.get(cont.Id).ICB_Parent_Id__c).Id, imageProfile); 
                 }
             }
             

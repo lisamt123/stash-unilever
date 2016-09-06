@@ -66,7 +66,6 @@ public with sharing class ICB_ContactPartnerUserCreation
             } 
             
             Database.SaveResult[] save =  Database.insert(users,false); 
-            System.debug('SAVEEEEEEEEE ########### ' + save);
             
             definePermissionSetting();
         }  
@@ -211,7 +210,7 @@ System.debug('Exiting <updateUser>');
                     }
                 }
             }
-            Database.insert(psa);
+            Database.upsert(psa);
             
             updateContact();
             System.debug('Exiting <definePermissionSetting>' + psa);
@@ -236,7 +235,7 @@ System.debug('Exiting <updateUser>');
             valueNew.ICB_Community_User__c = true;
             updateContact.add(valueNew);
         }
-        Database.update(updateContact);
+        Database.upsert(updateContact);
     }
     
     public void userCreation() 
@@ -266,13 +265,13 @@ System.debug('Exiting <updateUser>');
                                  AND RecordTypeId IN: recordTypeId
                                  AND Email != NULL
                                  AND ICB_Community_User__c = false];
-        Integer i = 0;
+        /*Integer i = 0;
         for(User user : [select id, ContactId from user where ContactId IN: contato])
         {
             contato.remove(i);
             i++;
         }
-        
+        */
         
         return contato;
     }
