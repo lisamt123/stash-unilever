@@ -39,9 +39,13 @@ global with sharing class CEC_NewAccountController{
     public Boolean isTransactionSuccess {get;set;}
     //public List<SelectOption> unileverOptInOptions { get;set; } 
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
     
+>>>>>>> develop
+=======
+    //RecordType recType;
 >>>>>>> develop
     transient public Map<Id, ConsumerWrapper> duplicateConsumers {get; set;}
     public String caseId {get; set;}
@@ -81,10 +85,21 @@ global with sharing class CEC_NewAccountController{
             newConsumer.PersonMailingState = currentCase.Search_Mailing_State_Province__c;
             newConsumer.PersonMailingPostalCode = currentCase.Search_Mailing_Zip_Postal_Code__c;
             newConsumer.PersonMailingCountry = currentCase.Search_Mailing_Country__c;
+            
+            if(currentCase.Search_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Phone__c;
+            }else if(currentCase.Search_Mobile__c != null){
+                newConsumer.Phone = currentCase.Search_Mobile__c ;
+            }else if(currentCase.Search_Home_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Home_Phone__c;
+            }else if(currentCase.Search_Other_Phone__c != null){
+                newConsumer.Phone = currentCase.Search_Other_Phone__c;
+            }
+            
             newConsumer.PersonHomePhone = currentCase.Search_Home_Phone__c;
             newConsumer.PersonMobilePhone = currentCase.Search_Mobile__c;
             newConsumer.PersonOtherPhone = currentCase.Search_Other_Phone__c;
-            newConsumer.Phone = currentCase.Search_Phone__c;
+            
             newConsumer.PersonBirthdate = currentCase.Search_Birthdate__c; 
             resultsOutputLabel = Label.CEC_ConsumerNotFoundInfo;
         }        
@@ -182,6 +197,7 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        newConsumer.Mobile_Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
                        newConsumer.Other_Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
                        System.debug('****other phone****'+ newConsumer.Other_Phone_No_Special_Char__c);
+                       
                    }
                    
                    
@@ -232,15 +248,26 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        
                        if (duplicateConsumerList.size() > 0) {
                            hasResultToDisplayFlag = true;
+<<<<<<< HEAD
                        }  
 >>>>>>> develop
 
 					   if (String.isNotBlank(newConsumer.Phone)) {
+=======
+                       } 
+                       
+                       if (String.isNotBlank(newConsumer.Phone)) {
+>>>>>>> develop
                                newConsumer.Phone_No_Special_Char__c = '';
                                newConsumer.Home_Phone_No_Special_Char__c = '';
                                newConsumer.Mobile_Phone_No_Special_Char__c = '';
                                newConsumer.Other_Phone_No_Special_Char__c ='';
-                   	   }
+                       }
+                       
+                       if (String.isNotBlank(newConsumer.Local_Identifier__c)) {
+                               newConsumer.Local_Identifier_No_Special_Char__c = '';
+                       }
+                       
                    } 
                    searchPerformed = true;    
                    isTransactionSuccess = true;
@@ -380,16 +407,21 @@ The rest of the Consumer records are ignored.
         System.debug('The Consumer List to be filtered/Ordered :: ' + duplicateConsumerList);
         
         // Order 1 : Check the Local Identifier match
+<<<<<<< HEAD
         checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
 <<<<<<< HEAD
                 
 =======
+=======
+        CEC_NewAccountControllerExtension.checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+>>>>>>> develop
         
 >>>>>>> develop
         // Order 2 : Check the email match
-        checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 3 : Check the phone match
+<<<<<<< HEAD
         checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
 <<<<<<< HEAD
 
@@ -397,13 +429,16 @@ The rest of the Consumer records are ignored.
         checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
 
 =======
+=======
+        CEC_NewAccountControllerExtension.checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+>>>>>>> develop
         
         // Order 4 : Check the PostCode match
-        checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
 >>>>>>> develop
         // Order 5 : Check the Street & LastName match
-        checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet);
+        CEC_NewAccountControllerExtension.checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         //Order 6 : Display Street fuzzy match
         if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.PersonMailingCity)) {
@@ -425,6 +460,7 @@ The rest of the Consumer records are ignored.
         
         return finalOrderedConsumerList;
     }
+<<<<<<< HEAD
     
     
     //Check the Local Identifier match
@@ -552,4 +588,7 @@ The rest of the Consumer records are ignored.
         }       
     }
     
+=======
+ 
+>>>>>>> develop
 }

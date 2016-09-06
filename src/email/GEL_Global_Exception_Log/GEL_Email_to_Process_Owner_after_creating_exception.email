@@ -1,4 +1,4 @@
-Hi {!GEL_Global_Exception_Log__c.OwnerFullName},
+Hi {!GEL_Global_Exception_Log__c.Test_Owner_First_Name__c},
 
 Please note that there is a new exception raised in your process area, please review and update the Global exceptions log as appropriate.
 

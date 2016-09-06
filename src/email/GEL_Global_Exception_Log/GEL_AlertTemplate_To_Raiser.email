@@ -1,4 +1,4 @@
-Hi {!GEL_Global_Exception_Log__c.Exception_Raiser__c},
+Hi {!GEL_Global_Exception_Log__c.Legacy_Exception_Raiser__c},
 
 <<<<<<< HEAD
 W.r.t. to the exception “{!GEL_Global_Exception_Log__c.Name}”, please note that based on the description and details provided, the issue doesn’t qualify for an exception, hence, it is being rejected.
@@ -17,4 +17,4 @@ REF Number : {!GEL_Global_Exception_Log__c.REF_Number2__c}
 Description :  {!GEL_Global_Exception_Log__c.Description__c} 
 
 Thank you
-{!GEL_Global_Exception_Log__c.OwnerFullName}
+{!GEL_Global_Exception_Log__c.Test_Owner_First_Name__c}

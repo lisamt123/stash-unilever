@@ -56,6 +56,55 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>BETCurrentStatus__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(IPM_Project__r.IPM_Parent_Project__c),
+CASE(IPM_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;, 
+&apos;First release&apos;,&apos;Partly&apos;, 
+&apos;Final release&apos;,&apos;Yes&apos;, 
+&apos;&apos;, &apos;Not Applicable&apos;,&apos;&apos;), CASE(IPM_Project__r.IPM_Parent_Project__r.BETCurrentStatus__c, &apos;Unreleased&apos;,&apos;No&apos;, 
+&apos;First release&apos;,&apos;Partly&apos;, 
+&apos;Final release&apos;,&apos;Yes&apos;, 
+&apos;&apos;, &apos;Not Applicable&apos;,&apos;&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BET Current Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DependentFieldAPIName__c</fullName>
+        <externalId>false</externalId>
+        <label>Dependent Field API Name</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BETCurrentStatus__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RQS_Charter_Answered_3__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RQS_Contract_Answered_3__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RQS_Contract_Answered__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RQS_Charter_Answered__c</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <description>To capture the external id.</description>
@@ -149,7 +198,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>NA~Not Applicable</fullName>
+                <fullName>N/A~Not Applicable</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -214,6 +263,14 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_HelpText_ReadOnly__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM HelpText ReadOnly</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>IPM_HelpText_Yes__c</fullName>
@@ -517,6 +574,52 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+    <fields>
+        <fullName>RQS_Charter_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Project__r.RQS_Charter_Answered_3__c &gt; 0,&apos;Yes&apos;,
+IF(OR(AND(IPM_Project__r.RQS_Charter_Answered_3__c == 0,IPM_Project__r.RQS_Charter_Answered__c &gt;0 ), IPM_Project__r.CharterRiskIdentified__c), &apos;No&apos;, &apos;Not Applicable&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RQS Charter Answered &gt; 3</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RQS_Charter_Answered__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OR(IPM_Project__r.RQS_Charter_Answered__c &gt; 0, IPM_Project__r.CharterRiskIdentified__c), &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RQS Charter Answered</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(NOT(IPM_Project__r.ContractRiskIdentified__c), IPM_Project__r.CharterRiskIdentified__c), RQS_Charter_Answered_3__c, IF(IPM_Project__r.RQS_Contract_Answered_3__c &gt; 0,&apos;Yes&apos;,
+  IF(OR(AND(IPM_Project__r.RQS_Contract_Answered_3__c  == 0,IPM_Project__r.RQS_Contract_Answered__c &gt;0), IPM_Project__r.ContractRiskIdentified__c ), &apos;No&apos;, &apos;Not Applicable&apos;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RQS Contract Answered &gt; 3</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Project__r.RQS_Contract_Answered__c&gt;0, &apos;Yes&apos;,&apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RQS Contract Answered</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Questionnaire</label>
     <listViews>
         <fullName>All</fullName>
@@ -698,6 +801,13 @@
         <active>true</active>
         <label>Corporate Risk</label>
         <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>Yes</fullName>
@@ -803,10 +913,33 @@
         <active>true</active>
         <description>To capture all the Gatekeeping Cheklist Questions</description>
         <label>GateKeeperChecklist</label>
-		<picklistValues>
+        <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RQS_Charter_Answered%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RQS_Charter_Answered_3%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RQS_Contract_Answered%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RQS_Contract_Answered_3%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers_Multiselect__c</picklist>
             <values>
-                <fullName>NA%7ENot Applicable</fullName>
+                <fullName>N/A~Not Applicable</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -941,6 +1074,13 @@
         <description>To categorise the POS questions</description>
         <label>POS Questionnaire</label>
         <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1050,6 +1190,13 @@
         <active>true</active>
         <description>TO capture the RND questions</description>
         <label>RNDQuestion</label>
+        <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
@@ -1165,6 +1312,13 @@
         <description>To categorise the RQS questions</description>
         <label>RQS Questionnaire</label>
         <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1273,6 +1427,13 @@
         <fullName>R_D_Feasibility</fullName>
         <active>true</active>
         <label>R&amp;D Feasibility</label>
+        <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
@@ -1391,6 +1552,13 @@
         <active>true</active>
         <label>Supply Chain Feasibility</label>
         <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1508,6 +1676,13 @@
         <active>true</active>
         <description>TO capture the trademark questions</description>
         <label>TradeMark</label>
+        <picklistValues>
+            <picklist>DependentFieldAPIName__c</picklist>
+            <values>
+                <fullName>BETCurrentStatus%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>

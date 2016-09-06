@@ -1,0 +1,76 @@
+<!--
+  Component Name: Core_CA_InvoiceSubDetail
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Invoice Sub Detail Page includes
+						   1.Document History.
+-->
+<aura:component >
+    <aura:attribute name="ApprovalDetail" type="Core_CA_WrapperUtility.RequestDetailResponseAribaGTES[]"/>
+	<aura:attribute name="subDivision" type="string" />
+    <aura:attribute name="AddProFin1" type="string" />
+    <aura:attribute name="filterValue" type="string"/>    
+    <aura:attribute name="sourcePage" type="string"/>
+    
+    <style>      
+        .homePageHeader{
+        background:#4F6A92;
+        height: 150px;
+        padding-top: 13px;
+        }
+        .headerBarIconStyle{
+        width: 40px;
+        margin-left: 152px;
+        float: left;
+        margin-right:20px;
+        margin-top: -9px;
+        }
+        .backIconStyle{
+        width: 36px;
+        margin-top: 5px;
+        padding-left: 13px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        }
+        .hiddenClass{
+        color: red;
+        display: none;
+        }
+    </style>
+    
+    <div>
+        <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
+            <img src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" alt="Back" class="backIconStyle" />
+        </div>
+    </div>
+    
+	<aura:iteration items="{!v.ApprovalDetail}" var="detailData"> 
+        <aura:if isTrue="{!v.subDivision == 'DocHistory'}">
+            <aura:iteration items="{!detailData.ApprovalHistory}" var="approvalHistory"> 
+                <aura:if isTrue="{!approvalHistory.Comment != null}">
+                <div class="ProjectInformationSection">
+                <div class="slds-section__title sectionTitle">{!approvalHistory.ApprovedDate}</div><hr></hr>
+                <table class="DetailSectionTable">
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading">Performed By</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!approvalHistory.ApproverName}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-heading--small DetailHeading ">Last Comment</td>
+                    </tr>
+                    <tr>
+                        <td class="slds-text-body--regular DetailData">
+                            {!approvalHistory.Comment}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+                </aura:if>
+            </aura:iteration>
+         </aura:if>
+    </aura:iteration>
+</aura:component>

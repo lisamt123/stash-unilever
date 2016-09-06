@@ -367,3 +367,39 @@
 border: 3px solid #E13727;
 }
 .ipmButtonGroup .ipmButton.confirmAction.refreshFromRegional{margin-right:15px;}
+
+.projectContainer .accrHead .filterTitle.selected{
+    font-weight: normal;
+    font-size: 1.2em;
+    background: #e5f8ff;
+}
+.projectContainer .pHead.filterSubTitle{
+padding: 0px;
+}
+.ipmAcrdnExpand .accordionFilters li.finRecord{
+   padding:0px;
+   font-size:12px;
+}
+.ipmAcrdnExpand .accordionFilters li.finRecord div.filterTitle{
+font-weight:normal
+}
+
+.ipmAcrdnExpand .accordionFilters li.finRecord div.filterTitle.selected
+{
+background: #e5f8ff;
+}
+div.filterTitle span.wordwrap img{width: 15px;height: 19px;}
+div.filterTitle span.wordwrap {margin-left: -5px;}
+
+.finSumTbl>tbody>tr>td.yellowmisaligned {
+    border: 3px solid #EC2;
+}
+
+div.table-responsive table.ipmFinancetable.fintable.table.table-bordered{
+table-layout: fixed;
+}
+
+div.ipmAccordion.currency .projectContainer .ipmAcrdnExpand ul.accordionFilters li div.projectContainer div.pHead.accrHead.filterSubTitle,
+div.ipmAccordion.currency .projectContainer .ipmAcrdnExpand ul.accordionFilters li div.projectContainer div.ipmAcrdnExpand ul li.finRecord{
+padding:10px 7px;
+}
