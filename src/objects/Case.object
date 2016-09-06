@@ -3902,11 +3902,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.ORIGIN</columns>
-        <columns>Case_Brand__c</columns>
+        <columns>First_Response_Date__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -3920,6 +3919,40 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Benelux queue Nieuw/herzien/voortg</label>
         <language>nl_NL</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Benelux_queue1</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>Language__c</columns>
+        <columns>First_Response_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notEqual</operation>
+            <value>HOAX,HOAX CALL,TEST</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>HOAX</value>
+        </filters>
+        <label>CEC Benelux queue geen land</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_queue_In_afwachting</fullName>
