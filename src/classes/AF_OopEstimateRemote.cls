@@ -200,6 +200,10 @@ global with sharing class AF_OopEstimateRemote {
     String aId, String uId, String bId) {
     String tdCloseTag = '</td>';
     AF_Constants.rowDetailToReturn = '';
+    String disptotal='';
+    String dispLocalTotal='';
+    String disptotalA='';
+    String dispLocalTotalA='';
     if(isValue) {
       total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c/1000);
       AF_Constants.totalLocal = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c/1000);
@@ -209,10 +213,14 @@ global with sharing class AF_OopEstimateRemote {
       AF_Constants.currCode = agSObj.AF_OOPS_Matrix_Currency_Code__c != null ? agSObj.AF_OOPS_Matrix_Currency_Code__c : '';
       String spacer = ' ';
       String href;
-      String disptotal = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
-      String dispLocalTotal = agSObj.AF_EstimateLocal__c > 0 ? AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocal) : '';
-      String disptotalA = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalA) : '';
-      String dispLocalTotalA = agSObj.AF_EstimateLocal__c > 0 ? AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocalA) : '';
+      if(agSObj.AF_Estimate__c > 0){
+                 disptotal = AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total);
+                 disptotalA = AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalA);
+            }
+            if(agSObj.AF_EstimateLocal__c > 0){
+                 dispLocalTotal = AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocal);
+                 dispLocalTotalA = AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocalA);
+            }
       crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
       href = 'apex/af_oopsEstimate?id='+agSObj.Id;
       AF_Constants.rowDetailToReturn += '<td title=\"\" class=\"details-control\"';

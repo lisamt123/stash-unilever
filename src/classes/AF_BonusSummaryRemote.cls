@@ -239,18 +239,30 @@ global with sharing class AF_BonusSummaryRemote {
     }
     
     public static void processBonusRowExt(AF_Bonus_Matrix__c agSObj){
-        
-        AF_Constants.href = 'apex/af_bonusEstimate?id='+agSObj.Id;
-        String disptotal = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
-            String dispLocalTotal = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + AF_Constants.spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
-            String disptotalA = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
-            String dispLocalTotalA = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + AF_Constants.spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
-            
-            rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
-            rowDetailToReturn += '<a data-src=\"' + AF_Constants.href +  '\"';
-            rowDetailToReturn += ' e=\"' + disptotal + '\"';
-            rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';  
-    }
+                AF_Constants.href = 'apex/af_bonusEstimate?id='+agSObj.Id;
+                String disptotal='';
+                String dispLocalTotal='';
+                String disptotalA='';
+                String dispLocalTotalA='';
+                if(agSObj.AF_Value__c > 0){
+                                disptotal = AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(total);
+                                disptotalA = AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA);
+                }
+                
+                if(agSObj.AF_Bonus_Local_Value__c > 0){
+                                dispLocalTotal = currCode + AF_Constants.spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal);
+                                dispLocalTotalA = currCode + AF_Constants.spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA);
+                }
+                
+                rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
+                rowDetailToReturn += '<a data-src=\"' + AF_Constants.href +  '\"';
+                rowDetailToReturn += ' e=\"' + disptotal + '\"';
+                rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
+                processBonusRow();   
+}
+
+    
+    
     public static void processBonusRow(){
     String lBreak = '<br/>';
             rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
