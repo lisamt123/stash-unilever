@@ -1,15 +1,12 @@
 ({
     uploadImageMobile : function(component, event, helper) {
-        //helper.uploadFile(component,event,'file'); 
         console.log("Inside the uploadImageTwo ");
 		var fileInput = component.find("file").getElement();
         var file = fileInput.files[0];
         var a = fileInput.files[0];
         var filename = a.name; 
-        
         var extArray = ["exe", "svg","xml", "mp4","mp3","ini","dat","avi","gs","jar","bat"];
-        //var fileInput = component.find("file").getElement();
-
+        
         var extension = filename.replace(/^.*\./, '');
         console.log("Extension of the file==> "+extension);
         extension = extension.toLowerCase();
@@ -21,14 +18,12 @@
             return false;
         }
         function dataURItoBlob(a) {
-            console.log("Error in Custom function");
             for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++){ c.push(b.charCodeAt(d));}
             return new Blob([new Uint8Array(c)], {
                 type:'image/jpeg'
             })
         }
-
-        if(a.size>0) {
+		if(a.size>0) {
             if(extension=='jpg' || extension=='jpeg' || extension=='png' || extension=='gif'){
                 return void loadImage.parseMetaData(a, function(b) {
                     //if (!b.imageHead) return void UploadOtherFile(a);
@@ -59,7 +54,6 @@
                                 m = dataURItoBlob(l);
                             console.log(m);
                             console.log("Type:"+ a.type);
-                            //helper.upload(component, a, l);
                             helper.uploadMobile(component, a, l);
                         }
                     }, d.readAsDataURL(a)
@@ -67,14 +61,6 @@
                 
             }
             else {
-                //UploadOtherFile(a);
-            	/* var toastEvent = $A.get("e.force:showToast");
-            toastEvent.setParams({
-                "title": "Error!",
-                "type":"error",
-                "message": 'Please upload file of image type only..!!'
-            });
-            toastEvent.fire();*/
                  helper.uploadFile(component,event,'file');
             }
         }
@@ -87,15 +73,11 @@
         var cmpTargetHide = component.find('previewPlaceholder');
         $A.util.removeClass(cmpTargetHide, 'slds-show');
         $A.util.addClass(cmpTargetHide, 'slds-hide');
-        //$A.util.removeClass(component.find("uploading").getElement(), "uploading");
-        //$A.util.addClass(component.find("uploading").getElement(), "notUploading");
     },
     closeUploadMsg : function(component, event, helper){
         var cmpTargetHide = component.find('previewPlaceholderMsg');
         $A.util.removeClass(cmpTargetHide, 'slds-show');
         $A.util.addClass(cmpTargetHide, 'slds-hide');
-        //$A.util.removeClass(component.find("uploading").getElement(), "uploading");
-        //$A.util.addClass(component.find("uploading").getElement(), "notUploading");
     },
     waiting: function(component, event, helper) {
         //$A.util.addClass(component.find("uploading").getElement(), "uploading");
@@ -111,10 +93,7 @@
         var file = fileInput.files[0];
         var a = fileInput.files[0];
         var filename = a.name; 
-        
         var extArray = ["exe", "svg","xml", "mp4","mp3","ini","dat","avi","gs","jar","bat"];
-       
-
         var extension = filename.replace(/^.*\./, '');
         console.log("Extension of the file==> "+extension);
         extension = extension.toLowerCase();
@@ -127,7 +106,6 @@
             return false;
         }
         function dataURItoBlob(a) {
-            console.log("Error in Custom function");
             for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
             return new Blob([new Uint8Array(c)], {
                 type:'image/jpeg'
@@ -165,7 +143,6 @@
                                 m = dataURItoBlob(l);
                             console.log(m);
                             console.log("Type:"+ a.type);
-                            //helper.upload(component, a, l);
                             helper.uploadMobile(component, a, l);
                         }
                     }, d.readAsDataURL(a)
@@ -175,12 +152,12 @@
             
             else {	
                 var toastEvent = $A.get("e.force:showToast");
-            toastEvent.setParams({
-                "title": "Error!",
-                "type":"error",
-                "message": 'Please upload an image only'
-            });
-            toastEvent.fire();
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "type":"error",
+                    "message": 'Please upload an image only'
+                });
+                toastEvent.fire();
             }
         }
     }

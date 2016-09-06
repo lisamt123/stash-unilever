@@ -1,13 +1,6 @@
 ({
     MAX_FILE_SIZE: 4500000,/* 5 MB => Bytes*/
     CHUNK_SIZE: 250000,
-    dataURItoBlob : function(component,a) {
-            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
-            return new Blob([new Uint8Array(c)], {
-                type:'image/jpeg'
-            })
-        },
-    
     uploadFile : function(component,event,inputFileFieldName) {
         var fileInput = component.find(inputFileFieldName).getElement();
         var file = fileInput.files[0];
@@ -15,61 +8,28 @@
         var filename = a.name;
         var extension = filename.replace(/^.*\./, '');
         extension = extension.toLowerCase();
-    /*    function dataURItoBlob(a) {
-            for (var b = atob(a.split(",")[1]), c = [], d = 0; d < b.length; d++) { c.push(b.charCodeAt(d)); }
-            return new Blob([new Uint8Array(c)], {
-                type:'image/jpeg'
-            })
-        }*/
-        if (file.size > this.MAX_FILE_SIZE) {
-            var toastEvent = $A.get("e.force:showToast");
+        
+        var n = file.type.indexOf("image");
+        if(n !== -1){
+        	var toastEvent = $A.get("e.force:showToast");
             toastEvent.setParams({
                 "title": "Error!",
                 "type":"error",
-                "message": 'Please upload a file size not exceeding 4.5 MB'
+                "message": 'Image file type not allowed.'
             });
             toastEvent.fire();
             return;
-        }
-        var n = file.type.indexOf("image");
-        if(n !== -1){
-            if(extension=='jpg' || extension=='jpeg' || extension=='png' || extension=='gif'){
-                var self = this;
-                return void loadImage.parseMetaData(a, function(b) {
-                    //if (!b.imageHead) return void UploadOtherFile(a);
-                    var c = 0;
-                    b.exif && (c = b.exif.get("Orientation")), console.log(c);
-                    var d = new FileReader;
-                    d.onloadend = function() {
-                        var b = new Image;
-                        b.src = d.result, b.onload = function() {
-                            var d = "none";
-                            8 === c ? (tempW = b.height, tempH = b.width, d = "left") : 6 === c ? (tempW = b.height, tempH = b.width, d = "right") : 1 === c ? (tempW = b.width, tempH = b.height) : 3 === c ? (tempW = b.width, tempH = b.height, d = "flip") : (tempW = b.width, tempH = b.height);
-                            var e = 768,
-                                f = 768;
-                            tempW / e > tempH / f ? tempW > e && (tempH *= e / tempW, tempW = e) : tempH > f && (tempW *= f / tempH, tempH = f);
-                            var g = document.createElement("canvas");
-                            g.width = tempW, g.height = tempH;
-                            var h = g.getContext("2d");
-                            if (h.fillStyle = "white", h.fillRect(0, 0, g.width, g.height), "left" === d) { h.setTransform(0, -1, 1, 0, 0, tempH), h.drawImage(b, 0, 0, tempH, tempW); }
-                            else if ("right" === d) { h.setTransform(0, 1, -1, 0, tempW, 0), h.drawImage(b, 0, 0, tempH, tempW); }
-                                else if ("flip" === d) {
-                                    var i = Math.PI,
-                                        j = .5 * g.width,
-                                        k = .5 * g.height;
-                                    h.translate(j, k), h.rotate(i), h.translate(.5 * -tempW, .5 * -tempH), h.drawImage(b, 0, 0, tempW, tempH)
-                                } else { h.setTransform(1, 0, 0, 1, 0, 0), h.drawImage(b, 0, 0, tempW, tempH); }
-                            h.setTransform(1, 0, 0, 1, 0, 0);
-                            var l = g.toDataURL("image/jpeg"),
-                                m = this.dataURItoBlob(component,l);
-                            console.log(m);
-                            console.log("Type:"+ a.type);
-                            self.upload(component, a, l);
-                        }
-                    }, d.readAsDataURL(a)
-                })
-            }
         }else{
+            if (file.size > this.MAX_FILE_SIZE) {
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Error!",
+                    "type":"error",
+                    "message": 'Please upload a file size not exceeding 4.5 MB'
+                });
+                toastEvent.fire();
+                return;
+        	}
             var fr = new FileReader();
             var self = this;
             fr.onload = function() {
@@ -77,7 +37,6 @@
                 var base64Mark = 'base64,';
                 var dataStart = fileContents.indexOf(base64Mark) + base64Mark.length;
                 fileContents = fileContents.substring(dataStart);
-                //component.set("v.cafeteriaMenuDetail","data:image/png;base64,"+encodeURIComponent(fileContents));   
                 self.upload(component, file, fileContents);
             };
             fr.readAsDataURL(file);
@@ -117,7 +76,6 @@
             component.set("v.contentId",attachId);
             component.set("v.attachedId",attachId);
             fromPos = toPos;
-            //toPos = Math.min(fileContents.length, fromPos + self.CHUNK_SIZE);    
             if (fromPos < toPos) {
                 //console.log("Inside if frompos");
                // self.uploadChunk(component, file, fileContents, fromPos, toPos, attachId);  
@@ -157,7 +115,7 @@
     },
     uploadChunk : function(component, file, fileContents, fromPos, toPos, attachedId) {
         console.log("inside uploadChunk helper"+attachedId);
-        //fileContents = fileContents.replace("data:image/jpeg;base64,","");
+        var n = file.type.indexOf("image");
         var action = component.get("c.saveTheChunk"); 
         var chunk = fileContents.substring(fromPos, toPos);
         
@@ -177,7 +135,6 @@
             fromPos = toPos;
             toPos = Math.min(fileContents.length, fromPos + self.CHUNK_SIZE);    
             if (fromPos < toPos) {
-                console.log("Inside if frompos");
                	self.uploadChunk(component, file, fileContents, fromPos, toPos, attachId);  
             }else{
                 console.log("File Uploaded Successfully.");
