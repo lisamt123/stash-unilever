@@ -286,11 +286,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 PLCount++;
             }
         }
-	   if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-        {
-        	showBBCtable = true;
-        }
-        
+		    showBBCtable = getBCCtableFlag();
         //Getting Local Project Country feedbacks
         lstCountryFeedback=new list<IPM_Project_Document_Section__c>();
         lstCountryFeedback=[SELECT IPM_Section_Name__c,IPM_Gate_Document_Summary__c,IPM_Section_Sequence__c,IPM_Project_ID__c,IPM_Section_Sequence_Number__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_GateDocuments__c 
@@ -335,6 +331,17 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
       isRedStylingApplicable=((IPM_ConstantUtils.STATUS_APPROVED.equals(projectDoc.IPM_Document_Status__c) ? projectDoc.IPM_Category_Status_while_Approved__c:project.IPM_Threshold_Status__c)== Label.IPM_BelowThreshold) && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL) ;
     } 
     
+    
+      public void getBCCtableFlag()
+    {
+    	
+    	  if(project.IPM_ProjectGKM__c.equals(IPM_ConstantUtils.GATE_KEEPING_MODEL_3) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {
+            return true;
+        }
+    	 
+    	 	return false;
+    }
     /*************************************************************************************************************************************************************
     @description Getting Project and Project Document
     */ 

@@ -443,7 +443,7 @@ public with sharing class IPM_NewTask {
    public List<SelectOption> getFeasibilityDocumentTypes()
    {
    	List<SelectOption> options = new List<SelectOption>();
-   	options.add(new SelectOption(IPM_ConstantUtils.BLANK,IPM_ConstantUtils.BLANK));
+   	sIPM_Type_of_Gate = IPM_ConstantUtils.CONTRACT_GATE;
    	options.add(new SelectOption(IPM_ConstantUtils.CONTRACT_GATE,IPM_ConstantUtils.CONTRACT_GATE));
    	options.add(new SelectOption(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT));
    	return options;
