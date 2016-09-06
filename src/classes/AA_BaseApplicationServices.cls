@@ -17,6 +17,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
             svcName = appWrapperObj.serviceName;
         }
         System.debug(LoggingLevel.INFO, 'Within invokeService method with svcName ['+svcName+']' );
+		//to avoid getting error
         try{
             if(!Utility.isEmpty(svcName)){
                 
