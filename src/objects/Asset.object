@@ -63,11 +63,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cart F</fullName>
+                <fullName>Cart M</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Tricycle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Field Box</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -194,15 +198,19 @@
         <picklistValues>
             <picklist>ICB_Type__c</picklist>
             <values>
-                <fullName>Cart F</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Cart G</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Cart M</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Cart P</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Box</fullName>
                 <default>false</default>
             </values>
             <values>

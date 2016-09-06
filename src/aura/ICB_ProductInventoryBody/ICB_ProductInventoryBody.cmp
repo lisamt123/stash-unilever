@@ -10,10 +10,10 @@
 	<div class="slds-page-header" role="banner">
                 <div class="slds-grid " >
                     <div class="slds-col">
-                        {!$Label.c.ICB_INVENTORY_HEADER}
+                        <br/>
                         <h1 class="slds-text-heading--medium">
-                            <ui:outputNumber value="{!v.count}"/>
-                            &nbsp;<ui:outputText value="{!v.HeaderTitle}"/>
+                            <br/>
+                            
                         </h1>
                     </div>
                     <ui:button label="{!$Label.c.ICB_UPDATE_INVENTORY}" press="{!c.updateList}">
