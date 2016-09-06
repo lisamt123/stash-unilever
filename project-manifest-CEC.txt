@@ -60,6 +60,7 @@ src/permissionsets/CEC_User.permissionset
 src/permissionsets/CEC_User_CosmetoVigilance.permissionset
 src/permissionsets/CEC_SMS_Magic_Admin.permissionset
 src/permissionsets/CEC_SMS_Magic_User.permissionset
+src/permissionsets/CEC_Enable_Audit_Fields.permissionset
 src/pages/CEC_CaseConversationView.page
 src/pages/CEC_CaseConversationView.page-meta.xml
 src/pages/CEC_NewAccountContact.page
