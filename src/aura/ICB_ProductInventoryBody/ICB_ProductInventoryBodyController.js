@@ -38,8 +38,9 @@
         var list = component.get("v.Inventory");
         var selectedStore = component.get("v.Inventory")[index];
         selectedStore.ICB_Quantity_Unit__c +=1;
-        
         component.set("v.Inventory",list);
+        
+        
         
     },
     
@@ -53,7 +54,7 @@
         if (selectedStore.ICB_Quantity_Unit__c > 0){
             selectedStore.ICB_Quantity_Unit__c -=1;
         }
-        component.set("v.Inventory",list);
+        component.set("v.Inventory",list); 
     },
     
     whatButton : function(component, event, helper){
@@ -66,9 +67,17 @@
         console.log("Entering <updateList>");
     	var action = component.get("c.updateOperatorInventory");
         var inventoryToBeUpdate = component.get('v.Inventory');
-        console.log("inventoryToBeUpdate <List>"+ inventoryToBeUpdate);
+        var isNegative = false;
+        for(var i = 0 ; i< inventoryToBeUpdate.length; i++){
+            
+            if(inventoryToBeUpdate[i].ICB_Quantity_Unit__c < 0){
+               inventoryToBeUpdate[i].ICB_Quantity_Unit__c = 0;
+                component.set('v.Inventory',inventoryToBeUpdate);
+            }
+            
+            
+        }
         var listJSON=JSON.stringify(inventoryToBeUpdate);
-        console.log("listJSON"+ listJSON);
         action.setParams({ "listJson" : listJSON });
         
         // Add callback behavior for when response is received

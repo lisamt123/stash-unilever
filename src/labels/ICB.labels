@@ -6,6 +6,14 @@
         <shortDescription>ICB ALERT CHECKIN OUT CUSTOMER</shortDescription>
         <value>Alert! Check-In out of the customer address! Wish continue?</value>
     </labels>
+     <labels>
+        <fullName>ICB_PROD_SALESMAN_VALUE</fullName>
+        <categories>List price screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB PROD SALESMAN VALUE</shortDescription>
+        <value>Salesman Price</value>
+    </labels>
     <labels>
         <fullName>ICB_URL_GOOGLE_MAP</fullName>
         <categories>ICB</categories>
