@@ -43,62 +43,34 @@ public with sharing class CI_R2R_Innovation_TriggerHandler implements ITrigger{
     count = CIList.size(); 
     
     List<CI_R2R_Innovation__c> r2rList = new List<CI_R2R_Innovation__c>();
+    
+    Map<string,string> mapsme = new Map<string,string>();
+    mapsme.put('Fixed Assets','FA');
+    mapsme.put('Account Reconciliation','AR');
+    mapsme.put('Continuous Improvement','CI');
+    mapsme.put('Financial Reporting','FR');
+    mapsme.put('FX Revaluation','FX');
+    mapsme.put('Intercompany','IC');
+    mapsme.put('Journal Entries','JE');
+    mapsme.put('GL MDM','GLMDM');
+    mapsme.put('Period-End','PE');
+    mapsme.put('Project','PT');
+    mapsme.put('SAP Roles','SR');
+    mapsme.put('Tax','TX');
+    mapsme.put('Tools','PT');
+    mapsme.put('GPM','GPM');
+    mapsme.put('SCOA','SCOA');
+    mapsme.put('Direct Tax','DT');
+    mapsme.put('Indirect Tax','IDT');
+    
     for(CI_R2R_Innovation__c CI : [select R2R_SME_Area__c from CI_R2R_Innovation__c where ID=:cid]){
         CI_R2R_Innovation__c clist = new CI_R2R_Innovation__c(id=CI.id);
         
         DateTime dt = system.now();
         String yearstr = string.valueof(dt.year());
         
-        if(CI.R2R_SME_Area__c == 'Fixed Assets'){
-            clist.Project2__c = yearstr +'.'+ 'FA'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Account Reconciliation'){
-            clist.Project2__c = yearstr +'.'+ 'AR'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Continuous Improvement'){
-            clist.Project2__c = yearstr +'.'+ 'CI'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Financial Reporting'){
-            clist.Project2__c = yearstr +'.'+ 'FR'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'FX Revaluation'){
-            clist.Project2__c = yearstr +'.'+ 'FX'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Intercompany'){
-            clist.Project2__c = yearstr +'.'+ 'IC'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Journal Entries'){
-            clist.Project2__c = yearstr +'.'+ 'JE'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'GL MDM'){
-            clist.Project2__c = yearstr +'.'+ 'MDM'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Period-End'){
-            clist.Project2__c = yearstr +'.'+ 'PE'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Project'){
-            clist.Project2__c = yearstr +'.'+ 'PT'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'SAP Roles'){
-            clist.Project2__c = yearstr +'.'+ 'SR'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Tax'){
-            clist.Project2__c = yearstr +'.'+ 'Tx'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Tools'){
-            clist.Project2__c = yearstr +'.'+ 'PT'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'GPM'){
-            clist.Project2__c = yearstr +'.'+ 'GPM'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'SCOA'){
-            clist.Project2__c = yearstr +'.'+ 'SCOA'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Direct Tax'){
-            clist.Project2__c = yearstr +'.'+ 'DT'+'.'+ count;
-        }
-        else if(CI.R2R_SME_Area__c == 'Indirect Tax'){
-            clist.Project2__c = yearstr +'.'+ 'IDT'+'.'+ count;
+        if(mapsme.containsKey(CI.R2R_SME_Area__c)){
+            clist.Project2__c = yearstr +'.'+ mapsme.get(CI.R2R_SME_Area__c)+'.'+ count;
         }
         r2rList.add(clist);
     }

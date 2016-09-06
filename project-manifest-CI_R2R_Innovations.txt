@@ -15,7 +15,7 @@ src/classes/CI_R2R_Innovation_TriggerFactory.cls
 src/classes/CI_R2R_Innovation_TriggerFactory.cls-meta.xml
 src/classes/CI_R2R_Innovation_TriggerHandler.cls
 src/classes/CI_R2R_Innovation_TriggerHandler.cls-meta.xml
-src/classes/CI_R2R_SME_GetHistory_Test.cls
+src/classes/CI_R2R_SME_GetHistory_Test.cls 
 src/classes/CI_R2R_SME_GetHistory_Test.cls-meta.xml
 src/classes/CI_R2R_SME_GetHistory.cls 
 src/classes/CI_R2R_SME_GetHistory.cls-meta.xml
