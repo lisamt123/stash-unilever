@@ -1,2 +1,6 @@
 src/labels
+<<<<<<< HEAD
 src/labels/AF.labels
+=======
+src/labels/CustomLabels.labels
+>>>>>>> 464660e699b8cf5b6085c152df92311b44a84a1c
