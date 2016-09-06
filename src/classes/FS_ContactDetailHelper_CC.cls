@@ -23,36 +23,50 @@ public with sharing class FS_ContactDetailHelper_CC{
         public boolean success;
         public List<FS_Warnings> warnings = new list<FS_Warnings>();
     }
-    public with sharing  class FS_SiteLead {
-        public String Address{get;set;}  //address-1, 4 - 33
-        public Integer age; //28
-        public String birthDate;    //1987-01-12
-        public String businessAddress;  //
-        public  String businessName; //OOO MTC
-        public String BusinessPostalCode{get;set;}   //449543
-        public String City{get;set;} //city1
-        public String Country{get;set;}  //Russia
-        public String Email{get;set;}   //
-        Public List<FS_ExtraParameters> extraParameters = new list<FS_ExtraParameters>();
-        public String facebookId;   //897384
-        public String Firstname{get;set;}    //
-        public String gender;   //Male
-        public String id;   //414c01d6-48fa-4578-9bfb-cf1b9c01335c
-        public Integer income;  //70000
-        public String jobTitle; //
-        public String landlinePhone;    //
-        public String MaritalStatus{get;set;}    //Married
-        public String Middlename{get;set;}   //middleName
-        public String okId; //0294485
-        public String passportNumber;   //3606789654
-        public boolean personalDataAgree;
-        public String Phone{get;set;}    //
-        public String propertyStatus;   //propertyStatus
-        Public String socialStatus; //socialStatus
-        public String Surname{get;set;} //Machev
-        Public String username; //
-        Public String vkId; //789347503
-        Public String  SecretKey;//f838b1bfd6ebf01ad4108cefcb0b859e
+    
+    public virtual without sharing class FS_SiteLeadMainchild {
+    
+              
+                public String MaritalStatus;    //Married
+                public String SocialStatus; //socialStatus
+                public String PropertyStatus;   //propertyStatus
+                public String Profession;   //Developer
+                public Integer Income;   //70000
+                public String PassportNumber;   //3606789654
+                public boolean personalDataAgree;
+                public Integer age; //28
+                public String birthDate;    //1987-01-12
+                public String facebookId;   //897384
+              
+    }
+    
+    public virtual without sharing class FS_SiteLeadMainchildAdress extends FS_SiteLeadMainchild  {
+    
+                public String Address;  //address-1, 4 - 33
+                public String City; //city1
+                public String BusinessPostalCode;   //449543 
+                public String Country;  //Russia
+    }
+    
+    public with sharing  class FS_SiteLead extends FS_SiteLeadMainchildAdress  {
+   
+       
+            public String businessAddress;  //
+            public  String businessName; //OOO MTC
+            public String Email{get;set;}   //
+            Public List<FS_ExtraParameters> extraParameters = new list<FS_ExtraParameters>();
+            public String Firstname{get;set;}    //
+            public String gender;   //Male
+            public String id;   //414c01d6-48fa-4578-9bfb-cf1b9c01335c
+            public String jobTitle; //
+            public String landlinePhone;    //
+            public String Middlename{get;set;}   //middleName
+            public String okId; //0294485
+            public String Phone{get;set;}    //
+            public String Surname{get;set;} //Machev
+            Public String username; //
+            Public String vkId; //789347503
+            Public String  SecretKey;//f838b1bfd6ebf01ad4108cefcb0b859e
     }
     public with sharing class FS_ExtraParameters {
         Public String name; //Number of pets

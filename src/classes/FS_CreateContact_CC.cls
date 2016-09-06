@@ -86,44 +86,7 @@ public with sharing class FS_CreateContact_CC {
                 varSiteLead.City     =chekingNullValue(varContactDetail.mailingcity);
                 varSiteLead.Country  =chekingNullValue(varContactDetail.MailingCountry);
                 
-              /*  if(!String.isBlank(varContactDetail.firstname))
-                {
-                    varSiteLead.Firstname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey,Blob.valueOf(varContactDetail.firstname)));
-                }
-                else
-                {
-                    varSiteLead.Firstname=null;
-                }
-                
-                if(!String.isBlank(varContactDetail.Lastname))
-                {
-                    varSiteLead.Surname = EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.lastname)));
-                }
-                else
-                {
-                    varSiteLead.Surname=null;
-                }
-                if(!String.isBlank(varContactDetail.MailingStreet))
-                {
-                    varSiteLead.Address=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingStreet)));
-                } 
-                else
-                {
-                    varSiteLead.Address=null;
-                }
-                if(!String.isBlank(varContactDetail.mailingcity))
-                {
-                    varSiteLead.City=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.mailingcity)));          
-                } 
-                else
-                {
-                    varSiteLead.City=null;
-                }
-                if(!String.isBlank(varContactDetail.MailingCountry))
-                {
-                    varSiteLead.Country=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, cryptoKey, Blob.valueOf(varContactDetail.MailingCountry)));   
-                }
-                */
+             
                 addExtraParameter(FS_ContactUtility.DECISIONMAKER,string.valueOf(varContactDetail.FS_Decision_Maker__c));
                 addExtraParameter(FS_ContactUtility.MYEMAILTEXT,varContactDetail.Email);     
                 addExtraParameter(FS_ContactUtility.CODEPOSTALTEXT,varContactDetail.MailingPostalCode);        

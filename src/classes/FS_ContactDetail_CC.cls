@@ -335,7 +335,7 @@ Public with sharing class FS_ContactDetail_CC {
     {
         FS_ExtraParameters varExtraParameters = new FS_ExtraParameters();
         varExtraParameters.Name=Name;
-        if(String.isBlank(Value))
+        if(!String.isBlank(Value))
         varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf(value)));
         else
         varExtraParameters.Value=EncodingUtil.base64Encode(Crypto.encryptWithManagedIV(FS_ContactUtility.ENCRYPTTEXT, EncodingUtil.base64Decode(varContactDetail.FS_PIEncryptKey__c), Blob.valueOf('')));
@@ -383,8 +383,32 @@ Public with sharing class FS_ContactDetail_CC {
 *  @param 
 *  @return  
 *  @throws 
-*/     
-    class FS_UserData {
+*/ 
+
+
+
+public virtual without sharing class FS_SiteLeadMainchild {
+    
+              
+                public String MaritalStatus;    //Married
+                public String SocialStatus; //socialStatus
+                public String PropertyStatus;   //propertyStatus
+                public String Profession;   //Developer
+                public Integer Income;   //70000
+                public String PassportNumber;   //3606789654
+              
+    }
+    
+    public virtual without sharing class FS_SiteLeadMainchildAdress extends FS_SiteLeadMainchild  {
+    
+                public String Address;  //address-1, 4 - 33
+                public String City; //city1
+                public String BusinessPostalCode;   //449543 
+                public String Country;  //Russia
+    }
+    
+    
+    class FS_UserData extends FS_SiteLeadMainchildAdress {
         public String SecretKey;    //47955bc44438c3f85617f38d176dd885
         public String UserId;   //a0afbed0-1028-4366-a581-2f5754317de6
         public String Password; //123456
@@ -394,21 +418,11 @@ Public with sharing class FS_ContactDetail_CC {
         public String Surname;  //lastName2
         public Integer Age; //25
         public String BirthDate;    //1990-09-01Z
-        public String Country;  //Russia2
-        public String Address;  //address, 4 - 331
-        public String City; //231
         public boolean PersonalDataAgree;
         public String Gender;   //Male
         public String Phone;    //11234567801
         public String BusinessName; //OOO MTC
-        public String BusinessPostalCode;   //449543
         public String FacebookId;   //8973841
-        public String MaritalStatus;    //Married
-        public String SocialStatus; //socialStatus
-        public String PropertyStatus;   //propertyStatus
-        public String Profession;   //Developer
-        public Integer Income;   //70000
-        public String PassportNumber;   //3606789654
         public List<FS_ExtraParameters> ExtraParameters;
         public FS_UserData(){
             Age=0;
