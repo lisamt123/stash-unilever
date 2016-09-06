@@ -25,4 +25,5 @@ private class CI_R2R_SME_GetHistory_Test{
         
         Test.stopTest();
     } 
+    
 }
