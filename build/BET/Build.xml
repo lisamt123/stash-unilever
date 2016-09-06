@@ -1,7 +1,7 @@
 <!--    *******************************************************************************************************************-->
 <!--    Build Script in Ant for Unilever Salesforce Projects - BEGIN                                               -->
 <!--    ******************************************************************************************************************* -->
-<project name="salesforce" default="validate" basedir="." xmlns:sf="antlib:com.salesforce">
+<project name="salesforce" default="validate" basedir="sfdc-dev" xmlns:sf="antlib:com.salesforce">
 
   <!-- *************************************************************** -->
   <!--   Properties for Salesforce ANT targets                         -->
