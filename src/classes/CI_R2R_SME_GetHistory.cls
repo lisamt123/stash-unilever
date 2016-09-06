@@ -32,7 +32,7 @@ public with sharing class CI_R2R_SME_GetHistory {
                sName = string.valueof(sme.createdBy.Name);
                wrapperList.add(new wrapper(newcomment,oldcomment,sName,sDate)); 
        }
-       return wrapperList;
+       return wrapperList;   
    } 
    
    public class wrapper{       
@@ -48,5 +48,4 @@ public with sharing class CI_R2R_SME_GetHistory {
        }
    } 
         
-
 }
