@@ -26,6 +26,9 @@ global with sharing class AF_BrandEstimateRemote {
     static String currCode;
     static Integer totalLocal;
     static Decimal totalWithoutRounding;
+    static List<AF_Agency_Estimate__c> entityListsToCreated = new List<AF_Agency_Estimate__c>();
+    static List<AF_OOPS_Estimate__c> entityOopsListsToCreated = new List<AF_OOPS_Estimate__c>();
+    static List<AF_Bonus_Matrix__c> entityBonusListsToCreated = new List<AF_Bonus_Matrix__c>();
     public AF_BrandEstimateRemote(ApexPages.StandardController stdController) {
         
     }
@@ -793,14 +796,14 @@ global with sharing class AF_BrandEstimateRemote {
 *************************************************************************/  
     @remoteAction
     global static void addUnileverEntityToEstimates(String sObjectId, String sObjectName, List<String> colsArr, String agencyId) {
-        string addUnileverEntityToEstimates='addUnileverEntityToEstimates';
+        //string addUnileverEntityToEstimates='addUnileverEntityToEstimates';
         system.debug('** colsArr : ' + colsArr);
         AF_Bonus_Summary__c brandsObj;
         Map<String, String> brMap;
         Id agRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Agency);
-        List<AF_Agency_Estimate__c> entityListsToCreate = new List<AF_Agency_Estimate__c>();
-        List<AF_OOPS_Estimate__c> entityOopsListsToCreate = new List<AF_OOPS_Estimate__c>();
-        List<AF_Bonus_Matrix__c> entityBonusListsToCreate = new List<AF_Bonus_Matrix__c>();
+        //List<AF_Agency_Estimate__c> entityListsToCreated = new List<AF_Agency_Estimate__c>();
+        //List<AF_OOPS_Estimate__c> entityOopsListsToCreated = new List<AF_OOPS_Estimate__c>();
+        //List<AF_Bonus_Matrix__c> entityBonusListsToCreated = new List<AF_Bonus_Matrix__c>();
         Map<String, String> colNameMap = getEntityIds(colsArr, agRecordTypeId, agencyId);
         Map<String, String> agULMap = new Map<String, String>();
         Set<String> rowsSet = new Set<String>();
@@ -829,27 +832,40 @@ global with sharing class AF_BrandEstimateRemote {
             for(String eachRow : rowsSet) {
                 String key = colNameMap.get(eachCol)+'-'+eachRow;
                 if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME && !agULMap.containsKey(key)) {
-                    entityListsToCreate.add(buildAgencyEstimate(colNameMap.get(eachCol), eachRow, sObjectId));
+                    entityListsToCreated.add(buildAgencyEstimate(colNameMap.get(eachCol), eachRow, sObjectId));
                     agULMap.put(key, key);
                 }else if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
-                    entityOopsListsToCreate.add(buildOopsEstimate(colNameMap.get(eachCol), eachRow, sObjectId));
+                    entityOopsListsToCreated.add(buildOopsEstimate(colNameMap.get(eachCol), eachRow, sObjectId));
                     agULMap.put(key, key);
                 }else if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
                     if(brMap.get(AF_Constants.IS_PILOT)==AF_Constants.IS_PILOT){
-                    entityBonusListsToCreate.add(buildBonusMatrix(colNameMap.get(eachCol), eachRow, sObjectId, brMap.get('Null')));
+                    entityBonusListsToCreated.add(buildBonusMatrix(colNameMap.get(eachCol), eachRow, sObjectId, brMap.get('Null')));
                     agULMap.put(key, key);
                     }else{
-                     entityBonusListsToCreate.add(buildBonusMatrix(colNameMap.get(eachCol), eachRow, sObjectId, brMap.get(eachRow)));
+                     entityBonusListsToCreated.add(buildBonusMatrix(colNameMap.get(eachCol), eachRow, sObjectId, brMap.get(eachRow)));
                     agULMap.put(key, key);
                     }
                    
                 }
             }
         }
-        
+        addUnileverEntityToEstimatesEXT(sObjectId,sObjectName,colsArr,agencyId);
+    }
+      /*****************************************************************************
+*  @Description: this method is to add the unilerver entity to the object based 
+*  @ on their object API name and creates the estimates ,its helpd the users to add
+ the unilever entities from the Ui of Matrix page and create the combination in the
+    backend.
+*  @name : addUnileverEntityToEstimates
+*  @param : String
+*  @return : none.
+*************************************************************************/  
+    @remoteAction
+    global static void addUnileverEntityToEstimatesEXT(String sObjectId, String sObjectName, List<String> colsArr, String agencyId) {
+    string addUnileverEntityToEstimates='addUnileverEntityToEstimates';
         if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             try{
-            insert entityListsToCreate;
+            insert entityListsToCreated;
             }
             catch(Exception e)
             {
@@ -858,7 +874,7 @@ global with sharing class AF_BrandEstimateRemote {
             }
         }else if(sobjectName ==AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
             try{
-            insert entityOopsListsToCreate;
+            insert entityOopsListsToCreated;
             }
             catch(Exception e)
             {
@@ -867,7 +883,7 @@ global with sharing class AF_BrandEstimateRemote {
             }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
             try{
-            insert entityBonusListsToCreate;
+            insert entityBonusListsToCreated;
             }
             catch(Exception e)
             {
