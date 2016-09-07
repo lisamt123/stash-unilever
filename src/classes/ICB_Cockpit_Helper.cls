@@ -163,6 +163,8 @@ public with sharing class ICB_Cockpit_Helper
         {
             secondItem.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
             secondItem.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            oppItem.ICB_IS_CLOSED__C = true;
+            listOppItemUp.add(oppItem);
             isStock = true;
             item = secondItem;
         }
