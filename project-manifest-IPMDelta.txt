@@ -6,5 +6,8 @@ src/permissionsets/IPM_Business_Partners.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset
 src/permissionsets/IPM_Integration_User_Permission_Set.permissionset
+src/email
+src/email/IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_On_Email_Notification_Obj.email
+src/email/IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_On_Email_Notification_Obj.email-meta.xml
 src/workflows
 src/workflows/IPM_EmailOut_Notification__c.workflow
