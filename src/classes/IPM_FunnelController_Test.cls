@@ -46,8 +46,7 @@ private with sharing class IPM_FunnelController_Test {
             funnelController.currentProjectPhaseSeq=4;
             funnelController.getAssociatedProjectPhases();
             funnelController.ipmProject.IPM_CompanyCardText__c='Global Company Card';
-            List<string> projectPhases = funnelController.getAssociatedProjectPhases();
-            system.assertEquals(funnelController.ipmProject, project, 'project record should be same');
+           system.assertEquals(funnelController.ipmProject, project, 'project record should be same');
             
         }
         test.stopTest();

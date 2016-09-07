@@ -244,7 +244,6 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         if(!rolloutProjectTLDChanged.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
             rolloutPlanTLDSync.notifyGlobalProjectFinanceLeader(globalProjIdRollout);                      
         }
         if(!misAlignedConfirmedRollout.isEmpty()){

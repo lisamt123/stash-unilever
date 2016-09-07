@@ -192,7 +192,7 @@ private class AA_AgentAppServiceController_Test {
     static testMethod void retriveAllAgentReportsTest_ApplyFilterTrue(){
         
         User user = new User();
-        user.Username ='testuser7@gmail.com';
+        user.Username ='testagentuser301@gmail.com';
         user.LastName = 'LastTestName';
         user.Email = AA_Constants.Stringtestemail;
         user.alias = 'testAl';
@@ -499,7 +499,7 @@ private class AA_AgentAppServiceController_Test {
      //Check retriveAllAgentReportsTest_ApplyFilterTrue Test
     static testMethod void retriveAllAgentReportsTest_ApplyFilterTrue1(){
         User user = new User();
-        user.Username ='testuser4@gmail.com';
+        user.Username ='testagentuser302@gmail.com';
         user.LastName = 'LastTestName';
         user.Email = AA_Constants.Stringtestemail;
         user.alias = 'testAl';
@@ -623,7 +623,7 @@ private class AA_AgentAppServiceController_Test {
      static testMethod void retriveAllAgentReportsTest_ApplyFilterFalse(){
            
         User user = new User();
-        user.Username ='testuser7@gmail.com';
+        user.Username ='testagentuser303@gmail.com';
         user.LastName = 'LastTestName';
         user.Email = AA_Constants.Stringtestemail;
         user.alias = 'testAl';
@@ -804,7 +804,7 @@ private class AA_AgentAppServiceController_Test {
   //Check getUserList Positive Test.
   static testMethod void getUserList_Test_Positive(){
         User user = new User();
-        user.Username ='testuser5@gmail.com';
+        user.Username ='testagentuser304@gmail.com';
         user.FirstName=AA_constants.testString;
         user.LastName = AA_constants.testString;
         user.Email = AA_Constants.Stringtestemail;

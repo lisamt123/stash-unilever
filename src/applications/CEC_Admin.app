@@ -15,4 +15,8 @@
     <tab>User_Default_Setting__c</tab>
     <tab>CEC_ChequeBook_Detail__c</tab>
     <tab>standard-Macro</tab>
+    <tab>CEC_Debit_Card_Detail__c</tab>
+    <tab>CEC_Retrieval_Request__c</tab>
+    <tab>CEC_E_Voucher_Details__c</tab>
+    <tab>CEC_Agents_List</tab>
 </CustomApplication>

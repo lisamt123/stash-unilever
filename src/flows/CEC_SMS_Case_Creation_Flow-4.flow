@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>TO update the case information on Incoming SMS Text</description>
+    <interviewLabel>CEC SMS Case Creation Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CEC SMS Case Creation Flow</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Case_Id</name>
+        <label>Create Case Id</label>
+        <locationX>654</locationX>
+        <locationY>152</locationY>
+        <assignRecordIdToReference>CaseId</assignRecordIdToReference>
+        <connector>
+            <targetReference>Update_Incoming_SMS_Record</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Origin</field>
+            <value>
+                <stringValue>SMS / text Messages</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SMS_Inbound_Number__c</field>
+            <value>
+                <elementReference>IncomingSMSInboundNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>SMS_Mobile_Number__c</field>
+            <value>
+                <elementReference>IncomingSMSMobileNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Search_Mobile__c</field>
+            <value>
+                <elementReference>IncomingSMSMobileNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Search_Phone__c</field>
+            <value>
+                <elementReference>IncomingSMSMobileNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>IncomingSMSText</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Case</object>
+    </recordCreates>
+    <recordUpdates>
+        <name>Update_Incoming_SMS_Record</name>
+        <label>Update Incoming SMS Record</label>
+        <locationX>658</locationX>
+        <locationY>297</locationY>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>IncomingSMSId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>smagicinteract__Case__c</field>
+            <value>
+                <elementReference>CaseId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>smagicinteract__Incoming_SMS__c</object>
+    </recordUpdates>
+    <startElementReference>Create_Case_Id</startElementReference>
+    <variables>
+        <description>To store the case Id</description>
+        <name>CaseId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>To store the incoming SMS Id</description>
+        <name>IncomingSMSId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>To store Incoming Inbound Number</description>
+        <name>IncomingSMSInboundNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>To store the SMS Inbound Mobile Number</description>
+        <name>IncomingSMSMobileNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>To store the Incoming SMS Text</description>
+        <name>IncomingSMSText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

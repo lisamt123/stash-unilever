@@ -1263,7 +1263,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </fields>
     <fields>
         <fullName>ICB_CNPJ__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <description>Number of the Cadastro Nacional de Pessoa Jurídica of the customer.</description>
         <externalId>false</externalId>
         <label>CNPJ</label>
@@ -1273,6 +1272,16 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ICB_Mobile_Channel__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Indicate which the account is a partner operator channel.</description>
+        <externalId>false</externalId>
+        <label>Mobile Channel</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Industry</fullName>
@@ -1911,6 +1920,39 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Home_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Home Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mobile_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Phone_No_Special_Char__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Phone No Special Char</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>R_B_Opt_in__c</fullName>
@@ -2714,7 +2756,6 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <columns>ACCOUNT.NAME</columns>
         <columns>PC_EMAIL</columns>
         <columns>ACCOUNT.PHONE1</columns>
-        <columns>Homebase__pc</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>

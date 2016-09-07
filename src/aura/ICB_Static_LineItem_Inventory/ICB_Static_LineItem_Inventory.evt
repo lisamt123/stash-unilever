@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT">
+    <aura:attribute name="inventory"  type="ICB_Inventory_Line_Item__c[]" />
+</aura:event>

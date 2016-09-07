@@ -1,0 +1,4 @@
+src
+src/staticresources
+src/staticresources/BETApp.resource
+src/staticresources/BETApp.resource-meta.xml

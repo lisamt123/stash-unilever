@@ -893,3 +893,6 @@ a.noDecoration:hover {
 .ui-lefttip{left: 10px ;}
 
 .rollinfotitle{float:left;}
+
+.tickbg{background:url('../images/ico-tick-2.svg');background-repeat:no-repeat;background-size:100%;width:30px;height:30px;float: right;margin-right: 10px;margin-top: -7px;}
+.isSelected .tickbg{background:url('../images/ico-tick-1.svg');background-repeat:no-repeat;background-size:100%;width:30px;height:30px;float: right;margin-right: 10px;margin-top: -7px;}

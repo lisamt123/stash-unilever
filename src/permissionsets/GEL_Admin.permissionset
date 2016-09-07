@@ -82,6 +82,21 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>GEL_Global_Exception_Log__c.REF_Number2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>GEL_Global_Exception_Log__c.REF_Number__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>GEL_Global_Exception_Log__c.REF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>GEL_Global_Exception_Log__c.Resolution_Comments__c</field>
         <readable>true</readable>
@@ -90,6 +105,21 @@
         <editable>true</editable>
         <field>GEL_Global_Exception_Log__c.Status__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Territory__c.Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Territory__c.Territory_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Territory__c.User__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <label>GEL Admin</label>
     <objectPermissions>
@@ -102,8 +132,12 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <recordTypeVisibilities>
-        <recordType>GEL_Global_Exception_Log__c.Exception_Raiser</recordType>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Exception_Raiser</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>GEL_Global_Exception_Log__c.GEL_Final_Layout</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>GEL_Global_Exception_Log__c</tab>

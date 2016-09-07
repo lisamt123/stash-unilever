@@ -1,9 +1,9 @@
 /*applying style for the top bar of the page*/ 
 .THIS .topBarStyle{
-    height: 40px;
+    height: 45px;
     padding-left: 10px;
-    padding-top: 8px;
-    background-color:#FFFFFF;
+    padding-top: 11px;
+    background-color: #f0f1f2;
 }
 /*applying style for the top back aroow bar of the page*/ 
 .THIS .topBackBar{ 

@@ -183,7 +183,7 @@
   <!-- ***************************************************************************** -->
   <!-- Validate the  set of Clarity Approvals meta-data before deployment with few Test Classes      -->
   <!-- ***************************************************************************** -->
-  <target name="validatePlancraft">
+  <target name="Core_Approvals">
     <echo level="info">Testing the deployment of Clarity Approvals</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
@@ -197,181 +197,25 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-		    <runTest>PBS_AccessController_Test.cls</runTest>
-			<runTest>PBS_AchievementAssignmentsHelper_CC.cls</runTest>
-			<runTest>PBS_AchievementAssignmentsWorkCom_Test.cls</runTest>
-			<runTest>PBS_AchievementAssignmentWrapper_CC.cls</runTest>
-			<runTest>PBS_AchievementCategoryWrapper_CC.cls</runTest>
-			<runTest>PBS_AchievementData_Test.cls</runTest>
-			<runTest>PBS_AchievementsUserSearchController_CC.cls</runTest>
-			<runTest>PBS_AchievementsUserSearchCtrl_Test.cls</runTest>
-			<runTest>PBS_AchievementWorkComExt_CC.cls</runTest>
-			<runTest>PBS_AchievementWorkComExt_Test.cls</runTest>
-			<runTest>PBS_Character_Test.cls</runTest>
-			<runTest>PBS_CourseStatsInDetailReport_CC.cls</runTest>
-			<runTest>PBS_CourseStatusInDtlReport_Test.cls</runTest>
-			<runTest>PBS_Encoder_Test.cls</runTest>
-			<runTest>PBS_ESAPI_CC.cls</runTest>
-			<runTest>PBS_Learning_Preview_Ext_CC.cls</runTest>
-			<runTest>PBS_Learning_Publish_Ext_CC.cls</runTest>
-			<runTest>PBS_Learning_Test.cls</runTest>
-			<runTest>PBS_LearningAssignmentApproveExt_CC.cls</runTest>
-			<runTest>PBS_LearningAssignmentApproveExt_Test.cls</runTest>
-			<runTest>PBS_LearningAssignmentsHelper_CC.cls</runTest>
-			<runTest>PBS_LearningAssignmentsHelper_Helper.cls</runTest>
-			<runTest>PBS_LearningData_Test.cls</runTest>
-			<runTest>PBS_LearningDeleteSharedAsgmtsBatch_CC.cls</runTest>
-			<runTest>PBS_LearningDeleteSharedAsgmtsExt_Test.cls</runTest>
-			<runTest>PBS_LearningDeleteSharedAsgnmntsExt_CC.cls</runTest>
-			<runTest>PBS_LibraryController_CC.cls</runTest>
-			<runTest>PBS_LibraryController_Test.cls</runTest>
-			<runTest>PBS_LMS_API_CC.cls</runTest>
-			<runTest>PBS_LMS_API_Test.cls</runTest>
-			<runTest>PBS_LMS_ESAPI_CC.cls</runTest>
-			<runTest>PBS_LMSBaseController_CC.cls</runTest>
-			<runTest>PBS_LMSCommunitiesService_CC.cls</runTest>
-			<runTest>PBS_LMSCommunitiesService_Test.cls</runTest>
-			<runTest>PBS_LMSConstants_CC.cls</runTest>
-			<runTest>PBS_LMSConstants_Test.cls</runTest>
-			<runTest>PBS_LMSException.cls</runTest>
-			<runTest>PBS_LMSExport_CC.cls</runTest>
-			<runTest>PBS_LMSExport_Helper.cls</runTest>
-			<runTest>PBS_LMSHeaderController_CC.cls</runTest>
-			<runTest>PBS_LMSHeaderController_Test.cls</runTest>
-			<runTest>PBS_LMSInit_CC.cls</runTest>
-			<runTest>PBS_LMSInit_Helper.cls</runTest>
-			<runTest>PBS_LMSInit_Test.cls</runTest>
-			<runTest>PBS_LMSPlugins_CC.cls</runTest>
-			<runTest>PBS_LMSPlugins_Test.cls</runTest>
-			<runTest>PBS_LMSService_CC.cls</runTest>
-			<runTest>PBS_LMSSettings_CC.cls</runTest>
-			<runTest>PBS_LMSSettings_Test.cls</runTest>
-			<runTest>PBS_LMSStartController_CC.cls</runTest>
-			<runTest>PBS_LMSStartController_Test.cls</runTest>
-			<runTest>PBS_LMSTemplateController_CC.cls</runTest>
-			<runTest>PBS_LMSTemplateController_Test.cls</runTest>
-			<runTest>PBS_LMSUtils_CC.cls</runTest>
-			<runTest>PBS_LMSWrappersService_CC.cls</runTest>
-			<runTest>PBS_MyProfileController_CC.cls</runTest>
-			<runTest>PBS_MyProfileController_Test.cls</runTest>
-			<runTest>PBS_MyTraining_Test.cls</runTest>
-			<runTest>PBS_MyTrainingController_CC.cls</runTest>
-			<runTest>PBS_Params_Test.cls</runTest>
-			<runTest>PBS_ProfileHandler.cls</runTest>
-			<runTest>PBS_ProfileService.cls</runTest>
-			<runTest>PBS_ProfileService_Test.cls</runTest>
-			<runTest>PBS_QuestionNewController_CC.cls</runTest>
-			<runTest>PBS_QuestionNewController_Test.cls</runTest>
-			<runTest>PBS_QuizItem_CC.cls</runTest>
-			<runTest>PBS_QuizResultsController_CC.cls</runTest>
-			<runTest>PBS_QuizResultsController_Test.cls</runTest>
-			<runTest>PBS_QuizViewer_Test.cls</runTest>
-			<runTest>PBS_QuizViewerController_CC.cls</runTest>
-			<runTest>PBS_QuizViewerController_Helper.cls</runTest>
-			<runTest>PBS_ReportGenerator_CC.cls</runTest>
-			<runTest>PBS_ReportGenerator_Test.cls</runTest>
-			<runTest>PBS_ResourceViewerController_CC.cls</runTest>
-			<runTest>PBS_ResourceViewerController_Test.cls</runTest>
-			<runTest>PBS_SFDCAccessControlException.cls</runTest>
-			<runTest>PBS_SFDCAccessController_CC.cls</runTest>
-			<runTest>PBS_SFDCAccessControlResults_CC.cls</runTest>
-			<runTest>PBS_SFDCBaseValidationRule_CC.cls</runTest>
-			<runTest>PBS_SFDCCharacter_CC.cls</runTest>
-			<runTest>PBS_SFDCCreditCardValidationRule_CC.cls</runTest>
-			<runTest>PBS_SFDCEncoder_CC.cls</runTest>
-			<runTest>PBS_SFDCEncoderConstants_CC.cls</runTest>
-			<runTest>PBS_SFDCIntegerValidationRule_CC.cls</runTest>
-			<runTest>PBS_SFDCNumberValidationRule_CC.cls</runTest>
-			<runTest>PBS_SFDCPatterns_CC.cls</runTest>
-			<runTest>PBS_SFDCPlugins_CC.cls</runTest>
-			<runTest>PBS_SFDCStringUtils_CC.cls</runTest>
-			<runTest>PBS_SFDCStringValidationRule_CC.cls</runTest>
-			<runTest>PBS_SFDCValidator_CC.cls</runTest>
-			<runTest>PBS_SharedLearningAssignmentsHelper_CC.cls</runTest>
-			<runTest>PBS_StringUtils_Test.cls</runTest>
-			<runTest>PBS_StringValidationRule_Test.cls</runTest>
-			<runTest>PBS_SubFolderController_CC.cls</runTest>
-			<runTest>PBS_SubFolderCtrl_Test.cls</runTest>
-			<runTest>PBS_TaskViewerController_CC.cls</runTest>
-			<runTest>PBS_TaskViewerController_Test.cls</runTest>
-			<runTest>PBS_TestAchievementData_Test.cls</runTest>
-			<runTest>PBS_TestHelper.cls</runTest>
-			<runTest>PBS_TestLearningData_Test.cls</runTest>
-			<runTest>PBS_TestTrainingPlanData_Test.cls</runTest>
-			<runTest>PBS_TestUtilClass.cls</runTest>
-			<runTest>PBS_TPlanAchievementAsgmtsUpdateBatch_CC.cls</runTest>
-			<runTest>PBS_TPlanAchievementMnagmntExt_Test.cls</runTest>
-			<runTest>PBS_TPlanAsgmtExtensionBatch_Test.cls</runTest>
-			<runTest>PBS_TPlanAsgmtExtensionExisting_Test.cls</runTest>
-			<runTest>PBS_TPlanAsgnmtExtensionNew_Test.cls</runTest>
-			<runTest>PBS_TPlanImportAssignmentsExt_Test.cls</runTest>
-			<runTest>PBS_TPlanSectionAsgmtsDelExtension_Test.cls</runTest>
-			<runTest>PBS_TPlanSectionItemAsgmtsDelExt_Test.cls</runTest>
-			<runTest>PBS_TrainingCatalogController_Test.cls</runTest>
-			<runTest>PBS_TrainingCatalogDetailController_CC.cls</runTest>
-			<runTest>PBS_TrainingCatalogHomeController_CC.cls</runTest>
-			<runTest>PBS_TrainingCatalogHomeCtrl_Test.cls</runTest>
-			<runTest>PBS_TrainingPlan_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAchievementMngmtExt_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAchievementsHelper_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAsgmtExtNew_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAsgmtsDeleteBatch_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAsgmtsRecalclatBatch_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAsgmtsUpdateBatch_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAsgmtsUpsertBatch_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAssignmentExtBatch_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAssignmentExtExisting_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAssignmentHelper_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanAssignmentHelper_Part.cls</runTest>
-			<runTest>PBS_TrainingPlanData_Test.cls</runTest>
-			<runTest>PBS_TrainingPlanDetail_Test.cls</runTest>
-			<runTest>PBS_TrainingPlanDetailController_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanExportController_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanExportController_Test.cls</runTest>
-			<runTest>PBS_TrainingPlanFeedback_Test.cls</runTest>
-			<runTest>PBS_TrainingPlanFeedbackController_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanImportAssignmentsExt_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanPreviewController_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanPreviewCtrl_Test.cls</runTest>
-			<runTest>PBS_TrainingPlans_Test.cls</runTest>
-			<runTest>PBS_TrainingPlanSecAssigmtsDelBat_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanSectemAssigmtsDelExt_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanSection_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanSectionAsgmtsDelExt_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanSectionAsgnmtHelper_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanSectionItem_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanSectionsHelper_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanSectnItAsgmtsDelBatch_CC.cls</runTest>
-			<runTest>PBS_TrainingPlansSearchController_CC.cls</runTest>
-			<runTest>PBS_TrainingPlanWithAchievement_CC.cls</runTest>
-			<runTest>PBS_TrainingTrackDetailCtrl_CC.cls</runTest>
-			<runTest>PBS_TrainingTrackExportController_CC.cls</runTest>
-			<runTest>PBS_TrainingTrackHandler.cls</runTest>
-			<runTest>PBS_TrainingTrackLevel_CC.cls</runTest>
-			<runTest>PBS_TrainingTracksController_CC.cls</runTest>
-			<runTest>PBS_TrainingTracksController_Test.cls</runTest>
-			<runTest>PBS_Trigger.cls</runTest>
-			<runTest>PBS_TriggerException.cls</runTest>
-			<runTest>PBS_TriggerException_Test.cls</runTest>
-			<runTest>PBS_TriggerFactory.cls</runTest>
-			<runTest>PBS_UtilClass_Test.cls</runTest>
-			<runTest>PBS_Validator_Test.cls</runTest>
-			<runTest>PBS_ValidatorHelperTest.cls</runTest>
-			<runTest>PBS_WikiController_CC.cls</runTest>
-			<runTest>PBS_WikiController_Test.cls</runTest>
-			<runTest>PBS_WikiFeedBackController_CC.cls</runTest>
-			<runTest>PBS_WikiFeedBackController_Test.cls</runTest>
-			<runTest>PBS_WikiFeedbackViewController_CC.cls</runTest>
-			<runTest>PBS_WikiFeedbackViewController_Test.cls</runTest>
-			<runTest>PC_ContainerController_CC.cls</runTest>
-			<runTest>PC_ContainerController_Test.cls</runTest>
-			<runTest>PC_DataFactory.cls</runTest>
-			<runTest>PC_ForumController_CC.cls</runTest>
-			<runTest>PC_ForumController_Test.cls</runTest>
-			<runTest>PC_ForumGroupController_CC.cls</runTest>
-			<runTest>PC_ForumGroupController_Test.cls</runTest>
-			<runTest>PC_GroupHandler.cls</runTest>
-			<runTest>PC_GroupHandler_Test.cls</runTest>
+		  <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>      
+      <runTest>CORE_CA_ReminderAlert_Batch_Test</runTest>
+      <runTest>Core_CA_ApprovalsController_Test</runTest>
+      <runTest>Core_CA_Approve_Reject_Test</runTest>
+      <runTest>Core_CA_BaseApplicationServicesTest</runTest>
+    <runTest>Core_CA_BaseServiceException_Test</runTest>
+    <runTest>Core_CA_RemoteServiceCallControllerTest</runTest>
+    <runTest>Core_CA_Test</runTest>
+    <runTest>Core_CA_Test_MobileAPP</runTest>
+    <runTest>Core_CA_ChatterPostNavCont_Test</runTest>
     </sf:deploy>
   </target>  
   <!-- ***************************************************************************** -->
@@ -432,6 +276,38 @@
           <runTest>Core_CA_Test_MobileAPP</runTest>
     </sf:deploy>
   </target>  
+  <!-- ***************************************************************************** -->
+  <!-- Validate the  set of Agent App meta-data before deployment with AA Test Classes      -->
+  <!-- ***************************************************************************** -->
+  <target name="validateAA">
+    <echo level="info">Testing the deployment of Clarity Approvals</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+          <runTest>AA_AddCompetitorName_Test</runTest>
+          <runTest>AA_AgentAppServiceController_Test</runTest>
+          <runTest>AA_ApplicationWrapperObj_Test</runTest>
+          <runTest>AA_BaseApplicationServices_Test</runTest>
+          <runTest>AA_Constants_Test</runTest>
+          <runTest>AA_DatabaseServiceUtil_Test</runTest>
+          <runTest>AA_Follow_Unfollow_batch_Test</runTest>
+          <runTest>AA_Follow_Unfollow_class_Test</runTest>
+          <runTest>AA_RemoteServiceCallController_Test</runTest>
+          <runTest>AA_theAgent_ChatterPost_FutureClass_Test</runTest>
+          <runTest>AA_TheAgentReportWrapper_Test</runTest>
+          <runTest>AA_TheAgentSingleExecution_Test</runTest>
+          <runTest>AA_WrapperUtility_Test</runTest>
+    </sf:deploy>
+  </target>
   <!-- ***************************************************************************** -->
     <!-- Validate the  set of News App meta-data before deployment with few Test Classes      -->
     <!-- ***************************************************************************** -->
@@ -992,223 +868,101 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
-      <runTest>BET_AccessService</runTest>
       <runTest>BET_AccessServiceTest</runTest>
       <runTest>BET_ApproveProjectsComponentContrTest</runTest>
-      <runTest>BET_ApproveProjectsComponentController</runTest>
-      <runTest>BET_AssetHandler</runTest>
-      <runTest>BET_AssetHandlerCls</runTest>
+      <runTest>BET_AssetDispatcherControllerTest</runTest>
       <runTest>BET_AssetHandlerClsTest</runTest>
-      <runTest>BET_AssetService</runTest>
       <runTest>BET_AssetServiceTest</runTest>
-      <runTest>BET_BETChangesLogger</runTest>
-      <runTest>BET_BETHandler</runTest>
-      <runTest>BET_BETHandlerCls</runTest>
-      <runTest>BET_BETHandlerClsHelper</runTest>
-      <runTest>BET_BETService</runTest>
-      <runTest>BET_BETServiceTest</runTest>
-      <runTest>BET_BETWrapper</runTest>
-      <runTest>BET_BatchAssetStatusMapping</runTest>
+      <runTest>BET_AssetsOrderController_Test</runTest>
       <runTest>BET_BatchAssetStatusMapping_Test</runTest>
-      <runTest>BET_BatchBETStatusMapping</runTest>
       <runTest>BET_BatchBETStatusMapping_Test</runTest>
-      <runTest>BET_BatchBrandDelete</runTest>
       <runTest>BET_BatchBrandDelete_Test</runTest>
-      <runTest>BET_BatchBrandMapping</runTest>
       <runTest>BET_BatchBrandMapping_Test</runTest>
-      <runTest>BET_BatchCategoryMapping</runTest>
       <runTest>BET_BatchCategoryMapping_Test</runTest>
-      <runTest>BET_BatchCopyBrandValues</runTest>
       <runTest>BET_BatchCopyBrandValues_Test</runTest>
-      <runTest>BET_BatchDeniedMemberRequestDelete</runTest>
       <runTest>BET_BatchDeniedMemberRequestDelete_Test</runTest>
-      <runTest>BET_BatchMediaChannel1Mapping</runTest>
       <runTest>BET_BatchMediaChannel1Mapping_Test</runTest>
-      <runTest>BET_BatchOldAssetStatusMapping</runTest>
       <runTest>BET_BatchOldAssetStatusMapping_Test</runTest>
-      <runTest>BET_BatchScheduler</runTest>
       <runTest>BET_BatchScheduler_Test</runTest>
-      <runTest>BET_BatchUpdateChatterGroupInfo</runTest>
       <runTest>BET_BatchUpdateChatterGroupInfo_Test</runTest>
-      <runTest>BET_CategoryBrandSelectionController</runTest>
+      <runTest>BET_BETHardDelete_BatchSchedule_Test</runTest>
+      <runTest>BET_BETServiceTest</runTest>
       <runTest>BET_CategoryBrandSelectionControllerTest</runTest>
-      <runTest>BET_CategoryComponentData</runTest>
-      <runTest>BET_ChatterController</runTest>
       <runTest>BET_ChatterController_Test</runTest>
       <runTest>BET_ChatterGroupAutoArchDis_BatchTest</runTest>
-      <runTest>BET_ChatterGroupAutoArchiveDisable_Batch</runTest>
-      <runTest>BET_CommonService</runTest>
       <runTest>BET_CommonServiceTest</runTest>
-      <runTest>BET_CustomBETException</runTest>
-      <runTest>BET_DataFixReleaseDate_Batch</runTest>
       <runTest>BET_DataFixReleaseDate_BatchTest</runTest>
-      <runTest>BET_EditAssetController</runTest>
+      <runTest>BET_EditAssetController1_Test</runTest>
       <runTest>BET_EditAssetController_Test</runTest>
-      <runTest>BET_EmailNotificationService</runTest>
       <runTest>BET_EmailNotificationServiceTest</runTest>
-      <runTest>BET_ExpectedAssetsController</runTest>
       <runTest>BET_ExpectedAssetsControllerTest</runTest>
-      <runTest>BET_FollowRequestTriggerHandler</runTest>
-      <runTest>BET_FollowRequestTriggerHandlerCls</runTest>
-      <runTest>BET_FollowRequestTriggerHandlerClsHelper</runTest>
       <runTest>BET_FollowRequestTriggerHandlerClsTest</runTest>
-      <runTest>BET_InoplanToIPMMigration_Batch</runTest>
       <runTest>BET_InoplanToIPMMigration_Batch_Test</runTest>
       <runTest>BET_LinkedProjectsComponentContrTest</runTest>
-      <runTest>BET_LinkedProjectsComponentController</runTest>
-      <runTest>BET_LinkingService</runTest>
-      <runTest>BET_LinkingServiceHelper</runTest>
       <runTest>BET_LinkingServiceHelperTest</runTest>
       <runTest>BET_LinkingServiceTest</runTest>
-      <runTest>BET_MDODataMigrationAndTransform_Batch</runTest>
-      <runTest>BET_ManagerunTestController</runTest>
-      <runTest>BET_ManagerunTestController_Test</runTest>
-      <runTest>BET_ManagerunTestController_Test2</runTest>
-      <runTest>BET_ManagerunTestController_Test3</runTest>
-      <runTest>BET_MasterDataService</runTest>
+      <runTest>BET_LinkingServiceTestOne</runTest>
+      <runTest>BET_ManageMembersController_Test</runTest>
+      <runTest>BET_ManageMembersController_Test2</runTest>
+      <runTest>BET_ManageMembersController_Test3</runTest>
       <runTest>BET_MasterDataServiceTest</runTest>
-      <runTest>BET_MemberBucketWrapper</runTest>
-      <runTest>BET_MemberRequestHandlerCls</runTest>
+      <runTest>BET_MDODataMigrationAndTrans_BatchTest</runTest>
       <runTest>BET_MemberRequestHandlerClsTest</runTest>
-      <runTest>BET_Member_RequestHandler</runTest>
-      <runTest>BET_NewBetComponentController</runTest>
-      <runTest>BET_NewBetComponentControllerTest</runTest>
-      <runTest>BET_NewBetController</runTest>
-      <runTest>BET_NewBetControllerTest</runTest>
-      <runTest>BET_PresentationBatch</runTest>
+      <runTest>BET_MultiUploadAssetsControllerTest</runTest>
+      <runTest>BET_NewBETComponentControllerTest</runTest>
+      <runTest>BET_NewBETControllerTest</runTest>
       <runTest>BET_PresentationBatch_Test</runTest>
-      <runTest>BET_ReleaseDateEmails</runTest>
       <runTest>BET_ReleaseDateEmails_Test</runTest>
       <runTest>BET_SCH_BatchDeniedMemberRequestDel_Test</runTest>
-      <runTest>BET_SCH_BatchDeniedMemberRequestDelete</runTest>
-      <runTest>BET_SoslFieldsBatch</runTest>
       <runTest>BET_SoslFieldsBatch_Test</runTest>
-      <runTest>BET_SuggestrunTestController</runTest>
-      <runTest>BET_SuggestrunTestControllerTest</runTest>
-      <runTest>BET_SuggestedrunTestervice</runTest>
-      <runTest>BET_SuggestedrunTesterviceTest</runTest>
-      <runTest>BET_Team_MemberHandler</runTest>
-      <runTest>BET_Team_MemberHandlerCls</runTest>
-      <runTest>BET_Team_MemberHandlerClsHelper</runTest>
+      <runTest>BET_SuggestedMemberServiceTest</runTest>
+      <runTest>BET_SuggestMembersControllerTest</runTest>
       <runTest>BET_Team_MemberHandlerClsHelperTest</runTest>
       <runTest>BET_Team_MemberHandlerClsTest</runTest>
-      <runTest>BET_TestUtils</runTest>
       <runTest>BET_TestingHelper</runTest>
-      <runTest>BET_TriggerFactory</runTest>
-      <runTest>BET_TriggerFactory</runTest>
-      <runTest>BET_Triggers_Test</runTest>
-      <runTest>BET_UpdateBETSearchHandler</runTest>
-      <runTest>BET_UpsertBETController</runTest>
-      <runTest>BET_UpsertBETControllerTest</runTest>
-      <runTest>BET_AccessService</runTest>
-      <runTest>BET_AccessServiceTest</runTest>
-      <runTest>BET_ApproveProjectsComponentContrTest</runTest>
-      <runTest>BET_ApproveProjectsComponentController</runTest>
-      <runTest>BET_AssetHandler</runTest>
-      <runTest>BET_AssetHandlerCls</runTest>
-      <runTest>BET_AssetHandlerClsTest</runTest>
-      <runTest>BET_AssetService</runTest>
-      <runTest>BET_AssetServiceTest</runTest>
-      <runTest>BET_BETChangesLogger</runTest>
-      <runTest>BET_BETHandler</runTest>
-      <runTest>BET_BETHandlerCls</runTest>
-      <runTest>BET_BETHandlerClsHelper</runTest>
-      <runTest>BET_BETService</runTest>
-      <runTest>BET_BETServiceTest</runTest>
-      <runTest>BET_BETWrapper</runTest>
-      <runTest>BET_BatchAssetStatusMapping</runTest>
-      <runTest>BET_BatchAssetStatusMapping_Test</runTest>
-      <runTest>BET_BatchBETStatusMapping</runTest>
-      <runTest>BET_BatchBETStatusMapping_Test</runTest>
-      <runTest>BET_BatchBrandDelete</runTest>
-      <runTest>BET_BatchBrandDelete_Test</runTest>
-      <runTest>BET_BatchBrandMapping</runTest>
-      <runTest>BET_BatchBrandMapping_Test</runTest>
-      <runTest>BET_BatchCategoryMapping</runTest>
-      <runTest>BET_BatchCategoryMapping_Test</runTest>
-      <runTest>BET_BatchCopyBrandValues</runTest>
-      <runTest>BET_BatchCopyBrandValues_Test</runTest>
-      <runTest>BET_BatchDeniedMemberRequestDelete</runTest>
-      <runTest>BET_BatchDeniedMemberRequestDelete_Test</runTest>
-      <runTest>BET_BatchMediaChannel1Mapping</runTest>
-      <runTest>BET_BatchMediaChannel1Mapping_Test</runTest>
-      <runTest>BET_BatchOldAssetStatusMapping</runTest>
-      <runTest>BET_BatchOldAssetStatusMapping_Test</runTest>
-      <runTest>BET_BatchScheduler</runTest>
-      <runTest>BET_BatchScheduler_Test</runTest>
-      <runTest>BET_BatchUpdateChatterGroupInfo</runTest>
-      <runTest>BET_BatchUpdateChatterGroupInfo_Test</runTest>
-      <runTest>BET_CategoryBrandSelectionController</runTest>
-      <runTest>BET_CategoryBrandSelectionControllerTest</runTest>
-      <runTest>BET_CategoryComponentData</runTest>
-      <runTest>BET_ChatterController</runTest>
-      <runTest>BET_ChatterController_Test</runTest>
-      <runTest>BET_ChatterGroupAutoArchDis_BatchTest</runTest>
-      <runTest>BET_ChatterGroupAutoArchiveDisable_Batch</runTest>
-      <runTest>BET_CommonService</runTest>
-      <runTest>BET_CommonServiceTest</runTest>
-      <runTest>BET_CustomBETException</runTest>
-      <runTest>BET_DataFixReleaseDate_Batch</runTest>
-      <runTest>BET_DataFixReleaseDate_BatchTest</runTest>
-      <runTest>BET_EditAssetController</runTest>
-      <runTest>BET_EditAssetController_Test</runTest>
-      <runTest>BET_EmailNotificationService</runTest>
-      <runTest>BET_EmailNotificationServiceTest</runTest>
-      <runTest>BET_ExpectedAssetsController</runTest>
-      <runTest>BET_ExpectedAssetsControllerTest</runTest>
-      <runTest>BET_FollowRequestTriggerHandler</runTest>
-      <runTest>BET_FollowRequestTriggerHandlerCls</runTest>
-      <runTest>BET_FollowRequestTriggerHandlerClsHelper</runTest>
-      <runTest>BET_FollowRequestTriggerHandlerClsTest</runTest>
-      <runTest>BET_InoplanToIPMMigration_Batch</runTest>
-      <runTest>BET_InoplanToIPMMigration_Batch_Test</runTest>
-      <runTest>BET_LinkedProjectsComponentContrTest</runTest>
-      <runTest>BET_LinkedProjectsComponentController</runTest>
-      <runTest>BET_LinkingService</runTest>
-      <runTest>BET_LinkingServiceHelper</runTest>
-      <runTest>BET_LinkingServiceHelperTest</runTest>
-      <runTest>BET_LinkingServiceTest</runTest>
-      <runTest>BET_MDODataMigrationAndTransform_Batch</runTest>
-      <runTest>BET_ManagerunTestController</runTest>
-      <runTest>BET_ManagerunTestController_Test</runTest>
-      <runTest>BET_ManagerunTestController_Test2</runTest>
-      <runTest>BET_ManagerunTestController_Test3</runTest>
-      <runTest>BET_MasterDataService</runTest>
-      <runTest>BET_MasterDataServiceTest</runTest>
-      <runTest>BET_MemberBucketWrapper</runTest>
-      <runTest>BET_MemberRequestHandlerCls</runTest>
-      <runTest>BET_MemberRequestHandlerClsTest</runTest>
-      <runTest>BET_Member_RequestHandler</runTest>
-      <runTest>BET_NewBetComponentController</runTest>
-      <runTest>BET_NewBetComponentControllerTest</runTest>
-      <runTest>BET_NewBetController</runTest>
-      <runTest>BET_NewBetControllerTest</runTest>
-      <runTest>BET_PresentationBatch</runTest>
-      <runTest>BET_PresentationBatch_Test</runTest>
-      <runTest>BET_ReleaseDateEmails</runTest>
-      <runTest>BET_ReleaseDateEmails_Test</runTest>
-      <runTest>BET_SCH_BatchDeniedMemberRequestDel_Test</runTest>
-      <runTest>BET_SCH_BatchDeniedMemberRequestDelete</runTest>
-      <runTest>BET_SoslFieldsBatch</runTest>
-      <runTest>BET_SoslFieldsBatch_Test</runTest>
-      <runTest>BET_SuggestrunTestController</runTest>
-      <runTest>BET_SuggestrunTestControllerTest</runTest>
-      <runTest>BET_SuggestedrunTestervice</runTest>
-      <runTest>BET_SuggestedrunTesterviceTest</runTest>
-      <runTest>BET_Team_MemberHandler</runTest>
-      <runTest>BET_Team_MemberHandlerCls</runTest>
-      <runTest>BET_Team_MemberHandlerClsHelper</runTest>
-      <runTest>BET_Team_MemberHandlerClsHelperTest</runTest>
-      <runTest>BET_Team_MemberHandlerClsTest</runTest>
       <runTest>BET_TestUtils</runTest>
-      <runTest>BET_TestingHelper</runTest>
-      <runTest>BET_TriggerFactory</runTest>
-      <runTest>BET_TriggerFactory</runTest>
       <runTest>BET_Triggers_Test</runTest>
-      <runTest>BET_UpdateBETSearchHandler</runTest>
-      <runTest>BET_UpsertBETController</runTest>
+      <runTest>BET_UpdateExpectedAssetsController_Test</runTest>
       <runTest>BET_UpsertBETControllerTest</runTest>
-    </sf:deploy>
+      <runTest>uw_ArticleExtensionTest</runTest>
+      <runTest>uw_BatchJobHelper</runTest>
+      <runTest>uw_BatchJobManagerController</runTest>
+      <runTest>uw_BETAndAssetPromotionTest</runTest>
+      <runTest>uw_BETDetailService_Test</runTest>
+      <runTest>uw_BETDetailService_Test2</runTest>
+      <runTest>uw_BETDetailService_Test3</runTest>
+      <runTest>uw_BETEditController_Test</runTest>
+      <runTest>uw_BETRemoteController_Test</runTest>
+      <runTest>uw_BETSearchService_Test</runTest>
+      <runTest>uw_BETUtil_Test</runTest>
+      <runTest>uw_BET_before_delete_test_class</runTest>
+      <runTest>uw_BET_schedule_batch_calculatemem_TEST</runTest>
+      <runTest>uw_BET_update_totalnoof_BETmembers_TEST</runTest>
+      <runTest>uw_BrandCentreExtensionTest</runTest>
+      <runTest>uw_Constants</runTest>
+      <runTest>uw_CustomAssetUploadExtensionTest</runTest>
+      <runTest>uw_CustomAssetUploadExtensionTest2</runTest>
+      <runTest>uw_CustomSettingsManager</runTest>
+      <runTest>uw_DeleteObjectsHelper</runTest>
+      <runTest>uw_FeedComments_Test</runTest>
+      <runTest>uw_FetchFeedItems_Test</runTest>
+      <runTest>uw_futureHandler</runTest>
+      <runTest>uw_HelperMethods</runTest>
+      <runTest>uw_HelperSOQLMethods</runTest>
+      <runTest>uw_MakeAssetsVisibleTest</runTest>
+      <runTest>uw_MiscTest</runTest>
+      <runTest>uw_OwnerUpdate</runTest>
+      <runTest>uw_PinnovateController_Test</runTest>
+      <runTest>uw_RedirectArticle</runTest>
+      <runTest>uw_Redirect_Brand_PageTest</runTest>
+      <runTest>uw_TacHelper</runTest>
+      <runTest>uw_TermsConditionsController</runTest>
+      <runTest>uw_TermsOfUseControllerTest</runTest>
+      <runTest>uw_testTrigger</runTest>
+      <runTest>uw_TokenHelper</runTest>
+      <runTest>uw_TriggerHandler_Test</runTest>
+      <runTest>uw_UnitTestDataFactory</runTest>
+  </sf:deploy>
   </target>
 <!-- ***************************************************************************** -->
   <!-- Validate the  set of Hubble meta-data before deployment                          -->

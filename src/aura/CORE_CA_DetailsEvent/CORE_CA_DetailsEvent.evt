@@ -1,0 +1,14 @@
+<!--
+  Component Name: Core_CA_DetailsEvent
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Detail Page switching code.
+-->
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="Sourcesystem" type="String"/>
+    <aura:attribute name="RequestId" type="String"/>
+    <aura:attribute name="ApproverId" type="String"/>
+    <aura:attribute name="sourcePage" type="String"/>
+    <aura:attribute name="filterValue" type="String"/>
+    
+</aura:event>

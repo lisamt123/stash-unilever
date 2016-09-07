@@ -104,12 +104,36 @@
     <fieldUpdates>
         <fullName>GEL_Update_Legacy_Owner</fullName>
         <field>Legacy_Exception_Raiser__c</field>
-        <formula>CreatedBy.FirstName  +  CreatedBy.LastName</formula>
+        <formula>CreatedBy.FirstName</formula>
         <name>GEL_Update Legacy Owner</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GEL_Update_Record_type</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>GEL_Final_Layout</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>GEL_Update Record type</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>GEL_Changing Layout when status is closed</fullName>
+        <actions>
+            <name>GEL_Update_Record_type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>GEL_Global_Exception_Log__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Closed,Rejected</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>GEL_Email to Process Owner after creating exception</fullName>
         <actions>

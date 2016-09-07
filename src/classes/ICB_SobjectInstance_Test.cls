@@ -56,6 +56,7 @@ public class ICB_SobjectInstance_Test
         insert user;
         return user;
     }
+    
     /*******************************************************************
     Purpose: Insert Territory__c for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
 			 ICB_CalculatePlanDistance_BatchSch_Test, ICB_CalculatePlanDistance_BatchSchedule_Test
@@ -75,7 +76,7 @@ public class ICB_SobjectInstance_Test
     Purpose: Insert ContentVersion for using in test methods of classes: ICB_CheckInCheckOut_CC_Test, 
 			 ICB_CalculatePlanDistance_BatchSch_Test, ICB_CalculatePlanDistance_BatchSchedule_Test
     Parameters: Territory__c
-    Returns: [VOID]
+    Returns: [ContentVersion]
     Throws [Exceptions]: [NONE]  
     ********************************************************************/
     public static ContentVersion insertContentVersion(Territory__c territory)
@@ -87,4 +88,54 @@ public class ICB_SobjectInstance_Test
         insert doc;
         return doc;
     }
+    /*******************************************************************
+    Purpose: Insert Account for using in test methods of classes: ICB_ImportVisits_Test, ICB_Cockpit_CC_Test,ICB_PhotoMobileChannel_Batch_Test
+    Parameters: Name, recordTypeId
+    Returns: [Account]
+    Throws [Exceptions]: [NONE]  
+    ********************************************************************/
+    public static Account insertAccount(String name, String recordTypeId)
+    {
+        Account account = new Account(Name = name,
+                                      RecordTypeId = recordTypeId
+                                     );
+        insert account;
+        return account;
+    }
+    /*******************************************************************
+    Purpose: Insert Account for using in test methods of classes: ICB_Cockpit_CC_Test,ICB_PhotoMobileChannel_Batch_Test
+    Parameters: Name, recordTypeId,accountId
+    Returns: [Account]
+    Throws [Exceptions]: [NONE]  
+    ********************************************************************/
+    public static Contact insertContact(String lastName, String recordTypeId, String accountId, String IcbType)
+    {
+        Contact contact = new Contact(LastName = lastName,
+                                      RecordTypeId = recordTypeId,
+                                      AccountId = accountId,
+                                      ICB_Type__c = IcbType
+                                     );
+        insert contact;
+        return contact;
+    }
+    /*******************************************************************
+    Purpose: Insert Sales_Area__c for using in test methods of classes: ICB_ImportVisits_Test
+    Parameters: Sales_Area__c
+    Returns: [Sales_Area__c]
+    Throws [Exceptions]: [NONE]  
+    ********************************************************************/
+    public static Sales_Area__c insertSalesArea(String name, String externalKey,String channel, String division, Id territory,Id account)
+    {
+        Sales_Area__c sales = new Sales_Area__c(Name = name,
+                                                External_Key__c = externalKey,
+                                                Channel__c = channel,
+                                                Division__c = division,
+                                                Territory__c = territory,
+                                                Account__c = account
+        										);
+        insert sales;
+        return sales;
+    }  
+     
+
 }
