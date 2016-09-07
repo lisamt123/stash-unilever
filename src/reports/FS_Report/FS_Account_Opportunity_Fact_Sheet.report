@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <block>
+        <blockInfo>
+            <blockId>B1</blockId>
+            <joinTable>Account</joinTable>
+        </blockInfo>
+        <columns>
+            <field>Account$Owner</field>
+        </columns>
+        <columns>
+            <field>Account$Name</field>
+        </columns>
+        <columns>
+            <field>Account.Opportunities$Name</field>
+        </columns>
+        <columns>
+            <field>Account.Opportunities$StageName</field>
+        </columns>
+        <currency>EUR</currency>
+        <filter>
+            <criteriaItems>
+                <column>Account.Opportunities$StageName</column>
+                <operator>equals</operator>
+                <value>01 – Universe,02 - Above,03 – In the funnel,04 – Best Few</value>
+            </criteriaItems>
+        </filter>
+        <format>Tabular</format>
+        <name>FS Open Opportunity</name>
+        <params>
+            <name>co</name>
+            <value>1</value>
+        </params>
+        <reportType>FS_AccountWithOpportunities__c</reportType>
+        <scope>user</scope>
+        <timeFrameFilter>
+            <dateColumn>Account$CreatedDate</dateColumn>
+            <interval>INTERVAL_CURFY</interval>
+        </timeFrameFilter>
+    </block>
+    <block>
+        <blockInfo>
+            <blockId>B0</blockId>
+            <joinTable>Account</joinTable>
+        </blockInfo>
+        <columns>
+            <field>Account$Owner</field>
+        </columns>
+        <columns>
+            <field>Account$Name</field>
+        </columns>
+        <columns>
+            <field>Account.Opportunities$Name</field>
+        </columns>
+        <columns>
+            <field>Account.Opportunities$StageName</field>
+        </columns>
+        <currency>EUR</currency>
+        <filter>
+            <criteriaItems>
+                <column>Account.Opportunities$StageName</column>
+                <operator>equals</operator>
+                <value>Closed Won,Closed Lost</value>
+            </criteriaItems>
+        </filter>
+        <format>Tabular</format>
+        <name>FS Closed Opportunity</name>
+        <params>
+            <name>co</name>
+            <value>1</value>
+        </params>
+        <reportType>FS_AccountWithOpportunities__c</reportType>
+        <scope>user</scope>
+        <timeFrameFilter>
+            <dateColumn>Account$CreatedDate</dateColumn>
+            <interval>INTERVAL_CURPREV1</interval>
+        </timeFrameFilter>
+    </block>
+    <blockInfo>
+        <blockId xsi:nil="true"/>
+        <joinTable>Account</joinTable>
+    </blockInfo>
+    <description>It contains key stats about the Account. # of open Opportuniteies, Opportunities clsoed in the last 6 months, Trade related activity to be executed in the next 60 days, Complaints, Action items</description>
+    <format>MultiBlock</format>
+    <name>FS Account Opportunity Fact Sheet</name>
+    <params>
+        <name>lsk</name>
+        <value>1</value>
+    </params>
+    <reportType>FS_AccountWithOpportunities__c</reportType>
+    <showDetails>true</showDetails>
+</Report>
