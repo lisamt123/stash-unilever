@@ -4,7 +4,6 @@ src/flows
 src/layouts
 src/objects
 src/permissionsets/CEC_Enable_Audit_Fields.permissionset
-src/flows/CEC_SMS_Case_Creation_Process-8.flow
 src/flows/CEC_SMS_Case_Creation_Flow-6.flow
 src/layouts/Case-Case Feed Layout.layout
 src/objects/Case.object
