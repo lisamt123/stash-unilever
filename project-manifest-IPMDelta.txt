@@ -1,6 +1,10 @@
 src
-src/classes
-src/classes/IPM_BD_BB_Report_Batch.cls
-src/classes/IPM_BD_BB_Report_Batch.cls-meta.xml
-src/classes/IPM_OTIF_Report_Batch.cls
-src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
+src/sharingRules
+src/sharingRules/IPM_Project__c.sharingRules
+src/permissionsets
+src/permissionsets/IPM_Business_Partners.permissionset
+src/permissionsets/IPM_Central_Team.permissionset
+src/permissionsets/IPM_Finance_Team.permissionset
+src/permissionsets/IPM_Integration_User_Permission_Set.permissionset
+src/workflows
+src/workflows/IPM_EmailOut_Notification__c.workflow
