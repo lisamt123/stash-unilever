@@ -52382,12 +52382,12 @@
 	<recordTypeVisibilities>
         <default>false</default>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_with_CI</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>AD_Manager</tab>
