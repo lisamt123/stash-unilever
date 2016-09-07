@@ -799,7 +799,7 @@ global with sharing class AF_BrandEstimateRemote {
         //string addUnileverEntityToEstimates='addUnileverEntityToEstimates';
         system.debug('** colsArr : ' + colsArr);
         AF_Bonus_Summary__c brandsObj;
-        Map<String, String> brMap;
+        Map<String, String> brMap =new Map<string, string>();
         Id agRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Agency);
         //List<AF_Agency_Estimate__c> entityListsToCreated = new List<AF_Agency_Estimate__c>();
         //List<AF_OOPS_Estimate__c> entityOopsListsToCreated = new List<AF_OOPS_Estimate__c>();
