@@ -156,21 +156,31 @@ global with sharing class AF_BrandEstimateRemote {
  public static void getAgencyEstimateRecExtension(String agencyId, String brandEstimateId){
             Integer rowTotal = 0, rowTraditional = 0, rowDigital = 0, rowAdaptation =0;
             Decimal rowTotalA = 0;
+            String dispRowTotal='';
+            String dispRowDigital='';
+            String dispRowTraditional='';
+            String dispRowAdaptation='';            
             for(String eachRow : orderedRow) {
             String dispArchiveImg = (rowTotalA > 0 || isLocked) ?  '' : archiveImg;
             rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTagEst;
-            String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(rowTotal) : '';
-            String dispRowDigital = rowDigital > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowDigital) : '';
-            String dispRowTraditional = rowTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowTraditional) : '';
-            String dispRowAdaptation = rowAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowAdaptation) : '';
+            if(rowTotal > 0){
+                 dispRowTotal = AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(rowTotal);
+            }
+            if(rowDigital > 0){
+                 dispRowDigital = AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowDigital);
+            }
+            if(rowTraditional > 0){
+                 dispRowTraditional = AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowTraditional);
+            }
+            if(rowAdaptation > 0){
+                 dispRowAdaptation = AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowAdaptation);
+            }
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell mydisplaytotal details-control" t=\"' + dispRowTraditional + '\" d=\"' + dispRowDigital;
             rowDetail += '\" a=\"' + dispRowAdaptation + '\"><a class="margin0" l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTagEst;
             getAgencyEstimateRecordsExt(brandEstimateId,eachRow);
             rowDetail += trCloseTag;
         }
-
- }
-
+}
      /*****************************************************************************
 *  @Description: this method hold the logic calculate the row totals of the matrix page cells
                  also it adds up the agenycestimate figures traditional,Digital and Adaptation
@@ -201,13 +211,25 @@ global with sharing class AF_BrandEstimateRemote {
 *  @return : none
 *************************************************************************/
     public static void orderedColMethodEXT(){
-            for(String eachCol : orderedColumn) {
-            String dispColTotal = colTotal > 0 ? AF_Constants.AF_CURRENCY_EUR1    + currencyFormatted(colTotal) : '';
-            String dispColDigital = colDigital > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(colDigital) : '';
-            String dispColTraditional = colTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR1    + currencyFormatted(colTraditional) : '';
-            String dispColAdaptation = colAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(colAdaptation) : '';
-            rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control" t=\"' + dispColTraditional + '\" d=\"' + dispColDigital;
-            rowDetail += '\" a=\"' + dispColAdaptation + '\"><a l e=\"' + dispColTotal + '\">';
+     String dispColTotal='';
+     String dispColDigital='';
+     String dispColTraditional='';
+     String dispColAdaptation='';
+     for(String eachCol : orderedColumn) {
+        if(colTotal > 0 ){
+            dispColTotal = AF_Constants.AF_CURRENCY_EUR1 + currencyFormatted(colTotal);
+        }
+        if(colDigital > 0 ){
+            dispColDigital = AF_Constants.AF_CURRENCY_EUR1 + currencyFormatted(colDigital);
+        }
+        if(colTraditional > 0 ){
+            dispColTraditional = AF_Constants.AF_CURRENCY_EUR1 + currencyFormatted(colTraditional);
+        }
+        if(colAdaptation > 0 ){
+            dispColAdaptation = AF_Constants.AF_CURRENCY_EUR1 + currencyFormatted(colAdaptation);
+        }
+        rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control" t=\"' + dispColTraditional + '\" d=\"' + dispColDigital;
+        rowDetail += '\" a=\"' + dispColAdaptation + '\"><a l e=\"' + dispColTotal + '\">';
             if(colTotal != 0) {
                 rowDetail += strongStrt + dispColTotal + strongEnd;
             }
