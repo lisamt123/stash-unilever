@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>CI_R2R_Innovations_Help_Page</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Alternate_Scope__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If you select &apos;Others&apos; in Geographical Scope please provide details</inlineHelpText>
+        <label>Alternate Scope</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Benifit_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Benifit Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Benifit_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Benifit Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>3PSP FTE Savings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Audit reference</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Clear R&amp;R</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Compliance requirement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cost Reduction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dependency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GL hygiene</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPM Alignment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Harmonization &amp; Standardization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Process Efficiency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Risk mitigation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>System improvement / alignment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TBC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Business_cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>130000</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Count_for_Budget__c</fullName>
+        <externalId>false</externalId>
+        <label>Count for Budget</label>
+        <summaryForeignKey>CI_R2R_Budget__c.CI_R2R_Innovation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <picklist>
+            <picklistValues>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Funnel_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>1 Pre-ideas:Idea under discussion, nothing entered into Clarity yet;2 Ideas:BOSCARD created, project registered in Clarity;3 Feasibility:Investigation is under progress: tools / solution selection. Some fund should be already allocated to the project.4 Ca</inlineHelpText>
+        <label>Funnel Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 Pre-ideas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2 Ideas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3 Capability</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4 Feasibility</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5 Launch</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6 Implemented</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ON HOLD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CLOSED</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Geographical_Scope__c</fullName>
+        <externalId>false</externalId>
+        <label>Geographical Scope</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Countries</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Arabia*ANZ also</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Benelux</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BENELUX &amp; DACH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GCAD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Geographical Scope</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grater Caribbean</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HK and TW</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India &amp; Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India - Branch and HO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latam excluding Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico, UASCC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MYSG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America and Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>P&amp;H</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PHP(phillipines)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RUB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius Phase I (CEE, NORDICS, DACH)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius Phase II (Benelux, France)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius Phase III (Spain)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Souther cone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UAPL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Various</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IT_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>IT Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Landscape__c</fullName>
+        <externalId>false</externalId>
+        <label>Landscape</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TBC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project2__c</fullName>
+        <externalId>false</externalId>
+        <label>Project#</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project3__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(R2R_SME_Area__c, &apos;Account Reconciliation&apos;), ( text(YEAR(today())) +&apos;.AR.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;FX Revaluation&apos;), (text(YEAR(today())) +&apos;.FX.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Intercompany&apos;), (text(YEAR(today())) +&apos;.IC.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Period-End&apos;), (text(YEAR(today())) +&apos;.PE.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Project&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SAP Roles&apos;), (text(YEAR(today())) +&apos;.SR.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tax&apos;), (text(YEAR(today())) +&apos;.TX.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tools&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Continuous Improvement&apos;), (text(YEAR(today())) +&apos;.CI.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Fixed Assets&apos;), (text(YEAR(today())) +&apos;.FA.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Financial Reporting&apos;), (text(YEAR(today())) +&apos;.FR.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Journal Entries&apos;), (text(YEAR(today())) +&apos;.FA.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;GL MDM&apos;), (text(YEAR(today())) +&apos;.MDM.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Direct Tax&apos;), (text(YEAR(today())) +&apos;.DT.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) +&apos;.IDT.&apos;+ Name),
+(text(YEAR(today())) +&apos;.&apos;+ text( R2R_SME_Area__c ) +&apos;.&apos;+ Name))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project3#</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>APM/SCOA/Reporting updates</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Business / Global Functions initiated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Continuous Improvements</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Controls Embedding / enhancement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dependency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EFCR roll out</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Efficiency (with 3PSP)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPM &amp; Exception resolution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local / Fiscal projects</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>System Related</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Description</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_Lead_del__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Lead</label>
+        <picklist>
+            <controllingField>R2R_SME_Area__c</controllingField>
+            <picklistValues>
+                <fullName>Kamila Marzetz</fullName>
+                <default>false</default>
+                <controllingFieldValues>Account Reconciliation</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Niraj Kothari</fullName>
+                <default>false</default>
+                <controllingFieldValues>Direct Tax</controllingFieldValues>
+                <controllingFieldValues>FX Revaluation</controllingFieldValues>
+                <controllingFieldValues>GL MDM</controllingFieldValues>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+                <controllingFieldValues>Period-End</controllingFieldValues>
+                <controllingFieldValues>SAP Roles</controllingFieldValues>
+                <controllingFieldValues>Tax</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Padma Prasad</fullName>
+                <default>false</default>
+                <controllingFieldValues>Fixed Assets</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cristina Butu</fullName>
+                <default>false</default>
+                <controllingFieldValues>Financial Reporting</controllingFieldValues>
+                <controllingFieldValues>SCOA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Valeria Gulyas</fullName>
+                <default>false</default>
+                <controllingFieldValues>Continuous Improvement</controllingFieldValues>
+                <controllingFieldValues>GPM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sankarnarayanan V</fullName>
+                <default>false</default>
+                <controllingFieldValues>Intercompany</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nikoletta Pinter</fullName>
+                <default>false</default>
+                <controllingFieldValues>Financial Reporting</controllingFieldValues>
+                <controllingFieldValues>Indirect Tax</controllingFieldValues>
+                <controllingFieldValues>Tax</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vivekaa Arumugam</fullName>
+                <default>false</default>
+                <controllingFieldValues>Continuous Improvement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Veerabhadran VK</fullName>
+                <default>false</default>
+                <controllingFieldValues>FX Revaluation</controllingFieldValues>
+                <controllingFieldValues>GL MDM</controllingFieldValues>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+                <controllingFieldValues>Period-End</controllingFieldValues>
+                <controllingFieldValues>SAP Roles</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ashwathi Upalakkal</fullName>
+                <default>false</default>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sheetal Pinjarkar</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tools</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;&amp;Id , 
+ Project2__c 
+,&apos;_self&apos;)</formula>
+        <label>Project#</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>R2R_SME_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>R2R SME Area</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Continuous Improvement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fixed Assets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Financial Reporting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FX Revaluation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Intercompany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Journal Entries</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GL MDM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Period-End</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAP Roles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tools</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GPM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SCOA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indirect Tax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RAG_Color__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(RAG__c, &apos;Green&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvi&quot;, &quot;Green&quot;),
+IF ( ISPICKVAL(RAG__c, &apos;Amber&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvd&quot;, &quot;Yellow&quot;),
+IF ( ISPICKVAL(RAG__c, &apos;Red&apos;),  IMAGE(&apos;/servlet/servlet.FileDownload?file=015c0000000cPvY&apos;,
+&quot;Red&quot;),
+&apos;&apos;)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RAG Color</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RAG__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Red- Delays &amp; Overspend
+Amber-Risks to deliver on time /in budget. Risks are being mitigated.
+Green- On track</inlineHelpText>
+        <label>RAG</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Target_Completion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Completion Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>text(Business_cost__c  +  IT_Cost__c) &amp; &apos; &apos; &amp; text( Currency__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cost</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CI_R2R Innovation</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Project__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>R2R_SME_Area__c</columns>
+        <columns>Landscape__c</columns>
+        <columns>Funnel_Status__c</columns>
+        <columns>RAG_Color__c</columns>
+        <columns>Project2__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>{000}</displayFormat>
+        <label>R2R Innovation Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>CI_R2R Innovations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Project__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Project_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>R2R_SME_Area__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Landscape__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Funnel_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RAG_Color__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Project_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Project__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Project_Name__c</searchFilterFields>
+        <searchFilterFields>Project__c</searchFilterFields>
+        <searchResultsAdditionalFields>Project__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>R2R_SME_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RAG_Color__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
