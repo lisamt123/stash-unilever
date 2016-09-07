@@ -257,7 +257,7 @@ public with sharing class ICB_Cockpit_CC
                 if(operation.equalsIgnoreCase(CONST_OPERATION_IS_CLOSED))
                 {
                     opp.ICB_IS_CLOSED__c = true;
-                    //oppItem.add(opp);
+                    oppItem.add(opp);
                 }
                 if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity >= 0 )
                 {
