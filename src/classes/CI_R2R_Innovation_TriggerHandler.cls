@@ -31,8 +31,8 @@ public with sharing class CI_R2R_Innovation_TriggerHandler implements ITrigger{
     public void bulkAfter(){
         //This method has been included as the class implements the ITrigger interface
         Integer count=0;
-    Id cid;
-    string pic;
+        Id cid=null;
+        string pic='';
     for(CI_R2R_Innovation__c r2r : (list<CI_R2R_Innovation__c>)Trigger.new){
        pic = r2r.R2R_SME_Area__c;
        cid=r2r.Id;       
@@ -74,7 +74,7 @@ public with sharing class CI_R2R_Innovation_TriggerHandler implements ITrigger{
         }
         r2rList.add(clist);
     }
-    if(r2rList.size()!=0){
+    if(!r2rList.isEmpty()){
         update r2rList;    
     }
     }
