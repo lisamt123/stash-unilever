@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>IPM_Project__c$Name</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c$IPM_Project_Leader__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c$Deputy_Project_Leader__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c$IPM_Technical_Project_Leader__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c$IPM_Project_Gatekeeper__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c$IPM_Finance_Lead__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c.IPM_Project_Resources__r$IPM_User__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Project__c.IPM_Project_Resources__r$IPM_Is_Lead__c</field>
+    </columns>
+    <currency>EUR</currency>
+    <description>IPM Team Members Report</description>
+    <filter>
+        <criteriaItems>
+            <column>IPM_Project__c$Is_Archieved__c</column>
+            <operator>equals</operator>
+            <value>0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>IPM_Project__c$IPM_Phase__c</column>
+            <operator>equals</operator>
+            <value>Ideas,Feasibility,Capability,Market Ready,Market Deployment</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>IPM_Project__c$IPM_Company_Card__c</column>
+            <operator>startsWith</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>IPM Team Members</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>IPM_Team_Members__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>IPM_Project__c$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>IPM_Project__c$IPM_Actual_Launch_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

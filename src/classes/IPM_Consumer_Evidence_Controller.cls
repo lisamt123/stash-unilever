@@ -55,7 +55,6 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             couyName=new List<String>();
             countryList=new List<IPM_Country__c>();
             cList=new List<IPM_Country__c>();
-            String selCountryName=IPM_Constantutils.BLANK;
             urlCountry = apexpages.currentpage().getparameters().get('country');
             if(!String.isBlank(projDocSecId)){
                 projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c,IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c,IPM_Selected_Consumer_Evidence_Countries__c 
