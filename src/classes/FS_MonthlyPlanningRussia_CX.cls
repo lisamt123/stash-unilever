@@ -10,9 +10,6 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
     Private List<User> listRussiaUsers;
     Private List<Event> listEvents;
     Private List<Event> tempEvents;
-    //Private date startdate;
-    //Private date endDate; 
-    //Private integer nonworkingDays {get;set;}
     Private integer weekend_Count {get;set;}
     Public Map<Id,List<Event>> userEventsMap=new Map<Id,List<Event>>();
     Public Map<Id,Set<String>> userActivityDateMap=new Map<Id,Set<String>>();
@@ -31,10 +28,10 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
     Public void FS_Monthly_Planning_Russia_CX(){
        isVisible=false; 
     }
-    //Public void setlistMonthlyPlanner(){}
+    // Get working hour details for selected month
     Public pagereference refreshPage(){
-        //nonworkingDays= 0;
         weekend_Count = 0;
+        noofHolidaysTillDate=0;
         isVisible=true;        
         monthStartDate=dateName.toStartOfMonth();
         monthEndDate=monthStartDate.addDays(date.daysInMonth(dateName.year(),dateName.month())-1);
@@ -45,9 +42,13 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
         While(txnDate!=monthEndDate){
         Datetime now = Datetime.newInstance(txnDate.year(), txnDate.month(), txnDate.day(), 0, 0, 0);        
         Boolean isHoliday = !BusinessHours.isWithin(bh.Id, now);
-        System.debug('The value of now is : '+isHoliday);
+        //System.debug('The value of now is : '+isHoliday);
         if (isHoliday) {
             weekend_Count++;
+            if(txnDate<=dateName)
+            {
+            noofHolidaysTillDate++;
+            }
         }
         txnDate = txnDate.addDays(1);
         }
@@ -55,33 +56,21 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
         noofWeekends=weekend_Count;
         weekend_Count=0;
         txnDate = monthStartDate;
-        bh=temp;
-        While(txnDate!=dateName){
-        Datetime now = Datetime.newInstance(txnDate.year(), txnDate.month(), txnDate.day(), 0, 0, 0);        
-        Boolean isHoliday = !BusinessHours.isWithin(bh.Id, now);
-        System.debug('The value of now is : '+isHoliday);
-        if (isHoliday) {
-            weekend_Count++;
-        }
-        txnDate = txnDate.addDays(1);
-        }
-        //system.debug(weekend_Count);
-        noofHolidaysTillDate=weekend_Count;       
+        bh=temp;       
         noofDays=monthStartDate.daysBetween(monthEndDate)+1;
         workingDays=noofDays-noofWeekends;
         return page.FS_MonthlyPlanningRussiaDetail;
     }
+    // Get details of monthly activites for subordinators of currently logged in user
     Public List<FS_MonthlyPlanner> getlistMonthlyPlanner(){       
-       
        tempEvents=new List<Event>();
        listMonthlyPlanner=new List<FS_MonthlyPlanner>();         
        listRussiaUsers=[select id,name from user  where managerId=:userInfo.getUserId()];
        
-       System.debug('monthStartDate'+monthStartDate);  
-       System.debug('dateName'+dateName);   
-       System.debug('listRussiaUsers'+listRussiaUsers);          
-       listEvents=[select id,Ownerid,ActivityDate from event where Ownerid in : listRussiaUsers and ActivityDate>:monthStartDate and ActivityDate<:dateName]; // Need to put filter on StartDateTime  
+       listEvents=[select id,Ownerid,ActivityDate from event where Ownerid in : listRussiaUsers and ActivityDate>=:monthStartDate and ActivityDate<=:dateName];  
        tempEvents=new List<Event>();
+       Set<String> tempDates=new Set<String>();
+       
        //system.debug(listEvents);
        For(Event eventRecord : listEvents){
             tempEvents=new List<Event>();
@@ -90,18 +79,16 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
             }
             tempEvents.add(eventRecord);
             userEventsMap.put(eventRecord.OwnerId, tempEvents);
-        }
-        Set<String> tempDates=new Set<String>();
-        For(Event eventRecord : listEvents){
-            tempDates=new Set<String>();
+            
+             tempDates=new Set<String>();
             If(userActivityDateMap.containsKey(eventRecord.OwnerId)){
               tempDates=userActivityDateMap.get(eventRecord.OwnerId);
             }
             tempDates.add(String.ValueOf(eventRecord.ActivityDate));
             userActivityDateMap.put(eventRecord.OwnerId, tempDates);
-        }      
+        }
        For(User userRecord : listRussiaUsers){
-            system.debug(userRecord);
+            //system.debug(userRecord);
             tempEvents=new list<Event>();
             tempDates=new Set<String>();
             monthly_Planner=new FS_MonthlyPlanner();
@@ -120,9 +107,10 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
             monthly_Planner.actualWorkingDays=tempDates.size();
             If(tempDates.size()>0){
               //monthly_Planner.average=(monthly_Planner.actual*100)/monthly_Planner.workingDaysTillDate;
-              monthly_Planner.average=(monthly_Planner.actual*100)/tempDates.size();
-              monthly_Planner.target=((tempDates.size()*100)/workingDaysTillDate);
-              monthly_Planner.criticalTarget=monthly_Planner.target-10; 
+              monthly_Planner.average=monthly_Planner.actual/tempDates.size();
+              monthly_Planner.target=Decimal.valueOf((tempDates.size()*100)/workingDays);
+              system.debug(monthly_Planner.target);
+              monthly_Planner.criticalTarget=Decimal.valueOf((tempDates.size()*100)/workingDays)-10;
             }           
             IF(monthly_Planner!=null){
             listMonthlyPlanner.add(monthly_Planner);

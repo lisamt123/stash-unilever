@@ -40,7 +40,11 @@ Public class FS_ContactDetail_Test {
         tempdetail.editPage();
         tempdetail.updateContact();
         System.assert(con.FS_PIEncryptKey__c <> null);
-        
+        FS_ContactDetailHelper_CC.FS_GetSiteLeadResult  varFSGetSiteLeadResult=new FS_ContactDetailHelper_CC.FS_GetSiteLeadResult();
+        FS_ContactDetailHelper_CC.FS_SiteLead varFS_SiteLead=new FS_ContactDetailHelper_CC.FS_SiteLead();
+        varFS_SiteLead.email='dinesh.singla24@gmail.com';
+        varFS_SiteLead.Middlename='test';
+        varFS_SiteLead.phone='3333';    
     }
     
 }

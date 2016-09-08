@@ -17,8 +17,8 @@ public with sharing class FS_GenerateMDMRequest_CX{
     
     private Id opportunityId;
     private static final String StepStatusStarted = 'Started';
-	private static final String FoodSolution = 'Food Solution';
-	private static final String ClassName = 'FS_GenerateMDMRequest_CX';
+        private static final String FoodSolution = 'Food Solution';
+        private static final String ClassName = 'FS_GenerateMDMRequest_CX';
     
     /*******************************************************************
     Purpose: Constructor method

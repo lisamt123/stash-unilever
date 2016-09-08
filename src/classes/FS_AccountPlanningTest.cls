@@ -10,8 +10,7 @@ public class FS_AccountPlanningTest {
     //Set up Test Data for unit test    
     @testSetup static void setupTestData(){
         FS_UtilTestDataSetup testData=new FS_UtilTestDataSetup();
-        User testUser=testData.createTestUser();
-        system.debug(testUser.ManagerId);
+        User testUser=testData.createTestUser();        
         system.runAs(testUser){
             List<Account> accounts = testData.setUpAccountData();            
             testData.setUpAccountPlan(accounts);

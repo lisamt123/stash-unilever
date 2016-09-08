@@ -59,11 +59,12 @@ public with sharing class FS_ContractProductHelper {
     } 
     
     public void updateClaimedCases(List<Contract_Product__c> ContractProdList){
-        if(FS_Utility.runOnceContractProduct()){//To prevent recursion in after update trigger
-            List<FS_Contract_Product_Opportunity_Map__c> CustomSettingList = new List<FS_Contract_Product_Opportunity_Map__c>();
-            //While updating Contract Product custom setting record is inserted, fetching and deleting those
-            CustomSettingList = FS_Contract_Product_Opportunity_Map__c.getall().values();
-            If(!CustomSettingList.isEmpty()){
+        List<FS_Contract_Product_Opportunity_Map__c> CustomSettingList = new List<FS_Contract_Product_Opportunity_Map__c>();
+        //While updating Contract Product custom setting record is inserted, fetching and deleting those
+        CustomSettingList = FS_Contract_Product_Opportunity_Map__c.getall().values();
+        system.debug('CustomSettingList -->'+CustomSettingList );
+        If(!CustomSettingList.isEmpty()){
+            if(FS_Utility.runOnceContractProduct()){//To prevent recursion in after update trigger            
                 List<ID> ProductIdList = new List<ID>();
                 List<ID> ContractIdList = new List<ID>();
                 List<ID> OppIdList = new List<ID>();
@@ -105,9 +106,7 @@ public with sharing class FS_ContractProductHelper {
                     If(!MCCList.isEmpty()){                
                         Update MCCList;                
                     }
-                    If(!CustomSettingList.isEmpty()){                
-                        Delete CustomSettingList;         
-                    } 
+                    Delete CustomSettingList;         
                 }
                 Catch(DmlException e){
                     System.debug( 'The following exception has occurred: '+e.getMessage());

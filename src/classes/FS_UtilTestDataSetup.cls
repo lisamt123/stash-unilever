@@ -18,16 +18,18 @@ public with sharing class FS_UtilTestDataSetup {
         Return SalesRepUser;
     }
     
+    //Create account data for test data set up
     Public List<Account> setUpAccountData(){     
         List<Account> accounts = new List<Account>();
         Id operatorRecordTypeId=Schema.SObjectType.Account.getRecordTypeInfosByName().get('Operator').getRecordTypeId();        
-            for(Integer i=0;i < 10;i++){
-                accounts.add(new Account(Name ='FS Test Acc_'+i,recordtypeid=operatorRecordTypeId));
-            }
-            insert accounts;  
-return accounts;        
-    }    
+        for(Integer i=0;i < 10;i++){
+            accounts.add(new Account(Name ='FS Test Acc_'+i,recordtypeid=operatorRecordTypeId));
+        }
+        insert accounts;  
+        return accounts;        
+    }
     
+    //create contract data for test data set up
     Public List<Contract> setUpContractData(List<Account> accounts){
         List<Contract> listContract=new List<Contract>();
         For(Account Acc: accounts){
@@ -35,7 +37,9 @@ return accounts;
         }
         Insert listContract;
         return listContract;
-    }    
+    }
+    
+    //Create opportunity for MABE process
     Public List<Opportunity> setUpMABEOpportunityData(List<Contract> listContract){
         //Set up Custom settings for Opportunity Trigger
         FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
@@ -56,6 +60,7 @@ return accounts;
         return opportunities;
     }
     
+    //Create account plan test data set up
     Public void setUpAccountPlan(List<Account> accounts){
         //Set up opportunity for Account Planning
         //Set up account plan records
@@ -83,6 +88,7 @@ return accounts;
         Insert riskList;
     }
     
+    //Create opportunity for account planning test
     Public list<Opportunity> setUpOppforAccPlan(List<FS_Defined_Objective__c> objList){
         FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
         insert oppCustomSettings;            
@@ -100,11 +106,12 @@ return accounts;
         return opportunities;
     }
     
+    //Create opportunity line item for opportunities
     Public void setUpOpportunityLineItemData(List<Opportunity> opportunities){
         List<Product2> products=new  List<Product2>();
         
-        for(Integer i=0;i < 1;i++){
-            products.add(new Product2(Name = 'FS Test Product_'+i,COGS__c=(i+1),isActive=true,MarketType__c='BOH MAYO',StartDate__c=date.today(),EndDate__c=date.today()+1,CanUseQuantitySchedule=true));
+        for(Integer i=0;i < 2;i++){
+            products.add(new Product2(Name = 'FS Test Product_'+i,COGS__c=(i+1),isActive=true,MarketType__c='BOH MAYO',StartDate__c=date.today(),EndDate__c=date.today()+1,UID_Material_ID__c=string.valueof(i+1),CanUseQuantitySchedule=true));
         }
         insert products;
         
@@ -118,10 +125,7 @@ return accounts;
         {
             pricebookentries.add(new priceBookEntry ( pricebook2id = pricebookId,Product2Id = prod.id,  unitPrice = 1000, IsActive = true,UseStandardPrice = false,FS_Bracket_1__c=1)); 
         }
-        insert pricebookentries;
-        //List<Opportunity> oppList=new List<Opportunity>();
-        //Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-        //oppList=[select id,name,stagename,contractid,recordtypeid,DealApproved__c from opportunity where recordtypeid=:newRecordTypeId and stagename='03 – In the funnel' limit 1];
+        insert pricebookentries;        
         List<OpportunityLineItem> listOli=new List<OpportunityLineItem>();
         For(Opportunity Opp : opportunities){             
             For(PriceBookEntry Pbe: pricebookentries){
@@ -131,6 +135,7 @@ return accounts;
         Insert listOli;        
     }
     
+    //Create scheduling for line items
     Public void setUpSchedule(List<OpportunityLineItem> listOli){
         List<OpportunityLineItemSchedule> listScheduletoinsert=new List<OpportunityLineItemSchedule>();
         For(OpportunityLineItem oli : listOli){
@@ -150,6 +155,7 @@ return accounts;
         }     
     }
     
+    //Update opportunities to stage 4
     Public List<Opportunity> closeOpportunity(List<Opportunity> oppList){
         List<Opportunity> ListNewOppToBeclosed=new List<Opportunity>();
         For(Opportunity Opp: oppList){                

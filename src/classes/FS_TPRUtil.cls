@@ -67,9 +67,8 @@ public with sharing class FS_TPRUtil {
             temporaryDiscount = temporaryTPRMap.get(product2Map.get(oppProd.Product2Id).FS_TemporaryProductDiscountTable__c).FS_Strategic__c;
         } else {
             temporaryDiscount = 0;
-        }
+        }        
         
-        System.debug('>>> temporaryDiscount: ' + temporaryDiscount);
         return temporaryDiscount;
     }
     
@@ -222,13 +221,6 @@ public with sharing class FS_TPRUtil {
              /
              (oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) 
                 - oppProd.FS_grossSalesValue__c * (1 - temporaryTPRDecimal) * (1 - onInvoiceDecimal) * offnvoiceDecimal);
-        
-        System.debug('gm FS_grossSalesValue__c: ' + oppProd.FS_grossSalesValue__c);
-        System.debug('gm temporaryTPRDecimal: ' + temporaryTPRDecimal);
-        System.debug('gm onInvoiceDecimal: ' + onInvoiceDecimal);
-        System.debug('gm offnvoiceDecimal: ' + offnvoiceDecimal);
-        System.debug('gm FS_productCost__c: ' + oppProd.FS_productCost__c);
-        System.debug('gm FS_supplyCost__c: ' + oppProd.FS_supplyCost__c);
         
         return gm * 100;
     }

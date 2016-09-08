@@ -43,4 +43,17 @@ public Class FS_Utility{
             return ContractProduct;
         }
     }
+    
+    Public Static map<String,String> recordTypewithName(String Name)
+    {
+        map<String,String> recordTypeWithName=new map<String,String>();
+        List<RecordType> recordTypeWithNameList=[select id,DeveloperName from RecordType where sObjectType=:Name ];
+        for(RecordType varRecord:recordTypeWithNameList)
+        {
+        recordTypeWithName.put(varRecord.DeveloperName,varRecord.id);
+        }
+        return recordTypeWithName;
+    }
+        
+    
    }

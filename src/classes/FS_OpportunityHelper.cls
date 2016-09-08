@@ -14,8 +14,9 @@ public with sharing class FS_OpportunityHelper {
     Private static final string ERROR_MESSAGE='The following exception has occurred: ';
     Private static final string FOOD_SOLUTION='Food Solution';
     Private static final string CLASS_NAME='FS_OpportunityHelper';
+    Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
     
-    /* * Method rollUpOpportunityLineItem to update Opportunity with Opp Line Item Value (Gross Profit and Market Target)
+/* * Method rollUpOpportunityLineItem to update Opportunity with Opp Line Item Value (Gross Profit and Market Target)
 *  @name rollUpOpportunityLineItem
 *  @param List<Opportunity> listNewTrigger
 *  @return 
@@ -85,7 +86,7 @@ public with sharing class FS_OpportunityHelper {
             }
         }
     }
-    /* * Method rollUptoAccountPlan to update rollup fields on account plan
+/* * Method rollUptoAccountPlan to update rollup fields on account plan
 *  @name rollUptoAccountPlan
 *  @param List<Opportunity> listNewTrigger2
 *  @return 
@@ -233,7 +234,7 @@ public with sharing class FS_OpportunityHelper {
         List<Contract_Product__c> listContractProduct=new List<Contract_Product__c>();        
         List<FS_Contract_Product_Opportunity_Map__c> listNewCustomSetting=New List<FS_Contract_Product_Opportunity_Map__c>();
         List<Opportunity> listOpp=new List<Opportunity>();
-        List<OpportunityLineItem> tempOli = new List<OpportunityLineItem>();
+        //List<OpportunityLineItem> tempOli = new List<OpportunityLineItem>();
         
         Set<Id> setContractId=new Set<Id>();       
         
@@ -241,30 +242,25 @@ public with sharing class FS_OpportunityHelper {
         Map<Id,List<OpportunityLineItem>> mapContractRelatedOppLineItem=new Map<Id,List<OpportunityLineItem>>();
         Map<Id,List<Contract_Product__c>> mapExistingContractConProd=new Map<Id,List<Contract_Product__c>>();
         Map<Id,List<Contract_Product__c>> mapContractConProd=new Map<Id,List<Contract_Product__c>>();    
-       
-        //Get record type ids for Existing and MA-BE        
-        Id newRecordTypeId;
-        Id existingRecordTypeId;
         
-        try{              
-            newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-            existingRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();                  
-        }           
-        Catch(DmlException e){
-            System.debug( ERROR_MESSAGE +e.getMessage());
-            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
-        }
+        //Get record type ids for Existing and MA-BE        
+        
+        Id newRecordTypeId=recordIdBasedonDeveloperName.get('NAFSMABETool');
+        Id existingRecordTypeId=recordIdBasedonDeveloperName.get('Existing');
+        
+        //Id newRecordTypeId = [SELECT Id FROM RecordType WHERE sObjectType='Opportunity' and DeveloperName = 'NAFSMABETool'].Id;
+        //Id existingRecordTypeId = [SELECT Id FROM RecordType WHERE sObjectType='Opportunity' and DeveloperName = 'Existing'].Id;       
         
         FS_UtilMABETool utilMabe=new FS_UtilMABETool();//create new instance for MABE util class
         
-        listNewOpportunity=utilMabe.getNewClosedOpportunity(listNewTrigger,oppOldMap,newRecordTypeId);                
+        listNewOpportunity=utilMabe.getNewClosedOpportunity(listNewTrigger,oppOldMap,newRecordTypeId);//Get list of opportunities with New record type which has been closed          
         
         if(!listNewOpportunity.isEmpty()){
             
-            setContractId=utilMabe.getContractList(listNewOpportunity);             
+            setContractId=utilMabe.getContractList(listNewOpportunity);//Get list of contracts for closed opportunities           
             //Get list of oppotunities with Existing recordtype
             listExistingOpportunity=[select id,stagename,accountid,ContractId from Opportunity where recordtypeid=:existingRecordTypeId and contractId in :setContractId];
-            
+            //Add both existing and closed new opportunities to one list
             listOpp.addAll(listNewOpportunity);
             listOpp.addAll(listExistingOpportunity);
             //Get list of line items for Opportunities with both Existing and New
@@ -272,71 +268,69 @@ public with sharing class FS_OpportunityHelper {
                                        Product2Id,Opportunity.contractId,Contract_Product__c,Product2.Name
                                        from OpportunityLineItem where opportunityId in :listOpp];
         }           
-            
-            mapRelatedOppLineItem=utilMabe.createMapOliOpp(listExistingOppLineItem);
-            
-            mapContractRelatedOppLineItem=utilMabe.createMapOliOppContract([select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,                                                                  Product2Id,Opportunity.contractId,Contract_Product__c
-                                                                            from OpportunityLineItem where opportunityId in :listNewOpportunity]);
-            
-            contractProductList=[select id,Contract__c,Product__c,Product__r.Name from Contract_Product__c where Contract__c in : setContractId];
-            
-            mapExistingContractConProd=utilMABE.getMapExistingConProduct(contractProductList);
-                    
-            //Open loop for each existing opportunity        
-            For(Opportunity existingOpp : listExistingOpportunity){                
-                listNewOpp = new List<Opportunity>();
-                tempOli = new List<OpportunityLineItem>();                  
-                listNewOpp=utilMabe.getRelatedNewOpp(existingOpp,listNewOpportunity);  //Get related new opportunities                         
-                tempOli=utilMabe.getOlifromNewOpp(existingOpp,listNewOpp,mapRelatedOppLineItem);//Get list of line items for upsert              
-                oppLineItemforExisting.addall(tempOli);
-                listContractProduct.addall(utilMABE.getContractProduct(existingOpp,listNewOpp,mapRelatedOppLineItem));//Get list of contract product to be created           
-            }          
         
-            listContractProductInsert.addall(utilMABE.getContractProductInsert(listContractProduct,mapExistingContractConProd));//Get list of contract product to insert
-            
-            listContractProductUpdate.addall(utilMABE.getContractProductUpdate(listContractProduct,mapExistingContractConProd));//Get list of contract product to update
+        mapRelatedOppLineItem=utilMabe.createMapOliOpp(listExistingOppLineItem);//Create map of opportunity line items for each existing and new opportunity
+        //Create map of opportunity line item for each contract associated with closed new opportunity
+        mapContractRelatedOppLineItem=utilMabe.createMapOliOppContract([select Id,opportunityId,Quantity,TotalPrice,PricebookentryId,Distributor__c,                                                                  Product2Id,Opportunity.contractId,Contract_Product__c
+                                                                        from OpportunityLineItem where opportunityId in :listNewOpportunity]);
+        //Get list of contract product which already exists
+        contractProductList=[select id,Contract__c,Product__c,Product__r.Name from Contract_Product__c where Contract__c in : setContractId];
+        //Create map for contract product with associated contracts
+        mapExistingContractConProd=utilMABE.getMapExistingConProduct(contractProductList);
         
-            try{              
-                If(!oppLineItemforExisting.isEmpty() && listContractProductInsert.isEmpty()){                    
-                    Upsert oppLineItemforExisting;//Insert line items for opportunity with Existing record type
-                }            
-                Else If(!oppLineItemforExisting.isEmpty()&&!listContractProductInsert.isEmpty()){
-                    Upsert oppLineItemforExisting;//Insert line items for opportunity with Existing record type
-                    Insert listContractProductInsert;//Insert contract product
-                }                  
-            }
+        //Open loop for each existing opportunity        
+        For(Opportunity existingOpp : listExistingOpportunity){                
+            listNewOpp = new List<Opportunity>();                           
+            listNewOpp=utilMabe.getRelatedNewOpp(existingOpp,listNewOpportunity);  //Get related new opportunities                         
+            oppLineItemforExisting.addall(utilMabe.getOlifromNewOpp(existingOpp,listNewOpp,mapRelatedOppLineItem));//Add list of line items to list for upsert          
+            listContractProduct.addall(utilMABE.getContractProduct(existingOpp,listNewOpp,mapRelatedOppLineItem));//Get list of contract product to be created           
+        }          
         
-            Catch(DmlException e){
-                System.debug( ERROR_MESSAGE +e.getMessage() );
-                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
-            } 
-            
-            //**Contract product has to be mapped on opportunity line items which has just been created for existing Opportunity**//        
-            //Fetch list of line items which have been copied to opportunity with Existing record type
-            oppLineItemUpsert=[select Id,opportunityId,Product2Id,Product2.name,Opportunity.contractId,Contract_Product__c,Pricebookentry.Product2Id from OpportunityLineItem where opportunityId in : listExistingOpportunity];          
-           
-            listContractProduct=[select id,Contract__c,Product__c,Product__r.Name from Contract_Product__c where Contract__c in : SetContractId];//Fetch contract products
+        listContractProductInsert.addall(utilMABE.getContractProductInsert(listContractProduct,mapExistingContractConProd));//Get list of contract product to insert
         
-            mapContractConProd=utilMABE.getMapExistingConProduct(listcontractProduct);//Prepare map for contract products for each contract
+        listContractProductUpdate.addall(utilMABE.getContractProductUpdate(listContractProduct,mapExistingContractConProd));//Get list of contract product to update
         
-            oppLineItemToUpdate=utilMABE.getOlitoUpdate(oppLineItemUpsert,mapContractConProd);//Prepare list on opportunity line item to look up on contract product  
+        try{              
+            If(!oppLineItemforExisting.isEmpty() && listContractProductInsert.isEmpty()){                    
+                Upsert oppLineItemforExisting;//Insert line items for opportunity with Existing record type
+            }            
+            Else If(!oppLineItemforExisting.isEmpty()&&!listContractProductInsert.isEmpty()){
+                Upsert oppLineItemforExisting;//Insert line items for opportunity with Existing record type
+                Insert listContractProductInsert;//Insert contract product
+            }                  
+        }
         
-            listNewCustomsetting=utilMABE.getCustomSetting(listContractProductUpdate,mapContractRelatedOppLineItem);//Prepare list of custom settings to insert for monthly claim cases creation         
-            
-            //**Custom settings data has been prepared**//        
-            try{              
-                If(!oppLineItemToUpdate.isEmpty()){                    
-                    update oppLineItemToUpdate;//Update line items to look up on contract product
-                }                
-                If(!listContractProductUpdate.isEmpty()){
-                    Insert listNewCustomsetting;//Insert custom settings for monthly claim case calculation                    
-                    Update listContractProductUpdate;//Update contract product which already exists but monthly claim cases need to be re calculated                
-                }            
-            }        
-            Catch(DmlException e){
-                System.debug( ERROR_MESSAGE +e.getMessage() );
-                ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
-            }        
+        Catch(DmlException e){
+            System.debug( ERROR_MESSAGE +e.getMessage() );
+            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
+        } 
+        
+        //**Contract product has to be mapped on opportunity line items which has just been created for existing Opportunity**//        
+        //Fetch list of line items which have been copied to opportunity with Existing record type
+        oppLineItemUpsert=[select Id,opportunityId,Product2Id,Product2.name,Opportunity.contractId,Contract_Product__c,Pricebookentry.Product2Id from OpportunityLineItem where opportunityId in : listExistingOpportunity];          
+        
+        listContractProduct=[select id,Contract__c,Product__c,Product__r.Name from Contract_Product__c where Contract__c in : SetContractId];//Fetch contract products
+        
+        mapContractConProd=utilMABE.getMapExistingConProduct(listcontractProduct);//Prepare map for contract products for each contract
+        
+        oppLineItemToUpdate=utilMABE.getOlitoUpdate(oppLineItemUpsert,mapContractConProd);//Prepare list on opportunity line item to look up on contract product  
+        
+        listNewCustomsetting=utilMABE.getCustomSetting(listContractProductUpdate,mapContractRelatedOppLineItem);//Prepare list of custom settings to insert for monthly claim cases creation         
+        
+        //**Custom settings data has been prepared**//        
+        try{              
+            If(!oppLineItemToUpdate.isEmpty()){                    
+                update oppLineItemToUpdate;//Update line items to look up on contract product
+            }                
+            If(!listContractProductUpdate.isEmpty()){
+                Insert listNewCustomsetting;//Insert custom settings for monthly claim case calculation                    
+                Update listContractProductUpdate;//Update contract product which already exists but monthly claim cases need to be re calculated                
+            }            
+        }        
+        Catch(DmlException e){
+            System.debug( ERROR_MESSAGE +e.getMessage() );
+            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(),CLASS_NAME,'MA-BE Process', e.getMessage(), e, null, null, null, 0,FOOD_SOLUTION);
+        }        
     }
     
     public void validateOpportunity(List<Opportunity> listOpp){
@@ -344,7 +338,8 @@ public with sharing class FS_OpportunityHelper {
         List<Id> listAccId = new List<Id>();
         List<Id> listConId = new list<Id>();
         Map<Id,Opportunity> mapAccOpp= new Map<Id,Opportunity>();
-        Id oppRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();
+        //Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');        
+        Id oppRecordTypeId=recordIdBasedonDeveloperName.get('Existing');         
         for(Opportunity opp: listOpp){
             if(opp.RecordTypeId==oppRecordTypeId){
                 listAccId.add(opp.AccountId);

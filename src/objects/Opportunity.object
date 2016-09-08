@@ -442,7 +442,7 @@ Is the customer growing?</inlineHelpText>
         <fullName>FS_GrossMarginTarget__c</fullName>
         <description>This field is calculate Gross Margin Target and used to MABE Approval Process.</description>
         <externalId>false</externalId>
-        <formula>IF(AND(MarketTarget__c &gt; 0,MarketTarget__c &gt;= AverageGrossProfit__c),(MarketTarget__c - AverageGrossProfit__c )/ MarketTarget__c, 0)</formula>
+        <formula>IF(AND(FS_MarketTarget__c &gt; 0,FS_MarketTarget__c &gt;= FS_AverageGrossProfit__c),(FS_MarketTarget__c - FS_AverageGrossProfit__c )/ FS_MarketTarget__c, 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross Margin Target</label>
         <precision>18</precision>
@@ -588,6 +588,19 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FS_Sub_Sector__c</fullName>
+        <description>This is used for risk activity</description>
+        <externalId>false</externalId>
+        <label>Sub Sector</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FS_SupplyCost__c</fullName>
@@ -3592,14 +3605,14 @@ Enter competitor pricing if available</inlineHelpText>
         <errorMessage>Close Date cannot be past date.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>FS_StartDate_Should_is_not_previous_date</fullName>
+        <fullName>FS_StartDate_should_be_future_date</fullName>
         <active>true</active>
         <description>Start date should not be previous date before sending for approval.</description>
         <errorConditionFormula>RecordType.DeveloperName = &apos;UFS_Opportunity_Russia&apos; 
 &amp;&amp; FS_TPRApprovedByLineManager__c
 &amp;&amp; NOT ( FS_TPRApproved__c ) 
 &amp;&amp; NOT ( ISBLANK (FS_startDateTPR__c))
-&amp;&amp; FS_startDateTPR__c &lt;  TODAY()</errorConditionFormula>
+&amp;&amp; FS_startDateTPR__c &lt;=  TODAY()</errorConditionFormula>
         <errorMessage>Start Date TPR should not be on previous date.</errorMessage>
     </validationRules>
     <validationRules>
@@ -3633,6 +3646,36 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorConditionFormula>AND(  ISCHANGED(StageName),ISPICKVAL(StageName,&apos;05 – Won&apos;), NOT(ISPICKVAL(PRIORVALUE(StageName),&quot;04 - Verbal Commitment&quot;)))</errorConditionFormula>
         <errorDisplayField>Account_History__c</errorDisplayField>
         <errorMessage>You must save the opportunity in Stage 04 - Verbal Commitment before advancing to Stage 05 - Won</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_Validation_for_Stage_4</fullName>
+        <active>true</active>
+        <description>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</description>
+        <errorConditionFormula>IF( ISPICKVAL(StageName,&apos;04 - Verbal Commitment&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
+        <errorDisplayField>Account_History__c</errorDisplayField>
+        <errorMessage>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_for_Stage_4</fullName>
+        <active>true</active>
+        <description>It is used to prevent Opportunity from being updated with &apos;04 - Verbal Commitment&apos; or &apos;05 – Won&apos;  Stage without any Product selected.</description>
+        <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;04 - Verbal Commitment&apos;) ,  HasOpportunityLineItem=false,false)</errorConditionFormula>
+        <errorDisplayField>Account_History__c</errorDisplayField>
+        <errorMessage>An opportunity at stage 04 must have at least one line item.  Please add a line item to your opportunity in stage 03, then advance it to stage 04.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_for_Stage_5</fullName>
+        <active>true</active>
+        <description>Opportunities must be approved in order to advance it to 05 - Won</description>
+        <errorConditionFormula>IF(ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
+        <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Record_Locked</fullName>
+        <active>false</active>
+        <description>Locks the record once approval has been done.</description>
+        <errorConditionFormula>FS_RecordLocked__c &amp;&amp;  NOT($UserRole.Name = &apos;UFS Russia&apos;) &amp;&amp; NOT( $Profile.Name = &apos;System Administrator&apos;)</errorConditionFormula>
+        <errorMessage>Record already passed approval process and cannot be edited.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Required_Cases_Pieces_field</fullName>
@@ -3738,6 +3781,15 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
    )</errorConditionFormula>
         <errorMessage>Start Date TPR is a required field.</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>Samples_Line_Items_Per_Opportunity</fullName>
+        <active>true</active>
+        <description>The number of samples SKUs that can be ordered should be limited to 10 per opportunity</description>
+        <errorConditionFormula>IF(FS_NoOFSampleOrders__c &gt;10, true, false)</errorConditionFormula>
+        <errorDisplayField>Account_History__c</errorDisplayField>
+        <errorMessage>The number of samples SKUs that can be ordered should be limited to 10 per opportunity</errorMessage>
+    </validationRules>
+
     <webLinks>
         <fullName>FS_SendMDMEmail</fullName>
         <availability>online</availability>

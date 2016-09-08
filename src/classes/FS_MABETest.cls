@@ -22,7 +22,7 @@ private class FS_MABETest {
         }        
     }
     
-    static testMethod void TestCopyOliToExisting(){
+    static testMethod void testCopyOliToExisting(){
         user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
         system.runAs(SalesRepUser){
             Test.startTest();
