@@ -11,12 +11,10 @@ private class IPM_ProjDocSectionController_Test{
     private static final string PROJ_RESOURCE_NOT_UPDATED = 'project resource not updated properly';
     private static final string PROJ_DOC_SEC_ID_STR = 'projdocsecid';
 	private static final string SAVE_FAILED = 'save failed';
-    private static final string GATE_DOC_SECTION_ACCESS_2 = 'trade_promotion_strategy,country_feedback_requirements';
     private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     private static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
     private static List<IPM_Project_Document_Section__c> sectionList = new List<IPM_Project_Document_Section__c>();
     private static IPM_Project_Document_Section_Content__c sectionContent;
-    private static List<IPM_Gate_Document_Section_Access__c> customSettingDataList = new List<IPM_Gate_Document_Section_Access__c>();
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static IPM_Project_Resource__c ipmProjectResource; 
     private static List<IPM_Gate_CMI__c> gateCMI = new List<IPM_Gate_CMI__c>();
@@ -90,7 +88,7 @@ private class IPM_ProjDocSectionController_Test{
             for(IPM_Project_Document_Section__c temp : sectionList){
                 sectionIdList.add(temp.Id);
             }
-            List<IPM_Project_Document_Section__c> ipmSectionList = [Select id, IPM_FunctionalRole__c from IPM_Project_Document_Section__c where id in : sectionIdList];            
+            
             system.assertEquals(sectionList[0].IPM_FunctionalRole__c, IPM_ConstantUtils.FUNCTIONAL_ROLE_BD, 'Section not updated properly.');
             
             sectionContent = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
@@ -113,60 +111,6 @@ private class IPM_ProjDocSectionController_Test{
             IPM_Gate_CMI__c testCMI = [Select id, IPM_Skip_Test_Reason__c from IPM_Gate_CMI__c where id =: gateCMI[0].Id];
             system.assertEquals(testCMI.IPM_Skip_Test_Reason__c, 'XYZ', 'CMI not updated properly.');
             
-
-            IPM_Gate_Document_Section_Access__c customSettingData = new IPM_Gate_Document_Section_Access__c();
-            customSettingData.Name = 'BD Marketing';
-            customSettingData.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Idea_Graphic,Consumer_Need,Strategic_Fit,Competitors,Target_Audience,Concept,CU_And_Complexity,Degree_of_Commonality,Communication,Trademarks,Product,Proposed_Pricing,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData.IPM_Gate_Document_Section_Access_2__c = 'Merchandising_Strategy,Trade_Promotion_Strategy,Country_Feedback_Requirements,Regional_BD_Team_Feedback_to_Global,Regional_BD_Team_FB_Req,Pack_Graphics';
-            customSettingDataList.add(customSettingData);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData1 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData1.Name = 'CD';
-            customSettingData1.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Customers_Channels,Promotion_Guidance_for_Deployment,Assortment_Strategy,Merchandising_Strategy,Trade_Promotion_Strategy,Customers_Channels,Trade_Story, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData1.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData1);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData2 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData2.Name = 'CMI';
-            customSettingData2.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Consumer_Evidence_Concept,Mix_Qualification_Plan_and_Action_Standards,Consumer_Evidence_Pack,Consumer_Evidence_Product,Consumer_Evidence_Price,Full_Mix,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData2.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData2);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData3 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData3.Name = 'Finance';
-            customSettingData3.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Business_Case_Action_Standards,Initial_Estimate_of_Opportunity,BD/BB_Alignment,Business_Case_Action_Standards,Assumptions,Sensitivity_Analysis,Business_Waste,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData3.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData3);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData4 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData4.Name = 'Project Leader';
-            customSettingData4.IPM_Gate_Document_Section_Access_1__c = 'Introduction,Idea_Graphic,Feedback_from_Last_Gate,Human_Resources,Key_Issues_needing_focus_in_Gate_Meeting,Key_Changes_since_Contract_Gate, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData4.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData4);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData5 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData5.Name = 'R&D';
-            customSettingData5.IPM_Gate_Document_Section_Access_1__c = 'Introduction,R&D_Initial_Outline_Product_Pack,Environmental_Impact,R&D_Feasibility,Pack_Graphics,Product,R&D_Technical_Readiness, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData5.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData5);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData6 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData6.Name = 'Supply Chain';
-            customSettingData6.IPM_Gate_Document_Section_Access_1__c = 'Introduction,CU_And_Complexity,Degree_of_Commonality,Supply_Chain_Feasibility,Supply_Chain_Technical_Readiness,Technical, Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData6.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData6);
-            
-            IPM_Gate_Document_Section_Access__c customSettingData7 = new IPM_Gate_Document_Section_Access__c();
-            customSettingData7.Name = 'Technical Project Leader';
-            customSettingData7.IPM_Gate_Document_Section_Access_1__c = 'Introduction,R&D_Initial_Outline_Product_Pack,Environmental_Impact,R&D_Feasibility,R&D_Technical_Readiness,Supply_Chain_Initial_Outline,Supply_Chain_Feasibility,Mix_Qualification_Plan_and_Action_Standards ';
-            customSettingData7.IPM_Gate_Document_Section_Access_2__c = GATE_DOC_SECTION_ACCESS_2;
-            customSettingDataList.add(customSettingData7);
-            
-            insert customSettingDataList;
-            Set<Id> customSettingIdList = new Set<Id>();
-            for(IPM_Gate_Document_Section_Access__c testCustomSetting : customSettingDataList){
-                customSettingIdList.add(testCustomSetting.Id);
-            }
             List<IPM_Gate_Document_Section_Access__c> testCustomSettingList = [Select id from IPM_Gate_Document_Section_Access__c limit 1000];
             system.assertEquals(testCustomSettingList.size(), 8, 'Custom setting data not inserted properly.');
             
@@ -235,7 +179,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForBBUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'BB';
         update testResource; 
@@ -266,7 +209,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForCMIUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'CMI';
         update testResource; 
@@ -296,8 +238,7 @@ private class IPM_ProjDocSectionController_Test{
     
     public static testMethod void testSaveForCDUser(){ 
         Test.startTest();
-        createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
+        createTestData(); 
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'CD';
         update testResource; 
@@ -328,7 +269,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForRnDUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'R&D';
         update testResource; 
@@ -359,7 +299,6 @@ private class IPM_ProjDocSectionController_Test{
     public static testMethod void testSaveForSCUser(){ 
         Test.startTest();
         createTestData();
-        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'Supply Chain';
         update testResource; 
@@ -412,7 +351,6 @@ private class IPM_ProjDocSectionController_Test{
         IPM_Project_Resource__c projResource = [Select id, IPM_Role_Type__c from IPM_Project_Resource__c where id =: testResource.Id];
         system.assertEquals(projResource.IPM_Role_Type__c, 'Finance', PROJ_RESOURCE_NOT_UPDATED);
         
-        User testUser = [Select id from User where id =: testResource.IPM_User__c];
         IPM_Project_Document_Section__c testsection = [Select id, IPM_Master_Section_External_Id__c from IPM_Project_Document_Section__c where id =: sectionList[0].Id];
         testSection.IPM_Master_Section_External_Id__c = IPM_ConstantUtils.CMI_SECTION;
         testSection.IPM_FunctionalRole__c = 'Finance';

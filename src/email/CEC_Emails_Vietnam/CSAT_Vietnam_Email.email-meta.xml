@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Customer Satisfaction Survey</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CSAT Vietnam Email</name>
+    <style>none</style>
+    <subject>Unilever Khảo sát sự hài lòng của khách hàng</subject>
+    <type>text</type>
+</EmailTemplate>

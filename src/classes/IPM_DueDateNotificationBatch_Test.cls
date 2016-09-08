@@ -96,7 +96,7 @@ private class IPM_DueDateNotificationBatch_Test {
       private static void initializeData(Date mileStoneDuteDate){
          iDs = new Set<Id>();
          Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5'};
-         list<IPM_Project__c> projectDetailList = [Select IPM_Project_Type__c,Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
+         list<IPM_Project__c> projectDetailList = [Select IPM_Project_Type__c,Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Lead__c,
                                                    (Select Id,Name,IPM_Planned_Date__c,IPM_Due_Date__c,IPM_Type_of_gate__c,IPM_Phase__c from IPM_Milestones__r)
                                                    from IPM_Project__c where Name in:projectNameSet];
          
@@ -107,7 +107,7 @@ private class IPM_DueDateNotificationBatch_Test {
             project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             project.Deputy_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Leader__c = UserInfo.getUserId();
-            project.IPM_Finance_Member__c = UserInfo.getUserId();
+            project.IPM_Finance_Lead__c = UserInfo.getUserId();
             project.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
             lstProjects.add(project);   
             

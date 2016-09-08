@@ -11,8 +11,10 @@ var ansIndex = 0;
  /* Below script calls a function 'initSliderSecGk' on page load. */
 jq(document).ready(function() {
     var sliderObjs = jq(".sliderGk");
-    
     var sliderIndex = 0;
+    if(IPMAppSecGK.editable == 'true'){
+        updateReadOnlyAnswers();
+    }
     jq(sliderObjs).each(function() {
         divId = "legendSldGK" + sliderIndex;
         sliderValArray = getAllOptions(divId);
@@ -22,7 +24,12 @@ jq(document).ready(function() {
         initSliderSecLabelGk(this, divId, sliderValArray);
         sliderIndex++;
     });
-    
+    jq(".sliderGk label span").each(function() {
+        var nvalue = jq(this).attr('title');
+        if(nvalue === ' null '){
+            jq(this).attr('title','');
+        }
+    });
     setSliderValBgcolor();
 });
 
@@ -58,23 +65,33 @@ function initSliderSecGk(sliderObj, valArray) {
             score = itemsSecGK[pointer];
         },
         slide: function( event, ui ) {
-            jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
-            jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();         
+            if(jq(this).find(".legendSld input").attr('new') === 'ReadonlySlider')
+            {
+                event.preventDefault();
+            }else{            
+                jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+                jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();        
+            } 
         }
     });
     
    
 /* Below works on click event. It highlights the selected option with a different color and different font style.*/
 jq(".legendSld label").on("click", function() {
-    var lpos = jq(".legendSld label").offset().left;
-    jq(this).parent().find('label').css({
-        'color': '#555555',
-        'font-weight': 'normal'
-    });
-    jq(this).css({
-        'color': '#e98824',
-        'font-weight': 'bold'
-    });
+    if(jq(this).prev().attr('new') === 'ReadonlySlider')
+        {
+            event.preventDefault();
+        }else{
+            var lpos = jq(".legendSld label").offset().left;
+            jq(this).parent().find('label').css({
+                'color': '#555555',
+                'font-weight': 'normal'
+            });
+            jq(this).css({
+                'color': '#e98824',
+                'font-weight': 'bold'
+            });
+        }
 });
 jq("input[type=radio][id^='s']").hide();
 }

@@ -24,17 +24,17 @@ global with sharing class Core_CA_RequestDetail{
             List<Core_Approval_Header__Share> lstHeaderShare = [SELECT Id FROM Core_Approval_Header__Share WHERE ParentId = : appWrapperObj.expenseDetailRequest.RequestId];
             
             if(!lstHeaderShare.isEmpty()){
-                system.debug('##### test inside not empty');
+
                 Map<Id,Core_Approver_Details__c> mapApprover = new Map<Id,Core_Approver_Details__c> ([SELECT id FROM Core_Approver_Details__c WHERE Approval_Header__c  =: appWrapperObj.expenseDetailRequest.RequestId]); 
                 
-                if(mapApprover.containsKey(appWrapperObj.expenseDetailRequest.ApproverId)){ 
+                if(mapApprover.containsKey(appWrapperObj.expenseDetailRequest.ApproverId)){
                     List<Core_Approver_Details__c> approver = [select Interested_Party__c from Core_Approver_Details__c where Id =: appWrapperObj.expenseDetailRequest.ApproverId ];    
                     
-                    if(approver[0].Interested_Party__c  ==  UserInfo.getUserId()){ system.debug('##### test inside approver');
+                    if(approver[0].Interested_Party__c  ==  UserInfo.getUserId()){
                         objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,appWrapperObj.expenseDetailRequest.ApproverId);
                     }
                     
-                    if(approver[0].Interested_Party__c  !=  UserInfo.getUserId()){   system.debug('##### test inside non approver');                              
+                    if(approver[0].Interested_Party__c  !=  UserInfo.getUserId()){                                 
                         PermissionSet perSet = [SELECT Id FROM PermissionSet WHERE Name = 'CoreCAAdminUser'];
                         List<PermissionSetAssignment> lstPerSetAsgn =[SELECT PermissionSetId FROM PermissionSetAssignment WHERE AssigneeId =: UserInfo.getUserId() AND PermissionSetId =: perSet.Id];
                         
@@ -63,7 +63,8 @@ global with sharing class Core_CA_RequestDetail{
                 }
                 
             }
-            else{system.debug('##### test inside empty');
+            else{
+
                 objRequestDetailResponseAribaGTES.accessStatus = false;
                 objRequestDetailResponseAribaGTES.StatusCode = Core_CA_AppConstants.RESPONSE_SUCCESS_CODE;
                 objRequestDetailResponseAribaGTES.Message = Core_CA_AppConstants.RESPONSE_SUCCESS_MSG;
@@ -76,9 +77,9 @@ global with sharing class Core_CA_RequestDetail{
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: CoreCA_REST_GetHeaderDetails : getRequestDetail method ', ex);
        }    
-      
-       system.debug('##### test inside empty'+objRequestDetailResponseAribaGTES);
-        return objRequestDetailResponseAribaGTES;
+
+
+       return objRequestDetailResponseAribaGTES;
     }
       
     /*******************************************************************************************************
@@ -110,7 +111,8 @@ global with sharing class Core_CA_RequestDetail{
            objRequestDetailResponseAribaGTES.CompanyName= objApprovalHeader.Ariba_Company_Code__c;
            objRequestDetailResponseAribaGTES.Purpose=objApprovalHeader.Purpose__c;
            objRequestDetailResponseAribaGTES.approvalhistory= processApprovalHistory(HeaderId,objApprovalHeader.Source_System__c);
-           
+       //    objRequestDetailResponseAribaGTES.InvoiceImage = invoiceImage(HeaderId);
+
            if(objApprovalHeader.Source_System__c == strInvoiceSystem)
                objRequestDetailResponseAribaGTES.url = '/apex/Core_CA_InvoiceChatterFeedPage?id='+objApprovalHeader.Id;
            else
@@ -169,20 +171,24 @@ global with sharing class Core_CA_RequestDetail{
                 objRequestDetailResponseAribaGTES.RequestType =  strInvoiceSystem;
                 objRequestDetailResponseAribaGTES.InvoiceType = objApprovalHeader.Category__c;
                 objRequestDetailResponseAribaGTES.Cop = objApprovalHeader.Invalid_PR_Reason__c;
-                
+
+
+
                 Core_CA_WrapperUtility.PreTripDetails objPreTripDetails = new Core_CA_WrapperUtility.PreTripDetails();
                 objPreTripDetails.Id= objApprovalHeader.PreTrip_Id__c;               
                 objRequestDetailResponseAribaGTES.pretripdetails= objPreTripDetails;
-                
+
                 if(objApprovalHeader.External_Created_Date__c != null){
                     objRequestDetailResponseAribaGTES.CreatedOn = objApprovalHeader.External_Created_Date__c.format('dd/MM/yyyy');
                 }
                 objRequestDetailResponseAribaGTES.lineitems= processLineItemDetails(HeaderId);
                 objRequestDetailResponseAribaGTES.CompanyCode = objApprovalHeader.Impact__c;
+                objRequestDetailResponseAribaGTES.ProjectBug = objApprovalHeader.Urgency__c;
+                objRequestDetailResponseAribaGTES.RequestedByLang = objApprovalHeader.Requested_For_Language__c;
+
                 
-                
-                
-                
+
+
            }
            /* Invoice App : Data binding end*/  
            
@@ -240,6 +246,8 @@ global with sharing class Core_CA_RequestDetail{
                objlineItem.Currencies = lineitem.Currency__c;
                if(lineitem.Source_System__c == 'Ariba' || lineitem.Source_System__c == strInvoiceSystem ){
                 objlineItem.ItemName= lineitem.Description__c;}
+               if(lineitem.Source_System__c == strInvoiceSystem )
+                    objlineItem.NetAmount = lineitem.Charge_To__c;     
                else if(lineitem.Source_System__c == 'GTES'){ 
                objlineItem.ItemName= lineitem.Name;}              
                lstLineItems.add(objlineItem);
@@ -291,6 +299,29 @@ global with sharing class Core_CA_RequestDetail{
        }   
        return lstApprovalHistory;
     }
+    /*
+                for fetching invoice image in base64 format.
+   
+    private static List<Core_CA_WrapperUtility.InvoiceImage> invoiceImage(string HeaderId){
+       List<Core_CA_WrapperUtility.InvoiceImage> lstinvoiceImage = new List<Core_CA_WrapperUtility.InvoiceImage>();
+       try{
+           List<Attachment> lstContentVersion = [select id, ContentType,body from attachment WHERE ParentId =: HeaderId];
+           Core_CA_WrapperUtility.InvoiceImage objInvoiceImage;
+           for(Attachment contver:lstContentVersion)
+           {
+               objInvoiceImage = new Core_CA_WrapperUtility.InvoiceImage();
+               objInvoiceImage.body = EncodingUtil.base64Encode(contver.body);
+               objInvoiceImage.attId       = contver.id;
+               lstinvoiceImage.add(objInvoiceImage);
+               }
+           
+           }
+       catch(Exception ex){
+            throw new Core_CA_BaseServiceException(strMessage, ex);
+       }   
+       return lstinvoiceImage;
+    }
+    */
    /*******************************************************************************************************
     * @description this method retrives the header detail for the given header Id.
     * @param Core_Approval_Header__c Id  
@@ -320,7 +351,7 @@ global with sharing class Core_CA_RequestDetail{
    private static List<Core_Approval_Details__c> getApprovalDetails(string HeaderId){
        List<Core_Approval_Details__c> lstApprovalDetails = null;
        try{
-           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Source_System__c,Line_Item_Number__c,Air_Fare_Details__c,Allowance_Details__c,Attachment__c,Attendees_Details__c
+           lstApprovalDetails =[SELECT Amount__c,Name,Id,Currency__c,Description__c,Charge_To__c,Source_System__c,Line_Item_Number__c,Air_Fare_Details__c,Allowance_Details__c,Attachment__c,Attendees_Details__c
                                 FROM Core_Approval_Details__c WHERE Approval_Header__c =: HeaderId ORDER BY Line_Item_Number__c ASC];
        }
        catch(Exception ex){
