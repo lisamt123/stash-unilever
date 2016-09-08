@@ -97,7 +97,6 @@ public with sharing class aa_Agent_Report_util {
                        // }
                         return sendTochatterMap;
     }
-<<<<<<< HEAD
     
   public static void CallDeleteAgentReport(List<aa_Agent_Report__c> reportlist)
   {  
@@ -187,8 +186,8 @@ public with sharing class aa_Agent_Report_util {
     }
     
     public static void AgentReportRejected_Email (List<aa_Agent_Report__c> OldReport){
-    system.debug('Inside AgentReportRejected_Email');
-       List<String> ownerIds = new List<String>();
+    	system.debug('Inside AgentReportRejected_Email');
+        List<String> ownerIds = new List<String>();
         List<Messaging.SingleEmailMessage> mailList =  new List<Messaging.SingleEmailMessage>();
         Messaging.SingleEmailMessage mail ;
         Set<String> agentReportIds = new Set<String>(); 
@@ -279,6 +278,4 @@ public with sharing class aa_Agent_Report_util {
         Messaging.sendEmail(mailList);
         //system.debug('======>'+Messaging.sendEmail(mailList));
     }
-=======
->>>>>>> develop
 }

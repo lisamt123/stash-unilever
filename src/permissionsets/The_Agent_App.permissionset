@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <classAccesses>
+	<classAccesses>
         <apexClass>AA_AddCompetitorName_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
+	<classAccesses>
         <apexClass>AA_AgentAppServiceController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -66,7 +66,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AA_Interface_Trigger</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AA_RemoteServiceCallController</apexClass>
@@ -86,7 +86,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>AA_TriggerFactory</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>AA_WrapperUtility</apexClass>
@@ -106,13 +106,81 @@
     </classAccesses>
     <classAccesses>
         <apexClass>aa_Agent_Report_Trigger_Handler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>aa_Agent_Report_util</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>AA_AgentAppService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_AgentAppService_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <fieldPermissions>
+	<classAccesses>
+        <apexClass>AA_Agent_Report_util_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_ApplicationWrapperObjLtng</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_ApplicationWrapperObjLtng_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_AutoCompleteController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_AutoCompleteController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_FileUploadUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_FileUploadUtility_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_Interface_Trigger</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_MockHttpResponseGenerator</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_RestRequestController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_RestRequestController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_TriggerFactory</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_WrapperClass</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AA_WrapperClass_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>aa_Agent_Report_Trigger_Handler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+	<fieldPermissions>
         <editable>true</editable>
         <field>aa_Agent_App_User_Preference__c.Agent_App_Unilever_Brand__c</field>
         <readable>true</readable>

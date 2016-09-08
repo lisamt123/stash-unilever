@@ -7,11 +7,14 @@
             Your filter criteria has not yielded any results
         </div>
     </aura:if> 
+    
     <div>
         <aura:iteration items="{!v.objPassAgentReportsToNG}" var="objReport" > 
-            <div>
+            <div >
                 <c:AA_ReportDetailNavigation objReport="{!objReport}"/> 
             </div>
         </aura:iteration>
     </div>
+    
+    
 </aura:component>

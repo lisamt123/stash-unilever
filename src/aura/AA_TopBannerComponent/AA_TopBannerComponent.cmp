@@ -35,13 +35,13 @@
         color:white;
         }
         .button-home {
-        border-radius: 30px;
-        padding: 0 7px;
-        font-size: 10.8px;
-        font-size: 3.5vw;
-        width: 46%;
-        height: 36px;
-        font-weight: bold;
+    border-radius: 30px;
+    padding: 0 7px;
+    font-size: 10.8px;
+            font-size: 3.5vw;
+    width: 46%;
+    height: 36px;
+    font-weight: bold;
         }
         .unilever-report,.unilever-report:hover, .unilever-report:focus  {
         background-color: #0070d2;
@@ -67,17 +67,17 @@
         color: #FFF;
         }
         .UnileverButton{
-        margin: 0 auto;
-        text-align: center;
+            margin: 0 auto;
+    		text-align: center;
         }
         @media screen and (min-width:768px){
         .UnileverButton {
         margin: 0 auto;
         text-align: left;
-        margin-left: 16px;
+    	margin-left: 16px;
         }
         .button-home {
-        width: 14%;
+	    width: 14%;
         font-size:12.8px !important;
         }
         }
