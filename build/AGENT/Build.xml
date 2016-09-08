@@ -75,6 +75,7 @@
 	  <runTest>AA_WrapperClass_Test</runTest>
 	  <runTest>AA_Agent_Report_util_Test</runTest>
 	  <runTest>AA_ApplicationWrapperObjLtng_Test</runTest>
+	  <runTest>aa_Agent_Report_Trigger_Handler_Test</runTest>
     </sf:deploy>
   </target>  
 
