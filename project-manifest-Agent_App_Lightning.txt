@@ -112,7 +112,7 @@ src/aura/AA_FilterComponent
 src/aura/AA_FilterComponent/AA_FilterComponent.cmp
 src/aura/AA_FilterComponent/AA_FilterComponent.cmp-meta.xml
 src/aura/AA_FilterComponent/AA_FilterComponentController.js
-src/aura/AA_FilterComponent/AA_BusinessPrincipleComponentHelper.js
+src/aura/AA_FilterComponent/AA_FilterComponentHelper.js
 src/aura/AA_FilterComponent/AA_FilterComponentHelper.js
 src/aura/AA_FilterDetail
 src/aura/AA_FilterDetail/AA_FilterDetail.cmp
