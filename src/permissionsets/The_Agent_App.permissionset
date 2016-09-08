@@ -446,7 +446,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <label>The Agent App</label>
-    <objectPermissions>
+	<objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
@@ -501,6 +501,10 @@
         <recordType>aa_Agent_Report__c.Unilever_Agent_Report</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+	<tabSettings>
+        <tab>Agent_App_Lightning</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <userPermissions>
         <enabled>true</enabled>
         <name>ExportReport</name>

@@ -446,6 +446,10 @@
         <readable>true</readable>
     </fieldPermissions>
     <label>The Agent App CI</label>
+	<tabSettings>
+        <tab>Agent_App_Lightning</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -473,7 +477,7 @@
         <object>aa_Topic__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <recordTypeVisibilities>
+	<recordTypeVisibilities>
         <recordType>aa_Agent_Report__c.Agent_Report</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
@@ -501,6 +505,10 @@
         <recordType>aa_Agent_Report__c.Unilever_Agent_Report</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+	<tabSettings>
+        <tab>Agent_App_Lightning</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <userPermissions>
         <enabled>true</enabled>
         <name>CreateCustomizeDashboards</name>
