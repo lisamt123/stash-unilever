@@ -8,14 +8,14 @@
 @reference : none
 ****************************************************************************************************************************/
 public with sharing class AF_AnnualBonus {
-    Public Boolean IsDraft{get;set;}
-    public Decimal bonusTradDigitalFee{get;set;}
+    //Public Boolean IsDraft{get;set;}//changed to drafted
+    //public Decimal bonusTradDigitalFee{get;set;}
     //public Boolean showmainblock{get;set;}
     //public Decimal Sum_remuneration_val{get;set;}
     //public Decimal Sum_remuneration_per{get;set;}
     //public Boolean AF_Pilot_Model { get; set; }
     //public Boolean No_Bonus_Check {get;set;}
-    public Decimal sum_of_quant_qual_percent { get; set; }// To get sum of total Quantative and total Qualatative Percents
+    //public Decimal sum_of_quant_qual_percent { get; set; }// To get sum of total Quantative and total Qualatative Percents
     public Decimal sum_of_quant_qual_value { get; set; }// To get sum of total Quantative and total Qualatative values
     //public Decimal sum_of_qual_percent { get; set; }//To get sum of Qualatative percent
     public Decimal sum_of_qual_value { get; set; }//To get sum of Qualatative value
@@ -91,13 +91,13 @@ public with sharing class AF_AnnualBonus {
         //string Brand_name;
         AF_Constants.noDisplay=true;
         AF_Constants.noDisplayQuarterly=true;
-        IsDraft=True;
+        AF_Constants.IsDrafted=True;
         sum_of_bonusable_fees=0;// 30-08-2014
         sum_of_bonusable_fees_onload=0;//03-09-2014
         AF_Constants.Sum_remuneration_val=0;
         AF_Constants.Sum_remuneration_per=0;
         sum_of_quant_qual_value=0;
-        sum_of_quant_qual_percent=0;
+        AF_Constants.sum_of_quant_qual_percent=0;
         sum_of_qual_value=0;
         AF_Constants.sum_of_qual_percent=0;
         qual_per=0;
@@ -289,7 +289,7 @@ public with sharing class AF_AnnualBonus {
                 if(bonusResObj.AF_Bonusable_Fees__c!=null){
                     sum_of_bonusable_fees_onload=sum_of_bonusable_fees_onload+bonusResObj.AF_Bonusable_Fees__c;
                     if(sum_of_bonusable_fees_onload>0)
-                    sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees_onload)*100);
+                    AF_Constants.sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees_onload)*100);
                 }
                 if(bonusResObj.AF_Quant_Bonus__c!=null){
                     if(sum_of_bonusable_fees_onload>0)
@@ -348,7 +348,7 @@ public with sharing class AF_AnnualBonus {
 *  @return: none.
 ***************************************************************************************/    
     public void annualBonusPilotModel(String agency_id,String Brand_id,String current_year){
-            bonusTradDigitalFee = 0;
+            AF_Constants.bonusTradDigitalFee = 0;
             integer TotalTraditionalValue=0;
             integer TotalDigitalValue=0;
             Decimal renumRating = 0;
@@ -368,16 +368,16 @@ public with sharing class AF_AnnualBonus {
                     TotalTraditionalValue=TotalTraditionalValue + (integer.valueof(agEstObj.AF_Traditional__c));
                 }
             }
-            bonusTradDigitalFee = bonusTradDigitalFee+TotalTraditionalValue+TotalDigitalValue;
+            AF_Constants.bonusTradDigitalFee = AF_Constants.bonusTradDigitalFee+TotalTraditionalValue+TotalDigitalValue;
             try{
                 bonusResult=[select AF_Total_Bonus_Value__c,AF_Remuneration_Percentage__c,AF_Remuneration_Rating__c,AF_Locked__c,AF_Total_Remuneration__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c=:bonusThresholdRenumeration[0].Id limit 1];
                 if(!(bonusResult.isEmpty())){
-                    renumBonus.add(new wrapRenumartionbonus(bonusTradDigitalFee,bonusResult[0].AF_Remuneration_Rating__c,bonusResult[0].AF_Remuneration_Percentage__c,bonusResult[0].AF_Total_Remuneration__c,bonusResult[0].AF_Locked__c,bonusResult[0].AF_Total_Bonus_Value__c));
+                    renumBonus.add(new wrapRenumartionbonus(AF_Constants.bonusTradDigitalFee,bonusResult[0].AF_Remuneration_Rating__c,bonusResult[0].AF_Remuneration_Percentage__c,bonusResult[0].AF_Total_Remuneration__c,bonusResult[0].AF_Locked__c,bonusResult[0].AF_Total_Bonus_Value__c));
                 }
                 else{
-                    renumBonus.add(new wrapRenumartionbonus(bonusTradDigitalFee,renumRating,renumPercentage,renumAmt,resultLock,RenumTotal));
+                    renumBonus.add(new wrapRenumartionbonus(AF_Constants.bonusTradDigitalFee,renumRating,renumPercentage,renumAmt,resultLock,RenumTotal));
                 }
-                if(bonusTradDigitalFee==0){
+                if(AF_Constants.bonusTradDigitalFee==0){
                     AF_Constants.noDisplay=false;
                 }
             }
@@ -590,7 +590,7 @@ public with sharing class AF_AnnualBonus {
         AF_Constants.sum_of_bonus_per=0;
         sum_of_bonus_val=0;
         sum_of_quant_qual_value=0;
-        sum_of_quant_qual_percent=0;
+        AF_Constants.sum_of_quant_qual_percent=0;
         Decimal Quantvalue=0;
         sum_of_bonusable_fees=0;
         for(wrapbonus newbonus:QuartelyBonus ){ 
@@ -630,7 +630,7 @@ public with sharing class AF_AnnualBonus {
                     sum_of_quant_qual_value=sum_of_quant_qual_value+newbonus.bonusResObj.AF_Total_Bonus_Value__c;
                     if(sum_of_bonusable_fees>0)
                     {
-                        sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees)*100);
+                        AF_Constants.sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees)*100);
                         AF_Constants.sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees)*100);
                     }
                 }
@@ -647,7 +647,7 @@ public with sharing class AF_AnnualBonus {
         sum_of_qual_value=0;
         AF_Constants.sum_of_qual_percent=0; 
         sum_of_quant_qual_value=0;
-        sum_of_quant_qual_percent=0;
+        AF_Constants.sum_of_quant_qual_percent=0;
         //30-08-2014
         sum_of_bonusable_fees=0;
         //up to here
@@ -682,7 +682,7 @@ public with sharing class AF_AnnualBonus {
                     sum_of_quant_qual_value = sum_of_quant_qual_value + newbonus.bonusResObj.AF_Total_Bonus_Value__c; 
                     //30-08-2014
                     if(sum_of_bonusable_fees>0){
-                        sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees)*100);
+                        AF_Constants.sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees)*100);
                         AF_Constants.sum_of_qual_percent=math.round((sum_of_qual_value/sum_of_bonusable_fees)*100);
                     }
                     //upto here
