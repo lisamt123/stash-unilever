@@ -400,18 +400,21 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
             if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT  ||  LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
                 IsReadonlyPO=true;
             }
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE||LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
-                IsShowPOTab=true;
-            }  
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
-                isAgency= true;
-            }
         identifyLoggedUserType(LoggedinUser);   
             
         }
     }
 
     public void identifyLoggedUserType(User LoggedUser){
+           if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE||LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
+                IsShowPOTab=true;
+            }  
+            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
+                isAgency= true;
+            }
+    if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE){
+                isPOEditable=true;
+            }
     if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
                 isCatFinance= true;
             }
