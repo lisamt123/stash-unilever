@@ -79,7 +79,7 @@
     <outboundMessages>
         <fullName>Core_CA_IP_Invoice_OutboundMessage</fullName>
         <apiVersion>36.0</apiVersion>
-        <endpointUrl>http://52.19.177.104:8081/DciwSalesforceResponseService</endpointUrl>
+        <endpointUrl>http://sbi.dciw.cloudhub.unileverservices.com:8081/DciwSalesforceResponseService</endpointUrl>
         <fields>Comments__c</fields>
         <fields>CurrentDateTime__c</fields>
         <fields>Header_ExternalId__c</fields>
@@ -99,7 +99,6 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>(1) AND ((2) OR (3) OR (4))</booleanFilter>
         <criteriaItems>
             <field>Core_Approver_Details__c.Source_System__c</field>
             <operation>equals</operation>
@@ -110,15 +109,45 @@
             <operation>equals</operation>
             <value>Approved</value>
         </criteriaItems>
+        <description>It will update action date to last modify if source system is Invoice.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Core CA ActionDate WF RuleThree</fullName>
+        <actions>
+            <name>Core_CA_ActionDate_Field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
         <criteriaItems>
-            <field>Core_Approver_Details__c.Status__c</field>
+            <field>Core_Approver_Details__c.Source_System__c</field>
             <operation>equals</operation>
-            <value>Query With Vendor</value>
+            <value>Invoice</value>
         </criteriaItems>
         <criteriaItems>
             <field>Core_Approver_Details__c.Status__c</field>
             <operation>equals</operation>
             <value>Return to AP</value>
+        </criteriaItems>
+        <description>It will update action date to last modify if source system is Invoice.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Core CA ActionDate WF RuleTwo</fullName>
+        <actions>
+            <name>Core_CA_ActionDate_Field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Source_System__c</field>
+            <operation>equals</operation>
+            <value>Invoice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Query With Vendor</value>
         </criteriaItems>
         <description>It will update action date to last modify if source system is Invoice.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
