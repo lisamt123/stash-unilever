@@ -397,7 +397,7 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
-            <conditionLogic>and</conditionLogic>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -461,13 +461,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>ID</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>ID</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -479,11 +479,14 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>GlobalConstant</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.smagicinteract__Case__r.Country__c</leftValueReference>
+                <leftValueReference>myVariable_current.smagicinteract__Case__r.Status</leftValueReference>
                 <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed as Duplicate</stringValue>
+                </rightValue>
             </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
@@ -541,7 +544,7 @@
         </rules>
     </decisions>
     <description>CEC : To create cases from incoming SMS</description>
-    <interviewLabel>CEC_SMS_Case_Creation_Process-6_smagicinteract__Incoming_SMS__c</interviewLabel>
+    <interviewLabel>CEC_SMS_Case_Creation_Process-8_smagicinteract__Incoming_SMS__c</interviewLabel>
     <label>CEC SMS Case Creation Process</label>
     <processMetadataValues>
         <name>ObjectType</name>

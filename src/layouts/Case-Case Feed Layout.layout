@@ -184,10 +184,6 @@
                 <behavior>Readonly</behavior>
                 <field>PII_Data_Check__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Legacy_Reference__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

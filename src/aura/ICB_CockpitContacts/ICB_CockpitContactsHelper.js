@@ -10,11 +10,11 @@
             var contactsList = response.getReturnValue();
             var state = response.getState();
             if((contactsList != null) && (contactsList.length > 0) && (component.isValid() && state === "SUCCESS")){
-               component.set("v.listContacts", contactsList);        
+               component.set("v.listContacts", contactsList); 
             }
         });
         $A.enqueueAction(action);
-        console.log('Exit Helper <getContacts>');
+        console.log('Exit Helper <getContacts>: ' + component.get("v.listContacts"));
     },
     getProducts : function(component,indexContact,accountName,idContact,list) 
     {
@@ -122,7 +122,7 @@
         var list = component.get("v.inventoryList");
         var selectedStore = component.get("v.inventoryList")[index];
         
-        if((selectedStore.quantity < selectedStore.invetoryItem.ICB_Quantity_Unit__c) && (operation == "increment")){
+        if((selectedStore.quantity  <= (selectedStore.invetoryItem.ICB_Quantity_Unit__c + selectedStore.quantityMin)) && (operation == "increment")){
             selectedStore.quantity +=1; 
         }else{
             if(selectedStore.quantity > 0 ){
@@ -135,7 +135,7 @@
                 }
             }
         }
-        if(selectedStore.quantity <= selectedStore.invetoryItem.ICB_Quantity_Unit__c ){
+        if(selectedStore.quantity <= (selectedStore.invetoryItem.ICB_Quantity_Unit__c + selectedStore.quantityMin)){
             component.set("v.inventoryList",list);
             var indexContact = component.get("v.indexContact");
             var listContact = component.get("v.listContacts");

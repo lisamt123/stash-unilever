@@ -9649,10 +9649,6 @@
         <name>ICB_HeaderCloseSale</name>
     </customLabels>
     <customLabels>
-        <label><!-- ICB INVENTORY HEADER --></label>
-        <name>ICB_INVENTORY_HEADER</name>
-    </customLabels>
-    <customLabels>
         <label><!-- ICB INVENTORY HEADER SUB TITLE --></label>
         <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
     </customLabels>

@@ -354,7 +354,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
 
     public Oblix_CampaignCreateHelper() {
         if (projectId != null) {
-            selectedProject = getCampaign(projectId, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'),null);
+            selectedProject = getCampaign(projectId, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'),',Campaign_PFY__r.Financial_Year__r.SOW_Status__c');
             //selectedProject = [SELECT ID, Name, Brand_Led_Growth__c, Innovation_Projects__c, Financial_Year__r.Financial_Year__c, Financial_Year__r.Name, Campaign_Idea__c,
             //    OblixRegion__c, Campaign_Countries__c, Selected_Countries__c, First_3_selected_countries__c, Project_Scale_1__c, Project_Scale_2__c, Project_Priority__c,
             //    Project_Start_Date__c, Projected_Stage_CFY__c, Completed_Stage_CFY__c, Projected_Stage_PFY__c, Completed_Stage_PFY__c, Value_To_BePaid_Manual_Override__c,
