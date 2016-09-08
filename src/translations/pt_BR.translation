@@ -2865,10 +2865,6 @@
         <name>ICB_HeaderCloseSale</name>
     </customLabels>
     <customLabels>
-        <label>Estoque</label>
-        <name>ICB_INVENTORY_HEADER</name>
-    </customLabels>
-    <customLabels>
         <label>Produtos em utilização</label>
         <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
     </customLabels>

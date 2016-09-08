@@ -240,6 +240,14 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
  
                 // get related stage identifier for the given selected project Id
                 stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_set_projected_stage, can_set_completion_stage);
+                
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+            me.Manual_Edit_Check__c = True;
+            update me; 
+
+            update selected_project;
+            me.Manual_Edit_Check__c = False;
+            update me; 
             }
         }
         catch (Exception ex){
@@ -315,6 +323,8 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public PageReference AdjustFee(){
         selected_project.Percentage_of_Fee_for_this_FY__c = PercentToAdjust;
         selected_project.Value_To_BePaid_Manual_Override__c = true;
+        
+       
 
         selected_project.Completed_Stage_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
         selected_project.Projected_Stage_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
@@ -322,8 +332,36 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         system.debug('###PercentToAdjust : '+PercentToAdjust);
         system.debug('###selected_project.Percentage_of_Fee_for_this_FY__c : '+selected_project.Percentage_of_Fee_for_this_FY__c);
         selected_project.Campaign_Attributes_Updated__c = true;
+        
+        //Added by Suresh D S -- Starts
+        //String Stages = selected_project.Projected_Stage_CFY__c;
+         Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+         me.Manual_Edit_Check__c = True;
+         update me; 
+        
+        //boolean stagechecker = False;
+        //if(Stages != Null){
+          //if(!Stages.contains('Briefing') || !Stages.contains('Strategy & Planning') || !Stages.contains('Creative Ideation') || !Stages.contains('Creative Execution') || !Stages.contains('Production') ){
+         //   stagechecker = True;
+          //}
+        //}
+        
+        //if(stagechecker) {
 
-        update selected_project;
+            update selected_project;
+        
+           me.Manual_Edit_Check__c = False;
+            update me; 
+        //} 
+        //else {
+        
+          //update selected_project;
+        //}
+        
+        //Code by suresh D S - ENDS
+            
+        
+        //update selected_project;
         
         /* Doesn't make sense
         // query the selected_project in scope from the super class

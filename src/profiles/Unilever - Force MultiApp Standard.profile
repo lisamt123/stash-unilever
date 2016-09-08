@@ -49091,6 +49091,17 @@
     <layoutAssignments>
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
+	<layoutAssignments>
+        <layout>CI_SMS_Weekly_Update__c-SME Weekly Update Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CI_SMS_Weekly_Update__c-SME Weekly Update Layout</layout>
+        <recordType>CI_SMS_Weekly_Update__c.CI_SME_with_CI</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CI_SMS_Weekly_Update__c-CI_SME without CI</layout>
+        <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
+    </layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -52367,6 +52378,16 @@
         <default>false</default>
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+	<recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CI_SMS_Weekly_Update__c.CI_SME_with_CI</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>AD_Manager</tab>
