@@ -646,7 +646,7 @@ IF( REF__c  &lt;&gt; null,  REF__c ,  Name )
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>GEL Global Exception Log</label>
+    <label>Exception</label>
     <listViews>
         <fullName>All</fullName>
         <columns>REF_Number__c</columns>
