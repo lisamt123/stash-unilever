@@ -780,7 +780,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>AverageGrossProfit__c</field>
+            <field>FS_AverageGrossProfit__c</field>
             <table>Account.Opportunities</table>
         </columns>
         <columns>
@@ -890,7 +890,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>MarketTarget__c</field>
+            <field>FS_MarketTarget__c</field>
             <table>Account.Opportunities</table>
         </columns>
         <columns>
