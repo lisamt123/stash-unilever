@@ -10,17 +10,17 @@
 public with sharing class AF_AnnualBonus {
     Public Boolean IsDraft{get;set;}
     public Decimal bonusTradDigitalFee{get;set;}
-    public Boolean showmainblock{get;set;}
-    public Decimal Sum_remuneration_val{get;set;}
-    public Decimal Sum_remuneration_per{get;set;}
+    //public Boolean showmainblock{get;set;}
+    //public Decimal Sum_remuneration_val{get;set;}
+    //public Decimal Sum_remuneration_per{get;set;}
     public Boolean AF_Pilot_Model { get; set; }
     public Boolean No_Bonus_Check {get;set;}
     public Decimal sum_of_quant_qual_percent { get; set; }// To get sum of total Quantative and total Qualatative Percents
     public Decimal sum_of_quant_qual_value { get; set; }// To get sum of total Quantative and total Qualatative values
     public Decimal sum_of_qual_percent { get; set; }//To get sum of Qualatative percent
     public Decimal sum_of_qual_value { get; set; }//To get sum of Qualatative value
-    public Boolean isAgency{get;set;} //To check the logged in user is Agency
-    public Integer Totals_Traditional { get; set; }// To get total traditional values for all display list
+    //public Boolean isAgency{get;set;} //To check the logged in user is Agency
+    //public Integer Totals_Traditional { get; set; }// To get total traditional values for all display list
     //public Boolean isQuantEmpty;// To ensure that quant inputbox can not be empty;
     public Boolean isTraditional { get; set; }//Check for traditional value
     public Integer Totals_Digital { get; set; }// To get total digital values for all display list
@@ -40,7 +40,7 @@ public with sharing class AF_AnnualBonus {
     //public string agency_name;// hold agency name
     //public string Brand_name;// hold brand name
     public list<AF_Agency_Estimate__c>Agency_Estimate=new list<AF_Agency_Estimate__c>();// list of agency estimate
-    public Boolean IsEditable{get;set;}// check for CMCO super user or category finance user
+    //public Boolean IsEditable{get;set;}// check for CMCO super user or category finance user
     public map<id,string>bonus_thresholdid=new  map<id,string>(); // map of bonus threshold with bonus threshold id alog with combination of agency id,brand id,unilever country and fiscal year
     //set<string> Threshold = new set<string>();// store threshold id
     public Decimal qual_per=0;// to hold Qualatative percentage
@@ -50,8 +50,8 @@ public with sharing class AF_AnnualBonus {
     public list<AF_Bonus_Threshold__c> bonusThresholdRenumeration=new list<AF_Bonus_Threshold__c>();
     public list<AF_Bonus_Results__c> bonusResult=new list<AF_Bonus_Results__c>();
     Public  List<AF_Bonus_Summary__c> bonusSummaries{get;set;}
-    public Boolean noDisplay{get;set;}
-    public Boolean noDisplayQuarterly{get;set;}
+    //public Boolean noDisplay{get;set;}
+    //public Boolean noDisplayQuarterly{get;set;}
     public  decimal sum_of_bonusable_fees { get; set; } //to hold the sum of Bonusable fees 30-08-2014
     public  decimal sum_of_bonusable_fees_onload { get; set; } //to hold the sum of Bonusable fees on load 03-09-2014
     public Integer Totals_BonusMeasureTrad { get; set; }
@@ -88,21 +88,21 @@ public with sharing class AF_AnnualBonus {
         //integer Digital_value;
         //string agency_name;
         //string Brand_name;
-        noDisplay=true;
-        noDisplayQuarterly=true;
+        AF_Constants.noDisplay=true;
+        AF_Constants.noDisplayQuarterly=true;
         IsDraft=True;
         sum_of_bonusable_fees=0;// 30-08-2014
         sum_of_bonusable_fees_onload=0;//03-09-2014
-        Sum_remuneration_val=0;
-        Sum_remuneration_per=0;
+        AF_Constants.Sum_remuneration_val=0;
+        AF_Constants.Sum_remuneration_per=0;
         sum_of_quant_qual_value=0;
         sum_of_quant_qual_percent=0;
         sum_of_qual_value=0;
         sum_of_qual_percent=0;
         qual_per=0;
         Qual_value=0;
-        IsEditable=false;
-        isAgency = false;
+        AF_Constants.IsEditable=false;
+        AF_Constants.isAgency = false;
         //agency_name='';
         //Brand_name=''; 
         //Country_name='';
@@ -111,7 +111,7 @@ public with sharing class AF_AnnualBonus {
         total_bonus_fees=0;
         sum_of_bonus_per=0;
         sum_of_bonus_val =0;
-        Totals_Traditional=0;
+        AF_Constants.Totals_Traditional=0;
         Totals_Digital=0;
         //TotalTraditionalValue=0;
         //TotalDigitalValue=0;
@@ -129,10 +129,10 @@ public with sharing class AF_AnnualBonus {
         userObj = [SELECT Id, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c FROM User WHERE Id =:UserInfo.getUserId()];// Get profile name and user type of current logedin user
         if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER|| userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE||userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER)
         {
-            IsEditable=true;
+            AF_Constants.IsEditable=true;
         }
         if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
-            isAgency = true;
+            AF_Constants.isAgency = true;
         }
         list<AF_Brand_Estimate__c>Pilot_model=[SELECT ID,AF_Pilot_Model__c,AF_No_Bonus__c FROM AF_Brand_Estimate__c WHERE  Brand__c=:Brand_id AND AF_Agency__c=:agency_id AND AF_Fiscal_Year__c=:current_year AND AF_Active__c=True];
         if(Pilot_model.size()>0){
@@ -151,7 +151,7 @@ public with sharing class AF_AnnualBonus {
             }
             Bonus_SubResult_List = [SELECT AF_Qual_Per__c,AF_Comment__c,AF_Quant__c,AF_Total_Bonus__c,AF_Qual__c,AF_Country__r.AF_Country__c,AF_Country__r.name,Bonus_Measure__c,AF_Locked__c,AF_country__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Brand_Name__c,AF_Bonus_Threshold__r.Agency_Name__c,AF_Bonus_Threshold__r.Year__c,AF_Digital__c,AF_Traditional__c,AF_Minimum__c,AF_Stretching__c,AF_Outstanding__c,AF_Unique_Thresholds__c,AF_Quant_Bonus_Value__c,AF_Total_Bonus_Value__c,AF_Bonusable_Fees__c,AF_Quant_Bonus__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN :btId and AF_Period__c=null];
             if(Bonus_SubResult_List.size()>0){
-                showmainblock=true;
+                AF_Constants.showmainblock=true;
                 annualBonusConstructorExt(Bonus_SubResult_List);
                 annualBonusDigitalTradExt(Bonus_SubResult_List);
                 
@@ -376,7 +376,7 @@ public with sharing class AF_AnnualBonus {
                     renumBonus.add(new wrapRenumartionbonus(bonusTradDigitalFee,renumRating,renumPercentage,renumAmt,resultLock,RenumTotal));
                 }
                 if(bonusTradDigitalFee==0){
-                    noDisplay=false;
+                    AF_Constants.noDisplay=false;
                 }
             }
             catch(Exception ex){
@@ -423,7 +423,7 @@ public with sharing class AF_AnnualBonus {
                     QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),newAmt,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
                 }
                 if(totalbonusval==0){
-                    noDisplayQuarterly = false;
+                    AF_Constants.noDisplayQuarterly = false;
                 }
             }
     }
