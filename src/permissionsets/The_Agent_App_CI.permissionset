@@ -446,10 +446,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <label>The Agent App CI</label>
-	<tabSettings>
-        <tab>Agent_App_Lightning</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
