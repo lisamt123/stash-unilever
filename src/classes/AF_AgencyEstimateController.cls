@@ -80,12 +80,12 @@ public with sharing class AF_AgencyEstimateController
     
     /**********************************************************************
 *  @Description: this method is used to populate Traditional values 
-   @             and display in the page.
+@             and display in the page.
 *  @name : TraditionalDisplay
 *  @param : none
 *  @return: String.
 **********************************************************************/ 
-        
+    
     public String TraditionalDisplay{     
         get{String result = '';
             if(AgencyEstimate .AF_Traditional__c != null){
@@ -109,7 +109,7 @@ public with sharing class AF_AgencyEstimateController
     }
     /**********************************************************************
 *  @Description: this method is used to populate Digital values 
-   @             and display in the page.
+@             and display in the page.
 *  @name : DigitalDisplay
 *  @param : none
 *  @return: String.
@@ -138,7 +138,7 @@ public with sharing class AF_AgencyEstimateController
     }
     /**********************************************************************
 *  @Description: this method is used to populate Adaptation values 
-   @             and display in the page.
+@             and display in the page.
 *  @name : AdaptationDisplay
 *  @param : none
 *  @return: String.
@@ -274,7 +274,7 @@ public with sharing class AF_AgencyEstimateController
         if(ApexPages.currentPage().getParameters().get('Id') != null)
         {
             constructorExt();
-                  
+            
         }
         else
         {
@@ -302,88 +302,88 @@ public with sharing class AF_AgencyEstimateController
             SubmitButtonDisplay=false;
         } 
     }
-        /**********************************************************************
+    /**********************************************************************
 *  @Description: this method is used as an constructor extension,and holds the logic of
-                 identifying the logged in user and also give the access of readonly and 
-                 edit depending on the user 
+                identifying the logged in user and also give the access of readonly and 
+                edit depending on the user 
 *  @name : constructorExt
 *  @param : none
 *  @return: none
 **********************************************************************/ 
     public void constructorExt(){
-    
-            IsUpdate = true;
-            IsInsert = false;               
-            AgencyEstimate = [SELECT Id,AF_OverridePO_Adaptation_LC__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,AF_Category_Finance_Flag__c,AF_Total_USD__c,AF_Total_Local__c,Traditional_USD_Formula__c,AF_Digital_USD_Formula__c,Adaptation_USD_Formula__c,AF_IsCrossborder__c,AF_Ready_For_PO_Entry_Currency__c,AF_Agency_Spot_Rate__c,AF_Quarter_PO_Raised__c,AF_PO_Value__c,AF_Adaptation__c,AF_PO_Number__c,AF_Brand_Estimate__r.AF_CMCO_Rejected__c,AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c,AF_Brand_Estimate__r.AF_Status_Base_Fees__c,AF_Is_Unilever_Central_Hub__c,AF_CentralBilling__c, AF_Unilever_Entity_Name__c,AF_Agency_Entity_Name__c,AF_isLocked__c, AF_Digital__c, AF_Traditional__c,AF_Agency_Entity__c,AF_Unilever_Entity__c,AF_Total__c,AF_Matrix_Data_Entry_Currency__c, AF_Traditional_Local__c, AF_Digital_Local__c, AF_Adaptation_Local__c,AF_Agency_Exchange_Rate__c,AF_CentralBillingMessage__c,AF_LC_Traditional__c,AF_LC_Digital__c,AF_LC_Adaptation__c,AF_LC_Total__c  FROM AF_Agency_Estimate__c WHERE Id = : ParentId];
-            EntityExceptionCollection = [SELECT Id, AF_Agency_Estimate__c, AF_Value_Euro__c,AF_Value__c,AF_Country__c FROM AF_Entity_Exception__c where AF_Agency_Estimate__c = : ParentId];
-            if(EntityExceptionCollection != null)
-            {if(EntityExceptionCollection.size() > 0){DisplayExceptionList = true;}}            
-            if(AgencyEstimate != null)
-            {      
-                UnileverEntityName = AgencyEstimate.AF_Unilever_Entity_Name__c;
-                AgencyEntityName = AgencyEstimate.AF_Agency_Entity_Name__c;
-                IsCentralHub = AgencyEstimate.AF_CentralBilling__c;
-                if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_READYFORPO){
-                    IsReadyforPO=true;
-                    if(AgencyEstimate.AF_Quarter_PO_Raised__c!=null){
-                        PoValue=(AgencyEstimate.AF_Quarter_PO_Raised__c);
-                    }
-                }else{
-                    SetDisplayValues();
+        
+        IsUpdate = true;
+        IsInsert = false;               
+        AgencyEstimate = [SELECT Id,AF_OverridePO_Adaptation_LC__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,AF_Category_Finance_Flag__c,AF_Total_USD__c,AF_Total_Local__c,Traditional_USD_Formula__c,AF_Digital_USD_Formula__c,Adaptation_USD_Formula__c,AF_IsCrossborder__c,AF_Ready_For_PO_Entry_Currency__c,AF_Agency_Spot_Rate__c,AF_Quarter_PO_Raised__c,AF_PO_Value__c,AF_Adaptation__c,AF_PO_Number__c,AF_Brand_Estimate__r.AF_CMCO_Rejected__c,AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c,AF_Brand_Estimate__r.AF_Status_Base_Fees__c,AF_Is_Unilever_Central_Hub__c,AF_CentralBilling__c, AF_Unilever_Entity_Name__c,AF_Agency_Entity_Name__c,AF_isLocked__c, AF_Digital__c, AF_Traditional__c,AF_Agency_Entity__c,AF_Unilever_Entity__c,AF_Total__c,AF_Matrix_Data_Entry_Currency__c, AF_Traditional_Local__c, AF_Digital_Local__c, AF_Adaptation_Local__c,AF_Agency_Exchange_Rate__c,AF_CentralBillingMessage__c,AF_LC_Traditional__c,AF_LC_Digital__c,AF_LC_Adaptation__c,AF_LC_Total__c  FROM AF_Agency_Estimate__c WHERE Id = : ParentId];
+        EntityExceptionCollection = [SELECT Id, AF_Agency_Estimate__c, AF_Value_Euro__c,AF_Value__c,AF_Country__c FROM AF_Entity_Exception__c where AF_Agency_Estimate__c = : ParentId];
+        if(EntityExceptionCollection != null)
+        {if(EntityExceptionCollection.size() > 0){DisplayExceptionList = true;}}            
+        if(AgencyEstimate != null)
+        {      
+            UnileverEntityName = AgencyEstimate.AF_Unilever_Entity_Name__c;
+            AgencyEntityName = AgencyEstimate.AF_Agency_Entity_Name__c;
+            IsCentralHub = AgencyEstimate.AF_CentralBilling__c;
+            if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_READYFORPO){
+                IsReadyforPO=true;
+                if(AgencyEstimate.AF_Quarter_PO_Raised__c!=null){
+                    PoValue=(AgencyEstimate.AF_Quarter_PO_Raised__c);
                 }
-                checkField(AgencyEstimate);
-                try{
-                    poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
-                }
-                catch(Exception ex){
-                    AF_ExceptionLoggingHelper.createObjectData(UserInfo.getUserId(),className_STR,'constructorExt', ex.getMessage(),ex.getTypeName(),ex.getStackTraceString(),AF_Constants.APP_NAME);
-                    apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_QueryFailed));
-                }
-                if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
-                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
-                if(AgencyEstimate.AF_OverridePO_Digital_LC__c!=null)
-                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Digital_LC__c; 
-                if(AgencyEstimate.AF_OverridePO_Traditional_LC__c!=null)
-                OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Traditional_LC__c;
-                overrideTrad =  AgencyEstimate.AF_OverridePO_Traditional_LC__c;
-                overrideDigital = AgencyEstimate.AF_OverridePO_Digital_LC__c;
-                overrideAdapt = AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
-                overridePONumber = AgencyEstimate.AF_PO_Number__c;
-            }  
+            }else{
+                SetDisplayValues();
+            }
+            checkField(AgencyEstimate);
+            try{
+                poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
+            }
+            catch(Exception ex){
+                AF_ExceptionLoggingHelper.createObjectData(UserInfo.getUserId(),className_STR,'constructorExt', ex.getMessage(),ex.getTypeName(),ex.getStackTraceString(),AF_Constants.APP_NAME);
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_QueryFailed));
+            }
+            if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
+            OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
+            if(AgencyEstimate.AF_OverridePO_Digital_LC__c!=null)
+            OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Digital_LC__c; 
+            if(AgencyEstimate.AF_OverridePO_Traditional_LC__c!=null)
+            OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Traditional_LC__c;
+            overrideTrad =  AgencyEstimate.AF_OverridePO_Traditional_LC__c;
+            overrideDigital = AgencyEstimate.AF_OverridePO_Digital_LC__c;
+            overrideAdapt = AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
+            overridePONumber = AgencyEstimate.AF_PO_Number__c;
+        }  
     }
 
-public void checkField(AF_Agency_Estimate__c agencyEst){
-//Added by Reetha for access rights of agency Users
-                if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY){
-                    fieldsReadOnly = true;
-                }
-                if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE){
-                    catFieldsReadOnly = true;
-                }
-                if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO){
-                    cmcoFieldsReadOnly = true;
-                }
-                if(agencyEst.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c!=null){
-                    brandEstQuarter = agencyEst.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c;
-                    if(!brandEstQuarter.contains(AF_Constants.QUARTER4)){
-                        POOverrideDisplay = true;
-                    }
-                }
-                if(agencyEst.AF_isLocked__c == null || !agencyEst.AF_isLocked__c)IsLocked = true;else{IsLocked = false;}
-                CalculateTotal();
-                if(agencyEst.af_total__c >0)
-                {
-                    IsEditMode=true;
-                }
-                else
-                {
-                    IsEditMode=true;
-                }
+    public void checkField(AF_Agency_Estimate__c agencyEst){
+        //Added by Reetha for access rights of agency Users
+        if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY){
+            fieldsReadOnly = true;
+        }
+        if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE){
+            catFieldsReadOnly = true;
+        }
+        if(agencyEst.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO){
+            cmcoFieldsReadOnly = true;
+        }
+        if(agencyEst.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c!=null){
+            brandEstQuarter = agencyEst.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c;
+            if(!brandEstQuarter.contains(AF_Constants.QUARTER4)){
+                POOverrideDisplay = true;
+            }
+        }
+        if(agencyEst.AF_isLocked__c == null || !agencyEst.AF_isLocked__c)IsLocked = true;else{IsLocked = false;}
+        CalculateTotal();
+        if(agencyEst.af_total__c >0)
+        {
+            IsEditMode=true;
+        }
+        else
+        {
+            IsEditMode=true;
+        }
 
-}
-        /**********************************************************************
+    }
+    /**********************************************************************
 *  @Description: this method is used identify which user has logged in to the application,
-                 depending on the logged in user ,making the UI visiblity
+                depending on the logged in user ,making the UI visiblity
 *  @name : identifyLoggedUser
 *  @param : none
 *  @return: none
@@ -400,34 +400,39 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
             if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT  ||  LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
                 IsReadonlyPO=true;
             }
-        identifyLoggedUserType(LoggedinUser);   
+            identifyLoggedUserType(LoggedinUser);   
             
         }
     }
 
-    public void identifyLoggedUserType(User LoggedUser){
-           if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE||LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
+    public void identifyLoggedinUser(){
+        LoggedinUser=[SELECT id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  FROM  User  WHERE id=:Userinfo.getuserid()   AND IsActive=true  ORDER BY CreatedDate LIMIT 50000];
+        if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){
+            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE||LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
                 IsShowPOTab=true;
             }  
             if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
                 isAgency= true;
             }
-    if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE){
-                isPOEditable=true;
-            }
-    if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
-                isCatFinance= true;
-            }
-            if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
-                isCMCO= true;
-                CMCORO=true;
-            }
-            if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER){
-                isControllerPro = true;
-            }
-            if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
-                isCMCOSuperUser = true;
-            }
+        }
+    }
+    public void identifyLoggedUserType(User LoggedUser){ 
+        if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE){
+            isPOEditable=true;
+        }
+        if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
+            isCatFinance= true;
+        }
+        if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
+            isCMCO= true;
+            CMCORO=true;
+        }
+        if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER){
+            isControllerPro = true;
+        }
+        if(LoggedUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
+            isCMCOSuperUser = true;
+        }
 
     }       
     /**********************************************************************
@@ -515,9 +520,9 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
             if(overrideAdapt != AgencyEstimate.AF_OverridePO_Adaptation_LC__c)
             AgencyEstimate.AF_OverridePO_Adaptation_LC__c = overrideAdapt;
             try{
-            update AgencyEstimate;
-            overridePONumber = AgencyEstimate.AF_PO_Number__c;
-            apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));
+                update AgencyEstimate;
+                overridePONumber = AgencyEstimate.AF_PO_Number__c;
+                apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));
             }
             catch(Exception e)
             {
@@ -565,7 +570,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
     }
     /**********************************************************************
 *  @Description: this method is used to update/insert the Traditional,Digital and 
-   @             Adapation values to AgencyEstimate
+@             Adapation values to AgencyEstimate
 *  @name : Save
 *  @param : none
 *  @return: PageReference.
@@ -589,7 +594,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
     }
     /**********************************************************************
 *  @Description: this method is used to update/insert the Traditional,Digital and 
-   @             Adapation values to AgencyEstimate
+@             Adapation values to AgencyEstimate
 *  @name : JustSave
 *  @param : none
 *  @return: PageReference.
@@ -605,7 +610,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
             DigitalDisplay = DigitalDisplay.Remove(',');
             AdaptationDisplay = AdaptationDisplay.Remove(',');
             if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == AF_Constants.CATEGORY_FINANCE && isCatFinance)
-                ||AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_WIHTCMCO && (isCMCO||isCMCOSuperUser))
+                    ||AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_WIHTCMCO && (isCMCO||isCMCOSuperUser))
             AgencyEstimate.AF_Category_Finance_Flag__c=true;
             upsert AgencyEstimate;
             UpdateEntityEX();
@@ -648,7 +653,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
             }
             if(updatedenitytexception.size()>0){
                 try{
-                update updatedenitytexception;
+                    update updatedenitytexception;
                 }
                 catch(Exception e)
                 {
@@ -686,7 +691,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
             AF_Entity_Exception__c delEntity = new AF_Entity_Exception__c();
             delEntity = [SELECT Id FROM AF_Entity_Exception__c WHERE Id=:delCountryId];
             try{
-            delete delEntity;
+                delete delEntity;
             }
             catch(Exception e)
             {
@@ -765,7 +770,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
     }
     /**********************************************************************
 *  @Description: this method is used to calculate the local currency for
-   @             Traditional,Digital and Adaptation values 
+@             Traditional,Digital and Adaptation values 
 *  @name : CalculateTotal
 *  @param : none
 *  @return: none.
@@ -843,7 +848,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
     public class CustomException extends Exception {}
     /**********************************************************************
 *  @Description: this method is used to get the country list avaliable in the
-   @                 Entity Exception.
+@                 Entity Exception.
 *  @name : getCountry
 *  @param : none
 *  @return: List of SelectOption.
@@ -874,7 +879,7 @@ public void checkField(AF_Agency_Estimate__c agencyEst){
     }
     /**********************************************************************
 *  @Description: this method is used to for calculating the Entity Exception
-   @             percentage.
+@             percentage.
 *  @name : CalculateCountryValue
 *  @param : none
 *  @return: none.
