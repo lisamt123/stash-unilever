@@ -36,6 +36,10 @@ src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_Oral_Personal.md
 src/customMetadata/IPM_Category_Thresholds.IPM_Global_Threshold_SkinCleanPersonal.md
 src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_Oral_Personal.md
 src/customMetadata/IPM_Category_Thresholds.IPM_Regional_Threshold_SkinCleanPersonal.md
+src/email
+src/email/IPM_Emails
+src/email/IPM_Emails/IPM_Notify_Local_Leader_when_Non_key_local_project_created.email
+src/email/IPM_Emails/IPM_Notify_Local_Leader_when_Non_key_local_project_created.email-meta.xml
 src/flows
 src/flows/IPM_Notify_Local_Rollout_Project_Created-16.flow
 src/objects
