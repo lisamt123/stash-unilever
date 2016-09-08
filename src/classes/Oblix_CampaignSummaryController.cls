@@ -240,6 +240,14 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
  
                 // get related stage identifier for the given selected project Id
                 stage_identifier = new Oblix_CampaignStageLogic(selected_project,can_set_projected_stage, can_set_completion_stage);
+                
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = Oblix_Check_For_Manual_Edit_Of_Campaign__c.getOrgDefaults();
+            me.Manual_Edit_Check__c = True;
+            update me; 
+
+            update selected_project;
+            me.Manual_Edit_Check__c = False;
+            update me; 
             }
         }
         catch (Exception ex){
