@@ -31,17 +31,6 @@
         <field>IPM_Analytics_OTIF__c.IPM_Attractive_Business_Case__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Analytics_OTIF__c.IPM_Base_I__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Analytics_OTIF__c.IPM_Bases_III__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Brand_Positioning__c</field>
