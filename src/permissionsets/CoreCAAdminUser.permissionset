@@ -1698,7 +1698,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Header_Handler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HelpContentController</apexClass>
@@ -1710,11 +1710,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_InterestedParty_Handler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_LineItemDetail</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Line_ApproveController</apexClass>
@@ -1730,11 +1730,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_MyApprovalData</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RequestDetail</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RequestDetailsController</apexClass>
@@ -1750,7 +1750,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_WrapperUtility</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_AppConstants</apexClass>
