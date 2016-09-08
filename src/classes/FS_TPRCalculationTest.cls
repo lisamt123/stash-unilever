@@ -149,12 +149,13 @@ public class FS_TPRCalculationTest {
                         FROM OpportunityLineItem
                         WHERE id =: oppProd.Id];
             
-            //System.debug('>>> opp: ' + opp);
-            Opportunity opp1 = new Opportunity();
+            //Opportunity opp1 = new Opportunity();
+            /*
             opp1 = [SELECT id,
                             FS_casesPiece__c
                     FROM Opportunity
                     WHERE Id =: oppProd1.OpportunityId];
+			*/
             //System.debug('>>> opp1A: ' + opp1);
             
             
