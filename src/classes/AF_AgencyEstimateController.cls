@@ -400,6 +400,7 @@ public with sharing class AF_AgencyEstimateController
             if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT  ||  LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
                 IsReadonlyPO=true;
             }
+            identifyLoggedinUser();
             identifyLoggedUserType(LoggedinUser);   
             
         }

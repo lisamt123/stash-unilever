@@ -13,21 +13,22 @@ public with sharing class AF_AnnualBonus {
     //public Boolean showmainblock{get;set;}
     //public Decimal Sum_remuneration_val{get;set;}
     //public Decimal Sum_remuneration_per{get;set;}
-    public Boolean AF_Pilot_Model { get; set; }
-    public Boolean No_Bonus_Check {get;set;}
+    //public Boolean AF_Pilot_Model { get; set; }
+    //public Boolean No_Bonus_Check {get;set;}
     public Decimal sum_of_quant_qual_percent { get; set; }// To get sum of total Quantative and total Qualatative Percents
     public Decimal sum_of_quant_qual_value { get; set; }// To get sum of total Quantative and total Qualatative values
-    public Decimal sum_of_qual_percent { get; set; }//To get sum of Qualatative percent
+    //public Decimal sum_of_qual_percent { get; set; }//To get sum of Qualatative percent
     public Decimal sum_of_qual_value { get; set; }//To get sum of Qualatative value
     //public Boolean isAgency{get;set;} //To check the logged in user is Agency
     //public Integer Totals_Traditional { get; set; }// To get total traditional values for all display list
     //public Boolean isQuantEmpty;// To ensure that quant inputbox can not be empty;
     public Boolean isTraditional { get; set; }//Check for traditional value
-    public Integer Totals_Digital { get; set; }// To get total digital values for all display list
+    //public Integer Totals_Digital { get; set; }// To get total digital values for all display list
     public Boolean isDigital { get; set; }//Check for digital value
-    public decimal sum_of_bonus_per { get; set; }// To hold sum of bonus percentage which is calculated by Quantative value
+    //public decimal sum_of_bonus_per { get; set; }// To hold sum of bonus percentage which is calculated by Quantative value
     public decimal sum_of_bonus_val { get; set; }// To hold sum of bonus value which is calculated by Quantative value
     public list<wrapbonus> QuartelyBonus {get;set;}//List to hold multiple object data
+    //public list<wrapbonus> QuartelyBonusExt {get;set;}//List to hold multiple object data
     public list<AF_Bonus_Results__c>AF_Bonus_Result{get;set;}//list of bonus result records
     public list<AF_Bonus_Threshold__c> AF_Bonus_Threshold{get;set;}// list of bonus threshold records
     //public string Country_name;//store Unilever Entity name
@@ -63,7 +64,7 @@ public with sharing class AF_AnnualBonus {
     //private static String AF_BonusThershold=AF_Constants.TEST_BONUS_THRESHOLD;
     //private static String AF_Qualitative_value=AF_Constants.TEST_QUAL_VALUE;
     //private static string className_STR=AF_Constants.TEST_ANNUAL_BONUS;
-    public Boolean showSubmit{get;set;}
+    //public Boolean showSubmit{get;set;}
     private set<string> agencyEstUnqStr = new set<string>();
     Map<String,Integer> countryBMMap= new Map<String,Integer>();
     map<String,Integer> countryCountMap = new map<String,Integer>();
@@ -98,7 +99,7 @@ public with sharing class AF_AnnualBonus {
         sum_of_quant_qual_value=0;
         sum_of_quant_qual_percent=0;
         sum_of_qual_value=0;
-        sum_of_qual_percent=0;
+        AF_Constants.sum_of_qual_percent=0;
         qual_per=0;
         Qual_value=0;
         AF_Constants.IsEditable=false;
@@ -109,19 +110,20 @@ public with sharing class AF_AnnualBonus {
         //Traditional_value=0;
         //Digital_value=0;
         total_bonus_fees=0;
-        sum_of_bonus_per=0;
+        AF_Constants.sum_of_bonus_per=0;
         sum_of_bonus_val =0;
         AF_Constants.Totals_Traditional=0;
-        Totals_Digital=0;
+        AF_Constants.Totals_Digital=0;
         //TotalTraditionalValue=0;
         //TotalDigitalValue=0;
         //isQuantEmpty=false;
-        AF_Pilot_Model = false;
-        No_Bonus_Check= false;
+        AF_Constants.AF_Pilot_Model = false;
+        AF_Constants.No_Bonus_Check= false;
         Totals_BonusMeasureTrad =0;
         Totals_BonusMeasureDigital=0;
-        showSubmit=false;
+        AF_Constants.showSubmit=false;
         QuartelyBonus=new list<wrapbonus>();// Initialization of wrapper class
+        //QuartelyBonusExt =new list<wrapbonus>();
         String Brand_id = ApexPages.currentPage().getParameters().get('Brandid');//get brand id from url
         String agency_id=ApexPages.currentPage().getParameters().get('Agencyid');// get agency id from url
         String current_year=ApexPages.currentPage().getParameters().get('Year');// get fiscal year
@@ -136,10 +138,10 @@ public with sharing class AF_AnnualBonus {
         }
         list<AF_Brand_Estimate__c>Pilot_model=[SELECT ID,AF_Pilot_Model__c,AF_No_Bonus__c FROM AF_Brand_Estimate__c WHERE  Brand__c=:Brand_id AND AF_Agency__c=:agency_id AND AF_Fiscal_Year__c=:current_year AND AF_Active__c=True];
         if(Pilot_model.size()>0){
-            AF_Pilot_Model= Pilot_model.get(0).AF_Pilot_Model__c; 
-            No_Bonus_Check = Pilot_model.get(0).AF_No_Bonus__c;
+            AF_Constants.AF_Pilot_Model= Pilot_model.get(0).AF_Pilot_Model__c; 
+            AF_Constants.No_Bonus_Check = Pilot_model.get(0).AF_No_Bonus__c;
         }
-        if(!AF_Pilot_Model){
+        if(!AF_Constants.AF_Pilot_Model){
             //new variables
             list<AF_Bonus_Threshold__c> Bonus_Result_list= new list<AF_Bonus_Threshold__c>();
             Set<Id> btId = new Set<Id>();
@@ -167,7 +169,7 @@ public with sharing class AF_AnnualBonus {
                         setofnonthreshold_country.add(oddagency.AF_Unilever_Entity__r.AF_Country__c);
                     }
                 } 
-                if(setofnonthreshold_country.size()>0 && !No_Bonus_Check){
+                if(setofnonthreshold_country.size()>0 && !AF_Constants.No_Bonus_Check){
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING, Label.AF_BonusThershold_Mismatch+ ' '+ setofnonthreshold_country ));
                 }
             }
@@ -182,7 +184,7 @@ public with sharing class AF_AnnualBonus {
             annualBonusQualQuantPerCalc(Bonus_SubResult_List);
           
         } 
-        if(AF_Pilot_Model)
+        if(AF_Constants.AF_Pilot_Model)
         {
             annualBonusPilotModel(agency_id,Brand_id,current_year);
         }   
@@ -291,7 +293,7 @@ public with sharing class AF_AnnualBonus {
                 }
                 if(bonusResObj.AF_Quant_Bonus__c!=null){
                     if(sum_of_bonusable_fees_onload>0)
-                    sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
+                    AF_Constants.sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
                 }
             }
     }
@@ -414,13 +416,16 @@ public with sharing class AF_AnnualBonus {
                     count = count+BonusMeasureCalcMap.get(countryTrad);
                 }
                 if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && (mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null)){
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
+                    QuartelyBonus.add(new wrapbonus(bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
                 }else if(!mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,new AF_Sub_Result__c(),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
+                    QuartelyBonus.add(new wrapbonus(bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,new AF_Sub_Result__c(),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
                 }
                 else if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
                     Integer newAmt = Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c);
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),newAmt,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
+                    QuartelyBonus.add(new wrapbonus(bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),newAmt,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
                 }
                 if(totalbonusval==0){
                     AF_Constants.noDisplayQuarterly = false;
@@ -582,7 +587,7 @@ public with sharing class AF_AnnualBonus {
 *  @return: none.
 ***************************************************************************************/
     public void Calculate_Bonus() {
-        sum_of_bonus_per=0;
+        AF_Constants.sum_of_bonus_per=0;
         sum_of_bonus_val=0;
         sum_of_quant_qual_value=0;
         sum_of_quant_qual_percent=0;
@@ -626,7 +631,7 @@ public with sharing class AF_AnnualBonus {
                     if(sum_of_bonusable_fees>0)
                     {
                         sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees)*100);
-                        sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees)*100);
+                        AF_Constants.sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees)*100);
                     }
                 }
             }   
@@ -640,7 +645,7 @@ public with sharing class AF_AnnualBonus {
 ***************************************************************************************/
     public void Calculate_Qual() {
         sum_of_qual_value=0;
-        sum_of_qual_percent=0; 
+        AF_Constants.sum_of_qual_percent=0; 
         sum_of_quant_qual_value=0;
         sum_of_quant_qual_percent=0;
         //30-08-2014
@@ -678,7 +683,7 @@ public with sharing class AF_AnnualBonus {
                     //30-08-2014
                     if(sum_of_bonusable_fees>0){
                         sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees)*100);
-                        sum_of_qual_percent=math.round((sum_of_qual_value/sum_of_bonusable_fees)*100);
+                        AF_Constants.sum_of_qual_percent=math.round((sum_of_qual_value/sum_of_bonusable_fees)*100);
                     }
                     //upto here
                 } 
@@ -777,7 +782,7 @@ public with sharing class AF_AnnualBonus {
             if(!bonus_latestlist.isEmpty()){
                 Try{
                     upsert bonus_latestlist;
-                    showSubmit = true;
+                    AF_Constants.showSubmit = true;
                     apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Record_Save));
                 }
                 catch(exception ex){
@@ -948,30 +953,32 @@ public with sharing class AF_AnnualBonus {
         public Decimal totalbonusfee{get;set;}
         public String bonusMeasureMatrix{get;set;}
         public Integer countryCount{get;set;}
-        public wrapbonus(Decimal totalbonusfee,
-                         Decimal QualValue,
-                         Decimal QualPercent,
-                         Id b_threshold_id, 
-                         String Country_Name, 
-                         Decimal Minimum,
-                         Decimal Streching,
+        public wrapbonus(Decimal Streching,
                          Decimal Outstanding,
                          AF_Sub_Result__c bonusResObj1,
                          integer bonus_fees,
                          String bonusMeasure,
                          Integer cCount){
-            this.Countryname=Country_Name;
-            this.Minimum_bonus=minimum;
             this.Streching_bonus=Streching;
             this.Outstanding_bonus=Outstanding;
             this.bonusResObj=bonusResObj1;
             this.total_bonus_fees=bonus_fees;
-            this.bonus_threshold_id=b_threshold_id;
-            this.QualValue=QualValue;
-            this.QualPercent=QualPercent;
-            this.totalbonusfee=totalbonusfee;
             this.bonusMeasureMatrix = bonusMeasure;
             this.countryCount = cCount;
+        }
+        
+        public wrapbonus(Decimal totalbonusfee,
+                         Decimal QualValue,
+                         Decimal QualPercent,
+                         Id b_threshold_id, 
+                         String Country_Name, 
+                         Decimal Minimum){
+            this.Countryname=Country_Name;
+            this.Minimum_bonus=minimum;
+            this.totalbonusfee=totalbonusfee;
+            this.QualValue=QualValue;
+            this.QualPercent=QualPercent;
+            this.bonus_threshold_id=b_threshold_id;
         }
     }
     /******************************************************************************
