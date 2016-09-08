@@ -68,7 +68,7 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>      
-      <runTest>CORE_CA_ReminderAlert_Batch_Test</runTest>
+      <runTest>Core_CA_ChatterPostNavCont_Test</runTest>
       <runTest>Core_CA_ApprovalsController_Test</runTest>
       <runTest>Core_CA_Approve_Reject_Test</runTest>
       <runTest>Core_CA_BaseApplicationServicesTest</runTest>

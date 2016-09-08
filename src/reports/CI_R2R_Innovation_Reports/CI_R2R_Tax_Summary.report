@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CI_R2R_Innovation__c.Project2__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Project_Name__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Project_Description__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Project_Category__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Funnel_Status__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.Landscape__c</field>
+    </columns>
+    <columns>
+        <field>CI_R2R_Innovation__c.RAG__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>CI_R2R_Innovation__c.R2R_SME_Area__c</column>
+            <operator>equals</operator>
+            <value>Tax</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <name>CI_R2R Tax Summary</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$CI_R2R_Innovation__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CI_R2R_Innovation__c.Target_Completion_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

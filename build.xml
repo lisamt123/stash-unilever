@@ -215,6 +215,7 @@
     <runTest>Core_CA_RemoteServiceCallControllerTest</runTest>
     <runTest>Core_CA_Test</runTest>
     <runTest>Core_CA_Test_MobileAPP</runTest>
+    <runTest>Core_CA_ChatterPostNavCont_Test</runTest>
     </sf:deploy>
   </target>  
   <!-- ***************************************************************************** -->
