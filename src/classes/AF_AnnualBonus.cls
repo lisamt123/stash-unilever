@@ -22,9 +22,9 @@ public with sharing class AF_AnnualBonus {
     //public Boolean isAgency{get;set;} //To check the logged in user is Agency
     //public Integer Totals_Traditional { get; set; }// To get total traditional values for all display list
     //public Boolean isQuantEmpty;// To ensure that quant inputbox can not be empty;
-    public Boolean isTraditional { get; set; }//Check for traditional value
+    //public Boolean isTraditional { get; set; }//Check for traditional value
     //public Integer Totals_Digital { get; set; }// To get total digital values for all display list
-    public Boolean isDigital { get; set; }//Check for digital value
+    //public Boolean isDigital { get; set; }//Check for digital value
     //public decimal sum_of_bonus_per { get; set; }// To hold sum of bonus percentage which is calculated by Quantative value
     public decimal sum_of_bonus_val { get; set; }// To hold sum of bonus value which is calculated by Quantative value
     public list<wrapbonus> QuartelyBonus {get;set;}//List to hold multiple object data
@@ -50,7 +50,7 @@ public with sharing class AF_AnnualBonus {
     public List<wrapRenumartionbonus> renumBonus{get;set;}
     public list<AF_Bonus_Threshold__c> bonusThresholdRenumeration=new list<AF_Bonus_Threshold__c>();
     public list<AF_Bonus_Results__c> bonusResult=new list<AF_Bonus_Results__c>();
-    Public  List<AF_Bonus_Summary__c> bonusSummaries{get;set;}
+    //Public  List<AF_Bonus_Summary__c> bonusSummaries{get;set;}
     //public Boolean noDisplay{get;set;}
     //public Boolean noDisplayQuarterly{get;set;}
     public  decimal sum_of_bonusable_fees { get; set; } //to hold the sum of Bonusable fees 30-08-2014
