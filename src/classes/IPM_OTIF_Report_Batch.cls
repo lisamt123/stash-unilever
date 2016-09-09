@@ -1494,9 +1494,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     
     public string setBusinessImpact(IPM_Project__c p){
     	
-    	string businessImpact='';
-    	//IPM_Financial__c biFin=new IPM_Financial__c(); 
-    	id parentId;    	
+    	string businessImpact='';    	  	
     		if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
                 {
                 	businessImpact=p.BI__c;
