@@ -52,7 +52,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Ice_Cream</compactLayoutAssignment>
     <compactLayouts>
         <fullName>Ice_Cream</fullName>
         <fields>Subject</fields>

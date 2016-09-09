@@ -3333,8 +3333,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 	    	<fullName>Food Services</fullName>
 		<default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+
             <picklistValues>
                 <fullName>Impulse</fullName>
                 <default>false</default>
@@ -6861,6 +6860,30 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
+    <listViews>
+        <fullName>AllProducts</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>UID_Material_ID__c</columns>
+        <columns>UID_Brand__c</columns>
+        <columns>UID_Category__c</columns>
+        <columns>UID_Language__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Products</label>
+    </listViews>
+    <listViews>
+        <fullName>AllProductsFoodSolutions</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>GTIN__c</columns>
+        <columns>PackSize__c</columns>
+        <columns>COGS__c</columns>
+        <columns>MarketType__c</columns>
+        <columns>ProfitabilityTarget__c</columns>
+        <columns>Status__c</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Products</label>
+        <language>en_US</language>
+    </listViews>
     <listViews>
         <fullName>All_IceCream_Products</fullName>
         <columns>PRODUCT2.NAME</columns>

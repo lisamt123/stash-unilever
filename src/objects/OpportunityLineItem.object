@@ -584,8 +584,6 @@
         <fullName>OpportunityId</fullName>
         <type>Lookup</type>
     </fields>
-        <type>Lookup</type>
-    </fields>
     <fields>
         <fullName>Product2Id</fullName>
         <type>Lookup</type>
