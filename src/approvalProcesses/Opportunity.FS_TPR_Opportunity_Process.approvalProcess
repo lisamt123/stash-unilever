@@ -12,7 +12,7 @@
         <field>Name</field>
         <field>Owner</field>
         <field>FS_distributor__c</field>
-        <field>FS_DateOfSend__c</field>
+        
         <field>FS_kindOfTPR__c</field>
     </approvalPageFields>
     <approvalStep>
