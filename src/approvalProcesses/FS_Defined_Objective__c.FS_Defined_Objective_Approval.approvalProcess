@@ -26,7 +26,7 @@
         <name>Defined_Objective_Approval</name>
     </approvalStep>
     <description>Approval process for defined objective record when it is created after account plan is approved</description>
-    <emailTemplate>FS_Email_Templates/Defined_objective_submitted_for_Approval</emailTemplate>
+    <emailTemplate>FS_Email_Templates/FS_Defined_objective_submitted_for_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>

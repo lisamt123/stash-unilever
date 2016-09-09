@@ -453,7 +453,7 @@ public class FS_TPRCalculationTest {
             opp.CloseDate = date.today() + 30;
             opp.CurrencyIsoCode = 'RUB';
             opp.FS_casesPiece__c = 'piece';
-            opp.FS_DateOfSend__c = date.today();
+            //opp.FS_DateOfSend__c = date.today();
             opp.FS_endDateTPR__c = date.today() + 30;
             opp.FS_distributor__c = distributorAccount.Id;
             opp.FS_selfCollection__c = true;

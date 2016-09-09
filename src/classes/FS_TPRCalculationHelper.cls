@@ -53,8 +53,7 @@ public with sharing class FS_TPRCalculationHelper {
             ProductIdList.add(oli.Product2Id);
         }
         
-        Map<Id, Product2> product2Map = new Map<Id, Product2>([SELECT Id, 
-                                                                   FS_temporaryTPR__c,
+        Map<Id, Product2> product2Map = new Map<Id, Product2>([SELECT Id,                                                                   
                                                                	   FS_TemporaryProductDiscountTable__c,
                                                                    FS_stdPerUnit__c, 
                                                                    FS_ZSU__c,

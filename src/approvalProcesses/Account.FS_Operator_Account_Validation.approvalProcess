@@ -49,18 +49,7 @@
     <approvalStep>
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
-            <approver>
-                <name>bridget.taylor@unilever.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>jyotirmoy.sharma@accenture.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>samanway.chakraborty@accenture.com</name>
-                <type>user</type>
-            </approver>
+
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <label>Account Process Step 2</label>

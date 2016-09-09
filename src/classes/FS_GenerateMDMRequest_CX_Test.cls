@@ -35,7 +35,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
         
         // Submit the approval request for the opportunity
         Approval.ProcessResult result = Approval.process(req1);
-
+		system.assert(result <> null);
         }
                 
         PageReference pageRef = Page.FS_SendEmailWithMDMRequest;
@@ -56,7 +56,6 @@ Public class FS_GenerateMDMRequest_CX_Test{
         system.assert(prodMap <> null);
         List<OpportunityLineItem> oli = controller.opportunityProducts;
         system.assert(oli.size()>0);
-        //system.assert
     } 
     
     @isTest static void GenerateMDMRequestExceptions() {
@@ -228,7 +227,6 @@ Public class FS_GenerateMDMRequest_CX_Test{
         prod.MarketType__c='BOH MAYO';
         prod.IsActive = true;
         prod.FS_stdPerUnit__c = 333.23;
-        prod.FS_temporaryTPR__c = 0.00;
         prod.FS_VATRU__c = 2;
         prod.FS_VATUA__c = 2;
         prod.FS_ZSU__c = 4;
@@ -250,30 +248,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
         
         insert pbe;     
         
-       /* //set Opportunity
-        opp = new Opportunity();
-        opp.Name = 'Test Opportunity';
-        opp.AccountId = operatorAccount.Id;
-        opp.FS_distributor__c = distributorAccount.Id;
-        opp.StageName = '01 – Universe';
-        opp.CloseDate = date.today() + 30;
-        opp.CurrencyIsoCode = 'RUB';
-        opp.FS_casesPiece__c = 'piece';
-        opp.FS_DateOfSend__c = date.today();
-        opp.FS_endDateTPR__c = date.today() + 30;        
-        opp.FS_selfCollection__c = true;
-        opp.FS_prePaid__c = true;
-        opp.Owner =[SELECT Id, Email FROM User WHERE Id =: UserInfo.getUserId() LIMIT 1];
-        insert opp;  
-        
-            oppProd = new OpportunityLineItem();
-            oppProd.OpportunityId = opp.Id;
-            oppProd.Quantity = 500;
-            oppProd.PricebookEntryId = pbe.Id;
-            oppProd.TotalPrice = 3946725;
-            oppProd.FS_tprPercent__c = 2;
-        insert oppProd;
-        */
+
         }
         
      }  
@@ -291,7 +266,6 @@ Public class FS_GenerateMDMRequest_CX_Test{
         oppRecord.CloseDate = date.today() + 30;
         oppRecord.CurrencyIsoCode = 'RUB';
         oppRecord.FS_casesPiece__c = 'piece';
-        oppRecord.FS_DateOfSend__c = date.today();
         oppRecord.FS_endDateTPR__c = date.today() + 30;        
         oppRecord.FS_selfCollection__c = true;
         oppRecord.FS_prePaid__c = true;

@@ -205,7 +205,6 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         opp.CloseDate = date.today() + 30;
         opp.CurrencyIsoCode = 'RUB';
         opp.FS_casesPiece__c = 'piece';
-        opp.FS_DateOfSend__c = date.today();
         opp.FS_endDateTPR__c = date.today() + 30;        
         opp.FS_selfCollection__c = true;
         opp.FS_prePaid__c = true;
@@ -236,7 +235,6 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         oppRecord.CloseDate = date.today() + 30;
         oppRecord.CurrencyIsoCode = 'RUB';
         oppRecord.FS_casesPiece__c = 'piece';
-        oppRecord.FS_DateOfSend__c = date.today();
         oppRecord.FS_endDateTPR__c = date.today() + 30;        
         oppRecord.FS_selfCollection__c = true;
         oppRecord.FS_prePaid__c = true;

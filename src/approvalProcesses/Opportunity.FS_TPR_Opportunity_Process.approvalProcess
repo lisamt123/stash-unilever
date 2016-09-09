@@ -25,7 +25,8 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-
+                <name>chatter.support@unilever.com</name>
+                <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
@@ -43,7 +44,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>jamesoper@acfrufsna.com</name>
+                <name>chatter.support@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -65,7 +66,7 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>jamescdops@acfrufsna.com</name>
+                <name>chatter.support@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

@@ -172,12 +172,8 @@ src/classes/FS_UtilMABETool.cls
 src/classes/FS_UtilMABETool.cls-meta.xml
 src/classes/FS_UtilTestDataSetup.cls
 src/classes/FS_UtilTestDataSetup.cls-meta.xml
-src/email/FS_Email_Templates/Account_Plan_Approved.email
-src/email/FS_Email_Templates/Account_Plan_Approved.email-meta.xml
-src/email/FS_Email_Templates/account_Plan_Rejected.email
-src/email/FS_Email_Templates/account_Plan_Rejected.email-meta.xml
-src/email/FS_Email_Templates/Defined_objective_submitted_for_Approval.email
-src/email/FS_Email_Templates/Defined_objective_submitted_for_Approval.email-meta.xml
+src/email/FS_Email_Templates/FS_Defined_objective_submitted_for_Approval.email
+src/email/FS_Email_Templates/FS_Defined_objective_submitted_for_Approval.email-meta.xml
 src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email
 src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email-meta.xml
 src/email/FS_Email_Templates/FS_Account_Plan_approved.email
@@ -236,6 +232,9 @@ src/triggers/OpportunityProductTrigger.trigger
 src/triggers/OpportunityProductTrigger.trigger-meta.xml
 src/triggers/OpportunityTrigger.trigger
 src/triggers/OpportunityTrigger.trigger-meta.xml
+src/workflows/Account.workflow
+src/workflows/Opportunity.workflow
+src/workflows/OpportunityLineItem.workflow
 src/workflows/FS_Account_Plan__c.workflow
 src/workflows/FS_casePiece__c.workflow
 src/workflows/FS_Contract_Product_Opportunity_Map__c.workflow

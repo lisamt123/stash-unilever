@@ -8,7 +8,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>FS_Email_Templates/Account_Plan_Approved</template>
+        <template>FS_Email_Templates/FS_Account_Plan_Approved</template>
     </alerts>
     <alerts>
         <fullName>Email_alert_to_account_plan_owner_for_rejection</fullName>
@@ -18,7 +18,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>FS_Email_Templates/account_Plan_Rejected</template>
+        <template>FS_Email_Templates/FS_account_Plan_Rejected</template>
     </alerts>
     <fieldUpdates>
         <fullName>FS_Account_Plan_Name_Update</fullName>
