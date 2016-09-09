@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+public with sharing class AA_Follow_Unfollow_class_Test {
+
+=======
 @isTest
 public with sharing class AA_Follow_Unfollow_class_Test {
 
@@ -126,4 +130,5 @@ public with sharing class AA_Follow_Unfollow_class_Test {
         system.assert(UserSet!=null);
           
     }
+>>>>>>> develop
 }
