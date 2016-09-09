@@ -1125,8 +1125,7 @@ public without sharing class IPM_Utils {
         string biValue = '';
          Map<Id,String> projIdBIMap =  new Map<Id,String>();
          string consolidatedRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
-         string defaultRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT);
-        
+      
         //query financial year and financial deatils
         IPM_Financial__c[] finDetails = [SELECT Business_Impact_Global__c, Business_Impact_Regional__c,RecordTypeId,IPM_Project_Rollout__c,Regional_Project__c,Local_Project__c,Parent_Project__r.IPM_Phase__c,
         										Regional_Project__r.IPM_Phase__c,Regional_Project__r.IPM_Project_Type__c
@@ -1155,30 +1154,7 @@ public without sharing class IPM_Utils {
                     projIdBIMap.put(fin.Regional_Project__c,biValue);
                     
                 }
-                //Local Financial : RT = Default +  Local Project != null
-               /* else if(finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId
-                        && finYr.IPM_Financial__r.Local_Project__c != null && finYr.Turnover_Local__c != null)
-                { 
-                    iTOValue = (finYr.Turnover_Local__c)/1000;
-                    projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
-                    
-                }*/
-                
-                //Global Operational
-               /* else if(finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null 
-                            && finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId 
-                            && finYr.IPM_Financial__r.Parent_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                    iTOValue = (finYr.Turnover_Global__c)/1000;
-                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
-                }
-                 //Regional Operational
-                else if(finYr.Turnover_Regional__c != null && finYr.IPM_Financial__r.Regional_Project__c != null 
-                            && finYr.IPM_Financial__r.RecordTypeId == defaultRecordTypeId 
-                            && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                    iTOValue = (finYr.Turnover_Regional__c)/1000;
-                    projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
-                }
-                */
+              
             }
         }
      
