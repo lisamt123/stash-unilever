@@ -22,7 +22,8 @@ Test class for the Helper class CEC_FulfilmentHelper
 
 @isTest(SeeAllData=false)
 public class CEC_FulfilmentHelperTest {
-    
+    private static final string dollarConst = 'Dollars';
+    private static final string centConst = 'Cents';
     @testSetup static void setUpTestData() {
         User u = CEC_TestDataFactory.createStandardCECTestUser();
         System.runAs(u) {
@@ -130,14 +131,14 @@ Test method for beforeInsert() method
             System.debug(''+loggedinuser.Quality_Check_Percentage__c+' '+loggedinuser.FirstName);
             
             Test.startTest();
-            CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
-            fulfilmentHelper.qualityCheck(fulfilmentList);
+            CEC_FulfilmentHelperExtension.qualityCheck(fulfilmentList);
             Test.stopTest();
             
             system.assertEquals(true, fulfilmentList.get(0).QA_flag__c);
         }
         
     }
+<<<<<<< HEAD
     
     public static testMethod void test_getChequeNumber(){
         
@@ -485,6 +486,9 @@ Test method for beforeInsert() method
         }
     }
     
+=======
+   
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
     public static testMethod void test_beforeUpdate(){
         
         User u = CEC_TestDataFactory.getStandardCECTestUser();
@@ -730,7 +734,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -825,7 +829,7 @@ Test method for beforeInsert() method
             mdm_Product_Category__c prodCategory = [SELECT Id FROM mdm_Product_Category__c LIMIT 1];
             
             List<CEC_ChequeBook_Detail__c> chequeBookDetailList = CEC_TestDataFactory.createChequeBookDetail(
-                1, CEC_Constants.chequebookName, 'USD', 'Dollars', 'Cents',
+                1, CEC_Constants.chequebookName, CEC_Constants.USD, dollarConst, centConst,
                 1, 11, 1000, cmmUK.Id, prodCategory.Id);
             insert chequeBookDetailList;
             
@@ -883,6 +887,7 @@ Test method for beforeInsert() method
             Test.StopTest();
         }
     }
+<<<<<<< HEAD
     
     public static testMethod void test_AssignNewDebitCardToAccount(){
         
@@ -1225,3 +1230,6 @@ Test method for beforeInsert() method
     }     
 }
 >>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
+=======
+}
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733

@@ -124,23 +124,26 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Auto_Aligned_Fin_TLD__c</fullName>
-        <description>Auto Aligned Fin &amp; TLD</description>
+        <fullName>IPM_BETOwner__c</fullName>
+        <description>Owner name of BET record.</description>
         <externalId>false</externalId>
-        <label>IPM Auto Aligned Fin &amp; TLD</label>
-        <length>10</length>
+        <label>BET Owner</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Auto_Aligned_Fin_TLD_for_financial__c</fullName>
-        <defaultValue>false</defaultValue>
+        <fullName>IPM_BET_Current_Status__c</fullName>
+        <description>Project Status</description>
         <externalId>false</externalId>
-        <label>IPM Auto Aligned Fin &amp; TLD for financial</label>
+        <label>IPM BET Current Status</label>
+        <length>255</length>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_BET_Final_Release_Due_date__c</fullName>
@@ -179,10 +182,30 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IPM_BET_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM BET Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Brand_Positioning__c</fullName>
         <description>Brand Positioning details</description>
         <externalId>false</externalId>
         <label>IPM Brand Positioning</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Brand__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Brand</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -263,6 +286,26 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Company_Project_Priority_BB__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Company Project Priority (BB)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Company_Project_Priority_BD__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Company Project Priority (BD)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Company__c</fullName>
         <description>Company Name</description>
         <externalId>false</externalId>
@@ -337,7 +380,7 @@
         <fullName>IPM_Exemptfrom_Threshold__c</fullName>
         <description>Exempt From Threshold - Formula field (Yes/ NO)</description>
         <externalId>false</externalId>
-        <formula>IF(IPM_Exempt_from_Threshold__c = true, &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formula>IF(IPM_Exempt_from_Threshold__c, &apos;Yes&apos;,  IF( CONTAINS(IPM_Project_Name__c, &apos;(Non Key)&apos;) , &apos;&apos;, &apos;No&apos;) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM Exempt from Threshold</label>
         <required>false</required>
@@ -409,6 +452,134 @@
         <externalId>false</externalId>
         <label>IPM Finance Member</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Financials_Aligned__c</fullName>
+        <externalId>false</externalId>
+        <label>Financials Aligned</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y0BD__c</fullName>
+        <description>Populate GP from Calendar year 2013. Label in report would be &apos;GP 2013(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y0(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y1BD__c</fullName>
+        <description>Populate GP from Calendar year 2014. Label in report would be &apos;GP 2014(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y1(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y2BD__c</fullName>
+        <description>Populate GP from Calendar year 2015. Label in report would be &apos;GP 2015(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y2(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y3BD__c</fullName>
+        <description>Populate GP from Calendar year 2016. Label in report would be &apos;GP 2016(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y3(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y4BD__c</fullName>
+        <description>Populate GP from Calendar year 2017. Label in report would be &apos;GP 2017(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y4(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y5BD__c</fullName>
+        <description>Populate GP from Calendar year 2018. Label in report would be &apos;GP 2018(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y5(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y6BD__c</fullName>
+        <description>Populate GP from Calendar year 2019. Label in report would be &apos;GP 2019(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y6(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y7BD__c</fullName>
+        <description>Populate GP from Calendar year 2020. Label in report would be &apos;GP 2020(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y7(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GP_Y8BD__c</fullName>
+        <description>Populate GP from Calendar year 2021. Label in report would be &apos;GP 2021(BD)&apos;.</description>
+        <externalId>false</externalId>
+        <label>IPM GP Y8(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Gate_Keeping_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Gate Keeping Model</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -544,6 +715,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Key_NonKey__c</fullName>
+        <description>To indicate KeyMCO or not</description>
+        <externalId>false</externalId>
+        <label>Key/NonKey</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Market_Cluster__c</fullName>
         <description>Market Cluster - list of regions/countries</description>
         <externalId>false</externalId>
@@ -634,6 +816,22 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Product_DesignLock_Completed_On_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Design Lock - Completed On Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Product_Design_Lock_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Product Design Lock - Due Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Description__c</fullName>
         <description>Project Description</description>
         <externalId>false</externalId>
@@ -678,6 +876,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Project_Route__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Project Route</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Span__c</fullName>
         <description>Span of the project i.e. Global/Regional/Local</description>
         <externalId>false</externalId>
@@ -709,11 +917,21 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_Status__c</fullName>
-        <description>Project Status</description>
+        <fullName>IPM_Reason_for_No_BET__c</fullName>
         <externalId>false</externalId>
-        <label>IPM Status</label>
+        <label>IPM Reason for No BET</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Stopped__c</fullName>
+        <description>To Indicate whether project is stopped or not</description>
+        <externalId>false</externalId>
+        <label>Stopped</label>
+        <length>3</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -725,6 +943,27 @@
         <externalId>false</externalId>
         <label>IPM Strategic Intent</label>
         <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Sub_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Sub-Category</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Target_Launch_Date_Aligned__c</fullName>
+        <description>Auto Aligned Fin &amp; TLD</description>
+        <externalId>false</externalId>
+        <label>Target Launch Date Aligned</label>
+        <length>10</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -788,10 +1027,163 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_White_Space_Project__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM White Space</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y1_GPBD__c</fullName>
+        <description>Y1 Gross Profit from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y1 GP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y1_Gross_TO_BD__c</fullName>
+        <description>Y1 gTO from Innovation year</description>
+        <externalId>false</externalId>
+        <label>IPM Y1 Gross TO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y1_iGP_BD__c</fullName>
+        <description>Y1 iGP from Innovation year</description>
+        <externalId>false</externalId>
+        <label>Y1 iGP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y1_iTOBD__c</fullName>
+        <description>Y1 incremental Turn Over from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y1 iTO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y2_GPBD__c</fullName>
+        <description>Y2 Gross Profit from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y2 GP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y2_Gross_TO_BD__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Y2 Gross TO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y2_iGP_BD__c</fullName>
+        <description>Y2 iGP from Innovation year</description>
+        <externalId>false</externalId>
+        <label>Y2 iGP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y2_iTOBD__c</fullName>
+        <description>Y2 incremental Turn Over from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y2 iTO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y3_GPBD__c</fullName>
+        <description>Y3 Gross Profit from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y3 GP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y3_Gross_TO_BD__c</fullName>
+        <description>Y3 gTO from Innovation year</description>
+        <externalId>false</externalId>
+        <label>IPM Y3 Gross TO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Y3_gTO_BD__c</fullName>
         <description>Y3 gTO(BD)</description>
         <externalId>false</externalId>
-        <label>IPM Y3 gTO(BD)</label>
+        <label>IPM Calendar Y3 gTO(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y3_iGP_BD__c</fullName>
+        <description>Y3 iGP from Innovation year</description>
+        <externalId>false</externalId>
+        <label>Y3 iGP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y3_iTOBD__c</fullName>
+        <description>Y3 incremental Turn Over from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y3 iTO (BD)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -803,7 +1195,102 @@
         <fullName>IPM_Y3_iTO_BD__c</fullName>
         <description>Y3 iTO(BD)</description>
         <externalId>false</externalId>
-        <label>IPM Y3 iTO(BD)</label>
+        <label>IPM Calendar Y3 iTO(BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y4_GPBD__c</fullName>
+        <description>Y4 Gross Profit from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y4 GP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y4_Gross_TO_BD__c</fullName>
+        <description>Y4 gTO from Innovation year</description>
+        <externalId>false</externalId>
+        <label>IPM Y4 Gross TO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y4_iGP_BD__c</fullName>
+        <description>Y4 iGP from Innovation year</description>
+        <externalId>false</externalId>
+        <label>Y4 iGP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y4_iTOBD__c</fullName>
+        <description>Y4 incremental Turn Over from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y4 iTO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y5_GPBD__c</fullName>
+        <description>Y5 Gross Profit from Innovation years.</description>
+        <externalId>false</externalId>
+        <label>Y5 GP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y5_Gross_TO_BD__c</fullName>
+        <description>Y5 gTO from Innovation year</description>
+        <externalId>false</externalId>
+        <label>IPM Y5 Gross TO (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y5_iGP_BD__c</fullName>
+        <description>Y5 iGP from Innovation year</description>
+        <externalId>false</externalId>
+        <label>Y5 iGP (BD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Y5_iTOBD__c</fullName>
+        <externalId>false</externalId>
+        <label>Y5 iTO (BD)</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -1027,29 +1514,12 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-	<fullName>IPM_Stopped__c</fullName>
-	<description>To Indicate whether project is stopped or not</description>
-	<externalId>false</externalId>
-	<label>Stopped</label>
-	<length>3</length>
-	<required>false</required>
-	<trackTrending>false</trackTrending>
-	<type>Text</type>
-	<unique>false</unique>
-    </fields>
-<fields>
-        <fullName>IPM_Key_NonKey__c</fullName>
-        <description>To indicate KeyMCO or not</description>
-        <externalId>false</externalId>
-        <label>Key/NonKey</label>
-        <length>3</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>IPM Analytics</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>Rec#{0}</displayFormat>
         <label>IPM Analytics  Name</label>

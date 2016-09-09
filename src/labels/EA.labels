@@ -1,29 +1,31 @@
 <labels>
+	<fullName>EA_ShareEmail6</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>EA_ShareEmail6</shortDescription>
+	<value>Salesforce1 is available in App store for Android and iOs devices. For more information navigate to: Inside.Unilever>Human Resources>Talent Plus>Employee.</value>
+</labels>
+<labels>
+	<fullName>EA_Invite</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>EA_Invite</shortDescription>
+	<value>More information can be found here http://inside.unilever.com/hr/Talent%20Plus/Pages/Everyday-Actions-App.aspx  Salesforce1 is available in App store for Android and iOs devices.</value>
+</labels>
+<labels>
 	<fullName>EA_Chatter2</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
 	<shortDescription>EA_Chatter2</shortDescription>
-	<value>activity on the Everyday Actions app (on Salesforce1), I think you might find it interesting! More information can be found here: http://inside.unilever.com/hr/TalentPlus/Pages/Everyday-Actions-App.aspx  Salesforce1 is available in App store for Android and iOs devices.</value>
+	<value>activity on the Everyday Actions app (on Salesforce1), I think you might find it interesting! More information can be found here: http://inside.unilever.com/hr/Talent%20Plus/Pages/Everyday-Actions-App.aspx Salesforce1 is available in App store for Android and iOs devices.</value>
 </labels>
 <labels>
 	<fullName>EA_Chatter4</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
 	<shortDescription>EA_Chatter4</shortDescription>
-	<value>Note: Everyday Actions app is available on Salesforce1 mobile app. More information can be found here http://inside.unilever.com/hr/TalentPlus/Pages/Everyday-Actions-App.aspx </value>
+	<value>Note: Everyday Actions app is available on Salesforce1 mobile app. More information can be found here http://inside.unilever.com/hr/Talent%20Plus/Pages/Everyday-Actions-App.aspx </value>
 </labels>
-<labels>
-	<fullName>EA_ShareEmail6</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>EA_ShareEmail6</shortDescription>
-	<value>More information can be found here http://inside.unilever.com/hr/TalentPlus/Pages/Everyday-Actions-App.aspx  Salesforce1 is available in App store for Android and iOs devices.</value>
-</labels>
-<labels>
-	<fullName>EA_Chatter1</fullName>
-	<language>en_US</language>
-	<protected>false</protected>
-	<shortDescription>EA_Chatter1</shortDescription>
-	<value>Hey - try out</value>
-</labels>
+
+
 

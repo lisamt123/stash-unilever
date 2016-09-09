@@ -4,9 +4,4 @@
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
     <label>CEC_NewAccountContact</label>
-    <packageVersions>
-        <majorNumber>8</majorNumber>
-        <minorNumber>6</minorNumber>
-        <namespace>pca</namespace>
-    </packageVersions>
 </ApexPage>

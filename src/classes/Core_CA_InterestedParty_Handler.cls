@@ -10,7 +10,27 @@ Requirement/Description: This is a handler class which executes from trigger, Th
 */
 
 public class Core_CA_InterestedParty_Handler{
+<<<<<<< HEAD
 
+=======
+    
+    public static String strAribaTemp ='Ariba';
+    public static String strGtesTemp ='GTES';
+    public static String strClarityTemp ='Clarity';
+    public static String strInvoiceTemp ='Invoice';
+    public static String strAppTemp = 'APP';
+    public static String strEndTemp = 'END';
+    public static String strActvTemp ='ACTV';
+    public static String strApprTemp = 'APPR';
+    public static String strRejcTemp = 'REJC';
+    public static String strxxxTemp ='XXX';//check 
+    public static String stryyyTemp ='YYY';
+    public static String strzzzTemp ='ZZZ';
+    public static String straaaTemp ='AAA';
+    public static String strLinkpstTemp ='LinkPost';
+public static String strTextValue = 'Yes' ;
+    
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
     public void handleBeforeInsert(List<Core_Approver_Details__c > approverList){
         List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approver_Details__c'];
         List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approver_Details__c'];
@@ -23,8 +43,20 @@ public class Core_CA_InterestedParty_Handler{
                 approverRec.RecordTypeId = aribaRecordType[0].Id;
             if(approverRec.Source_System__c == 'GTES')
                 approverRec.RecordTypeId = gtesRecordType[0].Id;
+<<<<<<< HEAD
             //if(approverRec.Source_System__c == 'Remedy')
                 //approverRec.RecordTypeId = remedyRecordType[0].Id;
+=======
+            if(approverRec.Source_System__c == strClarityTemp)
+                approverRec.RecordTypeId = clarityRecordType[0].Id;
+            if(approverRec.Source_System__c == strInvoiceTemp){
+                approverRec.RecordTypeId = invoiceRecordType[0].Id;
+                if(approverRec.Action__c== strActvTemp && approverRec.Status__c=='Return to AP')
+                        approverRec.Status__c='';
+                if(approverRec.Action__c== strActvTemp)
+                        approverRec.Comments__c='';  
+            }   
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             
             //Updating Name field with Role.            
             approverRec.Name = approverRec.CA_Role__c;
@@ -483,6 +515,7 @@ public class Core_CA_InterestedParty_Handler{
                 //} 
                 List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
                 /* Start of Apex Header record Entity Subscription code */
+<<<<<<< HEAD
                 //if( approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_By__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_For__c&& approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Manager__c){
                    //if((approverRec.Source_System__c=='GTES' && (approverRec.Role__c=='APP'&& (approverRec.Action__c == 'APPR'||approverRec.Action__c == 'REJC'||approverRec.Action__c == 'COPY'))) ||(approverRec.Source_System__c=='Ariba' && approverRec.Action__c=='APPR' && bolMultipleRec==false) && bolMultipleRec==false){
                    if((approverRec.Source_System__c=='GTES' && approverRec.Role__c=='APP'&& bolMultipleRecGTES==false &&
@@ -495,6 +528,25 @@ public class Core_CA_InterestedParty_Handler{
                         (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c=='Approved'||approverRec.Status__c=='Rejected'))
                         )) 
                         ){
+=======
+                   if((approverRec.Source_System__c==strGtesTemp && approverRec.Role__c==strAppTemp&& !bolMultipleRecGTES &&
+                    ((newApprover.Action__c !=oldApprover.Action__c && (approverRec.Action__c == strApprTemp||approverRec.Action__c == strRejcTemp||approverRec.Action__c == strCopyTemp)) ||
+                    (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c==strApprvedTemp||approverRec.Status__c==strRejectedTemp)))) 
+                    ||
+                    (approverRec.Source_System__c==strAribaTemp && approverRec.Role__c==strAppTemp && !bolMultipleRec &&
+                    (( newApprover.Action__c !=oldApprover.Action__c && (approverRec.Action__c==strApprTemp||approverRec.Action__c==strRejcTemp)) ||
+                    (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c==strApprvedTemp||approverRec.Status__c==strRejectedTemp))
+                    )) 
+                    ||
+                    (approverRec.Source_System__c==strClarityTemp && (approverRec.Role__c==strAppTemp || approverRec.Role__c==strEndTemp)&& !bolMultipleRecClarity &&
+                    ((newApprover.Action__c !=oldApprover.Action__c && (approverRec.Action__c == strApprTemp||approverRec.Action__c == strRejcTemp||approverRec.Action__c == strRewoTemp)) ||
+                    (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c== strApprvedTemp||approverRec.Status__c==strRejectedTemp ||approverRec.Status__c==strReworkTemp ))))
+                    ||
+                    (approverRec.Source_System__c==strInvoiceTemp && approverRec.Role__c==strAppTemp&& !bolMultipleRecInvoice &&
+                    ((newApprover.Action__c !=oldApprover.Action__c && (approverRec.Action__c == strApprTemp||approverRec.Action__c == strRejcTemp)) ||
+                    (newApprover.Status__c !=oldApprover.Status__c && (approverRec.Status__c==strApprvedTemp ||approverRec.Status__c=='Return to AP'))))
+                    ){
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                        lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE SubscriberId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
                    } 
                 //}
@@ -766,7 +818,9 @@ public class Core_CA_InterestedParty_Handler{
         Set<Id> approverInterestedparty = new Set<Id>();
         List<Core_Approval_Header__Share> lstApexSharingDelete=new List<Core_Approval_Header__Share>();
         String baseUrl = System.URL.getSalesforceBaseUrl().toExternalForm();
-         
+         List<EntitySubscription> lstEntitySubDelete=new List<EntitySubscription>();
+       
+        
         for(Core_Approver_Details__c id : approverList){
             approverHeaderids.add(id.Approval_Header__c); 
             approverInterestedparty.add(id.Interested_Party__c);    
@@ -784,6 +838,16 @@ public class Core_CA_InterestedParty_Handler{
         
         Map<Id,User> mapUser = new Map<Id,User>([Select Name FROM User WHERE IsActive= true and Id IN : approverInterestedparty]);
         
+        /** unfollow Map**/
+        Map<Id,List<EntitySubscription>> mapSubscription = new Map<Id,List<EntitySubscription>>();
+        List<EntitySubscription> headerEntitySubObjUnfollow = [SELECT ParentId,SubscriberId FROM EntitySubscription WHERE ParentId IN : approverHeaderids ];
+        for(EntitySubscription subscription : headerEntitySubObjUnfollow){
+        if(!mapSubscription.containsKey(subscription.ParentId))
+            mapSubscription.put(subscription.ParentId,new List<EntitySubscription>());            
+            mapSubscription.get(subscription.ParentId).add(subscription);
+        }
+        /** unfollow Map**/
+        
         for(Core_Approver_Details__c approverRec : approverList){
             
             //****Delete access to record Start
@@ -796,6 +860,7 @@ public class Core_CA_InterestedParty_Handler{
                     }
                 }
                 List<Core_Approval_Header__Share> lstApexSharingQuery=new List<Core_Approval_Header__Share>();
+<<<<<<< HEAD
                 /* Start of Apex Header record Entity Subscription code */
                 if(approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_By__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_For__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Manager__c && ((approverRec.Source_System__c=='GTES' )  || (approverRec.Source_System__c=='Ariba' && bolMultipleRec==false)) )  {
                     lstApexSharingQuery=[SELECT Id,ParentId,UserOrGroupId FROM Core_Approval_Header__Share WHERE UserOrGroupId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
@@ -823,9 +888,32 @@ public class Core_CA_InterestedParty_Handler{
                     
                 }
             } */
+=======
+                /* Start of Apex sharing code */
+                if(approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_By__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Requested_For__c && approverRec.Interested_Party__c!=mapHeader.get(approverRec.Approval_Header__c).Manager__c && ((approverRec.Source_System__c==strGtesTemp ) || (approverRec.Source_System__c==strInvoiceTemp) || (approverRec.Source_System__c==strClarityTemp) || (approverRec.Source_System__c==strAribaTemp && !bolMultipleRec)) )  {
+                    lstApexSharingQuery=[SELECT Id,ParentId,UserOrGroupId FROM Core_Approval_Header__Share WHERE UserOrGroupId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
+                }
+                if(!lstApexSharingQuery.isempty()) lstApexSharingDelete.add(lstApexSharingQuery[0]);
+                
+                /*Entity subscription follow record  */
+                if((approverRec.Source_System__c == strInvoiceTemp || approverRec.Source_System__c == strClarityTemp )  &&  mapSubscription.containsKey(approverRec.Approval_Header__c)){
+                    if(mapSubscription.get(approverRec.Approval_Header__c) != null){
+                       for(EntitySubscription appRec : mapSubscription.get(approverRec.Approval_Header__c)){
+                            if(appRec.SubscriberId == approverRec.Interested_Party__c)
+                                lstEntitySubDelete.add(appRec);
+                        }
+                    }   
+                }
+                       
+
+
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
         }
         //insert the list of feed item record.
         if(!lstFeedItem.isempty()) Database.insert(lstFeedItem);
+        
+        //delete entity subscription record
+        if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         
         //delete access to record
         if(!lstApexSharingDelete.isempty()) Database.delete(lstApexSharingDelete);

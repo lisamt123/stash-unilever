@@ -1,0 +1,14 @@
+<aura:component implements="force:appHostable"> 
+    
+    <!-- To get the feed update of the context user, use subjectId="me" & feedType="News" !-->
+    <!-- To get the feed of a specific group, use subjectId="groupId" & feedType="Record" . Example : subjectId="0F9U00000005PPl" -->
+    <!-- To get the feed of a specific user, use subjectId="userId" & feedType="UserProfile" . Example : subjectId="005U000000668N7" -->
+    <!-- To get the feed of a specific record, use subjectId="recordId" & feedType="Record" . Example : subjectId="001U000000Qda2T" -->
+    <!-- To get the feed of a specific topic, use subjectId="topicId" & feedType="Topics" . Example : subjectId="0TOU0000000M9pf" -->
+    
+    <c:ChatterPublisherCmp subjectId="me" feedType="News"/>  
+    <c:ChatterFeedCmp subjectId="me" feedType="News"/> 
+    
+														
+
+</aura:component>

@@ -119,6 +119,7 @@ private class IPM_HomePageController_Test{
         System.RunAs(globalProjectLeader)
         {
             
+            test.startTest();
             List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c
                                                     from IPM_Project__c where Name in:projectNameSet];
             for(IPM_Project__c project : projectList)
@@ -149,13 +150,13 @@ private class IPM_HomePageController_Test{
                 projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
             }
             
-            /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
-            Test.startTest();
+           
             
              // Set GateKeeping Model as RCLT and start with Regional Project Creation.
             for(IPM_Project__c project : projectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                project.IPM_PM_Approach__c = IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
             }  
             
             update projectList;
@@ -169,6 +170,16 @@ private class IPM_HomePageController_Test{
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
             
             update projectListPhaseChange;
+<<<<<<< HEAD
+=======
+            
+            iDs.clear();
+            
+            for(IPM_Project__c project : projectListPhaseChange){
+                iDs.add(project.Id);
+            }
+            for(IPM_Project__c project : [Select Id, IPM_Phase__c from IPM_Project__c where Id In : iDs limit 100])
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             
             Test.stopTest();
             
@@ -184,8 +195,13 @@ private class IPM_HomePageController_Test{
             updatedDocument.add(currDoc);
             }
             update updatedDocument;
+<<<<<<< HEAD
             System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS , [Select Id, IPM_Document_Status__c from IPM_Project_Document__c limit 1000][0].IPM_Document_Status__c, 'Project Document Status changed' );
             
+=======
+            System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS , [Select Id, IPM_Document_Status__c from IPM_Project_Document__c limit 1000][0].IPM_Document_Status__c, 'Project Document Status has not been changed' );
+            Test.stopTest();
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             List<IPM_Project__c> dBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c from IPM_Project__c where IPMProject_Span__c = 'Regional'];  
             
                 
@@ -275,7 +291,31 @@ private class IPM_HomePageController_Test{
                 system.assert(values.contains(PLANNED_STR),'Alert is shown for milestone due date is today.');
             }
             
+<<<<<<< HEAD
             System.assert(Integer.valueOf(iHp.getTaskcountValue()) > 0);
+=======
+            System.assert(Integer.valueOf(iHp.getTaskcountValue()) > 0, 'Tasks are not assigned to logged-in user.');
+            list<IPM_task__c> lstTasks= new list<IPM_task__c>();
+            lstTasks.add(new IPM_task__c(IPM_project__c = projectList[0].id, IPM_Assignee__c = globalProjectLeader.id,IPM_Due_Date1__c=date.today().adddays(-3)));
+            lstTasks.add(new IPM_task__c(IPM_project__c = projectList[0].id, IPM_Assignee__c = globalProjectLeader.id,IPM_Due_Date1__c=date.today()));
+            lstTasks.add(new IPM_task__c(IPM_project__c = projectList[0].id, IPM_Assignee__c = globalProjectLeader.id,IPM_Due_Date1__c=date.today().adddays(3)));
+            insert lstTasks;
+            iHp.getTaskcountValue();
+            iHp.LstFinTLDMisalignedMessage = null;
+            iHp.BusinessCaseMessage = null;
+            iHp.project = null;
+            iHp.taskcount= 0;
+            list<IPM_User_Profile__c> lstLst = new list<IPM_User_Profile__c>();
+            lstLst.add(new IPM_User_Profile__c(IPM_User_Role__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD, IPM_User__c = globalProjectLeader.id));
+            lstLst.add(new IPM_User_Profile__c(IPM_User_Role__c = IPM_ConstantUtils.TEAM_PROJECT_LEADER, IPM_User__c = regionalProjectLeader .id));
+            insert lstLst;
+            iHP.getusertype();
+       }
+        System.RunAs(regionalProjectLeader )
+        {
+            IPM_HomePageController iHP2= new IPM_HomePageController();
+            iHP2.getusertype();
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
        }
      }      
     /**

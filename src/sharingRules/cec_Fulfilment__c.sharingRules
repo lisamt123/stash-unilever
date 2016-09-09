@@ -12,6 +12,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Bangladesh_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Bangladesh - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Bangladesh</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Bangladesh</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Indonesia_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Indonesia - Manager</label>
@@ -20,6 +31,17 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Pakistan_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Pakistan - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Pakistan</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Pakistan</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
@@ -42,6 +64,28 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Thailand_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Thailand - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Thailand</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Thailand</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Vietnam_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Vietnam - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Vietnam</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Vietnam</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
 </SharingRules>

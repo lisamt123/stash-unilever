@@ -446,10 +446,11 @@ public with sharing class ChatterUIController {
        */
        public FA_Course_Occurence__c selectedCourseOccurence {get; set;}
        public  void FetchPrefDetail(wrapPreferences tWrapPref){
+           
          checkOptions =new List<string>();
          
-               Integer OffsetarrivalBeforeUpdate; 
-               Integer OffsetdepartureBeforeUpdate;            
+             //  Integer OffsetarrivalBeforeUpdate; 
+              // Integer OffsetdepartureBeforeUpdate;            
                         
                      List<FA_Occurence_Member__c> listOccMemForPref=[Select   Id,
                                                                               FA_Course_Occurence__c, 
@@ -666,7 +667,7 @@ public with sharing class ChatterUIController {
         
         }
                
-        else if (wrapObj.tempUserPref.FA_terms__c == false)
+        else if (!wrapObj.tempUserPref.FA_terms__c )
              {
                     ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Please accept the Terms by clicking the checkbox and submit the details!');
                     ApexPages.addMessage(msg);
@@ -982,7 +983,7 @@ public with sharing class ChatterUIController {
         
             for(wrapPreTasks p:wrapInstanceOfPreTasks){
             
-                if(p.preWorkTask.FA_Mark_Completed__c==true){            
+                if(p.preWorkTask.FA_Mark_Completed__c){            
                 
                     preWorkTasksUpdated.add(p.preWorkTask);         
                 }

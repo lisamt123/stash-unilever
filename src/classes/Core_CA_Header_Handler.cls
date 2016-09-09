@@ -132,7 +132,11 @@ public class Core_CA_Header_Handler{
            
            if(headerRec.Source_System__c=='GTES' && CORE_Chatter_Approval__c.getinstance('GTES_Notification').Text_Value__c=='Yes'){
                 //If Fully Approved field is True
+<<<<<<< HEAD
                 if(headerRec.Fully_Approved__c==True){
+=======
+                if(headerRec.Fully_Approved__c){
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                     /*List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
                     lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
                     if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);*/
@@ -151,8 +155,13 @@ public class Core_CA_Header_Handler{
                 else setHeaderStatus.add(new Core_Approval_Header__c(id=headerRec.Id,Status__c='Submitted'));
             }
            
+<<<<<<< HEAD
            if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
                 String strBody;
+=======
+           //if(headerRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == 'Yes'){
+                //String strBody;
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                 
                 /*trigger notification regarding invalid PR
                 if(headerRec.Invalid_PR__c == true){                   
@@ -209,7 +218,11 @@ public class Core_CA_Header_Handler{
                         lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = headerRec.Id, LinkURL =baseUrl+'/'+headerRec.Id, Title = headerRec.Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
                 } */
                 
+<<<<<<< HEAD
              } 
+=======
+             //}
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
           }
           //insert the feed item record.
           if(!lstFeedItem.isEmpty()) Database.insert(lstFeedItem);
@@ -282,7 +295,11 @@ public class Core_CA_Header_Handler{
                 }
                 
                 //If Fully Approved field is True
+<<<<<<< HEAD
                 if(newHeader.Fully_Approved__c==True && oldHeader.Fully_Approved__c==False){
+=======
+                if(newHeader.Fully_Approved__c && !oldHeader.Fully_Approved__c){
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                     /*List<EntitySubscription> lstEntitySubQuery=new List<EntitySubscription>();
                     lstEntitySubQuery=[SELECT Id,ParentId,SubscriberId FROM EntitySubscription WHERE ParentId = :headerRec.Id];
                     if(!lstEntitySubQuery.isempty()) lstEntitySubDelete.addAll(lstEntitySubQuery);*/

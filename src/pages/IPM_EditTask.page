@@ -59,27 +59,33 @@
 	                       </div>
 	                    </apex:outputPanel>
                         </apex:outputPanel>
-			<apex:outputPanel layout="block" styleClass="col-xs-12" >
-				<div class=""><apex:outputLabel value="Functional Role" styleClass="fieldLabel fieldFont" /></div>
-				<div class="inputField">                            
-					<apex:outputText value="{!tasks.IPM_Function__c}" />
-				</div>
+			<!--All section list  -->
+	        <apex:outputPanel layout="block" styleClass="col-xs-12" id="sectionBlock" rendered="{!!redirectToGateDocument}">    
+	            <div class=""><apex:outputLabel value="Section" styleClass="fieldLabel fieldFont"/></div>
+	            <div class="inputField">
+	                <apex:selectList size="1" value="{!selectedSectionId}"  id="listVal">
+	                    <apex:selectOptions value="{!ListSections}" id="sectionVal"/> 
+	                    <apex:actionSupport reRender="functionBlock,assigneeBlock" event="onchange" action="{!populateFunctionalRoleAndOwner}"/>
+                    </apex:selectList>
+	            </div>
 			</apex:outputPanel>
-			<apex:actionRegion >    
-                  	<apex:outputPanel layout="block" styleClass="col-xs-12" id="sectionBlock" rendered="{!!redirectToGateDocument}">    
-                        <div class=""><apex:outputLabel value="Section" styleClass="fieldLabel fieldFont"/></div>
-                        <div class="inputField">
-                            <apex:selectList size="1" value="{!selectedSectionId}"  id="listVal">
-                                <apex:selectOptions value="{!Sectionlist}" id="sectionVal"/> 
-                            </apex:selectList>
-                        </div>
-					</apex:outputPanel>
-			</apex:actionRegion>
-			<!-- To place the help symbol in the top right hand corner of page -->
-			<apex:outputPanel layout="block" styleClass="col-xs-12" >
+			<!--Depending upon section list get functional role  -->
+			<apex:outputPanel layout="block" styleClass="col-xs-12" id="functionBlock" rendered="{!!redirectToGateDocument}">    
+	            <div class=""><apex:outputLabel value="Functional Role" styleClass="fieldLabel fieldFont"/></div>
+	            <div class="inputField">
+	                <apex:selectList size="1" value="{!tasks.IPM_Function__c}"  id="listVal1">
+	                    <apex:selectOptions value="{!ListFunctionalRole}" id="sectionVal2"/> 
+	                    <apex:actionSupport reRender="assigneeBlock" event="onchange"/>
+	                </apex:selectList>
+
+	            </div>
+			</apex:outputPanel>
+			<!--Depending upon functional role selected owner of the task will be displayed -->
+			<apex:outputPanel layout="block" styleClass="col-xs-12" id="assigneeBlock">
 				<div class=""><apex:outputLabel value="Assignee" styleClass="fieldLabel fieldFont"/></div>
-				<div class="inputField"><apex:outputText value="{!userIdName[tasks.IPM_Assignee__c]}" /></div>
+				<div class="inputField"><apex:outputText value="{!FunctionalRoleOwner}" /></div>
 			</apex:outputPanel>
+			
 			<apex:outputPanel layout="block" styleClass="col-xs-12" >
 				<div class=""><apex:outputLabel value="Due date" styleClass="fieldLabel fieldFont"/> <i>{!$Label.IPM_OptionalLabel}</i></div>
 				<div class="inputField">
@@ -88,8 +94,8 @@
 				</div>
 			</apex:outputPanel>
 			<div class="buttonMarginRight marginTop ipmButtonGroup pull-right">               
-				<apex:commandLink id="cancelLink" value="Cancel" styleClass="ipmButton buttonMarginRight" reRender="form, reRenderScript" onClick="pageclose();" onComplete="callEditTask()"/>   
-				<apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onclick="skipValidation();" onComplete="{!if(AND(validate),'pageclose(); callEditTask();','')};"/>
+                                                                <apex:commandLink id="cancelLink" value="Cancel" styleClass="ipmButton buttonMarginRight" reRender="form, reRenderScript" onClick="pageclose();pageclosetodo();" onComplete="callEditTask()"/>   
+                                                                <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onclick="skipValidation();" onComplete="{!if(AND(validate),'pageclose();pageclosetodo(); callEditTask();','')};"/>
 			</div>
 		
 

@@ -7,6 +7,11 @@ public class IPM_List_Milestones_Test {
     
     
     private static User stdUserForMilestone;
+<<<<<<< HEAD
+=======
+	private final static String IPM_MilestoneType = IPM_ConstantUtils.BET; 
+	private final static String PROJ_ID='Pid';
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
     
     /*
         *  Description: Milestone Set up data
@@ -61,9 +66,22 @@ public class IPM_List_Milestones_Test {
         Set<String> projectNameSet = new Set<String>{'TestComments1'};
         
         //Get the project data
-        IPM_Project__c proj = [SELECT Id, Name, IPM_Target_Launch_Dates__c from IPM_project__c WHERE Name IN: projectNameSet ];
+        IPM_Project__c proj = [SELECT Id, Name, IPM_Target_Launch_Dates__c, IPM_Project_Type__c, IPM_GateKeeping_Model__c, IPMProject_Span__c, IPM_Phase__c, IPM_CompanyCardText__c from IPM_project__c WHERE Name IN: projectNameSet ];
         // get the running user information
-        User globalUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];  
+        User globalUser = [Select Id, Name, LastName from User where LastName = 'PLATFORM_USER' limit 1]; 
+        
+        List<IPM_Project__c> newProject =IPM_TestFactory_Helper.createIPMProjectList(false,1);
+            
+        newProject[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+        newProject[0].IPM_Parent_Project__c = proj.id;
+        newProject[0].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT; 
+        newProject[0].IPM_Project_Leader__c = globalUser.Id;
+        newProject[0].IPM_Project_Name__c = 'TestPrj1';
+        newProject[0].IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+        newProject[0].IPMProject_Span__c = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
+        newProject[0].IPM_CompanyCardText__c = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+                    
+        insert newProject; 
         
         System.runAs(globalUser)
         {
@@ -71,22 +89,35 @@ public class IPM_List_Milestones_Test {
             
             PageReference pg = Page.IPM_ProjectSetupView;
             Test.setCurrentPageReference(pg);
-            ApexPages.CurrentPage().getparameters().put('Pid', proj.id); // NO SONAR. Pid has been used at mutiple places to cover multiple scenarios
-            System.Assert(ApexPages.CurrentPage().getparameters().get('Pid') == proj.id, SHOULDBESAME);
+            ApexPages.CurrentPage().getparameters().put(PROJ_ID, proj.id); // NO SONAR. Pid has been used at mutiple places to cover multiple scenarios
+            System.Assert(ApexPages.CurrentPage().getparameters().get(PROJ_ID) == proj.id, SHOULDBESAME);
             IPM_List_Milestones mileList = new IPM_List_Milestones();
             mileList.isCompleteMilestones = 'f'; 
             mileList.checkForOTIFWarning();
             
+        
             // Methods to sort the milestones 
             mileList.toggleSortMilestones();
             mileList.toggleSortPhases();
             
+<<<<<<< HEAD
             List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
             // First milestone should be of Ideas phase
             
             // TODO fix this assertion as it's failing in CI Sandbox
             // System.Assert(milestoneList[0].IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS);
             
+=======
+	    List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id];
+            System.assert(milestoneList.size() > 0, 'milestones succeefully not created');
+            
+            System.assert(mileList.strLink.contains(IPM_List_Milestones.DEFAULT_TLD_LINK),'strlink is not the default link.'+mileList.strLink);            
+	        
+            mileList.projectObj = newProject[0];
+            mileList.toggleSortMilestones();
+ 
+                        
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             mileList.filteredphaseM();
             mileList.filterCompleteMilestones();
             mileList.setMilestoneId(STR_TEST);
@@ -117,6 +148,12 @@ public class IPM_List_Milestones_Test {
             System.assert([Select Id, IPM_Completed__c from IPM_Milestone__c WHERE Id =:ipmMilestone.Id].size() == 0);
             Test.stopTest();
         }
+        IPM_List_Milestones mileList = new IPM_List_Milestones();
+        mileList.isEditable = true;
+        mileList.isBDuser = true;
+        mileList.isSDateEdit = true;
+        mileList.reactivateProjectFlag = true;
+        mileList.getPaginationUIDisplay();
     }
     
     
@@ -167,9 +204,9 @@ public class IPM_List_Milestones_Test {
             Test.StartTest();
             PageReference pg = Page.IPM_ProjectSetupView;
             Test.setCurrentPageReference(pg);
-            ApexPages.CurrentPage().getparameters().put('Pid', proj.id);
+            ApexPages.CurrentPage().getparameters().put(PROJ_ID, proj.id);
             IPM_List_Milestones ipmListMilestones = new IPM_List_Milestones();
-            System.Assert(ApexPages.CurrentPage().getparameters().get('Pid') == ipmListMilestones.projectId, 'Unable to set page parameter Pid');
+            System.Assert(ApexPages.CurrentPage().getparameters().get(PROJ_ID) == ipmListMilestones.projectId, 'Unable to set page parameter Pid');
             System.AssertNotEquals(ipmListMilestones.warningMessages.size(), 0, 'Messages not available');
             System.Assert((new Set < String > (ipmListMilestones.warningMessages)).contains(system.label.IPM_BETFirstReleaseMissed));
             System.Assert((new Set < String > (ipmListMilestones.warningMessages)).contains(system.label.IPM_BETFinalReleaseMissed));
@@ -180,8 +217,57 @@ public class IPM_List_Milestones_Test {
             System.AssertEquals(ipmListMilestones.wrapperRecordList[0].isEditable, false, 'Failed to set  Bet milestones to read only ');
             System.AssertEquals(ipmListMilestones.wrapperRecordList[0].isDeletable, false, 'BET milestones are deletable! ');
             Test.StopTest();
+            ipmListMilestones.toggleDueDate();
         }
 
     }
+    
+    /******************************************************
+    * @name: testExportFunctionality
+    * @description: test milestone export to excel functionality
+
+   ****************************************************/
+   public static testmethod void testMilestoneExportToExcel()
+   {
+   	//get user
+       User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
+       
+       Set<String> projectNameSet = new Set<String>{'TestComments1'};
+       
+       //Get the project data
+        IPM_Project__c proj = [SELECT Id, Name, IPM_Target_Launch_Dates__c from IPM_project__c WHERE Name IN: projectNameSet ];
+        
+       //run as PL
+       System.runAs(globalUser) 
+       {
+	        Test.startTest();
+	        
+	        PageReference pg = Page.IPM_ProjectSetupView;
+            Test.setCurrentPageReference(pg);
+            ApexPages.CurrentPage().getparameters().put(PROJ_ID, proj.id); // NO SONAR. Pid has been used at mutiple places to cover multiple scenarios
+            System.Assert(ApexPages.CurrentPage().getparameters().get(PROJ_ID) == proj.id, SHOULDBESAME);
+            IPM_List_Milestones mileList = new IPM_List_Milestones();
+            mileList.isCompleteMilestones = 'f'; 
+            
+            List<IPM_Milestone__c> milestoneList = [Select Id, IPM_Phase__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id limit 50000];
+            System.assert(milestoneList.size() > 0, 'milestones succeefully not created');
+            
+	   		mileList.exportToExcel();
+	   		
+	   		Test.setCurrentPageReference(new PageReference('Page.IPM_ExportToExcel'));
+	   		
+	   		System.currentPageReference().getParameters().put('currentObject','IPM_Milestone__c');
+        	System.currentPageReference().getParameters().put('fieldSetName','IPM_Export_List_FieldSet');
+        	System.currentPageReference().getParameters().put('whereClause','');
+        
+			IPM_ExportDataController exportCtrl= new IPM_ExportDataController();
+	   		exportCtrl.getFields();
+	   		
+	   		List<IPM_Milestone__c> listOfMilestonesExported = [Select IPM_Project__r.IPM_Project_Name__c,Name,IPM_Phase__c,IPM_Due_Date__c,IPM_Completed_On__c from IPM_Milestone__c limit 50000];
+	   		
+	   		system.assert(listOfMilestonesExported.size() != null,'Milestones to be exported not queried');
+	   		Test.stopTest();
+       }
+   }
 
 }

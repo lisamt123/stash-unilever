@@ -8,27 +8,12 @@
     <sections>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Id</field>
+            <field>Description__c</field>
             <table>Asset_Scoring__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Owner</field>
-            <table>Asset_Scoring__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>true</checkedByDefault>
-            <field>Name</field>
-            <table>Asset_Scoring__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>RecordType</field>
-            <table>Asset_Scoring__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>CreatedDate</field>
+            <field>Sub_Category_Description__c</field>
             <table>Asset_Scoring__c</table>
         </columns>
         <columns>
@@ -38,7 +23,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>LastModifiedDate</field>
+            <field>CreatedDate</field>
             <table>Asset_Scoring__c</table>
         </columns>
         <columns>
@@ -48,12 +33,17 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Sub_Category__c</field>
+            <field>LastModifiedDate</field>
+            <table>Asset_Scoring__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
             <table>Asset_Scoring__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Description__c</field>
+            <field>Owner</field>
             <table>Asset_Scoring__c</table>
         </columns>
         <columns>
@@ -63,7 +53,27 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>RecordType</field>
+            <table>Asset_Scoring__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Sub_Category__c</field>
+            <table>Asset_Scoring__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Id</field>
+            <table>Asset_Scoring__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Type__c</field>
+            <table>Asset_Scoring__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Asset_Option_Description__c</field>
             <table>Asset_Scoring__c</table>
         </columns>
         <masterLabel>SWOP Asset  Scoring</masterLabel>

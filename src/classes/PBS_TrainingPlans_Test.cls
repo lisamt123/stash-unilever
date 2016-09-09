@@ -108,7 +108,8 @@ public class PBS_TrainingPlans_Test {
                 PBS_LearningData_Test.publishLearning(resourceLearnings.get(0).Id,'resource',tresources.get(0).Id,false);
                 List<PBS_Training_Plan_Section__c> tplanSections = [select id from PBS_Training_Plan_Section__c where Training_Plan__c = :tplanId limit 1];
                 //Add to training plan section
-                List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
+                //List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = 
+                PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
 
                 PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
             }
@@ -171,7 +172,8 @@ public class PBS_TrainingPlans_Test {
                 PBS_LearningData_Test.publishLearning(resourceLearnings.get(0).Id,'resource',tresources.get(0).Id,false);
                 List<PBS_Training_Plan_Section__c> tplanSections = [select id from PBS_Training_Plan_Section__c where Training_Plan__c = :tplanId limit 1];
                 //Add to training plan section
-                List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
+                //List<PBS_Training_Plan_Section_Item__c> tplanSectionItemUpdate = 
+                PBS_TrainingPlanData_Test.createTrainingPlanSectionItems(tplanSections.get(0).Id,resourceLearnings);
 
                 PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
             }
@@ -242,8 +244,10 @@ public class PBS_TrainingPlans_Test {
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievements = PBS_AchievementData_Test.createAchievements(3, lAchieveCat.get(0).Id, 'Achievements');
         List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, new List<PBS_Achievement__c>{lAchievements.get(0)});
-        List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements1 = PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},new List<PBS_Achievement__c>{lAchievements.get(1)});
-        List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements2 = PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(1)},new List<PBS_Achievement__c>{lAchievements.get(2)});
+       // List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements1 =
+         PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(0)},new List<PBS_Achievement__c>{lAchievements.get(1)});
+       // List<PBS_Training_Plan_Achievement__c> lTPlanSectionAchievements2 = 
+        PBS_TrainingPlanData_Test.createTrainingPlanSectionAchievements(new List<PBS_Training_Plan_Section__c>{tplanSections.get(1)},new List<PBS_Achievement__c>{lAchievements.get(2)});
 
         //Test Insert
         Test.startTest();
@@ -280,7 +284,8 @@ public class PBS_TrainingPlans_Test {
 
         List<PBS_Achievement_Category__c> lAchieveCat = PBS_AchievementData_Test.createAchievementCategories(1);
         List<PBS_Achievement__c> lAchievement = PBS_AchievementData_Test.createAchievements(2, lAchieveCat.get(0).Id, 'Achievements');
-        List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
+       // List<PBS_Training_Plan_Achievement__c> lTPlanAchievement = 
+        PBS_TrainingPlanData_Test.createTrainingPlanAchievements(tplan, lAchievement);
 
         Id tplanId = tplan.get(0).Id;
         Id tplanId2 = tplan.get(1).Id;

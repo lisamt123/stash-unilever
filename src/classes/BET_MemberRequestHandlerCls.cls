@@ -9,7 +9,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   k.szepietowski@polsource.com            23/07/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-public without sharing class BET_MemberRequestHandlerCls {
+public class BET_MemberRequestHandlerCls {
     
 
     private static final String MANAGERROLE = 'Manager';

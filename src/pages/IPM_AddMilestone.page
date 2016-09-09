@@ -53,10 +53,14 @@
                 </apex:dataTable>
                 <div class="ipmButtonGroup pull-right">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" reRender="tskPanel" onComplete="{!if(validateSuccess,'pageclose()','')};"/>
 =======
                     <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" reRender="frm1" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose()','')};"/>
 >>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
+=======
+                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" reRender="frm1" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose();pageclosemilestone()','')};"/>
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                 </div>
             </apex:form>
         </div>
@@ -101,8 +105,8 @@
                                     </div>
                                 </apex:outputPanel>
                                 <div class="buttonMarginRight marginTop ipmButtonGroup pull-right">               
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose()','')};"/>
-                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onclick="skipValidation();" onComplete="pageclose();"/>
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rendered="{!if(milestoneId == null,true,false)}" reRender="form" onclick="skipValidation();" onComplete="{!if(validateSuccess,'pageclose();pageclosemilestone();','')};"/>
+                                    <apex:commandLink action="{!saveMilestones}" value="{!$Label.IPM_Save_button}" styleClass="ipmButton green" rendered="{!if(milestoneId != null,true,false)}" onclick="skipValidation();" onComplete="pageclose();pageclosemilestone();"/>
                                 </div>
                             </apex:outputPanel>
                         </apex:facet>

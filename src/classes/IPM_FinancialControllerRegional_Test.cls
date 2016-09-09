@@ -16,7 +16,12 @@ private class IPM_FinancialControllerRegional_Test {
     private static final string MISALINGNED_NOT_CONFIRMED = 'Misaligned confirmation not found';
     private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
     private static final string ERROR_MSG_NOT_CAPTURED = 'error message not captured';
-    private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE; 
+    private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE;
+    
+    private static final string eitherConsolidatedNonKeyMsg = 'Financial is either consolidated or key';
+    private static final string TLDNullMsg = 'TLD not set properly';
+    private static final string showNextMsg = 'Financial year is to be navigated to left(Next)';
+    private static final string showPreviousMsg = 'Financial year is to be navigated to right(Previous)'; 
 
     @testSetup public static void createRegionalOriginalProject()
      {
@@ -120,6 +125,9 @@ private class IPM_FinancialControllerRegional_Test {
 
      private static void callCtrlAction(IPM_FinancialController ipmfincon, integer part)
      {   
+        String finExtIdKey = 'Y1';
+        String currentTab = 'myview';
+        IPM_Financial__c consolidatedFin = new IPM_Financial__c();
         if (part == EXEC_PART_3)
         {
                 
@@ -161,27 +169,27 @@ private class IPM_FinancialControllerRegional_Test {
             ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
             IPM_FinancialWrapper finWrapper = new IPM_FinancialWrapper();
             List<IPM_FinancialValueWrapper> liFinValWrGPL = new List<IPM_FinancialValueWrapper>();
-            IPM_FinancialValueWrapper finvalwrGPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
+            IPM_FinancialValueWrapper finvalwrGPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
             liFinValWrGPL.add(finvalwrGPL);
             finWrapper.lstGrossPLVolume = liFinValWrGPL;
             
             List<IPM_FinancialValueWrapper> liFinValWrINCPL = new List<IPM_FinancialValueWrapper>();
-            IPM_FinancialValueWrapper finvalwrINCPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
+            IPM_FinancialValueWrapper finvalwrINCPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
             liFinValWrINCPL.add(finvalwrINCPL);
             finWrapper.lstIncrementalPLVolume = liFinValWrINCPL;
 
             //This works
             ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-            IPM_FinancialValueWrapper lstGrossPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
+            IPM_FinancialValueWrapper lstGrossPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
             finWrapper.lstGrossPLVolumeTons = new List<IPM_FinancialValueWrapper>{lstGrossPLVolumeTon};
             
-            IPM_FinancialValueWrapper lstGrossPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
+            IPM_FinancialValueWrapper lstGrossPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
             finWrapper.lstGrossPLVolume = new List<IPM_FinancialValueWrapper>{lstGrossPL};
                 
-            IPM_FinancialValueWrapper lstIncrementalPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
+            IPM_FinancialValueWrapper lstIncrementalPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
             finWrapper.lstIncrementalPLVolumeTons = new List<IPM_FinancialValueWrapper>{lstIncrementalPLVolumeTon};
             
-            IPM_FinancialValueWrapper lstIncrementalPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
+            IPM_FinancialValueWrapper lstIncrementalPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
             finWrapper.lstIncrementalPLVolume = new List<IPM_FinancialValueWrapper>{lstIncrementalPL};
             //ipmFinCon.populateVolumeType(finWrapper);
             ipmFinCon.financialsInnovation = finWrapper;
@@ -198,7 +206,7 @@ private class IPM_FinancialControllerRegional_Test {
          System.runAs(regionalProjectLeaderList[0])
          {
             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             IPM_Project__c regionalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Original' and Name='TestRegionalComments1' limit 1];
+             IPM_Project__c regionalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c,IPM_Phase__c,IPM_ProjectGKM__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Original' and Name='TestRegionalComments1' limit 1];
              system.assert(regionalOriginal!=null,'Regional original record (Regional company card) record not found.');
              system.assertEquals(regionalOriginal.name, 'TestRegionalComments1', INVALID_PROJECT_NAME);
              
@@ -225,7 +233,7 @@ private class IPM_FinancialControllerRegional_Test {
              ipmFinCon.isConsolidatedOrNonkey = false;
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
-             ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :regionalOriginal.id];
+             ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c,IPM_Phase__c,IPM_ProjectGKM__c from ipm_project__c where id = :regionalOriginal.id];
              system.assertEquals(sel.IPM_Project_Type__c, 'Original', INVALID_PROJECT_TYPE);
              system.assertEquals(sel.IPMProject_Span__c, 'Regional', INVALID_SPAN_NAME);
              system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true, MISALINGNED_NOT_CONFIRMED);
@@ -242,6 +250,14 @@ private class IPM_FinancialControllerRegional_Test {
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);//
              //Load Tab Rollup
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
+             
+             system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
+             system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
+             system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
+             system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
+             system.assert(ipmFinCon.tldAcceptFromValue == 'Accept Local TLD' , 'TLD accept value not returned as required');
+             
+             
             Test.stopTest();
          }  
      }
@@ -251,13 +267,13 @@ private class IPM_FinancialControllerRegional_Test {
      static testMethod void testLocalRollout()
      {
         List<User> regionalProjectLeaderList = [Select Id,Name,email from User where email = 'regionalUser@unilever.test.com']; 
-        IPM_Project__c regionalProject = [Select Id,Name from IPM_ProjecT__c where Name = 'TestRegionalComments1'];
+        IPM_Project__c regionalProject = [Select Id,Name,IPM_ProjectGKM__c,IPM_Phase__c from IPM_ProjecT__c where Name = 'TestRegionalComments1'];
 
         System.runAs(regionalProjectLeaderList[0])
         {
              Test.startTest();
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-             List<IPM_Project__c> localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
+             List<IPM_Project__c> localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c,IPM_ProjectGKM__c,IPM_Phase__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
              
              if(localRolloutProjectList.isEmpty())
              {
@@ -275,7 +291,7 @@ private class IPM_FinancialControllerRegional_Test {
 
              Test.stopTest();
              
-             localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' ];
+             localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c,IPM_ProjectGKM__c,IPM_Phase__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' ];
 
              IPM_Project__c localRolloutProject = localRolloutProjectList[0];
              system.assert(localRolloutProject!=null,'Local rollout type project not created.');
@@ -283,7 +299,7 @@ private class IPM_FinancialControllerRegional_Test {
              
              localRolloutProject.BI__c = PROJECT_BI_LARGE;
              update localRolloutProject;
-             IPM_Project__c selP = [select BI__c from IPM_Project__c where id=:localRolloutProject.id];
+             IPM_Project__c selP = [select Id,BI__c,IPM_Phase__c,IPM_ProjectGKM__c from IPM_Project__c where id=:localRolloutProject.id];
              system.assertEquals(selP.BI__c, PROJECT_BI_LARGE,'BI did not update');
              
              //Finance record for global project which is NON consolidate             
@@ -305,7 +321,7 @@ private class IPM_FinancialControllerRegional_Test {
              callCtrlAction(ipmFinCon, EXEC_PART_6);
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
-             ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :localRolloutProject.id];
+             ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c,IPM_Phase__c,IPM_ProjectGKM__c from ipm_project__c where id = :localRolloutProject.id];
              system.assertEquals(sel.IPMProject_Span__c, 'Local', INVALID_SPAN_NAME);
              system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true, MISALINGNED_NOT_CONFIRMED);
              
@@ -342,7 +358,7 @@ private class IPM_FinancialControllerRegional_Test {
 
             system.assertNotEquals(projectRecord,null, 'Record for Global Operational not created in previous step.'); 
             
-            ipm_project__c globalOperationalProject = [select name from ipm_project__c where id=: projectRecord.id];
+            ipm_project__c globalOperationalProject = [select Id,name,IPM_Phase__c,IPM_ProjectGKM__c from ipm_project__c where id=: projectRecord.id];
             system.assertEquals(globalOperationalProject.name,'TestOperationalCommentsglobal1', 'Project not created.');
             
             Test.stopTest(); 
@@ -358,7 +374,7 @@ private class IPM_FinancialControllerRegional_Test {
              loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
-             globalOperationalProject = [select IPM_Project_Type__c, MisAligned_Confirmed_By_Finance_Leader__c from ipm_project__c where id = :projectRecord.id];
+             globalOperationalProject = [select Id,IPM_Project_Type__c, MisAligned_Confirmed_By_Finance_Leader__c,IPM_Phase__c,IPM_ProjectGKM__c from ipm_project__c where id = :projectRecord.id];
              system.assertEquals(globalOperationalProject.IPM_Project_Type__c, LIT_OPERATIONAL, INVALID_PROJECT_TYPE);
              system.assertEquals(globalOperationalProject.MisAligned_Confirmed_By_Finance_Leader__c, true, MISALINGNED_NOT_CONFIRMED); 
          }

@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="clear"></div>                              
                             </div>
-                            <div class="cap-section" style="display:{!if(permissionSetName = $Label.Amr_CAP,'',$Label.Amr_None)}">                                
+                            <div class="cap-section" style="display:{!if(permissionSetName = $Label.Amr_CAP,'',$Label.Amr_None)}">                               
                                 <div class="margin-bottom10">
                                     <div class="displayinlineblock bud-res-block left" style="width:45%">
                                         <div class="job-field-label left margin-top8imp margin-right10">{!$Label.Amr_Region}</div>

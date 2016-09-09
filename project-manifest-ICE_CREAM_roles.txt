@@ -1,0 +1,15 @@
+src/roles
+src/roles/ICE_GlobalHead.role
+src/roles/Ice_BR65.role
+src/roles/Ice_Brazil.role
+src/roles/Ice_LATAM.role
+src/roles/Ice_WCH.role
+src/roles/Ice_WCH_SalesReps.role
+src/objects/Territory__c.object
+src/objects/Account.object
+src/layouts/Account-Account Layout.layout
+src/permissionsets/ICB_Admin.permissionset
+src/permissionsets/ICB_Backoffice_Salesforce.permissionset
+src/permissionsets/ICB_Backoffice_Salesforce_Plataform.permissionset
+src/permissionsets/ICB_Sales_Representative_Salesforce.permissionset
+src/permissionsets/ICB_Sales_Representative_Standard.permissionset

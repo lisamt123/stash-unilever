@@ -26,7 +26,7 @@ public class ICB_CalculatePlanDistance_BatchSch_Test
         
         System.Test.startTest();
         
-        String jobId = System.schedule('ICB_CalculatePlanDistance_BatchSchedule', cronExp, new ICB_CalculatePlanDistance_BatchSchedule());
+        String jobId = System.schedule('ICB_CalculatePlanDistance_BatchSchedule_Test', cronExp, new ICB_CalculatePlanDistance_BatchSchedule());
         
         CronTrigger cronTrigger = [SELECT Id, CronExpression, TimesTriggered, NextFireTime FROM CronTrigger WHERE Id =: jobId];
         

@@ -12,6 +12,7 @@ But as the most of the test data is created in this test class , we cant reduce 
 @isTest(SeeAllData=false)
 public class IPM_ProjectOverviewCtrl_Test
   { 
+<<<<<<< HEAD
    private static IPM_Project__c project;
     private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document_Section__c> projDocSecList ;
@@ -38,6 +39,115 @@ public class IPM_ProjectOverviewCtrl_Test
     final Static String IDEAS_PHASE= IPM_ConstantUtils.PHASE_IDEAS;
     final Static String ORIGINAL_PROJECT_TYPE= IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ;
     
+=======
+    static IPM_Project__c project;
+    static IPM_Project_Document__c projDoc;
+    static List<IPM_Project_Document_Section__c> projDocSecList ;
+    static List<IPM_Project_Document_Section__c> projDocSecList1;
+    static IPM_Document_Template__c ipdt;
+    static IPM_Project_Template__c projTempl;
+    static list<IPM_Section__c> secMstList;
+    static List<IPM_Task__c> tskList;
+    static IPM_Milestone__c mile;
+    static final String sPageRefURL = 'apex/IPM_ProjectOverview?Id=';
+    static final String BET_ERROR_MSG = 'BET alert is not as expected';
+    static User platformUser;
+    static User stdUserForBET;// Variable has been used in betdatainitializer  method
+    static final String FINANCIAL_NOT_CREATED = 'Financial is not created';
+    static final String FINANCIAL_YEAR_NOT_CREATED = 'Financial Year is not created';
+	static final String PAGINATION_CONTROLS_MSG = 'Pagination Controls not behaving properly.';
+	static final String LOCAL_PROJECTS_NOT_CREATED =  'local projects are not created';
+	static final String REGIONAL_PROJECTS_NOT_CREATED =  'regional projects are not created';
+	static final String MILESTONES_NOT_CREATED ='Milestones are not created.';
+	static final String TEST_PROJECT_NAME = 'Test Local Project';
+	
+	//BET Test data for BET test methods 
+ @testSetup static void betDataInitializer(){
+
+        Test.StartTest();
+        
+        test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');//
+        test.loadData(IPM_BET_Search_Fields__c.sobjectType, 'IPM_BET_Search_Test');//
+        test.loadData(IPM_ProjectMetadata__c.sobjectType, 'IPM_Project_Metadata');//
+
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+        {
+            // User has to be created as a  system admin 
+            stdUserForBET= IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+        } 
+        
+        // creating BET's for  projects
+        uw_BET__c bet1 = BET_TestUtils.getTestBet();
+        bet1.name ='bet1';
+        
+        uw_BET__c bet2 = BET_TestUtils.getTestBet();
+        bet2.name ='bet2';
+        
+        insert new List<uw_BET__c>{bet1,bet2  } ;
+        System.AssertEquals(2, [Select count() from uw_BET__c where Id IN  (:bet1.Id, :bet2.Id) limit 100], 'The BET records are not inserted');
+        
+        List<IPM_Project__c>  orgProjList = IPM_TestFactory_Helper.createOriginalProjectList(false,2);
+        
+        System.runAs(stdUserForBET)
+        {
+            orgProjList[1].IPM_Project_Name__c = 'TestPrjOrg';
+            orgProjList[1].IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
+            orgProjList[1].IPM_Project_Type__c= IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+            orgProjList[1].IPM_Company_Card__c = IPM_TestFactory_Helper.createGlobalCompanyCard(true).Id; 
+            insert  orgProjList;
+        }
+        System.assertEquals(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL, [Select Id, IPM_Project_Type__c from IPM_Project__c where Id=: orgProjList[0].Id limit 100][0].IPM_Project_Type__c , 'Original project is not created.' );
+        
+        list < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
+        
+        BET_BETWrapper.MemberRequest member = new BET_BETWrapper.MemberRequest();
+        member.UserId = stdUserForBET.Id;
+        member.AccessLevel = IPM_ConstantUtils.BET_MANAGER_ACCESS;
+        lstMemberRequests.add(member);
+        BET_AccessService.RequestAccess(lstMemberRequests, bet1.Id, orgProjList[0].id);
+        BET_AccessService.RequestAccess(lstMemberRequests, bet2.Id, orgProjList[0].id);
+        
+        System.runAs(stdUserForBET)
+        {
+            list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,2);
+            
+            projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
+            projectList[0].IPM_Parent_Project__c = orgProjList[1].id;
+            projectList[0].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT; 
+            projectList[0].IPM_Project_Leader__c = UserInfo.getUserId();
+            projectList[0].IPM_Project_Name__c = 'TestPrj1';
+            projectList[0].IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+            projectList[0].IPMProject_Span__c = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
+            projectList[0].IPM_CompanyCardText__c = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+            projectList[0].IPM_Project_Leader__c = UserInfo.getuserId();
+            
+            projectList[1].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+            projectList[1].IPM_Parent_Project__c = orgProjList[1].id;
+            projectList[1].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            projectList[1].IPM_Project_Leader__c = UserInfo.getUserId();
+            projectList[1].IPM_Project_Name__c = 'TestPrj2';
+            projectList[1].IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+            projectList[1].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            projectList[1].IPM_CompanyCardText__c = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+            projectList[1].IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+            projectList[1].IPM_Target_Launch_Dates__c = Date.Today();
+            
+            insert projectList;
+            System.assertEquals(4, [Select count() from IPM_Project__c limit 100] , 'Projects are not created');
+            
+            IPM_Project_Resource__c bdUser = IPM_TestFactory_Helper.createIPMProjectResource(orgProjList[1].id,false);
+            bdUser.IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+            bdUser.IPM_Project__c = orgProjList[1].id;
+            bdUser.IPM_User__c = UserInfo.getUserId();
+            insert bdUser;
+            System.assertEquals( IPM_ConstantUtils.FUNCTIONAL_ROLE_BD, [Select Id, IPM_Role_Type__c from IPM_Project_Resource__c where Id =: bdUser.Id limit 100][0].IPM_Role_Type__c, 'Project resource with BD functional role is not created.');
+            Test.stopTest(); 
+                   
+          }
+    }
+   
+    //This method is used to create required test data for test methods.
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
     static void initializedData()
     { 
         String sProjectName = 'TestGate'; 
@@ -749,8 +859,14 @@ public class IPM_ProjectOverviewCtrl_Test
             testIPMFinancialLocal.Project_Sustainability_Period__c = '3';
             financialList.add(testIPMFinancialLocal);
         }
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
         insert financialList;
+<<<<<<< HEAD
         
+=======
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
+        System.assertEquals(20, [Select count() from IPM_Financial__c where Parent_Project__c =: project.id limit 100], FINANCIAL_NOT_CREATED);
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
         
         PageReference pRef1 = new PageReference(sPageRefURL+rProjectList[0].ID);
         Test.setCurrentPage(pRef1);
@@ -1183,12 +1299,15 @@ public class IPM_ProjectOverviewCtrl_Test
             Test.startTest();
             PageReference pRef1 = new PageReference(sPageRefURL+globalProject.ID);
             Test.setCurrentPage(pRef1);
+<<<<<<< HEAD
             
             IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
             IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
             System.assertEquals(overCtrl!=null, true);
+=======
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             Test.stopTest();
         
         }
-     }
+    }
 }

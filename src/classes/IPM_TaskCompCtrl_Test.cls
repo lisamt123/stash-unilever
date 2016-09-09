@@ -195,4 +195,42 @@ private class IPM_TaskCompCtrl_Test{
         Test.stopTest();
         }
     }
+    
+    /******************************************************
+    * @name: testExportFunctionality
+    * @description: test task export to excel functionality
+
+   ****************************************************/
+   public static testmethod void testTaskExportToExcel()
+   {
+   	//get user
+       User globalUser = [Select Id,LastName from User where LastName=:USER_NAME limit 1];
+       
+       //run as PL
+       System.runAs(globalUser) 
+       {
+	        Test.startTest();
+	        
+	        initializedData();
+	        
+	        //set current page with project id
+			ApexPages.currentPage().getParameters().put(PROJECT_ID,projectDetailList[1].Id);
+	   		IPM_TaskCompCtrl ipm = new IPM_TaskCompCtrl();
+	   		ipm.exportToExcel();
+	   		
+	   		Test.setCurrentPageReference(new PageReference('Page.IPM_ExportToExcel'));
+	   		
+	   		System.currentPageReference().getParameters().put('currentObject','IPM_Task__c');
+        	System.currentPageReference().getParameters().put('fieldSetName','IPM_Export_List_FieldSet');
+        	System.currentPageReference().getParameters().put('whereClause','where IPM_Active__c= true and (NOT IPM_Type_of_Task__c LIKE \'%' + String.escapeSingleQuotes('Future Adhoc') + '%\') AND (NOT IPM_Type_of_Task__c LIKE \'%' + String.escapeSingleQuotes('Future Standard') + '%\')');
+        
+			IPM_ExportDataController exportCtrl= new IPM_ExportDataController();
+	   		exportCtrl.getFields();
+	   		
+	   		List<IPM_Task__c> listOfTasksExported = [Select IPM_Project__r.IPM_Project_Name__c,IPM_Task_Name__c,IPM_Task_Type__c,IPM_Due_Date1__c,IPM_Task_Is_Completed__c,IPM_Completed_Date__c,IPM_Assignee__c from IPM_Task__c where IPM_Active__c= true];
+	   		
+	   		system.assert(listOfTasksExported.size() != null,'Tasks to be exported not queried');
+	   		Test.stopTest();
+       }
+   }
 }

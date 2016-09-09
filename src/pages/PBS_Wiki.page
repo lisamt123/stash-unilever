@@ -3,9 +3,15 @@
  
   <title>Wiki</title>
   <meta charset="utf-8"></meta>
+        
+     <meta name="viewport" content="width=device-width, initial-scale=1" ></meta>
+     
       <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
       <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
       <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/Wiki.css')}" />
+      
+     <meta name="viewport" content="width=device-width, initial-scale=1" ></meta>
+     
 
     <apex:composition template="PBS_Header_Template" ></apex:composition>
     <div class="row bodyRow group">
@@ -13,22 +19,31 @@
         <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
         <div class="col-xs-4 home-detail">
             <ul>
-            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_MyProfile}" target="innerFrame">EDIT PROFILE</a></li>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
             </ul>
         </div>
-    </div> 
-   
+    </div>
+
 <body>
 
       <!---Ad Main section---->
     
         <div class="container">
         <div class="col-md-12 col-lg-12 wiki-link">
-                <a href="{!$Page.PBS_Library}" title="Go back to Library">&laquo; Go Back to Library</a>
+                <a href="{!$Page.PBS_Planwiki}" title="Go Back to PlanWiki">&laquo; Go Back to PlanWiki</a>
             </div>
                 
         
-        <img src="{!URLFOR($Resource.almond_uilib_mt, 'img/PlanWiki.png')}" style="width: 65px; margin-top: 10px;" alt="Planwiki" />
+        <img src="{!URLFOR($Resource.almond_uilib_mt, 'img/PlanWiki.png')}" style="width: 65px; margin-top: 10px;" alt="PlanWiki" />
+        <apex:form >
+       <a href="/apex/PBS_Wiki_Feedback?Id={!objpbs.Id}"> <apex:commandbutton action="{!doSubmit}" value="Feedback" style="float: right;
+    position: relative;
+    top: -49px;
+    padding: 10px 50px 10px 50px;
+    background: #8eb4e3 ;
+    font-size: 15px;
+    color: #ffffff;" /> </a>
+        </apex:form>
         <div class="jobsportpolio_section">
         <div class="main-nav">
                                         <div class="subsection" id="idOfArticle">
@@ -70,7 +85,7 @@
 <div class="btmsection"></div>
 <div class="body imagechange">
 <h4></h4>
-<apex:outputField value="{!objpbs.Wiki_Content__c}"/>
+<apex:outputfield value="{!objpbs.Wiki_Content__c}" />
 
 <div class="imgpat">
 

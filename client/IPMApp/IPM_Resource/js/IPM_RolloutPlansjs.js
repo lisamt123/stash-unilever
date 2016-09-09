@@ -7,7 +7,7 @@
 */
 var jq= jQuery.noConflict();
 jq(document).ready(function(){
-
+selectDrpdown();
 jq(".ipmAccordion").find(".pHead:first span.expico-square").removeClass("fa-plus").addClass("fa-minus");
 
     var selectedCountries=[];
@@ -174,6 +174,7 @@ function scriptPanelLoad(){
     var selectedDateInputBox = "";
     function setChangedDate()
     {
+        unsaved = false;
         saveChangedTLDjs();
     }
     
@@ -212,4 +213,22 @@ window.onbeforeunload = unloadPage;
 /* Below code is to skip the unsaved changes*/
 function skipValidation() {
     unsaved = false;
+}
+
+function selectDrpdown(){ 
+    jq('.rollSelectList').on('change', function (e) {
+        var valueSelected = this.value;
+        jq(this).prev('.hideDupfield').attr('value',valueSelected);
+        var dataId = jq(this).prev('.hideDupfield').attr('data-holder');
+        holdRolloutsBrand(dataId,valueSelected);
+    }); 
+    jq('.rollSelectList option').each(function(){
+      var holder = jq(this).parent().prev('.hideDupfield').attr('value');
+      if(jq(this).val() === holder){
+        jq(this).attr('selected', true);
+      }
+    });  
+    jq(".ipmAcrdnExpand").hide();
+    jq(".ipmAccordion").find(".pHead span.expico").removeClass("fa-minus");
+    jq(".ipmAccordion").find(".pHead span.expico").addClass("fa-plus");  
 }
