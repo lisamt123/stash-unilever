@@ -15,7 +15,7 @@ public class cp_SpokePersonSelectionController {
     }
     
     public PageReference OnSave() {
-    	this.savedRepresentatives     = this.getSavedRepsentative();
+        this.savedRepresentatives     = this.getSavedRepsentative();
         this.availableRepresentatives = this.getActiveRepresentative();
         Set<String> selectedReps = new Set<String>();
         for (SelectOption so: selectedContacts) {
@@ -30,16 +30,16 @@ public class cp_SpokePersonSelectionController {
     
     // POPULATE TEXT AREA FIELD FOR CHATTER POST - Added by Carmine Barbuto 04/02/2013
     private void updateTrackedField(Set<String> selectedReps) {
-    	String uleNames = '';
-    	for (String curr : selectedReps) {
-    		uleNames = uleNames + ';' + availableRepresentatives.get(curr).Name;
-    	}
-    	this.event.Track_ULE__c = uleNames.replaceFirst(';','');
-    	try {
-    		update this.event;
-    	} catch (DmlException dml) {
-    		Apexpages.addMessages(dml);
-    	}
+        String uleNames = '';
+        for (String curr : selectedReps) {
+            uleNames = uleNames + ';' + availableRepresentatives.get(curr).Name;
+        }
+        this.event.Track_ULE__c = uleNames.replaceFirst(';','');
+        try {
+            update this.event;
+        } catch (DmlException dml) {
+            Apexpages.addMessages(dml);
+        }
     }
     
     private void RemovedFromList(Set<String> selectedReps) {
@@ -51,7 +51,9 @@ public class cp_SpokePersonSelectionController {
        }
        try {
        delete removedIds;
-       } catch(Exception exp){}
+       } catch(Exception exp){
+           Apexpages.addMessages(exp);
+       }
     }
     
     private void AddToList(Set<String> selectedReps) {
@@ -75,30 +77,30 @@ public class cp_SpokePersonSelectionController {
         // Order A-Z on first load - Available
         List<String> orderedRepNames = new List<String>();
         for (cp_ULE_Contact__c curr : availableRepresentatives.values())
-        	orderedRepNames.add(curr.Full_Name__c+'#'+curr.Id);
+            orderedRepNames.add(curr.Full_Name__c+'#'+curr.Id);
         orderedRepNames.sort();
         // Build multiplicklist selection - left side
         for (String curr :orderedRepNames) {
-        	if (!savedRepresentatives.containsKey(curr.split('#').get(1))) {
-        		cp_ULE_Contact__c cnt = availableRepresentatives.get(curr.split('#').get(1));
-        		String title = cnt.Title__c == null ? '' : ', ' + cnt.Title__c;
-        		String salutation = cnt.Salutation__c == null ? '' : cnt.Salutation__c + ' ';
-        		allContacts.add(new SelectOption(cnt.Id, salutation + cnt.Full_Name__c + title));
-        	}
+            if (!savedRepresentatives.containsKey(curr.split('#').get(1))) {
+                cp_ULE_Contact__c cnt = availableRepresentatives.get(curr.split('#').get(1));
+                String title = cnt.Title__c == null ? '' : ', ' + cnt.Title__c;
+                String salutation = cnt.Salutation__c == null ? '' : cnt.Salutation__c + ' ';
+                allContacts.add(new SelectOption(cnt.Id, salutation + cnt.Full_Name__c + title));
+            }
         }
         
         // Order A-Z on first load - Selected
         List<String> orderedSelNames = new List<String>();
         for (cp_ULE__c curr : savedRepresentatives.values())
-        	orderedSelNames.add(curr.UnileverLeadershipExecutive__r.Name+'#'+curr.UnileverLeadershipExecutive__c);
+            orderedSelNames.add(curr.UnileverLeadershipExecutive__r.Name+'#'+curr.UnileverLeadershipExecutive__c);
         orderedSelNames.sort();
         // Build multipicklist selection - right side
         for (String curr : orderedSelNames) {
             cp_ULE_Contact__c cnt = availableRepresentatives.get(curr.split('#').get(1));
             String title = cnt.Title__c == null ? '' : ', ' + cnt.Title__c;
-        	String salutation = cnt.Salutation__c == null ? '' : cnt.Salutation__c + ' ';
+            String salutation = cnt.Salutation__c == null ? '' : cnt.Salutation__c + ' ';
             if (cnt != null) {
-            	selectedContacts.add(new SelectOption(cnt.Id, salutation + cnt.Full_Name__c + title));
+                selectedContacts.add(new SelectOption(cnt.Id, salutation + cnt.Full_Name__c + title));
             }
         }
 
@@ -111,18 +113,18 @@ public class cp_SpokePersonSelectionController {
                                                 UnileverLeadershipExecutive__r.Name from ULE_Event_Reps__r) 
                               from  cp_Event__c 
                              where Id = :event.id];                
-	    for (cp_ULE__c ule: anEvent.ULE_Event_Reps__r) {
-	        savedRepsMap.put(ule.UnileverLeadershipExecutive__c,ule);
-	    }
+        for (cp_ULE__c ule: anEvent.ULE_Event_Reps__r) {
+            savedRepsMap.put(ule.UnileverLeadershipExecutive__c,ule);
+        }
         return savedRepsMap;
     }
     
     // cache all active represenative in the system.
     private Map<Id,cp_ULE_Contact__c> getActiveRepresentative() {
         Map<Id,cp_ULE_Contact__c> allReps = new Map<Id,cp_ULE_Contact__c>([SELECT Id, Full_Name__c, Name, Title__c, Salutation__c 
-                                                    	FROM cp_ULE_Contact__c 
-                                                     	WHERE (Active_ULE__c = true) 
-                                                     	ORDER BY Full_Name__c asc]);
+                                                        FROM cp_ULE_Contact__c 
+                                                        WHERE (Active_ULE__c = true) 
+                                                        ORDER BY Full_Name__c asc]);
         return allReps;
     }
     
