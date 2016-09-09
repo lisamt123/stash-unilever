@@ -6,7 +6,7 @@ VERSION AUTHOR         DATE         DETAIL Description
                      10/June/2016    Updated to add test user creation method  
 ***********************************************************************/
 
-public Class FS_Utility{
+public with sharing Class FS_Utility{
     private static boolean OppProduct= true;//Used in after update trigger - FS_OpportunityHelper
     private static boolean runaccPlan = true;
     private static boolean runobj = true;
@@ -47,7 +47,7 @@ public Class FS_Utility{
     Public Static map<String,String> recordTypewithName(String Name)
     {
         map<String,String> recordTypeWithName=new map<String,String>();
-        List<RecordType> recordTypeWithNameList=[select id,DeveloperName from RecordType where sObjectType=:Name ];
+        List<RecordType> recordTypeWithNameList=[select id,DeveloperName from RecordType where sObjectType=:Name];
         for(RecordType varRecord:recordTypeWithNameList)
         {
         recordTypeWithName.put(varRecord.DeveloperName,varRecord.id);

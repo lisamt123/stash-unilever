@@ -8,38 +8,13 @@ VERSION  AUTHOR         DATE          DETAIL Description
 @isTest
 private class FS_ContractProductHelper_Test {
     Static testMethod void testContractProduct(){
-        String profile_salesrep='Unilever - Salesforce MultiApp Standard';
-        String profile='System Administrator';
-        String permissionset='FS_Sales_Rep';         
-        Profile p = [SELECT Id, Name FROM Profile WHERE Name=:profile];
-        Profile p_rep = [SELECT Id, Name FROM Profile WHERE Name=:profile_salesrep];
-        Userrole managerRole=[SELECT Id, Name FROM UserRole WHERE Name = 'FS 59005 East CDM Regional Manager'];
+        FS_UtilTestDataSetup testData= new FS_UtilTestDataSetup();
+        User testUser = testData.createTestUser();
         
-        User SysAdmin = new User(Alias = 'newUser', Email='newuser1@testorg.com',
-        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
-        LocaleSidKey='en_US', ProfileId = p.Id,UserRoleId=managerRole.id,
-        TimeZoneSidKey='America/Los_Angeles', UserName='manager@testorg.com');
-        insert SysAdmin;
-        
-        Userrole role=[SELECT Id, Name FROM UserRole WHERE Name = 'FS 59005 Sales Rep'];
-        User SalesRepUser = new User(Alias = 'newsUser', Email='newuser1@testorg.com',
-        EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US',
-        LocaleSidKey='en_US', ProfileId = p.Id, UserRoleId=role.id,
-        TimeZoneSidKey='America/Los_Angeles', UserName='salesrep@testorg.com', ManagerId=SysAdmin.id);
-        insert SalesRepUser;
-        
-        /*PermissionSet ps = [SELECT Id, Name FROM PermissionSet WHERE Name =:permissionset];
-        PermissionSetAssignment psetassignment = new PermissionSetAssignment();
-        psetassignment.AssigneeId = SalesRepUser.Id;
-        psetassignment.PermissionSetId = ps.Id;
-        insert psetassignment;  */
-        
-             
-        system.runAs(SalesRepUser){
-            //Prearing data, so that the Contract Product is created by the opp trigger
+        system.runAs(testUser){
+            //Preparing data, so that the Contract Product is created by the opp trigger
             FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-            insert OppCustomSettings; 
-            FS_UtilTestDataSetup testData= new FS_UtilTestDataSetup();
+            INSERT OppCustomSettings; 
             
             Id accRecType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Operator').getRecordTypeId();
             Account acc = new Account(Name = 'Bahama', recordtypeid= accRecType, CurrencyIsoCode = 'EUR' );

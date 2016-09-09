@@ -19,17 +19,11 @@ public without sharing class FS_AccountPlanHandler{
 *  @return 
 *  @throws 
 */
-    public void onAfterUpdate(List<FS_Account_Plan__c> newAccountPlanList,Map<id,FS_Account_Plan__c> newAccountPlanOldMap){
-        try{
+    public void onAfterUpdate(List<FS_Account_Plan__c> newAccountPlanList,Map<id,FS_Account_Plan__c> newAccountPlanOldMap){       
             //Call helper method for approval
             helper.approveDefinedObjective(newAccountPlanList,newAccountPlanOldMap);            
             //Call method for rejection
             helper.rejectDefinedObjective(newAccountPlanList,newAccountPlanOldMap);
-        }
-        Catch(DmlException e){
-            System.debug( 'The following exception has occurred: '+e.getMessage() );
-            ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 'NAFS_AccountplanHandler', 'UpdateFieldOnApproval', e.getMessage(), e, null, null, null, 0,'Food Solution');
-        }
         
     }  
 }

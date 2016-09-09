@@ -7,6 +7,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
     static Product2 prod;
     static Account distributorAccount;
     static Account operatorAccount;
+    static Account shiptoAccount;
     
     @isTest static void GenerateMDMRequest() {
         
@@ -23,8 +24,20 @@ Public class FS_GenerateMDMRequest_CX_Test{
         oppProd = createOLI();
         insert oppProd;
         system.assert(oppProd.Id <> null);
-        }
         
+        // Create an approval request for the opportunity
+        Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
+        req1.setObjectId(opp.id);
+        
+        // Submit the record to specific process and skip the criteria evaluation
+        req1.setProcessDefinitionNameOrId('FS_TPR_Opportunity_Process');
+        req1.setSkipEntryCriteria(true);
+        
+        // Submit the approval request for the opportunity
+        Approval.ProcessResult result = Approval.process(req1);
+
+        }
+                
         PageReference pageRef = Page.FS_SendEmailWithMDMRequest;
         Test.setCurrentPage(pageRef);
         
@@ -44,6 +57,39 @@ Public class FS_GenerateMDMRequest_CX_Test{
         List<OpportunityLineItem> oli = controller.opportunityProducts;
         system.assert(oli.size()>0);
         //system.assert
+    } 
+    
+    @isTest static void GenerateMDMRequestExceptions() {
+        
+        setData();
+        
+        user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
+        system.runAs(SalesRepUser){
+       
+        opp = createOpportunity();
+        opp.ShipToCode__c = null;
+        opp.FS_MDMRequestSent__c = false;
+        insert opp;
+        		
+        }
+                
+        PageReference pageRef = Page.FS_SendEmailWithMDMRequest;
+        Test.setCurrentPage(pageRef);
+        
+        ApexPages.StandardController stdController = new ApexPages.StandardController(opp);
+        FS_GenerateMDMRequest_CX controller = new FS_GenerateMDMRequest_CX(stdController);
+        
+        controller.getDefaultCSValue();
+        controller.getHeaderCSValue();
+        DateTime dSent = controller.dateSent;
+        Opportunity oppRec = controller.opportunityRecord;
+        Account accRec = controller.accountRecord;
+        system.assert(dSent == null);//Avoid Sonarcube error 'Unused local variable'
+        system.assert(oppRec <> null);
+        system.assert(accRec == null);
+        Map<Id, Product2> prodMap = controller.product2Map;
+        system.assert(prodMap <> null);
+
     } 
     
         
@@ -164,6 +210,16 @@ Public class FS_GenerateMDMRequest_CX_Test{
         );
         insert distributorAccount;
         
+        shiptoAccount = new Account(
+        	Name = 'Distributor Child',
+        	RecordTypeId = distributorAccountRecordType,
+        	ParentId = distributorAccount.Id,
+	        FS_SoldToCode__c = '12345678',
+	        FS_hierarchyLevel__c = 'Customer Number',
+	        CustomerLegalName__c = 'Distributor Legal Name'
+        );
+        insert shiptoAccount;                               
+        
         //set Product
         prod = new Product2();
         prod.Name = 'Product Test';
@@ -194,7 +250,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
         
         insert pbe;     
         
-        //set Opportunity
+       /* //set Opportunity
         opp = new Opportunity();
         opp.Name = 'Test Opportunity';
         opp.AccountId = operatorAccount.Id;
@@ -217,7 +273,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
             oppProd.TotalPrice = 3946725;
             oppProd.FS_tprPercent__c = 2;
         insert oppProd;
-        
+        */
         }
         
      }  
@@ -230,6 +286,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
         oppRecord.Name = 'Test Opportunity';
         oppRecord.AccountId = operatorAccount.Id;
         oppRecord.FS_distributor__c = distributorAccount.Id;
+        oppRecord.ShipToCode__c = shiptoAccount.Id;
         oppRecord.StageName = '01 – Universe';
         oppRecord.CloseDate = date.today() + 30;
         oppRecord.CurrencyIsoCode = 'RUB';

@@ -22,7 +22,7 @@ public with sharing class FS_CreateContact_CC {
     Private String varAccountName;
     Public String workPhoneNumber{get;set;}
     Public String personalPhoneNumber{get;set;}
-    Public Static Final String varResonseResult='{"AddSiteLeadResult": {     "ErrorCode": 0,     "Message": "???????? ?????????",     "SiteLead": {   "id"="823c7007-6184-4f51-a68d-4967594fbb58"    "Address": "address-1, 4 - 33",       "Age": 28,       "BirthDate": "1987-01-12",       "BusinessAddress": "",       "BusinessName": "OOO MTC",       "BusinessPostalCode": "449543",       "City": "city1",       "Country": "Russia",       "Email": "tolmachev@example.com",       "ExtraParameters": [         {           "Name": "Number of pets",           "Value": "2"         },         {           "Name": "Job",           "Value": "Developer"         }       ],  "id"="823c7007-6184-4f51-a68d-4967594fbb58" ,     "FacebookId": "897384",       "Firstname": "Tol",       "Gender": "Male",       "Id": "feff7eae-f646-4ba5-987f-ecd265e498f0",       "Income": 70000,       "JobTitle": "",       "LandlinePhone": "89345673245",       "MaritalStatus": "Married",       "Middlename": "middleName",       "OkId": "0294485",       "PassportNumber": "3606789654",       "PersonalDataAgree": true,       "Phone": "89270087098",       "PropertyStatus": "propertyStatus",       "SocialStatus": "socialStatus",       "Surname": "Machev",       "Username": "Tolmachev",       "VkId": "789347503"     },     "Success": true,     "Warnings": []   } }';
+    Public Static Final String varResonseResult='{"AddSiteLeadResult": {     "ErrorCode": 0,     "Message": "???????? ?????????",  "Id"="823c7007-6184-4f51-a68d-4967594fbb58",    "SiteLead": {   "Id"="823c7007-6184-4f51-a68d-4967594fbb58"    "Address": "address-1, 4 - 33",       "Age": 28,       "BirthDate": "1987-01-12",       "BusinessAddress": "",       "BusinessName": "OOO MTC",       "BusinessPostalCode": "449543",       "City": "city1",       "Country": "Russia",       "Email": "tolmachev@example.com",       "ExtraParameters": [         {           "Name": "Number of pets",           "Value": "2"         },         {           "Name": "Job",           "Value": "Developer"         }       ],  "id"="823c7007-6184-4f51-a68d-4967594fbb58" ,     "FacebookId": "897384",       "Firstname": "Tol",       "Gender": "Male",       "Id": "feff7eae-f646-4ba5-987f-ecd265e498f0",       "Income": 70000,       "JobTitle": "",       "LandlinePhone": "89345673245",       "MaritalStatus": "Married",       "Middlename": "middleName",       "OkId": "0294485",       "PassportNumber": "3606789654",       "PersonalDataAgree": true,       "Phone": "89270087098",       "PropertyStatus": "propertyStatus",       "SocialStatus": "socialStatus",       "Surname": "Machev",       "Username": "Tolmachev",       "VkId": "789347503"     },     "Success": true,     "Warnings": []   } }';
     Public Blob cryptoKey{get;set;}
     List<FS_ExtraParameters> moreListItem = new List<FS_ExtraParameters>();
     Public Final String SAVETEXT{get;set;}
@@ -140,8 +140,7 @@ public with sharing class FS_CreateContact_CC {
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,FS_ContactUtility.ERRORMESSAGE));
                     return null;
                 }
-                
-                
+               
                 if(Integer.valueOf(res.getStatusCode())==FS_ContactUtility.STATUSCODE){
                     JSONParser parser1 = JSON.createParser(String.valueOf(res.getBody()));
                     String errorCode;
@@ -151,6 +150,7 @@ public with sharing class FS_CreateContact_CC {
                             parser1.nextToken();
                             if (fieldName.equals(FS_ContactUtility.CODEERROR)){
                                 errorCode= parser1.getText();
+                                break;
                             } 
                         }
                     }
@@ -167,6 +167,7 @@ public with sharing class FS_CreateContact_CC {
                                 parser.nextToken();
                                 if (fieldName.equals(FS_ContactUtility.IDTEXTFOREXTRAPARAMETERS)) {
                                     resId = parser.getText();
+                                    break;
                                 } 
                             }
                             

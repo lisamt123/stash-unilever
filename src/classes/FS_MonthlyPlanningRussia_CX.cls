@@ -107,10 +107,10 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
             monthly_Planner.actualWorkingDays=tempDates.size();
             If(tempDates.size()>0){
               //monthly_Planner.average=(monthly_Planner.actual*100)/monthly_Planner.workingDaysTillDate;
-              monthly_Planner.average=monthly_Planner.actual/tempDates.size();
-              monthly_Planner.target=Decimal.valueOf((tempDates.size()*100)/workingDays);
-              system.debug(monthly_Planner.target);
-              monthly_Planner.criticalTarget=Decimal.valueOf((tempDates.size()*100)/workingDays)-10;
+              monthly_Planner.average=(Decimal.valueOf(monthly_Planner.actual)/tempDates.size()).setScale(2);
+              monthly_Planner.target=((Decimal.valueOf(tempDates.size())*100)/workingDays).setScale(2);
+             // system.debug(monthly_Planner.target);
+              monthly_Planner.criticalTarget=monthly_Planner.target-10;
             }           
             IF(monthly_Planner!=null){
             listMonthlyPlanner.add(monthly_Planner);

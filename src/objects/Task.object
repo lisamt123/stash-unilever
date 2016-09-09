@@ -276,7 +276,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Distributor_name__c</picklist>
+            <picklist>FS_Distributorname__c</picklist>
             <values>
                 <fullName>Alidi-Nord</fullName>
                 <default>false</default>
