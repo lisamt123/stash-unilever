@@ -16427,6 +16427,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.smagicinteract__SMSOptOut__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ContentVersion.CMS_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26848,6 +26853,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.sf4twitter__followed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.smagicinteract__SMSOptOut__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -39349,7 +39359,15 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Everyday_Activity__c-Everyday Activity Layout</layout>
+        <recordType>Everyday_Activity__c.Bright_Future</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Everyday_Activity__c-Everyday Activity Layout</layout>
         <recordType>Everyday_Activity__c.Building_Inclusion</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Everyday_Activity__c-Everyday Activity Layout</layout>
+        <recordType>Everyday_Activity__c.My_Development</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Everyday_Activity__c-Everyday Activity Layout</layout>
@@ -42721,7 +42739,17 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Everyday_Activity__c.Bright_Future</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Everyday_Activity__c.Building_Inclusion</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Everyday_Activity__c.My_Development</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

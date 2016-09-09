@@ -794,6 +794,10 @@
         <label><!-- Followed --></label>
         <name>sf4twitter__followed__c</name>
     </fields>
+    <fields>
+        <label><!-- SMS Opt Out --></label>
+        <name>smagicinteract__SMSOptOut__c</name>
+    </fields>
     <layouts>
         <layout>Pitch Contact Layout</layout>
         <sections>
@@ -860,5 +864,13 @@
     <webLinks>
         <label><!-- Search_Twitter_Username --></label>
         <name>sf4twitter__Search_Twitter_Username</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_Bulk_SMS --></label>
+        <name>smagicinteract__Send_Bulk_SMS</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>smagicinteract__Send_SMS</name>
     </webLinks>
 </CustomObjectTranslation>
