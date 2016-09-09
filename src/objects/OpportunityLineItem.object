@@ -79,6 +79,89 @@
         <fullName>Discount</fullName>
     </fields>
     <fields>
+        <fullName>Distributor_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>ProdDistributor__r.ShippingStreet &amp; &quot;,&quot; &amp;  ProdDistributor__r.ShippingCity &amp; &quot;,&quot; &amp;  ProdDistributor__r.ShippingState &amp; &quot;,&quot; &amp;  ProdDistributor__r.ShippingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>For reporting purposes - to supply chain</inlineHelpText>
+        <label>Distributor Address</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Distributor__c</fullName>
+        <externalId>false</externalId>
+        <label>Distributor TMI</label>
+        <picklist>
+            <picklistValues>
+                <fullName>US Direct / CED</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US Sysco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reinhart</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PFG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US GFS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US OTher</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US Only (Food Buy, Aramark, Sodexho, Compass)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA Sysco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA GFS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colabor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FS_B1Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>PricebookEntry.FS_Bracket_1__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>B1 Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>FS_BR3__c</fullName>
         <externalId>false</externalId>
         <label>BR3</label>
@@ -511,6 +594,29 @@
         <scale>2</scale>
         <type>Currency</type>
     </fields>
+    <fields>
+        <fullName>ProdDistributor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Account that will distribute the proposed product.</inlineHelpText>
+        <label>Distributor</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Distributor</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Opportunity Product</relationshipLabel>
+        <relationshipName>Opportunity_Product</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>    
+    
+    
     <fields>
         <fullName>ICB_IS_CLOSED__c</fullName>
         <defaultValue>false</defaultValue>

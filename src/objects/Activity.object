@@ -113,11 +113,11 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>FS_Distributor_name__c</fullName>
+        <fullName>FS_Distributorname__c</fullName>
         <externalId>false</externalId>
         <label>Distributor name</label>
         <picklist>
-            <controllingField>Visit_with_DSR__c</controllingField>
+            <controllingField>FS_VisitwithDSR__c</controllingField>
             <picklistValues>
                 <fullName>East West SPb</fullName>
                 <default>false</default>

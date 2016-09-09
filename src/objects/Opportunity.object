@@ -1324,6 +1324,50 @@ Enter competitor pricing if available</inlineHelpText>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Sales_Cycle__c</fullName>
+        <externalId>false</externalId>
+        <label>Sales Cycle</label>
+        <picklist>
+            <picklistValues>
+                <fullName>01 - Universe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>02 - Above</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>03 - In the Funnel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04 - Best Few</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>05 - Won</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>00 - Lost</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>06 - Not Pursued</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07 - Deleted/Inactive Accts</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>ShipToCode__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>To lookup only distributor account</description>
@@ -3668,13 +3712,7 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorConditionFormula>IF(ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
     </validationRules>
-    <validationRules>
-        <fullName>Record_Locked</fullName>
-        <active>false</active>
-        <description>Locks the record once approval has been done.</description>
-        <errorConditionFormula>FS_RecordLocked__c &amp;&amp;  NOT($UserRole.Name = &apos;UFS Russia&apos;) &amp;&amp; NOT( $Profile.Name = &apos;System Administrator&apos;)</errorConditionFormula>
-        <errorMessage>Record already passed approval process and cannot be edited.</errorMessage>
-    </validationRules>
+
     <validationRules>
         <fullName>Required_Cases_Pieces_field</fullName>
         <active>true</active>
