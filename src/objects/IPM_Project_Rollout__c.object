@@ -3450,6 +3450,24 @@ Case(Global_Project_Phase__c,
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000Xgrd_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000Xgrd</label>
+        <queue>IPM_a7IE0000000Xgrd</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xgri_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_HIJUMPW4_LA</label>
+        <queue>IPM_a7IE0000000Xgri</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Project_Rollout</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>

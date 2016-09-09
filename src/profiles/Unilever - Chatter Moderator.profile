@@ -11470,6 +11470,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Contact.smagicinteract__SMSOptOut__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>ContentVersion.CMS_ID__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -22821,6 +22826,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Lead.sf4twitter__followed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Lead.smagicinteract__SMSOptOut__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

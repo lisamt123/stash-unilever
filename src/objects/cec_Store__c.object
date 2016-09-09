@@ -346,8 +346,13 @@
     </listViews>
     <listViews>
         <fullName>CEC_Vietnam_Queue_cec_Store</fullName>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>CEC Vietnam Queue</label>
+        <language>en_US</language>
         <queue>CEC_Vietnam_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
