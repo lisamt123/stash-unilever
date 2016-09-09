@@ -3,6 +3,10 @@
     <alerts>
         <fullName>Approval_request_email_template_to_Step3_approver</fullName>
         <description>&quot;Approval request email template&quot; to Step3 approver</description>
+    	<recipients>
+            <recipient>FS_System_Admin</recipient>
+            <type>group</type>
+        </recipients>
         <protected>false</protected>
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
@@ -10,6 +14,10 @@
     <alerts>
         <fullName>Approval_request_email_template_to_Step_1_approver</fullName>
         <description>&quot;Approval request email template&quot; to Step 1 approver</description>
+    	<recipients>
+            <recipient>FS_System_Admin</recipient>
+            <type>group</type>
+        </recipients>
         <protected>false</protected>
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
@@ -172,16 +180,7 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>FS_Update_Record_Locked</fullName>
-        <description>Set the Record locked field to true</description>
-        <field>FS_RecordLocked__c</field>
-        <literalValue>1</literalValue>
-        <name>Update Record Locked</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
+
     <fieldUpdates>
         <fullName>FS_Update_Stage_New_to_Negotiation</fullName>
         <description>Update the Stage field from New to Negotiation.</description>

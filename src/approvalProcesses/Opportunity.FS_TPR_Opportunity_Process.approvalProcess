@@ -92,10 +92,6 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>FS_Update_Record_Locked</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
             <name>FS_Update_TPR_Approved</name>
             <type>FieldUpdate</type>
         </action>

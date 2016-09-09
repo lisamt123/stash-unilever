@@ -49,6 +49,10 @@
     <approvalStep>
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
+            <approver>
+                <name>chatter.support@unilever.com</name>
+                <type>user</type>
+            </approver>
 
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>

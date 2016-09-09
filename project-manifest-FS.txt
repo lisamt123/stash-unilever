@@ -148,8 +148,6 @@ src/classes/FS_OpportunityProductHandler.cls
 src/classes/FS_OpportunityProductHandler.cls-meta.xml
 src/classes/FS_OpportunityProductSubSector_CX.cls
 src/classes/FS_OpportunityProductSubSector_CX.cls-meta.xml
-src/classes/FS_Product_Sector_Picklist_CX.cls
-src/classes/FS_Product_Sector_Picklist_CX.cls-meta.xml
 src/classes/FS_Product_Sector_PicklistTest.cls
 src/classes/FS_Product_Sector_PicklistTest.cls-meta.xml
 src/classes/FS_RiskProductSubSector_CX.cls
@@ -172,6 +170,9 @@ src/classes/FS_UtilMABETool.cls
 src/classes/FS_UtilMABETool.cls-meta.xml
 src/classes/FS_UtilTestDataSetup.cls
 src/classes/FS_UtilTestDataSetup.cls-meta.xml
+src/groups/FS_AFM_Approvers.group
+src/groups/FS_System_Admin.group
+src/groups/FS_US_Supply_Chain.group
 src/email/FS_Email_Templates/FS_Defined_objective_submitted_for_Approval.email
 src/email/FS_Email_Templates/FS_Defined_objective_submitted_for_Approval.email-meta.xml
 src/email/FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template.email
@@ -222,6 +223,14 @@ src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_templa
 src/email/FS_Email_Templates/NAFS_Operator_Account_approval_request_email_template.email-meta.xml
 src/email/FS_Email_Templates/Opportunity_Won_Email_to_US_Supply_Chain.email
 src/email/FS_Email_Templates/Opportunity_Won_Email_to_US_Supply_Chain.email-meta.xml
+src/email/FS_Email_Templates/FS_Proposed_Account_Owner_Nomination_Rejected.email
+src/email/FS_Email_Templates/FS_Proposed_Account_Owner_Nomination_Rejected.email-meta.xml
+src/email/FS_Email_Templates/FS_Proposed_Account_Owner_Nomination.email
+src/email/FS_Email_Templates/FS_Proposed_Account_Owner_Nomination.email-meta.xml
+src/email/FS_Email_Templates/FS_TPR_Opportunity_Approval_Action_Email_Template.email-meta.xml
+src/email/FS_Email_Templates/FS_TPR_Opportunity_Rejection_Action_Email_Template.email
+
+
 src/email/FS_Email_Templates-meta.xml
 src/labels/FS.labels
 src/triggers/AccountPlanTrigger.trigger

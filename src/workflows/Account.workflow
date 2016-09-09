@@ -3,6 +3,10 @@
     <alerts>
         <fullName>Approval_request_email_template_to_Step2</fullName>
         <description>&quot;Approval request email template&quot; to Step 2 approver</description>
+    	<recipients>
+            <recipient>FS_System_Admin</recipient>
+            <type>group</type>
+        </recipients>
         <protected>false</protected>
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template</template>
@@ -10,6 +14,10 @@
     <alerts>
         <fullName>Approval_request_email_template_to_Step_1</fullName>
         <description>&quot;Approval request email template&quot; to Step 1 approver</description>
+        <recipients>
+            <recipient>FS_System_Admin</recipient>
+            <type>group</type>
+        </recipients>
         <protected>false</protected>
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Account_Owner_Changes_approval_request_email_template</template>

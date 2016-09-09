@@ -41,13 +41,10 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>jyotirmoy.sharma@accenture.com</name>
+                <name>chatter.support@unilever.com</name>
                 <type>user</type>
             </approver>
-            <approver>
-                <name>ramesh.suddapalli@accenture.com</name>
-                <type>user</type>
-            </approver>
+
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>AFM approval</description>

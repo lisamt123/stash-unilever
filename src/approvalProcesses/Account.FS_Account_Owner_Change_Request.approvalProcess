@@ -57,7 +57,10 @@
             </action>
         </approvalActions>
         <assignedApprover>
-
+            <approver>
+                <name>chatter.support@unilever.com</name>
+                <type>user</type>
+            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>CRM Admin Approval for Account owner change</description>
