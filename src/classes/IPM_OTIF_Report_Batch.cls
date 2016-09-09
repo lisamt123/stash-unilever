@@ -12,7 +12,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     global final String query;   
     global map<id,IPM_Project__c> projectIdMap = new map<id,IPM_Project__c>(); 
     global list<IPM_Project__c> scopeProjectList = new list<IPM_Project__c>();   
-    global set<string> projectIdSet = new set<string>();
+    global set<id> projectIdSet = new set<id>();
     global set<id> rolloutprojectIdSet = new set<id>();
     global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap; 
     global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;   
@@ -34,6 +34,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     public static final String OTIF_REPORT_RUNDATE='OTIF Report'; //To fetch BB BD Report last run date from custom setting
     public static String CLASS_NAME = IPM_OTIF_Report_Batch.class.getName();
     public static string METHOD_NAME='execute';
+    private static string EMPTY_STRING = '';
     public IPM_Reporting__c reportcs = IPM_Reporting__c.getValues(OTIF_REPORT_RUNDATE); 
     public static final Id REGIONAL_ROLLOUT_RECTYPE = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get('Regional Rollout').RecordTypeId;
     public static final Id LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Local Rollouts').getRecordTypeId();
@@ -87,18 +88,19 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     global void execute(Database.BatchableContext BC,  list<IPM_Project__c> Scope){  
 
         for(IPM_Project__c p:Scope){
-            if(String.isNotBlank(p.Project_External_ID__c)){
-                projectIdSet.add(p.Project_External_ID__c);
-            }
             projectIdSet.add(p.Id);
-            if(p.IPM_Phase__c != null)
-            {
-                scopeProjectList.add(p);
-            }
-            projectIdMap.put(p.Id,p);               
+          
+                if(p.IPM_Phase__c != null)
+                {
+                    scopeProjectList.add(p);
+                }
+                projectIdMap.put(p.Id,p);               
+            
         }
+        
         // prepare Generic Maps related to Financial Year Object and Analytic object's fields API Name 
         prepareFinancialGenericTemplate();
+        
         //Delete existing analytics records so that the changes made to the existing projects will be recorded again
         try{  
         List<IPM_Analytics_OTIF__c> analyticsRecDelList = new list<IPM_Analytics_OTIF__c>([SELECT id
@@ -112,25 +114,38 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
                  
             } 
-        projFinMap = fetchConsolidatedFinancialRecords(projectIdMap); //Fetching Consolidated Financial  records        
-        projFinYrMap = fetchFinancialYearRecords(financialIdSet);//Fetching Financial year records
+         //Fetching Consolidated Financial  records
+        projFinMap = fetchConsolidatedFinancialRecords(projectIdMap);
+
+        //Fetching Financial year records
+        projFinYrMap = fetchFinancialYearRecords(financialIdSet);
         projMilestoneMap = fetchMilestoneRecords(projectIdMap);
         /*******************Include Gatedocument related things*************/
         projGateDocumentMap = fetchGateDocumentRecords(projectIdMap);               
         map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap = fetchProjectDocumentSectionContent(projectIdMap);
         
-        projRolloutMap=fetchRolloutRecords(projectIdMap);         
+        projRolloutMap=fetchRolloutRecords(projectIdMap);
+        
+                
         fetchRolloutFinancial();
+        
         fetchRolloutFinancialYear();
+
         //Fetching country records and creating map
         fetchCountryRecords();
+        
         //End of Map creation logic ***
+
         //Start - Analytics Object Record Insertion 
         analyticRecList = new list<IPM_Analytics_OTIF__c>();
+
         for(IPM_Project__c proj:scopeProjectList){ 
+
             //Copyin IPM Project field values
             IPM_Analytics_OTIF__c otifAnalyticProj = new IPM_Analytics_OTIF__c();
+            
             otifAnalyticProj = prepareAnalyticeRecord(proj,otifAnalyticProj, projDocSecContentMap);
+            
             analyticreclist.add(otifAnalyticProj);  
             if(projRolloutMap.containskey(otifAnalyticProj.IPM_Project_Id__c)){
               List<IPM_Analytics_OTIF__c> rollAnalyticlist = new List<IPM_Analytics_OTIF__c> (addrolloutproject(otifAnalyticProj));
@@ -170,39 +185,41 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     }
     
     private IPM_Analytics_OTIF__c prepareAnalyticeRecord(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalytic,  map<Id,list<IPM_Project_Document_Section_Content__c>> projDocSecContentMap){
-    	
+        
         IPM_Analytics_OTIF__c otifAnalyticProj=otifAnalytic;
-		otifAnalyticProj.IPM_Project_Id__c = proj.id;
-       	otifAnalyticProj.IPM_Project_Name__c = proj.IPM_Project_Name__c;
-		otifAnalyticProj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Project;
-		otifAnalyticProj.IPM_Project_Description__c = proj.IPM_Project_Description__c;
-		otifAnalyticProj.IPM_Parent_Project_Name__c = proj.IPM_Parent_Project__r.IPM_Project_Name__c;  
-		otifAnalyticProj.IPM_Project_Leader__c = proj.IPM_Project_Leader__r.Name;
-		otifAnalyticProj.IPM_Deputy_Project_Leader__c = proj.Deputy_Project_Leader__r.Name;
-		otifAnalyticProj.IPM_Finance_Member__c = proj.IPM_Finance_Lead__r.Name;
-		otifAnalyticProj.IPM_Project_Span__c = proj.IPMProject_Span__c;
-		otifAnalyticProj.IPM_Project_Type__c = proj.IPM_Project_Type__c;
-		otifAnalyticProj.IPM_Company__c = proj.IPM_Company_Card__r.Name;
-		otifAnalyticProj.IPM_Category_Group__c = proj.IPM_Category_Group__c;
-		otifAnalyticProj.IPM_Category__c = proj.IPM_Category_Text__c;
-		otifAnalyticProj.IPM_Brand_Positioning__c = proj.IPM_Brand_Positioning__c;
-		otifAnalyticProj.IPM_Market_Place_Activity__c = proj.IPM_Answer_of_Q1__c;
-		otifAnalyticProj.IPM_Consumer_Value_Perception__c = proj.IPM_Answer_of_Q2__c;
-		otifAnalyticProj.IPM_Enabling_Technology__c = proj.IPM_Answer_of_Q3__c;
-		otifAnalyticProj.IPM_Strategic_Intent__c = proj.IPM_Strategic_Intent__c;
-		otifAnalyticProj.IPM_Phase__c = proj.IPM_Phase__c;
-	    
-	    if(String.isNotBlank(proj.IPMProject_Span__c)){
-	    	if(proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
-	           otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
-	           otifAnalyticProj.IPM_Market_Cluster__c = proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)?proj.Market_Cluster_Name__c:null;
-	        }else if(proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
-	           otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
-	           otifAnalyticProj.IPM_Market_Cluster__c = proj.Market_Cluster_Name__c;                 
-	        }
-	    }
-	    
-	    //setGeography
+        
+        otifAnalyticProj.IPM_Project_Id__c = proj.id;
+        otifAnalyticProj.IPM_Project_Name__c = proj.IPM_Project_Name__c;
+        otifAnalyticProj.IPM_Project_Phantom_Non_Key__c = IPM_ConstantUtils.Project;
+        otifAnalyticProj.IPM_Project_Description__c = proj.IPM_Project_Description__c;
+        otifAnalyticProj.IPM_Parent_Project_Name__c = proj.IPM_Parent_Project__r.IPM_Project_Name__c;  
+        otifAnalyticProj.IPM_Project_Leader__c = proj.IPM_Project_Leader__r.Name;
+        otifAnalyticProj.IPM_Deputy_Project_Leader__c = proj.Deputy_Project_Leader__r.Name;
+        otifAnalyticProj.IPM_Finance_Member__c = proj.IPM_Finance_Lead__r.Name;
+        otifAnalyticProj.IPM_Project_Span__c = proj.IPMProject_Span__c;
+        otifAnalyticProj.IPM_Project_Type__c = proj.IPM_Project_Type__c;
+        otifAnalyticProj.IPM_Company__c = proj.IPM_Company_Card__r.Name;
+        otifAnalyticProj.IPM_Category_Group__c = proj.IPM_Category_Group__c;
+        otifAnalyticProj.IPM_Category__c = proj.IPM_Category_Text__c;
+        otifAnalyticProj.IPM_Brand_Positioning__c = proj.IPM_Brand_Positioning__c;
+        otifAnalyticProj.IPM_Market_Place_Activity__c = proj.IPM_Answer_of_Q1__c;
+        otifAnalyticProj.IPM_Consumer_Value_Perception__c = proj.IPM_Answer_of_Q2__c;
+        otifAnalyticProj.IPM_Enabling_Technology__c = proj.IPM_Answer_of_Q3__c;
+        otifAnalyticProj.IPM_Strategic_Intent__c = proj.IPM_Strategic_Intent__c;
+        otifAnalyticProj.IPM_Phase__c = proj.IPM_Phase__c;
+        
+        if(String.isNotBlank(proj.IPMProject_Span__c) && (proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))){
+                otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
+                otifAnalyticProj.IPM_Market_Cluster__c =proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)?proj.Market_Cluster_Name__c:null;                 
+                
+            }
+            else if(String.isNotBlank(proj.IPMProject_Span__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local))
+            {
+                otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
+                otifAnalyticProj.IPM_Market_Cluster__c = proj.Market_Cluster_Name__c;                 
+            }
+        
+        //setGeography
         otifAnalyticProj = setGeography(proj,otifAnalyticProj);
 
         // populate target launch year & month
@@ -210,8 +227,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         
         //Global Project Business Impact Global will be copy to Global,Regional & Local project
         if(projFinmap.containskey(proj.Id)){ 
-           otifAnalyticProj.IPM_Business_Impact__c = projFinMap.get(proj.id).Business_Impact_Global__c; 
-        } 
+           otifAnalyticProj.IPM_Business_Impact__c = (proj.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)?setBusinessImpact(proj):EMPTY_STRING; 
+        }  
         
         otifAnalyticProj = processMilestoneDetails(projMilestoneMap, otifAnalyticProj, proj);
         otifAnalyticProj = processProjectDocumentSectionContentDetails(projDocSecContentMap,  otifAnalyticProj, proj);
@@ -219,17 +236,17 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         if( otifAnalyticProj != null && proj != null){ 
              otifAnalyticProj = processProjectFinancial(otifAnalyticProj,  proj, projFinYrMap);
         }
-	    
-	    return otifAnalyticProj;
+        
+        return otifAnalyticProj;
     } 
         
     private void fetchRolloutFinancial(){
-    	
-    	//To fetch the financials for the rollout project when it is in Ideas phase
+        
+        //To fetch the financials for the rollout project when it is in Ideas phase
         rolloutFinancialmap = new map<id,list<IPM_Financial__c>> ();
         try{
             list<IPM_Financial__c> projRolloutFinList = new list<IPM_Financial__c>([SELECT  id,name,Display_Name__c,Financial_External_ID__c,Business_Impact_Global__c,Business_Impact_Regional__c,Business_Impact_Local__c,Parent_Project__r.Name,Regional_Project__r.id, 
-																							Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.Name,Local_Project__r.Name,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id 
+                                                                                            Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.Name,Local_Project__r.Name,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id 
 
                                                                                             FROM IPM_Financial__c 
                                                                                             WHERE IPM_Project_Rollout__c IN: regionalRolloutset OR Regional_Project__c IN: regionalRolloutset  Limit 50000]);
@@ -238,7 +255,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
               
                 if(!rolloutFinancialmap.containskey(fir.IPM_Project_Rollout__r.Id)){
                     rolloutFinancialmap.put(fir.IPM_Project_Rollout__r.Id, new List<IPM_Financial__c>{fir});
-						
+                        
                 }else{
                     List<IPM_Financial__c> finrList = rolloutFinancialmap.get(fir.IPM_Project_Rollout__r.Id);
                     finrList.add(fir);
@@ -263,13 +280,13 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     }
     
     private void fetchRolloutFinancialYear(){
-    	
-    	//To fetch the financial year for the rollout project when it is in Ideas phase
+        
+        //To fetch the financial year for the rollout project when it is in Ideas phase
         rolloutFinancialYearmap = new map<string,list<IPM_Financial_Year__c>> ();
         try{
             list<IPM_Financial_Year__c> projRolloutFinYearList = new list<IPM_Financial_Year__c>([SELECT id,name,Financial_External_ID__c,IPM_Financial__r.Parent_Project__r.Id,IPM_Financial__r.Regional_Project__r.Id,IPM_Financial__r.Local_Project__r.Id,IPM_Financial__r.Id,IPM_Financial__r.Business_Impact_Global__c,
-																										Year__c,Gross_Profit_Global__c,Gross_Profit_Regional__c,Gross_Profit_Local__c,Turnover_Global__c,Turnover_Local__c,Turnover_Regional__c,Turnover_Charter__c,Turnover_Contract__c,Turnover_MD__c,Turnover_MR__c,
-																										Year_Type__c,GM_of_TO_Charter__c,GM_of_TO_Contract__c,GM_of_TO_MD__c,GM_of_TO_MR__c,GM_of_TO_Local__c,GM_of_TO_Global__c,GM_of_TO_Regional__c,Charter_Approved__c,Contract_Approved__c,MD_Approved__c,MR_Approved__c,PL_Type__c
+                                                                                                        Year__c,Gross_Profit_Global__c,Gross_Profit_Regional__c,Gross_Profit_Local__c,Turnover_Global__c,Turnover_Local__c,Turnover_Regional__c,Turnover_Charter__c,Turnover_Contract__c,Turnover_MD__c,Turnover_MR__c,
+                                                                                                        Year_Type__c,GM_of_TO_Charter__c,GM_of_TO_Contract__c,GM_of_TO_MD__c,GM_of_TO_MR__c,GM_of_TO_Local__c,GM_of_TO_Global__c,GM_of_TO_Regional__c,Charter_Approved__c,Contract_Approved__c,MD_Approved__c,MR_Approved__c,PL_Type__c
                                                                                                         FROM IPM_Financial_Year__C 
                                                                                                         WHERE IPM_Financial__c IN: finIdSet Limit 50000]);
                                                 
@@ -290,7 +307,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     
     
     private void fetchCountryRecords(){
-    	try{
+        try{
         List<IPM_Country__c> ipmCountryList= new list<IPM_Country__c>([SELECT Country_Code__c,Country_Name__c,IPM_Project__r.id,IPM_Project__r.IPMProject_Span__c,IPM_Local_Project__r.Id,IPM_Local_Project__r.IPMProject_Span__c,IPM_Regional_Project__r.Id,IPM_Regional_Project__r.IPMProject_Span__c,Local_Rollout__r.id
                                                                        FROM IPM_Country__c WHERE IPM_Local_Project__r.Id IN : projectIdMap.keyset() or Local_Rollout__r.id IN: localRolloutIDSet Limit 50000]);
             
@@ -458,6 +475,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 }
                 otifAnalyticRollOut.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
                 otifAnalyticRollOut.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
+                otifAnalyticRollOut.IPM_Business_Impact__c=parent.IPM_Business_Impact__c;
                 //Copy values From Parent project
                 otifAnalyticRollOut.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
                 otifAnalyticRollOut.IPM_Project_Description__c = parent.IPM_Project_Description__c;
@@ -862,14 +880,12 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c setValuesForDueDateIdea(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
         IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;  
-        if(projGateDocumentMap.containskey(p.id)){  
-            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.CHARTER_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){
+        
+                if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY){
                     otifAnalyticObj.IPM_Charter_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Idea__c.month());
                     otifAnalyticObj.IPM_Charter_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Idea__c.Year());                       
                 }   
-            }   
-        }   
+         
         return otifAnalyticObj;
     }
 
@@ -883,14 +899,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c setValuesForDueDateFeasibility(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
         IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
-        if(projGateDocumentMap.containskey(p.id)){  
-            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                 
+                if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY){
                    otifAnalyticObj.IPM_Contract_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Feasibility__c.month());
                    otifAnalyticObj.IPM_Contract_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Feasibility__c.Year());
                 }   
-            }   
-        }                                  
         return otifAnalyticObj;
     }
 
@@ -903,14 +915,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c setValuesForDueDateCapability(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){    
         IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic; 
-        if(projGateDocumentMap.containskey(p.id)){  
-            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.MARKET_READY_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                 
+              if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY){                 
                     otifAnalyticObj.IPM_MR_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Capability__c.month());
                     otifAnalyticObj.IPM_MR_Target_Launch_Year__c  = string.valueof(mile.IPM_Due_Date_Capability__c.Year());  
                 }   
-            }   
-        }                                   
         return otifAnalyticObj;
     }
 
@@ -924,14 +932,11 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c setValuesForDueDateMarketReady(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
        IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;       
-       if(projGateDocumentMap.containskey(p.id)){  
-            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                    
+               if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT){                    
                     otifAnalyticObj.IPM_MD_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Market_Ready__c.month());
                     otifAnalyticObj.IPM_MD_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Market_Ready__c.Year());   
                 }   
-            }   
-        }                                   
+                                          
         return otifAnalyticObj;
     }    
     
@@ -1261,36 +1266,36 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
    */
    
    public String buildFinancialExternal(IPM_Analytics_Otif__c otifAnalytic){
-   	
-   	   String finExtID=null;
-   	   IPM_Analytics_OTIF__c otifAnalyticObj=otifAnalytic;
-   	
-   	   if(otifAnalyticObj.IPM_Project_Phantom_Non_Key__c==IPM_ConstantUtils.Project  && otifAnalyticObj.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
-   	   {
-   	   	  if(otifAnalyticObj.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-   	   	  {
-   	   	  	finExtID=otifAnalyticObj.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
-   	   	  }
-   	   	  else if(otifAnalyticObj.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-   	   	  {
-   	   	  	finExtID=otifAnalyticObj.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
-   	   	  }
-   	   	  else if(otifAnalyticObj.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-   	   	  {
-   	   	  	finExtID=otifAnalyticObj.IPM_Project_Name__c;
-   	   	  }
-   	   }
-   	   else if(otifAnalyticObj.IPM_Project_Phantom_Non_Key__c==IPM_ConstantUtils.Nonkey)
-   	   {
-   	   	 finExtID=otifAnalyticObj.IPM_Parent_Project_Name__c+IPM_ConstantUtils.FINANCIAL_NONKEY;
-   	   }
-   	   else
-   	   {
-   	   	 finExtID=otifAnalyticObj.IPM_Project_Name__c;
-   	   }
-   	   
-   	   return finExtID;
-   	
+    
+       String finExtID=null;
+       IPM_Analytics_OTIF__c otifAnalyticObj=otifAnalytic;
+    
+       if(otifAnalyticObj.IPM_Project_Phantom_Non_Key__c==IPM_ConstantUtils.Project  && otifAnalyticObj.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+       {
+          if(otifAnalyticObj.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+          {
+            finExtID=otifAnalyticObj.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+          }
+          else if(otifAnalyticObj.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+          {
+            finExtID=otifAnalyticObj.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
+          }
+          else if(otifAnalyticObj.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+          {
+            finExtID=otifAnalyticObj.IPM_Project_Name__c;
+          }
+       }
+       else if(otifAnalyticObj.IPM_Project_Phantom_Non_Key__c==IPM_ConstantUtils.Nonkey)
+       {
+         finExtID=otifAnalyticObj.IPM_Parent_Project_Name__c+IPM_ConstantUtils.FINANCIAL_NONKEY;
+       }
+       else
+       {
+         finExtID=otifAnalyticObj.IPM_Project_Name__c;
+       }
+       
+       return finExtID;
+    
    }
    
    
@@ -1301,25 +1306,25 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      * @return: IPM_Analytics_OTIF__c OTIF analytic Record
      *********************************************************************************************************************/ 
     public IPM_Analytics_OTIF__c setTargetLaunchYearandMonth(IPM_Project__c proj, IPM_Analytics_OTIF__c otifAnalyticProj){
-    	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalyticProj; 
-        if(String.isNotBlank(proj.IPM_Project_Type__c) && (proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || proj.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(proj.IPMProject_Span__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
-           otifAnalyticObj.IPM_Target_Launch_Month_BD__c = proj.IPM_Target_Launch_Month__c;
-           if(proj.IPM_Target_Launch_Year__c != null){
-               otifAnalyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
-           }
-              
-        }
-        if (String.isNotBlank(proj.IPMProject_Span__c) && String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) || proj.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
-           otifAnalyticObj.IPM_Target_Launch_Month_BB__c = proj.IPM_Target_Launch_Month__c;
-           if(proj.IPM_Target_Launch_Year__c != null){
-               otifAnalyticObj.IPM_Target_Launch_Year_BB__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
-           }
-            //if(String.isNotBlank(string.valueof(proj.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
-            if(String.isNotBlank(string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c))){
-               otifAnalyticObj.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
-               otifAnalyticObj.IPM_Target_Launch_Year_BD__c = proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();   
-            }                  
-        }
+        IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalyticProj; 
+        if(String.isNotBlank(proj.IPM_Project_Type__c) && (String.isNotBlank(proj.IPMProject_Span__c) && !proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) && proj.IPM_Target_Launch_Year__c != null)
+	        {
+	           otifAnalyticObj.IPM_Target_Launch_Month_BD__c = proj.IPM_Target_Launch_Month__c;
+	           otifAnalyticObj.IPM_Target_Launch_Year_BD__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
+	           
+	        }
+        
+        if(String.isNotBlank(proj.IPMProject_Span__c) && String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && !proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPM_Target_Launch_Year__c != null)
+		    {
+	           otifAnalyticObj.IPM_Target_Launch_Month_BB__c = proj.IPM_Target_Launch_Month__c;
+	           otifAnalyticObj.IPM_Target_Launch_Year_BB__c = integer.valueOf(proj.IPM_Target_Launch_Year__c);
+	          	
+	          	if(String.isNotBlank(string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c)))
+	          	{
+	               otifAnalyticObj.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
+	               otifAnalyticObj.IPM_Target_Launch_Year_BD__c = proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year();   
+	            }                  
+	        }
         return otifAnalyticObj;
     }   
     
@@ -1380,49 +1385,49 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      * @return: map<Id,list<IPM_Project_Rollout__c>> rollout Records
      *********************************************************************************************************************/         
     public map<id,list<IPM_Project_Rollout__c>> fetchRolloutRecords(map<id,IPM_Project__c> projectIdMap){
-    	//Fetching rollout records for project and creating map
+        //Fetching rollout records for project and creating map
          projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
          regionalRolloutset = new set<id> ();
          
         try{
             list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,name,IPM_Project__r.id,Market_Cluster_Name__c,RecordTypeId,MCO_Name__c,Regional_Project__c,Regional_Rollout__c,IPM_Status__c,KeyMCO__c,IPM_Company_Card__r.Name,IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c,Target_Launch_Year__c,Regional_Rollout_Phase__c,
-																									Local_Rollout_Phase__c,IPM_Project_Job_Status__c,Target_LaunchMonth__c,Target_LaunchYear__c,Regional_Rollout__r.id,Regional_Rollout__r.Name,IPM_Global_OR_Regional__c,
-																									IPM_Brand__c,IPM_Parent_Project_Name__c,IPM_Regional_PL__c,IPM_Regional_PL__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_Phase__c,
-																									Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id,Target_Launch_Date__c                                                                    
+                                                                                                    Local_Rollout_Phase__c,IPM_Project_Job_Status__c,Target_LaunchMonth__c,Target_LaunchYear__c,Regional_Rollout__r.id,Regional_Rollout__r.Name,IPM_Global_OR_Regional__c,
+                                                                                                    IPM_Brand__c,IPM_Parent_Project_Name__c,IPM_Regional_PL__c,IPM_Regional_PL__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_Phase__c,
+                                                                                                    Regional_Project__r.IPM_ProjectGKM__c,Regional_Project__r.IPM_SourceProjectType__c,Regional_Project__r.Id,Target_Launch_Date__c                                                                    
                                                                                                     FROM IPM_Project_Rollout__c 
-                                                                                                    WHERE IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset() Limit 50000]);
+                                                                                                    WHERE (IPM_Project__r.id IN:projectIdMap.keyset() or Regional_Project__r.Id IN:projectIdMap.keyset()) and IPM_Project_Rollout__c.isActive__c = true  Limit 50000]);
             for(IPM_Project_Rollout__c pr:projRolloutList){
                    
                   if(pr.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_COMPLETED || String.isBlank(pr.IPM_Regional_PL__c)){
                     
                     if(pr.IPM_Project__r.id != null){
-	                    // create map for the Rollouts of the Global Original Project
-	                    if(!projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){
-	                        projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
-	                    }else if(projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){                            
-	                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.IPM_Project__r.id);
-	                        rolloutList.add(pr);
-	                        projRolloutMap.put(pr.IPM_Project__r.id, rolloutList);                                          
-	                    }
-	                    
-	                    // create map for the Rollouts of the Regional Rollout Project
-	                    else if(pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
-	                       projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
-	                    }else if(pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
-	                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
-	                        rolloutList.add(pr);
-	                        projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
-	                    }
+                        // create map for the Rollouts of the Global Original Project
+                        if(!projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){
+                            projRolloutMap.put(pr.IPM_Project__r.id, new List<IPM_Project_Rollout__c>{pr});                              
+                        }else if(projRolloutMap.containskey(pr.IPM_Project__r.id) && pr.Regional_Project__r.id==null){                            
+                            List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.IPM_Project__r.id);
+                            rolloutList.add(pr);
+                            projRolloutMap.put(pr.IPM_Project__r.id, rolloutList);                                          
+                        }
+                        
+                        // create map for the Rollouts of the Regional Rollout Project
+                        else if(pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
+                           projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
+                        }else if(pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
+                            List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
+                            rolloutList.add(pr);
+                            projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
+                        }
                     } else if(pr.IPM_Project__r.id == null){
                     
-	                    // create map for the Rollouts of the Regional Original Project
-	                    if(pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
-	                       projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
-	                    }else if(pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
-	                        List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
-	                        rolloutList.add(pr);
-	                        projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
-	                    }
+                        // create map for the Rollouts of the Regional Original Project
+                        if(pr.Regional_Project__r.Id != null && !projRolloutMap.containskey(pr.Regional_Project__r.Id)){  
+                           projRolloutMap.put(pr.Regional_Project__r.Id, new List<IPM_Project_Rollout__c>{pr});  
+                        }else if(pr.Regional_Project__r.Id != null && projRolloutMap.containskey(pr.Regional_Project__r.Id)){                            
+                            List<IPM_Project_Rollout__c> rolloutList = projRolloutMap.get(pr.Regional_Project__r.Id);
+                            rolloutList.add(pr);
+                            projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
+                        }
                     }
                    
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE)
@@ -1457,7 +1462,6 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         }
         
         return projRolloutMap;
-    	    	
     }
     
     /*********************************************************************************************************************
@@ -1468,10 +1472,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/ 
     public IPM_Analytics_OTIF__c setGeography(IPM_Project__c proj,IPM_Analytics_OTIF__c otifAnalyticProj){
     	IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalyticProj; 
-        if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
-           otifAnalyticObj.IPM_Geography__c = IPM_Utils.valueGlobal;             
-        } else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
-            otifAnalyticObj.IPM_Geography__c = proj.Market_Cluster_Name__c;
+        
+        if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original)){
+           otifAnalyticObj.IPM_Geography__c = proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)?IPM_Utils.valueGlobal:proj.Market_Cluster_Name__c; 
+            
         }else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
            otifAnalyticObj.IPM_Geography__c = proj.Market_Cluster_Name__c;
         }else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
@@ -1480,4 +1484,33 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         return otifAnalyticObj;
     }
     
+     /*********************************************************************************************************************
+     * @Description: To calculate Business Impact
+     * @param1: Financial Year Map either Global Turnover or Regional Turnover
+     * @param2: Project
+     * @return: string for Business Impact  
+     *********************************************************************************************************************/
+    
+    
+    public string setBusinessImpact(IPM_Project__c p){
+    	
+    	string businessImpact='';
+    	//IPM_Financial__c biFin=new IPM_Financial__c(); 
+    	id parentId;    	
+    		if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+                {
+                	businessImpact=p.BI__c;
+                }
+                else if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                {
+             		businessImpact=p.IPM_Parent_BI__c;
+                }
+                 else if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+                {	
+                	businessImpact=p.IPM_Parent_BI__c;           	
+                
+                }    	 	  
+    	 
+    	 return businessImpact;
+    }
 }
