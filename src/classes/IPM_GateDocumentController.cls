@@ -135,7 +135,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
     public boolean showBBCtable{get; set;} // flag to check the BBC table is applicble     
     public boolean isRedStylingApplicable{get;set;} 
-    
+    public transient boolean isPDLDocument{get;set;}
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -146,7 +146,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     } 
     public void intialize()
     { 
-        showAttach=false;
+        isPDLDocument = false;
+		showAttach=false;
         showSummaryAttach=false;
         isReadable=true;
         IsUpdateStatus=false;
@@ -349,6 +350,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         projectId=ApexPages.currentPage().getParameters().get('Id');
         printDoc=ApexPages.currentPage().getParameters().get('printDoc');
         if(String.IsNotBlank(String.valueOf(projectId)) && String.IsNotBlank(String.valueOf(printDoc))){
+			if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.Equals(printDoc))
+            {
+                isPDLDocument =true;
+            }
             getIpmuserType();  
             gateDocument=printDoc;
             //Retrieving Project Document Record    
@@ -748,16 +753,23 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                              IPM_Section__r.Id,IPM_Section__r.IPM_Section_Name__c,Name,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.IPM_Parent_Section__c,IPM_Project_Document__c,
                              IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c,IPM_Has_Appendix__c, 
                              IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
-                             FROM IPM_Project_Document_Section__c 
+                             ,IPM_FunctionalRole__c FROM IPM_Project_Document_Section__c 
                              WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Parent_Section_isNull__c = :IPM_ConstantUtils.IPM_true order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000]; 
             //need to remove filter condition of 8*
             proSectionParentsSequenceList = new Set<String>();
-            
+            integer pdlSectionCount = 0;
+            integer totalFilledinCount = 0;
             for(IPM_Project_Document_Section__c proSec : projSectionList){
                 proSectionParentsSequenceList.add(proSec.IPM_Section__r.IPM_Section_Sequence__c);
-               // showHeader(proSec);              
-                                
-            }              
+                pdlSectionCount++;
+                if(IPM_ConstantUtils.SECTION_STATUS_FILLED.Equals(proSec.IPM_Section_Status__c)){
+                    totalFilledinCount++; //Count Filled In Sections
+                }
+            }
+            if(isPDLDocument)
+            {
+                filledInPer = math.Round(decimal.ValueOf(totalFilledinCount)/decimal.ValueOf(pdlSectionCount)*100); 
+            }             
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
