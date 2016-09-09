@@ -881,7 +881,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
     public IPM_Analytics_OTIF__c setValuesForDueDateIdea(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
         IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;  
         
-                if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY){
+                if(p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS){
                     otifAnalyticObj.IPM_Charter_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Idea__c.month());
                     otifAnalyticObj.IPM_Charter_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Idea__c.Year());                       
                 }   
@@ -899,7 +899,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c setValuesForDueDateFeasibility(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
         IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;
-                if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY){
+                if(p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS && p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY){
                    otifAnalyticObj.IPM_Contract_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Feasibility__c.month());
                    otifAnalyticObj.IPM_Contract_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Feasibility__c.Year());
                 }   
@@ -915,7 +915,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c setValuesForDueDateCapability(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){    
         IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic; 
-              if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY){                 
+              if(p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS && p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY){                 
                     otifAnalyticObj.IPM_MR_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Capability__c.month());
                     otifAnalyticObj.IPM_MR_Target_Launch_Year__c  = string.valueof(mile.IPM_Due_Date_Capability__c.Year());  
                 }   
@@ -932,7 +932,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c setValuesForDueDateMarketReady(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
        IPM_Analytics_OTIF__c otifAnalyticObj = otifAnalytic;       
-               if(p.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT){                    
+               if(p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS && p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && p.IPM_Phase__c!=IPM_ConstantUtils.PHASE_MARKET_READY){                    
                     otifAnalyticObj.IPM_MD_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Market_Ready__c.month());
                     otifAnalyticObj.IPM_MD_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Market_Ready__c.Year());   
                 }   
