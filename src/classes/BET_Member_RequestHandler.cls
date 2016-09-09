@@ -9,7 +9,7 @@ History
 VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   k.szepietowski@polsource.com            23/07/2015      INITIAL DEVELOPMENT
 *******************************************************************************************************************************/
-public with sharing class BET_Member_RequestHandler implements ITrigger {
+public class BET_Member_RequestHandler implements ITrigger {
 
 	public BET_Member_RequestHandler() {}
 	

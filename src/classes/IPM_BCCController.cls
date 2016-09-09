@@ -20,6 +20,7 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
     public string businessCaseConfirmed{get;set;}
     private static string BC_CONFIRMED='Confirmed';
     private static string BC_UNCONFIRMED='Unconfirmed';
+    public String showEntity{get;set;}
     /************************************************************************
     @Description : This is the constructor for the class
     ************************************************************************/
@@ -28,20 +29,26 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
     {
         super();
         projectId= ApexPages.currentPage().getParameters().get('Id');
+        showEntity = IPM_ConstantUtils.BLANK;
+        String QueryString = '';
         isEditable=false;
         isFinanceUpdate=false;
         if (projectId != NULL){          
 <<<<<<< HEAD
+<<<<<<< HEAD
             if(project.IPM_Target_Launch_Dates__c==project.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
 =======
+=======
+        	showEntity = String.format(Label.IPM_ShowEntity,new String[]{project.IPMProject_Span__c});         
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             if(project.Rollout_Plan_Target_Launch_Date__c==project.IPM_Target_Launch_Dates__c){
 >>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                 tldAlignment=true;
             }
             
-           finance = [SELECT Id,IPM_BD_BB_Feedback__c,Local_Project__c,Local_Project__r.name,Local_Project__r.IPM_Phase__c,Misaligned__c,IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,IPM_Country_Feedback__c 
-                       FROM IPM_Financial__c 
-                       WHERE isActive__c=true and Local_Project__c=:projectId];
+            
+           queryString =  'SELECT Id,IPM_BD_BB_Feedback__c,Local_Project__c,Local_Project__r.name,Local_Project__r.IPM_Phase__c,Misaligned__c,IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,IPM_Country_Feedback__c FROM IPM_Financial__c WHERE  ( isActive__c = true OR '+ showEntity +' = true ) and Local_Project__c=:projectId';
+           finance = Database.query(queryString);
                            
             if(project.IPM_Project_Leader__c==userinfo.getuserid() || project.Deputy_Project_Leader__c==userinfo.getuserid()){
                 isEditable=true;
@@ -71,7 +78,12 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
             }
             
             setBusinessCaseConfirmedValue();
-            
+            if(project.Is_Archieved__c || project.IPM_PrepareForArchival__c)
+            {
+            	isEditable = false;
+            	isFinanceUpdate = false;
+            	tldAlignment = false;
+            }
         }
     }
 

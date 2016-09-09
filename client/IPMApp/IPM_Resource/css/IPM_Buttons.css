@@ -169,6 +169,7 @@ input.ipmButton.primary:hover {
 
 .ipmButtonGroup.ipmFromAction  .ipmButton {
 	min-width:80px;
+	margin-right: 10px;
 }
 
 .ipmButtonGroup.ipmFromAction.pull-right {
@@ -208,7 +209,10 @@ input.ipmButton.primary:hover {
 a.icoButton.comments {position:relative; background:url(../images/ico-comments.svg) no-repeat 50% 50%;}
 a.icoButton.comments .count {position: absolute;-webkit-border-radius: 50%;-moz-border-radius: 50%; border-radius: 50%;background: #e98824;text-align: center;width: 17px;height: 17px;font-size: 10px;color: #fff;line-height: 17px;right: -10px;top: -4px;}
 a.icoButton.history {position:relative; background:url(../images/ico-history.svg) no-repeat 50% 50%;}
+a.icoButton.paper-clip {position:relative; background:url(../images/ico-paper-clip.svg) no-repeat 50% 50%;}
+a.icoButton.redBell {position:relative; background:url(../images/ico-bell.svg) no-repeat 50% 50%;}
 a.icoButton.download {position:relative; background:url(../images/dnld-new.svg) no-repeat 50% 50%;}
+a.icoButton.download-gate{position:relative; background:url(../images/ico-download-2.svg) no-repeat 50% 50%;}
 a.icoButton.print {position:relative; background:url(../images/ico-print.svg) no-repeat 50% 50%;}
 a.icoButton.share {position:relative; background:url(../images/ico-share.svg) no-repeat 50% 50%;}
 a.icoButton.details {position:relative; background:url(../images/ico-arrowright.svg) no-repeat 50% 50%;}
@@ -296,3 +300,16 @@ a.delete02{position:relative; background:url(../images/delete-02.svg) no-repeat 
 .active .Postponed{position:relative; background:url(../images/postpone-active.svg) no-repeat 50% 50%;display:block;width:28px;height: 38px;background-size: 28px;margin: 0 auto;margin-bottom: 10px;}
 .active .Proposed{position:relative; background:url(../images/propose-active.svg) no-repeat 50% 50%;display:block;width:28px;height: 38px;background-size: 28px;margin: 0 auto;margin-bottom: 10px;}
 .active .Stopped {position:relative; background:url(../images/stop.svg) no-repeat 50% 50%;width:28px;display:block;height: 38px;background-size: 28px;margin: 0 auto;margin-bottom: 10px;}
+.ipmButton.statusButtonOrange {
+    background: #F79C3E;
+    border: 1px solid #AD6B27;
+    color: #fff;
+}
+.stop_btn
+{
+width:80%;
+}
+.Btnhold
+{
+padding:0px 20px;
+}

@@ -1,4 +1,6 @@
 src
 src/classes
-src/classes/IPM_ChangProjectDocStatusController_Test.cls
-src/classes/IPM_ChangProjectDocStatusController_Test.cls-meta.xml
+src/classes/IPM_RolloutPlansAddController.cls
+src/classes/IPM_RolloutPlansAddController.cls-meta.xml
+src/classes/IPM_CMIGateSectionController.cls
+src/classes/IPM_CMIGateSectionController.cls-meta.xml

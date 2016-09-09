@@ -193,6 +193,11 @@ private class IPM_ProjectCountryDetails_Test {
 
             insert assessment1;
             delete assessment1;
+<<<<<<< HEAD
+=======
+            IPM_Project__c projWithNoAssessment = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
+           	System.assertEquals(true,projWithNoAssessment.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             
             
             IPM_Country__c tempCountry2 = new  IPM_Country__c(
@@ -201,7 +206,11 @@ private class IPM_ProjectCountryDetails_Test {
            insert tempCountry2;
            
            IPM_Project__c projToCheck = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
+<<<<<<< HEAD
            System.assertEquals(false,projToCheck.IPM_Exists_AtLeast_OneAssmntPerEICountry__c);
+=======
+           System.assertEquals(true,projToCheck.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
            test.stopTest();
         }    
     }
@@ -312,7 +321,13 @@ private class IPM_ProjectCountryDetails_Test {
                 
             insert countryList;
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Where Id =:toUpdateProjList[0].Id limit 1][0];
+<<<<<<< HEAD
             System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c);
+=======
+            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
+            IPM_ProjectCountryDetails.getAvailableBrands(localProjNew);
+            IPM_ProjectCountryDetails.setEISectionStatus(new List<IPM_Project__c>{globalProjNew});
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             test.stopTest();
         }
     }

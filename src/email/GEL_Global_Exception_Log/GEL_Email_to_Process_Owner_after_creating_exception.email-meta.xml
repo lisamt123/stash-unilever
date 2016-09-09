@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>GEL_Email to Process Owner after creating exception</name>
+    <style>none</style>
+    <subject>GPM Exception Notification_Process -  {!GEL_Global_Exception_Log__c.REF_Number2__c}</subject>
+    <type>text</type>
+</EmailTemplate>

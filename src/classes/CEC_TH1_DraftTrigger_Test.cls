@@ -16,7 +16,7 @@ VERSION    AUTHOR            DATE            DETAIL
 public class CEC_TH1_DraftTrigger_Test {
 
     @testSetup static void setUpTestData() {
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+       CEC_TestDataFactory.createStandardCECTestUser();
     }
     
     @isTest static void test_DraftTrigger() {

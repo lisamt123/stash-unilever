@@ -30,7 +30,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 <apex:composition template="PBS_Header_Template"/>
 <div class="row bodyRow">
         <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
-        <div class="col-xs-4 home-detail">
+        <div class="col-xs-6 home-detail">
             <ul>
             <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
             </ul>
@@ -49,6 +49,21 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             <div class="row">
                 <apex:outputPanel layout="none" rendered="{!lcategories != null && lcategories.size > 0}">
                     <apex:repeat value="{!lcategories}" var="o" id="theRepeat">
+                    <apex:outputText rendered="{!IF(o.Name == 'System & Process' || o.Name == 'Math and Analytics',true,false)}" >
+                    <div class="categoryItemWrap">
+                          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 categoryItem" item-url="{!$Page.PBS_SubFolder}?id={!o.Id}">
+                            <div class="categoryImage" style="background:url({!JSENCODE(o.Background_Image_URL__c)})">
+                                <apex:outputPanel rendered="{!o.Logo__c != null}" layout="none">
+                                    <apex:image value="{!o.Logo__c}"  />
+                                </apex:outputPanel>
+                                <div class="categoryName" style="color:{!JSINHTMLENCODE(o.Text_Color__c)}">
+                                    <span>{!o.Name}</span>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </apex:outputText>
+                    <apex:outputText rendered="{!IF(o.Name == 'S&OP' || o.Name == 'Financial Acumen' || o.Name =='End to End Supply Chain' || o.Name == 'Business Skills',true,false)}" >
                         <div class="categoryItemWrap">
                           <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 categoryItem" item-url="{!$Page.PBS_TrainingCatalogDetail}?id={!o.Id}">
                             <div class="categoryImage" style="background:url({!JSENCODE(o.Background_Image_URL__c)})">
@@ -61,6 +76,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                             </div>
                           </div>
                         </div>
+                        </apex:outputText>
                     </apex:repeat>
                 </apex:outputPanel>
                 <apex:outputPanel layout="none" rendered="{!lcategories == null || lcategories.size == 0}">

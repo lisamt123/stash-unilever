@@ -134,8 +134,7 @@
                                                             <apex:selectOption itemLabel="{!project.IPM_Company_Card__r.Name}" itemValue="{!project.IPM_Company_Card__c}"></apex:selectOption>
                                                         </apex:selectList>
                                                     </apex:outputPanel>
-                                                    <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
-                                                    <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions,selectNextTabScript" status="refreshCategory" />
+                                                    <apex:actionfunction name="callCompanyCard"  action="{!populateCategory}" reRender="WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,categoryPanel,BrandPositionPanel,ProjectSubTypePanel,GMKQuestionsPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
                                                                                 
                                                 </apex:actionRegion>
                                             </label>
@@ -169,7 +168,7 @@
                                                 <apex:outputLabel value="{!$Label.IPM_SelectProjectType}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>                                                                     
                                                 <div class="ipmRadioButton oprtnRadiobtn">                                                                                      
                                                     <apex:selectRadio styleClass="{!IF(project.IPM_IsSaved__c == true,'disable','')}" value="{!project.IPM_ProjectSubType__c}"  disabled="{!OR(project.IPM_IsSaved__c,NOT(isEditable))}" > 
-                                                        <apex:actionSupport event="onchange" action="{!populateProjectInformation}" reRender="BrandPositionPanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,selectNextTabScript" status="refreshPos" />  
+                                                        <apex:actionSupport event="onchange" action="{!associateProjectMetadata}" reRender="BrandPositionPanel,GMKQuestionsPanel,WhiteSpaceFastTrackPanel,selectNextTabScript" status="refreshPos" />  
                                                         <span><apex:selectOptions value="{!projectSubTypes}"></apex:selectOptions></span>
                                                     </apex:selectRadio>
                                                 </div>
@@ -189,19 +188,37 @@
                                     </apex:outputPanel>
                                 </div>
                                 <div class="row brandPosContainer">
-                                    <div class="col-sm-6"> 
+                                    <div class="col-sm-4"> 
                                         <apex:outputPanel id="BrandPositionPanel" layout="block" styleClass="inputField">
                                             <apex:outputLabel value="{!$Label.IPM_BRAND_POSITIONING}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
+<<<<<<< HEAD
                                             <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
                                             <apex:outputPanel id="SingleBrandPanel" rendered="{!NOT(projectMetadata.IPM_MultipleBrandPosApplicable__c)}">
+=======
+                                            <span class="SecButtonSet infoMarTop">
+                                            <!-- To display below outputPanel when multiple brand positioning is applicable   -->
+                                            	<apex:outputPanel rendered="{!projectMetadata.IPM_MultiBrandPosApplicable__c}">
+                                                	<a class="icoButton info smallllinfo" title="{!$Label.IPM_BrandPositioningHelpText}"></a>
+                                                </apex:outputPanel>
+                                            </span>
+                                            <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
+                                            <!-- To display below outputPanel when multiple brand positioning is not applicable   -->
+                                            <apex:outputPanel id="SingleBrandPanel" rendered="{!NOT(projectMetadata.IPM_MultiBrandPosApplicable__c)}">
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                                                 <label class="ipmSelect custSelectWidth">
                                                     <apex:selectList value="{!project.IPM_Brand_Positioning__c}" multiselect="false" size="1" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  styleClass="selBrandPos" >
                                                         <apex:selectOptions value="{!brandPos}"></apex:selectOptions>
                                                     </apex:selectList>
                                                 </label>
                                             </apex:outputPanel>
+<<<<<<< HEAD
                                             <apex:outputPanel layout="block" rendered="{!AND(projectMetadata.IPM_MultipleBrandPosApplicable__c)}" styleClass="noPadright noPadleft dropdown brandposListContainer ipmDropDown" >    
                                                 
+=======
+                                            <!-- To display below outputPanel when multiple brand positioning is applicable   -->
+                                            <apex:outputPanel layout="block" rendered="{!AND(projectMetadata.IPM_MultiBrandPosApplicable__c)}" styleClass="noPadright noPadleft dropdown brandposListContainer ipmDropDown" >    
+                                            <!-- To display below outputPanel when current user has edit access on page   -->    
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                         <apex:outputPanel rendered="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  >
                             <apex:OutputText value="{!project.IPM_Brand_Positioning__c}" id="brandPosDisableField"/>
                         </apex:outputPanel>
@@ -242,14 +259,30 @@
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                     </div>
-                                    <div class="col-sm-6 rightColumn">
+                                     
+                                    <apex:outputpanel rendered="{!isBrandVisible}"  styleClass="inputField"> 
+                                    <div class="col-sm-4"> 
+                                       
+                                            <label styleClass="bsFieldLabel" >{!$Label.IPM_Local_Brand}</label> 
+                                            <apex:outputpanel rendered="{!NOT(isBrandEditable)}">
+                                                <span class="disp-blk"><apex:outputtext value="{!project.IPM_LocalProject_Brand__c}"/></span>    
+                                            </apex:outputpanel>
+                                            <apex:outputpanel rendered="{!isBrandEditable}" layout="block">
+                                                <apex:selectList styleClass="ipmSelect custSelectWidth selBrandPos" size="1" value="{!selectedBrand}"  >  
+                                                   <apex:selectOptions value="{!availableBrands}" />
+                                                </apex:selectList> 
+                                            </apex:outputpanel> 
+                                        </div>  
+                                    </apex:outputpanel> 
+                                  
+                                    <div class="col-sm-4 rightColumn">
                                         <apex:outputPanel layout="block" id="TargetDatePanel" styleClass="inputField launchPeriod" >
                                             <div class="tldLabel"><apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_DATE}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span></div>
 <<<<<<< HEAD
                                             <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="TLDDateCheck()"/>                                                              
 =======
                                             <!-- To display below inputField when current user has edit access on page   -->
-                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="checkTLDDate()"/>                                                              
+                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar custom_cal_width" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="checkTLDDate()"/>                                                              
                                             <!-- To display below outputField when current user has read access on page   -->
 >>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
                                             <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!OR(!isEditable,!isTLDFieldEditable)}"/>
@@ -274,6 +307,7 @@
                                 
                                 <div class="row">
                                     <div class="col-sm-12"> 
+<<<<<<< HEAD
                                         <apex:outputPanel layout="block" styleClass="inputField"  id="questionCharter" >                                              
                                             <apex:outputPanel layout="block" styleClass="inputField oprtnRadioContainer contractContainer" rendered="{!projectMetadata.IPM_Charter_Question_Applicable__c}">
                                                 <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CHARTER_GATE}" styleClass="bsFieldLabel editDspBlock" />
@@ -304,16 +338,25 @@
                                             <apex:outputPanel layout="block" styleClass="inputField oprtnRadioContainer contractContainer" rendered="{!projectMetadata.IPM_GatekeepingModelsApplicable__c}">
                                                 <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel editDspBlock"/>
                                                 <apex:outputPanel layout="inline" styleClass="mandatorycolor" rendered="{!CONTAINS(projectMetadata.IPM_MadatoryFields__c,'IPM_GateKeeping_Model__c')}"></apex:outputPanel>
+=======
+                                        <apex:outputPanel layout="block" styleClass="inputField" id="GMKQuestionsPanel" >                                              
+                                              <!-- To display below outputPanel when charter question is applicable    -->
+                                            <apex:outputPanel layout="block" styleClass="inputField oprtnRadioContainer contractContainer" rendered="{!projectMetadata.IPM_GKMQuestionsApplicable__c}">
+                                                <apex:outputLabel value="{!$Label[GMKQuestionsLabel]}" styleClass="bsFieldLabel editDspBlock"/>
+                                                <!-- To display below outputPanel when charter question is empty while saving project  -->
+                                                <apex:outputPanel layout="inline" styleClass="mandatorycolor" rendered="{!CONTAINS(projectMetadata.IPM_MandatoryFields__c,'IPM_GKMQuestionsApplicable__c')}"></apex:outputPanel>
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                                             
                                                 <div class="ipmRadioButton gateKeepingModel">
-                                                    <apex:selectRadio styleClass="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),'disable','')}" value="{!project.IPM_GateKeeping_Model__c}"  disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}" >
-                                                        <apex:selectOptions value="{!gateKeepingModels}"></apex:selectOptions>
+                                                    <apex:selectRadio styleClass="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),'disable','')}" value="{!project[projectMetadata.IPM_GMKQuesiton__c]}"  disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}" >
+                                                        <apex:selectOptions value="{!GKMQuestions}"></apex:selectOptions>
                                                     </apex:selectRadio>
                                                 </div>
                                                 <apex:variable value="{!1}" var="rowNum"/>
-                                                <apex:repeat value="{!gateKeepingModels}" var="gateKeeperModel">
-                                                    <div class="radioTooltip{!rowNum} toolTipMsg gateKModel" data-toggle="tooltip" selectedValue="{!gateKeeperModel.value}" > 
-                                                        <span>{!$Label[HelpTextGateKeeping[gateKeeperModel.value]]}</span>
+                                                <!-- To display below repeat list when current user has edit access on page    -->
+                                                <apex:repeat value="{!GKMQuestions}" var="GKMQuestion" rendered="{!isEditable}">
+                                                    <div class="radioTooltip{!rowNum} toolTipMsg gateKModel" data-toggle="tooltip" selectedValue="{!GKMQuestion.value}" > 
+                                                        <span>{!$Label[HelpTextGKMQuestions[GKMQuestion.value]]}</span>
                                                     </div>
                                                     <apex:variable var="rowNum" value="{!rowNum + 1}"/>
                                                 </apex:repeat>                                 
@@ -384,8 +427,12 @@
                     <apex:commandLink value="{!$Label.IPM_Update}"  action="{!saveProceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage,editProjectAction" oncomplete="Closepopup();">
 =======
                     <!-- To display below commandLink when current user has edit access on page and phase is not empty    -->
+<<<<<<< HEAD
                     <apex:commandLink value="{!$Label.IPM_Update}"  action="{!saveProceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage,editProjectAction" onClick="skipValidation();" oncomplete="closepopup();">
 >>>>>>> 5e95981f5bdc62ad3a9ade30654a859661cab86b
+=======
+                    <apex:commandLink value="{!$Label.IPM_Update}"  action="{!saveProceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,GMKQuestionsPanel,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage,editProjectAction" onClick="skipValidation();" oncomplete="closepopup();">
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                     </apex:commandLink>
                 </div>
                 <div class="proSetupButton pull-right">

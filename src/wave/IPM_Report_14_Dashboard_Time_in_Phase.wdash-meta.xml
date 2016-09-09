@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveDashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>UL_Reports</application>
+    <description>Time in a phase – compared to average full, lite, operational and whitespace projects (Reports to cover the last 30 days, any further historic reporting is excluded). Note that workflow and configuration to capture each phase change and date/time, then use formula fields to calculate length of each phase and then report of these fields.</description>
+    <masterLabel>IPM Report 14 Dashboard - Time in Phase</masterLabel>
+</WaveDashboard>

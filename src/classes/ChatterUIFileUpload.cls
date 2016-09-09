@@ -58,7 +58,7 @@ public with sharing class ChatterUIFileUpload {
         this.controller = controller; 
         setChatterAttachmentInfo((ContentVersion)controller.getRecord());
         
-    	this.status = ApexPages.currentPage().getParameters().get(PARAM_UPLOAD_STATUS);
+        this.status = ApexPages.currentPage().getParameters().get(PARAM_UPLOAD_STATUS);
         this.fileId = ApexPages.currentPage().getParameters().get(PARAM_FILE_ID);
         this.message = ApexPages.currentPage().getParameters().get(PARAM_ERROR_MESSAGE);
         this.successHandler = ApexPages.currentPage().getParameters().get(PARAM_ON_SUCCESS_FUNCTION);
@@ -83,11 +83,11 @@ public with sharing class ChatterUIFileUpload {
      * Gets a valid section value
      */
     public String getAppSection() {
-    	if (this.appSection == null) {
-    		return '';
-    	} else {
-    		return this.appSection;
-    	}
+        if (this.appSection == null) {
+            return '';
+        } else {
+            return this.appSection;
+        }
     }
     
     /**
@@ -99,27 +99,27 @@ public with sharing class ChatterUIFileUpload {
         resetStateFromPreviousRequest();
         
         try {
-        	// call the standard controller's save
-        	this.controller.save();
-        	
-        	if (ApexPages.hasMessages(ApexPages.Severity.ERROR) || ApexPages.hasMessages(ApexPages.Severity.FATAL)) {
+            // call the standard controller's save
+            this.controller.save();
+            
+            if (ApexPages.hasMessages(ApexPages.Severity.ERROR) || ApexPages.hasMessages(ApexPages.Severity.FATAL)) {
                 // saved failed, get the error message
                 for (ApexPages.Message message : ApexPages.getMessages()) {
-                	if (message.getSeverity() == ApexPages.Severity.ERROR || message.getSeverity() == ApexPages.Severity.FATAL) {
-                		uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_ERROR);
+                    if (message.getSeverity() == ApexPages.Severity.ERROR || message.getSeverity() == ApexPages.Severity.FATAL) {
+                        uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_ERROR);
                         uploadResult.put(PARAM_ERROR_MESSAGE, message.getSummary());
-                		break;
-                	}
+                        break;
+                    }
                 }
             } else {
-            	// save succeeded
-            	Id contentVersionId = this.controller.getId();
-	        	uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_SUCCESS);
-	        	uploadResult.put(PARAM_FILE_ID, getContentDocumentId(contentVersionId));
+                // save succeeded
+                Id contentVersionId = this.controller.getId();
+                uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_SUCCESS);
+                uploadResult.put(PARAM_FILE_ID, getContentDocumentId(contentVersionId));
             }
         } catch (Exception e) {
-        	uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_ERROR);
-        	uploadResult.put(PARAM_ERROR_MESSAGE, e.getMessage());
+            uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_ERROR);
+            uploadResult.put(PARAM_ERROR_MESSAGE, e.getMessage());
         }
         
         this.fileId = uploadResult.get(PARAM_FILE_ID);
@@ -157,7 +157,7 @@ public with sharing class ChatterUIFileUpload {
     }
     
     public Boolean getIsUploadSuccessful() {
-    	return this.status == STATUS_SUCCESS;
+        return this.status == STATUS_SUCCESS;
     }
     
     /**
@@ -165,7 +165,7 @@ public with sharing class ChatterUIFileUpload {
      * @param attachment - the ContentVersion file that will be uploaded
      */
     public static void setChatterAttachmentInfo(ContentVersion attachment) {
-    	attachment.Origin = ATTACHMENT_ORIGIN_CHATTER;
+        attachment.Origin = ATTACHMENT_ORIGIN_CHATTER;
         attachment.OwnerId = UserInfo.getUserId();
     }
     
@@ -175,13 +175,13 @@ public with sharing class ChatterUIFileUpload {
      * @return Id
      */
     public static Id getContentDocumentId(Id contentVersionId) {
-    	if (contentVersionId != null) {
-	    	List <ContentVersion> versions = [select ContentDocumentId from ContentVersion where Id = :contentVersionId];
-	    	if (versions.size() > 0) {
-	    		return versions[0].ContentDocumentId;
-	    	}
-    	}
-    	return null;
+        if (contentVersionId != null) {
+            List <ContentVersion> versions = [select ContentDocumentId from ContentVersion where Id = :contentVersionId];
+            if (versions.size() > 0) {
+                return versions[0].ContentDocumentId;
+            }
+        }
+        return null;
     }
     
     /**
@@ -194,36 +194,36 @@ public with sharing class ChatterUIFileUpload {
     // note, remote actions aren't allowed in iframes and this doesn't need to be one 
     // we have the remote action in ChatterUIController call this static method 
     public static Map<String, String> uploadAttachment(String base64BlobValue, ContentVersion attachment) {
-    	Map<String, String> uploadResult = new Map<String, String>();
-    	
-    	if (attachment == null) {
-            attachment = new ContentVersion();
-    	}
-    	
-    	try {
-            setChatterAttachmentInfo(attachment);
+        Map<String, String> uploadResult = new Map<String, String>();
+         ContentVersion attachmentObj=attachment;
+        if (attachment == null) {
+            attachmentObj = new ContentVersion();
+        }
+        
+        try {
+            setChatterAttachmentInfo(attachmentObj);
             
             if (base64BlobValue != null) {
                 // set the file data and path
-                attachment.VersionData = EncodingUtil.Base64Decode(base64BlobValue);
+                attachmentObj.VersionData = EncodingUtil.Base64Decode(base64BlobValue);
                 
                 String newPhotoName = getNewPhotoName();
-                attachment.PathOnClient = newPhotoName;
+                attachmentObj.PathOnClient = newPhotoName;
                 // setting just the path on client does not preserve the file extension, but additionally setting the title does
-                attachment.Title = newPhotoName;
+                attachmentObj.Title = newPhotoName;
             }
             
-            insert attachment;      
-            uploadResult.put(PARAM_FILE_ID, getContentDocumentId(attachment.Id));
+            insert attachmentObj;      
+            uploadResult.put(PARAM_FILE_ID, getContentDocumentId(attachmentObj.Id));
             uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_SUCCESS);
                     
         } catch (Exception e) {
-        	uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_ERROR);
-        	uploadResult.put(PARAM_ERROR_MESSAGE, e.getMessage());
+            uploadResult.put(PARAM_UPLOAD_STATUS, STATUS_ERROR);
+            uploadResult.put(PARAM_ERROR_MESSAGE, e.getMessage());
         
         } finally {
             // reset
-            attachment = new ContentVersion();
+            attachmentObj = new ContentVersion();
         }
         return uploadResult;
     }
@@ -233,7 +233,7 @@ public with sharing class ChatterUIFileUpload {
      * @return String - the new photo name
      */
     private static String getNewPhotoName() {
-        return StringUtil.formatDate(Date.today(), 'MMddyyyy') + '_' + System.currentTimeMillis() + '.jpeg'; 	
+        return StringUtil.formatDate(Date.today(), 'MMddyyyy') + '_' + System.currentTimeMillis() + '.jpeg';    
     }
     
     private static testmethod void testUploadAttachment() {
@@ -243,13 +243,13 @@ public with sharing class ChatterUIFileUpload {
             Title = 'test'
         );
         ApexPages.StandardController sc = new ApexPages.StandardController(contentVersion);
-    	ChatterUIFileUpload controller = new ChatterUIFileUpload(sc);
-    	
+        ChatterUIFileUpload controller = new ChatterUIFileUpload(sc);
+        
         System.assertEquals('', controller.getAppSection()); 
-    	
-    	controller.appSection = APP_SECTION_GROUP;
-    	System.assertEquals(APP_SECTION_GROUP, controller.getAppSection()); 
-    	
+        
+        controller.appSection = APP_SECTION_GROUP;
+        System.assertEquals(APP_SECTION_GROUP, controller.getAppSection()); 
+        
         controller.appSection = APP_SECTION_USER_PROFILE;
         System.assertEquals(APP_SECTION_USER_PROFILE, controller.getAppSection()); 
 
@@ -283,6 +283,6 @@ public with sharing class ChatterUIFileUpload {
     private static testMethod void testUploadAttachment2() {
         String base64BlobValue = EncodingUtil.base64Encode(Blob.valueOf('test string'));
         Map<String, String>  resultsMap = ChatterUIFileUpload.uploadAttachment(base64BlobValue, null);
-        System.assertNotEquals(null, resultsMap.get(PARAM_UPLOAD_STATUS));    	
+        System.assertNotEquals(null, resultsMap.get(PARAM_UPLOAD_STATUS));      
     }
 }

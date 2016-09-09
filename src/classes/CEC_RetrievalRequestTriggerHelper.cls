@@ -45,8 +45,9 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
             // fetch from address from custom settings
             owa = verifyFromEmail(orgSettings);
         
-            if(owa != null)
+            if(owa != null){
                 sendRetrievalEmails(factoryRetrievalMapToSendMail, owa);
+            }
         
         }
     
@@ -73,7 +74,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
         return owa;
     }
     
-    private boolean sendRetrievalEmails(map<id, CEC_Retrieval_Request__c> factoryRetrievalMapToSendMail, OrgWideEmailAddress owa){
+    private void sendRetrievalEmails(map<id, CEC_Retrieval_Request__c> factoryRetrievalMapToSendMail, OrgWideEmailAddress owa){
     
         Set<id> factoryDetailIds = new Set<id>();
         Set<id> parentCaseIds = new Set<id>();
@@ -83,7 +84,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
         for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
             factoryDetailIds.add(rr.Product_Factory__c);
             factoryDetailIds.add(rr.Textile_Factory__c);
-            parentCaseIds.add(rr.Case__c); 
+            parentCaseIds.add(rr.Case__c);
         }
         
         // create Parent case Map to obtain parent Case fields
@@ -99,9 +100,9 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
             map<string, EmailTemplate> emailTemplateMap = new map <string, EmailTemplate>();
             
             // obtain email template names
-            for(case aCase :parentCaseMap.values()){
-                templateNames.add(aCase.Country__r.Product_Factory_Email_Template__c);
-                templateNames.add(aCase.Country__r.Textile_Factory_Email_Template__c);
+            for(case caseEmailTempName :parentCaseMap.values()){
+                templateNames.add(caseEmailTempName.Country__r.Product_Factory_Email_Template__c);
+                templateNames.add(caseEmailTempName.Country__r.Textile_Factory_Email_Template__c);
             }
             
             // query email templates
@@ -120,7 +121,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
 
             // send emails and attach  them to corresponding cases as well
             for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
-				// reset case variable
+                // reset case variable
                 aCase = new Case();
                 // get parent case of current retrieval record
                 aCase = parentCaseMap.get(rr.Case__c);
@@ -131,11 +132,11 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                     // if textile factory is present factory template is defined, prepare email
                     if(string.IsNotBlank(aCase.Country__r.Textile_Factory_Email_Template__c)){
                         if(emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c) != null){
-                            updatedHTMLBody = formatEmail(aCase, emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c).HtmlValue);
+                            updatedHTMLBody = formatEmail(aCase, rr, emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c).HtmlValue);
                             updatedSubject = emailTemplateMap.get(aCase.Country__r.Textile_Factory_Email_Template__c).Subject;
                             toEmailAdresses = extractToEmailAddresses(factoryMap.get(rr.Textile_Factory__c).Email__c);
                         }else{ // update error message on retrieval record
-                            rr.Retrieval_Message__c = 'Textile email template for the country is unavailable. make sure such a template exists';
+                            rr.Retrieval_Message__c = 'Textile email template for the country is unavailable. Make sure such a template exists';
                             break;
                         }
                     }else{ // update error message on retrieval record
@@ -146,11 +147,11 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                     // if product factory is present factory template is defined, prepare email
                     if(string.IsNotBlank(aCase.Country__r.Product_Factory_Email_Template__c)){
                         if(emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c) != null){
-                            updatedHTMLBody = formatEmail(aCase, emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c).HtmlValue);
+                            updatedHTMLBody = formatEmail(aCase,rr, emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c).HtmlValue);
                             updatedSubject = emailTemplateMap.get(aCase.Country__r.Product_Factory_Email_Template__c).Subject;
                             toEmailAdresses = extractToEmailAddresses(factoryMap.get(rr.Product_Factory__c).Email__c);
                         }else{ // update error message on retrieval record
-                            rr.Retrieval_Message__c = 'Product email template for the country is unavailable. make sure such a template exists';
+                            rr.Retrieval_Message__c = 'Product email template for the country is unavailable. Make sure such a template exists';
                             break;
                         }
                     }else{ // update error message on retrieval record
@@ -185,30 +186,23 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                 eMessage.MessageDate = system.Now();
                 // add email to list of emails to be added to case
                 emailMessageList.add(eMessage);
-
+                // send emails and attach them to parent cases
+                sendEmailsAndAttachToCases(emailMessageList, emailList, factoryRetrievalMapToSendMail);
             }
-
-            Messaging.SendEmailResult[] resultMail;
-            //send emails
-            try{
-                if(!emailList.IsEmpty()){
-                    resultMail = Messaging.sendEmail(emailList,true);
-                }else{
-                    return false;
-                }
-            }catch(exception e){
-                for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
-                    // update error message on retrieval records
-                    rr.Retrieval_Message__c = 'Email sending failed';
-                }
-                return false;
-            }
-            if(!resultMail.isEmpty()){
-                if(resultMail.get(0).isSuccess()){
+        }
+    }
+    
+    private void sendEmailsAndAttachToCases(list<EmailMessage> emailMessageList, list<Messaging.SingleEmailMessage> emailList, map<id, CEC_Retrieval_Request__c> factoryRetrievalMapToSendMail){
+        Messaging.SendEmailResult[] resultMail;
+        //send emails
+        try{
+            if(!emailList.IsEmpty()){
+                resultMail = Messaging.sendEmail(emailList,true);
                 
+                if(resultMail.get(0).isSuccess()){                  
                     for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
                         // set email flags
-                        if(string.IsNotBlank(rr.Textile_Factory__c)&& (rr.Retrieval_Status__c != 'Initiate Product Analysis')){
+                        if(string.IsNotBlank(rr.Textile_Factory__c) && (rr.Retrieval_Status__c != 'Initiate Product Analysis')){
                             rr.Textile_Factory_Email_Sent__c = true;
                         }else if(string.IsNotBlank(rr.Product_Factory__c)){
                             rr.Product_Factory_Email_Sent__c = true;
@@ -216,35 +210,26 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
                         //reset retrieval message
                         rr.Retrieval_Message__c = '';
                     }
-    
                     // attach emails to respective Cases
-                    try{
-                        insert emailMessageList;
-                    }catch(exception e){
-                        system.debug('Error :'+e);
-                    }
-    
-                }else{
-                    for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
-                        // update error message on retrieval records
-                        rr.Retrieval_Message__c = 'Email sending has failed. Please contact your administrator if problem persists';
-                    }
-                    return false;
+                    insert emailMessageList;
                 }
+                
             }
-            return true;
+        }catch(exception e){
+            for(CEC_Retrieval_Request__c rr :factoryRetrievalMapToSendMail.values()){
+                // update error message on retrieval records
+                rr.Retrieval_Message__c = 'Email sending failed';
+            }
         }
-        else{
-            return false;
-        }
-    
     }
     
+    
     // to format email body
-    private string formatEmail(Case aCase, string emailBody){
+    private string formatEmail(Case aCase, CEC_Retrieval_Request__c rr, string emailBody){
         string returnString = emailBody;        
         returnString = searchAndReplace(returnString, '{!Case.CaseNumber}', string.ValueOf(aCase.CaseNumber));
         returnString = searchAndReplace(returnString, '{!Case.CreatedDate}', string.ValueOf(aCase.CreatedDate));
+        returnString = searchAndReplace(returnString, '{!CEC_Retrieval_Request__c.Name}', rr.Name);
         returnString = searchAndReplace(returnString, '{!User.Name}', UserInfo.getName());
         returnString = searchAndReplace(returnString, '{!Case.Product_Code__c}', aCase.Product_Code__c);
         returnString = searchAndReplace(returnString, '{!Case.Production_Code__c}', aCase.Production_Code__c);
@@ -252,6 +237,7 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
         returnString = searchAndReplace(returnString, '{!Case.Global_Reason_L5_desc__c}', aCase.Global_Reason_L5_desc__c);
         returnString = searchAndReplace(returnString, '{!Case.Product_UPC__c}', aCase.Product_UPC__c);
         returnString = searchAndReplace(returnString, '{!Case.Subject}', aCase.Subject);
+        returnString = searchAndReplace(returnString, '{!CEC_Retrieval_Request__c.Retrieval_Notes__c}', rr.Retrieval_Notes__c);
         returnString = searchAndReplace(returnString, '{!Case.Description}', aCase.Description);
         
         return returnString;
@@ -272,20 +258,12 @@ public with sharing class CEC_RetrievalRequestTriggerHelper {
 
     private list<string> extractToEmailAddresses(string factoryEmail){
         string aFactoryEmail;
-        string removedEmail;
         
         // extract all email address
         aFactoryEmail = factoryEmail.replace(',',';');
         string[] toEmailAdresses = aFactoryEmail.trim().split(';');
-        // reject invalid email address
-        integer i = toEmailAdresses.size()-1;
-        while(i >= 0){
-            if(!CEC_Util.isValidEmailAddress(toEmailAdresses.get(i))){
-                removedEmail = toEmailAdresses.remove(i);
-            }
-            i--;
-        }
-        // return all valid address
+        
+        // return all address
         return toEmailAdresses; 
     }
 

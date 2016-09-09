@@ -22,10 +22,19 @@ public with sharing class IPM_BETSuggestedMembersController{
                update project;
             }
         }catch(Exception ex){
+<<<<<<< HEAD
           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
           ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETSuggestedMembersController.class.getName(),'updateBETonProject',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, ex.getStackTraceString(), null, null) ;
             throw new IPM_CustomException(System.Label.IPM_BET_BETUpdate_failure_ErrMsg);  
         }
+=======
+		  //Enqueue IPM_UpdateBETOnProject_Queueable class  in case there is an exception due to concurrent update
+		  IPM_UpdateBETOnProject_Queueable updateBETOnProjectQ = new IPM_UpdateBETOnProject_Queueable(); 
+          updateBETOnProjectQ.betId =betId;
+          updateBETOnProjectQ.projectId =projectId; 
+          System.enqueueJob(updateBETOnProjectQ);  
+        } 
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
         return pageRef ;
     }
     public class IPM_CustomException extends Exception{

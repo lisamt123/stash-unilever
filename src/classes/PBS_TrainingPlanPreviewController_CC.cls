@@ -106,7 +106,8 @@ public with sharing class PBS_TrainingPlanPreviewController_CC extends PBS_LMSBa
 
     public PageReference fetchTrainingPlanInfo(){
         existingRequest = null;
-        List<PBS_Training_Plan__c> selectedTPlans= PBS_LMSService_CC.getTrainingPlans(new Set<Id>{trainingPlanId}, PBS_LMSUtils_CC.isPortalUser());
+        //List<PBS_Training_Plan__c> selectedTPlans= 
+        PBS_LMSService_CC.getTrainingPlans(new Set<Id>{trainingPlanId}, PBS_LMSUtils_CC.isPortalUser());
         List<PBS_Training_Plan_Access_Request__c> existingReqs = PBS_LMSService_CC.fetchTrainingPlanAccessRequest(UserInfo.getUserId(),trainingPlanId,null,PBS_LMSUtils_CC.isPortalUser());
         if(existingReqs.size()>0){
             existingRequest = existingReqs.get(0);
@@ -117,7 +118,8 @@ public with sharing class PBS_TrainingPlanPreviewController_CC extends PBS_LMSBa
     public PageReference requestAccessForTrainingPlan(){
 
         try{
-            PBS_Training_Plan_Access_Request__c tpar = PBS_LMSService_CC.createTrainingPlanAccessRequest(UserInfo.getUserId(),trainingPlanId,dummyRequest.Comments__c, PBS_LMSUtils_CC.isPortalUser());
+            //PBS_Training_Plan_Access_Request__c tpar = 
+            PBS_LMSService_CC.createTrainingPlanAccessRequest(UserInfo.getUserId(),trainingPlanId,dummyRequest.Comments__c, PBS_LMSUtils_CC.isPortalUser());
             dummyRequest = new PBS_Training_Plan_Access_Request__c();
             PBS_LMSUtils_CC.addSuccessMessage(System.Label.ALMS_Public_Plan_Request_Submitted);
             return null;

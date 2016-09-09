@@ -1,0 +1,257 @@
+<aura:component controller="ChatterPublisherHandler">
+    
+    <aura:attribute name="element" type="ChatterAuraFeedItem" />
+    <aura:attribute name="feedElementId" type="String" />
+    <aura:attribute name="textComment" type="String" description="" />
+    
+    <li class="slds-feed__item">
+        <div class="spinningFeedElement"><center><ui:spinner aura:id="FeedElementSpinner" isVisible="false"/></center></div>
+    <div class="slds-media slds-comment slds-hint-parent">
+      <div class="slds-media__figure">
+        <div class="slds-avatar slds-avatar--circle slds-avatar--medium">
+          <a href="javascript:void(0)" title="">
+            <img src="{!v.element.actorSmallPhotoUrl}" alt="{!v.element.actorDisplayName}" />
+          </a>
+        </div>
+      </div>
+      <div class="slds-media__body">
+        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+          <p class="slds-truncate"> 
+              <span>
+              <aura:iteration items="{!v.element.messageSegments}" var="messageSegment">
+                  <span>
+                  <aura:if isTrue="{!messageSegment.type =='EntityLink'}"> 
+                      <span>
+                      <c:ChatterOpenRef refId="{!messageSegment.referenceId}" refName="{!messageSegment.text}"/>
+                      </span>
+                  </aura:if>
+                  <aura:if isTrue="{!messageSegment.type !='EntityLink'}">
+                      {!messageSegment.text}
+                  </aura:if>
+                  </span>
+              </aura:iteration>
+              </span>
+          </p>
+          <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small slds-shrink-none downHide">
+       		<c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#down" class="slds-button__icon slds-button__icon--hint slds-button__icon--small" ariaHidden="true"/>
+            <span class="slds-assistive-text">Show More</span>
+          </button>
+        </div>
+        <p class="slds-text-body--small">
+          <a href="javascript:void(0)" title="Click for single-item view of this post">{!v.element.createdDate}</a>
+        </p>
+        <div class="slds-comment__content slds-text-longform">
+            <aura:if isTrue="{!v.element.isRichText}">
+                <span>
+                <aura:iteration items="{!v.element.richBodyText}" var="richTextSegment">
+                    <span>
+                        <span>
+                    <aura:if isTrue="{!!(richTextSegment.segmentType == 'mention')}"> 
+                        <span>
+                    	<aura:unescapedHtml value="{!richTextSegment.segmentBody}"/>
+                        </span>
+                    </aura:if>
+                        </span>
+                        <span>
+                	<aura:if isTrue="{!richTextSegment.segmentType == 'mention'}"> 
+                        <span>
+                    	<c:ChatterOpenRef refId="{!richTextSegment.refId}" refName="{!richTextSegment.refName}"/>
+                        </span>
+                    </aura:if>
+                        </span>
+                    </span>
+                </aura:iteration>  
+                </span>
+            </aura:if>
+            <aura:if isTrue="{!!v.element.isRichText}"><p> {!v.element.bodyText} </p></aura:if>    
+        </div>
+        <aura:if isTrue="{!v.element.isLink}">
+        	<div class="slds-attachments">
+              <div class="slds-attachments__item slds-box slds-box--x-small slds-theme--shade">
+                <div class="slds-grid slds-grid--align-spread">
+                  <div class="slds-media">
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container">
+                        <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/action-sprite/svg/symbols.svg#share_link" class="slds-icon slds-icon-action-share-link slds-icon--medium slds-p-around--x-small" ariaHidden="true"/>
+                        <span class="slds-assistive-text"></span>
+                      </span>
+                    </div>
+                    <div class="slds-media__body">
+                      <a href="{!v.element.linkUrl}" title="">
+                          <p><b>{!v.element.linkUrlName}</b></p>
+                          <p>{!v.element.linkUrl}</p>
+                        </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </aura:if>
+         <aura:if isTrue="{!v.element.isFile}">
+             <span>
+           <aura:iteration items="{!v.element.files}" var="file">
+               <span>
+        	<div class="slds-attachments">
+                <span>
+              <div class="slds-attachments__item slds-box slds-box--x-small slds-theme--shade">
+                  <span>
+                <div class="slds-grid slds-grid--align-spread">
+                    <span>
+                  <div class="slds-media">
+                      <span>
+                    <div class="slds-media__figure">
+                      <span class="slds-icon_container"> 
+ 
+                 		   <!--<aura:renderIf isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+                               <c:ChatterFilePreview idName="{!file.contentId}" versionId="{!file.versionId}" contentId="{!file.contentId}" renditionUrl240By180="{!file.renditionUrl240By180}"/> 
+                           </aura:renderIf> -->
+                           <span>
+                              <c:ChatterFilePreviewSF1 contentId="{!file.contentId}" renditionUrl="{!file.renditionUrl240By180}"  versionId="{!file.versionId}"/>
+                          
+                          </span>
+                          <span class="slds-assistive-text"></span>
+                      </span>
+                    </div>
+                      </span>
+                      <span>
+                    <aura:if isTrue="{!$Browser.formFactor == 'DESKTOP'}">
+                        <span>
+                        <div class="slds-media__body">
+                            <span>
+                            <p>{!file.title}</p> 
+                            </span>
+                            <span>
+                          <a href="{!file.downloadUrl}" title="">
+                              <span>
+                                  <p><span><c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#download" class="slds-icon slds-icon--x-small slds-icon-text-default" ariaHidden="true"/></span>
+                              Download</p>
+                              </span>
+                            </a>
+                            </span>
+                        </div>
+                        </span>
+                      </aura:if>
+                      </span>
+                    </div>
+                    </span>
+                </div>
+                  </span>
+              </div>
+                </span>
+            </div>
+               </span>
+            </aura:iteration>
+             </span>
+        </aura:if>
+        <aura:if isTrue="{!!v.element.isEmptyTopics}"> 
+            <div class="slds-tags slds-text-body--small slds-p-bottom--x-small">
+              <span>Topics:</span>
+              <ul class="slds-tags__list">
+                  <span>
+                <aura:iteration items="{!v.element.topics}" var="topic"> 
+                    <span>
+                    <li class="slds-tags__item">
+                        <span>
+                     <a href="javascript:void(0)" title="Powerpoint">{!topic}</a>
+                        </span>
+                    </li>
+                    </span>
+                </aura:iteration>
+                  </span>
+              </ul>
+            </div>
+         </aura:if>
+        <ul class="slds-list--horizontal slds-has-dividers--right slds-text-body--small ">
+          <li class="slds-list__item insertPadding">
+            <a href="javascript:void(0)" onclick="{!c.doLikeFeedElement}" title="Like this item" >
+              <button class="slds-button slds-button--icon-border slds-button--icon-small slds-m-right--small"  >
+                	<aura:renderIf isTrue="{!v.element.isLikedByCurrentUser}">
+                  		<c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#like" class="slds-button__icon" style="fill:blue;" />
+                  	</aura:renderIf>
+                    <aura:renderIf isTrue="{!!v.element.isLikedByCurrentUser}">
+                        <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#like" class="slds-button__icon" />
+                  	</aura:renderIf> 
+                  	
+                	<span class="slds-assistive-text ">Like</span>
+                </button>
+              <aura:if isTrue="{!v.element.numberOfLikes>0}">{!v.element.numberOfLikes} </aura:if> Like
+              
+     		 </a>       
+          </li>
+        </ul>
+        <aura:if isTrue="{!v.element.numberOfLikes>0}">
+        <div class="slds-tags slds-text-body--small slds-p-bottom--x-small">
+              <span>People who like this :</span>
+              <ul class="slds-tags__list">
+                  <span>
+                <aura:iteration items="{!v.element.likers}" var="liker">
+                    <span>
+                    <li class="slds-tags__item">
+                        <span>
+                     <c:ChatterOpenRef refId="{!liker.referenceId}" refName="{!liker.displayName}"/>
+                        </span>
+                    </li>
+                    </span>
+                </aura:iteration>
+                  </span>
+              </ul>
+           </div>
+          </aura:if>
+          <ul class="timeline">
+          <aura:if isTrue="{!v.element.hasComments}">
+              <span>
+                <aura:iteration items="{!v.element.comments}" var="comment">
+                    <span>
+                    <c:ChatterComment currentComment="{!comment}" commentId="{!comment.id}"/> 
+                        </span>
+                </aura:iteration>  
+                  </span>
+          	</aura:if>
+            <li class="slds-timeline__item">
+                  <span class="slds-assistive-text"></span> 
+                  <div class="slds-media">
+                    <div class="slds-media__body">
+                      <div class="slds-media slds-media--timeline slds-timeline__comment_li">                  
+                        <div class="slds-media__body">
+                            <div class="slds-media slds-comment slds-hint-parent">
+                                <div class="slds-media__figure">
+                                  <div class="slds-avatar slds-avatar--circle slds-avatar--small">
+                                    <a href="javascript:void(0)" title="">
+                                        <img src="{!v.element.actorSmallPhotoUrl}" alt=""/>
+                                    </a>
+                                  </div>
+                                </div>
+                                <div class="slds-media__body">
+                                  <div class="{!'slds-publisher slds-publisher--comment '+ v.feedElementId}">
+                                    <label for="comment-text-input-01" class="slds-assistive-text">Write a comment</label>
+                                    <ui:inputText aura:id="textComment" label="" class="slds-input" value="{!v.textComment}" placeholder="Write a comment…" click="{!c.handleCommentPublisherStyling}"/>
+                                    <div class="slds-publisher__actions slds-grid slds-grid--align-spread">
+                                      <ul class="slds-grid slds-publisher__toggle-visibility">
+                                        <li>
+                                          <button class="slds-button slds-button--icon-container">
+                                            <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#adduser" class="slds-button__icon" ariaHidden="true" />
+                                            <span class="slds-assistive-text">Add User</span>
+                                          </button>
+                                        </li>
+                                        <li>
+                                          <button class="slds-button slds-button--icon-container">
+                                            <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#attach" class="slds-button__icon" ariaHidden="true" />
+                                            <span class="slds-assistive-text">Attach a file</span>
+                                          </button>
+                                        </li>
+                                      </ul>
+                                      <button class="slds-button slds-button--brand" onclick="{!c.doAddComment}" style="float:right;">Comment</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+          </ul>
+      </div>
+     </div>        
+    </li>  	
+</aura:component>

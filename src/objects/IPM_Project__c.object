@@ -203,8 +203,38 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+		<displayedFields>
+            <field>Is_Archieved__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>IPM Project Fields EcoDesign</label>
     </fieldSets>
+    <fields>
+        <fullName>BETCurrentStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>BET Current Status</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+	<fields>
+		<fullName>IPM_LocalProject_Brand__c</fullName>
+		<description>Brand of local rollout project</description>
+		<externalId>false</externalId>
+		<formula>If(AND(text(IPM_Project_Type__c)==&apos;Rollout&apos; ,text(IPMProject_Span__c)==&apos;Local&apos;),IPM_Project_Rollout__r.IPM_Brand__c,Null)</formula>
+		<formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+		<label>Brand</label>
+		<required>false</required>
+		<trackHistory>false</trackHistory>
+		<trackTrending>false</trackTrending>
+		<type>Text</type>
+		<unique>false</unique>
+	</fields>
     <fields>
         <fullName>BET_Archive_Status__c</fullName>
         <description>To store BET status when BET is archived (first release, final release, unreleased).</description>
@@ -448,6 +478,20 @@
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>BET_isNull__c</fullName>
+        <description>This field will advice if BET__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(BET__c) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if BET is null or not</inlineHelpText>
+        <label>BET_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>BET__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -482,6 +526,26 @@
         <description>To store the boolean value to show whether BET member request is in bulk.</description>
         <externalId>false</externalId>
         <label>Bulk BET Member Request</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CharterRiskIdentified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CharterRiskIdentified</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ContractRiskIdentified__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>ContractRiskIdentified</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -595,6 +659,26 @@
             <picklistValues>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIC Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -927,6 +1011,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Business_Partner_User_Full_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Company_Card__r.IPM_Business_Partner__r.FirstName + &apos; &apos; + IPM_Company_Card__r.IPM_Business_Partner__r.LastName</formula>
+        <label>Business Partner User Full Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Business_Partner_User_Name__c</fullName>
         <description>To capture the name of the business partner.</description>
         <externalId>false</externalId>
@@ -976,6 +1071,16 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_CancelStoppingProjectTill__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancel Stopping Project Till</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>IPM_Category_Group__c</fullName>
         <description>To capture the category of the project.</description>
         <externalId>false</externalId>
@@ -984,6 +1089,18 @@
             <picklistValues>
                 <fullName>Home Care</fullName>
                 <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -996,9 +1113,9 @@
         <fullName>IPM_Category_Icon__c</fullName>
         <description>To store the category icon details.</description>
         <externalId>false</externalId>
-        <formula>IF(IPM_Category_Text__c = &apos;Beverages&apos; || IPM_Category_Text__c = &apos;BEVERAGES&apos;, 
+        <formula>IF(IPM_Category_Text__c = &apos;Tea and Soy &amp; Fruit Beverages&apos; || IPM_Category_Text__c = &apos;BEVERAGES&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_beverages.png&apos;,&apos;BEVERAGES&apos;,21,21), 
-IF(IPM_Category_Text__c = &apos;DEODARANTS&apos; || IPM_Category_Text__c = &apos;Deodarants&apos;, 
+IF(IPM_Category_Text__c = &apos;Deodorants &amp; Fragrances&apos; || IPM_Category_Text__c = &apos;Deodorants &amp; Fragrances&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_deo.png&apos;,&apos;DEO&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Dressings&apos; || IPM_Category_Text__c = &apos;DRESSINGS&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_dressings.png&apos;,&apos;DRESSINGS&apos;,21,21), 
@@ -1012,7 +1129,7 @@ IF(IPM_Category_Text__c = &apos;Laundry&apos; || IPM_Category_Text__c = &apos;LA
 IMAGE(&apos;/resource/IPM_Resource/images/category_laundry.png&apos;,&apos;LAUNDRY&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;ORAL CARE&apos; || IPM_Category_Text__c = &apos;Oral Care&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_oral.png&apos;,&apos;ORAL&apos;,21,21), 
-IF( IPM_Category_Text__c = &apos;SAVORY&apos; || IPM_Category_Text__c = &apos;Savory&apos;, 
+IF( IPM_Category_Text__c = &apos;Savoury&apos; || IPM_Category_Text__c = &apos;Savoury&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_savoury.png&apos;,&apos;SAVOURY&apos;,21,21), 
 IF(IPM_Category_Text__c = &apos;Skin Care&apos; || IPM_Category_Text__c = &apos;SKIN CARE&apos;, 
 IMAGE(&apos;/resource/IPM_Resource/images/category_skincare.png&apos;,&apos;SKINCARE&apos;,21,21), 
@@ -1032,6 +1149,355 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Category_Picklist__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Category Picklist</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tea and Soy &amp; Fruit Beverages</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hair Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deodorants &amp; Fragrances</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>false</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Category_Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Category Platform</label>
+        <picklist>
+            <controllingField>IPM_Category_Picklist__c</controllingField>
+            <picklistValues>
+                <fullName>Engaging Experiences</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Delicious Treats</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Natural Authenticity</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Healthy Hydration</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tea and Soy &amp; Fruit Beverages</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Build Underdeveloped Markets</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Establish Daily Habit</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Extend Beyond</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Win with strong brands</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay More</fullName>
+                <default>false</default>
+                <controllingFieldValues>Deodorants &amp; Fragrances</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Barriers &amp; trust</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Recruit next gen</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Create relevance</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maille</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expand footprint</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Maille boutique</fullName>
+                <default>false</default>
+                <controllingFieldValues>Dressings</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ben &amp; Jerrys</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cornetto</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fruttare/Solero</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kids (Max/Paddlepop)</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Magnum</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Selling Systems Innovation</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Carte D'Or</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cremissimo</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Talenti</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GROM</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Breyers</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Walls Impulse</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Walls Desserts</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Popsicle</fullName>
+                <default>false</default>
+                <controllingFieldValues>Ice Cream</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advanced Health</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Anti-Cavity</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Economy</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Freshness</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kids</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Tier</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mid Tier</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Premium</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Super Premium</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Whitening</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complete Care</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Expert Brand</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sub-Premium Tier</fullName>
+                <default>false</default>
+                <controllingFieldValues>Oral Care</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Smart Cooking</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Scratch Cooking</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Heat to Eat</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Northern EU Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Central EU Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southern EU Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North American Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ROW Platform</fullName>
+                <default>false</default>
+                <controllingFieldValues>Spreads</controllingFieldValues>
+            </picklistValues>
+	      <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <controllingFieldValues>Savoury</controllingFieldValues>
+            </picklistValues>
+            <restrictedPicklist>false</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Category_Text__c</fullName>
         <description>To store the category text.</description>
         <externalId>false</externalId>
@@ -1042,6 +1508,21 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Category_Thresh__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Holds Category Threshold depending on  Category group , Category , span .This value is populated during project creation.</description>
+        <externalId>false</externalId>
+        <label>Category Threshold</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1218,6 +1699,21 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_CountDown_Reference_Time__c</fullName>
+        <description>This field will be referred for Countdown timer.</description>
+        <externalId>false</externalId>
+        <formula>Text(FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24))
+&amp;&quot;:&quot;&amp;Text(FLOOR(((IPM_CancelStoppingProjectTill__c - NOW()) * 24 - FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24))* 60))
+&amp;&quot;:&quot;&amp;Text(FLOOR((( (IPM_CancelStoppingProjectTill__c - NOW()) * 24 - FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24 )) * 60 - FLOOR(((IPM_CancelStoppingProjectTill__c - NOW()) * 24 - FLOOR((IPM_CancelStoppingProjectTill__c - NOW()) * 24 )) * 60 )) * 60 ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CountDown Reference Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Current_Document_Status__c</fullName>
         <description>To capture the current state of the gate document.</description>
         <externalId>false</externalId>
@@ -1319,8 +1815,19 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>IPM_EligibleForReactivation__c</fullName>
+        <description>This field is to identify the project eligibility for reactivation.</description>
+        <externalId>false</externalId>
+        <formula>AND(Text(IPM_Phase__c) = &apos;Ideas&apos;, Is_Archieved__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Eligible For Reactivation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
-        <defaultValue>true</defaultValue>
+        <defaultValue>false</defaultValue>
         <description>If the EICountry has one assessment related to it then this checkbox is checked.</description>
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
@@ -1362,20 +1869,6 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <label>IPM Finance Lead</label>
         <referenceTo>User</referenceTo>
         <relationshipName>IPM_FinanceLead</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Finance_Member__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Lookup to the finance related user.</description>
-        <externalId>false</externalId>
-        <label>Finance Member</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>IPM_Projects3</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1527,6 +2020,19 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Immediate_Parent_Project_Name__c</fullName>
+        <description>To fetch the parent project name to use in email template</description>
+        <externalId>false</externalId>
+        <formula>IPM_Parent_Project__r.IPM_Project_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Immediate Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_IsCompleted__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To check if project is completed.</description>
@@ -1552,8 +2058,18 @@ OwnerId))</formula>
         <fullName>IPM_Is_Finance_Member_Null__c</fullName>
         <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
-        <formula>ISBLANK(IPM_Finance_Member__c)</formula>
+        <formula>ISBLANK(IPM_Finance_Lead__c)</formula>
         <label>IPM Is Finance Member Null</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Is_Invoked_From_Rollout__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Invoked From Rollout</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -1568,6 +2084,27 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Last_Modified_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(IPM_Last_Modified_Date_Time__c)</formula>
+        <label>Last Modified Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Last_Modified_Time__c</fullName>
+        <externalId>false</externalId>
+        <formula>MID(TEXT(IPM_Last_Modified_Date_Time__c),12,5)</formula>
+        <label>Last Modified Time</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Local_Project_Type__c</fullName>
@@ -1658,6 +2195,17 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_No_Rollout_Disabled__c</fullName>
+        <description>This is used to disable &apos;No Rollout&apos; and remove delete icon when the local project is past Market Deployment phase.</description>
+        <externalId>false</externalId>
+        <formula>AND( Text(IPMProject_Span__c)==&apos;Local&apos; ,OR(Text(IPM_Phase__c)==&apos;Market Deployment&apos;,Text(IPM_Phase__c)==&apos;PLE&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>No Rollout/Delete Disabled</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_No_of_Country_Rollouts__c</fullName>
         <description>To keep count of the number of country rollouts.</description>
         <externalId>false</externalId>
@@ -1704,6 +2252,17 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Parent_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( TEXT(IPMProject_Span__c) = &apos;Regional&apos; ,  IPM_Parent_Project__r.IPM_Project_Name__c ,  IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c )</formula>
+        <label>Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Parent_Project__c</fullName>
@@ -1771,6 +2330,139 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Platform_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(IPM_Parent_Project__c),TEXT(IPM_Category_Platform__c),IF(ISBLANK(IPM_Parent_Project__r.IPM_Parent_Project__c),TEXT(IPM_Parent_Project__r.IPM_Category_Platform__c),TEXT(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Platform__c)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Platform Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Postponed_Comments__c</fullName>
+        <description>For Storing Postponement Comments</description>
+        <externalId>false</externalId>
+        <label>IPM Postponed Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_PrepareForArchival__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Prepare For Archival</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_PreviousDocumentStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>Previous Document Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Proposed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stopped</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Postponed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved with Edits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_PreviouslyStoppedBy__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Previously Stopped By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_PreviouslyStopped</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ProjectGKM__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM_ProjectGKM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_ProjectJobType__c</fullName>
         <description>To store the project job type.</description>
         <externalId>false</externalId>
@@ -1790,6 +2482,18 @@ OwnerId))</formula>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_ProjectStoppedDatetime__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Stopped Datetime String</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_ProjectSubType__c</fullName>
@@ -1815,6 +2519,24 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Based_Threshold_Status__c</fullName>
+        <description>Check independently of the cluster whether the Project is below or above threshold.</description>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISPICKVAL(IPM_Project_Type__c,&apos;Rollout&apos;)),
+  IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Project_Y3iTO__c &lt; IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
+    IF(ISPICKVAL(IPMProject_Span__c,&apos;Regional&apos;),
+       IF(IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;)),
+       IF(IPM_Parent_Project__r.IPM_Parent_Project__r.Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Y3iTO__c &lt; IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Category_Thresh__c , &apos;Below Threshold&apos;,&apos;Above Threshold&apos;))
+       )
+  )</formula>
+        <label>IPM Project Based Threshold Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Description__c</fullName>
@@ -1925,6 +2647,20 @@ OwnerId))</formula>
         <type>Html</type>
         <visibleLines>25</visibleLines>
     </fields>
+	<fields>
+        <fullName>IPM_Project_Name_isNull__c</fullName>
+        <description>This field will advice is IPM_Project_Name__c is null or not</description>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK( IPM_Project_Name__c ) , &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice is Project Name is null or not</inlineHelpText>
+        <label>IPM_Project_Name_isNull</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_Project_Name__c</fullName>
         <caseSensitive>false</caseSensitive>
@@ -1978,19 +2714,6 @@ OwnerId))</formula>
         <type>Date</type>
     </fields>
     <fields>
-        <fullName>IPM_Project_Stopped_By__c</fullName>
-        <description>Project Stopped By -</description>
-        <externalId>false</externalId>
-        <label>Project Stopped By</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Project_Template__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Lookup to the related project template.</description>
@@ -2004,6 +2727,18 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_To_Be_Stopped_Date__c</fullName>
+        <description>To be used to display time in email template</description>
+        <externalId>false</externalId>
+        <formula>DATEVALUE(IPM_Stopped_Date_Time__c)  + 3</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Project To Be Stopped Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>IPM_Project_Type__c</fullName>
@@ -2031,11 +2766,38 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Project_Y3iTO__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Y3iTO</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Quit_Project_Tab__c</fullName>
         <description>To keep track if the user quits the project.</description>
         <externalId>false</externalId>
         <label>Quit Project Tab</label>
         <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_ReactivationDateTime__c</fullName>
+        <description>To store the reactivation date and time without day light saving issur</description>
+        <externalId>false</externalId>
+        <label>Reactivation Date/Time</label>
+        <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2177,6 +2939,16 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_ShowProjectStop__c</fullName>
+        <externalId>false</externalId>
+        <formula>NOT(OR(Text(IPM_Project_Type__c) == &apos;Operational&apos;,Text(IPMProject_Span__c) ==&apos;Local&apos;,Is_Archieved__c,IPM_PrepareForArchival__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Show Stop Button</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_SourceProjectType__c</fullName>
         <description>To capture the Source Project Type.</description>
         <externalId>false</externalId>
@@ -2190,6 +2962,79 @@ OwnerId))</formula>
                 <fullName>Operational</fullName>
                 <default>false</default>
             </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Stop_Child_Project__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If this field is true then all child projects will be stopped.</description>
+        <externalId>false</externalId>
+        <label>IPM Stop Child Project</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProjectPhase__c</fullName>
+        <externalId>false</externalId>
+        <label>Stopped By Project Phase</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByProject__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Stopped By Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>IPM Projects (Stopped Project)</relationshipLabel>
+        <relationshipName>IPM_StoppedProjects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_StoppedByUser__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Stopped_By__r.FirstName + &apos; &apos; +  IPM_Stopped_By__r.LastName</formula>
+        <label>Stopped By User</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Stopped_At_Span__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Stopped At Span</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2430,6 +3275,18 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Threshold_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Exempt_from_Threshold__c,&apos;Exempt&apos;, IF(OR(ISBLANK(IPM_Cluster__c ),ISNULL(IPM_Cluster__c )),  IF(IPM_Category_Thresh__c &lt; IPM_Project_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos;) , IF(IPM_Category_Thresh__c &lt;  IPM_Cluster__r.IPM_Sum_Y3iTO__c , &apos;Above Threshold&apos;,&apos;Below Threshold&apos; )))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Threshold Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Threshold_Value__c</fullName>
         <description>To store the Threshold value</description>
         <externalId>false</externalId>
@@ -2467,7 +3324,7 @@ OwnerId))</formula>
         <description>Category  will be auto populated from user record.</description>
         <externalId>false</externalId>
         <label>Category</label>
-        <length>18</length>
+        <length>30</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2490,7 +3347,7 @@ OwnerId))</formula>
         <fullName>IsFinanceMemberNull__c</fullName>
         <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
+        <formula>ISNULL(IPM_Finance_Lead__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IsFinanceMemberNull</label>
         <trackHistory>false</trackHistory>
@@ -2518,18 +3375,6 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-	<fields>
-        <fullName>IPM_Postponed_Comments__c</fullName>
-        <description>For Storing Postponement Comments</description>
-        <externalId>false</externalId>
-        <label>IPM Postponed Comments</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Market_Cluster_Name__c</fullName>
@@ -2643,6 +3488,106 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RQS_Charter_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Charter Answered &gt; 3</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Charter_Score__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>3</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Charter_Answered__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Charter Answered</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Charter_Score__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered_3__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Contract Answered &gt; 3</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Contract_Score__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>3</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>RQS Questionnaire, Corporate Risk</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>RQS_Contract_Answered__c</fullName>
+        <externalId>false</externalId>
+        <label>RQS Contract Answered</label>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Contract_Score__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.IPM_Active_RQS__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Questionnaire__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Corporate Risk</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Questionnaire__c.IPM_Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Regional_Project_Leader_Name__c</fullName>
@@ -3029,6 +3974,10 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Category_Group__c</picklist>
             <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Home Care</fullName>
                 <default>true</default>
             </values>
@@ -3199,6 +4148,72 @@ OwnerId))</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_PreviousDocumentStatus__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved with Edits</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Close</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Postponed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proposed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stopped</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_ProjectGKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_ProjectJobType__c</picklist>
             <values>
                 <fullName>Phase Change</fullName>
@@ -3312,6 +4327,21 @@ OwnerId))</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Stopped_At_Span__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_Sub_sector__c</picklist>
             <values>
                 <fullName>None</fullName>
@@ -3367,6 +4397,280 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+	<picklistValues>
+            <picklist>IPM_Category_Picklist__c</picklist>
+            <values>
+                <fullName>Deodorants %26 Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Category_Platform__c</picklist>
+            <values>
+                <fullName>Advanced Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Anti-Cavity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barriers %26 trust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ben %26 Jerrys</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breyers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build Underdeveloped Markets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carte D%E2%80%99Or</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Central EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complete Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cornetto</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Create relevance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremissimo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delicious Treats</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engaging Experiences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Establish Daily Habit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expand footprint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expert Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extend Beyond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freshness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fruttare%2FSolero</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GROM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthy Hydration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heat to Eat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids %28Max%2FPaddlepop%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Magnum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille boutique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mid Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Natural Authenticity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North American Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Northern EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pay More</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Popsicle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ROW Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recruit next gen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratch Cooking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Selling Systems Innovation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Smart Cooking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southern EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sub-Premium Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Super Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Talenti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walls Desserts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walls Impulse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whitening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win with strong brands</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>IPM_Cluster_Layout</fullName>
@@ -3394,8 +4698,28 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPMCompany__c</picklist>
             <values>
+                <fullName>GIC Deodorants %26 Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GIC HHC</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>GIC Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GIC Skin Cleansing</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3492,6 +4816,18 @@ OwnerId))</formula>
                 <fullName>Home Care</fullName>
                 <default>true</default>
             </values>
+	    <values>
+                <fullName>Refreshment</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Food</fullName>
+                <default>false</default>
+            </values>
+	    <values>
+                <fullName>Personal Care</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>IPM_Child_Complexity__c</picklist>
@@ -3655,6 +4991,37 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>PLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_ProjectGKM__c</picklist>
+            <values>
+                <fullName>GKM1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GKM7</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3827,6 +5194,296 @@ OwnerId))</formula>
                 <default>false</default>
             </values>
         </picklistValues>
+	<picklistValues>
+            <picklist>IPM_Stopped_At_Span__c</picklist>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+<picklistValues>
+            <picklist>IPM_Category_Picklist__c</picklist>
+            <values>
+                <fullName>Deodorants %26 Fragrances</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dressings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ice Cream</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oral Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Savoury</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Skin Cleansing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spreads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tea and Soy %26 Fruit Beverages</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Category_Platform__c</picklist>
+            <values>
+                <fullName>Advanced Health</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Anti-Cavity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barriers %26 trust</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ben %26 Jerrys</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Breyers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build Underdeveloped Markets</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carte D%E2%80%99Or</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Central EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Complete Care</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cornetto</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Create relevance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cremissimo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delicious Treats</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engaging Experiences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Establish Daily Habit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expand footprint</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Expert Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Extend Beyond</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Freshness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fruttare%2FSolero</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GROM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Goodness of Soy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Healthy Hydration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Heat to Eat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kids %28Max%2FPaddlepop%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Magnum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maille boutique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mid Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Natural Authenticity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North American Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Northern EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pay More</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Popsicle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ROW Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Recruit next gen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revitalisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Scratch Cooking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Selling Systems Innovation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Smart Cooking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Southern EU Platform</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sub-Premium Tier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Super Premium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Talenti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walls Desserts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Walls Impulse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Whitening</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win with strong brands</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>IPM_Project_Name__c</searchResultsAdditionalFields>
@@ -3839,11 +5496,18 @@ OwnerId))</formula>
     <sharingModel>Private</sharingModel>
     <startsWith>Vowel</startsWith>
     <validationRules>
-        <fullName>IPM_Cluster_not_allowed_Rollout_Projects</fullName>
-        <active>true</active>
-        <description>User are not allowed to edit IPM Project Cluster when project type is Rollout</description>
-        <errorConditionFormula>ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;)&amp;&amp; NOT(IPM_Cluster__c = PRIORVALUE(IPM_Cluster__c))</errorConditionFormula>
-        <errorMessage>IPM Project Cluster not allowed  to edit when Project type is Rollout</errorMessage>
+    	<fullName>IPM_Cluster_not_allowed_Rollout_Projects</fullName>
+	<active>true</active>
+	<description>User are not allowed to edit IPM Project Cluster when project type is Rollout</description>
+	<errorConditionFormula>ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;)&amp;&amp; NOT(IPM_Cluster__c = PRIORVALUE(IPM_Cluster__c)) &amp;&amp;  !Is_Archieved__c</errorConditionFormula>
+	<errorMessage>IPM Project Cluster not allowed  to edit when Project type is Rollout</errorMessage>
+    </validationRules>
+    <validationRules>
+	<fullName>IPM_exclude_stppd_prjcts_from_cluster</fullName>
+	<active>true</active>
+	<description>This ensures that the stopped projects are not added to a cluster.</description>
+	<errorConditionFormula>Is_Archieved__c &amp;&amp;  IPM_Cluster__c !=Null</errorConditionFormula>
+	<errorMessage>The stopped projects  can not be included  in a cluster.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>IPM_Cluster_not_allowed_for_Operational</fullName>

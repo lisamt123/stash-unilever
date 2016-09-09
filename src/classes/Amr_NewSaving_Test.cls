@@ -27,7 +27,7 @@ public class Amr_NewSaving_Test{
         
       
         ApexPages.currentPage().getParameters().put('id',jobDetailsObj.id);
-        Amr_NewSaving_CC controller = new Amr_NewSaving_CC();
+      //  Amr_NewSaving_CC controller = new Amr_NewSaving_CC();
         //controller.addRowQuote();
         Amr_Quote__c  QuoteObj1 = new Amr_Quote__c(Saving__c = savingObjTest.id, Name =  'test2');
         
@@ -64,7 +64,6 @@ public class Amr_NewSaving_Test{
         Amr_NewSaving_CC   savingObject = new Amr_NewSaving_CC ();
         
         savingObject.savingObj = savingObjTest;
-        System.debug('IDDDDD --->' + savingObjTest.id);
         savingObject.jobId = jobDetailsObj.id;
         savingObject.jobDetailObj = jobDetailsObj;
         savingObject.adManagerNumber = 'Ego/12345';

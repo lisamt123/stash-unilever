@@ -92,7 +92,12 @@ public class IPM_MyList_Test{
             }
             insert projResourceList;
             
+<<<<<<< HEAD
             system.assertEquals(8, taskList.size(),'task created');
+=======
+            List<IPM_Project_Resource__c> projResList = [SELECT Id,IPM_Role_Type__c from IPM_Project_Resource__c where IPM_Project__r.Name in:projectNameSet limit 100];
+            system.assertEquals('BD', projResList[0].IPM_Role_Type__c,'BD user is not created');
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
         
         return taskList;
      }
@@ -113,8 +118,6 @@ public class IPM_MyList_Test{
             taskListTest = new IPM_MyList();
             taskListTest.size =1;
             taskListTest.overduesize1=2;
-            taskListTest.projectId = null;
-            taskListTest.IsTaskEditable = true;
             taskListTest.isBosscard =  false;
             
             taskListTest.toggleSortAssignees();
@@ -170,11 +173,10 @@ public class IPM_MyList_Test{
             list<IPM_Task__c> overdueTask;
             list<IPM_Task__c> todayTask;
             list<IPM_Task__c> sevendaysTask;
-            list<IPM_Task__c> laterTask;
             list<IPM_Task__c> overdueTaskQuery;
             list<IPM_Task__c> todayTaskQuery;
             list<IPM_Task__c> sevenDaysQry;
-            list<IPM_Task__c> completedTask;
+            list<IPM_Task__c> completedTaskQry;
             list<Date> setDate;
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
             list<IPM_Task__c> updatedTaskTest = new list<IPM_Task__c> ();
@@ -202,7 +204,11 @@ public class IPM_MyList_Test{
             update updatedTaskTest;
             
             
+<<<<<<< HEAD
             list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Due_Date1__c!= null and IPM_Project__c IN:projIdSet];
+=======
+            list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Due_Date1_isNull__c = :IPM_ConstantUtils.IPM_false and IPM_Project__c IN:projIdSet limit 100];
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             for(IPM_Task__c task :taskList){
                 system.assertEquals(task.IPM_Due_Date1__c!= null,true,'Due dates are not null');
             }
@@ -210,13 +216,12 @@ public class IPM_MyList_Test{
             overdueTask = taskListTest.getOverduetasksSample();
             todayTask = taskListTest.getprojectTaskssample();
             sevendaysTask = taskListTest.getNextSevenTasks();
-            laterTask = taskListTest.getLaterTasks();
-            completedTask = taskListTest.getcompletedTasks();
             taskListTest.showAllOverDue();
             taskListTest.todayTasksize();
             taskListTest.showAllNextSevenDays();
             taskListTest.showAllLaterTasks();
             
+<<<<<<< HEAD
             overdueTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c < :system.Today() AND IPM_Completed__c = false AND IPM_Project__c in:projIdSet];
             system.assertEquals(overdueTask[0].IPM_Due_Date1__c,overdueTaskQuery[0].IPM_Due_Date1__c,'overdue tasks due dates matched');
             system.assertEquals(overdueTask.size(),overdueTaskQuery.size(),'Overdue tasks count matched with actual created data');
@@ -231,6 +236,22 @@ public class IPM_MyList_Test{
             
             system.assertEquals(2,laterTask.size(),'seven days tasks count matched with actual created data');
             system.assertEquals(0,completedTask.size(),'seven days tasks count matched with actual created data');
+=======
+            overdueTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c < :todayDate AND IPM_Completed__c = false AND IPM_Project__c in:projIdSet limit 1000];
+            system.assertEquals(overdueTask[0].IPM_Due_Date1__c,overdueTaskQuery[0].IPM_Due_Date1__c,'overdue tasks due dates are not matched');
+            system.assertEquals(2,overdueTaskQuery.size(),'overdue tasks due dates are not matched 1');
+            
+            todayTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c = :todayDate AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet limit 1000];
+            system.assertEquals(todayTask[0].IPM_Due_Date1__c,todayTaskQuery[0].IPM_Due_Date1__c,'todays tasks due dates are not matched');
+            system.assertEquals(2,todayTaskQuery.size(),'today tasks count is not matched with actual created data');
+            String sAssertMsg = 'seven days tasks count is not matched with actual created data';
+            sevenDaysQry = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c > :todayDate AND IPM_Due_Date1__c < :todayDate.addDays(7) AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet limit 1000];
+            system.assertEquals(sevendaysTask[0].IPM_Due_Date1__c,sevenDaysQry[0].IPM_Due_Date1__c,'seven days tasks due dates are not matched');
+            system.assertEquals(2,sevenDaysQry.size(),sAssertMsg);
+            
+            completedTaskQry = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE  IPM_Completed__c = true AND  IPM_Project__c in:projIdSet limit 1000];
+            system.assertEquals(0,completedTaskQry.size(),sAssertMsg);
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
        }
         Test.stopTest();
         
@@ -238,7 +259,6 @@ public class IPM_MyList_Test{
     /*test cases for completed task*/
      private static testmethod void myTaskCompletedTest(){
         Test.startTest();
-            list<IPM_Task__c> completedTask;
             list<Date> setDate;
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
             list<IPM_Task__c> updatedTaskTest = new list<IPM_Task__c> ();
@@ -266,9 +286,13 @@ public class IPM_MyList_Test{
                 taskListTest.getprojectTaskssample();
                 taskListTest.getNextSevenTasks();
                 taskListTest.getLaterTasks();
-                completedTask = taskListTest.getcompletedTasks();
                 taskListTest.showCompletedTasks();
+<<<<<<< HEAD
                 system.assertEquals(completedTask.size(),4,'4 tasks are marked as completed');
+=======
+                list<IPM_Task__c> taskListResult = [Select Id from IPM_Task__c where IPM_Completed__c = true and IPM_Project__c in:projIdSet limit 1000];
+                system.assertEquals(taskListResult.size(),4,'4 tasks are not marked as completed');
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
              }   
         Test.stopTest();
     }
@@ -335,7 +359,11 @@ public class IPM_MyList_Test{
                 ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
                 list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
                 
+<<<<<<< HEAD
                 system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
+=======
+                system.assertEquals(updatedTaskTest != null,true,sAssertionMsgForTaskBeingUpdated); 
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             }
         Test.stopTest();
     }   
@@ -447,7 +475,11 @@ public class IPM_MyList_Test{
                 ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
                 list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
                 
+<<<<<<< HEAD
                 system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
+=======
+                system.assertEquals(updatedTaskTest != null,true,sAssertionMsgForTaskBeingUpdated); 
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             }
         Test.stopTest();
      
@@ -515,7 +547,11 @@ public class IPM_MyList_Test{
                 ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
                 list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
                 
+<<<<<<< HEAD
                 system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
+=======
+                system.assertEquals(updatedTaskTest != null,true,sAssertionMsgForTaskBeingUpdated); 
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
             }
         Test.stopTest();
     

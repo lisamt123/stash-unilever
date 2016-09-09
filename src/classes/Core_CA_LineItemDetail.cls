@@ -140,6 +140,39 @@ global with sharing class Core_CA_LineItemDetail {
         return objLineItemDetailResponseGTES;
     }
       
+<<<<<<< HEAD
+=======
+    /*******************************************************************************************************
+    * @description This method get LineItem detail for Invoice and convert it into wrapper format.
+    * @param Core_CA_ApplicationWrapper wrapper 
+    * @return Core_CA_WrapperUtility.LineItemDetailResponseInvoice  wrapper
+    */
+    global static Core_CA_WrapperUtility.LineItemDetailResponseInvoice  getLineItemDetailInvoice(Core_CA_ApplicationWrapper appWrapperObj) {
+        Core_CA_WrapperUtility.LineItemDetailResponseInvoice objLineItemDetailResponseInvoice = new Core_CA_WrapperUtility.LineItemDetailResponseInvoice();
+        try{ 
+            string LineItemId = appWrapperObj.lineItemDetailRequest.LineItemID;
+            Core_Approval_Details__c objApprovalDetails = getLineItemdetail(LineItemID); 
+            Core_Approval_Header__c objApprovalHeader = [SELECT External_System_Id__c FROM Core_Approval_Header__c WHERE Id =: objApprovalDetails.Approval_Header__c ];
+               
+            objLineItemDetailResponseInvoice.RequestName =objApprovalHeader.External_System_Id__c;
+            objLineItemDetailResponseInvoice.IntOrder =objApprovalDetails.Air_Fare_Details__c;
+            objLineItemDetailResponseInvoice.GLAccount =objApprovalDetails.Allowance_Details__c;
+            objLineItemDetailResponseInvoice.NetAmnt =objApprovalDetails.Charge_To__c; 
+            objLineItemDetailResponseInvoice.CstCntr =objApprovalDetails.Attachment__c;
+            objLineItemDetailResponseInvoice.ProfitCntr =objApprovalDetails.Attendees_Details__c;
+            objLineItemDetailResponseInvoice.Description =objApprovalDetails.Description__c;
+            objLineItemDetailResponseInvoice.Currencies =objApprovalDetails.Currency__c;         
+        }
+        /*catch(Core_CA_BaseServiceException baseServEx){ 
+            throw new Core_CA_BaseServiceException(baseServEx);
+        }*/
+        catch(Exception ex){
+            throw new Core_CA_BaseServiceException('Exception occured: Core_CA_LineItemDetail : getLineItemDetailGTES method ', ex);
+        }     
+             
+        return objLineItemDetailResponseInvoice;
+    }
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
      
     /*******************************************************************************************************
     * @description retrive required Line Item detail for the id passed in parameter.

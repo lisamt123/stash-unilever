@@ -95,7 +95,25 @@ global with sharing class Core_CA_MyApprovalData {
             Map<Id,Core_Approval_Header__c> mapHeaderRecord = new Map<Id,Core_Approval_Header__c>([Select Description__c,Total_amount__c,Title_Summary__c,Currency__c,External_System_Id__c,External_Created_Date__c,Requested_For_Details__c,Requested_by_details__c, TF_Currency__c,TF_Currency1__c,TF_Currency2__c,TF_Currency3__c FROM Core_Approval_Header__c where Id in:setHeaderIds]);    
             for(Core_Approver_Details__c penddingExpense : lstApproverDetail){
                  objExpensedata = new Core_CA_WrapperUtility.ExpenseData();
+<<<<<<< HEAD
                  //objExpensedata.ExpenseName = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Title_Summary__c;
+=======
+                 
+                 string Action = penddingExpense.Action__c;
+                 string Status = penddingExpense.Status__c;
+                 
+                 if(Action == 'APPR' || (Status == 'Approved' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
+                     objExpensedata.Req_Status ='APPR';
+                 if((Action == 'REJC' && penddingExpense.Source_System__c!=strSystemInvoice)||(penddingExpense.Source_System__c!=strSystemInvoice && Status == 'Rejected' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC' ))
+                     objExpensedata.Req_Status ='REJC';
+                 if(Action == 'REWO' || (Status == 'Rework' && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
+                     objExpensedata.Req_Status ='Rework';
+                 if((Action == 'REJC' && penddingExpense.Source_System__c ==strSystemInvoice) || (Status == 'Return to AP' && penddingExpense.Source_System__c ==strSystemInvoice && Action != 'REWO' && Action != 'APPR' && Action != 'REJC'))
+                     objExpensedata.Req_Status ='RETOAP';
+                 if(Action == 'QUER' || Status == 'Query With Vendor')    
+                     objExpensedata.Req_Status ='QUER';
+                 
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
                  objExpensedata.ExpenseID = mapHeaderRecord.get(penddingExpense.Approval_Header__c).External_System_Id__c;                
                  objExpensedata.Amount = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Total_amount__c;
                  

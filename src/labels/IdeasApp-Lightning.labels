@@ -1,0 +1,126 @@
+    <labels>
+        <fullName>CORE_FB_App_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_App_Name</shortDescription>
+        <value>App Feedback</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Cancel</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Comment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Comment</shortDescription>
+        <value>Comment</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Comment_Box</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Comment_Box</shortDescription>
+        <value>Type your comments here, be as descriptive as you can be. was this app Easy, Fast, Intuitive</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Error_Alert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Error_Alert</shortDescription>
+        <value>Please rate the app to submit your feedback</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Message</shortDescription>
+        <value>Please rate and comment on your experience of using this app</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Rate_App</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Rate_App</shortDescription>
+        <value>Rate this app</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Rate_Later</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Rate_Later</shortDescription>
+        <value>Rate later</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>CORE_FB_Thanks</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_FB_Thanks</shortDescription>
+        <value>Thanks for the feedback</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_CampaignBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForCampaigns</shortDescription>
+        <value>Hi, You may find the Campaign</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_CampaignSubBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForCampaigns</shortDescription>
+        <value>interesting. Please submit your ideas on this!! More information could be found here</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_CampaignSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailSubjectForCampaigns</shortDescription>
+        <value>Submit your ideas for this campaign</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_FAQ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_IC_FAQ</shortDescription>
+        <value>FAQ&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_IdeaBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForIdeas</shortDescription>
+        <value>Hi, You may find the Idea</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_IdeaSubBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailBodyForIdeas</shortDescription>
+        <value>interesting. Please vote if you like it!! More information could be found here</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_IdeaSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailSubjectForIdeas</shortDescription>
+        <value>Vote for the Idea</value>
+    </labels>

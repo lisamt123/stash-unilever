@@ -55,7 +55,6 @@ public with sharing class IPM_RolloutTriggerHandler
         Set<String> setRegionalProjectNames = new Set<String>(); 
         
         Set<String> setCurrentRolloutIds = new Set<String>();        
-        Set<String> setInActiveFinancialExternalIds = new Set<String>();
         
         Set<Id> deletedLocalRolloutIds = new Set<Id>();
         Set<Id> setTopLevelProjectIds = new Set<Id>();
@@ -500,7 +499,6 @@ public with sharing class IPM_RolloutTriggerHandler
             financialExistingMap.put(ipmFinancial.Financial_External_Id__c,ipmFinancial);
         }
             
-        IPM_Financial__c nonKeyFinancial = financialExistingMap.get(financialNonKeyExternalId);
         
         // Check if non Key Should be retained/Created based on whether there are non Key MCO's present. 
         Boolean  nonkeyActiveRolloutExists = false;
@@ -921,7 +919,7 @@ public with sharing class IPM_RolloutTriggerHandler
         Map<Id,IPM_Project_Document_Section__c> projDocSecMap=new Map<Id,IPM_Project_Document_Section__c>();
         for(IPM_Project_Document_Section__c projDocSec:[SELECT Id,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c,IPM_Project_Document__r.IPM_Document_Status__c 
                                                         FROM IPM_Project_Document_Section__c 
-                                                        WHERE IPM_Project_Document__r.IPM_Project__c In :rolloutProjectIdSet AND IPM_Project_Document__r.IPM_Document_Status__c!=:IPM_ConstantUtils.STATUS_APPROVED
+                                                        WHERE IPM_Project_Document__r.IPM_Project__c In :rolloutProjectIdSet AND IPM_Project_Document__r.IPM_Document_Status__c IN :IPM_ConstantUtils.STATUS_SET_WO_APPROVED
                                                               AND IPM_Master_Section_External_Id__c=:IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD])
         {
             projDocSecMap.put(projDocSec.IPM_Project_Document__r.IPM_Project__c,projDocSec);                                                            

@@ -148,7 +148,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
             PBS_UtilClass_Test.addPermissionSet(lmsUsers,'PBS_LMS_User');
         }
 
-        User sampleUser = [select id,firstName,lastName,email,profileId,userroleId from User where id in :lmsUsers limit 1];
+        //User sampleUser = [select id,firstName,lastName,email,profileId,userroleId from User where id in :lmsUsers limit 1];
 
         PBS_TrainingPlanData_Test.createSampleData();
 
@@ -193,7 +193,7 @@ private class PBS_TPlanAsgnmtExtensionNew_Test{
             PBS_UtilClass_Test.addPermissionSet(adminUsers,'PBS_LMS_Admin');
         }
 
-        User sampleUser = [select id,firstName,lastName,email,profileId,userroleId from User where id in :lmsUsers limit 1];
+        //User sampleUser = [select id,firstName,lastName,email,profileId,userroleId from User where id in :lmsUsers limit 1];
 
         PBS_TrainingPlanData_Test.createSampleData();
 

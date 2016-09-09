@@ -20,49 +20,49 @@
     <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable inverse fintable table table-bordered textareabig ipmFintableAlign">
         <thead>
             <tr>
-                <th scope="col" width="10%">                    
-                    <span class="finproject"></span>
+                <th scope="col" class="custInverseWidth" width="200px">                    
+                    
                 </th>
                 <th colspan="5">
-                   <span class="finproject">{!$Label.IPM_FirstFullYear}</span>
+                   <div class="finproject algnCenter">{!$Label.IPM_FirstFullYear}</div>
                 </th>
                 <th colspan="3">
-                    <span class="finproject">{!$Label.IPM_Fin_Business}</span>
+                    <div class="finproject algnCenter">{!$Label.IPM_Fin_Business}</div>
                 </th>
             </tr>
             <tr>
-                <th scope="col" width="10%">                    
-                    <span class="finproject"></span>
+                <th scope="col">                    
+                    <div class="finproject"></div>
                 </th>
                 <th scope="col">
-                    <span class="finproject">{!$Label.ipmFinTableASInnovationValueShare}</span>
+                    <div class="finproject">{!$Label.ipmFinTableASInnovationValueShare} %</div>
                 </th>
                 <th scope="col">
-                    <span class="finproject">{!$Label.ipmFinTableASIncrementalValueShare}</span>
+                    <div class="finproject">{!$Label.ipmFinTableASIncrementalValueShare} %</div>
                 </th>
                 <th scope="col">
-                    <span class="finproject">{!$Label.ipmFinTableGDgTO} €'000</span>
+                    <div class="finproject">{!$Label.ipmFinTableGDgTO} €'000</div>
                 </th>
                 <th scope="col">
-                    <span class="finproject">{!$Label.ipmFinTableGDiTO} €'000</span>
+                    <div class="finproject">{!$Label.ipmFinTableGDiTO} €'000</div>
                 </th>
                 <th scope="col">
-                    <span class="finproject"> {!$Label.ipmFinTableGMofTO} %</span>
+                    <div class="finproject"> {!$Label.ipmFinTableGMofTO} %</div>
                 </th>
                 <th scope="col">
-                    <span class="finproject">{!$Label.ipmFinSummaryNPV} € '000</span>
+                    <div class="finproject">{!$Label.ipmFinSummaryNPV} € '000</div>
                 </th>
                 <th scope="col">
-                    <span class="finproject">{!$Label.IPM_IRR}</span>
+                    <div class="finproject">{!$Label.IPM_IRR}</div>
                 </th>
                 <th scope="col">
-                    <span class="finproject">{!$Label.IPM_Payback_Years}</span>
+                    <div class="finproject">{!$Label.IPM_Payback_Years}</div>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="fintleblubg fleft pl10">
+                <td width="200px" class="fintleblubg fleft pl10">
                     <div class="col-sm-7"><apex:outputText Value="{!If(AND(project.IPMProject_Span__c='Global',project.IPM_Project_Type__c='Original'),'Global Action Standards',if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c='Rollout'),projDocSecCon.IPM_Section_Name__c,$Label.IPM_ActionStandards))}"/></div>
                 </td>
                  <td class="fintlewhitebg">

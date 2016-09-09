@@ -250,6 +250,7 @@ function pPCEuroAmountCall(stringArray) {
 		
 		$j(function(){			
 			currencyPopup();	
+			multiSelectShootLocation();
 			if($j('.noOfMastersMain').val()) {                      
              //   loadMasterProcess();
             }

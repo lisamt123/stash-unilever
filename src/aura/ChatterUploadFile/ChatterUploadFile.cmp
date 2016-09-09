@@ -1,0 +1,29 @@
+<aura:component controller="ChatterPublisherHandler">
+<aura:attribute name="onclose" type="Aura.Action" default="{!c.defaultCloseAction}"/>
+<div class="slds-hide ModalDialogPlaceholder">     
+<div class="slds-modal slds-fade-in-open" aria-hidden="true" role="dialog">
+    <div class="slds-modal__container">
+      <div class="slds-modal__header">
+        <button onclick="{!v.onclose}" class="slds-button slds-button--icon-inverse slds-modal__close">
+          <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#close"  class="slds-button__icon" ariaHidden="true"/>  
+          <span class="slds-assistive-text">Close</span>
+        </button>
+        <h2 class="slds-text-heading--medium">
+            <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#upload"  class="slds-button__icon" ariaHidden="true"/>
+            Select File</h2>
+      </div>
+      <div class="slds-modal__content slds-p-around--medium">
+        <div class="slds-button slds-button--brand">
+            <input type="file"  aura:id="file">
+            <c:ChatterSvg xlinkHref="/resource/SLDS100/assets/icons/utility-sprite/svg/symbols.svg#upload"  class="slds-button__icon" ariaHidden="true"/> Choose a file
+            </input>
+        </div>
+      </div>
+      <div class="slds-modal__footer">
+          <ui:button class="slds-button slds-button--neutral slds-button--brand" press="{!c.uploadFile}" label="Save"/>
+      </div>
+    </div>
+  </div>
+  <div class="slds-backdrop slds-backdrop--open"></div> 
+ </div>   
+</aura:component>

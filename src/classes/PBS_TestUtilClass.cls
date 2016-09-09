@@ -62,9 +62,9 @@ public class PBS_TestUtilClass {
         if(UserInfo.getLanguage() == 'en_US'){
             return profileName;
         }else if(profileName == 'System Administrator'){
-            return System.Label.ALMS_Sys_Admin_Profile;
+            return System.Label.almond.ALMS_Sys_Admin_Profile;
         }else if(profileName == 'Standard User'){
-            return System.Label.ALMS_Standard_User_Profile;
+            return System.Label.almond.ALMS_Standard_User_Profile;
         }
         return profileName;
     }
@@ -108,18 +108,18 @@ public static Date getRandomFutureDate(){
         Integer option = getRandomInteger(1, 5);
         String sResult;
 
-        if(option == 1)
-            sResult = 'Text';
-        else if(option == 2)
-            sResult = 'Number';
-        else if(option == 3)
-            sResult = 'SelectOneQuestion';
-        else if(option == 4)
-            sResult = 'SelectMultipleQuestion';
-        else if(option == 5)
-            sResult = 'Boolean';
-        else
-            sResult = 'Text';
+        if(option == 1){
+            sResult = 'Text';}
+        else if(option == 2){
+            sResult = 'Number';}
+        else if(option == 3){
+            sResult = 'SelectOneQuestion';}
+        else if(option == 4){
+            sResult = 'SelectMultipleQuestion';}
+        else if(option == 5){
+            sResult = 'Boolean';}
+        else{
+            sResult = 'Text';}
 
         return sResult;
     }

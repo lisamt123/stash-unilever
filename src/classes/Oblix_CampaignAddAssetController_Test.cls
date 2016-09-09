@@ -6,6 +6,7 @@ private class Oblix_CampaignAddAssetController_Test {
 
     @isTest static void initTest() {
         User u = Oblix_TestUtils.createTestUser();
+<<<<<<< HEAD
         System.runAs(u) {
             Test.startTest();
             MDO_Geography__c geographyRegion = new MDO_Geography__c();
@@ -47,6 +48,17 @@ private class Oblix_CampaignAddAssetController_Test {
             Test.stopTest();
 
             System.assert(controller.userConnected != null, 'User should be set');
+=======
+        System.runAs(u) {  
+            assetScorings = Oblix_TestUtils.createAssetScoringRecords(10);
+            insert assetScorings;
+            insert Oblix_TestUtils.createOblixCustomSettings();
+            insert Oblix_TestUtils.createBoxRangeCalculatorRecords();
+            insert Oblix_TestUtils.createCountryCalculatorRecords();
+            // Code added by suresh
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = new Oblix_Check_For_Manual_Edit_Of_Campaign__c(Manual_Edit_Check__c = false);
+            insert me;
+>>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
         }
     }
 
@@ -436,7 +448,7 @@ private class Oblix_CampaignAddAssetController_Test {
 
         //Pick asset scoring that isn't in the basket already
         Asset_Scoring__c asset_scoring = assetScorings[assetScorings.size()-1];
-        
+        system.assert(asset_scoring!=null,'asset_scoring inserted');
         // When
         Test.startTest();
 

@@ -28,7 +28,8 @@ public with sharing class ICB_CheckInCheckOut_CC
     public static Event getVisit(String visitId)
     {
         system.debug('Entering <getVisit>: '+ visitId);
-        List<Event> visita = [SELECT Id, What.Name From Event Where Id =: visitId 
+        List<Event> visita = [SELECT Id, What.Name, WhatId, Account.SAP_ID__c, ICB_GeolocationCheckIn__Latitude__s,
+                              ICB_GoldenMinuteOpen__c, ICB_Sales_Area__c From Event Where Id =: visitId 
                               AND REcordTypeId =: idRecTypeIceCream limit 1];
         system.debug('Exiting <getVisit>: '+ visita);
         if(!visita.isEmpty())
@@ -47,18 +48,28 @@ public with sharing class ICB_CheckInCheckOut_CC
     {
         system.debug('Entering <getCognosFile>: NONE');
         ContentDocument content = null;
-        ICB_Territory_Management__c territory = ICB_Territory_Management__c.getInstance(Userinfo.getUserId());
-        String lTerritoryLike = '%'+territory.ICB_Territory_Code__c+'%';
         
-        List< ContentDocument > lstCon = [SELECT Id, CreatedDate, Title FROM ContentDocument Where Title LIKE :lTerritoryLike
-                                          Order by CreatedDate desc limit 1];
-        if( !lstCon.isEmpty() )
+        try
         {
-            content = lstCon[0];
+            Territory__c lTerritory = [SELECT Id, User__c, Territory_ID__c FROM Territory__c WHERE User__c =: UserInfo.getUserId()];
+            String lTerritoryLike = '%'+lTerritory.Territory_ID__c+'%';
+            
+            List< ContentDocument > lstCon = [SELECT Id, CreatedDate, Title FROM ContentDocument Where Title LIKE :lTerritoryLike
+                                              Order by CreatedDate desc limit 1];
+            if( !lstCon.isEmpty() )
+            {
+                content = lstCon[0];
+            }
         }
+        catch(Exception e)
+        {
+            system.debug(e.getMessage());
+        }
+        
         system.debug('Exiting <getCognosFile>: '+ content);
         return content;
     }
+    
     /*******************************************************************
      Purpose: Retrieve the specific Visti record (Event)
      Parameters: @visitId(Current record Id to retieve)
@@ -212,5 +223,30 @@ public with sharing class ICB_CheckInCheckOut_CC
             lDistance = Location.getDistance( lVisit.ICB_CustomerGeolocation__c, lLoc, 'km' );
         }
         return lDistance;
+    }
+    
+    /*******************************************************************
+     Purpose: Retrieve the specific Visit on the first load component
+     Parameters: @visitId(Current record Id to retieve)
+     Returns: Event
+     Throws [Exceptions]: Exception
+     ********************************************************************/
+    @AuraEnabled
+    public static Boolean setGoldenMinuteOpen(String idVisit){
+        system.debug('Entering <setGoldenMinuteOpen>: '+ idVisit);
+        Boolean lIsConfirmed = false;
+        try
+        {
+        	Event lVisit = [Select Id, ICB_GoldenMinuteOpen__c FROM Event Where Id =: idVisit];
+            lVisit.ICB_GoldenMinuteOpen__c = true;
+            update lVisit;
+            lIsConfirmed = lVisit.ICB_GoldenMinuteOpen__c;
+        }
+        catch(Exception e)
+        {
+        	system.debug(e.getMessage());    
+        }
+        system.debug('Exit <setGoldenMinuteOpen>: '+ lIsConfirmed);
+        return lIsConfirmed;
     }
 }
