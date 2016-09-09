@@ -45,6 +45,8 @@ public class FS_ContactExtend_CX_Test{
         instance.varContactIdForDeletion=varContact.id;
         instance.deleteContact();
         instance.deleteContact();  
-        System.assert(varContact.lastname <> null); 
+        System.assert(varContact.lastname <> null);
+        FS_ContactExtend_CX varContactExtend = new FS_ContactExtend_CX();
+        varContactExtend.createContact(); 
     }  
 }

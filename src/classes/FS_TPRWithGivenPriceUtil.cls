@@ -25,6 +25,10 @@ public with sharing class FS_TPRWithGivenPriceUtil {
                                                            Map<Id, Product2> product2Map) {
         Double price = 0;
         Double priceWithDiscountWithVat = 0;
+		
+		//Double temporaryTPRDecimal = product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100;
+        Double temporaryTPRDecimal = oppProd.FS_TemporaryProductDiscount__c / 100;
+                                                               
 		//this is a custom settings
 		FS_casePiece__c cp = FS_casePiece__c.getOrgDefaults();
         if(opportunityMap.get(oppProd.OpportunityId).FS_casesPiece__c == cp.FS_Case__c) {
@@ -33,7 +37,7 @@ public with sharing class FS_TPRWithGivenPriceUtil {
 			price = priceBookEntryMap.get(oppProd.PricebookEntryId).UnitPrice / product2Map.get(oppProd.Product2Id).FS_ZSU__c;
 		}                                                             
                                                                
-		priceWithDiscountWithVat = (price * (1 + (oppProd.FS_vat__c / 100))) * (1 - (product2Map.get(oppProd.Product2Id).FS_temporaryTPR__c / 100));                                                               
+		priceWithDiscountWithVat = (price * (1 + (oppProd.FS_vat__c / 100))) * (1 - temporaryTPRDecimal);                                                               
             
         return priceWithDiscountWithVat;
     }

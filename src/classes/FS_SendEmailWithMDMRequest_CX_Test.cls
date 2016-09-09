@@ -16,7 +16,6 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         system.runAs(SalesRepUser){
        
         opp = createOpportunity();
-        //opp.FS_TPRApproved__c = true;
         opp.FS_MDMRequestSent__c = false;
         insert opp;
         
@@ -35,7 +34,7 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         // Submit the approval request for the opportunity
         Approval.ProcessResult result = Approval.process(req1);
         system.assert(result <> null);//Avoid Sonarcube error 'unused local variables'
-        }
+        
         
         PageReference pageRef = Page.FS_SendEmailWithMDMRequest;
         Test.setCurrentPage(pageRef);
@@ -43,12 +42,11 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         ApexPages.StandardController stdController = new ApexPages.StandardController(opp);
         FS_SendEmailWithMDMRequest_CX controller = new FS_SendEmailWithMDMRequest_CX(stdController);
         
-        opp.FS_TPRApproved__c = true;
-        opp.FS_MDMRequestSent__c = true;
         controller.identifyAction();
         controller.sendEmailAttachment();
         controller.returnToOpportunity();
-        controller.getMDMDefaultValue();
+        controller.getMDMDefaultValue();        
+        }
     } 
     
         
@@ -177,7 +175,6 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         prod.MarketType__c='BOH MAYO';
         prod.IsActive = true;
         prod.FS_stdPerUnit__c = 333.23;
-        prod.FS_temporaryTPR__c = 0.00;
         prod.FS_VATRU__c = 2;
         prod.FS_VATUA__c = 2;
         prod.FS_ZSU__c = 4;

@@ -421,7 +421,7 @@ public class FS_TPRCalculationTest {
             prod.MarketType__c='BOH MAYO';
             prod.IsActive = true;
             prod.FS_stdPerUnit__c = 333.23;
-            prod.FS_temporaryTPR__c = 0.00;
+            //prod.FS_temporaryTPR__c = 0.00;
             prod.FS_TemporaryProductDiscountTable__c = tpd.Id;
             prod.FS_VATRU__c = 2;
             prod.FS_VATUA__c = 2;

@@ -32,8 +32,8 @@ private class FS_ContractProductHelper_Test {
             Opportunity oppExisting = new Opportunity(Name = 'Existing Opp', recordtypeid=oppRecType1,AccountId = acc.Id,StageName = '03 - Proposal',CloseDate = Date.today(), ContractId=con.id);
             INSERT oppExisting;
                         
-            Id oppRecType2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
             //Set up Opportunity records
+            Id oppRecType2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
             List<Opportunity> listOpportunities = new List<Opportunity>();
             for(integer i=0;i<10;i++){
                 listOpportunities.add(new Opportunity(Name = 'Opp'+i, recordtypeid=oppRecType2,AccountId = acc.Id,StageName = '03 - Proposal',CloseDate = Date.today(), ContractId=con.id));
@@ -49,25 +49,26 @@ private class FS_ContractProductHelper_Test {
             
             //Set up Opportunity Product
             List<OpportunityLineItem> listOLIs = new List<OpportunityLineItem>();
-            For(Opportunity opp: listOpportunities){
-                listOLIs.add(new OpportunityLineItem(OpportunityId = opp.Id, Quantity = 500, PricebookEntryId = pbe.Id, TotalPrice = 3946725));
+            For(Opportunity oppFirst: listOpportunities){
+                listOLIs.add(new OpportunityLineItem(OpportunityId = oppFirst.Id, Quantity = 500, PricebookEntryId = pbe.Id, TotalPrice = 3946725));
             }    
             INSERT listOLIs;
             
             //Set up Quantity Schefuling
+            //testData.setUpSchedule(listOLIs); 
             List<OpportunityLineItem> olilist=new List<OpportunityLineItem>();
             olilist=[select id from opportunitylineitem limit 1];
             testData.setUpSchedule(olilist); 
                        
-            For(Opportunity opp: listOpportunities){
-                opp.DealApproved__c = true;
-                opp.AgreementDate__c = date.today();
-                opp.StageName = '04 - Verbal Commitment';
+            For(Opportunity oppSecond: listOpportunities){
+                oppSecond.DealApproved__c = true;
+                oppSecond.AgreementDate__c = date.today();
+                oppSecond.StageName = '04 - Verbal Commitment';
             }    
             UPDATE listOpportunities;
             
-            For(Opportunity opp: listOpportunities){
-                opp.StageName = '05 – Won';
+            For(Opportunity oppThird: listOpportunities){
+                oppThird.StageName = '05 – Won';
             }
             
             Test.startTest();
@@ -78,11 +79,11 @@ private class FS_ContractProductHelper_Test {
             system.assertEquals(true,!oliListCreated.isEmpty());
             
             //Check if Contract Product is created by Opp trigger
-            List<contract_product__c> listConProduct=[select id from contract_product__C];
+            List<contract_product__c> listConProduct=[select id from contract_product__C limit 1];
             system.assertEquals(true,!listConProduct.isEmpty());
             
             //Check if Monthly Claimed Case is created by Contract Product trigger
-            List<FS_Monthly_Claimed_Cases__c> listMCC = [SELECT Id from FS_Monthly_Claimed_Cases__c];            
+            List<FS_Monthly_Claimed_Cases__c> listMCC = [SELECT Id from FS_Monthly_Claimed_Cases__c limit 1];            
             system.assertEquals(true,!listMCC.isEmpty());
             
             //Prearing data, so that the Contract Product is updated by the opp trigger

@@ -45,6 +45,19 @@
         <type>Default</type>
     </actionOverrides>
     <businessProcesses>
+        <fullName>ICB Mobile Channel</fullName>
+        <description>Ice cream sales process to manage the sales of mobile channel</description>
+        <isActive>true</isActive>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>    
+    <businessProcesses>
         <fullName>NA FS Sales Process</fullName>
         <description>NA FS Sales Process</description>
         <isActive>true</isActive>
