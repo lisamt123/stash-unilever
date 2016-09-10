@@ -116,11 +116,7 @@
             <field>ExpectedRevenue</field>
             <table>Opportunity</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>FS_FixedPriceCount__c</field>
-            <table>Opportunity</table>
-        </columns>
+
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>ForecastCategoryName</field>
@@ -261,11 +257,7 @@
             <field>FS_Owner_Manager__c</field>
             <table>Opportunity</table>
         </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Parent_Opportunity__c</field>
-            <table>Opportunity</table>
-        </columns>
+
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>PartnerAccount</field>
