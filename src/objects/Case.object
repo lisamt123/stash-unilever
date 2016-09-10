@@ -314,6 +314,66 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>CSAT_Survey_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Country__r.CSAT_Survey_Id__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CSAT Survey Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CV_Questionaire_Added__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC CV Questionaire Added is a flag that specifies that advisor has added the CV Questionnaires.</description>
+        <externalId>false</externalId>
+        <label>CV Questionaire Added</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CV_Status__c</fullName>
+        <description>CEC CV Status is used to capture CV status</description>
+        <externalId>false</externalId>
+        <label>CV Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed(Customer Non-cooperative)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closed(Permanent Nature Symptoms)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Consumer Feedback(Attempt1)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Consumer Feedback(Attempt2)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending Consumer Feedback(Attempt3)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Case_Brand_Mapping__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: Lookup to the brand mapping table to identify template and case parameters</description>
@@ -2485,6 +2545,27 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>SMS_Inbound_Number__c</fullName>
+        <description>CEC: To store the inbound number for SMS</description>
+        <externalId>false</externalId>
+        <label>SMS Inbound Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>SMS_Mobile_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>SMS Mobile Number</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
         <fullName>Sapient_Campaign__c</fullName>
         <description>Data retrieved from Sapient web forms</description>
         <externalId>false</externalId>
@@ -2919,7 +3000,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
         <fullName>Transient_External_Id__c</fullName>
         <description>Contains the external Id value which is used to populate the CBM for Transient case</description>
         <externalId>false</externalId>
-        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,&apos;&apos;)</formula>
+        <formula>If( Social_Media_External_Id__c	&lt;&gt; &apos;&apos;,Social_Media_External_Id__c + &apos;@unilever.com&apos;,If( SMS_Inbound_Number__c &lt;&gt; &apos;&apos;,SMS_Inbound_Number__c + &apos;@unilever.com&apos;,&apos;&apos;))</formula>
         <label>Transient External Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -3788,22 +3869,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_ANZ_Queue_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>CASES.ORIGIN</columns>
-        <columns>NAME</columns>
-        <columns>CASES.EMAIL</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>OWNER_NAME</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.STATUS</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
             <operation>equals</operation>
             <value>0</value>
         </filters>
-        <label>CEC ANZ Round Robin Queue</label>
+        <label>CEC ANZ Queue</label>
         <language>en_US</language>
         <queue>CEC_ANZ_Queue</queue>
         <sharedTo>
@@ -3873,10 +3945,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Country_Name__c</columns>
         <columns>Language__c</columns>
-        <columns>First_Response_Date__c</columns>
+        <columns>Brand__c</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -3902,10 +3976,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>First_Response_Date__c</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.ORIGIN</columns>
+        <columns>Case_Brand__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -3915,9 +3990,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New,In Progress,Review Needed</value>
+            <value>New,Review Needed</value>
         </filters>
-        <label>CEC Benelux queue Nieuw/herzien/voortg</label>
+        <label>CEC Benelux WH Nieuw/Herzien</label>
         <language>nl_NL</language>
     </listViews>
     <listViews>
@@ -3951,7 +4026,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notContain</operation>
             <value>HOAX</value>
         </filters>
-        <label>CEC Benelux queue geen land</label>
+        <label>CEC Benelux queue No country</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -4078,8 +4153,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>CASES.PRIORITY</columns>
         <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>Country_Name__c</columns>
@@ -4426,6 +4501,30 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_France_Pending_with_Courier</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Pending with Courier</value>
+        </filters>
+        <label>CEC France - Pending with Courier</label>
+        <language>fr</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_France_Queue_Case</fullName>
         <columns>Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
@@ -4467,14 +4566,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Review Needed</value>
         </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>France</value>
-        </filters>
         <label>CEC France - Review needed</label>
         <language>fr</language>
         <sharedTo>
+            <role>CEC_Global_Head</role>
             <role>CEC_Manager_France</role>
             <role>CEC_User_France</role>
         </sharedTo>
@@ -4543,15 +4638,52 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_General_Queue_Case</fullName>
+        <fullName>CEC_France_all_new_cases1</fullName>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
+        <columns>Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
+        <columns>NAME</columns>
+        <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.TYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>France</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notEqual</operation>
+            <value>France T.O.</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>notEqual</operation>
+            <value>igea,charrier,verite,berthol,catoire,nicolaudie,galland</value>
+        </filters>
+        <filters>
+            <field>OWNER_NAME</field>
+            <operation>notEqual</operation>
+            <value>CEC France Queue</value>
+        </filters>
+        <label>CEC France - To be reassigned</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_France</role>
+            <role>CEC_User_France</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_General_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -6432,18 +6564,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Orders_Queue_Case</fullName>
-        <booleanFilter>1 OR 2</booleanFilter>
         <filterScope>Queue</filterScope>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>CEC North America Orders Queue</value>
-        </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-            <value>Nexxus Returns,Nexxus Exchanges,Nexxus Cancellation</value>
-        </filters>
         <label>CEC North America Orders Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Orders_Queue</queue>
@@ -6804,19 +6925,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
             <value>Social Media</value>
         </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
         <label>CEC North America Social Media Follow Up</label>
         <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -7375,8 +7492,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Escalated</value>
+            <value>CEC Southern Cone Escalation</value>
         </filters>
         <label>CEC Southern Cone Bolivia Escalation</label>
         <language>es</language>
@@ -7693,7 +7815,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CASES.TYPE</columns>
-        <columns>CASES.ORIGIN</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -7773,7 +7894,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Social,Phone</value>
         </filters>
-        <label>CEC Brazil BackOffice 0800</label>
+        <label>Casos BackOffice 0800 Brazil</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7803,7 +7924,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Email,Email Brazil,Web</value>
         </filters>
-        <label>CEC Brazil BackOffice EMAIL</label>
+        <label>Casos BackOffice EMAIL Brazil</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7833,7 +7954,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Email,Email Brazil,Web</value>
         </filters>
-        <label>CEC Brazil BackOffice EMAIL FOODS</label>
+        <label>Casos BackOffice EMAIL Brazil FOODS</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
@@ -7878,13 +7999,31 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>contains</operation>
             <value>closeup,close-up,close up,dimension,regenerate,baby</value>
         </filters>
-        <label>CEC Brazil BackOffice EMAIL HPC</label>
+        <label>Casos BackOffice EMAIL Brazil HPC</label>
         <language>pt_BR</language>
         <queue>CEC_Brazil_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_Brazil</role>
             <role>CEC_User_Brazil</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Casos_cerrados_spam_2015</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Global_Reason_L3_desc__c</field>
+            <operation>equals</operation>
+            <value>Hang up</value>
+        </filters>
+        <label>Casos cerrados spam 2015</label>
+        <language>es</language>
     </listViews>
     <listViews>
         <fullName>Casos_pendientes_Argentina</fullName>
@@ -7923,7 +8062,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>Gentili</value>
         </filters>
-        <label>CEC Southern Cone - pendientes Argentina</label>
+        <label>Casos pendientes - Argentina</label>
         <language>es_MX</language>
     </listViews>
     <listViews>
@@ -7986,7 +8125,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 ) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8008,7 +8147,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Martin</value>
+            <value>kthom</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Katja</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -8018,7 +8162,17 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Kirsten</value>
+            <value>mschw</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>jiver</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>IversenJ</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
@@ -8028,7 +8182,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>mschw</value>
+            <value>ewolk</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
@@ -8052,7 +8206,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Review Needed</value>
         </filters>
-        <label>CEC Brazil Debora Grimm_REVISAO</label>
+        <label>Debora Grimm_REVISAO</label>
         <language>pt_BR</language>
         <sharedTo>
             <role>CEC_Manager_Brazil</role>
@@ -9122,6 +9276,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <businessProcess>Default</businessProcess>
         <label>None</label>
         <picklistValues>
+            <picklist>CV_Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Customer Non-cooperative%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Permanent Nature Symptoms%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt1%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt2%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt3%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Claim_Status__c</picklist>
             <values>
                 <fullName>Active</fullName>
@@ -9835,6 +10016,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <businessProcess>Default</businessProcess>
         <label>Spam</label>
         <picklistValues>
+            <picklist>CV_Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Customer Non-cooperative%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed%28Permanent Nature Symptoms%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt1%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt2%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Consumer Feedback%28Attempt3%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Claim_Status__c</picklist>
             <values>
                 <fullName>Active</fullName>
@@ -10524,10 +10732,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>00NE0000006IedE</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>00NE0000006IedL</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>00NE0000006IedM</lookupPhoneDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>00NE0000006IedN</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.SUBJECT</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CASES.STATUS</searchResultsAdditionalFields>
@@ -10535,6 +10739,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>CEC_Check_CV_Status</fullName>
+        <active>true</active>
+        <description>CEC Check CV Status is used to check if 1. Advisor has added the CV Questionaire 
+2. Status is either blank/Pending Consumer Feedback(Attempt1)/Pending Consumer Feedback(Attempt2)</description>
+        <errorConditionFormula>IF($Permission.CEC_User_CosmetoVigilance  &amp;&amp;   ISPICKVAL(Status , &quot;Closed&quot;) , IF( CV_Questionaire_Added__c=true  &amp;&amp;  ( ISPICKVAL(CV_Status__c, &quot;&quot;) || ISPICKVAL(CV_Status__c,&quot;Pending Consumer Feedback(Attempt1)&quot;)  || ISPICKVAL(CV_Status__c,&quot;Pending Consumer Feedback(Attempt2)&quot;)), true, false), false)</errorConditionFormula>
+        <errorMessage>Case cannot be closed unless symptoms are resolved</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>CEC_Country_and_Verbatim_fields</fullName>
         <active>true</active>
@@ -10870,6 +11082,31 @@ var openSuccess = function openSuccess(result) {
                 alert(&apos;Primary tab cannot be opened&apos;);
             }
         };</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Send_SMS</fullName>
+        <availability>online</availability>
+        <description>Send SMS from service console tab - Created by SMS Magic</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send SMS</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/support/console/36.0/integration.js&quot;)} 
+
+var url = &apos;/apex/CEC_CaseConversationView?id={!Case.Id}&apos;; 
+
+if ({!$Permission.CEC_SMS_Magic_Process}) { 
+      if (sforce.console.isInConsole()) { 
+               srcUp(url); 
+
+       } else { 
+             window.open(url, &apos;&apos;, &apos;width=600,height=400&apos;);  
+       } 
+
+}else { 
+    alert(&apos;{!$Label.CEC_NoAccessForSMSProcess}&apos;); 
+}</url>
     </webLinks>
     <webLinks>
         <fullName>Social_Response_URL</fullName>

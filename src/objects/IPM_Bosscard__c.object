@@ -3082,6 +3082,24 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000XhFL_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000XhFL</label>
+        <queue>IPM_a7IE0000000XhFL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000XhFQ_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE0000000XhFQ</label>
+        <queue>IPM_a7IE0000000XhFQ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>

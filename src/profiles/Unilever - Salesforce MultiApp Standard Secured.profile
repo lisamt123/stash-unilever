@@ -9470,6 +9470,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CEC_Case_Market_Mapping__c.CSAT_Survey_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CEC_Case_Market_Mapping__c.CSAT_Web_Percentage__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10194,6 +10199,21 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.CSAT_Survey_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.CV_Questionaire_Added__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.CV_Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Case.Case_Brand_Mapping__c</field>
         <readable>true</readable>
@@ -10726,6 +10746,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.SEB_Closed_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SMS_Inbound_Number__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SMS_Mobile_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29111,6 +29141,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Additional_Case_Information__c.Question100__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Additional_Case_Information__c.Record_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

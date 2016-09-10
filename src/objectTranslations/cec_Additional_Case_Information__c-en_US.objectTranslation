@@ -839,6 +839,10 @@
         <name>Question100__c</name>
     </fields>
     <fields>
+        <label><!-- Record Type Developer Name --></label>
+        <name>Record_Type__c</name>
+    </fields>
+    <fields>
         <label><!-- URL --></label>
         <name>URL__c</name>
     </fields>

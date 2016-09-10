@@ -112,6 +112,16 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>CSAT_Survey_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>CSAT Survey Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>CSAT_Web_Percentage__c</fullName>
         <description>CEC: CSAT percentage for web channel</description>
         <externalId>false</externalId>
@@ -408,7 +418,6 @@
         <columns>DefaultCaseOwnerId__c</columns>
         <columns>CaseOrigin__c</columns>
         <columns>Tag__c</columns>
-        <columns>Enable_Skill_Routing__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -598,8 +607,6 @@
         <columns>NAME</columns>
         <columns>CaseOrigin__c</columns>
         <columns>Country__c</columns>
-        <columns>Account_Owner_Active_Flag__c</columns>
-        <columns>DefaultAccountOwnerId__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
         <language>en_US</language>
