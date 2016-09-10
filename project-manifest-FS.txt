@@ -13,7 +13,6 @@ src/objects/FS_casePiece__c.object
 src/objects/FS_Contract_Product_Opportunity_Map__c.object
 src/objects/FS_Defined_Objective__c.object
 src/objects/FS_Distributor_Type__c.object
-src/objects/FS_DistributorType__c.object
 src/objects/FS_DistributorTypeCnC__c.object
 src/objects/FS_DistributorTypeDirectClient__c.object
 src/objects/FS_DistributorTypeLogist__c.object
@@ -509,3 +508,5 @@ src/weblinks/FS_Canada_HUB.weblink
 src/weblinks/FS_Unilever_Food_Solutions_Canada.weblink
 src/weblinks/FS_Unilever_Food_Solutions_US.weblink
 src/weblinks/FS_US_HUB.weblink
+src/remoteSiteSettings
+src/remoteSiteSettings/FS_PII_Mulesoft.remoteSite
