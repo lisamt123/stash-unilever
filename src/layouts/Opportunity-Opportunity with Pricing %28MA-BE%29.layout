@@ -269,26 +269,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>Opportunity Analysis</label>
-        <layoutColumns>
-            <layoutItems>
-                <reportChartComponent>
-                    <cacheData>true</cacheData>
-                    <contextFilterableField>Opportunity.Id</contextFilterableField>
-                    <hideOnError>false</hideOnError>
-                    <includeContext>true</includeContext>
-                    <reportName>MABE_Analysis</reportName>
-                    <showTitle>false</showTitle>
-                    <size>SMALL</size>
-                </reportChartComponent>
-            </layoutItems>
-        </layoutColumns>
-        <style>OneColumn</style>
-    </layoutSections>
     <relatedContent>
         <relatedContentItems>
             <layoutItem>

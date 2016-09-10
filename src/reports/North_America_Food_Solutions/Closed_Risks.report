@@ -33,11 +33,7 @@
     <currency>EUR</currency>
     <description>l Opportunities where RecordType = Risk and Stage = Lost, Won. Group by Account and Stage.</description>
     <filter>
-        <criteriaItems>
-            <column>RECORDTYPE</column>
-            <operator>equals</operator>
-            <value>0128A0000004Q23</value>
-        </criteriaItems>
+
         <criteriaItems>
             <column>STAGE_NAME</column>
             <operator>equals</operator>
