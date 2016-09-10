@@ -57,10 +57,7 @@
                 <behavior>Edit</behavior>
                 <field>FS_Top_Client__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>FS_CustomerLegalNameRussia__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_ApprovalRequestComments__c</field>

@@ -8,7 +8,7 @@
     <tab>standard-Opportunity</tab>
     <tab>standard-Product2</tab>
     <tab>standard-report</tab>
-    <tab>standard-dashboards</tab>
+    <tab>standard-dashboard</tab>
     <tab>FS_Segmentation__c</tab>
     <tab>FS_Account_Plan__c</tab>
     <tab>FS_Defined_Objective__c</tab>

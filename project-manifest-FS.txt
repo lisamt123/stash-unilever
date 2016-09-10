@@ -2,6 +2,7 @@ src
 src/objects
 src/objects/Account.object
 src/objects/Activity.object
+src/objects/Campaign.object
 src/objects/Contact.object
 src/objects/Contract_Product__c.object
 src/objects/Event.object
@@ -35,6 +36,7 @@ src/objects/FSVATRU__c.object
 src/objects/FSVATUA__c.object
 src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
+src/objects/OpportunityTeamMember.object
 src/objects/Pricebook2.object
 src/objects/PricebookEntry.object
 src/objects/Product2.object
@@ -296,6 +298,8 @@ src/layouts/Account-Feed Based Distributor.layout
 src/layouts/Account-Feed Based Operator.layout
 src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/Account-Operators Russia.layout
+src/layouts/Campaign-Campaign Layout.layout
+src/layouts/Campaign-Trade Event Campaign Layout.layout
 src/layouts/Contact-FSRU Contact.layout
 src/layouts/Contact-FSUS Contact.layout
 src/layouts/Contract-Contract Layout.layout
@@ -318,12 +322,14 @@ src/layouts/Opportunity-Opportunity Layout.layout
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
 src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/layouts/OpportunityTeamMember-Opportunity Team Member Layout.layout
 src/layouts/Pricebook2-Price Book Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
 src/layouts/Product2-Product Layout.layout
 src/layouts/Task-Task Layout.layout
 src/roles
 src/roles/Cash_Carry_Business_Development_Manager.role
+src/roles/CEO.role
 src/roles/Distributor_Account_Executive_DAE.role
 src/roles/Field_Sales_Rep_NCM.role
 src/roles/Field_Sales_Rep_NDM.role

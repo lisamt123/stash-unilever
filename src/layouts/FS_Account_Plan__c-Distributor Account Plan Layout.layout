@@ -190,7 +190,7 @@
         <fields>CAMPAIGN.NAME</fields>
         <fields>CAMPAIGN.STATUS</fields>
         <fields>CAMPAIGN.START_DATE</fields>
-        <relatedList>Campaign.Account_Plan__c</relatedList>
+        <relatedList>Campaign.FS_Account_Plan__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -198,7 +198,7 @@
         <fields>Description__c</fields>
         <fields>Risk_Category__c</fields>
         <fields>CURRENCY_ISO_CODE</fields>
-        <relatedList>Risk__c.Account_Plan__c</relatedList>
+        <relatedList>Risk__c.FS_Account_Plan__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

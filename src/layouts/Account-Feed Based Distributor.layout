@@ -161,10 +161,7 @@
         <editHeading>true</editHeading>
         <label>Distributor Type Information</label>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_CustomerLegalNameRussia__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Distributor_Type__c</field>

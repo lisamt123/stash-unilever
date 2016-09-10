@@ -76,10 +76,7 @@
                 <behavior>Edit</behavior>
                 <field>AgreementDate__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Ship_Date__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>StageName</field>

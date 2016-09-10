@@ -57,10 +57,7 @@
                 <behavior>Edit</behavior>
                 <field>FS_Top_Client__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_CustomerLegalNameRussia__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Cross_Account_ID__c</field>

@@ -56,10 +56,7 @@
                 <behavior>Edit</behavior>
                 <field>ServiceDate</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_Ship_date__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Actual_Quantity__c</field>
