@@ -1,44 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Create a new account plan for a distributor.</description>
     <fieldOverrides>
-        <field>Defined_Objective__c</field>
-        <formula>FS_Defined_Objective__c.Id</formula>
+        <field>FS_Customer__c</field>
+        <formula>Account.Id</formula>
     </fieldOverrides>
-    <label>New Product Objective</label>
+    <fieldOverrides>
+        <field>FS_Status__c</field>
+        <literalValue>Planning</literalValue>
+    </fieldOverrides>
+    <label>New Dist Account Plan</label>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Defined_Objective__c</field>
+                <field>FS_Customer__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>FS_Start_Date__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Product__c</field>
+                <field>FS_End_Date__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
         <quickActionLayoutColumns>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Product_Value__c</field>
+                <field>FS_Status__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Product_Volume__c</field>
+                <field>FS_of_Units__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>CurrencyIsoCode</field>
+                <field>FS_PlanDollars__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
     </quickActionLayout>
-    <targetObject>FS_Product_Objective__c</targetObject>
-    <targetParentField>Defined_Objective__c</targetParentField>
+    <successMessage>A new account plan has been created.</successMessage>
+    <targetObject>FS_Account_Plan__c</targetObject>
+    <targetParentField>FS_Customer__c</targetParentField>
+    <targetRecordType>FS_Account_Plan__c.Distributor</targetRecordType>
     <type>Create</type>
 </QuickAction>

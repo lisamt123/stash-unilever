@@ -453,6 +453,8 @@ src/roles/Senior_Distributor_Account_Executive.role
 src/roles/Specnaz.role
 src/roles/UFS_Russia.role
 src/quickActions
+src/quickActions/Account.New_Dist_Account_Plan.quickAction
+src/quickActions/Account.New_Op_Account_Plan.quickAction
 src/quickActions/FS_Account_Plan__c.New_Distributor_Objective.quickAction
 src/quickActions/FS_Account_Plan__c.New_Operator_Objective.quickAction
 src/quickActions/FS_Defined_Objective__c.Create_Campaign.quickAction

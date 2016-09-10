@@ -104,10 +104,7 @@
                 <behavior>Required</behavior>
                 <field>CloseDate</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Ship_Date__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>StageName</field>
@@ -153,10 +150,7 @@
                 <behavior>Edit</behavior>
                 <field>FS_endDateTPR__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_DateOfSend__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_casesPiece__c</field>

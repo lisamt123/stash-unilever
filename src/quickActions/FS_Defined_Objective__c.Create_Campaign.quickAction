@@ -98,7 +98,7 @@
         </quickActionLayoutColumns>
     </quickActionLayout>
     <targetObject>Campaign</targetObject>
-    <targetParentField>Defined_Objective__c</targetParentField>
+    <targetParentField>FS_Defined_Objective__c</targetParentField>
     <targetRecordType>Campaign.Trade_Event</targetRecordType>
     <type>Create</type>
 </QuickAction>
