@@ -347,10 +347,7 @@
                 <behavior>Edit</behavior>
                 <field>CHD__MSA__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>CHD_Menu_Items_2__c</field>
-            </layoutItems>
+
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

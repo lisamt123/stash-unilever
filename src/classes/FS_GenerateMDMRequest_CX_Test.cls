@@ -8,16 +8,15 @@ Public class FS_GenerateMDMRequest_CX_Test{
     static Account distributorAccount;
     static Account operatorAccount;
     static Account shiptoAccount;
+    static User testUser;
     
     @isTest static void GenerateMDMRequest() {
         
         setData();
-        
-        user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
-        system.runAs(SalesRepUser){
-       
+
+       	system.runAs(testUser){
         opp = createOpportunity();
-        //opp.FS_TPRApproved__c = true;
+
         opp.FS_MDMRequestSent__c = false;
         insert opp;
         
@@ -62,9 +61,7 @@ Public class FS_GenerateMDMRequest_CX_Test{
         
         setData();
         
-        user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
-        system.runAs(SalesRepUser){
-       
+       	system.runAs(testUser){
         opp = createOpportunity();
         opp.ShipToCode__c = null;
         opp.FS_MDMRequestSent__c = false;
@@ -93,38 +90,12 @@ Public class FS_GenerateMDMRequest_CX_Test{
     
         
     static void setData(){
-        //Set User info START
-        String profile='Unilever Food Solution - Russia';
-        //String permissionset='FS_Sales_Rep';
-        Profile p = [SELECT Id FROM Profile WHERE Name=:profile];
-        Userrole role=[SELECT Id FROM UserRole WHERE Name = 'Field Sales Rep NDM'];
-        User ManagerUser = new User(Alias = 'newUser1', 
-                                      Email='newuser1@testorg.com',
-                        EmailEncodingKey='UTF-8', 
-                                      LastName='Testing', 
-                                      LanguageLocaleKey='en_US',
-                        LocaleSidKey='en_US', 
-                                      ProfileId = p.Id,
-                                      UserRoleId=role.id,
-                        TimeZoneSidKey='America/Los_Angeles', 
-                                      UserName='newuseropphelper1@testorg.com');
-        insert ManagerUser;
-        User SalesRepUser = new User(Alias = 'newUser', 
-                                     Email='newuser@testorg.com',
-                       EmailEncodingKey='UTF-8', 
-                                     LastName='Testing', 
-                                     LanguageLocaleKey='en_US',
-                       LocaleSidKey='en_US', 
-                                     ProfileId = p.Id,
-                                     UserRoleId=role.id,
-                                     ManagerId = ManagerUser.Id,
-                       TimeZoneSidKey='America/Los_Angeles', 
-                                     UserName='newuseropphelper@testorg.com');
-        insert SalesRepUser;
-        
-        system.runAs(SalesRepUser){
                
+		FS_UtilTestDataSetup testData=new FS_UtilTestDataSetup();
+        testUser = testData.createTestUser();
         
+        system.runAs(testUser){ 
+               
         //Set up Custom settings for Opportunity Trigger
         FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
         insert OppCustomSettings; 

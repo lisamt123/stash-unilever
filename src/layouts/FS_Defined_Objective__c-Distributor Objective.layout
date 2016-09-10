@@ -196,7 +196,7 @@
         <fields>AMOUNT_WON</fields>
         <fields>CAMPAIGN.NUM_WON_OPPORTUNITIES</fields>
         <fields>CAMPAIGN.BUDGETED_COST</fields>
-        <relatedList>Campaign.Defined_Objective__c</relatedList>
+        <relatedList>Campaign.FS_Defined_Objective__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

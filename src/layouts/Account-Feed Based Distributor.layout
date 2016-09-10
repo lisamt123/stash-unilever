@@ -548,7 +548,7 @@
         <fields>CAMPAIGN.NAME</fields>
         <fields>CAMPAIGN.STATUS</fields>
         <fields>CAMPAIGN.START_DATE</fields>
-        <relatedList>Campaign.Customer__c</relatedList>
+        <relatedList>Campaign.FS_Customer__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>Product2</fields>
