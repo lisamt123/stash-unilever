@@ -166,10 +166,7 @@
                 <behavior>Edit</behavior>
                 <field>FS_endDateTPR__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_DateOfSend__c</field>
-            </layoutItems>
+
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_casesPiece__c</field>

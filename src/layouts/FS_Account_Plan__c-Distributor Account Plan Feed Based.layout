@@ -210,7 +210,7 @@
         <fields>CAMPAIGN.NAME</fields>
         <fields>CAMPAIGN.STATUS</fields>
         <fields>CAMPAIGN.START_DATE</fields>
-        <relatedList>Campaign.Account_Plan__c</relatedList>
+        <relatedList>Campaign.FS_Account_Plan__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>TASK.SUBJECT</fields>

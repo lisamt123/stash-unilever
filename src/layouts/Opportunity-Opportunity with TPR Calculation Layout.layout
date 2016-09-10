@@ -278,6 +278,7 @@
         <fields>FS_grossProfit__c</fields>
         <fields>FS_grossMargin__c</fields>
         <fields>FS_gmWhenTPREqualsZero__c</fields>
+        <fields>ProdDistributor__c</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>

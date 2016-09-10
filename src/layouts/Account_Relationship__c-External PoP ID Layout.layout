@@ -8,32 +8,24 @@
         <label>Information</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>FS_Account_Plan__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>FS_Customer__c</field>
+                <field>Primary_Account__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Status__c</field>
+                <field>External_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_No_of_Opportunities__c</field>
+                <field>Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Sub_Sector__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_NSV__c</field>
+                <field>Secondary_Account__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -74,19 +66,17 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>CreatedDate</fields>
-        <fields>StepStatus</fields>
-        <fields>OriginalActor</fields>
-        <fields>Actor</fields>
-        <fields>Comments</fields>
-        <relatedList>RelatedProcessHistoryList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>Date_of_Loss__c</fields>
-        <fields>Probability__c</fields>
-        <fields>Risk_Category__c</fields>
-        <relatedList>Risk__c.FS_Defined_Objective__c</relatedList>
+        <fields>ACCOUNT.NAME</fields>
+        <fields>ACCOUNT.PHONE1</fields>
+        <fields>PC_EMAIL</fields>
+        <fields>ACCOUNT.SITE</fields>
+        <fields>PC_ADDRESS2_CITY</fields>
+        <fields>PC_ADDRESS2_ZIP</fields>
+        <fields>UID_Region__c</fields>
+        <fields>UID_Branch__c</fields>
+        <fields>UID_Geography__c</fields>
+        <fields>UID_Segment__c</fields>
+        <relatedList>Account.Cross_Account_ID__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
@@ -94,7 +84,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8A000000Elgt</masterLabel>
+        <masterLabel>00h8A000000NMzu</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

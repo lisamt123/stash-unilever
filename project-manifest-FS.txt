@@ -2,6 +2,7 @@ src
 src/objects
 src/objects/Account.object
 src/objects/Activity.object
+src/objects/Account_Relationship__c.object
 src/objects/Campaign.object
 src/objects/Contact.object
 src/objects/Contract_Product__c.object
@@ -36,7 +37,6 @@ src/objects/FSVATRU__c.object
 src/objects/FSVATUA__c.object
 src/objects/Opportunity.object
 src/objects/OpportunityLineItem.object
-src/objects/OpportunityTeamMember.object
 src/objects/Pricebook2.object
 src/objects/PricebookEntry.object
 src/objects/Product2.object
@@ -293,11 +293,18 @@ src/documents
 src/documents/Food_Solutions_Unilever/Unilever_Food_Solutions_Logo.jpg
 src/documents/Food_Solutions_Unilever/Unilever_Food_Solutions_Logo.jpg-meta.xml
 src/documents/Food_Solutions_Unilever-meta.xml
+src/tabs/FS_Account_Plan__c.tab
+src/tabs/FS_Defined_Objective__c.tab
+src/tabs/FS_Monthly_Claimed_Cases__c.tab
+src/tabs/FS_MonthlyPlanning.tab
+src/tabs/FS_Segmentation__c.tab
+src/tabs/FS_TemporaryProductDiscount__c.tab
 src/layouts
 src/layouts/Account-Feed Based Distributor.layout
 src/layouts/Account-Feed Based Operator.layout
 src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/Account-Operators Russia.layout
+src/layouts/Account_Relationship__c-External PoP ID Layout.layout
 src/layouts/Campaign-Campaign Layout.layout
 src/layouts/Campaign-Trade Event Campaign Layout.layout
 src/layouts/Contact-FSRU Contact.layout
@@ -322,7 +329,6 @@ src/layouts/Opportunity-Opportunity Layout.layout
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
 src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
 src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
-src/layouts/OpportunityTeamMember-Opportunity Team Member Layout.layout
 src/layouts/Pricebook2-Price Book Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
 src/layouts/Product2-Product Layout.layout

@@ -13,15 +13,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Customer__c</field>
+                <field>FS_Customer__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Account_Plan__c</field>
+                <field>FS_Account_Plan__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Defined_Objective__c</field>
+                <field>FS_Defined_Objective__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

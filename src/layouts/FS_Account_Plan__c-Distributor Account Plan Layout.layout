@@ -198,7 +198,7 @@
         <fields>Description__c</fields>
         <fields>Risk_Category__c</fields>
         <fields>CURRENCY_ISO_CODE</fields>
-        <relatedList>Risk__c.FS_Account_Plan__c</relatedList>
+        <relatedList>Risk__c.Account_Plan__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
