@@ -909,11 +909,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>FS_DateOfSend__c</field>
-            <table>Account.Account_Plans__r.Defined_Objectives__r.Opportunities__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Defined_Objective__c</field>
             <table>Account.Account_Plans__r.Defined_Objectives__r.Opportunities__r</table>
         </columns>
@@ -1070,11 +1065,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>RecordType</field>
-            <table>Account.Account_Plans__r.Defined_Objectives__r.Opportunities__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>Parent_Opportunity__c</field>
             <table>Account.Account_Plans__r.Defined_Objectives__r.Opportunities__r</table>
         </columns>
         <columns>
