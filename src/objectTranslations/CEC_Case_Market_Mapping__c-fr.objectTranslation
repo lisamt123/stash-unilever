@@ -29,6 +29,10 @@
         <name>CSAT_Social_Percentage__c</name>
     </fields>
     <fields>
+        <label><!-- CSAT Survey Id --></label>
+        <name>CSAT_Survey_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- CSAT Web Percentage --></label>
         <name>CSAT_Web_Percentage__c</name>
     </fields>

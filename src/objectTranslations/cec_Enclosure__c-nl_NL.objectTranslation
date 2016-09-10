@@ -39,6 +39,10 @@
             <masterLabel>Others</masterLabel>
             <translation><!-- Others --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>SMS Credit</masterLabel>
+            <translation><!-- SMS Credit --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Company --></label>

@@ -62,6 +62,42 @@
         <name>CSAT_Delay__c</name>
     </fields>
     <fields>
+        <label><!-- CSAT Survey Id --></label>
+        <name>CSAT_Survey_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- CV Questionaire Added --></label>
+        <name>CV_Questionaire_Added__c</name>
+    </fields>
+    <fields>
+        <label><!-- CV Status --></label>
+        <name>CV_Status__c</name>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed(Customer Non-cooperative)</masterLabel>
+            <translation><!-- Closed(Customer Non-cooperative) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed(Permanent Nature Symptoms)</masterLabel>
+            <translation><!-- Closed(Permanent Nature Symptoms) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Consumer Feedback(Attempt1)</masterLabel>
+            <translation><!-- Pending Consumer Feedback(Attempt1) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Consumer Feedback(Attempt2)</masterLabel>
+            <translation><!-- Pending Consumer Feedback(Attempt2) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Consumer Feedback(Attempt3)</masterLabel>
+            <translation><!-- Pending Consumer Feedback(Attempt3) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Case Brand Mapping --></label>
         <name>Case_Brand_Mapping__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
@@ -1236,6 +1272,14 @@
         <name>SEB_Closed_Date__c</name>
     </fields>
     <fields>
+        <label><!-- SMS Inbound Number --></label>
+        <name>SMS_Inbound_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- SMS Mobile Number --></label>
+        <name>SMS_Mobile_Number__c</name>
+    </fields>
+    <fields>
         <label><!-- Campaign --></label>
         <name>Sapient_Campaign__c</name>
     </fields>
@@ -1614,6 +1658,10 @@
             <section>Related Contact Roles</section>
         </sections>
         <sections>
+            <label><!-- SMS Information --></label>
+            <section>SMS Information</section>
+        </sections>
+        <sections>
             <label><!-- Social Information --></label>
             <section>Social Information</section>
         </sections>
@@ -1672,6 +1720,10 @@
         <name>Spam</name>
     </recordTypes>
     <validationRules>
+        <errorMessage><!-- Case cannot be closed unless symptoms are resolved --></errorMessage>
+        <name>CEC_Check_CV_Status</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Country and Verbatim is mandatory for this case. --></errorMessage>
         <name>CEC_Country_and_Verbatim_fields</name>
     </validationRules>
@@ -1710,6 +1762,10 @@
     <webLinks>
         <label>Caso successivo</label>
         <name>Next_Case</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Send_SMS --></label>
+        <name>Send_SMS</name>
     </webLinks>
     <webLinks>
         <label><!-- Social_Response_URL --></label>
