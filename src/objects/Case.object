@@ -4153,9 +4153,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CASES.SUBJECT</columns>
+        <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>Country_Name__c</columns>
         <columns>Brand__c</columns>
