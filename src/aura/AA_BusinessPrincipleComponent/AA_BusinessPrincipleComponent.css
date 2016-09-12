@@ -1,0 +1,58 @@
+.THIS {
+}
+
+
+.THIS.business-princpls {
+    position: relative;
+    padding-top: 38px;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 1.42857143;
+    background: #f0f0f0;
+}
+
+.THIS body {
+  font-family: Arial,sans-serif;
+}
+.THIS .container {background:#f0f0f0; position:relative}
+.THIS .needMarginBottom{margin-bottom:50px}
+.THIS  .needbottom{
+margin-bottom:50px;
+}
+.THIS .needMargin{margin-top:50px}
+.THIS .col-xs-12.topSection {margin:0; padding:0 0 13px}
+.THIS .topSection {border: 1px solid #d1d1d4}
+.THIS .topSection p {font-size:16px; color:#d1d1d4}
+.THIS .titleOne {font-size:22px; color:#344A5F; font-weight:bold /*background:url(../images/down.svg)no-repeat right top*/}
+.THIS .caption h3 {font-size:18px; color:#344A5F; font-family: Arial,sans-serif; font-weight:bold;}
+.THIS .caption p {font-size:16px; color:#8C8C90}
+.THIS .userInfo {border:1px solid #e8e8e8; border-width:1px 0; padding:5px 0; float:left; margin:5px 0 15px}
+.THIS .name {font-size:16px; color:#2A94D6; font-weight:bold}
+.THIS .subText {font-size:14px; color:#D1D1D4;}
+.THIS .noGutter {padding-left:3px; padding-right:3px}
+
+.THIS .businessPrinciples h3{color:#2A94D6; font-size:18px}
+.THIS .businessPrinciples p {font-size:16px}
+.THIS .down_arrow{width:20px;height:21px;margin-left: 10px;  margin-top: 4px;  background-size: contain;}
+.THIS .like_img{width:10px;height:10px;display:inline-block}
+.THIS .likeBlue_img{width:10px;height:10px;display:inline-block}
+.THIS .business-principle-link{
+                cursor:pointer;
+    color:blue;
+    text-decoration:none;
+}
+.THIS .business-principle-link:hover{
+                cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+}
+
+          
+.THIS 	.titleOne {font-size:17px}/* 15 sept */
+.THIS .caption h3, .THIS .userInfo .name {font-size:13px;}/* 15 sept */
+.THIS .caption p {font-size:12px;}
+.THIS .userInfo .subText{font-size:11px;}
+.THIS .titleOne {
+    font-size: 15px;
+}
