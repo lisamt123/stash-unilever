@@ -142,5 +142,5 @@
         <members>FA - Email Template</members>
         <name>EmailTemplate</name>
     </types>
-	
+	    <version>37.0</version>
 </Package>
