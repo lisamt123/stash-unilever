@@ -714,7 +714,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 otifAnalyticObj.IPM_MR_Y3_gTO__c =fr.Turnover_MR__c;
                 otifAnalyticObj.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;
                 otifAnalyticObj.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
-                otifAnalyticObj.IPM_MD_Y3_GM__c=fr.Turnover_MD__c>0?(fr.Gross_Profit_MD__c/fr.Turnover_MD__c):fr.GM_of_TO_MD__c;
+                otifAnalyticObj.IPM_MD_Y3_GM__c=fr.Turnover_MD__c>0?((fr.Gross_Profit_MD__c/fr.Turnover_MD__c)*100):fr.GM_of_TO_MD__c;
                  
             }
                   
@@ -826,7 +826,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 otifAnalyticObj.IPM_MR_Y1_gTO__c = fr.Turnover_MR__c;                   //Market Ready Innovation Y1 gTO
                 otifAnalyticObj.IPM_MR_Y1_GM__c = fr.GM_of_TO_MR__c;
                 otifAnalyticObj.IPM_MD_Y1_gTO__c = fr.Turnover_MD__c;
-                otifAnalyticObj.IPM_MD_Y1_GM__c=fr.Turnover_MD__c>0?(fr.Gross_Profit_MD__c/fr.Turnover_MD__c):fr.GM_of_TO_MD__c;
+                otifAnalyticObj.IPM_MD_Y1_GM__c=fr.Turnover_MD__c>0?((fr.Gross_Profit_MD__c/fr.Turnover_MD__c)*100):fr.GM_of_TO_MD__c;
                            
             }
                     
