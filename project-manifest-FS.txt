@@ -334,6 +334,9 @@ src/layouts/Pricebook2-Price Book Layout.layout
 src/layouts/PricebookEntry-Price Book Entry Layout.layout
 src/layouts/Product2-Product Layout.layout
 src/layouts/Task-Task Layout.layout
+src/layouts/Product_at_Risk__c-Product at Risk Layout.layout
+src/layouts/Risk__c-Risk Layout.layout
+src/layouts/Territory__c-Territory Layout.layout
 src/roles
 src/roles/Cash_Carry_Business_Development_Manager.role
 src/roles/CEO.role
