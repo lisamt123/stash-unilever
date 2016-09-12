@@ -1210,6 +1210,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                                                                                             Contract_Approved__c,
                                                                                             MD_Approved__c,
                                                                                             MR_Approved__c,
+                                                                                            Gross_Profit_MD__c,
                                                                                             PL_Type__c FROM IPM_Financial_Year__C 
                                                                                               WHERE IPM_Financial__c IN:financialIdSet Limit 50000]);
         
