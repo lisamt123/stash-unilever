@@ -112,6 +112,7 @@
 	<members>FA_Config_Settings__c</members>
 	<name>CustomSetting</name>
 	</types>
+	<types>
 		<members>Unilever - Ideas Admin</members>
 		<members>FA - Agency</members>
 		<members>FA - Instructor</members>
