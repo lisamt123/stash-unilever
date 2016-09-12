@@ -110,21 +110,45 @@ Public class Kun_Community_Test {
     public static testmethod void Test_RefreshEvents(){
         SetUp();
         
-         User u2 = [Select Id ,Name ,UserName, Email FROM User WHERE UserName='standarduser1@kunorg.com' LIMIT 1];
-         System.runAs(u2) {
+        User u2 = [Select Id ,Name ,UserName, Email FROM User WHERE UserName='standarduser1@kunorg.com' LIMIT 1];
+        System.runAs(u2) {
             PageReference pageRef = Page.Kun_HomeView; 
             Test.setCurrentPage(pageRef); 
 
-            Integer iCount = 5 ;
             datetime datefrom = System.Now();
-            datetime dateto = System.Now().Adddays(iCount+ 1) ;
-            KUNDataFactory.createTestEventRecords(iCount,u2.Id);
+            datetime dateto = System.Now().Adddays(6) ;
+             
+            List<KUN_Activities__c> molstEvents = new List<KUN_Activities__c>() ;              
+            RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType='KUN_Activities__c' AND DeveloperName ='KUN_Events_RT' LIMIT 1];
+             
+           for(Integer iCount =0; iCount < 5 ; iCount++ ){            
+                KUN_Activities__c moActivity       =  new KUN_Activities__c ();
+                moActivity.Name                    =  'Event Name - ' + iCount ;           
+                moActivity.Short_Description__c    =  'Event Description - ' + iCount ;           
+                moActivity.Start_Date__c           =  Datetime.Now().AddDays(iCount) ;   
+                moActivity.Active__c               =  true ;
+                moActivity.RecordTypeId            =  rt.Id;
+                molstEvents.add( moActivity);
+              }
+            Insert molstEvents ;
+        
+            List<Event > lstNewEvents = new List<Event>();
+            for(Integer iCount =0; iCount < 5; iCount++ ){
+                Event e = new Event();
+                e.StartDateTime = Datetime.Now().AddDays(iCount) ;
+                e.EndDateTime = Datetime.Now().AddDays(iCount) ;
+                e.Subject =  'Event Name - ' + iCount ;
+                e.OwnerId = U2.Id;
+                lstNewEvents.add(e);
+              }
+
+            insert lstNewEvents;
        
             // Add parameters to page URL 
             ApexPages.currentPage().getParameters().put('DateFrom', datefrom.format('MM/dd/yyyy') ); 
             ApexPages.currentPage().getParameters().put('DateTo', dateto.format('MM/dd/yyyy') ); 
             instance.RefreshEvents() ;      
-            System.Assert(instance.MyEvents.Size() == (iCount*2) );
+            System.Assert(instance.MyEvents.Size() == 10 );
            }
         TearDown();
     }
@@ -187,19 +211,27 @@ Public class Kun_Community_Test {
     // Test Method: getNotify
     public static testmethod void Test_getNotify(){
         SetUp();
-        Integer iCount = 5 ;
-        KUNDataFactory.createTestNotifyRecords(iCount );
-        List<KUN_Activities__c> molstActivities = instance.getNotify() ;
+        Integer numRecords= 5 ;       
+        RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType='KUN_Activities__c' AND DeveloperName ='KUN_Broadcast_Message_RT' LIMIT 1];
+        List<KUN_Activities__c> molstActivities  = new  List<KUN_Activities__c>();
+        for(Integer iCount =0 ; iCount < numRecords; iCount++ )
+        {
+            KUN_Activities__c moActivity       =  new KUN_Activities__c ();
+            moActivity.Name                    =  'Notification - ' + iCount ;           
+            moActivity.Short_Description__c    =  'Notification Description';
+            moActivity.Active__c               =  true ;
+            moActivity.RecordTypeId            =  rt.Id;
+            molstActivities.add( moActivity);
+        }   
+        Insert molstActivities ;  
+        molstActivities = instance.getNotify() ;
         
-        System.Assert(molstActivities.size()== iCount );
-
-        System.Assert(instance.getNotify() != null);
+        System.Assert(molstActivities.size()== numRecords);
         TearDown();
     }
     // Test Method: getFactFigure
     public static testmethod void Test_getFactFigure(){
-        SetUp();
-        
+        SetUp();        
         System.Assert(instance.getFactFigure() != null);
         TearDown();
     }
@@ -213,15 +245,13 @@ Public class Kun_Community_Test {
     }
     // Test Method: getIsForceUI
     public static testmethod void Test_getIsForceUI(){
-        SetUp();
-        
+        SetUp();        
         System.Assert(instance.getIsForceUI() == true);
         TearDown();
     }
     // Test Method: getProcessNames
     public static testmethod void Test_getProcessNames(){
-        SetUp();
-        
+        SetUp();        
         System.Assert(instance.getProcessNames() != null);
         TearDown();
     }
@@ -232,39 +262,68 @@ Public class Kun_Community_Test {
         System.runAs(u2) {
             instance.ProcessName='Make';
             KUNDataFactory.createTestSubProcessNamesRecords(instance.ProcessName);
-            List<selectOption> moselectOptions = instance.getSubProcessNames(); 
-            
+            List<selectOption> moselectOptions = instance.getSubProcessNames();             
             System.Assert(moselectOptions.Size()==4);
         }
         TearDown();
     }
     // Test Method: getNewJoiners
     public static testmethod void Test_getNewJoiners(){
-        SetUp();
-        
+        SetUp();        
         List<KUN_Profile__c> molstNewJoiners =  instance.getNewJoiners() ;
         System.Assert(molstNewJoiners.size()==3 );
         TearDown();
     }
     // Test Method: getNewsLetters
     public static testmethod void Test_getNewsLetters(){
-        SetUp(); 
-        Integer iCount = 5 ;
-        KUNDataFactory.createTestNewsLetterRecords(iCount );
-        List<KUN_Links> molstLinks= instance.getNewsLetters() ;
-        
-        System.Assert(molstLinks.size()== iCount );
-        TearDown();
+       SetUp(); 
+       Integer numRecords= 5 ;
+       List<KUN_Activities__c> molstNewsLetters = new List<KUN_Activities__c>() ;              
+       RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType='KUN_Activities__c' AND DeveloperName ='KUN_News_Letter_RT' LIMIT 1];
+      
+       for(Integer intloopCount =0 ; intloopCount < numRecords; intloopCount ++ )
+       {
+            KUN_Activities__c moActivity       =  new KUN_Activities__c ();
+            moActivity.Name                    =  'News Letter Name - ' + intloopCount ;           
+            moActivity.Short_Description__c    =  'News Letter Short Description';
+            moActivity.Active__c               =  true ;
+            moActivity.RecordTypeId            =  rt.Id;
+            molstNewsLetters .add( moActivity);
+       }
+       
+       Insert molstNewsLetters ;       
+       for( KUN_Activities__c moNewsLetter: molstNewsLetters){
+           KUNDataFactory.createTestAttachmentRecord(moNewsLetter.Id);
+       }        
+       List<KUN_Links> molstLinks= instance.getNewsLetters() ;        
+       System.Assert(molstLinks.size()== numRecords);
+       TearDown();
     }
     // Test Method: getNews
     public static testmethod void Test_getNews(){
         SetUp();
-        Integer iCount = 5 ;
-        KUNDataFactory.createTestNewsRecords(iCount );
-        List<KUN_Links> molstLinks= instance.getNews();
-        
-        System.Assert(molstLinks.size()== iCount );
-        TearDown();
+        Integer numRecords= 5 ;
+       List<KUN_Activities__c> molstActivities = new List<KUN_Activities__c>() ;              
+       RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType='KUN_Activities__c' AND DeveloperName ='KUN_News_RT' LIMIT 1];
+      
+       for(Integer iCount =0 ; iCount < numRecords; iCount++ )
+       {
+            KUN_Activities__c moActivity       =  new KUN_Activities__c ();
+            moActivity.Name                    =  'Global Business - ' + iCount ;           
+            moActivity.Short_Description__c    =  'News Description ';
+            moActivity.Description__c          =  'News Complete Description' ;
+            moActivity.Active__c               =  true ;
+            moActivity.RecordTypeId            =  rt.Id;
+            molstActivities .add( moActivity);
+       }
+       
+       Insert molstActivities ;       
+       for( KUN_Activities__c moActivity: molstActivities ){
+           KUNDataFactory.createTestAttachmentRecord(moActivity.Id);
+       }        
+       List<KUN_Links> molstLinks= instance.getNews();
+       System.Assert(molstLinks.size()== numRecords);
+       TearDown();
     }
     // Test Method: getEventLink
     public static testmethod void Test_getEventLink(){
@@ -279,11 +338,26 @@ Public class Kun_Community_Test {
  
     public static testmethod void Test_getKey(){
         SetUp();        
-        Integer iCount = 5 ;
-        KUNDataFactory.createTestKeyUserRecords(iCount );
+        Integer numRecords= 5 ;
+        List<KUN_Activities__c> molstActivities = new List<KUN_Activities__c>() ;              
+        RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType='KUN_Activities__c' AND DeveloperName ='KUN_Spotlight_RT' LIMIT 1];
+    
+        for(Integer iCount =0 ; iCount < numRecords; iCount++ )
+        {        
+            KUN_Activities__c moActivity       =  new KUN_Activities__c ();
+            moActivity.Name                    =  'Key User Name - ' + iCount ;           
+            moActivity.Short_Description__c    =  'Spotlight Description';
+            moActivity.Active__c               =  true ;
+            moActivity.RecordTypeId            =  rt.Id;
+            molstActivities.add( moActivity);
+        }        
+        Insert molstActivities ;
+        for( KUN_Activities__c moActivity: molstActivities){
+           KUNDataFactory.createTestAttachmentRecord(moActivity.Id);
+        } 
         List<KUN_Links> molstLinks = instance.getKey() ;
         
-        System.Assert(molstLinks.size()==iCount );
+        System.Assert(molstLinks.size()==numRecords);
         TearDown();
     }
   }

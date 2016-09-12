@@ -13,15 +13,11 @@ History
 VERSION  AUTHOR       DATE             DETAIL                  Description
 ****************************************************************************/
 public with sharing class KUN_ProfileTriggerHandler {
- 
-    private boolean m_isExecuting = false;
-    private integer BatchSize = 0;
 
-    public KUN_ProfileTriggerHandler (boolean isExecuting, integer size)
-    {
-        m_isExecuting = isExecuting;
-        BatchSize = size;
-    }
+    /*******************************************************************
+    Purpose: This method before Insert 
+    Parameters : newProfiles- List of profiles Updated
+    ********************************************************************/     
     public void OnBeforeInsert(List<KUN_Profile__c> newProfiles)
     {
         system.debug('Profile Trigger On Before Insert');
@@ -29,7 +25,10 @@ public with sharing class KUN_ProfileTriggerHandler {
           PopulateSearchableFields(moProfile ); 
         }
     }
-    
+    /*******************************************************************
+    Purpose: This method after Insert of records 
+    Parameters : newProfiles- List of profiles Updated
+    ********************************************************************/
      public void OnAfterInsert(List<KUN_Profile__c> newProfiles)
      {
         // Create a new list of sharing objects for Job
@@ -60,7 +59,10 @@ public with sharing class KUN_ProfileTriggerHandler {
         
            
     }
-
+  /*******************************************************************
+    Purpose: This method before Insert 
+    Parameters : newProfiles- List of profiles Updated
+    ********************************************************************/
     public void OnBeforeUpdate( List<KUN_Profile__c> newProfiles)
     {
         system.debug('Profile Trigger On Before Update ');       
@@ -70,7 +72,10 @@ public with sharing class KUN_ProfileTriggerHandler {
         //Update newProfiles ;
     }
 
-   // Code to update the Picklist value to Searchable Field to make it Searchable   
+   /*******************************************************************
+    Code to update the Picklist value to Searchable Field to make it Searchable
+    Parameters : numRecords- copy the fields in profile 
+    ********************************************************************/
    private void PopulateSearchableFields(KUN_Profile__c moProfile){    
             moProfile.Capability_Searchable_Field__c      =     moProfile.Capability__c;
             moProfile.Cluster_Searchable_Field__c         =     moProfile.Cluster__c ;
