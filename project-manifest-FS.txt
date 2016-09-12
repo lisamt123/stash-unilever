@@ -510,3 +510,5 @@ src/weblinks/FS_Unilever_Food_Solutions_US.weblink
 src/weblinks/FS_US_HUB.weblink
 src/remoteSiteSettings
 src/remoteSiteSettings/FS_PII_Mulesoft.remoteSite
+src/homePageComponents/FS Custom Links.homePageComponent
+src/homePageLayouts/FS Page Layout.homePageLayout
