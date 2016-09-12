@@ -443,7 +443,9 @@ public with sharing class IPM_NewTask {
    public List<SelectOption> getFeasibilityDocumentTypes()
    {
    	List<SelectOption> options = new List<SelectOption>();
-   	sIPM_Type_of_Gate = IPM_ConstantUtils.CONTRACT_GATE;
+   	if(String.isBlank(sIPM_Type_of_Gate)){
+   		sIPM_Type_of_Gate = IPM_ConstantUtils.CONTRACT_GATE;
+   	}
    	options.add(new SelectOption(IPM_ConstantUtils.CONTRACT_GATE,IPM_ConstantUtils.CONTRACT_GATE));
    	options.add(new SelectOption(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT,IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT));
    	return options;
@@ -451,9 +453,16 @@ public with sharing class IPM_NewTask {
    public List<SelectOption> getGateSpecificSpan()
    {
         List<SelectOption> projectSpanOptionList = new List<SelectOption>();
-            
+        string sIPMTypeOfGate = getIPMTypeofGate();
+        
+        if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT.Equals(sIPMTypeOfGate))
+        {
+        	projectSpanOptionList.add(new SelectOption(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,IPM_ConstantUtils.PROJECT_SPAN_GLOBAL));
+        	return projectSpanOptionList;
+        }
+        
         List<IPM_Project_Type__c> associatedProjectTypeList = new List<IPM_Project_Type__c>();
-        if(String.isNotBlank(tasks.IPM_Type_of_Gate__c))
+        if(String.isNotBlank(sIPMTypeOfGate))
         {
             IPM_Project__c expectedProject = new IPM_Project__c();
             expectedProject.IPM_CompanyCardText__c = projectObject.IPM_CompanyCardText__c;
@@ -464,7 +473,7 @@ public with sharing class IPM_NewTask {
             // If type of Task is adhoc or future adhoc get the project span
             if(tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC || tasks.IPM_Type_of_Task__c == IPM_ConstantUtils.FUTURE_ADHOC_TASKS)
             {
-                associatedProjectTypeList = IPM_Utils.getProjectSpanBasedOnGate(expectedProject,tasks.IPM_Type_of_Gate__c);
+                associatedProjectTypeList = IPM_Utils.getProjectSpanBasedOnGate(expectedProject,sIPMTypeOfGate);
             }
             else
             {
