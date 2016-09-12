@@ -286,7 +286,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         try{
             list<IPM_Financial_Year__c> projRolloutFinYearList = new list<IPM_Financial_Year__c>([SELECT id,name,Financial_External_ID__c,IPM_Financial__r.Parent_Project__r.Id,IPM_Financial__r.Regional_Project__r.Id,IPM_Financial__r.Local_Project__r.Id,IPM_Financial__r.Id,IPM_Financial__r.Business_Impact_Global__c,
                                                                                                         Year__c,Gross_Profit_Global__c,Gross_Profit_Regional__c,Gross_Profit_Local__c,Turnover_Global__c,Turnover_Local__c,Turnover_Regional__c,Turnover_Charter__c,Turnover_Contract__c,Turnover_MD__c,Turnover_MR__c,
-                                                                                                        Year_Type__c,GM_of_TO_Charter__c,GM_of_TO_Contract__c,GM_of_TO_MD__c,GM_of_TO_MR__c,GM_of_TO_Local__c,GM_of_TO_Global__c,GM_of_TO_Regional__c,Charter_Approved__c,Contract_Approved__c,MD_Approved__c,MR_Approved__c,PL_Type__c
+                                                                                                        Year_Type__c,GM_of_TO_Charter__c,GM_of_TO_Contract__c,GM_of_TO_MD__c,GM_of_TO_MR__c,GM_of_TO_Local__c,GM_of_TO_Global__c,GM_of_TO_Regional__c,Charter_Approved__c,Contract_Approved__c,MD_Approved__c,MR_Approved__c,Gross_Profit_MD__c,PL_Type__c
                                                                                                         FROM IPM_Financial_Year__C 
                                                                                                         WHERE IPM_Financial__c IN: finIdSet Limit 50000]);
                                                 
@@ -714,7 +714,7 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 otifAnalyticObj.IPM_MR_Y3_gTO__c =fr.Turnover_MR__c;
                 otifAnalyticObj.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;
                 otifAnalyticObj.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
-                otifAnalyticObj.IPM_MD_Y3_GM__c = fr.GM_of_TO_MD__c;
+                otifAnalyticObj.IPM_MD_Y3_GM__c=fr.Turnover_MD__c>0?(fr.Gross_Profit_MD__c/fr.Turnover_MD__c):fr.GM_of_TO_MD__c;
                  
             }
                   
@@ -826,8 +826,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                 otifAnalyticObj.IPM_MR_Y1_gTO__c = fr.Turnover_MR__c;                   //Market Ready Innovation Y1 gTO
                 otifAnalyticObj.IPM_MR_Y1_GM__c = fr.GM_of_TO_MR__c;
                 otifAnalyticObj.IPM_MD_Y1_gTO__c = fr.Turnover_MD__c;
-                otifAnalyticObj.IPM_MD_Y1_GM__c = fr.GM_of_TO_MD__c;
-                            
+                otifAnalyticObj.IPM_MD_Y1_GM__c=fr.Turnover_MD__c>0?(fr.Gross_Profit_MD__c/fr.Turnover_MD__c):fr.GM_of_TO_MD__c;
+                           
             }
                     
         return otifAnalyticObj;
