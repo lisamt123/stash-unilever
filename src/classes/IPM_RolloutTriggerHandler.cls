@@ -773,15 +773,7 @@ public with sharing class IPM_RolloutTriggerHandler
                if(nonKeyRollout.isActive__c)
                {
                    activeNonKeyRolloutPresent = true;
-                   
-                   //fetch the nonKeyFinancial which still exist after deletion of Non key rollouts
-                   survivingNonkeyFinancial = financialExtIdFinancialMap.get(financialNonKeyExternalId);
-                   
-                   //flag Is_Nonkey_Business_Case_Changed__c is set to true which indicates that the Non Key business case has been changed.
-            	   //Non Key Business case is changed when A Nonkey MCO is added or removed from existing Non Key Business Case
-                   survivingNonkeyFinancial.Is_Nonkey_Business_Case_Changed__c = true;
-                   mapUpsertFinancials.put(financialNonKeyExternalId, financialExtIdFinancialMap.get(financialNonKeyExternalId));
-                   break;
+                  
                }
            } 
            

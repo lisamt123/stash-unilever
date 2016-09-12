@@ -416,7 +416,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         }
                         
                         mcoWrapper.key = countryObj.Local_Rollout__r.KeyMCO__c;
-                        countryWrapper.selected = TRUE; // selected country -------------------------------------------
+                        countryWrapper.selected = TRUE; // selected country 
                         countryWrapper.rolloutStatus = countryObj.IPM_Rollout_Status__c;
                         setCountryCodesGlobal.add(country.ISO_3166_1_Code__c);
                         
@@ -1011,7 +1011,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 
             if(isProjectGKM3){
                 processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
-                processGlobalMCORollouts();
             }
                 processRegionalMCORollouts();
                 processRegionalCountryRollouts(); 
@@ -2110,7 +2109,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
 	{
 		for (IPM_Country__c country : Database.query(queryStringCountries))
         {
-            if(IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(searchCountry) && country.Local_Rollout__c != null)
+            if(country.Local_Rollout__c != null)
             {
                 existingRelatedCountriesMap.put(country.Project_Country__c, country);
                 if(relatedMCOAndCountry.containsKey(country.Local_Rollout__c)){
