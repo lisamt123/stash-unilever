@@ -956,7 +956,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
    
     private void validateNonKeyMcoTLDMisalignment( Map<Id,IPM_Project_Rollout__c> updaterolloutsMap ) {
             // The TLD misalignment check is only for Global/Regional original projects in Ideas phase
-            if( project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL||project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) {
+            // Also adding logic to check TLD misalignment for GKM3 projects
+            if( (project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL||project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) || project.IPM_ProjectGKM__c=='GKM3')
+            {
                 Map<String,Date> mcoTLDMap = new Map<String,Date>();
                 Date mcoTDL;
                 // iterate through rollouts

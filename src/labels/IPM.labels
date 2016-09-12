@@ -1,3 +1,17 @@
+	<labels>
+	        <fullName>Accept_from_Global</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>Accept from Global</shortDescription>
+	        <value>Accept Global TLD</value>
+	</labels>
+	<labels>
+	        <fullName>IPM_TLD_VR_Misaligned_At_Global</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM TLD VR Misaligned At Global</shortDescription>
+	        <value>Target Launch Date for {0} is misaligned: Value at Global = {1} value at Local = {2}.</value>
+	</labels>
         <labels>
 	        <fullName>IPM_Current_PDL_Document_Status</fullName>
 	        <language>en_US</language>

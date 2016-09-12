@@ -75,6 +75,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     //REQ03006
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
+    public boolean isPDL{get;set;}
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
@@ -101,7 +102,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         belowThresholdError=false;
         stopDisclaimer=Label.IPM_StopDisclaimer2;
         projectId=ApexPages.currentPage().getParameters().get('Id');
-        
+        String checkPDL = ApexPages.currentPage().getParameters().get('isPDL');
+        isPDL=false;
         if(projectId!=null)
         { 
             associatedProjectType = IPM_Utils.retrieveProjectType(project);
@@ -109,7 +111,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             if(associatedProjectType!=null)
             {
                 String currentGate = associatedProjectType.IPM_Gate_Document__c;
-                
+                if(IPM_ConstantUtils.IPM_true.EqualsIgnoreCase(checkPDL))
+                {
+                	currentGate = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK ;
+                	isPDL=true;
+                }
                 getStopDisclaimer(currentGate);
                 
                 projectDoc=[SELECT Id,IPM_Proposed_Date__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,
@@ -999,5 +1005,34 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }
             
         }
+    }
+    public void approvePDLDocument()
+    {
+    	try{
+    		Date dt=date.parse(System.today().format());
+    		if(projSectionListUpdate.isEmpty()){    			
+		    	IPM_Milestone__c oPDLMilestone;
+		    	for (IPM_Milestone__c oMilestone : milestoneList){
+		    		if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT.Equals(oMilestone.IPM_Name__c)){
+		    			oPDLMilestone=oMilestone;
+		    			break;
+		    		}    		
+		    	}
+		    	if(oPDLMilestone!=null){
+		    		oPDLMilestone.IPM_Completed_On__c=dt;
+		    		oPDLMilestone.IPM_Completed__c=true;
+		    	}
+		    	projectDoc.IPM_Document_Status__c=IPM_ConstantUtils.STATUS_APPROVED;		    	
+	    		projectDoc.IPM_Approval_Date__c=dt;
+	    		projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();
+		    	update projectDoc;
+		    	update oPDLMilestone;
+    		}
+    	}
+    	catch(Exception ex)
+    	{
+    		ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
+                'approvePDLDocument',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+    	}	
     }
 }

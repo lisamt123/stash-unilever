@@ -376,6 +376,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			IsEditableOutC=true;
 			isEcodesignEdit=true;
 		}
+		if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) && IPM_ConstantUtils.PDL_QUALITY_STANDARDS.Equals(projDocSec.IPM_Section__r.External_ID__c))
+        {
+        	IsEditableOutC=true;
+        }
 	}
 	
 	/****************************************************************************************************************************************************************
@@ -435,6 +439,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			isEditGateCMI=true;
 			isEcodesignEdit=true;
 		}
+		if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD) && IPM_ConstantUtils.PDL_FINACIAL_GLOBAL_CLAIMS.Equals(projDocSec.IPM_Section__r.External_ID__c))
+        {
+        	IsEditableOutC=true;
+        }
 	}
 	
 	/****************************************************************************************************************************************************************

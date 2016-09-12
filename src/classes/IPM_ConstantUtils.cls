@@ -1281,4 +1281,7 @@ public class IPM_ConstantUtils {
     public static final String Project = 'PROJECT';
     public static final String Phantom = 'PHANTOM';
     public static final String PDLAMP =' & PDL';
+	
+	public static final String PDL_FINACIAL_GLOBAL_CLAIMS = 'Final_Global_Claims';
+    public static final String PDL_QUALITY_STANDARDS = 'Quality_Standards';
 }
