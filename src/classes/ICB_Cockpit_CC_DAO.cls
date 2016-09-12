@@ -163,11 +163,13 @@ public with sharing class ICB_Cockpit_CC_DAO
          System.debug('Entering <updateOppItemListOppItem>');
         List<OpportunityLineItem> oppItemList = [SELECT 	Id,
                                                            OpportunityId,
+                                                 		   Opportunity.ICB_Contact__c,
                                                            TotalPrice, 
                                                            ICB_STATUS_SALES__c,
                                                            ICB_ITEMS_RETURNED__c,
                                                            PriceBookEntry.Name,
                                                            Quantity,
+                                                 		   Product2Id,
                                                            PriceBookEntryId 
                                                    FROM OpportunityLineItem 
                                                    WHERE PriceBookEntryId =: mapPriceBook.keySet() 

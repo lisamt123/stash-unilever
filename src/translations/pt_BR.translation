@@ -2872,6 +2872,10 @@
         <label>Produtos em estoque</label>
         <name>ICB_INVENTORY_HEADER_SUB_TITLES</name>
     </customLabels>
+	 <customLabels>
+        <label>Estoque</label>
+        <name>ICB_INVENTORY_HEADER</name>
+    </customLabels>
     <customLabels>
         <label>NOME</label>
         <name>ICB_INVENTORY_NAME</name>

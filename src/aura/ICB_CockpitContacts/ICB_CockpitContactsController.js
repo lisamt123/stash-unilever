@@ -13,6 +13,7 @@
     changeCheckBox : function(component, event, helper) {
         console.log('Entering <changeCheckBox>');
         helper.changeCheck(component,event,"checkbox"); 
+        location.reload(true);
         console.log('Exit <changeCheckBox>');
     },
     solicitation : function(component, event, helper) {
@@ -39,8 +40,8 @@
 		console.log('Entering <updatedPriceBook>'); 
         var indexContact = component.get("v.indexContact");
         var listContact = component.get("v.listContacts");
-        if(!listContact[indexContact].isDisabled){
-            helper.oppItemUpdate(component);
+        if(!listContact[indexContact].isDisabled && listContact[indexContact].oppLineItem != null){
+            helper.oppItemUpdate(component,event,listContact[indexContact].contactItem.Id);
             location.reload(true);
         }
         console.log('Exit <updatedPriceBook>');
