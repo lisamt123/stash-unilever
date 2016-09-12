@@ -45,6 +45,8 @@
         <name>ApexTrigger</name>
     </types>
 	<types>
+		<members>Course_Detail</members>
+		<members>Chatter</members>
         <members>Course_Detail</members>
 		<members>FA_Calendar</members>
 		<members>FA_Centres</members>
@@ -56,6 +58,11 @@
 		<members>Programme</members>
 		<members>Upload_PWT</members>
 		<members>FA_Pref</members>
+		<members>Footer</members>
+    	<members>Header</members>
+    	<members>Template</members>
+    	<members>Wrapper</members>
+    	<members>Category</members>
 		<name>ApexPage</name>
     </types>
     <types>
@@ -177,14 +184,7 @@
     	<members>Four Acres App</members>
         <name>CustomApplication</name>
     </types>
-    <types>
-    	<members>Footer</members>
-    	<members>Header</members>
-    	<members>Template</members>
-    	<members>Wrapper</members>
-    	<members>Category</members>
-    	<name>ApexPage</name>
-    </types>
+   
     <types>
         <members>FA - Email Template</members>
         <name>EmailTemplate</name>
