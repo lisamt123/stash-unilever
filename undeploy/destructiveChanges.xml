@@ -30,6 +30,7 @@
 		<members>FA_Trigger_CourseOccurence</members>
 		<members>FA_Trigger_OccurenceMember</members>
 		<members>FA_UploadPwtAttachment</members>
+		<members>BasicMenuItem</members>
 		<name>ApexClass</name>
     </types>
 	<types>
@@ -134,6 +135,10 @@
     <types>
     	<members>Core_NC_Test_NewsApp</members>
     	<name>ApexClass</name>
+    </types>
+    <types>
+    	<members>Four Acres App</members>
+        <name>CustomApplication</name>
     </types>
     <types>
     	<members>Category</members>
