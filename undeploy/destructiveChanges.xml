@@ -55,6 +55,7 @@
 		<members>Help</members>
 		<members>Programme</members>
 		<members>Upload_PWT</members>
+		<members>FA_Pref</members>
 		<name>ApexPage</name>
     </types>
 	<types>  
