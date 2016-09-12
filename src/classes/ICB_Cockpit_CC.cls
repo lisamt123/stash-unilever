@@ -242,11 +242,11 @@ public with sharing class ICB_Cockpit_CC
        
         List<OpportunityLineItem> oppItem = new List<OpportunityLineItem>();
         Set<String> setProduct = new Set<String>();
-        String oppId;
+        String oppId = CONST_EMPTY;
         
         try
         {
-            List<ICB_Wrapper_Cockpit_CC> listInventories;
+            List<ICB_Wrapper_Cockpit_CC> listInventories = new List<ICB_Wrapper_Cockpit_CC>();
             if(!inventoryList.equalsIgnoreCase(CONST_EMPTY))
             {
                 listInventories = ICB_Cockpit_Helper.deserializeJSON(inventoryList);
