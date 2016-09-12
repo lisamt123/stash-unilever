@@ -44,9 +44,9 @@ public with sharing class AF_AnnualBonus {
     //public Boolean IsEditable{get;set;}// check for CMCO super user or category finance user
     public map<id,string>bonus_thresholdid=new  map<id,string>(); // map of bonus threshold with bonus threshold id alog with combination of agency id,brand id,unilever country and fiscal year
     //set<string> Threshold = new set<string>();// store threshold id
-    public Decimal qual_per=0;// to hold Qualatative percentage
+    //public Decimal qual_per=0;// to hold Qualatative percentage
     public Decimal Qual_value=0;// to hold Qualatative value
-    Public Set<String> Countryname_BT=new set<String>();
+    //Public Set<String> Countryname_BT=new set<String>();
     public List<wrapRenumartionbonus> renumBonus{get;set;}
     public list<AF_Bonus_Threshold__c> bonusThresholdRenumeration=new list<AF_Bonus_Threshold__c>();
     public list<AF_Bonus_Results__c> bonusResult=new list<AF_Bonus_Results__c>();
@@ -54,7 +54,7 @@ public with sharing class AF_AnnualBonus {
     //public Boolean noDisplay{get;set;}
     //public Boolean noDisplayQuarterly{get;set;}
     public  decimal sum_of_bonusable_fees { get; set; } //to hold the sum of Bonusable fees 30-08-2014
-    public  decimal sum_of_bonusable_fees_onload { get; set; } //to hold the sum of Bonusable fees on load 03-09-2014
+    //public  decimal sum_of_bonusable_fees_onload { get; set; } //to hold the sum of Bonusable fees on load 03-09-2014
     //public Integer Totals_BonusMeasureTrad { get; set; }
     //public Integer Totals_BonusMeasureDigital { get; set; }
     /*Start code refactoring*/
@@ -93,14 +93,14 @@ public with sharing class AF_AnnualBonus {
         AF_Constants.noDisplayQuarterly=true;
         AF_Constants.IsDrafted=True;
         sum_of_bonusable_fees=0;// 30-08-2014
-        sum_of_bonusable_fees_onload=0;//03-09-2014
+        AF_Constants.sum_of_bonusable_fees_onload=0;//03-09-2014
         AF_Constants.Sum_remuneration_val=0;
         AF_Constants.Sum_remuneration_per=0;
         sum_of_quant_qual_value=0;
         AF_Constants.sum_of_quant_qual_percent=0;
         sum_of_qual_value=0;
         AF_Constants.sum_of_qual_percent=0;
-        qual_per=0;
+        AF_Constants.qual_per=0;
         Qual_value=0;
         AF_Constants.IsEditable=false;
         AF_Constants.isAgency = false;
@@ -162,7 +162,7 @@ public with sharing class AF_AnnualBonus {
             
             list<AF_Agency_Estimate__c> oddagencylist=new   list<AF_Agency_Estimate__c>();
             set<String> setofnonthreshold_country = new set<String>();
-            oddagencylist=[Select ID,AF_Total__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Unilever_Entity__r.AF_Country__c !=:Countryname_BT and AF_Agency_Entity__r.AF_Agency__c=:agency_id.substring(0,15) and AF_Brand_Id__c=:Brand_id.substring(0,15) and AF_Brand_Estimate__r.AF_Active__c=True and AF_Fiscal_Year__c=:current_year];
+            oddagencylist=[Select ID,AF_Total__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Unilever_Entity__r.AF_Country__c !=:AF_Constants.Countryname_BT and AF_Agency_Entity__r.AF_Agency__c=:agency_id.substring(0,15) and AF_Brand_Id__c=:Brand_id.substring(0,15) and AF_Brand_Estimate__r.AF_Active__c=True and AF_Fiscal_Year__c=:current_year];
             if(oddagencylist.size()>0){
                 for(AF_Agency_Estimate__c oddagency:oddagencylist){
                     if(oddagency.AF_Total__c>0){
@@ -197,7 +197,7 @@ public with sharing class AF_AnnualBonus {
 ***************************************************************************************/    
     public void annualBonusConstructorExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
         for(AF_Sub_Result__c bonus_SubResult_Obj:Bonus_SubResult_List){
-                    Countryname_BT.add(bonus_SubResult_Obj.AF_Country__r.AF_Country__c);
+                    AF_Constants.Countryname_BT.add(bonus_SubResult_Obj.AF_Country__r.AF_Country__c);
                     string brandname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Brand_Name__c;
                     string agencyname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Agency_Name__c;
                     string str=agencyname_id+'::'+ brandname_id+'::'+bonus_SubResult_Obj.AF_Country__r.AF_Country__c+'::'+bonus_SubResult_Obj.AF_Bonus_Threshold__r.Year__c;
@@ -287,13 +287,13 @@ public with sharing class AF_AnnualBonus {
                     sum_of_quant_qual_value=sum_of_quant_qual_value + bonusResObj.AF_Total_Bonus_Value__c;
                 }
                 if(bonusResObj.AF_Bonusable_Fees__c!=null){
-                    sum_of_bonusable_fees_onload=sum_of_bonusable_fees_onload+bonusResObj.AF_Bonusable_Fees__c;
-                    if(sum_of_bonusable_fees_onload>0)
-                    AF_Constants.sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees_onload)*100);
+                    AF_Constants.sum_of_bonusable_fees_onload=AF_Constants.sum_of_bonusable_fees_onload+bonusResObj.AF_Bonusable_Fees__c;
+                    if(AF_Constants.sum_of_bonusable_fees_onload>0)
+                    AF_Constants.sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/AF_Constants.sum_of_bonusable_fees_onload)*100);
                 }
                 if(bonusResObj.AF_Quant_Bonus__c!=null){
-                    if(sum_of_bonusable_fees_onload>0)
-                    AF_Constants.sum_of_bonus_per=math.round((AF_Constants.sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
+                    if(AF_Constants.sum_of_bonusable_fees_onload>0)
+                    AF_Constants.sum_of_bonus_per=math.round((AF_Constants.sum_of_bonus_val/AF_Constants.sum_of_bonusable_fees_onload)*100);
                 }
             }
     }
@@ -404,7 +404,7 @@ public with sharing class AF_AnnualBonus {
                 }
                 else{
                     Qual_value=0;
-                    qual_per=0; 
+                    AF_Constants.qual_per=0; 
                 }
                 Integer count=0;
                 String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
@@ -416,15 +416,15 @@ public with sharing class AF_AnnualBonus {
                     count = count+BonusMeasureCalcMap.get(countryTrad);
                 }
                 if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && (mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null)){
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,AF_Constants.qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
                     QuartelyBonus.add(new wrapbonus(bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
                 }else if(!mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,AF_Constants.qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
                     QuartelyBonus.add(new wrapbonus(bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,new AF_Sub_Result__c(),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
                 }
                 else if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
                     Integer newAmt = Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c);
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,AF_Constants.qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c));
                     QuartelyBonus.add(new wrapbonus(bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),newAmt,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
                 }
                 if(totalbonusval==0){
@@ -449,10 +449,10 @@ public with sharing class AF_AnnualBonus {
                 string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
     if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null){
                   if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
-                      qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c;
+                      AF_Constants.qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c;
                   }
                   else{
-                      qual_per=0;
+                      AF_Constants.qual_per=0;
                   }
                   if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
                       Qual_value=Custom_Qualatative.X1__c;
@@ -479,10 +479,10 @@ public with sharing class AF_AnnualBonus {
               }
               else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
                   if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
-                      qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual_Per__c;
+                      AF_Constants.qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual_Per__c;
                   }
                   else{
-                      qual_per=0;
+                      AF_Constants.qual_per=0;
                   }
                   if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
                       Qual_value=Custom_Qualatative.X1__c;
@@ -518,7 +518,7 @@ public with sharing class AF_AnnualBonus {
 *  @return: none.
 ***************************************************************************************/    
     public void annualBonusTotalTradDigitalCalc(){
-         for(String countryName:Countryname_BT){
+         for(String countryName:AF_Constants.Countryname_BT){
                 String countryDigital = countryName + '::' + 'D';
                 String countryTrad = countryName + '::' + 'T';
                 Integer count=0;
