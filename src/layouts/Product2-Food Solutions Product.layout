@@ -55,10 +55,7 @@
                 <behavior>Edit</behavior>
                 <field>Net_Weight_lb__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ERP_Product__c</field>
-            </layoutItems>
+
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
