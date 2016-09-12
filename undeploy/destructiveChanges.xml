@@ -31,6 +31,9 @@
 		<members>FA_Trigger_OccurenceMember</members>
 		<members>FA_UploadPwtAttachment</members>
 		<members>BasicMenuItem</members>
+		<members>TemplateController</members>
+		<members>TemplateControllerTest</members>
+		<members>Template</members>
 		<name>ApexClass</name>
     </types>
 	<types>
