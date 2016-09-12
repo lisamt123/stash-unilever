@@ -56,3 +56,6 @@ jq(function(){
  function skipValidation() {
      unsaved = false;
  }
+ function pageclosemilestone(){
+    window.top.location.href = IPMApp.TasklistPageRef + '?id=' + IPMApp.projectId + '&name=newMstone';
+}

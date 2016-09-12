@@ -243,7 +243,7 @@ Captured Images will be stored as attachment or document object.</description>
     <fields>
         <fullName>OtherBrandName__c</fullName>
         <externalId>false</externalId>
-        <label>OtherBrandName</label>
+        <label>Other Brand Name</label>
         <length>250</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -255,7 +255,7 @@ Captured Images will be stored as attachment or document object.</description>
     <fields>
         <fullName>OtherCompanyName__c</fullName>
         <externalId>false</externalId>
-        <label>OtherCompanyName</label>
+        <label>Other Company Name</label>
         <length>250</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -267,7 +267,7 @@ Captured Images will be stored as attachment or document object.</description>
     <fields>
         <fullName>RecordTypeName__c</fullName>
         <externalId>false</externalId>
-        <label>RecordTypeName</label>
+        <label>Record Type Name</label>
         <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -356,6 +356,10 @@ Captured Images will be stored as attachment or document object.</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Perfect In Store Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sustainability</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>

@@ -57,7 +57,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public List<string> questionthreeList{get;set;}
     public IPM_CoreParameter_Configration__c coreConfig{get;set;}//configuration of core parameter
     public IPM_InnovationRenovation__c innovationRenovation{get;set;}//get innovation or innovation data
-    public list<selectoption>lstmarket{get;set;}//list of market oprions
     public string strategicHelpText{get;set;}//store strategic help text
     public IPM_Coreparameter_Graph__c strategicGraphTick{get;set;}//store strategic graph tick mark
     public string editCoreParameterURL{get;set;}//get the url parameter value
@@ -88,6 +87,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public boolean isETEditable{get;set;}//check for display ET question
     public boolean isMPABack{get;set;}//check for display MPA back button
     public boolean isEditCoreparam{get;set;}//used for security
+    public boolean editplatform{get;set;}//used for security
     public boolean isAdditionalPara{get;set;}//used for security
     public boolean editSubSector{get;set;}//used for security
     public boolean editMarketActivityByPL{get;set;}//used for security
@@ -104,6 +104,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public string operationaPointer_STR{get;set;}//operational css value
     public string answerChecked_STR{get;set;}//css value
     public string answerUnChecked_STR{get;set;}//css value
+    public Boolean isRegRollout {get; set;} // true if project is regional rollout
     public String projbetlink {
     get{
         If (IPM_Coreparameter.BET_Link_Requested__c!=null ){
@@ -143,6 +144,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         } 
         set;    
     }
+    
+    public List<selectoption> availableBrands{get;set;} 
+    public Boolean isBrandVisible{get;set;}
     /****************************************************************************
     @Description: MEthod to unlink BET from IPM Project
     *****************************************************************************/
@@ -219,6 +223,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             searchresultBet.add(temp);
         }
     } 
+    public Boolean reactivateProjFlag; 
     /**BET Search related Changes: End**/
     /****************************************************************************
     @Description : constructor To initialize IPM_CoreParameterRevamp object
@@ -227,6 +232,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         
         // call utility class to save having to do this multiple times in multiple places
         super();
+        reactivateProjFlag = project.Is_Archieved__c;
         IPM_IECompatible.ieFix();    
         initialise();
         bLinkBET = true;
@@ -234,6 +240,12 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             bLinkBET = false;
         }
         resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
+        
+        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c))
+        {   
+            isBrandVisible=true;
+            
+        }
     }
     @TestVisible private  void initialise(){
         isEditCoreparameter=false;
@@ -246,10 +258,12 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         isEditCoreparam=false;
         isAdditionalPara=false;
         editSubSector=false;
+        editplatform = false;
         editMPAByBD=false;
         editCPVByBD=false;
         editETByTPL=false;
-        extraEditable=false;  
+        extraEditable=false; 
+        isRegRollout=false; 
         isExemptFromThresholdITO=false;
         operationalSlider_STR=IPM_ConstantUtils.IPM_OPERATIONAL_SLIDER;
         operationaPointer_STR=IPM_ConstantUtils.IPM_OPERATIONAL_BLUEPOINTER;
@@ -303,12 +317,15 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         getcoreparameterHelps();                   
         getAllQuestions();
         getCoreStrategicIntent();
-        if(project!=null && !project.Is_Archieved__c){
+        if(project!=null && !reactivateProjFlag){
             getIpmuserType();   
         }
         getCategoryValue();
-        getsubsector();
-        getMarket();
+		if(ipm_CategoryVal !=null && ipm_CategoryVal.IPM_Sector__c)
+        {
+        	subSector_STR=IPM_Coreparameter.IPM_Sector__c;	
+        }
+        getsubsector();//common method for market,sub sector and sector
         getStrategicGraph();
         betValue();
         getAccessonPage();
@@ -496,12 +513,24 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(String.isNotBlank(ProjectID))
         {
             IPM_Coreparameter=project;
+			// Access check for Business Partner user while reactivating the project
+    		isEditable = IPM_Utils.overrideAccessForBusinessPartner(project, isEditable);            
+            Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
+            Date dateToCompare = System.today().addMonths(-noOfMonths); 
+            if(IPM_Coreparameter.IPM_EligibleForReactivation__c && IPM_Coreparameter.IPM_Stopped_Date_Time__c > dateToCompare)
+            {
+                editplatform = editSubSector = reactivateProjFlag = isEditable;    
+            }
+            
             answerone_STR=IPM_Coreparameter.IPM_Answer_of_Q1__c;
             answertwo_STR=IPM_Coreparameter.IPM_Answer_of_Q2__c;
             answerthree_STR=IPM_Coreparameter.IPM_Answer_of_Q3__c;
             market_STR=IPM_Coreparameter.IPM_Market__c;
             subSector_STR=IPM_Coreparameter.IPM_Sub_sector__c;
             betValue_STR=IPM_Coreparameter.IPM_BET_Toolkit__c;
+            if(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)){
+                isRegRollout=true;
+            }
             if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) || IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)){
                 isOriginal=true;
             }
@@ -520,8 +549,13 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             }
         }
         IPM_Coreparameter.IPM_Market__c=market_STR;
-        IPM_Coreparameter.IPM_Sub_sector__c=subSector_STR;
-        //IPM_Coreparameter.IPM_BET_Toolkit__c=betValue_STR; 
+        if(ipm_CategoryVal.IPM_Sector__c)
+        {
+        	IPM_Coreparameter.IPM_Sector__c = subSector_STR;	
+        }
+        else{
+        	IPM_Coreparameter.IPM_Sub_sector__c=subSector_STR;
+        } 
         isThresholdSaved =true;
         updateCoreParameter();
         //Update Reset BET option upon save
@@ -547,8 +581,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         return options;
     }
         
-    
-    
     /****************************************************************************
     @Description :method to update answer one
     *****************************************************************************/
@@ -654,7 +686,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                 
             }
             //BD user access
-            if(userRole.equals(IPM_ConstantUtils.IPM_ROLE_BD) && extraEditable){
+            if(userRole.equals(IPM_ConstantUtils.IPM_ROLE_BD) && extraEditable && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag)){
                 isEditCoreparam=true;
                 editMPAByBD=true;
                 editCPVByBD=true;
@@ -664,8 +696,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
         //TPL user access
         if(IPM_Coreparameter.IPM_Technical_Project_Leader__c!=null && IPM_Coreparameter.IPM_Technical_Project_Leader__c==userinfo.getuserid() && 
-            !IPM_Coreparameter.Is_Archieved__c && extraEditable && (IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.IPM_Project_Leader__c || 
-            IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.Deputy_Project_Leader__c )){
+            !reactivateProjFlag && extraEditable && (IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.IPM_Project_Leader__c || 
+            IPM_Coreparameter.IPM_Technical_Project_Leader__c!=IPM_Coreparameter.Deputy_Project_Leader__c) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag)){
             editETByTPL=true;
             isEditCoreparam=true;
         }
@@ -681,6 +713,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                     editMarketActivityByPL=true;
                 } 
                 isEditable=true;
+                editplatform = true;
                 editETByTPL=false;
                 if(IPM_ConstantUtils.PHASE_IDEAS.equals(IPM_Coreparameter.IPM_Phase__c)){
                     editSubSector=true;
@@ -700,7 +733,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(isCentralTeam || isBPUser){
             isEditable=true;
             if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(IPM_Coreparameter.IPM_Project_Type__c) || IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(IPM_Coreparameter.IPM_Project_Type__c) ){
-                editSubSector=true;
+                editSubSector = true;
+                editplatform = true;
             }
             if((IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(IPM_Coreparameter.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(IPM_Coreparameter.IPM_Project_Type__c))) || 
             (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(IPM_Coreparameter.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(IPM_Coreparameter.IPM_Project_Type__c))) || 
@@ -710,62 +744,39 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }                                       
         
     }     
-    
     /****************************************************************************
-    @Description :Get list of Market based on category
-    *****************************************************************************/
-    @TestVisible private void getMarket(){
-        selCat=IPM_ConstantUtils.BLANK;
-        List<MDO_Category__c> userMarket=new List<MDO_Category__c>();
-        if(IPM_Coreparameter.IPM_Category_Text__c!=null){
-            lstmarket=new list<selectoption>();
-            lstmarket.add(new selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectMarket));
-            selCat=IPM_Coreparameter.IPM_Category_Text__c;
-            set<string>UniqueMarket=new set<string>();
-            if(String.isNotBlank(selCat)) {
-                userMarket=[SELECT id, Name FROM MDO_Category__c  
-                            WHERE category_type__c=:IPM_ConstantUtils.IPM_MARKET AND parent_id__r.Name=:selCat LIMIT 1000];
-            }
-            if(!userMarket.isEmpty()){
-                for(MDO_Category__c u:userMarket){
-                    if(!UniqueMarket.Contains(u.Name)){
-                        lstmarket.add(new Selectoption(u.Name,u.Name));
-                        UniqueMarket.add(u.Name);
-                    }
-                    
-               } 
-                          
-            }
-            
-        }
-    }
-    /****************************************************************************
-    @Description :To retrive the Subsector details
+    @Description :To retrieve the Subsector/Makert/Sector details
     *****************************************************************************/  
     @TestVisible private void getSubsector(){
         selCat=IPM_ConstantUtils.BLANK;
-        if(IPM_Coreparameter.IPM_Category_Text__c!=null){
+        if(ipm_CategoryVal !=null && IPM_Coreparameter.IPM_Category_Text__c!=null){
             lstsubsector=new list<selectoption>();
             selCat=IPM_Coreparameter.IPM_Category_Text__c;
             List<MDO_Category__c > subsectorList=new List<MDO_Category__c >();
             set<string>uniqueSubSector=new set<string>();
-            lstsubsector.add(new Selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectSubSector));
-            if(String.IsNotBlank(selCat)) {
-                subsectorList=[SELECT id, Name FROM
-                            MDO_Category__c WHERE parent_L3__r.Name=:selCat
-                            AND category_type__c=:IPM_ConstantUtils.IPM_SUBSECTOR  LIMIT 1000];
+            string query_Str='';
+            query_Str='SELECT Name FROM MDO_Category__c ';
+            if(ipm_CategoryVal.IPM_Sub_Sector__c)
+            {
+            	 query_Str+='WHERE parent_L3__r.Name= \''+ selCat +'\' AND category_type__c=\''+IPM_ConstantUtils.IPM_SUBSECTOR +'\' ';
             }
-            if(!subsectorList.isEmpty()){
-               for(MDO_Category__c u:subsectorList){
-                    if(!uniqueSubSector.contains(u.Name)){
-                        lstsubsector.add(new Selectoption(u.Name,u.Name));
-                        uniqueSubSector.add(u.Name );
-                    }
-                    
-                    
-                } 
-                          
+            else if(ipm_CategoryVal.IPM_Sector__c)
+            {
+            	query_Str+='WHERE parent_L2__r.Name= \''+ selCat + '\' AND category_type__c=\''+IPM_ConstantUtils.IPM_SECTOR +'\' ';
             }
+            else if(ipm_CategoryVal.IPM_Market__c)
+            {
+            	query_Str+='WHERE category_type__c= \''+IPM_ConstantUtils.IPM_MARKET + '\' AND parent_id__r.Name=\''+ selCat + '\' ';
+            }
+            query_Str+=' LIMIT 1000';
+            
+            subsectorList = Database.Query(query_Str);
+            for(MDO_Category__c u:subsectorList){
+                if(!uniqueSubSector.contains(u.Name)){
+                    lstsubsector.add(new Selectoption(u.Name,u.Name));
+                    uniqueSubSector.add(u.Name );
+                }
+            }  
         }          
     }
     
@@ -788,7 +799,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             isShowFastTOrWhiteS=true;
         
         }
-        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c)){
+        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !IPM_Coreparameter.IPM_PrepareForArchival__c && !reactivateProjFlag){
             isEditCoreparamPage=true;
         }
         if(coreConfig.IPM_MPA__c!=null && coreConfig.IPM_MPA__c && (isEditable||isEditCoreparam)){
@@ -803,15 +814,24 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(coreConfig.IPM_MPA__c!=null && !coreConfig.IPM_MPA__c && isEditable && !isEditCoreparameter){
             isMPABack=true;
         }
-        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && 
+        if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag) &&
         !((IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
             ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)
             ))){
-            isEditCoreparam=true;
+            
             isAdditionalPara=true;
+        }
+        if(isEditable && !IPM_ConstantUtils.PHASE_MARKET_READY.Equals(IPM_Coreparameter.IPM_Phase__c) && !IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.Equals(IPM_Coreparameter.IPM_Phase__c) &&
+        !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && !(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c) && !IPM_ConstantUtils.IPM_OPERATIONAL.equals(IPM_Coreparameter.IPM_Project_Type__c)) && !(IPM_Coreparameter.IPM_PrepareForArchival__c || reactivateProjFlag))
+            {
+            isEditCoreparam=true;
+            
         }
         
     }
+        
+    
+      
     
     /****************************************************************************
     @Description :Wrapper class to hold data from BET as well as IPM

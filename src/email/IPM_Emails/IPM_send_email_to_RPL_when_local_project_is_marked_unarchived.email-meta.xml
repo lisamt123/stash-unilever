@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPM_Notification_Letterhead</letterhead>
+    <name>IPM send email to RPL when local project is marked unarchived</name>
+    <style>freeForm</style>
+    <subject>Your Project {!IPM_Project__c.IPM_Project_Name__c} is Unarchiving</subject>
+    <textOnly>The Local Rollout Leader {!IPM_Project__c.IPM_Project_Leader__c} has chosen to cancel the stoppage of {!IPM_Project__c.IPM_Project_Name__c}. Therefore {!IPM_Project__c.IPM_Project_Name__c} will remain part of the rollout plan of {!IPM_Project__c.IPM_Parent_Project_Name__c}. If you disagree with this cancellation please contact {!IPM_Project__c.IPM_Project_Leader__c} to come to an agreement. Please note that you can start the stopping procedure at any time before [Local Project Name] has approved the Market Deployment Gate.</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -26,7 +26,7 @@
         <titleSize>18</titleSize>
     </chart>
     <columns>
-        <field>CUST_NAME</field>
+        <field>GEL_Global_Exception_Log__c.REF_Number__c</field>
     </columns>
     <format>Summary</format>
     <groupingsDown>

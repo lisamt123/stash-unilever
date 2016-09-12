@@ -232,8 +232,8 @@ global with sharing class AA_ExecuteApprovalProcess{
               
         
       String redirect = AgentReportObj.id;
-      //String ListView = redirect.subString(0,3);
-      PageReference pageRef = new PageReference('/' + redirect );     
+      String ListView = redirect.subString(0,3);
+      PageReference pageRef = new PageReference('/' + ListView );     
       return pageRef;
          }
          
@@ -399,12 +399,15 @@ global with sharing class AA_ExecuteApprovalProcess{
              
              update AgentReportObj;
              
-             String redirect = AgentReportObj.id;
-           //  pageRef =AgentReportObj.id;
-            // String ListView = redirect.subString(0,3);
-             pageRef = new PageReference('/' + redirect );
+             //String redirect = AgentReportObj.id;
+             //pageRef =AgentReportObj.id;
+             //String ListView = redirect.subString(0,3);
+             //pageRef = new PageReference('/' + ListView );
              //pageRef = Page.Agent_App_Report;
              
+             String redirect = AgentReportObj.id;
+             String ListView = redirect.subString(0,3);
+             pageRef = new PageReference('/' + ListView );
              
          }catch(DMLException ex){
             system.debug('=====>'+ ex.getMessage());

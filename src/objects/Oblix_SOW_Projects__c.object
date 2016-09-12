@@ -65,7 +65,6 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Oblix Project - SOW Projects for a Financial Year. Also copies of the projects at certain points in time through the FY are stored in this object (and Related objects) to form a comparison</description>
@@ -74,7 +73,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -843,6 +841,23 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>Campaign_Status1__c</fullName>
+        <description>Added new Field for Reporting</description>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(Campaign_Status__c, &quot;Not Started&quot;), &quot;Active&quot; ,
+IF(ISPICKVAL(Campaign_Status__c, &quot;In Progress&quot;), &quot;In Progress&quot; ,
+IF(ISPICKVAL(Campaign_Status__c, &quot;On Hold&quot;), &quot;On Hold&quot; ,
+IF(ISPICKVAL(Campaign_Status__c, &quot;Completed&quot;), &quot;Completed&quot; , 
+IF(ISPICKVAL(Campaign_Status__c, &quot;Cancelled&quot;), &quot;Cancelled&quot;,&quot;&quot;)))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Campaign_Status__c</fullName>
         <description>The status of the campaign ie. if it is being worked on or not</description>
         <externalId>false</externalId>
@@ -902,6 +917,15 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Check_For_Manual_Edit_Campaign__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Check For Manual Edit Campaign</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Cloned_Campaign__c</fullName>

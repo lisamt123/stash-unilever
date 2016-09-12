@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
-        <label><!-- Ice Cream --></label>
-        <name>ICB_IceCream</name>
+        <label>Canal Móvel</label>
+        <name>ICB_Mobile_Channel</name>
     </customApplications>
     <customLabels>
         <label><!-- AF Adjust Quarters --></label>
@@ -2789,6 +2789,18 @@
         <name>ICB_ALERT_CHECKOUT_OUT_CUSTOMER</name>
     </customLabels>
     <customLabels>
+        <label>Saldo(Cx.)</label>
+        <name>ICB_BALANCE</name>
+    </customLabels>
+    <customLabels>
+        <label>Saldo(Unid.)</label>
+        <name>ICB_BALANCE_UNIT</name>
+    </customLabels>
+    <customLabels>
+        <label>Voltar</label>
+        <name>ICB_BUTTON_BACK</name>
+    </customLabels>
+    <customLabels>
         <label>Cancelar</label>
         <name>ICB_BUTTON_CANCEL</name>
     </customLabels>
@@ -2817,16 +2829,56 @@
         <name>ICB_BUTTON_OPEN</name>
     </customLabels>
     <customLabels>
+        <label><!-- ICB CHECK HASHTAG --></label>
+        <name>ICB_CHECK_HASHTAG</name>
+    </customLabels>
+    <customLabels>
         <label>Concluído</label>
         <name>ICB_CONCLUDED_VISIT_STATUS</name>
+    </customLabels>
+    <customLabels>
+        <label>Solicitação de Kits</label>
+        <name>ICB_CockPitHeader</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB_Distance_Limit --></label>
         <name>ICB_Distance_Limit</name>
     </customLabels>
     <customLabels>
+        <label>Entrada(Unid.)</label>
+        <name>ICB_ENTRY</name>
+    </customLabels>
+    <customLabels>
         <label>Erro! Realize Check-In antes do Check-Out!</label>
         <name>ICB_ERROR_CHECKIN_BEFORE_CHECKOUT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB_ERROR_MESSAGE --></label>
+        <name>ICB_ERROR_MESSAGE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Product Impulse Family --></label>
+        <name>ICB_FAMILY_IMPULSE</name>
+    </customLabels>
+    <customLabels>
+        <label>Batimento de vendas</label>
+        <name>ICB_HeaderCloseSale</name>
+    </customLabels>
+    <customLabels>
+        <label>Produtos em utilização</label>
+        <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
+    </customLabels>
+    <customLabels>
+        <label>Produtos em estoque</label>
+        <name>ICB_INVENTORY_HEADER_SUB_TITLES</name>
+    </customLabels>
+    <customLabels>
+        <label>NOME</label>
+        <name>ICB_INVENTORY_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label>Nenhuma Visita Agendada</label>
+        <name>ICB_NO_VISIT_SCH</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB OUT OF ROUTE VISIT --></label>
@@ -2841,8 +2893,44 @@
         <name>ICB_PREFIX_SOBJECT_EVENT</name>
     </customLabels>
     <customLabels>
+        <label>Produto</label>
+        <name>ICB_PRICELIST_HEADER_SUB_TITLE</name>
+    </customLabels>
+    <customLabels>
+        <label>Produtos em utilização</label>
+        <name>ICB_PRICELIST_HEADER_SUB_TITLES</name>
+    </customLabels>
+    <customLabels>
+        <label>Descrição</label>
+        <name>ICB_PROD_DESCRIPTION</name>
+    </customLabels>
+    <customLabels>
+        <label>Valor de Compra</label>
+        <name>ICB_PROD_PURCHASE_VALUE</name>
+    </customLabels>
+    <customLabels>
+        <label>Valor do Sorveteiro</label>
+        <name>ICB_PROD_SALESMAN_VALUE</name>
+    </customLabels>
+    <customLabels>
+        <label>Valor de Venda</label>
+        <name>ICB_PROD_SALE_VALUE</name>
+    </customLabels>
+    <customLabels>
+        <label>Tabela de preço para o operador</label>
+        <name>ICB_Price_Book_Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB Price Book RecordTypeId --></label>
+        <name>ICB_Price_Book_RecordTypeId</name>
+    </customLabels>
+    <customLabels>
         <label><!-- ICB REC TYPE ICE CREAM VISIT --></label>
         <name>ICB_REC_TYPE_ICE_CREAM_VISIT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB REC TYPE STANDARD CONTACT --></label>
+        <name>ICB_REC_TYPE_STANDARD_CONTACT</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB ROADNET CREATED BY NAME --></label>
@@ -2917,8 +3005,16 @@
         <name>ICB_TEXT_WARNING</name>
     </customLabels>
     <customLabels>
+        <label>Produto</label>
+        <name>ICB_TITLE_PRODUCT</name>
+    </customLabels>
+    <customLabels>
         <label>Não planejado</label>
         <name>ICB_UNPLANNED_VISIT</name>
+    </customLabels>
+    <customLabels>
+        <label>Atualizar</label>
+        <name>ICB_UPDATE_INVENTORY</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB URL GOOGLE MAP --></label>
@@ -2935,6 +3031,10 @@
     <customLabels>
         <label>Atenção! Check-Out já foi realizado!</label>
         <name>ICB_WARNING_CHECKOUT_SUCCESSFULLY</name>
+    </customLabels>
+    <customLabels>
+        <label>Operador</label>
+        <name>ICE_Type_Operator</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_€ &apos;000 --></label>
