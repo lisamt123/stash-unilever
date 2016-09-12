@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
     <types>
-<<<<<<< HEAD
 		<members>ChatterUIController</members>
 		<members>ChatterUIFileUpload</members>
 		<members>ControllerUtil</members>
@@ -114,7 +113,6 @@
 	<name>CustomSetting</name>
 	</types>
 	</Package>
-=======
 		<members>Unilever - Ideas Admin</members>
 		<members>FA - Agency</members>
 		<members>FA - Instructor</members>
@@ -141,6 +139,9 @@
     	<members>Category</members>
     	<name>ApexPage</name>
     </types>
+    <types>
+        <members>FA - Email Template</members>
+        <name>EmailTemplate</name>
+    </types>
 	
 </Package>
->>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
