@@ -26,7 +26,7 @@ public with sharing class AF_AnnualBonus {
     //public Integer Totals_Digital { get; set; }// To get total digital values for all display list
     //public Boolean isDigital { get; set; }//Check for digital value
     //public decimal sum_of_bonus_per { get; set; }// To hold sum of bonus percentage which is calculated by Quantative value
-    public decimal sum_of_bonus_val { get; set; }// To hold sum of bonus value which is calculated by Quantative value
+    //public decimal sum_of_bonus_val { get; set; }// To hold sum of bonus value which is calculated by Quantative value
     public list<wrapbonus> QuartelyBonus {get;set;}//List to hold multiple object data
     //public list<wrapbonus> QuartelyBonusExt {get;set;}//List to hold multiple object data
     public list<AF_Bonus_Results__c>AF_Bonus_Result{get;set;}//list of bonus result records
@@ -55,8 +55,8 @@ public with sharing class AF_AnnualBonus {
     //public Boolean noDisplayQuarterly{get;set;}
     public  decimal sum_of_bonusable_fees { get; set; } //to hold the sum of Bonusable fees 30-08-2014
     public  decimal sum_of_bonusable_fees_onload { get; set; } //to hold the sum of Bonusable fees on load 03-09-2014
-    public Integer Totals_BonusMeasureTrad { get; set; }
-    public Integer Totals_BonusMeasureDigital { get; set; }
+    //public Integer Totals_BonusMeasureTrad { get; set; }
+    //public Integer Totals_BonusMeasureDigital { get; set; }
     /*Start code refactoring*/
     //private static String Digital =AF_Constants.DIGITAL;
     //private static String Trad = AF_Constants.TRADITIONAL;
@@ -65,7 +65,7 @@ public with sharing class AF_AnnualBonus {
     //private static String AF_Qualitative_value=AF_Constants.TEST_QUAL_VALUE;
     //private static string className_STR=AF_Constants.TEST_ANNUAL_BONUS;
     //public Boolean showSubmit{get;set;}
-    private set<string> agencyEstUnqStr = new set<string>();
+    //private set<string> agencyEstUnqStr = new set<string>();
     Map<String,Integer> countryBMMap= new Map<String,Integer>();
     map<String,Integer> countryCountMap = new map<String,Integer>();
     map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_Map = new map<String,map<String,boolean>>();
@@ -111,7 +111,7 @@ public with sharing class AF_AnnualBonus {
         //Digital_value=0;
         total_bonus_fees=0;
         AF_Constants.sum_of_bonus_per=0;
-        sum_of_bonus_val =0;
+        AF_Constants.sum_of_bonus_val =0;
         AF_Constants.Totals_Traditional=0;
         AF_Constants.Totals_Digital=0;
         //TotalTraditionalValue=0;
@@ -119,8 +119,8 @@ public with sharing class AF_AnnualBonus {
         //isQuantEmpty=false;
         AF_Constants.AF_Pilot_Model = false;
         AF_Constants.No_Bonus_Check= false;
-        Totals_BonusMeasureTrad =0;
-        Totals_BonusMeasureDigital=0;
+        AF_Constants.Totals_BonusMeasureTrad =0;
+        AF_Constants.Totals_BonusMeasureDigital=0;
         AF_Constants.showSubmit=false;
         QuartelyBonus=new list<wrapbonus>();// Initialization of wrapper class
         //QuartelyBonusExt =new list<wrapbonus>();
@@ -177,7 +177,7 @@ public with sharing class AF_AnnualBonus {
             
             annualBonusTradDigitalCalc();
            
-            sum_of_bonusable_fees=Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
+            sum_of_bonusable_fees=AF_Constants.Totals_BonusMeasureTrad+AF_Constants.Totals_BonusMeasureDigital;
             annualBonusTotalTradDigitalCalc();
             annualBonusBMCalc(Bonus_SubResult_List);
             
@@ -201,7 +201,7 @@ public with sharing class AF_AnnualBonus {
                     string brandname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Brand_Name__c;
                     string agencyname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Agency_Name__c;
                     string str=agencyname_id+'::'+ brandname_id+'::'+bonus_SubResult_Obj.AF_Country__r.AF_Country__c+'::'+bonus_SubResult_Obj.AF_Bonus_Threshold__r.Year__c;
-                    agencyEstUnqStr.add(str);
+                    AF_Constants.agencyEstUnqStr.add(str);
                     String countryDigital = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                     String countryTrad = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
                     Integer count=0;
@@ -281,7 +281,7 @@ public with sharing class AF_AnnualBonus {
         for(AF_Sub_Result__c bonusResObj:Bonus_SubResult_List){
                 mapBonus_result.put(bonusResObj.AF_Unique_Thresholds__c,bonusResObj);
                 if(bonusResObj.AF_Quant_Bonus_Value__c!=null){
-                    sum_of_bonus_val=sum_of_bonus_val + integer.valueof(bonusResObj.AF_Quant_Bonus_Value__c);
+                    AF_Constants.sum_of_bonus_val=AF_Constants.sum_of_bonus_val + integer.valueof(bonusResObj.AF_Quant_Bonus_Value__c);
                 }
                 if(bonusResObj.AF_Total_Bonus_Value__c!=null){
                     sum_of_quant_qual_value=sum_of_quant_qual_value + bonusResObj.AF_Total_Bonus_Value__c;
@@ -293,7 +293,7 @@ public with sharing class AF_AnnualBonus {
                 }
                 if(bonusResObj.AF_Quant_Bonus__c!=null){
                     if(sum_of_bonusable_fees_onload>0)
-                    AF_Constants.sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
+                    AF_Constants.sum_of_bonus_per=math.round((AF_Constants.sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
                 }
             }
     }
@@ -303,7 +303,7 @@ public with sharing class AF_AnnualBonus {
 *  @return: none.
 ***************************************************************************************************/        
     public void annualBonusTradDigitalCalc(){
-         for(AF_Agency_Estimate__c agEstObj:[Select id,AF_Total__c,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN :agencyEstUnqStr and AF_Brand_Estimate__r.AF_Active__c=True])
+         for(AF_Agency_Estimate__c agEstObj:[Select id,AF_Total__c,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN :AF_Constants.agencyEstUnqStr and AF_Brand_Estimate__r.AF_Active__c=True])
             {
                 String UEntityTrad= agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'T';
                 String UEntityDigital = agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'D';
@@ -329,14 +329,14 @@ public with sharing class AF_AnnualBonus {
                 }
                 if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c)!=null){
                     if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.DIGITAL) && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.TRADITIONAL)){
-                        Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
-                        Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
+                        AF_Constants.Totals_BonusMeasureDigital = AF_Constants.Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
+                        AF_Constants.Totals_BonusMeasureTrad = AF_Constants.Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                     }
                     else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.DIGITAL)){
-                        Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
+                        AF_Constants.Totals_BonusMeasureDigital = AF_Constants.Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
                     }
                     else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(AF_Constants.TRADITIONAL)){
-                        Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
+                        AF_Constants.Totals_BonusMeasureTrad = AF_Constants.Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                     }
                 }
             } 
@@ -588,7 +588,7 @@ public with sharing class AF_AnnualBonus {
 ***************************************************************************************/
     public void Calculate_Bonus() {
         AF_Constants.sum_of_bonus_per=0;
-        sum_of_bonus_val=0;
+        AF_Constants.sum_of_bonus_val=0;
         sum_of_quant_qual_value=0;
         AF_Constants.sum_of_quant_qual_percent=0;
         Decimal Quantvalue=0;
@@ -624,14 +624,14 @@ public with sharing class AF_AnnualBonus {
                 }
                 if(newbonus.bonusResObj.AF_Quant_Bonus__c!=null){
                     newbonus.bonusResObj.AF_Quant_Bonus_Value__c=math.round(newbonus.total_bonus_fees* newbonus.bonusResObj.AF_Quant_Bonus__c/100);
-                    sum_of_bonus_val=sum_of_bonus_val + newbonus.bonusResObj.AF_Quant_Bonus_Value__c;
+                    AF_Constants.sum_of_bonus_val=AF_Constants.sum_of_bonus_val + newbonus.bonusResObj.AF_Quant_Bonus_Value__c;
                     newbonus.bonusResObj.AF_Total_Bonus__c=newbonus.bonusResObj.AF_Quant_Bonus__c+newbonus.QualPercent;
                     newbonus.bonusResObj.AF_Total_Bonus_Value__c=newbonus.bonusResObj.AF_Quant_Bonus_Value__c+ newbonus.QualValue;
                     sum_of_quant_qual_value=sum_of_quant_qual_value+newbonus.bonusResObj.AF_Total_Bonus_Value__c;
                     if(sum_of_bonusable_fees>0)
                     {
                         AF_Constants.sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees)*100);
-                        AF_Constants.sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees)*100);
+                        AF_Constants.sum_of_bonus_per=math.round((AF_Constants.sum_of_bonus_val/sum_of_bonusable_fees)*100);
                     }
                 }
             }   
@@ -755,7 +755,7 @@ public with sharing class AF_AnnualBonus {
             bonus_latestlist.add(w_bonus.bonusResObj);
         }
         Integer validateTotal =0;
-        validateTotal = Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
+        validateTotal = AF_Constants.Totals_BonusMeasureTrad+AF_Constants.Totals_BonusMeasureDigital;
         if(bException){
             String validationErrorMsg = Label.AF_Quant_Fields;
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,validationErrorMsg));
