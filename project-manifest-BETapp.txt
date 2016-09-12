@@ -1,10 +1,4 @@
 src
-<<<<<<< HEAD
 src/classes
 src/classes/BET_Team_MemberHandlerCls.cls
 src/classes/BET_Team_MemberHandlerCls.cls-meta.xml
-=======
-src/staticresources
-src/staticresources/BETApp.resource
-src/staticresources/BETApp.resource-meta.xml
->>>>>>> b2593dc3de3389f44e2da3d6619809f1dc347bd0
