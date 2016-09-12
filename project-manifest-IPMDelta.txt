@@ -1,5 +1,6 @@
 src
-src/permissionsets
-src/permissionsets/IPM_System_Administrator_Permissions.permissionset
-src/workflows
-src/workflows/IPM_Project__c.workflow
+src/classes
+src/classes/IPM_RolloutPlansAddController.cls
+src/classes/IPM_RolloutPlansAddController.cls-meta.xml
+src/classes/IPM_CMIGateSectionController.cls
+src/classes/IPM_CMIGateSectionController.cls-meta.xml

@@ -1,6 +1,6 @@
 public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_SWOPparentController {
 
-	// controller attribute to ease passing of comment text from vf page to controller
+    // controller attribute to ease passing of comment text from vf page to controller
     public String sowSubmitComments {get; set;}
     public String sowApproveComments {get; set;}
     public String sowRejectComments {get; set;}
@@ -11,8 +11,8 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Oblix_DashboardsHandler scoresFYFeeDashboard {get; set;}
     public Oblix_DashboardsHandler scoresFullFeeDashboard {get; set;}
     public DateTime pageLastRefreshed {get;set;}
-
-	public static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
+    public static Approval.ProcessResult result;
+    public static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     public static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
 
     public List<CampaignNonCampaignItems> li_campaign_and_non_campaign_items {get; set;}
@@ -20,9 +20,9 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     public Id campaignIDSync { get; set; }
 
     public Boolean isAdmin {
-    	get{
-    		return Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();
-    	}
+        get{
+            return Oblix_PermissionHandler.isSystemAdmin() || Oblix_PermissionHandler.hasSuperUserpermissionSet();
+        }
     }
 
     public Boolean can_delete_sow{
@@ -272,11 +272,11 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
 
 
 
-	public Oblix_SOWMainDetalControllerExt() {
-		
-	}
+    public Oblix_SOWMainDetalControllerExt() {
+        
+    }
 
-	/*******************************************************************
+    /*******************************************************************
         Purpose: Inner Class Used to have list of Campaign and non Campaign in the same list
         Parameters: none
         Returns: none
@@ -319,7 +319,6 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
     * @description  submit SOW for approval
     ********************************************************************************/
     public PageReference submitForApproval(){
-
         Id submitterId = UserInfo.getUserId();
 
         Savepoint sp;
@@ -378,7 +377,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
             //req1.setSkipEntryCriteria(true);
 
             // Submit the approval request for the account
-            Approval.ProcessResult result = Approval.process(req1);
+            result = Approval.process(req1);
 
             // Verify the result
             //System.assert(result.isSuccess());
@@ -458,7 +457,7 @@ public with sharing virtual class Oblix_SOWMainDetalControllerExt extends Oblix_
                 pwr.setComments(sowApproveComments);
                 pwr.setAction('Approve');
                 pwr.setWorkitemId(wi.Id);
-                Approval.ProcessResult result =  Approval.process(pwr);
+                result =  Approval.process(pwr);
 
                 System.debug('Approval successfull');
 

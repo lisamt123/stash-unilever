@@ -1,11 +1,62 @@
-Public class AA_theAgent_ChatterPost_FutureClass{    
+<<<<<<< HEAD
+Public with sharing class AA_theAgent_ChatterPost_FutureClass{    
    
+=======
+Public with sharing class AA_theAgent_ChatterPost_FutureClass{      
+>>>>>>> develop
+       
     @future 
+    Public static void CallSendToChatter(Map<String,String> lsttriggerList)
+    {
+<<<<<<< HEAD
+      Map<ID,aa_Agent_Report__c> countryList=new Map<ID,aa_Agent_Report__c>(); 
+        for ( String objOnfeedID : lsttriggerList.keySet() ){
+          aa_Agent_Report__c report = (aa_Agent_Report__c) JSON.deserialize(lsttriggerList.get(objOnfeedID), aa_Agent_Report__c.class);
+               if(objOnfeedID!='Cluster_Id'){
+                           
+                 AA_theAgent_ChatterPost_FutureClass.sendToChatter(Id.valueof(objOnfeedID), report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
+                 }else{
+                
+                   countryList.put(report.Country__c,report);
+                 }
+     
+         }
+          List<aa_Country__c> countryclusterlist=[select Cluster_Id__c from aa_Country__c where Id IN:countryList.keySet()];
+=======
+      //Map<ID,aa_Agent_Report__c> countryList=new Map<ID,aa_Agent_Report__c>(); 
+        for ( String objOnfeedID : lsttriggerList.keySet() ){
+          aa_Agent_Report__c report = (aa_Agent_Report__c) JSON.deserialize(lsttriggerList.get(objOnfeedID), aa_Agent_Report__c.class);
+               //if(objOnfeedID!='Cluster_Id'){
+                       system.debug('create chatter post for '+Id.valueof(objOnfeedID));    
+                 AA_theAgent_ChatterPost_FutureClass.sendToChatter(Id.valueof(objOnfeedID), report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
+                // }else{
+                
+                 //  countryList.put(report.Country__c,report);
+                // }
+     
+         }
+     /*     List<aa_Country__c> countryclusterlist=[select Cluster_Id__c from aa_Country__c where Id IN:countryList.keySet()];
+>>>>>>> develop
+              for(aa_Country__c countryobj :countryclusterlist)
+               {
+                   for ( String objreport : countryList.keySet() ){
+                     aa_Agent_Report__c report = (aa_Agent_Report__c)countryList.get(countryobj.Id);
+                     AA_theAgent_ChatterPost_FutureClass.sendToChatter(countryobj.Cluster_Id__c, report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
+                   }
+<<<<<<< HEAD
+               }        
+=======
+               }  
+               */      
+>>>>>>> develop
+    }
+    
     public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country) {    
         
         String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
         ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
         feedItemInput.body = new ConnectApi.MessageBodyInput();
+        system.debug('In sent to chatter'+objectId);
         
         feedItemInput.body.messageSegments = new List<ConnectApi.MessageSegmentInput>();
 
@@ -51,11 +102,12 @@ Public class AA_theAgent_ChatterPost_FutureClass{
         }  */
     }
     
+<<<<<<< HEAD
      //@future 
     public static void CreateChatterPost(Id objectId,String postText, Id reportId){
-    	
-    	system.debug('In createChatterPost method');
-    	//String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
+      
+      system.debug('In createChatterPost method');
+      //String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
         /*ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
         feedItemInput.body = new ConnectApi.MessageBodyInput();
         
@@ -66,8 +118,8 @@ Public class AA_theAgent_ChatterPost_FutureClass{
        // textSegment.text = 'New Agent Report by '+reportCreatorName +' ';
        textSegment.text = 'New Agent Report by Aslesha';
         feedItemInput.body.messageSegments.add(textSegment);
-    	
-    	// add the text segment       
+      
+      // add the text segment       
         ConnectApi.TextSegmentInput textSegment2 = new ConnectApi.TextSegmentInput();
         textSegment2.text = ': ' + postText;
         feedItemInput.body.messageSegments.add(textSegment2);
@@ -100,4 +152,7 @@ Public class AA_theAgent_ChatterPost_FutureClass{
       //  ConnectApi.FeedType targetFeedType = FeedFormatter.getFeedType(feedType);
         ConnectApi.ChatterFeeds.postFeedItem('a6Hc0000000054a',  ConnectApi.FeedType.Record,objectId, feedItemInput, null);*/
     } 
+=======
+     
+>>>>>>> develop
 }

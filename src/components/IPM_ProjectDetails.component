@@ -54,6 +54,10 @@
                             <div class="pull-left list-style">
                                 <i class="fa fa-circle "></i>                                
                                 <span class="headBrand brandPosHeader">{!project.IPM_Brand_Positioning__c}</span>
+                                <apex:outputpanel layout="none" rendered="{!AND(project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c=='Local')}">
+	                                <i class="fa fa-circle "></i>  
+	                                <span class="headBrand brandPosHeader">{!project.IPM_LocalProject_Brand__c} </span>
+                                </apex:outputpanel>
                             </div>
                                                         
                         </div>
