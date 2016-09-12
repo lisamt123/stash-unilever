@@ -354,6 +354,7 @@
         <fields>NAME</fields>
         <relatedList>FS_Monthly_Claimed_Cases__c.Product__c</relatedList>
     </relatedLists>
+    <relatedLists>    
         <relatedList>UID_Performance_Line_Item__c.UID_Product__c</relatedList>
     </relatedLists>	
     <relatedLists>
