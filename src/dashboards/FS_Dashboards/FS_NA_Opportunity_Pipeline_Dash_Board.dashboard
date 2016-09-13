@@ -40,7 +40,7 @@
             <expandOthers>false</expandOthers>
             <header>Opportunities by Stage</header>
             <legendPosition>Bottom</legendPosition>
-            <report>Sample_opportunity_reports/Opp_Stage_report</report>
+            <report>FS_SHARED_FOLDER/Opp_Stage_report</report>
             <showPercentage>true</showPercentage>
             <showTotal>false</showTotal>
             <showValues>true</showValues>

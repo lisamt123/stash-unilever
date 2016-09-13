@@ -491,6 +491,7 @@ src/reports/FS_SHARED_FOLDER/Closed_Deals_leader_board.report
 src/reports/FS_SHARED_FOLDER/Closed_opportunity.report
 src/reports/FS_SHARED_FOLDER/FS_Opportunity_Pipeline.report
 src/reports/FS_SHARED_FOLDER/FS_Opportunity.report
+src/reports/FS_SHARED_FOLDER/Opp_Stage_report.report
 src/reports/FS_SHARED_FOLDER/Sales_Manager_Closed_Deals.report
 src/reports/FS_SHARED_FOLDER/Sales_Manager_Open_Opportunities.report
 src/reports/FS_SHARED_FOLDER/Sales_Manager_Open_Pipeline.report

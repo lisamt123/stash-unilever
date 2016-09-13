@@ -3,3 +3,4 @@ src/objects/Opportunity.object
 src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
 src/workflows/Opportunity.workflow
 src/dashboards/FS_Dashboards/FS_NA_Opportunity_Pipeline_Dash_Board.dashboard
+src/reports/FS_SHARED_FOLDER/Opp_Stage_report.report
