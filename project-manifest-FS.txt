@@ -9,6 +9,7 @@ src/reports/FS_Report/FS_Contact_Account_Report.report
 src/reports/FS_Report/FS_Hierarchy_Levels.report
 src/reports/FS_Report/FS_Opportunites_Funnel.report
 src/reports/FS_Report/FS_Opportunities_by_Product_Focus.report
+src/reports/FS_Report/FS_Opportunities_Funnel_Stage_Duration.report
 src/reports/FS_Report/FS_Opportunity_planned.report
 src/reports/FS_Report/FS_Price_List.report
 src/reports/FS_Report/FS_PriceBookList.report
