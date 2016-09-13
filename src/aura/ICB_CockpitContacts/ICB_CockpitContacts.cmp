@@ -137,14 +137,14 @@
                                     </aura:renderIf>
                                     <div> &nbsp;&nbsp;</div>
                                     <div align="center" class="border-div" data-label="{!$Label.c.ICB_ENTRY}">
-                                        <aura:renderIf isTrue="{!wrapper.oppItem.StageName == 'Available' || wrapper.oppItem == null}">
+                                        <!--<aura:renderIf isTrue="{!wrapper.oppItem.StageName == 'Available' || wrapper.oppItem == null}">-->
                                             <br /><ui:outputNumber class="input-size" aura:id="QuantityUnitIn" 
                                                             value="{!inventory.quantity}"  />
-                                            <aura:set attribute="else">
+                                            <!--<aura:set attribute="else">
                                             	<br /><ui:outputNumber class="input-size" aura:id="QuantityUnitOut" 
                                                             value="{!inventory.quantity}" />
                                             </aura:set>
-                                        </aura:renderIf>
+                                        </aura:renderIf>-->
                                         
                                     </div>
                                     <aura:renderIf isTrue="{!wrapper.oppItem.StageName == 'Available' || wrapper.oppItem == null}">

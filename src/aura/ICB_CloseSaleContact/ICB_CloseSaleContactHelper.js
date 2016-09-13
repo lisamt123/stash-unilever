@@ -79,7 +79,32 @@
         }
         console.log('Exit Helper <changeCheck>');
     },
-    ascDescValue : function(component,event,operation){
+    incrementValue : function(component,event){
+        console.log('Entering Helper <incrementValue>');
+        var selectedItem = event.currentTarget;
+        var index = selectedItem.dataset.record;
+       // var list = component.get("v.inventoryList");
+        var selectedStore = component.get("v.inventoryList")[index];
+        if(selectedStore.quantityReturned > selectedStore.quantity){
+            selectedStore.quantity +=1; 
+            component.set("v.inventoryList",component.get("v.inventoryList")); 
+        }
+        console.log('Exit Helper <incrementValue>');
+    },
+    decrementValue : function(component,event){
+        console.log('Entering Helper <incrementValue>');
+        var selectedItem = event.currentTarget;
+        var index = selectedItem.dataset.record;
+        //var list = component.get("v.inventoryList");
+        var selectedStore = component.get("v.inventoryList")[index];
+        if(selectedStore.quantity > 0){
+            selectedStore.quantity -=1;
+            component.set("v.inventoryList",component.get("v.inventoryList")); 
+        }
+        
+        console.log('Exit Helper <incrementValue>');
+    },
+    /*ascDescValue : function(component,event,operation){
         console.log('Entering Helper <ascDescValue>');
         var selectedItem = event.currentTarget;
         var index = selectedItem.dataset.record;
@@ -96,7 +121,7 @@
         }
         component.set("v.inventoryList",list); 
         console.log('Exit Helper <ascDescValue>');
-    },
+    },*/
     oppItemUpdate : function(component){
         console.log('Entering Helper <oppItemUpdate>');
         var listIvt = component.get("v.inventoryList");
