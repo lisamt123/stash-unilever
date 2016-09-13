@@ -6508,6 +6508,15 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000XhFV_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TRAMPOLINE_LA</label>
+        <queue>IPM_a7IE0000000XhFV</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Project</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>
