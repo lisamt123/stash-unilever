@@ -1,3 +1,31 @@
+    <labels>
+        <fullName>IPM_ADD_SELECTED_MEMBERS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ADD_SELECTED_MEMBERS</shortDescription>
+        <value>Add Selected Members</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Select_This_MCO_Members</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select members from this MCO</shortDescription>
+        <value>Select members from this MCO</value>
+    </labels>
+    <labels>
+        <fullName>Show_AllUsers_PersonalCare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>show me all users within IPM Navigator from Personal Care</shortDescription>
+        <value>Show me all users within IPM Navigator from Personal Care</value>
+    </labels>
+    <labels>
+        <fullName>Show_My_MCO_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show me users from my MCO</shortDescription>
+        <value>Show me users from my MCO</value>
+    </labels>
 	<labels>
 	        <fullName>IPM_ABOUT_PDL_APPROVED_STATE</fullName>
 	        <categories>EPIC244</categories>
