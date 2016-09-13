@@ -151,7 +151,6 @@ function navigateToHome()
 }
 /* Below function validates the status of the current gate document and performs the redirection to respective pages based on the status */
 function goToParentPage() {
-debugger;
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
     window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
     } else if(!isPDL) {
@@ -227,52 +226,7 @@ function changeCurrentStatus(changestatus,pdl) {
     var PointerP = 100 / (itemspdl.length - 1);
     var PointerF = 100 / (itemsProposed.length - 1);
     if (status === IPMApp.Proposed || status === IPMApp.Postponed) {
-        s.slider({
-            min: 1,
-            max: itemsProposed.length,
-            animate: 'slow',
-            stop: function(event, ui) {
-                var pointer = ui.value - 1;
-                jq('#statusRadioBtn_' + ui.value).prop('checked', true);
-
-                jq("label").css({
-                    'color': 'rgb(34, 34, 34)'
-                });
-                jq("label[for=statusRadioBtn_" + pointer + "]").css({
-                    'color': '#e98824'
-                });
-                if (status === 'Postponed' && pointer === 0) {
-                    jq('.ui-slider-handle').animate({
-                        'left': '66.66%'
-                    }, 100);
-                    jq("label[for=statusRadioBtn_0").css({
-                        'color': 'rgb(34, 34, 34)'
-                    });
-                    jq("label[for=statusRadioBtn_2").css({
-                        'color': '#e98824'
-                    });
-                    jq("label[for=statusRadioBtn_3").css({
-                        'color': '#e98824'
-                    });
-
-                    changeStatus(itemsProposed[ui.value + 1]);
-                }
-                if (status === IPMApp.Postponed && itemsProposed[ui.value - 1] !== IPMApp.Proposed) {
-                    changeStatus(itemsProposed[ui.value - 1]);
-                } else if (status === IPMApp.Proposed) {
-                    changeStatus(itemsProposed[ui.value - 1]);
-                }
-            }
-        });
-        jq("#changeStatus_links").addClass("slider4");
-        jq("#changeStatus").addClass("slider4");
-        jq.each(itemsProposed, function(key, value) {
-            var w = PointerF;
-            if (key === 0 || key === itemsProposed.length - 1){
-                w = PointerF / 2;
-        }
-            jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
-        });
+        proposednewfunc(s,itemsProposed,status,PointerF);
     } else if(status === IPMApp.inProgress && pdl){
         s.slider({
             min: 1,
@@ -337,6 +291,54 @@ function changeCurrentStatus(changestatus,pdl) {
             jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
         });
     }
+}
+function proposednewfunc(s,itemsProposed,status,PointerF){
+  s.slider({
+        min: 1,
+        max: itemsProposed.length,
+        animate: 'slow',
+        stop: function(event, ui) {
+            var pointer = ui.value - 1;
+            jq('#statusRadioBtn_' + ui.value).prop('checked', true);
+
+            jq("label").css({
+                'color': 'rgb(34, 34, 34)'
+            });
+            jq("label[for=statusRadioBtn_" + pointer + "]").css({
+                'color': '#e98824'
+            });
+            if (status === 'Postponed' && pointer === 0) {
+                jq('.ui-slider-handle').animate({
+                    'left': '66.66%'
+                }, 100);
+                jq("label[for=statusRadioBtn_0").css({
+                    'color': 'rgb(34, 34, 34)'
+                });
+                jq("label[for=statusRadioBtn_2").css({
+                    'color': '#e98824'
+                });
+                jq("label[for=statusRadioBtn_3").css({
+                    'color': '#e98824'
+                });
+
+                changeStatus(itemsProposed[ui.value + 1]);
+            }
+            if (status === IPMApp.Postponed && itemsProposed[ui.value - 1] !== IPMApp.Proposed) {
+                changeStatus(itemsProposed[ui.value - 1]);
+            } else if (status === IPMApp.Proposed) {
+                changeStatus(itemsProposed[ui.value - 1]);
+            }
+        }
+    });
+    jq("#changeStatus_links").addClass("slider4");
+    jq("#changeStatus").addClass("slider4");
+    jq.each(itemsProposed, function(key, value) {
+        var w = PointerF;
+        if (key === 0 || key === itemsProposed.length - 1){
+            w = PointerF / 2;
+    }
+        jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
+    });
 }
 
 function checkChange(elem){
