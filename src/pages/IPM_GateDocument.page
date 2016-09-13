@@ -392,7 +392,8 @@
                                                 <div class="StatusComment">
                                                     <div class="panel-group">                    
                                                         <div class="panelTitle">
-                                                            <apex:outputText value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}" />
+                                                            <apex:outputText rendered="{!NOT(isPDLDocument)}" value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}" />
+                                                            <apex:outputText rendered="{!isPDLDocument}" value="{!$Label.IPM_COMMENTS_FOR_PDL_GATE_DOC}" />
                                                         </div>
                                                         <!-- below panel is rendered when project document status is "Approved" and approval date is there -->
                                                         <apex:outputPanel layout="block"  styleClass="clearfix panelRow" rendered="{!If(AND(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Approval_Date__c!=null),True,False)}">

@@ -1011,7 +1011,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     	try{
     		Date dt=date.parse(System.today().format());
     		if(projSectionListUpdate.isEmpty()){    			
-		    	IPM_Milestone__c oPDLMilestone;
+		    	IPM_Milestone__c oPDLMilestone=null;
 		    	for (IPM_Milestone__c oMilestone : milestoneList){
 		    		if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK_DOCUMENT.Equals(oMilestone.IPM_Name__c)){
 		    			oPDLMilestone=oMilestone;
@@ -1021,12 +1021,12 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		    	if(oPDLMilestone!=null){
 		    		oPDLMilestone.IPM_Completed_On__c=dt;
 		    		oPDLMilestone.IPM_Completed__c=true;
+		    		update oPDLMilestone;
 		    	}
 		    	projectDoc.IPM_Document_Status__c=IPM_ConstantUtils.STATUS_APPROVED;		    	
 	    		projectDoc.IPM_Approval_Date__c=dt;
 	    		projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();
-		    	update projectDoc;
-		    	update oPDLMilestone;
+		    	update projectDoc;		    
     		}
     	}
     	catch(Exception ex)

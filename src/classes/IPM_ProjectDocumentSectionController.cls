@@ -439,11 +439,15 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 			isEditGateCMI=true;
 			isEcodesignEdit=true;
 		}
-		if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD) && IPM_ConstantUtils.PDL_FINACIAL_GLOBAL_CLAIMS.Equals(projDocSec.IPM_Section__r.External_ID__c))
+        getPDLBBBDUserPermission();
+    }
+    
+    private void getPDLBBBDUserPermission(){
+    	if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD) && IPM_ConstantUtils.PDL_FINACIAL_GLOBAL_CLAIMS.Equals(projDocSec.IPM_Section__r.External_ID__c))
         {
         	IsEditableOutC=true;
         }
-	}
+    }
 	
 	/****************************************************************************************************************************************************************
 	* @description Get CMI User permission for editing the section    
