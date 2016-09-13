@@ -498,6 +498,13 @@ src/reports/FS_SHARED_FOLDER/Sales_Manager_Open_Pipeline.report
 src/reports/FS_SHARED_FOLDER/Sales_Manager_Pipeline_Next_90_days.report
 src/reports/FS_SHARED_FOLDER/Secondary_Sales_Tracking_Dashboard.report
 src/reports/FS_SHARED_FOLDER/UsageActivitiesCompleted.report
+src/reports/FS_SHARED_FOLDER/Deals_by_Most_Pushes.report
+src/reports/FS_SHARED_FOLDER/FS_Opportunity_Change_Report.report
+src/reports/FS_SHARED_FOLDER/Opp_Summary_Report.report
+src/reports/FS_SHARED_FOLDER/Opportunities_Pushed_3_xs_by_Rep.report
+src/reports/FS_SHARED_FOLDER/Opportunities_w_out_Next_Steps.report
+src/reports/FS_SHARED_FOLDER/Stale_opptys_over_180_days.report
+src/reports/FS_SHARED_FOLDER/Stuck_Opportunities.report
 src/reports/North_America_Food_Solutions
 src/reports/North_America_Food_Solutions/Closed_Risks.report
 src/reports/North_America_Food_Solutions/FS_Product_List_Price_CA.report
