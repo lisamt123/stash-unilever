@@ -16,8 +16,7 @@ public with sharing class KUN_Profile_CC {
 
     public KUN_Profile_CC () 
     {
-        try
-        {                 
+           Profile  = new  KUN_Profile__c ();               
            string strProfileId= ApexPages.currentPage().getParameters().get('sfdc.userId');        
            if(string.IsEmpty(strProfileId)) strProfileId= UserInfo.getUserId();       
             LIST<KUN_Profile__c> moProfiles =[ SELECT Capability__c,Cluster__c,E2E_Process__c,Employee_Type__c,
@@ -27,20 +26,5 @@ public with sharing class KUN_Profile_CC {
            if (moProfiles != null && moProfiles .Size() > 0 ){
               Profile =  moProfiles [0]; 
            }
-           else
-           {        
-               ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR,'User’s KUN Profile dose not Exists, Please contact “KUN Community Administrator “for further details.');
-               ApexPages.addMessage(myMsg); 
-           }
-        }
-        catch(Exception e) { 
-            // Generic exception handling code here.
-             ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR,'The following exception has occurred: ' + e.getMessage());
-             ApexPages.addMessage(myMsg); 
-        }  
-        finally 
-        {
-            Profile  = new  KUN_Profile__c (); 
-        }
     }  
 }

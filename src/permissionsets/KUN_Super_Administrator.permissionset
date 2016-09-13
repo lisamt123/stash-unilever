@@ -21,6 +21,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>KUN_Profile_CC_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Kun_Community_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -221,10 +225,6 @@
     <pageAccesses>
         <apexPage>KUN_Profile_VF</apexPage>
         <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>KUNtest</apexPage>
-        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Kun_HomeView</apexPage>

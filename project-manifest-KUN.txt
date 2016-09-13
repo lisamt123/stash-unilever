@@ -3,6 +3,8 @@ src/applications/KUN_Community_APP.app
 src/classes
 src/classes/Kun_Community_Test.cls
 src/classes/Kun_Community_Test.cls-meta.xml
+src/classes/KUN_Profile_CC_Test.cls
+src/classes/KUN_Profile_CC_Test.cls-meta.xml
 src/classes/Kun_HomeView_CC.cls
 src/classes/Kun_HomeView_CC.cls-meta.xml
 src/classes/KUN_Links.cls

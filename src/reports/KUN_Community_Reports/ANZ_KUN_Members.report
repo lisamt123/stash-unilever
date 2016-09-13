@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>KUN_Profile__c.MCO__c</field>
+    </columns>
+    <columns>
+        <field>KUN_Profile__c.Position__c</field>
+    </columns>
+    <columns>
+        <field>KUN_Profile__c.E2E_Process__c</field>
+    </columns>
+    <columns>
+        <field>KUN_Profile__c.Capability__c</field>
+    </columns>
+    <columns>
+        <field>KUN_Profile__c.Unilever_Profile__c</field>
+    </columns>
+    <columns>
+        <field>KUN_Profile__c.Local_Process_Area__c</field>
+    </columns>
+    <columns>
+        <field>KUN_Profile__c.Organization_Role__c</field>
+    </columns>
+    <currency>EUR</currency>
+    <description>ANZ KUN Members</description>
+    <filter>
+        <criteriaItems>
+            <column>KUN_Profile__c.MCO__c</column>
+            <operator>equals</operator>
+            <value>ANZ</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>ANZ KUN Members</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$KUN_Profile__c</reportType>
+    <scope>team</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>KUN_Profile__c.Unilever_Profile__c</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

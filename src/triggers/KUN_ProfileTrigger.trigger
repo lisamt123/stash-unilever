@@ -14,8 +14,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 ****************************************************************************/
 trigger KUN_ProfileTrigger on KUN_Profile__c (before insert,before update,after Insert, after update) {
 
-    KUN_ProfileTriggerHandler handler = new KUN_ProfileTriggerHandler (Trigger.isExecuting, Trigger.size);
-
+    KUN_ProfileTriggerHandler handler = new KUN_ProfileTriggerHandler ();
     if( Trigger.isInsert ) {
        if(Trigger.isBefore)       
           handler.OnBeforeInsert(Trigger.New );   
