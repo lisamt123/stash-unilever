@@ -5,11 +5,11 @@ public  class cp_EventTriggerHandler {
     public static final String EVENT_STATUS_SUBMITTED       = 'Submitted';
 
     public static final list<String> NON_LOCAL_EVENTS       = new list<String>{};
-    private boolean m_isExecuting                           = false;
-    private integer BatchSize                               = 0;
+    private boolean m_isExecuting;                        
+    private integer BatchSize;                              
     
     public cp_EventTriggerHandler(boolean isExecuting, integer size){
-        m_isExecuting = isExecuting;
+       m_isExecuting = isExecuting;
         BatchSize = size;
     }
 
@@ -37,7 +37,7 @@ public  class cp_EventTriggerHandler {
     // ********************* BUSINESS LOGIC ********************* //
 
     private void updateCommentHistory(cp_Event__c[] newEvents, map<ID, cp_Event__c> eventMap) {
-        List<processInstanceHistory> processHistory = new List<processInstanceHistory>();
+        //List<processInstanceHistory> processHistory = new List<processInstanceHistory>();
         String remarks;
         Set<Id> actorIds = new Set<Id>();
         Map<Id, cp_Event__c> processRecordsMap = new Map<Id, cp_Event__c>([SELECT (SELECT StepStatus, Comments, ActorId, SystemModstamp FROM ProcessSteps  order by SystemModstamp desc) FROM cp_Event__c
@@ -153,7 +153,6 @@ public  class cp_EventTriggerHandler {
                     liDelParticipants.add(mapExistingEventParticipants.get(eventId).get(userId));
                 }       
             }
-            
             // delete not more valid, existing participant
             if (liDelParticipants.size() > 0){
                 delete liDelParticipants;
@@ -197,16 +196,20 @@ public  class cp_EventTriggerHandler {
     private void createReapproval(Map<ID, cp_Event__c> newEventMap, Map<ID, cp_Event__c> oldEventMap)
     {
         Set<Id> eventIds = new Set<Id>();
-        List<Id> participantsIds = new List<Id>();
+        //List<Id> participantsIds = new List<Id>();
 
         for (Id eventId : newEventMap.keySet()) 
         {
-            if (    oldEventMap.get(eventId).ReApprovalRequired__c 
+            if(oldEventMap.get(eventId).ReApprovalRequired__c !=true)
+                {
+                eventIds.add(eventId);  
+                }
+            /*if (    oldEventMap.get(eventId).ReApprovalRequired__c 
                 !=  newEventMap.get(eventId).ReApprovalRequired__c 
                 &&  newEventMap.get(eventId).ReApprovalRequired__c == true) 
             {
                 eventIds.add(eventId);
-            }
+            }*/
         }
 
         try {
@@ -214,7 +217,7 @@ public  class cp_EventTriggerHandler {
                 Approval.ProcessSubmitRequest approvalRequest = new Approval.ProcessSubmitRequest();
                 approvalRequest.setComments('Submitting request for Global re-approval.');
                 approvalRequest.setObjectId(eventId);
-                Approval.ProcessResult approvalResult = Approval.process(approvalRequest);
+                //Approval.ProcessResult approvalResult = Approval.process(approvalRequest);
             }
         } catch (Exception ex) {
             for (cp_Event__c curr : newEventMap.values()) {
@@ -228,18 +231,22 @@ public  class cp_EventTriggerHandler {
     {
 
         Set<Id> eventIds = new Set<Id>();
-        List<Id> participantsIds = new List<Id>();
+        //List<Id> participantsIds = new List<Id>();
 
         for (Id eventId : newEventMap.keySet()) 
         {
-            if (    oldEventMap.get(eventId).ReApprovalRequired__c 
+            if(oldEventMap.get(eventId).ReApprovalRequired__c !=false)
+            {
+                eventIds.add(eventId);
+            }
+            /*if (    oldEventMap.get(eventId).ReApprovalRequired__c 
                 !=  newEventMap.get(eventId).ReApprovalRequired__c 
                 &&  newEventMap.get(eventId).ReApprovalRequired__c == false
                 &&  (newEventMap.get(eventId).Activity_Status__c == cp_PlannerUtility.CONFIRMED
                 ||   newEventMap.get(eventId).Activity_Status__c == cp_PlannerUtility.TENTATIVE)) 
             {
                 eventIds.add(eventId);
-            }
+            }*/
         }
 
         List<cp_Participant__c> participants = new List<cp_Participant__c>([SELECT ReApprovalEmailNeeded__c

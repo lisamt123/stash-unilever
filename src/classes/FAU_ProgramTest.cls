@@ -29,6 +29,7 @@ private class FAU_ProgramTest {
                 LocaleSidKey='en_US', EmailEncodingKey='ISO-8859-1', LanguageLocaleKey='en_US');
         
         insert u1;
+        System.assert(u1.Id != null);
         return u1;
 
     }
