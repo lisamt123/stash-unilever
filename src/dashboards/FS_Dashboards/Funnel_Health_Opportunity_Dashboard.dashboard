@@ -39,7 +39,7 @@
             <expandOthers>false</expandOthers>
             <header>Opportunity Funnel</header>
             <legendPosition>Bottom</legendPosition>
-            <report>unfiled$public/FS_Opportunities_Funnel_Stage_Duration</report>
+            <report>FS_Report/FS_Opportunities_Funnel_Stage_Duration</report>
             <showPercentage>false</showPercentage>
             <showPicturesOnCharts>false</showPicturesOnCharts>
             <showValues>true</showValues>
