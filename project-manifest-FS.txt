@@ -17,3 +17,11 @@ src/reports/FS_Report/FS_Report_MABE_2.report
 src/reports/FS_Report/Last_Month_VS_This_Month_Closed.report
 src/reports/FS_Report/Month_Over_Month_Close_Trend.report
 src/reports/FS_Report/Open_Opportunities_by_Hierarchy.report
+src/dashboards
+src/dashboards/FS_Dashboards
+src/dashboards/FS_Dashboards/FS_Opportunity_Pipeline_Dash_Board.dashboard
+src/dashboards/FS_Dashboards/Funnel_Health_Opportunity_Dashboard.dashboard
+src/dashboards/FS_Dashboards/Sales_Executive_Dashboard.dashboard
+src/dashboards/FS_Dashboards/Sales_Manager_Dashboard.dashboard
+src/dashboards/FS_Dashboards/Salesperson_Dashboard.dashboard
+src/dashboards/FS_Dashboards-meta.xml
