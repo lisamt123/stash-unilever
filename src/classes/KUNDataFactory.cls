@@ -2,9 +2,9 @@
 public class KUNDataFactory { 
 
 
-    private static string  mstrContDescription = 'Short Description' ;
-    
+    private static string  mstrLocaleKey = 'en_US';
     private static string  mstrContCapacity = 'North Asia';
+    private static string  mstrCapability = 'Make';
     
     /*******************************************************************
     Purpose: This method is used to create a User & KUN Profile record 
@@ -27,13 +27,13 @@ public class KUNDataFactory {
       // Creating the Users
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           User u1 = new User(Alias = 'stand1', Email='standarduser1@kunorg.com', 
-          EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
-          LocaleSidKey='en_US', ProfileId = p.Id, 
+          EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey= mstrLocaleKey , 
+          LocaleSidKey=mstrLocaleKey , ProfileId = p.Id, 
           TimeZoneSidKey='America/Los_Angeles', UserName='standarduser1@kunorg.com');
           
           Insert u1  ;
           // Creating the User's KUN Profile
-          KUN_Profile__c moProfile1 = new KUN_Profile__c( Name ='Testing -1',Unilever_Profile__c = u1.Id,Capability__c='Make' , 
+          KUN_Profile__c moProfile1 = new KUN_Profile__c( Name ='Testing -1',Unilever_Profile__c = u1.Id,Capability__c=mstrCapability  , 
           Cluster__c = mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');      
           Insert moProfile1 ;      
           
@@ -49,13 +49,13 @@ public class KUNDataFactory {
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
          
       User u2 = new User(Alias = 'standt2', Email='standarduser2@kunorg.com', 
-      EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
+      EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey=mstrLocaleKey , 
+      LocaleSidKey=mstrLocaleKey , ProfileId = p.Id, 
       TimeZoneSidKey='America/Los_Angeles', UserName='standarduser2@kunorg.com');
       
       Insert u2 ;
     
-      KUN_Profile__c moProfile2 = new KUN_Profile__c( Name ='Testing-2',Unilever_Profile__c = u2.Id,Capability__c='Make' , Cluster__c =  mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');
+      KUN_Profile__c moProfile2 = new KUN_Profile__c( Name ='Testing-2',Unilever_Profile__c = u2.Id,Capability__c = mstrCapability  , Cluster__c =  mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');
       
       Insert moProfile2 ;
       moProfile2 .KUN_Role_Type__c ='Full Time';
@@ -71,13 +71,13 @@ public class KUNDataFactory {
       // Creating the Users
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       User u3 = new User(Alias = 'standt3', Email='standarduser3@kunorg.com', 
-      EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
+      EmailEncodingKey='UTF-8', LastName='Testing', LanguageLocaleKey=mstrLocaleKey , 
+      LocaleSidKey=mstrLocaleKey , ProfileId = p.Id, 
       TimeZoneSidKey='America/Los_Angeles', UserName='standarduser3@kunorg.com');
 
       Insert u3 ;
     
-      KUN_Profile__c moProfile3 = new KUN_Profile__c( Name ='Testing-3',Unilever_Profile__c = u3.Id,Capability__c='Make' , Cluster__c = mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');
+      KUN_Profile__c moProfile3 = new KUN_Profile__c( Name ='Testing-3',Unilever_Profile__c = u3.Id,Capability__c=mstrCapability  , Cluster__c = mstrContCapacity  ,E2E_Process__c='Make-to-Deliver (M2D)' ,Employee_Type__c='Unilever');
       
       Insert moProfile3 ;
       moProfile3 .KUN_Role_Type__c ='Full Time';
@@ -103,7 +103,7 @@ public class KUNDataFactory {
             
             KUN_Activities__c moActivity       =  new KUN_Activities__c ();
             moActivity.Name                    =  'Event Name - ' + iCount ;           
-            moActivity.Short_Description__c    =  mstrContDescription ;
+            moActivity.Short_Description__c    =  'Event Description';
             moActivity.URL__c                  =  'http://google.com';              
             moActivity.Active__c               =  true ;
             moActivity.RecordTypeId            =  rt.Id;
@@ -139,7 +139,7 @@ public class KUNDataFactory {
         {
             KUN_Activities__c moActivity       =  new KUN_Activities__c ();
             moActivity.Name                    =  'Quick Link - ' + iCount ;           
-            moActivity.Short_Description__c    =  mstrContDescription ;
+            moActivity.Short_Description__c    =  'Quick Link Description';
             moActivity.URL__c                  =  'http://google.com' ;
             moActivity.Active__c               =  true ;
             moActivity.RecordTypeId            =  rt.Id;
@@ -159,7 +159,7 @@ public class KUNDataFactory {
         {        
             KUN_Activities__c moActivity       =  new KUN_Activities__c ();
             moActivity.Name                    =  'Compliance Process Indicator Document - ' + iCount ;           
-            moActivity.Short_Description__c    =  mstrContDescription ;
+            moActivity.Short_Description__c    =  'Document Description';
             moActivity.Active__c               =  true ;
             moActivity.RecordTypeId            =  rt.Id;
             molstActivities.add( moActivity);
