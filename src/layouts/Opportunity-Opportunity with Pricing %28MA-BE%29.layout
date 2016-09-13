@@ -238,6 +238,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>FS_Push_Counter__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>ContractId</field>
             </layoutItems>
             <layoutItems>

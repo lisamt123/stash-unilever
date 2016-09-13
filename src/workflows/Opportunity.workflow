@@ -211,6 +211,20 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Increment_Push_Counter_Field</fullName>
+        <description>Increment the Push Counter by 1</description>
+        <field>FS_Push_Counter__c</field>
+        <formula>IF( 
+ISNULL( FS_Push_Counter__c ), 
+1, 
+FS_Push_Counter__c + 1 
+)</formula>
+        <name>Increment Push Counter Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>FS Email to opportunity owner when Deal approval exactly 60 days</fullName>
         <active>true</active>
@@ -272,6 +286,17 @@
             <timeLength>-7</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>FS Push Counter</fullName>
+        <actions>
+            <name>Increment_Push_Counter_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Increment the Push Counter field by 1</description>
+        <formula>IF(  CloseDate &gt; PRIORVALUE( CloseDate ),  IF (MONTH(CloseDate) &lt;&gt; MONTH(PRIORVALUE( CloseDate )) ,  TRUE,  FALSE),  FALSE)</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>FS Update oppty owner manager</fullName>
