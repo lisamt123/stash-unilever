@@ -218,3 +218,6 @@ src/permissionsets/The_Agent_App_CI.permissionset
 src/permissionsets/The_Agent_App_ETS.permissionset
 src/tabs
 src/tabs/Agent_App_Lightning.tab
+src/pages
+src/pages/Agent_App_Report.page
+src/pages/pages/Agent_App_Report.page-meta.xml
