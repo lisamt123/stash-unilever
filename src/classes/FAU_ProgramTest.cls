@@ -29,6 +29,7 @@ private class FAU_ProgramTest {
                 LocaleSidKey='en_US', EmailEncodingKey='ISO-8859-1', LanguageLocaleKey='en_US');
         
         insert u1;
+        System.assert(u1.Id != null);
         return u1;
 
     }
@@ -37,7 +38,7 @@ private class FAU_ProgramTest {
     private static void completeProgramTest(){
         FAU_Program__c program = FAU_TestUtil.buildProgram('Test Program', Date.today(), 'Test Location');
         insert program;
-      FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
+        FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program); 
         program.FAU_Status__c = 'Active';
         program.FAU_Participant_Chatter_Group_Id__c  = 'test1234test';
         update program;
