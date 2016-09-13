@@ -696,8 +696,7 @@ public with sharing class IPM_RolloutTriggerHandler
         Map<Id,IPM_Project_Rollout__c> completeNonKeyRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
         
         Map<String,IPM_Financial__c> financialExtIdFinancialMap = new Map<String,IPM_Financial__c>();
-        IPM_Financial__c survivingNonkeyFinancial = new IPM_Financial__c();
-        
+		
         if(regionalRollout!=null){
         	for(IPM_Financial__c regionalRolloutFinancial : regionalRollout.IPM_Financials__r ){
 	            financialExtIdFinancialMap.put(regionalRolloutFinancial.Financial_External_ID__c,regionalRolloutFinancial);
