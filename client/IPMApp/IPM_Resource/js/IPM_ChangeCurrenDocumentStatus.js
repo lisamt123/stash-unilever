@@ -151,6 +151,7 @@ function navigateToHome()
 }
 /* Below function validates the status of the current gate document and performs the redirection to respective pages based on the status */
 function goToParentPage() {
+debugger;
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
     window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
     } else if(!isPDL) {
@@ -162,8 +163,8 @@ function goToParentPage() {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         } else if (status === IPMApp.Approved && makeApprove === true && IPMApp.projectPhase === 'Ideas') {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId + '&showMembers=true&createBET=true';
-    } else if (status === IPMApp.Approved && makeApprove === true) {
-      window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
+      } else if (status === IPMApp.Approved && makeApprove === true) {
+            window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
         } else if (status === IPMApp.ApprovedEdit && makeValid === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         }

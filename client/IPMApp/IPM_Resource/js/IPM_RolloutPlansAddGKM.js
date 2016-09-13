@@ -79,12 +79,12 @@ var jq=jQuery.noConflict();
         jq(document).off('click', '.changeMCOTab').on('click','.changeMCOTab', function()
         {
             var mcoCode = jq(this).attr('id')
-            var keyMCO = jq('#keyMCO').is(":checked");
-            var previousMcoCode = IPMregionalApp.SelectedMCO;
-            getRecentCountrySelection();
-            retainVal();
-            changeMCO(selectedCountries1.toString(), unselectedCountries1.toString(), selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString(),mcoCode, previousMcoCode, retainedCountries.toString(), keyMCO);
-            retainVal();
+                    var keyMCO = jq('#keyMCO').is(":checked");
+                    var previousMcoCode = IPMregionalApp.SelectedMCO;
+                    getRecentCountrySelection();
+                    retainVal();
+                    changeMCO(selectedCountries1.toString(), unselectedCountries1.toString(), selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString(),mcoCode, previousMcoCode, retainedCountries.toString(), keyMCO);
+                    retainVal();
         });
     }
     function invokeRolloutGeneration()
@@ -237,25 +237,24 @@ var jq=jQuery.noConflict();
         {
             invokeRolloutGeneration();
         }
-                else
-                {
-    
-
-                    jq('#ipmDeleteModal .modal-body').css({
-                    "height": "120px",
-                    "margin-right": "15px"
-                    });
+        else
+        {
                    
-                    jq('#ipmDeleteModal .cancelAction').on("click",function(){
-                        skipValidation();
-                        window.top.location = IPMregionalApp.baseUrl+'?Id='+IPMregionalApp.proid;
-                    });
-                }
+            jq('#ipmDeleteModal .modal-body').css({
+            "height": "120px",
+            "margin-right": "15px"
             });
-            function invokeCheckLocalAssociationProject()
-            {
-            checkLocalProjectAssociatedOrNot(selectedNoRollouts.toString());
-            }
+                   
+            jq('#ipmDeleteModal .cancelAction').on("click",function(){
+                skipValidation();
+                window.top.location = IPMregionalApp.baseUrl+'?Id='+IPMregionalApp.proid;
+            });
+        }
+    });
+    function invokeCheckLocalAssociationProject()
+    {
+    checkLocalProjectAssociatedOrNot(selectedNoRollouts.toString());
+    }
     function hilightTaskScript(){
         jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
         jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
@@ -293,9 +292,6 @@ var jq=jQuery.noConflict();
             }                                
             else if(IPMmessageArr.removeCountryOtherFeasCap == 'true' && IPMmessageArr.singleCountryAsscoaitedProj == 'true')
             {
-                alert('removeCountryOtherFeasCap::'+IPMmessageArr.removeCountryOtherFeasCap);
-                alert('IPMmessageArr.singleCountryAsscoaitedProj:'+IPMmessageArr.singleCountryAsscoaitedProj);
-                alert('IPMmessageArr.allRolloutFromSameMCO::'+IPMmessageArr.allRolloutFromSameMCO);
                 if(IPMmessageArr.allRolloutFromSameMCO == 'false')
                 {
                     jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.removeCountryWarningMsg);
