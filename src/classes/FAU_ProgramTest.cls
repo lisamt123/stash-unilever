@@ -105,11 +105,14 @@ private class FAU_ProgramTest {
          }
         catch(Exception e)
         {
-            //Boolean expectedExceptionThrown =  e.getMessage().size();
+            //boolean expectedExceptionThrown =  e.getMessage().size();
             System.Debug('#### expectedExceptionThrown ' + e.getMessage()); 
-            //System.AssertEquals(expectedExceptionThrown, true);
+            //System.AssertEquals(expectedExceptionThrown);
+            //System.assertEquals(1, e.getMessage().size());
+            System.assertNotEquals('message',e.getMessage());
         } 
         Test.stopTest();
+        
     } 
  
 
