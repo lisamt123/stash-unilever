@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
     <types>
-<<<<<<< HEAD
 		<members>ChatterUIController</members>
 		<members>ChatterUIFileUpload</members>
 		<members>ControllerUtil</members>
@@ -31,6 +30,10 @@
 		<members>FA_Trigger_CourseOccurence</members>
 		<members>FA_Trigger_OccurenceMember</members>
 		<members>FA_UploadPwtAttachment</members>
+		<members>BasicMenuItem</members>
+		<members>TemplateController</members>
+		<members>TemplateControllerTest</members>
+		<members>Template</members>
 		<name>ApexClass</name>
     </types>
 	<types>
@@ -42,6 +45,8 @@
         <name>ApexTrigger</name>
     </types>
 	<types>
+		<members>Course_Detail</members>
+		<members>Chatter</members>
         <members>Course_Detail</members>
 		<members>FA_Calendar</members>
 		<members>FA_Centres</members>
@@ -52,7 +57,27 @@
 		<members>Help</members>
 		<members>Programme</members>
 		<members>Upload_PWT</members>
+		<members>FA_Pref</members>
+		<members>Footer</members>
+    	<members>Header</members>
+    	<members>Template</members>
+    	<members>Wrapper</members>
+    	<members>Category</members>
 		<name>ApexPage</name>
+    </types>
+    <types>
+        <members>FourAcres_App</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+    	<members>FA_Course_Facilitator__c-en_US</members>
+    	<members>FA_Training_Room__c-en_US</members>
+    	<members>FA_Occurence_Member__c-en_US</members>
+    	<members>FA_Member_ChatterGroup__c-en_US</members>
+    	<members>FA_Feedback__c-en_US</members>
+    	<members>FA_Course_ChatterGroup__c-en_US</members>
+        <members>FA_Course_Occurence__c-en_US</members>
+        <name>CustomObjectTranslation</name>
     </types>
 	<types>  
         <members>Course_Attachment__c</members>
@@ -108,13 +133,25 @@
 		<name>CustomLabel</name>  
     </types>
 	<types>
-	<members>NavigationElement__c</members> 
-	<members>FA_FBQuestionSet__c</members>
-	<members>FA_Config_Settings__c</members>
-	<name>CustomSetting</name>
+		<members>NavigationElement__c</members> 
+		<members>FA_FBQuestionSet__c</members>
+		<members>FA_Config_Settings__c</members>
+		<name>CustomSetting</name>
 	</types>
-	</Package>
-=======
+	<types>
+		<members>FA_Course_Facilitator__c-FA_Course Facilitator Layout</members>
+		<members>FA_Training_Room__c-FA_Training Room Layout</members>
+		<members>FA_Member_ChatterGroup__c-FA_Member ChatterGroup Layout</members>
+		<members>FA_Feedback__c-FA_Feedback Layout</members>
+		<members>FA_Course_ChatterGroup__c-FA_Chattergroup_Course Layout</members>
+		<members>FA_Course__c-FA_Course Layout</members>
+        <members>FA_Course_Occurence__c-FA_Course Occurence Layout</members>
+        <members>FA_Training_Room__c-FA_Training Room Layout</members>
+        <members>FA_Training_Venue__c-FA_Training Venue Layout</members>
+        <members>FA_Occurence_Member__c-FA_Occurence_Member Layout</members>
+        <name>Layout</name>
+    </types>
+	<types>
 		<members>Unilever - Ideas Admin</members>
 		<members>FA - Agency</members>
 		<members>FA - Instructor</members>
@@ -134,13 +171,23 @@
 		<name>Profile</name>	
     </types> 
     <types>
+    	<members>BasicMenu</members>
+        <members>Sidebar</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
     	<members>Core_NC_Test_NewsApp</members>
     	<name>ApexClass</name>
     </types>
     <types>
-    	<members>Category</members>
-    	<name>ApexPage</name>
+    	<members>Unilever_Fouracres</members>
+    	<members>Four Acres App</members>
+        <name>CustomApplication</name>
     </types>
-	
+   
+    <types>
+        <members>FA - Email Template</members>
+        <name>EmailTemplate</name>
+    </types>
+	    <version>37.0</version>
 </Package>
->>>>>>> e7762774510a0def457f22eaa4caec8bb9c29733
