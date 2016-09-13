@@ -13,21 +13,9 @@ private class IPM_OTIF_Report_Batch_Test {
     private static IPM_Section__c secMst;   
     private static IPM_Document_Template__c ipdt;   
     private static string RECORD_NOT_CREATED_SUCCESSFULLY='records not created successfully'; 
-    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();   
-    public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    public static List<IPM_Financial__c> lstFinancial=new List<IPM_Financial__c>();
-    public static List<IPM_Financial_Year__c> lstFinancialYear=new List<IPM_Financial_Year__c>();
-    public static List<IPM_Milestone__c> ipmMileStoneTestList=new List<IPM_Milestone__c>();
     public static List<IPM_Country__c> ipmcountrylist = new List<IPM_Country__c>();
-    public static IPM_Reporting__c reportParameter;
-    public static user systemAdmin;
     public static User testUser;
-    public static List<User> userList;
     public static set<id> projidset = new set<id>();
-    public static final String YEAR_3 = 'Y3';
-    public static final String GROSS = 'Gross';
-    public static final String INCREMENTAL = 'Incremental';
-    public static final String CALENDAR = 'Calendar';
     private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
     private static final string GREEN='Green';  
     private static final string RED='Red';
@@ -44,10 +32,10 @@ private class IPM_OTIF_Report_Batch_Test {
     // Method to Initialize Project related data for 
     static void initializeData1(){
               
-            systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
+            User systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
             system.runAs(systemAdmin){
                 testUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
-                userList = IPM_TestFactory_Helper.createUserList(); 
+                List<User>  userList = IPM_TestFactory_Helper.createUserList(); 
                 system.assertEquals(userList[0].LastName,IPMUSER_LASTNAME,'Error in User Creation');
                   //creating Project Template
                   IPM_Project_Template__c projTemplate = IPM_TestFactory_Helper.createIPMProjectTemplate(FALSE);
@@ -78,7 +66,7 @@ private class IPM_OTIF_Report_Batch_Test {
             {
             
             //Test project creation
-            projectList = IPM_TestFactory_Helper.insertIPMProjectList();
+            List<IPM_Project__c> projectList = IPM_TestFactory_Helper.insertIPMProjectList();
                        
                       
             for(IPM_Project__c p:projectList){
@@ -112,12 +100,12 @@ private class IPM_OTIF_Report_Batch_Test {
             }
             
             //Test Finance data creation            
-            lstFinancial = IPM_TestFactory_Helper.insertIPMFinancialList(true);
+            List<IPM_Financial__c> lstFinancial = IPM_TestFactory_Helper.insertIPMFinancialList(true);
             list<IPM_Financial__c> insertedfinancialrecord = new list <IPM_Financial__c> ([SELECT id,Name,Target_Launch_Date__c FROM IPM_Financial__c WHERE id IN:lstFinancial Limit 100]);
             system.assertEquals(insertedfinancialrecord[0].Target_Launch_Date__c,lstFinancial[0].Target_Launch_Date__c,'Project Financials TLD differs');
 
             //Test Financial Year Data creation/update
-            lstFinancialYear = IPM_TestFactory_Helper.insertIPMFinancialYearList();
+            list<IPM_Financial_Year__c> lstFinancialYear = IPM_TestFactory_Helper.insertIPMFinancialYearList();
             
             list<IPM_Financial_Year__c> insertedfinancialyrrecord = new list <IPM_Financial_Year__c> ([SELECT id,Year__c FROM IPM_Financial_Year__c WHERE id IN:lstFinancialYear AND YEAR__c ='Innovation'Limit 100]);
             system.assertEquals(insertedfinancialyrrecord[0].Year__c,IPM_ConstantUtils.YEAR_TYPE_INNOVATION,'Project FinancialYear differs');
@@ -127,7 +115,7 @@ private class IPM_OTIF_Report_Batch_Test {
             
             //Test Milestone Data Creation/Update
             Id mileMRecordType=Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get('IPM Project Milestones').getRecordTypeId();
-            ipmMileStoneTestList = IPM_TestFactory_Helper.createIPMMilestoneList(false, 7);
+            List<IPM_Milestone__c> ipmMileStoneTestList = IPM_TestFactory_Helper.createIPMMilestoneList(false, 7);
                           
             for(Integer i = 0; i < ipmMileStoneTestList.size(); i++){
                 
@@ -197,7 +185,7 @@ private class IPM_OTIF_Report_Batch_Test {
               projDocument.IPM_Project__c=project.ID;
               projDocument.IPM_Project_Template__c= projTempl.Id;  
               insert projDocument;
-              projDocList=[SELECT IPM_GateDocuments__c,IPM_Project__c,IPM_Project_Template__c,IPM_Contract_GateKeeper_Model__c FROM IPM_Project_Document__c WHERE ID=:projDocument.ID LIMIT 1];
+              List<IPM_Project_Document__c> projDocList = [SELECT IPM_GateDocuments__c,IPM_Project__c,IPM_Project_Template__c,IPM_Contract_GateKeeper_Model__c FROM IPM_Project_Document__c WHERE ID=:projDocument.ID LIMIT 1];
               projDoc=projDocList[0];
               System.assertEquals(projDocList[0].IPM_Project__c,project.ID,RECORD_NOT_CREATED_SUCCESSFULLY);//positive test
               
@@ -377,7 +365,9 @@ private class IPM_OTIF_Report_Batch_Test {
     *  @return : none
     *************************************************************************/
     static void initializeData2(){
-        systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
+         User systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
+         List<User>  userList = new List<User>();
+         List<IPM_Project__c> projectList = new List<IPM_Project__c>();
             system.runAs(systemAdmin){
                 testUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
                 userList = IPM_TestFactory_Helper.createUserList(); 
@@ -494,6 +484,10 @@ private class IPM_OTIF_Report_Batch_Test {
             
             //Insert Financial Year records for rollouts
             List<IPM_Financial_Year__c> finYear=new List<IPM_Financial_Year__c>();
+            String YEAR_3 = 'Y3';
+            String GROSS = 'Gross';
+            String INCREMENTAL = 'Incremental';
+            String CALENDAR = 'Calendar';
             String INNOVATION = 'Innovation';
             
             //For Regional rollouts     
