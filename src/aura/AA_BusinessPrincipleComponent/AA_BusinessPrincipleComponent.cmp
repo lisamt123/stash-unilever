@@ -1,5 +1,6 @@
 <aura:component controller="AA_AgentAppService" >
     <aura:attribute name="isCheckBusinessPrinciple" type="Boolean" />
+    <aura:attribute name="businessPrincipleFlag" type="Boolean" />
     <aura:attribute name="islandingPageFlagDisplay" type="Boolean" default="false" />
     <aura:registerEvent name="businessPrincipleEvent" type="c:AA_BusinessPrincipleEvent"/>
     <style>
