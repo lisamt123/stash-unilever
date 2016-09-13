@@ -2700,9 +2700,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     }
     
     /**************************To resolve sonar issues*************************/
-    public void checkForMisalignmentGlobal(Integer localProjectRolloutTLDYear)
+    public Integer checkForMisalignmentGlobal()
     {
-    	
+    	Integer localProjectRolloutTLDYear = 0;
       	// if project is regional get the project details based currentFinanical
         String financialExternalIdString;
         //Check if Financial external id ends with '_NONKEY'
@@ -2749,10 +2749,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             //Assign local project rollout TLD year
             localProjectRolloutTLDYear = mcoCountryRolloutPlan.Target_Launch_Date__c.year();
         }
+        return localProjectRolloutTLDYear;
     }
     
-    public void checkForMisalignmentRegional(Integer localProjectRolloutTLDYear)
+    public Integer checkForMisalignmentRegional()
     {
+    	Integer localProjectRolloutTLDYear = 0;
     	String financialExternalIdString;
         if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
             financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
@@ -2787,6 +2789,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             localProjectRolloutTLDYear = mcoCountryRolloutPlan.Target_Launch_Date__c.year();  
                 
         }
+        return localProjectRolloutTLDYear;
     }
 
 
@@ -2835,11 +2838,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               {
               	if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_ProjectGKM__c=='GKM3')
                  {
-                 	checkForMisalignmentGlobal(localProjectRolloutTLDYear);
+                 	localProjectRolloutTLDYear = checkForMisalignmentGlobal();
                  }
                 else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
                 {
-                	checkForMisalignmentRegional(localProjectRolloutTLDYear);
+                	localProjectRolloutTLDYear = checkForMisalignmentRegional();
                 }
                 if(!projList.isEmpty() && !projList[0].IPM_Projects__r.isEmpty())
 		        {
