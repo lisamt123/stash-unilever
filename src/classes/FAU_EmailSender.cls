@@ -130,7 +130,8 @@ public without sharing class FAU_EmailSender {
         String txtInvite = '';
         String T = 'T';
         String Z='Z\n';//Modified by yugandhar,declared new string Z
- String yyyymmdd = 'yyyyMMdd';// Changes made by Suman Sarita Mahapatra 28/04/2016 , to rectify "The String literal 'yyyymmdd' appears 5 times in this file; " in sonar.
+        String yyyymmdd = 'yyyyMMdd';// Changes made by Suman Sarita Mahapatra 28/04/2016 , to rectify "The String literal 'yyyymmdd' appears 5 times in this file; " in sonar.
+        String HMS = 'HHmmss'; // Changes made by Bibhu
 
         txtInvite += 'BEGIN:VCALENDAR\n';
         txtInvite += 'PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN\n';
@@ -139,11 +140,11 @@ public without sharing class FAU_EmailSender {
         txtInvite += 'X-MS-OLK-FORCEINSPECTOROPEN:TRUE\n';
         txtInvite += 'BEGIN:VEVENT\n';
         txtInvite += 'CLASS:PUBLIC\n';
-        txtInvite += 'CREATED:' + datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HHmmss') + Z;
-        txtInvite += 'DTEND:' + dtEnd.formatGmt(yyyymmdd) + T + dtEnd.formatGmt('HHmmss') + Z;
-        txtInvite += 'DTSTAMP:'+ datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HHmmss') + Z;
-        txtInvite += 'DTSTART:' + dtStart.formatGmt(yyyymmdd) + T + dtStart.formatGmt('HHmmss') + Z;
-        txtInvite += 'LAST-MODIFIED:'+ datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HHmmss') + Z;
+        txtInvite += 'CREATED:' + datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HMS') + Z;
+        txtInvite += 'DTEND:' + dtEnd.formatGmt(yyyymmdd) + T + dtEnd.formatGmt('HMS') + Z;
+        txtInvite += 'DTSTAMP:'+ datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HMS') + Z;
+        txtInvite += 'DTSTART:' + dtStart.formatGmt(yyyymmdd) + T + dtStart.formatGmt('HMS') + Z;
+        txtInvite += 'LAST-MODIFIED:'+ datetime.now().formatGmt(yyyymmdd) + T + datetime.now().formatGmt('HMS') + Z;
         txtInvite += 'LOCATION:'+ sLocation +'\n';
         txtInvite += 'PRIORITY:5\n';
         txtInvite += 'SEQUENCE:0\n';

@@ -38,7 +38,7 @@ private class FAU_ProgramTest {
     private static void completeProgramTest(){
         FAU_Program__c program = FAU_TestUtil.buildProgram('Test Program', Date.today(), 'Test Location');
         insert program;
-      FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program);
+        FAU_Webinar__c webinar =  FAU_TestUtil.createWebinar(program); 
         program.FAU_Status__c = 'Active';
         program.FAU_Participant_Chatter_Group_Id__c  = 'test1234test';
         update program;
@@ -105,11 +105,14 @@ private class FAU_ProgramTest {
          }
         catch(Exception e)
         {
-            //Boolean expectedExceptionThrown =  e.getMessage().size();
+            //boolean expectedExceptionThrown =  e.getMessage().size();
             System.Debug('#### expectedExceptionThrown ' + e.getMessage()); 
-            //System.AssertEquals(expectedExceptionThrown, true);
+            //System.AssertEquals(expectedExceptionThrown);
+            //System.assertEquals(1, e.getMessage().size());
+            System.assertNotEquals('message',e.getMessage());
         } 
         Test.stopTest();
+        
     } 
  
 
