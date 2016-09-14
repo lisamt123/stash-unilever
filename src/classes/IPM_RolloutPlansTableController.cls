@@ -767,7 +767,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public PageReference saveRollout()
     {
-       // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
+        validationError=null;
+	   // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
        for(String key: nonKeyMcoTLDMisalignedMap.keySet()) {
        		nonKeyMcoTLDMisalignedMap.put(key,false);
        }
