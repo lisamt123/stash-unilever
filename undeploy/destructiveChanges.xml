@@ -19,7 +19,6 @@
 		<members>FA_Course_ChatterGroup__c</members>
 		<members>FA_Course_Facilitator__c</members>
 		<members>FA_Course_Occurence__c</members>
-		<members>FA_Course__c</members>
 		<members>Document__c</members>
 		<members>FA_ErrorLog__c</members>
 		<members>FA_Feedback__c</members>
@@ -28,8 +27,6 @@
 		<members>FA_Occurence_Member__c</members>
 		<members>FA_Pre_Work_Task_Assignment__c</members>
 		<members>FA_Pre_Work_Task__c</members>
-		<members>FA_Training_Room__c</members>
-		<members>FA_Training_Venue__c</members>
 		<members>FA_UserPreference__c</members>
         <name>CustomObject</name>  
 		</types>  
