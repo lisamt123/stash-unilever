@@ -65,39 +65,7 @@
     	<members>Category</members>
 		<name>ApexPage</name>
     </types>
-    <types>
-        <members>FourAcres_App</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-    	<members>FA_Course_Facilitator__c-en_US</members>
-    	<members>FA_Training_Room__c-en_US</members>
-    	<members>FA_Occurence_Member__c-en_US</members>
-    	<members>FA_Member_ChatterGroup__c-en_US</members>
-    	<members>FA_Feedback__c-en_US</members>
-    	<members>FA_Course_ChatterGroup__c-en_US</members>
-        <members>FA_Course_Occurence__c-en_US</members>
-        <name>CustomObjectTranslation</name>
-    </types>
-	<types>  
-        <members>Course_Attachment__c</members>
-		<members>FA_Course_ChatterGroup__c</members>
-		<members>FA_Course_Facilitator__c</members>
-		<members>FA_Course_Occurence__c</members>
-		<members>FA_Course__c</members>
-		<members>Document__c</members>
-		<members>FA_ErrorLog__c</members>
-		<members>FA_Feedback__c</members>
-		<members>FA_Feedback_Questionnaire__c</members>
-		<members>FA_Member_ChatterGroup__c</members>
-		<members>FA_Occurence_Member__c</members>
-		<members>FA_Pre_Work_Task_Assignment__c</members>
-		<members>FA_Pre_Work_Task__c</members>
-		<members>FA_Training_Room__c</members>
-		<members>FA_Training_Venue__c</members>
-		<members>FA_UserPreference__c</members>
-        <name>CustomObject</name>  
-		</types>  
+    
 	<types>
         <members>FA_Agile_LoginDetailImage</members>
 		<members>FA_Agile_LoginImage</members>
@@ -151,38 +119,11 @@
         <members>FA_Occurence_Member__c-FA_Occurence_Member Layout</members>
         <name>Layout</name>
     </types>
-	<types>
-		<members>Unilever - Ideas Admin</members>
-		<members>FA - Agency</members>
-		<members>FA - Instructor</members>
-		<members>FA - Participant1</members>
-		<members>FA-Participant-Planner - Central CB4L Hybrid User PLATFORM</members>
-		<members>FA-Participant-Planner - Market CB4L Hybrid User PLATFORM</members>
-		<members>FA-Participant-Planner-Administator</members>
-		<members>FA-Participant-Planner-Market User PLATFORM</members>
-		<members>FA-Participant-RR Brand Manager</members>
-		<members>FA-Participant-RR Brand Moderator</members>
-		<members>FA-Participant-RR Brand Owner</members>
-		<members>FA-Participant-RR Community manager</members>
-		<members>FA-Participant-RR Customer service</members>
-		<members>AR - Agency Portal User</members>
-		<members>CEC External Knowledge View</members>
-		<members>Core NT Profile</members>	
-		<name>Profile</name>	
-    </types> 
+	
     <types>
     	<members>BasicMenu</members>
         <members>Sidebar</members>
         <name>ApexComponent</name>
-    </types>
-    <types>
-    	<members>Core_NC_Test_NewsApp</members>
-    	<name>ApexClass</name>
-    </types>
-    <types>
-    	<members>Unilever_Fouracres</members>
-    	<members>Four Acres App</members>
-        <name>CustomApplication</name>
     </types>
    
     <types>
