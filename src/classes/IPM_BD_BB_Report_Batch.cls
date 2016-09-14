@@ -1187,6 +1187,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
                     }
                     else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.Contract)){
+						if(p.IPM_ProjectGKM__c == IPM_Utils.GATE_KEEPING_MODEL_3){
+                    		a.IPM_Product_DesignLock_Completed_On_Date__c = mile.IPM_Completed_on__c;  
+                    		a.IPM_Product_Design_Lock_Due_Date__c = mile.IPM_Proposed_Date__c;
+                    	}
                     	a.IPM_Expected_Contract_Approval_Date__c = mile.IPM_Due_Date__c;
                         a.IPM_Contract_Approved_Date__c = mile.IPM_Completed_on__c;
                         a.IPM_Contract_Proposed_Date__c = mile.IPM_Proposed_Date__c;
