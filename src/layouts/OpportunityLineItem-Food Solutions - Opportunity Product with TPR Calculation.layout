@@ -56,10 +56,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Ship_date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>ProdDistributor__c</field>
             </layoutItems>
         </layoutColumns>
