@@ -25043,6 +25043,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Campaign_Status1__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Status__c</field>
         <readable>true</readable>
@@ -25056,6 +25061,11 @@
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Campaign_Total_Fees__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Check_For_Manual_Edit_Campaign__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

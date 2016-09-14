@@ -79,7 +79,7 @@
     <outboundMessages>
         <fullName>Core_CA_IP_Invoice_OutboundMessage</fullName>
         <apiVersion>36.0</apiVersion>
-        <endpointUrl>http://sbi.dciw.cloudhub.unileverservices.com:8081/DciwSalesforceResponseService</endpointUrl>
+        <endpointUrl>https://sbi.dciw.cloudhub.unileverservices.com:8082/DciwSalesforceResponseService</endpointUrl>
         <fields>Comments__c</fields>
         <fields>CurrentDateTime__c</fields>
         <fields>Header_ExternalId__c</fields>

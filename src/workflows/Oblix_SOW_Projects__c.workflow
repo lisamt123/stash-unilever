@@ -31,7 +31,6 @@
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Set_To_Sync_Status_To_Sync_Required</fullName>
-        <description>on edit of a campaign, set the sync status fields to &quot;Sync Required&quot;</description>
         <field>Sync_Status__c</field>
         <literalValue>Sync Required</literalValue>
         <name>Set To Sync Status To Sync Required</name>
@@ -52,7 +51,7 @@
         <active>true</active>
         <description>set the status on individual campaigns to &quot;Sync Required&quot;  - 
 Condition - parent SOW has sync status &quot;Sync Complete&quot;</description>
-        <formula>$Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == false  &amp;&amp;  ( (TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos;  || TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;)  &amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; (TEXT(Sync_Status__c) == &apos;Sync Completed&apos; || ISBLANK(TEXT(Sync_Status__c))) &amp;&amp; PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos; &amp;&amp; Name_Suffix__c &lt;&gt; &apos;Finalised&apos;)</formula>
+        <formula>$Setup.Oblix_Job_Orchestration__c.Job_Is_Running__c == false  &amp;&amp; $Setup.Oblix_Check_For_Manual_Edit_Of_Campaign__c.Manual_Edit_Check__c = true &amp;&amp; ( (TEXT(Financial_Year__r.Sync_Status__c) == &apos;Sync Completed&apos;  || TEXT(Financial_Year__r.Sync_Status__c)== &apos;Campaign Sync Required&apos;)  &amp;&amp; Financial_Year__r.Initial_Approval_Complete__c == true &amp;&amp; (TEXT(Sync_Status__c) == &apos;Sync Completed&apos; || ISBLANK(TEXT(Sync_Status__c))) &amp;&amp; PRIORVALUE(Sync_Status__c) &lt;&gt; &apos;Sync In Progress&apos; &amp;&amp; Name_Suffix__c &lt;&gt; &apos;Finalised&apos;)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -63,6 +62,13 @@ Condition - parent SOW has sync status &quot;Sync Complete&quot;</description>
         </actions>
         <active>false</active>
         <formula>ISCHANGED( Project_Stage__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Oblix_WF02_UpdateNameUniqueCampaign</fullName>
+        <active>false</active>
+        <description>Used to Update Unique Field with Id of record, to avoid having duplicate records with the same name</description>
+        <formula>1=1</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
