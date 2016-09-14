@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -155,6 +151,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -246,6 +243,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -253,11 +251,11 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
     <fields>
         <fullName>RAG_Color__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(  OR( ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Green&apos;) ,  ISPICKVAL(RAG__c, &apos;Green&apos;)), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvi&quot;, &quot;Green&quot;),
-IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Amber&apos;),ISPICKVAL(RAG__c, &apos;Amber&apos;)), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvd&quot;, &quot;Yellow&quot;),
-IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__c, &apos;Red&apos;)), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvY&quot;, &quot;Red&quot;),
-&apos;&apos;)))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IMAGE(CASE(CIR2R_Innovation__r.RAG__c,&quot;Green&quot;, &quot;/img/samples/color_green.gif&quot;, 
+&quot;Amber&quot;, &quot;/img/samples/color_yellow.gif&quot;, 
+&quot;Red&quot;, &quot;/img/samples/color_red.gif&quot;, 
+&quot;/s.gif&quot;), 
+&quot;status color&quot;,30, 80)</formula>
         <label>RAG Color</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -285,6 +283,7 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -456,6 +455,7 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -485,6 +485,7 @@ IF ( OR(ISPICKVAL( CIR2R_Innovation__r.RAG__c , &apos;Red&apos;),ISPICKVAL(RAG__
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

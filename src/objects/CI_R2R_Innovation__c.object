@@ -21,10 +21,6 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -144,6 +140,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -204,6 +201,7 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -248,6 +246,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -431,6 +430,7 @@
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -479,6 +479,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
@@ -573,6 +574,7 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -664,6 +666,7 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -767,6 +770,7 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -774,12 +778,11 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
     <fields>
         <fullName>RAG_Color__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISPICKVAL(RAG__c, &apos;Green&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvi&quot;, &quot;Green&quot;),
-IF ( ISPICKVAL(RAG__c, &apos;Amber&apos;), IMAGE(&quot;/servlet/servlet.FileDownload?file=015c0000000cPvd&quot;, &quot;Yellow&quot;),
-IF ( ISPICKVAL(RAG__c, &apos;Red&apos;),  IMAGE(&apos;/servlet/servlet.FileDownload?file=015c0000000cPvY&apos;,
-&quot;Red&quot;),
-&apos;&apos;)))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>IMAGE(CASE(RAG__c,&quot;Green&quot;, &quot;/img/samples/color_green.gif&quot;,
+&quot;Amber&quot;, &quot;/img/samples/color_yellow.gif&quot;,
+&quot;Red&quot;, &quot;/img/samples/color_red.gif&quot;, 
+&quot;/s.gif&quot;), 
+&quot;status color&quot;,30, 80)</formula>
         <label>RAG Color</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -809,6 +812,7 @@ Green- On track</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
