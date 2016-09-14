@@ -23,7 +23,6 @@ src/pages/WU_WarehouseSearchPage.page-meta.xml
 src/objects
 src/objects/User.object
 src/objects/WU_Master_Warehouse__c.object
-src/objects/EmailNotificationSecPOC__c.object
 src/objects/WU_Warehouse_Capacity_Detail__c.object
 
 
@@ -55,7 +54,7 @@ src/approvalProcesses/WU_Master_Warehouse__c.WU_Committed_Pallet_Capacity_Change
 
 src/dashboards
 src/dashboards/WU_Warehouse_Excellence_Team
-src/dashboards/WU_Warehouse_Excellence_Team/Home_Page_for_warehouse_excellence_Team.dashboard
+src/dashboards/WU_Warehouse_Excellence_Team/WU_Home_Page_for_warehouse_excellence_Team.dashboard
 src/dashboards/WU_Warehouse_Excellence_Team-meta.xml
 
 src/workflows

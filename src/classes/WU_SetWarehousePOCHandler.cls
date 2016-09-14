@@ -7,15 +7,12 @@ public without sharing class WU_SetWarehousePOCHandler
 {
     public static Boolean isInserted = false;
     private static Map<string, User> userMap=new Map<string, User>();
-    //private static Map<Id, User> mgrMap=new Map<Id, User>();
-    //private static List<WU_Master_Warehouse__c> errorWCU = new List<WU_Master_Warehouse__c>();
     
     private WU_SetWarehousePOCHandler() {}
     public static void onBeforeInsert(List<WU_Master_Warehouse__c> InsertedItems, Map<Id, WU_Master_Warehouse__c> itemMap) {
     
         isInserted = false;
         userMap=getUserMap(InsertedItems);
-        //mgrMap=GetManagerMap(InsertedItems);
         system.debug('@userMap--->'+userMap);
         for(WU_Master_Warehouse__c wc:InsertedItems){
             
@@ -134,29 +131,7 @@ public without sharing class WU_SetWarehousePOCHandler
         }
     }   
    
-   /*
-    public static Map<Id, User> GetManagerMap(List<WU_Master_Warehouse__c> lstWc){
-        set<string> sProfile=getManagerProfile();
-        system.debug('@@@sProfile--->'+sProfile);
-        set<string> eMailSet=new set<string>();
-        for(WU_Master_Warehouse__c w:lstWc){
-            eMailSet.add(w.WU_WarehousePOC_Email__c);
-        }
-        /*sProfile.add('WU-Logistics Leadership Team');
-        sProfile.add('WU-Warehouse Excellence Operations');        */
-       /* if(!sProfile.isEmpty())
-        {
-            Map<Id,Profile> pMap=new Map<Id,Profile>([Select Id from profile where name IN : sProfile]);
-            mgrMap=new Map<Id, User>([Select u.Profile.Name, u.ProfileId, u.Name, u.LastName, u.Id, u.FirstName, u.Email,u.ManagerId From User u 
-                            where u.IsActive=true
-                            and u.Email IN :eMailSet
-                            and u.ProfileId IN: pMap.keySet() LIMIT 2000]);
-        }
-        
-                        
-        return  mgrMap;              
-    }*/
-     
+   
     /** Get user mapping  **/
     private static Map<string, User> getUserMap(List<WU_Master_Warehouse__c> lstWc)
     {
@@ -179,20 +154,7 @@ public without sharing class WU_SetWarehousePOCHandler
                                 userMap.put(ur.Email, ur); 
                             }
         }
-        /*
-        if(!profileSet.isEmpty())
-        {
-            Map<Id,Profile> pMap=new Map<Id,Profile>([Select Id from profile where name IN : profileSet]);
-              
-            for(User ur:[Select  u.Profile.Name, u.ProfileId, u.Name, u.LastName, u.Id, u.FirstName, u.Email,u.ManagerId From User u 
-                            where u.IsActive=true
-                            and u.Email IN :eMailSet
-                            and u.ProfileId IN: pMap.keySet() LIMIT 2000]){
-                userMap.put(ur.Email, ur);
-               
-            }
-        }
-        */
+       
         return userMap;
     }
     
@@ -200,24 +162,7 @@ public without sharing class WU_SetWarehousePOCHandler
     
    /** Get user profile detaqils for warehouse POC **/ 
    /*
-    private static set<string> getUserProfile(){
-        set<string> profileSet=new set<string>();
-        WMS_Settings__c profileCode = WMS_Settings__c.getValues('WarehousePOC Profile'); 
-        if(profileCode!=null)
-        {
-            string aryProfile=profileCode.Warehouse_Profiles__c;
-            List<string> lstProfile=aryProfile.split(',');
-            if(!lstProfile.isEmpty()){
-                profileSet.addAll(lstProfile);
-            }
-            else{
-                profileSet.add(aryProfile);
-            }
-        }
-        
-        system.debug ('***profileSet-->'+profileSet);
-        return profileSet;
-    }
+   
     */
     private static Set<String> fetchUsersWithExcellencePermissions()
     {
@@ -249,28 +194,6 @@ public without sharing class WU_SetWarehousePOCHandler
         
         return UserIds;
     }
-    /** Get user profile detaqils for warehouse POC **/ 
-    /*
-    private static set<string> getManagerProfile(){
-        set<string> profileSet=new set<string>();
-        WMS_Settings__c profileCode = WMS_Settings__c.getValues('WarehousePOC Profile'); 
-        if(profileCode!=null)
-        {
-            string aryProfile=profileCode.Warehouse_ManagerProfiles__c;
-            List<string> lstProfile=aryProfile.split(','); 
-            if(!lstProfile.isEmpty()){
-                profileSet.addAll(lstProfile);
-            }
-            else{
-                profileSet.add(aryProfile);
-            }
-            
-        }
-        
-        system.debug ('***profileSet-->'+profileSet);
-        return profileSet;
-    }
-    */
     /*For Sharing Records with POC Email Owners*/
     
     
@@ -320,7 +243,6 @@ public without sharing class WU_SetWarehousePOCHandler
     
         if(!wareHouseShareList.isEmpty()){
             list<string> lstExistingUsers = new list<string>();
-            //Map<string,list<string>> mapExistingUser = new Map<string,list<string>>();
             list<WU_Master_Warehouse__Share> lstShareToInsert = new list<WU_Master_Warehouse__Share>();
             
             
@@ -328,17 +250,6 @@ public without sharing class WU_SetWarehousePOCHandler
                 lstExistingUsers.add(objShare.ParentId);
             }
             list<WU_Master_Warehouse__Share> lstShared = [select id,ParentId,UserOrGroupId from WU_Master_Warehouse__Share Where ParentId in : lstExistingUsers ];
-            /*
-            for(string parentRecordRecId : lstExistingUsers ){
-                list<string> existingUserlst = new list<string>();
-                mapExistingUser.put(parentRecordRecId,existingUserlst);
-                for(WU_Master_Warehouse__Share objShare1: lstShared ){
-                    if(parentRecordRecId == objShare1.ParentId ){
-                        
-                    }
-                }
-            }
-            */
             System.debug('####wareHouseShareList (All )'+wareHouseShareList);
             System.debug('####lstShared (Existing)'+lstShared);
             for(WU_Master_Warehouse__Share objShare : wareHouseShareList){
@@ -367,7 +278,6 @@ public without sharing class WU_SetWarehousePOCHandler
     
     public static void sendEmailSecPOC(List<WU_Master_Warehouse__c> wareHouseSecPocList)
     {
-        list<string> lstSecPocUsers = new list<string>();
         set<string>emailSet = new set<string>();
         if(!wareHouseSecPocList.isEmpty()){
                 
@@ -398,18 +308,14 @@ public without sharing class WU_SetWarehousePOCHandler
         }
         List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
           
-          //EmailNotificationSecPOC__c emailNotificationSecPOC = EmailNotificationSecPOC__c.getInstance('Secondary POC');
           EmailTemplate warehouseTemplateId = [select Id, DeveloperName, Subject, HtmlValue, Body from EmailTemplate where DeveloperName=: 'WU_Warehouse_Committed_StoragetoPOC'];
           System.debug(warehouseTemplateId +'warehouseTemplateId ************');
-          //fetch custom setting name ;  
-        //  EmailTemplate warehouseTemplateId = getWareHouseTemplateId(emailNotificationSecPOC.WU_Template_SecondaryPOC__c);
           
           
           
           for (WU_Master_Warehouse__c whLst : wareHouseSecPocList1) {
             if (whLst.WU_Warehouse_Secondary_POC_Email__c != null && whLst.WU_Committed_Max_PalletStorage__c <> whLst.WU_Prior_CommittedPalletStorage__c) {
               List<String> sendTo = new List<String>();
-              //Set<Id> toIds=new Set<Id>();
               // Step 1: Create a new Email
               Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
             
@@ -417,9 +323,6 @@ public without sharing class WU_SetWarehousePOCHandler
               //
               for(String emailId:whLst.WU_Warehouse_Secondary_POC_Email__c.split(',')){
                   sendTo.add(emailId);
-                  //if(usersMap.get(emailId)!=null){
-                      //toIds.add(usersMap.get(emailId));
-                  //} 
               }
               // process the merge fields
                 String subject = warehouseTemplateId.Subject;
@@ -429,17 +332,6 @@ public without sharing class WU_SetWarehousePOCHandler
                 else
                 subject = subject.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', '');
             
-              /*  String htmlBody = warehouseTemplateId.HtmlValue;
-                System.debug(htmlBody+'htmlBody ***********');
-                //htmlBody = htmlBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'Secondary POC');
-                if(whLst.WU_SAPCode_s__c!=null)
-                htmlBody = htmlBody.replace('{!WU_Master_Warehouse__c.WU_SAPCode_s__c}', whLst.WU_SAPCode_s__c);
-                if(whLst.WU_SAPName_s__c!=null)
-                htmlBody = htmlBody.replace('{!WU_Master_Warehouse__c.WU_SAPName_s__c}', whLst.WU_SAPName_s__c);
-                if(whLst.WU_Prior_CommittedPalletStorage__c!=null)
-                htmlBody = htmlBody.replace('{!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c}', String.valueOf(whLst.WU_Prior_CommittedPalletStorage__c));
-                if(whLst.WU_Committed_Max_PalletStorage__c!=null)
-                htmlBody = htmlBody.replace('{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c}', String.valueOf(whLst.WU_Committed_Max_PalletStorage__c));*/
                 
                 String plainBody = warehouseTemplateId.Body;
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
@@ -453,7 +345,6 @@ public without sharing class WU_SetWarehousePOCHandler
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c}', String.valueOf(whLst.WU_Committed_Max_PalletStorage__c));
     
                 mail.setSubject(subject);
-   // mail.setHtmlBody(htmlBody);
     mail.setPlainTextBody(plainBody);
 
               mail.setToAddresses(sendTo); 
@@ -471,10 +362,4 @@ public without sharing class WU_SetWarehousePOCHandler
         
     }
     
-    
-    private static EmailTemplate getWareHouseTemplateId(string templateName){
-        if(templateName==null)return null;
-        list<EmailTemplate> et=[Select id,DeveloperName from EmailTemplate where DeveloperName= :templateName limit 1];
-        return et[0];
-    }
-}
+ }
