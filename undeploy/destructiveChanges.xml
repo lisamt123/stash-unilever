@@ -6,7 +6,6 @@
     </types>
     <types>
     	<members>FA_Course_Facilitator__c-en_US</members>
-    	<members>FA_Training_Room__c-en_US</members>
     	<members>FA_Occurence_Member__c-en_US</members>
     	<members>FA_Member_ChatterGroup__c-en_US</members>
     	<members>FA_Feedback__c-en_US</members>
