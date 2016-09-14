@@ -4,12 +4,10 @@
         component.set("v.longitude",null);
         var map = L.map('map');
        	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
-        
         map.locate({setView: true, maxZoom: 16})
         
         var lat=component.get("v.latitude");
         var lng=component.get("v.longitude");
-        
         map.on('locationfound', onLocationFound);
         function onLocationFound(e) {
             lat = e.latlng.lat;
@@ -18,12 +16,10 @@
             component.set("v.longitude",lng);
                 
             var latlongString = e.latlng.lat+','+e.latlng.lng;
-            
             function onLocationError(e) {
                 console.log("ERROR: "+e.message);
             }
            // var abc=component.get("v.path")+encodeURIComponent(latlongString);
-          
             map.on('locationerror', onLocationError);
             var action = component.get("c.service");
             action.setParams({
@@ -33,7 +29,6 @@
                 bodyContent: component.get("v.bodyContent"),
                 bodyContentType: component.get("v.bodyContentType")
             });
-            
             action.setCallback(this, function(a) {
                 var resultsObj = a.getReturnValue();
                 component.set("v.bodyContent", JSON.parse(resultsObj.body));
@@ -49,7 +44,6 @@
                         component.set("v.countryName", address_cmps_array[i].long_name);
                     }
                 }
-                
                 var cmpEvent = component.getEvent("getCountryCityLatLng");
                 cmpEvent.setParams({
                     "latitude":component.get("v.latitude"),
@@ -59,7 +53,6 @@
                 });
                 cmpEvent.fire();
             });
-            
         	$A.run(function() {
                 $A.enqueueAction(action); 
             });

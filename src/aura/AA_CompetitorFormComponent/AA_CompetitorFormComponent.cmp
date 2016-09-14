@@ -1,5 +1,6 @@
 <aura:component implements="force:appHostable" controller="AA_AgentAppService"> 
    <ltng:require scripts="/resource/AA_Agent_LightningAppStatic/libs/jquery-3.0.0.min.js" />
+    <aura:attribute name="objGetAgentDataResponse" type="AA_WrapperClass.AgentAppDataResponse" />
     <aura:attribute name="latitude" type="Decimal" />
     <aura:attribute name="longitude" type="Decimal" />
     <aura:attribute name="subTopicList" type="string[]" />
@@ -32,6 +33,8 @@
     <aura:attribute name="businessPrinciples" type="Boolean" default="false"/>
     <aura:attribute name="successMessage" type="Boolean" default="false"/>
     <aura:attribute name="clusterList" type="Object" description="List of Cluster values" />
+    <aura:attribute name="sourceList" type="List" description="List of source values" />
+    <aura:attribute name="topicList" type="Object" description="List of topic values" />
     <aura:attribute name="allCountryList" type="Object" description="List of all Countries values which will be used while selection based on the cluster list"/>
     <aura:attribute name="countryList" type="Object" description="List of the countries values which we will display in the country drop down list "/>    
     <aura:attribute name="sortTopic" type="String"/>
@@ -45,6 +48,7 @@
     <aura:attribute name="showMap" type="Boolean" default="test"/> 
     <aura:attribute name="disableButton" type="Boolean" default="false"/>
     <aura:attribute name="submitButtonError" type="Boolean" default="false"/>
+    <aura:attribute name="check" type="Boolean" default="false"/>
     <aura:registerEvent name="clearLookupIdEvent" type="c:AA_ClearLookupId"/> 
     <aura:handler name="getCountryCityLatLng" event="c:AA_GoogleMapEvent" action="{!c.getLocationDetails}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
