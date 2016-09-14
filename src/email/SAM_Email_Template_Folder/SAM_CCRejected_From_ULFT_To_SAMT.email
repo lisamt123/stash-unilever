@@ -1,9 +1,9 @@
-Hi UL SAM Team ,
+Hi {!SAM_Request__c.LastModifiedBy},
 
-Cross Charging for service request {!SAM_Request__c.Name}  is rejected by Finance Team. The current status is ""Charging Rejected"".
+You have rejected the Cross Charge service request {!SAM_Request__c.Name}.  The current status is "Charging Rejected".
 
-Please login to the portal to find more details.
- Click here  {!SAM_Request__c.Link}.
+You can access the Service Request via the link below;
+{!SAM_Request__c.Link}
 
 Thanks,
-UL Finance Team
+{!SAM_Request__c.lkp_Assign_To__c}

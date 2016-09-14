@@ -251,10 +251,24 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Spend_In_Euros__c</fullName>
+        <description>Report Field</description>
+        <externalId>false</externalId>
+        <formula>fml_License_Cost__c +  fml_Maintainence_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Spend In Euros</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Total_Annual_Maint__c</fullName>
         <externalId>false</externalId>
         <formula>num_Quantity__c *  fml_Maintainence_Amount__c</formula>
-        <inlineHelpText>Qunatity*Maintainence Cost (€)</inlineHelpText>
         <label>Total Annual Maint (€)</label>
         <precision>18</precision>
         <required>false</required>
@@ -267,6 +281,7 @@
     <fields>
         <fullName>dt_Contract_End_Date__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the End Date of the Contract, if any</inlineHelpText>
         <label>Contract End Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -276,6 +291,7 @@
     <fields>
         <fullName>dt_Contract_Start_Date__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the Start Date of the Contract, if any</inlineHelpText>
         <label>Contract Start Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -295,9 +311,8 @@
     <fields>
         <fullName>fml_License_Cost__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(ISPICKVAL(pkl_Currency_Type__c, &apos;EUR&apos;),(IF(TEXT(pkl_Discount_Applicable__c)=&apos;Yes&apos;,(num_List_Price__c  - (num_List_Price__c * num_Discount_Percentage__c)),(num_List_Price__c))),(IF(ISPICKVAL(pkl_Currency_Type__c, &apos;GBP&apos;),(IF(TEXT(pkl_Discount_Applicable__c)=&apos;Yes&apos;,(num_List_Price__c  - (num_List_Price__c * num_Discount_Percentage__c)*num_GBP_EUR__c),(num_List_Price__c*num_GBP_EUR__c))),(IF(ISPICKVAL(pkl_Currency_Type__c, &apos;USD&apos;),(IF(TEXT(pkl_Discount_Applicable__c)=&apos;Yes&apos;,(num_List_Price__c  - (num_List_Price__c * num_Discount_Percentage__c)*num_USD_EUR__c),(num_List_Price__c*num_USD_EUR__c))),0)))))</formula>
+        <formula>fml_List_Price__c * (1 - num_Discount_Percentage__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>ListPrice(€)*(1-(Discount/100))</inlineHelpText>
         <label>License Cost (€)</label>
         <precision>18</precision>
         <required>false</required>
@@ -310,13 +325,12 @@
     <fields>
         <fullName>fml_List_Price__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_List_Price__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_GBP_EUR__c *num_List_Price__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),(  num_USD_EUR__c *num_List_Price__c ),(0))))) )</formula>
+        <formula>IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_List_Price__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_List_Price__c/num_GBP_EUR__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),( num_List_Price__c/num_USD_EUR__c ),(0))))) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <inlineHelpText>Currency (€)</inlineHelpText>
         <label>List Price (€)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -325,8 +339,7 @@
     <fields>
         <fullName>fml_Maintainence_Amount__c</fullName>
         <externalId>false</externalId>
-        <formula>IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;EUR&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Percentage&apos;),NOT(ISNULL(num_Maintainence_Percentage__c)))) ,(num_Maintainence_Percentage__c * fml_License_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;EUR&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Amount&apos;),NOT(ISNULL(num_Maintainence_Cost__c)))),(num_Maintainence_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;GBP&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Percentage&apos;),NOT(ISNULL(num_Maintainence_Percentage__c)))),(num_GBP_EUR__c * num_Maintainence_Percentage__c * fml_License_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;GBP&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Amount&apos;),NOT(ISNULL(num_Maintainence_Cost__c)))),(num_GBP_EUR__c * num_Maintainence_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;USD&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Percentage&apos;),NOT(ISNULL(num_Maintainence_Percentage__c)))),(num_USD_EUR__c * num_Maintainence_Percentage__c * fml_License_Cost__c),(IF((AND(ISPICKVAL(pkl_Currency_Type__c, &apos;USD&apos;),ISPICKVAL(pkl_Maintainence_Type__c , &apos;Amount&apos;),NOT(ISNULL(num_Maintainence_Cost__c)))),(num_USD_EUR__c * num_Maintainence_Cost__c),0)))))))))))</formula>
-        <inlineHelpText>Maintenance Percentage(%) * License cost</inlineHelpText>
+        <formula>IF(  ISPICKVAL(pkl_Maintainence_Type__c, &apos;Amount&apos;)  ,  (IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_Maintainence_Cost__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_Maintainence_Cost__c/num_GBP_EUR__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),( num_Maintainence_Cost__c/num_USD_EUR__c ),(0))))) )) , num_Maintainence_Percentage__c*fml_License_Cost__c)</formula>
         <label>Maintenance Cost (€)</label>
         <precision>18</precision>
         <required>false</required>
@@ -369,7 +382,6 @@ false )</formula>
         <fullName>fml_Total_CAPEX__c</fullName>
         <externalId>false</externalId>
         <formula>num_Quantity__c * fml_License_Cost__c</formula>
-        <inlineHelpText>Qunatity*License Cost (€)</inlineHelpText>
         <label>Total CAPEX (€)</label>
         <precision>18</precision>
         <required>false</required>
@@ -419,11 +431,11 @@ false )</formula>
     <fields>
         <fullName>num_List_Price__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Currency Input Field(€, £, $)</inlineHelpText>
+        <inlineHelpText>Enter List Price of the product, no discounts included</inlineHelpText>
         <label>List Price</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -539,9 +551,7 @@ false )</formula>
     <fields>
         <fullName>pkl_Currency_Type__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>EUR - Euros (€)
-GBP - GBP (£)
-USD - US Dollars ($)</inlineHelpText>
+        <inlineHelpText>Select the type of currency for List Price</inlineHelpText>
         <label>Currency Type</label>
         <picklist>
             <picklistValues>
@@ -635,6 +645,7 @@ USD - US Dollars ($)</inlineHelpText>
     <fields>
         <fullName>pkl_Maintainence_Type__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>if &quot;Maintenance Applicable&quot; is Yes. Select appropriate maintenance type</inlineHelpText>
         <label>Maintenance Type</label>
         <picklist>
             <picklistValues>
@@ -687,6 +698,7 @@ USD - US Dollars ($)</inlineHelpText>
     <fields>
         <fullName>pkl_Quotation_Available__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Select &apos;Yes&apos; if quote for the product already exist</inlineHelpText>
         <label>Quotation Available</label>
         <picklist>
             <picklistValues>
@@ -992,6 +1004,16 @@ USD - US Dollars ($)</inlineHelpText>
                 <fullName>Under Discussion</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAM</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+            </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
@@ -1002,6 +1024,7 @@ USD - US Dollars ($)</inlineHelpText>
     <fields>
         <fullName>txt_DO_Number__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the Delivery Order (DO) number</inlineHelpText>
         <label>DO Number</label>
         <length>200</length>
         <required>false</required>
@@ -1014,6 +1037,7 @@ USD - US Dollars ($)</inlineHelpText>
         <fullName>txt_Project_Maintained_by__c</fullName>
         <description>renamed from Project Maintained by(after PGLS exit)</description>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the name/ team which maintains the project post PGLS exit</inlineHelpText>
         <label>Project Maintenance</label>
         <length>200</length>
         <required>false</required>
@@ -1036,6 +1060,7 @@ USD - US Dollars ($)</inlineHelpText>
     <fields>
         <fullName>txt_Run_Cost_in_Euros__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter Run Cost in Euros</inlineHelpText>
         <label>Run Cost (€)</label>
         <precision>18</precision>
         <required>false</required>
@@ -1048,6 +1073,7 @@ USD - US Dollars ($)</inlineHelpText>
     <fields>
         <fullName>txt_Software_Name__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the name of Software product required</inlineHelpText>
         <label>Software Name</label>
         <length>200</length>
         <required>false</required>
@@ -1081,12 +1107,1587 @@ USD - US Dollars ($)</inlineHelpText>
         <label>All</label>
     </listViews>
     <nameField>
-        <label>Product Description</label>
+        <label>Software Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Quotation Details</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>SAM_Non_Proj_Quote_RO</fullName>
+        <active>true</active>
+        <description>Read Only Quotation layout for Non-Project quotations</description>
+        <label>SAM Non Proj Quote RO</label>
+        <picklistValues>
+            <picklist>Maintainence_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Run_Cost_for_Year_1__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Run_Cost_for_Year_2__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Build_Details_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Charging_Type__c</picklist>
+            <values>
+                <fullName>Cross Charge Applicable %28X%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DO%2FPO Applicable %28O%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engage with Procurement %28P%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Purchased %28I%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency_Type__c</picklist>
+            <values>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_DO_PO_Details_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Discount_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Line_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with Procurement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with SAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Maintainence_Type__c</picklist>
+            <values>
+                <fullName>Amount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Publisher__c</picklist>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Quotation_Available__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_End_Year__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_Start_Year__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Discussion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Non_Proj_Quote_RW</fullName>
+        <active>true</active>
+        <description>Read Write Quotation layout for Non-Project quotations</description>
+        <label>SAM Non Proj Quote RW</label>
+        <picklistValues>
+            <picklist>Maintainence_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Run_Cost_for_Year_1__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Run_Cost_for_Year_2__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Build_Details_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Charging_Type__c</picklist>
+            <values>
+                <fullName>Cross Charge Applicable %28X%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DO%2FPO Applicable %28O%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engage with Procurement %28P%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Purchased %28I%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency_Type__c</picklist>
+            <values>
+                <fullName>EUR</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_DO_PO_Details_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Discount_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Line_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with Procurement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with SAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Maintainence_Type__c</picklist>
+            <values>
+                <fullName>Amount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Publisher__c</picklist>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Quotation_Available__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_End_Year__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_Start_Year__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Discussion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_Non_Proj_Quote_RW_RO</fullName>
+        <active>true</active>
+        <description>Read and Write Quotation layout for Non-Project quotations</description>
+        <label>SAM Non Proj Quote RW/RO</label>
+        <picklistValues>
+            <picklist>Maintainence_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Run_Cost_for_Year_1__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Run_Cost_for_Year_2__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Build_Details_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Charging_Type__c</picklist>
+            <values>
+                <fullName>Cross Charge Applicable %28X%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DO%2FPO Applicable %28O%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Engage with Procurement %28P%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Innovation Purchased %28I%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency_Type__c</picklist>
+            <values>
+                <fullName>EUR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_DO_PO_Details_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Discount_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Line_Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with Procurement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending with SAM</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Maintainence_Type__c</picklist>
+            <values>
+                <fullName>Amount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Percentage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Publisher__c</picklist>
+            <values>
+                <fullName>IBM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oracle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAP</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Quotation_Available__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_Applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_End_Year__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Run_Cost_Start_Year__c</picklist>
+            <values>
+                <fullName>2016</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2017</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2018</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2019</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2020</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2021</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2022</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2023</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2024</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2025</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2026</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2027</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2028</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2029</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2030</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Under Discussion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <recordTypes>
         <fullName>SAM_Quote_RW</fullName>
         <active>true</active>
@@ -2669,8 +4270,15 @@ USD - US Dollars ($)</inlineHelpText>
         <errorMessage>This cannot be updated.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>SAM_CC_Charging_Type_Validation</fullName>
+        <fullName>Quotation_as_Completed_without_attaching</fullName>
         <active>true</active>
+        <description>cannot mark Quotation as Completed without attaching Quotation file name &quot;Quotation&quot;</description>
+        <errorConditionFormula>AND( ISNEW(), ISPICKVAL( md_Request__r.pkl_Software_Purchase_Req__c , &apos;Yes&apos;)  , ISPICKVAL( pkl_Charging_Type__c , &apos;DO/PO Applicable (O)&apos;)  ,ISPICKVAL(pkl_Line_Status__c , &apos;Completed&apos;))</errorConditionFormula>
+        <errorMessage>You cannot mark Quotation as Completed without attaching Quotation file name &quot;Quotation&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_CC_Charging_Type_Validation</fullName>
+        <active>false</active>
         <description>For non-project request type, don’t allow user to select cross charge (x) option for charging type</description>
         <errorConditionFormula>AND(Text(pkl_Charging_Type__c)= $Label.SAM_Cross_Charge_Applicable ,
  md_Request__r.txt_Request_Type__c  = &apos;SAM_RW_Non_Project_Request&apos;)</errorConditionFormula>
@@ -2678,11 +4286,17 @@ USD - US Dollars ($)</inlineHelpText>
         <errorMessage>Cross Charge Applicable (X) charging type not applicable for Non-Project requests</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_DO_Number_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_DO_Number__c ) ) ),(NOT( REGEX( txt_DO_Number__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_DO_Number__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_DO_Reverse_Validation</fullName>
         <active>true</active>
         <description>Don&apos;t allow DO fields to enter if DO applicable is No.</description>
-        <errorConditionFormula>AND( OR(ISPICKVAL(pkl_DO_PO_Details_Applicable__c,&apos;No&apos;),ISPICKVAL(pkl_DO_PO_Details_Applicable__c,&apos;&apos;)), NOT(ISBLANK( txt_DO_Number__c )))</errorConditionFormula>
-        <errorDisplayField>txt_DO_Number__c</errorDisplayField>
+        <errorConditionFormula>AND( OR(ISPICKVAL(pkl_DO_PO_Details_Applicable__c,&apos;No&apos;),ISPICKVAL(pkl_DO_PO_Details_Applicable__c,&apos;&apos;)), OR(NOT(ISBLANK( txt_DO_Number__c )),NOT(ISBLANK(  txta_DO_Notes__c ))))</errorConditionFormula>
         <errorMessage>DO detail fields are mandatory only if DO details Applicable is Yes.</errorMessage>
     </validationRules>
     <validationRules>
@@ -2691,7 +4305,7 @@ USD - US Dollars ($)</inlineHelpText>
         <description>Discount percentage should be +ve</description>
         <errorConditionFormula>num_Discount_Percentage__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Discount_Percentage__c</errorDisplayField>
-        <errorMessage>Enter only positive value here</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Discount_Percentage</fullName>
@@ -2719,9 +4333,9 @@ USD - US Dollars ($)</inlineHelpText>
     <validationRules>
         <fullName>SAM_List_Price_shd_be_positive</fullName>
         <active>true</active>
-        <errorConditionFormula>num_List_Price__c &lt;=0</errorConditionFormula>
+        <errorConditionFormula>num_List_Price__c &lt;0</errorConditionFormula>
         <errorDisplayField>num_List_Price__c</errorDisplayField>
-        <errorMessage>Enter only positive value here</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Maintainence_Cost</fullName>
@@ -2776,41 +4390,76 @@ true,false )</errorConditionFormula>
         <active>true</active>
         <errorConditionFormula>num_Maintainence_Cost__c &lt;=0</errorConditionFormula>
         <errorDisplayField>num_Maintainence_Cost__c</errorDisplayField>
-        <errorMessage>Enter only positive value here</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Maintenance_Per_shd_be_positive</fullName>
         <active>true</active>
         <errorConditionFormula>num_Maintainence_Percentage__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Maintainence_Percentage__c</errorDisplayField>
-        <errorMessage>Enter only positive value here</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Project_Maintenance_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Project_Maintained_by__c ) ) ),(NOT( REGEX( txt_Project_Maintained_by__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Project_Maintained_by__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Publisher_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Run_Cost_Publisher__c ) ) ),(NOT( REGEX( txt_Run_Cost_Publisher__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Run_Cost_Publisher__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Quantity_Positive_check</fullName>
+        <active>true</active>
+        <errorConditionFormula>num_Quantity__c &lt;=0</errorConditionFormula>
+        <errorDisplayField>num_Quantity__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Run_Cost</fullName>
         <active>true</active>
         <errorConditionFormula>txt_Run_Cost_in_Euros__c &lt;=0</errorConditionFormula>
         <errorDisplayField>txt_Run_Cost_in_Euros__c</errorDisplayField>
-        <errorMessage>Run Cost should be positive.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Run_Cost_one_year</fullName>
         <active>true</active>
         <errorConditionFormula>Run_Cost_Year_1__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>Run_Cost_Year_1__c</errorDisplayField>
-        <errorMessage>Run Cost (€) (year +1) should be positive.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Run_Cost_two_year</fullName>
         <active>true</active>
         <errorConditionFormula>Run_Cost_Year_2__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>Run_Cost_Year_2__c</errorDisplayField>
-        <errorMessage>Run Cost (€) (year +2) should be positive.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Run_cost_Reverse_Validation</fullName>
         <active>true</active>
         <description>Don&apos;t allow run cost fields to enter if run cost is No.</description>
-        <errorConditionFormula>AND(OR(ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;No&apos;),ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;&apos;)),OR( NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( dt_Contract_End_Date__c )),NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( text(pkl_Run_Cost_Start_Year__c) )),NOT(ISBLANK( text(pkl_Run_Cost_End_Year__c) )),NOT(ISBLANK( txt_Run_Cost_in_Euros__c )),NOT(ISBLANK(  Run_Cost_Year_1__c  )),NOT(ISBLANK(  Run_Cost_Year_2__c  )),NOT(ISBLANK(text( Run_Cost_for_Year_1__c ) )),NOT(ISBLANK( text( Run_Cost_for_Year_2__c) )),NOT(ISBLANK(text(  pkl_Whether_SAM_will_pick_up_Run_Cost__c ) )),NOT(ISBLANK(  txt_Project_Maintained_by__c  )),NOT(ISBLANK( txta_SAM_Comments__c  )) )   )</errorConditionFormula>
+        <errorConditionFormula>AND( md_Request__r.txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;, OR(ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;No&apos;),ISPICKVAL(pkl_Run_Cost_Applicable__c , &apos;&apos;)),OR( NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( dt_Contract_End_Date__c )),NOT(ISBLANK( dt_Contract_Start_Date__c )),NOT(ISBLANK( text(pkl_Run_Cost_Start_Year__c) )),NOT(ISBLANK( text(pkl_Run_Cost_End_Year__c) )),NOT(ISBLANK( txt_Run_Cost_in_Euros__c )),NOT(ISBLANK(  Run_Cost_Year_1__c  )),NOT(ISBLANK(  Run_Cost_Year_2__c  )),NOT(ISBLANK(text( Run_Cost_for_Year_1__c ) )),NOT(ISBLANK( text( Run_Cost_for_Year_2__c) )),NOT(ISBLANK(text(  pkl_Whether_SAM_will_pick_up_Run_Cost__c ) )),NOT(ISBLANK(  txt_Project_Maintained_by__c  )),NOT(ISBLANK( txta_SAM_Comments__c  )),NOT(ISBLANK(  txt_Run_Cost_Publisher__c )),NOT(ISBLANK( txt_Software_Name__c)) )   )</errorConditionFormula>
         <errorMessage>Run Cost fields are mandatory only if Run Cost Applicable is Yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Software_Name_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  Name ) ) ),(NOT( REGEX( Name , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Software_Name_Run_Cost_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Software_Name__c ) ) ),(NOT( REGEX( txt_Software_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Software_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
 </CustomObject>

@@ -13,7 +13,7 @@ VERSION     AUTHOR                 DATE            DETAIL Description
 1.0         Dineshisng Girase    18/07/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class SAM_Request_TriggerUtil{
-
+	public static boolean isSubmitted=false;
     /*******************************************************************
     Purpose: If the request is other than Saved status, this method will prevent its delition
     Parameters: List of SAM_Request__c
@@ -38,21 +38,25 @@ public with sharing class SAM_Request_TriggerUtil{
     public static void PreventRequestAssignment(list<SAM_Request__c> lstRequest,list<SAM_Request__c> OldlstRequest){
         Set<Id> AssigntoID = new Set<Id>();
         String userType = Schema.SObjectType.User.getKeyPrefix();
-
-        for (GroupMember m : [Select Id, UserOrGroupId From GroupMember WHERE group.name = 'SAM Team']){
-            if (((String)m.UserOrGroupId).startsWith(userType)){
-                AssigntoID.add(m.UserOrGroupId);
+        if(!isSubmitted){
+           List<GroupMember> grpList = [Select Id, UserOrGroupId From GroupMember WHERE group.name = 'SAM Team'];
+            for (GroupMember m : grpList){
+                if (((String)m.UserOrGroupId).startsWith(userType)){
+                    AssigntoID.add(m.UserOrGroupId);
+                }
             }
+            for(integer i = 0 ; i < lstRequest.size(); i++){
+                if(!Test.isRunningTest() && lstRequest[i].lkp_Assign_To__c != null && OldlstRequest[i].lkp_Assign_To__c <> lstRequest[i].lkp_Assign_To__c && AssigntoID != null && !AssigntoID.contains(lstRequest[i].lkp_Assign_To__c))
+                   lstRequest[i].lkp_Assign_To__c.addError('You can only Assign the Request to a SAM team member');
+                
+            } 
+            isSubmitted = true;
         }
-        for(integer i = 0 ; i < lstRequest.size(); i++){
-            if(lstRequest[i].lkp_Assign_To__c != null && OldlstRequest[i].lkp_Assign_To__c <> lstRequest[i].lkp_Assign_To__c && AssigntoID != null && !AssigntoID.contains(lstRequest[i].lkp_Assign_To__c))
-               lstRequest[i].lkp_Assign_To__c.addError('You can only Assign the Request to a SAM team member');
-            
-        }
+		
     }
 
     /*******************************************************************
-    Purpose: Request can not Closed without attaching buil details
+    Purpose: Request can not Closed without attaching build details
     Parameters: List of SAM_Request__c
     Returns: 
     Throws [Exceptions]: 
@@ -103,54 +107,28 @@ public with sharing class SAM_Request_TriggerUtil{
             }
             if(newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && newlstRequest[i].rol_Product_detail_count_having_cross_ch__c>0 && oldlstRequest[i].pkl_SAM_team_Status__c != SAM_Constants.AWAITINGCHARGE && newlstRequest[i].pkl_SAM_team_Status__c == SAM_Constants.AWAITINGCHARGE){
                 if(Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id).size()<1){
-                    newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails".');
+					if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
+						newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');	
+					}else
+						newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
                 }
                 else{ 
+					boolean approval_Emails_Flag = false;
                     for(Attachment objAttachment:Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id)){
-                        if(objAttachment == null){
-                            newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails".');
-                        }
-                    }
+                        if(objAttachment.Name.containsIgnoreCase(String.valueOf(newlstRequest[i].num_Cross_Charging_Version__c))){
+							approval_Emails_Flag = true;
+						}
+					}
+					if(!approval_Emails_Flag){
+						if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
+							newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');	
+					}else
+							newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
+					}                            
                 }
                 
             } 
         }
      }
-/*******************************************************************
-    Purpose: update the child recordt with request status
-    Parameters: List of SAM_Request__c
-    Returns: 
-    Throws [Exceptions]: 
-    ********************************************************************/
-    /*public static void requestStatusOnChildRecord(list<SAM_Request__c> newlstRequest, list<SAM_Request__c> oldlstRequest){
-		List<SAM_Request_Line_Item__c>rliList = new List<SAM_Request_Line_Item__c>();
-		List<SAM_Quote_Line_Item__c>qliList = new List<SAM_Quote_Line_Item__c>();
-		
-		map<Id,List<SAM_Request_Line_Item__c>>mapRliList = new map<Id,List<SAM_Request_Line_Item__c>>();
-		map<Id,List<SAM_Quote_Line_Item__c>>mapQliList = new map<Id,List<SAM_Quote_Line_Item__c>>();
-		
-		Set<Id> requestId = new Set<Id>();
-		for(SAM_Request__c obj :newlstRequest){
-            requestId.add(obj.Id);
-        }
-		List<SAM_Request__c> reqChildList = [select id,pkl_Status__c ,(select md_Request_ID__c,pkl_Request_Status__c from Request_Line_Items__r),(select md_Request__c,pkl_Request_Status__c from Quote_Line_Items__r) from SAM_Request__c where id=:requestId];
-		for(SAM_Request__c req:reqChildList){
-			mapRliList.put(req.id,req.Request_Line_Items__r);
-			mapQliList.put(req.id,req.Quote_Line_Items__r);
-		}
-		for(integer i = 0 ; i < reqChildList.size(); i++){
-			if(oldlstRequest[i].pkl_Status__c <> newlstRequest[i].pkl_Status__c){				
-				for(SAM_Request_Line_Item__c relatedRLI:mapRliList.get(newlstRequest[i].id)){
-					relatedRLI.pkl_Request_Status__c = newlstRequest[i].pkl_Status__c;
-					rliList.add(relatedRLI);
-				}
-				for(SAM_Quote_Line_Item__c relatedQLI:mapQliList.get(newlstRequest[i].id)){
-					relatedQLI.pkl_Request_status__c = newlstRequest[i].pkl_Status__c;
-					qliList.add(relatedQLI);
-				}
-			}
-		}
-		update rliList;
-		update qliList;
-	}*/
+
 }

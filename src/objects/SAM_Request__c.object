@@ -168,6 +168,7 @@
     </fields>
     <fields>
         <fullName>Record_Count_for_Report__c</fullName>
+        <defaultValue>1</defaultValue>
         <description>Report Field</description>
         <externalId>false</externalId>
         <label>Record Count for Report</label>
@@ -177,6 +178,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Status_Before_On_Hold__c</fullName>
+        <description>This is to store the Request Status field value before going on hold</description>
+        <externalId>false</externalId>
+        <label>Request Status Before On Hold</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -241,8 +254,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>chk_Re_Open__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Re-Open the Request</inlineHelpText>
+        <label>Re-Open</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>date_CrossCharge_Submission_Date__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Select the Cross Charge request submission date to Finance</inlineHelpText>
         <label>Submission Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -272,7 +296,7 @@
     <fields>
         <fullName>date_Go_Live_Date__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type. Validate - Go Live Date should not be less than current date.</inlineHelpText>
+        <inlineHelpText>Enter the tentative Go-Live Date of the project, this should not be less then current date</inlineHelpText>
         <label>Go Live Date</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -319,7 +343,6 @@
     <fields>
         <fullName>eml_Budget_Owner_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Budget Owner: Email</inlineHelpText>
         <label>Budget Owner Email Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -330,7 +353,6 @@
     <fields>
         <fullName>eml_Financial_Manager_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Financial Business Partner Email Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -341,7 +363,6 @@
     <fields>
         <fullName>eml_Infrastructure_Manager_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Infrastructure Manager Email Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -362,7 +383,6 @@
     <fields>
         <fullName>eml_Portfolio_Manager_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Portfolio Manager Email Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -373,7 +393,6 @@
     <fields>
         <fullName>eml_Program_Owner_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Program Owner Email Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -384,7 +403,6 @@
     <fields>
         <fullName>eml_Project_Manager_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project and Non Project request type</inlineHelpText>
         <label>Project Manager Email Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -395,12 +413,35 @@
     <fields>
         <fullName>eml_Project_Technical_Architect_Email__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Project Technical Architect Email Id</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Requester_Email_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Requester Email Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_Cross_Charge_Amount_for_report__c</fullName>
+        <externalId>false</externalId>
+        <formula>txt_Cross_Charge_Amount_in_euros__c + rol_Total_CAPEX_in_for_X_type__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cross Charge Amount (€)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -421,7 +462,7 @@
         <externalId>false</externalId>
         <formula>rol_Total_Annual_Maint_in_for_X_type__c +  rol_Total_CAPEX_in_for_X_type__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Total Applicable Cross Charge (€)</label>
+        <label>Total Applicable Cross Charge (€) old</label>
         <precision>18</precision>
         <required>false</required>
         <scale>4</scale>
@@ -470,7 +511,7 @@
     <fields>
         <fullName>ltxt_Application_S_w_Purchase_Details__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Is the software already purchased. If so when? Please upload contract.</inlineHelpText>
+        <inlineHelpText>Is the software already purchased.  If so when? Please upload contract</inlineHelpText>
         <label>Application S/w Purchase Details</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
@@ -481,7 +522,7 @@
     <fields>
         <fullName>ltxt_Backend_server_details__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>What is the backend server?</inlineHelpText>
+        <inlineHelpText>Enter the details of Backend Server if any</inlineHelpText>
         <label>Backend server details</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
@@ -514,7 +555,7 @@
     <fields>
         <fullName>ltxt_CrossCharge_SAM_Comments__c</fullName>
         <externalId>false</externalId>
-        <label>SAM Comments</label>
+        <label>Comments</label>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -523,7 +564,7 @@
     <fields>
         <fullName>ltxt_Deployment_Comments__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please state if there are any other details that are not captured earlier.</inlineHelpText>
+        <inlineHelpText>Enter any additional comments</inlineHelpText>
         <label>Comments</label>
         <length>32768</length>
         <trackHistory>true</trackHistory>
@@ -534,12 +575,25 @@
     <fields>
         <fullName>ltxt_Query_Detailed_Notes__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>For Requester: Write/View response for the query
+For SAM User: Write/View response for the query</inlineHelpText>
         <label>Detailed Notes</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ltxt_Query_Discussion_Log__c</fullName>
+        <description>This will record the Detailed Notes and Sam Response</description>
+        <externalId>false</externalId>
+        <label>Query Discussion Log</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
     </fields>
     <fields>
         <fullName>ltxt_Query_SAM_Response__c</fullName>
@@ -554,7 +608,7 @@
     <fields>
         <fullName>ltxt_Reporting_Details__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Is there any reporting/monitoring/archiving tool etc to be deployed on the server.</inlineHelpText>
+        <inlineHelpText>Is there any reporting/monitoring/archieving tool etc to be deployed on the server</inlineHelpText>
         <label>Reporting Details</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
@@ -578,11 +632,12 @@
         <description>Stores the Public Group names of the Request creator</description>
         <externalId>false</externalId>
         <label>User Public Groups</label>
-        <length>32768</length>
+        <length>255</length>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>mpkl_Cloud_Platforms__c</fullName>
@@ -612,7 +667,7 @@
     <fields>
         <fullName>mpkl_Country_of_Deployment__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
+        <inlineHelpText>Select Country/Countries where S/W will be installed</inlineHelpText>
         <label>Country of Deployment</label>
         <picklist>
             <picklistValues>
@@ -1650,7 +1705,7 @@
     <fields>
         <fullName>mpkl_Landscape_Details__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
+        <inlineHelpText>Select Landscape(s) where S/W will be accessed</inlineHelpText>
         <label>Landscapes</label>
         <picklist>
             <picklistValues>
@@ -1704,11 +1759,24 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>num_Cross_Charging_Version__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Cross Charging Version</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>num_Draft_Version__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Incremental draft quote version</description>
         <externalId>false</externalId>
-        <label>Draft Version</label>
+        <label>Draft Quotation Version</label>
         <precision>2</precision>
         <required>false</required>
         <scale>0</scale>
@@ -1720,7 +1788,6 @@
     <fields>
         <fullName>num_No_of_Users__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Number of Users</label>
         <precision>18</precision>
         <required>false</required>
@@ -1733,7 +1800,7 @@
     <fields>
         <fullName>pkl_Any_infrastructural_requirements__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type - Are there any infrastructural requirements?</inlineHelpText>
+        <inlineHelpText>Are there any infrastructural requirements?</inlineHelpText>
         <label>Infrastructural Requirements</label>
         <picklist>
             <picklistValues>
@@ -1799,7 +1866,7 @@
     <fields>
         <fullName>pkl_Mode_of_Charging__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Select Mode of Charging</inlineHelpText>
+        <inlineHelpText>Enter the Mode of Cross Charging Ex: Invoice, JV, other</inlineHelpText>
         <label>Mode of Charging</label>
         <picklist>
             <picklistValues>
@@ -1934,7 +2001,7 @@
     <fields>
         <fullName>pkl_SAAS_Yes_No__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
+        <inlineHelpText>Select &apos;Yes&apos;, if Product requested is &apos;Software as a Service&apos; (SaaS) solution</inlineHelpText>
         <label>SaaS</label>
         <picklist>
             <picklistValues>
@@ -2265,8 +2332,15 @@
             <picklistValues>
                 <fullName>On Hold</fullName>
                 <default>false</default>
+                <controllingFieldValues>Awaiting CC details (Pending with ULEMP)</controllingFieldValues>
+                <controllingFieldValues>Awaiting CC details (Pending with ULSMT)</controllingFieldValues>
                 <controllingFieldValues>Awaiting Charge</controllingFieldValues>
+                <controllingFieldValues>Awaiting Information</controllingFieldValues>
                 <controllingFieldValues>CC details provided (By ULEMP)</controllingFieldValues>
+                <controllingFieldValues>Charging Completed</controllingFieldValues>
+                <controllingFieldValues>Charging In Progress</controllingFieldValues>
+                <controllingFieldValues>Charging Rejected</controllingFieldValues>
+                <controllingFieldValues>Details Pending</controllingFieldValues>
                 <controllingFieldValues>Details Provided</controllingFieldValues>
                 <controllingFieldValues>Draft Quote Provided</controllingFieldValues>
                 <controllingFieldValues>In Progress</controllingFieldValues>
@@ -2327,6 +2401,7 @@
         <fullName>pkl_Software_Purchase_Req__c</fullName>
         <description>When No ,user cannot proceed further with quotation</description>
         <externalId>false</externalId>
+        <inlineHelpText>This field wants information if the project will eventually need to buy a software. If software purchase is required, please select “YES” and you will need create a Quote. If “No” is selected, please do NOT create a new quote</inlineHelpText>
         <label>Software Purchase Required</label>
         <picklist>
             <picklistValues>
@@ -2520,7 +2595,8 @@
     <fields>
         <fullName>rol_Total_Annual_Maint_in__c</fullName>
         <externalId>false</externalId>
-        <label>Total Annual Maint in €</label>
+        <inlineHelpText>Vertical summation of all the line items w.r.t Total Annual Maint (€)</inlineHelpText>
+        <label>Total (Total Annual Maint ) (€)</label>
         <summarizedField>SAM_Quote_Line_Item__c.Total_Annual_Maint__c</summarizedField>
         <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
@@ -2547,6 +2623,7 @@
     <fields>
         <fullName>rol_Total_CAPEX_in__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Vertical summation of all the line items w.r.t Total CAPEX (€)</inlineHelpText>
         <label>Total CAPEX in  €</label>
         <summarizedField>SAM_Quote_Line_Item__c.fml_Total_CAPEX__c</summarizedField>
         <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
@@ -2558,12 +2635,64 @@
     <fields>
         <fullName>rol_Total_CAPEX_in_for_X_type__c</fullName>
         <externalId>false</externalId>
-        <label>Total CAPEX in € for X type</label>
+        <inlineHelpText>Sum of Total CAPEX (€) values of all line items in quote where Charging Type is Cross Charge Applicable (X)</inlineHelpText>
+        <label>Total Applicable Cross Charge (€)</label>
         <summarizedField>SAM_Quote_Line_Item__c.fml_Total_CAPEX__c</summarizedField>
         <summaryFilterItems>
             <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
             <operation>equals</operation>
             <value>Cross Charge Applicable (X)</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Total_DO_PO_Applicable__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of Total CAPEX (€) values of all line items in quote where Charging Type is DO/PO Applicable (O)</inlineHelpText>
+        <label>Total DO/PO Applicable (€)</label>
+        <summarizedField>SAM_Quote_Line_Item__c.fml_Total_CAPEX__c</summarizedField>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
+            <operation>equals</operation>
+            <value>DO/PO Applicable (O)</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Total_Run_Cost_Year_1__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of all First years (Year+1) Run Cost (All Line items included, where ever there is Run Cost Applicable is YES)</inlineHelpText>
+        <label>Total Run Cost (Year+1) (€)</label>
+        <summarizedField>SAM_Quote_Line_Item__c.Run_Cost_Year_1__c</summarizedField>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Run_Cost_Applicable__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Total_Run_Cost_Year_2__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of all Second years (Year+2) Run Cost  (All Line items included, where ever there is Run Cost Applicable is YES)</inlineHelpText>
+        <label>Total Run Cost (Year+2) (€)</label>
+        <summarizedField>SAM_Quote_Line_Item__c.Run_Cost_Year_2__c</summarizedField>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Run_Cost_Applicable__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
         </summaryFilterItems>
         <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
@@ -2634,7 +2763,7 @@
     <fields>
         <fullName>txt_Additional_Go_Live_Details__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Enter Additional Go-Live Details here</inlineHelpText>
+        <inlineHelpText>Enter phase wise Go-Live dates of the project, if any</inlineHelpText>
         <label>Additional Go-Live Details</label>
         <length>250</length>
         <required>false</required>
@@ -2646,8 +2775,7 @@
     <fields>
         <fullName>txt_Budget_Owner_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Budget Owner: Name</inlineHelpText>
-        <label>Budget Owner</label>
+        <label>Budget Owner : Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2691,7 +2819,7 @@
     <fields>
         <fullName>txt_Cost_Center_CC__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Cost Center (CC)</inlineHelpText>
+        <inlineHelpText>Enter the Cost Center of the project</inlineHelpText>
         <label>Cost Center (CC)</label>
         <length>255</length>
         <required>false</required>
@@ -2737,6 +2865,7 @@
     <fields>
         <fullName>txt_Cross_Charge_Description__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter Cross Charge details in brief</inlineHelpText>
         <label>Cross Charge Description</label>
         <length>255</length>
         <required>false</required>
@@ -2748,6 +2877,7 @@
     <fields>
         <fullName>txt_Deployments_Any_other_please_specify__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Mandatory: If &apos;Others&apos; is selected, please enter the name of the Cloud platform</inlineHelpText>
         <label>Other Cloud Details</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
@@ -2758,7 +2888,7 @@
     <fields>
         <fullName>txt_Entity_Code__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Entity Code</inlineHelpText>
+        <inlineHelpText>Enter the Entity Code of the project</inlineHelpText>
         <label>Entity Code</label>
         <length>255</length>
         <required>false</required>
@@ -2770,7 +2900,6 @@
     <fields>
         <fullName>txt_Financial_Manager_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Financial Business Partner</label>
         <length>255</length>
         <required>false</required>
@@ -2782,7 +2911,7 @@
     <fields>
         <fullName>txt_GL_Account__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>GL Account</inlineHelpText>
+        <inlineHelpText>Enter the General ledger (GL) Account of the project</inlineHelpText>
         <label>GL Account</label>
         <length>255</length>
         <required>false</required>
@@ -2794,7 +2923,7 @@
     <fields>
         <fullName>txt_ICC_GLC_LCC__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>ICC/GLC/LCC</inlineHelpText>
+        <inlineHelpText>Enter International cost center (ICC) /Global local cost center (GLC) /Local cost center (LLC) of the project</inlineHelpText>
         <label>ICC/GLC/LCC</label>
         <length>255</length>
         <required>false</required>
@@ -2806,7 +2935,6 @@
     <fields>
         <fullName>txt_Infrastructure_Manager_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Infrastructure Manager</label>
         <length>255</length>
         <required>false</required>
@@ -2818,8 +2946,7 @@
     <fields>
         <fullName>txt_Invoice_Approver_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Invoice Approver : Name</inlineHelpText>
-        <label>Invoice Approver</label>
+        <label>Invoice Approver : Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2830,7 +2957,6 @@
     <fields>
         <fullName>txt_Invoice_Number__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Invoice Number</inlineHelpText>
         <label>Invoice Number</label>
         <length>255</length>
         <required>false</required>
@@ -2843,7 +2969,6 @@
         <fullName>txt_Master_Clarity_Id__c</fullName>
         <description>MANDATORY(Saved)</description>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Master Clarity Id</label>
         <length>255</length>
         <required>false</required>
@@ -2866,7 +2991,6 @@
     <fields>
         <fullName>txt_Name_of_the_Project__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project and Non Project request type</inlineHelpText>
         <label>Name of Project</label>
         <length>255</length>
         <required>false</required>
@@ -2878,6 +3002,7 @@
     <fields>
         <fullName>txt_Other_Landscape_Details__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Mandatory: If &apos;Others&apos; is selected, please enter the name of the Landscape/Region/Country</inlineHelpText>
         <label>Other Landscape Details</label>
         <length>255</length>
         <required>false</required>
@@ -2889,7 +3014,6 @@
     <fields>
         <fullName>txt_Portfolio_Manager_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Portfolio Manager</label>
         <length>255</length>
         <required>false</required>
@@ -2901,7 +3025,7 @@
     <fields>
         <fullName>txt_Portfolio__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
+        <inlineHelpText>Enter the Portfolio name for which Project belongs to</inlineHelpText>
         <label>Portfolio</label>
         <length>255</length>
         <required>false</required>
@@ -2913,7 +3037,6 @@
     <fields>
         <fullName>txt_Program_Owner_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Program Owner</label>
         <length>255</length>
         <required>false</required>
@@ -2925,7 +3048,6 @@
     <fields>
         <fullName>txt_Project_Manager_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project and Non Project request type</inlineHelpText>
         <label>Project Manager</label>
         <length>255</length>
         <required>false</required>
@@ -2937,7 +3059,6 @@
     <fields>
         <fullName>txt_Project_Technical_Architect_Name__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>Project Technical Architect</label>
         <length>255</length>
         <required>false</required>
@@ -2949,6 +3070,7 @@
     <fields>
         <fullName>txt_Query_Requestor__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter query requestor name</inlineHelpText>
         <label>Requester</label>
         <length>255</length>
         <required>false</required>
@@ -2960,6 +3082,7 @@
     <fields>
         <fullName>txt_Query_Title__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter a name string for your query</inlineHelpText>
         <label>Query Title</label>
         <length>255</length>
         <required>false</required>
@@ -3006,7 +3129,6 @@ This field will be read only for all user</description>
     <fields>
         <fullName>txt_SA_Clarity_Id__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project request type</inlineHelpText>
         <label>SA Clarity Id</label>
         <length>255</length>
         <required>false</required>
@@ -3018,7 +3140,7 @@ This field will be read only for all user</description>
     <fields>
         <fullName>txt_Scope_of_the_Project__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Mandatory for Project and Non Project request type</inlineHelpText>
+        <inlineHelpText>Describe the project scope in brief</inlineHelpText>
         <label>Scope of Project</label>
         <length>1000</length>
         <trackHistory>false</trackHistory>
@@ -3031,7 +3153,7 @@ This field will be read only for all user</description>
         <description>Records the Request Status before going on Hold. The request status will be set to this value once resumed</description>
         <externalId>false</externalId>
         <label>Status Before On Hold</label>
-        <length>20</length>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3039,6 +3161,175 @@ This field will be read only for all user</description>
         <unique>false</unique>
     </fields>
     <label>Request</label>
+    <listViews>
+        <fullName>All_Finance_request</fullName>
+        <columns>NAME</columns>
+        <columns>txt_Request_Type_for_UI__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_Master_Clarity_Id__c</columns>
+        <columns>txt_SA_Clarity_Id__c</columns>
+        <columns>txt_Name_of_the_Project__c</columns>
+        <columns>txt_CrossCharge_Publisher__c</columns>
+        <columns>date_CrossCharge_Submission_Date__c</columns>
+        <columns>txt_Cross_Charge_Amount_in_euros__c</columns>
+        <columns>txt_Entity_Code__c</columns>
+        <columns>txt_Cost_Center_CC__c</columns>
+        <columns>txt_ICC_GLC_LCC__c</columns>
+        <columns>pkl_Mode_of_Charging__c</columns>
+        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Request</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SAM_Finance_Team</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Request_Admin_SAM</fullName>
+        <columns>NAME</columns>
+        <columns>txt_Request_Type_for_UI__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>lkp_Assign_To__c</columns>
+        <columns>txt_SA_Clarity_Id__c</columns>
+        <columns>txt_Portfolio__c</columns>
+        <columns>txt_Name_of_the_Project__c</columns>
+        <columns>txt_CrossCharge_Publisher__c</columns>
+        <columns>date_Go_Live_Date__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>date_Finance_Submission_Date__c</columns>
+        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Ticket_Age__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Request</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SAM_Admin</group>
+            <group>SAM_Team</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Finance_request</fullName>
+        <columns>NAME</columns>
+        <columns>txt_Request_Type_for_UI__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_Master_Clarity_Id__c</columns>
+        <columns>txt_SA_Clarity_Id__c</columns>
+        <columns>txt_Name_of_the_Project__c</columns>
+        <columns>txt_CrossCharge_Publisher__c</columns>
+        <columns>date_CrossCharge_Submission_Date__c</columns>
+        <columns>txt_Cross_Charge_Amount_in_euros__c</columns>
+        <columns>txt_Entity_Code__c</columns>
+        <columns>txt_Cost_Center_CC__c</columns>
+        <columns>txt_ICC_GLC_LCC__c</columns>
+        <columns>pkl_Mode_of_Charging__c</columns>
+        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Request</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SAM_Finance_Team</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Request_Requester</fullName>
+        <columns>NAME</columns>
+        <columns>txt_Request_Type_for_UI__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_SA_Clarity_Id__c</columns>
+        <columns>txt_Portfolio__c</columns>
+        <columns>txt_Name_of_the_Project__c</columns>
+        <columns>txt_CrossCharge_Publisher__c</columns>
+        <columns>date_Go_Live_Date__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>date_Finance_Submission_Date__c</columns>
+        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>My Request</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SAM_Requester_group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Request_Team</fullName>
+        <columns>NAME</columns>
+        <columns>txt_Request_Type_for_UI__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_SA_Clarity_Id__c</columns>
+        <columns>txt_Portfolio__c</columns>
+        <columns>txt_Name_of_the_Project__c</columns>
+        <columns>txt_CrossCharge_Publisher__c</columns>
+        <columns>date_Go_Live_Date__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>date_Finance_Submission_Date__c</columns>
+        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Ticket_Age__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Request</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SAM_Admin</group>
+            <group>SAM_Team</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>SAM_Finance_Queue_SAM_Request</fullName>
+        <columns>NAME</columns>
+        <columns>txt_Reference_Request_ID__c</columns>
+        <columns>txt_Master_Clarity_Id__c</columns>
+        <columns>txt_SA_Clarity_Id__c</columns>
+        <columns>txt_Name_of_the_Project__c</columns>
+        <columns>txt_CrossCharge_Publisher__c</columns>
+        <columns>date_CrossCharge_Submission_Date__c</columns>
+        <columns>txt_Cross_Charge_Amount_in_euros__c</columns>
+        <columns>txt_Entity_Code__c</columns>
+        <columns>txt_Cost_Center_CC__c</columns>
+        <columns>txt_ICC_GLC_LCC__c</columns>
+        <columns>pkl_Mode_of_Charging__c</columns>
+        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <label>SAM Finance Queue</label>
+        <language>en_US</language>
+        <queue>SAM_Finance_Queue</queue>
+        <sharedTo>
+            <group>SAM_Admin</group>
+            <group>SAM_Finance_Team</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>SAM_Team_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>txt_Request_Type_for_UI__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>txt_SA_Clarity_Id__c</columns>
+        <columns>txt_Portfolio__c</columns>
+        <columns>txt_Name_of_the_Project__c</columns>
+        <columns>txt_CrossCharge_Publisher__c</columns>
+        <columns>date_Go_Live_Date__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>date_Finance_Submission_Date__c</columns>
+        <columns>fml_SAM_demand_manager__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Ticket_Age__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>SAM Team Queue</label>
+        <language>en_US</language>
+        <queue>SAM_Team</queue>
+        <sharedTo>
+            <group>SAM_Admin</group>
+            <group>SAM_Team</group>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>REQ-{000000000}</displayFormat>
         <label>Request ID</label>
@@ -5681,51 +5972,11 @@ This field will be read only for all user</description>
         <picklistValues>
             <picklist>pkl_SAM_Requester_Status__c</picklist>
             <values>
-                <fullName>Answer Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Charge</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Information</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>CC details provided %28By ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5738,10 +5989,6 @@ This field will be read only for all user</description>
             </values>
             <values>
                 <fullName>Information Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Need More Info</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5772,51 +6019,11 @@ This field will be read only for all user</description>
         <picklistValues>
             <picklist>pkl_SAM_team_Status__c</picklist>
             <values>
-                <fullName>Answer Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Charge</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Information</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>CC details provided %28By ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5832,19 +6039,11 @@ This field will be read only for all user</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Need More Info</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>On Hold</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Open</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Query Answered</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15193,51 +15392,11 @@ This field will be read only for all user</description>
         <picklistValues>
             <picklist>pkl_SAM_Requester_Status__c</picklist>
             <values>
-                <fullName>Answer Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Charge</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Information</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>CC details provided %28By ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15250,10 +15409,6 @@ This field will be read only for all user</description>
             </values>
             <values>
                 <fullName>Information Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Need More Info</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15284,51 +15439,11 @@ This field will be read only for all user</description>
         <picklistValues>
             <picklist>pkl_SAM_team_Status__c</picklist>
             <values>
-                <fullName>Answer Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Charge</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Information</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>CC details provided %28By ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -15344,19 +15459,11 @@ This field will be read only for all user</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Need More Info</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>On Hold</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Open</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Query Answered</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -16667,14 +16774,6 @@ This field will be read only for all user</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Draft Quote Provided</fullName>
                 <default>false</default>
             </values>
@@ -16719,14 +16818,6 @@ This field will be read only for all user</description>
             </values>
             <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -18045,14 +18136,6 @@ This field will be read only for all user</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Draft Quote Provided</fullName>
                 <default>false</default>
             </values>
@@ -18097,14 +18180,6 @@ This field will be read only for all user</description>
             </values>
             <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -19558,51 +19633,11 @@ This field will be read only for all user</description>
         <picklistValues>
             <picklist>pkl_SAM_Requester_Status__c</picklist>
             <values>
-                <fullName>Answer Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Charge</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Information</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>CC details provided %28By ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -19615,10 +19650,6 @@ This field will be read only for all user</description>
             </values>
             <values>
                 <fullName>Information Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Need More Info</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -19649,51 +19680,11 @@ This field will be read only for all user</description>
         <picklistValues>
             <picklist>pkl_SAM_team_Status__c</picklist>
             <values>
-                <fullName>Answer Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Charge</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Information</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>CC details provided %28By ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -19709,19 +19700,11 @@ This field will be read only for all user</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Need More Info</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>On Hold</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Open</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Query Answered</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -31508,6 +31491,1292 @@ This field will be read only for all user</description>
         </picklistValues>
     </recordTypes>
     <recordTypes>
+        <fullName>SAM_Query_Request_SAM_Team_on_Open</fullName>
+        <active>true</active>
+        <description>Record type assigned to Query on Open status</description>
+        <label>SAM Query Request SAM Team on Open</label>
+        <picklistValues>
+            <picklist>Finance_Status__c</picklist>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Cloud_Platforms__c</picklist>
+            <values>
+                <fullName>Amazon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Country_of_Deployment__c</picklist>
+            <values>
+                <fullName>Afghanistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Akrotiri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Albania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Algeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Andorra</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Angola</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Anguilla</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Antarctica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Armenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aruba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Azerbaijan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahamas%2C The</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bahrain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barbados</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belarus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Benin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bermuda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bhutan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Botswana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bouvet Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brunei</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burkina Faso</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burma</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Burundi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cameroon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cape Verde</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cayman Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Christmas Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clipperton Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comoros</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cook Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cote d%27Ivoire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Croatia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cuba</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cyprus</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dhekelia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Djibouti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dominica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Egypt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Eritrea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethiopia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europa Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Faroe Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fiji</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Guiana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Polynesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gabon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gambia%2C The</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gaza Strip</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Georgia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gibraltar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glorioso Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greenland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Grenada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guadeloupe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guernsey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guinea-Bissau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guyana</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Haiti</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iceland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iran</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Iraq</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Isle of Man</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Israel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jamaica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jan Mayen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jersey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jordan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kazakhstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kenya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kiribati</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C North</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea%2C South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kuwait</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kyrgyzstan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Laos</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latvia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lebanon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lesotho</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liberia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Libya</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liechtenstein</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxembourg</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Macedonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Madagascar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malawi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Maldives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mali</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Malta</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marshall Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Martinique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mauritius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mayotte</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Moldova</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Monaco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mongolia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Montserrat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Morocco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mozambique</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Namibia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nauru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Navassa Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Caledonia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nigeria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Niue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norfolk Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Palau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paracel Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitcairn Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qatar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reunion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rwanda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Helena</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saint Lucia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Samoa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>San Marino</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saudi Arabia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Senegal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seychelles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sierra Leone</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovenia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solomon Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somalia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South Africa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spratly Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sudan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Suriname</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Svalbard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swaziland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Syria</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tajikistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tanzania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Timor-Leste</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Togo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokelau</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tonga</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trinidad and Tobago</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tromelin Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tunisia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkmenistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tuvalu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uganda</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uzbekistan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vanuatu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virgin Islands</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wake Island</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wallis and Futuna</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>West Bank</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Sahara</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yemen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zambia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Zimbabwe</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Landscape_Details__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legacy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Any_infrastructural_requirements__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Build_details_applicable__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Deployments__c</picklist>
+            <values>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On-premise</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Mode_of_Charging__c</picklist>
+            <values>
+                <fullName>Invoice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Ownership_Reporting__c</picklist>
+            <values>
+                <fullName>Charging-Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-Requester</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending-SAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query-Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query-Responded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote-Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request-Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request-Onhold</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Reason_for_closure__c</picklist>
+            <values>
+                <fullName>Any other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>As requested by user</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Software Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request completed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAAS_Yes_No__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_Finance_Status__c</picklist>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_Requester_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SAM_team_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Software_Purchase_Req__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
         <fullName>SAM_Query_Request_SAM_team</fullName>
         <active>true</active>
         <label>SAM Query Request SAM team</label>
@@ -35258,14 +36527,6 @@ This field will be read only for all user</description>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Draft Quote Provided</fullName>
                 <default>false</default>
             </values>
@@ -35310,14 +36571,6 @@ This field will be read only for all user</description>
             </values>
             <values>
                 <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -38204,7 +39457,12 @@ This field will be read only for all user</description>
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>txt_Request_Type_for_UI__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>txt_Request_Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>pkl_Status__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <sharingReasons>
         <fullName>SAM_creator__c</fullName>
@@ -38222,7 +39480,7 @@ This field will be read only for all user</description>
         <description>It accepts any thing between A-Z, a-z, 0-9 and space (no other special characters allowed).</description>
         <errorConditionFormula>AND(( NOT( ISBLANK(txt_Master_Clarity_Id__c ) ) ),(NOT( REGEX( txt_Master_Clarity_Id__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Master_Clarity_Id__c</errorDisplayField>
-        <errorMessage>Only Alphanumeric data allowed. For ex. Characters between A-Z, a-z, 0-9 and space.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Action_Comments_Validation</fullName>
@@ -38272,11 +39530,25 @@ txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;)</errorConditionFormula
         <active>true</active>
         <description>cannot select &quot;Awaiting charge&quot; if none of the quote LI is &quot;X&quot;</description>
         <errorConditionFormula>AND( 
-OR(TEXT(pkl_SAM_team_Status__c) = $Label.SAM_Awaiting_Charge, TEXT(pkl_SAM_team_Status__c) =  $Label.SAM_Awaiting_CC_details_Pending_with_ULEMP ),
+TEXT(pkl_SAM_team_Status__c) = $Label.SAM_Awaiting_Charge,
 rol_Product_detail_count_having_cross_ch__c =0, 
 txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;)</errorConditionFormula>
         <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
-        <errorMessage>You can not select &quot;Awaiting charge&quot; or &quot;Awaiting CC details (Pending with ULEMP)&quot; if none of the quote Line Item is &quot;X&quot;.</errorMessage>
+        <errorMessage>You can not select &quot;Awaiting charge&quot;  if none of the quote Line Item is &quot;X&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Budget_Owner_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Budget_Owner_Name__c ) ) ),(NOT( REGEX( txt_Budget_Owner_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Budget_Owner_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Budget_Owner_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Budget_Owner_Email__c))),NOT(REGEX( eml_Budget_Owner_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Budget_Owner_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Budget_Owner_Email_Validation</fullName>
@@ -38318,7 +39590,8 @@ txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;)</errorConditionFormula
         <description>Build Details Applicable Mandatory when Software Purchase Required is No</description>
         <errorConditionFormula>AND(
  ISPICKVAL( pkl_Build_details_applicable__c ,&quot;&quot;),
- ISPICKVAL( pkl_Software_Purchase_Req__c ,&quot;No&quot;)  
+ ISPICKVAL( pkl_Software_Purchase_Req__c ,&quot;No&quot;),
+txt_Request_Type__c =&quot;SAM_RW_Project_Request&quot;   
 )</errorConditionFormula>
         <errorDisplayField>pkl_Build_details_applicable__c</errorDisplayField>
         <errorMessage>Mandatory when Software Purchase Required is No</errorMessage>
@@ -38327,9 +39600,10 @@ txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot;)</errorConditionFormula
         <fullName>SAM_Build_details_Modify_Validation</fullName>
         <active>true</active>
         <description>Cannot modify Build details applicable picklist  at any other status other than InProgress</description>
-        <errorConditionFormula>AND(
-ISCHANGED(pkl_Build_details_applicable__c),  
-TEXT(pkl_Status__c)&lt;&gt;  $Label.SAM_In_Progress 
+        <errorConditionFormula>AND( 
+ISCHANGED(pkl_Build_details_applicable__c), 
+Text( pkl_SAM_team_Status__c )&lt;&gt; $Label.SAM_In_Progress, 
+Text( pkl_Status__c )&lt;&gt; $Label.SAM_In_Progress 
 )</errorConditionFormula>
         <errorDisplayField>pkl_Build_details_applicable__c</errorDisplayField>
         <errorMessage>Cannot modify at this stage</errorMessage>
@@ -38344,9 +39618,9 @@ TEXT(pkl_Status__c)&lt;&gt;  $Label.SAM_In_Progress
         <fullName>SAM_CC_Submission_Date_Future</fullName>
         <active>true</active>
         <description>Cross Charge Submission date cannot be a future date</description>
-        <errorConditionFormula>AND( date_CrossCharge_Submission_Date__c &gt; TODAY() , TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Awaiting_Charge, txt_Request_Type__c =&quot;SAM_RW_CrossCharge_Request&quot; )</errorConditionFormula>
+        <errorConditionFormula>date_CrossCharge_Submission_Date__c &gt; TODAY()</errorConditionFormula>
         <errorDisplayField>date_CrossCharge_Submission_Date__c</errorDisplayField>
-        <errorMessage>Cannot be future date</errorMessage>
+        <errorMessage>Submission date cannot be future date</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_CC_Submission_Date_Mandatory</fullName>
@@ -38359,10 +39633,32 @@ TEXT(pkl_Status__c)&lt;&gt;  $Label.SAM_In_Progress
     </validationRules>
     <validationRules>
         <fullName>SAM_Cannot_Edit_When_AssignedTo_Queue</fullName>
+        <active>false</active>
+        <description>Should not allow to edit record when assigned to queue</description>
+        <errorConditionFormula>AND($Profile.Name &lt;&gt;&quot;System Administrator&quot;, NOT(ISBLANK( Owner:Queue.OwnerId )))</errorConditionFormula>
+        <errorMessage>Accept from queue to edit</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Cannot_Edit_When_AssignedTo_Queue_1</fullName>
         <active>true</active>
         <description>Should not allow to edit record when assigned to queue</description>
-        <errorConditionFormula>NOT(ISBLANK( Owner:Queue.OwnerId ))</errorConditionFormula>
+        <errorConditionFormula>AND($Profile.Name &lt;&gt;&quot;System Administrator&quot;, 
+NOT(ISBLANK( Owner:Queue.OwnerId )),
+NOT(ISCHANGED( OwnerId ))
+)</errorConditionFormula>
         <errorMessage>Accept from queue to edit</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Closure_Reason_No_Soft_Spend_Reverse</fullName>
+        <active>true</active>
+        <description>Reason for Closure has to be only &apos;No Software Spend&apos;  if Software Purchase Required is No</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL(pkl_Software_Purchase_Req__c,&apos;No&apos;), 
+Text(pkl_Reason_for_closure__c)&lt;&gt; $Label.SAM_No_Software_Spend,
+NOT(ISPICKVAL(pkl_Reason_for_closure__c, &apos;&apos;)) 
+)</errorConditionFormula>
+        <errorDisplayField>pkl_Reason_for_closure__c</errorDisplayField>
+        <errorMessage>Select  No Software Spend if Software Purchase Required is No</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Closure_Reason_No_Software_Spend</fullName>
@@ -38406,6 +39702,13 @@ OR(txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot; ,txt_Request_Type__c
         <errorMessage>Require only when Host Platform is &quot;Cloud&quot;</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Cost_Center_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Cost_Center_CC__c ) ) ),(NOT( REGEX( txt_Cost_Center_CC__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Cost_Center_CC__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Cost_Center_CC_Validation</fullName>
         <active>true</active>
         <description>Cost Center(CC) Validation.</description>
@@ -38421,6 +39724,13 @@ OR(txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot; ,txt_Request_Type__c
   )</errorConditionFormula>
         <errorDisplayField>txt_Cost_Center_CC__c</errorDisplayField>
         <errorMessage>Cost Center(CC)  is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Cost_Code_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_CrossCharge_Cost_Code__c  ) ) ),(NOT( REGEX( txt_CrossCharge_Cost_Code__c  , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_CrossCharge_Cost_Code__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Country_of_Deployment_Validation</fullName>
@@ -38441,11 +39751,9 @@ txt_Request_Type__c
         <fullName>SAM_CrossChargeAmount_Negative_Validtion</fullName>
         <active>true</active>
         <description>Cross Charge Amount cannot be less than zero</description>
-        <errorConditionFormula>AND(txt_Cross_Charge_Amount_in_euros__c &lt;0,
-TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Awaiting_Charge 
-, txt_Request_Type__c =&quot;SAM_RW_CrossCharge_Request&quot; )</errorConditionFormula>
+        <errorConditionFormula>txt_Cross_Charge_Amount_in_euros__c &lt;=0</errorConditionFormula>
         <errorDisplayField>txt_Cross_Charge_Amount_in_euros__c</errorDisplayField>
-        <errorMessage>Cross Charge Amount cannot be less than zero</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Cross_Charge_Amount_In_Euros</fullName>
@@ -38518,13 +39826,35 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
     </validationRules>
     <validationRules>
         <fullName>SAM_Detailed_Notes_Mandatory</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Detailed Notes cannot be blank</description>
         <errorConditionFormula>AND(ISBLANK(  ltxt_Query_Detailed_Notes__c  ), 
-TEXT(pkl_SAM_team_Status__c)&lt;&gt; $Label.SAM_SaveStatus ,
+OR(TEXT( pkl_Status__c )&lt;&gt; $Label.SAM_SaveStatus, ISPICKVAL(pkl_Status__c , &quot;&quot;) ),
 txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; )</errorConditionFormula>
         <errorDisplayField>ltxt_Query_Detailed_Notes__c</errorDisplayField>
         <errorMessage>Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Detailed_Notes_Mandatory_Validation</fullName>
+        <active>true</active>
+        <description>Detailed Notes Mandatory.</description>
+        <errorConditionFormula>AND(OR(AND(ISCHANGED(pkl_SAM_team_Status__c),NOT(ISPICKVAL (pkl_SAM_team_Status__c,&apos;&apos;)),TEXT(pkl_SAM_team_Status__c)&lt;&gt; $Label.SAM_In_Progress ),AND(ISCHANGED(pkl_SAM_Requester_Status__c),NOT(ISPICKVAL (pkl_SAM_Requester_Status__c,&apos;&apos;)))),TEXT(pkl_SAM_team_Status__c)&lt;&gt; $Label.SAM_Answer_Accepted,TEXT(pkl_SAM_team_Status__c)&lt;&gt; $Label.SAM_Closed  ,TEXT(pkl_SAM_Requester_Status__c)&lt;&gt;$Label.SAM_Answer_Accepted,ISBLANK(ltxt_Query_Detailed_Notes__c),
+txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; 
+)</errorConditionFormula>
+        <errorDisplayField>ltxt_Query_Detailed_Notes__c</errorDisplayField>
+        <errorMessage>Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Detailed_Notes_Modify_Validation</fullName>
+        <active>false</active>
+        <description>Detailed Notes cannot be modified by Non-creator of the request</description>
+        <errorConditionFormula>AND( 
+ISCHANGED( ltxt_Query_Detailed_Notes__c ), 
+ CreatedById  &lt;&gt;  OwnerId,
+txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; 
+)</errorConditionFormula>
+        <errorDisplayField>ltxt_Query_Detailed_Notes__c</errorDisplayField>
+        <errorMessage>Cannot modify</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_DetailsPending_CCDone_Validation</fullName>
@@ -38557,7 +39887,7 @@ AND(rol_Build_detail_applicable__c = 0,
     </validationRules>
     <validationRules>
         <fullName>SAM_DetailsPending_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Cannot proceed for Details Pending if Request Build Details Applicable</description>
         <errorConditionFormula>AND(TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Details_Pending ,
 	OR(AND(NOT(chk_Is_Request_Quote_Approved__c) ,NOT(ISPICKVAL( pkl_Build_details_applicable__c ,&quot;Yes&quot;))),
@@ -38570,6 +39900,23 @@ AND(rol_Build_detail_applicable__c = 0,
 	)</errorConditionFormula>
         <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
         <errorMessage>Build Details / DO / Run Cost is not applicable on any Quotation line item or Cross Charge is applicable on one or more quotation line item</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_DetailsPending_Validation_ROExcluded</fullName>
+        <active>true</active>
+        <description>Cannot proceed for Details Pending if Request Build Details Applicable
+Run cost check has been removed</description>
+        <errorConditionFormula>AND(TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Details_Pending ,
+	OR(AND(NOT(chk_Is_Request_Quote_Approved__c) ,NOT(ISPICKVAL( pkl_Build_details_applicable__c ,&quot;Yes&quot;))),
+	   AND(chk_Is_Request_Quote_Approved__c,
+		   OR(AND(rol_Product_detail_count_having_cross_ch__c &gt; 0,NOT(chk_Is_Request_Sent_for_CC__c)),
+		   AND(OR(AND(rol_Product_detail_count_having_cross_ch__c &gt; 0,chk_Is_Request_Sent_for_CC__c ),rol_Product_detail_count_having_cross_ch__c = 0),
+		      rol_Build_detail_applicable__c = 0, rol_DO_detail_validation_count__c = 0))
+	   ) 
+	)
+	)</errorConditionFormula>
+        <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
+        <errorMessage>Build Details / DO is not applicable on any Quotation line item or Cross Charge is applicable on one or more quotation line item</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Details_Pending_InProg_Validation</fullName>
@@ -38600,6 +39947,13 @@ Quotation_Record_Count__c = rus_Completed_Quotes__c, TEXT(pkl_SAM_team_Status__c
         <errorMessage>One of the line item should be completed or pending with procurement.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Entity_Code_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Entity_Code__c ) ) ),(NOT( REGEX( txt_Entity_Code__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Entity_Code__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Entity_Code_Validation</fullName>
         <active>true</active>
         <description>Entity Code Validation.</description>
@@ -38617,6 +39971,13 @@ Quotation_Record_Count__c = rus_Completed_Quotes__c, TEXT(pkl_SAM_team_Status__c
         <errorMessage>Entity Code is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Financial_Business_Partner_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Financial_Manager_Name__c ) ) ),(NOT( REGEX( txt_Financial_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Financial_Manager_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Financial_Business_Partner_Email</fullName>
         <active>true</active>
         <description>Financial Business Partner Email field validation.</description>
@@ -38630,6 +39991,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Financial Business Partner Email is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Financial_Business_Partner_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Financial_Manager_Email__c ))),NOT(REGEX( eml_Financial_Manager_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Financial_Manager_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Financial_Business_Partner_Name</fullName>
         <active>true</active>
         <description>Financial Business Partner Name field validation.</description>
@@ -38641,6 +40009,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
 )</errorConditionFormula>
         <errorDisplayField>txt_Financial_Manager_Name__c</errorDisplayField>
         <errorMessage>Financial Business Partner Name is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_GL_Account_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_GL_Account__c ) ) ),(NOT( REGEX( txt_GL_Account__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_GL_Account__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_GL_Account_Validation</fullName>
@@ -38681,6 +40056,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Go Live Date should be greater than current date</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_ICC_GLC_LCC_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_ICC_GLC_LCC__c ) ) ),(NOT( REGEX( txt_ICC_GLC_LCC__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_ICC_GLC_LCC__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_ICC_GLC_LCC_Validation</fullName>
         <active>true</active>
         <description>ICC/GLC/LCC field Validation</description>
@@ -38698,6 +40080,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>ICC/GLC/LCC is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Infrastructure_Manager_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Infrastructure_Manager_Name__c ) ) ),(NOT( REGEX( txt_Infrastructure_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Infrastructure_Manager_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Infrastructure_Manager_Email</fullName>
         <active>true</active>
         <description>Infrastructure Manager Email  field validation.</description>
@@ -38711,6 +40100,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Infrastructure Manager Email is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Infrastructure_Manager_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Infrastructure_Manager_Email__c ))),NOT(REGEX( eml_Infrastructure_Manager_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Infrastructure_Manager_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Infrastructure_Manager_Name</fullName>
         <active>true</active>
         <description>Infrastructure Manager Name field validation.</description>
@@ -38722,6 +40118,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
 )</errorConditionFormula>
         <errorDisplayField>txt_Infrastructure_Manager_Name__c</errorDisplayField>
         <errorMessage>Infrastructure Manager Name is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Invoice_Approver_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Invoice_Approver_Name__c ) ) ),(NOT( REGEX( txt_Invoice_Approver_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Invoice_Approver_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Invoice_Approver_Email_Validation</fullName>
@@ -38756,6 +40159,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
   )</errorConditionFormula>
         <errorDisplayField>txt_Invoice_Approver_Name__c</errorDisplayField>
         <errorMessage>Invoice Approver Name is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Invoice_Aprover_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Invoice_Approver_Email__c ))),NOT(REGEX( eml_Invoice_Approver_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Invoice_Approver_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Invoice_Number_MOC_ReverseValidation</fullName>
@@ -38810,6 +40220,24 @@ NOT(ISNULL(txt_Request_Type__c
         <errorMessage>Mode of Charging is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Modify_Re_Open_Validation</fullName>
+        <active>true</active>
+        <description>Cannot modify Re-Open checkbox when in Saved ,Open ,In Progress</description>
+        <errorConditionFormula>AND(chk_Re_Open__c = true,
+OR(Text( pkl_Status__c )= $Label.SAM_Open ,
+Text( pkl_Status__c ) =  $Label.SAM_In_Progress )
+)</errorConditionFormula>
+        <errorDisplayField>chk_Re_Open__c</errorDisplayField>
+        <errorMessage>Cannot set Re-Open in this status</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Name_of_the_Project_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Name_of_the_Project__c ) ) ),(NOT( REGEX( txt_Name_of_the_Project__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Name_of_the_Project__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Name_of_the_project_validation</fullName>
         <active>true</active>
         <description>Name of the project field validation.</description>
@@ -38827,8 +40255,11 @@ OR(txt_Request_Type__c   =  &quot;SAM_RW_Project_Request&quot; , txt_Request_Typ
         <active>true</active>
         <description>Cannot modify No Software spend at any other status other than InProgress</description>
         <errorConditionFormula>AND(
-ISCHANGED(pkl_Software_Purchase_Req__c),  
-TEXT(pkl_Status__c)&lt;&gt;  $Label.SAM_In_Progress 
+ISCHANGED(pkl_Software_Purchase_Req__c),
+OR(
+AND(Text( pkl_Status__c )= $Label.SAM_In_Progress, NOT(ISPICKVAL( pkl_SAM_team_Status__c , &apos;&apos;))),
+AND(Text( pkl_Status__c )&lt;&gt; $Label.SAM_In_Progress,Text(pkl_SAM_team_Status__c)&lt;&gt; $Label.SAM_In_Progress )
+)
 )</errorConditionFormula>
         <errorDisplayField>pkl_Software_Purchase_Req__c</errorDisplayField>
         <errorMessage>Can modify only at &quot;In Progress&quot; Status.</errorMessage>
@@ -38839,7 +40270,7 @@ TEXT(pkl_Status__c)&lt;&gt;  $Label.SAM_In_Progress
         <description>No of Users field cannot be a negative number</description>
         <errorConditionFormula>num_No_of_Users__c &lt; 0</errorConditionFormula>
         <errorDisplayField>num_No_of_Users__c</errorDisplayField>
-        <errorMessage>Cannot be a negative number</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Users_Validation</fullName>
@@ -38912,6 +40343,13 @@ OR(txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot; ,txt_Request_Type__c
         <errorMessage>Other Cloud Details Mandatory</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Other_Landscape_Details_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Other_Landscape_Details__c ) ) ),(NOT( REGEX( txt_Other_Landscape_Details__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Other_Landscape_Details__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Other_Landscape_Details_Validation</fullName>
         <active>true</active>
         <description>Other Landscape details is mandatory if Landscape is Others</description>
@@ -38946,6 +40384,27 @@ OR( txt_Request_Type__c =&quot;SAM_RW_Project_Request&quot;, txt_Request_Type__c
 )</errorConditionFormula>
         <errorDisplayField>txt_Mode_of_Charging_Others__c</errorDisplayField>
         <errorMessage>Others is mandatory when Mode of charging is Others.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Portfolio_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Portfolio__c ) ) ),(NOT( REGEX( txt_Portfolio__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Portfolio__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Portfolio_Manager_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Portfolio_Manager_Name__c ) ) ),(NOT( REGEX( txt_Portfolio_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Portfolio_Manager_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Portfolio_Manager_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Portfolio_Manager_Email__c ))),NOT(REGEX( eml_Portfolio_Manager_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Portfolio_Manager_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Portfolio_Manager_Email_Validation</fullName>
@@ -38996,6 +40455,20 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Minimum One Product Details is required to submit a Request</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Program_Owner_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Program_Owner_Name__c ) ) ),(NOT( REGEX( txt_Program_Owner_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Program_Owner_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Program_Owner_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Program_Owner_Email__c ))),NOT(REGEX( eml_Program_Owner_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Program_Owner_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Program_Owner_Email_Validation</fullName>
         <active>true</active>
         <description>Program Owner Email field validation.</description>
@@ -39022,6 +40495,20 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Program Owner Name is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Project_Manager_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Project_Manager_Name__c ) ) ),(NOT( REGEX( txt_Project_Manager_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Project_Manager_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Project_Manager_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Project_Manager_Email__c ))),NOT(REGEX( eml_Project_Manager_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Project_Manager_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Project_Manager_Email_Validation</fullName>
         <active>true</active>
         <description>Project Manager Email field validation.</description>
@@ -39046,6 +40533,13 @@ NOT(ISNULL(txt_Request_Type__c )),
         <errorMessage>Project Manager Name is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Project_Technical_Architect_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Project_Technical_Architect_Name__c ) ) ),(NOT( REGEX( txt_Project_Technical_Architect_Name__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Project_Technical_Architect_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Project_Technical_Architect_Email</fullName>
         <active>true</active>
         <description>Project Technical Architect  Email Validation.</description>
@@ -39059,6 +40553,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
         <errorMessage>Project Technical Architect Email is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Project_Technical_Architect_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK(eml_Project_Technical_Architect_Email__c ))),NOT(REGEX( eml_Project_Technical_Architect_Email__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Project_Technical_Architect_Email__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Project_Technical_Architect_Name</fullName>
         <active>true</active>
         <description>Project Technical Architect Name field validation.</description>
@@ -39070,6 +40571,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
 )</errorConditionFormula>
         <errorDisplayField>txt_Project_Technical_Architect_Name__c</errorDisplayField>
         <errorMessage>Project Technical Architect Name is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Publisher_CC_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(txt_CrossCharge_Publisher__c ) ) ),(NOT( REGEX( txt_CrossCharge_Publisher__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_CrossCharge_Publisher__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Query_Answered_Validation</fullName>
@@ -39118,6 +40626,14 @@ txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot;
         <errorMessage>Cannot modify</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Query_Requestor_EmailId_Validation</fullName>
+        <active>true</active>
+        <description>Requestor Email Id Validation</description>
+        <errorConditionFormula>AND( ISBLANK(  eml_Requester_Email_Id__c  ) ,Text(pkl_SAM_team_Status__c)  =   $Label.SAM_Closed , txt_Request_Type__c = &apos;SAM_RW_Query_Request&apos;)</errorConditionFormula>
+        <errorDisplayField>eml_Requester_Email_Id__c</errorDisplayField>
+        <errorMessage>Requester Email Id is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Query_Requestor_Validation</fullName>
         <active>true</active>
         <description>Requestor Validation</description>
@@ -39127,7 +40643,7 @@ txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot;
     </validationRules>
     <validationRules>
         <fullName>SAM_Query_SAM_Response_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>SAM Response Validation.</description>
         <errorConditionFormula>AND(ISBLANK( ltxt_Query_SAM_Response__c ),
 OR(TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Closed ,TEXT(pkl_SAM_team_Status__c)=  $Label.SAM_Query_Answered ), 
@@ -39164,11 +40680,19 @@ txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; )</errorConditionFormula>
         <description>Start Date cannot be modified by Non-creator of the request</description>
         <errorConditionFormula>AND( 
 ISCHANGED(date_Query_Start_Date__c ), 
- CreatedById  &lt;&gt;  OwnerId,
+CreatedById  &lt;&gt;  OwnerId,
+ISBLANK( Owner:Queue.OwnerId ), 
 txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; 
 )</errorConditionFormula>
         <errorDisplayField>date_Query_Start_Date__c</errorDisplayField>
         <errorMessage>Cannot modify</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Query_Title_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Query_Title__c ) ) ),(NOT( REGEX( txt_Query_Title__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Query_Title__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Quotation_Count_Validation</fullName>
@@ -39205,7 +40729,9 @@ Quotation_Record_Count__c  = 0,
 ISCHANGED(pkl_SAM_team_Status__c),
 Text(pkl_SAM_team_Status__c) &lt;&gt; $Label.SAM_Awaiting_Information ,
 Text(pkl_SAM_team_Status__c) &lt;&gt; $Label.SAM_Information_Provided  ,
-Text(pkl_SAM_team_Status__c) &lt;&gt; &apos;In Progress&apos;,
+Text(pkl_SAM_team_Status__c) &lt;&gt;  $Label.SAM_In_Progress ,
+Text(pkl_SAM_team_Status__c) &lt;&gt;   $Label.SAM_On_Hold  ,
+Text(pkl_SAM_team_Status__c) &lt;&gt; &apos;Resume&apos;   ,
 NOT(ISPICKVAL(pkl_SAM_team_Status__c, &quot;&quot;)) 
 )</errorConditionFormula>
         <errorMessage>At least one quotation line item should be added when Software Purchase Required is Yes</errorMessage>
@@ -39242,6 +40768,32 @@ Text( pkl_Status__c)&lt;&gt; $Label.SAM_Closed
         <errorMessage>Reason For Closure is mandatory</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Requester_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Query_Requestor__c ) ) ),(NOT( REGEX( txt_Query_Requestor__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Query_Requestor__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Requester_Email_UL</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND((NOT(ISBLANK( eml_Requester_Email_Id__c ))),NOT(REGEX( eml_Requester_Email_Id__c ,&apos;([a-zA-Z0-9_\\-\\.]+)@unilever.com&apos;)))</errorConditionFormula>
+        <errorDisplayField>eml_Requester_Email_Id__c</errorDisplayField>
+        <errorMessage>Please enter Unilever email id</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Requester_Modify_Validation</fullName>
+        <active>true</active>
+        <description>Requester cannot be modified by Non-creator of the request</description>
+        <errorConditionFormula>AND( 
+ISCHANGED(  txt_Query_Requestor__c ), 
+ CreatedById  &lt;&gt;  OwnerId,
+txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; 
+)</errorConditionFormula>
+        <errorDisplayField>txt_Query_Requestor__c</errorDisplayField>
+        <errorMessage>Cannot modify</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Run_cost_detail_validation_on_close</fullName>
         <active>true</active>
         <errorConditionFormula>AND( ISPICKVAL(  pkl_SAM_team_Status__c  , &apos;Closed&apos;) ,rol_Run_Cost_Detail_Validation_count__c &gt;0)</errorConditionFormula>
@@ -39259,6 +40811,13 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
 )</errorConditionFormula>
         <errorDisplayField>pkl_SAAS_Yes_No__c</errorDisplayField>
         <errorMessage>SAAS is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_SAM_Demand_Manager_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(   txt_CC_SAM_Demand_Manager__c  ) ) ),(NOT( REGEX( txt_CC_SAM_Demand_Manager__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_CC_SAM_Demand_Manager__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_SA_Clarity_Id_Validation</fullName>
@@ -39287,6 +40846,21 @@ NOT(ISNULL(txt_Request_Type__c )),
         <errorMessage>Scope of Project  is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_SoftwarePurchas_Mandatory_Validation</fullName>
+        <active>true</active>
+        <description>Software Purchase Required is mandatory in IN Progress status</description>
+        <errorConditionFormula>AND(
+ISBLANK(TEXT( pkl_Software_Purchase_Req__c )), 
+OR(TEXT( pkl_SAM_team_Status__c )= $Label.SAM_In_Progress,
+Text( pkl_Status__c ) = $Label.SAM_In_Progress),
+OR(txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;,
+txt_Request_Type__c = &apos;SAM_RW_Non_Project_Request&apos;)
+ 
+)</errorConditionFormula>
+        <errorDisplayField>pkl_Software_Purchase_Req__c</errorDisplayField>
+        <errorMessage>Software Purchase Field value is Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Software_Purchase_Req_Validation</fullName>
         <active>true</active>
         <description>Cannot proceed to next stage if  Software Purchase Required is No</description>
@@ -39302,7 +40876,7 @@ TEXT(pkl_SAM_team_Status__c) = $Label.SAM_Quote_Provided
     </validationRules>
     <validationRules>
         <fullName>SAM_cost_code_validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(
   ISBLANK( txt_CrossCharge_Cost_Code__c  ) ,
  OR( 
@@ -39322,6 +40896,6 @@ TEXT(pkl_SAM_team_Status__c) = $Label.SAM_Quote_Provided
         <description>It accepts any thing between A-Z, a-z, 0-9 and space (no other special characters allowed).</description>
         <errorConditionFormula>AND(( NOT( ISBLANK(txt_SA_Clarity_Id__c) ) ),(NOT( REGEX( txt_SA_Clarity_Id__c, &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_SA_Clarity_Id__c</errorDisplayField>
-        <errorMessage>Only Alphanumeric data allowed. For ex. Characters between A-Z, a-z, 0-9 and space.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
 </CustomObject>

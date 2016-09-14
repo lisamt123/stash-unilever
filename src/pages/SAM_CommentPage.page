@@ -72,6 +72,9 @@ select{
 .form-style-1 .field-textarea{
     height: 100px;
 }
+.form-style-1 .field-textareaSub{
+    height: 50px;
+}
 
 .buttonStyle{
  background: #4B99AD;
@@ -91,6 +94,13 @@ select{
     <apex:pageBlock >
     
 <ul class="form-style-1">
+
+     <li>
+     <apex:outputPanel rendered="{!crossChargeInfoSetFlag}">
+        <label>Subject<span class="required">*</span></label>
+        <apex:inputTextarea styleClass="field-long field-textareaSub" id="cancelReson1"  value="{!subjectStr}" label=" " required="true"/>
+    </apex:outputPanel>
+    </li>
   
     <li>
         <label>Please Enter Comments<span class="required">*</span></label>

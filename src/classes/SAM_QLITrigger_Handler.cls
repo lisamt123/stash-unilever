@@ -57,7 +57,8 @@ public with sharing class SAM_QLITrigger_Handler
     public void beforeUpdate(List<SObject> lstsObjectOld, List<SObject> lstsObjectNew)
     {
         if(triggerShouldExecute){
-         System.debug('beforeUpdate called');        
+         System.debug('beforeUpdate called'); 
+         SAM_QLITrigger_Util.validationForQuotationAtta(trigger.new,trigger.old);
         }
     }
     

@@ -1,9 +1,18 @@
-Hi UL SAM Team,
+Hi {!SAM_Request__c.CreatedBy},
 
-Quote provided  for the service request {!SAM_Request__c.Name} has been Approved. The current status is "Quote Approved"
+You have approved the quotation for Service Request  {!SAM_Request__c.Name} with the Cost Code details as mentioned below: 
 
-Please login to the portal to take necessary action.
- Click here {!SAM_Request__c.Link}.
+Entity Code: {!SAM_Request__c.txt_Entity_Code__c}
+Cost Center (CC): {!SAM_Request__c.txt_Cost_Center_CC__c}
+ICC/GLC/LCC: {!SAM_Request__c.txt_ICC_GLC_LCC__c}
+GL Account: {!SAM_Request__c.txt_GL_Account__c}
+Budget Owner Name : {!SAM_Request__c.txt_Budget_Owner_Name__c}
+Invoice Approver Name : {!SAM_Request__c.txt_Invoice_Approver_Name__c}
+  
+Request you to take Approval on this email from the Invoice, Budget approver. Upload the emails(as an attachment) in the System, as this will be forwarded to Finance for cross Charge.
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link}
 
 Thanks,
-{!SAM_Request__c.CreatedBy}
+{!SAM_Request__c.lkp_Assign_To__c}

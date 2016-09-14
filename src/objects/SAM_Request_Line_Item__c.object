@@ -83,6 +83,22 @@
         <fullName>md_Request_ID__c</fullName>
         <externalId>false</externalId>
         <label>Request ID</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <filterItems>
+                <field>SAM_Request__c.CreatedById</field>
+                <operation>equals</operation>
+                <valueField>$Source.CreatedById</valueField>
+            </filterItems>
+            <filterItems>
+                <field>$Source.CreatedById</field>
+                <operation>equals</operation>
+                <value>00523000000ZpRE</value>
+            </filterItems>
+            <infoMessage>Do not change the default Request Id</infoMessage>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>SAM_Request__c</referenceTo>
         <relationshipLabel>Product Details</relationshipLabel>
         <relationshipName>Request_Line_Items</relationshipName>
@@ -265,6 +281,7 @@
     <fields>
         <fullName>pkl_Hard_Partitioning__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Select (Yes/No) if there is Hardware partioning</inlineHelpText>
         <label>Hard Partitioning</label>
         <length>255</length>
         <required>false</required>
@@ -276,6 +293,7 @@
     <fields>
         <fullName>pkl_Hyper_V_Farm__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Select (Yes/No) from the Drop Down, if the deployment is on Hyper-V Fram</inlineHelpText>
         <label>Hyper - V Farm</label>
         <picklist>
             <picklistValues>
@@ -367,6 +385,7 @@
         <fullName>pkl_Physical_instance__c</fullName>
         <description>For Oracle &amp; IBM record type</description>
         <externalId>false</externalId>
+        <inlineHelpText>Select (Yes/No) from the Drop Down, if the deployment is on Physical hardware</inlineHelpText>
         <label>Physical instance</label>
         <picklist>
             <picklistValues>
@@ -580,6 +599,7 @@
         <fullName>pkl_Virtual_instance__c</fullName>
         <description>For Oracle &amp; IBM record type</description>
         <externalId>false</externalId>
+        <inlineHelpText>Select (Yes/No) from the Drop Down, if the deployment is on Virtual machine</inlineHelpText>
         <label>Virtual instance</label>
         <picklist>
             <picklistValues>
@@ -604,6 +624,7 @@
     <fields>
         <fullName>txt_Additional_features__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the name of the Additional Feature which is required</inlineHelpText>
         <label>Additional features</label>
         <length>255</length>
         <required>false</required>
@@ -648,6 +669,7 @@
     <fields>
         <fullName>txt_Diagnostic__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Brief if Daignostic pack is required</inlineHelpText>
         <label>Diagnostic</label>
         <length>255</length>
         <required>false</required>
@@ -682,6 +704,7 @@
     <fields>
         <fullName>txt_Installation_Machine_Name__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the hostname of the machine which is deployed</inlineHelpText>
         <label>Installation Machine Name</label>
         <length>255</length>
         <required>false</required>
@@ -717,6 +740,7 @@
     <fields>
         <fullName>txt_Location__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the details of the deployment</inlineHelpText>
         <label>Location</label>
         <length>255</length>
         <required>false</required>
@@ -740,7 +764,7 @@
     <fields>
         <fullName>txt_New_System_Existing__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>  Is a new system created or hosted on existing system</inlineHelpText>
+        <inlineHelpText>Is a new system created or hosted on existing system</inlineHelpText>
         <label>New System/Existing</label>
         <length>255</length>
         <required>false</required>
@@ -753,7 +777,7 @@
         <fullName>txt_Number_of_SAP_Users__c</fullName>
         <description>For SAP record type</description>
         <externalId>false</externalId>
-        <inlineHelpText>What is the number of users? (Disclaimer: PM to attach names, roles and transactions these users would be doing)</inlineHelpText>
+        <inlineHelpText>What is the number of users? (Disclaimer:  PM to attach names, roles and transactions these users would be doing)</inlineHelpText>
         <label>Number of SAP Users</label>
         <precision>18</precision>
         <required>false</required>
@@ -802,6 +826,7 @@
     <fields>
         <fullName>txt_Partitioning__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Brief if partioned</inlineHelpText>
         <label>Partitioning</label>
         <length>255</length>
         <required>false</required>
@@ -813,6 +838,7 @@
     <fields>
         <fullName>txt_Physical_Machine_Name__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the Physical machine hostname which is deployed</inlineHelpText>
         <label>Physical Machine Name</label>
         <length>255</length>
         <required>false</required>
@@ -835,7 +861,7 @@
     <fields>
         <fullName>txt_Processor_Make_and_Model__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>e.g. Intel Xeon, IBM Power 5 etc.</inlineHelpText>
+        <inlineHelpText>Enter the details in brief</inlineHelpText>
         <label>Processor - Make and Model</label>
         <length>255</length>
         <required>false</required>
@@ -847,6 +873,7 @@
     <fields>
         <fullName>txt_Processor_based_or_Named_User__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the License type requied</inlineHelpText>
         <label>Processor based or Named User</label>
         <length>255</length>
         <required>false</required>
@@ -858,8 +885,8 @@
     <fields>
         <fullName>txt_Product_Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>What is the SAP Product required?</inlineHelpText>
-        <label>Product Description</label>
+        <inlineHelpText>Enter the name of Software product required</inlineHelpText>
+        <label>Software Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -937,6 +964,7 @@
     <fields>
         <fullName>txt_Tuning__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Brief if Tuning pack is required</inlineHelpText>
         <label>Tuning</label>
         <length>255</length>
         <required>false</required>
@@ -969,7 +997,7 @@
     </fields>
     <label>Product</label>
     <nameField>
-        <label>Product Description</label>
+        <label>Software Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
@@ -3463,21 +3491,56 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <active>true</active>
         <errorConditionFormula>num_No_of_Physical_Cores_Virtual_Cores__c &lt;=0</errorConditionFormula>
         <errorDisplayField>num_No_of_Physical_Cores_Virtual_Cores__c</errorDisplayField>
-        <errorMessage>No of Physical Cores//Virtual Cores should be positive.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Number_of_Physical_Virtual_Processor</fullName>
         <active>true</active>
         <errorConditionFormula>num_No_of_Physical_Virtual_Processors__c &lt;=0</errorConditionFormula>
         <errorDisplayField>num_No_of_Physical_Virtual_Processors__c</errorDisplayField>
-        <errorMessage>No of Physical/Virtual Processors should be positive.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Number_of_SAP_user</fullName>
         <active>true</active>
         <errorConditionFormula>txt_Number_of_SAP_Users__c &lt;=0</errorConditionFormula>
         <errorDisplayField>txt_Number_of_SAP_Users__c</errorDisplayField>
-        <errorMessage>No. of SAP user should be positive.</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Additional_Features_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Additional_features__c ) ) ),(NOT( REGEX( txt_Additional_features__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Additional_features__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Backend_Database_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Backend_Database__c ) ) ),(NOT( REGEX( txt_Backend_Database__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Backend_Database__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Database_Instance_Name_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Database_Instance_Name__c ) ) ),(NOT( REGEX( txt_Database_Instance_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Database_Instance_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Diagnostic_Alphanumeric_Data</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Diagnostic__c ) ) ),(NOT( REGEX( txt_Diagnostic__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Diagnostic__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Edition_Alphanumeric_Data</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Edition__c ) ) ),(NOT( REGEX( txt_Edition__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Edition__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Existing_SID_Reverse_Validation</fullName>
@@ -3487,12 +3550,47 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>Existing SID dependent fields are mandatory only when Existing SID value is Yes</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Hard_Partioning_Alpha_Data</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK( pkl_Hard_Partitioning__c ) ) ),(NOT( REGEX( pkl_Hard_Partitioning__c, &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>pkl_Hard_Partitioning__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Installation_Machine_Name_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Installation_Machine_Name__c ) ) ),(NOT( REGEX( txt_Installation_Machine_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Installation_Machine_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Interfacing_Application_details_Alph</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Interfacing_Application_Details__c ) ) ),(NOT( REGEX( txt_Interfacing_Application_Details__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Interfacing_Application_Details__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Interfacing_Details_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Interfacing_Details__c ) ) ),(NOT( REGEX( txt_Interfacing_Details__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Interfacing_Details__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_License_Qty_Shd_be_greater_than_zero</fullName>
         <active>true</active>
         <description>License quantity should be greater than zero. Applicable to Microsoft &amp; SAP record type</description>
         <errorConditionFormula>num_License_Quantity__c  &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_License_Quantity__c</errorDisplayField>
-        <errorMessage>License Quantity Should not be negative or zero</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Location_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Location__c ) ) ),(NOT( REGEX( txt_Location__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Location__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_New_Existing_SID_Validation</fullName>
@@ -3509,12 +3607,19 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>New SID dependent fields are mandatory only when New SID value is Yes</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_New_System_Existing_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_New_System_Existing__c ) ) ),(NOT( REGEX( txt_New_System_Existing__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_New_System_Existing__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_No_of_Cores_shd_be_positive</fullName>
         <active>true</active>
         <description>Applicable for Oracle and IBM record type</description>
         <errorConditionFormula>num_No_of_Cores__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_No_of_Cores__c</errorDisplayField>
-        <errorMessage>Enter only positive value here</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Direct_Users_shd_be_positive</fullName>
@@ -3522,7 +3627,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>Applicable for Oracle record type</description>
         <errorConditionFormula>num_No_of_Direct_Users__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_No_of_Direct_Users__c</errorDisplayField>
-        <errorMessage>Enter only positive value here</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Indirect_Users_shd_be_positive</fullName>
@@ -3530,7 +3635,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>Applicable to Oracle record type</description>
         <errorConditionFormula>num_No_of_Indirect_Users__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_No_of_Indirect_Users__c</errorDisplayField>
-        <errorMessage>Enter only positive value here</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Phy_Cores_shd_be_positive</fullName>
@@ -3538,7 +3643,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>No of Physical Cores should be positive</description>
         <errorConditionFormula>num_Number_of_Physical_Cores__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Number_of_Physical_Cores__c</errorDisplayField>
-        <errorMessage>No of Physical Cores should be positive</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Phy_Processors_shd_be_positive</fullName>
@@ -3546,7 +3651,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>No of Physical Processors should be positive</description>
         <errorConditionFormula>num_Number_of_Physical_Processors__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Number_of_Physical_Processors__c</errorDisplayField>
-        <errorMessage>No of Physical Processors should be positive</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Processor_shd_be_positive</fullName>
@@ -3554,7 +3659,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>Applicable for IBM &amp; Oracle record type</description>
         <errorConditionFormula>num_No_of_Processor__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_No_of_Processor__c</errorDisplayField>
-        <errorMessage>Enter only positive number</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Users_Shd_not_be_negative</fullName>
@@ -3562,7 +3667,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>Number of Users should not be negative or zero</description>
         <errorConditionFormula>num_No_of_Users__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_No_of_Users__c</errorDisplayField>
-        <errorMessage>Number of Users Should not be negative or zero</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Virtual_Cores_shd_be_positive</fullName>
@@ -3570,7 +3675,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>No of Virtual Cores should be positive</description>
         <errorConditionFormula>num_Number_of_Virtual_Cores__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Number_of_Virtual_Cores__c</errorDisplayField>
-        <errorMessage>No of Virtual Cores should be positive</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_No_of_Virtual_Processors_shd_be_posi</fullName>
@@ -3578,7 +3683,14 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <description>No of Virtual Processors should be positive</description>
         <errorConditionFormula>num_Number_of_Virtual_Processors__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Number_of_Virtual_Processors__c</errorDisplayField>
-        <errorMessage>No of Virtual Processors should be positive</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Partitioning_Alphanumeric_data</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Partitioning__c ) ) ),(NOT( REGEX( txt_Partitioning__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Partitioning__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Physical_Instance_Validation</fullName>
@@ -3587,6 +3699,20 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorConditionFormula>AND( ISPICKVAL( pkl_Physical_instance__c , &apos;Yes&apos;),  ISBLANK(txt_Physical_Server_Name__c ) )</errorConditionFormula>
         <errorDisplayField>txt_Physical_Server_Name__c</errorDisplayField>
         <errorMessage>Physical Server Name is mandatory if physical instance is yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Physical_Machine_Name_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Physical_Machine_Name__c ) ) ),(NOT( REGEX( txt_Physical_Machine_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Physical_Machine_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Physical_Server_Name_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Physical_Server_Name__c ) ) ),(NOT( REGEX( txt_Physical_Server_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Physical_Server_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Physical_Server_Name_Validation</fullName>
@@ -3612,6 +3738,13 @@ ISPICKVAL( pkl_Physical_Server__c ,&apos;Yes&apos;),
 OR(ISBLANK( num_Number_of_Physical_Cores__c  ),ISBLANK(  num_Number_of_Physical_Processors__c ))
 )</errorConditionFormula>
         <errorMessage>If physical server is yes then number of physical processor and number of physical cores are mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Processor_based_or_Named_User_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Processor_based_or_Named_User__c ) ) ),(NOT( REGEX( txt_Processor_based_or_Named_User__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Processor_based_or_Named_User__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_Existing_Comments_Box_Reverse</fullName>
@@ -3702,12 +3835,33 @@ NOT(ISBLANK(  ltxt_Comments_Box_New__c ))
         <errorMessage>System Type is mandatory for New SID</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Tuning_Alphanumeric_data</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Tuning__c ) ) ),(NOT( REGEX( txt_Tuning__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Tuning__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Version_Alphanumeric_Data</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK( txt_Version__c ) ) ),(NOT( REGEX( txt_Version__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Version__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Virtual_Instance_Validation</fullName>
         <active>true</active>
         <description>Virtual Server Name is mandatory if virtual instance is yes.</description>
         <errorConditionFormula>AND( ISPICKVAL(  pkl_Virtual_instance__c , &apos;Yes&apos;), ISBLANK( txt_Virtual_Server_Name__c ) )</errorConditionFormula>
         <errorDisplayField>txt_Virtual_Server_Name__c</errorDisplayField>
         <errorMessage>Virtual Server Name is mandatory if virtual instance is yes.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Virtual_Server_Name_Alpha</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Virtual_Server_Name__c ) ) ),(NOT( REGEX( txt_Virtual_Server_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>txt_Virtual_Server_Name__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Virtual_Server_Name_Validation</fullName>
@@ -3747,5 +3901,13 @@ OR(ISBLANK(  num_Number_of_Virtual_Cores__c ),ISBLANK(  num_Number_of_Virtual_Pr
         <description>If Physical Server is selected as Yes, then Virtual Server should not be Yes</description>
         <errorConditionFormula>IF(ISPICKVAL(pkl_Physical_Server__c, &quot;Yes&quot;), ISPICKVAL(pkl_Virtual_Server__c, &quot;Yes&quot;), false)</errorConditionFormula>
         <errorMessage>If Physical Server is selected as Yes, then Virtual Server should not be Yes and vise versa.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Software_Name_Alphanumeric_Data</fullName>
+        <active>true</active>
+        <description>This will accept only Alphanumeric data</description>
+        <errorConditionFormula>AND(( NOT( ISBLANK( Name  ) ) ),(NOT( REGEX( Name , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
 </CustomObject>

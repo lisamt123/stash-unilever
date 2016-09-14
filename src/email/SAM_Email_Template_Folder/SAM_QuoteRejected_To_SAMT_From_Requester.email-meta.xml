@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>QuoteRejected To SAMT From Requester</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} : SAM Quote Rejected</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : SAM Quotation Rejected</subject>
     <type>text</type>
 </EmailTemplate>

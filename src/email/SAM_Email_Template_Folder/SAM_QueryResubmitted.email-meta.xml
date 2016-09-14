@@ -4,6 +4,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>QueryResubmitted</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} has been submitted</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} has been Re-submitted</subject>
     <type>text</type>
 </EmailTemplate>

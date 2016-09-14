@@ -1,7 +1,11 @@
-Hi  UL SAM Team,
+Hi {!SAM_Request__c.CreatedBy},
 
-Quote provided  for the service request {!SAM_Request__c.Name} has been rejected. The current status is ""Quotation rejected"".
-Please see the chatter/comments sections for futher information on rejection.
+You have rejected the Quotation provided  for the service request  {!SAM_Request__c.Name}. The current status is "Quote rejected".
+
+Please see the chatter/comments sections for further information on rejection.
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link} 
 
 Thanks,
-{!SAM_Request__c.CreatedBy}
+{!SAM_Request__c.lkp_Assign_To__c}

@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>QuerryAnswered To Requester</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} is Answered</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : is Answered</subject>
     <type>text</type>
 </EmailTemplate>

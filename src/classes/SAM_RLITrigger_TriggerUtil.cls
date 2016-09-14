@@ -49,7 +49,8 @@ public with sharing class SAM_RLITrigger_TriggerUtil{
             }
             for(SAM_Request_Line_Item__c obj :lstRequest){
                 SAM_Request__c requestRec = mapReqIDRecord.get(obj.md_Request_ID__c);
-                if(Userinfo.getUserId() != null && requestRec.CreatedById  != null && (requestRec.CreatedById != Userinfo.getUserId() || (requestRec.pkl_Status__c != SAM_Constants.SAVED && requestRec.pkl_Status__c != SAM_Constants.AWAITINGINFORMATION ))){
+                //if(Userinfo.getUserId() != null && requestRec.CreatedById  != null && (requestRec.CreatedById != Userinfo.getUserId() || (requestRec.pkl_Status__c != SAM_Constants.SAVED && requestRec.pkl_Status__c != SAM_Constants.AWAITINGINFORMATION ))){
+                    if(requestRec.pkl_Status__c != SAM_Constants.SAVED && requestRec.pkl_Status__c != SAM_Constants.AWAITINGINFORMATION ){ 
                     obj.addError('You are not authorized to add this Product at this status.');
                 }
             }

@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>SubmitsForCrossCharge To ULFT</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} is Submitted for Cross-charge</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : is Submitted for Cross-charge</subject>
     <type>text</type>
 </EmailTemplate>

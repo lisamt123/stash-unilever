@@ -27,20 +27,16 @@
         <label>Actions</label>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Request_Type_for_UI__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>pkl_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>lkp_Assign_To__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Status_Before_On_Hold__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Ticket_Age__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -52,7 +48,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Request_Type_for_UI__c</field>
+                <field>Ticket_Age__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Status_Before_On_Hold__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -71,10 +71,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Software_Purchase_Req__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pkl_Build_details_applicable__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -103,27 +99,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_SA_Clarity_Id__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>txt_Name_of_the_Project__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_SAAS_Yes_No__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Scope_of_the_Project__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>date_Go_Live_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Additional_Go_Live_Details__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -135,11 +111,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>num_No_of_Users__c</field>
+                <field>date_Go_Live_Date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>mpkl_Country_of_Deployment__c</field>
+                <field>num_No_of_Users__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -147,19 +123,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Project_Technical_Architect_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>eml_Project_Technical_Architect_Email__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Project_Manager_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>eml_Project_Manager_Email__c</field>
+                <field>txt_Portfolio_Manager_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -167,7 +131,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>eml_Program_Owner_Email__c</field>
+                <field>txt_Financial_Manager_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -175,11 +139,49 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>eml_Infrastructure_Manager_Email__c</field>
+                <field>txt_Project_Technical_Architect_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Financial_Manager_Name__c</field>
+                <field>txt_Project_Manager_Name__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_SA_Clarity_Id__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_Scope_of_the_Project__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>mpkl_Country_of_Deployment__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_Additional_Go_Live_Details__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>eml_Portfolio_Manager_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>eml_Program_Owner_Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -187,14 +189,17 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Portfolio_Manager_Name__c</field>
+                <field>eml_Infrastructure_Manager_Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>eml_Portfolio_Manager_Email__c</field>
+                <field>eml_Project_Technical_Architect_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>eml_Project_Manager_Email__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -205,7 +210,15 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ltxt_Backend_server_details__c</field>
+                <field>pkl_Deployments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>mpkl_Cloud_Platforms__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pkl_SAAS_Yes_No__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -215,21 +228,11 @@
                 <behavior>Readonly</behavior>
                 <field>ltxt_Application_S_w_Purchase_Details__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ltxt_Reporting_Details__c</field>
-            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>pkl_Any_infrastructural_requirements__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Deployments__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>mpkl_Cloud_Platforms__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -237,11 +240,71 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>ltxt_Backend_server_details__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ltxt_Reporting_Details__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>ltxt_Deployment_Comments__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>false</editHeading>
+        <label>Charging Section</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>fml_Total__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>rol_Total_Annual_Maint_in__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>rol_Total_CAPEX_in__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>rol_Total_CAPEX_in_for_X_type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>rol_Total_DO_PO_Applicable__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>rol_Total_Run_Cost_Year_1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>rol_Total_Run_Cost_Year_2__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Action Comments History</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ltxt_Request_Comment_History__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -266,25 +329,23 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>txt_Publisher__c</fields>
-        <fields>txt_Software_Name__c</fields>
-        <fields>txt_Installation_Machine_Name__c</fields>
-        <fields>txt_Physical_Machine_Name__c</fields>
-        <fields>txt_Location__c</fields>
-        <fields>txt_Processor_Make_and_Model__c</fields>
-        <fields>CREATEDBY_USER</fields>
+        <fields>txt_Edition__c</fields>
+        <fields>txt_Version__c</fields>
+        <fields>num_License_Quantity__c</fields>
+        <fields>ltxt_Comments_if_any__c</fields>
         <relatedList>SAM_Request_Line_Item__c.md_Request_ID__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>num_Quotation_Number__c</fields>
-        <fields>pkl_Currency_Type__c</fields>
-        <fields>pkl_Run_Cost_Applicable__c</fields>
-        <fields>pkl_Line_Status__c</fields>
+        <fields>txt_Run_Cost_Publisher__c</fields>
         <fields>num_Quantity__c</fields>
+        <fields>fml_List_Price__c</fields>
+        <fields>num_Discount_Percentage__c</fields>
         <fields>fml_License_Cost__c</fields>
         <fields>fml_Maintainence_Amount__c</fields>
+        <fields>pkl_Charging_Type__c</fields>
         <fields>fml_Total_CAPEX__c</fields>
-        <fields>Total_Annual_Maint__c</fields>
         <relatedList>SAM_Quote_Line_Item__c.md_Request__c</relatedList>
     </relatedLists>
     <relatedLists>

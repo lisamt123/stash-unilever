@@ -29,7 +29,7 @@ public with sharing class SAM_Request_GroupMemberShipUtils {
         {
             createdByIds.Add(request.CreatedById);
         }
-        List<GroupMember> UserGroups = [SELECT UserOrGroupId,Group.DeveloperName FROM GroupMember WHERE UserOrGroupId in :createdByIds];        
+        List<GroupMember> UserGroups = [SELECT UserOrGroupId,Group.DeveloperName FROM GroupMember WHERE Group.DeveloperName Like 'SAM_%' AND UserOrGroupId in :createdByIds];        
         for(SAM_Request__c request : requests)
         {
             request.ltxt_User_Public_Groups__c = '';

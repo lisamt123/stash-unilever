@@ -216,3 +216,31 @@
         <shortDescription>SAM mandatory fields</shortDescription>
         <value>Below field(s) are mandatory to Submit the record.</value>
     </labels>
+	<labels>
+        <fullName>SAM_from_address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM from address</shortDescription>
+        <value>sam.demandmanagement@unilever.com</value>
+    </labels>
+	<labels>
+        <fullName>SAM_from_address_display_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM from address display name</shortDescription>
+        <value>DemandManagement, SAM</value>
+    </labels>
+	<labels>
+        <fullName>SAM_Finance_Queue_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Finance Queue Id</shortDescription>
+        <value>00G23000000SueNEAS</value>
+    </labels>
+	<labels>
+        <fullName>SAM_Team_Queue_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAM Team Queue Id</shortDescription>
+        <value>00G23000000SoaPEAS</value>
+    </labels>

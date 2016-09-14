@@ -13,19 +13,39 @@ VERSION     AUTHOR       DATE            DETAIL Description
 1.0      Pooja Kanani   28/07/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class SAM_TestRequestClass_util {
+    /*******************************************************************
+    Purpose: This method is used to create Test User
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static User createTestUser (){
+         Profile p = [select id from profile where name='system Administrator'];
+        User testu = [Select Id,profileid,isactive from user where profileid  =: p.Id AND isactive = true limit 1];
+        return testu;
     
+    }
+    /*******************************************************************
+    Purpose: This method is used to get a SAM Team Member
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static User GetSAMTeamMember (){       
+        User testu = [select id from user where id in (select userorgroupid from groupmember where group.DeveloperName = 'SAM_Team') Limit 1];
+        return testu;    
+    }
     /*******************************************************************
     Purpose: This method is used to create test data for SAM_Request__c
     Parameters: 
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static SAM_Request__c SAM_Request(){
+    public static SAM_Request__c SAM_Request(){  
         RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Request__c' AND Name='Project' limit 1] ;
         SAM_Request__c reqRec = new SAM_Request__c();
-        reqRec.txt_Deployments_Any_other_please_specify__c = SAM_Constants.TEST;
-        reqRec.txt_Other_Landscape_Details__c = SAM_Constants.TEST;
-        reqRec.mpkl_Cloud_Platforms__c = 'Amazon';
+        //reqRec.txt_Deployments_Any_other_please_specify__c = SAM_Constants.TEST;
+        //reqRec.txt_Other_Landscape_Details__c = SAM_Constants.TEST;        
         reqRec.pkl_Deployments__c = 'On-premise';
         reqRec.eml_Financial_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
         reqRec.txt_Financial_Manager_Name__c = SAM_Constants.TEST;
@@ -50,7 +70,7 @@ public with sharing class SAM_TestRequestClass_util {
         reqRec.txt_Project_Manager_Name__c = SAM_Constants.TEST;
         reqRec.eml_Project_Technical_Architect_Email__c = SAM_Constants.TEST_EMAIL ;
         reqRec.txt_Project_Technical_Architect_Name__c = SAM_Constants.TEST;
-        reqRec.txt_Budget_Owner_Name__c = SAM_Constants.TEST_EMAIL ;
+        reqRec.txt_Budget_Owner_Name__c = SAM_Constants.TEST ;
         reqRec.eml_Budget_Owner_Email__c = SAM_Constants.TEST_EMAIL ;  
         reqRec.txt_ICC_GLC_LCC__c = SAM_Constants.TEST;
         reqRec.txt_Cost_Center_CC__c = SAM_Constants.TEST;
@@ -96,6 +116,16 @@ public with sharing class SAM_TestRequestClass_util {
         objQD.pkl_DO_PO_Details_Applicable__c = SAM_Constants.NO;
         objQD.pkl_Run_Cost_Applicable__c = SAM_Constants.NO;
         objQD.pkl_Line_Status__c = 'Completed';
+        
+        //------9/9-----
+        objQD.pkl_Publisher__c = 'Microsoft'; 
+        objQD.pkl_Currency_Type__c = 'EUR';       
+        objQD.num_Quantity__c = 1;
+        objQD.num_List_Price__c = 10.00;
+        objQD.pkl_Discount_Applicable__c = SAM_Constants.NO;
+        objQD.Maintainence_Applicable__c = SAM_Constants.NO;
+        objQD.pkl_Quotation_Available__c = SAM_Constants.NO;
+        //-------------
         return objQD;
     }
     /*******************************************************************
@@ -125,7 +155,7 @@ public with sharing class SAM_TestRequestClass_util {
       
     Attachment attachment = new Attachment();  
     attachment.ParentId = parentId;  
-    attachment.Name = 'Approval_Emails';  
+    attachment.Name = 'Approval_Emails_Version_0';  
     attachment.Body = b;  
       
     insert (attachment); 

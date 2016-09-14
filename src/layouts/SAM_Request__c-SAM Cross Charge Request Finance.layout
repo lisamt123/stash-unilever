@@ -15,7 +15,7 @@
                 <height>200</height>
                 <page>SAM_RequestInformationPage</page>
                 <showLabel>false</showLabel>
-                <showScrollbars>false</showScrollbars>
+                <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
         </layoutColumns>
@@ -28,20 +28,20 @@
         <label>Actions</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>lkp_Assign_To__c</field>
+                <behavior>Edit</behavior>
+                <field>txt_Request_Type_for_UI__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Reference_Request_ID__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Request_Type_for_UI__c</field>
+                <behavior>Readonly</behavior>
+                <field>pkl_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>lkp_Assign_To__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -51,11 +51,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>ltxt_Comments__c</field>
+                <field>pkl_SAM_team_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>pkl_SAM_team_Status__c</field>
+                <field>ltxt_Comments__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -78,15 +78,6 @@
                 <behavior>Readonly</behavior>
                 <field>txt_CC_SAM_Demand_Manager__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>date_CrossCharge_Submission_Date__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Name_of_the_Project__c</field>
@@ -95,7 +86,12 @@
                 <behavior>Readonly</behavior>
                 <field>ltxt_CrossCharge_SAM_Comments__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>date_CrossCharge_Submission_Date__c</field>
+            </layoutItems>
         </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -121,12 +117,8 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Charging Details</label>
+        <label>Cost Code (CC) Details</label>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_CrossCharge_Cost_Code__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_ICC_GLC_LCC__c</field>
@@ -146,6 +138,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Cross_Charge_Amount_in_euros__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_Cross_Charging_Version__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -170,7 +166,7 @@
                 <field>txt_Cross_Charge_Description__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_CrossCharge_Publisher__c</field>
             </layoutItems>
         </layoutColumns>
@@ -180,7 +176,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>For Finance</label>
+        <label>Finance Details</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -197,8 +193,10 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_CR_Remarks__c</field>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -208,17 +206,37 @@
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Action Comments History</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ltxt_Request_Comment_History__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
             <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>

@@ -106,4 +106,36 @@ public with sharing class SAM_QLITrigger_Util{
             }
         //}
     }
+    /*******************************************************************
+    Purpose: Quotation cannot be mark Completed without attaching Quotation
+    Parameters: List of SAM_Quote_Line_Item__c
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static void validationForQuotationAtta(list<SAM_Quote_Line_Item__c> newlstQLI, list<SAM_Quote_Line_Item__c> oldlstQLI){
+        Set<Id> setQLIId = new Set<Id>();
+        Map<ID,List<Attachment>> Req_attch_Map = new Map<ID,List<Attachment>>();
+
+        for(SAM_Quote_Line_Item__c obj :newlstQLI){
+            setQLIId.add(obj.Id);
+        }
+        List<Attachment> lstAttachmentQuotation = [SELECT ContentType,Id,Name,ParentId  FROM Attachment WHERE Name LIKE 'Quotation%' and ParentId IN:setQLIId];
+
+        for(Id objID : setQLIId){
+            List<Attachment> lstTempd = new List<Attachment>();
+            for(Attachment objAttachment : lstAttachmentQuotation){
+                if(objAttachment.ParentId == objID){
+                    lstTempd.add(objAttachment);
+                }
+            }
+            Req_attch_Map.put(objID,lstTempd);           
+        }
+        for(integer i = 0 ; i < newlstQLI.size(); i++){   
+            if(newlstQLI[i].pkl_Line_Status__c <> oldlstQLI[i].pkl_Line_Status__c && newlstQLI[i].pkl_Line_Status__c == SAM_Constants.COMPLETED && newlstQLI[i].pkl_Charging_Type__c == SAM_Constants.DO_PO_APPLICABLE){
+                if(Req_attch_Map.get(newlstQLI[i].Id).size()<1){
+                    newlstQLI[i].addError('You cannot mark Quotation as Completed without attaching Quotation file name "Quotation"');
+                }                
+            }
+        }
+     }
 }

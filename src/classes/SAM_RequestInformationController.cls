@@ -36,6 +36,8 @@ public with sharing class SAM_RequestInformationController{
       public boolean samAdminFlag;
       public boolean samTeamFlag;
       public boolean financeTeamFlag;  
+      public boolean crossChargeInfoSetFlag{get;set;}
+      public String subjectStr{get;set;}
                     
     
      
@@ -54,6 +56,7 @@ public with sharing class SAM_RequestInformationController{
           samAdminFlag = false;
           samTeamFlag =false;
           financeTeamFlag =false;
+          crossChargeInfoSetFlag =false;
          
         loggedInUserPermissionList = [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId()];
         requestorPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Requestor' limit 1];
@@ -209,13 +212,30 @@ public with sharing class SAM_RequestInformationController{
              flagToShowSubmitbutton = true;
              }
              
+           system.debug('requestRecord.lkp_Assign_To__c!!!'+requestRecord.lkp_Assign_To__c);  
           if(requestRecord.pkl_Status__c == SAM_Constants.AWAITINGINFORMATION || requestRecord.pkl_Status__c == SAM_Constants.QUOTE_PROVIDED || requestRecord.pkl_Status__c == SAM_Constants.AWAITING_CC_DETAILS_PENDINGWITHULEMP || requestRecord.pkl_Status__c == SAM_Constants.DETAILS_PENDING || requestRecord.pkl_Status__c == SAM_Constants.QUERY_ANSWERED){
+             
+             
              if(requestorFlag && !samAdminFlag && !samTeamFlag){
                 reminderSetFlag =false;
             }else if(financeTeamFlag && !samAdminFlag && !samTeamFlag){
                 reminderSetFlag  = false;
-            }else{
+            }else if((requestRecord.lkp_Assign_To__c !=null) && (samTeamFlag && requestRecord.lkp_Assign_To__c == userinfo.getuserid())){
                  reminderSetFlag  = true;
+            }else if(samAdminFlag ){
+                 reminderSetFlag  = true;
+            }
+            
+        }
+        if(requestRecord.txt_Request_Type_for_UI__c == 'Project' && (requestRecord.pkl_Status__c == SAM_Constants.QUOTE_APPROVED  || requestRecord.pkl_Status__c == SAM_Constants.CHARGING_REJECTED  || requestRecord.pkl_Status__c ==  SAM_Constants.AWAITING_CC_DETAILS_PENDINGWITHULSAM )){
+             if(requestorFlag && !samAdminFlag && !samTeamFlag){
+                crossChargeInfoSetFlag =false;
+            }else if(financeTeamFlag && !samAdminFlag && !samTeamFlag){
+                crossChargeInfoSetFlag = false;
+            }else if((requestRecord.lkp_Assign_To__c !=null) && (samTeamFlag && requestRecord.lkp_Assign_To__c == userinfo.getuserid())){
+                 crossChargeInfoSetFlag = true;
+            }else if(samAdminFlag ){
+                 crossChargeInfoSetFlag = true;
             }
             
         }
@@ -284,15 +304,19 @@ public with sharing class SAM_RequestInformationController{
     system.debug('commentsStr!!!'+commentsStr+'requestId!!'+requestId);
     if(commentsStr!=null && requestId!=null){
     SAM_Request__c reqInfo = [select Name,createdById from SAM_Request__c where id = :requestId limit 1];
-    User user = [SELECT id,FirstName,Email FROM User where id=:reqInfo.createdById limit 1];
+    User user = [SELECT id,FirstName,lastname,Email FROM User where id=:reqInfo.createdById limit 1];
     system.debug('emailId !!'+user.email );
         if(user !=null && reqInfo!=null){
         Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
         message.toAddresses = new String[] {user.email};
-        //message.toAddresses = new String[] {'varunikam@gmail.com'};
+       // message.toAddresses = new String[] {'varunikam@gmail.com'};
+       if(crossChargeInfoSetFlag){
+       message.subject = subjectStr;
+       }else{
         String strSubject ='SR : '+reqInfo.Name+' : Reminder to take action';
         message.subject = strSubject;
-        String strBody='Hi '+user.FirstName+','+'\n\n'+'The request with Id : '+reqInfo.Name+' is pending for your action with below details.'+'\n\n'+commentsStr+'\n\n'+'Kindly take the action.'+'\n\n'+'Thanks,'+'\n'+'UL SAM Team';
+        }
+        String strBody='Hi '+user.FirstName+' '+user.lastname+','+'\n\n'+'The request with Id : '+reqInfo.Name+' is pending for your action with below details.'+'\n\n'+commentsStr+'\n\n'+'Kindly take the action.'+'\n\n'+'Thanks,'+'\n'+Userinfo.getname();
         system.debug('str!!!'+strBody);
         message.plainTextBody = strBody;
         Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});

@@ -1,9 +1,9 @@
-Hi UL Finance Team,
+Hi Finance Team,
 
-Service request number {!SAM_Request__c.Name}has been submitted for Cross-Charging. The current status is ""Awaiting Charge"".
+Service request number {!SAM_Request__c.Name} has been submitted for Cross-Charging. The current status is "Awaiting Charge".
 
-Please login to the portal to take necessary action.
- Click here {!SAM_Request__c.Link}.
+You can access the Service Request via the link below;
+{!SAM_Request__c.Link}
 
 Thanks,
-UL SAM Team
+{!SAM_Request__c.lkp_Assign_To__c}

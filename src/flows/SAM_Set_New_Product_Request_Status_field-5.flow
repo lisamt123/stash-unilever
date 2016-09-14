@@ -44,14 +44,14 @@
             <label>For all new products</label>
         </rules>
     </decisions>
-    <description>Sets the new Product &quot;Request Status&quot; field to &quot;Status&quot; field of the parent request</description>
+    <description>Merged the &quot;SAM Set Product Publisher to Record Type&quot; process in this</description>
     <formulas>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>true</expression>
     </formulas>
-    <interviewLabel>SAM_Set_New_Product_Request_Status_field-1_SAM_Request_Line_Item__c</interviewLabel>
-    <label>SAM Set New Product &quot;Request Status&quot; field</label>
+    <interviewLabel>SAM_Set_New_Product_Request_Status_field-2_SAM_Request_Line_Item__c</interviewLabel>
+    <label>SAM Set New Product &quot;Request Status&quot; and &quot;Publisher &quot;field</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -97,7 +97,7 @@
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Update Request Status field</label>
+        <label>Update Request Status and Publisher field</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <filters>
@@ -141,6 +141,36 @@
             <field>pkl_Request_Status__c</field>
             <value>
                 <elementReference>myVariable_current.md_Request_ID__r.pkl_Status__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Publisher</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>txt_Publisher__c</field>
+            <value>
+                <elementReference>myVariable_current.RecordType.Name</elementReference>
             </value>
         </inputAssignments>
         <object>SAM_Request_Line_Item__c</object>

@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>More Info Required To Requester</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} : Additional Information Required</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : Additional Information Required</subject>
     <type>text</type>
 </EmailTemplate>

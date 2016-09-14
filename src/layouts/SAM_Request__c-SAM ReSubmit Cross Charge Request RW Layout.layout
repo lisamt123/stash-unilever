@@ -28,16 +28,16 @@
         <label>Actions</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Status__c</field>
+                <behavior>Edit</behavior>
+                <field>txt_Request_Type_for_UI__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_Reference_Request_ID__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Request_Type_for_UI__c</field>
+                <behavior>Readonly</behavior>
+                <field>pkl_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -78,15 +78,6 @@
                 <behavior>Edit</behavior>
                 <field>txt_CC_SAM_Demand_Manager__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>date_CrossCharge_Submission_Date__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_Name_of_the_Project__c</field>
@@ -95,7 +86,12 @@
                 <behavior>Edit</behavior>
                 <field>ltxt_CrossCharge_SAM_Comments__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>date_CrossCharge_Submission_Date__c</field>
+            </layoutItems>
         </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -121,23 +117,19 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Charging Details</label>
+        <label>Cost Code (CC) Details</label>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_CrossCharge_Cost_Code__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_ICC_GLC_LCC__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Budget_Owner_Name__c</field>
+                <field>txt_Entity_Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Entity_Code__c</field>
+                <field>txt_Budget_Owner_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -146,6 +138,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_Cross_Charge_Amount_in_euros__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_Cross_Charging_Version__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -174,6 +170,20 @@
                 <field>txt_CrossCharge_Publisher__c</field>
             </layoutItems>
         </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Action Comments History</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ltxt_Request_Comment_History__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>

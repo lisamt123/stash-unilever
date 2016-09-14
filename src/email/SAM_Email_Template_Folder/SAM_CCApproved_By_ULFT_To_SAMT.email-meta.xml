@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>CCApproved By ULFT To SAMT</name>
     <style>none</style>
-    <subject>SR : {!SAM_Request__c.Name} :Finance Charge Completed.</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : Finance Charge Completed</subject>
     <type>text</type>
 </EmailTemplate>

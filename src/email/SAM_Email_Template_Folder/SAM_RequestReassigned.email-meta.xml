@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>RequestReassigned</name>
     <style>none</style>
-    <subject>SR : {!SAM_Request__c.Name} is reassigned</subject>
+    <subject>Service Request : {!SAM_Request__c.Name} : Re-assigned to you</subject>
     <type>text</type>
 </EmailTemplate>

@@ -13,16 +13,26 @@
                 <field>md_Request__c</field>
             </layoutItems>
             <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pkl_Publisher__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>pkl_Currency_Type__c</field>
+                <field>num_Quantity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>num_Quantity__c</field>
+                <field>pkl_Currency_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -33,12 +43,18 @@
                 <field>fml_List_Price__c</field>
             </layoutItems>
             <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>pkl_Discount_Applicable__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>num_Discount_Percentage__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -56,31 +72,25 @@
                 <behavior>Readonly</behavior>
                 <field>num_Maintainence_Cost__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>num_Quotation_Number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>fml_Software_Engagement_Type__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Publisher__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>pkl_Line_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>pkl_Quotation_Available__c</field>
+                <field>pkl_Charging_Type__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Charging_Type__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -93,6 +103,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Build_Details_Applicable__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>pkl_Quotation_Available__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -136,6 +150,13 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txt_Software_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>dt_Contract_Start_Date__c</field>
             </layoutItems>
             <layoutItems>
@@ -154,15 +175,18 @@
                 <behavior>Edit</behavior>
                 <field>Run_Cost_for_Year_2__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pkl_Whether_SAM_will_pick_up_Run_Cost__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Software_Name__c</field>
+                <field>pkl_Whether_SAM_will_pick_up_Run_Cost__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Project_Maintained_by__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -173,8 +197,7 @@
                 <field>pkl_Run_Cost_End_Year__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Project_Maintained_by__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

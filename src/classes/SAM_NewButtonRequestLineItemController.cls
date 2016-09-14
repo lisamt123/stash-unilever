@@ -85,11 +85,11 @@ public with sharing class SAM_NewButtonRequestLineItemController{
     public PageReference redirectToPageNewItem() {  
              PageReference massPageUrl = null;
             try{
-                
                 String UrlLink ='';
                 //UrlLink = '/'+SAM_Request_Line_Item__c.getSObjectType().getDescribe().getKeyPrefix()+'/e?'+label.SAM_RLI_NewBtn_URL+'='+requestObj.name+'&'+label.SAM_RLI_NewBtn_URL+'_lkid='+requestObj.id+'&retURL=%2F'+requestObj.id+'&RecordType='+recordtypeId+'&nooverride=1';
                 
                 UrlLink = '/'+SAM_Request_Line_Item__c.getSObjectType().getDescribe().getKeyPrefix()+'/e?'+label.SAM_RLI_NewBtn_URL+'='+recordId+'&'+label.SAM_RLI_NewBtn_URL+'_lkid='+requestLkId+'&retURL=%2F'+requestLkId+'&RecordType='+recordtypeId+'&nooverride=1';
+                //UrlLink = '/'+SAM_Request_Line_Item__c.getSObjectType().getDescribe().getKeyPrefix()+'/e?'+label.SAM_RLI_NewBtn_URL+'='+recordId+'&'+label.SAM_RLI_NewBtn_URL+'_lkid='+requestLkId+'&'+label.SAM_Product_Request_ID_for_URL_hacking+'='+recordId+'&retURL=%2F'+requestLkId+'&RecordType='+recordtypeId+'&nooverride=1';
                 massPageUrl = new PageReference(UrlLink);
                 massPageUrl.setRedirect(true);
                 system.debug('massPageUrl>>>'+massPageUrl);

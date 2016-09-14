@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Check_if_In_Progress_criteria_met</fullName>
+        <ccEmails>alokste@gmail.com</ccEmails>
+        <description>Check if In Progress criteria met</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Close_Case_Survey</template>
+    </alerts>
+    <alerts>
         <fullName>Quote_Resubmitted_With_Modification</fullName>
         <description>Quote Resubmitted After Requester asking for Modification in Quote</description>
         <protected>false</protected>
@@ -11,7 +19,20 @@
         <template>SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester</template>
     </alerts>
     <alerts>
+        <fullName>Request_Submitted_to_SAM_Demand_Team_Acknowledgement</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
+        <description>Request Submitted to SAM Demand Team Acknowledgement</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>SAM_Email_Template_Folder/SAM_Request_Submitted_to_SAM_Demand_Team</template>
+    </alerts>
+    <alerts>
         <fullName>Requester_Submits_the_Query</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Requester Submits the Query</description>
         <protected>false</protected>
         <recipients>
@@ -22,11 +43,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_RequestOpen_To_Admin</template>
     </alerts>
     <alerts>
         <fullName>SAM_AdditionalCCDetailsProvided_ToULFTBySAMT</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team Provides Additional CC details to ULFT</description>
         <protected>false</protected>
         <recipients>
@@ -37,11 +60,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_Submits_Missing_Finance_Info_To_ULFT</template>
     </alerts>
     <alerts>
         <fullName>SAM_AdditionalCCdetails_RequestFromULFT_To_SAMT</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Finance Team Requests SAM Team  For Additional CC details</description>
         <protected>false</protected>
         <recipients>
@@ -52,11 +77,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_AwaitingAdditionalFinanceDetails_By_ULFT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Additional_CC_Dtails_FromRequester_ToSAMTeam</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Requester Provides additional CC Details To SAM Team</description>
         <protected>false</protected>
         <recipients>
@@ -66,11 +93,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_AdditionalCCDetailsProvided_From_Requester_To_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Admin_assigns_the_Query</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Admin assigns the Query</description>
         <protected>false</protected>
         <recipients>
@@ -81,11 +110,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_RequestAssigned_To_SAM_Member</template>
     </alerts>
     <alerts>
         <fullName>SAM_Awaiting_Information_from_requester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Awaiting Information from requester</description>
         <protected>false</protected>
         <recipients>
@@ -95,11 +126,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_More_Info_Required_To_Requester</template>
     </alerts>
     <alerts>
         <fullName>SAM_Build_Details_Required_From_SAMT_To_Requester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team asks for build/do/run cost details</description>
         <protected>false</protected>
         <recipients>
@@ -109,11 +142,13 @@
             <recipient>SAM_Team</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_DetailsRequired_DO_Build_From_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Close_After_CrossCharge_Complete</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULSAMT closes the request After CrossCharge completed</description>
         <protected>false</protected>
         <recipients>
@@ -127,11 +162,13 @@
             <recipient>SAM_Team</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QueryClosed_By_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Close_After_NobuildRequired_NoSoftwareSpend</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULSAMT selects No Software Spend .No build Details required</description>
         <protected>false</protected>
         <recipients>
@@ -145,11 +182,27 @@
             <recipient>SAM_Team</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_NoSoftwareSpend_Closed</template>
     </alerts>
     <alerts>
+        <fullName>SAM_Close_Request_After_Quote_Is_Rejected</fullName>
+        <description>SAM Team Member Closes the Request after Requester Rejecting the Quote</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>SAM_Admin</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>SAM_Email_Template_Folder/SAM_QueryClosed_By_SAMT</template>
+    </alerts>
+    <alerts>
         <fullName>SAM_CossCharge_Rejected_By_Finance_Team</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Finance team Rejects The Cross Charge</description>
         <protected>false</protected>
         <recipients>
@@ -163,11 +216,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_CCRejected_From_ULFT_To_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_CrossCharge_Completed_By_ULFT</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Finance Team Completes The Cross Charge</description>
         <protected>false</protected>
         <recipients>
@@ -181,11 +236,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_CCApproved_By_ULFT_To_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_DetailsPending_To_Requester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team Requests For  details(DO/Run-Cost/Build) to Requester</description>
         <protected>false</protected>
         <recipients>
@@ -195,11 +252,13 @@
             <recipient>SAM_Team</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_DetailsRequired_DO_Build_From_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Details_Pending_After_NoSoftwareSpend_To_Requester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULSAMT selects No Software Spend -Details_Pending</description>
         <protected>false</protected>
         <recipients>
@@ -209,11 +268,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_DetailsRequired_To_Requester</template>
     </alerts>
     <alerts>
         <fullName>SAM_Draft_Quote_By_SAM_Team</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team Provides the Draft  Quote To Requester</description>
         <protected>false</protected>
         <recipients>
@@ -223,11 +284,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_DraftQuote_By_SAMT_To_Requester</template>
     </alerts>
     <alerts>
         <fullName>SAM_FinalQuote_Resubmitted_After_Modification</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULSAMT Provides Modified Quote</description>
         <protected>false</protected>
         <recipients>
@@ -237,25 +300,39 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester</template>
+    </alerts>
+    <alerts>
+        <fullName>SAM_Final_Quote_Resubmitted_To_Requester_With_Modification</fullName>
+        <description>SAM Team Provides The Modified Quote To Requester After Rejecting PreviousQuote.</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester</template>
     </alerts>
     <alerts>
         <fullName>SAM_Final_Quote_To_Requester_By_SAMTeam</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team provides The Final Quote To Requester</description>
         <protected>false</protected>
         <recipients>
             <type>creator</type>
         </recipients>
         <recipients>
-            <recipient>SAM_Team</recipient>
-            <type>group</type>
+            <field>lkp_Assign_To__c</field>
+            <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Invalid_Req_Closed_By_SAMTeamMember</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team member Rejects the Invalid Request</description>
         <protected>false</protected>
         <recipients>
@@ -269,11 +346,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QueryClosed_By_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Missing_Info_Provided_By_Requester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Requester Provides the Missing Info To SAM Team Member</description>
         <protected>false</protected>
         <recipients>
@@ -283,11 +362,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_MissingInfoProvided_To_SAMT_From_Requester</template>
     </alerts>
     <alerts>
         <fullName>SAM_More_CC_Details_Needed_fromSAMT_ToRequester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team request more CC information from Requester</description>
         <protected>false</protected>
         <recipients>
@@ -297,11 +378,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_AdditionalChargingDetailsNeeded_To_Requester_From_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_QuoteApproved_By_Requester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Requester Approves the Quote</description>
         <protected>false</protected>
         <recipients>
@@ -311,11 +394,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QuoteApproved_By_Requester_To_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Quote_Rejected_by_Requester</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Quote Rejected by The Requester</description>
         <protected>false</protected>
         <recipients>
@@ -325,11 +410,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QuoteRejected_To_SAMT_From_Requester</template>
     </alerts>
     <alerts>
         <fullName>SAM_Reassign_Req_To_New_SAMTeamMember</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Admin Reassigns the Request to  new SAM team member</description>
         <protected>false</protected>
         <recipients>
@@ -344,22 +431,26 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_RequestReassigned</template>
     </alerts>
     <alerts>
         <fullName>SAM_Req_Accepted_By_SAMTeamMember</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM Team Member Accepts the request</description>
         <protected>false</protected>
         <recipients>
             <recipient>SAM_Admin</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/RequestAccepted_By_SAM_Team_Member_To_SAMAdmin</template>
     </alerts>
     <alerts>
         <fullName>SAM_Request_AssignedTo_SAM_Member</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Request (Project,Non Project ,Query) Assigned to SAM Team member</description>
         <protected>false</protected>
         <recipients>
@@ -370,13 +461,19 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>SAM_Email_Template_Folder/SAM_RequestOpen_To_Admin</template>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>SAM_Email_Template_Folder/SAM_RequestAssigned_To_SAM_Member</template>
     </alerts>
     <alerts>
         <fullName>SAM_Request_for_CrossCharge_BySAMT_To_Finance_Team</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAMTeam sends the request for cross Charge to Finance Team</description>
         <protected>false</protected>
+        <recipients>
+            <recipient>SAM_Admin</recipient>
+            <type>group</type>
+        </recipients>
         <recipients>
             <recipient>SAM_Finance_Team</recipient>
             <type>group</type>
@@ -385,43 +482,42 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_SumbitsForFinanceCharge_To_ULFT</template>
     </alerts>
     <alerts>
         <fullName>SAM_Request_submitted</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>Request (Project,Non Project ,Query) submitted to SAM Admin</description>
         <protected>false</protected>
         <recipients>
-            <type>creator</type>
-        </recipients>
-        <recipients>
-            <recipient>SAM_Admin</recipient>
+            <recipient>SAM_Team</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>SAM_Email_Template_Folder/SAM_RequestOpen_To_Admin</template>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>SAM_Email_Template_Folder/SAM_RequestAssigned_To_SAM_Member</template>
     </alerts>
     <alerts>
         <fullName>SAM_ULEMP_resubmits_the_query</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULEMP resubmits the query</description>
         <protected>false</protected>
         <recipients>
             <type>creator</type>
         </recipients>
         <recipients>
-            <recipient>SAM_Team</recipient>
-            <type>group</type>
-        </recipients>
-        <recipients>
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QueryResubmitted</template>
     </alerts>
     <alerts>
         <fullName>SAM_ULFT_completes_the_Cross_Charge</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULFT completes the Cross Charge</description>
         <protected>false</protected>
         <recipients>
@@ -436,11 +532,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_CCApproved_By_ULFT_To_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_ULFT_rejects_CC_request</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULFT rejects CC request</description>
         <protected>false</protected>
         <recipients>
@@ -455,11 +553,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_CCRejected_From_ULFT_To_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_ULSADM_reassigns_the_Query</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>SAM ULSADM reassigns the Query</description>
         <protected>false</protected>
         <recipients>
@@ -470,11 +570,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_RequestReassigned</template>
     </alerts>
     <alerts>
         <fullName>SAM_ULSAMT_Answers_the_Query</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULSAMT Answers the Query</description>
         <protected>false</protected>
         <recipients>
@@ -484,11 +586,13 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QuerryAnswered_To_Requester</template>
     </alerts>
     <alerts>
         <fullName>SAM_ULSAMT_closes_the_Request</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULSAMT closes the Request</description>
         <protected>false</protected>
         <recipients>
@@ -498,11 +602,13 @@
             <recipient>SAM_Admin</recipient>
             <type>group</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QueryClosed_By_SAMT</template>
     </alerts>
     <alerts>
         <fullName>SAM_ULSEMP_closes_Query_request</fullName>
+        <ccEmails>sam.demandmanagement@unilever.com</ccEmails>
         <description>ULSEMP closes Query request</description>
         <protected>false</protected>
         <recipients>
@@ -520,7 +626,8 @@
             <field>lkp_Assign_To__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>sam.demandmanagement@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>SAM_Email_Template_Folder/SAM_QueryClosed_By_SAMT</template>
     </alerts>
     <fieldUpdates>
@@ -566,6 +673,22 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>SAM_Clear_Action_Comment_Box</fullName>
+        <field>ltxt_Comments__c</field>
+        <name>SAM Clear Action Comment Box</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SAM_Clear_Query_Details_notes</fullName>
+        <field>ltxt_Query_Detailed_Notes__c</field>
+        <name>SAM	 Clear Query Details notes</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>SAM_Cross_Charge_Completion_Date_Update</fullName>
         <description>Report - Cross Charge Completion Date Update when status is Charging completed</description>
         <field>date_Cross_Charge_Completion_Date__c</field>
@@ -604,6 +727,16 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SAM_Query_Discussion_Log</fullName>
+        <field>ltxt_Query_Discussion_Log__c</field>
+        <formula>ltxt_Query_Discussion_Log__c+BR() + (TEXT(NOW())+&apos;: &apos;+  $User.FirstName +&apos; &apos;+ $User.LastName +&apos;: &apos;+ltxt_Query_Detailed_Notes__c)</formula>
+        <name>SAM	 Query Discussion Log</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>SAM_Quote_provide_Date_Update</fullName>
@@ -755,6 +888,17 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>SAM_Update_Record_Type_To_SAM_Query_Open</fullName>
+        <description>Update the record Type to SAM_Update_Record_Type_To_SAM_Query_Open</description>
+        <field>RecordTypeId</field>
+        <lookupValue>SAM_Query_Request_SAM_Team_on_Open</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>SAM Update Record Type To SAM_Query_Open</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>SAM_Update_Report_Request_Status</fullName>
         <field>pkl_Ownership_Reporting__c</field>
         <literalValue>Draft-Save</literalValue>
@@ -768,6 +912,15 @@
         <field>txt_Request_Type__c</field>
         <formula>RecordType.DeveloperName</formula>
         <name>SAM record type update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SAM_request_Cross_Charging_Version</fullName>
+        <field>num_Cross_Charging_Version__c</field>
+        <formula>IF( ISBLANK(num_Cross_Charging_Version__c ),1, num_Cross_Charging_Version__c +1)</formula>
+        <name>SAM request Cross Charging Version</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -884,7 +1037,7 @@
         <fullName>Update_Owner_to_SAM_Admin_Queue</fullName>
         <description>Updates the SAM Request owner to SAM Admin Queue</description>
         <field>OwnerId</field>
-        <lookupValue>SAM_Admin_Queue</lookupValue>
+        <lookupValue>SAM_Team</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>Update Owner to SAM Admin Queue</name>
         <notifyAssignee>false</notifyAssignee>
@@ -900,6 +1053,28 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>SAM Clear Action Comment Box</fullName>
+        <actions>
+            <name>SAM_Clear_Action_Comment_Box</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Clears the Action comment box after Comment History update</description>
+        <formula>ISCHANGED(ltxt_Request_Comment_History__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Clear Detailed_Notes</fullName>
+        <actions>
+            <name>SAM_Clear_Query_Details_notes</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Clears the Detailed_Notes</description>
+        <formula>AND(ISCHANGED( ltxt_Query_Discussion_Log__c ), ISCHANGED( pkl_Status__c ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>SAM Cross Charge Completion Date Update</fullName>
         <actions>
@@ -946,6 +1121,16 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>SAM Request Cross Charging Version</fullName>
+        <actions>
+            <name>SAM_request_Cross_Charging_Version</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(OR(TEXT( pkl_Status__c )= $Label.SAM_Quote_Approved ,TEXT( pkl_Status__c )= $Label.SAM_Awaiting_CC_details_Pending_with_ULEMP ,TEXT( pkl_Status__c )= $Label.SAM_Awaiting_CC_details_Pending_with_ULSMT ,TEXT( pkl_Status__c )= $Label.SAM_CC_Details_Provided ,TEXT( pkl_Status__c )= $Label.SAM_Charging_Rejected ),OR( ISCHANGED( txt_ICC_GLC_LCC__c ),ISCHANGED( txt_Cost_Center_CC__c ),ISCHANGED( txt_Entity_Code__c ),ISCHANGED( txt_GL_Account__c ),ISCHANGED( txt_Budget_Owner_Name__c ),ISCHANGED( eml_Budget_Owner_Email__c ),ISCHANGED( txt_Invoice_Approver_Name__c ),ISCHANGED( eml_Invoice_Approver_Email__c ) ))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>SAM Request End Date Update</fullName>
         <actions>
             <name>End_Date_update</name>
@@ -974,6 +1159,46 @@
         </criteriaItems>
         <description>Report - request start date update</description>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Send Re-Submit CC email</fullName>
+        <actions>
+            <name>SAM_AdditionalCCDetailsProvided_ToULFTBySAMT</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Awaiting Charge</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.chk_Is_Charging_Submitted_Once__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Earlier it used to set the owner of the submitted project/Cross Charge request to SAM Finance queue and send resubmit CC email ,Now only send email</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Send Submit CC email</fullName>
+        <actions>
+            <name>SAM_Request_for_CrossCharge_BySAMT_To_Finance_Team</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Awaiting Charge</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.chk_Is_Charging_Submitted_Once__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>Earlier set the owner of the submitted project/Cross Charge request to SAM Finance queue and sends CC submit email ,now only send email</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>SAM Set Query End Date</fullName>
@@ -1036,8 +1261,8 @@
             <name>Update_Owner_to_SAM_Admin_Queue</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
-        <booleanFilter>1 AND (2 OR (3 AND 4))</booleanFilter>
+        <active>false</active>
+        <booleanFilter>1 AND (2 OR 3 OR (4 AND 5))</booleanFilter>
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
@@ -1046,71 +1271,24 @@
         <criteriaItems>
             <field>SAM_Request__c.RecordTypeId</field>
             <operation>equals</operation>
-            <value>Project,Non Project</value>
+            <value>Project</value>
         </criteriaItems>
         <criteriaItems>
             <field>SAM_Request__c.RecordTypeId</field>
             <operation>equals</operation>
-            <value>Query</value>
+            <value>Non Project</value>
         </criteriaItems>
         <criteriaItems>
             <field>SAM_Request__c.ltxt_User_Public_Groups__c</field>
             <operation>notContain</operation>
             <value>SAM_Team</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Query</value>
+        </criteriaItems>
         <description>Sets the owner of the submitted Project and Non-Project request to SAM Admin queue if the requester does not belong to the SAM Team public group and sends Submit email and sets the start date of the request</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>SAM Set owner to SAM Finance Queue and Send Re-Submit CC email</fullName>
-        <actions>
-            <name>SAM_AdditionalCCDetailsProvided_ToULFTBySAMT</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>SAM_Set_owner_to_SAM_Finance_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>SAM_Request__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Awaiting Charge</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>SAM_Request__c.chk_Is_Charging_Submitted_Once__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <description>Sets the owner of the submitted project/Cross Charge request to SAM Finance queue and send resubmit CC email</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>SAM Set owner to SAM Finance Queue and Send Submit CC email</fullName>
-        <actions>
-            <name>SAM_Request_for_CrossCharge_BySAMT_To_Finance_Team</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>SAM_Set_owner_to_SAM_Finance_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Set_Is_Charging_Submitted_Once_to_True</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>SAM_Request__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Awaiting Charge</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>SAM_Request__c.chk_Is_Charging_Submitted_Once__c</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </criteriaItems>
-        <description>Sets the owner of the submitted project/Cross Charge request to SAM Finance queue and sends CC submit email</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1307,7 +1485,7 @@
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Open,In Progress,Information Provided,Draft Quote Provided,Quote Rejected</value>
+            <value>Open,In Progress,Draft Quote Provided,Information Provided,Quote Rejected</value>
         </criteriaItems>
         <description>Update the Request record type to SAM_Non_Project_RW_SAM_Team</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1407,7 +1585,7 @@
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Quote Provided,Quote Approved,Quote Rejected,Awaiting CC details (Pending with ULEMP),CC details provided (By ULEMP),Charging Rejected,Awaiting CC details (Pending with ULSMT)</value>
+            <value>Quote Provided,Quote Approved,Awaiting CC details (Pending with ULEMP),CC details provided (By ULEMP),Charging Rejected,Awaiting CC details (Pending with ULSMT)</value>
         </criteriaItems>
         <description>Updates the Project Request record type to SAM_Project_RW_Req_Quote_Provided</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -1427,7 +1605,7 @@
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Open,In Progress,Draft Quote Provided,Information Provided</value>
+            <value>Open,In Progress,Draft Quote Provided,Information Provided,Quote Rejected</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -1467,7 +1645,7 @@
             <operation>equals</operation>
             <value>Query Answered</value>
         </criteriaItems>
-        <description>Update the CrossCharge Request Record Type to SAM_Query_Request_Answered</description>
+        <description>Update the Query Request Record Type to SAM_Query_Request_Answered</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -1491,6 +1669,26 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>SAM Update Record Type To SAM_Query_Request_SAM_Team_on_Open</fullName>
+        <actions>
+            <name>SAM_Update_Record_Type_To_SAM_Query_Open</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>SAM_Request__c.txt_Request_Type__c</field>
+            <operation>equals</operation>
+            <value>SAM_RW_Query_Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Open</value>
+        </criteriaItems>
+        <description>Update the Query Request Record Type to SAM_Query_Request_SAM_Team_on_Open</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>SAM Update Record Type To SAM_Query_Request_SAM_team</fullName>
         <actions>
             <name>Set_RT_SAM_Query_Request_SAM_team</name>
@@ -1505,9 +1703,78 @@
         <criteriaItems>
             <field>SAM_Request__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Open,In Progress,Answer Accepted,Need More Info</value>
+            <value>In Progress,Answer Accepted,Need More Info</value>
         </criteriaItems>
         <description>Update the Query Request Record Type to SAM_Query_Request_SAM_team</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Update Record Type To SAM_RW_CrossCharge_Request</fullName>
+        <actions>
+            <name>SAM_RT_SAM_RW_CrossCharge_Request</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>SAM_Request__c.txt_Request_Type__c</field>
+            <operation>equals</operation>
+            <value>SAM_RW_CrossCharge_Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Charging Rejected,Awaiting CC details (Pending with ULSMT)</value>
+        </criteriaItems>
+        <description>Update the CrossCharge Request Record Type to SAM_RW_CrossCharge_Request</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Update Record Type To SAM_RW_Non_Project_Request</fullName>
+        <actions>
+            <name>Set_RT_SAM_RW_Non_Project_Request</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>SAM_Request__c.txt_Request_Type__c</field>
+            <operation>equals</operation>
+            <value>SAM_RW_Non_Project_Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Awaiting Information</value>
+        </criteriaItems>
+        <description>Update the Request record type to SAM_RW_Non_Project_Request</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM Update Record Type To SAM_RW_Project_Request</fullName>
+        <actions>
+            <name>Change_Record_Type_to_SAM_RW_Project_Req</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>SAM_Request__c.txt_Request_Type__c</field>
+            <operation>equals</operation>
+            <value>SAM_RW_Project_Request</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>SAM_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Awaiting Information</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SAM%09 Query Discussion Log</fullName>
+        <actions>
+            <name>SAM_Query_Discussion_Log</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(ISCHANGED( pkl_Status__c ),NOT(ISBLANK(ltxt_Query_Detailed_Notes__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

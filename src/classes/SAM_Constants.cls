@@ -17,7 +17,7 @@ public class SAM_Constants{
     public static final String YES = 'Yes';
     public static final String NO = 'No';
     public static final String TEST = 'Test';
-    public static final String TEST_EMAIL = 'test@test.com';
+    public static final String TEST_EMAIL = 'test@unilever.com';
     public static final String SUBMITTED = 'Submitted';
     public static final String ACCEPTED = 'Accepted';
     public static final String CLOSED = 'Closed';
@@ -36,6 +36,7 @@ public class SAM_Constants{
     public static final String  AWAITINGINFORMATION = 'Awaiting Information';
     public static final String QUOTE_PROVIDED = 'Quote Provided';
     public static final String ON_HOLD = 'On Hold';
+    public static final String COMPLETED = 'Completed';
     
     public static final String PROJECT = 'Project';
     public static final String NONPROJECT = 'Non Project';
@@ -44,6 +45,8 @@ public class SAM_Constants{
     public static final String CLOUD ='Cloud';
     public static final String AWAITINGCHARGE = 'Awaiting Charge';
     public static final String AWAITING_CC_DETAILS_PENDINGWITHULEMP = 'Awaiting CC details (Pending with ULEMP)';
+    public static final String AWAITING_CC_DETAILS_PENDINGWITHULSAM ='Awaiting CC details (Pending with ULSMT)';
+    public static final String CHARGING_REJECTED ='Charging Rejected';
     public static final String DETAILS_PENDING = 'Details Pending';
     public static final String QUERY_ANSWERED = 'Query Answered';
     
@@ -64,6 +67,8 @@ public class SAM_Constants{
     public static final String GOLIVEDATECANNOTBEPASTDATE = 'Go Live Date should be greater than current date';
     
     public static final String RETURL = 'retURL';
+    
+    public static final String DO_PO_APPLICABLE = 'DO/PO Applicable (O)';
     
     public static final String GBP = 'GBP';
     public static final String USD = 'USD';

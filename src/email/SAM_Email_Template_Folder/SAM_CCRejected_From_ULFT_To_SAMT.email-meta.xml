@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>CCRejected From ULFT To SAMT</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} :Finance Charge Rejected</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} :Finance Charge Rejected</subject>
     <type>text</type>
 </EmailTemplate>

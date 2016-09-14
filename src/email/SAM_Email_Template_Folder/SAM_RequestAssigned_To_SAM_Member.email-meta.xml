@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>RequestAssigned To SAM Member</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} is assigned</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : Assigned to you</subject>
     <type>text</type>
 </EmailTemplate>

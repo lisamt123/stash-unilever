@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>AdditionalCCDetailsProvided From Requester To SAMT</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} : Additional Charging details Provided</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : Additional Cost Code details Required</subject>
     <type>text</type>
 </EmailTemplate>

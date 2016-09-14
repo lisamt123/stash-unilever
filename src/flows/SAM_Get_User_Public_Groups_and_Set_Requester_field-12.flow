@@ -8,7 +8,7 @@
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>Get Groups</label>
+        <label>Set User Public Groups</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <actionName>SAM_Request_GroupMemberShipUtils</actionName>
@@ -103,7 +103,7 @@
             <label>No Check</label>
         </rules>
     </decisions>
-    <description>Get the Public Groups of the Creator and Set the Requester field to that of Created By name</description>
+    <description>Set the &apos;User Public Group&apos; for all requests .Set &apos;Requester&apos; of Query .Set &apos;Assigned to&apos; of Query and Cross Charge raised by SAM Team on Request creation</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -120,8 +120,8 @@
         <dataType>Boolean</dataType>
         <expression>true</expression>
     </formulas>
-    <interviewLabel>SAM_Get_User_Public_Groups_and_Set_Requester_field-3_SAM_Request__c</interviewLabel>
-    <label>SAM Get User Public Groups and Set Requester field</label>
+    <interviewLabel>SAM_Get_User_Public_Groups_and_Set_Requester_field-4_SAM_Request__c</interviewLabel>
+    <label>SAM Set User Public Groups Requester field and Assigned To field</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -167,9 +167,12 @@
             </value>
         </processMetadataValues>
         <name>myRule_1_A2</name>
-        <label>Update Requester</label>
+        <label>Set Query Requester</label>
         <locationX>100</locationX>
         <locationY>300</locationY>
+        <connector>
+            <targetReference>myRule_1_A3</targetReference>
+        </connector>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -297,6 +300,274 @@
             <field>txt_Query_Requestor__c</field>
             <value>
                 <elementReference>formula_2_myRule_1_A2_txt_Query_Requestor_c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SAM_Request__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[SAM_Request__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A3</name>
+        <label>Set Query Assigned To field</label>
+        <locationX>100</locationX>
+        <locationY>400</locationY>
+        <connector>
+            <targetReference>myRule_1_A4</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>User Public Groups</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ltxt_User_Public_Groups__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>SAM_Team</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Request Type developer name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>txt_Request_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>SAM_RW_Query_Request</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Assign To</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>lkp_Assign_To__c</field>
+            <value>
+                <elementReference>myVariable_current.CreatedById</elementReference>
+            </value>
+        </inputAssignments>
+        <object>SAM_Request__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>criteria</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[SAM_Request__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A4</name>
+        <label>Set Cross Charge Assigned To field</label>
+        <locationX>100</locationX>
+        <locationY>500</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>inputDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Request Type developer name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>operatorDataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>txt_Request_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>SAM_RW_CrossCharge_Request</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Assign To</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>lkp_Assign_To__c</field>
+            <value>
+                <elementReference>myVariable_current.CreatedById</elementReference>
             </value>
         </inputAssignments>
         <object>SAM_Request__c</object>

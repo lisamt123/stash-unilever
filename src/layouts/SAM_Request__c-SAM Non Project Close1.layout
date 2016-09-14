@@ -38,26 +38,6 @@
                 <behavior>Edit</behavior>
                 <field>txt_Status_Before_On_Hold__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ltxt_User_Public_Groups__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>rol_Product_Details_Count__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Ticket_Age__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>rus_Pending_with_Project__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>rus_Pending_with_SAM_records__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -71,10 +51,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_SAM_Finance_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>chk_No_Software_Spend__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -232,12 +208,7 @@
                 <field>txt_Deployments_Any_other_please_specify__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OwnerId</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -282,14 +253,6 @@
                 <behavior>Readonly</behavior>
                 <field>txt_Invoice_Number__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>rol_Total_CAPEX_in__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>rol_Total_Annual_Maint_in__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
@@ -323,7 +286,7 @@
     <layoutSections>
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
-        <editHeading>true</editHeading>
+        <editHeading>false</editHeading>
         <label>Information</label>
         <layoutColumns/>
         <layoutColumns/>
@@ -368,7 +331,6 @@
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>txt_Publisher__c</fields>
-        <fields>txt_Software_Name__c</fields>
         <fields>txt_Installation_Machine_Name__c</fields>
         <fields>txt_Physical_Machine_Name__c</fields>
         <fields>txt_Location__c</fields>
@@ -380,14 +342,15 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>txt_Publisher__c</fields>
+        <fields>num_Quotation_Number__c</fields>
+        <fields>pkl_Line_Status__c</fields>
         <fields>num_Quantity__c</fields>
-        <fields>num_List_Price__c</fields>
-        <fields>num_Discount_Percentage__c</fields>
         <fields>fml_License_Cost__c</fields>
         <fields>fml_Maintainence_Amount__c</fields>
-        <fields>pkl_Charging_Type__c</fields>
-        <fields>pkl_Line_Status__c</fields>
+        <fields>pkl_Build_Details_Applicable__c</fields>
+        <fields>pkl_Run_Cost_Applicable__c</fields>
+        <fields>fml_Total_CAPEX__c</fields>
+        <fields>Total_Annual_Maint__c</fields>
         <relatedList>SAM_Quote_Line_Item__c.md_Request__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -402,7 +365,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h23000000MsIU</masterLabel>
+        <masterLabel>00hf0000000eLhU</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

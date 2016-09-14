@@ -16,17 +16,20 @@ public with sharing class SAM_QLINewButtonOverrideController{
     String retUrl;
     String recordId;
     String requestLkId;
+    String requestType;
     public SAM_Request__c requestObj;
 public SAM_QLINewButtonOverrideController(ApexPages.StandardController controller){
      retUrl = Apexpages.CurrentPage().getParameters().get('retURL');
     if(retUrl.removeStart('/').startsWith(label.SAM_Request_Object_name)){
-        requestObj = [select id,name from SAM_Request__c where id =:retUrl.removeStart('/')];
+        requestObj = [select id,name,txt_Request_Type__c from SAM_Request__c where id =:retUrl.removeStart('/')];
         recordId = requestObj.name;
         requestLkId  = requestObj.id;
+        requestType = requestObj.txt_Request_Type__c;
     }else{
-        SAM_Quote_Line_Item__c qli = [select md_Request__r.name, md_Request__c from SAM_Quote_Line_Item__c where id=:retUrl.removeStart('/')];
+        SAM_Quote_Line_Item__c qli = [select md_Request__r.name,md_Request__r.txt_Request_Type__c, md_Request__c from SAM_Quote_Line_Item__c where id=:retUrl.removeStart('/')];
         recordId = qli.md_Request__r.name;
         requestLkId = qli.md_Request__c;
+        requestType = qli.md_Request__r.txt_Request_Type__c;
     }
 }
 
@@ -39,7 +42,13 @@ public SAM_QLINewButtonOverrideController(ApexPages.StandardController controlle
     public PageReference redirectToPageNewItem() {  
              PageReference massPageUrl = null;
             try{
-                RecordType recordtypeId =[select id,Name from RecordType where sObjectType='SAM_Quote_Line_Item__c' AND Name='SAM Quote RW' limit 1] ;
+                RecordType recordtypeId ;
+                if(requestType == 'SAM_RW_Non_Project_Request'){ 
+                    recordtypeId =[select id,Name from RecordType where sObjectType='SAM_Quote_Line_Item__c' AND Name='SAM Non Proj Quote RW' limit 1] ;
+                }
+                else{
+                    recordtypeId =[select id,Name from RecordType where sObjectType='SAM_Quote_Line_Item__c' AND Name='SAM Quote RW' limit 1] ;
+                }
                 String UrlLink ='';
                 UrlLink = '/'+SAM_Quote_Line_Item__c.getSObjectType().getDescribe().getKeyPrefix()+'/e?'+label.SAM_QLI_NewBtn_URL+'='+recordId+'&'+label.SAM_QLI_NewBtn_URL+'_lkid='+requestLkId+'&retURL=%2F'+requestLkId+'&RecordType='+recordtypeId.id+'&nooverride=1';
                 system.debug('UrlLink>>'+UrlLink);

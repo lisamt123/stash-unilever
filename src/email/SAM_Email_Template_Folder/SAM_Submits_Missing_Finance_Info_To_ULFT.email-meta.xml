@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>Submits Missing Finance Info To ULFT</name>
     <style>none</style>
-    <subject>SR :{!SAM_Request__c.Name} :Finance details resubmitted</subject>
+    <subject>Service Request :{!SAM_Request__c.Name} : Finance details resubmitted</subject>
     <type>text</type>
 </EmailTemplate>

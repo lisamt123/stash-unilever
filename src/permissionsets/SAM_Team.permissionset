@@ -9,6 +9,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>SAM_Email_Attachment_InvocableMethod</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>SAM_InformationController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -145,6 +149,11 @@
         <editable>true</editable>
         <field>SAM_Quote_Line_Item__c.Run_Cost_for_Year_2__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Quote_Line_Item__c.Spend_In_Euros__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -658,6 +667,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SAM_Request__c.Request_Status_Before_On_Hold__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SAM_Request__c.SAM_Team_Owner__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -684,6 +698,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.chk_Is_Request_Sent_for_CC__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.chk_Re_Open__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -767,6 +786,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>SAM_Request__c.eml_Requester_Email_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.fml_Cross_Charge_Amount_for_report__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
         <readable>false</readable>
@@ -782,7 +811,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.lkp_Assign_To__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -827,6 +856,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.ltxt_Query_Discussion_Log__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>SAM_Request__c.ltxt_Query_SAM_Response__c</field>
         <readable>true</readable>
@@ -865,6 +899,11 @@
         <editable>false</editable>
         <field>SAM_Request__c.num_Calender_Days_To_Complete__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.num_Cross_Charging_Version__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -969,7 +1008,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.rol_Total_Annual_Maint_in_for_X_type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -979,7 +1018,22 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.rol_Total_CAPEX_in_for_X_type__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Total_DO_PO_Applicable__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Total_Run_Cost_Year_1__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Total_Run_Cost_Year_2__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1002,7 +1056,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.txt_Additional_Go_Live_Details__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1037,9 +1091,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>SAM_Request__c.txt_CrossCharge_Publisher__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1184,7 +1238,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>SAM_Quote_Line_Item__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -1193,7 +1247,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>SAM_Request_Line_Item__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
@@ -1202,7 +1256,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>SAM_Request__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>SAM_CommentPage</apexPage>
@@ -1224,6 +1278,18 @@
         <apexPage>SAM_RequestInformationPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <recordTypeVisibilities>
+        <recordType>SAM_Quote_Line_Item__c.SAM_Non_Proj_Quote_RO</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>SAM_Quote_Line_Item__c.SAM_Non_Proj_Quote_RW</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>SAM_Quote_Line_Item__c.SAM_Non_Proj_Quote_RW_RO</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>SAM_Quote_Line_Item__c.SAM_Quote_RW</recordType>
         <visible>true</visible>
@@ -1354,6 +1420,10 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>SAM_Request__c.SAM_Query_Request_Closed</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>SAM_Request__c.SAM_Query_Request_SAM_Team_on_Open</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

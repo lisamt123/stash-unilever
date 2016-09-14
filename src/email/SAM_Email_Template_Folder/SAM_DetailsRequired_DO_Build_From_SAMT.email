@@ -1,6 +1,6 @@
 Hi {!SAM_Request__c.CreatedBy},
 
-Additional details are required by the SAM demand management team to make progress on  the service request  {!SAM_Request__c.Name}. The status is ""Details pending"".
+Additional details are required by the SAM demand management team to make progress on  the service request  {!SAM_Request__c.Name}. The status is "Details pending".
 The details are pending for:
 <DO details>
 <Build details>
@@ -8,4 +8,4 @@ The details are pending for:
 Please check the chatter/comments section for more information.
 
 Thanks,
-UL SAM Team
+{!SAM_Request__c.lkp_Assign_To__c}
