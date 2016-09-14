@@ -1,7 +1,5 @@
 src
 src/classes
-src/classes/IPM_BD_BB_Report_Batch.cls
-src/classes/IPM_BD_BB_Report_Batch.cls-meta.xml
 src/classes/IPM_PhaseChangeHelper.cls
 src/classes/IPM_PhaseChangeHelper.cls-meta.xml
 src/classes/IPM_ProjectJobHelper.cls
