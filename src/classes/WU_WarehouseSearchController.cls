@@ -5,7 +5,9 @@
 *************************************************************/
 public with sharing class WU_WarehouseSearchController {
 
-     
+    public string emailLoggedUser1;
+    public String loggedInUser;
+    private string emailLoggedUser; 
     private Integer PAGESIZE= 30;
     public WU_Master_Warehouse__c warehouseCapacity {get;set;}
     public WU_Master_Warehouse__c warehouseCapacityLookuP {get;set;}
@@ -33,6 +35,9 @@ public with sharing class WU_WarehouseSearchController {
     } 
         
    public void getWarehouseList(){
+           //loggedInUser = UserInfo.getUserId();
+        //emailLoggedUser = UserInfo.getUserEmail();
+        //emailLoggedUser1 ='%'+emailLoggedUser+'%';
        soql='SELECT Id,Name,Owner.Name,WU_Procurement_Manager__r.Name,WU_Average_Current_Utilization__c,WU_Average_Pallet_Utilization_Week__c,WU_Average_Pallet_Utilization_Month__c,WU_Total_Current_Month_Utilisation__c,WU_AverageUtilization__c,WU_CityName__c,WU_Committed_Max_PalletStorage__c,'+
             'WU_Country__c,WU_Average_Pallet_Utilization_Count__c,WU_Current_Utilization__c,WU_FromDate__c,WU_MCO__c,WU_Network__c,WU_Prior_CommittedPalletStorage__c,'+
             'WU_Region__c,WU_SAPCode_s__c,WU_SAPName_s__c,WU_ToDate__c,WU_Total_Utilization__c,WU_WarehousePOC_Email__c,'+
