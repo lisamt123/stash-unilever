@@ -11,7 +11,7 @@
     .noPadright{padding-right:0 ;} 
     .convertLowercase{text-transform:none;} 
     .clear_input_div a:hover {text-decoration:none;} 
-	.teamMemberList{overflow:auto;height:210px;}
+	.teamMemberList{overflow:auto;height:210px; width:100%;}
 	.pull-right{float:right;}
 /* add member styles */
 	.categorySearch{margin-bottom:20px;margin-top:10px;} 
