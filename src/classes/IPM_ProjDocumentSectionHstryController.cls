@@ -75,9 +75,9 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
         }
         
         
-        if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
-            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
-            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
+        if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && (project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) ||
+            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && (project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) ||
+            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_PLE && (project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)) ||
             ((project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY || project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT) && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){        
                 projectDocList=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,
                             LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Project__c 
@@ -93,11 +93,12 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
                 		bDocStatusNotStartedOrApproved = true;
                 		
                         Integer NonNegotiable=[SELECT count() FROM IPM_Project_Document_Section__c 
-                                                                   WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND 
-                                                                   IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
+                                               WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projectDoc.Id 
+                                               AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
                         Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c 
-                                                                        WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projectDoc.Id AND  IPM_Default_Section__c=true AND 
-                                                                    IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
+                                                WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED 
+                                                AND IPM_Project_Document__c=:projectDoc.Id AND  IPM_Default_Section__c=true AND 
+                                                IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER];
                                 
                                 if(NonNegotiable!=0){
                                         FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiable))*100);

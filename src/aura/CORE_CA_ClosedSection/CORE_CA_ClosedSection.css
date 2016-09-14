@@ -1,0 +1,8 @@
+.THIS .expenseName{
+    float: left;
+    width: 217px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}

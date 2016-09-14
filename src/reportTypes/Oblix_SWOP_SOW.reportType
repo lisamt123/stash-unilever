@@ -214,6 +214,16 @@
             <field>Stage_Projected_CFY__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>OblixTotalProjectsFees__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_Status1__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
         <masterLabel>SWOP</masterLabel>
     </sections>
     <sections>

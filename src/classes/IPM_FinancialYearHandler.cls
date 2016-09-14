@@ -46,7 +46,7 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     */
     public void bulkAfter()
     {
-        Set<Id> incomingFinancialYearSet = new Set<Id>();
+       
         Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
 
         //Added for CR0010+CR0127
@@ -120,8 +120,7 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
     public void beforeUpdate(SObject oldSo, SObject so)
     { 
         //This method has been included as the class implements the ITrigger interface
-        IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
-        IPM_Financial_Year__c oldFinancialYear = (IPM_Financial_Year__c)oldSo;
+        
     }
     
     /**
@@ -157,7 +156,7 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
     }
     
-    /**
+    /** 
     * @description:afterDelete
     * This method is called iteratively for each record to be delete during a AFTER
     * trigger.

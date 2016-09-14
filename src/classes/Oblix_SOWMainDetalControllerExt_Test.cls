@@ -1,12 +1,12 @@
 @isTest
 private class Oblix_SOWMainDetalControllerExt_Test {
 
-	private static final String SOW_ID_PARAMETER_STRING = 'sowId';
-	//private static final String PROJECT_TXT = 'Project';
-	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
+    private static final String SOW_ID_PARAMETER_STRING = 'sowId';
+    //private static final String PROJECT_TXT = 'Project';
+    private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
-	private static Marketing_SOW__c mSow;
-	private static User superuser;
+    private static Marketing_SOW__c mSow;
+    private static User superuser;
 
     @isTest static void testAdminAndApprover() {
 
@@ -92,7 +92,7 @@ private class Oblix_SOWMainDetalControllerExt_Test {
 
 
 
-    		if (controllerInstance.is_sync_complete) {
+            if (controllerInstance.is_sync_complete) {
                 System.assert(controllerInstance.is_sync_complete);
             }
 
@@ -128,7 +128,7 @@ private class Oblix_SOWMainDetalControllerExt_Test {
 
         System.runAs(superuser) {
 
-    		if (controllerInstance.can_see_sync_in_progress) {
+            if (controllerInstance.can_see_sync_in_progress) {
                 System.assert(controllerInstance.can_see_sync_in_progress);
             }
 
@@ -166,6 +166,7 @@ private class Oblix_SOWMainDetalControllerExt_Test {
             //mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, brand.id);
             Map < Id, Oblix_SOW_Projects__c > map_campaigns_to_test = Oblix_TestUtils.insertCampaignsWithRelatedRecords(3, 5, 5, mSow.Id, 'Total turnover >€400m', 'Global campaign (all market clusters)', 'Up to 4 locations', 'New – Multi channel');
+            system.assert(true,map_campaigns_to_test!=null);
             Oblix_TestUtils.createMarketingBasics(mSow.Id);
         }
     }

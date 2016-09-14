@@ -162,9 +162,19 @@
     </fields>
     <fields>
         <fullName>IPM_IS_Default_Section__c</fullName>
-        <defaultValue>true</defaultValue>
+        <defaultValue>false</defaultValue>
         <description>To display the section in gate document</description>
         <label>Default Section</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Is_Parent_Exist__c</fullName>
+        <description>To improve performance by eliminating !=null checks from query</description>
+        <externalId>false</externalId>
+        <formula>NOT( OR(ISBLANK(IPM_Parent_Section__c),ISNULL(IPM_Parent_Section__c)))</formula>
+        <label>Is Parent Exist</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
     <fields>

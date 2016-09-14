@@ -32,7 +32,7 @@
                     component.set("v.ErrorMessage", true);
                 }
         	}
-            var str="hi";                      
+                            
         });
         $A.enqueueAction(action);
     },
