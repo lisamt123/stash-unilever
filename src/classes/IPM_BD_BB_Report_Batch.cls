@@ -277,16 +277,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 analyticObj.IPM_Brand__c = p.IPM_LocalProject_Brand__c;       
             }
 			
-            if(String.isNotBlank(p.IPM_Project_Type__c) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)){
-                analyticObj.IPM_Geography__c = p.IPMProject_Span__c.equalsignorecase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)?IPM_Utils.valueGlobal:p.Market_Cluster_Name__c;       
-                analyticObj.IPM_White_Space_Project__c = p.IPM_White_Space_Project__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;     
-            }
-            else if(String.isNotBlank(p.IPMProject_Span__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
-                analyticObj.IPM_Geography__c = p.Market_Cluster_Name__c;
-            }
-            else if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
-                if(ipmCountryMap.containskey(p.id)){ analyticObj.IPM_Geography__c = ipmCountryMap.get(p.id);}
-            }
+            //setGeography
+			analyticObj = setGeography(p , analyticObj);
 
             if(String.isNotBlank(p.IPM_Category_Text__c) && String.isNotBlank(p.IPM_Platform_Formula__c)){
                 analyticObj.IPM_Platform__c = p.IPM_Platform_Formula__c;
@@ -1187,6 +1179,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
                     }
                     else if(mile.IPM_Type_of_gate__c.equalsignorecase(IPM_Utils.Contract)){
+						if(p.IPM_ProjectGKM__c == IPM_Utils.GATE_KEEPING_MODEL_3){
+                    		a.IPM_Product_DesignLock_Completed_On_Date__c = mile.IPM_Completed_on__c;  
+                    		a.IPM_Product_Design_Lock_Due_Date__c = mile.IPM_Proposed_Date__c;
+                    	}
                     	a.IPM_Expected_Contract_Approval_Date__c = mile.IPM_Due_Date__c;
                         a.IPM_Contract_Approved_Date__c = mile.IPM_Completed_on__c;
                         a.IPM_Contract_Proposed_Date__c = mile.IPM_Proposed_Date__c;
@@ -1327,4 +1323,24 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     	return EMPTY_STRING;
     }
    
+    /*********************************************************************************************************************
+     * @Description: To set Geography
+     * @param1: IPM_Project__c proj
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/ 
+    public IPM_Analytics__c setGeography(IPM_Project__c p,IPM_Analytics__c analyticObj){
+           
+        if(String.isNotBlank(p.IPM_Project_Type__c) && !p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)){
+                analyticObj.IPM_Geography__c = p.IPMProject_Span__c.equalsignorecase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)?IPM_Utils.valueGlobal:p.Market_Cluster_Name__c;       
+                analyticObj.IPM_White_Space_Project__c = p.IPM_White_Space_Project__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;     
+            }
+            else if(String.isNotBlank(p.IPMProject_Span__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
+                analyticObj.IPM_Geography__c = p.Market_Cluster_Name__c;
+            }
+            else if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
+                if(ipmCountryMap.containskey(p.id)){ analyticObj.IPM_Geography__c = ipmCountryMap.get(p.id);}
+            }
+        return analyticObj;
+    }
 }
