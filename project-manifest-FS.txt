@@ -1,13 +1,2 @@
 src
-src/objects/Opportunity.object
-src/layouts/Opportunity-Opportunity with Pricing %28MA-BE%29.layout
-src/workflows/Opportunity.workflow
-src/dashboards/FS_Dashboards/FS_NA_Opportunity_Pipeline_Dash_Board.dashboard
-src/reports/FS_SHARED_FOLDER/Opp_Stage_report.report
-src/reports/FS_SHARED_FOLDER/Deals_by_Most_Pushes.report
-src/reports/FS_SHARED_FOLDER/FS_Opportunity_Change_Report.report
-src/reports/FS_SHARED_FOLDER/Opp_Summary_Report.report
-src/reports/FS_SHARED_FOLDER/Opportunities_Pushed_3_xs_by_Rep.report
-src/reports/FS_SHARED_FOLDER/Opportunities_w_out_Next_Steps.report
-src/reports/FS_SHARED_FOLDER/Stale_opptys_over_180_days.report
-src/reports/FS_SHARED_FOLDER/Stuck_Opportunities.report
+src/layouts/OpportunityLineItem-Food Solutions - Opportunity Product with TPR Calculation.layout
