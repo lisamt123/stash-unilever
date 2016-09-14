@@ -34,7 +34,12 @@
 		<members>TemplateController</members>
 		<members>TemplateControllerTest</members>
 		<members>Template</members>
+		<members>NavigationManager_TEST</members>
 		<name>ApexClass</name>
+    </types>
+    <types>
+        <members>FourAcres_App</members>
+        <name>CustomTab</name>
     </types>
 	<types>
 		<members>FA_Trigger_addTasksToOccMembers</members>
@@ -105,21 +110,7 @@
 		<members>FA_FBQuestionSet__c</members>
 		<members>FA_Config_Settings__c</members>
 		<name>CustomSetting</name>
-	</types>
-	<types>
-		<members>FA_Course_Facilitator__c-FA_Course Facilitator Layout</members>
-		<members>FA_Training_Room__c-FA_Training Room Layout</members>
-		<members>FA_Member_ChatterGroup__c-FA_Member ChatterGroup Layout</members>
-		<members>FA_Feedback__c-FA_Feedback Layout</members>
-		<members>FA_Course_ChatterGroup__c-FA_Chattergroup_Course Layout</members>
-		<members>FA_Course__c-FA_Course Layout</members>
-        <members>FA_Course_Occurence__c-FA_Course Occurence Layout</members>
-        <members>FA_Training_Room__c-FA_Training Room Layout</members>
-        <members>FA_Training_Venue__c-FA_Training Venue Layout</members>
-        <members>FA_Occurence_Member__c-FA_Occurence_Member Layout</members>
-        <name>Layout</name>
-    </types>
-	
+	</types>	
     <types>
     	<members>BasicMenu</members>
         <members>Sidebar</members>
