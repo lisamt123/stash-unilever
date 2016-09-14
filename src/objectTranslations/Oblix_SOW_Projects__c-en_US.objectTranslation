@@ -179,6 +179,10 @@
         <name>Campaign_Splits_Total__c</name>
     </fields>
     <fields>
+        <label><!-- Campaign Status --></label>
+        <name>Campaign_Status1__c</name>
+    </fields>
+    <fields>
         <help><!-- Please select if this project has been started or is on hold --></help>
         <label><!-- Campaign Status --></label>
         <name>Campaign_Status__c</name>
@@ -211,6 +215,10 @@
     <fields>
         <label><!-- Campaign Total Fees --></label>
         <name>Campaign_Total_Fees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Check For Manual Edit Campaign --></label>
+        <name>Check_For_Manual_Edit_Campaign__c</name>
     </fields>
     <fields>
         <label><!-- Cloned Campaign --></label>
