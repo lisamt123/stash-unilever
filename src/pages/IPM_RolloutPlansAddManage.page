@@ -179,7 +179,7 @@
      <apex:param name="p5" assignTo="{!selectedKey}" value=""/>
     </apex:actionFunction>
     <!-- function will used for change MCO and generate rollout -->
-     <apex:actionFunction name="changeMCO" action="{!changeMCO}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" onComplete="regionalscriptpanel();retainVal();">
+     <apex:actionFunction name="changeMCO" action="{!changeMCO}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" onComplete="scriptPanelLoad();regionalscriptpanel();retainVal();">
          <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
          <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
          <apex:param name="p3" assignTo="{!regionalMco}" value=""/>
