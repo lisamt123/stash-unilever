@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+<applicationVisibilities>
+        <application>smagicinteract__SMSMagicInteract</application>
+        <visible>true</visible>
+</applicationVisibilities>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToChangeOptout</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToChangeTemplateSelection</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToEditSMSSettings</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToSendBulkMessage</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToSendCampaignMessage</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToSendListViewMessage</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToSendSingleMessage</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToUseSMSInsight</name>
+</customPermissions>
+<customPermissions>
+        <enabled>true</enabled>
+        <name>smagicinteract__AllowToViewSMSSettings</name>
+</customPermissions>
+   <classAccesses><apexClass>smagicinteract__AccessCheck</apexClass> <enabled>true</enabled></classAccesses>
+ <classAccesses><apexClass>smagicinteract__ApexAPI</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ApexAPITest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ApplicationException</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__autoLookupTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__BulkIncomingRecordsHandlerBatch</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__BulkIncomingRecordsHandlerBatchTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__BulkSMSController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__BulkSMSControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__CampaignManageController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__CampaignManageControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__CampaignSMSBatch</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__CampaignSMSBatchTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__Constants</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ConversationViewControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ConversationViewCreatorServerController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__CustomPermissionReaderTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__CustomPermissionsReader</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__DefaultSenderIdController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__DefaultSenderIdControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__EmailScheduler</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__EmailSchedulerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__EmailSendBatch</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__EmailSendBatchTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__EndpointConfigController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__EndpointConfigControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__FeedbackController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__FeedbackControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__FeedbackEmail</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__FeedbackEmailTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__forwardConfigTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__HelpController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__HelpControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingAlertConfigurationController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingAlertConfigurationControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingLookupController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingLookupControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingSMSController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingSMSControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingTriggerHelper</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__IncomingTriggerHelperTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__LeadConversionHandlerBatch</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__LeadConversionHandlerBatchTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewConfigExtension</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewConfigExtensionTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewSendSMSController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewSMSBatch</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewSMSBatchTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewStatus</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewStatusExtension</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ListViewStatusExtensionTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__LookupConfigActionController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__LookupConfigActionControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__lookupConfigExtension</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__lookupConfigExtensionTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__Message</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__MetaWrapper</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__MockHttpResponseGenerator</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__ObjectAndFieldConstants</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__OptoutSettingsExtension</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__OptoutSettingsExtensionTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__PostInstallClass</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__PostInstallClassTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__Security</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SecurityTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SendSMSActionController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SendSMSActionControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SendSmsClass</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SendSMSController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SetupWizardController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SetupWizardControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMHomeController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMHomeControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSInsight</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__smsInsightServerController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSInsightServerControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSMagicConfigController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSMagicConfigControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__smsMagicExtension</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__smsMagicExtensionTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSMagicScheduler</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSMagicSchedulerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__smsTemplateExtension</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__smsTemplateExtensionTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSUtility</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__SMSUtilityTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TaskExtension</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TaskExtensionTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TemplateEngine</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TemplateEngineTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TemplateResolver</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TemplateResolverTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TemplateTypeConfigurationController</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TemplateTypeConfigurationControllerTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TriggerConfiguration</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TriggerConfigurationTest</apexClass> <enabled>true</enabled></classAccesses>
+<classAccesses><apexClass>smagicinteract__TriggerTest</apexClass> <enabled>true</enabled></classAccesses>
+    <description>CEC: Contains component details for SMS Magic Process</description>
+   <fieldPermissions>
+   <editable>true</editable>
+   <field>smagicinteract__Error_Log__c.smagicinteract__Batch_Id__c</field>
+   <readable>true</readable>
+   </fieldPermissions>
+   <fieldPermissions>
+   <editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__Class_Name__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__Error_Message__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__Error_Status_Code__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__Error_Type__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__Fields__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__Line_number__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__Object__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Error_Log__c.smagicinteract__User__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Filter_Setting__c.smagicinteract__Field_Value__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_Alert_Configuration__c.smagicinteract__isCustomize__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_Alert_Configuration__c.smagicinteract__isDisable__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Campaign__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Case__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Contact__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Inbound_Number__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Lead__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Mobile_Number__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Quick_Reply_URL__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__SMS_Text__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__Sent_By__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__User__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__actionTaken__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Incoming_SMS__c.smagicinteract__taskId__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Criteria_Logical_Condition__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Custom_Logic__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Expexted_SMS__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Filter_Criteria__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Filter_Fields__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Object_Name__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__OptOut_Records__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Optout_Field__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Phone_Fields__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Sender_Id__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Template_Body__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Template_Id__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__Total_Records__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Configuration__c.smagicinteract__optOut_Check__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__BatchJobId__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Expexted_SMS__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__List_View_Configuration__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Messages_Delivered__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Messages_Processed__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Opt_Out_Records__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Optout_Field__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Phone_Fields__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__SMS_Text__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Template_Name__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Time_Taken__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__Total_Records__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__List_View_Execution__c.smagicinteract__status__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Optout_Settings__c.smagicinteract__Keyword__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Optout_Settings__c.smagicinteract__Object_Name__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Optout_Settings__c.smagicinteract__Optout_Field__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SMS_Batch_Execution_Tracker__c.smagicinteract__Campaign__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SMS_Batch_Execution_Tracker__c.smagicinteract__Execution_Status__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SMS_Batch_Execution_Tracker__c.smagicinteract__Job_Id__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SMS_Template_Type__c.smagicinteract__Related_Object_Types__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SMS_Template__c.smagicinteract__Name__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SMS_Template__c.smagicinteract__ObjectName__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SMS_Template__c.smagicinteract__Text__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Scheduled_SMS__c.smagicinteract__MobilePhone__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Scheduled_SMS__c.smagicinteract__ObjectId__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Scheduled_SMS__c.smagicinteract__Object_Type__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Scheduled_SMS__c.smagicinteract__Scheduled_Date__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__Scheduled_SMS__c.smagicinteract__smsText__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>false</editable><field>smagicinteract__SenderId_Profile_Map__c.smagicinteract__Default_SenderId__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SenderId_Profile_Map__c.smagicinteract__Profile_Id__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SenderId_Profile_Map__c.smagicinteract__SenderId_Lookup__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__SenderId_Profile_Map__c.smagicinteract__Sender_Id__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__forward_config__c.smagicinteract__Keyword__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__forward_config__c.smagicinteract__forwardToEmail__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__forward_config__c.smagicinteract__forwardToMobilePhone__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__forward_config__c.smagicinteract__forwardToUser__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__forward_config__c.smagicinteract__methodName__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__incoming_lookup_config__c.smagicinteract__MobilePhoneField__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__incoming_lookup_config__c.smagicinteract__Notify_Record_Owner__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__incoming_lookup_config__c.smagicinteract__ReferenceField__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__incoming_lookup_config__c.smagicinteract__incoming_sms_owner__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__lookup_config__c.smagicinteract__lookupFound__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__lookup_config__c.smagicinteract__lookupNotFound__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Campaign__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Contact__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Country__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__CreatedOn__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Is_Text_Unicode__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Lead__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Name__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__ObjectType__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__PhoneNumber__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__SMSText__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__SMS_Credits__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__SMS_Template__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__SenderId__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Sent_By__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Source__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__Type__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__User__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__deliveryStatus__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__disableSMSOnTrigger__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__response__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__sentStatus__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>smagicinteract__smsMagic__c.smagicinteract__statusMessage__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>Case.SMS_Inbound_Number__c</field><readable>true</readable></fieldPermissions><fieldPermissions><editable>true</editable><field>Case.SMS_Mobile_Number__c</field><readable>true</readable></fieldPermissions>
+    <label>CEC - SMS Magic Admin</label>
+	<pageAccesses><apexPage>CEC_CaseConversationView</apexPage><enabled>true</enabled></pageAccesses>
+    <pageAccesses><apexPage>smagicinteract__ActionOnIncoming</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__BulkSendSMS</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__CampaignPreview</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__CampaignSMSSendPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__ChatPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__CreateConversationView</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__DefaultSenderIdPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__EndpointConfigPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__ErrorPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__ErrorPageForOutgoingSMS</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__FeedbackPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__IncomingAlertConfigurationPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__IncomingForwardConfig</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__IncomingLookupPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__IncomingSMS</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__ListView_Status</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__ListViewConfigPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__ListViewStatusPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__LookupConfigAction</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__newCustomTask</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__NewSMS</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__NewSMSTemplate</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__OptoutSettingsPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__Popup</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SenderIdConfigPage</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SendSMSAction</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SetupWizard</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SMHome</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SMS_from_list_view</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SMS_Insight</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SMSMagicConfig</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__SMSMagicHelp</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__TemplateTypeConfiguration</apexPage><enabled>true</enabled></pageAccesses>
+<pageAccesses><apexPage>smagicinteract__TestPage</apexPage><enabled>true</enabled></pageAccesses>
+<objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__Error_Log__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__Filter_Setting__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__Incoming_Alert_Configuration__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__Incoming_SMS__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__List_View_Configuration__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__List_View_Execution__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__Optout_Settings__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__SMS_Batch_Execution_Tracker__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__SMS_SenderId__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__SMS_Template_Type__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__SMS_Template__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__Scheduled_SMS__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__SenderId_Profile_Map__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__forward_config__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__incoming_lookup_config__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>true</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__lookup_config__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>true</allowCreate><allowDelete>false</allowDelete><allowEdit>true</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>smagicinteract__smsMagic__c</object><viewAllRecords>false</viewAllRecords></objectPermissions><objectPermissions><allowCreate>false</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>true</allowRead><modifyAllRecords>false</modifyAllRecords><object>Case</object><viewAllRecords>false</viewAllRecords></objectPermissions>
+    <tabSettings>
+        <tab>smagicinteract__Incoming_SMS__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>smagicinteract__List_View_Configuration__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>smagicinteract__smsMagic__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>smagicinteract__SM_Home</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>smagicinteract__SMS_Magic_Help</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>smagicinteract__SMS_Template__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>smagicinteract__SMS_Magic_Settings</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>smagicinteract__Error_Log__c</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
+    <userLicense>Salesforce</userLicense>
+</PermissionSet>

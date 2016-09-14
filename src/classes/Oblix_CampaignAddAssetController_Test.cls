@@ -18,6 +18,9 @@ private class Oblix_CampaignAddAssetController_Test {
             insert Oblix_TestUtils.createOblixCustomSettings();
             insert Oblix_TestUtils.createBoxRangeCalculatorRecords();
             insert Oblix_TestUtils.createCountryCalculatorRecords();
+            // Code added by suresh
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = new Oblix_Check_For_Manual_Edit_Of_Campaign__c(Manual_Edit_Check__c = false);
+            insert me;
         }
     }
 

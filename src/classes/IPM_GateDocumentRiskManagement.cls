@@ -320,6 +320,10 @@ public with sharing class IPM_GateDocumentRiskManagement{
     *  @return PageReference
     */
     public PageReference generateMitigationPlan(){
+    	String suffix = 'RiskIdentified__c';
+        IPM_Project__c proUpdate = new IPM_Project__c(id = projectId);
+        proUpdate.put(projDocType+suffix,true);
+        update proUpdate;
         //Getting RecordType Id
         getRecordTypeId();
         getRecords();

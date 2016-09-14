@@ -12,7 +12,7 @@ Your project has been activated by {!IPM_Project__c.Regional_Project_Leader_Name
 {!IPM_Project__c.IPM_Project_Name__c}
 
 Project Leader : {!IPM_Project__c.IPM_Project_Leader__c}
-Finance Member : {!IPM_Project__c.IPM_Finance_Member__c}
+Finance Member : {!IPM_Project__c.IPM_Finance_Lead__c}
 Category : {!IPM_Project__c.IPM_Category_Text__c}
 Brand: {!IPM_Project__c.IPM_Brand_Positioning__c}
 Activity Description : {!IPM_Project__c.IPM_Project_Description__c}

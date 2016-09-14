@@ -8,6 +8,10 @@ private class Oblix_CampaignSummaryController_Test {
     @isTest static void Oblix_CampaignSummaryController_Test(){
         User u = Oblix_TestUtils.createTestUser();
         insert Oblix_TestUtils.createOblixCustomSettings();
+        // Code added by suresh
+        Oblix_Check_For_Manual_Edit_Of_Campaign__c me = new Oblix_Check_For_Manual_Edit_Of_Campaign__c(Manual_Edit_Check__c = false);
+        insert me;
+         
         System.runAs(u) {
             
             Test.startTest();

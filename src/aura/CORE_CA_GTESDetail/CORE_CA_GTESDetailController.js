@@ -1,34 +1,34 @@
 ({
-		doInit : function(component, event, helper) {  
+    doInit : function(component, event, helper) {  
         var action = component.get("c.getUIThemeDescription");
         var response;
         action.setCallback(this, function(response) { 
             response=response.getReturnValue();        	
-                component.set("v.isDesktop",response);
+            component.set("v.isDesktop",response);
         });    
         $A.enqueueAction(action); 
-            
+        
         component.set("v.spinnercompGtes",true);
         var action = component.get("c.getApprovalDetailPageData");
         var RequestId = component.get("v.RequestId");        
         var ApproverId = component.get("v.ApproverId");        
         action.setParams({
-			"RequestId": RequestId,
+            "RequestId": RequestId,
             "ApproverId" : ApproverId
-		});
+        });
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
                 component.set("v.ApprovalDetail",response.getReturnValue());
                 
-                    component.set("v.PreTripDetails",response.getReturnValue().PreTripDetails);
-                    component.set("v.Detail",response.getReturnValue().LineItems);
-                    component.set("v.accessStatus",component.get("v.ApprovalDetail")[0].accessStatus);
-                   
-                 if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REJC'
-                        || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverAction == 'APPR'
-                        || component.get("v.ApprovalDetail")[0].ApproverAction == 'COPY' || component.get("v.ApprovalDetail")[0].isRecalled == true){
-                	component.set("v.showApprove",false); 
+                component.set("v.PreTripDetails",response.getReturnValue().PreTripDetails);
+                component.set("v.Detail",response.getReturnValue().LineItems);
+                component.set("v.accessStatus",component.get("v.ApprovalDetail")[0].accessStatus);
+                
+                if(component.get("v.ApprovalDetail")[0].ApproverStatus == 'Rejected' || component.get("v.ApprovalDetail")[0].ApproverAction == 'REJC'
+                   || component.get("v.ApprovalDetail")[0].ApproverStatus == 'Approved' || component.get("v.ApprovalDetail")[0].ApproverAction == 'APPR'
+                   || component.get("v.ApprovalDetail")[0].ApproverAction == 'COPY' || component.get("v.ApprovalDetail")[0].isRecalled == true){
+                    component.set("v.showApprove",false); 
                     component.set("v.showReject",false);    
                 }
                 component.set("v.spinnercompGtes",false);
@@ -41,15 +41,15 @@
         component.set("v.spinnercompGtes",false);
         $A.util.addClass(component.find('item2'), 'tab-default-2__item');
         $A.util.removeClass(component.find('item11'), 'tab-default-2__item');
-    component.set("v.isFeed",true);
-    component.set("v.isDetail",false);
-},
+        component.set("v.isFeed",true);
+        component.set("v.isDetail",false);
+    },
     NavigateToDetail : function(component, event, helper) {  
         component.set("v.spinnercompGtes",false);
-         $A.util.removeClass(component.find('item2'), 'tab-default-2__item');
-    component.set("v.isFeed",false);
-    component.set("v.isDetail",true);
-},
+        $A.util.removeClass(component.find('item2'), 'tab-default-2__item');
+        component.set("v.isFeed",false);
+        component.set("v.isDetail",true);
+    },
     goToLineItemDetail : function(component, event, helper) { 
         component.set("v.spinnercompGtes",true);
         if(component.get("v.isDesktop") != 'Lightning Experience'){
@@ -67,7 +67,7 @@
         var LineItemId = approvalDetailList[index].LineItemId;   
         var selectEvent = $A.get("e.c:CORE_CA_SubDetailEvent");
         selectEvent.setParams({ "compName": "LineItemDetail","subDivision":"GTES","lineItemId":LineItemId,"ApprovalDetail":component.get("v.ApprovalDetail"),"sourcePage":component.get("v.sourcePage")}).fire(); 
-},
+    },
     goToHomePage : function(component, event, helper) {       
         component.set("v.showspinner",true);
         var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
@@ -94,7 +94,7 @@
         component.set("v.spinnercompGtes",false);
     },
     gotoFeedback: function(component, event, helper) { 
-         if(component.get("v.isDesktop") != 'Lightning Experience'){
+        if(component.get("v.isDesktop") != 'Lightning Experience'){
             helper.scrollToLocation(component, "top");
         } 
         component.set("v.isFeedBack",true);
@@ -107,35 +107,42 @@
             var selectEvent = $A.get("e.c:CORE_CA_HomeEvent");
             selectEvent.setParams({"closednavigation": "CORE_CA_Pending","filterValue": component.get("v.filterValue")}).fire(); 
         }       
-	},
+    },
     showHide : function(component, event, helper) {
         if(event.srcElement.id != "up" && event.srcElement.id != "down")
         {
-        var idd =event.srcElement.id+"2";
-        var iid =event.srcElement.id+"3";
-        var id =event.srcElement.id+"1";
-        if(document.getElementById(id).style.display == "none")
-        {	
-            document.getElementById(id).style.display = "block";
-            document.getElementById(iid).style.display = "none";
-            document.getElementById(idd).style.display = "block";
-        }
-        else
-        {
-            document.getElementById(id).style.display = "none";
-            document.getElementById(iid).style.display = "block";
-            document.getElementById(idd).style.display = "none";
-        }
+            var idd =event.srcElement.id+"2";
+            var iid =event.srcElement.id+"3";
+            var id =event.srcElement.id+"1";
+            var elem = document.getElementById(id);
+            var curiid = document.getElementById(iid);
+            var curidd = document.getElementById(idd);
+            
+            if(typeof elem !== 'undefined' && elem !== null && curiid !== 'undefined' && curiid !== null && curidd !== 'undefined' && curidd !== null)
+            {
+                if(document.getElementById(id).style.display == "none")
+                {	
+                    document.getElementById(id).style.display = "block";
+                    document.getElementById(iid).style.display = "none";
+                    document.getElementById(idd).style.display = "block";
+                }
+                else
+                {
+                    document.getElementById(id).style.display = "none";
+                    document.getElementById(iid).style.display = "block";
+                    document.getElementById(idd).style.display = "none";
+                }
+            }
         }
     },
     NavigateToFeedViaComment : function(component, event, helper) {  
         component.set("v.spinnercompGtes",false);
         $A.util.addClass(component.find('item2'), 'tab-default-2__item');
         $A.util.removeClass(component.find('item11'), 'tab-default-2__item');
-    if(component.get("v.isDesktop") != 'Lightning Experience'){
+        if(component.get("v.isDesktop") != 'Lightning Experience'){
             helper.scrollToLocation(component, "top");
-    } 
-    component.set("v.isFeed",true);
-    component.set("v.isDetail",false);
-},
+        } 
+        component.set("v.isFeed",true);
+        component.set("v.isDetail",false);
+    },
 })

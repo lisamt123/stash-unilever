@@ -1,0 +1,11 @@
+.THIS.map {
+    position: relative;
+    height: 300px !important;
+    width: 100% !important;
+    border-radius: 10px;
+    border: 1px solid #d1d1d4;
+    overflow: hidden;
+    transform: translateZ(0px);
+    background-color: rgb(229, 227, 223);
+    margin-bottom: .75rem;
+}
