@@ -57,3 +57,6 @@ src/dashboards
 src/dashboards/WU_Warehouse_Excellence_Team
 src/dashboards/WU_Warehouse_Excellence_Team/Home_Page_for_warehouse_excellence_Team.dashboard
 src/dashboards/WU_Warehouse_Excellence_Team-meta.xml
+
+src/workflows
+src/workflows/WU_Master_Warehouse__c.workflow
