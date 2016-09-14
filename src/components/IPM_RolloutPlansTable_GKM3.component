@@ -345,7 +345,7 @@
                                             </td>
                                             <td scope="col" width="150px">
                                                 <div>               
-                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c),project.IPM_Phase__c != 'Market Deployment',project.IPM_Phase__c != 'PLE'),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
+                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c),project.IPM_Phase__c != 'Market Ready',project.IPM_Phase__c != 'Market Deployment',project.IPM_Phase__c != 'PLE'),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
                                                         <apex:outputLink value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=localRollout.Local_Project__c])}" styleClass="noDecoration" target="_blank" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"><!-- {!IF(localRollout.Local_Project__c != null, true, false)} -->
                                                             {!localRollout.IPM_Rollout_Project__c}
                                                         </apex:outputLink>
