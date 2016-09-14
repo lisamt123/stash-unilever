@@ -65,6 +65,7 @@ private class IPM_ProjectOverviewCtrl_Test
             orgProjList[1].IPM_Project_Name__c = 'TestPrjOrg';
             orgProjList[1].IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             orgProjList[1].IPM_Project_Type__c= IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+            orgProjList[1].IPM_Company_Card__c = IPM_TestFactory_Helper.createGlobalCompanyCard(true).Id; 
             insert  orgProjList;
         }
         System.assertEquals(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL, [Select Id, IPM_Project_Type__c from IPM_Project__c where Id=: orgProjList[0].Id limit 100][0].IPM_Project_Type__c , 'Original project is not created.' );
@@ -733,7 +734,9 @@ private class IPM_ProjectOverviewCtrl_Test
             testIPMFinancialLocal.Project_Sustainability_Period__c = IPM_ConstantUtils.YEAR_3;
             financialList.add(testIPMFinancialLocal);
         }
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
         insert financialList;
+         IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
         System.assertEquals(20, [Select count() from IPM_Financial__c where Parent_Project__c =: project.id limit 100], FINANCIAL_NOT_CREATED);
         
         PageReference pRef1 = new PageReference(sPageRefURL+rProjectList[0].ID);
@@ -1168,11 +1171,8 @@ private class IPM_ProjectOverviewCtrl_Test
             Test.startTest();
             PageReference pRef1 = new PageReference(sPageRefURL+globalProject.ID);
             Test.setCurrentPage(pRef1);
-            
-            IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
-            IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
             Test.stopTest();
         
         }
-     }
+    }
 }

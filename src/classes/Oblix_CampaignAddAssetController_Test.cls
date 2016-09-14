@@ -18,6 +18,9 @@ private class Oblix_CampaignAddAssetController_Test {
             insert Oblix_TestUtils.createOblixCustomSettings();
             insert Oblix_TestUtils.createBoxRangeCalculatorRecords();
             insert Oblix_TestUtils.createCountryCalculatorRecords();
+            // Code added by suresh
+            Oblix_Check_For_Manual_Edit_Of_Campaign__c me = new Oblix_Check_For_Manual_Edit_Of_Campaign__c(Manual_Edit_Check__c = false);
+            insert me;
         }
     }
 
@@ -352,7 +355,7 @@ private class Oblix_CampaignAddAssetController_Test {
 
         //Pick asset scoring that isn't in the basket already
         Asset_Scoring__c asset_scoring = assetScorings[assetScorings.size()-1];
-        
+        system.assert(asset_scoring!=null,'asset_scoring inserted');
         // When
         Test.startTest();
 

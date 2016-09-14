@@ -267,4 +267,80 @@ private class IPM_ProjectOverviewCtrol_Test {
         Test.stopTest();
         }
     }
+	//Testmethod to validate stop project functionalities
+    static testMethod void testStopProjects(){
+        // Get the newly created Projects from Database. 
+        Set<String> projectNameSet = new Set<String>{'TestComments1'};
+        User globalProjectLeader = null;
+        
+        // Get the list of user's for project leaders.
+        List<User> userList = [Select Id,Name,lastName from User where LastName=:GLOBAL_PL_USER];
+        
+        // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+        IPM_TestFactory_Helper.shareMasterProject(userList); 
+        globalProjectLeader = userList[0];
+        
+        System.RunAs(globalProjectLeader)
+        {
+            
+        List<IPM_Project__c> projectList = [Select Id,Is_Archieved__c,IPM_PrepareForArchival__c,IPM_CancelStoppingProjectTill__c,IPM_Phase__c,Name,IPM_GateKeeping_Model__c,IPM_Complexity__c,IPM_Project_Name__c
+                                                    from IPM_Project__c where Name in:projectNameSet];
+         
+        Test.startTest();
+        PageReference pRef1 = new PageReference(sPageRefURL+projectList[0].ID);
+        Test.setCurrentPage(pRef1);
+        //initialise standard and custom controller
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
+        //initialise public variables
+        overCtrl1.categryId = null;
+        overCtrl1.CategoryGroupId = null;
+    	overCtrl1.BrandPositionId = null;
+    	overCtrl1.stopButtonHoverText = null;
+    	overCtrl1.reactivateProjectFlag = null;
+    	overCtrl1.isBrandVisible = null;
+    	overCtrl1.isChecked = null;
+    	overCtrl1.StoppedMsg = null;
+    	
+    	//earliest TLD functionality
+    	overCtrl1.earliestTLD = string.valueof(system.now());
+    	string eTLD =overCtrl1.getEarlTLD();
+    	system.assertEquals(eTLD,overCtrl1.earliestTLD,'earliest TLD is not matched');//positive test
+        
+        //stop project functionality
+        
+        overCtrl1.project = null;
+        overCtrl1.stopProject();//pass project as null and test negative scenario
+        List<IPM_Project__c> noStopProjectList =[SELECT Is_Archieved__c  FROM IPM_Project__c WHERE Id =:projectList[0].id LIMIT 1];
+        system.assertEquals(noStopProjectList[0].Is_Archieved__c,false,'project is stopped');//negative test
+        
+        overCtrl1.project = projectList[0];
+        overCtrl1.stopProject();//call this method for positive test
+        
+        List<IPM_Project__c> stopProjectList =[SELECT Is_Archieved__c  FROM IPM_Project__c WHERE Id =:projectList[0].id LIMIT 1];
+        system.assertEquals(stopProjectList[0].Is_Archieved__c,true,'project is not getting stopped');//positive test
+        
+        //Cancel stopped project
+        projectList[0].IPM_PrepareForArchival__c = true;
+        update projectList;
+        List<IPM_Project__c> projectsList =[SELECT IPM_PrepareForArchival__c  FROM IPM_Project__c WHERE Id =:projectList[0].id LIMIT 1];
+        system.assertEquals(projectsList[0].IPM_PrepareForArchival__c,true,'IPM_PrepareForArchival__c is false');//positive test
+        
+        overCtrl1.cancelStoppingProject();//call for negative test
+        overCtrl1.project= null;
+        List<IPM_Project__c> cancelStopProjectList =[SELECT IPM_PrepareForArchival__c  FROM IPM_Project__c WHERE Id =:projectList[0].id LIMIT 1];
+        system.assertEquals(cancelStopProjectList[0].IPM_PrepareForArchival__c,true,'project cancel is done');//negative test
+        
+        overCtrl1.project = projectList[0];
+        overCtrl1.project.IPM_CancelStoppingProjectTill__c = system.now().adddays(1);
+        overCtrl1.cancelStoppingProject();//call for positive test
+        List<IPM_Project__c> cancelProjectList =[SELECT IPM_PrepareForArchival__c  FROM IPM_Project__c WHERE Id =:projectList[0].id LIMIT 1];
+        system.assertEquals(cancelProjectList[0].IPM_PrepareForArchival__c,false,'project cancel is not done');//positive test
+        
+        overCtrl1.project.id = null;
+        overCtrl1.cancelStoppingProject();//call for negative test
+        Test.stopTest();
+        }
+    }
+	
  }

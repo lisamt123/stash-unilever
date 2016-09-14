@@ -120,6 +120,30 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>CNPJ__c</fullName>
+        <description>Used to store CNPJ information for the contact.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please type numbers only</inlineHelpText>
+        <label>CNPJ</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CPF__c</fullName>
+        <description>Used to store the CPF document number.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please type numbers only</inlineHelpText>
+        <label>CPF</label>
+        <length>14</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Day_Rate__c</fullName>
         <externalId>false</externalId>
         <label>Day Rate</label>
@@ -597,6 +621,26 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>Gender__c</fullName>
+        <description>Indicates the gender.</description>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>HasOptedOutOfEmail</fullName>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
@@ -675,6 +719,185 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Tokyo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Additional_Source_Income__c</fullName>
+        <description>Spark Project - Mobility to Mobile Channel - Used to verify if the Ice Cream Salesman has any additional source of income or another economic activity.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Have another source of income or  or another economic activity?</inlineHelpText>
+        <label>Additional source of income</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Work only with Ice Cream sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Community_User__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Verify if the user is part of the Ice cream community.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is a Ice Cream Community User?</inlineHelpText>
+        <label>Ice Cream Community User</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Education_Level__c</fullName>
+        <description>Used to store Education Level information</description>
+        <externalId>false</externalId>
+        <label>Education Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Never been to school</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fundamental Education (Incomplete)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fundamental Education (Complete)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle Education (Incomplete)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle Education (Complete)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>University (Incomplete)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>University (Complete)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Internet_Access__c</fullName>
+        <description>Spark Project - Mobility to Mobile Channel - Used to verify if the Ice Cream Salesman has internet access and the type of access.</description>
+        <externalId>false</externalId>
+        <label>Internet Access</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes, at home (Broadband)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes, at home (3G or 4G via mobile phone)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes, using a Lan House or in other places</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Marital_Status__c</fullName>
+        <description>Used to store Marital Status information.</description>
+        <externalId>false</externalId>
+        <label>Marital Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Married (Formal or Informal)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Divorced, Widowed, Separated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Mobile_Phone__c</fullName>
+        <description>Spark Project - Mobility to Mobile Channel - Used to verify if the Ice Cream Salesman has a mobile phone and the kind of device.</description>
+        <externalId>false</externalId>
+        <label>Mobile Phone</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes, one or more regular devices</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes, one or more Smartphones</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Sales_Locale__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Spark Project - Mobility to Mobility Channel - Used to register the Sales Locale where the Ice Cream Salesman usually goes to perform sales.</description>
+        <externalId>false</externalId>
+        <label>Sales Locale</label>
+        <referenceTo>ICB_Sales_Locale__c</referenceTo>
+        <relationshipLabel>Contacts</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Type__c</fullName>
+        <description>Spark Project - Mobility to Mobile Channel - Used to indicate if partner contact is an operator or a salesman.</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Operator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ice Cream Salesman</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -903,6 +1126,26 @@
         <label>Birthdays This Month</label>
     </listViews>
     <listViews>
+        <fullName>ICB_TodosContatos</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.Standard_Contact</value>
+        </filters>
+        <label>Todos Contatos</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>ICB_IceCreamBRBackOffice</group>
+            <group>ICB_IceCreamBRSalesRepresentative</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>NewThisWeek</fullName>
         <columns>FULL_NAME</columns>
         <columns>ACCOUNT.NAME</columns>
@@ -924,6 +1167,112 @@
         <active>true</active>
         <description>A contact belonging to an agency</description>
         <label>Agency Contact</label>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Additional_Source_Income__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work only with Ice Cream sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Education_Level__c</picklist>
+            <values>
+                <fullName>Fundamental Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fundamental Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never been to school</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Internet_Access__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %283G or 4G via mobile phone%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %28Broadband%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C using a Lan House or in other places</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Marital_Status__c</picklist>
+            <values>
+                <fullName>Divorced%2C Widowed%2C Separated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Married %28Formal or Informal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Mobile_Phone__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more Smartphones</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more regular devices</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
@@ -991,6 +1340,2183 @@
             </values>
             <values>
                 <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ICB_Operator</fullName>
+        <active>true</active>
+        <description>Ice Cream Operator Record Type</description>
+        <label>Ice Cream Operator</label>
+        <picklistValues>
+            <picklist>Day_Rate__c</picklist>
+            <values>
+                <fullName>0- 250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1k- 2%2E5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5- 5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250- 500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>500- 1k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5k %2B</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Expertise__c</picklist>
+            <values>
+                <fullName>Accessory design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acupuncture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architecture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aromatherapy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Direction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist in residence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Athlete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Audio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beautician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blogger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carpenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinematographer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comedian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cosmetic Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dancer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dental Hygienist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dentist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dry Cleaner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy Healer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facialist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facilitator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fashion Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Filming %26 Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastronomy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graffiti Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graphic Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Salon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Stylist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hairdresser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illustrator %26 Sketch Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jewellery design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Lifestyle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Reporter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makeup Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male Grooming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medispa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Midwife</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Motivational Speaker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Musician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nail artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naturopath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nutritionist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Painter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Performance Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perfumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personal Trainer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fashion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fine Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Portraiture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physiotherapist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product %26 Pack Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sailor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sculptor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semiotician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shiatsu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sleep Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sommelier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyteller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Wardrobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Presenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theatre</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trend Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visualiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga Teacher</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Homebase__c</picklist>
+            <values>
+                <fullName>Amsterdam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Berlin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brussels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buenos Aires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geneva</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sao Paulo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seoul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shanghai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokyo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Additional_Source_Income__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work only with Ice Cream sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Education_Level__c</picklist>
+            <values>
+                <fullName>Fundamental Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fundamental Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never been to school</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Internet_Access__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %283G or 4G via mobile phone%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %28Broadband%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C using a Lan House or in other places</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Marital_Status__c</picklist>
+            <values>
+                <fullName>Divorced%2C Widowed%2C Separated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Married %28Formal or Informal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Mobile_Phone__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more Smartphones</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more regular devices</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Ice Cream Salesman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operator</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miss</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E%2FMs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Relationship__c</picklist>
+            <values>
+                <fullName>Do not recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Have met but not worked with</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met %2F No connection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met but share a mutual connection</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>ICB_Salesman</fullName>
+        <active>true</active>
+        <description>Ice Cream Salesman Record Type</description>
+        <label>Ice Cream Salesman</label>
+        <picklistValues>
+            <picklist>Day_Rate__c</picklist>
+            <values>
+                <fullName>0- 250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1k- 2%2E5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5- 5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250- 500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>500- 1k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5k %2B</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Expertise__c</picklist>
+            <values>
+                <fullName>Accessory design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acupuncture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architecture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aromatherapy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Direction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist in residence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Athlete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Audio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beautician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blogger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carpenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinematographer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comedian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cosmetic Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dancer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dental Hygienist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dentist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dry Cleaner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy Healer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facialist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facilitator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fashion Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Filming %26 Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastronomy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graffiti Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graphic Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Salon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Stylist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hairdresser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illustrator %26 Sketch Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jewellery design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Lifestyle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Reporter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makeup Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male Grooming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medispa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Midwife</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Motivational Speaker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Musician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nail artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naturopath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nutritionist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Painter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Performance Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perfumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personal Trainer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fashion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fine Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Portraiture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physiotherapist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product %26 Pack Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sailor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sculptor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semiotician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shiatsu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sleep Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sommelier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyteller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Wardrobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Presenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theatre</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trend Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visualiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga Teacher</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Homebase__c</picklist>
+            <values>
+                <fullName>Amsterdam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Berlin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brussels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buenos Aires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geneva</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sao Paulo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seoul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shanghai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokyo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Additional_Source_Income__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work only with Ice Cream sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Education_Level__c</picklist>
+            <values>
+                <fullName>Fundamental Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fundamental Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never been to school</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Internet_Access__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %283G or 4G via mobile phone%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %28Broadband%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C using a Lan House or in other places</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Marital_Status__c</picklist>
+            <values>
+                <fullName>Divorced%2C Widowed%2C Separated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Married %28Formal or Informal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Mobile_Phone__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more Smartphones</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more regular devices</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miss</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E%2FMs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Relationship__c</picklist>
+            <values>
+                <fullName>Do not recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Have met but not worked with</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met %2F No connection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met but share a mutual connection</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Ice_Cream</fullName>
+        <active>false</active>
+        <description>Ice Cream Record Type</description>
+        <label>Ice Cream</label>
+        <picklistValues>
+            <picklist>Day_Rate__c</picklist>
+            <values>
+                <fullName>0- 250</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1k- 2%2E5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E5- 5k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250- 500</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>500- 1k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5k %2B</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Expertise__c</picklist>
+            <values>
+                <fullName>Accessory design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acupuncture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Architecture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Aromatherapy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Art Direction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist in residence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Artist%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Athlete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Audio</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beautician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Blogger</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Carpenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chef</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cinematographer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail Maker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comedian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Consultant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copywriter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cosmetic Surgeon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dancer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dental Hygienist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dentist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dermatologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dry Cleaner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Economist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Editor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Energy Healer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facialist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Facilitator</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fashion Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Filming %26 Production</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Florist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gastronomy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graffiti Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Graphic Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Salon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hair Stylist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hairdresser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Illustrator %26 Sketch Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Interior Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jewellery design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Lifestyle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Journalist%2C Reporter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Leadership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makeup Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male Grooming</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Medispa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Midwife</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mobile Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Model Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Motivational Speaker</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Music</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Musician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nail artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Naturopath</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neurologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nutritionist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Painter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Performance Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Perfumer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personal Trainer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Beauty</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fashion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Fine Art</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Photographer%2C Portraiture</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Physiotherapist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product %26 Pack Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Speaking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sailor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sculptor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Semiotician</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shiatsu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sleep Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sociologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sommelier</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Artist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sound Designer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spa</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports Psychologist</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Storyteller</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Hair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stylist%2C Wardrobe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sustainability</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TV Presenter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Teacher</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theatre</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trend Expert</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visualiser</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Writer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yoga Teacher</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Homebase__c</picklist>
+            <values>
+                <fullName>Amsterdam</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Berlin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brussels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Buenos Aires</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Geneva</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New York</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paris</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sao Paulo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seoul</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shanghai</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tokyo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Additional_Source_Income__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work only with Ice Cream sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Education_Level__c</picklist>
+            <values>
+                <fullName>Fundamental Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fundamental Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never been to school</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Internet_Access__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %283G or 4G via mobile phone%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %28Broadband%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C using a Lan House or in other places</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Marital_Status__c</picklist>
+            <values>
+                <fullName>Divorced%2C Widowed%2C Separated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Married %28Formal or Informal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Mobile_Phone__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more Smartphones</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more regular devices</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miss</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E%2FMs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Relationship__c</picklist>
+            <values>
+                <fullName>Do not recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Have met but not worked with</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Highly recommend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met %2F No connection</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never met but share a mutual connection</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1442,6 +3968,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Homebase__c</picklist>
             <values>
                 <fullName>Amsterdam</fullName>
@@ -1505,6 +4042,101 @@
             </values>
             <values>
                 <fullName>Tokyo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Additional_Source_Income__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work only with Ice Cream sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Education_Level__c</picklist>
+            <values>
+                <fullName>Fundamental Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fundamental Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never been to school</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Internet_Access__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %283G or 4G via mobile phone%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %28Broadband%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C using a Lan House or in other places</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Marital_Status__c</picklist>
+            <values>
+                <fullName>Divorced%2C Widowed%2C Separated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Married %28Formal or Informal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Mobile_Phone__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more Smartphones</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more regular devices</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1608,6 +4240,112 @@
         <description>A contact belonging to a standard account</description>
         <label>Standard Contact</label>
         <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Additional_Source_Income__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Work only with Ice Cream sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Education_Level__c</picklist>
+            <values>
+                <fullName>Fundamental Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fundamental Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle Education %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Never been to school</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Complete%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>University %28Incomplete%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Internet_Access__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %283G or 4G via mobile phone%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C at home %28Broadband%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C using a Lan House or in other places</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Marital_Status__c</picklist>
+            <values>
+                <fullName>Divorced%2C Widowed%2C Separated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Married %28Formal or Informal%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Mobile_Phone__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more Smartphones</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%2C one or more regular devices</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
@@ -1701,6 +4439,155 @@
         <searchResultsAdditionalFields>CORE.USERS.ALIAS</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>CNPJ_Validation_Spark</fullName>
+        <active>true</active>
+        <description>Spark Project - Rule to validate CNPJ</description>
+        <errorConditionFormula>IF( LEN( CNPJ__c )&gt; 11 
+, 
+NOT( 
+OR( 
+LEN(CNPJ__c)=0, 
+AND( NOT(CNPJ__c = &quot;00000000000000&quot;), 
+MOD(MOD(11-MOD(VALUE(MID(CNPJ__c,1,1))*5+VALUE(MID(CNPJ__c,2,1))*4+VALUE(MID(CNPJ__c,3,1))*3+VALUE(MID(CNPJ__c,4,1))*2+VALUE(MID(CNPJ__c,5,1))*9+VALUE(MID(CNPJ__c,6,1))*8+VALUE(MID(CNPJ__c,7,1))*7+VALUE(MID(CNPJ__c,8,1))*6+VALUE(MID(CNPJ__c,9,1))*5+VALUE(MID(CNPJ__c,10,1))*4+VALUE(MID(CNPJ__c,11,1))*3+VALUE(MID(CNPJ__c,12,1))*2,11),11),10) = 
+VALUE(MID(CNPJ__c,13,1)), 
+MOD(MOD(11-MOD(VALUE(MID(CNPJ__c,1,1))*6+VALUE(MID(CNPJ__c,2,1))*5+VALUE(MID(CNPJ__c,3,1))*4+VALUE(MID(CNPJ__c,4,1))*3+VALUE(MID(CNPJ__c,5,1))*2+VALUE(MID(CNPJ__c,6,1))*9+VALUE(MID(CNPJ__c,7,1))*8+VALUE(MID(CNPJ__c,8,1))*7+VALUE(MID(CNPJ__c,9,1))*6+VALUE(MID(CNPJ__c,10,1))*5+VALUE(MID(CNPJ__c,11,1))*4+VALUE(MID(CNPJ__c,12,1))*3+VALUE(MID(CNPJ__c,13,1))*2,11),11),10) = 
+VALUE(MID(CNPJ__c,14,1)) 
+))) 
+, 
+NOT AND (CNPJ__c &lt;&gt; &apos;00000000000&apos;,CNPJ__c &lt;&gt; &apos;11111111111&apos;, 
+CNPJ__c &lt;&gt; &apos;22222222222&apos;,CNPJ__c &lt;&gt; &apos;33333333333&apos;,CNPJ__c &lt;&gt; &apos;44444444444&apos;,CNPJ__c &lt;&gt; &apos;55555555555&apos;,CNPJ__c &lt;&gt; &apos;66666666666&apos;,CNPJ__c &lt;&gt; &apos;77777777777&apos;,CNPJ__c &lt;&gt; &apos;88888888888&apos;,CNPJ__c &lt;&gt; &apos;99999999999&apos;, 
+IF ((MID(CNPJ__c , 10, 1) = 
+IF (MOD(((VALUE(MID(CNPJ__c , 1, 1))*10)+ 
+(VALUE(MID(CNPJ__c , 2, 1))*9)+ 
+(VALUE(MID(CNPJ__c , 3, 1))*8)+ 
+(VALUE(MID(CNPJ__c , 4, 1))*7)+ 
+(VALUE(MID(CNPJ__c , 5, 1))*6)+ 
+(VALUE(MID(CNPJ__c , 6, 1))*5)+ 
+(VALUE(MID(CNPJ__c , 7, 1))*4)+ 
+(VALUE(MID(CNPJ__c , 8, 1))*3)+ 
+(VALUE(MID(CNPJ__c , 9, 1))*2)),11) &lt; 2,&apos;0&apos;, 
+TEXT(11 - MOD(((VALUE(MID(CNPJ__c , 1, 1))*10)+ 
+(VALUE(MID(CNPJ__c , 2, 1))*9)+ 
+(VALUE(MID(CNPJ__c , 3, 1))*8)+ 
+(VALUE(MID(CNPJ__c , 4, 1))*7)+ 
+(VALUE(MID(CNPJ__c , 5, 1))*6)+ 
+(VALUE(MID(CNPJ__c , 6, 1))*5)+ 
+(VALUE(MID(CNPJ__c , 7, 1))*4)+ 
+(VALUE(MID(CNPJ__c , 8, 1))*3)+ 
+(VALUE(MID(CNPJ__c , 9, 1))*2)),11)) 
+)),TRUE,FALSE), 
+IF ((MID(CNPJ__c , 11, 1) = 
+IF (MOD(((VALUE(MID(CNPJ__c , 1, 1))*11)+ 
+(VALUE(MID(CNPJ__c , 2, 1))*10)+ 
+(VALUE(MID(CNPJ__c , 3, 1))*9)+ 
+(VALUE(MID(CNPJ__c , 4, 1))*8)+ 
+(VALUE(MID(CNPJ__c , 5, 1))*7)+ 
+(VALUE(MID(CNPJ__c , 6, 1))*6)+ 
+(VALUE(MID(CNPJ__c , 7, 1))*5)+ 
+(VALUE(MID(CNPJ__c , 8, 1))*4)+ 
+(VALUE(MID(CNPJ__c , 9, 1))*3)+ 
+(VALUE(MID(CNPJ__c , 10, 1))*2)),11) &lt; 2,&apos;0&apos;, 
+TEXT(11 - MOD(((VALUE(MID(CNPJ__c , 1, 1))*11)+ 
+(VALUE(MID(CNPJ__c , 2, 1))*10)+ 
+(VALUE(MID(CNPJ__c , 3, 1))*9)+ 
+(VALUE(MID(CNPJ__c , 4, 1))*8)+ 
+(VALUE(MID(CNPJ__c , 5, 1))*7)+ 
+(VALUE(MID(CNPJ__c , 6, 1))*6)+ 
+(VALUE(MID(CNPJ__c , 7, 1))*5)+ 
+(VALUE(MID(CNPJ__c , 8, 1))*4)+ 
+(VALUE(MID(CNPJ__c , 9, 1))*3)+ 
+(VALUE(MID(CNPJ__c , 10, 1))*2)),11)) 
+)),TRUE,FALSE) 
+) 
+)</errorConditionFormula>
+        <errorMessage>Please verify if CNPJ is correct.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>CPF_Validation_Spark</fullName>
+        <active>true</active>
+        <description>Spark Project - Rule to validate CPF</description>
+        <errorConditionFormula>IF( LEN( CPF__c )&gt; 11 
+, 
+NOT( 
+OR( 
+LEN(CPF__c)=0, 
+AND( NOT(CPF__c = &quot;00000000000000&quot;), 
+MOD(MOD(11-MOD(VALUE(MID(CPF__c,1,1))*5+VALUE(MID(CPF__c,2,1))*4+VALUE(MID(CPF__c,3,1))*3+VALUE(MID(CPF__c,4,1))*2+VALUE(MID(CPF__c,5,1))*9+VALUE(MID(CPF__c,6,1))*8+VALUE(MID(CPF__c,7,1))*7+VALUE(MID(CPF__c,8,1))*6+VALUE(MID(CPF__c,9,1))*5+VALUE(MID(CPF__c,10,1))*4+VALUE(MID(CPF__c,11,1))*3+VALUE(MID(CPF__c,12,1))*2,11),11),10) = 
+VALUE(MID(CPF__c,13,1)), 
+MOD(MOD(11-MOD(VALUE(MID(CPF__c,1,1))*6+VALUE(MID(CPF__c,2,1))*5+VALUE(MID(CPF__c,3,1))*4+VALUE(MID(CPF__c,4,1))*3+VALUE(MID(CPF__c,5,1))*2+VALUE(MID(CPF__c,6,1))*9+VALUE(MID(CPF__c,7,1))*8+VALUE(MID(CPF__c,8,1))*7+VALUE(MID(CPF__c,9,1))*6+VALUE(MID(CPF__c,10,1))*5+VALUE(MID(CPF__c,11,1))*4+VALUE(MID(CPF__c,12,1))*3+VALUE(MID(CPF__c,13,1))*2,11),11),10) = 
+VALUE(MID(CPF__c,14,1)) 
+))) 
+, 
+NOT AND (CPF__c &lt;&gt; &apos;00000000000&apos;,CPF__c &lt;&gt; &apos;11111111111&apos;, 
+CPF__c &lt;&gt; &apos;22222222222&apos;,CPF__c &lt;&gt; &apos;33333333333&apos;,CPF__c &lt;&gt; &apos;44444444444&apos;,CPF__c &lt;&gt; &apos;55555555555&apos;,CPF__c &lt;&gt; &apos;66666666666&apos;,CPF__c &lt;&gt; &apos;77777777777&apos;,CPF__c &lt;&gt; &apos;88888888888&apos;,CPF__c &lt;&gt; &apos;99999999999&apos;, 
+IF ((MID(CPF__c , 10, 1) = 
+IF (MOD(((VALUE(MID(CPF__c , 1, 1))*10)+ 
+(VALUE(MID(CPF__c , 2, 1))*9)+ 
+(VALUE(MID(CPF__c , 3, 1))*8)+ 
+(VALUE(MID(CPF__c , 4, 1))*7)+ 
+(VALUE(MID(CPF__c , 5, 1))*6)+ 
+(VALUE(MID(CPF__c , 6, 1))*5)+ 
+(VALUE(MID(CPF__c , 7, 1))*4)+ 
+(VALUE(MID(CPF__c , 8, 1))*3)+ 
+(VALUE(MID(CPF__c , 9, 1))*2)),11) &lt; 2,&apos;0&apos;, 
+TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*10)+ 
+(VALUE(MID(CPF__c , 2, 1))*9)+ 
+(VALUE(MID(CPF__c , 3, 1))*8)+ 
+(VALUE(MID(CPF__c , 4, 1))*7)+ 
+(VALUE(MID(CPF__c , 5, 1))*6)+ 
+(VALUE(MID(CPF__c , 6, 1))*5)+ 
+(VALUE(MID(CPF__c , 7, 1))*4)+ 
+(VALUE(MID(CPF__c , 8, 1))*3)+ 
+(VALUE(MID(CPF__c , 9, 1))*2)),11)) 
+)),TRUE,FALSE), 
+IF ((MID(CPF__c , 11, 1) = 
+IF (MOD(((VALUE(MID(CPF__c , 1, 1))*11)+ 
+(VALUE(MID(CPF__c , 2, 1))*10)+ 
+(VALUE(MID(CPF__c , 3, 1))*9)+ 
+(VALUE(MID(CPF__c , 4, 1))*8)+ 
+(VALUE(MID(CPF__c , 5, 1))*7)+ 
+(VALUE(MID(CPF__c , 6, 1))*6)+ 
+(VALUE(MID(CPF__c , 7, 1))*5)+ 
+(VALUE(MID(CPF__c , 8, 1))*4)+ 
+(VALUE(MID(CPF__c , 9, 1))*3)+ 
+(VALUE(MID(CPF__c , 10, 1))*2)),11) &lt; 2,&apos;0&apos;, 
+TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*11)+ 
+(VALUE(MID(CPF__c , 2, 1))*10)+ 
+(VALUE(MID(CPF__c , 3, 1))*9)+ 
+(VALUE(MID(CPF__c , 4, 1))*8)+ 
+(VALUE(MID(CPF__c , 5, 1))*7)+ 
+(VALUE(MID(CPF__c , 6, 1))*6)+ 
+(VALUE(MID(CPF__c , 7, 1))*5)+ 
+(VALUE(MID(CPF__c , 8, 1))*4)+ 
+(VALUE(MID(CPF__c , 9, 1))*3)+ 
+(VALUE(MID(CPF__c , 10, 1))*2)),11)) 
+)),TRUE,FALSE) 
+) 
+)</errorConditionFormula>
+        <errorMessage>Please verify if CPF is correct.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mandatory_Birthdate_Spark_Salesman</fullName>
+        <active>true</active>
+        <description>Spark Project - Birthdate is mandatory for Salesman registration.</description>
+        <errorConditionFormula>AND(RecordType.DeveloperName = &quot;ICB_Salesman&quot;, ISBLANK( Birthdate))</errorConditionFormula>
+        <errorMessage>Birthdate is mandatory. Please fill in an appropriate value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mandatory_CPF_Spark_Salesman</fullName>
+        <active>true</active>
+        <description>Spark Project - CPF is mandatory for Salesman registration.</description>
+        <errorConditionFormula>AND(RecordType.DeveloperName = &quot;ICB_Salesman&quot;, ISBLANK( CPF__c))</errorConditionFormula>
+        <errorMessage>CPF is Mandatory. Please fill in an appropriate value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Mandatory_Email_Spark_Operator</fullName>
+        <active>true</active>
+        <description>Spark Project - Email is mandatory if the contact is an Ice Cream Operator.</description>
+        <errorConditionFormula>AND(   RecordType.DeveloperName = &quot;ICB_Operator&quot;,  ISBLANK(Email))</errorConditionFormula>
+        <errorMessage>E-Mail is mandatory. Please fill in  an appropriate value.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Pitch_Email_or_Phone_Mandatory</fullName>
         <active>true</active>

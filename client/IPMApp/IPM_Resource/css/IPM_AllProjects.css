@@ -116,11 +116,11 @@ li.clusterCheckLi{padding: 7px 0 20px 7px ;border-bottom: 1px #c0d3bf solid ;}
 .proTypeLabel{float: left;display: block;}
 .filterBrandList .clear_input{left:174.5px ;}
 .pgFetch {color:#4AA02C;font-weight:bold;}
-.orgIcon, .rollIcon, .oprtnIcon{float:right ;}
+.orgIcon, .rollIcon, .oprtnIcon,.stopicon{float:right;}
 .input-group.date .dateFormat{display:none;}
 .input-group.date .dateInput{width: 72%;float: left;}
 .input-group.date .dateOnlyInput input{width:100%;}
-.stopProject{border:1px #a8a8a8 solid ;background: #fff ;}
+.stopProject{border:1px #a8a8a8 solid ;background: #fff;}
 .ipmCheckbox label.stopProject:after{opacity:0;}
 .not-active {
      display:none;

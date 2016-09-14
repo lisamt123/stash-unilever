@@ -32,7 +32,13 @@ public with sharing class AA_AgentAppServiceController {
         try{
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
+<<<<<<< HEAD
+            system.debug('insert object in db'+convertRequestAgentReport(objAgentApp));
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport(objAgentApp));
+            //list<String> agentAPPDocumentIDInserted = 
+=======
+            list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport(objAgentApp));
+>>>>>>> develop
             AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
             appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
@@ -56,12 +62,20 @@ public with sharing class AA_AgentAppServiceController {
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport_Competitor(objAgentApp));
+<<<<<<< HEAD
+            //list<String> agentAPPDocumentIDInserted = 
+=======
+>>>>>>> develop
             AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
             appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
             
+<<<<<<< HEAD
+            
+=======
+>>>>>>> develop
         return appWrapperObj;
     }
     /**
@@ -88,6 +102,10 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.ClusterId__c=Id.ValueOf(objAgentApp.ClusterId);
             }
             else if(!String.isEmpty(objAgentApp.CountryId)){
+<<<<<<< HEAD
+                system.debug('User does not inserted cluster value');
+=======
+>>>>>>> develop
                 List<aa_country__c> clustidlist=[Select Cluster_Id__c from aa_Country__c where ID =:objAgentApp.CountryId Limit 1];
                 newObjToBeInserted.ClusterId__c= clustidlist[0].Cluster_Id__c;
             }
@@ -102,6 +120,10 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
             //Adding userids  to be mentioned in the feed and topics names  to be inserted
+<<<<<<< HEAD
+        
+=======
+>>>>>>> develop
           if(objAgentApp.usertomentionIds !=NUll && objAgentApp.usertomentionIds.size()>0){
         for(string str:objAgentApp.usertomentionIds)
         {
@@ -113,6 +135,10 @@ public with sharing class AA_AgentAppServiceController {
         } 
          
     
+<<<<<<< HEAD
+         system.debug('newObjToBeInserted cluster value'+newObjToBeInserted.ClusterId__c);
+=======
+>>>>>>> develop
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
@@ -159,6 +185,9 @@ public with sharing class AA_AgentAppServiceController {
             }else if(objAgentApp.CodeOfConduct == 'false'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = false;    
             }          
+<<<<<<< HEAD
+        }      
+=======
         }   
         
          if(!String.isEmpty(objAgentApp.TopicId)){
@@ -168,6 +197,7 @@ public with sharing class AA_AgentAppServiceController {
             }
             
         }   
+>>>>>>> develop
        
         //Adding New Brand Fields 
         newObjToBeInserted.OtherBrandName__c=objAgentApp.OtherBrandName;
@@ -545,6 +575,8 @@ public with sharing class AA_AgentAppServiceController {
      */    
    public AA_ApplicationWrapperObj retriveAllAgentReports(AA_ApplicationWrapperObj appWrapperObj){
   // try{
+<<<<<<< HEAD
+=======
   /* 
      Comment for Npath:
      Agent app is more like a single page application. This method is used to display the agent reports on homepage 
@@ -554,6 +586,7 @@ public with sharing class AA_AgentAppServiceController {
      As this application is already existing in prod there is no imapact on other app due to this. However resrtucturing can be considered in the upcoming
      enhancement with estimation.  
   */   
+>>>>>>> develop
       
         Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
         String urlHost =  objURL.get('Salesforce Instance URL Content').Value__c;  // Salesforce Instance URL
@@ -594,6 +627,10 @@ public with sharing class AA_AgentAppServiceController {
                    If null check is removed query will fail with exception even if one value is null
                 */   
                 
+<<<<<<< HEAD
+                system.debug('userPref Values==>'+UserPref);
+=======
+>>>>>>> develop
                  //if country only selected
                 if(UserPref.Country__c != NULL && UserPref.Cluster__c == NULL )
                 {
@@ -686,6 +723,10 @@ public with sharing class AA_AgentAppServiceController {
                 }
            }else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {     
                  
+<<<<<<< HEAD
+                system.debug('in applyfilter true'); 
+=======
+>>>>>>> develop
                 
                 requestAgentDataObj=(aa_Agent_Report__c)convertRequestAgentReport(objAgentApp);
                
@@ -766,6 +807,7 @@ public with sharing class AA_AgentAppServiceController {
                     soqlquery +=' AND Reporting_on__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ReportingOn+AA_Constants.Escapechar;
                 }
                 String recTypeId='';
+                system.debug('record type id =======>'+appWrapperObj.objAgentAppDataRequest.RecordType);
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Unilever')
                 {
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -807,6 +849,10 @@ public with sharing class AA_AgentAppServiceController {
          }else if(objAgentApp.SortOnMostLike=='true'){
             String  soqlFeedQuery='SELECT Id,likecount FROM aa_Agent_Report__Feed order by likecount desc limit 1000'  ; //+ ' OFFSET '+appWrapperObj.objAgentAppDataRequest.OffSet;
             List<aa_Agent_Report__Feed> feedlist=  database.query(soqlFeedQuery); 
+<<<<<<< HEAD
+            system.debug('FeedList==>'+feedList);
+=======
+>>>>>>> develop
             set<ID>idlist=new set<ID>();            
             String reportidInString='( ';           
             for(aa_Agent_Report__Feed item:feedlist)
@@ -824,11 +870,18 @@ public with sharing class AA_AgentAppServiceController {
        }else
            soqlquery +=' LIMIT 1000';
          
+<<<<<<< HEAD
+       system.debug('Soql query =====>'+soqlquery);
         List <aa_Agent_Report__c> tmpList=  database.query(soqlquery); 
+        system.debug('tmpList===>'+tmpList);
+=======
+        List <aa_Agent_Report__c> tmpList=  database.query(soqlquery); 
+>>>>>>> develop
         List<AA_WrapperUtility.agentReportDetail> objFinalReport = new List<AA_WrapperUtility.agentReportDetail>();        
         // To check whether current user has liked report or not 
                    Set<ID> feedIds=new Set<ID>();
                    for(aa_Agent_Report__c itemfeedlike :tmpList){
+                       system.debug('tmpList for loop===>'+itemfeedlike.Name);
                        for(aa_Agent_Report__Feed objfeedlike :itemfeedlike.Feeds){
                           if(itemfeedlike.Chatter_Post_ID__c==objfeedlike.Id){
                                feedIds.add(objfeedlike.Id);  
