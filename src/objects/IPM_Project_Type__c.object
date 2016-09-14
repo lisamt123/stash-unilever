@@ -465,5 +465,14 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	<fields>
+        <fullName>IPM_Financial_Confirm_button__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Visibility of confirm button on financial page</description>
+        <externalId>false</externalId>
+        <label>Financial Confirm button</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>IPM Project Type</label>
 </CustomObject>

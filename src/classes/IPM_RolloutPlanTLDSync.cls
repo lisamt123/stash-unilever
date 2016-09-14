@@ -26,6 +26,8 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 projIdList.add(ipmProj.Id);
             } else if (ipmProj.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && ipmProj.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
                 projIdList.add(ipmProj.Id);
+            } else if (ipmProj.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && ipmProj.IPM_ProjectGKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3) {
+            	projIdList.add(ipmProj.Id);
             }
         }
         
@@ -53,7 +55,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
     * @return       NONE
     */    
     public void notifyProjectFinanceAboutFinanceLeaderConfirmation(Map<Id, IPM_Project_Rollout__c> projIdRollout ){
-        Map<Id,IPM_Project__c> projDetails = new Map<Id,IPM_Project__c>([Select Id, IPM_Project_Leader__r.Email from IPM_Project__c where Id in : projIdRollout.keySet() and IPM_Phase__c = :IPM_ConstantUtils.PHASE_IDEAS and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL  limit 50000]);
+         Map<Id,IPM_Project__c> projDetails = new Map<Id,IPM_Project__c>([Select Id, IPM_Project_Leader__r.Email from IPM_Project__c where Id in : projIdRollout.keySet()  and ((IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and IPM_Phase__c = :IPM_ConstantUtils.PHASE_IDEAS) OR (IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and IPM_ProjectGKM__c = : IPM_ConstantUtils.GATE_KEEPING_MODEL_3))  limit 50000]);
             List<IPM_EmailOut_Notification__c> emailOut = new List<IPM_EmailOut_Notification__c>{};
             for(Id projId : projDetails.keySet()){
                 IPM_EmailOut_Notification__c emailOutNotification = new IPM_EmailOut_Notification__c();    
