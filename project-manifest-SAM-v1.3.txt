@@ -134,7 +134,7 @@ src/groups
 src/groups/SAM_Admin.group
 src/groups/SAM_Finance_Team.group
 src/groups/SAM_Team.group
-src/groups/SAM_Requester_group
+src/groups/SAM_Requester_group.group
 src/labels
 src/labels/SAM.labels
 src/layouts

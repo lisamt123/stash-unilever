@@ -3281,7 +3281,7 @@ This field will be read only for all user</description>
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>SAM_Finance_Queue_SAM_Request</fullName>
+        <fullName>SAM_Finance_Q_SAM_Request</fullName>
         <columns>NAME</columns>
         <columns>txt_Reference_Request_ID__c</columns>
         <columns>txt_Master_Clarity_Id__c</columns>
