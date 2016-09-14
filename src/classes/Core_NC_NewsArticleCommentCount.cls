@@ -4,6 +4,7 @@
   Date: 8 march 2016
   Requirement/Project Name: Unilever Salesforce Engagement
   Requirement/Description:Count the number of comments and  class name modified as per unilever standard
+  August 2016 :Auto Question Requirement  for Ask Paul Group Implemented
 */
 public with sharing Class Core_NC_NewsArticleCommentCount{
    public static void newsArticleCount (Id newsArticleid){     
@@ -20,53 +21,83 @@ public with sharing Class Core_NC_NewsArticleCommentCount{
     
     } 
     
-    //Ask Paul Handler Method
+    //Auto Question for Ask Paul Requirement
     
    public void chatterPostAskPaul(List<FeedItem> newTrigger){
-     boolean   resultGrp=false;
-     // Fetching the  ParentId's from Custom setting 
-           string  strParentIdsToCheck;
-      if(!Test.isRunningTest()){ 
-    strParentIdsToCheck = CORE_NEWS_ARTICLE__c.getinstance('GroupsToPost').Text_Value__c;  
-    
+     Boolean   resultGrp=false;
+     String  strParentIdsToCheck; 
       for(FeedItem objFI: newTrigger){ 
                 //Enter only when ParentId is not Null            
-                    if(objFI.ParentId !=null ){
-                         
+                    if(objFI.ParentId !=null){
+                         String modifiedTitle =objFI.Body;
+                         modifiedTitle = modifiedTitle.replace('&nbsp;', '');
+                         modifiedTitle = modifiedTitle.replace('&nbs', '');
+                         modifiedTitle = modifiedTitle.replace('&nb', '');
+                         modifiedTitle = modifiedTitle.replace('&n', '');
+                         modifiedTitle = modifiedTitle.replace('&;', '');
+                         modifiedTitle = modifiedTitle.replace('</b>', ' ');
+                         modifiedTitle = modifiedTitle.replace('<b>', ' ');
+                         modifiedTitle = modifiedTitle.replace('<b', ' ');
+                         modifiedTitle = modifiedTitle.replace('</p>', '');
+                         modifiedTitle = modifiedTitle.replace('</p', '');
+                         modifiedTitle = modifiedTitle.replace('<p>', '');
+                         modifiedTitle = modifiedTitle.replace('</i>', ' ');
+                         modifiedTitle = modifiedTitle.replace('<i>', ' ');
+                         modifiedTitle = modifiedTitle.replace('</i', ' '); 
+                         modifiedTitle = modifiedTitle.replace('</u>', ' ');
+                         modifiedTitle = modifiedTitle.replace('<u>', ' ');
+                         modifiedTitle = modifiedTitle.replace('</u', ' ');
+                         String finalTitle=  modifiedTitle .mid(0, 60);
+                         Integer result = finalTitle.length();
+                         if(result <60){
+                         finalTitle=finalTitle+'...';
+                         }
+                      
+/*
+String regExp = '[<([A-Z][A-Z0-9]*)\b[^>]*>(.*?)]';
+String replacement = '1';
+String finalTitle= modifiedTitle.replaceAll('[\\<.*?\\>]', ' ');
+finalTitle=  finalTitle.mid(0, 40);
+*/
+
+                        
+                        
+                          // Fetching the  GroupId's from Custom setting 
+                    strParentIdsToCheck = CORE_NEWS_ARTICLE__c.getinstance('GroupsToPost').Text_Value__c;  
+                   
                        // check if newly inserted Chatter post (record in feeditem) has ParentId matching to one of the values in the custom setting instance value
                        for(String strGrp:strParentIdsToCheck.split(',')){ 
                           String strGrpsToCheck = objFI.ParentId;
                            if(strGrpsToCheck == strGrp){
-                              
-                              resultGrp=true;  
+                                resultGrp=true;  
                              }
                            
                           }
+                 
                          //check if  if newly inserted FeedItem body is not Null 
-                         if(objFI.Body!= null && objFI.Type!='QuestionPost' )  {
+                         if(objFI.Body!= null && objFI.Type!='QuestionPost' && objFI.Type=='TextPost' )  {
                            if( objFI.Body.contains('?')  && resultGrp==true){
                               
                                //Change FeedItem Type to Question Post
-                                 
+                                  objFI.Title=finalTitle;
                                   objFI.Type = 'QuestionPost'; 
-                                  objFI.Title='My Question is...';
                                   resultGrp=false;
                                }
                              }
                         // check if newly inserted FeedItem post title is not null     
-                        if(objFI.Title!= null && objFI.Type!='QuestionPost' ) {
+                        if(objFI.Title!= null && objFI.Type!='QuestionPost'  && objFI.Type=='TextPost') {
                            if( objFI.Title.contains('?')  && resultGrp==true){
                             
                                //Change FeedItem Type to Question Post 
-                                  objFI.Title='My Question is...';
+                                  objFI.Title=finalTitle;
                                   objFI.Type = 'QuestionPost'; 
                                   resultGrp=false;
                                }
                              }
-                             
+                      
                           }//end of Parent If
                       }// end of Parent for 
                  
-                 } 
+                 
                 }
    }
