@@ -41,7 +41,7 @@ public without sharing class WU_SetWarehousePOCHandler
         for(User u : [SELECT ID, EMAIL FROM USER WHERE isActive=true and Email IN :sUser]){
             mUserIdByEmail.put(u.Email, u.Id);
         }
-        List<WU_Master_Warehouse__Share> wareHousesShare = new List<WU_Master_Warehouse__Share>();
+        
         for(WU_Master_Warehouse__c wareHouse: InsertedItems){
             if(String.isNotBlank(wareHouse.WU_WarehousePOC_Email__c) && mUserIdByEmail.ContainsKey(wareHouse.WU_WarehousePOC_Email__c)){
                 wareHouse.OwnerId=mUserIdByEmail.get(wareHouse.WU_WarehousePOC_Email__c);
