@@ -524,8 +524,8 @@
         .ipmButtonGroup .ipmAssortDone, .ipmButtonGroup .ipmAssortReset {font-weight:bold;text-align: center; padding: 5px 21px;  width: 100%;  display: inline-block;  margin: 5px 0; cursor:pointer;}	
 	
 	/* Country Feeback BB Styles */
-	.feedbackContainer{margin-bottom: 10px;  border-bottom: 1px solid #ccc;  padding-bottom: 10px;}
-	.countryProName{margin-bottom:10px;}
+	.feedbackContainer{margin-bottom: 10px;  border-bottom: 1px solid #ccc;  padding-bottom: 10px; margin-bottom:0;}
+	.countryProName{margin-bottom:10px; margin-top:10px;}
 	.countryProName span{margin-left:10px;}
 	
 	/* CMI Table */
@@ -846,3 +846,4 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
 .ipmButtonSet.mrgbtmnone {margin-bottom: 0px;}
 .padtopbtm{margin:10px 0px;display:inline-block;}
 .Mtop {margin-top: 33px;}
+.feedbkbluebox{background: #dceefa;border:1px solid #ccc;padding:10px;margin-bottom:10px;font-weight:bold;}
