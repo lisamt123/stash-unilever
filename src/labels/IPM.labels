@@ -1,3 +1,24 @@
+	<labels>
+	        <fullName>IPM_PDL_Not_Approved</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>PDL Not Approved</shortDescription>
+	        <value>Sorry! this cannot be approved yet. See below for details</value>
+	    </labels>
+	<labels>
+	        <fullName>IPM_Product_Design_Lock_Document</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>Product Design Lock Document</shortDescription>
+	        <value>Product Design Lock Document:</value>
+	    </labels>
+	<labels>
+        <fullName>IPM_Fill_PDL_Document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fill PDL Document</shortDescription>
+        <value>First get your Product Design Lock Document confirmed at GCLT</value>
+    </labels>
     <labels>
         <fullName>IPM_ADD_SELECTED_MEMBERS</fullName>
         <language>en_US</language>
