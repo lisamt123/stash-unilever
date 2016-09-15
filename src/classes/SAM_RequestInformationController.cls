@@ -18,7 +18,6 @@ public with sharing class SAM_RequestInformationController{
  
     public Id requestId ;
     public Map<String,String> objectMap {get; set;}
-    public List<RecordType>recordTypeInfoList;
     Public SAM_Request__c requestRecord;
     public String mandatoryStringFlag {get; set;}   
     public String redirectUrl {public get; private set;}
@@ -27,15 +26,7 @@ public with sharing class SAM_RequestInformationController{
     public Boolean flagToShowSubmitbutton{get; set;}
     public String commentsStr{get;set;}
     public boolean reminderSetFlag{get;set;}
-    public List<PermissionSetAssignment> loggedInUserPermissionList;
-    public PermissionSet requestorPermissionSet;  
-    public PermissionSet samAdminPermissionSet;  
-    public PermissionSet samTeamPermissionSet; 
-    public PermissionSet financeTeamPermissionSet; 
-    public boolean requestorFlag;
-    public boolean samAdminFlag;
-    public boolean samTeamFlag;
-    public boolean financeTeamFlag;  
+    public boolean samTeamFlag; 
     public boolean crossChargeInfoSetFlag{get;set;}
     public String subjectStr{get;set;}
     public Map<String,Schema.SobjectField> mandatoryFields;
@@ -54,21 +45,21 @@ public with sharing class SAM_RequestInformationController{
         this.stdController = stdController;
         shouldRedirect = false; 
         reminderSetFlag = false;
-        requestorFlag =false;
-        samAdminFlag = false;
+        boolean requestorFlag =false;
+        boolean samAdminFlag = false;
         samTeamFlag =false;
-        financeTeamFlag =false;
+        boolean financeTeamFlag =false;
         crossChargeInfoSetFlag =false;
         mandatoryFields = new Map<string,Schema.SobjectField>();
         reverseMandatoryFields = new Map<string,Schema.SobjectField>();
         validation_message = new Map<string,String>();
         reverseValidation_message = new Map<string,String>();
         
-        loggedInUserPermissionList = [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId()];
-        requestorPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Requestor' limit 1];
-        samAdminPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Admin' limit 1];
-        samTeamPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Team' limit 1];
-        financeTeamPermissionSet =  [select id,Name from PermissionSet where Name = 'SAM_Finance_Team' limit 1];
+        List<PermissionSetAssignment>loggedInUserPermissionList = [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId()];
+        PermissionSet requestorPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Requestor' limit 1];
+        PermissionSet samAdminPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Admin' limit 1];
+        PermissionSet samTeamPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Team' limit 1];
+        PermissionSet financeTeamPermissionSet =  [select id,Name from PermissionSet where Name = 'SAM_Finance_Team' limit 1];
          
         if(loggedInUserPermissionList.size()>0 ){
           for(PermissionSetAssignment permissionSetObj:loggedInUserPermissionList){
@@ -100,7 +91,7 @@ public with sharing class SAM_RequestInformationController{
         }    
          if(ApexPages.currentPage().getParameters().get(SAM_Constants.ID) != null) {      
             requestId = ApexPages.currentPage().getParameters().get(SAM_Constants.ID);
-            checkMessageValidation(requestId);
+            checkMessageValidation(requestId,requestorFlag,samAdminFlag,financeTeamFlag);
          }
      }
    
@@ -110,7 +101,7 @@ public with sharing class SAM_RequestInformationController{
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-     boolean checkMessageValidation(Id requestId){
+     boolean checkMessageValidation(Id requestId,boolean requestorFlag,boolean samAdminFlag,boolean financeTeamFlag){
         mandatoryStringFlag = null;
         string queryString = 'select ';
         objectMap = new Map<String,String>();
@@ -251,13 +242,13 @@ public with sharing class SAM_RequestInformationController{
         system.debug('i am in submit'+requestRecord);
         //Dinesh 27/7 - modified below line to fix SonarQube issue - Variable not assigned: Found 'UR'-anomaly for variable 'resultflag' (lines '140'-'147').
          //boolean resultFlag;
-         boolean resultFlag = false;
+         /*boolean resultFlag = false;
          if(requestId !=null){
              resultFlag= checkMessageValidation(requestId);
-         }
+         }*/
          //Dinesh 27/7 - modified below if condition to fix SonarQube issue - Avoid unnecessary comparisons in boolean expressions
          //if(resultFlag == true){
-         if(resultFlag){
+         //if(resultFlag){
              if(requestRecord.txt_Request_Type__c == SAM_Constants.SAM_RW_CROSSCHARGE_REQUEST){
                  requestRecord.pkl_Status__c= SAM_Constants.AWAITINGCHARGE;
              }else {
@@ -267,7 +258,7 @@ public with sharing class SAM_RequestInformationController{
              system.debug('requestRecord.pkl_Status__c>>'+requestRecord.pkl_Status__c);
              update requestRecord;
              system.debug('requestRecord>>'+requestRecord);
-         }
+         //}
          system.debug('requestRecord>>>'+requestRecord.pkl_Status__c); 
          redirectUrl = stdController.view().getUrl();
      }
