@@ -1,0 +1,16 @@
+Hi {!SAM_Request__c.CreatedBy},
+
+Additional mandatory details are required by the SAM demand management team to make progress on  the service request  {!SAM_Request__c.Name}. The current status is "Details pending".
+
+Please enter the following details in the system
+<DO details> Enter the Do Number for the line which is DO/PO applicable in the "Quotation Details"
+<Run cost details> Please share the information with SAM Team in "Action comments" of the request
+<Build details> Download the .csv/.xls template from the "Files" tab. Enter the details applicable for your request type & upload the same in the "Notes and Attachment" section in the request form. (this hold good for No-Software spend cases also)  
+
+Please check the chatter/comments section for more information.
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}
