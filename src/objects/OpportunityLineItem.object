@@ -215,6 +215,17 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>FS_Distributor_Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>ProdDistributor__r.ShippingStreet &amp; &quot;,&quot; &amp;  ProdDistributor__r.ShippingCity &amp; &quot;,&quot; &amp;  ProdDistributor__r.ShippingState &amp; &quot;,&quot; &amp;  ProdDistributor__r.ShippingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>For reporting purposes - to supply chain</inlineHelpText>
+        <label>Distributor Address</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_FixedPrice__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

@@ -3,7 +3,7 @@ public class FS_NewMonthlyClaimCaseSchedule_Test {
 public static String CRON_EXP = '0 0 0 3 9 ? 2022';
     Static testmethod void testSchedule(){
         test.startTest();
-        String jobId = System.schedule('FS_NewMonthlyClaimCase_BatchSchedule',CRON_EXP,new FS_NewMonthlyClaimCase_BatchSchedule());
+        String jobId = System.schedule('FS_NewMonthlyClaimCase_Test',CRON_EXP,new FS_NewMonthlyClaimCase_BatchSchedule());
         CronTrigger ct = [SELECT Id, CronExpression, TimesTriggered,
                           NextFireTime FROM CronTrigger WHERE id = :jobId];
         // Verify the expressions are the same

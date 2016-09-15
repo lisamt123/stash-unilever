@@ -1018,7 +1018,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
  Data Source : SAP | Integration : Mule | Security Level : Restricted</description>
         <externalId>false</externalId>
         <label>Customer Legal Name</label>
-        <length>50</length>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>

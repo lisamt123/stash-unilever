@@ -1,6 +1,6 @@
 public with sharing class FS_UtilMABETool {
     
-    Private static final string STATUS_WON='05 – Won';
+    Private static final string STATUS_WON=Label.FS_Opportunity_Stage_Won;
     
 /** Method getNewClosedOpportunity to set New opportunity which has been closed
 *  @name getNewClosedOpportunity

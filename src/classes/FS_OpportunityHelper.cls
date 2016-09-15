@@ -8,7 +8,7 @@ VERSION  AUTHOR         DATE          DETAIL Description
 ***********************************************************************/
 
 public with sharing class FS_OpportunityHelper {
-    Private static final string STATUS_WON='05 – Won';
+    Private static final string STATUS_WON=Label.FS_Opportunity_Stage_Won;
     Private static final string STATUS_CLOSED_WON='Closed Won';
     Private static final string STATUS_CLOSED_LOST='Closed Lost';
     Private static final string ERROR_MESSAGE='The following exception has occurred: ';
@@ -125,10 +125,10 @@ public with sharing class FS_OpportunityHelper {
                 tempOppList=new List<Opportunity>();
                 tempOppList=mapAccPlanOpportunity.get(AccPlan.Id);           
                 for(Opportunity opp : tempOppList)
-                {
+                {                    
                     if(opp.amount !=null){
                         record_Count=record_Count+1;
-                        //If opportunity stage is Won then add amount to Gain on account plan
+                        //If opportunity stage is Won then add amount to Gain on account plan                        
                         if(opp.StageName.equals(STATUS_CLOSED_WON) || opp.StageName.equals(STATUS_WON)){
                             opportunity_Gain=opportunity_Gain+Integer.valueOf(opp.Amount);
                         }

@@ -1,4 +1,10 @@
 public with sharing class FS_UtilTestDataSetup {
+    Private static final string STATUS_UNIVERSE=Label.FS_Opportunity_Stage_Universe;
+    Private static final string STATUS_FUNNEL=Label.FS_Opportunity_Stage_Funnel;
+    Private static final string STATUS_COMMITMENT=Label.FS_Opportunity_Stage_Commitment;
+    Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
+    Id newRecordTypeId=recordIdBasedonDeveloperName.get('NAFSMABETool');
+    Id existingRecordTypeId=recordIdBasedonDeveloperName.get('Existing');  
     //Method to create user
     Public user createTestUser(){
         String profile='System Administrator';
@@ -45,16 +51,16 @@ public with sharing class FS_UtilTestDataSetup {
         FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
         insert oppCustomSettings;            
         // Set up the Account records            
-        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-        Id existingRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();           
+        //Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+        //Id existingRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();           
         
         //Set up Opportunity records
         List<Opportunity> opportunities = new List<Opportunity>();            
         for(contract con:listContract){
             For(Integer i=0;i<10;i++){
-                opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,stageName = '03 – In the funnel',CloseDate = Date.today()+30,contractId=con.id,recordtypeId=newRecordTypeId,DealApproved__c=false));   
+                opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,stageName = STATUS_FUNNEL,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=newRecordTypeId,DealApproved__c=false));   
             }                                 
-            opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,StageName = '01 – Universe',CloseDate = Date.today()+30,contractId=con.id,recordtypeId=existingRecordTypeId));
+            opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,StageName = STATUS_UNIVERSE,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=existingRecordTypeId));
         }
         insert opportunities;
         return opportunities;
@@ -93,7 +99,7 @@ public with sharing class FS_UtilTestDataSetup {
         FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
         insert oppCustomSettings;            
         // Set up the Account records            
-        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+        //Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
         //Set up Opportunity records
         List<Opportunity> opportunities = new List<Opportunity>();
         //Create 10 opportunities for each objective
@@ -159,7 +165,7 @@ public with sharing class FS_UtilTestDataSetup {
     Public List<Opportunity> closeOpportunity(List<Opportunity> oppList){
         List<Opportunity> ListNewOppToBeclosed=new List<Opportunity>();
         For(Opportunity Opp: oppList){                
-            Opp.StageName='04 - Verbal Commitment';
+            Opp.StageName=STATUS_COMMITMENT;
             Opp.DealApproved__c=true;
             ListNewOppToBeclosed.add(Opp);
         }
