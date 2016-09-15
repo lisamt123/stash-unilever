@@ -126,41 +126,43 @@
         <fullName>Year__c</fullName>
         <externalId>false</externalId>
         <label>Year</label>
-        <picklist>
-            <picklistValues>
-                <fullName>2013</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2014</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2015</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2016</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2017</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2018</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2019</fullName>
-                <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
-            <sorted>false</sorted>
-        </picklist>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>2013</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2014</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2015</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2016</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2017</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2018</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2019</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <label>CI_Accounting Treatment</label>
     <listViews>
