@@ -705,31 +705,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         regionalProjNKFinMap = new Map<Id, IPM_Financial__c>(); // this map will hold project id and corresponding Non Key financial records
         
         try{   
-        list<IPM_Financial__c> projectFinancialList = new list<IPM_Financial__c>([SELECT id,
-		                                                                                  name,
-		                                                                                  Financial_External_ID__c,
-		                                                                                  Display_Name__c, 
-		                                                                                  Business_Impact_Global__c,
-		                                                                                  Business_Impact_Regional__c,
-		                                                                                  Business_Impact_Local__c, 
-		                                                                                  Parent_Project__r.IPM_Project_Name__c,
-		                                                                                  Regional_Project__r.id, 
-		                                                                                  Local_Project__r.id,
-		                                                                                  Parent_Project__r.id, 
-		                                                                                  Regional_Project__r.IPM_Project_Name__c, 
-		                                                                                  Regional_Project__r.IPM_Project_Rollout__c,
-		                                                                                  Regional_Project__r.IPM_Project_Type__c,
-		                                                                                  Parent_Project__r.IPM_Project_Type__c,
-		                                                                                  Local_Project__r.IPM_Project_Type__c,
-		                                                                                  Local_Project__r.IPM_Project_Name__c,
-		                                                                                  Misaligned__c,
-		                                                                                  IPM_Auto_Aligned_Fin_TLD__c,
-		                                                                                  IPM_Project_Rollout__r.id,
-		                                                                                  IPM_CPP_Regional__c,
-		                                                                                  IPM_CPP_Local__c                                                                                                                                                                            
-                                                                                  FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);
-        
-            for(IPM_Financial__c fi:projectFinancialList){
+        list<IPM_Financial__c> projectFinancialList = new list<IPM_Financial__c>([SELECT id,name,Financial_External_ID__c,Display_Name__c,Business_Impact_Global__c,Business_Impact_Regional__c,Business_Impact_Local__c,Parent_Project__r.IPM_Project_Name__c,Regional_Project__r.id,Local_Project__r.id,Parent_Project__r.id,Regional_Project__r.IPM_Project_Name__c,Regional_Project__r.IPM_Project_Rollout__c,Regional_Project__r.IPM_Project_Type__c,Parent_Project__r.IPM_Project_Type__c,Local_Project__r.IPM_Project_Type__c,Local_Project__r.IPM_Project_Name__c,Misaligned__c,IPM_Auto_Aligned_Fin_TLD__c,IPM_Project_Rollout__r.id,IPM_CPP_Regional__c,IPM_CPP_Local__c FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset() Limit 50000]);  
+		    for(IPM_Financial__c fi:projectFinancialList){
                 if(fi.Local_Project__r.id !=null && (fi.Local_Project__r.IPM_Project_Name__c == fi.Financial_External_ID__c  || fi.Local_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
                     projFinMap.put(fi.Local_Project__r.id,fi);
                     financialIdSet.add(fi.id);
@@ -761,26 +738,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
          //Fetching Financial year records
         projFinYrMap = new map<String, List<IPM_Financial_Year__c>>();  //This map will hold project id and financial year records
         try{ 
-        list<IPM_Financial_Year__c> projectFinancialYrList = new list<IPM_Financial_Year__c>([SELECT id,
-                                                                                              name,
-                                                                                              Financial_External_ID__c,
-                                                                                              IPM_Financial__r.Parent_Project__r.Id,
-                                                                                              IPM_Financial__r.Regional_Project__r.Id,
-                                                                                              IPM_Financial__r.Local_Project__r.Id,
-                                                                                              IPM_Financial__r.Id,
-                                                                                              IPM_Financial__r.Business_Impact_Global__c,
-                                                                                              Year__c,
-                                                                                              Gross_Profit_Global__c,
-                                                                                              Gross_Profit_Regional__c,
-                                                                                              Gross_Profit_Local__c,
-                                                                                              Turnover_Global__c,
-                                                                                              Turnover_Local__c,
-                                                                                              Turnover_Regional__c,
-                                                                                              Year_Type__c,
-                                                                                              PL_Type__c 
-                                                                                              FROM IPM_Financial_Year__C 
-                                                                                              WHERE IPM_Financial__c IN:financialIdSet Limit 50000]);
-        
+        list<IPM_Financial_Year__c> projectFinancialYrList = new list<IPM_Financial_Year__c>([SELECT id,name,Financial_External_ID__c,IPM_Financial__r.Parent_Project__r.Id,IPM_Financial__r.Regional_Project__r.Id,IPM_Financial__r.Local_Project__r.Id,IPM_Financial__r.Id,IPM_Financial__r.Business_Impact_Global__c,Year__c,Gross_Profit_Global__c,Gross_Profit_Regional__c,Gross_Profit_Local__c,Turnover_Global__c,Turnover_Local__c,Turnover_Regional__c,Year_Type__c,PL_Type__c FROM IPM_Financial_Year__C WHERE IPM_Financial__c IN:financialIdSet Limit 50000]); 
             for(IPM_Financial_Year__c fy:projectFinancialYrList){
                 
                 //For Local Projects 
@@ -839,22 +797,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
        //Fetching milestone records and creating map 
         projMilestoneMap = new map<id,list<IPM_Milestone__c>>();
         try{
-        list<IPM_Milestone__c> projMilestoneList = new list<IPM_Milestone__c>([SELECT id,
-                                                                               Name,
-                                                                               IPM_Type_of_gate__c,
-                                                                               IPM_Name__c,
-                                                                               IPM_Due_Date__c,                                                                            
-                                                                               IPM_Completed_on__c,
-                                                                               IPM_Proposed_Date__c,                                                                           
-                                                                               IPM_Target_Launch_Year__c,
-                                                                               IPM_Target_Launch_Month__c,
-                                                                               IPM_Actual_Target_Launch_Year__c,
-                                                                               IPM_Actual_Target_Launch_Month__c,
-                                                                               IPM_Project__r.id,
-                                                                               IPM_Type_of_Milestone__c,
-                                                                               IPM_Project__r.Name                                                                     
-                                                                               FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
-    
+        list<IPM_Milestone__c> projMilestoneList = new list<IPM_Milestone__c>([SELECT id, Name,IPM_Type_of_gate__c,
+                                                                               IPM_Name__c,IPM_Due_Date__c,IPM_Completed_on__c,IPM_Proposed_Date__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Target_Launch_Year__c,IPM_Actual_Target_Launch_Month__c,IPM_Project__r.id,IPM_Type_of_Milestone__c,IPM_Project__r.Name FROM IPM_Milestone__c WHERE IPM_Project__r.id IN:projectIdMap.keyset() Limit 50000]);
             for(IPM_Milestone__c im:projMilestoneList){
                 if(String.isNotBlank(im.IPM_Type_of_Milestone__c) && (im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_Utils.Standard) || im.IPM_Type_of_Milestone__c.equalsignorecase(IPM_ConstantUtils.STRING_BET))){            
                     if(!projMilestoneMap.containskey(im.IPM_Project__r.id)){
