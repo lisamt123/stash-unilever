@@ -19,9 +19,9 @@
             component.set("v.allCompetitorNameList", responseData.competitorNameList);
             component.set("v.allCategoryList", responseData.categoryList);
         });
-        $A.run(function() {
+        //$A.run(function() {
             $A.enqueueAction(action); 
-        });
+        //});
         var actionIds = component.get("c.getfiterDataIds");
         actionIds.setCallback(this, function(a) {
             var responseId = a.getReturnValue();
