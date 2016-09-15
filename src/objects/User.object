@@ -206,6 +206,14 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>Checkbox</type>
     </fields>
+	<fields>
+        <fullName>WU_Permission_set_Check__c</fullName>
+        <defaultValue>false</defaultValue>        
+        <externalId>false</externalId>
+        <label>Permission set Check</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Advisor_Correspondence_Display_Name__c</fullName>
         <description>CEC: To capture the advisor correspondence display name. This will be used in email and letters,</description>
