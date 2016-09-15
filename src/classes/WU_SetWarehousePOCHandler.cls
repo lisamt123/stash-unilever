@@ -90,10 +90,11 @@ public without sharing class WU_SetWarehousePOCHandler
                 }
             }
             IsNewMonth(wc);
-            setOwner(updatedItems);
+            
             
         }
-        
+		
+        setOwner(updatedItems);
 
     }
     
