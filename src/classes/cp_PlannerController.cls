@@ -1,14 +1,15 @@
 global with sharing class cp_PlannerController {
+    Public static final string eventObj='cp_Event__c';
 
     // CONSTRUCTOR
-	public cp_PlannerController() {}
+    public cp_PlannerController() {}
 
 
     //    =========================
     //          PAGE VARIABLES 
     //    =========================
 
-	// The planner preference of the logged in user. If no preference exists, take the preference
+    // The planner preference of the logged in user. If no preference exists, take the preference
     // where no user is assigned
     public static cp_PlannerPreference__c defaultPreference
     {
@@ -114,7 +115,7 @@ global with sharing class cp_PlannerController {
     @RemoteAction
     public static String getNewActionUrl()
     {
-        return '/' + Schema.getGlobalDescribe().get('cp_Event__c').getDescribe().getKeyPrefix() + '/e?isdtp=vw'; 
+        return '/' + Schema.getGlobalDescribe().get(eventObj).getDescribe().getKeyPrefix() + '/e?isdtp=vw'; 
     }
 
     // Get all the Records retrieved in Json Format 
@@ -203,9 +204,10 @@ global with sharing class cp_PlannerController {
             {
                 appendedPlanners += plannerLoc.Planner__c + ';';
                 
-                if (plannerLoc.Planner__c == defaultPreference.Planner__c)
+                //if (plannerLoc.Planner__c == defaultPreference.Planner__c)
+                    if (plannerLoc.Planner__c == defaultPreference.Planner__c && plannerLoc.OptOut__c)
                 {
-                    if (plannerLoc.OptOut__c)
+                   // if (plannerLoc.OptOut__c)
                     {
                         isOptOut = true;
                     }
@@ -537,20 +539,20 @@ global with sharing class cp_PlannerController {
 
         // Get the SObject describe info
         Map<String, Schema.SObjectField> fieldMap = new Map<String, Schema.SObjectField>();
-        Schema.SObjectType t = Schema.getGlobalDescribe().get('cp_Event__c');
+        Schema.SObjectType t = Schema.getGlobalDescribe().get(eventObj);
         Schema.DescribeSObjectResult r = t.getDescribe();
         
         Map<String, Map<String, Schema.SObjectField>> objectFieldDescribeMap = new Map<String, Map<String, Schema.SObjectField>>();
         
-        if (objectFieldDescribeMap.get('cp_Event__c') == null) 
+        if (objectFieldDescribeMap.get(eventObj) == null) 
         {
             fieldMap = r.fields.getMap();
-            objectFieldDescribeMap.put('cp_Event__c', fieldMap);
+            objectFieldDescribeMap.put(eventObj, fieldMap);
                 
         } 
         else 
         {
-            fieldMap = objectFieldDescribeMap.get('cp_Event__c');
+            fieldMap = objectFieldDescribeMap.get(eventObj);
         }
         
         return fieldMap;

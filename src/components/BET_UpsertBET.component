@@ -69,6 +69,7 @@
                 <apex:inputText value="{!catName}" disabled="true"/> 
             </div>
         </div>
+        
 
         <div class="form-item">
             <div class="item-label">
@@ -101,7 +102,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
+                <apex:outputLabel Title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}">{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
                 <span class="SecButtonSet infoMarTop">
                 <a class="icoButton info smalllinfo" title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}"></a>
                 </span>
