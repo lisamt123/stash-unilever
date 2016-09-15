@@ -6,7 +6,12 @@ src/objects/OpportunityLineItem.object
 src/objects/Account.object
 src/classes
 src/classes/FS_ClaimedCasesForeCastingSchedule_Test.cls
+src/classes/FS_ClaimedCasesForeCastingSchedule_Test.cls-meta.xml
 src/classes/FS_NewMonthlyClaimCaseSchedule_Test.cls
+src/classes/FS_NewMonthlyClaimCaseSchedule_Test.cls-meta.xml
 src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
 src/classes/FS_UtilMABETool.cls
+src/classes/FS_UtilMABETool.cls-meta.xml
 src/classes/FS_UtilTestDataSetup.cls
+src/classes/FS_UtilTestDataSetup.cls-meta.xml
