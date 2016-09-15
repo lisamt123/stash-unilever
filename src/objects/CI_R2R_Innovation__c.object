@@ -1,4 +1,931 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <customHelpPage>CI_R2R_Innovations_Help_Page</customHelpPage>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Alternate_Scope__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If you select &apos;Others&apos; in Geographical Scope please provide details</inlineHelpText>
+        <label>Alternate Scope</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Benifit_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Benifit Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Benifit_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Benifit Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>3PSP FTE Savings</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Audit reference</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Clear R&amp;R</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Compliance requirement</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cost Reduction</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dependency</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Efficiency</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GL hygiene</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GPM Alignment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Harmonization &amp; Standardization</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Process Efficiency</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Risk mitigation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>System improvement / alignment</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>TBC</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Business_cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>130000</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Count_for_Budget__c</fullName>
+        <externalId>false</externalId>
+        <label>Count for Budget</label>
+        <summaryForeignKey>CI_R2R_Budget__c.CI_R2R_Innovation__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>USD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>EUR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>INR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GBP</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Funnel_Status__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>1 Pre-ideas:Idea under discussion, nothing entered into Clarity yet;2 Ideas:BOSCARD created, project registered in Clarity;3 Feasibility:Investigation is under progress: tools / solution selection. Some fund should be already allocated to the project.4 Ca</inlineHelpText>
+        <label>Funnel Stage</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1 Pre-ideas</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>2 Ideas</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>3 Capability</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>4 Feasibility</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>5 Launch</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>6 Implemented</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>ON HOLD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>CLOSED</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Geographical_Scope__c</fullName>
+        <externalId>false</externalId>
+        <label>Geographical Scope</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>AAR</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>All Countries</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>America</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Arabia*ANZ also</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Benelux</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>BENELUX &amp; DACH</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Brazil</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>China</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Europe</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>France</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GCAD</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Geographical Scope</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ghana</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Global</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Grater Caribbean</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>HK and TW</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>India &amp; Sri Lanka</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>India - Branch and HO</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Indonesia</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ireland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Italy</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Latam</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Latam excluding Mexico</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mexico</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Mexico, UASCC</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Middle America</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>MYSG</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>North America</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>North America and Europe</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Others</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>P&amp;H</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>PHP(phillipines)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Poland</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>RUB</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sirius Phase I (CEE, NORDICS, DACH)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sirius Phase II (Benelux, France)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sirius Phase III (Spain)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Souther cone</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Turkey</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>UAE</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>UAPL</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Various</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IT_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>IT Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Landscape__c</fullName>
+        <externalId>false</externalId>
+        <label>Landscape</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Cordillera</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Fusion</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sirius</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>U2K2</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Global</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>TBC</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project2__c</fullName>
+        <externalId>false</externalId>
+        <label>Project#</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project3__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(R2R_SME_Area__c, &apos;Account Reconciliation&apos;), ( text(YEAR(today())) +&apos;.AR.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;FX Revaluation&apos;), (text(YEAR(today())) +&apos;.FX.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Intercompany&apos;), (text(YEAR(today())) +&apos;.IC.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Period-End&apos;), (text(YEAR(today())) +&apos;.PE.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Project&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;SAP Roles&apos;), (text(YEAR(today())) +&apos;.SR.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tax&apos;), (text(YEAR(today())) +&apos;.TX.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Tools&apos;), (text(YEAR(today())) +&apos;.PT.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Continuous Improvement&apos;), (text(YEAR(today())) +&apos;.CI.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Fixed Assets&apos;), (text(YEAR(today())) +&apos;.FA.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Financial Reporting&apos;), (text(YEAR(today())) +&apos;.FR.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Journal Entries&apos;), (text(YEAR(today())) +&apos;.FA.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;GL MDM&apos;), (text(YEAR(today())) +&apos;.MDM.&apos;+ Name), 
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Direct Tax&apos;), (text(YEAR(today())) +&apos;.DT.&apos;+ Name),
+IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) +&apos;.IDT.&apos;+ Name),
+(text(YEAR(today())) +&apos;.&apos;+ text( R2R_SME_Area__c ) +&apos;.&apos;+ Name))))))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project3#</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>APM/SCOA/Reporting updates</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Business / Global Functions initiated</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Continuous Improvements</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Controls Embedding / enhancement</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Dependency</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>EFCR roll out</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Efficiency</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Efficiency (with 3PSP)</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GPM &amp; Exception resolution</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Local / Fiscal projects</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>System Related</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Project_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Description</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>7</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_Lead_del__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Lead</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>R2R_SME_Area__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Kamila Marzetz</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Niraj Kothari</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Padma Prasad</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Cristina Butu</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Valeria Gulyas</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sankarnarayanan V</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Nikoletta Pinter</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Vivekaa Arumugam</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Veerabhadran VK</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Ashwathi Upalakkal</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Sheetal Pinjarkar</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>SAP Roles</controllingFieldValue>
+                <controllingFieldValue>Tax</controllingFieldValue>
+                <controllingFieldValue>Direct Tax</controllingFieldValue>
+                <controllingFieldValue>FX Revaluation</controllingFieldValue>
+                <controllingFieldValue>Journal Entries</controllingFieldValue>
+                <controllingFieldValue>GL MDM</controllingFieldValue>
+                <controllingFieldValue>Period-End</controllingFieldValue>
+                <valueName>Niraj Kothari</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SAP Roles</controllingFieldValue>
+                <controllingFieldValue>FX Revaluation</controllingFieldValue>
+                <controllingFieldValue>Journal Entries</controllingFieldValue>
+                <controllingFieldValue>GL MDM</controllingFieldValue>
+                <controllingFieldValue>Period-End</controllingFieldValue>
+                <valueName>Veerabhadran VK</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tax</controllingFieldValue>
+                <controllingFieldValue>Indirect Tax</controllingFieldValue>
+                <controllingFieldValue>Financial Reporting</controllingFieldValue>
+                <valueName>Nikoletta Pinter</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Tools</controllingFieldValue>
+                <valueName>Sheetal Pinjarkar</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>GPM</controllingFieldValue>
+                <controllingFieldValue>Continuous Improvement</controllingFieldValue>
+                <valueName>Valeria Gulyas</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>SCOA</controllingFieldValue>
+                <controllingFieldValue>Financial Reporting</controllingFieldValue>
+                <valueName>Cristina Butu</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Account Reconciliation</controllingFieldValue>
+                <valueName>Kamila Marzetz</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Continuous Improvement</controllingFieldValue>
+                <valueName>Vivekaa Arumugam</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Fixed Assets</controllingFieldValue>
+                <valueName>Padma Prasad</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Intercompany</controllingFieldValue>
+                <valueName>Sankarnarayanan V</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Journal Entries</controllingFieldValue>
+                <valueName>Ashwathi Upalakkal</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;&amp;Id , 
+ Project2__c 
+,&apos;_self&apos;)</formula>
+        <label>Project#</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>R2R_SME_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>R2R SME Area</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Account Reconciliation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Continuous Improvement</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Fixed Assets</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Financial Reporting</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>FX Revaluation</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Intercompany</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Journal Entries</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GL MDM</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Period-End</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Project</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SAP Roles</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tax</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Tools</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>GPM</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>SCOA</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Direct Tax</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Indirect Tax</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>RAG_Color__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(CASE(RAG__c,&quot;Green&quot;, &quot;/img/samples/color_green.gif&quot;,
+&quot;Amber&quot;, &quot;/img/samples/color_yellow.gif&quot;,
+&quot;Red&quot;, &quot;/img/samples/color_red.gif&quot;, 
+&quot;/s.gif&quot;), 
+&quot;status color&quot;,30, 80)</formula>
+        <label>RAG Color</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RAG__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Red- Delays &amp; Overspend
+Amber-Risks to deliver on time /in budget. Risks are being mitigated.
+Green- On track</inlineHelpText>
+        <label>RAG</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Red</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Amber</fullName>
+                    <default>false</default>
+                </value>
+                <value>
+                    <fullName>Green</fullName>
+                    <default>false</default>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Target_Completion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Completion Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>text(Business_cost__c  +  IT_Cost__c) &amp; &apos; &apos; &amp; text( Currency__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cost</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CI_R2R Innovation</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Project__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>R2R_SME_Area__c</columns>
+        <columns>Landscape__c</columns>
+        <columns>Funnel_Status__c</columns>
+        <columns>RAG_Color__c</columns>
+        <columns>Project2__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>{000}</displayFormat>
+        <label>R2R Innovation Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>CI_R2R Innovations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Project__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Project_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>R2R_SME_Area__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Landscape__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Funnel_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RAG_Color__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Project_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Project__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Project_Name__c</searchFilterFields>
+        <searchFilterFields>Project__c</searchFilterFields>
+        <searchResultsAdditionalFields>Project__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>R2R_SME_Area__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RAG_Color__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
