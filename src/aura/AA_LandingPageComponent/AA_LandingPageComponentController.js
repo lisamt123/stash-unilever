@@ -50,7 +50,7 @@
         helper.getAllData(component);
         setTimeout(function(){ document.getElementById("loading").style.display="none" }, 4000);
         component.set('v.NoReports',true);
-        
+       
     },
     goToPopUpFilter: function(component, event, helper) {
         if(navigator.userAgent.match(/Android/i)
