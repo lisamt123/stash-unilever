@@ -2895,7 +2895,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //check for the operational type project to check for the misalignment.                              
             checkOperationPrjMisAlignment();
         } 
-        
+    }   
 	/************************************************************************************************************** 
     * This method check operation project misalignment 
     * @parmas
