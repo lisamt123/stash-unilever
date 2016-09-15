@@ -508,7 +508,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_MSCS__c</fullName>
         <externalId>false</externalId>
-        <formula>FS_LumpSum__c  /  FS_TotalNumberOfCases__c</formula>
+        <formula>IF(FS_TotalNumberOfCases__c&gt;0, FS_LumpSum__c / FS_TotalNumberOfCases__c, null)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>MS/CS</label>
         <precision>18</precision>

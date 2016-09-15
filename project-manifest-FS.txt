@@ -1,2 +1,9 @@
 src
-src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
+src/labels
+src/labels/FS.labels
+src/layouts
+src/layouts/Account-Operator Russia Read Only.layout
+src/objects
+src/objects/Opportunity.object
+src/workflows
+src/workflows/Account.workflow

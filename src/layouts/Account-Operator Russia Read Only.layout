@@ -50,7 +50,7 @@
                 <field>INN__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>FS_ProposedAccountOwner__c</field>
             </layoutItems>
             <layoutItems>

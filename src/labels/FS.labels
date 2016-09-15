@@ -14,34 +14,6 @@
         <value>d51b83761ff54783B4C600143A323E1A</value>
     </labels>
     <labels>
-        <fullName>FS_Opportunity_Stage_Commitment</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>FS Opportunity Stage Commitment</shortDescription>
-        <value>04 - Verbal Commitment</value>
-    </labels>
-    <labels>
-        <fullName>FS_Opportunity_Stage_Funnel</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>FS Opportunity Stage Funnel</shortDescription>
-        <value>03 – In the funnel</value>
-    </labels>
-    <labels>
-        <fullName>FS_Opportunity_Stage_Universe</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>FS Opportunity Stage Universe</shortDescription>
-        <value>01 – Universe</value>
-    </labels>
-    <labels>
-        <fullName>FS_Opportunity_Stage_Won</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>FS Opportunity Stage Won</shortDescription>
-        <value>05 – Won</value>
-    </labels>
-    <labels>
         <fullName>FS_PIIClientId</fullName>
         <language>en_US</language>
         <protected>false</protected>

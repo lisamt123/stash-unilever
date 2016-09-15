@@ -529,7 +529,7 @@
         </actions>
         <active>true</active>
         <description>This is use to populate default value of On/Off Invoice from the custom settings</description>
-        <formula>ISCHANGED(FS_Distributor_Type__c)</formula>
+        <formula>ISCHANGED(FS_Distributor_Type__c) &amp;&amp; ISBLANK(Parent.Name)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
