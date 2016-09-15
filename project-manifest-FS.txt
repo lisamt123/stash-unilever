@@ -1,9 +1,2 @@
 src
-src/labels
-src/labels/FS.labels
-src/layouts
-src/layouts/Account-Operator Russia Read Only.layout
-src/objects
-src/objects/Opportunity.object
-src/workflows
-src/workflows/Account.workflow
+src/reports/FS_Report/Partner_Account_Report.report
