@@ -378,6 +378,13 @@
         <value>Ask IPM</value>
     </labels>
     <labels>
+        <fullName>IPM_ASK_IPM_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ASK_IPM_URL</shortDescription>
+        <value>https://unilever.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9E0000000Qc6Y</value>
+    </labels>
+    <labels>
         <fullName>IPM_ASSIGNEE</fullName>
         <language>en_US</language>
         <protected>false</protected>
