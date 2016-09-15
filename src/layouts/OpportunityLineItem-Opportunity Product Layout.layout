@@ -50,6 +50,10 @@
                 <behavior>Edit</behavior>
                 <field>ApprovalGranted__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_Distributor_Address__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

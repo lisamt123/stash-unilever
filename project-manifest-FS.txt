@@ -1,4 +1,2 @@
 src
-src/objects
-src/objects/Account.object
-src/objects/OpportunityLineItem.object
+src/layouts/OpportunityLineItem-Opportunity Product Layout.layout
