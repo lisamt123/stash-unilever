@@ -8,8 +8,6 @@ src/classes/IPM_ChangProjectDocumentStatusController.cls
 src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
 src/classes/IPM_FinancialController.cls
 src/classes/IPM_FinancialController.cls-meta.xml
-src/classes/IPM_FinancialController_Test.cls
-src/classes/IPM_FinancialController_Test.cls-meta.xml
 src/classes/IPM_MarketPerformaceController.cls
 src/classes/IPM_MarketPerformaceController.cls-meta.xml
 src/classes/IPM_ProjectRolloutHandler_Test.cls
