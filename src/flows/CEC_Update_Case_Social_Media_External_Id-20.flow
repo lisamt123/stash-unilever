@@ -96,6 +96,34 @@
                     <stringValue>Facebook</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.sf4twitter__Parent__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
@@ -179,6 +207,34 @@
                     <stringValue>Twitter</stringValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.sf4twitter__Parent__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
             <connector>
                 <targetReference>myRule_4_A1</targetReference>
             </connector>
@@ -208,7 +264,7 @@
         <dataType>String</dataType>
         <expression>$User.Id</expression>
     </formulas>
-    <interviewLabel>CEC_Update_Case_Social_Media_External_Id-19_sf4twitter__Twitter_Conversation__c</interviewLabel>
+    <interviewLabel>CEC_Update_Case_Social_Media_External_Id-20_sf4twitter__Twitter_Conversation__c</interviewLabel>
     <label>CEC Update Case Social Media External Id</label>
     <processMetadataValues>
         <name>ObjectType</name>

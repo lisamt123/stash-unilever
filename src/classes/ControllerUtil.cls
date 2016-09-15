@@ -38,7 +38,7 @@ public with sharing class ControllerUtil {
     }
   */
 
-public static String getMyLogoutUrl() {
+/* public static String getMyLogoutUrl() {
 
     String userAgent = ApexPages.currentPage().getHeaders().get('User-Agent');         
     
@@ -54,7 +54,7 @@ public static String getMyLogoutUrl() {
     
      return System.Label.FA_Loginpagefor_Desktop_Browsers;
     
-}
+} FA decom by sambit */
 
 
    public static String extractPageName(String input) {
