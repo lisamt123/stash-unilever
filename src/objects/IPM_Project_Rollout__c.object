@@ -3513,6 +3513,24 @@ Case(Global_Project_Phase__c,
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE0000000Xi1C_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CORVETTE</label>
+        <queue>IPM_a7IE0000000Xi1C</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE0000000Xi1H_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BANKSY_EU</label>
+        <queue>IPM_a7IE0000000Xi1H</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE0000000bqbV_IPM_Project_Rollout</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_a7IE0000000bqbV</label>
