@@ -3653,6 +3653,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Email ANZ,Web,Email</value>
         </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>ANZ</value>
+        </filters>
         <label>CEC ANZ My New Emails</label>
         <language>en_US</language>
         <sharedTo>
@@ -3680,6 +3685,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.CLOSED_DATE</field>
             <operation>equals</operation>
             <value>LAST_N_DAYS:30</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>ANZ</value>
         </filters>
         <label>CEC ANZ My closed cases</label>
         <language>en_US</language>
@@ -4810,6 +4820,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Indonesia_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.CLOSED</field>
@@ -5345,7 +5363,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>notEqual</operation>
-            <value>Bertolli,Bertolli Oil</value>
+            <value>Bertolli,Bertolli Oil,Walmart Canada Social</value>
         </filters>
         <label>CEC North America 24-7 In Touch Canada</label>
         <language>en_US</language>
@@ -5924,8 +5942,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>Escalated</value>
+            <operation>notContain</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC North America Claims Queue</label>
         <language>en_US</language>
@@ -6665,6 +6683,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
@@ -7411,6 +7430,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.EMAIL</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -8003,6 +8023,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>Casos cerrados spam 2015</label>
         <language>es</language>
+        <sharedTo>
+            <role>CEC_Manager_Brazil</role>
+            <role>CEC_User_Brazil</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Casos_pendientes_Argentina</fullName>
@@ -8094,7 +8118,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -8122,16 +8146,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Katja</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>Marni.S</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>mschw</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
