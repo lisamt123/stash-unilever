@@ -145,3 +145,4 @@
 			-moz-border-radius: 50%;
 		}
 		.clrBoth{clear:both;}
+		.messageBox .SecButtonSet .msgTxt.fullWidth{width:100%;top:0px;}

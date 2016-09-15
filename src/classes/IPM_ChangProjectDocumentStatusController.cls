@@ -76,12 +76,14 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
     public boolean isPDL{get;set;}
+	public boolean isPDLApproved{get;set;}//check whether PDL document is approved or not
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
     public IPM_ChangProjectDocumentStatusController()
     {
-        super();           
+        super();     
+		isPDLApproved = true;    
         isDefaultAvailable=false;
         hideGCLTRCLTQuestions = false;
         isOperational=false;
@@ -238,6 +240,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public void updateStatus()
     {
         //Method invoked from IPM_ChangeCurrenDocumentStatus page
+		checkPDLIsApproved();
     } 
     
     /****************************************************************************
@@ -1034,5 +1037,24 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     		ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
                 'approvePDLDocument',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
     	}	
+    }
+	/***************************************************************************************
+    @ Description:when GPL is trying to approve contract gate and PDL is not approved then
+    restrict GPL to approve contract gate
+    ****************************************************************************************/
+    public void checkPDLIsApproved(){
+	    if(IPM_ConstantUtils.GKM_3.Equals(project.IPM_ProjectGKM__c) && IPM_ConstantUtils.STATUS_APPROVED.Equals(Status) && IPM_ConstantUtils.CONTRACT_GATE.Equals(projectDoc.IPM_GateDocuments__c))
+	    {
+		    List<IPM_Project_Document__c> pdlDocumentList = new List<IPM_Project_Document__c>();
+		    pdlDocumentList = [SELECT ID FROM IPM_Project_Document__c WHERE IPM_Project__c=:project.Id AND IPM_GateDocuments__c=: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK AND IPM_Document_Status__c =:IPM_ConstantUtils.STATUS_APPROVED LIMIT 1];
+		    if(pdlDocumentList.isEmpty())
+		    {
+		    	isPDLApproved = false;
+		    }
+		    else{
+		    	isPDLApproved = true;
+		    }
+	    }
+	                 
     }
 }

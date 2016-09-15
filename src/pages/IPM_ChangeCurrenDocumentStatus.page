@@ -301,14 +301,29 @@
                             <!-- Below rendered condition will check approved status validations -->
                                 <apex:outputPanel rendered="{!If(Status='Approved',true,false)}" > 
                                     <div class="col-xs-12 toolTipMsg marginTop"><apex:outputLabel value="{!$Label.IPM_APPROVE_AND_NO_ACTION}" /></div>
-                                    <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright approvedBox">                           
-                                        <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>(Optional)</i>
-                                        <!-- Below rendered condition is used to show below output text for opertional project -->
-                                        <apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
-                                        <span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText>  Gate document, Section Feedback from Last Gate</span>
+                                    <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright approvedBox">
+										
+                                        <apex:outputPanel rendered="{!!isPDLApproved}">
+											<apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg">
+												<apex:outputPanel layout="block" styleClass="SecButtonSet">
+													<a class="icoButton red-info" title="info"></a>
+													<span class="msgTxt fullWidth">{!$Label.IPM_PDL_Not_Approved}</span>
+												</apex:outputPanel>
+											</apex:outputPanel>                                           
+											<apex:outputPanel styleClass="errorBlock marginTop pull-left" layout="block" >
+												<span class="errTitle">{!$Label.IPM_Product_Design_Lock_Document}</span> 
+												<span class="errList">{!$Label.IPM_Fill_PDL_Document} </span> 
+											</apex:outputPanel>
                                         </apex:outputPanel>
-                                        
-                                        <apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}"/>
+										<apex:outputPanel rendered="{!isPDLApproved}">
+											<apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>(Optional)</i>
+										</apex:outputPanel>
+										<!-- Below rendered condition is used to show below output text for opertional project -->
+										<apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
+										<span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText>  Gate document, Section Feedback from Last Gate</span>
+										</apex:outputPanel>
+										
+										<apex:inputTextarea onfocus="checktextval();" styleClass="txtArea" value="{!projectDoc.IPM_Approved_Comments__c}" rendered="{!isPDLApproved}"/>
                                         <!-- Below rendered condition is used for charter gate -->
                                         <apex:outputPanel rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                             <!-- Below rendered condition is used to provide output label for non operational projects -->
@@ -418,7 +433,7 @@
                                 <div class="marginTop ipmButtonGroup pull-right">
                                  <!-- Below rendered condition will execute for approved status -->
                                          <!--If Status is Approved.  -->
-                                    <apex:outputPanel id="projectBackGround" rendered="{!Status=='Approved'}" >
+                                    <apex:outputPanel id="projectBackGround" rendered="{!AND(Status=='Approved',isPDLApproved)}" >
                                         <a class="ipmButton projectBKProcess primary pull-right" data-toggle="modal" data-target="#initiateProjectBKPanel" data-backdrop="static" data-keyboard="false">Change</a>
                                     </apex:outputPanel>
                                         <apex:outputPanel styleClass="changeChkBtn" id="StopProjectPanel" rendered="{!Status='Stopped'}" >
