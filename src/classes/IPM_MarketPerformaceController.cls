@@ -31,9 +31,8 @@ public with sharing class IPM_MarketPerformaceController {
             /*When local rollouts are created at any stage, their DEFAULT financials are created after which 6.5 records are also created. 
             For the regional project id in context, get 6.5 records assocaited with its local rollouts.*/
             queryString = IPM_Utils.getSOQLQueryFromFieldSet('UML_KeyMetrics','IPM_MarketPerformance__c',false);
-            queryString += ' WHERE (IPMProjectRollout__r.Regional_Project__c =:  regionalProjectId OR IPMProjectRollout__r.IPM_Project__c =: regionalProjectId) AND IPMProjectRollout__r.isActive__c=true  ORDER BY IPMProjectRollout__r.Name  LIMIT 10000';
-            
-            
+        	queryString += ' WHERE (IPMProjectRollout__r.Regional_Project__c =:  regionalProjectId OR IPMProjectRollout__r.IPM_Project__c =: regionalProjectId) AND IPMProjectRollout__r.isActive__c=true AND((IPMProjectRollout__r.IPM_Project_GKM__c=\'GKM3\' AND IPMProjectRollout__r.KeyMCO__c=true) OR IPMProjectRollout__r.IPM_Project_GKM__c!=\'GKM3\') ORDER BY IPMProjectRollout__r.Name  LIMIT 10000';
+            	
             lstMarketPerformaceData = Database.Query(queryString); 
             prepareValidationHighlihtedStyleClassMap(lstMarketPerformaceData);
         }

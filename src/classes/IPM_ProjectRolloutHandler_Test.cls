@@ -637,7 +637,7 @@ private class IPM_ProjectRolloutHandler_Test
             update localOldRollout;
             
                         
-            List<IPM_EmailOut_Notification__c> listEmailNot = [SELECT Id FROM IPM_EmailOut_Notification__c];
+            List<IPM_EmailOut_Notification__c> listEmailNot = [SELECT Id FROM IPM_EmailOut_Notification__c LIMIT 5000];
             System.assertNotEquals(null, listEmailNot);
             System.assert(listEmailNot.size() > 0 );
             Test.stopTest();
