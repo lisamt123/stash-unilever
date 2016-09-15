@@ -1099,9 +1099,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
         //process incoming project status
         IPM_ProjectHelper.handleEcoDesignSyncProcess(incomingProject,oldProject);
-   		if(!IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountryVar && oldProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c != incomingProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c){
-   			incomingProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c = oldProject.IPM_Exists_AtLeast_OneAssmntPerEICountry__c;	
-   		}
+        IPM_ProjectCountryDetails.checkAtLeastOneAssmnt(new Map<Id,IPM_Project__c>{incomingProject.Id=>incomingProject});
     }
     
     /***********************************************************************************************************************************
