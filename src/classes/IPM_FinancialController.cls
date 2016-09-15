@@ -2721,7 +2721,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public IPM_Project_Rollout__c checkForMisalignmentGlobal()
     {
     	IPM_Project_Rollout__c rolloutPlan = new IPM_Project_Rollout__c(); 
-    	Integer localProjectRolloutTLDYear = 0;
       	// if project is regional get the project details based currentFinanical
         String financialExternalIdString;
         //Check if Financial external id ends with '_NONKEY'
@@ -2770,7 +2769,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public IPM_Project_Rollout__c checkForMisalignmentRegional()
     {
     	IPM_Project_Rollout__c rolloutPlan = new IPM_Project_Rollout__c();
-    	Integer localProjectRolloutTLDYear = 0;
     	String financialExternalIdString;
         if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
             financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
