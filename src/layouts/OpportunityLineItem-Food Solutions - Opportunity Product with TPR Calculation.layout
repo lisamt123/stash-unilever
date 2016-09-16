@@ -217,10 +217,10 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <multilineLayoutFields>OpportunityId</multilineLayoutFields>
-    <multilineLayoutFields>Product2Id</multilineLayoutFields>
     <multilineLayoutFields>Quantity</multilineLayoutFields>
     <multilineLayoutFields>UnitPrice</multilineLayoutFields>
+    <multilineLayoutFields>Discount</multilineLayoutFields>
+    <multilineLayoutFields>FS_Sample__c</multilineLayoutFields>
     <relatedLists>
         <relatedList>RelatedScheduleList</relatedList>
     </relatedLists>

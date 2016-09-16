@@ -275,10 +275,10 @@
         <fields>ListPrice</fields>
         <fields>FS_tprPercent__c</fields>
         <fields>Turnover__c</fields>
-        <fields>FS_grossProfit__c</fields>
-        <fields>FS_grossMargin__c</fields>
         <fields>FS_gmWhenTPREqualsZero__c</fields>
         <fields>ProdDistributor__c</fields>
+        <fields>FS_Sample__c</fields>
+        <fields>Discount</fields>
         <relatedList>RelatedLineItemList</relatedList>
     </relatedLists>
     <relatedLists>
