@@ -6,6 +6,10 @@ src/classes/IPM_BD_BB_Report_Batch_Test.cls
 src/classes/IPM_BD_BB_Report_Batch_Test.cls-meta.xml
 src/classes/IPM_BD_BB_Report_BatchSchedule.cls
 src/classes/IPM_BD_BB_Report_BatchSchedule.cls-meta.xml
+src/classes/IPM_ProjectCountryDetails.cls
+src/classes/IPM_ProjectCountryDetails.cls-meta.xml
+src/classes/IPM_ProjectHandler.cls
+src/classes/IPM_ProjectHandler.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch_Test.cls
@@ -14,6 +18,9 @@ src/classes/IPM_OTIF_Report_BatchSchedule.cls
 src/classes/IPM_OTIF_Report_BatchSchedule.cls-meta.xml
 src/classes/IPM_Utils.cls
 src/classes/IPM_Utils.cls-meta.xml
+src/pages
+src/pages/IPM_GateDocumentPDF.page
+src/pages/IPM_GateDocumentPDF.page-meta.xml
 src/flows
 src/flows/IPM_send_email_when_project_stopped_completely-11.flow
 src/objects
