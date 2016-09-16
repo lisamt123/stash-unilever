@@ -1,0 +1,9 @@
+Hi SAM Admin,
+
+Service Request number {!SAM_Request__c.Name} has been submitted by {!SAM_Request__c.CreatedBy}. The status of the request is Open. 
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link} 
+
+Thanks,
+{!SAM_Request__c.CreatedBy}
