@@ -4,11 +4,11 @@
      var action = component.get("c.defaultChatterValue");
 		action.setCallback(this, function(response) {
         	var state = response.getState();
-        	if (state == "SUCCESS") {
-                if(response.getReturnValue()!=''){ 
+        	if (state == "SUCCESS" && response.getReturnValue()!='') {
+               // if(response.getReturnValue()!=''){ 
                    //based on the attribute value chatter post and Email in old format will be enabled
                     component.set("v.chatterValue", response.getReturnValue()); 
-				}
+				//}
 			}	
        });
         $A.enqueueAction(action);

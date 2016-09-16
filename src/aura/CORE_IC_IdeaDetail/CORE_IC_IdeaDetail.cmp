@@ -139,7 +139,7 @@
                                          <aura:if isTrue="{!v.chatterValue}">     
                                             <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.recordDetail.IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.recordDetail.IdeaTitle+'%22%20'+v.MailToBody4+'%20'+v.MailToBody5}" 
                                          style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                                <p class="slds-truncate">Email</p>
+                                                <p class="slds-truncate">Share via Email</p>
                                             </a>
                                                <aura:set attribute="else">
 	    <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.recordDetail.IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.recordDetail.IdeaTitle+'%22%20'+v.MailToBody6+'%20'}" 

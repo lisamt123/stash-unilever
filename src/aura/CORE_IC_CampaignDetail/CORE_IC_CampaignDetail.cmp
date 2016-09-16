@@ -167,7 +167,7 @@
                                                 <aura:if isTrue="{!v.chatterValue}">     
                                                     <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.FeaturedCampaignsItems.CampaignTitle+'!'+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody2+'%20'+v.MailToBody3}" 
                                                         style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                                        <p class="slds-truncate">Email</p>
+                                                        <p class="slds-truncate">Share via Email</p>
                                    
                                                     </a>
                                                      <aura:set attribute="else">
@@ -272,7 +272,7 @@
                                                <aura:if isTrue="{!v.chatterValue}">  
                                                 <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%22%20'+v.MailToBody4+'%20'+v.MailToBody5}" 
                                                    style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                                    <p class="slds-truncate">Email</p>
+                                                    <p class="slds-truncate">Share via Email</p>
                                                 </a>
                                                     <aura:set attribute="else">
                                                       <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%22%20'+v.MailToBody8+'%20'}" 
