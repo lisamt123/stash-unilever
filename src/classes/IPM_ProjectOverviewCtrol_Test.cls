@@ -227,7 +227,7 @@ private class IPM_ProjectOverviewCtrol_Test {
             PageReference pRef1 = new PageReference(sPageRefURL+projectList[0].Id);
             Test.setCurrentPage(pRef1);
         
-            IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+            
             
        }
     }
