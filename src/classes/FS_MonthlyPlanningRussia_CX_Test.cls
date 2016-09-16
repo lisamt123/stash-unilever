@@ -34,7 +34,7 @@ Public Class FS_MonthlyPlanningRussia_CX_Test
         insert SalesRepUser;
         
         
-        System.runAs(SalesRepUserMgr)
+        System.runAs(SalesRepUser)
         {
             Event varEvent=new Event();
             varEvent.ActivityDate=Date.newInstance(2016,09,20);
@@ -42,7 +42,9 @@ Public Class FS_MonthlyPlanningRussia_CX_Test
             varEvent.EndDateTime=DateTime.newInstance(2016,09,20,0,0,0);
             varEvent.StartDateTime=DateTime.newInstance(2016,09,10,0,0,0);
             insert varEvent;
-            
+            }
+            System.runAs(SalesRepUserMgr)
+        {
             FS_MonthlyPlanningRussia_CX varMonthlyPlanningRussia=new FS_MonthlyPlanningRussia_CX();
             varMonthlyPlanningRussia.dateName=Date.newInstance(2016,09,22);
             varMonthlyPlanningRussia.refreshPage();

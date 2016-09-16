@@ -25,6 +25,7 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
     Public Integer noofHolidaysTillDate{get;set;}
     Public integer i{get;set;}
     Public Integer workingDaysTillDate{get;set;}
+    Public decimal achiveToday{get;set;}
     Public void FS_Monthly_Planning_Russia_CX(){
        isVisible=false; 
     }
@@ -59,6 +60,7 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
         bh=temp;       
         noofDays=monthStartDate.daysBetween(monthEndDate)+1;
         workingDays=noofDays-noofWeekends;
+         
         return page.FS_MonthlyPlanningRussiaDetail;
     }
     // Get details of monthly activites for subordinators of currently logged in user
@@ -102,15 +104,13 @@ public with sharing class FS_MonthlyPlanningRussia_CX {
             monthly_Planner.userName=userRecord.Name;           
             monthly_Planner.actual=tempEvents.size();
             i=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate-tempDates.size()+1;
-            workingDaysTillDate=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate+1;            
-            monthly_Planner.plan=workingDays*8;
+            workingDaysTillDate=monthStartDate.daysBetween(dateName)-noofHolidaysTillDate+1; 
+            achiveToday=((Decimal.valueOf(workingDaysTillDate *100))/workingDays).setScale(2);           
+            monthly_Planner.plan=tempDates.size()*8;
             monthly_Planner.actualWorkingDays=tempDates.size();
             If(tempDates.size()>0){
-              //monthly_Planner.average=(monthly_Planner.actual*100)/monthly_Planner.workingDaysTillDate;
               monthly_Planner.average=(Decimal.valueOf(monthly_Planner.actual)/tempDates.size()).setScale(2);
-              monthly_Planner.target=((Decimal.valueOf(tempDates.size())*100)/workingDays).setScale(2);
-             // system.debug(monthly_Planner.target);
-              monthly_Planner.criticalTarget=monthly_Planner.target-10;
+              monthly_Planner.criticalTarget=((Decimal.valueOf(monthly_Planner.actual)*100)/monthly_Planner.plan).setScale(2);
             }           
             IF(monthly_Planner!=null){
             listMonthlyPlanner.add(monthly_Planner);

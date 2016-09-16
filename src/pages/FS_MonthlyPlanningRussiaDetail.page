@@ -1,5 +1,4 @@
-<apex:page controller="FS_MonthlyPlanningRussia_CX" showHeader="false" contentType="application/vnd.ms-excel#MonthlyPlannerRussiaReport.xls">
-      
+<apex:page controller="FS_MonthlyPlanningRussia_CX" showHeader="false" >
     <apex:outputPanel rendered="{!isVisible}" id="monthlyPlanner">
         <apex:pageBlock title="Russia Monthly Planner Report">
             <apex:pageBlock title="Month detailed data">
@@ -12,14 +11,14 @@
                     <apex:outputText >{!monthEnddate}</apex:outputText>        
                     <apex:outputLabel >No of days in this month : </apex:outputLabel>
                     <apex:outputText >{!noofDays}</apex:outputText>
-                    <apex:outputLabel >Working days excluding weenends and holidays : </apex:outputLabel>
+                    <apex:outputLabel >Working days excluding weekends and holidays : </apex:outputLabel>
                     <apex:outputText >{!workingDays}</apex:outputText>
                     <apex:outputLabel >Non working days in this month : </apex:outputLabel>
                     <apex:outputText >{!noofWeekends}</apex:outputText>
                     <apex:outputLabel >Working days till date</apex:outputLabel>
-                    <apex:outputText >{!workingDaysTillDate}</apex:outputText>
-                    <apex:outputLabel >Non Working days till date</apex:outputLabel>
-                    <apex:outputText >{!noofHolidaysTillDate}</apex:outputText>
+                    <apex:outputText >{!workingDaysTillDate}</apex:outputText>   
+                    <apex:outputLabel > Min % which needed to achive today</apex:outputLabel>
+                    <apex:outputText >{!achiveToday}</apex:outputText>                  
                     <br/><br/>
                 </apex:pageBlockSection>
             </apex:pageBlock>
@@ -31,8 +30,7 @@
                         <apex:column headervalue="Actual" value="{!monthlyPlanner.actual}"/>
                         <apex:column headervalue="Avg" value="{!monthlyPlanner.average} "/>    
                         <apex:column headervalue="Actual Working Days Till Date" value="{!monthlyPlanner.actualWorkingDays}"/>
-                        <apex:column headervalue="Min % which needed to achive today" value="{!monthlyPlanner.target}"/>
-                        <apex:column headervalue="Critical % which needed to achive today" value="{!monthlyPlanner.criticalTarget}"/>
+                        <apex:column headervalue="Actual Percentage" value="{!monthlyPlanner.criticalTarget}"/>
                     </apex:pageBlockTable>
                 </apex:pageBlockSection>
             </apex:pageblock>

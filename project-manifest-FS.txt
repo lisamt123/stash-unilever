@@ -1,5 +1,11 @@
 src
-src/reports/FS_Report/FS_Opportunity_planned.report
-src/reports/FS_Report/FS_Opportunities_Funnel_Stage_Duration.report
-src/reports/FS_Report/FS_Partner_Account_Report.report
-src/reports/FS_Report/Opportunities_Planned_vs_Actual_Quantity.report
+src/classes
+src/classes/FS_MonthlyPlanningRussia_CX_Test.cls
+src/classes/FS_MonthlyPlanningRussia_CX_Test.cls-meta.xml
+src/classes/FS_MonthlyPlanningRussia_CX.cls
+src/classes/FS_MonthlyPlanningRussia_CX.cls-meta.xml
+src/pages
+src/pages/FS_MonthlyPlanningRussiaDetail.page
+src/pages/FS_MonthlyPlanningRussiaDetail.page-meta.xml
+src/pages/FS_MonthlyPlanningRussiaReport.page
+src/pages/FS_MonthlyPlanningRussiaReport.page-meta.xml
