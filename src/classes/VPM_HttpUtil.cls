@@ -1,5 +1,19 @@
 public class VPM_HttpUtil {
     
+    class CreateVendorResponse {
+        public String Status {get; set;}
+        public String RequestID {get; set;}
+        public CreateVendorResponse() {
+        }
+    }
+    class CreateVendorFailureResponse {
+        public String statusCode {get; set;}
+        public String message {get; set;}
+        public String details {get; set;}
+        public CreateVendorFailureResponse() {
+        }
+    }
+    
     public static final String successStatus = 'BPM Record Submitted';
     public static final String failStatus = 'MDM Ops Review - SAP BPM submit Failed';
     public static final String successStatusMDM = 'Submitted to BPM';
@@ -9,7 +23,7 @@ public class VPM_HttpUtil {
     public VPM_HttpUtil() {
     }
     
-    public String createEndPoint(String service) {
+    public static String createEndPoint(String service) {
         String endpoint,resource,clientId,clientSecret,finalUrl;
         List<VPM_ExternalService__mdt> serviceDetails = [SELECT DeveloperName, MasterLabel, VPM_ServiceEndpoint__c, VPM_ServiceResource__c FROM VPM_ExternalService__mdt WHERE DeveloperName = :service];
         if(serviceDetails != null && serviceDetails.size() >0) {
@@ -22,12 +36,12 @@ public class VPM_HttpUtil {
         System.debug('---HttpUtil-createEndPoint--final endpoint url-------'+ finalUrl);
         return finalUrl;
     }
-    public HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName) {
+    public static HttpResponse sendRequest(String requestType, String requestBodyJson, String serviceName) {
         HttpResponse res;
         try {
             String url;
             if(requestType != null && !requestType.equalsIgnoreCase('GET')) {
-                url = createEndPoint(serviceName);
+                url = VPM_HttpUtil.createEndPoint(serviceName);
             }
             Http h = new Http();
             HttpRequest req = new HttpRequest();        
@@ -37,6 +51,7 @@ public class VPM_HttpUtil {
                 req.setHeader('Content-Type', 'application/json');
                 req.setBody(requestBodyJson);
             }
+            req.setTimeout(120000);
             req.setClientCertificateName(certName);
             //req.setCompressed(true);
             res = h.send(req);
@@ -53,6 +68,7 @@ public class VPM_HttpUtil {
         HttpResponse res;        
         req.setEndpoint(url);
         req.setMethod(requestType);
+        req.setTimeout(120000);
         req.setClientCertificateName(certName);
         //req.setCompressed(true);
         res = h.send(req);
@@ -68,7 +84,7 @@ public class VPM_HttpUtil {
         }
         return stringParams;
     }
-    public void updateVendorStatus(String venReqId, String reqStatus, String message, String messageMDM) {
+    public static void updateVendorStatus(String venReqId, String reqStatus, String message, String messageMDM) {
         // Update vendor request record status after send to SAP.
         // Update MDM Ops user fields on vendor request record.
         List<VPM_PurchasingRequests__c> vendorList = [SELECT Id, VPM_Status__c, CreatedBy.Email,VPM_MDMBPMRequestorName__c, VPM_MDMBPMRequestorPhone__c, VPM_MDMBPMRequestorEmail__c, VPM_MDMBPMRequestorDepartment__c, VPM_MDMBPMOriginatoEmail__c,VPM_MDMInsertUpdateStatus__c,VPM_MDMInsertUpdateStatusMessage__c FROM VPM_PurchasingRequests__c WHERE Id = :venReqId LIMIT 1];
@@ -139,5 +155,77 @@ public class VPM_HttpUtil {
             booleanValue = false;
         }
         return booleanValue;
+    }
+    public static String retryCreateVendorGlobal(String inputRetry, String vendorId) {
+        System.debug('-----input json request body for create vendor is-----' + inputRetry);
+        String msg = '', responseString;
+        CreateVendorResponse createVenResp;
+        CreateVendorFailureResponse createVenFailResp;
+        HttpResponse res = sendRequest('POST',inputRetry,'VPM_CreateVendorBPM');
+        System.debug('------whole response string----'+ res.toString());
+        System.debug('------HTTP response status and status code and response body are ------'+res.getStatus() + '  ' + res.getStatusCode() + '  '+res.getBody());
+        String statusCodeStr = String.valueOf(res.getStatusCode());
+        if(String.isNotBlank(res.getBody())) {
+            if(res.getStatusCode() == 200) {
+                createVenResp = (CreateVendorResponse) System.JSON.deserialize(res.getBody(), CreateVendorResponse.class);
+                System.debug('---RequestID --and response status----' + createVenResp.RequestID + '  ' + createVenResp.status);
+                if(createVenResp != null && String.isNotBlank(createVenResp.status)) {
+                    msg = createVenResp.status + '  ' + statusCodeStr;
+                }
+            } else {
+                createVenFailResp = (CreateVendorFailureResponse) System.JSON.deserialize(res.getBody(), CreateVendorFailureResponse.class);
+                System.debug('---statusCode --and message are ----' + createVenFailResp.statusCode + '  ' + createVenFailResp.message);
+                if(createVenFailResp != null && String.isNotBlank(createVenFailResp.message)) {
+                    msg = createVenFailResp.message + '  ' + statusCodeStr;
+                }
+            }
+        }
+        if(res.getStatusCode() == 200) {
+            updateVendorStatus(vendorId,VPM_HttpUtil.successStatus,msg,VPM_HttpUtil.successStatusMDM);
+            //responseString = 'Vendor Request submitted to SAP.'+msg ;
+            responseString = msg;
+        } else if(res.getStatusCode() == 500) {
+            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            //responseString = 'Server Error. Please try after some time.';
+            responseString = msg;
+        } else if(res.getStatusCode() == 504) {
+            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            //responseString = 'Timeout Error. Please try after some time.';
+            responseString = msg;
+        } else if(res.getStatusCode() == 400) {
+            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            //responseString = 'Please check request data and try again. '+msg;
+            responseString = msg;
+        } else if(res.getStatusCode() == 503) {
+            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            //responseString = 'SAP API not implemented.';
+            responseString = msg;
+        } else if(String.isNotBlank(msg)) {
+            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            //responseString = 'Some error occured while submitting request to SAP. Please try after some time.'+msg ;
+            responseString = msg;
+        } else {
+            responseString = 'Some error occured while submitting request to SAP. Please try after some time.' + '  ' + statusCodeStr;
+            updateVendorStatus(vendorId,VPM_HttpUtil.failStatus,msg,VPM_HttpUtil.failStatusMDM);
+            return responseString;
+        }
+        return responseString;
+    }
+    public static void sendEmail(String toEmail, String subjectEmail, String bodyEmail) {
+        List<String> toAddressList = new List<String>();
+        toAddressList.add(toEmail);
+        Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
+        message.toAddresses = toAddressList;
+        message.subject = subjectEmail;
+        message.plainTextBody = bodyEmail;
+        
+        Messaging.SingleEmailMessage[] messages = new List<Messaging.SingleEmailMessage> {message};
+            Messaging.SendEmailResult[] results = Messaging.sendEmail(messages);
+        
+        if (results[0].success) {
+            System.debug('The email was sent successfully.');
+        } else {
+            System.debug('The email failed to send: ' + results[0].errors[0].message);
+        }
     }
 }

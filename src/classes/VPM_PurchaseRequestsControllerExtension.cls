@@ -10,12 +10,15 @@ global class  VPM_PurchaseRequestsControllerExtension {
       public string recId{get;set;}
       //public static string recId1{get;set;}
       public boolean ManuallyMarkAsCompleteFlag {get;set;}
+      public boolean showManuallyMarkAsComplete {get;set;}
       public boolean SubmitRequestBtn {get; set;}
       public boolean isBR {get; set;}
       public boolean isFLS {get; set;}
       public boolean isMDM {get; set;}
       public boolean isFinance {get; set;}
       public boolean isProcure {get; set;}
+      public boolean isRussian {get; set;}
+      public boolean isFreight {get; set;}
       public boolean isExceptionTypeRequired {get; set;}
       public VPM_PurchasingRequests__c pr{get;set;}  
       public string userlang{get;set;}
@@ -26,7 +29,13 @@ global class  VPM_PurchaseRequestsControllerExtension {
       public string buttonValue{get;set;}
       public string approvalWorker{get;set;}
       public string approvalWorkerID{get;set;}
-       public string approvalWorkerName{get;set;}
+      public string approvalWorkerName{get;set;}
+      public  List<SelectOption> paymentTerms{get;set;}
+      public string vendorDefaultPaymentTerm{get;set;}  
+      public static final string PAYMENT_TERMS = 'Payment Terms';
+      public VPM_SearchVendor1 searchVendorCntlr;
+      list<VPM_PurchasingRequests__c> vendorDetailList;
+       VPM_PurchasingRequests__c vendor;
       
       ApexPages.StandardController GstdController; 
       public VPM_PurchaseRequestsControllerExtension (ApexPages.StandardController stdController) {
@@ -40,27 +49,68 @@ global class  VPM_PurchaseRequestsControllerExtension {
           //recId1 = stdController.getRecord().Id; 
           // callJavaScriptAlert='<script> func(); </script>';
           
+          isBR  = false;
+          isFLS = false;
+          isMDM = false;
+          isFinance = false;
+          isProcure = false;
+          isRussian = false;
+          isFreight = false;
           
           checkUser();
           venReqStatus = fetchRecordStatus(recId);
           isRequired = false;
             
-          list<VPM_PurchasingRequests__c> vendorDetailList =[select OwnerId, VPM_IsVendorSME__c,VPM_CompanyCode__r.ECC__c,VPM_Approval_Worker__c,VPM_Approval_Worker_ID__c, VPM_ExceptionType__c,VPM_InternationalVersion__c,VPM_Status__c from VPM_PurchasingRequests__c where id =: recId];
+          vendorDetailList =[select OwnerId, VPM_IsVendorSME__c,VPM_ECC__c, VPM_PaymentTerms__c, VPM_CompanyCode__r.VPM_CompanyCode__c, VPM_CompanyCode__r.ECC__c, VPM_Approval_Worker__c, VPM_Approval_Worker_ID__c, VPM_ExceptionType__c, VPM_InternationalVersion__c, VPM_Status__c from VPM_PurchasingRequests__c where id =: recId];
           
           list<QueueSobject> QueueSobjectList =[Select Queue.Name From QueueSobject where QueueId =: vendorDetailList[0].OwnerId];
           System.debug('@@@@@@@@ QueueSobjectList --------'+ QueueSobjectList );
           System.debug('-------inside constructor of extn-------'+stdController.getRecord().Id + '  ' + venReqStatus);
-          if(String.isNotBlank(venReqStatus) && (venReqStatus.equalsIgnoreCase('MDM Ops Review') || 
+          if(String.isNotBlank(venReqStatus) && (venReqStatus.equalsIgnoreCase('MDM Ops Review') ||  venReqStatus.equalsIgnoreCase('MDM Ops Review - SAP ECC submit Failed')||
                                                  venReqStatus.equalsIgnoreCase('MDM Ops Review - SAP BPM submit Failed'))){
                                                      enableSendToSAPBtn = true;
                                                  } else {
                                                      enableSendToSAPBtn = false;  
                                                  }
-         if(vendorDetailList[0].VPM_IsVendorSME__c=='No' && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Sirius' || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Cordillera'))  
-          pr.VPM_PaymentTerms__c = 'P090_Within 90 days Due net (90NET)';
-          
-         changeButtonValues1(); // To set button value in Procurement at a Glance
-          
+                     
+                                                 
+          /* Logic to get Payment terms values from custom setting */
+        
+        searchVendorCntlr = new VPM_SearchVendor1();
+        //paymentTerms = searchVendorCntlr.getRegionSpecificCustomSettingvalues(vendorDetailList[0].VPM_CompanyCode__r.ECC__c, VPM_PurchaseRequestsControllerExtension.PAYMENT_TERMS);                                                
+        //vendorDefaultPaymentTerm = vendorDetailList[0].VPM_PaymentTerms__c;      
+        
+       System.debug('@@@@@@@@#######-'+ paymentTerms);                                         
+       System.debug('@@@@@@@@#######vendorDetailList[0].VPM_PaymentTerms__c-'+ vendorDetailList[0].VPM_PaymentTerms__c);
+       System.debug('@@@@@@@@#######vendorDefaultPaymentTerm-'+vendorDefaultPaymentTerm);
+       
+       /*  if(vendorDetailList[0].VPM_PaymentTerms__c==null && string.isBlank(vendorDetailList[0].VPM_PaymentTerms__c)){                                         
+         if(vendorDetailList[0].VPM_IsVendorSME__c=='No' && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Sirius' || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Cordillera')){  
+          vendorDefaultPaymentTerm = 'P090_Within 90 days Due net (90NET)';
+          //vendorDetailList[0].VPM_PaymentTerms__c = 'P090_Within 90 days Due net (90NET)';
+         }else if(vendorDetailList[0].VPM_IsVendorSME__c=='Yes' && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Fusion')){
+          vendorDefaultPaymentTerm = '30DK_Within 30 days Due net (30NET)';
+          //vendorDetailList[0].VPM_PaymentTerms__c = '30DK_Within 30 days Due net (30NET)';
+         }else if(vendorDetailList[0].VPM_IsVendorSME__c=='Yes' && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Sirius' || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'U2K2' || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Cordillera')){
+          vendorDefaultPaymentTerm = 'P030_Within 30 days Due net (30NET)';
+          //vendorDetailList[0].VPM_PaymentTerms__c = 'P030_Within 30 days Due net (30NET)';
+         }else if(vendorDetailList[0].VPM_IsVendorSME__c=='No' && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'U2K2')){
+          vendorDefaultPaymentTerm = 'S090_Within 90 days Due net (90NET)';
+          //vendorDetailList[0].VPM_PaymentTerms__c = 'S090_Within 90 days Due net (90NET)';
+         }else if(vendorDetailList[0].VPM_IsVendorSME__c=='No' && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Fusion')){
+          vendorDefaultPaymentTerm = '90DK_Within 90 days Due net (90NET)';
+          //vendorDetailList[0].VPM_PaymentTerms__c = '90DK_Within 90 days Due net (90NET)';
+        }
+        vendorDetailList[0].VPM_PaymentTerms__c =vendorDefaultPaymentTerm ;   
+        } 
+         
+        else
+            vendorDefaultPaymentTerm = vendorDetailList[0].VPM_PaymentTerms__c;  
+            //vendorDetailList[0].VPM_PaymentTerms__c =vendorDefaultPaymentTerm ;*/
+        
+           
+        changeButtonValues1(); // To set button value in Procurement at a Glance
+           
           usrRole = checkLoggedInUserRole();
           EnableManuallyMarkAsCompleteBtn();   
           
@@ -68,8 +118,11 @@ global class  VPM_PurchaseRequestsControllerExtension {
                   system.debug('@@userlang=' +userlang);
                   System.debug(''+ usrRole );
                    SubmitRequestBtn = true; // Ajay : Initially true becz it should be visible to all except MDM
+              
           if(usrRole == 'MDM') {
               RenderSAPBtn = true;
+              showManuallyMarkAsComplete =true;
+              if(vendorDetailList[0].VPM_Status__c =='Request Completed')
               ManuallyMarkasCompletebtn= true;
               //SubmitRequestBtn = false;
           }
@@ -89,8 +142,12 @@ global class  VPM_PurchaseRequestsControllerExtension {
                 SubmitRequestBtn = true;
           }
            else if(usrRole ==  'FLS' && QueueSobjectList[0].Queue.Name.contains('FLS')) {
+               
               ReworkBtn=true;
-                RenderSAPBtn = true;
+              RenderSAPBtn = true;
+               /* Changes for Bug : 277 Point 2 */
+              if(String.isNotBlank(venReqStatus) && (venReqStatus.equalsIgnoreCase('FLS Approved')))
+                  ReworkBtn=false;
                 //SubmitRequestBtn = true;
           }
             else if(usrRole ==  'BUR') {
@@ -110,34 +167,76 @@ global class  VPM_PurchaseRequestsControllerExtension {
                 ReworkBtn=true;
                // SubmitRequestBtn = true;
           }
+          /* Start of Chanegs 490 : Bank data Validation */
+          else if(usrRole ==  'BANK' && QueueSobjectList[0].Queue.Name.contains('ECC')) {
+              ReworkBtn=true;
+              RenderSAPBtn = true;
+              
+          }
+            /* End of Chanegs 490 : Bank data Validation  */ 
           if(vendorDetailList[0].VPM_Status__c.contains('Rejected'))
           {
            RenderSAPBtn = false;
            SubmitRequestBtn = false;
            ManuallyMarkasCompletebtn= false;
           }
-          
-
-          //Ajay : Repeated code
-          /*if(vendorDetailList[0].VPM_Status__c.contains('Rejected'))
+            /* Start of Changes : 595 & 277 Disable the rework & Submit button */   
+          if((String.isNotBlank(venReqStatus) && venReqStatus.contains('Re-Work')) 
+             || 
+             (String.isNotBlank(venReqStatus) && venReqStatus.contains('SAP'))
+             ||
+             (String.isNotBlank(venReqStatus) && venReqStatus.contains('MDM'))
+             ||
+             (String.isNotBlank(venReqStatus) && venReqStatus.contains('BPM'))
+            )    
           {
-          RenderSAPBtn = false;
-          ManuallyMarkasCompletebtn= false;
-           SubmitRequestBtn = false;
-          }*/
+              ReworkBtn=false;
+          }
           
+               if(
+             (String.isNotBlank(venReqStatus) && venReqStatus.contains('SAP'))
+             ||
+             (String.isNotBlank(venReqStatus) && venReqStatus.contains('MDM'))
+             ||
+             (String.isNotBlank(venReqStatus) && venReqStatus.contains('BPM'))      
+            )    
+          {
+              SubmitRequestBtn=false;
+          }
+          /* End  of Changes : 595 & 277 Disable the rework & Submit button */
+             
+              
           vendorReqId = stdController.getRecord().Id;
+          setPaymentTermsDefaultValues();
+
           System.debug('@@@@@@@@@@ SubmitRequestBtn  -------------------'+SubmitRequestBtn );
       }
-      catch(exception ex){}
+      catch(exception ex){system.debug('@@Exception' +  ex.getstacktracestring());}
       }
+    
+    public void setPaymentTermsDefaultValues(){
+   /* System.debug('####vendorDetailList[0].VPM_PaymentTerms__c'+vendorDetailList[0].VPM_PaymentTerms__c);
+        if(string.isBlank(vendorDetailList[0].VPM_IsVendorSME__c) && string.isBlank(vendorDetailList[0].VPM_PaymentTerms__c )){
+         if((vendorDetailList[0].VPM_IsVendorSME__c=='No' || vendorDetailList[0].VPM_IsVendorSME__c == null || string.isBlank(vendorDetailList[0].VPM_IsVendorSME__c)) && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Sirius' || vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Cordillera')){  
+          pr.VPM_PaymentTerms__c = 'P090_Within 90 days Due net (90NET)';
+         }else if((vendorDetailList[0].VPM_IsVendorSME__c=='No' || vendorDetailList[0].VPM_IsVendorSME__c == null || string.isBlank(vendorDetailList[0].VPM_IsVendorSME__c)) && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'U2K2')){
+          pr.VPM_PaymentTerms__c = 'S090_Within 90 days Due net (90NET)';
+         }else if((vendorDetailList[0].VPM_IsVendorSME__c=='No' || vendorDetailList[0].VPM_IsVendorSME__c == null || string.isBlank(vendorDetailList[0].VPM_IsVendorSME__c)) && (vendorDetailList[0].VPM_CompanyCode__r.ECC__c == 'Fusion')){
+          pr.VPM_PaymentTerms__c = '90DK_Within 90 days Due net (90NET)';
+        }
+        //vendorDetailList[0].VPM_PaymentTerms__c = pr.VPM_PaymentTerms__c;   
+       } */
+         
+       // else
+       //     pr.VPM_PaymentTerms__c = vendorDetailList[0].VPM_PaymentTerms__c; 
+    }
       
       public void callSendToSAPAPI() {
           System.debug('-----id of vendor request record is-----'+vendorReqId);
           String responseString='';
           list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId,VPM_Fieldtype__c from VPM_PurchasingRequests__c where id=:vendorReqId limit 1];
               list<RecordType> RecordTypeList =[SELECT Name from RecordType where id=:vendorList[0].RecordTypeId limit 1];
-               system.debug('entering condition 1');
+                system.debug('entering condition 1');
                 system.debug('RecordTypeList[0].Name '+RecordTypeList[0].Name);
               if(RecordTypeList[0].Name.contains('(Create)')) {
               system.debug('condition 1');
@@ -151,29 +250,43 @@ global class  VPM_PurchaseRequestsControllerExtension {
                   // callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
                    callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
               } else if(RecordTypeList[0].Name.contains('(Extend)')) {
-               system.debug('condition 2');
-                  System.debug('-----calling extend global vendor mule api----');
-                  //VPM_ExtendVendorGlobalHelper.extendVendorGlobal(vendorReqId);
-                  // Ajay : Testing maintain ECC
-                   if(vendorList[0].VPM_Fieldtype__c == 'Global')
-                  responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
-               else if(vendorList[0].VPM_Fieldtype__c == 'Regional')
-                  responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
-                  system.debug(responseString);
-                   //responseString= responseString.replace(';', '\n');
-                   
-                   
-                    callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
-              } else if(RecordTypeList[0].Name.contains('(Maintain)')) {
-              
+                  
                   System.debug('-----calling extend global vendor mule api----');
                   if(vendorList[0].VPM_Fieldtype__c == 'Global')
                   responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
-              else if(vendorList[0].VPM_Fieldtype__c == 'Regional')
+                   else if(vendorList[0].VPM_Fieldtype__c == 'Regional')
                    responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
-                   responseString= responseString.replace(';', '\n');
+                   else if(vendorList[0].VPM_Fieldtype__c == 'both')
+                   {
+                   system.debug('call service 1');
+                    // responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
+                     system.debug('call service 2');
+                     responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
+                   }
+                    system.debug(responseString);
+                    responseString= responseString.replace('\'','');
+                    system.debug(responseString);
                    //callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
-                    callJavaScriptAlert='<script>var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
+                    callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
+              }else if(RecordTypeList[0].Name.contains('(Maintain)')) {
+                  
+                  System.debug('-----calling extend global vendor mule api----');
+                  if(vendorList[0].VPM_Fieldtype__c == 'Global')
+                  responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
+                   else if(vendorList[0].VPM_Fieldtype__c == 'Regional')
+                   responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
+                   else if(vendorList[0].VPM_Fieldtype__c == 'both')
+                   {
+                   system.debug('call service 1');
+                    // responseString = VPM_MaintainGlobalVendorServiceHelper.maintainGlobalVendor(vendorReqId);
+                     system.debug('call service 2');
+                     responseString = VPM_MaintainGlobalVendorServiceHelper.maintainECCVendor(vendorReqId);
+                   }
+                    system.debug(responseString);
+                    responseString= responseString.replace('\'','');
+                    system.debug(responseString);
+                   //callJavaScriptAlert='<script>alert(\''+responseString+'\'); PageReload();</script>';
+                    callJavaScriptAlert='<script>debugger;var msgString =\''+responseString+'\';msgString=msgString.split(\';\').join(\'\\n\');alert(msgString); PageReload();</script>';
               }
       }
       
@@ -232,6 +345,10 @@ global class  VPM_PurchaseRequestsControllerExtension {
               isProcure = true;
           } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Business Requestor')) {
               isBR = true;
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Russian')) {
+              isRussian = true;
+          } else if(lstcurrentUserPerSet[0].PermissionSet.Label.contains('Freight')) {
+              isFreight = true;
           }
       }
       
@@ -242,7 +359,7 @@ global class  VPM_PurchaseRequestsControllerExtension {
           // List<PermissionSetAssignment> lstcurrentUserPerSet= new  List<PermissionSetAssignment>();
           List<PermissionSetAssignment> lstcurrentUserPerSet = [SELECT Id, PermissionSet.Name,PermissionSet.Label, AssigneeId
                                                                 FROM PermissionSetAssignment
-                                                                WHERE AssigneeId = :Userinfo.getUserId() order by PermissionSet.Label DESC];
+                                                                WHERE AssigneeId = :Userinfo.getUserId() AND (NOT PermissionSet.Label like '%Business Requestor%') order by PermissionSet.Label DESC];
           //System.Debug('----list of permission sets assigned to logged in user------' + lstcurrentUserPerSet);
 
           for (PermissionSetAssignment psa: lstcurrentUserPerSet) {
@@ -259,11 +376,8 @@ global class  VPM_PurchaseRequestsControllerExtension {
               } else if(psa.PermissionSet.Label.contains('Procurement')) {
                   userRole = 'PRO';
                   return userRole;
-              } else if(psa.PermissionSet.Label.contains('Business Requestor')) {
-                  userRole = 'BUR';
-                  return 'BUR';
-              }
-           else if(psa.PermissionSet.Label.contains('Freight')) {
+              } 
+                else if(psa.PermissionSet.Label.contains('Freight')) {
                   userRole = 'FRE';
                   return userRole;
               }
@@ -271,7 +385,15 @@ global class  VPM_PurchaseRequestsControllerExtension {
                   userRole = 'RUS';
                   return userRole;
               }
+              /*  Start : Changes for 490 Bank Data Validation Approver  */
+              else if(psa.PermissionSet.Label.contains('Bank')) {
+                  userRole = 'BANK';
+                  return userRole;
+              }
+               /* End Changes for 490 Bank Data Validation Approver */
+              
           }
+          userRole = 'BUR';
           return userRole;
       }
       
@@ -302,9 +424,6 @@ global class  VPM_PurchaseRequestsControllerExtension {
              }
           else
               callJavaScriptAlert='<script> func(); </script>';
-          
-          //system.debug('@@congratsPage' + congratsPage);
-          // return congratsPage;
       } 
       
       public void EnableManuallyMarkAsCompleteBtn(){
@@ -312,7 +431,7 @@ global class  VPM_PurchaseRequestsControllerExtension {
           {
               list<VPM_PurchasingRequests__c> vendorList = [SELECT RecordTypeId from VPM_PurchasingRequests__c where id=:recId limit 1];
               list<RecordType> RecordTypeList =[SELECT Name from RecordType where id=:vendorList[0].RecordTypeId limit 1];
-              if(RecordTypeList[0].Name.contains('(Create)'))
+              if(RecordTypeList[0].Name.contains('(Create)') )
               {
                   ManuallyMarkAsCompleteFlag =false;
               }
@@ -322,12 +441,25 @@ global class  VPM_PurchaseRequestsControllerExtension {
           catch(exception ex){}
       }
      
-      public void ReworkAction()
+        public void ReworkAction()
        {
-          try{
-              list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c,VPM_RussianTaxApprovalRequired__c, VPM_RequestGroupTime__c, VPM_FreightApprovalRequired__c, VPM_RequestLastWithGroup__c, VPM_FinanceApprovalRequired__c, VPM_ProcurementApprovalRequired__c, CreatedById, OwnerId, VPM_Rework__c
+          try
+          {
+              
+              callJavaScriptAlert='<script>redirectToListView(); </script>';
+              list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Approval_Worker__c,
+                                                                 VPM_Approval_Worker_ID__c,VPM_Status__c,
+                                                                 VPM_RussianTaxApprovalRequired__c, 
+                                                                 VPM_RequestGroupTime__c, 
+                                                                 VPM_FreightApprovalRequired__c, 
+                                                                 VPM_RequestLastWithGroup__c, 
+                                                                 VPM_FinanceApprovalRequired__c, 
+                                                                 VPM_ProcurementApprovalRequired__c, 
+                                                                 CreatedById, OwnerId, VPM_Rework__c,
+                                                                 VPM_BankDataValidationRequired__c
                                                                  FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
                 
+              System.debug('@@@@@ Rework :::----'+ VendorDetailList);
                 // Ajay : BR submitted to FLS now FLS is sending for rework
               if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c=='FLS Review') 
               { 
@@ -336,65 +468,50 @@ global class  VPM_PurchaseRequestsControllerExtension {
                   VendorDetailList[0].VPM_Rework__c='Yes';
                   VendorDetailList[0].VPM_RequestGroupTime__c=System.now();
                   VendorDetailList[0].VPM_RequestLastWithGroup__c = 'FLS';
+                  VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                  VendorDetailList[0].VPM_Approval_Worker__c=''; 
                   update VendorDetailList;
-                 
-                  
               }
               // Ajay : Adv BR submitted to Pro now Pro is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_ProcurementApprovalRequired__c ==true && VendorDetailList[0].VPM_FinanceApprovalRequired__c==false)
+              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_ProcurementApprovalRequired__c ==true )
               {
                   VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById;
                   VendorDetailList[0].VPM_Rework__c='Yes';
-                  VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement';
+                  //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement';
+                  VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                  VendorDetailList[0].VPM_Approval_Worker__c=''; 
                   update VendorDetailList;
               }
               // Ajay : Adv BR submitted to FIN now FIN is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c==false )
+              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true)
               {
                   system.debug('####');
                   VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work'; 
                   VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                   VendorDetailList[0].VPM_Rework__c = 'Yes'; 
-                  VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
-                   update VendorDetailList;
-              }
-              // Ajay : Adv BR submitted to Pro now Pro is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true )
-              {
-            
-                  VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
-                  VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
-                  VendorDetailList[0].VPM_Rework__c='Yes'; 
-                  VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement';
+                  //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
+                  VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                  VendorDetailList[0].VPM_Approval_Worker__c=''; 
                   update VendorDetailList;
               }
-              // Ajay : Adv FLS submitted to FIN now FIN is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== false )
-              {
-                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
-                  if (queueList.size() == 1){ 
-                      VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work'; 
-                      VendorDetailList[0].OwnerId=queueList[0].QueueId; 
-                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
-                      VendorDetailList[0].VPM_Rework__c='Yes';   
-                      update VendorDetailList;
-                  } 
-              }
+           
              // Ajay : Adv FLS submitted to PRO now PRO is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==false && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true )
+              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true )
               {
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                   if (queueList.size() == 1){ 
                       VendorDetailList[0].VPM_Status__c = 'Procurement Requested Re-Work'; 
                       VendorDetailList[0].OwnerId=queueList[0].QueueId; 
-                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
+                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
                       VendorDetailList[0].VPM_Rework__c='Yes';  
+                      VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                      VendorDetailList[0].VPM_Approval_Worker__c=''; 
                       update VendorDetailList;
                   } 
               }
               // Ajay : Adv FLS submitted to PRO now PRO is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true )
+              /*else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c =='Approval Pending' && VendorDetailList[0].VPM_FinanceApprovalRequired__c ==true && VendorDetailList[0].VPM_ProcurementApprovalRequired__c== true )
               {
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                   if (queueList.size() == 1){ 
@@ -402,87 +519,153 @@ global class  VPM_PurchaseRequestsControllerExtension {
                       VendorDetailList[0].OwnerId=queueList[0].QueueId; 
                       VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Procurement'; 
                       VendorDetailList[0].VPM_Rework__c='Yes';   
+                      VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                      VendorDetailList[0].VPM_Approval_Worker__c=''; 
                       update VendorDetailList;
                   } 
-              }
+              }*/
               // Ajay : Adv PRO submitted to FIN now FIN is sending for rework
-              else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Procurement' && VendorDetailList[0].VPM_Status__c == 'Approval Pending') 
+              else if (!VendorDetailList[0].VPM_ProcurementApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
+                    VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
+                     VendorDetailList[0].VPM_Status__c == 'Approval Pending' &&
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS') 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = 'Finance Requested Re-Work';                   
-                      VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
-                       VendorDetailList[0].OwnerId=queueList[0].QueueId; 
+                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Finance'; 
+                      VendorDetailList[0].OwnerId=queueList[0].QueueId; 
                       VendorDetailList[0].VPM_Rework__c='Yes';  
-                      update VendorDetailList;                    
+                      VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                      VendorDetailList[0].VPM_Approval_Worker__c=''; 
+                      update VendorDetailList;
                   } 
               } 
              
              // Ajay : Adv FLS submitted to RUS now RUS is sending for rework
-               else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_RussianTaxApprovalRequired__c) 
+               //else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_RussianTaxApprovalRequired__c) 
+              else if (!VendorDetailList[0].VPM_ProcurementApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
+                    VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
+                     VendorDetailList[0].VPM_Status__c == 'Approval Pending' &&
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS') 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
-                       VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
+                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
                       VendorDetailList[0].OwnerId=queueList[0].QueueId;
                       VendorDetailList[0].VPM_Rework__c='Yes';  
-                      update VendorDetailList;                    
+                      VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                      VendorDetailList[0].VPM_Approval_Worker__c=''; 
+                      update VendorDetailList;
                   } 
               }
 
               // Ajay : Adv FLS submitted to FRE now FRE is sending for rework
-                else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_FreightApprovalRequired__c) 
+                //else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_FreightApprovalRequired__c) 
+              else if (!VendorDetailList[0].VPM_ProcurementApprovalRequired__c  &&
+                    VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
+                     VendorDetailList[0].VPM_Status__c == 'Approval Pending' &&
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c =='FLS') 
               { 
                   list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'FLS' Limit 1];
                   if (queueList.size() == 1){                     
                       VendorDetailList[0].VPM_Status__c = 'Freight Requested Re-Work'; 
-                       VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
+                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight'; 
                       VendorDetailList[0].OwnerId=queueList[0].QueueId;
                       VendorDetailList[0].VPM_Rework__c='Yes';  
-                      update VendorDetailList;                    
+                      VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                      VendorDetailList[0].VPM_Approval_Worker__c=''; 
+                      update VendorDetailList;
                   } 
               }
               // Ajay : Adv BR submitted to RUS now RUS is sending for rework
-               else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_RussianTaxApprovalRequired__c) 
+               //else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_RussianTaxApprovalRequired__c) 
+              else if (!VendorDetailList[0].VPM_ProcurementApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
+                    VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
+                     VendorDetailList[0].VPM_Status__c == 'Approval Pending' &&
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor' ) 
               { 
-                       VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
-                        VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
+                      VendorDetailList[0].VPM_Status__c = 'Russian Custom Tax Requested Re-Work'; 
+                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Russian Custom Tax'; 
                       VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
                       VendorDetailList[0].VPM_Rework__c='Yes';  
-                     update VendorDetailList;                    
-                  
+                      VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                      VendorDetailList[0].VPM_Approval_Worker__c=''; 
+                      update VendorDetailList;
+
+              }
+              
+              // Ajay : Adv BR submitted to FRE now FRE is sending for rework
+               // else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor'  && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_FreightApprovalRequired__c) 
+              else if (!VendorDetailList[0].VPM_ProcurementApprovalRequired__c  &&
+                    VendorDetailList[0].VPM_FreightApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_RussianTaxApprovalRequired__c  &&
+                    !VendorDetailList[0].VPM_FinanceApprovalRequired__c  &&
+                     VendorDetailList[0].VPM_Status__c == 'Approval Pending' &&
+                     VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor') 
+              { 
+                     VendorDetailList[0].VPM_Status__c = 'Freight Requested Re-Work'; 
+                     //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
+                     VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
+                     VendorDetailList[0].VPM_Rework__c='Yes';  
+                     VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                     VendorDetailList[0].VPM_Approval_Worker__c=''; 
+                     update VendorDetailList;
+              }
+              
+              // Bank Data Validation Rework Cases 
+              // Ajay : Adv FLS submitted to FRE now FRE is sending for rework
+               else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'FLS' && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
+              
+              { 
+                  list<QueueSobject> queueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'ECC' Limit 1];
+                  if (queueList.size() == 1){                     
+                      VendorDetailList[0].VPM_Status__c = 'Bank Data Validation Requested Re-Work'; 
+                      //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data'; 
+                      VendorDetailList[0].OwnerId=queueList[0].QueueId;
+                      VendorDetailList[0].VPM_Rework__c='Yes';  
+                      VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                      VendorDetailList[0].VPM_Approval_Worker__c=''; 
+                      update VendorDetailList;
+                  } 
               }
               // Ajay : Adv BR submitted to FRE now FRE is sending for rework
-                else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor'  && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_FreightApprovalRequired__c) 
+                else if (VendorDetailList[0].VPM_RequestLastWithGroup__c == 'Business Requestor'  && VendorDetailList[0].VPM_Status__c == 'Approval Pending' && VendorDetailList[0].VPM_BankDataValidationRequired__c) 
               { 
-                    VendorDetailList[0].VPM_Status__c = 'Freight Requested Re-Work'; 
-                     VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Freight';
+                     VendorDetailList[0].VPM_Status__c = 'Bank Data Validation Requested Re-Work'; 
+                     //VendorDetailList[0].VPM_RequestLastWithGroup__c = 'Bank Data';
                      VendorDetailList[0].OwnerId = VendorDetailList[0].CreatedById; 
-                      VendorDetailList[0].VPM_Rework__c='Yes';  
-                    update VendorDetailList;                    
-                
+                     VendorDetailList[0].VPM_Rework__c='Yes';  
+                     VendorDetailList[0].VPM_Approval_Worker_ID__c='';
+                     VendorDetailList[0].VPM_Approval_Worker__c=''; 
+                     update VendorDetailList;
               }
-
-
-               callJavaScriptAlert='<script> PageReload(); </script>';
-             
               
           }
           catch(exception ex){
-              
           }
       }
       
-        public void SubmitRequestAction()
+         public void SubmitRequestAction()
       {
+      //callJavaScriptAlert='<script> redirectToListView(); </script>';
+      System.debug('SubmitRequestAction');
          try{
-               list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c, VPM_FLSInCountryReqVendor__c, VPM_BusinessRequestorSubmitted__c, VPM_Rework__c, OwnerId
+               list<VPM_PurchasingRequests__c> VendorDetailList =[SELECT  VPM_Status__c,VPM_AdvancedFormSubmitted__c , VPM_FLSInCountryReqVendor__c, VPM_BusinessRequestorSubmitted__c, VPM_Rework__c, OwnerId
                                                                  FROM VPM_PurchasingRequests__c WHERE id= : recId LIMIT 1];
                   
-                  
+                  System.debug('@@@@@@ VendorDetailList '+VendorDetailList);
                   // Ajay : Open Advanceform for Non FLS in country
-                   if(VendorDetailList[0].VPM_FLSInCountryReqVendor__c == false) 
+                   if(VendorDetailList[0].VPM_FLSInCountryReqVendor__c == false && (VendorDetailList[0].VPM_AdvancedFormSubmitted__c == 'No' || VendorDetailList[0].VPM_AdvancedFormSubmitted__c ==null) )
 
                   { 
                    callJavaScriptAlert='<script> openAdvanceform(); </script>';
@@ -493,6 +676,7 @@ global class  VPM_PurchaseRequestsControllerExtension {
                   { 
                   VendorDetailList[0].VPM_BusinessRequestorSubmitted__c='Yes'; 
                   VendorDetailList[0].VPM_Rework__c='No'; 
+                  VendorDetailList[0].VPM_RequestLastWithGroup__c='Business Requestor'; 
                   update VendorDetailList;
                     callJavaScriptAlert='<script> PageReload(); </script>';
                  }
@@ -510,7 +694,10 @@ global class  VPM_PurchaseRequestsControllerExtension {
                         VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                       } 
                    update VendorDetailList;
+                      // Commented as per Bug : 277 Point 1 
+                     //callJavaScriptAlert='<script> redirectToListView(); </script>';
                      callJavaScriptAlert='<script> PageReload(); </script>';
+                    
                   }
                    // Ajay : FLS reworked and  submitted to PRO
                   else if (VendorDetailList[0].VPM_Status__c.contains('Procurement Requested Re-Work') && VendorDetailList[0].VPM_Rework__c=='Yes') 
@@ -521,11 +708,12 @@ global class  VPM_PurchaseRequestsControllerExtension {
                       VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
                       VendorDetailList[0].VPM_AdvancedFormSubmitted__c='Yes'; 
                       VendorDetailList[0].VPM_Rework__c='Completed'; 
-                      VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
+                      //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                      VendorDetailList[0].OwnerId=QueueList[0].QueueId;  
                       } 
                       update VendorDetailList;
-                        callJavaScriptAlert='<script> PageReload(); </script>';
+                     callJavaScriptAlert='<script> redirectToListView(); </script>';
+                       // Redirect();
                   }
                   // Ajay : FLS reworked and  submitted to FIN
                   else if (VendorDetailList[0].VPM_Status__c.contains('Finance Requested Re-Work') && VendorDetailList[0].VPM_Rework__c=='Yes') 
@@ -536,11 +724,12 @@ global class  VPM_PurchaseRequestsControllerExtension {
                           VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
                           VendorDetailList[0].VPM_Rework__c='Completed'; 
                           VendorDetailList[0].VPM_AdvancedFormSubmitted__c='Yes'; 
-                          VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
+                          //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                            VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                           } 
                       update VendorDetailList;
-                        callJavaScriptAlert='<script> PageReload(); </script>';
+                      callJavaScriptAlert='<script> redirectToListView(); </script>';
+                     // Redirect();
 
                       } 
                       // Ajay : FLS reworked and  submitted to RUS
@@ -552,11 +741,12 @@ global class  VPM_PurchaseRequestsControllerExtension {
                           VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
                           VendorDetailList[0].VPM_Rework__c='Completed'; 
                           VendorDetailList[0].VPM_AdvancedFormSubmitted__c='Yes'; 
-                          VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
+                          //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                            VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                           } 
                       update VendorDetailList;
-                        callJavaScriptAlert='<script> PageReload(); </script>';
+                        callJavaScriptAlert='<script> redirectToListView(); </script>';
+                      // Redirect();
 
                       } 
                       // Ajay : FLS reworked and  submitted to FRE
@@ -568,16 +758,31 @@ global class  VPM_PurchaseRequestsControllerExtension {
                           VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
                           VendorDetailList[0].VPM_Rework__c='Completed'; 
                           VendorDetailList[0].VPM_AdvancedFormSubmitted__c='No'; 
-                          VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
+                          //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
                            VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
                           } 
                       update VendorDetailList;
-                        callJavaScriptAlert='<script> PageReload(); </script>';
+                       callJavaScriptAlert='<script> redirectToListView(); </script>';
+                      // Redirect();
 
                       } 
-                    
-                    
+             // Changes for 490 Bank Data Rework Case
+          else if (VendorDetailList[0].VPM_Status__c.contains('Bank Data Validation Requested Re-Work') && VendorDetailList[0].VPM_Rework__c=='Yes') 
+                      { 
+                      List<QueueSobject> QueueList = [Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = 'ECC' Limit 1];
+                      if (QueueList.size() == 1)
+                          { 
+                          VendorDetailList[0].VPM_Status__c = 'Approval Pending'; 
+                          VendorDetailList[0].VPM_Rework__c='Completed'; 
+                          VendorDetailList[0].VPM_AdvancedFormSubmitted__c='Yes'; 
+                          //VendorDetailList[0].VPM_RequestLastWithGroup__c='FLS'; 
+                           VendorDetailList[0].OwnerId=QueueList[0].QueueId; 
+                          } 
+                      update VendorDetailList;
+                        callJavaScriptAlert='<script> redirectToListView(); </script>';
+                      // Redirect();
 
+                      }              
           }
           catch(exception ex){}
       } 
@@ -586,23 +791,24 @@ global class  VPM_PurchaseRequestsControllerExtension {
            return null;
        }
         public PageReference saveFromUser(){           
+System.debug('####vendorDetailList[0].VPM_PaymentTerms__c'+vendorDetailList[0].VPM_PaymentTerms__c);
+System.debug('####vendorDetailList[0].VPM_PaymentTerms__c'+pr.VPM_PaymentTerms__c);
+        // if(isFreight || isRussian){
+        //     pr.VPM_PaymentTerms__c = vendorDetailList[0].VPM_PaymentTerms__c;
+        //     update pr;
+        // }
+          if(string.isBlank(vendorDetailList[0].VPM_PaymentTerms__c)){
+                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error,System.label.VPM_PaymentTermsPageMessage));
+            }            
+            else {
+                 PageReference save = GstdController.save();
 
-        GstdController.save();
-        
-        //if(pr.VPM_IsVendorSME__c == 'Yes' && (string.isBlank(pr.VPM_ExceptionType__c))) {
-              //isRequired = true;
-        //      ApexPages.addmessage(new ApexPages.message(ApexPages.severity.error, 'Please select a Exception Type'));
-       // }
-      //  else{ 
-           
-           /* if(GstdController.save()!=null){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO, 'Details saved!'));
-            }*/
-      //  }
-       // 
-        System.debug('----------- @@@@@@@@'+isVenderSME+'--------'+exceptionType);
-        
-           return null;
+                 setPaymentTermsDefaultValues();
+                 if(save != null)
+                     callJavaScriptAlert='<script> PageReload(); </script>';    
+                    // GstdController.save();
+              }
+             return null;                         
        }
        
        public void fetchisVenderSME() {
@@ -621,9 +827,6 @@ global class  VPM_PurchaseRequestsControllerExtension {
        public void saveUserValues(){
                 
         changeButtonValues();
-        
-         //GstdController.save();
-
        }
        
        public void changeButtonValues(){

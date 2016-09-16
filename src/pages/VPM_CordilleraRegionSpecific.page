@@ -36,7 +36,7 @@
                   
                   
   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerksInternet__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerksInternet__c}"  />
-  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDoubleInvoices__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDoubleInvoices__c}" required="true" />
+  <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CheckDoubleInvoices__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CheckDoubleInvoices__c}"  required="true"/>
   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerksFax__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerksFax__c}"  />
   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ClerkAtVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ClerkAtVendor__c}"  />
   <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_ToleranceGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_ToleranceGroup__c}"  />

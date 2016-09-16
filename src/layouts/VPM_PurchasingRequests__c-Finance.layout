@@ -15,10 +15,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_AlreadyBeenInvoiced__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>VPM_VendorName1__c</field>
             </layoutItems>
             <layoutItems>
@@ -28,10 +24,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_IsLock__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Exception_Details__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -92,6 +84,18 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_Fieldtype__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_VATCountry__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_checkForFieldUpdate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_CountryRegionUpdate__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

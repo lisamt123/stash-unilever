@@ -103,5 +103,6 @@ public  class VPM_MaintainVendorFetchFieldDetails {
             System.debug('-----JSON object-----' + maintainVendorObjectJSON);
         }
         return maintainVendorObjectJSON;
+       
     }
 }

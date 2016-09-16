@@ -6,6 +6,6 @@
     <letterhead>VPM_BlankLetter</letterhead>
     <name>VPM - Request Reject Notification</name>
     <style>freeForm</style>
-    <subject>Purchase Requisition : {!VPM_PurchasingRequests__c.00N19000000bw7w} Rejected Notification</subject>
+    <subject>Your Vendor Request [{!VPM_PurchasingRequests__c.Name}] has been rejected</subject>
     <type>html</type>
 </EmailTemplate>

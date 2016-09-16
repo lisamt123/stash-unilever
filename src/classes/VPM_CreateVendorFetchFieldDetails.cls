@@ -48,7 +48,7 @@ public class VPM_CreateVendorFetchFieldDetails {
             Date requestDt = vendorList.get(0).VPM_MDMBPMRequestDate__c;
             //VPM_InterfaceFieldDetails.requestDate = requestDt==null?'':requestDt.format();
             VPM_InterfaceFieldDetails.requestDate = Datetime.now().format('yyyy-MM-dd');
-            VPM_InterfaceFieldDetails.vendorType = vendorList.get(0).VPM_VendorType__c==null?'': VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_VendorType__c);
+            VPM_InterfaceFieldDetails.VendorType = vendorList.get(0).VPM_VendorType__c==null?'': VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_VendorType__c);
             VPM_InterfaceFieldDetails.countryRequestingVendor=vendorList.get(0).VPM_CountryRequestingVendor__c==null?'':vendorList.get(0).VPM_CountryRequestingVendor__c;
             VPM_InterfaceFieldDetails.globalAuthorisationGroup = vendorList.get(0).VPM_GlobalAuthorisationGroup__c==null ? '' : VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_GlobalAuthorisationGroup__c);
             VPM_InterfaceFieldDetails.tradePartnerType = vendorList.get(0).VPM_TradePartnerType__c==null?'': VPM_HttpUtil.valueBeforeUnderscore(vendorList.get(0).VPM_TradePartnerType__c);
@@ -143,6 +143,9 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetails.InternationalLocationNumber2 = vendorList.get(0).VPM_IntLocationNumber2__c == null ? '' : vendorList.get(0).VPM_IntLocationNumber2__c;
             VPM_InterfaceFieldDetails.ExternalManufacturer = vendorList.get(0).VPM_ExtManufacturer__c == null ? '' : vendorList.get(0).VPM_ExtManufacturer__c;
             
+            // need to map to vendor request object
+            VPM_InterfaceFieldDetails.AttachmentLink = vendorList.get(0).VPM_ExtManufacturer__c == null ? '' : vendorList.get(0).VPM_ExtManufacturer__c;
+            
             //eccSystem needs to be replaced with four boolean variables for each ecc
             //VPM_InterfaceFieldDetails.eccSystem = vendorList.get(0).VPM_ECC__c==null?'':vendorList.get(0).VPM_ECC__c;
             /* 
@@ -174,5 +177,6 @@ public class VPM_CreateVendorFetchFieldDetails {
             VPM_InterfaceFieldDetailsJSON = JSON.serialize(VPM_InterfaceFieldDetails);
         }
         return VPM_InterfaceFieldDetailsJSON;
+        
     }
 }

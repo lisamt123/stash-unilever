@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -1404,6 +1404,19 @@ IF(NOT(ISBLANK( VPM_Approver1__c )),1,
     <label>Commodity Approver</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>VPM_Approver1__c</columns>
+        <columns>VPM_Approver10__c</columns>
+        <columns>VPM_Approver2__c</columns>
+        <columns>VPM_Approver3__c</columns>
+        <columns>VPM_Approver4__c</columns>
+        <columns>VPM_Approver5__c</columns>
+        <columns>VPM_Approver6__c</columns>
+        <columns>VPM_Approver7__c</columns>
+        <columns>VPM_Approver8__c</columns>
+        <columns>VPM_Approver9__c</columns>
+        <columns>VPM_CommodityClass__c</columns>
         <columns>VPM_Country__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
@@ -1453,12 +1466,14 @@ IF(NOT(ISBLANK( VPM_Approver1__c )),1,
     </nameField>
     <pluralLabel>Commodity Approvers</pluralLabel>
     <searchLayouts>
-        <customTabListAdditionalFields xsi:nil="true"/>
-        <customTabListAdditionalFields xsi:nil="true"/>
+        <customTabListAdditionalFields>VPM_CommodityClass__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>VPM_Country__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>VPM_Approver1__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>VPM_Approver2__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>VPM_ConfiguredApprovers__c</customTabListAdditionalFields>
-        <searchResultsAdditionalFields xsi:nil="true"/>
-        <searchResultsAdditionalFields xsi:nil="true"/>
+        <searchResultsAdditionalFields>VPM_CommodityClass__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>VPM_Approver1__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>VPM_Approver2__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>VPM_Country__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>VPM_ConfiguredApprovers__c</searchResultsAdditionalFields>
     </searchLayouts>

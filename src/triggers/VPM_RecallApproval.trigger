@@ -17,24 +17,47 @@ VERSION  AUTHOR            DATE              DETAIL                  Description
 
 trigger VPM_RecallApproval on VPM_PurchasingRequests__c (After insert, After update) 
 {
-    for (Integer i = 0; i < Trigger.new.size(); i++)
-    {
+
      try
      {
-        if( Trigger.isInsert || Trigger.IsUpdate)
-        {
+        
+          /* if(trigger.isAfter){
+           System.debug('Inside Trigger ');
+               VPM_PurchaseRequestTriggerHelper purchaseRequestHelper = new VPM_PurchaseRequestTriggerHelper();
+              purchaseRequestHelper.unlockPurchaseRequest(trigger.newMap,trigger.oldMap);
+          
+          } */
+          
+        for (VPM_PurchasingRequests__c purc1 :trigger.old)  
+          {
+                  System.debug('purc1  _______'+ purc1 );
+          }
+
           for (VPM_PurchasingRequests__c purc :trigger.new)  
           {
-               // if(purc.VPM_Rework__c=='Yes')
-               if(purc.VPM_IsLock__c)
-                {
-                Approval.unlock(trigger.new,false);
-                }
-          }
-        }
+             
+                System.debug('Inside Trigger ');
+                System.debug('Approval.isLocked(purc.id) @@@@@@'+ Approval.isLocked(purc.id));
+                System.debug('purc.VPM_Status__c  @@@@@@'+ purc.VPM_Status__c  );
+
+                // if (Approval.isLocked(purc.id))
+                 if(purc.VPM_IsLock__c || purc.VPM_Status__c.Contains('Pending'))
+                 {
+                     System.debug('inside Block Approval.isLocked(purc.id)  ' + Approval.isLocked(purc.id));
+                     //Approval.lock(purc,false);
+                   //Boolean result= System.Approval.unlock(purc.id);
+                   Boolean result= System.Approval.unlock(purc.id).isSuccess();
+                    System.debug('@@@@@@@ result = System.Approval.unlock(purc.id).isSuccess();' +result); 
+                 }
+          } 
+          
+ 
+         
+         
+         
      }catch(Exception e)
      {
-         Trigger.new[i].addError(e.getMessage());
+            System.debug('Trigger Error @@@@@@@ ');
      }
-    }
+    
 }

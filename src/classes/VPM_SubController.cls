@@ -272,7 +272,7 @@ public class VPM_SubController {
         //pr.VPM_AltPayeeAccountNum__c = vendorDetailsServiceOutput.AltPayeeAccountNum;
         pr.VPM_ArabiaOldNumber__c = vendorDetailsServiceOutput.ArabiaOldNumber;
         pr.VPM_ArabicVersion__c = vendorDetailsServiceOutput.ArabicVersion;
-        pr.VPM_Authorization__c = vendorDetailsServiceOutput.Authorization;
+        //pr.VPM_Authorization__c = vendorDetailsServiceOutput.Authorization;
         //pr.VPM_AutoEvalGRSetmtDel__c = vendorDetailsServiceOutput.AutoEvalGRSetmtDel;
         //pr.VPM_AutoEvalGRSetmtRet__c = vendorDetailsServiceOutput.AutoEvalGRSetmtRet;
         //pr.VPM_AutoGenerationPOAllowed__c = vendorDetailsServiceOutput.AutoGenerationPOAllowed;
@@ -290,7 +290,7 @@ public class VPM_SubController {
         //pr.VPM_BExchangeLimit__c = vendorDetailsServiceOutput.BExchangeLimit;
         //pr.VPM_Blocked__c = vendorDetailsServiceOutput.Blocked;
         pr.VPM_BlockFunction__c = vendorDetailsServiceOutput.BlockFunction;
-        pr.VPM_CarFreightGroup__c = vendorDetailsServiceOutput.CarFreightGroup;
+       // pr.VPM_CarFreightGroup__c = vendorDetailsServiceOutput.CarFreightGroup;
         //pr.VPM_CashManagementGroup__c = vendorDetailsServiceOutput.CashManagementGroup;
         //pr.VPM_catorPantLevel__c = vendorDetailsServiceOutput.catorPantLevel;
         //pr.VPM_catorVendorSubRange__c = vendorDetailsServiceOutput.catorVendorSubRange;
@@ -337,7 +337,7 @@ public class VPM_SubController {
         pr.VPM_DunningClerk__c = vendorDetailsServiceOutput.DunningClerk;
         pr.VPM_DunningLevel__c = vendorDetailsServiceOutput.DunningLevel;
         pr.VPM_DunnProcedure__c = vendorDetailsServiceOutput.DunnProcedure;
-        pr.VPM_DunnRecipient__c = vendorDetailsServiceOutput.DunnRecipient;
+        //pr.VPM_DunnRecipient__c = vendorDetailsServiceOutput.DunnRecipient;
         pr.VPM_ECC__c = vendorDetailsServiceOutput.ECC;
         pr.VPM_ECCNo__c = vendorDetailsServiceOutput.ECCNo;
         //pr.VPM_Email__c = vendorDetailsServiceOutput.Email;
@@ -360,7 +360,7 @@ public class VPM_SubController {
         pr.VPM_FaxExtension__c = vendorDetailsServiceOutput.FaxExtension;
         pr.VPM_FaxNumber2__c = vendorDetailsServiceOutput.FaxNumber2;
         pr.VPM_FaxNumber3__c = vendorDetailsServiceOutput.FaxNumber3;
-        pr.VPM_FiscalAddress__c = vendorDetailsServiceOutput.FiscalAddress;
+       // pr.VPM_FiscalAddress__c = vendorDetailsServiceOutput.FiscalAddress;
         pr.VPM_FreeText1__c = vendorDetailsServiceOutput.FreeText1;
         pr.VPM_FreeText2__c = vendorDetailsServiceOutput.FreeText2;
         pr.VPM_Function__c = vendorDetailsServiceOutput.Function;
@@ -460,7 +460,7 @@ public class VPM_SubController {
         //pr.VPM_RackJobbingServiceAgreed__c = vendorDetailsServiceOutput.RackJobbingServiceAgreed;
         pr.VPM_OtherCommunication__c = vendorDetailsServiceOutput.OtherCommunication;
         pr.VPM_ReasonForExemption__c = vendorDetailsServiceOutput.ReasonForExemption;
-        pr.VPM_RecipientType__c = vendorDetailsServiceOutput.RecipientType;
+        //pr.VPM_RecipientType__c = vendorDetailsServiceOutput.RecipientType;
         pr.VPM_ReconciliationAccount__c = vendorDetailsServiceOutput.ReconciliationAccount;
         //pr.VPM_ReferenceSpecificationsBankDetail__c = vendorDetailsServiceOutput.RefSpecBankDetails;
         pr.VPM_Region__c = vendorDetailsServiceOutput.Region;
@@ -497,7 +497,7 @@ public class VPM_SubController {
         pr.VPM_SubsequentSettlementIndex__c = vendorDetailsServiceOutput.SubsequentSettlementIndex;
         //pr.VPM_SwiftKey__c = vendorDetailsServiceOutput.SwiftKey;
         pr.VPM_TaxBase__c = vendorDetailsServiceOutput.TaxBase;
-        pr.VPM_TaxJurisdictionCode__c = vendorDetailsServiceOutput.TaxJurisdictionCode;
+        //pr.VPM_TaxJurisdictionCode__c = vendorDetailsServiceOutput.TaxJurisdictionCode;
         pr.VPM_TaxNumber1__c = vendorDetailsServiceOutput.TaxNumber1;
         pr.VPM_TaxNumber2__c = vendorDetailsServiceOutput.TaxNumber2;
         pr.VPM_TaxNumber3__c = vendorDetailsServiceOutput.TaxNumber3;

@@ -18,7 +18,7 @@ public class VPM_MaintainVendorServiceHelper {
      public String RegionStreetGroup; 
     //public AddressObj Address;
     //public VATObj VAT = new VATObj();
-    //public BankDetailsObj BankDetails ;
+    public BankDetailsObj BankDetails ;
     //public String VendorSubRange;   
     public String DMEIndicator; 
     public String InstructionKeyDataExchange;   
@@ -52,9 +52,9 @@ public class VPM_MaintainVendorServiceHelper {
     public String QMSystemTo;   
     public String PODRelevant;  
     public String TaxNumber5;   
-    //public String CorporateGroup;   
+    public String CorporateGroup;   
     //public boolean AltPayeeAllowedFlag;  
-    //public String ExternalManufacturer; 
+    public String ExternalManufacturer; 
     public CompanyDataObj CompanyData ;
     public PurchasingDataObj PurchasingData;
     public class AddressObj {
@@ -82,7 +82,7 @@ public class VPM_MaintainVendorServiceHelper {
         public String FaxExtension; //
         public String Email;    //
     }
-    /*public class VATObj {
+    public class VATObj {
         public String VATCountry;   //
         public String VATRegistrationNumber;    //
     }
@@ -96,7 +96,7 @@ public class VPM_MaintainVendorServiceHelper {
         public String RefSpecBankDetails;   //
         public String AccountHolderName;    //
         public String IBAN; //
-    }*/
+    }
     public class CompanyDataObj {
         public String CompanyCode;  //5487
         public String SortKey;  //012
@@ -116,7 +116,7 @@ public class VPM_MaintainVendorServiceHelper {
         public String LastKeyDate;  //2017-06-06
         public String InterestFrequency;    //01
         public String LastInterestRun;  //2017-06-06
-        public String BExchangeLimit;   //0.00
+        public Integer BExchangeLimit;   //0.00
         public String ChkCashing;   //0
         public boolean CheckDoubleInvoices;  //X
         public String ToleranceGroup;   //
@@ -140,10 +140,10 @@ public class VPM_MaintainVendorServiceHelper {
         public String MGroupingKey; //
         public String PaymentTermsCreditMemoKey;    //
         public String CertificationDate;    //2016-06-01
-        public DunningObj Dunning;
+        //public DunningObj Dunning;
         public WtaxTypeObj WtaxType;
     }
-    public class DunningObj {
+    /*public class DunningObj {
         public String DunnProcedure;    //0001
         public String DunningBlock; //D
         public String LastDunned;   //2016-06-01
@@ -151,7 +151,7 @@ public class VPM_MaintainVendorServiceHelper {
         public String DunRecipient; //0050019408
         public String LegalDunnProc;    //2016-06-06
         public String DunningClerk; //A8
-    }
+    }*/
     public class WtaxTypeObj {
         public String IndicatorForWithholdingTaxType;   //MC
         public String Liable;   //
@@ -160,6 +160,9 @@ public class VPM_MaintainVendorServiceHelper {
         public String ExemptionFrom;    //
         public String ExemptionTo;  //
         public String ExemptionCertNumber;  //
+        public String IdentificationNumber;  //
+        public String ExemptionReason;  //
+        public String TypeOfRecipient;  //
     }
     public class PurchasingDataObj {
         public String PurchasingOrganisation;   //AM01
@@ -167,7 +170,7 @@ public class VPM_MaintainVendorServiceHelper {
         public String OrderCurrency;    //GBP
         public String SalesPerson;  //Mike Conray
         public String Telephone;    //01924 999999
-        public String MinimumOrderValue;    //0
+        public integer MinimumOrderValue;    //0
         public String PaymentTerms; //P060
         public String Incoterms1;   //FCA
         public String Incoterms2;   //NAMED PLACE
@@ -180,7 +183,7 @@ public class VPM_MaintainVendorServiceHelper {
         public String PricingDateControl;   //4
         public String PurchasingGroup;  //ALC
         public boolean AutoEvalGRSetmtDel;   //X
-        public String PlannedDeliveryTime;  //1
+        public integer PlannedDeliveryTime;  //1
         public boolean RackJobbingServiceAgreed; //X
         public boolean RelevantForPriceDet;  //X
         public boolean GrantDiscInKind;  //X

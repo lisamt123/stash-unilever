@@ -3,13 +3,14 @@ global class VPM_FetchVendorsDetails {
         public String vendorCodeInput;
         public String ecc;
         public String compnayCode;
+        public String purchasingOrg;
     }
     global class serviceErrorResponse {
         public string statusCode;
         public string message;
     }
     global static List<VPM_ECCVendorSearchServiceOutput> getVendorDetails(List<InputVariables> inputCriteria) {
-        String compnayCode, vendorCode, eccInput;
+        String compnayCode, vendorCode, eccInput, purchasingOrg;
         List<VPM_ECCVendorSearchServiceOutput> vendorDetailsOutput = new List<VPM_ECCVendorSearchServiceOutput>();
         VPM_ECCVendorSearchServiceOutput vendorDetail;
         HttpResponse resp;
@@ -21,12 +22,14 @@ global class VPM_FetchVendorsDetails {
             vendorCode = inputCriteria.get(0).vendorCodeInput;
             eccInput = inputCriteria.get(0).ecc;
             compnayCode = inputCriteria.get(0).compnayCode;
+            purchasingOrg = inputCriteria.get(0).purchasingOrg;
         }
-        resp = VPM_VendorDetailsServicesHelper.callVendorDetailsService2(vendorCode,eccInput,compnayCode);        
+        resp = VPM_VendorDetailsServicesHelper.callVendorDetailsService2(vendorCode,eccInput,compnayCode,purchasingOrg);        
         System.debug('-----http response from service is -----'+resp);
         if(resp != null && resp.getStatusCode() == 200 && String.isNotBlank(resp.getBody())) {
             System.debug('---resp.getBody()--'+resp.getBody());
             vendorDetail = (VPM_ECCVendorSearchServiceOutput) System.JSON.deserialize(resp.getBody(), VPM_ECCVendorSearchServiceOutput.class);
+             System.debug('----vendorDetail---'+vendorDetail);
             vendorDetail = addMaintainExtendFlags(vendorDetail);
             vendorDetail.message = 'Vendor found.';
             vendorDetail.statusCode = '200';

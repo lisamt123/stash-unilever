@@ -1,6 +1,51 @@
 <table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
 <tr valign="top" height="400" >
 <td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
-<![CDATA[<div><font face="arial">Hi {!VPM_PurchasingRequests__c.CreatedBy},&nbsp;</font></div><div><font face="arial"><br></font></div><div><font face="arial">Your request has been rejected .&nbsp;</font></div><div><font face="arial"><br></font></div><div><font face="arial">Request Details :&nbsp;</font></div><div><font face="arial"><br></font></div><div><font face="arial">What you are Buying : {!VPM_PurchasingRequests__c.VPM_WhatAreYouBuying__c}&nbsp;</font></div><div><font face="arial">Vendor Name : {!VPM_PurchasingRequests__c.00N19000000bw7w}&nbsp;</font></div><div><font face="arial">Country : {!VPM_PurchasingRequests__c.00N19000000bw7N}&nbsp;</font></div><div><font face="arial">Street : {!VPM_PurchasingRequests__c.VPM_Street1__c}&nbsp;</font></div><div><font face="arial">Spend : {!VPM_PurchasingRequests__c.VPM_Spend__c}&nbsp;</font></div><div><font face="arial">Status : {!VPM_PurchasingRequests__c.VPM_Status__c}&nbsp;</font></div><div><font face="arial">Comments : {!ApprovalRequest.Comments}&nbsp;</font></div><div><font face="arial"><br></font></div><div><font face="arial"><br></font></div><div><font face="arial"><br></font></div><div><font face="arial">Thanking you</font></div>]]></td>
+<![CDATA[<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 13pt; font-family: Arial, sans-serif;">The following vendor
+request has been rejected, if required a new request has to be opened.</span><span style="font-size: 9.5pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><ul type="disc">
+ <li class="MsoNormal"><span style="font-size:12.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;;background:white">Request ID:&nbsp;&nbsp;</span><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">{!VPM_PurchasingRequests__c.Name}&nbsp;</span><span style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal"><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Rejected By:&nbsp;</span><span style="font-size:12.0pt;
+     font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     background:white">{!VPM_PurchasingRequests__c.OwnerEmail}</span><span style="font-size:7.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">&nbsp;</span><span style="font-size:9.5pt;font-family:
+     &quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal"><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Date Rejected: {!Today()}</span><span style="font-size:
+     9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal"><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Comments:&nbsp;</span><span style="font-size:12.0pt;
+     font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;">{!VPM_PurchasingRequests__c.VPM_Comments__c}</span><span style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal"><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">ECC</span><span style="font-size:13.5pt;font-family:
+     &quot;Times New Roman&quot;,&quot;serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;">&nbsp;</span><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Vendor Code</span><span style="font-size:12.0pt;
+     font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     background:white">:{!VPM_PurchasingRequests__c.VendorCodeFormula__c}</span><span style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal"><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Vendor Name:</span><span style="font-size:12.0pt;
+     font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     background:white">{!VPM_PurchasingRequests__c.VPM_VendorName1__c}</span><span style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;"><o:p></o:p></span></li>
+ <li class="MsoNormal"><span style="font-size:13.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;">Country:&nbsp;</span><span style="font-size:12.0pt;
+     font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:&quot;Times New Roman&quot;;
+     background:white">{!VPM_PurchasingRequests__c.VPM_Country__c}&nbsp;</span><span style="font-size:9.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;mso-fareast-font-family:
+     &quot;Times New Roman&quot;"><o:p></o:p></span></li>
+</ul><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 13pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 9.5pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 13pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 9.5pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="font-size: 12pt;">
+
+
+
+
+
+
+
+</p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><i><span style="font-size: 12pt; font-family: Arial, sans-serif;">Disclaimer: Please do
+not reply to this mail, the sending mail box is not monitored.</span></i></b><span style="font-size: 9.5pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p>]]></td>
 </tr>
 </table>

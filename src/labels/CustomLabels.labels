@@ -8,6 +8,20 @@
         <value>Account Group - works with Trade Partner Type to define ECC account group</value>
     </labels>
     <labels>
+        <fullName>VPMOrderCurrencyPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPMOrderCurrencyPageMessage</shortDescription>
+        <value>Order Currency: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_AccountGroup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_AccountGroup</shortDescription>
+        <value>Account Group -  Works with Account Group to Define ECC Account Group</value>
+    </labels>
+    <labels>
         <fullName>VPM_Add_Additional_Information</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -50,6 +64,13 @@
         <value>Bank Account Number</value>
     </labels>
     <labels>
+        <fullName>VPM_BankCountryKeyPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_BankCountryKeyPageMessage</shortDescription>
+        <value>Bank Country Key: Please select the value</value>
+    </labels>
+    <labels>
         <fullName>VPM_BankDetailsTitle</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -78,6 +99,13 @@
         <value>By selecting this option any other information completed on this Advanced form will be disregarded.</value>
     </labels>
     <labels>
+        <fullName>VPM_BlockDeleteVendorErrorMeesage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BlockDeleteVendorErrorMeesage</shortDescription>
+        <value>Since the Vendor is Blocked/Deleted, You need to first Unblock/Undelete the vendor before submitting the record for approval.</value>
+    </labels>
+    <labels>
         <fullName>VPM_Block_Delete_message</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -99,6 +127,13 @@
         <value>Cash Management Group</value>
     </labels>
     <labels>
+        <fullName>VPM_CashManagementGroupPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CashManagementGroupPageMessage</shortDescription>
+        <value>Cash Management Group : Please select the value</value>
+    </labels>
+    <labels>
         <fullName>VPM_CertificateName</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -117,7 +152,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_CheckDoubleInvoicesPageMessage</shortDescription>
-        <value>Check Double Invoices : You must enter a value</value>
+        <value>Check Double Invoices : Please tick the checkbox</value>
     </labels>
     <labels>
         <fullName>VPM_Click_Here</fullName>
@@ -146,6 +181,13 @@
         <protected>false</protected>
         <shortDescription>VPM_Collection Authorization</shortDescription>
         <value>Indicator Is there Collection Authorization</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CommodityApproverNotDefinePageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM - Commodity Approver Not Define for select country &amp; Commodity Class</shortDescription>
+        <value>Commodity Approvers is not   defined for selected  Purchasing Country &amp; Commodity Class ... Please contact procurement team</value>
     </labels>
     <labels>
         <fullName>VPM_Commodity_Code_help_text</fullName>
@@ -202,6 +244,13 @@
         <protected>false</protected>
         <shortDescription>VPM_Cordillera Region Specific</shortDescription>
         <value>Cordillera Region Specific Page</value>
+    </labels>
+    <labels>
+        <fullName>VPM_CountryPagemessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_CountryPagemessage</shortDescription>
+        <value>Country: Please select the value</value>
     </labels>
     <labels>
         <fullName>VPM_Creation_Details</fullName>
@@ -274,6 +323,13 @@
         <value>Enter Regional Specific Fields</value>
     </labels>
     <labels>
+        <fullName>VPM_ErrorMessageScreen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ErrorMessageScreen</shortDescription>
+        <value>Error Message</value>
+    </labels>
+    <labels>
         <fullName>VPM_Exit</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -323,6 +379,13 @@
         <value>General Vendor Details</value>
     </labels>
     <labels>
+        <fullName>VPM_GlobalAuthorisationGrpPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_GlobalAuthorisationGrpPageMessage</shortDescription>
+        <value>Global Authorisation Group: Please select the value</value>
+    </labels>
+    <labels>
         <fullName>VPM_GoldenDataBackButton</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -358,6 +421,48 @@
         <value>Golden Data Screen 1</value>
     </labels>
     <labels>
+        <fullName>VPM_Heap_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Heap Error</shortDescription>
+        <value>Please modify the search criteria Too many Vendors retrieved.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageIntroTextHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Intro Text Header</shortDescription>
+        <value>Vendor BPM Useful Links</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 1</shortDescription>
+        <value>Thanks for visiting Vendor BPM</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 2</shortDescription>
+        <value>You should click here for help &gt;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 3</shortDescription>
+        <value>Or go here if you&apos;re really stuck &gt;</value>
+    </labels>
+    <labels>
+        <fullName>VPM_HomePageLink4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Home Page Link 4</shortDescription>
+        <value>Then the last thing you should try &gt;</value>
+    </labels>
+    <labels>
         <fullName>VPM_I_am_working_on_it</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -370,6 +475,13 @@
         <protected>false</protected>
         <shortDescription>VPM_Incoterms2</shortDescription>
         <value>Incoterms 2</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Incoterms2PageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Incoterms2PageMessage</shortDescription>
+        <value>Incoterms 2 Cannot be left blank</value>
     </labels>
     <labels>
         <fullName>VPM_Indicator_Alternative_payee_using_account_number</fullName>
@@ -442,6 +554,13 @@
         <value>My Vendor isn&apos;t listed, I want to create a new Vendor</value>
     </labels>
     <labels>
+        <fullName>VPM_NewPartner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_NewPartner</shortDescription>
+        <value>For a New Partner - Link to existing Trade Vendor</value>
+    </labels>
+    <labels>
         <fullName>VPM_Next</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -467,7 +586,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Partner Function</shortDescription>
-        <value>Partner Function</value>
+        <value>Vendor/Partner Creation</value>
     </labels>
     <labels>
         <fullName>VPM_PaymentBlock</fullName>
@@ -475,6 +594,20 @@
         <protected>false</protected>
         <shortDescription>PaymentBlock</shortDescription>
         <value>Payment Block</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentMethodPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentMethodPageMessage</shortDescription>
+        <value>Payment Method: Please select the value</value>
+    </labels>
+    <labels>
+        <fullName>VPM_PaymentTermsPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_PaymentTermsPageMessage</shortDescription>
+        <value>Payment Terms: Please select the value</value>
     </labels>
     <labels>
         <fullName>VPM_Payment_Terms</fullName>
@@ -593,7 +726,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Rework alert</shortDescription>
-        <value>This request is in an approval process. Please click the &apos;Recall&apos; button on the approval related list below first.</value>
+        <value>This request is in a re-work process. If this was re-worked to you, please click the &apos;Recall&apos; button on the approval related list before continuing</value>
     </labels>
     <labels>
         <fullName>VPM_Rounding_Profile_Group</fullName>
@@ -603,11 +736,18 @@
         <value>Rounding Profile Group</value>
     </labels>
     <labels>
+        <fullName>VPM_SRVBasedVendorID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SRVBasedVendorID</shortDescription>
+        <value>SRV Based Vendor ID :You must Enter a value</value>
+    </labels>
+    <labels>
         <fullName>VPM_SRVBasedVendorPageMessage</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM_SRVBasedVendorPageMessage</shortDescription>
-        <value>SRV Based Vendor Id : You must enter a value</value>
+        <value>SRV Based VendorID : Please tick the checkbox</value>
     </labels>
     <labels>
         <fullName>VPM_Save</fullName>
@@ -694,13 +834,6 @@
         <value>Send to SAP</value>
     </labels>
     <labels>
-        <fullName>VPM_SiriusGoldenDataHelptext1</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>VPM_SiriusGoldenDataHelptext1</shortDescription>
-        <value>Always VN for Sirius. For Cordillera Freight Vendors select VN for Carriers or GS for Goods Suppliers. For Cordillera PI Vendors only change from VN if vendor is a Goods Supplier, an Invoice Party only or an Ordering address.</value>
-    </labels>
-    <labels>
         <fullName>VPM_SiriusGoldenDataHelptext2</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -722,11 +855,25 @@
         <value>Sirius Regional Specific Page</value>
     </labels>
     <labels>
+        <fullName>VPM_SortKeyPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_SortKeyPageMessage</shortDescription>
+        <value>Sort Key: Please select the value</value>
+    </labels>
+    <labels>
         <fullName>VPM_Status</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>VPM Status</shortDescription>
         <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>VPM_Street1PageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_Street1PageMessage</shortDescription>
+        <value>Address Line 1: You must Enter a value</value>
     </labels>
     <labels>
         <fullName>VPM_SubmitVendorRequestforApproval</fullName>
@@ -750,6 +897,13 @@
         <value>Tax Code</value>
     </labels>
     <labels>
+        <fullName>VPM_TaxJurisdictionCodePageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TaxJurisdictionCodePageMessage</shortDescription>
+        <value>Tax Jurisdiction Code: Please select the value</value>
+    </labels>
+    <labels>
         <fullName>VPM_Tax_Information</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -762,6 +916,20 @@
         <protected>false</protected>
         <shortDescription>VPM_TradePartnerType</shortDescription>
         <value>Trade Partner Type - Works with Account Group to Define ECC Account Group</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TradePartnerTypeHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM Trade Partner Type Help Text</shortDescription>
+        <value>Always VN for Sirius. For Cordillera Freight Vendors select VN for Carriers or GS for Goods Suppliers. For Cordillera PI Vendors only change from VN if vendor is a Goods Supplier, an Invoice Party only or an Ordering address. This will ensure the vendor is set up correctly in SAP.</value>
+    </labels>
+    <labels>
+        <fullName>VPM_TradePartnerTypepageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_TradePartnerTypepageMessage</shortDescription>
+        <value>Trade Partner Type: Please select the value</value>
     </labels>
     <labels>
         <fullName>VPM_Type</fullName>
@@ -792,6 +960,13 @@
         <value>UnBlock and UnDelete Page</value>
     </labels>
     <labels>
+        <fullName>VPM_VATCountryPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VATCountryPageMessage</shortDescription>
+        <value>VAT Country: Please select the value</value>
+    </labels>
+    <labels>
         <fullName>VPM_VendorCode</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -813,6 +988,20 @@
         <value>Vendor Name</value>
     </labels>
     <labels>
+        <fullName>VPM_VendorNameLengthPageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorNameLengthPageMessage</shortDescription>
+        <value>Vendor Name : Please enter alteast 3 characters</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorNamePageMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorNamePageMessage</shortDescription>
+        <value>Vendor Name: You must Enter a value</value>
+    </labels>
+    <labels>
         <fullName>VPM_VendorName_Address</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -832,6 +1021,13 @@
         <protected>false</protected>
         <shortDescription>Vendor Requests Home Page</shortDescription>
         <value>Vendor Requests</value>
+    </labels>
+    <labels>
+        <fullName>VPM_VendorTypeMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VPM_VendorTypeMessage</shortDescription>
+        <value>Vendor Type : Please select the value</value>
     </labels>
     <labels>
         <fullName>VPM_Vendor_Contact_Details</fullName>

@@ -24,7 +24,7 @@
         <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock> 
       <apex:pageBlocksection title="{!$Label.VPM_Creation_Details}">  
             <apex:outputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_CountryRequestingVendor__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_CountryRequestingVendor__c}" />
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Commodity__r.VPM_Vendor_Type__c}" required="true" />
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_VendorType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Commodity__r.VPM_VendorType__c}" required="true" />
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Vendor_SubType__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Vendor_SubType__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_WhatAreYouBuying__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_WhatAreYouBuying__c}"/>
             
@@ -32,7 +32,7 @@
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_Spend__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Spend__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AnnualEstimatedSpend__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AnnualEstimatedSpend__c}"/>
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_IsInvoiceReceived__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_IsInvoiceReceived__c}"/>
-            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GlobalAuthorisationGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Commodity__r.VPM_Authorisation_Group__c}" required="true"/>
+            <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_GlobalAuthorisationGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_Commodity__r.VPM_AuthorisationGroup__c}" required="true"/>
             
             
             <apex:inputField label="{!$ObjectType.VPM_PurchasingRequests__c.fields.VPM_AccountGroup__c.Label}" value="{!VPM_PurchasingRequests__c.VPM_AccountGroup__c}"/>

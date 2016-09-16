@@ -6,8 +6,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String companyCodeMatch;
     public boolean companyCodeMatching;
     public boolean vendorFoundResult;
-    //change
-    public boolean ABCIndicator;
+    public String ABCIndicator;
     public String AccntWithVendor;
     public String AccountClerkTelephoneNumber;
     public String AccountGroup;
@@ -19,7 +18,6 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ActualQMSystem;
     public String AddressForm;
     public String AddressTimeZone;
-    //change
     public boolean AdoptScanDate;
     public String AlternativePayee;
     public String AlternativePayeeAccountNumber;
@@ -27,11 +25,8 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ArabiaOldNumber;
     public String ArabicVersion;
     public String Authorization;
-    //change
     public boolean AutoEvalGRSetmtDel;
-    //change
     public boolean AutoEvalGRSetmtRet;
-    //change
     public boolean AutoGenerationPOAllowed;
     /*Fields commented since bank details fields need not be retrieved in get vendor details call. Line number 31 to 41.
     public String BankCountryKey;
@@ -57,7 +52,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String CarFreightGroup;
     public String CashManagementGroup;
     public String IndicatorPantLevel;
-    public String IndicatorVendorSubRange;
+    public Boolean IndicatorVendorSubRangeRelevant;
     public String CentralDeletionFlag;
     public String CentralPostingBlock;
     public String CentralPurchasingBlock;
@@ -67,7 +62,6 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ChangedBy;
     public String Changedon;
     public String CheckDigit;
-    //change
     public boolean CheckDoubleInvoices;
     public String ChkCashing;
     public String City;
@@ -88,7 +82,6 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String Customer;
     public String DataLine;
     public String DateOfBirth;
-    //change
     public boolean DefaultPartner;
     public Boolean Deleted;
     public String Department;
@@ -96,9 +89,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String DepartmentNumber;
     public String Description;
     public String District;
-    //change
-    public boolean DMEIndicator;
-    //change
+    public String DMEIndicator;
     public boolean DocIndexActive;
     public String DunningBlock;
     public String DunningClerk;
@@ -110,7 +101,6 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String Email;
     public String Email2;
     public String Email3;
-    //change
     public boolean EqualisationTax;
     public String ExcIndVendor;
     public String ExciseDivision;
@@ -133,9 +123,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String FreeText2;
     public String Function;
     public String FunctionDescription;
-    //change
     public boolean GrantDiscInKind;
-    //change
     public boolean GRBasedIV;
     public String GroupingKey;
     public String HeadOfficeAccountNumber;
@@ -146,18 +134,12 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String Incoterms1;
     public String Incoterms2;
     public String IndicatorAlternativePayeeAllowed;
-    //change
     public boolean IndicatorClearingBetweenCustomerAndVendor;
     public String IndicatorCollectionAuthorization;
     public String IndicatorForWithholdingTaxType;
-    //change
-    public boolean IndicatorPayItemsSeparatley;
-    //change
+    public boolean IndividualPayment;
     public boolean IndicatorPlantLevel;
     public String IndicatorSubjectToWithholdingTax;
-    //change
-    //public String IndicatorVendorSubRange;
-    public String IndividualPayment;
     public String IndividualSpec;
     public String IndonesiaOldVendorNumber;
     public String Industry;
@@ -189,10 +171,9 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ModeTransportForeignTrade;
     public String Name3;
     public String Name4;
-    public String NODEL;
+    public boolean NODEL;
     public String NPIVendor;
     public String OfficeOfEntry;
-    //change
     public boolean OrderAcknowledgementRequirement;
     public String OrderCurrency;
     public String OrderingEmailAddress;
@@ -230,7 +211,6 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String PurchasingGroup;
     public String PurchasingOrganisation;
     public String QMSystemTo;
-    //change
     public boolean RackJobbingServiceAgreed;
     public String rCommunication;
     public String ReasonForExemption;
@@ -238,13 +218,11 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ReconciliationAccount;
     public String Region;
     public String RegStGrp;
-    //change
     public boolean RelevantForPriceDet;
     public String ReturnsVendor;
     public String RoundingProfile;
     public String RussianVersion;
     public String SalesPerson;
-    //change
     public boolean SalesPurchTax;
     public String SAPComments;
     public String SCAC;
@@ -260,7 +238,6 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String SocialInsuranceCode;
     public String SortCriterion;
     public String SortKey;
-    //change
     public boolean SRVBasedVendorID;
     public String SSIStatus;
     public String StandardCommMethod;
@@ -281,7 +258,6 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String TaxNumberType;
     public String TaxOfficeIdentification;
     public String TAXOfficeIdentLangKey;
-    //change
     public boolean TaxSplit;
     public String TaxType;
     public String TeleBox;
@@ -320,8 +296,7 @@ global class VPM_ECCVendorSearchServiceOutput {
     public String ZIPPostCode;
     public class PurchasingOrgFields {
         public String PurchasingOrganisation;
-        //change
-        public boolean ABCIndicator;
+        public String ABCIndicator;
         public String OrderCurrency;
         public String SalesPerson;
         public String Telephone;
@@ -329,36 +304,26 @@ global class VPM_ECCVendorSearchServiceOutput {
         public String PaymentTerms;
         public String Incoterms1;
         public String Incoterms2;
-        //change
         public boolean GRBasedIV;
-        //change
         public boolean OrderAcknowledgementRequirement;
         public String SchemaGroupVendor;
-        //change
         public boolean AutoGenerationPOAllowed;
         public String ModeTransportForeignTrade;
         public String OfficeOfEntry;
         public String PricingDateControl;
         public String PurchasingGroup;
-        //change
         public boolean AutoEvalGRSetmtDel;
         public String PlannedDeliveryTime;
-        //change
         public boolean RackJobbingServiceAgreed;
-        //change
         public boolean RelevantForPriceDet;
-        //change
         public boolean GrantDiscInKind;
-        //change
         public boolean DocIndexActive;
         public String SortCriterion;
         public String ConfirmationControl;
         public String OrderOptimRest;
-        //change
         public boolean AutoEvalGRSetmtRet;
         public String AccntWithVendor;
         public String PROATControlProof;
-        //change
         public boolean SRVBasedVendorID;
         public List<Functions> Functions;
     }
@@ -378,7 +343,6 @@ global class VPM_ECCVendorSearchServiceOutput {
         public String CashManagementGroup;
         public String PaymentMethod;
         public String InterestCalculationIndicator;
-        //change
         public boolean IndicatorClearingBetweenCustomerAndVendor;
         public String AccntWithVendor;
         public String ClerkAtVendor;
@@ -389,30 +353,28 @@ global class VPM_ECCVendorSearchServiceOutput {
         public String LastInterestRun;
         public String BExchangeLimit;
         public String ChkCashing;
-        //change
         public boolean CheckDoubleInvoices;
         public String ToleranceGroup;
         public String HouseBank;
-        //change
-        public boolean IndicatorPayItemsSeparatley;
+        public boolean IndividualPayment;
         public String ExemptionNumber;
         public String ValidUntil;
         public String PreviousAccountNumber;
         public String GroupingKey;
         public String PaymentMethodSupplement;
         public String WithholdingTaxCountryKey;
-        public String PmtAdviceByEDI;
+        public boolean PmtAdviceByEDI;
         public String ClerksFax;
         public String ClerksInternet;
         public String AccountStatement;
         public List<Dunning> Dunning;
         public List<WtaxType> WtaxType;
         public String AccountClerkTelephoneNumber;
-        //change
         public boolean AdoptScanDate;
         public Boolean Blocked;
         public Boolean Deleted;
         public String CompanyCode;
+        public String TaxNumberResponsibleAuthority;
     }
     public class Functions {
         public String PartnerFunction;
@@ -420,10 +382,66 @@ global class VPM_ECCVendorSearchServiceOutput {
     }
     public class WtaxType {
         public String IndicatorForWithholdingTaxType;
-        public String Liable;
+        public boolean Liable;
         public String WithholdingTaxCode;
         public String ExemptionRate;
         public String ExemptionFrom;
         public String ExemptionTo;
+        public String ExemptionCertNumber;
+        public String IdentificationNumber;
+        public String ExemptionReason;
+        public String TypeOfRecipient;
     }
+	
+	/*public class Address{
+		
+		Public String SearchTerm1;
+		Public String SearchTerm2;
+		Public String AddressTimeZone;
+		Public String TaxJurisdictionCode;
+		Public String StandardCommMethod;
+		Public String Telephone;
+		Public String ExtensionPhone;
+		Public String Fax;
+		Public String FaxExtension;
+
+	
+	}*/
+	
+	public class BankDetails{
+	
+		Public String BankCountryKey;
+		Public String BankKey;
+		Public String BankAccountNumber;
+		Public String BankControlKey;
+		Public String PartnerBankType;
+		Public String CollectionAuthorization;
+		Public String RefSpecBankDetails;
+		Public String AccounHolderName;
+		Public String IBAN;
+
+	
+	}
+	
+	public class CIN{
+	
+		Public String PANNumber;
+		Public String CSTno;
+		Public String LSTno;
+		Public String SerRegNo;
+		Public String ExcIndVendor;
+		Public String ECCNo;
+		Public String ExciseRegNo;
+		Public String ExciseRange;
+		Public String ExciseDivision;
+		Public String Commissionerate;
+		Public String SSIStatus;
+		Public String TypeVendor;
+		Public String CENVAT;
+		Public String Changedon;
+		Public String ChangedBy;
+		Public String PANreference;
+
+	
+	}
 }

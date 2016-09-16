@@ -79,13 +79,15 @@ public class VPM_CreateVendorFieldDetailsWrapper {
     public string TaxNumber2 {get; set;}
     public string TaxNumber4 {get; set;}
     public string TaxNumberType {get; set;}
-    public string VendorName3 {get; set;}
-    public string VendorName4 {get; set;}
+    //public string VendorName3 {get; set;}
+    //public string VendorName4 {get; set;}
 
     public string CreditInformationNumber {get; set;}
     public string TradingPartner {get; set;}
     public string InternationalLocationNumber1 {get; set;}
     public string InternationalLocationNumber2 {get; set;}
     public string ExternalManufacturer {get; set;}
+    
+    public string AttachmentLink {get; set;}
     
 }
