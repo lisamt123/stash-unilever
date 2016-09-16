@@ -12,9 +12,13 @@
 	<members>Event__c</members>
 	<members>Event_Member__c</members>
 	<members>My_Library__c</members>
-	<members>ISLL_Custom_Settings__c</members>
-	<members>isllBrainResultsSettings__c</members>
 	<name>CustomObject</name>
 </types>
+<types>
+	<members>ISLL_Custom_Settings__c</members>
+	<members>isllBrainResultsSettings__c</members>
+	<name>CustomSetting</name>
+</types>
+
 
 </Package>
