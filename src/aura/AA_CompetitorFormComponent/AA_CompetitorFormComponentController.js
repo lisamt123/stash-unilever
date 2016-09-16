@@ -4,7 +4,7 @@
         component.set("v.longitude",null);
         component.set("v.contentId",null);
         component.set("v.versionId",null);
-        var img=document.getElementsByClassName("img").visibility='hidden';
+        //var img=document.getElementsByClassName("img").visibility='hidden';
         var action = component.get("c.getSourceRetailerTopicCountry_CompetitorReport");
         action.setCallback(this, function(a) {
             var responseData = a.getReturnValue();
@@ -19,9 +19,9 @@
             component.set("v.allCompetitorNameList", responseData.competitorNameList);
             component.set("v.allCategoryList", responseData.categoryList);
         });
-        $A.run(function() {
+        //$A.run(function() {
             $A.enqueueAction(action); 
-        });
+        //});
         var actionIds = component.get("c.getfiterDataIds");
         actionIds.setCallback(this, function(a) {
             var responseId = a.getReturnValue();
@@ -30,7 +30,6 @@
             component.set("v.showMap",true);
         });
         $A.enqueueAction(actionIds);
-        
     },
     onSelectChangeCountry : function(component, event, helper) {
         var clusterId = component.find("clusterId").get("v.value");

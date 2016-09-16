@@ -112,7 +112,7 @@ src/aura/AA_FilterComponent
 src/aura/AA_FilterComponent/AA_FilterComponent.cmp
 src/aura/AA_FilterComponent/AA_FilterComponent.cmp-meta.xml
 src/aura/AA_FilterComponent/AA_FilterComponentController.js
-src/aura/AA_FilterComponent/AA_BusinessPrincipleComponentHelper.js
+src/aura/AA_FilterComponent/AA_FilterComponentHelper.js
 src/aura/AA_FilterComponent/AA_FilterComponentHelper.js
 src/aura/AA_FilterDetail
 src/aura/AA_FilterDetail/AA_FilterDetail.cmp
@@ -199,6 +199,7 @@ src/aura/AA_UploadContentVersion/AA_UploadContentVersionHelper.js
 src/layouts
 src/layouts/aa_Agent_Report__c-Competitor Agent Report View Layout.layout
 src/layouts/aa_Agent_Report__c-Unilever Agent Report View Layout.layout
+src/layouts/aa_Agent_Report__c-Competitor Agent Report Layout.layout
 src/objects
 src/objects/aa_agent_app_custom_setting__c.object
 src/triggers
@@ -218,3 +219,6 @@ src/permissionsets/The_Agent_App_CI.permissionset
 src/permissionsets/The_Agent_App_ETS.permissionset
 src/tabs
 src/tabs/Agent_App_Lightning.tab
+src/pages
+src/pages/Agent_App_Report.page
+src/pages/Agent_App_Report.page-meta.xml
