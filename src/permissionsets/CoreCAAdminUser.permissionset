@@ -977,6 +977,10 @@
         <recordType>Core_Approver_Details__c.Invoice</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+	<userPermissions>
+		<enabled>false</enabled>
+		<name>LightningExperienceUser</name>
+	</userPermissions>
     <tabSettings>
         <tab>My_Approval_2_0</tab>
         <visibility>Visible</visibility>
