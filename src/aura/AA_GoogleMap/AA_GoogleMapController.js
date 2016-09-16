@@ -53,9 +53,9 @@
                 });
                 cmpEvent.fire();
             });
-        	$A.run(function() {
+        	//$A.run(function() {
                 $A.enqueueAction(action); 
-            });
+            //});
         }
     }
 })
