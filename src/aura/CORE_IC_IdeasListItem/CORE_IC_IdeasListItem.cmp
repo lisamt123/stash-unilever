@@ -28,6 +28,9 @@
             width: 280px;
         }
         }
+        .slds-card__header {
+        padding: .75rem 1.3rem .25rem;
+        }
     </style>
     <div class="slds-card ">
         <div class="slds-card__header ideaTile">
