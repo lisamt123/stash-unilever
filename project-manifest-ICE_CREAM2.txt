@@ -96,6 +96,14 @@ src/triggers
 src/triggers/ICB_Setup_Mobile_Channel.trigger
 src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
 src/aura
+src/aura/ICB_CloseSale/ICB_CloseSale_App.app
+src/aura/ICB_CloseSale/ICB_CloseSale_App.app-meta.xml
+src/aura/ICB_CloseSale/ICB_Cockpit_App.app
+src/aura/ICB_CloseSale/ICB_Cockpit_App.app-meta.xml
+src/aura/ICB_CloseSale/ICB_Inventory.cmp
+src/aura/ICB_CloseSale/ICB_Inventory.cmp-meta.xml
+src/aura/ICB_CloseSale/ICB_InventoryController.js
+src/aura/ICB_CloseSale/ICB_InventoryHelper.js
 src/aura/ICB_CloseSale/ICB_CloseSale.cmp
 src/aura/ICB_CloseSale/ICB_CloseSale.cmp-meta.xml
 src/aura/ICB_CloseSale/ICB_CloseSale.css

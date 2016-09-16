@@ -73,7 +73,7 @@ public class ICB_Cockpit_CC_Test
             
             System.assertEquals('Pending',opp.StageName);
             
-            ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), statusOpen);
+            ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), statusOpen,contactSales.Id);
         }
         System.Test.stopTest();
     }
@@ -185,8 +185,8 @@ public class ICB_Cockpit_CC_Test
             
             System.assertEquals(60, oppLineItem.Quantity);
             
-            ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), 'isClosed');
-            ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), '');
+            ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), 'isClosed',contactSales.Id);
+            ICB_Cockpit_CC.updateOppItem(JSON.serializePretty(listWrapper), '',contactSales.Id);
         }
         System.Test.stopTest();
     }
@@ -207,7 +207,7 @@ public class ICB_Cockpit_CC_Test
             
             ICB_Cockpit_CC.createOpportunity(null, testeOpp, null, null, null);
             ICB_Cockpit_CC.updateOpportunity(null,null,false);
-            ICB_Cockpit_CC.updateOppItem(null,null);
+            ICB_Cockpit_CC.updateOppItem(null,null,null);
         }
         System.Test.stopTest();
     }

@@ -29,6 +29,7 @@ public with sharing class ICB_Cockpit_CC
     private static final String CONST_OPERATION_OPEN;
     private static final String CONST_TYPE_CONTACT_SALES;
     private static final String CONST_TYPE_CONTACT_OPERATOR;
+    private static final String CONST_STAGE_AVAILABLE;
     //private static Id idRecTypeStandard;
     private static Map<Id,Contact> mapContact;
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem;
@@ -53,6 +54,7 @@ public with sharing class ICB_Cockpit_CC
         CONST_OPERATION_OPEN = 'open';
         CONST_TYPE_CONTACT_SALES = 'Ice Cream Salesman';
         CONST_TYPE_CONTACT_OPERATOR = 'Operator';
+        CONST_STAGE_AVAILABLE = 'Available';
         mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
         mapUserPhoto = new Map<Id, String>();
         mapInventory = new Map<String,ICB_Wrapper_Cockpit_CC>();
@@ -237,16 +239,16 @@ public with sharing class ICB_Cockpit_CC
     @AuraEnabled
     public static void updateOppItem(String inventoryList, String operation,String idContact)
     {
-        System.debug('Entering <updateOppItem>: '+ inventoryList);
-        System.debug('Entering <updateOppItem>: '+ operation);
-       
+        System.debug('Entering <updateOppItem><inventoryList>: '+ inventoryList);
+        System.debug('Entering <updateOppItem><operation>: '+ operation);
+		System.debug('Entering <updateOppItem><idContact>: '+ idContact);       
+        
         List<OpportunityLineItem> oppItem = new List<OpportunityLineItem>();
         Set<String> setProduct = new Set<String>();
-        String oppId = CONST_EMPTY;
-        
+         
         try
         {
-            List<ICB_Wrapper_Cockpit_CC> listInventories = new List<ICB_Wrapper_Cockpit_CC>();
+            List<ICB_Wrapper_Cockpit_CC> listInventories;
             if(!inventoryList.equalsIgnoreCase(CONST_EMPTY))
             {
                 listInventories = ICB_Cockpit_Helper.deserializeJSON(inventoryList);
@@ -254,8 +256,7 @@ public with sharing class ICB_Cockpit_CC
             }
             for(OpportunityLineItem opp : ICB_Cockpit_CC_DAO.updateOppItemListOppItem(mapPriceBook))
             {
-                setProduct.add(opp.Product2Id);
-                oppId = opp.OpportunityId;
+                setProduct.add(opp.Product2Id + String.valueOf(opp.Opportunity.ICB_Contact__c));
                 if(operation.equalsIgnoreCase(CONST_OPERATION_IS_CLOSED))
                 {
                     opp.ICB_IS_CLOSED__c = true;
@@ -306,7 +307,7 @@ public with sharing class ICB_Cockpit_CC
       			
             }
             Database.upsert(oppItem);
-            createOppItemNewProduct(oppId, listInventories, setProduct);
+            createOppItemNewProduct(idContact, listInventories, setProduct);
         }
         catch(Exception e)
         {
@@ -322,17 +323,22 @@ public with sharing class ICB_Cockpit_CC
     Returns: Void
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static void createOppItemNewProduct(String oppId,List<ICB_Wrapper_Cockpit_CC> listInventories,Set<String> setProduct)
+    private static void createOppItemNewProduct(String idContact,List<ICB_Wrapper_Cockpit_CC> listInventories,Set<String> setProduct)
     {
+        System.debug('Entering <createOppItemNewProduct><oppId>: '+ idContact);
+        System.debug('Entering <createOppItemNewProduct><listInventories>: '+ listInventories);
+		System.debug('Entering <createOppItemNewProduct><setProduct>: '+ setProduct); 
+        String oppId = [Select Id From Opportunity Where ICB_Contact__c =: idContact AND StageName =: CONST_STAGE_AVAILABLE].Id;
         for(ICB_Wrapper_Cockpit_CC ivt : listInventories)
         {
-            if(!setProduct.contains(ivt.invetoryItem.ICB_Product__c))
+            if(!setProduct.contains(ivt.invetoryItem.ICB_Product__c + idContact))
             {
                 List<ICB_Wrapper_Cockpit_CC> inventory = new List<ICB_Wrapper_Cockpit_CC>();
                 inventory.add(ivt);
                 createOppItem(oppId, JSON.serializePretty(inventory));                
             }
         }
+        System.debug('Exiting <createOppItemNewProduct>');
     }
     /*******************************************************************
     Purpose: Create opportunity line items based in opportunity create

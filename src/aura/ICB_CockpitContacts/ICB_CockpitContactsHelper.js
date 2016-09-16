@@ -1,42 +1,75 @@
 ({
     getContacts : function(component) 
     {
-        console.log('Entering Helper <getContacts>');
+        console.log('Entering Helper <getContacts>' );
         var action = component.get("c.getContacts");
-        action.setParams({
-            "isClosed" : true
+         action.setParams({
+            "isClosed" : false
         });
         action.setCallback(this,function(response){
             var contactsList = response.getReturnValue();
             var state = response.getState();
-            if((contactsList != null)&&(contactsList.length > 0) && (component.isValid() && state === "SUCCESS"))
-            {
-                component.set("v.listContacts", contactsList);        
+            if((contactsList != null) && (contactsList.length > 0) && (component.isValid() && state === "SUCCESS")){
+                component.set("v.listContacts", contactsList);
             }
         });
         $A.enqueueAction(action);
-        console.log('Exit Helper <getContacts>');
+       
+        console.log('Exit Helper <getContacts>: ' + component.get("v.listContacts"));
     },
-    getProducts : function(component,accountName,idContact,list) 
+    getProducts : function(component,indexContact,accountName,idContact,list) 
     {
         console.log('Entering Helper <getProducts>');
         var action = component.get("c.getInventories");
         action.setParams({
             "accountName" : accountName,
-            "operation" : "closed",
+            "operation" : "open",
             "idContact" : idContact
         });
         action.setCallback(this,function(response){
             var state = response.getState();
-            var listPricebook = response.getReturnValue();
-            if((listPricebook != null) && (listPricebook.length > 0) && (component.isValid() && state === "SUCCESS"))
-            {
-                component.set("v.inventoryList",listPricebook);
+            var listInventory = response.getReturnValue();
+            if((listInventory != null) && (listInventory.length > 0) && (component.isValid() && state === "SUCCESS")){
+                component.set("v.inventoryList",listInventory);
+                for(var i=0; i < listInventory.length; i++){
+                    if(listInventory[i].quantityMin > 0){
+                        list[indexContact].isDisabled = false;
+                    }
+                }
             }
+            //list[indexContact].spinnerShow = false;
             component.set("v.listContacts",list);
         });
         $A.enqueueAction(action);
         console.log('Exit Helper <getProducts>');
+    },
+    changeButton : function(component,event, checkBox){
+        
+        var selectedItem = event.currentTarget;
+        var index = selectedItem.dataset.record;
+        var indexOld = component.get("v.indexOld");
+        var list = component.get("v.listContacts");
+        var priceList = component.get("v.inventoryList");
+        var selectedStore = list[index];
+        //list[index].spinnerShow = true;
+        //component.set("v.listContacts",list);
+        if(priceList != null){
+            if(selectedStore.checkButton){
+                selectedStore.checkButton = false;
+                component.set("v.listContacts",list);
+            }else{
+                selectedStore.checkButton = true;
+                if(indexOld != index){
+                    list[indexOld].checkButton = false;
+                    component.set("v.indexOld",index);
+                }
+                this.getProducts(component,index,selectedStore.contactItem.Account.Name,selectedStore.contactItem.Id,list); 
+            }
+            component.set("v.indexContact", index);
+        }
+        //if(!selectedStore.checkButton){
+          //  list[index].spinnerShow = false;
+        //}
     },
     changeCheck : function(component,event, checkBox){
         console.log('Entering Helper <changeCheck>');
@@ -46,95 +79,66 @@
         var list = component.get("v.listContacts");
         var priceList = component.get("v.inventoryList");
         var selectedStore = component.get("v.listContacts")[index];
+        var mapIvt = {};
         
         if(priceList != null){
-            if(checkBox == "button"){
-                if(selectedStore.checkButton){
-                    selectedStore.checkButton = false;
-                }else{
-                    selectedStore.checkButton = true;
-                    if(indexOld != index){
-                        list[indexOld].checkButton = false;
-                        component.set("v.indexOld",index);
-                    }
-                    this.getProducts(component,selectedStore.contactItem.Account.Name,selectedStore.contactItem.Id,list);        
+            if(selectedStore.oppItem.StageName == "Pending"){
+                selectedStore.oppItem.StageName = "Available";
+                selectedStore.check = true;
+                for(var i=0; i < priceList.length; i++){
+                    mapIvt[i] = priceList[i].quantity;
+                    component.set("v.mapInventory", mapIvt);
+                    priceList[i].quantity = 0;
                 }
             }else{
-                if(selectedStore.oppItem.StageName == "Available"){
-                    selectedStore.oppItem.StageName = "Closed"; 
-                    selectedStore.check = true;
-                    this.getProducts(component,selectedStore.contactItem.Account.Name,selectedStore.contactItem.Id,list);  
-                    this.oppItemUpdate(component,selectedStore.contactItem.Id);
-                }                
-                var listJSON=JSON.stringify(priceList);
-                var action = component.get("c.updateOpportunity");
-                action.setParams({
-                    "opp" : selectedStore.oppItem,
-                    "listJson" : listJSON,
-                    "isClosed" : true
-                });
-                $A.enqueueAction(action);
+                selectedStore.oppItem.StageName = "Pending";
+                selectedStore.check = false;
+                var mapIvtAtt = component.get("v.mapInventory");
+                for(var i=0; i < priceList.length; i++){
+                    priceList[i].quantity = mapIvtAtt[i];
+                }        
             }
-            component.set("v.listContacts",list);
-        }
-        console.log('Exit Helper <changeCheck>');
+            var action = component.get("c.updateOpportunity");
+            action.setParams({
+                "opp" : selectedStore.oppItem,
+                "listJson" : "",
+                "isClosed" : false
+            });
+            $A.enqueueAction(action);
+            
+        } 
+        component.set("v.listContacts",list); 
+        //}
+       console.log('Exit Helper <changeCheck>');
     },
-    incrementValue : function(component,event){
-        console.log('Entering Helper <incrementValue>');
+    createOpportunity : function(component,event){
+        console.log('Entering Helper <createOpportunity>');
         var selectedItem = event.currentTarget;
         var index = selectedItem.dataset.record;
-       // var list = component.get("v.inventoryList");
-        var selectedStore = component.get("v.inventoryList")[index];
-        if(selectedStore.quantityReturned > selectedStore.quantity){
-            selectedStore.quantity +=1; 
-            component.set("v.inventoryList",component.get("v.inventoryList")); 
-        }
-        console.log('Exit Helper <incrementValue>');
-    },
-    decrementValue : function(component,event){
-        console.log('Entering Helper <incrementValue>');
-        var selectedItem = event.currentTarget;
-        var index = selectedItem.dataset.record;
-        //var list = component.get("v.inventoryList");
-        var selectedStore = component.get("v.inventoryList")[index];
-        if(selectedStore.quantity > 0){
-            selectedStore.quantity -=1;
-            component.set("v.inventoryList",component.get("v.inventoryList")); 
-        }
-        
-        console.log('Exit Helper <incrementValue>');
-    },
-    /*ascDescValue : function(component,event,operation){
-        console.log('Entering Helper <ascDescValue>');
-        var selectedItem = event.currentTarget;
-        var index = selectedItem.dataset.record;
+        var selectedStore = component.get("v.listContacts")[index];
         var list = component.get("v.inventoryList");
-        var selectedStore = component.get("v.inventoryList")[index];
-       if((selectedStore.quantityReturned >= selectedStore.quantity)&&(operation == "increment")){
-           if(selectedStore.quantityReturned > selectedStore.quantity){
-               selectedStore.quantity +=1; 
-           }
-       }else{
-            if(selectedStore.quantity > 0){
-                selectedStore.quantity -=1;  
-            }
-        }
-        component.set("v.inventoryList",list); 
-        console.log('Exit Helper <ascDescValue>');
-    },*/
-    oppItemUpdate : function(component,idContact){
+        var action = component.get("c.createOpportunity");
+        var listJSON=JSON.stringify(list);
+        action.setParams({
+            "idContact" : selectedStore.contactItem.Id,
+            "oppName" : selectedStore.contactItem.Name,
+            "accountName" : selectedStore.contactItem.Account.Name,
+            "idAccount" : selectedStore.contactItem.AccountId,
+            "inventoryList" : listJSON
+        });
+        $A.enqueueAction(action);
+        console.log('Exit Helper <createOpportunity>');
+    },
+    oppItemUpdate : function(component,event,idContact){
         console.log('Entering Helper <oppItemUpdate>');
-        var listIvt = component.get("v.inventoryList");
-        var listJSON=JSON.stringify(listIvt);
+        var list = component.get("v.inventoryList");
+        var listJSON=JSON.stringify(list);
         var action = component.get("c.updateOppItem");
-        
         action.setParams({
             "inventoryList" : listJSON,
-            "operation" : "closed",
+            "operation" : "open",
             "idContact" : idContact
         });
-        
-        
         $A.enqueueAction(action);
         console.log('Exit Helper <oppItemUpdate>');
     }
