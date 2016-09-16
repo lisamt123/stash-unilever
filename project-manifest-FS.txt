@@ -1,2 +1,5 @@
 src
-src/reports/FS_Report/Partner_Account_Report.report
+src/reports/FS_Report/FS_Opportunity_planned.report
+src/reports/FS_Report/FS_Opportunities_Funnel_Stage_Duration.report
+src/reports/FS_Report/FS_Partner_Account_Report.report
+src/reports/FS_Report/Opportunities_Planned_vs_Actual_Quantity.report

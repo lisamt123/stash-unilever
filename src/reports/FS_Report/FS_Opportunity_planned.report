@@ -24,7 +24,7 @@
         <criteriaItems>
             <column>STAGE_NAME</column>
             <operator>equals</operator>
-            <value>04 – Best Few,05 – Won</value>
+            <value>04 - Verbal Commitment,05 – Won</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
