@@ -418,6 +418,7 @@
         <columns>DefaultCaseOwnerId__c</columns>
         <columns>CaseOrigin__c</columns>
         <columns>Tag__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
