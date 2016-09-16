@@ -81,7 +81,7 @@ public with sharing class IPM_GlobalFinancialActionStandards {
             finActStd.IPM_iTo_Action_Standard_Charter__c=finActStd.IPM_iTo_Action_Standard_Charter__c.setScale(2);
             finActStd.IPM_GM_Action_Standards_Charter__c=finActStd.IPM_GM_Action_Standards_Charter__c.setScale(1);
             finActStd.IPM_NPV_Action_Standard_Charter__c=finActStd.IPM_NPV_Action_Standard_Charter__c.setScale(2);
-            finActStd.IPM_IRR_Action_Standard_Charter__c=finActStd.IPM_IRR_Action_Standard_Charter__c.setScale(3);
+            finActStd.IPM_IRR_Action_Standard_Charter__c=finActStd.IPM_IRR_Action_Standard_Charter__c.setScale(1);
             finActStd.IPM_Payback_Action_Standard_Charter__c=finActStd.IPM_Payback_Action_Standard_Charter__c.setScale(2);
         }
     }
