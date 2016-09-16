@@ -33,7 +33,7 @@
     width: 140px;
 }
 .THIS .dorpdown-right {
-	top: 41px;
+	top: 42px;
     position: absolute;
     right: 12px;
     width: 140px;
@@ -97,9 +97,9 @@
     display:none;
 }
 .THIS .filter {
-    right: 0px;
+    right: -5px;
     width: 93px;
-    top: 9px;
+    top: 10px;
 }
 
 .THIS .noData{
@@ -128,4 +128,10 @@ margin-top: 16px;
     .THIS .slds-large-size--1-of-1 .campaignDescriptionHeight{
      	height: auto;      
     }
+}
+@media (max-width:320px){
+    .THIS.slds-card, .THIS .slds-card {
+    margin: 22px 10px;
+    width: 90%;
+}
 }
