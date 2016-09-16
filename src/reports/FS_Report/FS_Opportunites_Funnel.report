@@ -51,7 +51,7 @@
         <criteriaItems>
             <column>STAGE_NAME</column>
             <operator>equals</operator>
-            <value>01 – Universe,02 - Above,03 – In the funnel,04 – Best Few,05 – Won</value>
+            <value>01 - Prospecting,02 - Qualification,03 - Proposal,04 - Verbal Commitment,05 – Won</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

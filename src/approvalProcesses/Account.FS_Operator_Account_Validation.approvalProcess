@@ -36,7 +36,7 @@
                 <value>Operator Russia</value>
             </criteriaItems>
         </entryCriteria>
-        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>Account Process Step 1</label>
         <name>Account_Process_Step_1</name>
         <rejectionActions>
@@ -53,11 +53,47 @@
                 <name>chatter.support@unilever.com</name>
                 <type>user</type>
             </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>User.Profile</field>
+                <operation>equals</operation>
+                <value>Unilever Food Solution - Russia</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Account Process Step 2</label>
+        <name>Account_Process_Step_2</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+        <rejectionActions>
+            <action>
+                <name>FS_Account_Validation_Reject_From_Admin_Group</name>
+                <type>Alert</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>chatter.support@unilever.com</name>
+                <type>user</type>
+            </approver>
 
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <label>Account Process Step 2</label>
-        <name>Account_Process_Step_2</name>
+        <entryCriteria>
+            <criteriaItems>
+                <field>User.Profile</field>
+                <operation>equals</operation>
+                <value>Unilever - Salesforce MultiApp Standard</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Account Process Step 3</label>
+        <name>Account_Process_Step_3</name>
         <rejectBehavior>
             <type>RejectRequest</type>
         </rejectBehavior>

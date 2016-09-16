@@ -17,7 +17,6 @@
         <columns>
             <field>Account.Opportunities$StageName</field>
         </columns>
-        <currency>EUR</currency>
         <filter>
             <criteriaItems>
                 <column>Account.Opportunities$StageName</column>
@@ -25,7 +24,7 @@
                 <value>01 – Universe,02 - Above,03 – In the funnel,04 – Best Few</value>
             </criteriaItems>
         </filter>
-        <format>Tabular</format>
+        <format>Summary</format>
         <name>FS Open Opportunity</name>
         <params>
             <name>co</name>
@@ -55,7 +54,6 @@
         <columns>
             <field>Account.Opportunities$StageName</field>
         </columns>
-        <currency>EUR</currency>
         <filter>
             <criteriaItems>
                 <column>Account.Opportunities$StageName</column>
@@ -63,7 +61,7 @@
                 <value>Closed Won,Closed Lost</value>
             </criteriaItems>
         </filter>
-        <format>Tabular</format>
+        <format>Summary</format>
         <name>FS Closed Opportunity</name>
         <params>
             <name>co</name>

@@ -1,7 +1,4 @@
-public with sharing class FS_UtilTestDataSetup {
-    Private static final string STATUS_UNIVERSE=Label.FS_Opportunity_Stage_Universe;
-    Private static final string STATUS_FUNNEL=Label.FS_Opportunity_Stage_Funnel;
-    Private static final string STATUS_COMMITMENT=Label.FS_Opportunity_Stage_Commitment;
+public with sharing class FS_UtilTestDataSetup {    
     Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
     Id newRecordTypeId=recordIdBasedonDeveloperName.get('NAFSMABETool');
     Id existingRecordTypeId=recordIdBasedonDeveloperName.get('Existing');  
@@ -47,20 +44,22 @@ public with sharing class FS_UtilTestDataSetup {
     
     //Create opportunity for MABE process
     Public List<Opportunity> setUpMABEOpportunityData(List<Contract> listContract){
+        //Set up custom settings for opportunity stages
+        FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
+        Insert oppStages;
+        FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
+        string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
+        string STATUS_Proposal=stages.FS_Stage_Proposal__c;        
         //Set up Custom settings for Opportunity Trigger
         FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-        insert oppCustomSettings;            
-        // Set up the Account records            
-        //Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
-        //Id existingRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();           
-        
+        insert oppCustomSettings;       
         //Set up Opportunity records
         List<Opportunity> opportunities = new List<Opportunity>();            
         for(contract con:listContract){
             For(Integer i=0;i<10;i++){
-                opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,stageName = STATUS_FUNNEL,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=newRecordTypeId,DealApproved__c=false));   
+                opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,stageName = STATUS_Proposal,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=newRecordTypeId,DealApproved__c=false));   
             }                                 
-            opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,StageName = STATUS_UNIVERSE,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=existingRecordTypeId));
+            opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,StageName = STATUS_Prospecting,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=existingRecordTypeId));
         }
         insert opportunities;
         return opportunities;
@@ -96,16 +95,19 @@ public with sharing class FS_UtilTestDataSetup {
     
     //Create opportunity for account planning test
     Public list<Opportunity> setUpOppforAccPlan(List<FS_Defined_Objective__c> objList){
+        //Set up custom settings for opportunity stages
+        FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment');
+        Insert oppStages;
+        FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
+        string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;        
         FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-        insert oppCustomSettings;            
-        // Set up the Account records            
-        //Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+        insert oppCustomSettings;       
         //Set up Opportunity records
         List<Opportunity> opportunities = new List<Opportunity>();
         //Create 10 opportunities for each objective
         for(FS_Defined_Objective__c Obj : Objlist){
             for(integer i=0;i<1;i++){
-                opportunities.add(new Opportunity (Name ='FS Account Planning Test Opportunity',Reason__c='Price',FS_ReasonDescription__c='Field Activity',AccountId = Obj.FS_Customer__c,StageName = '01 – Universe',CloseDate = Date.today(),Account_Plan__c=Obj.FS_Account_Plan__c,Defined_Objective__c=obj.id,recordtypeId=newRecordTypeId));
+                opportunities.add(new Opportunity (Name ='FS Account Planning Test Opportunity',Reason__c='Price',FS_ReasonDescription__c='Field Activity',AccountId = Obj.FS_Customer__c,StageName = STATUS_Prospecting,CloseDate = Date.today(),Account_Plan__c=Obj.FS_Account_Plan__c,Defined_Objective__c=obj.id,recordtypeId=newRecordTypeId));
             }
         }
         insert opportunities; 
@@ -163,6 +165,12 @@ public with sharing class FS_UtilTestDataSetup {
     
     //Update opportunities to stage 4
     Public List<Opportunity> closeOpportunity(List<Opportunity> oppList){
+    FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
+    Insert oppStages;
+    FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
+    //string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
+    //string STATUS_Proposal=stages.FS_Stage_Proposal__c;
+    string STATUS_COMMITMENT=stages.FS_Stage_Commitment__c;
         List<Opportunity> ListNewOppToBeclosed=new List<Opportunity>();
         For(Opportunity Opp: oppList){                
             Opp.StageName=STATUS_COMMITMENT;

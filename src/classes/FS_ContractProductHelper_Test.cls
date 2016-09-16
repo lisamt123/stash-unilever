@@ -12,6 +12,13 @@ private class FS_ContractProductHelper_Test {
         User testUser = testData.createTestUser();
         
         system.runAs(testUser){
+            FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
+            Insert oppStages;
+            FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
+            string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
+            string STATUS_Proposal=stages.FS_Stage_Proposal__c;
+            string STATUS_COMMITMENT=stages.FS_Stage_Commitment__c;
+            string STATUS_WON=stages.FS_Stage_Won__c;
             //Preparing data, so that the Contract Product is created by the opp trigger
             FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
             INSERT OppCustomSettings; 
@@ -29,14 +36,14 @@ private class FS_ContractProductHelper_Test {
             INSERT con;
             
             Id oppRecType1 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();
-            Opportunity oppExisting = new Opportunity(Name = 'Existing Opp', recordtypeid=oppRecType1,AccountId = acc.Id,StageName = '03 - Proposal',CloseDate = Date.today(), ContractId=con.id);
+            Opportunity oppExisting = new Opportunity(Name = 'Existing Opp', recordtypeid=oppRecType1,AccountId = acc.Id,StageName = STATUS_Proposal,CloseDate = Date.today(), ContractId=con.id);
             INSERT oppExisting;
                         
             //Set up Opportunity records
             Id oppRecType2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
             List<Opportunity> listOpportunities = new List<Opportunity>();
             for(integer i=0;i<10;i++){
-                listOpportunities.add(new Opportunity(Name = 'Opp'+i, recordtypeid=oppRecType2,AccountId = acc.Id,StageName = '03 - Proposal',CloseDate = Date.today(), ContractId=con.id));
+                listOpportunities.add(new Opportunity(Name = 'Opp'+i, recordtypeid=oppRecType2,AccountId = acc.Id,StageName = STATUS_Proposal,CloseDate = Date.today(), ContractId=con.id));
             }
             INSERT listOpportunities;
             
@@ -63,15 +70,15 @@ private class FS_ContractProductHelper_Test {
             For(Opportunity oppSecond: listOpportunities){
                 oppSecond.DealApproved__c = true;
                 oppSecond.AgreementDate__c = date.today();
-                oppSecond.StageName = '04 - Verbal Commitment';
+                oppSecond.StageName = STATUS_COMMITMENT;
             }    
             UPDATE listOpportunities;
             
             For(Opportunity oppThird: listOpportunities){
-                oppThird.StageName = '05 – Won';
+                oppThird.StageName = STATUS_WON;
             }
-            
             Test.startTest();
+            
             UPDATE listOpportunities;
             
             //Check if 'Existing' opp is updated          
@@ -91,7 +98,7 @@ private class FS_ContractProductHelper_Test {
             opp.Name = 'Test'; 
             opp.recordtypeid=oppRecType2;
             opp.AccountId = acc.Id;
-            opp.StageName = '03 - Proposal';
+            opp.StageName = STATUS_Proposal;
             opp.CloseDate = Date.today();
             opp.ContractId=con.Id;
             
@@ -107,13 +114,12 @@ private class FS_ContractProductHelper_Test {
             listOLIs=new List<OpportunityLineItem>();
             listOLIs.add(oli);
             
-            testData.setUpSchedule(listOLIs);
-            
+            testData.setUpSchedule(listOLIs);            
             opp.DealApproved__c = true;
             opp.AgreementDate__c = date.today();
-            opp.StageName = '04 - Verbal Commitment';
+            opp.StageName = STATUS_COMMITMENT;
             update opp;
-            opp.StageName = '05 – Won';
+            opp.StageName = STATUS_WON;
             update opp; 
              
             Test.StopTest();       
