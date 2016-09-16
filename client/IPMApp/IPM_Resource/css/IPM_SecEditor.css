@@ -94,7 +94,7 @@
 	.secAttachment .secTitle,.secAttachment .secLink {font-weight:bold; padding:7px;}
 	.secAttachment .secLink {cursor:pointer; color:#1568b6;}
 	.secAttachment .fileName {  margin-left: 10px; margin-right:5px;  display: block;  float: left;  margin-top: 12px;}
-	.secAttachment .panelListFiles {color:#1568b6; background:transparent;} 
+	.secAttachment .panelListFiles {background:transparent;} 
 	.asterisk:before{ content:"* ";} 
 	.noTxtAlign{text-align:left ;}
 	.attchContainer{margin: 10px 10px 20px 10px;float:left;display:block ;}
