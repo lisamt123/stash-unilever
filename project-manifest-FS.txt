@@ -23,5 +23,4 @@ src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
 src/quickActions/FS_Defined_Objective__c.New_Russia_Opportunity.quickAction
 src/objects/FS_OpportunityStages__c.object
-src/flows/FS_Account_Status_Change-3.flow
 src/reportTypes/FS_Activities_with_Account_and_Contacts.reportType
