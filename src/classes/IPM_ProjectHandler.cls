@@ -173,6 +173,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                }
             }
         }
+        if(Trigger.isUpdate){
+            IPM_ProjectCountryDetails.checkAtLeastOneAssmnt((Map<Id,IPM_Project__c>)Trigger.newMap);
+        }
         
     }
     
@@ -1099,7 +1102,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
         //process incoming project status
         IPM_ProjectHelper.handleEcoDesignSyncProcess(incomingProject,oldProject);
-        IPM_ProjectCountryDetails.checkAtLeastOneAssmnt(new Map<Id,IPM_Project__c>{incomingProject.Id=>incomingProject});
+        
     }
     
     /***********************************************************************************************************************************
