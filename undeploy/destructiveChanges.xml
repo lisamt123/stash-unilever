@@ -12,6 +12,8 @@
 	<members>Event__c</members>
 	<members>Event_Member__c</members>
 	<members>My_Library__c</members>
+	<members>isll_Event_Visit__c</mem
+	
 	<name>CustomObject</name>
 </types>
 
