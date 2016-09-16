@@ -161,7 +161,7 @@
                                         <apex:commandLink styleClass="ipmButton mr10" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus" rendered="{!isEditable}" onClick="skipValidation();"/>
                                         
                                         <apex:outputPanel rendered="{!isEditable}" >
-                                            <div class="ipmButton primary generateRolloutBtn" >{!$Label.IPM_GENERATE_ROLLOUTS}</div>
+                                            <div class="ipmButton primary generateRolloutBtn" >{!$Label.IPM_UPDATE_ROLLOUTS}</div>
                                         </apex:outputPanel>    
                                     </div>
                                 </div> 

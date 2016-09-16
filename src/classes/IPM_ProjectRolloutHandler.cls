@@ -121,7 +121,12 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         {
             newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
             newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
-        }               
+        }   
+        if(newRollout.KeyMCO__c != oldRollout.KeyMCO__c && newRollout.KeyMCO__c && newRollout.IPM_Regional_PL__c != null)
+	{
+		newRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;   
+		newRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC;  
+	}            
     }
     
     /**
