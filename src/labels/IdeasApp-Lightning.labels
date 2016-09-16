@@ -124,3 +124,17 @@
         <shortDescription>EmailSubjectForIdeas</shortDescription>
         <value>Vote for the Idea</value>
     </labels>
+	<labels>
+        <fullName>CORE_IC_CampaignText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_IC_CampaignText</shortDescription>
+        <value>interesting. Please submit your ideas on this!! Download the salesforce1 app from Google play or Apple store and go to Ideas app to view the campaign.”</value>
+    </labels>
+    <labels>
+        <fullName>CORE_IC_IdeaText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CORE_IC_IdeaText</shortDescription>
+        <value>interesting. Please vote if you like it!! Download the salesforce1 app from Google play or Apple store and go to Ideas app to view the idea.”</value>
+    </labels>

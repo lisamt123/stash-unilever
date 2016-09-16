@@ -40,6 +40,5 @@ src/aura/CORE_IC_IdeasListItem/CORE_IC_IdeasListItem.cmp
 src/aura/CORE_IC_IdeasListItem/CORE_IC_IdeasListItem.cmp-meta.xml
 src/aura/CORE_IC_IdeasListItem/CORE_IC_IdeasListItem.css
 src/aura/CORE_IC_IdeasListItem/CORE_IC_IdeasListItemController.js
-
 src/labels
-src/labels/IdeasSocial.labels
+src/labels/IdeasApp-Lightning.labels
