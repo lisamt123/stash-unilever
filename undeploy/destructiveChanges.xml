@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
-<types>
+    <types>
 	<members>Brand_USLP_Progress__c</members>
 	<members>CMS_Article__c</members>
 	<members>CMS_Article_Link__c</members>
@@ -14,11 +14,11 @@
 	<members>My_Library__c</members>
 	<name>CustomObject</name>
 </types>
+
 <types>
 	<members>ISLL_Custom_Settings__c</members>
 	<members>isllBrainResultsSettings__c</members>
 	<name>CustomSetting</name>
 </types>
-
-<version>37.0</version>
+	    <version>37.0</version>
 </Package>
