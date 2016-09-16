@@ -73,3 +73,5 @@ src/tabs/KUN_Profile_tab.tab
 src/triggers
 src/triggers/KUN_ProfileTrigger.trigger
 src/triggers/KUN_ProfileTrigger.trigger-meta.xml
+src/profiles
+src/profiles/Unilever - Force MultiApp Standard.profile

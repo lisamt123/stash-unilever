@@ -47866,6 +47866,25 @@
         <layout>GEL_Global_Exception_Log__c-GEL Global Exception Log Final</layout>
         <recordType>GEL_Global_Exception_Log__c.GEL_Final_Layout</recordType>
     </layoutAssignments>
+	<layoutAssignments>
+        <layout>KUN_Profile__c-KUN Profile Layout</layout>
+    </layoutAssignments>
+	<layoutAssignments>
+		<layout>KUN_Activities__c-KUN Experts Layout</layout>
+		<recordType>KUN_Activities__c.KUN_Experts_RT</recordType>
+	</layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Broadcast Message Layout</layout><recordType>KUN_Activities__c.KUN_Broadcast_Message_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Document And Reports Layout</layout><recordType>KUN_Activities__c.KUN_Business_Matrix_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN  News Layout</layout><recordType>KUN_Activities__c.KUN_News_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Document And Reports Layout</layout><recordType>KUN_Activities__c.KUN_News_Letter_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Document And Reports Layout</layout><recordType>KUN_Activities__c.KUN_Compliance_Process_Indicator</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Facts and Figures Layout</layout><recordType>KUN_Activities__c.KUN_FactsFigures_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Global Business Actions Layout</layout><recordType>KUN_Activities__c.KUN_Actions_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Events Layout</layout><recordType>KUN_Activities__c.KUN_Events_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Document And Reports Layout</layout><recordType>KUN_Activities__c.KUN_IT_Project_Portfolios</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Document And Reports Layout</layout><recordType>KUN_Activities__c.KUN_Other_Documents_RT</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN Quick Link Layout</layout><recordType>KUN_Activities__c.KUN_Quick_Link</recordType></layoutAssignments>
+<layoutAssignments><layout>KUN_Activities__c-KUN  Spotlight Layout</layout><recordType>KUN_Activities__c.KUN_Spotlight_RT</recordType></layoutAssignments>
     <layoutAssignments>
         <layout>Global-Global Layout</layout>
     </layoutAssignments>
