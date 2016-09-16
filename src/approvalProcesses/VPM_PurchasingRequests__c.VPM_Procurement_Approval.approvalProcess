@@ -69,7 +69,7 @@ TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
 &amp;&amp;
 
 OR(
-CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;),
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))),
 CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
 )
 &amp;&amp;
@@ -84,7 +84,7 @@ RecordType.DeveloperName != &apos;VPM_VendorReq&apos; &amp;&amp;
 TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
 &amp;&amp;
 OR(
-CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;),
+(CONTAINS(Text(VPM_VendorType__c),&quot;MBS&quot;) &amp;&amp; (!CONTAINS(Text(VPM_VendorType__c),&quot;Lakme&quot;))),
 CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-CAPEX&quot;)
 )
 &amp;&amp;
@@ -212,6 +212,10 @@ VPM_Company_Code_Value__c = &apos;5487&apos;
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
+            <name>Procurement_Notification_For_Logged</name>
+            <type>Alert</type>
+        </action>
+        <action>
             <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
         </action>
@@ -221,10 +225,6 @@ VPM_Company_Code_Value__c = &apos;5487&apos;
         </action>
         <action>
             <name>VPM_ChangeReworkStatus_No</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>VPM_ChangesIslockStatusTrue</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -256,6 +256,22 @@ VPM_Company_Code_Value__c = &apos;5487&apos;
         </action>
         <action>
             <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFinanceApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFreightApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetProcurementApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetRussianApprovalflag</name>
             <type>FieldUpdate</type>
         </action>
     </recallActions>

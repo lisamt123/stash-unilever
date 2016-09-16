@@ -47,11 +47,19 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>Freight_Notification_For_Logged</name>
+            <type>Alert</type>
+        </action>
+        <action>
             <name>VPM_ChangeIsInApprovalProcess</name>
             <type>FieldUpdate</type>
         </action>
         <action>
             <name>VPM_ChangesIslockStatusNo</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ChangesIslockStatusTrue</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -85,11 +93,11 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeIsinApprovalStatus</name>
-            <type>FieldUpdate</type>
+            <name>Russian_Notification_For_Logged</name>
+            <type>Alert</type>
         </action>
         <action>
-            <name>VPM_ChangesIslockStatusTrue</name>
+            <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -113,6 +121,26 @@
         </action>
         <action>
             <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetBankApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFinanceApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFreightApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetProcurementApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetRussianApprovalflag</name>
             <type>FieldUpdate</type>
         </action>
     </recallActions>

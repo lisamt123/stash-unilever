@@ -21,7 +21,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_Commodity_Code__c</field>
+                <field>VPM_CommodityCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -38,13 +38,13 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_Authorisation_Group__c</field>
+                <field>VPM_AuthorisationGroup__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_Vendor_Type__c</field>
+                <field>VPM_VendorType__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -70,8 +70,8 @@
                 <field>LastModifiedById</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>RecordTypeId</field>
+                <behavior>Readonly</behavior>
+                <field>VPM_CSBVendor__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>

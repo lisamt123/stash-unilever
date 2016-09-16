@@ -42,6 +42,10 @@
             <type>FieldUpdate</type>
         </action>
         <action>
+            <name>VPM_ChangelastGroupwithFLS</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VPM_ChangesIslockStatusNo</name>
             <type>FieldUpdate</type>
         </action>
@@ -81,10 +85,6 @@
         </action>
         <action>
             <name>VPM_ChangeOwnerToFLSQueue</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>VPM_ChangesIslockStatusTrue</name>
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>

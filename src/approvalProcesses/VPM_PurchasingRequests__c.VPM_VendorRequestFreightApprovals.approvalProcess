@@ -8,6 +8,7 @@
     <approvalPageFields>
         <field>Name</field>
         <field>Owner</field>
+        <field>VPM_Comments__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
@@ -106,19 +107,15 @@
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>VPM_AssigntoFreight</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
             <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeIslockStatusTrue</name>
+            <name>VPM_ChangeOwnerToFreightQueue</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeOwnerToFreightQueue</name>
+            <name>VPM_ChangeReworkStatus_No</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -133,15 +130,31 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>VPM_ChangeIslockStatusFalse</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
             <name>VPM_ChangeReworkStatus_No</name>
             <type>FieldUpdate</type>
         </action>
         <action>
             <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetBankApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFinanceApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFreightApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetProcurementApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetRussianApprovalflag</name>
             <type>FieldUpdate</type>
         </action>
     </recallActions>

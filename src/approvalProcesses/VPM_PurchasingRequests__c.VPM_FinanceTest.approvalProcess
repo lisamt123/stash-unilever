@@ -81,12 +81,6 @@
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
-    <initialSubmissionActions>
-        <action>
-            <name>VPM_ChangesIslockStatusTrue</name>
-            <type>FieldUpdate</type>
-        </action>
-    </initialSubmissionActions>
     <label>Finance test</label>
     <recallActions>
         <action>

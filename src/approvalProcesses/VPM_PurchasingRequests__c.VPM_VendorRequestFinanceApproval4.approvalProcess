@@ -248,93 +248,85 @@ CONTAINS(&quot;TUVWXYZ&quot;,LEFT(VPM_CRVT__c,1))
 TEXT(VPM_AdvancedFormSubmitted__c)==&apos;Yes&apos;
 )
 &amp;&amp;
-OR
-(
-
-/*MBS/SCS Cap-MRO*/  
-
-(
-BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;)
+OR 
+( 
+/*MBS/SCS Cap-MRO*/ 
+( 
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;) 
 ) 
 &amp;&amp; 
-VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
 &amp;&amp; 
 (VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE) 
 &amp;&amp; 
-RecordType.DeveloperName == &apos;VPM_VendorReqMaintain&apos;
-,
-
-/*MBS(Indirect) Others (Out Scope Proc)*/
-
-BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;)
-&amp;&amp; 
-VPM_Commodity_Family__c == &quot;Out of Scope Procurement&quot;
-&amp;&amp; 
-(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
-AND
-(
-RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;,
-VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE
-))
-,
-/* Freight,SCS Log*/
-(BEGINS(Text(VPM_VendorType__c),&quot;FRGT&quot;)||BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-L&quot;))
-&amp;&amp; 
-RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;
-&amp;&amp;
-( VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
-,
-
-/*PI,3PM*/
-
-(
-BEGINS(Text(VPM_VendorType__c),&quot;PI&quot;) || (BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;) &amp;&amp; BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;3PM&quot;))
-) 
-&amp;&amp;
-(
-RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;  &amp;&amp; 
-VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE || VPM_Is_changed_VAT__c = TRUE ) 
-) 
-,
-
-/*USCC/UASCC,MBS/SCSCap,2611,5449,5496,5487*/ 
-
-(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;)) 
-&amp;&amp; 
-VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;
-&amp;&amp; 
-(VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) 
-&amp;&amp; 
-RecordType.DeveloperName != &apos;VPM_VendorReqMaintain&apos;
-&amp;&amp;
-( VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
-,
-
-/* USCC/UASCC,MBS(Indir)2611,5449,5496,5487*/
- 
+RecordType.DeveloperName == &apos;VPM_VendorReqMaintain&apos; 
+, 
+/*MBS(Indirect) Others (Out Scope Proc)*/ 
 BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) 
 &amp;&amp; 
-VPM_Commodity_Family__c = &quot;Out of Scope Procurement&quot;
+VPM_Commodity_Family__c == &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
+AND 
+( 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
+VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE 
+)) 
+, 
+/* Freight,SCS Log*/ 
+(BEGINS(Text(VPM_VendorType__c),&quot;FRGT&quot;)||BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;SCS-L&quot;)) 
+&amp;&amp; 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; 
+&amp;&amp; 
+( VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
+, 
+/*PI,3PM*/ 
+( 
+BEGINS(Text(VPM_VendorType__c),&quot;PI&quot;) || (BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;) &amp;&amp; BEGINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;3PM&quot;)) 
+) 
+&amp;&amp; 
+( 
+RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || (RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; &amp;&amp; 
+VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE || VPM_Is_changed_VAT__c = TRUE ) 
+) 
+, 
+/*USCC/UASCC,MBS/SCSCap,2611,5449,5496,5487*/ 
+(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) || CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;CAP&quot;)) 
+&amp;&amp; 
+VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot; 
 &amp;&amp; 
 (VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) 
 &amp;&amp; 
 (RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
-AND
-(
-RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;,
-VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE || VPM_Is_changed_VAT__c = TRUE
+AND 
+( 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
+VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE || VPM_Is_changed_VAT__c = TRUE 
 ))
-,
-
-/*MBS Lakme,SCS Unica*/
-OR(
-(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;Lakme&quot;)),
-(BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;UNICA&quot;))
-)
+, 
+/* USCC/UASCC,MBS(Indir)2611,5449,5496,5487*/ 
+BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;) 
 &amp;&amp; 
-(
-RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || AND(RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; &amp;&amp;(  VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
-))
+VPM_Commodity_Family__c = &quot;Out of Scope Procurement&quot; 
+&amp;&amp; 
+(VPM_Company_Code_Value__c = &apos;2611&apos; || VPM_Company_Code_Value__c = &apos;5449&apos; || VPM_Company_Code_Value__c = &apos;5496&apos; || VPM_Company_Code_Value__c = &apos;5487&apos; ) 
+&amp;&amp; 
+(RecordType.DeveloperName = &apos;VPM_VendorReqCreate&apos; || RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || 
+AND 
+( 
+RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos;, 
+VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE || VPM_Is_changed_VAT__c = TRUE 
+)) 
+, 
+/*MBS Lakme,SCS Unica*/ 
+OR( 
+(BEGINS(Text(VPM_VendorType__c),&quot;MBS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;Lakme&quot;) &amp;&amp; VPM_Commodity_Family__c != &quot;Out of Scope Procurement&quot;), 
+(BEGINS(Text(VPM_VendorType__c),&quot;SCS&quot;)&amp;&amp; CONTAINS(Text(VPM_GlobalAuthorisationGroup__c),&quot;UNICA&quot;)) 
+) 
+&amp;&amp; 
+( 
+RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || AND(RecordType.DeveloperName = &apos;VPM_VendorReqMaintain&apos; &amp;&amp;( VPM_ProvidedUnblockUndelete__c = TRUE || VPM_ProvidedBlockDelete__c = TRUE || VPM_ProvidedPaymentTerms__c = TRUE || VPM_ProvidedBankDetails__c = TRUE || VPM_ProvidedFinancialSensitive__c = TRUE ) 
+)) 
 
 )</formula>
     </entryCriteria>
@@ -374,6 +366,10 @@ RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || AND(RecordType.Dev
     <finalRejectionRecordLock>true</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
+            <name>Finance2_Notification_for_Logged</name>
+            <type>Alert</type>
+        </action>
+        <action>
             <name>VPM_ChangeIsinApprovalStatus</name>
             <type>FieldUpdate</type>
         </action>
@@ -383,10 +379,6 @@ RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || AND(RecordType.Dev
         </action>
         <action>
             <name>VPM_ChangeReworkStatusNo</name>
-            <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>VPM_ChangesIslockStatusTrue</name>
             <type>FieldUpdate</type>
         </action>
         <action>
@@ -410,6 +402,26 @@ RecordType.DeveloperName = &apos;VPM_VendorReqExtend&apos; || AND(RecordType.Dev
         </action>
         <action>
             <name>VPM_IsInApprovalProcessBlank</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetBankApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFinanceApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetFreightApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetProcurementApprovalflag</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>VPM_ResetRussianApprovalflag</name>
             <type>FieldUpdate</type>
         </action>
     </recallActions>
