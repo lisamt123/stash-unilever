@@ -9,7 +9,7 @@
 	<members>CMS_Page_Article__c</members>
 	<members>Carousel__c<members>
 	<members>Chatter_History__c</members>
-	<members>Event__c<members>
+	<members>Event__c</members>
 	<members>Event_Member__c</members>
 	<members>My_Library__c</members>
 	<members>ISLL_Custom_Settings__c</members>
