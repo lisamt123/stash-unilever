@@ -7,7 +7,7 @@
 	<members>CMS_Content__c</members>
 	<members>CMS_ContentToCarousel__c</members>
 	<members>CMS_Page_Article__c</members>
-	<members>Carousel__c<members>
+	<members>Carousel__c</members>
 	<members>Chatter_History__c</members>
 	<members>Event__c</members>
 	<members>Event_Member__c</members>
