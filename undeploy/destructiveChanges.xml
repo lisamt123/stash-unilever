@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
     <types>
-	<members>Brand_USLP_Progress__c</members>
-	<members>CMS_Article__c</members>
-	<members>CMS_Article_Link__c</members>
-	<members>CMS_Content__c</members>
-	<members>CMS_ContentToCarousel__c</members>
-	<members>CMS_Page_Article__c</members>
-	<members>Carousel__c</members>
-	<members>Chatter_History__c</members>
-	<members>Event__c</members>
-	<members>Event_Member__c</members>
-	<members>My_Library__c</members>
-	<members>isll_Event_Visit__c</members>
-	
-	<name>CustomObject</name>
+	<members>Sustainable_Living_Lab</members>
+	<name>CustomApplication</name>
+</types>
+<types>
+	<members>ISLL_Read_Only</members>
+	<members>ISLL_Brand_Marketing_User</members>
+	<members>ISLL_Moderator</members>
+	<members>isll_CMS_Admin</members>
+	<name>PermissionSet</name>
 </types>
 
 <types>
-	<members>ISLL_Custom_Settings__c</members>
-	<members>isllBrainResultsSettings__c</members>
-	<name>CustomSetting</name>
+	<members>ISLLExternalEventMember</members>
+	<name>Profile</name>
+</types>
+
+
+
+<types>
+	<members>ISLLLabAuthors</members>
+	<members>ISLLLabViewers</members>
+	<name>Group</name>
 </types>
 	    <version>37.0</version>
 </Package>
