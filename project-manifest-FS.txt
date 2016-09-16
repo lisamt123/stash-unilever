@@ -15,6 +15,10 @@ src/classes/FS_UtilMABETool.cls
 src/classes/FS_UtilMABETool.cls-meta.xml
 src/classes/FS_UtilTestDataSetup.cls
 src/classes/FS_UtilTestDataSetup.cls-meta.xml
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_OpportunityHelper.cls-meta.xml
+src/classes/FS_NewMonthlyClaimCaseSchedule_Test.cls
+src/classes/FS_NewMonthlyClaimCaseSchedule_Test.cls-meta.xml
 src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
 src/quickActions/FS_Defined_Objective__c.New_Russia_Opportunity.quickAction

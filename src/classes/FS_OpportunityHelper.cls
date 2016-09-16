@@ -8,12 +8,12 @@ VERSION  AUTHOR         DATE          DETAIL Description
 ***********************************************************************/
 
 public with sharing class FS_OpportunityHelper {
-    Private static final string STATUS_WON=Label.FS_Opportunity_Stage_Won;
-    Private static final string STATUS_CLOSED_WON='Closed Won';
-    Private static final string STATUS_CLOSED_LOST='Closed Lost';
-    Private static final string ERROR_MESSAGE='The following exception has occurred: ';
-    Private static final string FOOD_SOLUTION='Food Solution';
-    Private static final string CLASS_NAME='FS_OpportunityHelper';
+    //Fetch custom settings for opportunity stages
+    FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
+    Private string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
+    Private string ERROR_MESSAGE='The following exception has occurred: ';
+    Private string FOOD_SOLUTION='Food Solution';
+    Private string CLASS_NAME='FS_OpportunityHelper';
     Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
     
 /* * Method rollUpOpportunityLineItem to update Opportunity with Opp Line Item Value (Gross Profit and Market Target)
@@ -108,7 +108,7 @@ public with sharing class FS_OpportunityHelper {
             //Get Accoun Plan deatils where associated opportunities that have been modified        
             Map<Id,List<Opportunity>> mapAccPlanOpportunity=New Map<Id,List<Opportunity>>();
             List<Opportunity> tempOppList=new List<Opportunity>();
-            for(Opportunity opp : [select id,name,StageName,Amount,Account_Plan__c from Opportunity where Account_Plan__c in :listAccPlanId]){
+            for(Opportunity opp : [select id,name,StageName,Amount,Account_Plan__c,isWon,isClosed from Opportunity where Account_Plan__c in :listAccPlanId]){
                 tempOppList=new List<Opportunity>();
                 If(mapAccPlanOpportunity.containsKey(opp.Account_Plan__c)){
                     tempOppList=mapAccPlanOpportunity.get(Opp.Account_Plan__c);
@@ -129,11 +129,11 @@ public with sharing class FS_OpportunityHelper {
                     if(opp.amount !=null){
                         record_Count=record_Count+1;
                         //If opportunity stage is Won then add amount to Gain on account plan                        
-                        if(opp.StageName.equals(STATUS_CLOSED_WON) || opp.StageName.equals(STATUS_WON)){
+                        if(opp.isWon==true){
                             opportunity_Gain=opportunity_Gain+Integer.valueOf(opp.Amount);
                         }
                         //If opportunity stage is not eual to Closed as amount to potential on account plan
-                        if(opp.StageName!='STATUS_CLOSED_LOST'){
+                        if(opp.stagename!=STATUS_CLOSED_LOST){
                             opportunity_Potential=opportunity_Potential+Integer.valueOf(opp.Amount); 
                         }
                     }
@@ -176,7 +176,7 @@ public with sharing class FS_OpportunityHelper {
             //Get Accoun Plan deatils where associated opportunities have been modified        
             Map<Id,List<Opportunity>> mapObjOpportunity=New Map<Id,List<Opportunity>>();
             List<Opportunity> tempOppList=new List<Opportunity>();
-            for(Opportunity Opp : [select id,name,StageName,Amount,Defined_Objective__c from Opportunity where defined_objective__C in :listObjId]){
+            for(Opportunity Opp : [select id,name,StageName,Amount,Defined_Objective__c,isClosed from Opportunity where defined_objective__C in :listObjId]){
                 tempOppList=new List<Opportunity>();
                 If(mapObjOpportunity.containsKey(Opp.Defined_Objective__c)){
                     tempOppList=mapObjOpportunity.get(Opp.Defined_Objective__c);
@@ -192,11 +192,13 @@ public with sharing class FS_OpportunityHelper {
                 tempOppList=new List<Opportunity>();
                 tempOppList=MapObjOpportunity.get(Obj.Id);
                 //Update total no of opportunities on defined objective
-                for(Opportunity opp : tempOppList){                
-                    record_Count=record_Count+1;
-                    If(opp.amount !=null && opp.StageName!=STATUS_CLOSED_LOST){
-                        gross_Amount=gross_Amount+Integer.valueOf(opp.Amount);                  
-                    }
+                for(Opportunity opp : tempOppList){
+                    If(opp.amount !=null){
+                        record_Count=record_Count+1;
+                        If(opp.stagename!=STATUS_CLOSED_LOST){
+                            gross_Amount=gross_Amount+Integer.valueOf(opp.Amount);                  
+                        } 
+                    }                    
                 }            
                 obj.FS_No_of_Opportunities__c=record_Count;
                 obj.FS_Opportunity_Amount__c=gross_Amount;
