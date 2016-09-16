@@ -1,9 +1,9 @@
 <apex:page showHeader="true" sidebar="true" tabStyle="Event__c" standardcontroller="Event__c" extensions="isll_EventController">
-<apex:includeScript value="{!URLFOR($Resource.isll_VidComp, 'lib/jquery-1.9.1.min.js')}" />
-<apex:includeScript value="{!URLFOR($Resource.tinymce_richTextEditor, '/tinymce.min.js')}" />
+<!-- <apex:includeScript value="{!URLFOR($Resource.isll_VidComp, 'lib/jquery-1.9.1.min.js')}" />
+<apex:includeScript value="{!URLFOR($Resource.tinymce_richTextEditor, '/tinymce.min.js')}" /> DECOM ISLL SAMBIT -->
 
-<apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_Events_EditPage1.js')}" />
-<apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_Events_EditPage2.js')}"/>
+<!-- ISLL DECOM BY SAMBIT MUND <apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_Events_EditPage1.js')}" />
+<apex:includeScript value="{!URLFOR($Resource.ISLL_Sustainable_Living_Lab, 'Java Script(ISLL)/isll_Events_EditPage2.js')}"/> 
 <style>
     .fileLabel{
         color: #4a4a56;
@@ -13,7 +13,7 @@
         margin-right: 12px;
         margin-left: 103px;
     }
-  </style>
+  </style> -->
 
 
     <apex:form id="theForm" >
