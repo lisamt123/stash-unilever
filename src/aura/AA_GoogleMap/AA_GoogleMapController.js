@@ -36,7 +36,7 @@
                 
                 L.marker([parseFloat(lat),parseFloat(lng)]).addTo(map).bindPopup(resultJson.results[1].formatted_address).openPopup();
                 var address_cmps_array = resultJson.results[1].address_components;
-                for(i=0; i < address_cmps_array.length; i++){
+                for(var i=0; i < address_cmps_array.length; i++){
                     if(address_cmps_array[i].types[0] == "administrative_area_level_2"){
                         component.set("v.townName", address_cmps_array[i].long_name);
                     }

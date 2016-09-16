@@ -2,7 +2,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.getIdeaDetailData}"/>
     <aura:attribute name="commentListItem" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="parentRecordDetail" type="Core_CA_BaseApplicationWrapper"/>
-    
+     <aura:attribute name="chatterValue" type="Boolean"/>
     <aura:attribute name="recordType" type="String"/>
     <aura:attribute name="pannelType" type="String"/>
     <aura:attribute name="recordDetail" type="Core_CA_BaseApplicationWrapper"/>
@@ -13,6 +13,7 @@
     <aura:attribute name="MailToBody3" type="String" />
     <aura:attribute name="MailToBody4" type="String" />
     <aura:attribute name="MailToBody5" type="String" />
+    <aura:attribute name="MailToBody6" type="String" />
     <aura:attribute name="shareIdea" type="Boolean" default="false"/>
     <aura:attribute name="articleId" type="String" />
     <aura:attribute name="commentPostSpinner" type="boolean" />
@@ -127,16 +128,26 @@
                             <aura:if isTrue="{!v.shareIdea}">
                                 <div  aura:id="showideaOptions" class="slds-dropdown slds-dropdown--right shareIdeaDetail " >
                                     <ul class="dropdown__list" role="menu">
+                                    <aura:if isTrue="{!v.chatterValue}">     
                                         <li class="slds-dropdown__item">
                                             <a  role="menuitem" onclick="{!c.navigateToChatter}" >
                                                 <p class="slds-truncate"  >Share on Chatter</p>
                                             </a>
                                         </li>
+                                       </aura:if>  
                                         <li class="slds-dropdown__item"  onclick="{!c.hideIdeaChatterShare}">
+                                         <aura:if isTrue="{!v.chatterValue}">     
                                             <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.recordDetail.IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.recordDetail.IdeaTitle+'%22%20'+v.MailToBody4+'%20'+v.MailToBody5}" 
                                          style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                                <p class="slds-truncate">Email</p>
+                                                <p class="slds-truncate">Share via Email</p>
                                             </a>
+                                               <aura:set attribute="else">
+	    <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.recordDetail.IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.recordDetail.IdeaTitle+'%22%20'+v.MailToBody6+'%20'}" 
+                                         style="color: #344A5F ;text-decoration: none;"  role="menuitem">
+                                                <p class="slds-truncate">Share via Email</p>
+                                            </a>
+	                                    </aura:set>
+                                      </aura:if>  
                                         </li>
                                     </ul>
                                 </div>

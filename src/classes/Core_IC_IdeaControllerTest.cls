@@ -73,8 +73,9 @@ public class Core_IC_IdeaControllerTest {
         ideaCustom.Checkbox_Value__c=false;
         ideaCustom.Name = 'DescriptionLimit';
         ideaCustom.Text_Value__c='80';
-        insert ideaCustom;
         
+        insert ideaCustom;
+         
         Core_IC_IdeaController.getCampaignDetail(ideaTheme1.Id,'4');                 
 
         Core_IC_FAQ__c faqTest=new Core_IC_FAQ__c();
@@ -84,6 +85,28 @@ public class Core_IC_IdeaControllerTest {
         insert faqTest;
         Core_IC_IdeaController.getFaqList();
         System.assert(faqTest!=null);
+        
+            List<Core_Ideation__c> lstCustSet = new List<Core_Ideation__c>();       
+        lstCustSet.add( new Core_Ideation__c(Name='IdeaPostInGroup', Checkbox_Value__c=False));
+        lstCustSet.add( new Core_Ideation__c(Name='IdeaPostInUserProfile', Checkbox_Value__c=False));
+        lstCustSet.add( new Core_Ideation__c(Name='CORE_IC_GA_VALUE', IdeasLigthningGA__c='UA-79436129-2'));
+       
+        if(!lstCustSet.isEmpty()){
+            insert lstCustSet;  
+        }  
+        
+         List<Core_Ideation__c> lstCustSet2 = new List<Core_Ideation__c>();       
+        lstCustSet2.add( new Core_Ideation__c(Name='IdeaPostInGroup', Checkbox_Value__c=True));
+        lstCustSet2.add( new Core_Ideation__c(Name='IdeaPostInUserProfile', Checkbox_Value__c=True));
+       
+        if(!lstCustSet2.isEmpty()){
+            insert lstCustSet2;  
+        }  
+          Core_IC_IdeaController.getIdeasGAID();          
+         Core_IC_IdeaController.defaultChatterValue();
+        
         Test.stopTest();
+        
+        
     }
 }
