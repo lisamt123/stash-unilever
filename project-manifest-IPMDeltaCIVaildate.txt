@@ -6,6 +6,8 @@ src/classes/IPM_BD_BB_Report_BatchSchedule.cls
 src/classes/IPM_BD_BB_Report_BatchSchedule.cls-meta.xml
 src/classes/IPM_BD_BB_Report_Batch_Test.cls
 src/classes/IPM_BD_BB_Report_Batch_Test.cls-meta.xml
+src/classes/IPM_FinancialControllerRegional_Test.cls
+src/classes/IPM_FinancialControllerRegional_Test.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
 src/classes/IPM_OTIF_Report_BatchSchedule.cls
@@ -14,8 +16,14 @@ src/classes/IPM_OTIF_Report_Batch_Test.cls
 src/classes/IPM_OTIF_Report_Batch_Test.cls-meta.xml
 src/classes/IPM_ProjectCountryDetails.cls
 src/classes/IPM_ProjectCountryDetails.cls-meta.xml
+src/classes/IPM_ProjectCountryDetails_Test.cls
+src/classes/IPM_ProjectCountryDetails_Test.cls-meta.xml
 src/classes/IPM_ProjectHandler.cls
 src/classes/IPM_ProjectHandler.cls-meta.xml
+src/classes/IPM_ProjectOverviewCtrol_Test.cls
+src/classes/IPM_ProjectOverviewCtrol_Test.cls-meta.xml
+src/classes/IPM_ProjectRolloutHandler_Test.cls
+src/classes/IPM_ProjectRolloutHandler_Test.cls-meta.xml
 src/classes/IPM_ProjectSearchCtrl.cls
 src/classes/IPM_ProjectSearchCtrl.cls-meta.xml
 src/classes/IPM_Utils.cls
