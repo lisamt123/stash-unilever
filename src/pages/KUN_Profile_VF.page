@@ -1,0 +1,118 @@
+<apex:page controller="KUN_Profile_CC" standardStylesheets="false" showHeader="false" showChat="false" sidebar="false" title="KUN Community User Profile">
+<style>
+    #kunprofile{
+        background-color: #FFF;
+    }
+    #kunprofile .twocolumns{
+        margin-top:25px;
+    }
+    #kunprofile .rightside{
+        float:right;
+        width:200px;
+    }
+    #kunprofile .leftside{
+        
+        width:510px;
+    }
+    .clearingBox{
+    
+    clear:both;
+    }
+    .heading{
+        font-family: Arial, Helvetica, sans-serif;
+          font-size: 1.0em;
+          color: #333435;
+          margin:0px;
+          font-weight:bold;
+             font-size:12px;
+    }
+    .contentsection{
+      position: relative;
+      background-color: transparent;
+      border-bottom: 1px solid #d7dbde;
+      line-height: 20px;
+     
+    }
+    .value{
+         font-family: Arial, Helvetica, sans-serif;
+          color: #777;    
+          font-size:12px;
+    }
+</style>
+<div id="kunprofile">
+    <apex:pageMessages />
+    <div class="twocolumns">
+        <div class="rightside">
+            <div class="contentsection">
+                <h3 class="heading">Capability</h3>
+            </div>
+            <div>
+                <p class="value"> <apex:outputfield value="{! Profile.Capability__c}"/></p>
+            </div>
+             <div class="contentsection">
+                <h3 class="heading">E2E Process</h3>
+            </div>
+            <div>
+                <p class="value"><apex:outputfield value="{! Profile.E2E_Process__c}"/></p>
+            </div>
+            <div class="contentsection">
+                <h3 class="heading">English speaking?</h3>
+            </div>
+            <div>
+                <p class="value"><apex:outputfield value="{! Profile.English_speaking__c}"/></p>
+            </div>
+            <div class="contentsection">
+                <h3 class="heading">Local Process Area</h3>
+            </div>
+            <div>
+                <p class="value"><apex:outputfield value="{! Profile.Local_Process_Area__c}"/></p>
+            </div>
+            <div class="contentsection">
+                <h3 class="heading">Organization</h3>
+            </div>
+            <div>
+                <p class="value"> <apex:outputfield value="{! Profile.Organization__c}"/></p>
+            </div>
+        </div>
+         <div class="leftside">
+              <div class="contentsection">
+                    <h3 class="heading">Position</h3>
+                </div>
+                <div>
+                    <p class="value"> <apex:outputfield value="{! Profile.Position__c}"/> </p>
+                </div>
+                <div class="contentsection">
+                    <h3 class="heading">Cluster</h3>
+                </div>
+                <div>
+                    <p class="value"> <apex:outputfield value="{! Profile.Cluster__c}"/> </p>
+                </div>
+                <div class="contentsection">
+                    <h3 class="heading">Employee Type</h3>
+                </div>
+                <div>
+                    <p class="value"> <apex:outputfield value="{! Profile.Employee_Type__c}"/> </p>
+                </div>
+                 <div class="contentsection">
+                    <h3 class="heading">KUN Role Type</h3>
+                </div>
+                <div>
+                    <p class="value"><apex:outputfield value="{! Profile.KUN_Role_Type__c}"/></p>
+                </div>
+                 <div class="contentsection">
+                    <h3 class="heading">MCO</h3>
+                </div>
+                <div>
+                    <p class="value"><apex:outputfield value="{! Profile.MCO__c}"/></p>
+                </div>
+                 <div class="contentsection">
+                    <h3 class="heading">Site</h3>
+                </div>
+                <div>
+                    <p class="value"> <apex:outputfield value="{! Profile.Site__c }"/></p>
+                </div>
+        </div>
+        
+    </div>
+</div> 
+</apex:page>

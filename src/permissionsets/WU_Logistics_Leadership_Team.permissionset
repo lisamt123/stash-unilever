@@ -6,6 +6,11 @@
         <field>WU_Master_Warehouse__c.WU_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_Warehouse_Secondary_POC_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Approval_Status__c</field>
