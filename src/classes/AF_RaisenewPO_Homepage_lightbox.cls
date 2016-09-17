@@ -35,7 +35,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
   public list<String> validateAddQuarter;
   public String category{get;set;} 
   public String year{get;set;}
-  //Integer counter;
+  Integer counter;
   Integer countOfSelectedBaseFee;
   public Boolean displayPopup{get;set;}
   String newQuarter;
@@ -128,7 +128,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @return: none.
 *************************************************************************************/
   public void showPopup(){
-    Integer counter=0;
+    
     validateAddQuarter=new list<String>();
     countOfSelectedBaseFee =0;
     selectedBrandEstimateIds = new Set<String>();
@@ -137,7 +137,6 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
     //String quarterformat='';
     brandQuarter='';
     displayPopup = true;
-    AF_Constants.counter=counter;
     for(wrapChechbox B:QuarterEstimate){
       if(B.selected){
         countOfSelectedBaseFee++;
@@ -189,9 +188,9 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         }
         tempvalueMap.clear();
         addquarter.sort();
-        showPopupdisplay();
-     }
+     } 
    }
+   showPopupdisplay();
  }       
         /***********************************************************************************
 *  @Description: this method is used to adjust the quarter for an exisitng record and to
@@ -250,7 +249,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
                     addquarter.add(t);
                   }
                 }
-                AF_Constants.counter =1;
+                counter =1;
               }
             }
           }
@@ -308,6 +307,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         createBrand.Archived_BrandEstimate_Quarter__c = newQuarter;
         createBrand.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WITH_AGENCY;
         createBrand.AF_BackupQuarter__c = newQuarter;
+    createNewBrandEstimate(B);
         }
         /***********************************************************************************
 *  @Description: this method is used to track the raise new po quarters
@@ -412,6 +412,8 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
     for(AF_Brand_Estimate__c f:createBrandEstimate){
       newBrandEstimateIds.add(f.Id);
     }
+    saveBrandEstimateRecords();
+    apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Brandestimate_Archived));
 }
     /***********************************************************************************
 *  @Description: this method is used to insert the BrandEstimate and AgencyEstimate

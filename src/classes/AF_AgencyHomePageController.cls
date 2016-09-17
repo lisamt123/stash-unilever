@@ -548,7 +548,7 @@ public void getAgencyEstDataList(){
 *  @return: none.
 ***********************************************************************************************************/  
         public void getAgencyEstDataListCond(){
-         totalAgencyFee=0;
+         //totalAgencyFee=0;
          adaptDecimalPerStr=0;
          tradDecimalPerStr=0;
          digitDecimalPerStr=0;

@@ -30,6 +30,7 @@ global with sharing class AF_OopEstimateRemote {
   //static Integer totalLocalA;
   //static Integer totalLocal;
   //static Decimal totalWithoutRounding;
+  static Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0;
   public AF_OopEstimateRemote(ApexPages.StandardController stdController) {}
   @remoteAction
   /***********************************************************************************
@@ -80,23 +81,7 @@ global with sharing class AF_OopEstimateRemote {
     orderedRowMethodOOPs();
     rowDetail += trCloseTag;
     orderedColMethodOOPs();
-    getOOPSEstimateRecordsExt(oopsActualId,agencyId);
-    ulOopsMatrixMap.put('1', colDetail);
-    ulOopsMatrixMap.put('2', rowDetail);
-    return ulOopsMatrixMap;
-  }
-  /***********************************************************************************
-*  @Description: this method is used to query and display the records in oops matrix 
-*  @             rows and column total of the oopsEstimate records will be displayed.
-         The total of the oops amount will be displayed in matrix cell rowise and colwise. 
-*  @name : getOOPSEstimateRecords
-*  @param : agencyId,oopsActualId
-*  @return: Map of <String,String>.
-*************************************************************************************/
-  public static void getOOPSEstimateRecordsExt(String oopsActualId, String agencyId){
-  String trOpenTag = '<tr>';
-   Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
-   /* Columns part is completed. */
+    /* Columns part is completed. */
     /* Following displays all the rows in the matrix.*/
     for(String eachRow : orderedRow) {
       rowDetail += trOpenTag;
@@ -111,21 +96,6 @@ global with sharing class AF_OopEstimateRemote {
           rowTotalA += AF_BrandEstimateRemote.truncateDecimal(oopsULRelationMap .get(keyMatch).AF_Estimate__c);
         }
       }
-      getOOPSEstimateRecordsExtension(oopsActualId,agencyId);
-    }
- }
- /***********************************************************************************
-*  @Description: this method is used to query and display the records in oops matrix 
-*  @             rows and column total of the oopsEstimate records will be displayed.
-         The total of the oops amount will be displayed in matrix cell rowise and colwise. 
-*  @name : getOOPSEstimateRecords
-*  @param : agencyId,oopsActualId
-*  @return: Map of <String,String>.
-*************************************************************************************/
-  public static void getOOPSEstimateRecordsExtension(String oopsActualId, String agencyId){
-      Integer rowTotal = 0, rowTotalVal = 0, rowTotalA = 0; 
-      String trCloseTag = '</tr>';
-      for(String eachRow : orderedRow) {
       String dispArchiveImg = (rowTotalVal > 0 || rowTotalA > 0)?  '' : archiveImg;
       rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTagEst;
       String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(rowTotal) : '';
@@ -136,6 +106,9 @@ global with sharing class AF_OopEstimateRemote {
       getOOPSRecordsExt(oopsActualId,eachRow);
       rowDetail += trCloseTag;
     }
+    ulOopsMatrixMap.put('1', colDetail);
+    ulOopsMatrixMap.put('2', rowDetail);
+    return ulOopsMatrixMap;
   }
   
   public static void orderedRowMethodOOPs(){
@@ -200,10 +173,10 @@ global with sharing class AF_OopEstimateRemote {
     String aId, String uId, String bId) {
     String tdCloseTag = '</td>';
     AF_Constants.rowDetailToReturn = '';
-    String disptotal='';
-    String dispLocalTotal='';
-    String disptotalA='';
-    String dispLocalTotalA='';
+    //String disptotal='';
+    //String dispLocalTotal='';
+    //String disptotalA='';
+    //String dispLocalTotalA='';
     if(isValue) {
       total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c/1000);
       AF_Constants.totalLocal = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c/1000);
@@ -213,14 +186,10 @@ global with sharing class AF_OopEstimateRemote {
       AF_Constants.currCode = agSObj.AF_OOPS_Matrix_Currency_Code__c != null ? agSObj.AF_OOPS_Matrix_Currency_Code__c : '';
       String spacer = ' ';
       String href;
-      if(agSObj.AF_Estimate__c > 0){
-                 disptotal = AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total);
-                 disptotalA = AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalA);
-            }
-            if(agSObj.AF_EstimateLocal__c > 0){
-                 dispLocalTotal = AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocal);
-                 dispLocalTotalA = AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocalA);
-            }
+      String disptotal = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
+      String dispLocalTotal = agSObj.AF_EstimateLocal__c > 0 ? AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocal) : '';
+      String disptotalA = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalA) : '';
+      String dispLocalTotalA = agSObj.AF_EstimateLocal__c > 0 ? AF_Constants.currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(AF_Constants.totalLocalA) : '';
       crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
       href = 'apex/af_oopsEstimate?id='+agSObj.Id;
       AF_Constants.rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
