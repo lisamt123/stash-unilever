@@ -60,7 +60,7 @@ public  class SAM_InformationController_Test {
         
         Test.stopTest();
         SAM_Request__c objRequestValue = [select id,pkl_Status__c from SAM_Request__c where id =: objRequest.id];
-        System.assert(objRequestValue.pkl_Status__c != SAM_Constants.OPEN);
+        System.assert(objRequestValue.pkl_Status__c == SAM_Constants.OPEN);
     }
 /*******************************************************************
     Purpose: This method covers comments page

@@ -236,6 +236,8 @@ src/reportTypes/SAM_Quote_Details_Dashboard1.reportType
 src/reportTypes/SAM_Request_Details.reportType
 src/reportTypes/SAM_Request_with_Product.reportType
 src/reportTypes/SAM_Request_with_Quotations.reportType
+src/sharingRules
+src/sharingRules/SAM_Request__c.sharingRules
 src/tabs
 src/tabs/SAM_Request__c.tab
 src/triggers
