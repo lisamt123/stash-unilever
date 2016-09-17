@@ -13,15 +13,15 @@
 </types>
 
 <types>
-	<members>ISLLExternalEventMember</members>
+	<members>ISLL External Event Member</members>
 	<name>Profile</name>
 </types>
 
 
 
 <types>
-	<members>ISLLLabAuthors</members>
-	<members>ISLLLabViewers</members>
+	<members>ISLL_Lab_Authors</members>
+	<members>ISLL_Lab_Viewers</members>
 	<name>Group</name>
 </types>
 	    <version>37.0</version>
