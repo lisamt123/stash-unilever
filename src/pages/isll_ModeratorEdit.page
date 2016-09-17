@@ -1,5 +1,0 @@
-<apex:page >
-	<apex:form >
-		<c:isll_ModeratorComponent isEditModeAtr="true"/>
-	</apex:form>
-</apex:page>
