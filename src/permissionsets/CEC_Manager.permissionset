@@ -7708,11 +7708,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FAQ_Enhanced__kav.Rich_Text__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FAQ_Enhanced__kav.Sensitive_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
