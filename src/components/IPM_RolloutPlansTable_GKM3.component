@@ -31,10 +31,10 @@
                     <apex:outputPanel rendered="{!AND(isEditMode,projectType.IPM_CreateRegionalProjects__c ) }" layout="block"> 
                        <a class="ipmButton primary pull-right" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
-                   
-                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateRegionalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
-                        <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
-                    </apex:commandLink>
+                  
+                    <apex:outputPanel rendered="{!AND(isEditMode,projectType.IPM_CreateLocalProjects__c) }" layout="block">   
+                        <a class="ipmButton primary pull-right" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
+                     </apex:outputPanel>    
                     
                                        
                     <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!AND(isEditable,isEditMode)}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
@@ -366,7 +366,7 @@
                                                 <div class="incHeight">     
                                                                                           
                                                     <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
-                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="checkTLDDate(this)"/> 
+                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="alignTLD(this);"/> 
                                                 </div>
                                             </td>
                                             <td scope="col" width="100px">
@@ -391,7 +391,7 @@
                                                         <apex:outputField rendered="{!localRollout.Local_Project__c!=Null}" value="{!localRollout.Local_Project__r.IPM_Project_Leader__r.Name}"/>
                                                     </apex:outputPanel>
                                                 </div>
-                                            </td>
+                                            </td> 
                                             <td scope="col" width="120px">
                                                 <div>
                                                 <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
@@ -537,6 +537,13 @@
                 <div class="modal-body">
                     <div class="removeapprpopup">
                         <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
+                        <apex:outputpanel rendered="{!showAllignAllMCOChoice}">
+	                        <p><span class="removeApprText">{!$Label.IPM_Align_AllMCO_TLD}</span></p>
+	                        <apex:selectRadio value="{!alignAllMCOTLDs}" styleClass="ipmRadioButton">  
+	                        	<apex:selectoption itemvalue="True"  itemlabel="Yes"/> 
+	                        	<apex:selectoption itemvalue="False"  itemlabel="No"/> 
+	                        </apex:selectRadio> 
+                        </apex:outputpanel>
                         <div class="remvButtonContainer pull-right">  
                             <div class="pull-left buttonMarginRight noPadright">
                                 <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
@@ -546,7 +553,10 @@
                     <apex:commandLink value="{!$Label.Agree_and_Proceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();skipValidation();" oncomplete="hideTldWarningDialog();"  >
                     </apex:commandLink>
                         
-                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}"/> 
+                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}"/>  
+                        <apex:actionFunction name="alignTLDs"   action="{!null}" rerender=""> 
+                        	<apex:param name="endDate" assignTo="{!allignedDateValue}" value=""/>      
+                        </apex:actionFunction>
                          </div>
                         </div>
                     </div>        

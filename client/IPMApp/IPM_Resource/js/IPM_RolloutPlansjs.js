@@ -177,6 +177,13 @@ function scriptPanelLoad(){
         unsaved = false;
         saveChangedTLDjs();
     }
+    
+    function alignTLD(param){
+        var newTLDValue = param.value; 
+        alignTLDs(newTLDValue);
+        checkTLDDate(param); 
+    }
+    
         
     /* Below function hides the tld warning modal. */
     function hideTldWarningDialog(){

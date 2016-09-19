@@ -14,6 +14,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Allign_All_MCO_Choice__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This is to decide if user should be presented with Allign All MCO message with radio&apos;s to decide if all MCO&apos;s should be changed to  the modified TLD  , on IPM_rolloutplans page.</description>
+        <externalId>false</externalId>
+        <label>Allign All MCO Choice</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>FinancialCopyOverPrefix__c</fullName>
         <description>Copy Over prefix for financial</description>
         <externalId>false</externalId>

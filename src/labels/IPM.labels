@@ -1,4 +1,11 @@
 	<labels>
+        <fullName>IPM_Align_AllMCO_TLD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Align TLD of all MCO&apos;s</shortDescription>
+        <value>Do you wish to align ALL MCOs to this MCO&apos;s new TLD?</value>
+    </labels>
+	<labels>
 	        <fullName>IPM_PDL_Not_Approved</fullName>
 	        <language>en_US</language>
 	        <protected>false</protected>

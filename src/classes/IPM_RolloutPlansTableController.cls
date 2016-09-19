@@ -71,6 +71,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     @TestVisible private Map<string,IPM_Country__c> rolloutCountryMap;//map for country name and country details
     public Map<Id,Boolean> showClusterNameMap{get;set;}
     public String filterforProject;
+    public Boolean alignAllMCOTLDs{get;set;} 
+    public Date allignedDateValue{get;set;}
+    public Boolean showAllignAllMCOChoice{get;set;} 
     
     /*******************************************************************************************************
     * @description  Constructor
@@ -126,6 +129,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         isEditMode = false;
         isFLAllocated=false;
         isBrandEditable = false;
+        alignAllMCOTLDs=false;
         rolloutToUpdateBrand = new map<id,IPM_Project_Rollout__c>();
         rolloutCountryMap = new Map<string,IPM_Country__c>();
         showClusterNameMap = new Map<Id,Boolean>();
@@ -219,6 +223,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 rolloutCount = 0;
                 
                 projectType = IPM_Utils.retrieveProjectType(project);
+                
+                showAllignAllMCOChoice= projectType.Allign_All_MCO_Choice__c;
                 
                 //check for isRolloutEditable
                 if(!isEditMode && isEditable)
@@ -892,8 +898,17 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 if(String.isBlank(validationError))
                 {                         
                     if(!updaterolloutsMap.isEmpty())
-                    {
-                    	update updaterolloutsMap.values();
+                    {   
+                        for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
+                        {
+                            //  allign TLD's for GKM3 Rollouts
+                            if(alignAllMCOTLDs && !String.isEmpty(String.valueOf(allignedDateValue)) && allignedDateValue!=null)  
+                            {
+                               rollout.Target_Launch_Date__c=allignedDateValue;    
+                            } 
+                        }
+                        
+                        update updaterolloutsMap.values();
                     }
                     
                     if(!updateLocalProjTLDList.isEmpty())
@@ -903,11 +918,19 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     
                 }
             }
-        
-         if(String.isBlank(validationError))
-         {
-         	saveLocalRolloutBrand(); 
-         }   
+            
+            if(String.isBlank(validationError)) 
+         	{ 
+            	saveLocalRolloutBrand();   
+         	}
+         	else
+         	{
+         		isEditMode = true;	
+         	} 
+	         
+	        allignedDateValue=null;      
+	        alignAllMCOTLDs=false;  
+           
            
         }
         catch (Exception ex)
