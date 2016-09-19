@@ -3,6 +3,7 @@
     <aura:attribute name="searchString" type="String" description="The search string to find." />
     <aura:attribute name="selectedUser" type="Object[]" description="Collection of selected Users"/>
     <aura:attribute name="showTag" type="Boolean" default="false"/>
+    <aura:attribute name="selectedUserName" type="String" description="The name of the selected users." />
     <!-- Events -->
     <aura:registerEvent name="updateUserListEvent" type="c:AA_UpdateUserList"/>  
     <aura:handler name="change" value="{!v.selectedUser}" action="{!c.sendUsers}"/>

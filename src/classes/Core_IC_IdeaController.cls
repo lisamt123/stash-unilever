@@ -110,5 +110,20 @@ public class Core_IC_IdeaController {
     public static string getIdeasGAID(){      
         string strgaid = Core_Ideation__c.getinstance('CORE_IC_GA_VALUE').IdeasLigthningGA__c;
         return strgaid;      
-    }    
+    }   
+   /***Get Custom setting value to enable chatter***/
+         @AuraEnabled
+         Public static Boolean defaultChatterValue(){
+               Boolean chatterPostEnable= false;
+               Boolean instanceOne= Core_Ideation__c.getinstance('IdeaPostInGroup').Checkbox_Value__c;
+               Boolean instanceTwo=Core_Ideation__c.getinstance('IdeaPostInUserProfile').Checkbox_Value__c;
+               if(instanceOne && instanceTwo){
+                  chatterPostEnable=True;
+               }
+             
+               
+               return chatterPostEnable;
+        
+        
+         }
 }

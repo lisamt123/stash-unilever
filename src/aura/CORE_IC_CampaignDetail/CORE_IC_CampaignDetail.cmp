@@ -17,6 +17,8 @@
     <aura:attribute name="MailToBody4" type="String" />
     <aura:attribute name="MailToBody5" type="String" />
     <aura:attribute name="MailToBody6" type="String" />
+     <aura:attribute name="MailToBody7" type="String" />
+    <aura:attribute name="MailToBody8" type="String" />
     <aura:attribute name="share" type="Boolean"/>
     <aura:attribute name="recordType" type="String"/>
     <aura:attribute name="pannelType" type="String"/>
@@ -25,6 +27,8 @@
     <aura:attribute name="leaderBoardItems" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="latestIdeaItems" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="campaignAllIdeaData" type="Core_CA_BaseApplicationWrapper"/>
+    <aura:attribute name="chatterValue" type="Boolean"/>
+    
     <style>
         .action_bar{
             background: #fff;
@@ -151,16 +155,29 @@
                                     <aura:if isTrue="{!v.share}">
                                         <div  id="showOptions" class="slds-dropdown slds-dropdown--right  " >
                                             <ul class="dropdown__list" role="menu">
+                                                
+	                                      <aura:if isTrue="{!v.chatterValue}"> 
                                                 <li class="slds-dropdown__item">
                                                     <a  role="menuitem" onclick="{!c.navigateToChatter}" >
                                                         <p class="slds-truncate"  >Share on Chatter</p>
-                                                    </a>
+                                                    </a>  
                                                 </li>
+                                             </aura:if>  
                                                 <li class="slds-dropdown__item" onclick="{!c.hideChatterShare}">
+                                                <aura:if isTrue="{!v.chatterValue}">     
                                                     <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.FeaturedCampaignsItems.CampaignTitle+'!'+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody2+'%20'+v.MailToBody3}" 
                                                         style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                                        <p class="slds-truncate">Email</p>
+                                                        <p class="slds-truncate">Share via Email</p>
+                                   
                                                     </a>
+                                                     <aura:set attribute="else">
+                                                          <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.FeaturedCampaignsItems.CampaignTitle+'!'+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody7+'%20'}" 
+                                                        style="color: #344A5F ;text-decoration: none;"  role="menuitem">
+                                                        <p class="slds-truncate">Share via Email</p>
+                                   
+                                                    </a>	   
+	                                          </aura:set>
+                                                       </aura:if>  
                                                 </li>
                                             </ul>
                                         </div>
@@ -244,16 +261,26 @@
                                 <aura:if isTrue="{!v.shareIdea}">
                                     <div  id="showideaOptions" class="slds-dropdown slds-dropdown--right shareIdeaDetail " >
                                         <ul class="dropdown__list" role="menu">
+                                           <aura:if isTrue="{!v.chatterValue}"> 
                                             <li class="slds-dropdown__item">
                                                 <a  role="menuitem" onclick="{!c.navigateToChatterForLatestIdea}" >
                                                     <p class="slds-truncate"  >Share on Chatter</p>
                                                 </a>
                                             </li>
+                                           </aura:if>  
                                             <li class="slds-dropdown__item"  onclick="{!c.hideChatterShare}">
+                                               <aura:if isTrue="{!v.chatterValue}">  
                                                 <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%22%20'+v.MailToBody4+'%20'+v.MailToBody5}" 
                                                    style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                                    <p class="slds-truncate">Email</p>
+                                                    <p class="slds-truncate">Share via Email</p>
                                                 </a>
+                                                    <aura:set attribute="else">
+                                                      <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.latestIdeaItems[0].IdeaTitle+'%22%20'+v.MailToBody8+'%20'}" 
+                                                   style="color: #344A5F ;text-decoration: none;"  role="menuitem">
+                                                    <p class="slds-truncate">Share via Email</p>
+                                                </a>   
+                                                    </aura:set>
+                                              </aura:if>  
                                             </li>
                                         </ul>
                                     </div>

@@ -925,7 +925,7 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
     </fields>
     <fields>
         <fullName>WU_MCO__c</fullName>
-        <label>MCO</label>
+        <label>Cluster</label>
         <picklist>
             <controllingField>WU_Region__c</controllingField>
             <picklistValues>
@@ -1050,11 +1050,6 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
             <picklistValues>
-                <fullName>South Europe</fullName>
-                <default>false</default>
-                <controllingFieldValues>Europe</controllingFieldValues>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Spain</fullName>
                 <default>false</default>
             </picklistValues>
@@ -1077,7 +1072,12 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
                 <controllingFieldValues>Africa</controllingFieldValues>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>South Europe</fullName>
+                <default>false</default>
+                <controllingFieldValues>Europe</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
     </fields>

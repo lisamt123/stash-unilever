@@ -189,7 +189,6 @@
         // The Object label is the 2nd child (index 1)
         var objectLabel = event.currentTarget.children[1].innerText;
         var selectedUser=component.get("v.selectedUser");
-        
         var searchInput=component.find("lookup");
         var searchInputVal=searchInput.get("v.value");
         searchInput.set("v.errors",null);
@@ -230,7 +229,6 @@
         component.set("v.searchString", "");
         component.set("v.selectedUserName",objectLabel);
         component.set("v.showTag","true");
-        
         // Hide the Lookup List
         var lookupList = component.find("lookuplist");
         $A.util.addClass(lookupList, 'slds-hide');
