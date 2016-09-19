@@ -43,8 +43,6 @@ global with sharing class AF_BonusSummaryRemote {
 *************************************************************************************/  
   @remoteAction
   global static Map<String, String> getBonusMatrixRecords(String agencyId, String bonusSummaryId) {
-  List<String> agenciesToSelect =new List<String>();
-  List<String> ulEntitiesToSelect= new List<String>();
     tdCloseTagEst= '</td>';
     //String trOpenTag = '<tr>', trCloseTag = '</tr>';
     strongStrt = '<Strong>';
@@ -72,9 +70,9 @@ global with sharing class AF_BonusSummaryRemote {
     orderedRow.sort();
     agencyNameMap = AF_BrandEstimateRemote.getAllAgencyEntities(agencyId);
     ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName();
-    agenciesToSelect = AF_BrandEstimateRemote.getAgencyEntities(agencyId, bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
+    //List<String >agenciesToSelect = AF_BrandEstimateRemote.getAgencyEntities(agencyId, bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
     // These are the Agency Entities which are not created as Agency Estimates.
-    ulEntitiesToSelect = AF_BrandEstimateRemote.getUnileverEntities(bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
+    //List<String>ulEntitiesToSelect = AF_BrandEstimateRemote.getUnileverEntities(bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
     getBonusMatrixRecordsext(bonusSummaryId);
     ulbonusMatrixMap .put('1', colDetail);
     ulbonusMatrixMap .put('2', rowDetail);

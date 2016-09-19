@@ -190,7 +190,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         addquarter.sort();
      } 
    }
-   showPopupdisplay(newBrandName);
+   showPopupdisplay();
  }       
         /***********************************************************************************
 *  @Description: this method is used to adjust the quarter for an exisitng record and to
@@ -200,7 +200,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @param : none
 *  @return: none.
 *************************************************************************************/
-  public void showPopupdisplay(string newBrandName){
+  public void showPopupdisplay(){
     String quarterformat='';
     for(wrapChechbox B:QuarterEstimate){
       if(B.selected){
@@ -219,7 +219,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         brandQuarter = brandQuarter.removeEnd(';');
         newBrandName = newBrandName+'-'+quarterformat +' ';
         newBrandName=newBrandName + B.BrandRecord.AF_Fiscal_Year__c;
-        createNewBrandEst(B,newBrandName);
+        createNewBrandEst(B);
       }
     }
     if(countOfSelectedBaseFee==0 && QuarterEstimate.size()>0)
@@ -287,7 +287,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @param : wrapChechbox
 *  @return: none.
 *************************************************************************************/    
-  public void createNewBrandEst(wrapChechbox B, string newBrandName){
+  public void createNewBrandEst(wrapChechbox B ){
     createBrandEstimate = new list<AF_Brand_Estimate__c>();
         AF_Brand_Estimate__c createBrand = new AF_Brand_Estimate__c();
         createBrand.name = newBrandName;
