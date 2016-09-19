@@ -5916,9 +5916,6 @@
         <field>mdm_Reason_Code__c.Unique_Key__c</field>
         <readable>false</readable>
     </fieldPermissions>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.L7_Product_Reporting__c</field>
