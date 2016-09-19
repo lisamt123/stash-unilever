@@ -19958,9 +19958,6 @@
         <object>cec_Case_Brand_Mapping__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     <pageAccesses>
         <apexPage>CEC_CaseActions</apexPage>
         <enabled>false</enabled>
