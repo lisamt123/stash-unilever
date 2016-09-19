@@ -49205,7 +49205,7 @@
 	<layoutAssignments>
 		<layout>SAM_Request__c-SAM Query Request SAM team</layout>
 		<recordType>SAM_Request__c.SAM Query Request SAM team</recordType>
-	<layoutAssignments>
+	</layoutAssignments>
 	<layoutAssignments>
 		<layout>SAM_Request_Line_Item__c-SAM IBM RO Request Line Item Layout</layout>
 		<recordType>SAM_Request_Line_Item__c.SAM_IBM_RO</recordType>
@@ -52940,10 +52940,6 @@
     <tabVisibilities>
         <tab>IPM_User_Profile__c</tab>
         <visibility>DefaultOff</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Ideas2</tab>
-        <visibility>Hidden</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>Inside_Unilever</tab>

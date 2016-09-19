@@ -21,6 +21,7 @@ public with sharing class KUN_ProfileTriggerHandler {
     public void OnBeforeInsert(List<KUN_Profile__c> newProfiles)
     {
         system.debug('Profile Trigger On Before Insert');
+                       
         for(KUN_Profile__c moProfile : newProfiles){        
           PopulateSearchableFields(moProfile ); 
         }
@@ -84,6 +85,7 @@ public with sharing class KUN_ProfileTriggerHandler {
             moProfile.KUN_Role_Type_Searchable_Field__c   =     moProfile.KUN_Role_Type__c ;
             moProfile.Organization_Searchable_Field__c    =     moProfile.Organization__c;
             moProfile.Position_Searchable_Field__c        =     moProfile.Position__c;
+            moProfile.Profile_Id__c                       =     moProfile.Unilever_Profile__c ;
    }
    
    
