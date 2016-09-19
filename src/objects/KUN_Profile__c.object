@@ -203,6 +203,19 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Country__c</fullName>
+        <description>Country Name KUN Profile User</description>
+        <externalId>false</externalId>
+        <formula>Unilever_Profile__r.Country</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Country Name KUN Profile User</inlineHelpText>
+        <label>Country</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>E2E_Process_Searchable_Field__c</fullName>
         <description>E2E Process Searchable Field</description>
         <externalId>false</externalId>
@@ -287,6 +300,18 @@
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Email_Address__c</fullName>
+        <description>Email Address of the KUN Profile</description>
+        <externalId>false</externalId>
+        <formula>Unilever_Profile__r.Email</formula>
+        <inlineHelpText>Email Address of the KUN Profile</inlineHelpText>
+        <label>Email Address</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Employee_Type_Searchable_Field__c</fullName>
@@ -374,6 +399,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Line_Manager__c</fullName>
+        <description>Line Manager Name</description>
+        <externalId>false</externalId>
+        <formula>Unilever_Profile__r.Manager.FirstName  + &apos; &apos; + Unilever_Profile__r.Manager.LastName</formula>
+        <inlineHelpText>Line Manager Name</inlineHelpText>
+        <label>Line Manager</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Local_Process_Area__c</fullName>
         <description>Describe the details about your local sub process area</description>
         <externalId>false</externalId>
@@ -411,9 +448,11 @@
     </fields>
     <fields>
         <fullName>Organization_Role__c</fullName>
+        <description>Organization Role of KUN User</description>
         <externalId>false</externalId>
+        <formula>Unilever_Profile__r.Title</formula>
+        <inlineHelpText>Organization Role of KUN User</inlineHelpText>
         <label>Organization Role</label>
-        <length>100</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -459,6 +498,18 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Phone_Number__c</fullName>
+        <description>Phone Number of the KUN User</description>
+        <externalId>false</externalId>
+        <formula>Unilever_Profile__r.Phone</formula>
+        <inlineHelpText>Phone Number of the KUN User</inlineHelpText>
+        <label>Phone Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Position_Searchable_Field__c</fullName>
@@ -523,6 +574,17 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
+        <fullName>Profile_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Profile Id</label>
+        <length>35</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>Site__c</fullName>
         <description>Your Work location, such as factory or plant or country head office location (Location name with country information)</description>
         <externalId>false</externalId>
@@ -547,6 +609,60 @@
     </fields>
     <label>KUN Profile</label>
     <listViews>
+        <fullName>KUN_All_G2C_Profiles_View</fullName>
+        <columns>NAME</columns>
+        <columns>Capability__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>E2E_Process__c</columns>
+        <columns>Local_Process_Area__c</columns>
+        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>E2E_Process__c</field>
+            <operation>equals</operation>
+            <value>Govern-to-Comply (G2C)</value>
+        </filters>
+        <label>All Govern-to-Comply (G2C) Profiles</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>KUN_All_H2R_Profiles_View</fullName>
+        <columns>NAME</columns>
+        <columns>Capability__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>E2E_Process__c</columns>
+        <columns>Local_Process_Area__c</columns>
+        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>E2E_Process__c</field>
+            <operation>equals</operation>
+            <value>Hire-to-Retire (H2R)</value>
+        </filters>
+        <label>All Hire-to-Retire (H2R) Profiles</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>KUN_All_IM_Profiles_View</fullName>
+        <columns>NAME</columns>
+        <columns>Capability__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>E2E_Process__c</columns>
+        <columns>Local_Process_Area__c</columns>
+        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>E2E_Process__c</field>
+            <operation>equals</operation>
+            <value>Information Management (IM)</value>
+        </filters>
+        <label>All Information Management (IM) Profiles</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>KUN_All_IT_Profiles_View</fullName>
         <columns>NAME</columns>
         <columns>E2E_Process__c</columns>
@@ -556,6 +672,7 @@
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
         <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>E2E_Process__c</field>
@@ -568,13 +685,15 @@
     <listViews>
         <fullName>KUN_All_KUN_Profiles_View</fullName>
         <columns>NAME</columns>
+        <columns>Line_Manager__c</columns>
+        <columns>Email_Address__c</columns>
         <columns>E2E_Process__c</columns>
         <columns>Capability__c</columns>
         <columns>Cluster__c</columns>
         <columns>Employee_Type__c</columns>
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
-        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <label>All KUN Profiles</label>
         <language>en_US</language>
@@ -589,6 +708,7 @@
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
         <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>E2E_Process__c</field>
@@ -608,6 +728,7 @@
         <columns>KUN_Role_Type__c</columns>
         <columns>Local_Process_Area__c</columns>
         <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>E2E_Process__c</field>
@@ -615,6 +736,45 @@
             <value>Make-to-Deliver (M2D)</value>
         </filters>
         <label>All Make-to-Deliver (M2D) Profiles</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>KUN_All_MDM_Profiles_View</fullName>
+        <columns>NAME</columns>
+        <columns>Capability__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>E2E_Process__c</columns>
+        <columns>Local_Process_Area__c</columns>
+        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>E2E_Process__c</field>
+            <operation>equals</operation>
+            <value>Master Data Management (MDM)</value>
+        </filters>
+        <label>All Master Data Mgmt (MDM) Profiles</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>KUN_All_Other_Profiles_View</fullName>
+        <columns>NAME</columns>
+        <columns>Capability__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>E2E_Process__c</columns>
+        <columns>Local_Process_Area__c</columns>
+        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>Line_Manager__c</columns>
+        <columns>Email_Address__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>E2E_Process__c</field>
+            <operation>equals</operation>
+            <value>Other</value>
+        </filters>
+        <label>All Other Profiles</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -627,6 +787,7 @@
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
         <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>E2E_Process__c</field>
@@ -634,6 +795,42 @@
             <value>Plan-to-Forecast (P2F)</value>
         </filters>
         <label>All Plan-to-Forecast (P2F) Profiles</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>KUN_All_P2P_Profiles_View</fullName>
+        <columns>NAME</columns>
+        <columns>Capability__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>E2E_Process__c</columns>
+        <columns>Local_Process_Area__c</columns>
+        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>E2E_Process__c</field>
+            <operation>equals</operation>
+            <value>Purchase-to-Pay (P2P)</value>
+        </filters>
+        <label>All Purchase-to-Pay (P2P) Profiles</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>KUN_All_Procurement_Profiles_View</fullName>
+        <columns>NAME</columns>
+        <columns>Capability__c</columns>
+        <columns>Cluster__c</columns>
+        <columns>E2E_Process__c</columns>
+        <columns>Local_Process_Area__c</columns>
+        <columns>MCO__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>E2E_Process__c</field>
+            <operation>equals</operation>
+            <value>Procurement</value>
+        </filters>
+        <label>All Procurement Profiles</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -646,6 +843,7 @@
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
         <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>E2E_Process__c</field>
@@ -665,6 +863,7 @@
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
         <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>E2E_Process__c</field>
@@ -684,6 +883,7 @@
         <columns>Local_Process_Area__c</columns>
         <columns>Employee_Type__c</columns>
         <columns>MCO__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>E2E_Process__c</field>

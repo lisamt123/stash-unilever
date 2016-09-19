@@ -127,6 +127,11 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Country Name KUN Profile User --></help>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
         <label><!-- E2E Process Searchable Field --></label>
         <name>E2E_Process_Searchable_Field__c</name>
     </fields>
@@ -196,6 +201,11 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Email Address of the KUN Profile --></help>
+        <label><!-- Email Address --></label>
+        <name>Email_Address__c</name>
+    </fields>
+    <fields>
         <label><!-- Employee Type Searchable Field --></label>
         <name>Employee_Type_Searchable_Field__c</name>
     </fields>
@@ -239,6 +249,11 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- Line Manager Name --></help>
+        <label><!-- Line Manager --></label>
+        <name>Line_Manager__c</name>
+    </fields>
+    <fields>
         <help><!-- Describe the details about your local sub process area --></help>
         <label><!-- Local Process Area --></label>
         <name>Local_Process_Area__c</name>
@@ -254,6 +269,7 @@
         <name>MCO__c</name>
     </fields>
     <fields>
+        <help><!-- Organization Role of KUN User --></help>
         <label><!-- Organization Role --></label>
         <name>Organization_Role__c</name>
     </fields>
@@ -281,6 +297,11 @@
             <masterLabel>Others</masterLabel>
             <translation><!-- Others --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Phone Number of the KUN User --></help>
+        <label><!-- Phone Number --></label>
+        <name>Phone_Number__c</name>
     </fields>
     <fields>
         <label><!-- Position Searchable Field --></label>
@@ -326,6 +347,10 @@
             <masterLabel>RT Coordinator</masterLabel>
             <translation><!-- RT Coordinator --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Profile Id --></label>
+        <name>Profile_Id__c</name>
     </fields>
     <fields>
         <help><!-- Your Work location, such as factory or plant or country head office location (Location name with country information) --></help>
