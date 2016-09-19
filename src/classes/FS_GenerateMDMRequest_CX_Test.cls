@@ -55,6 +55,8 @@ Public class FS_GenerateMDMRequest_CX_Test{
         system.assert(prodMap <> null);
         List<OpportunityLineItem> oli = controller.opportunityProducts;
         system.assert(oli.size()>0);
+        Map<Id,String> totalTPRPercentageMap = controller.totalTPRPercentageMap;
+        system.assert(totalTPRPercentageMap <> null);
     } 
     
     @isTest static void GenerateMDMRequestExceptions() {
@@ -97,8 +99,10 @@ Public class FS_GenerateMDMRequest_CX_Test{
         system.runAs(testUser){ 
                
         //Set up Custom settings for Opportunity Trigger
-        FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-        insert OppCustomSettings; 
+        //FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
+        //insert OppCustomSettings;
+        testData.setUpOpportunityStages();
+        testdata.enableOpportunityTrigger();
     
         //Custom Settings
         FS_MDMEmailRequestDefaultValue__c MDMDefaultValue = 

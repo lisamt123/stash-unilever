@@ -17,8 +17,8 @@ public with sharing class FS_GenerateMDMRequest_CX{
     
     private Id opportunityId;
     private static final String StepStatusStarted = 'Started';
-        private static final String FoodSolution = 'Food Solution';
-        private static final String ClassName = 'FS_GenerateMDMRequest_CX';
+    private static final String FoodSolution = 'Food Solution';
+    private static final String ClassName = 'FS_GenerateMDMRequest_CX';
     
     /*******************************************************************
     Purpose: Constructor method
@@ -186,5 +186,34 @@ public with sharing class FS_GenerateMDMRequest_CX{
                 return opportunityProducts;
            }
          set;
+    }
+    
+    /*******************************************************************
+    Purpose: Variable for total TPR Percentage Map
+    Parameters: None
+    Returns: N/A
+    Throws [Exceptions]: N/A
+    ********************************************************************/
+    public Map<Id,String> totalTPRPercentageMap{
+        get{
+            if(totalTPRPercentageMap==null || totalTPRPercentageMap.isempty()){
+                totalTPRPercentageMap = new Map<Id, String>();
+                String formattedTotalTPRPercentage = null; 
+                try{
+                    for(OpportunityLineItem oli: [Select Id,
+                                                            FS_totalTPRPercentage__c
+                                                           FROM OpportunityLineItem
+                                                           WHERE OpportunityId = :opportunityRecord.Id]){
+                        formattedTotalTPRPercentage = null;
+                        formattedTotalTPRPercentage = String.valueof(oli.FS_totalTPRPercentage__c).replace('.' , ',');
+                        totalTPRPercentageMap.put(oli.Id,formattedTotalTPRPercentage);
+                    }
+                }catch(Exception e){
+                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(), ClassName, 'totalTPRPercentageMap', e.getMessage(), e, null, null, null, 0, FoodSolution);
+                } 
+            }
+            return totalTPRPercentageMap;
+        }
+        set;
     }
 }

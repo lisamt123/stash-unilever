@@ -1,6 +1,4 @@
 src
-src/objects/Account.object
-src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
 src/classes/FS_AccountPlanningTest.cls
 src/classes/FS_AccountPlanningTest.cls-meta.xml
 src/classes/FS_ContractProductHelper_Test.cls
@@ -13,3 +11,15 @@ src/classes/FS_UtilMABETool.cls
 src/classes/FS_UtilMABETool.cls-meta.xml
 src/classes/FS_UtilTestDataSetup.cls
 src/classes/FS_UtilTestDataSetup.cls-meta.xml
+src/classes/FS_GenerateMDMRequest_CX_Test.cls
+src/classes/FS_GenerateMDMRequest_CX_Test.cls-meta.xml
+src/classes/FS_GenerateMDMRequest_CX.cls
+src/classes/FS_GenerateMDMRequest_CX.cls-meta.xml
+src/pages/FS_GenerateMDMRequest.page
+src/pages/FS_GenerateMDMRequest.page-meta.xml
+src/pages/FS_GenerateMDMRequestExcel.page
+src/pages/FS_GenerateMDMRequestExcel.page-meta.xml
+
+
+
+

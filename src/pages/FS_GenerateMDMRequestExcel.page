@@ -1,14 +1,12 @@
-<!--<apex:page standardcontroller="Opportunity" renderAs="PDF" showHeader="false" sidebar="false" extensions="FS_GenerateMDMRequest_CX" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false"> -->
 <apex:page standardcontroller="Opportunity" showHeader="false" sidebar="false" extensions="FS_GenerateMDMRequest_CX" contentType="application/vnd.ms-excel#SalesForceExport.xls" cache="true">
 <head>
     <style type="text/css">
-       .center{ text-align: center;font-size:12px;}               
+       .center{ text-align: center;}               
        .leftalign{s
             float: left; 
-            text-align: left;
-            font-size:12px;}
+            text-align: left;}
        table { border-collapse: collapse;}
-       .tdformat {font-size:12px; border: 1px solid black;}                              
+       .tdformat { border: 1px solid black;}
     </style>
 </head>       
                       <apex:form >
@@ -117,8 +115,8 @@
                                     <apex:column styleClass="tdformat"  value="{!product2Map[op.Product2Id].Name}"/>
                                     <apex:column styleClass="tdformat" >   </apex:column> 
                                     <apex:column styleClass="tdformat" >
-                                        <apex:outputText value="{0,number,###,###,###,##0.00}">
-                                           <apex:param value="{!op.FS_totalTPRPercentage__c}" />
+                                        <apex:outputText value="{0}">
+                                              <apex:param value="{!totalTPRPercentageMap[op.Id]}" /> 
                                         </apex:outputText>
                                     </apex:column>
                                     <apex:column styleClass="tdformat" > % </apex:column> 
