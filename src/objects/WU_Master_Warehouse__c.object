@@ -3368,9 +3368,14 @@ MOD( WU_FromDate__c - DATE(1900, 1, 7), 7)&lt;&gt; 0,MOD( WU_ToDate__c - DATE(19
         <errorConditionFormula>if(not(isnew()),if(and(ispickval(WU_Utilization_Type__c,&apos;&apos;),isBlank(WU_FromDate__c),isBlank(WU_ToDate__c),isBlank(WU_Current_Utilization__c)),false,or(ispickval(WU_Utilization_Type__c,&apos;&apos;),isBlank(WU_FromDate__c),isBlank(WU_ToDate__c),isBlank(WU_Current_Utilization__c))),false)</errorConditionFormula>
         <errorMessage>In utilization section all fields should have values</errorMessage>
     </validationRules>
-	<actionOverrides>
-        <actionName>new</actionName>
-        <type>visualforce</type>
-        <content>WU_LeadershipCheck</content>
-    </actionOverrides>
+	<WebLinks>
+        <fullName>New</fullName>
+        <availability>online</availability>
+		<encodingKey>UTF-8</encodingKey>
+		<linkType>page</linkType>
+        <masterLabel>New</masterLabel>
+        <openType>newWindow</openType>
+		<protected>false</protected>
+		<page>WU_LeadershipCheck</page>
+	</WebLinks>
 </CustomObject>
