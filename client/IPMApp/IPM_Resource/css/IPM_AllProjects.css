@@ -90,6 +90,7 @@ li.brndFilter::before {content:"x"; display:block; position:absolute; right:2px;
 .projLogo{height:50px;}
 .proLoader {position:relative;}
 .proLoader .proInit {text-align: center; position:absolute; z-index:100; top:0; left:0; opacity:0.9; -moz-opacity:0.9; -webkit-opacity:0.9; filter:alpha(opacity=90); width:100%; height:100%; background:#fff url(../images/ajax-loader.gif) no-repeat 45% 5%;}
+.table-responsive .loaderDiv div.proLoader {width:200px;z-index:2000;position:relative}
 .sortIcon {cursor:pointer;}
 .phaseSort{position: relative;left: 4px;bottom:11px;}
 .tldSort{position: relative;left: 5px;bottom:15px;}   
@@ -124,4 +125,54 @@ li.clusterCheckLi{padding: 7px 0 20px 7px ;border-bottom: 1px #c0d3bf solid ;}
 .ipmCheckbox label.stopProject:after{opacity:0;}
 .not-active {
      display:none;
+}
+
+
+div.searchBox{
+position:relative;
+}
+ul.docFilter.accordionFilters.geographyAllUl{
+display:none;
+}
+div.brandSearchResultsClass{
+display:none;
+border: #999 solid 1px;
+max-height: 200px;
+overflow-x: auto;
+border-radius: 4px;
+background: #fff;
+position: absolute;
+z-index: 1;
+min-width: 201px;
+}
+
+div.brandSearchResultsClass div{
+color: #000;
+margin:0 2px;
+padding:4px 0px 4px 5px;
+cursor:default;
+}
+div.brandSearchResultsClass div:hover{
+background:#ccc;
+border:#999 solid 1px;
+border-radius: 5px;
+zoom:1;
+}
+ul.docFilter.typeLabel li:first-child{
+padding: 0px;
+border-bottom: none;
+}
+
+div.loaderDiv{
+position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%
+}
+div.loaderDiv div{
+display: inline-block; padding: 2px; background-color: #fff; width: 125px;
+}
+
+div.loaderDiv div img {
+float: left; margin: 8px;
+}
+div.loaderDiv div span{
+display: inline-block; padding: 10px 0px;
 }

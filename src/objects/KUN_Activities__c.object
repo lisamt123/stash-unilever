@@ -121,6 +121,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Make</fullName>
                 <default>false</default>
             </picklistValues>
@@ -133,55 +137,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Record-to-Report (R2R)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Source-to-Pay (S2P)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Supply-to-Finance (SCF)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Information &amp; Technology (IT)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Launch-to-Grow (L2G)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Data-to-Insight (D2I)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Master Data Management (MDM)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Information Management (IM)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Govern-to-Comply (G2C)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Hire-to-Retire (H2R)</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Purchase-to-Pay (P2P)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Procurement</fullName>
+                <fullName>Record-to-Report (R2R)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Other</fullName>
+                <fullName>Supply-Chain-Finance (SCF)</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -372,22 +336,6 @@
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>KUN_All_Other_Documents_View</fullName>
-        <columns>NAME</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>Active__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>KUN_Activities__c.KUN_Other_Documents_RT</value>
-        </filters>
-        <label>All Other Documents</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
         <fullName>KUN_All_Quick_Links_View</fullName>
         <columns>NAME</columns>
         <columns>URL__c</columns>
@@ -423,9 +371,11 @@
         <fullName>KUN_All_Training_Documents_View</fullName>
         <columns>NAME</columns>
         <columns>RECORDTYPE</columns>
+        <columns>Process_Area__c</columns>
         <columns>Active__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Cluster__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>RECORDTYPE</field>
@@ -506,10 +456,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -547,10 +493,6 @@
             </values>
             <values>
                 <fullName>Record-to-Report %28R2R%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -593,10 +535,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -622,31 +560,7 @@
         <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
-                <fullName>Data-to-Insight %28D2I%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Deliver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Govern-to-Comply %28G2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hire-to-Retire %28H2R%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information %26 Technology %28IT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information Management %28IM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Launch-to-Grow %28L2G%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -654,15 +568,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Master Data Management %28MDM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Order-to-Cash %28O2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -682,11 +588,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supply-to-Finance %28SCF%29</fullName>
+                <fullName>Supply-Chain-Finance %28SCF%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -729,10 +631,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -758,31 +656,7 @@
         <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
-                <fullName>Data-to-Insight %28D2I%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Deliver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Govern-to-Comply %28G2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hire-to-Retire %28H2R%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information %26 Technology %28IT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information Management %28IM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Launch-to-Grow %28L2G%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -790,15 +664,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Master Data Management %28MDM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Order-to-Cash %28O2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -818,11 +684,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supply-to-Finance %28SCF%29</fullName>
+                <fullName>Supply-Chain-Finance %28SCF%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -865,10 +727,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -894,31 +752,7 @@
         <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
-                <fullName>Data-to-Insight %28D2I%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Deliver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Govern-to-Comply %28G2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hire-to-Retire %28H2R%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information %26 Technology %28IT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information Management %28IM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Launch-to-Grow %28L2G%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -926,15 +760,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Master Data Management %28MDM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Order-to-Cash %28O2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -954,11 +780,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supply-to-Finance %28SCF%29</fullName>
+                <fullName>Supply-Chain-Finance %28SCF%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1001,10 +823,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1045,10 +863,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1074,31 +888,7 @@
         <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
-                <fullName>Data-to-Insight %28D2I%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Deliver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Govern-to-Comply %28G2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hire-to-Retire %28H2R%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information %26 Technology %28IT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information Management %28IM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Launch-to-Grow %28L2G%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1106,15 +896,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Master Data Management %28MDM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Order-to-Cash %28O2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1134,11 +916,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supply-to-Finance %28SCF%29</fullName>
+                <fullName>Supply-Chain-Finance %28SCF%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1181,10 +959,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1224,10 +998,6 @@
                 <fullName>Record-to-Report %28R2R%29</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
@@ -1253,31 +1023,7 @@
         <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
-                <fullName>Data-to-Insight %28D2I%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Deliver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Govern-to-Comply %28G2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hire-to-Retire %28H2R%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information %26 Technology %28IT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information Management %28IM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Launch-to-Grow %28L2G%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1285,15 +1031,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Master Data Management %28MDM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Order-to-Cash %28O2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1313,11 +1051,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supply-to-Finance %28SCF%29</fullName>
+                <fullName>Supply-Chain-Finance %28SCF%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1345,31 +1079,7 @@
         <picklistValues>
             <picklist>Process_Area__c</picklist>
             <values>
-                <fullName>Data-to-Insight %28D2I%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Deliver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Govern-to-Comply %28G2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hire-to-Retire %28H2R%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information %26 Technology %28IT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information Management %28IM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Launch-to-Grow %28L2G%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1377,15 +1087,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Master Data Management %28MDM%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Order-to-Cash %28O2C%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1405,11 +1107,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Source-to-Pay %28S2P%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Supply-to-Finance %28SCF%29</fullName>
+                <fullName>Supply-Chain-Finance %28SCF%29</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

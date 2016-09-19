@@ -11,6 +11,7 @@ History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Pooja Kanani       04/08/2016     INITIAL DEVELOPMENT CSR:
+2.0        Pooja Kanani        09/19/2016    Modified for SonarQube
 ***********************************************************************/
 @isTest
 public  class SAM_InformationController_Test {
@@ -60,7 +61,7 @@ public  class SAM_InformationController_Test {
         
         Test.stopTest();
         SAM_Request__c objRequestValue = [select id,pkl_Status__c from SAM_Request__c where id =: objRequest.id];
-        System.assert(objRequestValue.pkl_Status__c != SAM_Constants.OPEN);
+        System.assert(objRequestValue.pkl_Status__c == SAM_Constants.OPEN);
     }
 /*******************************************************************
     Purpose: This method covers comments page

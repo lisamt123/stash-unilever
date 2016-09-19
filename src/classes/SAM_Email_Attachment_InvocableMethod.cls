@@ -33,7 +33,7 @@ public static void SendEmailWithAttachment(List<SendEmailClassVariable> inputs)
         }
         mapreqIDQLI.put(req.id,setrelatedQLI);
     }
-   
+    OrgWideEmailAddress owa = [select id, DisplayName, Address from OrgWideEmailAddress where DisplayName =:label.SAM_from_address_display_name and Address =:label.SAM_from_address limit 1];
     List<Attachment> attList = [SELECT id, Name, body, ContentType,ParentId FROM Attachment WHERE ParentId =: setQLI and name LIKE 'Quotation%'];
     List<EmailTemplate> availableEmailTemplate = [select Id,developerName from EmailTemplate where developerName IN ('SAM_FinalQuoteReSubmitted_To_Requester','SAM_FinalQuoteProvided_By_SAMT','SAM_DraftQuote_By_SAMT_To_Requester')];
     for(EmailTemplate emailTem:availableEmailTemplate){
@@ -56,16 +56,21 @@ public static void SendEmailWithAttachment(List<SendEmailClassVariable> inputs)
                 
             }
         }
+         if(mapIDemailTem.get(var.templateDeveloperName) != null){
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
             message.toAddresses = new String[] {mapIDEmail.get(var.recordId),mapIDEmailAssign.get(var.recordId)};
             message.setTemplateId(mapIDemailTem.get(var.templateDeveloperName));
             message.setWhatId(var.recordId);
             message.setTargetObjectId(mapIDCreatedById.get(var.recordId));
-            message.setReplyTo(label.SAM_from_address);
-            message.setSenderDisplayName(label.SAM_from_address_display_name);
+            message.setOrgWideEmailAddressId(owa.id);
+            //message.setReplyTo(label.SAM_from_address);
+            //message.setSenderDisplayName(label.SAM_from_address_display_name);
+            String[] CCEmails = new String[]{label.SAM_from_address};
+            message.setCCAddresses(CCEmails);
             message.setTreatTargetObjectAsRecipient(false);
             message.setFileAttachments(efaList);
             Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+        }
     }
 }
 
