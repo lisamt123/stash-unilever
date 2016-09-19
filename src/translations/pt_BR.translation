@@ -13880,4 +13880,32 @@
         <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
         <name>uw_Inoplan_error_nullvalue</name>
     </customLabels>
+     <customLabels>
+        <label>Sorvetes</label>
+        <name>ICB_ICE_CREAMS</name>
+    </customLabels>
+    <customLabels>
+        <label>Solicitar</label>
+        <name>ICB_REQUEST</name>
+    </customLabels>
+     <customLabels>
+        <label>Disponível</label>
+        <name>ICB_AVAILABLE</name>
+    </customLabels>
+     <customLabels>
+        <label>Atualizar</label>
+        <name>ICB_UPDATE</name>
+    </customLabels>
+      <customLabels>
+        <label>Receber Sorveteiro (R$)</label>
+        <name>ICB_RECEIVE_ICE_CREAM</name>
+    </customLabels>
+     <customLabels>
+        <label>Calculado</label>
+        <name>ICB_CALCULATED</name>
+    </customLabels>
+    <customLabels>
+        <label>Total de Vendas</label>
+        <name>ICB_SALES_TOTAL</name>
+    </customLabels>
 </Translations>

@@ -4568,6 +4568,13 @@ TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*11)+
         <errorMessage>Please verify if CPF is correct.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>EMail_minimum_size</fullName>
+        <active>true</active>
+        <description>The E-mail must have at least 4 characters before the @ sign.</description>
+        <errorConditionFormula>AND( OR( RecordType.DeveloperName = 	&quot;ICB_Operator&quot;,RecordType.DeveloperName = 	&quot;ICB_Salesman&quot;) ,(LEN(LEFT(Email, FIND(&quot;@&quot;, Email))))&lt;5)</errorConditionFormula>
+        <errorMessage>The E-Mail must have at least 4 characters before the @</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Mandatory_Birthdate_Spark_Salesman</fullName>
         <active>true</active>
         <description>Spark Project - Birthdate is mandatory for Salesman registration.</description>

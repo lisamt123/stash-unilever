@@ -51,4 +51,5 @@ public class ICB_Wrapper_Cockpit_CC {
     
     @AuraEnabled
     public Boolean isDisabled = true;
+    
 }
