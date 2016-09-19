@@ -20000,8 +20000,6 @@
         <object>cec_Enclosure__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    
-    
     <tabSettings>
         <tab>cec_Alert_Action__c</tab>
         <visibility>Visible</visibility>
