@@ -10,7 +10,7 @@ VERSION  AUTHOR         DATE          DETAIL Description
 public with sharing class FS_OpportunityHelper {
     //Fetch custom settings for opportunity stages
     FS_OpportunityStages__c oppStages=FS_OpportunityStages__c.getInstance('FS_Stages');    
-    Private string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
+    string STATUS_CLOSED_LOST=oppStages.FS_Stage_Closed__c;    
     Private string ERROR_MESSAGE='The following exception has occurred: ';
     Private string FOOD_SOLUTION='Food Solution';
     Private string CLASS_NAME='FS_OpportunityHelper';
@@ -129,7 +129,7 @@ public with sharing class FS_OpportunityHelper {
                     if(opp.amount !=null){
                         record_Count=record_Count+1;
                         //If opportunity stage is Won then add amount to Gain on account plan                        
-                        if(opp.isWon==true){
+                        if(opp.isWon){
                             opportunity_Gain=opportunity_Gain+Integer.valueOf(opp.Amount);
                         }
                         //If opportunity stage is not eual to Closed as amount to potential on account plan

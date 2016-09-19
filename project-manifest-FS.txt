@@ -1,3 +1,9 @@
 src
 src/objects/Account.object
 src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
+src/classes/FS_AccountPlanningTest.cls
+src/classes/FS_ContractProductHelper_Test.cls
+src/classes/FS_MABETest.cls
+src/classes/FS_OpportunityHelper.cls
+src/classes/FS_UtilMABETool.cls
+src/classes/FS_UtilTestDataSetup.cls

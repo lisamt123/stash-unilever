@@ -1,5 +1,6 @@
 public with sharing class FS_UtilTestDataSetup {    
     Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
+    String oppStageName='FS_Stages';
     Id newRecordTypeId=recordIdBasedonDeveloperName.get('NAFSMABETool');
     Id existingRecordTypeId=recordIdBasedonDeveloperName.get('Existing');  
     //Method to create user
@@ -19,6 +20,17 @@ public with sharing class FS_UtilTestDataSetup {
                                      TimeZoneSidKey='America/Los_Angeles', UserName='newuseropphelper@testorg.com');
         insert SalesRepUser;        
         Return SalesRepUser;
+    }
+    //Create custom settings for opportunity stages
+    Public void setUpOpportunityStages(){
+        FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
+        insert oppStages;        
+    }
+    //create custom settings to enable opportunity trigger
+    Public void enableOpportunityTrigger(){
+        //Set up Custom settings for Opportunity Trigger
+        FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
+        insert oppCustomSettings;         
     }
     
     //Create account data for test data set up
@@ -44,15 +56,10 @@ public with sharing class FS_UtilTestDataSetup {
     
     //Create opportunity for MABE process
     Public List<Opportunity> setUpMABEOpportunityData(List<Contract> listContract){
-        //Set up custom settings for opportunity stages
-        FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
-        Insert oppStages;
-        FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
+        //Fetch custom settings for opportunity stages        
+        FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues(oppStageName);    
         string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
-        string STATUS_Proposal=stages.FS_Stage_Proposal__c;        
-        //Set up Custom settings for Opportunity Trigger
-        FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-        insert oppCustomSettings;       
+        string STATUS_Proposal=stages.FS_Stage_Proposal__c;             
         //Set up Opportunity records
         List<Opportunity> opportunities = new List<Opportunity>();            
         for(contract con:listContract){
@@ -95,13 +102,9 @@ public with sharing class FS_UtilTestDataSetup {
     
     //Create opportunity for account planning test
     Public list<Opportunity> setUpOppforAccPlan(List<FS_Defined_Objective__c> objList){
-        //Set up custom settings for opportunity stages
-        FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment');
-        Insert oppStages;
-        FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
-        string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;        
-        FSOpportunityTriggerSettings__c oppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-        insert oppCustomSettings;       
+        //Fetch custom settings for opportunity stages        
+        FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues(oppStageName);    
+        string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;             
         //Set up Opportunity records
         List<Opportunity> opportunities = new List<Opportunity>();
         //Create 10 opportunities for each objective
@@ -165,11 +168,9 @@ public with sharing class FS_UtilTestDataSetup {
     
     //Update opportunities to stage 4
     Public List<Opportunity> closeOpportunity(List<Opportunity> oppList){
-    FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
+    FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name=oppstageName,FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
     Insert oppStages;
-    FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
-    //string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
-    //string STATUS_Proposal=stages.FS_Stage_Proposal__c;
+    FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues(oppstageName);   
     string STATUS_COMMITMENT=stages.FS_Stage_Commitment__c;
         List<Opportunity> ListNewOppToBeclosed=new List<Opportunity>();
         For(Opportunity Opp: oppList){                

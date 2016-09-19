@@ -12,17 +12,15 @@ private class FS_ContractProductHelper_Test {
         User testUser = testData.createTestUser();
         
         system.runAs(testUser){
-            FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
-            Insert oppStages;
-            FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');    
-            string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
+            //Set up custom settings for opportunity stages
+            testData.setUpOpportunityStages();
+            //Enable for opportunity trigger
+            testdata.enableOpportunityTrigger();
+            FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');       
             string STATUS_Proposal=stages.FS_Stage_Proposal__c;
             string STATUS_COMMITMENT=stages.FS_Stage_Commitment__c;
             string STATUS_WON=stages.FS_Stage_Won__c;
-            //Preparing data, so that the Contract Product is created by the opp trigger
-            FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-            INSERT OppCustomSettings; 
-            
+            //Preparing data, so that the Contract Product is created by the opp trigger           
             Id accRecType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Operator').getRecordTypeId();
             Account acc = new Account(Name = 'Bahama', recordtypeid= accRecType, CurrencyIsoCode = 'EUR' );
             INSERT acc;
@@ -120,7 +118,7 @@ private class FS_ContractProductHelper_Test {
             opp.StageName = STATUS_COMMITMENT;
             update opp;
             opp.StageName = STATUS_WON;
-            update opp; 
+            update opp;
              
             Test.StopTest();       
         }        

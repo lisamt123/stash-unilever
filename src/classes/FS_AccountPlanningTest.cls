@@ -6,15 +6,15 @@ VERSION  AUTHOR         DATE          DETAIL Description
 
 ***********************************************************************/
 @isTest
-public class FS_AccountPlanningTest {
+public class FS_AccountPlanningTest {    
     //Set up Test Data for unit test    
     @testSetup static void setupTestData(){
         FS_UtilTestDataSetup testData=new FS_UtilTestDataSetup();
         User testUser=testData.createTestUser();        
         system.runAs(testUser){
             //set up custom setting for opportunity stages
-            FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
-            insert oppStages;            
+            testData.setUpOpportunityStages();
+            testdata.enableOpportunityTrigger();
             List<Account> accounts = testData.setUpAccountData();            
             testData.setUpAccountPlan(accounts);
             List<FS_Defined_Objective__c> objList=[select id,FS_No_of_Opportunities__c,FS_Opportunity_Amount__c,FS_Customer__c,FS_Account_Plan__c from FS_Defined_Objective__c limit 100];
@@ -62,8 +62,7 @@ public class FS_AccountPlanningTest {
         string STATUS_WON=stages.FS_Stage_Won__c; 
         user SalesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
         system.runAs(SalesRepUser){          
-            FS_Account_Plan__c accPlan=[select id,FS_No_of_Opportunities__c,FS_Opportunity_Gain__c,FS_Opportunity_Amount__c from FS_Account_Plan__c limit 1];
-            priceBookEntry pbookentry= new priceBookEntry();
+            FS_Account_Plan__c accPlan=[select id,FS_No_of_Opportunities__c,FS_Opportunity_Gain__c,FS_Opportunity_Amount__c from FS_Account_Plan__c limit 1];            
             List<opportunity> opportunities= new List<opportunity>();       
             opportunities=[select id,name,FS_AverageGrossProfit__c,FS_MarketTarget__c,accountid,FS_TotalNumberOfCases__c from opportunity where name='FS Account Planning Test Opportunity' and account_plan__c=:accPlan.Id];          
             List<Opportunity> opp_To_Update=new List<Opportunity>();           
@@ -89,15 +88,18 @@ public class FS_AccountPlanningTest {
         }           
     }        
     Static TestMethod Void AccountPlanApprovalProcessBulkTest(){            
-        //Fetch Test User Data        
-        List<FS_Account_Plan__c> accPlanList_To_Approve=new List<FS_Account_Plan__c>();
+        //Fetch Test User Data
+        user salesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
+        system.runAs(salesRepUser){       
         List<FS_Account_Plan__c> accPlanList_To_Submit=new List<FS_Account_Plan__c>();
         List<FS_Account_Plan__c> accPlanList=[select id,name,FS_Status__c,FS_approved__c from FS_Account_Plan__c limit 10];
-        for(FS_Account_Plan__c accPlan : AccPlanList){                
+        for(FS_Account_Plan__c accPlan : accPlanList){                
             accPlan.FS_Status__c='Approval Requested';                    
             accPlanList_To_Submit.add(accPlan);                                                 
         }
         Update accPlanList_To_Submit;
+        }
+        List<FS_Account_Plan__c> accPlanList_To_Approve=new List<FS_Account_Plan__c>();
         List<FS_Account_Plan__c> accPlanList_After_Approval=[select id,name,FS_Status__c,FS_approved__c from FS_Account_Plan__c limit 49999];        
         for(FS_Account_Plan__c accPlan : accPlanList_After_Approval){                
             accPlan.FS_Status__c='Approved';
@@ -106,32 +108,33 @@ public class FS_AccountPlanningTest {
         }            
         //Cause Opportunity trigger to fire
         Test.startTest();
-        Update AccPlanList_To_Approve;
+        Update accPlanList_To_Approve;
         Test.stopTest();
-        List<FS_Defined_Objective__c> ObjList2=new List<FS_Defined_Objective__c>();
-        List<FS_Defined_Objective__c> Objlist=[select id,FS_Status__c,FS_approved__c,FS_Account_Plan__c from FS_Defined_Objective__c limit 49999];
-        Map<FS_Account_Plan__c,List<FS_Defined_Objective__c>> AccPlanObjMap=new Map<FS_Account_Plan__c,List<FS_Defined_Objective__c>>();
-        for(FS_Account_Plan__c Accplan:AccPlanList_To_Approve){
+        List<FS_Defined_Objective__c> objList2=new List<FS_Defined_Objective__c>();
+        List<FS_Defined_Objective__c> objlist=[select id,FS_Status__c,FS_approved__c,FS_Account_Plan__c from FS_Defined_Objective__c limit 49999];
+        Map<FS_Account_Plan__c,List<FS_Defined_Objective__c>> accPlanObjMap=new Map<FS_Account_Plan__c,List<FS_Defined_Objective__c>>();
+        for(FS_Account_Plan__c accplan:accPlanList_To_Approve){
             ObjList2=new List<FS_Defined_Objective__c>();
-            for(FS_Defined_Objective__c Obj:ObjList){
-                if(Obj.FS_Account_Plan__c==Accplan.id){
-                    ObjList2.add(Obj);  
+            for(FS_Defined_Objective__c obj:objList){
+                if(obj.FS_Account_Plan__c==accplan.id){
+                    objList2.add(obj);  
                 }
             }
-            AccPlanObjMap.put(Accplan,ObjList2);
+            AccPlanObjMap.put(accplan,objList2);
         }             
-        for(FS_Account_Plan__c Accplan:AccPlanList_To_Approve){
-            ObjList2=new List<FS_Defined_Objective__c>();
-            ObjList2=AccPlanObjMap.get(AccPlan);
-            for(FS_Defined_Objective__c Obj:ObjList2){
+        for(FS_Account_Plan__c accplan:accPlanList_To_Approve){
+            objList2=new List<FS_Defined_Objective__c>();
+            objList2=accPlanObjMap.get(accPlan);
+            for(FS_Defined_Objective__c obj:objList2){
                 //Test if we get expected result
-                system.assertEquals(Accplan.FS_Status__c, Obj.FS_Status__c);            
+                system.assertEquals(accplan.FS_Status__c, obj.FS_Status__c);            
             }                
         }    
     }//End of AccountPlanBulkTest
-    Static TestMethod Void AccountPlanApprovalProcessBulkTestRejection(){            
-        //Fetch Test User Data            
-        List<FS_Account_Plan__c> accPlanList_To_Approve=new List<FS_Account_Plan__c>();
+    Static TestMethod Void AccountPlanApprovalProcessBulkTestRejection(){
+        user salesRepUser=[select id from user where UserName='newuseropphelper@testorg.com'];
+        system.runAs(salesRepUser){
+        //Fetch Test User Data       
         List<FS_Account_Plan__c> accPlanList_To_Submit=new List<FS_Account_Plan__c>();
         List<FS_Account_Plan__c> accPlanList=[select id,name,FS_Status__c,FS_approved__c from FS_Account_Plan__c limit 100];
         for(FS_Account_Plan__c accPlan : AccPlanList){                
@@ -139,6 +142,8 @@ public class FS_AccountPlanningTest {
             accPlanList_To_Submit.add(AccPlan);                                                 
         }
         Update accPlanList_To_Submit;
+        }
+        List<FS_Account_Plan__c> accPlanList_To_Approve=new List<FS_Account_Plan__c>();
         List<FS_Account_Plan__c> accPlanList_After_Approval=[select id,name,FS_Status__c,FS_approved__c from FS_Account_Plan__c limit 100];            
         for(FS_Account_Plan__c accPlan : accPlanList_After_Approval){                
             accPlan.FS_Status__c='Planning';                    
@@ -146,7 +151,7 @@ public class FS_AccountPlanningTest {
         }            
         //Cause Opportunity trigger to fire
         Test.startTest();
-        Update AccPlanList_To_Approve;
+        Update accPlanList_To_Approve;
         Test.stopTest();            
         List<FS_Defined_Objective__c> objlist=[select id,FS_Status__c,FS_approved__c,FS_Account_Plan__c from FS_Defined_Objective__c where FS_account_plan__c in :accPlanList_After_Approval];
         Map<FS_Account_Plan__c,List<FS_Defined_Objective__c>> accPlanObjMap=new Map<FS_Account_Plan__c,List<FS_Defined_Objective__c>>();

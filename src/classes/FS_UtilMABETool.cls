@@ -10,7 +10,7 @@ public with sharing class FS_UtilMABETool {
         List<Opportunity> listNewOpportunity=new List<Opportunity>();
         for(Opportunity opp : listNewTrigger){           
             //Check if stage has been changed to Closed Won for New opportunities
-            if(OppOldMap.get(opp.id).stagename!=opp.stagename && opp.isWon==true && opp.recordtypeid==newRecordTypeId && opp.ContractId!=Null){               
+            if(OppOldMap.get(opp.id).stagename!=opp.stagename && opp.isWon && opp.recordtypeid==newRecordTypeId && opp.ContractId!=Null){               
                 listNewOpportunity.add(opp);//List of new opportunities which has been Won               
             }             
         }        

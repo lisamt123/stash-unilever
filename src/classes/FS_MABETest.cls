@@ -6,8 +6,9 @@ private class FS_MABETest {
         User testUser = testData.createTestUser();
         system.runAs(testUser){
             //Set up custom settings for opportunity stages
-            FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name='FS_Stages',FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
-            insert oppStages;            
+            testData.setUpOpportunityStages();
+            //Enable for opportunity trigger
+            testdata.enableOpportunityTrigger();            
             List<Account> accounts = testData.setUpAccountData();           
             List<Contract> listContract=testData.setUpContractData(accounts);
             List<Opportunity> opportunities=testData.setUpMABEOpportunityData(listContract);  
