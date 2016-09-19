@@ -588,3 +588,11 @@
         <shortDescription>ICB SALES TOTAL</shortDescription>
         <value>Sale's Total</value>
     </labels>
+    <labels>
+        <fullName>ICB_PENDING</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB PENDING</shortDescription>
+        <value>Pending</value>
+    </labels>
