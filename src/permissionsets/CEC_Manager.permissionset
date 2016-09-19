@@ -7708,11 +7708,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>FAQ_Enhanced__kav.Rich_Text__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>FAQ_Enhanced__kav.Sensitive_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19955,6 +19950,15 @@
         <object>cec_Case_Brand_Mapping__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
+       <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>cec_Enclosure__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
     <pageAccesses>
         <apexPage>CEC_CaseActions</apexPage>
         <enabled>false</enabled>
@@ -19991,15 +19995,6 @@
         <apexPage>CEC_RelatedCases</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
-    <objectPermissions>
-        <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>cec_Enclosure__c</object>
-        <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>
     <tabSettings>
         <tab>cec_Alert_Action__c</tab>
         <visibility>Visible</visibility>
@@ -20016,7 +20011,6 @@
         <tab>cec_Alert_Tracker__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    
     <tabSettings>
         <tab>cec_Case_Brand_Mapping__c</tab>
         <visibility>Available</visibility>
@@ -20025,7 +20019,6 @@
         <tab>cec_Case_QC_Mapping__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>
