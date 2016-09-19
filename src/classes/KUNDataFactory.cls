@@ -153,7 +153,7 @@ public class KUNDataFactory {
     ********************************************************************/
     public static void createTestDocumentsTypeRecords(Integer numRecords) {     
        List<KUN_Activities__c> molstActivities = new List<KUN_Activities__c>() ;              
-       RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType='KUN_Activities__c' AND DeveloperName ='KUN_Compliance_Process_Indicator' LIMIT 1];
+       RecordType rt = [SELECT Id FROM RecordType WHERE SObjectType='KUN_Activities__c' AND DeveloperName ='KUN_Training_Documents' LIMIT 1];
     
         for(Integer iCount =0 ; iCount < numRecords; iCount++ )
         {        
