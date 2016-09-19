@@ -2873,16 +2873,20 @@
         <name>ICB_HeaderCloseSale</name>
     </customLabels>
     <customLabels>
+        <label>Sorvetes</label>
+        <name>ICB_ICE_CREAMS</name>
+    </customLabels>
+    <customLabels>
+        <label>Estoque</label>
+        <name>ICB_INVENTORY_HEADER</name>
+    </customLabels>
+    <customLabels>
         <label>Produtos em utilização</label>
         <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
     </customLabels>
     <customLabels>
         <label>Produtos em estoque</label>
         <name>ICB_INVENTORY_HEADER_SUB_TITLES</name>
-    </customLabels>
-	 <customLabels>
-        <label>Estoque</label>
-        <name>ICB_INVENTORY_HEADER</name>
     </customLabels>
     <customLabels>
         <label>NOME</label>
@@ -2953,6 +2957,10 @@
         <name>ICB_REC_TYPE_STANDARD_CONTACT</name>
     </customLabels>
     <customLabels>
+        <label>Solicitar</label>
+        <name>ICB_REQUEST</name>
+    </customLabels>
+    <customLabels>
         <label><!-- ICB ROADNET CREATED BY NAME --></label>
         <name>ICB_ROADNET_CREATED_BY_NAME</name>
     </customLabels>
@@ -2963,6 +2971,18 @@
     <customLabels>
         <label>mseries://?cdStore=</label>
         <name>ICB_SCHEMA_MSERIES</name>
+    </customLabels>
+    <customLabels>
+        <label>Visita Agendada</label>
+        <name>ICB_SCH_VISIT</name>
+    </customLabels>
+    <customLabels>
+        <label>Visitas Agendadas</label>
+        <name>ICB_SCH_VISITS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ICB SOBJECT CONTACT --></label>
+        <name>ICB_SOBJECT_CONTACT</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB SOBJECT EVENT --></label>
@@ -3035,10 +3055,6 @@
     <customLabels>
         <label>Não planejado</label>
         <name>ICB_UNPLANNED_VISIT</name>
-    </customLabels>
-    <customLabels>
-        <label>Atualizar</label>
-        <name>ICB_UPDATE</name>
     </customLabels>
     <customLabels>
         <label>Atualizar</label>
@@ -9657,6 +9673,10 @@
         <name>TASKRAY__Cirrus_Header_SearchPlaceholder</name>
     </customLabels>
     <customLabels>
+        <label><!-- text for dropdown label --></label>
+        <name>TASKRAY__Project_Filter_Record_Type_Dropdown_Label</name>
+    </customLabels>
+    <customLabels>
         <label><!-- prefix label for contributor count --></label>
         <name>TASKRAY__TaskRaySF1_ContributingToPrefix</name>
     </customLabels>
@@ -9841,6 +9861,66 @@
         <name>TASKRAY__TaskRay_Checklist_New_Group_Label</name>
     </customLabels>
     <customLabels>
+        <label><!-- Clone modal create button text --></label>
+        <name>TASKRAY__TaskRay_CloneModal_CreateButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal header text --></label>
+        <name>TASKRAY__TaskRay_CloneModal_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal name input label --></label>
+        <name>TASKRAY__TaskRay_CloneModal_NameInputLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal Datepicker palceholder for dependencies enabled --></label>
+        <name>TASKRAY__TaskRay_CloneModal_ScheduleDate_dep</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal Datepicker palceholder for project end --></label>
+        <name>TASKRAY__TaskRay_CloneModal_ScheduleDate_end</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal Datepicker palceholder for project start --></label>
+        <name>TASKRAY__TaskRay_CloneModal_ScheduleDate_start</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal Schedule radio label --></label>
+        <name>TASKRAY__TaskRay_CloneModal_ScheduleInput</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal Schedule radio option first task label --></label>
+        <name>TASKRAY__TaskRay_CloneModal_ScheduleInput_firstTask</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal Schedule radio option last task label --></label>
+        <name>TASKRAY__TaskRay_CloneModal_ScheduleInput_lastTask</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal step 1 bubble text --></label>
+        <name>TASKRAY__TaskRay_CloneModal_Step1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal step 2 bubble text --></label>
+        <name>TASKRAY__TaskRay_CloneModal_Step2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal step 3 bubble text --></label>
+        <name>TASKRAY__TaskRay_CloneModal_Step3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal step 4 bubble text --></label>
+        <name>TASKRAY__TaskRay_CloneModal_Step4</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal template input label --></label>
+        <name>TASKRAY__TaskRay_CloneModal_TemplateInput</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Clone modal template input placeholder --></label>
+        <name>TASKRAY__TaskRay_CloneModal_TemplateInput_placeholder</name>
+    </customLabels>
+    <customLabels>
         <label><!-- text for daily planner email best practices link in footer --></label>
         <name>TASKRAY__TaskRay_Daily_Planner_Best_Practices_Link</name>
     </customLabels>
@@ -9887,6 +9967,14 @@
     <customLabels>
         <label><!-- Text for the datepicker clear button --></label>
         <name>TASKRAY__TaskRay_DatePicker_ClearButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- clear text for bottom of datepicker --></label>
+        <name>TASKRAY__TaskRay_Datepicker_Clear</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- today text for bottom of datepicker --></label>
+        <name>TASKRAY__TaskRay_Datepicker_Today</name>
     </customLabels>
     <customLabels>
         <label><!-- Completed section header for Deadline View --></label>
@@ -10085,6 +10173,34 @@
         <name>TASKRAY__TaskRay_FilterSaveConfirmModal_SaveBtnText</name>
     </customLabels>
     <customLabels>
+        <label><!-- Help button drop down Email Support --></label>
+        <name>TASKRAY__TaskRay_Header_Help_Dropdown_Email</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help button drop down header --></label>
+        <name>TASKRAY__TaskRay_Header_Help_Dropdown_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help button drop down Knowledge Base --></label>
+        <name>TASKRAY__TaskRay_Header_Help_Dropdown_Knowledge_Base</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help button drop down Log Idea --></label>
+        <name>TASKRAY__TaskRay_Header_Help_Dropdown_Log_Idea</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help button drop down New Release --></label>
+        <name>TASKRAY__TaskRay_Header_Help_Dropdown_New_Release</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Help button drop down New Release badge --></label>
+        <name>TASKRAY__TaskRay_Header_Help_Dropdown_New_Release_badge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tootip for power filter button in header --></label>
+        <name>TASKRAY__TaskRay_Header_Power_Filter_Tooltip</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Label for above the projects filter in header --></label>
         <name>TASKRAY__TaskRay_Header_Projects</name>
     </customLabels>
@@ -10191,6 +10307,10 @@
     <customLabels>
         <label><!-- Label displayed when hovering left sidebar checkbox --></label>
         <name>TASKRAY__TaskRay_LeftSidebar_Checkbox_Full_Hover</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Placeholder for left sidebar single project search --></label>
+        <name>TASKRAY__TaskRay_LeftSidebar_SingleProjectSearchPlaceholder</name>
     </customLabels>
     <customLabels>
         <label><!-- Left sidebar tab label for Open --></label>
@@ -10553,6 +10673,18 @@
         <name>TASKRAY__TaskRay_Navbar_TaskFilterSetupSection</name>
     </customLabels>
     <customLabels>
+        <label><!-- New features dismiss button label --></label>
+        <name>TASKRAY__TaskRay_NewFeaturesModal_Dismiss</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New features modal header label --></label>
+        <name>TASKRAY__TaskRay_NewFeaturesModal_Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New features show me later button label --></label>
+        <name>TASKRAY__TaskRay_NewFeaturesModal_Later</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Label for PL mismapped in mismapped card --></label>
         <name>TASKRAY__TaskRay_PLMismatch_Record_Type_Card_Project_Label</name>
     </customLabels>
@@ -10739,6 +10871,330 @@
     <customLabels>
         <label><!-- Zoom out button hover for Plan View --></label>
         <name>TASKRAY__TaskRay_PlanView_ZoomOutHover</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filter Logic info icon --></label>
+        <name>TASKRAY__TaskRay_PowerFilterConfig_Logic_Info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add project filter in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_AddProjectFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add task filter in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_AddTaskFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Filter label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Add_Filter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Filter Logic label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Add_Filter_Logic</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Apply label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Apply</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cancel label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create new filter in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Create_New_Filter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- First part of the date invalid label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_DateValidation_1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- second part of the date invalid label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_DateValidation_2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete Confirm label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Delete_Confirm</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Edit Filter Details label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Edit_Filter_Details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filter Lookup placeholder in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_FilterLookup_Placeholder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filter By label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Filter_By</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filter Logic label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Filter_Logic</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Name new project filter label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_NameProjectFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Name new task filter label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_NameTaskFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text for the Power Filter Modal new project filter flag --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_NewProject_flag</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text for the Power Filter Modal new task filter flag --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_NewTask_flag</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New Filter Details label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_New_Filter_Details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_No</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Operator label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Operator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Remove label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Remove</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Saved Project Filters in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_SavedProjectFilters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Saved Taskroject Filters in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_SavedTaskFilters</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Show me scope selector in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Show_Me</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Step 1 Label text for the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Step_One</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Step 3 Label text for the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Step_Three</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Step 1 Label text for the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Step_Two</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text for the Power Filter Modal unsaved board filter flag --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_UnsavedChanges_flag</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Update exisitng filter in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Update_Filter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Value label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Value_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Header text for the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_View_Settings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Yes label in the Power Filter Modal --></label>
+        <name>TASKRAY__TaskRay_PowerFilterModal_Yes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the psuedo chatter group field on projects --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ChatterGroup_Field</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tooltip for the Delegated filter view --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_DelegatedTooltip</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tooltip for the Inbox filter view --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_InboxTooltip</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tooltip for the My Projects filter view --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_MyProjectsTooltip</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the contains filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_contains</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the equals filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_equals</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the greater than filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_greaterthan</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the greater than or equal to filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_greatorequal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the is null filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_isnull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the less than or equal to filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_lessorequal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the less than filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_lessthan</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the does not contain filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_notcontain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the not equal filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_notequal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the starts with filter comparison --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_OperatorOption_startswith</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the All Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_AllProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Detail Label for the All Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_AllProjects_detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Archived Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_ArchivedProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Delegated Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_DelegatedProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Favorite Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_FavoriteProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the My Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_MyProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Detail Label for the My Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_MyProjects_detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Favorite Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_RecentProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Single Project filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_SingleProject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Template Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_TemplateProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Detail Label for the Template Projects filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_ProjectScope_TemplateProjects_detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tooltip for the Recent Projects filter view --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_RecentProjectsTooltip</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tooltip for the Favorites filter view --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_StarredTooltip</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default Archived board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_Archived</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default Delegated board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_Delegated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default Dynamic board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_Dynamic</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default Favorites board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_Favorites</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default My Tasks board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_Inbox</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default My Projects board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_MyProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default Recent Projects board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_RecentProjects</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default Single Project Search board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_SingleProjectSearch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for hide hierarchy Single Project Search board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_SingleProjectSearch_hideSubs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for show hierarchy Single Project Search board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_SingleProjectSearch_showSubs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the default Templates board filter --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Std_Templates</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the All Tasks filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_TaskScope_AllTasks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Detail Label for the All Tasks filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_TaskScope_AllTasks_detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Archived Tasks filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_TaskScope_ArchivedTasks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Delegated Tasks filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_TaskScope_DelegatedTasks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the My Tasks filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_TaskScope_MyTasks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Detail Label for the My Tasks filter scope --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_TaskScope_MyTasks_detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the psuedo Topics field on projects --></label>
+        <name>TASKRAY__TaskRay_PowerFilter_Topic_Field</name>
     </customLabels>
     <customLabels>
         <label><!-- User Preferences Admin tab Tag to Topic Section --></label>
@@ -10989,6 +11445,10 @@
         <name>TASKRAY__TaskRay_ProjectModal_EffectHeader</name>
     </customLabels>
     <customLabels>
+        <label><!-- Project modal contributor tab Group label --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_GroupLabel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Label appended to a contributor group --></label>
         <name>TASKRAY__TaskRay_ProjectModal_GroupStringForContrib</name>
     </customLabels>
@@ -11009,6 +11469,22 @@
         <name>TASKRAY__TaskRay_ProjectModal_GroupsTabLabel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Label for the header chatter tab in the project modal --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_Header_Chatter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the header details tab in the project modal --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_Header_Details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the header groups tab in the project modal --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_Header_Groups</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the header team tab in the project modal --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_Header_Team</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Project modal contributor tab, public project in private org warning header --></label>
         <name>TASKRAY__TaskRay_ProjectModal_PrivateContribTab_PublicWarning</name>
     </customLabels>
@@ -11025,8 +11501,16 @@
         <name>TASKRAY__TaskRay_ProjectModal_PrivateWarningHeader</name>
     </customLabels>
     <customLabels>
+        <label><!-- Project modal contributor tab Project Owner label --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_ProjectOwnerLabel</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Project modal contributor tab, public project in public org info body --></label>
         <name>TASKRAY__TaskRay_ProjectModal_PublicContribTab_info</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Project modal contributor tab Group label --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_QueueLabel</name>
     </customLabels>
     <customLabels>
         <label><!-- Label appended to a contributor queue --></label>
@@ -11043,6 +11527,10 @@
     <customLabels>
         <label><!-- Project modal contributor tab share with all internal users label --></label>
         <name>TASKRAY__TaskRay_ProjectModal_ShareAllInternalLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Project modal contributor tab Unsaved label for contributor --></label>
+        <name>TASKRAY__TaskRay_ProjectModal_UnsavedLabel</name>
     </customLabels>
     <customLabels>
         <label><!-- Sidebar project item Edit label --></label>
@@ -11281,12 +11769,36 @@
         <name>TASKRAY__TaskRay_Setting_Modal_RT_Instructions_Part3</name>
     </customLabels>
     <customLabels>
+        <label><!-- Settings Modal Admin tab label --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_AdminTab</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Settings Modal board filter visibility tab label --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_FilterVizTab</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Settings Modal board filter visibility tab detail text --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_FilterVizTab_Detail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Settings Modal board filter visibility tab detail text --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_FilterVizTab_Header</name>
+    </customLabels>
+    <customLabels>
         <label><!-- None label for record type mapping --></label>
         <name>TASKRAY__TaskRay_Settings_Modal_None</name>
     </customLabels>
     <customLabels>
         <label><!-- Instructions for settings modal Record Types --></label>
         <name>TASKRAY__TaskRay_Settings_Modal_RecordTypes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Settings Modal Record Types tab label --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_RecordTypesTab</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Settings Modal User tab label --></label>
+        <name>TASKRAY__TaskRay_Settings_Modal_UserTab</name>
     </customLabels>
     <customLabels>
         <label><!-- TaskRay Settings Actions Header --></label>
@@ -11557,6 +12069,26 @@
         <name>TASKRAY__TaskRay_Sidebar_DisplayPersonalTasks_new</name>
     </customLabels>
     <customLabels>
+        <label><!-- Placeholder for Dynamic Project Filter in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DynamicProjectFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Placeholder for Dynamic Project Filter in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DynamicProjectFilterHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Placeholder for Dynamic Task Filter in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DynamicTaskFilter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Placeholder for Dynamic Task Filter in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DynamicTaskFilterHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Placeholder for inactive Dynamic View in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_DynamicViewPicker</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Left sidebar favorited section header --></label>
         <name>TASKRAY__TaskRay_Sidebar_FavoritedProjectsSectionHeader</name>
     </customLabels>
@@ -11589,6 +12121,10 @@
         <name>TASKRAY__TaskRay_Sidebar_MismatchedTaskLabel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Header for My Views Section in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_MyViewsSectionHeader</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Sidebar tab label for Navigation --></label>
         <name>TASKRAY__TaskRay_Sidebar_NavLabel</name>
     </customLabels>
@@ -11597,12 +12133,24 @@
         <name>TASKRAY__TaskRay_Sidebar_NewButton</name>
     </customLabels>
     <customLabels>
+        <label><!-- New Project clone template text --></label>
+        <name>TASKRAY__TaskRay_Sidebar_NewClone</name>
+    </customLabels>
+    <customLabels>
         <label><!-- New Project hover text --></label>
         <name>TASKRAY__TaskRay_Sidebar_NewHover</name>
     </customLabels>
     <customLabels>
+        <label><!-- New Project manual create text --></label>
+        <name>TASKRAY__TaskRay_Sidebar_NewProject</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Options container sub header --></label>
         <name>TASKRAY__TaskRay_Sidebar_OptionsContainerLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sidebar project item Archive Project --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ProjectArchive</name>
     </customLabels>
     <customLabels>
         <label><!-- Sidebar project item Clone label --></label>
@@ -11623,6 +12171,18 @@
     <customLabels>
         <label><!-- Tooltip displayed when a project is disabled due to Task RT selection --></label>
         <name>TASKRAY__TaskRay_Sidebar_ProjectDisabledDueToTaskRT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Project filter favorite projects label --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ProjectFilterFavoriteProjectsLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Project filter recent projects label --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ProjectFilterRecentProjectsLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Project filter template projects label --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ProjectFilterTemplateProjectsLabel</name>
     </customLabels>
     <customLabels>
         <label><!-- Sidebar project tooltip for more actions hover --></label>
@@ -11669,12 +12229,60 @@
         <name>TASKRAY__TaskRay_Sidebar_SelectAllProjects</name>
     </customLabels>
     <customLabels>
+        <label><!-- Show Less label for My Views Section in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ShowLess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Show More label for My Views Section in the Left Sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_ShowMore</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Sidebar project tooltip to add to favorites --></label>
         <name>TASKRAY__TaskRay_Sidebar_StarProject</name>
     </customLabels>
     <customLabels>
         <label><!-- Sidebar tab label for Team --></label>
         <name>TASKRAY__TaskRay_Sidebar_TeamLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add task to timesheet label for the time sidebar tab --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Add_Row</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add time label for the time sidebar tab --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Add_Time</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Entry label for the time sidebar --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Entry</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TaskRay Timesheet Billable Time prefix --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Header_Stats_BillableTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TaskRay Timesheet Total Time prefix --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Header_Stats_TotalTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total label for the time sidebar tab --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Project</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total label for the time sidebar tab --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Task</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Today label for the time sidebar tab --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Today</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total label for the time sidebar tab header --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Total</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Time section week of label --></label>
+        <name>TASKRAY__TaskRay_Sidebar_Time_Week_Of</name>
     </customLabels>
     <customLabels>
         <label><!-- Sidebar project tooltip to remove from favorites --></label>
@@ -11691,6 +12299,18 @@
     <customLabels>
         <label><!-- Hover text for checklist icon, string after percentage complete --></label>
         <name>TASKRAY__TaskRay_TaskCard_Checklist_PctCompleteString</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Placeholder for the Task Time quick entry date field --></label>
+        <name>TASKRAY__TaskRay_TaskCard_Time_Date_Placeholder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Dropdown text on project name click to open project modal --></label>
+        <name>TASKRAY__TaskRay_TaskCard_ViewProjectDetails</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Dropdown text on project name click to display project in view --></label>
+        <name>TASKRAY__TaskRay_TaskCard_ViewProjectInTaskray</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for assignee on checklist owner face click --></label>
@@ -11885,20 +12505,108 @@
         <name>TASKRAY__TaskRay_TaskSortLabel_WhiteboardSort</name>
     </customLabels>
     <customLabels>
-        <label><!-- task modal tabpane header label --></label>
+        <label><!-- Task modal time tab add label --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Add_Time</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- task modal tabpane header label for chatter --></label>
         <name>TASKRAY__TaskRay_Task_Modal_Header_Label_Chatter</name>
     </customLabels>
     <customLabels>
-        <label><!-- task modal tabpane header label --></label>
+        <label><!-- task modal tabpane header label for checklist --></label>
         <name>TASKRAY__TaskRay_Task_Modal_Header_Label_Checklist</name>
     </customLabels>
     <customLabels>
-        <label><!-- task modal tabpane header label --></label>
+        <label><!-- task modal tabpane header label for details --></label>
         <name>TASKRAY__TaskRay_Task_Modal_Header_Label_Details</name>
     </customLabels>
     <customLabels>
-        <label><!-- task modal tabpane header label --></label>
+        <label><!-- task modal tabpane header label for repeat --></label>
         <name>TASKRAY__TaskRay_Task_Modal_Header_Label_Repeat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- task modal tabpane header label for time tracking --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Header_Label_Time</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task modal time tab log time label --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Log_Time</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task modal time tab date label --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Time_Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task modal time tab hours label --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Time_Hours</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TaskRay Timesheet Billable Time prefix --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Time_Stats_BillableTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TaskRay Timesheet Total Time prefix --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Time_Stats_TotalTime</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Task modal time tab team label --></label>
+        <name>TASKRAY__TaskRay_Task_Modal_Time_Team</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- text for time tracking add time header --></label>
+        <name>TASKRAY__TaskRay_Time_Tracking_Add_Time</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- time tracking task card billable checkbox label --></label>
+        <name>TASKRAY__TaskRay_Time_Tracking_Billable_Checkbox</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- time tracking task card quick entry notes placeholder --></label>
+        <name>TASKRAY__TaskRay_Time_Tracking_Notes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- time tracking task card quick entry hours placeholder --></label>
+        <name>TASKRAY__TaskRay_Time_Tracking_Placeholder_0</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- time tracking task card quick entry hours label --></label>
+        <name>TASKRAY__TaskRay_Time_Tracking_QuickAdd_Hours</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Billable label for the sidebar time header and task modal time header --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Billable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Right sidebar time cancel label --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Right sidebar time delete dropdown --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Right sidebar time edit dropdown --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Right sidebar and task modal time section notes header label --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Notes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Right sidebar and task modal time section notes placeholder --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Notes_Placeholder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Right sidebar time save label --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TaskRay Timesheet and Task Modal hrs suffix --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Stats_suffix</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Right sidebar time tab header and task modal time tab label --></label>
+        <name>TASKRAY__TaskRay_Timetracking_Time</name>
     </customLabels>
     <customLabels>
         <label><!-- advanced add button text for record type --></label>
@@ -12079,6 +12787,10 @@
     <customLabels>
         <label><!-- Label for the default View As Tasks view --></label>
         <name>TASKRAY__TaskRay_View_ViewAsTasksLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- text for dropdown label --></label>
+        <name>TASKRAY__Task_Filter_Priority_Dropdown_Label</name>
     </customLabels>
     <customLabels>
         <label><!-- TASK_OBJ_NAME --></label>
@@ -13908,28 +14620,20 @@
         <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
         <name>uw_Inoplan_error_nullvalue</name>
     </customLabels>
-     <customLabels>
-        <label>Sorvetes</label>
-        <name>ICB_ICE_CREAMS</name>
-    </customLabels>
-    <customLabels>
-        <label>Solicitar</label>
-        <name>ICB_REQUEST</name>
-    </customLabels>
-     <customLabels>
-        <label>Atualizar</label>
-        <name>ICB_UPDATE</name>
-    </customLabels>
-      <customLabels>
-        <label>Receber Sorveteiro (R$)</label>
-        <name>ICB_RECEIVE_ICE_CREAM</name>
-    </customLabels>
-     <customLabels>
-        <label>Calculado</label>
-        <name>ICB_CALCULATED</name>
-    </customLabels>
-    <customLabels>
-        <label>Total de Vendas</label>
-        <name>ICB_SALES_TOTAL</name>
-    </customLabels>
+    <customTabs>
+        <label><!-- Fechamento --></label>
+        <name>ICB_Close_Sales</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Abertura --></label>
+        <name>ICB_Cockpit</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Estoque --></label>
+        <name>ICB_Inventory</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Lista de Preços --></label>
+        <name>ICB_Price_List</name>
+    </customTabs>
 </Translations>

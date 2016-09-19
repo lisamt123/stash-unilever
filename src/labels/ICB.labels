@@ -560,13 +560,6 @@
         <shortDescription>ICB AVAILABLE</shortDescription>
         <value>Available</value>
     </labels>
-     <labels>
-        <fullName>ICB_UPDATE</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ICB UPDATE</shortDescription>
-        <value>Update</value>
-    </labels>
     <labels>
         <fullName>ICB_RECEIVE_ICE_CREAM</fullName>
         <language>en_US</language>

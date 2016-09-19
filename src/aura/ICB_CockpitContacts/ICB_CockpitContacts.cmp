@@ -92,7 +92,7 @@
                                 
                                 <aura:set attribute="else">
                                     <div data-record="{!index}" onclick="{!c.updatedItem}">
-                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE}" disabled="false"  />
+                                        <ui:button aura:id="updatedButton" label="{!$Label.c.ICB_UPDATE_INVENTORY}" disabled="false"  />
                                     </div>
                                 </aura:set>
                             </aura:if>
