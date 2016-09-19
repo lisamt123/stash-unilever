@@ -1,5 +1,5 @@
 src/labels
-src/labels/CustomLabels.labels
+src/labels/WU.labels
 
 src/objects
 src/objects/WU_Master_Warehouse__c.object
