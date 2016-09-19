@@ -27,9 +27,6 @@
         <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision2</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
@@ -38,13 +35,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>ID</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>ID</stringValue>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -59,98 +56,45 @@
                         <stringValue>GlobalConstant</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.CIR2R_Innovation__c</leftValueReference>
+                <leftValueReference>myVariable_current.RAG__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.Target_Closure__c</leftValueReference>
                 <operator>NotEqualTo</operator>
             </conditions>
             <connector>
                 <targetReference>myRule_1_A1</targetReference>
             </connector>
-            <label>CI R2R Scope</label>
+            <label>RAG and Closure Date Changes</label>
         </rules>
     </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision2</name>
-        <label>myDecision2</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_3</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>ID</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>ID</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>GlobalConstant</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.CIR2R_Innovation__c</leftValueReference>
-                <operator>EqualTo</operator>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.RecordType.DeveloperName</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>CI_SME_with_CI</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_3_A1</targetReference>
-            </connector>
-            <label>CI R2R Update Scope Null</label>
-        </rules>
-    </decisions>
-    <description>To Update the scope, R2R SME Area and project category from CI to SME</description>
-    <interviewLabel>CI_R2R_Update_Scope_of_SME_Weekly_Update-19_CI_SMS_Weekly_Update__c</interviewLabel>
-    <label>CI_R2R Update Scope of SME Weekly Update and PC</label>
+    <interviewLabel>CI_R2R_Update_RAG_and_Closure_Date_to_Master_Object-1_CI_SMS_Weekly_Update__c</interviewLabel>
+    <label>CI_R2R Update RAG and Closure Date to Master Object</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>
@@ -192,16 +136,13 @@
         <processMetadataValues>
             <name>reference</name>
             <value>
-                <stringValue>[SMS_Weekly_Update__c]</stringValue>
+                <stringValue>[CI_SMS_Weekly_Update__c].CIR2R Innovation</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
-        <label>CI_R2R update scope</label>
+        <label>Update RAG and Closure Date</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
-        <connector>
-            <targetReference>myRule_1_A2</targetReference>
-        </connector>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -212,78 +153,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>MultiPicklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Scope</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Scope__c</field>
-            <value>
-                <elementReference>myVariable_current.CIR2R_Innovation__r.Geographical_Scope__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>CI_SMS_Weekly_Update__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[CI_SMS_Weekly_Update__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_1_A2</name>
-        <label>CI_R2R Update Project Category</label>
-        <locationX>100</locationX>
-        <locationY>300</locationY>
-        <connector>
-            <targetReference>myRule_1_A3</targetReference>
-        </connector>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
+                <elementReference>myVariable_current.CIR2R_Innovation__c</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -302,7 +172,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Project Category</stringValue>
+                    <stringValue>RAG</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -311,54 +181,16 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Project_Cat__c</field>
+            <field>RAG__c</field>
             <value>
-                <elementReference>myVariable_current.CIR2R_Innovation__r.Project_Category__c</elementReference>
+                <elementReference>myVariable_current.RAG__c</elementReference>
             </value>
         </inputAssignments>
-        <object>CI_SMS_Weekly_Update__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[CI_SMS_Weekly_Update__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_1_A3</name>
-        <label>CI_R2R Update SME Area</label>
-        <locationX>100</locationX>
-        <locationY>400</locationY>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
-                    <stringValue>Picklist</stringValue>
+                    <stringValue>Date</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -370,7 +202,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>R2R SME Area</stringValue>
+                    <stringValue>Target Completion Date</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -379,77 +211,12 @@
                     <stringValue>Reference</stringValue>
                 </value>
             </processMetadataValues>
-            <field>R2R_SME_Area__c</field>
+            <field>Target_Completion_Date__c</field>
             <value>
-                <elementReference>myVariable_current.CIR2R_Innovation__r.R2R_SME_Area__c</elementReference>
+                <elementReference>myVariable_current.Target_Closure__c</elementReference>
             </value>
         </inputAssignments>
-        <object>CI_SMS_Weekly_Update__c</object>
-    </recordUpdates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[CI_SMS_Weekly_Update__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_3_A1</name>
-        <label>CI R2R Update Scope as Null</label>
-        <locationX>300</locationX>
-        <locationY>200</locationY>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </filters>
-        <inputAssignments>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>MultiPicklist</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>false</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Scope</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>GlobalConstant</stringValue>
-                </value>
-            </processMetadataValues>
-            <field>Scope__c</field>
-        </inputAssignments>
-        <object>CI_SMS_Weekly_Update__c</object>
+        <object>CI_R2R_Innovation__c</object>
     </recordUpdates>
     <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
     <variables>
