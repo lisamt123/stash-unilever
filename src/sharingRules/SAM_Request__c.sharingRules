@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>SAM_Admin_sharing_RO</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SAM Admin sharing RO</label>
+        <sharedTo>
+            <group>SAM_Admin</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>pkl_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Saved</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SAM_Admin_sharing_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SAM Admin sharing RW</label>
+        <sharedTo>
+            <group>SAM_Admin</group>
+        </sharedTo>
+        <booleanFilter>1 OR  2</booleanFilter>
+        <criteriaItems>
+            <field>pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Open,CC details provided (By ULEMP),In Progress,Charging Completed,Closed,Details Provided,Draft Quote Provided,On Hold,Charging Rejected,Quote Approved,Quote Rejected</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Information Provided,Need More Info,Awaiting CC details (Pending with ULSMT),Answer Accepted</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SAM_Finance_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>SAM Finance Sharing</label>
+        <sharedTo>
+            <group>SAM_Finance_Team</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Charging In Progress,Awaiting CC details (Pending with ULEMP),CC details provided (By ULEMP),Charging Completed,Charging Rejected,Awaiting CC details (Pending with ULSMT),Awaiting Charge</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SAM_Team</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>SAM Team</label>
+        <sharedTo>
+            <group>SAM_Team</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>pkl_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Saved</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

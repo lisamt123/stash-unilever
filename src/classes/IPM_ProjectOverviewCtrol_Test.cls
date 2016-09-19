@@ -5,7 +5,7 @@ private class IPM_ProjectOverviewCtrol_Test {
     private static final String PROJ_CREATED='Projects are not created';
     private static final String sPageRefURL = 'apex/IPM_ProjectOverview?Id=';
     private static final String GLOBAL_PL_USER = 'GLOBAL_PL';
-	private static final String REGIONAL_PL_USER = 'REGIONAL_PL';
+    private static final String REGIONAL_PL_USER = 'REGIONAL_PL';
     /***********************************
     * @Description: Test Data Creation
     * *********************************/
@@ -149,7 +149,7 @@ private class IPM_ProjectOverviewCtrol_Test {
             }
             for(IPM_Project__c project : [Select Id, IPM_GateKeeping_Model__c from IPM_Project__c where Id IN : globalProjectIdList limit 100])
             {
-            	System.assertEquals(IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH , project.IPM_GateKeeping_Model__c, 'Gatekeeping model is not updated properly.');
+                System.assertEquals(IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH , project.IPM_GateKeeping_Model__c, 'Gatekeeping model is not updated properly.');
             }
             
             // Initiate Phase Change would result in Rollout Project Creation.
@@ -160,11 +160,11 @@ private class IPM_ProjectOverviewCtrol_Test {
             iDs.clear();
             
             for(IPM_Project__c project : projectListPhaseChange){
-            	iDs.add(project.Id);
+                iDs.add(project.Id);
             }
             
             for(IPM_Project__c project : [Select Id, IPM_Phase__c from IPM_Project__c where Id In : iDs limit 100])
-            	System.assertEquals( IPM_ConstantUtils.PHASE_FEASIBILITY,  project.IPM_Phase__c , 'Project phase has not been updated.');
+                System.assertEquals( IPM_ConstantUtils.PHASE_FEASIBILITY,  project.IPM_Phase__c , 'Project phase has not been updated.');
             
             Map<Id,IPM_Milestone__c>  mileStoneMap = new Map<Id,IPM_Milestone__c>([Select IPM_Project__r.BET_MS_First_Release_Date__c,RecordTypeId,Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c limit 1000] );
             
@@ -190,10 +190,10 @@ private class IPM_ProjectOverviewCtrol_Test {
             iDs.clear();
             for(IPM_Milestone__c milestone : updateMilestoneList)
             {
-            	iDs.add(milestone.Id);
+                iDs.add(milestone.Id);
             }
             for(IPM_Milestone__c milestone : [Select Id, IPM_Due_Date__c from IPM_Milestone__c where Id IN : iDs limit 100])
-            	System.assertEquals(System.today()+5 , milestone.IPM_Due_Date__c , 'Milestone due dates are not updated properly.');
+                System.assertEquals(System.today()+5 , milestone.IPM_Due_Date__c , 'Milestone due dates are not updated properly.');
             
             IPM_Milestone__c dueDateTodayMilestone = IPM_TestFactory_Helper.createIPMMilestone(projectList[0].Id, false);
             dueDateTodayMilestone.RecordTypeId = recordtypeid;    
@@ -225,19 +225,17 @@ private class IPM_ProjectOverviewCtrol_Test {
             System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED, [Select Id, IPM_Document_Status__c from IPM_Project_Document__c where IPM_Project__c =: projectList[0].Id limit 1000][0].IPM_Document_Status__c, 'Document status is not updated successfully.');
             
             PageReference pRef1 = new PageReference(sPageRefURL+projectList[0].Id);
-        	Test.setCurrentPage(pRef1);
+            Test.setCurrentPage(pRef1);
         
-        	IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
-        	IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-        	system.assert(overCtrl1.childProjectsIncompleteAlert != null, 'There are no alerts for child projects progression through phases.');
-        	
+            
+            
        }
     }
 
-	//Testmethod to validate moveToPLE functionality
+    //Testmethod to validate moveToPLE functionality
     private static testMethod void testmoveToPLE()
     {
-    	// Get the newly created Projects from Database. 
+        // Get the newly created Projects from Database. 
         Set<String> projectNameSet = new Set<String>{'TestComments1'};
         User globalProjectLeader = null;
         
@@ -263,11 +261,11 @@ private class IPM_ProjectOverviewCtrol_Test {
         
         overCtrl1.moveToPLE();
         for( IPM_Project__c  project : [Select Id, IPM_Actual_Launch_Date__c from IPM_Project__c where Id IN :  projectList ] )
-        	System.assertEquals(Date.today(), project.IPM_Actual_Launch_Date__c, 'Launch Date Is Wrong');
+            System.assertEquals(Date.today(), project.IPM_Actual_Launch_Date__c, 'Launch Date Is Wrong');
         Test.stopTest();
         }
     }
-	//Testmethod to validate stop project functionalities
+    //Testmethod to validate stop project functionalities
     static testMethod void testStopProjects(){
         // Get the newly created Projects from Database. 
         Set<String> projectNameSet = new Set<String>{'TestComments1'};
@@ -295,17 +293,17 @@ private class IPM_ProjectOverviewCtrol_Test {
         //initialise public variables
         overCtrl1.categryId = null;
         overCtrl1.CategoryGroupId = null;
-    	overCtrl1.BrandPositionId = null;
-    	overCtrl1.stopButtonHoverText = null;
-    	overCtrl1.reactivateProjectFlag = null;
-    	overCtrl1.isBrandVisible = null;
-    	overCtrl1.isChecked = null;
-    	overCtrl1.StoppedMsg = null;
-    	
-    	//earliest TLD functionality
-    	overCtrl1.earliestTLD = string.valueof(system.now());
-    	string eTLD =overCtrl1.getEarlTLD();
-    	system.assertEquals(eTLD,overCtrl1.earliestTLD,'earliest TLD is not matched');//positive test
+        overCtrl1.BrandPositionId = null;
+        overCtrl1.stopButtonHoverText = null;
+        overCtrl1.reactivateProjectFlag = null;
+        overCtrl1.isBrandVisible = null;
+        overCtrl1.isChecked = null;
+        overCtrl1.StoppedMsg = null;
+        
+        //earliest TLD functionality
+        overCtrl1.earliestTLD = string.valueof(system.now());
+        string eTLD =overCtrl1.getEarlTLD();
+        system.assertEquals(eTLD,overCtrl1.earliestTLD,'earliest TLD is not matched');//positive test
         
         //stop project functionality
         
@@ -342,5 +340,5 @@ private class IPM_ProjectOverviewCtrol_Test {
         Test.stopTest();
         }
     }
-	
+    
  }

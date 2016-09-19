@@ -49102,6 +49102,174 @@
         <layout>CI_SMS_Weekly_Update__c-CI_SME without CI</layout>
         <recordType>CI_SMS_Weekly_Update__c.CI_SME_without_CI</recordType>
     </layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Cross Charge Request RW Layout</layout>
+		<recordType>SAM_Request__c.Cross Charge</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM RW Non Project Request</layout>
+		<recordType>SAM_Request__c.Non Project</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Project Request RW Layout</layout>
+		<recordType>SAM_Request__c.Project</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Query Request RW Layout</layout>
+		<recordType>SAM_Request__c.Query</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM ReSubmit Cross Charge Request RW Layout</layout>
+		<recordType>SAM_Request__c.ReSubmit Cross Charge</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM ReSubmit Non Project Request RW Layout</layout>
+		<recordType>SAM_Request__c.ReSubmit Non Project</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM ReSubmit Project Request RW Layout</layout>
+		<recordType>SAM_Request__c.ReSubmit Project</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM ReSubmit Query Request RW Layout</layout>
+		<recordType>SAM_Request__c.ReSubmit Query</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Cross Charge Request Close</layout>
+		<recordType>SAM_Request__c.SAM Cross Charge Request Closed</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Cross Charge Request Complete</layout>
+		<recordType>SAM_Request__c.SAM Cross Charge Request Complete</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Cross Charge Request Finance</layout>
+		<recordType>SAM_Request__c.SAM Cross Charge Request Finance</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Cross Charge Request Finance Awaiting Charge Queue</layout>
+		<recordType>SAM_Request__c.SAM Cross Charge Request Finance Awaiting Charge Queue</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Non Project Close Layout</layout>
+		<recordType>SAM_Request__c.SAM Non Project Close</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Non_Project RW Req Quote Provided/Approve</layout>
+		<recordType>SAM_Request__c.SAM Non Project RW Req Quote Provided</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Non_Project RW SAM Team/Quote Rejected</layout>
+		<recordType>SAM_Request__c.SAM Non Project RW SAM Team</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Non_Project RW SAM Team On hold</layout>
+		<recordType>SAM_Request__c.SAM Non_Project RW SAM Team On hold</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Project Close1</layout>
+		<recordType>SAM_Request__c.SAM Project Close</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Project Finance On Awaiting Charge1</layout>
+		<recordType>SAM_Request__c.SAM Project Finance On Awaiting Charge</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Project Finance On Awaiting Charge With Queue</layout>
+		<recordType>SAM_Request__c.SAM Project Finance On Awaiting Charge Queue</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Project RW Req Quote Provided1</layout>
+		<recordType>SAM_Request__c.SAM Project RW Req Quote Provided</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Project RW SAM Team1</layout>
+		<recordType>SAM_Request__c.SAM Project RW SAM Team</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Project RW SAM Team On hold</layout>
+		<recordType>SAM_Request__c.SAM Project RW SAM Team On hold</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Query Request Answered Layout</layout>
+		<recordType>SAM_Request__c.SAM Query Request Answered</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Query Request Closed</layout>
+		<recordType>SAM_Request__c.SAM Query Request Closed</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Query Request SAM Team on Open</layout>
+		<recordType>SAM_Request__c.SAM Query Request SAM Team on Open</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request__c-SAM Query Request SAM team</layout>
+		<recordType>SAM_Request__c.SAM Query Request SAM team</recordType>
+	<layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM IBM RO Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.SAM_IBM_RO</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM IBM RW Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.IBM</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM Microsoft RO Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.SAM_Microsoft_RO</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM Microsoft RW Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.Microsoft</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM Oracle RO Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.SAM_Oracle_RO</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM Oracle RW Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.Oracle</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM Other Product RO Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.SAM_Other_Product_RO</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM Other Product RW Request Line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.Other Product</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM SAP RO Request line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.SAM_SAP_RO</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Request_Line_Item__c-SAM SAP RW Request line Item Layout</layout>
+		<recordType>SAM_Request_Line_Item__c.SAP</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Quote_Line_Item__c-SAM Non Proj Quote RO Layout</layout>
+		<recordType>SAM_Quote_Line_Item__c.SAM Non Proj Quote RO</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Quote_Line_Item__c-SAM Non Proj Quote RW Layout</layout>
+		<recordType>SAM_Quote_Line_Item__c.SAM Non Proj Quote RW</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Quote_Line_Item__c-SAM Non Proj Quote RW/RO Layout</layout>
+		<recordType>SAM_Quote_Line_Item__c.SAM Non Proj Quote RW/RO</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Quote_Line_Item__c-SAM Quote RO Layout</layout>
+		<recordType>SAM_Quote_Line_Item__c.SAM Quote Read Only</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Quote_Line_Item__c-SAM Quote RW Layout</layout>
+		<recordType>SAM_Quote_Line_Item__c.SAM Quote RW</recordType>
+	</layoutAssignments>
+	<layoutAssignments>
+		<layout>SAM_Quote_Line_Item__c-SAM Quote RW/RO Layout</layout>
+		<recordType>SAM_Quote_Line_Item__c.SAM Quote RW_RO</recordType>
+	</layoutAssignments>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
