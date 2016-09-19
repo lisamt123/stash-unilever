@@ -2873,10 +2873,6 @@
         <name>ICB_HeaderCloseSale</name>
     </customLabels>
     <customLabels>
-        <label>Sorvetes</label>
-        <name>ICB_ICE_CREAMS</name>
-    </customLabels>
-    <customLabels>
         <label>Produtos em utilização</label>
         <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
     </customLabels>
@@ -2955,10 +2951,6 @@
     <customLabels>
         <label><!-- ICB REC TYPE STANDARD CONTACT --></label>
         <name>ICB_REC_TYPE_STANDARD_CONTACT</name>
-    </customLabels>
-    <customLabels>
-        <label>Solicitar</label>
-        <name>ICB_REQUEST</name>
     </customLabels>
     <customLabels>
         <label><!-- ICB ROADNET CREATED BY NAME --></label>
@@ -13923,10 +13915,6 @@
     <customLabels>
         <label>Solicitar</label>
         <name>ICB_REQUEST</name>
-    </customLabels>
-     <customLabels>
-        <label>Disponível</label>
-        <name>ICB_AVAILABLE</name>
     </customLabels>
      <customLabels>
         <label>Atualizar</label>
