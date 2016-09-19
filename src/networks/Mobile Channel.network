@@ -24,7 +24,7 @@
     <enableNicknameDisplay>true</enableNicknameDisplay>
     <enablePrivateMessages>false</enablePrivateMessages>
     <enableReputation>false</enableReputation>
-    <enableSiteAsContainer>false</enableSiteAsContainer>
+    <enableSiteAsContainer>null</enableSiteAsContainer>
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <navigationLinkSet>
         <navigationMenuItem>
