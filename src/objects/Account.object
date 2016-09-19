@@ -17257,45 +17257,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>FS_SegmentRussia__c</picklist>
-            <values>
-                <fullName>Canteens</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hotels</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Offices</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>QSR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Restaurants</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Take Away</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Travel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesalers</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+
         <picklistValues>
             <picklist>FS_StrategicInitiatives__c</picklist>
             <values>
@@ -19067,45 +19029,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>FS_SegmentRussia__c</picklist>
-            <values>
-                <fullName>Canteens</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hotels</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Offices</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>QSR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Restaurants</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Take Away</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Travel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesalers</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+
         <picklistValues>
             <picklist>FS_StrategicInitiatives__c</picklist>
             <values>
@@ -20960,45 +20884,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>FS_SegmentRussia__c</picklist>
-            <values>
-                <fullName>Canteens</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hotels</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Offices</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>QSR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Restaurants</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Take Away</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Travel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesalers</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+
         <picklistValues>
             <picklist>FS_StrategicInitiatives__c</picklist>
             <values>
@@ -23207,45 +23093,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>FS_SegmentRussia__c</picklist>
-            <values>
-                <fullName>Canteens</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hotels</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Offices</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Pubs%2FBars%2FEntertaining center%2FCaffee</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>QSR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Restaurants</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Take Away</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Travel</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Wholesalers</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+
         <picklistValues>
             <picklist>FS_StrategicInitiatives__c</picklist>
             <values>

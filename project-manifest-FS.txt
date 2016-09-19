@@ -1,28 +1,2 @@
 src
-src/reports/FS_Report/FS_Account_Opportunity_Fact_Sheet.report
-src/reports/FS_Report/FS_Opportunites_Funnel.report
-src/reports/FS_Russia_Reports/Activity_Report_Top_Client_per_Manager.report
-src/reports/FS_Russia_Reports/Activity_Report_Top_Clients_per_Account.report
-src/reports/FS_Russia_Reports/Report_on_Duplicates_PoP_Russia.report
-src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
-src/classes/FS_AccountPlanningTest.cls
-src/classes/FS_AccountPlanningTest.cls-meta.xml
-src/classes/FS_ContractProductHelper_Test.cls
-src/classes/FS_ContractProductHelper_Test.cls-meta.xml
-src/classes/FS_MABETest.cls
-src/classes/FS_MABETest.cls-meta.xml
-src/classes/FS_UtilMABETool.cls
-src/classes/FS_UtilMABETool.cls-meta.xml
-src/classes/FS_UtilTestDataSetup.cls
-src/classes/FS_UtilTestDataSetup.cls-meta.xml
-src/classes/FS_OpportunityHelper.cls
-src/classes/FS_OpportunityHelper.cls-meta.xml
-src/classes/FS_NewMonthlyClaimCaseSchedule_Test.cls
-src/classes/FS_NewMonthlyClaimCaseSchedule_Test.cls-meta.xml
-src/classes/FS_ProductSubSector_Test.cls
-src/classes/FS_ProductSubSector_Test.cls-meta.xml
-src/layouts/Account-Operator Russia Read Only.layout
-src/layouts/FS_Defined_Objective__c-Operator Objective Feed Based.layout
-src/quickActions/FS_Defined_Objective__c.New_Russia_Opportunity.quickAction
-src/objects/FS_OpportunityStages__c.object
-src/reportTypes/FS_Activities_with_Account_and_Contacts.reportType
+src/objects/Account.object
