@@ -11,6 +11,7 @@ History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Pooja Kanani       04/08/2016     INITIAL DEVELOPMENT CSR:
+2.0        Pooja Kanani        09/19/2016    Modified for SonarQube
 ***********************************************************************/
 @isTest
 public  class SAM_InformationController_Test {
