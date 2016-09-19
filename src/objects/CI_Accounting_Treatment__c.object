@@ -21,6 +21,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -122,7 +126,7 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-	<fields>
+    <fields>
         <fullName>Year__c</fullName>
         <externalId>false</externalId>
         <label>Year</label>

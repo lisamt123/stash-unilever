@@ -2789,6 +2789,10 @@
         <name>ICB_ALERT_CHECKOUT_OUT_CUSTOMER</name>
     </customLabels>
     <customLabels>
+        <label>Disponível</label>
+        <name>ICB_AVAILABLE</name>
+    </customLabels>
+    <customLabels>
         <label>Saldo(Cx.)</label>
         <name>ICB_BALANCE</name>
     </customLabels>
@@ -2829,6 +2833,10 @@
         <name>ICB_BUTTON_OPEN</name>
     </customLabels>
     <customLabels>
+        <label>Calculado</label>
+        <name>ICB_CALCULATED</name>
+    </customLabels>
+    <customLabels>
         <label><!-- ICB CHECK HASHTAG --></label>
         <name>ICB_CHECK_HASHTAG</name>
     </customLabels>
@@ -2865,6 +2873,14 @@
         <name>ICB_HeaderCloseSale</name>
     </customLabels>
     <customLabels>
+        <label>Sorvetes</label>
+        <name>ICB_ICE_CREAMS</name>
+    </customLabels>
+    <customLabels>
+        <label>Estoque</label>
+        <name>ICB_INVENTORY_HEADER</name>
+    </customLabels>
+    <customLabels>
         <label>Produtos em utilização</label>
         <name>ICB_INVENTORY_HEADER_SUB_TITLE</name>
     </customLabels>
@@ -2887,6 +2903,10 @@
     <customLabels>
         <label><!-- ICB OUT OF ROUTE VISIT --></label>
         <name>ICB_OUT_OF_ROUTE_VISIT</name>
+    </customLabels>
+    <customLabels>
+        <label>Pendente</label>
+        <name>ICB_PENDING</name>
     </customLabels>
     <customLabels>
         <label>Planejado</label>
@@ -2929,6 +2949,10 @@
         <name>ICB_Price_Book_RecordTypeId</name>
     </customLabels>
     <customLabels>
+        <label>Receber Sorveteiro (R$)</label>
+        <name>ICB_RECEIVE_ICE_CREAM</name>
+    </customLabels>
+    <customLabels>
         <label><!-- ICB REC TYPE ICE CREAM VISIT --></label>
         <name>ICB_REC_TYPE_ICE_CREAM_VISIT</name>
     </customLabels>
@@ -2937,8 +2961,16 @@
         <name>ICB_REC_TYPE_STANDARD_CONTACT</name>
     </customLabels>
     <customLabels>
+        <label>Solicitar</label>
+        <name>ICB_REQUEST</name>
+    </customLabels>
+    <customLabels>
         <label><!-- ICB ROADNET CREATED BY NAME --></label>
         <name>ICB_ROADNET_CREATED_BY_NAME</name>
+    </customLabels>
+    <customLabels>
+        <label>Total de Vendas</label>
+        <name>ICB_SALES_TOTAL</name>
     </customLabels>
     <customLabels>
         <label>mseries://?cdStore=</label>
@@ -3015,6 +3047,10 @@
     <customLabels>
         <label>Não planejado</label>
         <name>ICB_UNPLANNED_VISIT</name>
+    </customLabels>
+    <customLabels>
+        <label>Atualizar</label>
+        <name>ICB_UPDATE</name>
     </customLabels>
     <customLabels>
         <label>Atualizar</label>
@@ -13883,5 +13919,33 @@
     <customLabels>
         <label><!-- User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos; --></label>
         <name>uw_Inoplan_error_nullvalue</name>
+    </customLabels>
+     <customLabels>
+        <label>Sorvetes</label>
+        <name>ICB_ICE_CREAMS</name>
+    </customLabels>
+    <customLabels>
+        <label>Solicitar</label>
+        <name>ICB_REQUEST</name>
+    </customLabels>
+     <customLabels>
+        <label>Disponível</label>
+        <name>ICB_AVAILABLE</name>
+    </customLabels>
+     <customLabels>
+        <label>Atualizar</label>
+        <name>ICB_UPDATE</name>
+    </customLabels>
+      <customLabels>
+        <label>Receber Sorveteiro (R$)</label>
+        <name>ICB_RECEIVE_ICE_CREAM</name>
+    </customLabels>
+     <customLabels>
+        <label>Calculado</label>
+        <name>ICB_CALCULATED</name>
+    </customLabels>
+    <customLabels>
+        <label>Total de Vendas</label>
+        <name>ICB_SALES_TOTAL</name>
     </customLabels>
 </Translations>
