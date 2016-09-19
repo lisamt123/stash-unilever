@@ -25,7 +25,7 @@ global with sharing class AF_BonusSummaryRemote {
   static String rowDetailToReturn;
   static String crsBrdrImg;
   static String cmntImg;
-
+  static Integer totalA;
   static Integer totalLocalA;
   static String currCode;
   static Decimal totalWithoutRounding;
@@ -43,8 +43,10 @@ global with sharing class AF_BonusSummaryRemote {
 *************************************************************************************/  
   @remoteAction
   global static Map<String, String> getBonusMatrixRecords(String agencyId, String bonusSummaryId) {
+  List<String> agenciesToSelect =new List<String>();
+  List<String> ulEntitiesToSelect= new List<String>();
     tdCloseTagEst= '</td>';
-    String trOpenTag = '<tr>', trCloseTag = '</tr>';
+    //String trOpenTag = '<tr>', trCloseTag = '</tr>';
     strongStrt = '<Strong>';
     strongEnd = '</strong>';
     Set<String> columnsSet = new Set<String>();
@@ -52,7 +54,7 @@ global with sharing class AF_BonusSummaryRemote {
     Map<String, String> ulbonusMatrixMap  = new Map<String, String>();
     colTotal = 0;
     colTotalA=0;
-    Integer rowTotal = 0, rowLocalTotal=0, rowTotalA = 0;
+    //Integer rowTotal = 0, rowLocalTotal=0, rowTotalA = 0;
     List<AF_Bonus_Matrix__c> bonusEstimates  = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
     AF_Bonus_Summary__c, AF_Value__c, AF_BonusMatrixCode__c, AF_IsCrossBorderImage__c,
     AF_Bonus_Local_Value__c,AF_isCommentImage__c
@@ -70,9 +72,9 @@ global with sharing class AF_BonusSummaryRemote {
     orderedRow.sort();
     agencyNameMap = AF_BrandEstimateRemote.getAllAgencyEntities(agencyId);
     ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName();
-    List<String> agenciesToSelect = AF_BrandEstimateRemote.getAgencyEntities(agencyId, bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
+    agenciesToSelect = AF_BrandEstimateRemote.getAgencyEntities(agencyId, bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
     // These are the Agency Entities which are not created as Agency Estimates.
-    List<String> ulEntitiesToSelect = AF_BrandEstimateRemote.getUnileverEntities(bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
+    ulEntitiesToSelect = AF_BrandEstimateRemote.getUnileverEntities(bonusSummaryId, AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME); 
     getBonusMatrixRecordsext(bonusSummaryId);
     ulbonusMatrixMap .put('1', colDetail);
     ulbonusMatrixMap .put('2', rowDetail);
@@ -214,7 +216,6 @@ global with sharing class AF_BonusSummaryRemote {
     String aId, String uId, String bId) {
     String tdCloseTag = '</td>';
     rowDetailToReturn = '';
-    Integer totalA;
     if(isValue) {
       total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c/1000);
       totalWithoutRounding = agSObj.AF_Value__c/1000;
@@ -236,7 +237,6 @@ global with sharing class AF_BonusSummaryRemote {
     String href;
     String spacer = ' ';
     href = 'apex/af_bonusEstimate?id='+agSObj.Id;
-    Integer totalA;
     totalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c);
     String disptotal = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
       String dispLocalTotal = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
@@ -260,8 +260,7 @@ global with sharing class AF_BonusSummaryRemote {
   public static void processBonusRow(String rowDetailToReturnTemp, string lBreakTemp,AF_Bonus_Matrix__c agSObj){
      rowDetailToReturn = rowDetailToReturnTemp; 
      String lBreak = lBreakTemp;
-     Integer totalA;
-     totalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c);
+     //totalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c);
      if(total != 0) {
         rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
         rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(total);
