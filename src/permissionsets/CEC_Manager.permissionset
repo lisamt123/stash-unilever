@@ -20033,10 +20033,6 @@
         <recordType>AF_Entity__c.AF_Unilever_Entity</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-<<<<<<< HEAD
-=======
->>>>>>> 86da69ea4526cf3cac7380ce153b7c1cf8664efa
->>>>>>> develop
     <recordTypeVisibilities>
         <recordType>Account.Agency</recordType>
         <visible>false</visible>
@@ -20565,9 +20561,6 @@
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     <tabSettings>
         <tab>AF_Agency_Estimate__c</tab>
         <visibility>None</visibility>
