@@ -21,7 +21,7 @@ public with sharing class ICB_ContactPartnerUserCreation
     private static List<String> types;
     private static List<String> recordTypeId;
     private static List<String> recorTypeName;
-    private static List<User> listUser;
+    //private static List<User> listUser;
     
     public static final ICB_ContactPartnerUserCreation instance = new ICB_ContactPartnerUserCreation();
     
@@ -39,7 +39,7 @@ public with sharing class ICB_ContactPartnerUserCreation
        profileCommunity 	= ICB_ContactTypes__c.getValues('Profile_Community').Value__c;
        recorTypeName		= new List<String> { 'Ice Cream Operator', 'Ice Cream Salesman'};
        myProfile 			= [SELECT id FROM Profile WHERE name =: profileCommunity];
-       listUser 			= [SELECT Id, 
+      /* listUser 			= [SELECT Id, 
                                    Contact.ICB_Type__c, 
                                    Contact.Name,
                                    Contact.ICB_Community_User__c,
@@ -47,7 +47,7 @@ public with sharing class ICB_ContactPartnerUserCreation
                                    FROM User 
                                    WHERE Contact.RecordType.Name =: recorTypeName
                                    AND Contact.ICB_Community_User__c = false
-                                   AND Contact.ICB_Type__c IN: (types)];
+                                   AND Contact.ICB_Type__c IN: (types)];*/
         
     }
     
