@@ -28,16 +28,32 @@
             }
         });
         $A.enqueueAction(action);
+        
+          var action2 = component.get("c.defaultChatterValue");
+		action2.setCallback(this, function(response) {
+        	var state = response.getState();
+        	if (state == "SUCCESS" && response.getReturnValue()!='') {
+               // if(response.getReturnValue()!=''){ 
+                   //based on the attribute value chatter post and Email in old format will be enabled
+                    component.set("v.chatterValue", response.getReturnValue()); 
+				// }
+			}	
+       });
+        $A.enqueueAction(action2);
    },
     showShare : function(component, event, helper) {
          var subject=$A.get("$Label.c.CORE_IC_CampaignSubject");
         var label1=$A.get("$Label.c.CORE_IC_CampaignBody");
          var label2=$A.get("$Label.c.CORE_IC_CampaignSubBody");
          var label3=encodeURIComponent(window.location.origin+"/apex/CORE_IC_NavigateToApp?articleId="+component.get("v.FeaturedCampaignsItems").IdeaThemeId+"&articleType=Campaign");
-         component.set("v.MailSubject",subject);
+        var label4=$A.get("$Label.c.CORE_IC_CampaignText");
+        var label5=$A.get("$Label.c.CORE_IC_IdeaText"); 
+        component.set("v.MailSubject",subject);
          component.set("v.MailToBody1",label1);
          component.set("v.MailToBody2",label2);
          component.set("v.MailToBody3",label3);
+         component.set("v.MailToBody7",label4);
+         component.set("v.MailToBody8",label5);
         component.set("v.share",true);
         $("#showOptions").toggle(function(){
             component.set("v.share",false);

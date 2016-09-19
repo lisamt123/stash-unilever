@@ -174,17 +174,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Product Design Lock - Due Date</displayNameOverride>
-            <field>IPM_Product_Design_Lock_Due_Date__c</field>
-            <table>IPM_Analytics__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>IPM_Product_DesignLock_Completed_On_Date__c</field>
-            <table>IPM_Analytics__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Expected Contract Approval</displayNameOverride>
             <field>IPM_Expected_Contract_Approval_Date__c</field>
             <table>IPM_Analytics__c</table>
