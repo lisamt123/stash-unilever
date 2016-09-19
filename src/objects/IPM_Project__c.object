@@ -2254,6 +2254,29 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Parent_BI__c</fullName>
+        <description>To Capture the Child Business Impact used in BD BB Report</description>
+        <externalId>false</externalId>
+        <formula>IF(  ISPICKVAL( IPM_SourceProjectType__c , &apos;Original&apos;) ,
+	IF( ISPICKVAL( IPMProject_Span__c , &apos;Global&apos;) ,  BI__c ,
+	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;), ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;),ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;) ),  
+		           IPM_Parent_Project__r.BI__c ,
+	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;)),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;))),
+				   IPM_Parent_Project__r.IPM_Parent_Project__r.BI__c,
+				   
+				   
+				   IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;)),IPM_Parent_Project__r.BI__c ,BI__c))))
+
+
+,&apos;&apos;)</formula>
+        <label>Parent_BI</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Parent_Project_Name__c</fullName>
         <externalId>false</externalId>
         <formula>IF( TEXT(IPMProject_Span__c) = &apos;Regional&apos; ,  IPM_Parent_Project__r.IPM_Project_Name__c ,  IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c )</formula>

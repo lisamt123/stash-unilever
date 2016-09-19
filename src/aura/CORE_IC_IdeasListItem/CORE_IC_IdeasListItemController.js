@@ -1,13 +1,31 @@
 ({	    
+     doInit : function(component, event, helper) {
+     var action = component.get("c.defaultChatterValue");
+		action.setCallback(this, function(response) {
+        	var state = response.getState();
+        	if (state == "SUCCESS" && response.getReturnValue()!='') {
+                //if(response.getReturnValue()!=''){ 
+                   //based on the attribute value chatter post and Email in old format will be enabled
+                    component.set("v.chatterValue", response.getReturnValue()); 
+				//}
+			}	
+       });
+        $A.enqueueAction(action);
+         
+      },     
+    
+    
     ideaShare : function(component, event, helper) {   	
          var subject=$A.get("$Label.c.CORE_IC_IdeaSubject");
          var label1=$A.get("$Label.c.CORE_IC_IdeaBody");
          var label2=$A.get("$Label.c.CORE_IC_IdeaSubBody");
          var label3=encodeURIComponent(window.location.origin+"/apex/CORE_IC_NavigateToApp?articleId="+component.get("v.ideasListItem").IdeaId+"&articleType=Idea");
-         component.set("v.MailSubjectIdea",subject);
+         var label4=$A.get("$Label.c.CORE_IC_IdeaText"); 
+        component.set("v.MailSubjectIdea",subject);
          component.set("v.MailToBody3",label1);
          component.set("v.MailToBody4",label2);
          component.set("v.MailToBody5",label3);
+         component.set("v.MailToBody6",label4);
          var toggleText = component.find("showideaOptions");
          component.set("v.shareIdea",true);
          $A.util.toggleClass(toggleText, "slds-hide");

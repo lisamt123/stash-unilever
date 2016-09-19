@@ -5,7 +5,6 @@
             <componentName>ICB_CloseSale</componentName>
         </componentInstances>
         <name>main</name>
-        <type>Region</type>
     </flexiPageRegions>
     <masterLabel>Fechamento</masterLabel>
     <pageTemplate>flexipage:defaultAppHomeTemplate</pageTemplate>

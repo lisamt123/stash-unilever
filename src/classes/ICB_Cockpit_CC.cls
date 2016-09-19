@@ -248,7 +248,7 @@ public with sharing class ICB_Cockpit_CC
          
         try
         {
-            List<ICB_Wrapper_Cockpit_CC> listInventories;
+            List<ICB_Wrapper_Cockpit_CC> listInventories = new List<ICB_Wrapper_Cockpit_CC>();
             if(!inventoryList.equalsIgnoreCase(CONST_EMPTY))
             {
                 listInventories = ICB_Cockpit_Helper.deserializeJSON(inventoryList);

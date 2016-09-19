@@ -38,11 +38,7 @@ public with sharing class ICB_ContactPartnerUserCreation
        userEmail 			= ICB_ContactTypes__c.getValues('User_Email').Value__c;
        profileCommunity 	= ICB_ContactTypes__c.getValues('Profile_Community').Value__c;
        recorTypeName		= new List<String> { 'Ice Cream Operator', 'Ice Cream Salesman'};
-<<<<<<< HEAD
-       myProfile 			=  [SELECT id FROM Profile WHERE name =: profileCommunity];
-=======
        myProfile 			= [SELECT id FROM Profile WHERE name =: profileCommunity];
->>>>>>> refs/heads/iceCream_Local
        listUser 			= [SELECT Id, 
                                    Contact.ICB_Type__c, 
                                    Contact.Name,
@@ -71,8 +67,8 @@ public with sharing class ICB_ContactPartnerUserCreation
         System.debug('Entering <createNewUser>' + contact);
         List<User> users = new List<User>();
         
-        //try
-        //{
+        try
+        {
             for(Contact con : contact) 
             { 
                 //create the users
@@ -82,11 +78,11 @@ public with sharing class ICB_ContactPartnerUserCreation
             Database.SaveResult[] save =  Database.insert(users,false); 
             
             definePermissionSetting();
-       /** }  
+        }  
         catch (Exception e)
         {
             system.debug(Label.ICB_ERROR_MESSAGE +  e.getCause());
-        } **/ 
+        }  
         System.debug('Exiting <createNewUser>');
     }
     
@@ -142,7 +138,7 @@ public with sharing class ICB_ContactPartnerUserCreation
 
             newUser = new User(
                 alias = alias.substring(0,4) + system.now().day(),
-                email = contact.email, 
+                email = contact.ICB_Type__c == types.get(0) ? contact.email.substringBefore('@').tolowercase() + '@no-reply.com' : userEmail, 
                 emailencodingkey = 'UTF-8',
                 firstname = contact.firstName, 
                 lastname = contact.lastname, 
@@ -213,11 +209,7 @@ public with sharing class ICB_ContactPartnerUserCreation
             }
             
             
-<<<<<<< HEAD
-            for(User myUsers : listUser) 
-=======
             for(User myUsers : listUsuarios) 
->>>>>>> refs/heads/iceCream_Local
             {
                 if(!setIdUserPermission.contains(myUsers.Id))  {
                     
@@ -247,19 +239,6 @@ public with sharing class ICB_ContactPartnerUserCreation
               System.schedule('Processa New Contact ' +
                             system.now().format('yyyy.MM.dd.hh.mm.ss.SSS'), tempo.second() +' '+ tempo.minute() +' '+ tempo.hour() +' '+ tempo.day() +' '+ tempo.month() +' ? '+ tempo.year(), new ICB_PartnerUserCreation_BatchSchedule());*/
         
-    }
-    
-    @future
-    private static void insertUserGroup() 
-    {
-        List<GroupMember> vListGroup = new List<GroupMember>();
-    	Group groupId = [SELECT Name, Id FROM Group WHERE NAME =: ICB_ContactTypes__c.getValues('PublicGroup').Value__c];
-        for(User vUser : listUser) {
-        	GroupMember vGroupMember = new GroupMember(UserOrGroupId = vUser.Id, GroupId = groupId.Id);
-            vListGroup.add(vGroupMember);
-        }
-	    
-        insert(vListGroup);
     }
     
     
