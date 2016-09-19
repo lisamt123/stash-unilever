@@ -24122,8 +24122,8 @@ OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilev
         <fullName>FS_Account_Owner_Change_Lock</fullName>
         <active>true</active>
         <description>Created for account owner change lock for other than administrators</description>
-        <errorConditionFormula>AND( ISCHANGED( OwnerId ),NOT(OR($Profile.Name=&quot;Generic API Only&quot;,$Profile.Name=&quot;System Administrator&quot;)),
-OR(RecordType.Name=&apos;Distributor&apos;,RecordType.Name=&apos;Operators&apos;))</errorConditionFormula>
+        <errorConditionFormula>AND( ISCHANGED( OwnerId ),NOT(OR($Profile.Name=&quot;Generic API Only&quot;,$Profile.Name=&quot;System Administrator&quot;)),$Profile.Name=&quot;Unilever Food Solution - Russia&quot;
+,OR(RecordType.Name=&apos;Distributor&apos;,RecordType.Name=&apos;Operator&apos;,RecordType.Name=&apos;Operator Russia&apos;))</errorConditionFormula>
         <errorMessage>You do not have access to change the account owner.</errorMessage>
     </validationRules>
     <validationRules>

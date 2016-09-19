@@ -31,7 +31,7 @@
             <criteriaItems>
                 <field>Account.RecordType</field>
                 <operation>equals</operation>
-                <value>Operator,Distributor</value>
+                <value>Operator,Distributor,Operator Russia</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Account.FS_ProposedAccountOwner__c</field>
@@ -89,7 +89,7 @@
         <criteriaItems>
             <field>Account.RecordType</field>
             <operation>equals</operation>
-            <value>Operator,Distributor</value>
+            <value>Operator,Distributor,Operator Russia</value>
         </criteriaItems>
         <criteriaItems>
             <field>Account.FS_ProposedAccountOwner__c</field>
