@@ -190,7 +190,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         addquarter.sort();
      } 
    }
-   showPopupdisplay();
+   showPopupdisplay(newBrandName);
  }       
         /***********************************************************************************
 *  @Description: this method is used to adjust the quarter for an exisitng record and to
@@ -200,7 +200,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @param : none
 *  @return: none.
 *************************************************************************************/
-  public void showPopupdisplay(){
+  public void showPopupdisplay(string newBrandName){
     String quarterformat='';
     for(wrapChechbox B:QuarterEstimate){
       if(B.selected){
@@ -219,7 +219,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         brandQuarter = brandQuarter.removeEnd(';');
         newBrandName = newBrandName+'-'+quarterformat +' ';
         newBrandName=newBrandName + B.BrandRecord.AF_Fiscal_Year__c;
-        createNewBrandEst(B);
+        createNewBrandEst(B,newBrandName);
       }
     }
     if(countOfSelectedBaseFee==0 && QuarterEstimate.size()>0)
@@ -287,10 +287,13 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @param : wrapChechbox
 *  @return: none.
 *************************************************************************************/    
-  public void createNewBrandEst(wrapChechbox B){
+  public void createNewBrandEst(wrapChechbox B, string newBrandName){
     createBrandEstimate = new list<AF_Brand_Estimate__c>();
         AF_Brand_Estimate__c createBrand = new AF_Brand_Estimate__c();
         createBrand.name = newBrandName;
+        
+        //createBrand.name  = B.BrandRecord.Brand__r.Name +'-'+B.BrandRecord.AF_Agency__r.Name+'-'+quarterformat+' '+B.BrandRecord.AF_Fiscal_Year__c;
+        
         createBrand.Brand__c = B.BrandRecord.Brand__c;
         createBrand.AF_Agency__c = B.BrandRecord.AF_Agency__c;
         createBrand.AF_Basefee_Estimate_Initial_Quarter__c = brandQuarter;
@@ -307,7 +310,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
         createBrand.Archived_BrandEstimate_Quarter__c = newQuarter;
         createBrand.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WITH_AGENCY;
         createBrand.AF_BackupQuarter__c = newQuarter;
-    createNewBrandEstimate(B);
+    createNewBrandEstimate(B,createBrand);
         }
         /***********************************************************************************
 *  @Description: this method is used to track the raise new po quarters
@@ -315,9 +318,9 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @param : wrapChechbox
 *  @return: none.
 *************************************************************************************/ 
-       public void createNewBrandEstimate(wrapChechbox B)
+       public void createNewBrandEstimate(wrapChechbox B,AF_Brand_Estimate__c createBrand)
        {
-       AF_Brand_Estimate__c createBrand = new AF_Brand_Estimate__c();
+       
         if(B.BrandRecord.AF_RaiseNewPOQuarters__c==null){
           createBrand.AF_RaiseNewPOQuarters__c = B.BrandRecord.AF_Basefee_Estimate_Initial_Quarter__c;
         }
@@ -412,7 +415,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
     for(AF_Brand_Estimate__c f:createBrandEstimate){
       newBrandEstimateIds.add(f.Id);
     }
-    saveBrandEstimateRecords();
+    saveBrandEstimateRecords(newBrandEstimateIds,archivedAgencyEstimate);
     apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Brandestimate_Archived));
 }
     /***********************************************************************************
@@ -422,8 +425,9 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @param : none
 *  @return: none.
 *************************************************************************************/
-  public void saveBrandEstimateRecords()
+  public void saveBrandEstimateRecords(set<string> newBrandEstimateIds,list<AF_Agency_Estimate__c> archivedAgencyEstimate)
   {
+    createAgencyEstimate = new list<AF_Agency_Estimate__c>();
     for(AF_Brand_Estimate__c newBrandRecord: [select name,AF_Basefee_Estimate_Initial_Quarter__c,BrandEstimateArchivedId__c from  AF_Brand_Estimate__c where Id IN:newBrandEstimateIds]){
       for(AF_Agency_Estimate__c newAgencyRecord:archivedAgencyEstimate){
         if(newAgencyRecord.AF_Brand_Estimate__c == newBrandRecord.BrandEstimateArchivedId__c){
@@ -462,6 +466,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
     }
     displayPopup = False;
     //SendEmailNotification();
+    
   }
   /***********************************************************************************
 *  @Description: this method is used to send email notification to the CMCO Superuser
