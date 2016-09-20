@@ -31,7 +31,7 @@ public with sharing class  CPA_getThreshold {
         
         Map<string, CPA_Commercials_Threshold__c>  mapCommericalThreshold = new Map<string, CPA_Commercials_Threshold__c>();
         string RARecordtype = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE ).getName ();
-        String Ratype = RARecordtype;
+        //String Ratype = RARecordtype;
         String strProjectScale='';
         String[] strPrjPhases;
         String strProjectPhases='';
@@ -131,7 +131,7 @@ public with sharing class  CPA_getThreshold {
         
         Map<string, CPA_Commercials_Threshold__c>  mapCommericalThreshold = new Map<string, CPA_Commercials_Threshold__c>();
         string RARecordtype = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getName ();
-        String Ratype = RARecordtype;
+        //String Ratype = RARecordtype;
         String strProjectScale='';
         String[] strPrjPhases;
         String strProjectPhases='';

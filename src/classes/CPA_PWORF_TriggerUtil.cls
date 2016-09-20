@@ -40,7 +40,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
                         req.setComments(CPA_ConstantsForContractingAppClasses.RECALLINGUNLOCKREQ);
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
-                        Approval.ProcessResult result =  Approval.process(req);
+                        //Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
                     }                   
                 }

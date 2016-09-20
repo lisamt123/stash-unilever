@@ -37,7 +37,7 @@ public class CPA_SelectRecordType_Test {
      Test.startTest(); 
        
        Apexpages.currentPage().getParameters().put('id',objPWO.id);
-        CPA_SelectRecordTypeController controller = new CPA_SelectRecordTypeController();
+        //CPA_SelectRecordTypeController controller = new CPA_SelectRecordTypeController();
         
          System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED == objPWO.pkl_Status__c); 
          
@@ -67,7 +67,7 @@ public class CPA_SelectRecordType_Test {
        
        Apexpages.currentPage().getParameters().put('id',objPWO.id);
        Apexpages.currentPage().getParameters().put('flag','Loi');
-        CPA_SelectRecordTypeController controller = new CPA_SelectRecordTypeController();
+        //CPA_SelectRecordTypeController controller = new CPA_SelectRecordTypeController();
         
             System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED == objPWO.pkl_Status__c); 
          
