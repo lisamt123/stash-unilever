@@ -47,7 +47,7 @@ public  class CPA_Commercials_Threshold_Test {
 
         Test.setCurrentPage(new PageReference('CPA_PWO_Information_Display_Page'));
         System.currentPageReference().getParameters().put('id', objPWO.id);
-        CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));
+        //CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));
         System.assert(CPA_ConstantsForContractingAppClasses.SAVED ==objPWO.pkl_Status__c);
         System.assert(CPA_ConstantsForContractingAppClasses.SAVED ==objPWO.pkl_Status__c);
        
@@ -61,8 +61,8 @@ public  class CPA_Commercials_Threshold_Test {
         System.currentPageReference().getParameters().put('id', objPwo1.id);
         CPA_ContractInformationController   controller1 = new CPA_ContractInformationController  (new ApexPages.StandardController(objPwo1));
        
-        CPA_ContractInformationController act = new CPA_ContractInformationController ();     
-        boolean flage = CPA_ContractInformationController.checkIsValidated(objPwo1.Id );
+        //CPA_ContractInformationController act = new CPA_ContractInformationController ();     
+        //boolean flage = CPA_ContractInformationController.checkIsValidated(objPwo1.Id );
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPwo1.pkl_Status__c);
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPwo1.pkl_Status__c);
         System.assert (controller1.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.PWOTITLE ) != null);
@@ -104,7 +104,7 @@ public  class CPA_Commercials_Threshold_Test {
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.Accepted;
         update objPWO;
         System.assert(CPA_ConstantsForContractingAppClasses.Accepted == objPWO.pkl_Status__c);
-        List<CPA_CR__c> lst  =new List<CPA_CR__c>();
+        //List<CPA_CR__c> lst  =new List<CPA_CR__c>();
         
         CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);
         objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
@@ -125,8 +125,8 @@ public  class CPA_Commercials_Threshold_Test {
         System.assert (controller.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ULCAEMAIL ) != null);
         System.assert (controller.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ULCAEMAIL ) == CPA_ConstantsForContractingAppClasses.MANDATORY);
  
-        CPA_CRInformationController act = new CPA_CRInformationController();     
-        boolean flage = CPA_CRInformationController.checkIsValidated(objCR1.Id );
+        //CPA_CRInformationController act = new CPA_CRInformationController();     
+        //boolean flage = CPA_CRInformationController.checkIsValidated(objCR1.Id );
         
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objCR1.pkl_Status__c);
         System.assert (controller.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ULCAEMAIL ) != null);

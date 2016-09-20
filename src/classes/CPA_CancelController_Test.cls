@@ -37,7 +37,7 @@ public class CPA_CancelController_Test {
         System.currentPageReference().getParameters().put('id', objLOI.id);
         CPA_LOI_CancelReasonController   controller = new CPA_LOI_CancelReasonController  (new ApexPages.StandardController(objLOI));
         objLOI.txta_Reason_for_Cancellation__c = 'TEST';
-        PageReference obj = controller.SaveCancelReason();
+        //PageReference obj = controller.SaveCancelReason();
         CPA_LOI__c objLOIFinal = [Select Id,pkl_Status__c from CPA_LOI__c where Id =:objLOI.id ];               
         System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED  == objLOIFinal.pkl_Status__c);
         
@@ -49,7 +49,7 @@ public class CPA_CancelController_Test {
         CPA_LOI_CancelReasonController   controller1 = new CPA_LOI_CancelReasonController  (new ApexPages.StandardController(objLOI1));
         controller1.SaveCancelReason();
         objLOI1.txta_Reason_for_Cancellation__c = 'TEST';
-        PageReference obj1 = controller1.CancelReason();
+        //PageReference obj1 = controller1.CancelReason();
 	 Test.stopTest();
         CPA_LOI__c objLOIFinal1 = [Select Id,pkl_Status__c from CPA_LOI__c where Id =:objLOI1.id ];               
         System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED  == objLOIFinal1.pkl_Status__c);
