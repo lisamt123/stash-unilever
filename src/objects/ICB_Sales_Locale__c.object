@@ -83,9 +83,18 @@
     </fields>
     <label>Sales Locale</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All_ICB_Sales_Locales</fullName>
+        <columns>NAME</columns>
+        <columns>ICB_County__c</columns>
+        <columns>ICB_Zip_Code__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>ICB_Sales_Locale__c.ICB_Sales_Locale</value>
+        </filters>
+        <label>All ICB Sales Locales</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Sales Locale Name</label>
