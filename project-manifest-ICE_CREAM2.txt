@@ -90,8 +90,6 @@ src/sites
 src/sites/Mobile_Channel.site
 src/labels
 src/labels/ICB.labels
-src/networks
-src/networks/Mobile Channel.network
 src/triggers
 src/triggers/ICB_Setup_Mobile_Channel.trigger
 src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
