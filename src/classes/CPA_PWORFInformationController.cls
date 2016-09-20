@@ -341,7 +341,7 @@ boolean callFromVF = false;
     Throws [Exceptions]: 
     ********************************************************************/
     void PWORFrelatedCheck(id pworfRecordId,ID pworfRecordTypeid){ 
-        Id RArecordTypeRArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();
+        //Id RArecordTypeRArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();
         pworfRecord = [SELECT Id,(SELECT PWORF_Requirement_Deliverables__c FROM Requirements_and_Deliverables__r),(select id from PWORF_Key_Contact__r),(Select id from Resource_Requirement__r) FROM CPA_PWORF__c WHERE Id =:pworfRecordId];
         if(pworfRecord.Requirements_and_Deliverables__r.size()==0 ){ 
             objectMap.put(CPA_ConstantsForContractingAppClasses.REQUIREMENTSANDDELIVERABLES ,CPA_ConstantsForContractingAppClasses.MANDATORY);
