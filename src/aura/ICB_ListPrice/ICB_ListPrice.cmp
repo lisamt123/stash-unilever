@@ -42,15 +42,15 @@
         <tbody>
             <aura:iteration items="{!v.products}" var="produto" indexVar="index" >
                 <tr class="slds-hint-parent" >
-                    <td class="slds-truncate" scope="row" data-label="Product Image">
+                    <td class="slds-truncate" scope="row" data-label="{!$Label.c.ICB_TITLE_PRODUCT}">
                         &nbsp;&nbsp;&nbsp;<img  src="{!$Resource.ICB_SLDS202_CSS +'/assets/images/'+produto.Product2.Product_Image__c}" class="Image" />
                     </td>
-                    <td class="slds-truncate" data-label="Product Name">
+                    <td class="slds-truncate" data-label="{!$Label.c.ICB_PROD_DESCRIPTION}">
                         <ui:outputText aura:id="productName"
                                        value="{!produto.Product2.Name}"/>
                     </td>
                     
-                    <td class="slds-hint-parent" data-label="Manufacture Price">
+                    <td class="slds-hint-parent" data-label="{!$Label.c.ICB_PROD_PURCHASE_VALUE}">
                         <div class="slds-grid slds-grid--pull-padded">
                             <div class="slds-truncate btnCollor" data-label="Sale Value" data-record="{!index}" onclick="{!c.decreaseManufacturePrice}">
                                 <ui:button aura:id="btnDecreasePurchase" >
@@ -69,7 +69,7 @@
                         
                     </td>
                     
-                    <td class="slds-hint-parent" data-label="Valor de Compra">
+                    <td class="slds-hint-parent" data-label="{!$Label.c.ICB_PROD_SALESMAN_VALUE}">
                         <div class="slds-grid slds-grid--pull-padded">
                             <div class="slds-truncate btnCollor" data-label="Sale Value" data-record="{!index}" onclick="{!c.decreasePurchase}">
                                 <ui:button aura:id="btnDecreasePurchase" >
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                     </td>
-                    <td class="slds-hint-parent" data-label="Valor de Venda">
+                    <td class="slds-hint-parent" data-label="{!$Label.c.ICB_PROD_SALE_VALUE}">
                         <div class="slds-grid slds-grid--pull-padded">
                             <div class="slds-truncate btnCollor" data-label="Sale Value" data-record="{!index}" onclick="{!c.decreaseSalesPrice}">
                                 <ui:button aura:id="decreaseButton">
