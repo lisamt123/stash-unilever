@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <description>Warehouse LLT user permissions</description>
+	<classAccesses>
+        <apexClass>WU_LeadershipPermission</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<pageAccesses>
+        <apexPage>WU_LeadershipCheck</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Address__c</field>
