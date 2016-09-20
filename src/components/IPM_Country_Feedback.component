@@ -30,7 +30,7 @@
             <div class="feedbackContainer">
                 <div class="countryProName">
                     <apex:outputlabel value="{!$Label.IPM_LOCAL_PROJECT}"/>
-                    PROJECT NAME {!finFeed.Local_Project__r.name}
+                    {!finFeed.Local_Project__r.name}
                 </div>
                 <div class="bbComments">
                     <apex:outputlabel value="{!$Label.IPM_BB_COMMENTS}"/>

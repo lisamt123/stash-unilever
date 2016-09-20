@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+<labels>
+        <fullName>IPM_Milestone_Desc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Milestone_Desc</shortDescription>
+        <value>Below are the key milestones required by your category. Please add a due date for each milestone.&lt;br/&gt;
+For either option it is possible to add/remove sections and To-do&apos;s later. You may also add mini-milestones.</value>
+</labels>
     <labels>
         <fullName>IPM_Align_AllMCO_TLD</fullName>
         <language>en_US</language>
