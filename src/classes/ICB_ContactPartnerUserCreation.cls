@@ -21,6 +21,7 @@ public with sharing class ICB_ContactPartnerUserCreation
     private static List<String> types;
     private static List<String> recordTypeId;
     private static List<String> recorTypeName;
+    
     //private static List<User> listUser;
     
     public static final ICB_ContactPartnerUserCreation instance = new ICB_ContactPartnerUserCreation();
@@ -197,9 +198,7 @@ public with sharing class ICB_ContactPartnerUserCreation
             {
                 mapPermission.put(psMap.id, psMap.Label);
             }
-            
-            system.debug('MAP DE PERMISSIONSET: ' + mapPermission.keySet());
-            
+                        
             Set<Id> setIdUserPermission = new Set<Id>();
             for(PermissionSetAssignment vPs : [SELECT Id, AssigneeId FROM PermissionSetAssignment 
                                                WHERE AssigneeId IN: listUsuarios 
@@ -250,6 +249,7 @@ public with sharing class ICB_ContactPartnerUserCreation
     @future
     private static void insertUserGroup() 
     {
+         System.debug('Entering <insertUserGroup>');
         List<GroupMember> vListGroup = new List<GroupMember>();
         List<User> 		ListUserGroup 	= [SELECT Id, 
                                                Contact.ICB_Type__c, 
@@ -260,6 +260,7 @@ public with sharing class ICB_ContactPartnerUserCreation
                                                WHERE Contact.RecordType.Name =: recorTypeName
                                                AND Contact.ICB_Community_User__c = false
                                                AND Contact.ICB_Type__c IN: (types)];
+       // system.debug('VALOR DO GRUPO: ' + ICB_ContactTypes__c.getValues('PublicGroup').Value__c);
     	Group groupId = [SELECT Name, Id FROM Group WHERE NAME =: ICB_ContactTypes__c.getValues('PublicGroup').Value__c];
         for(User vUser : ListUserGroup) {
         	GroupMember vGroupMember = new GroupMember(UserOrGroupId = vUser.Id, GroupId = groupId.Id);
@@ -267,6 +268,7 @@ public with sharing class ICB_ContactPartnerUserCreation
         }
 	    
         insert(vListGroup);
+        System.debug('Exiting <insertUserGroup>');
     }
     
      
