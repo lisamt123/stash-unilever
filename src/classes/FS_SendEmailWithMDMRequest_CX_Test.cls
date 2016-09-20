@@ -55,9 +55,10 @@ Public class FS_SendEmailWithMDMRequest_CX_Test{
         
         system.runAs(testUser){ 
         
-	        //Set up Custom settings for Opportunity Trigger
-	        FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-	        insert OppCustomSettings; 
+	        //set up custom setting for opportunity stages
+            testData.setUpOpportunityStages();
+            //Set up Custom settings for Opportunity Trigger
+            testdata.enableOpportunityTrigger(); 
 	    
 	        //Custom Settings
 	        FS_MDMEmailRequestDefaultValue__c MDMDefaultValue = 

@@ -370,11 +370,10 @@ public class FS_TPRCalculationTest {
         User testUser=testData.createTestUser();
         
         system.runAs(testUser){
-        
-        
-        	//Set up Custom settings for Opportunity Trigger
-            FSOpportunityTriggerSettings__c OppCustomSettings=new FSOpportunityTriggerSettings__c(name='isEnabled',Enabled__c=true);
-            insert OppCustomSettings;
+            //set up custom setting for opportunity stages
+            testData.setUpOpportunityStages();
+            //Set up Custom settings for Opportunity Trigger
+            testdata.enableOpportunityTrigger();       	
             
             insert new FS_casePiece__c(FS_Case__c = 'cases', FS_Piece__c = 'piece');        
             insert new FSVATRU__c(FS_Value_1__c = 10, FS_Value_2__c = 18);        

@@ -4,6 +4,9 @@ public class FS_ProductSubSector_Test {
         FS_UtilTestDataSetup testdata=new FS_UtilTestDataSetup();     
         User user =  testData.createTestUser();     
         system.runAs(user){
+            //set up custom setting for opportunity stages
+            testData.setUpOpportunityStages();
+            testdata.enableOpportunityTrigger();
             List<Account> accounts = testData.setUpAccountData();            
             testData.setUpAccountPlan(accounts);
             List<FS_Defined_Objective__c> objList=[select id,FS_No_of_Opportunities__c,FS_Opportunity_Amount__c,FS_Customer__c,FS_Account_Plan__c from FS_Defined_Objective__c limit 100];
