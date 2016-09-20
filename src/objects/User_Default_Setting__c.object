@@ -113,6 +113,7 @@
         <columns>UserName__c</columns>
         <columns>Country__c</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>OWNER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
