@@ -69,11 +69,10 @@ Purpose    : Read-only property to get the specific record type defined in the o
 ***************************************************************************************************************************************/
     public list<selectOption> getDocumentTypes(){
         List<selectOption> molstDocumentTypes=new  List<selectOption>();
-        molstDocumentTypes.add(new  selectOption('KUN_Compliance_Process_Indicator','Compliance Process Indicator'));
         molstDocumentTypes.add(new  selectOption('KUN_Training_Documents','Training Documents'));
+        molstDocumentTypes.add(new  selectOption('KUN_Compliance_Process_Indicator','Compliance Process Indicator'));
         molstDocumentTypes.add(new  selectOption('KUN_IT_Project_Portfolios','IT Project Portfolios'));
         molstDocumentTypes.add(new  selectOption('KUN_User_Education_Tickets','User Education Tickets'));
-        molstDocumentTypes.add(new  selectOption('KUN_Other_Documents_RT','Others'));
         return molstDocumentTypes;
     }
     public PageReference RefreshEvents(){
@@ -86,7 +85,7 @@ Purpose    : Read-only property to get the specific record type defined in the o
             MyEvents=getEvents(firstDate,lastDate);
         }
         catch(Exception e){
-// Generic exception handling code here.
+            // Generic exception handling code here.
             ApexPages.Message myMsg=new  ApexPages.Message(ApexPages.Severity.ERROR,'The following exception has occurred: '+e.getMessage());
             ApexPages.addMessage(myMsg);
         }
@@ -109,7 +108,6 @@ Purpose    : Read-only property to get the specific record type defined in the o
             else if(DocumentType=='KUN_Training_Documents')strListviewId=Label.KUN_TDRT_LVID_LBL;
             else if(DocumentType=='KUN_IT_Project_Portfolios')strListviewId=Label.KUN_ITPPRT_LVID_LBL;
             else if(DocumentType=='KUN_User_Education_Tickets')strListviewId=Label.KUN_UETRT_LVID_LBL;
-            else if(DocumentType=='KUN_Other_Documents_RT')strListviewId=Label.KUN_ODRT_LVID_LBL;
             nextPage=new  PageReference('/'+strListviewId);
             nextPage.setredirect(true);
         }
@@ -313,7 +311,7 @@ Throws [Exceptions]:
     public List<KUN_Links> getDocumentsbyType(){
         List<KUN_Links> mowrplstAttachment=new  list<KUN_Links>();
         try{
-            string mstrDocumentType=string.isBlank(DocumentType)?'KUN_Compliance_Process_Indicator':DocumentType;
+            string mstrDocumentType=string.isBlank(DocumentType)? 'KUN_Training_Documents':DocumentType;
             List<Attachment> molstAttachments=[SELECT Id,Name FROM Attachment WHERE Parentid in(SELECT ID FROM KUN_Activities__c WHERE RecordType.developername=:mstrDocumentType) ORDER BY CreatedDate Limit 5];
             for(Attachment moItem:molstAttachments){
                 KUN_Links moAttachement=new  KUN_Links();
@@ -394,7 +392,7 @@ Throws [Exceptions]:
 ********************************************************************/
 /*function for the new joiners starts here*/
     public List<KUN_Profile__c> getNewJoiners(){
-        List<KUN_Profile__c> moKeyspot=[SELECT Unilever_Profile__r.Name,Name,Capability__c,Cluster__c,Unilever_Profile__c,Position__c,Unilever_Profile__r.country,Unilever_Profile__r.FullPhotoUrl,Unilever_Profile__r.SmallPhotoUrl FROM KUN_Profile__c WHERE Unilever_Profile__c!=null ORDER BY CreatedDate LIMIT 5];
+        List<KUN_Profile__c> moKeyspot=[SELECT Unilever_Profile__r.Name,Name,Capability__c,Cluster__c,Unilever_Profile__c,Position__c,Unilever_Profile__r.country,Unilever_Profile__r.FullPhotoUrl,Unilever_Profile__r.SmallPhotoUrl FROM KUN_Profile__c WHERE Unilever_Profile__c!=null ORDER BY CreatedDate DESC LIMIT 5];
         return moKeyspot;
     }
 /*function for the new joiners ends here*/
@@ -408,8 +406,9 @@ Throws [Exceptions]:
     public List<KUN_Links> getNewsLetters(){
         return getFiles('KUN_News_Letter_RT');
     }
+    
     private list<KUN_Links> getFiles(string recordType){//changed from private to public.
-        List<KUN_Activities__c> molstNewsLetters=[SELECT id,Name,Short_Description__c,(SELECT Id FROM attachments ORDER BY Createddate LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername=:recordType AND Active__C=true ORDER BY CreatedDate LIMIT 5];
+        List<KUN_Activities__c> molstNewsLetters=[SELECT id,Name,Short_Description__c,(SELECT Id FROM attachments ORDER BY Createddate DESC LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername=:recordType AND Active__C=true ORDER BY CreatedDate DESC LIMIT 1];
         List<KUN_Links> mowrplstNewsletters=new  list<KUN_Links>();
         for(KUN_Activities__c moItem:molstNewsLetters){
             KUN_Links moNewsletter=new  KUN_Links();
@@ -432,7 +431,7 @@ Throws [Exceptions]:
 ********************************************************************/
 /*function for the news starts here*/
     public List<KUN_Links> getNews(){
-        List<KUN_Activities__c> molstNews=[SELECT id,Name,Short_Description__c,(SELECT Id FROM attachments ORDER BY Createddate LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername='KUN_News_RT' AND Active__C=true ORDER BY CreatedDate LIMIT 5];
+        List<KUN_Activities__c> molstNews=[SELECT id,Name,Short_Description__c,(SELECT Id FROM attachments ORDER BY Createddate DESC LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername='KUN_News_RT' AND Active__C=true ORDER BY CreatedDate DESC LIMIT 5];
         List<KUN_Links> mowrplstNews=new  list<KUN_Links>();
         for(KUN_Activities__c moItem:molstNews){
             KUN_Links moNews=new  KUN_Links();
@@ -460,15 +459,15 @@ Throws [Exceptions]:
         if(!getIsForceUI())strLinkURL='javascript:sforce.one.createRecord(\''+'Event'+'\')';
         return strLinkURL;
     }
-/*******************************************************************
-Purpose: This method is used to get the Id, Name, Role, Description and attachment of Key Spotlight Users data from the database
-Parameters:
-Returns: List of  Key Spotlight Users data and attchment
-Throws [Exceptions]:
-********************************************************************/
-/*function for the Key Spot starts here*/
-    public List<KUN_Links> getKey(){
-        List<KUN_Activities__c> molstKey=[SELECT id,Name,Role__c,Short_Description__c,Profile_Id__r.Unilever_Profile__r.SmallPhotoUrl,Profile_Id__r.Unilever_Profile__r.Name,(SELECT Id FROM attachments ORDER BY Createddate LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername='KUN_Spotlight_RT' AND Active__C=true ORDER BY CreatedDate LIMIT 5];
+    /*******************************************************************
+    Purpose: This method is used to get the Id, Name, Role, Description and attachment of Key Spotlight Users data from the database
+    Parameters:
+    Returns: List of  Key Spotlight Users data and attchment
+    Throws [Exceptions]:
+    ********************************************************************/
+    /*function for the Key Spot starts here*/
+     public List<KUN_Links> getKey(){
+        List<KUN_Activities__c> molstKey=[SELECT id,Name,Role__c,Short_Description__c,Profile_Id__r.Unilever_Profile__r.SmallPhotoUrl,Profile_Id__r.Unilever_Profile__r.Name,(SELECT Id FROM attachments ORDER BY Createddate DESC LIMIT 1) FROM KUN_Activities__c WHERE RecordType.developername='KUN_Spotlight_RT' AND Active__C=true ORDER BY CreatedDate DESC Limit 5];
         List<KUN_Links> mowrplstKey=new  list<KUN_Links>();
         for(KUN_Activities__c moItem:molstKey){
             KUN_Links moKey=new  KUN_Links();

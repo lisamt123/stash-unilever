@@ -539,3 +539,53 @@
         <shortDescription>Product Impulse Family</shortDescription>
         <value>Impulse</value>
     </labels>
+        <labels>
+        <fullName>ICB_ICE_CREAMS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB ICE CREAMS</shortDescription>
+        <value>Ice creams</value>
+    </labels>
+    <labels>
+        <fullName>ICB_REQUEST</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB REQUEST</shortDescription>
+        <value>Request</value>
+    </labels>
+     <labels>
+        <fullName>ICB_AVAILABLE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB AVAILABLE</shortDescription>
+        <value>Available</value>
+    </labels>
+    <labels>
+        <fullName>ICB_RECEIVE_ICE_CREAM</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB RECEIVE ICE CREAM</shortDescription>
+        <value>Receive Ice Cream (U$)</value>
+    </labels>
+    <labels>
+        <fullName>ICB_CALCULATED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB CALCULATED</shortDescription>
+        <value>Calculated</value>
+    </labels>
+    <labels>
+        <fullName>ICB_SALES_TOTAL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB SALES TOTAL</shortDescription>
+        <value>Sale's Total</value>
+    </labels>
+    <labels>
+        <fullName>ICB_PENDING</fullName>
+        <categories>ICB</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB PENDING</shortDescription>
+        <value>Pending</value>
+    </labels>

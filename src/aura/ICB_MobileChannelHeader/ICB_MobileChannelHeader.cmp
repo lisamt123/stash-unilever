@@ -25,9 +25,7 @@
                         <br/>
                     </h1>
                 </div>
-                <ui:button label="Atualizar" press="{!c.updateListPrice}">
-                    
-                </ui:button>
+                <ui:button label="{!$Label.c.ICB_UPDATE}" press="{!c.updateListPrice}"/>
             </div>
         </div>
     </aura:if>
