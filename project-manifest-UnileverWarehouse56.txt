@@ -1,6 +1,6 @@
 src/objects
 src/objects/WU_Master_Warehouse__c.object
-src/objects/user.object
+src/objects/User.object
 
 
 src/classes
