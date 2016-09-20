@@ -5,3 +5,7 @@ src/pages/FS_GenerateMDMRequestExcel.page
 src/pages/FS_GenerateMDMRequestExcel.page-meta.xml
 src/pages/FS_SendEmailWithMDMRequest.page
 src/pages/FS_SendEmailWithMDMRequest.page-meta.xml
+src/components/FSMDMRequestComponent.component
+src/components/FSMDMRequestComponent.component-meta.xml
+src/staticresources/FSMDMRequestCSS.resource
+src/staticresources/FSMDMRequestCSS.resource-meta.xml
