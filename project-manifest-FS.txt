@@ -1,11 +1,7 @@
 src
-src/classes/FS_OpportunityHelperTest.cls
-src/classes/FS_OpportunityHelperTest.cls-meta.xml
-src/classes/FS_ProductSubSector_Test.cls
-src/classes/FS_ProductSubSector_Test.cls-meta.xml
-src/classes/FS_TPRCalculationTest.cls
-src/classes/FS_TPRCalculationTest.cls-meta.xml
-src/classes/FS_GenerateMDMRequest_CX_Test.cls
-src/classes/FS_GenerateMDMRequest_CX_Test.cls-meta.xml
-src/classes/FS_SendEmailWithMDMRequest_CX_Test.cls
-src/classes/FS_SendEmailWithMDMRequest_CX_Test.cls-meta.xml
+src/pages/FS_GenerateMDMRequest.page
+src/pages/FS_GenerateMDMRequest.page-meta.xml
+src/pages/FS_GenerateMDMRequestExcel.page
+src/pages/FS_GenerateMDMRequestExcel.page-meta.xml
+src/pages/FS_SendEmailWithMDMRequest.page
+src/pages/FS_SendEmailWithMDMRequest.page-meta.xml
