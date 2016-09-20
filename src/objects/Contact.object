@@ -1274,6 +1274,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Ice Cream Salesman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operator</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
@@ -2698,6 +2709,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Ice Cream Salesman</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
@@ -3416,6 +3434,17 @@
             </values>
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Ice Cream Salesman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operator</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4141,6 +4170,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Ice Cream Salesman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operator</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>LeadSource</picklist>
             <values>
                 <fullName>Advertisement</fullName>
@@ -4342,6 +4382,17 @@
             </values>
             <values>
                 <fullName>Yes%2C one or more regular devices</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ICB_Type__c</picklist>
+            <values>
+                <fullName>Ice Cream Salesman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operator</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4568,6 +4619,13 @@ TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*11)+
         <errorMessage>Please verify if CPF is correct.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>EMail_minimum_size</fullName>
+        <active>true</active>
+        <description>The E-mail must have at least 4 characters before the @ sign.</description>
+        <errorConditionFormula>AND( OR( RecordType.DeveloperName = 	&quot;ICB_Operator&quot;,RecordType.DeveloperName = 	&quot;ICB_Salesman&quot;) ,(LEN(LEFT(Email, FIND(&quot;@&quot;, Email))))&lt;5)</errorConditionFormula>
+        <errorMessage>The E-Mail must have at least 4 characters before the @</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Mandatory_Birthdate_Spark_Salesman</fullName>
         <active>true</active>
         <description>Spark Project - Birthdate is mandatory for Salesman registration.</description>
@@ -4584,8 +4642,8 @@ TEXT(11 - MOD(((VALUE(MID(CPF__c , 1, 1))*11)+
     <validationRules>
         <fullName>Mandatory_Email_Spark_Operator</fullName>
         <active>true</active>
-        <description>Spark Project - Email is mandatory if the contact is an Ice Cream Operator.</description>
-        <errorConditionFormula>AND(   RecordType.DeveloperName = &quot;ICB_Operator&quot;,  ISBLANK(Email))</errorConditionFormula>
+        <description>Spark Project - Email is mandatory if the contact is an Ice Cream Operator or Ice Cream Salesman.</description>
+        <errorConditionFormula>AND(OR(RecordType.DeveloperName = &quot;ICB_Operator&quot;,RecordType.DeveloperName = &quot;ICB_Salesman&quot;),  ISBLANK(Email))</errorConditionFormula>
         <errorMessage>E-Mail is mandatory. Please fill in  an appropriate value.</errorMessage>
     </validationRules>
     <validationRules>

@@ -32,6 +32,7 @@
         console.log("Entering <updateListPrice>");
         var action = component.get("c.updateValues");
         var productUpdate = component.get('v.productList');
+        
         action.setParams({ listProduct : productUpdate });
         
         // Add callback behavior for when response is received
