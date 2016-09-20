@@ -49205,7 +49205,7 @@
 	<layoutAssignments>
 	<layout>SAM_Request__c-SAM Query Request SAM team</layout>
 	<recordType>SAM_Request__c.SAM_Query_Request_SAM_team</recordType>
-	<layoutAssignments>
+	</layoutAssignments>
 	<layoutAssignments>
 	<layout>SAM_Request_Line_Item__c-SAM IBM RO Request Line Item Layout</layout>
 	<recordType>SAM_Request_Line_Item__c.SAM_IBM_RO</recordType>
