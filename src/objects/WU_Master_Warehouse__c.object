@@ -636,6 +636,11 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <default>false</default>
                 <controllingFieldValues>SEAA</controllingFieldValues>
             </picklistValues>
+			<picklistValues>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+                <controllingFieldValues>South Asia</controllingFieldValues>
+			</picklistValues>
             <picklistValues>
                 <fullName>Netherlands</fullName>
                 <default>false</default>
@@ -2256,6 +2261,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
                 <fullName>Morocco</fullName>
                 <default>false</default>
             </values>
+			<values>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Mozambique</fullName>
                 <default>false</default>
@@ -3071,6 +3080,10 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
             </values>
             <values>
                 <fullName>Mexico</fullName>
+                <default>false</default>
+            </values>
+			<values>
+                <fullName>Nepal</fullName>
                 <default>false</default>
             </values>
             <values>
