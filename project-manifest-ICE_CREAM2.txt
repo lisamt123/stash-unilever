@@ -86,8 +86,6 @@ src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Backoffice_Salesforce.permissionset
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset
-src/sites
-src/sites/Mobile_Channel.site
 src/labels
 src/labels/ICB.labels
 src/triggers
@@ -189,9 +187,6 @@ src/tabs/ICB_Close_Sales.tab
 src/tabs/ICB_Cockpit.tab
 src/tabs/ICB_Inventory.tab
 src/tabs/ICB_Price_List.tab
-src/siteDotComSites
-src/siteDotComSites/Mobile_Channel1.site
-src/siteDotComSites/Mobile_Channel1.site-meta.xml
 src/flexipages
 src/flexipages/ICB_Cockpit.flexipage
 src/flexipages/ICB_Inventory.flexipage

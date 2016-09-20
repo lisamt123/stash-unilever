@@ -461,6 +461,14 @@
         <value>Product</value>
     </labels>
     <labels>
+        <fullName>ICB_INVENTORY_HEADER</fullName>
+        <categories>Inventory screen</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ICB INVENTORY HEADER</shortDescription>
+        <value>Stock</value>
+    </labels>
+    <labels>
         <fullName>ICB_INVENTORY_HEADER_SUB_TITLE</fullName>
         <categories>Inventory screen</categories>
         <language>en_US</language>
