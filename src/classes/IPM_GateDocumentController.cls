@@ -888,10 +888,13 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                     string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;                 
                     if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
                     {
-                        finLocal=[SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+                         List<IPM_Financial__c> financialList = [SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
                                   WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
                                   AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-                         globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
+                         if(!financialList.isEmpty()){
+                            finLocal = financialList[0];
+                            globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
+                         }        
                     }
                     else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
                     {

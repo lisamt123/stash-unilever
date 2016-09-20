@@ -21,7 +21,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
     */    
     public void notifyGlobalProjectFinanceLeader(Map<Id, IPM_Project_Rollout__c> globalProjIdRollout ){
         List<Id> projIdList = new List<Id>{};
-        for(IPM_Project__c ipmProj : [Select Id,IPMProject_Span__c, IPM_Project_Type__c, IPM_Phase__c from IPM_Project__c where Id in : globalProjIdRollout.keySet() limit 50000]){
+        for(IPM_Project__c ipmProj : [Select Id,IPMProject_Span__c, IPM_Project_Type__c, IPM_Phase__c,IPM_ProjectGKM__c from IPM_Project__c where Id in : globalProjIdRollout.keySet() limit 50000]){
             if(ipmProj.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && ipmProj.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS){ 
                 projIdList.add(ipmProj.Id);
             } else if (ipmProj.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && ipmProj.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
