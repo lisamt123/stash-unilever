@@ -62,6 +62,7 @@ public class IPM_TestFactory_Helper
     public static final String IPM_GATEKEEPING_MODEL = 'IPM_Gatekeeping_model__c';
     public static final String IPM_ROLLOUT_PROJECT = 'IPM_Rollout_Project__c';
     public static final String MARKET_CLUSTER = 'Market_cluster__c'; 
+    public static final String PROJECT_GKM = 'IPM_ProjectGKM__c';     
     public static final String REGIONAL = 'Regional';
     public static final String IS_ACTIVE = 'isActive__c';
     public static final String IPM_STATUS = 'IPM_Status__c';
@@ -915,6 +916,7 @@ public class IPM_TestFactory_Helper
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Global Company Card',
                 BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
                 IPM_PROJECT_SUB_TYPE => 'Innovation/Renovation',IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => ORIGINAL_PROJECTYPE,
+                PROJECT_GKM=>'GKM1',
                 'Sustainability_Period__c' => '3',IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL,CATEGORY_PICKLIST => IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT, CATEGORY_PLATFORM => CATEGORY_PLATFORM_REVITAL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
@@ -1357,7 +1359,7 @@ public class IPM_TestFactory_Helper
 	* @description Sample Data of Global Company Card
 	**************************************************************************************************/
     public static IPM_Company_Card__c createGlobalCompanyCard(Boolean doInsert){
-        Map<String,Object> comcardMap =  new Map<String,Object>{NAME=>'Test Company Card',IPM_COMPANY_TYPE=>C_GLOBAL,IPM_MANAGED_CATEGORY=>LAUNDRY,RECORD_TYPE_ID => globalCompanyCardRecId,GEOGRAPHICAL_SCOPE =>'Global'};
+        Map<String,Object> comcardMap =  new Map<String,Object>{NAME=>'Test Company Card',IPM_COMPANY_TYPE=>C_GLOBAL,IPM_MANAGED_CATEGORY=>HOUSEHOLDCARE,RECORD_TYPE_ID => globalCompanyCardRecId,GEOGRAPHICAL_SCOPE =>'Global'};
         IPM_Company_Card__c comcard = (IPM_Company_Card__c)IPM_TestFactory.createSObject(IPM_COMPANY_CARD,comcardMap,false);   
         if(doInsert) { 
             insert comcard;
@@ -1369,7 +1371,7 @@ public class IPM_TestFactory_Helper
 	* @description Sample Data of Regional Company Card
 	**************************************************************************************************/
     public static IPM_Company_Card__c createRegionalCompanyCard(Boolean doInsert){
-        Map<String,Object> comcardMap =  new Map<String,Object>{NAME=>'Test Regional Company Card',IPM_COMPANY_TYPE=>C_GLOBAL,IPM_MANAGED_CATEGORY=>LAUNDRY,RECORD_TYPE_ID => regionalCompanyCardRecId,GEOGRAPHICAL_SCOPE =>INDIA,MARKET_CLUSTER_CC =>SOUTH_ASIA};
+        Map<String,Object> comcardMap =  new Map<String,Object>{NAME=>'Test Regional Company Card',IPM_COMPANY_TYPE=>C_GLOBAL,IPM_MANAGED_CATEGORY=>HOUSEHOLDCARE,RECORD_TYPE_ID => regionalCompanyCardRecId,GEOGRAPHICAL_SCOPE =>INDIA,MARKET_CLUSTER_CC =>SOUTH_ASIA};
         IPM_Company_Card__c comcard = (IPM_Company_Card__c)IPM_TestFactory.createSObject(IPM_COMPANY_CARD,comcardMap,false);   
         if(doInsert) { 
             insert comcard;
@@ -1381,7 +1383,7 @@ public class IPM_TestFactory_Helper
 	* @description Sample Data of Local Company Card
 	**************************************************************************************************/
     public static IPM_Company_Card__c createLocalCompanyCard(Boolean doInsert){
-        Map<String,Object> comcardMap =  new Map<String,Object>{NAME=>'Test Local Company Card',IPM_COMPANY_TYPE=>LOCAL_SPAN,IPM_MANAGED_CATEGORY=>LAUNDRY,RECORD_TYPE_ID => localCompanyCardRecId,GEOGRAPHICAL_SCOPE =>INDIA,MARKET_CLUSTER_CC =>SOUTH_ASIA,IPM_MCO_CC =>INDIA};
+        Map<String,Object> comcardMap =  new Map<String,Object>{NAME=>'Test Local Company Card',IPM_COMPANY_TYPE=>LOCAL_SPAN,IPM_MANAGED_CATEGORY=>HOUSEHOLDCARE,RECORD_TYPE_ID => localCompanyCardRecId,GEOGRAPHICAL_SCOPE =>INDIA,MARKET_CLUSTER_CC =>SOUTH_ASIA,IPM_MCO_CC =>INDIA};
         IPM_Company_Card__c comcard = (IPM_Company_Card__c)IPM_TestFactory.createSObject(IPM_COMPANY_CARD,comcardMap,false);   
         if(doInsert) { 
             insert comcard;
@@ -2005,7 +2007,7 @@ public class IPM_TestFactory_Helper
         
         IPM_Project__c masterProjectObj = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,masterProjectMap,true);
         masterProjectObj.IPM_Category_Picklist__c = IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT;
-        masterProjectObj.IPM_Category_Platform__c = 'Revitalisation'; 
+        masterProjectObj.IPM_Category_Platform__c = CATEGORY_PLATFORM_REVITAL; 
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         insert   masterProjectObj;
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
@@ -2177,7 +2179,9 @@ public class IPM_TestFactory_Helper
                 questionnaireMap.get('IPM_Contract_Score__c').add(counter);
                 questionnaireMap.get('IPM_Market_Deployment_Score__c').add(counter);
                 questionnaireMap.get('IPM_Market_Ready_Score__c').add(counter);
+              
                 questionnaireMap.get('DependentFieldAPIName__c').add('');
+     
                 questionnaireMap.get(IPM_PROJECT).add(masterProjectList[0].Id); 
             }
         }
