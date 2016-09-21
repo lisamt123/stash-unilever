@@ -1246,8 +1246,7 @@ public static void updateProjectBIValue(List<Id> projListForY3ITOUpdate) {
         string biValue = '';
          Map<Id,String> projIdBIMap =  new Map<Id,String>();
          string consolidatedRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
-         string defaultRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT);
-        
+       
         //query financial year and financial deatils
         IPM_Financial__c[] finDetails = [SELECT Business_Impact_Global__c, Business_Impact_Regional__c,RecordTypeId,IPM_Project_Rollout__c,Regional_Project__c,Local_Project__c,Parent_Project__r.IPM_Phase__c,
                                                 Regional_Project__r.IPM_Phase__c,Regional_Project__r.IPM_Project_Type__c
