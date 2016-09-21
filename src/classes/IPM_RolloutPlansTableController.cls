@@ -773,10 +773,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public PageReference saveRollout()
     {
-        validationError=null;
-	   // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
-       for(String key: nonKeyMcoTLDMisalignedMap.keySet()) {
-       		nonKeyMcoTLDMisalignedMap.put(key,false);
+       validationError=null;
+       // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
+       for(String key: nonKeyMcoTLDMisalignedMap.keySet())
+       {
+            nonKeyMcoTLDMisalignedMap.put(key,false);
        }
        
        	try
@@ -854,6 +855,12 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     Date dateToCompare = getLeastProjectMilestonesDate();
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
+                        //  allign TLD's for GKM3 Rollouts
+                        if(alignAllMCOTLDs && !String.isEmpty(String.valueOf(allignedDateValue)) && allignedDateValue!=null)  
+                        {
+                           rollout.Target_Launch_Date__c=allignedDateValue;     
+                        } 
+                        
                         if(String.isBlank(String.valueOf(rollout.Target_Launch_Date__c)) || rollout.Target_Launch_Date__c <= System.today())
                         {
                             validationError = Label.IPM_Target_Launch_Date_Error;
@@ -899,16 +906,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 {                         
                     if(!updaterolloutsMap.isEmpty())
                     {   
-                        for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
-                        {
-                            //  allign TLD's for GKM3 Rollouts
-                            if(alignAllMCOTLDs && !String.isEmpty(String.valueOf(allignedDateValue)) && allignedDateValue!=null)  
-                            {
-                               rollout.Target_Launch_Date__c=allignedDateValue;    
-                            } 
-                        }
-                        
-                        update updaterolloutsMap.values();
+                      update updaterolloutsMap.values();
                     }
                     
                     if(!updateLocalProjTLDList.isEmpty())
