@@ -2731,7 +2731,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isTLDYearMisaligned = false;
         Integer localProjectTLDYear = 0;
         Integer localProjectRolloutTLDYear = 0;
-        List<IPM_Project_Rollout__c> projRolloutList = new List<IPM_Project_Rollout__c>();
         localProjectTLD = IPM_ConstantUtils.BLANK;
         localProjectRolloutTLD = IPM_ConstantUtils.BLANK;
         Boolean flag = false;
