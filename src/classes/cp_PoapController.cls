@@ -9,7 +9,7 @@ public with sharing class cp_PoapController {
     private static final String AS_TENTATIVE        = 'Tentative';
     private static final String AS_CONFIRMED        = 'Confirmed';
     private static final String AS_DRAFT            = 'Draft';
-    private static final String AS_OFFLINE          = 'Offline';
+    //private static final String AS_OFFLINE          = 'Offline';
     private static final String EVT_NOT_IN_POAP     = 'I do not want this event on my Plan on a Page';
 
     /* Colour constants */
@@ -35,7 +35,7 @@ public with sharing class cp_PoapController {
     private final String C_OPERATIONAL_COMMS = 'Enabler - Operational Activity';
     private final String C_FUNCTION_CATEGORY = 'Enabler - Capability Building';
     
-    private final String F_EXPERTISE = 'Expertise__c';
+    //private final String F_EXPERTISE = 'Expertise__c';
 
     private final Map<String, Schema.SobjectField> EventMap = Schema.getGlobalDescribe().get('cp_Event__c').getDescribe().fields.getMap(); 
 
@@ -281,7 +281,7 @@ public with sharing class cp_PoapController {
         HTMLReturn += '</td>';
         Date startDate = date.newinstance(Integer.valueOf(FirstYear), Integer.valueOf(FirstMonth), 1);
         Date lastDate = date.newinstance(Integer.valueOf(LastYear), Integer.valueOf(LastMonth), 1);
-        String colour;
+        public String colour;
         Integer NumberOfMonths = startDate.monthsBetween(lastDate) + 1;
         Date EventEndDate;
 
@@ -398,14 +398,14 @@ public with sharing class cp_PoapController {
 
         HTMLTable.value += '</tr>';
 
-        Date LastDateQuery = LastDate.addMonths(1);
+        //Date LastDateQuery = LastDate.addMonths(1);
 
         String advancedFilter = '';
 
         if (FieldName1 != null && FieldName1 != '')
         {
             AdvFiltersRendering = String.escapeSingleQuotes(FieldLabel1) + ' ' + String.escapeSingleQuotes(Operator1) + ' ' + String.escapeSingleQuotes(FieldValue1) + String.escapeSingleQuotes(FieldValueDate1);
-            advancedFilter = addAdvancedFilter(FieldName1, Operator1, FieldValue1, FieldValueDate1);
+            //advancedFilter = addAdvancedFilter(FieldName1, Operator1, FieldValue1, FieldValueDate1);
         }
         else
         {
