@@ -847,3 +847,17 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
 .padtopbtm{margin:10px 0px;display:inline-block;}
 .Mtop {margin-top: 33px;}
 .feedbkbluebox{background: #dceefa;border:1px solid #ccc;padding:10px;margin-bottom:10px;font-weight:bold;}
+
+.glbPLDtableHead thead th{height: 40px;background-color: #dceefa;}
+.glbPLDtablebody{background-color: #f2f8fc;margin-top: -20px;}
+.claimHeader{width:195px;float:left;}
+.glbCmnWidth{width:400px;}
+.removeClaimText{padding:10px;}
+.glbPLDdrpdown{margin-top: -20px;}
+.glbPLDdrpdown>tbody>tr:nth-child(even) {background: #f8f8f8;}
+.selectClaim{position:relative;}
+.gatepdlContainer{width: 100%;float: left;height: 100%;}
+.claimList{width:100%;}
+.paddleft{padding:0px 20px;}
+.noteclaim label {font-weight:normal; padding:5px 0px;}
+.globalclaim {font-weight: bold;border-bottom: 2px solid #ddd;}
