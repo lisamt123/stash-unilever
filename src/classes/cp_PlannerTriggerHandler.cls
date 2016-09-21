@@ -7,7 +7,7 @@
 *               all "Track" fields on Planner Event.
 *
 **/
-public class cp_PlannerTriggerHandler {
+public with sharing class cp_PlannerTriggerHandler {
     
     private boolean m_isExecuting;
     private integer BatchSize;
