@@ -69,7 +69,7 @@ public without sharing class cp_PlannerUtility {
     
     // RETRIEVE DEFAULT PLANNER PREFERENCE (Assumption only one defined)
     public static String getDefaultPlanner(String userId) {
-        cp_PlannerPreference__c userDefault;
+      cp_PlannerPreference__c userDefault;
 
         List<cp_PlannerPreference__c> userPref =  [SELECT Planner__c FROM cp_PlannerPreference__c WHERE User__c =:userId];
         

@@ -9,13 +9,13 @@
 **/
 public with sharing class cp_PlannerTriggerHandler {
     
-    private boolean m_isExecuting;
+    /*private boolean m_isExecuting;
     private integer BatchSize;
 
     public cp_PlannerTriggerHandler(boolean isExecuting, integer size) {
         m_isExecuting = isExecuting;
         BatchSize = size;
-    }
+    }*/
 
     // ********************* HEADINGS ********************* //
     

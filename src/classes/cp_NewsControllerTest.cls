@@ -38,10 +38,10 @@ private class cp_NewsControllerTest {
   }
 
 
-  private static cp_News__c buildNewsItem(String type, String status, Boolean approved) {
+  /*private static cp_News__c buildNewsItem(String type, String status, Boolean approved) {
     cp_News__c newsItem = new cp_News__c(short_description__c = 'Test', status__c = status, news_type__c = type);
     insert newsItem;
 
     return newsItem;
-  }
+  }*/
 }

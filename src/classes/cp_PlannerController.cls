@@ -411,9 +411,9 @@ global with sharing class cp_PlannerController {
             JSONParser parser = JSON.createParser(jsonString);
 
             // Fields to update
-            Id eventId;
-            Date startDate;
-            Date endDate;
+            public Id eventId;
+            public Date startDate;
+            public Date endDate;
 
             // SaveReport to return
             SaveReport sr = new SaveReport();

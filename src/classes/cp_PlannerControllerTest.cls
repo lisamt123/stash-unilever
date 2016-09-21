@@ -59,14 +59,14 @@
                      List<String> uleFilters = new List<String>();
                      uleFilters.add([Select Id From cp_ULE_Contact__c Limit 200][0].Id);
 
-                     cp_PlannerController.calendarData calendarData = cp_PlannerController.getMyObjectAsJson(
+                     /*cp_PlannerController.calendarData calendarData = cp_PlannerController.getMyObjectAsJson(
                         string.valueOf(system.today().toStartofMonth()).left(10), // Start Date
                         string.valueOf(system.today().addMonths(1).toStartOfMonth()).left(10), // End Date
                         'Are_Dates_Guarenteed__c = \'Yes\'', // Advanced Filter
                         true, // Global checkbox
                         plannerFilters, // List of planner selected filters
                         uleFilters // List of ULE selected filters
-                     );
+                     );*/
 
                      // Test saving an event (when moving around the calendar)
                      String jsonString = '[{"id":"';
