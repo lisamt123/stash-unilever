@@ -61,8 +61,6 @@ src/classes/ICB_PriceBookCreation_Test.cls
 src/classes/ICB_PriceBookCreation_Test.cls-meta.xml
 src/classes/ICB_PriceBookCreation.cls
 src/classes/ICB_PriceBookCreation.cls-meta.xml
-src/classes/ICB_PriceBookProductsInsert.cls
-src/classes/ICB_PriceBookProductsInsert.cls-meta.xml
 src/classes/ICB_SetupMobileChannel.cls
 src/classes/ICB_SetupMobileChannel.cls-meta.xml
 src/classes/ICB_SetupMobileChannel_Test.cls
@@ -142,11 +140,6 @@ src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeader.css
 src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeaderController.js
 src/aura/ICB_OperatorInventory/ICB_OperatorInventory.app
 src/aura/ICB_OperatorInventory/ICB_OperatorInventory.app-meta.xml
-src/aura/ICB_PriceTable/ICB_PriceTable.cmp
-src/aura/ICB_PriceTable/ICB_PriceTable.cmp-meta.xml
-src/aura/ICB_PriceTable/ICB_PriceTable.css
-src/aura/ICB_PriceTable/ICB_PriceTableController.js
-src/aura/ICB_PriceTable/ICB_PriceTableHelper.js
 src/aura/ICB_PriceTaBleHeader/ICB_PriceTaBleHeader.cmp
 src/aura/ICB_PriceTaBleHeader/ICB_PriceTaBleHeader.cmp-meta.xml
 src/aura/ICB_PriceTaBleHeader/ICB_PriceTaBleHeader.css

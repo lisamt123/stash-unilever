@@ -54,7 +54,7 @@
                                     <label class="slds-checkbox--toggle slds-grid slds-grid--vertical-align-center">
                                         <aura:renderIf isTrue="{!wrapper.oppItem.StageName == 'Available' || wrapper.oppItem.StageName == 'Closed'}">
                                             <aura:if isTrue="{!wrapper.oppItem.StageName == 'Closed'}">
-                                                <span class="slds-form-element__label slds-m-bottom--none">{!$Label.c.CALCULATED}</span>
+                                                <span class="slds-form-element__label slds-m-bottom--none">{!$Label.c.ICB_CALCULATED}</span>
                                             </aura:if>
                                             <aura:if isTrue="{!wrapper.oppItem.StageName == 'Available'}">
                                                 <span class="slds-form-element__label slds-m-bottom--none">{!$Label.c.ICB_PENDING}</span>
