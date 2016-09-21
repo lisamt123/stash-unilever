@@ -1,4 +1,4 @@
-public class IPM_GlobalClaimPDLController extends IPM_ProjectIntermediateController{
+public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectIntermediateController{
 
 	public Id projectId{get; set;}
 	public List<IPM_Project_Rollout__c> localRolloutList{get; set;}
@@ -11,14 +11,10 @@ public class IPM_GlobalClaimPDLController extends IPM_ProjectIntermediateControl
 	public List<IPM_Country_Level_Claim__c> contryLevelClaimList{get; set;}
 	public Boolean showCountryClaim{get;set;}
 	
-	public static final String PRODUCT_SECTION_SEQ = '3.3.1';
-	private static final String PRODUCT_SECTION = 'Product';
 	
 	public IPM_GlobalClaimPDLController()
 	{
 		Map<String,String> paramMap = Apexpages.currentpage().getparameters();
-        Set<Id> countryLevelId = new Set<Id>();
-        List<String> localCountryList = new List<String>();
         countryList = new List<IPM_Country__c>();
         
         showCountryClaim = false;
@@ -34,7 +30,6 @@ public class IPM_GlobalClaimPDLController extends IPM_ProjectIntermediateControl
 			showCountryClaim = true;
 		}
 
-        IPM_Project_Document_Section__c projDocSec = [SELECT Id, IPM_Section_Sequence__c, IPM_Master_Section_External_Id__c, IPM_Gate_Document__c FROM IPM_Project_Document_Section__c WHERE Id=:projDocSectionId];
                 
         localRolloutList = [Select id, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
 		
@@ -46,7 +41,7 @@ public class IPM_GlobalClaimPDLController extends IPM_ProjectIntermediateControl
 			}			
 		}
 
-        prepareCountryClaimDetails();
+        prepareCountryClaimDetails(); 
 	}
 	
 	public class RolloutLevelWrapper{
