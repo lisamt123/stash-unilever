@@ -8,7 +8,7 @@
 *				have been activated in child objects.
 *
 **/
-public without sharing class cp_PlannerEventVisibilityController {
+public with sharing class cp_PlannerEventVisibilityController {
     
     public List<cp_PlannerLocation__c>      plList      {get; set;}
     public Map<Id,cp_PlannerLocation__c>    plMap       {get; set;}
