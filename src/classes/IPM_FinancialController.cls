@@ -1947,7 +1947,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     
                     //Set the popup message value for the cell to be shown on financials page
                     if(valueWrapper.redValidationErrorMessage !=  null & !valueWrapper.redValidationErrorMessage.contains(Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative)){
-                        valueWrapper.redValidationErrorMessage = valueWrapper.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative;
+                        valueWrapper.redValidationErrorMessage = valueWrapper.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative + IPM_ConstantUtils.BREAKELINE;
                     }
                 }            
         }
@@ -2501,7 +2501,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         
                         //Set the popup message value for the cell to be shown on financials page
                         if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_ITO_should_not_be_greater_than_GTO)){
-                            valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_ITO_should_not_be_greater_than_GTO;
+                            valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_ITO_should_not_be_greater_than_GTO + IPM_ConstantUtils.BREAKELINE;
                         }
                      } 
      
@@ -2518,7 +2518,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     }
                     //Set the popup message value for the cell to be shown on financials page
                     if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative)){
-                       valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative;
+                       valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative + IPM_ConstantUtils.BREAKELINE;
                     }
                     
                 }
@@ -2560,7 +2560,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         
                         //Set the popup message value for the cell to be shown on financials page
                         if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_ITO_should_not_be_greater_than_GTO)){
-                            valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_ITO_should_not_be_greater_than_GTO;
+                            valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_ITO_should_not_be_greater_than_GTO + + IPM_ConstantUtils.BREAKELINE;
                         }
                         
                      }
@@ -2581,7 +2581,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         
                         //Set the popup message value for the cell to be shown on financials page
                         if(valueWrapperGross.redValidationErrorMessage !=  null & !valueWrapperGross.redValidationErrorMessage.contains(Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative)){
-                            valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative;
+                            valueWrapperGross.redValidationErrorMessage = valueWrapperGross.redValidationErrorMessage + Label.IPM_Gross_Turnover_Can_Not_Be_Zero_Or_Negative + IPM_ConstantUtils.BREAKELINE;
                         }
                 }
                
