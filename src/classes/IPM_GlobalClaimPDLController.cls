@@ -10,6 +10,7 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	public Map<String,List<String>> localCntrytoClaimMap{get; set;} //Map to keep the local rollout country claim
 	public List<IPM_Country_Level_Claim__c> contryLevelClaimList{get; set;}
 	public Boolean showCountryClaim{get;set;}
+	public String projClaimId{get;Set;}
 	
 	
 	public IPM_GlobalClaimPDLController()
@@ -29,19 +30,18 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 		{
 			showCountryClaim = true;
 		}
-
-                
-        localRolloutList = [Select id, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
+                        
+        localRolloutList = [Select id, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT and KeyMCO__c = true];
 		
 		for(IPM_Project_Rollout__c localRollout : localRolloutList)
 		{
-			if( (localRollout.KeyMCO__c && showCountryClaim) || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+			if(showCountryClaim || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
 			{
 				countryList.addAll(localRollout.IPM_Countries_Local__r);
 			}			
 		}
 
-        prepareCountryClaimDetails(); 
+        prepareCountryClaimDetails();
 	}
 	
 	public class RolloutLevelWrapper{
@@ -242,6 +242,18 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	public PageReference resetEventHandling()
 	{
 		prepareCountryClaimDetails();	
+		return null;
+	}
+	
+	public PageReference deleteClaim()
+	{
+		System.debug('deleteClaimdeleteClaimdeleteClaimdeleteClaim'+projClaimId);
+		if(projClaimId != null)
+		{
+			IPM_Project_Claim__c projClaim = new IPM_Project_Claim__c(id=projClaimId);
+			delete projClaim;
+		}
+		prepareCountryClaimDetails();
 		return null;
 	}
 }
