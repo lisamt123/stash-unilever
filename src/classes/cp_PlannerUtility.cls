@@ -1,9 +1,9 @@
 /**
 *
-* Author:		Carmine Barbuto
-* Date:			17/12/2013
-* Description:	Utility class with commons methods
-*				for Comms Planner development.
+* Author:       Carmine Barbuto
+* Date:         17/12/2013
+* Description:  Utility class with commons methods
+*               for Comms Planner development.
 *
 **/
 public without sharing class cp_PlannerUtility {
@@ -66,24 +66,24 @@ public without sharing class cp_PlannerUtility {
         return canEdit;  
 
     }
-	
-	// RETRIEVE DEFAULT PLANNER PREFERENCE (Assumption only one defined)
-	public static String getDefaultPlanner(String userId) {
-		cp_PlannerPreference__c userDefault;
+    
+    // RETRIEVE DEFAULT PLANNER PREFERENCE (Assumption only one defined)
+    public static String getDefaultPlanner(String userId) {
+        cp_PlannerPreference__c userDefault;
 
-		List<cp_PlannerPreference__c> userPref =  [SELECT Planner__c FROM cp_PlannerPreference__c WHERE User__c =:userId];
-    	
-        // If preference is not defined it will take the default settings										
-    	if (userPref.isEmpty()) { 										
-			List<cp_PlannerPreference__c> defaultPref =  [SELECT Planner__c FROM cp_PlannerPreference__c WHERE User__c = null];
-    		if (!defaultPref.isEmpty())
-    			 userDefault = defaultPref.get(0);										
-    	} else {
-    		userDefault = userPref.get(0);
-    	}
-				
-		return userDefault.Planner__c;
-	}
+        List<cp_PlannerPreference__c> userPref =  [SELECT Planner__c FROM cp_PlannerPreference__c WHERE User__c =:userId];
+        
+        // If preference is not defined it will take the default settings                                       
+        if (userPref.isEmpty()) {                                       
+            List<cp_PlannerPreference__c> defaultPref =  [SELECT Planner__c FROM cp_PlannerPreference__c WHERE User__c = null];
+            if (!defaultPref.isEmpty())
+                 userDefault = defaultPref.get(0);                                      
+        } else {
+            userDefault = userPref.get(0);
+        }
+                
+        return userDefault.Planner__c;
+    }
 
     // POPULATE STRING FIELDS FOR ALL PLANNERS
     public static void setPlannerTextField(Map<Id,cp_Event__c> eventMap, Boolean recordUpdate) {

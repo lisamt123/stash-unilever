@@ -12,14 +12,14 @@
 @isTest
 private class cp_EventEditControllerTest
 {
-	static testMethod void testActivate()
-	{
-		// Setup data
-        User testUser 		= cp_TestData.getTestUser('System Administrator','EvntEdit');
+    static testMethod void testActivate()
+    {
+        // Setup data
+        User testUser       = cp_TestData.getTestUser('System Administrator','EvntEdit');
         insert testUser;
         
         // Planners 
-        cp_Planner__c	pl	= cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
+        cp_Planner__c   pl  = cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
         insert pl;
         
         // Planner Defaults
@@ -33,7 +33,7 @@ private class cp_EventEditControllerTest
         insert userDefault;
         
         // Event
-        cp_Event__c e 			= cp_TestData.getTestPlannerEvent();
+        cp_Event__c e           = cp_TestData.getTestPlannerEvent();
         insert e;
         // Child event
         cp_Event__c ce          = cp_TestData.getTestPlannerEvent();
@@ -69,14 +69,16 @@ private class cp_EventEditControllerTest
     }
 
     static testMethod void testClone()
-	{
-		// Setup data
-        User testUser 		= cp_TestData.getTestUser('System Administrator','EvntEdit');
+    {
+        // Setup data
+        User testUser       = cp_TestData.getTestUser('System Administrator','EvntEdit');
         insert testUser;
         
         // Planners 
-        cp_Planner__c	pl	= cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
+        cp_Planner__c   pl  = cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
         insert pl;
+        
+         System.assertEquals(cp_Planner__c.Id,null);
         
         // Planner Defaults
         cp_PlannerPreference__c defaults = new cp_PlannerPreference__c();
@@ -89,7 +91,7 @@ private class cp_EventEditControllerTest
         insert userDefault;
         
         // Event
-        cp_Event__c e 			= cp_TestData.getTestPlannerEvent();
+        cp_Event__c e           = cp_TestData.getTestPlannerEvent();
         insert e;
         // Child event
         cp_Event__c ce          = cp_TestData.getTestPlannerEvent();
@@ -121,13 +123,13 @@ private class cp_EventEditControllerTest
     }
 
     static testMethod void testNew()
-	{
-		// Setup data
-        User testUser 		= cp_TestData.getTestUser('System Administrator','EvntEdit');
+    {
+        // Setup data
+        User testUser       = cp_TestData.getTestUser('System Administrator','EvntEdit');
         insert testUser;
         
         // Planners 
-        cp_Planner__c	pl	= cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
+        cp_Planner__c   pl  = cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
         insert pl;
         
         // Planner Defaults
@@ -162,13 +164,13 @@ private class cp_EventEditControllerTest
     }
 
     static testMethod void testEdit()
-	{
-		// Setup data
-        User testUser 		= cp_TestData.getTestUser('System Administrator','EvntEdit');
+    {
+        // Setup data
+        User testUser       = cp_TestData.getTestUser('System Administrator','EvntEdit');
         insert testUser;
         
         // Planners 
-        cp_Planner__c	pl	= cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
+        cp_Planner__c   pl  = cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
         insert pl;
         
         // Planner Defaults
@@ -182,7 +184,7 @@ private class cp_EventEditControllerTest
         insert userDefault;
         
         // Event
-        cp_Event__c e 			= cp_TestData.getTestPlannerEvent();
+        cp_Event__c e           = cp_TestData.getTestPlannerEvent();
         insert e;
         // Child event
         cp_Event__c ce          = cp_TestData.getTestPlannerEvent();

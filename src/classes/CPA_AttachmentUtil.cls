@@ -556,6 +556,7 @@ public static void deleteCommericalData(List<Attachment> lstatt)    {
                 mapCRComDetai.put(objCR.Id,lstTemp);
                  
             }
+		
             for(CPA_CR__c objCR : lstCR){
                 Decimal  intTotalmandays = 0;
                 Decimal  intIndicativeExpenses  = 0;

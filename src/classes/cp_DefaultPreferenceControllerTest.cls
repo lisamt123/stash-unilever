@@ -47,7 +47,7 @@ private class cp_DefaultPreferenceControllerTest {
 	        controller.backToPlanner();
 
             // Test controller after preference set
-            cp_DefaultPreferenceController controller2 = new cp_DefaultPreferenceController();
+            //cp_DefaultPreferenceController controller2 = new cp_DefaultPreferenceController();
     	}
 
         // Check that default preference has been saved
