@@ -30,7 +30,7 @@ private class  IPM_Resource_Allocation_Test {
     private static IPM_Company_Card__c globalCompanyCard=new IPM_Company_Card__c();
     private static IPM_Company_Card__c regionalCompanyCard=new IPM_Company_Card__c();
     private static IPM_Company_Card__c localCompanyCard=new IPM_Company_Card__c();
-    private static final string USER_CATE='Household Care';
+    private static final string USER_CATE='Laundry';
     private static final string CATE_LAUNDRY='Laundry';
     private static User readOnlyUser=new User();
     /*************************************************************************
@@ -52,6 +52,7 @@ private class  IPM_Resource_Allocation_Test {
         globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
         regionalCompanyCard.IPM_TxtGeographical_Scope__c=southAsia;
+        regionalCompanyCard.IPM_Managed_Category__c = CATE_LAUNDRY;
         localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
         
         List<IPM_Company_Card__c>  companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};

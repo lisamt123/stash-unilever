@@ -40,7 +40,7 @@ private class IPM_ProjectOverviewCtrl_Test
         
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');//
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, 'IPM_BET_Search_Test');//
-        test.loadData(IPM_ProjectMetadata__c.sobjectType, 'IPM_Project_Metadata');//
+    
 
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
