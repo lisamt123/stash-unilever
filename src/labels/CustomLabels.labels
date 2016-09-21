@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <labels>
-        <fullName>IPM_DO_WE_NEED_TO_UPDATE_TASKS</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_DO_WE_NEED_TO_UPDATE_TASKS</shortDescription>
-        <value>Do you want the system to update tasks automatically?</value>
-</labels>
-<labels>
-        <fullName>IPM_Milestone_Desc</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_Milestone_Desc</shortDescription>
-        <value>Below are the key milestones required by your category. Please add a due date for each milestone.&lt;br/&gt;
-For either option it is possible to add/remove sections and To-do&apos;s later. You may also add mini-milestones.</value>
-</labels>
-    <labels>
         <fullName>IPM_Align_AllMCO_TLD</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Align TLD of all MCO&apos;s</shortDescription>
         <value>Do you wish to align ALL MCOs to this MCO&apos;s new TLD?</value>
-    </labels>
-	<labels>
+</labels>
+<labels>
         <fullName>IPM_PDL_Not_Approved</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>PDL Not Approved</shortDescription>
         <value>Sorry! this cannot be approved yet. See below for details</value>
-    </labels>
+</labels>
 <labels>
         <fullName>IPM_Product_Design_Lock_Document</fullName>
         <language>en_US</language>
@@ -10010,6 +9995,20 @@ If you discover that stopping this project was a mistake you can undo this actio
         <protected>false</protected>
         <shortDescription>Select from all of Unilever</shortDescription>
         <value>Select from all of Unilever</value>
+    </labels>
+	<labels>
+        <fullName>IPM_GlobalClaimsFromPDL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GlobalClaimsFromPDL</shortDescription>
+        <value>Global Claims from Product Design Lock Document</value>
+    </labels>
+	<labels>
+        <fullName>IPM_GlobalClaimsOnLocal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GlobalClaimsOnLocal</shortDescription>
+        <value>Please indicate in your Summary text box which Claims you intend to use - these will go to your Gate Document.</value>
     </labels>
     
 </CustomLabels>

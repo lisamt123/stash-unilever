@@ -1010,11 +1010,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>IPM_Country_Level_Claim__c.IPM_Project_Claim__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>IPM_Project_Claim__c.IPM_Claim__c</field>
         <readable>true</readable>
     </fieldPermissions>
