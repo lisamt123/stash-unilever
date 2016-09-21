@@ -38,7 +38,7 @@ public  class cp_EventTriggerHandler {
 
     private void updateCommentHistory(cp_Event__c[] newEvents, map<ID, cp_Event__c> eventMap) {
         //List<processInstanceHistory> processHistory = new List<processInstanceHistory>();
-        String remarks;
+        
         Set<Id> actorIds = new Set<Id>();
         Map<Id, cp_Event__c> processRecordsMap = new Map<Id, cp_Event__c>([SELECT (SELECT StepStatus, Comments, ActorId, SystemModstamp FROM ProcessSteps  order by SystemModstamp desc) FROM cp_Event__c
                                                                         WHERE Id IN:eventMap.keySet()]);
@@ -52,8 +52,10 @@ public  class cp_EventTriggerHandler {
         
         for(cp_Event__c eachEvent : newEvents) {
             String status;
+			String remarks;
             for(processInstanceHistory eachStep : processRecordsMap.get(eachEvent.Id).ProcessSteps) {
                 status = eachStep.StepStatus;
+				remarks ='remarks';
                 if(status == 'Removed') {
                     status = 'Recalled';
                 }
