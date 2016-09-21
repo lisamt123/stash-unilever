@@ -1,6 +1,5 @@
 src
 src/layouts/Contract_Product__c-Contract Product Layout.layout
-src/objects/Account.object
 src/objects/Event.object
 src/customPermissions/FS_Admin.customPermission
 src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
