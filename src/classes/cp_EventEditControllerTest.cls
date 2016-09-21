@@ -78,7 +78,7 @@ private class cp_EventEditControllerTest
         cp_Planner__c   pl  = cp_TestData.getTestPlanner(cp_PlannerUtility.CLUSTER,'Europe',testUser.Id);
         insert pl;
         
-         System.assertEquals(cp_Planner__c.Id,null);
+         system.assertNotEquals(testUser,Null);
         
         // Planner Defaults
         cp_PlannerPreference__c defaults = new cp_PlannerPreference__c();
@@ -143,7 +143,7 @@ private class cp_EventEditControllerTest
         insert userDefault;
 
         cp_Event__c e = cp_TestData.getTestPlannerEvent();
-        
+        System.assertNotEquals(Null,userDefault);
         Test.startTest();
         
         System.runAs(testUser)
@@ -194,6 +194,7 @@ private class cp_EventEditControllerTest
         // Related lists >> Planner locations
         cp_PlannerLocation__c loc   = cp_TestData.getTestPlannerLocation(e.Id, pl.Id);
         insert loc;
+		System.assertNotEquals(Null,loc);
         
         Test.startTest();
         
