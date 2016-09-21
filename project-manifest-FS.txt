@@ -1,11 +1,11 @@
 src
-src/pages/FS_GenerateMDMRequest.page
-src/pages/FS_GenerateMDMRequest.page-meta.xml
-src/pages/FS_GenerateMDMRequestExcel.page
-src/pages/FS_GenerateMDMRequestExcel.page-meta.xml
-src/pages/FS_SendEmailWithMDMRequest.page
-src/pages/FS_SendEmailWithMDMRequest.page-meta.xml
-src/components/FSMDMRequestComponent.component
-src/components/FSMDMRequestComponent.component-meta.xml
-src/staticresources/FSMDMRequestCSS.resource
-src/staticresources/FSMDMRequestCSS.resource-meta.xml
+src/layouts/Contract_Product__c-Contract Product Layout.layout
+src/objects/Account.object
+src/objects/Event.object
+src/customPermissions/FS_Admin.customPermission
+src/approvalProcesses/Account.FS_Account_Owner_Change_Request.approvalProcess
+src/approvalProcesses/Account.FS_Operator_Account_Validation.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_1_Step_Process_CAN.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_1_Step_Process_US.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_2_Step_Process_CAN.approvalProcess
+src/approvalProcesses/Opportunity.FS_MABE_Opportunity_2_Step_Process_US.approvalProcess

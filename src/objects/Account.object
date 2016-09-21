@@ -321,6 +321,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>MultiselectPicklist</type>
@@ -343,6 +344,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -364,6 +366,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -385,6 +388,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -995,6 +999,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1106,6 +1111,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1234,6 +1240,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1252,6 +1259,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1267,9 +1275,6 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    
-    
-    
     <fields>
         <fullName>Document_Number__c</fullName>
         <description>CEC: To capture the document number</description>
@@ -1380,6 +1385,7 @@ Branded are essential = 5</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1435,6 +1441,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>MultiselectPicklist</type>
@@ -1713,6 +1720,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1741,6 +1749,7 @@ High = 5</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1825,6 +1834,7 @@ Data Source : NA | Integration : NA | Security Level : Restricted</description>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1853,6 +1863,7 @@ FOH Highly relevant = 5</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1906,6 +1917,7 @@ Above Mkt Avg = 5</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1934,6 +1946,7 @@ Customer Delivers Directly = 5</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -1988,6 +2001,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -2109,6 +2123,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
@@ -24122,9 +24137,16 @@ OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilev
         <fullName>FS_Account_Owner_Change_Lock</fullName>
         <active>true</active>
         <description>Created for account owner change lock for other than administrators</description>
-        <errorConditionFormula>AND( ISCHANGED( OwnerId ),NOT(OR($Profile.Name=&quot;Generic API Only&quot;,$Profile.Name=&quot;System Administrator&quot;)),$Profile.Name=&quot;Unilever Food Solution - Russia&quot;
+        <errorConditionFormula>AND( ISCHANGED( OwnerId ),NOT(OR($Profile.Name=&quot;Generic API Only&quot;, $Permission.FS_Admin )),$Profile.Name=&quot;Unilever Food Solution - Russia&quot;
 ,OR(RecordType.Name=&apos;Distributor&apos;,RecordType.Name=&apos;Operator&apos;,RecordType.Name=&apos;Operator Russia&apos;))</errorConditionFormula>
         <errorMessage>You do not have access to change the account owner.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FS_Billing_Street_Mandatory</fullName>
+        <active>true</active>
+        <description>Billing Street Mandatory</description>
+        <errorConditionFormula>AND($Profile.Name = &apos;Unilever Food Solution - Russia&apos;, BillingStreet = &apos;&apos;)</errorConditionFormula>
+        <errorMessage>Вам необходимо заполнить адрес для создания новой учетной записи оператора.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>FS_UserNotabletochangetheCity</fullName>
