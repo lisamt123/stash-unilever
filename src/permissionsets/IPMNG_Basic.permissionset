@@ -1000,6 +1000,10 @@
         <apexClass>IPM_ExportTeamMembersReportController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>IPM_GlobalClaimPDLController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Country_Level_Claim__c.IPM_Claim__c</field>
