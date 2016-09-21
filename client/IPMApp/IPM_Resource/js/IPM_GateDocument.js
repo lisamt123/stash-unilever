@@ -13,7 +13,7 @@ jq(document).ready(function() {
     }
     jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border", "none");
     jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();
-    
+    jq(".pdlCollapse .ipmAcrdnExpand:first").hide();
     gateAccrdn();
     gateexpcollapse();  
     
@@ -56,6 +56,8 @@ jq(document).ready(function() {
         jq(".contenWrapper").find(".ipmAccordian .aHead .expico").addClass("fa-plus");
         jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").removeClass("fa-plus");
         jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").addClass("fa-minus");
+        jq(".pdlCollapse").find(".ipmAccordian .aHead:first .expico").removeClass("fa-minus");
+        jq(".pdlCollapse").find(".ipmAccordian .aHead:first .expico").addClass("fa-plus");
         jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").removeClass("fa-minus");
         jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").addClass("fa-plus");
     });

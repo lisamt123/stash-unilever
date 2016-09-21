@@ -660,7 +660,7 @@
                                     </div>
                                     </apex:outputPanel>
                                    <!-- Appendic new Logic ends -->  
-									<div class="contenWrapper clearfix">
+									<div class="contenWrapper pdlCollapse clearfix">
                                         <div class="col-sm-12">                                           
                                             <apex:outputPanel layout="block" styleClass="ipmAccordian mainTable" rendered="{!isPDLDocument}">
                                                 <apex:repeat value="{!projSectionList}" var="sub">  

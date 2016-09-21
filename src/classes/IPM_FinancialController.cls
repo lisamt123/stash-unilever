@@ -32,8 +32,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String validationErrorMessage {get; set;} //Validation error Message to be displayed on the page
     public String validationErrorMessageforTLD {get; set;} //Validation error Message to be displayed on the page if TLD is misaligned
     public String validationErrorMessageCal {get; set;} //Validation error Message to be displayed on the page
-    private List<IPM_Project__c> projectList {get; set;} // To fetch child proj list for TLD misalignment check
-
+    private String financialExternalIdString;
+    public String queryText {get;set;}
     public String currentFinancialId {get; set;} //Stores the id of the current financial being viewed. Changes dynamically and used with re-render
     private String previousFinancialId {get; set;} //Store the previously viwed financial Id. Used to maintain stae when switching tabs
     public String currentTab {get; set;} //Used to manage the current selected tab on the UI
@@ -2716,91 +2716,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     }
-    
-    /**************************To resolve sonar issues*************************/
-    public IPM_Project_Rollout__c checkForMisalignmentGlobal()
-    {
-    	IPM_Project_Rollout__c rolloutPlan = new IPM_Project_Rollout__c(); 
-      	// if project is regional get the project details based currentFinanical
-        String financialExternalIdString;
-        //Check if Financial external id ends with '_NONKEY'
-        if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.CONSOLIDATED))
-        {
-            financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
-        }
-        else
-        {
-            financialExternalIdString = currentFinancial.Financial_External_ID__c;
-        }
-        projectList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name like :financialExternalIdString+'%'), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c, isActive__c,IPM_Rollout_Span__c From IPM_Project_Rollout__r where name like :financialExternalIdString+'%') From IPM_Project__c where id=:project.id];
-
-        if(!projectList.isEmpty() && !projectList[0].IPM_Project_Rollout__r.isEmpty())
-        {
-          Date tempTLD = null;
-            for(IPM_Project_Rollout__c rollout:projectList[0].IPM_Project_Rollout__r)
-            {
-                String rolloutNonKeyName = rollout.Name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
-                //Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
-                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                {
-                  //Assign the earliest TLD from non key MCOs
-                  if(tempTLD == null)
-                  {
-                        rolloutPlan = rollout;
-                        tempTLD = rollout.Target_Launch_Date__c;
-                    }
-                    else if (tempTLD>rollout.Target_Launch_Date__c)
-                    {
-                        rolloutPlan = rollout;
-                        tempTLD = rollout.Target_Launch_Date__c;
-                    }
-                }
-                else if(rollout.name==currentFinancial.Financial_External_ID__c)
-                {
-                    rolloutPlan = rollout;
-                    break;
-                }
-            }                       
-            
-        }
-        return rolloutPlan;
-    }
-    
-    public IPM_Project_Rollout__c checkForMisalignmentRegional()
-    {
-    	IPM_Project_Rollout__c rolloutPlan = new IPM_Project_Rollout__c();
-    	String financialExternalIdString;
-        if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
-            financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
-        } else {
-            financialExternalIdString = currentFinancial.Financial_External_ID__c;
-        }
-        projectList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name like :financialExternalIdString+'%'), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c, isActive__c,IPM_Rollout_Span__c From Regional_Project_Rollout__r where name like :financialExternalIdString+'%') From IPM_Project__c   where id=:project.id];
-        if(!projectList.isEmpty() && !projectList[0].Regional_Project_Rollout__r.isEmpty())
-        {
-            Date tempTLD = null;
-            for(IPM_Project_Rollout__c rollout:projectList[0].Regional_Project_Rollout__r) {
-                String rolloutNonKeyName = rollout.Name.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
-                //Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
-                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-                //Assign the earliest TLD from non key MCOs
-                if(tempTLD == null){
-                        rolloutPlan = rollout;
-                        tempTLD = rollout.Target_Launch_Date__c;
-                    } else if (tempTLD>rollout.Target_Launch_Date__c){
-                        rolloutPlan = rollout;
-                        tempTLD = rollout.Target_Launch_Date__c;
-                    }
-                } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
-                    rolloutPlan = rollout;
-                    break;
-                }
-            }                       
-
-        }
-        return rolloutPlan;
-    }
-
 
     /****************************************************************************************************************************************
     * @description          Used to set misaligned date values for TLD, when the Financial data is loaded it checks for the current TLD and Previous
@@ -2827,46 +2742,27 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //get the Rollout related to the project currently to get the TLD and year details
             if(project != null && currentFinancial != null && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
             {
-              if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-              {
-              	localProjectTLD = project.IPM_Target_Launch_Dates__c.format();
-              	localProjectTLDYear = project.IPM_Target_Launch_Dates__c.year();
-              	localProjectName = project.Name;
-              	
-              	projRolloutList = [Select Target_Launch_Date__c, Previous_Target_Launch_Date__c ,MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where id=:project.IPM_Project_Rollout__c];
-              	if(!projRolloutList.isEmpty())
+                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))
                 {
-                	localProjectRolloutTLD = projRolloutList[0].Target_Launch_Date__c.format();
-                	localProjectRolloutTLDYear = projRolloutList[0].Target_Launch_Date__c.year();
-                	mcoCountryRolloutPlan = projRolloutList[0];
+                    financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast(IPM_ConstantUtils.UNDERSCORE);
                 }
-               localRolloutProject = project;
-              }
-              else
-              {
-              	if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_ProjectGKM__c=='GKM3')
-                 {
-                 	mcoCountryRolloutPlan = checkForMisalignmentGlobal();
-                 }
-                else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                else
                 {
-                	mcoCountryRolloutPlan = checkForMisalignmentRegional();
+                    financialExternalIdString = currentFinancial.Financial_External_ID__c;
                 }
-                if(mcoCountryRolloutPlan.Target_Launch_Date__c!=null)
+                queryText = 'Select id,Target_Launch_Date__c, Local_Project__c, Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name from IPM_Project_Rollout__c where name like \'' +financialExternalIdString+'\' and IPM_Rollout_Span__c like \'Local\'';
+                List<IPM_Project_Rollout__c> rolloutList = Database.query(queryText);
+                if(!rolloutList.isEmpty() && rolloutList[0].Local_Project__r.IPM_Target_Launch_Dates__c!=null)
                 {
-                	//Assign local project rollout TLD  
-	            	localProjectRolloutTLD = mcoCountryRolloutPlan.Target_Launch_Date__c.format();
-	            	//Assign local project rollout TLD year
-	            	localProjectRolloutTLDYear = mcoCountryRolloutPlan.Target_Launch_Date__c.year();
-                if(!projectList.isEmpty() && !projectList[0].IPM_Projects__r.isEmpty())
-		        {
-		            localProjectTLD = projectList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.format();
-		            localProjectTLDYear = projectList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.year();
-		            localProjectName = projectList[0].IPM_Projects__r[0].Name;
-		            localRolloutProject = projectList[0].IPM_Projects__r[0]; 
-		        }
-              }
-            } 
+                    localProjectTLD = rolloutList[0].Local_Project__r.IPM_Target_Launch_Dates__c.format();
+                    localProjectTLDYear = rolloutList[0].Local_Project__r.IPM_Target_Launch_Dates__c.year();
+                    
+                    localProjectRolloutTLD = rolloutList[0].Target_Launch_Date__c.format();
+                    localProjectRolloutTLDYear = rolloutList[0].Target_Launch_Date__c.year(); 
+                    
+                    localProjectName = rolloutList[0].Local_Project__r.name;
+                }
+            }
             // check for the misalignment
             if(localProjectTLD!= IPM_ConstantUtils.BLANK && localProjectTLD!=localProjectRolloutTLD)
             {
@@ -2893,7 +2789,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //check for the operational type project to check for the misalignment.                              
             checkOperationPrjMisAlignment();
         } 
-    }   
 	/************************************************************************************************************** 
     * This method check operation project misalignment 
     * @parmas
