@@ -232,6 +232,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>num_Number_of_VMS__c</fullName>
+        <description>For Microsoft record type</description>
+        <externalId>false</externalId>
+        <label>Number of VMS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>num_Number_of_Virtual_Cores__c</fullName>
         <description>For Microsoft record type</description>
         <externalId>false</externalId>
@@ -302,6 +315,27 @@
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Instance_Type__c</fullName>
+        <description>For IBM record type</description>
+        <externalId>false</externalId>
+        <label>Instance Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Virtual</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -515,9 +549,31 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>pkl_System_Type_Existing__c</fullName>
+        <fullName>pkl_SID_Details_SAP__c</fullName>
+        <description>For SAP</description>
         <externalId>false</externalId>
-        <label>System Type (Existing)</label>
+        <label>SID Details</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_System_Type_Existing__c</fullName>
+        <description>SAP - Earlier, its label was  &apos;System Type (Existing)&apos;</description>
+        <externalId>false</externalId>
+        <label>System Type</label>
         <picklist>
             <picklistValues>
                 <fullName>ABAP</fullName>
@@ -837,6 +893,7 @@
     </fields>
     <fields>
         <fullName>txt_Physical_Machine_Name__c</fullName>
+        <description>IBM-If Instance Type is Virtual then &apos;Physical Server Name&apos; is Mandatory</description>
         <externalId>false</externalId>
         <inlineHelpText>Enter the Physical machine hostname which is deployed</inlineHelpText>
         <label>Physical Machine Name</label>
@@ -962,6 +1019,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_System_Type_Others_SAP__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Mandatory, if System Type is selected as Others.</inlineHelpText>
+        <label>System Type : Others</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Tuning__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Brief if Tuning pack is required</inlineHelpText>
@@ -1026,6 +1095,17 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1177,6 +1257,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1277,6 +1368,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_New_SID__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1424,6 +1526,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1523,6 +1636,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_New_SID__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1670,6 +1794,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1770,6 +1905,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_New_SID__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1921,6 +2067,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2020,6 +2177,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_New_SID__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2167,6 +2335,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2267,6 +2446,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_New_SID__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2418,6 +2608,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2517,249 +2718,13 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>pkl_New_SID__c</picklist>
+            <picklist>pkl_Instance_Type__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Physical</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Physical_Server__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Physical_Virtual_Server__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Physical_instance__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Request_Status__c</picklist>
-            <values>
-                <fullName>Answer Accepted</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Charge</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Awaiting Information</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CC details provided %28By ULEMP%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Completed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Charging Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Closed</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Pending</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Details Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Draft Quote Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>In Progress</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Information Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Need More Info</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>On Hold</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Open</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Query Answered</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Quote Approved</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Quote Provided</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Quote Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Resume</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Saved</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_System_Type_Existing__c</picklist>
-            <values>
-                <fullName>ABAP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HANA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>JAVA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_System_Type_New__c</picklist>
-            <values>
-                <fullName>ABAP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HANA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>JAVA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Virtual_Server__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Virtual_instance__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Not sure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
-    <recordTypes>
-        <fullName>SAM_Other_Product_RW</fullName>
-        <active>true</active>
-        <description>Please select “Other Product” product details record type, if the product is other than rest options</description>
-        <label>Other Product</label>
-        <picklistValues>
-            <picklist>pkl_Existing_SID__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>pkl_Hyper_V_Farm__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
+                <fullName>Virtual</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2911,6 +2876,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3010,6 +2986,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_New_SID__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3157,6 +3144,17 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3257,6 +3255,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_New_SID__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3404,6 +3413,286 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_Existing__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_System_Type_New__c</picklist>
+            <values>
+                <fullName>ABAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HANA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JAVA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Virtual_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>SAM_XOther_Product_RW</fullName>
+        <active>true</active>
+        <description>Please select “Other Product” product details record type, if the product is other than rest options</description>
+        <label>Other Product</label>
+        <picklistValues>
+            <picklist>pkl_Existing_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Hyper_V_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Instance_Type__c</picklist>
+            <values>
+                <fullName>Physical</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Virtual</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_New_SID__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_Virtual_Server__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Physical_instance__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not sure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Request_Status__c</picklist>
+            <values>
+                <fullName>Answer Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting CC details %28Pending with ULSMT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Charge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Awaiting Information</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CC details provided %28By ULEMP%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Charging Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Details Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need More Info</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Query Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Provided</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Quote Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resume</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SID_Details_SAP__c</picklist>
+            <values>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3544,7 +3833,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
     </validationRules>
     <validationRules>
         <fullName>SAM_Existing_SID_Reverse_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Don&apos;t allow dependent field to enter data if  Existing SID is No.</description>
         <errorConditionFormula>AND( OR( ISPICKVAL( pkl_Existing_SID__c , &apos;No&apos;), ISPICKVAL(pkl_Existing_SID__c , &apos;&apos;) ) , OR( Not(ISBLANK( txt_SID_Name_Existing__c )),Not(ISBLANK(text( pkl_System_Type_Existing__c  ))),Not(ISBLANK( txt_Comment_Box_existing__c  ))) )</errorConditionFormula>
         <errorMessage>Existing SID dependent fields are mandatory only when Existing SID value is Yes</errorMessage>
@@ -3552,7 +3841,7 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
     <validationRules>
         <fullName>SAM_Hard_Partioning_Alpha_Data</fullName>
         <active>true</active>
-        <errorConditionFormula>AND(( NOT( ISBLANK( pkl_Hard_Partitioning__c ) ) ),(NOT( REGEX( pkl_Hard_Partitioning__c, &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorConditionFormula>AND(( NOT( ISBLANK(  pkl_Hard_Partitioning__c ) ) ),(NOT( REGEX( pkl_Hard_Partitioning__c, &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>pkl_Hard_Partitioning__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
@@ -3562,6 +3851,21 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Installation_Machine_Name__c ) ) ),(NOT( REGEX( txt_Installation_Machine_Name__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Installation_Machine_Name__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Instance_Type_PSN_IBM</fullName>
+        <active>true</active>
+        <description>IBM-If Instance type is selected as Virtual then &apos;Physical Server Name&apos; is Mandatory</description>
+        <errorConditionFormula>AND(ISPICKVAL(pkl_Instance_Type__c ,&apos;Virtual&apos;), ISBLANK( txt_Physical_Machine_Name__c))</errorConditionFormula>
+        <errorDisplayField>txt_Physical_Machine_Name__c</errorDisplayField>
+        <errorMessage>If Instance Type is Virtual then Physical Machine Name is mandatory.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Instance_Type_PSN_IBM_REV</fullName>
+        <active>true</active>
+        <description>Physical Machine Name is mandatory only if Instance Type is Virtual</description>
+        <errorConditionFormula>AND(OR( ISPICKVAL( pkl_Instance_Type__c , &apos;Physical&apos;),ISPICKVAL(pkl_Instance_Type__c , &apos;&apos;)), NOT(ISBLANK( txt_Physical_Machine_Name__c )))</errorConditionFormula>
+        <errorMessage>Physical Machine Name is mandatory only if Instance Type is Virtual</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Interfacing_Application_details_Alph</fullName>
@@ -3587,28 +3891,28 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
     </validationRules>
     <validationRules>
         <fullName>SAM_Location_Alpha</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Location__c ) ) ),(NOT( REGEX( txt_Location__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Location__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_New_Existing_SID_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Both New SID and Existing SID can not be Yes at the same time.</description>
         <errorConditionFormula>AND(  ISPICKVAL(pkl_New_SID__c , &apos;Yes&apos;), ISPICKVAL(pkl_Existing_SID__c , &apos;Yes&apos;))</errorConditionFormula>
         <errorMessage>You can not select New SID and Existing SID as Yes at the same time.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_New_SID_Reverse_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Don&apos;t allow dependent field to enter data if New SID is No.</description>
         <errorConditionFormula>AND(  OR( ISPICKVAL(pkl_New_SID__c, &apos;No&apos;), ISPICKVAL(pkl_New_SID__c, &apos;&apos;) ) , OR( Not(ISBLANK(txt_SID_Name_New__c)),Not(ISBLANK(text(pkl_System_Type_New__c ))),Not(ISBLANK(ltxt_Comments_Box_New__c ))) )</errorConditionFormula>
         <errorMessage>New SID dependent fields are mandatory only when New SID value is Yes</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_New_System_Existing_Alpha</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_New_System_Existing__c ) ) ),(NOT( REGEX( txt_New_System_Existing__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_New_System_Existing__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
@@ -3686,6 +3990,14 @@ TEXT(pkl_Request_Status__c)&lt;&gt; $Label.SAM_Awaiting_Information, ISCHANGED(N
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Number_of_VMS</fullName>
+        <active>true</active>
+        <description>For Microsoft</description>
+        <errorConditionFormula>num_Number_of_VMS__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>num_Number_of_VMS__c</errorDisplayField>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Partitioning_Alphanumeric_data</fullName>
         <active>true</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Partitioning__c ) ) ),(NOT( REGEX( txt_Partitioning__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
@@ -3748,7 +4060,7 @@ OR(ISBLANK( num_Number_of_Physical_Cores__c  ),ISBLANK(  num_Number_of_Physical_
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_Existing_Comments_Box_Reverse</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>You can not enter comments if System Type is other than Others.</description>
         <errorConditionFormula>AND(
 NOT(ISPICKVAL(pkl_System_Type_Existing__c ,&apos;Other&apos;)),
@@ -3759,7 +4071,7 @@ NOT(ISBLANK( txt_Comment_Box_existing__c ))
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_Existing_Comments_Box_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>For &quot;Other&quot; Existing SID System Type Comment is mandatory</description>
         <errorConditionFormula>AND(
   ISPICKVAL(pkl_System_Type_Existing__c ,&quot;Other&quot;),
@@ -3770,7 +4082,7 @@ NOT(ISBLANK( txt_Comment_Box_existing__c ))
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_Existing_System_Type_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>Existing SID System Type is mandatory if Existing SID is Yes</description>
         <errorConditionFormula>AND(
   ISPICKVAL(pkl_System_Type_Existing__c , &quot;&quot;),
@@ -3781,7 +4093,7 @@ NOT(ISBLANK( txt_Comment_Box_existing__c ))
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_Name_Existing_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>SID Name(Existing) is mandatory if Existing SID is Yes</description>
         <errorConditionFormula>AND(
  ISBLANK(  txt_SID_Name_Existing__c ) ,
@@ -3792,7 +4104,7 @@ NOT(ISBLANK( txt_Comment_Box_existing__c ))
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_Name_New_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>SID Name(New) is mandatory if New SID is Yes</description>
         <errorConditionFormula>AND(
  ISBLANK( txt_SID_Name_New__c ) ,
@@ -3803,7 +4115,7 @@ NOT(ISBLANK( txt_Comment_Box_existing__c ))
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_New_Comments_Box_Reverse</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>You can not enter comments if System Type is other than Others.</description>
         <errorConditionFormula>AND( 
 NOT(ISPICKVAL( pkl_System_Type_New__c ,&apos;Other&apos;)), 
@@ -3814,7 +4126,7 @@ NOT(ISBLANK(  ltxt_Comments_Box_New__c ))
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_New_Comments_Box_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>For &quot;Other&quot; New SID System Type Comment is mandatory</description>
         <errorConditionFormula>AND(
   ISPICKVAL( pkl_System_Type_New__c ,&quot;Other&quot;),
@@ -3825,7 +4137,7 @@ NOT(ISBLANK(  ltxt_Comments_Box_New__c ))
     </validationRules>
     <validationRules>
         <fullName>SAM_SID_New_System_Type_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>New SID System Type is mandatory if New SID is Yes</description>
         <errorConditionFormula>AND(
   ISPICKVAL( pkl_System_Type_New__c , &quot;&quot;),
@@ -3833,6 +4145,28 @@ NOT(ISBLANK(  ltxt_Comments_Box_New__c ))
 )</errorConditionFormula>
         <errorDisplayField>pkl_System_Type_New__c</errorDisplayField>
         <errorMessage>System Type is mandatory for New SID</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_System_Type_Others</fullName>
+        <active>true</active>
+        <description>If System type is &quot;Other&quot;, then this is mandatory</description>
+        <errorConditionFormula>AND(
+  ISPICKVAL( pkl_System_Type_Existing__c,&quot;Other&quot;),
+   ISBLANK(  txt_System_Type_Others_SAP__c) 
+)</errorConditionFormula>
+        <errorDisplayField>txt_System_Type_Others_SAP__c</errorDisplayField>
+        <errorMessage>This is mandatory if &apos;System Type&apos; is Other</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_System_Type_Others_Reverse</fullName>
+        <active>true</active>
+        <description>You can not enter data here if System Type is other than Other.</description>
+        <errorConditionFormula>AND(
+NOT(ISPICKVAL(pkl_System_Type_Existing__c,&apos;Other&apos;)),
+NOT(ISBLANK( txt_System_Type_Others_SAP__c)) 
+)</errorConditionFormula>
+        <errorDisplayField>txt_System_Type_Others_SAP__c</errorDisplayField>
+        <errorMessage>You can not enter data here if System Type is not Other.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Tuning_Alphanumeric_data</fullName>
@@ -3891,16 +4225,16 @@ OR(ISBLANK(  num_Number_of_Virtual_Cores__c ),ISBLANK(  num_Number_of_Virtual_Pr
     <validationRules>
         <fullName>SAM_reverse_validation_on_phy_ver_instan</fullName>
         <active>true</active>
-        <description>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vise versa.</description>
+        <description>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vice versa.</description>
         <errorConditionFormula>IF(ISPICKVAL(pkl_Physical_instance__c, &quot;Yes&quot;), ISPICKVAL(pkl_Virtual_instance__c, &quot;Yes&quot;), false)</errorConditionFormula>
-        <errorMessage>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vise versa.</errorMessage>
+        <errorMessage>If Physical Instance is selected as Yes, then Virtual Instance should not be Yes and vice versa.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_reverse_validation_on_phy_ver_server</fullName>
         <active>true</active>
         <description>If Physical Server is selected as Yes, then Virtual Server should not be Yes</description>
         <errorConditionFormula>IF(ISPICKVAL(pkl_Physical_Server__c, &quot;Yes&quot;), ISPICKVAL(pkl_Virtual_Server__c, &quot;Yes&quot;), false)</errorConditionFormula>
-        <errorMessage>If Physical Server is selected as Yes, then Virtual Server should not be Yes and vise versa.</errorMessage>
+        <errorMessage>If Physical Server is selected as Yes, then Virtual Server should not be Yes and vice versa.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Software_Name_Alphanumeric_Data</fullName>

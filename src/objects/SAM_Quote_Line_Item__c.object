@@ -83,9 +83,9 @@
         <description>Report field</description>
         <externalId>false</externalId>
         <label>Run Cost (€) (year +1)</label>
-        <precision>18</precision>
+        <precision>16</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -96,9 +96,9 @@
         <description>Report Field</description>
         <externalId>false</externalId>
         <label>Run Cost (€) (year +2)</label>
-        <precision>18</precision>
+        <precision>16</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -259,7 +259,7 @@
         <label>Spend In Euros</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -272,7 +272,7 @@
         <label>Total Annual Maint (€)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -316,7 +316,7 @@
         <label>License Cost (€)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -339,11 +339,11 @@
     <fields>
         <fullName>fml_Maintainence_Amount__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(  ISPICKVAL(pkl_Maintainence_Type__c, &apos;Amount&apos;)  ,  (IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_Maintainence_Cost__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_Maintainence_Cost__c/num_GBP_EUR__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),( num_Maintainence_Cost__c/num_USD_EUR__c ),(0))))) )) , num_Maintainence_Percentage__c*fml_License_Cost__c)</formula>
+        <formula>IF(  ISPICKVAL(pkl_Maintainence_Type__c, &apos;Amount&apos;)  ,  (IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_Maintainence_Cost__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_Maintainence_Cost__c/num_GBP_EUR__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),( num_Maintainence_Cost__c/num_USD_EUR__c ),(0))))) )) , num_Maintainence_Cost__c*fml_License_Cost__c)</formula>
         <label>Maintenance Cost (€)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -385,7 +385,7 @@ false )</formula>
         <label>Total CAPEX (€)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -444,10 +444,10 @@ false )</formula>
     <fields>
         <fullName>num_Maintainence_Cost__c</fullName>
         <externalId>false</externalId>
-        <label>Maintenance Cost</label>
-        <precision>18</precision>
+        <label>Maintenance Cost / (%)</label>
+        <precision>16</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -993,11 +993,11 @@ false )</formula>
         <label>Run cost picked up by</label>
         <picklist>
             <picklistValues>
-                <fullName>Yes</fullName>
+                <fullName>SAM</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>No</fullName>
+                <fullName>Others</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1005,12 +1005,12 @@ false )</formula>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Others</fullName>
+                <fullName>No</fullName>
                 <default>false</default>
                 <isActive>false</isActive>
             </picklistValues>
             <picklistValues>
-                <fullName>SAM</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
                 <isActive>false</isActive>
             </picklistValues>
@@ -1062,9 +1062,9 @@ false )</formula>
         <externalId>false</externalId>
         <inlineHelpText>Enter Run Cost in Euros</inlineHelpText>
         <label>Run Cost (€)</label>
-        <precision>18</precision>
+        <precision>16</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1625,15 +1625,15 @@ false )</formula>
         <picklistValues>
             <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAM</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Under Discussion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2150,15 +2150,15 @@ false )</formula>
         <picklistValues>
             <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAM</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Under Discussion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2675,15 +2675,15 @@ false )</formula>
         <picklistValues>
             <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAM</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Under Discussion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3199,15 +3199,15 @@ false )</formula>
         <picklistValues>
             <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAM</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Under Discussion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3723,15 +3723,15 @@ false )</formula>
         <picklistValues>
             <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAM</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Under Discussion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4247,15 +4247,15 @@ false )</formula>
         <picklistValues>
             <picklist>pkl_Whether_SAM_will_pick_up_Run_Cost__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SAM</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Under Discussion</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4284,6 +4284,13 @@ false )</formula>
  md_Request__r.txt_Request_Type__c  = &apos;SAM_RW_Non_Project_Request&apos;)</errorConditionFormula>
         <errorDisplayField>pkl_Charging_Type__c</errorDisplayField>
         <errorMessage>Cross Charge Applicable (X) charging type not applicable for Non-Project requests</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_DOPO_applicable</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(OR(ISPICKVAL(pkl_Charging_Type__c, &apos;DO/PO Applicable (O)&apos;),ISPICKVAL(pkl_Charging_Type__c, &apos;Innovation Purchased (I)&apos;),ISPICKVAL(pkl_Charging_Type__c, &apos;Engage with Procurement (P)&apos;)) ,md_Request__r.txt_Request_Type__c = &apos;SAM_RW_Project_Request&apos;, ISPICKVAL(pkl_DO_PO_Details_Applicable__c,&apos;No&apos;) )</errorConditionFormula>
+        <errorDisplayField>pkl_DO_PO_Details_Applicable__c</errorDisplayField>
+        <errorMessage>DO/PO details are Applicable on this charging type, Please select &quot;Yes&quot;.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_DO_Number_Alpha</fullName>
@@ -4340,30 +4347,33 @@ false )</formula>
     <validationRules>
         <fullName>SAM_Maintainence_Cost</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(AND(ISPICKVAL(Maintainence_Applicable__c , &apos;Yes&apos;), ISPICKVAL( pkl_Maintainence_Type__c , &apos;Amount&apos;), ISBLANK(   num_Maintainence_Cost__c )),true,false )</errorConditionFormula>
+        <errorConditionFormula>IF(AND(ISPICKVAL(Maintainence_Applicable__c , &apos;Yes&apos;),  ISBLANK(   num_Maintainence_Cost__c )),true,false )</errorConditionFormula>
         <errorDisplayField>num_Maintainence_Cost__c</errorDisplayField>
-        <errorMessage>Mandatory when maintenance amount is applicable.</errorMessage>
+        <errorMessage>Mandatory when maintenance is applicable.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Maintainence_Cost_reverse</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(AND(OR(AND(ISPICKVAL(Maintainence_Applicable__c , &apos;Yes&apos;), 
+        <description>IF(AND(OR(AND(ISPICKVAL(Maintainence_Applicable__c , &apos;Yes&apos;), 
 ISPICKVAL( pkl_Maintainence_Type__c , &apos;Percentage&apos;)),ISPICKVAL(Maintainence_Applicable__c , &apos;No&apos;)), 
+NOT(ISBLANK(num_Maintainence_Cost__c) )),
+true,false )</description>
+        <errorConditionFormula>IF(AND(ISPICKVAL(Maintainence_Applicable__c , &apos;No&apos;), 
 NOT(ISBLANK(num_Maintainence_Cost__c) )),
 true,false )</errorConditionFormula>
         <errorDisplayField>num_Maintainence_Cost__c</errorDisplayField>
-        <errorMessage>Value require only when maintenance amount is applicable.</errorMessage>
+        <errorMessage>Value require only when maintenance is applicable.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Maintainence_Percentage</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>IF(AND(ISPICKVAL(Maintainence_Applicable__c , &apos;Yes&apos;), ISPICKVAL( pkl_Maintainence_Type__c , &apos;Percentage&apos;), ISBLANK(  num_Maintainence_Percentage__c )),true,false )</errorConditionFormula>
         <errorDisplayField>num_Maintainence_Percentage__c</errorDisplayField>
         <errorMessage>Mandatory when maintenance percentage is applicable.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Maintainence_Percentage_reverse</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>IF(AND(OR(AND(ISPICKVAL(Maintainence_Applicable__c , &apos;Yes&apos;),
 ISPICKVAL( pkl_Maintainence_Type__c , &apos;Amount&apos;)),ISPICKVAL(Maintainence_Applicable__c , &apos;No&apos;)), 
 Not(ISBLANK( num_Maintainence_Percentage__c) )),
@@ -4394,10 +4404,17 @@ true,false )</errorConditionFormula>
     </validationRules>
     <validationRules>
         <fullName>SAM_Maintenance_Per_shd_be_positive</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>num_Maintainence_Percentage__c &lt;= 0</errorConditionFormula>
         <errorDisplayField>num_Maintainence_Percentage__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Positive numbers only</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Maintenance_percentage</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISPICKVAL(pkl_Maintainence_Type__c , &apos;Percentage&apos;), OR(num_Maintainence_Cost__c &gt;100,num_Maintainence_Cost__c&lt;1))</errorConditionFormula>
+        <errorDisplayField>num_Maintainence_Cost__c</errorDisplayField>
+        <errorMessage>Invalid Maintenance value.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Project_Maintenance_Alpha</fullName>
