@@ -173,9 +173,10 @@ public with sharing class ICB_ContactPartnerUserCreation
         System.debug('Entering <definePermissionSetting>');
 
         Map<Id, String> mapPermission = new Map<Id, String>();
-        List<PermissionSet> listPermission 	= [SELECT Id, Label 
+        /*List<PermissionSet> listPermission 	= [SELECT Id, Label 
                                               FROM PermissionSet 
-                                              WHERE Label IN: permissions];
+                                              WHERE Label IN: permissions];*/
+        Map<String,Id> mapLabelPermission = new Map<String, Id>();
         List<User> 			listUsuarios 	= [SELECT Id, 
                                                Contact.ICB_Type__c, 
                                                Contact.Name,
@@ -197,6 +198,7 @@ public with sharing class ICB_ContactPartnerUserCreation
                                        WHERE Label IN: permissions]) 
             {
                 mapPermission.put(psMap.id, psMap.Label);
+                mapLabelPermission.put(psMap.Label, psMap.Id);
             }
                         
             Set<Id> setIdUserPermission = new Set<Id>();
@@ -206,20 +208,17 @@ public with sharing class ICB_ContactPartnerUserCreation
             {
                 setIdUserPermission.add(vPs.AssigneeId);                
             }
-            
-            
             for(User myUsers : listUsuarios) 
             {
                 if(!setIdUserPermission.contains(myUsers.Id))  {
-                    
                     if (myUsers.Contact.ICB_Type__c == types.get(0)) 
                     {                
-                        psa.add(new PermissionSetAssignment(PermissionSetId = listPermission.get(0).Id, AssigneeId = myUsers.Id));
+                        psa.add(new PermissionSetAssignment(PermissionSetId = mapLabelPermission.get(permissions.get(0)), AssigneeId = myUsers.Id));
                         
                     } 
                     else if (myUsers.Contact.ICB_Type__c == types.get(1)) 
                     {
-                        psa.add(new PermissionSetAssignment(PermissionSetId = listPermission.get(1).Id, AssigneeId = myUsers.Id));
+                        psa.add(new PermissionSetAssignment(PermissionSetId = mapLabelPermission.get(permissions.get(1)), AssigneeId = myUsers.Id));
                     }
                 }
             }
