@@ -95,8 +95,6 @@ private class IPM_OTIF_Report_Batch_Test {
             
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                //localRollout.KeyMCO__c = true;
-               // localRollout.IPM_Regional_PL__c = localProjectLeader.Id;
                 localRollout.Target_Launch_Date__c = System.today().addMonths(10); //To cover 2523 line
                 localRollout.Previous_Target_Launch_Date__c = System.today().addMonths(9); //To cover 2523 line
                 setIds.add(localRollout.id);
@@ -104,11 +102,9 @@ private class IPM_OTIF_Report_Batch_Test {
 
             insert localRolloutList; 
 
-            System.debug('getQueries3>>'+Limits.getQueries());
             system.assert(localRolloutList.size()>0, 'project rollout map cannot be created');
          
-            //   public static List<IPM_Project_Rollout__c> createLocalRolloutsList(Boolean doInsert,Map<Id,List<IPM_Project_Rollout__c>> projectToRegionalRolloutMap,List<User> projectLeaders)
-           
+      
            // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
             
@@ -152,7 +148,6 @@ private class IPM_OTIF_Report_Batch_Test {
         
         IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, false);
         reportParameter.IPM_Start_Year__c = startYear;
-        reportParameter.IPM_FinancialScope__c = 'Global';
         insert reportParameter;
         
         String strCSName = BLANK_STR;
@@ -162,7 +157,6 @@ private class IPM_OTIF_Report_Batch_Test {
                 strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
                 IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
                 reportCS.IPM_Start_Year__c = startYear;
-                reportCS.IPM_FinancialScope__c = 'Global';
                 reportCSList.add(reportCS);
             }   
         }
@@ -282,7 +276,6 @@ private class IPM_OTIF_Report_Batch_Test {
         
         IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, false);
         reportParameter.IPM_Start_Year__c = startYear;
-        reportParameter.IPM_FinancialScope__c = 'Regional';
         insert reportParameter;
         
         String strCSName = BLANK_STR;
@@ -292,7 +285,6 @@ private class IPM_OTIF_Report_Batch_Test {
                 strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
                 IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
                 reportCS.IPM_Start_Year__c = startYear;
-                reportCS.IPM_FinancialScope__c = 'Regional';
                 reportCSList.add(reportCS);
             }   
         }
@@ -548,7 +540,6 @@ private class IPM_OTIF_Report_Batch_Test {
             for(IPM_Project__c project : allCreatedProjectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
-                project.IPM_ProjectGKM__c = 'GKM2';
                 projectList.add(project);
             }  
             
@@ -582,7 +573,7 @@ private class IPM_OTIF_Report_Batch_Test {
              update lpList;
          }
      
-      
+     
      /*
      *Description: Prepare Project Document sections and contents
      *
@@ -779,7 +770,5 @@ private class IPM_OTIF_Report_Batch_Test {
     
     		  	    		 
     } 
-	
-	
             
 }

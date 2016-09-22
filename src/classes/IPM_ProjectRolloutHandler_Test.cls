@@ -635,11 +635,6 @@ private class IPM_ProjectRolloutHandler_Test
             }
             
             update localOldRollout;
-            
-                        
-            List<IPM_EmailOut_Notification__c> listEmailNot = [SELECT Id FROM IPM_EmailOut_Notification__c LIMIT 5000];
-            System.assertNotEquals(null, listEmailNot);
-            System.assert(listEmailNot.size() > 0 );
             Test.stopTest();
         }
         
@@ -985,6 +980,8 @@ private class IPM_ProjectRolloutHandler_Test
                 
                 delete deleteLocalRolloutList;
                 
+                Test.stopTest();
+                
                 size = deleteLocalRolloutList.size();
                 list<IPM_Project_Rollout__c> deleteRegionalRolloutList =  [Select id,Name, IPM_Rollout_Project__c ,RecordTypeId,Market_cluster__c,Target_Launch_Date__c,IPM_Rollout_Span__c,
                 Market_Cluster_Name__c,IPM_Regional_PL_Text__c,IPM_Regional_PL__c,IPM_Project__c  FROM IPM_Project_Rollout__c where id in :regionalRolloutId];
@@ -994,7 +991,7 @@ private class IPM_ProjectRolloutHandler_Test
             {  
                  System.assertEquals(0,size,'DML not excuted successfully');
             }
-            Test.stopTest();
+            
         }
     }
     /**************************************************************
