@@ -22,9 +22,18 @@
     .noteclaim label {font-weight:normal; padding:5px 0px;}
     .globalclaim {font-weight: bold;border-bottom: 2px solid #ddd;}
 </style>
-
+<script>
+function deletionHandling(projectClaimId)
+{
+    jq('#removeClaim .deleteclaimbtn').on("click",function(){deleteClaim(projectClaimId);});
+	jq("#ipmDeleteModal").modal('hide');
+}
+</script>
     <apex:attribute name="projId" description="Getting Project Id" type="Id" assignTo="{!projectId}"/>
     <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay" />
+    <apex:actionFunction name="deleteClaim" action="{!deleteClaim}" reRender="ProjectClaimTableId" status="Loading">
+       <apex:param name="projClaimId" assignTo="{!projClaimId}" value="" />
+    </apex:actionFunction>
     <apex:outputPanel rendered="{!NOT(showCountryClaim)}"> 
 	    <apex:actionFunction name="autoSave" action="{!autoSave}" reRender="ProjectClaimTableId" status="Loading" />		
 	    <div class="gatepdlContainer">
@@ -56,9 +65,9 @@
 	                        </td>
 	                        
 	                        <td class="fintlewhitebg" width="10px">
-	                            <div class="SecButtonSet deleteClaim pull-left" data-target="#removeClaim" data-toggle="modal" data-keyboard="false" data-backdrop="static">
-	                                <a class="icoButton delete02"></a>    
-	                            </div>
+                                <div class="SecButtonSet deleteClaim pull-left" data-target="#removeClaim" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                    <a class="icoButton delete02" onclick="deletionHandling('{!projectClaim.id}');"></a>    
+                                </div>
 	                        </td>  
 	                    </tr>
 	                    </apex:repeat>
@@ -97,7 +106,7 @@
 	                            <div class="clickClaimDrpdown ipmDropDown dropdown">
 	                                <apex:outputPanel layout="block" html-data-toggle="dropdown" styleClass="selectClaim" >
 	                                    <div class="ipmDropDownSelect">
-	                                        <span class='claimName'>Select Claim</span>
+                                            <span class='claimName'>{!mcoName.countryToSelectedClaims[countryName]}</span>
 	                                        <a class="listArrow"></a>    
 	                                    </div>
 	                                </apex:outputPanel>
@@ -106,7 +115,7 @@
 	                                        <apex:repeat value="{!mcoName.countryLevelMapWp[countryName]}" var="countryWrap">
 	                                            <li>
 	                                                <div class="col-xs-1 pdlCheckbox">
-	                                                    <apex:inputCheckbox value="{!countryWrap.selected}" id="test1" /> 
+	                                                    <apex:inputCheckbox value="{!countryWrap.selected}" id="test1" rendered="{!(countryWrap.countryLvlClaim.IPM_Claim__c <> '')}"/> 
 	                                                    <label for="test1"></label>
 	                                                </div>
 	                                                <div class="col-xs-10">{!countryWrap.countryLvlClaim.IPM_Claim__c}</div>
@@ -140,18 +149,18 @@
 	            <div class="modal-content">
 	                <div class="modal-header">
 	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                    <div class="modal-title">Confirm Global Claim Removal</div>
-	                </div>
-	                <div class="modal-body">
-	                    <div class="removeClaimpopup">
-	                        <div class="removeClaimText">Deleting this Global Claim will remove the claim from all countries to which it has been added.</div>
-	                        <div class="removeClaimButtonContainer pull-right">  
-	                            <div class="pull-left buttonMarginRight noPadright">
-	                                <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.IPM_CANCEL}"/>
-	                            </div>
-	                            <div class="buttonMarginRight noPadright pull-left" >
-	                                <input type="button" class="ipmButton primary" value="Delete Global Claim" data-dismiss="modal"/>
-	                            </div>
+                        <div class="modal-title">{!$Label.IPM_GlobalClaimRemoval}</div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="removeClaimpopup">
+                            <div class="removeClaimText">{!$Label.IPM_ClaimDeletionAlertMessage}</div>
+                            <div class="removeClaimButtonContainer pull-right">  
+                                <div class="pull-left buttonMarginRight noPadright">
+                                    <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.IPM_CANCEL}"/>
+                                </div>
+                                <div class="buttonMarginRight noPadright pull-left" >
+                                    <input type="button" class="ipmButton primary deleteclaimbtn" value="{!$Label.IPM_DeleteClaimButtonText}" data-dismiss="modal"/>
+                                </div>
 	                        </div>
 	                    </div>        
 	                </div>
@@ -237,6 +246,8 @@
      jq(document).on('click', '.claimList input[type="checkbox"], .claimList ul li', function(e) {
         e.stopPropagation();
     });
+     jq(document).on('show.bs.dropdown', '.clickClaimDrpdown', function(){
+         jq(".claimList").hide(); 
         jq(this).find('.claimList').show(); 
     });
     jq(document).click(function(e) {

@@ -7,7 +7,7 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	public List<RolloutLevelWrapper> rolloutLvlWrapper{get;set;}
 	public List<IPM_Project_Claim__c> projectClaimList{get; set;}
 	public List<IPM_Country__c> countrylist{get; set;}
-	public Map<String,List<String>> localCntrytoClaimMap{get; set;} //Map to keep the local rollout country claim
+	public Map<String,List<String>> localCntrytoClaimMap{get; set;} 
 	public List<IPM_Country_Level_Claim__c> contryLevelClaimList{get; set;}
 	public Boolean showCountryClaim{get;set;}
 	public String projClaimId{get;Set;}
@@ -31,8 +31,7 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 			showCountryClaim = true;
 		}
                         
-        localRolloutList = [Select id, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT and KeyMCO__c = true];
-		
+        localRolloutList = [Select id, MCO_Name__c, KeyMCO__c, (Select id,Country_Name__c From IPM_Countries_Local__r Order by Local_Rollout__r.MCO__c) From IPM_Project_Rollout__c Where (IPM_Project__c =: projectId OR Local_Project__c =: projectId) and RecordType.Name =: IPM_ConstantUtils.LOCAL_ROLLOUT_RT];
 		for(IPM_Project_Rollout__c localRollout : localRolloutList)
 		{
 			if(showCountryClaim || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
@@ -47,10 +46,12 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	public class RolloutLevelWrapper{
 		public IPM_Project_Rollout__c localRolloutWp{get;set;}
 		public List<IPM_Country__c>	countryListWp{get;set;}
+		public Map<Id,String> countryToSelectedClaims{get;set;}
 		public Map<Id,List<CountryClaimsWrapper>> countryLevelMapWp{get;set;}
 		public RolloutLevelWrapper(){
 			localRolloutWp = new IPM_Project_Rollout__c();
 			countryListWp = new List<IPM_Country__c>();
+			countryToSelectedClaims = new Map<Id,String>();
 			countryLevelMapWp = new Map<Id,List<CountryClaimsWrapper>>();
 		} 
 	}
@@ -93,13 +94,21 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 		        	uniqueKeyToCountryClaimsMap.put(uniqueKey,countryClaim);
 	        	}
 	        }
-	        
-	        for(IPM_Project_Rollout__c rollout : localRolloutList)
+		}
+	    else
+		{
+      		projectClaimList.add(new IPM_Project_Claim__c(IPM_Project__c = projectId));
+    	} 
+        for(IPM_Project_Rollout__c rollout : localRolloutList)
+        {
+        	if((rollout.KeyMCO__c && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
 	        {
 	        	RolloutLevelWrapper rolloutLevelWp = new RolloutLevelWrapper();
 	        	rolloutLevelWp.localRolloutWp = rollout;
 	        	for(IPM_Country__c cntryEle : rollout.IPM_Countries_Local__r)
 	        	{
+	        		String selectedClaimString = IPM_ConstantUtils.SELECT_CLAIM;
+	        		List<String> selectedClaimList = new List<String>();
 	        		rolloutLevelWp.countryListWp.add(cntryEle);
 	        		for(IPM_Project_Claim__c projClm : projectClaimList)
 	        		{
@@ -110,7 +119,8 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	        			if(uniqueKeyToCountryClaimsMap.containsKey(uniqueKey))
 	        			{
 	        				IPM_Country_Level_Claim__c DBCountryLevelClaimObj = uniqueKeyToCountryClaimsMap.get(uniqueKey);
-	        				cntyLvl = new CountryClaimsWrapper(DBCountryLevelClaimObj,true);	
+	        				cntyLvl = new CountryClaimsWrapper(DBCountryLevelClaimObj,true);
+	        				selectedClaimList.add(DBCountryLevelClaimObj.IPM_Claim__c);	
 	        			}
 	        			else
 	        			{
@@ -125,15 +135,16 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 						{
 							rolloutLevelWp.countryLevelMapWp.put(cntryEle.id,new List<CountryClaimsWrapper>{cntyLvl});
 						}	
-	        		}	
+	        		}
+	        		if(!selectedClaimList.isEmpty())
+	        		{ 
+	        			selectedClaimString = String.join(selectedClaimList,IPM_ConstantUtils.SEMICOLONCLAIMSSEPERATION);
+	        		}
+					rolloutLevelWp.countryToSelectedClaims.put(cntryEle.Id,selectedClaimString);	
 	        	}
 	        	rolloutLvlWrapper.add(rolloutLevelWp);
 	        }
-		}	
-		else
-		{
-      		projectClaimList.add(new IPM_Project_Claim__c(IPM_Project__c = projectId));
-    	} 	
+        }	
 	}
 	
 	
@@ -247,7 +258,6 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	
 	public PageReference deleteClaim()
 	{
-		System.debug('deleteClaimdeleteClaimdeleteClaimdeleteClaim'+projClaimId);
 		if(projClaimId != null)
 		{
 			IPM_Project_Claim__c projClaim = new IPM_Project_Claim__c(id=projClaimId);

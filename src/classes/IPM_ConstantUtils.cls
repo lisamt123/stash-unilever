@@ -812,6 +812,7 @@ public class IPM_ConstantUtils {
      public static final String DELETECOUNTRY_STR='deleteSelectedCountry';
      public static final String ADDCONCEPT_STR='addConcept';
      public static final String SEMICOLON=';';
+     public static final String SEMICOLONCLAIMSSEPERATION ='; ';
      public static final String CARRY_TO_CONTRACT_STR='carrytoContract';
      public static final String CARRY_TO_MARKET_READY_STR='carrytoMarketReady';
      public static final String DELETE_IMAGE_STR='deleteImage';
@@ -1284,4 +1285,5 @@ public class IPM_ConstantUtils {
 	
 	public static final String PDL_FINACIAL_GLOBAL_CLAIMS = 'Final_Global_Claims';
     public static final String PDL_QUALITY_STANDARDS = 'Quality_Standards';
+	public static final String SELECT_CLAIM = 'Select Claim';
 }
