@@ -195,7 +195,9 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
              
              system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
              localRolloutFin.Local_Project__c=newProject.id;
+             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
              update localRolloutFin;
+             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
              IPM_Financial__c localRolloutFins = [SELECT id, Local_Project__c FROM IPM_Financial__c WHERE id=:localRolloutFin.id];
              system.assertEquals(localRolloutFins.Local_Project__c,newProject.id, 'Finance record for Local rollout project is not UPDATED.');
             

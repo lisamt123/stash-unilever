@@ -148,6 +148,7 @@ private class IPM_OTIF_Report_Batch_Test {
         
         IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, false);
         reportParameter.IPM_Start_Year__c = startYear;
+        reportParameter.IPM_FinancialScope__c = 'Global';
         insert reportParameter;
         
         String strCSName = BLANK_STR;
@@ -157,6 +158,7 @@ private class IPM_OTIF_Report_Batch_Test {
                 strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
                 IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
                 reportCS.IPM_Start_Year__c = startYear;
+                reportCS.IPM_FinancialScope__c = 'Global';
                 reportCSList.add(reportCS);
             }   
         }
@@ -276,6 +278,7 @@ private class IPM_OTIF_Report_Batch_Test {
         
         IPM_Reporting__c reportParameter = IPM_TestFactory_Helper.createIPMReportingCustomSetting(BD_BB_REPORT, false);
         reportParameter.IPM_Start_Year__c = startYear;
+        reportParameter.IPM_FinancialScope__c = 'Regional';
         insert reportParameter;
         
         String strCSName = BLANK_STR;
@@ -285,6 +288,7 @@ private class IPM_OTIF_Report_Batch_Test {
                 strCSName = 'GKM' + String.valueOf(i) + IPM_ConstantUtils.HYPHEN_DELIMITER + strPhase;
                 IPM_Reporting__c reportCS  = IPM_TestFactory_Helper.createIPMReportingCustomSetting(strCSName, false);
                 reportCS.IPM_Start_Year__c = startYear;
+                reportCS.IPM_FinancialScope__c = 'Regional';
                 reportCSList.add(reportCS);
             }   
         }
@@ -540,6 +544,7 @@ private class IPM_OTIF_Report_Batch_Test {
             for(IPM_Project__c project : allCreatedProjectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                project.IPM_ProjectGKM__c = 'GKM2';
                 projectList.add(project);
             }  
             

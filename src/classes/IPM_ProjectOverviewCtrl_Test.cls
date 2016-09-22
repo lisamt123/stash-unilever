@@ -615,7 +615,7 @@ private class IPM_ProjectOverviewCtrl_Test
         insert rProjectList;
         List<IPM_Project__c>projectLists=[SELECT id FROM IPM_Project__c LIMIT 20];
         System.assertEquals(20, projectLists.size(), REGIONAL_PROJECTS_NOT_CREATED);
-        
+        Test.startTest();
         //Create local project
         for(Integer i=0 ; i<20 ; i++ ){
             IPM_Project__c lProject = IPM_TestFactory_Helper.createIPMProject(false);
@@ -651,7 +651,7 @@ private class IPM_ProjectOverviewCtrl_Test
         System.assertEquals(1, [Select count() from IPM_Financial_Year__c where id =: testFinancialYear.id limit 100],FINANCIAL_YEAR_NOT_CREATED);
         
         
-        Test.startTest();
+        
         PageReference pRef1 = new PageReference(sPageRefURL+rProjectList[0].ID);
         Test.setCurrentPage(pRef1);
         

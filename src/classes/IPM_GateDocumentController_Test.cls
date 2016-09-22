@@ -486,8 +486,6 @@ private class IPM_GateDocumentController_Test{
         pRef = Page.IPM_GateDocAttchList;
         pRef.getParameters().put('id', project.Id);
         Test.setCurrentPage(pRef);
-        docCtrl = new IPM_PDocAttachmentListCtrl(sc); 
-        System.assert(docCtrl.documentList.size() > 0,'Attachment Doesnt Exists!!');
         Test.startTest();
         List<Attachment> lstAttachment = [Select Id,Name from attachment where Name like :IPM_ConstantUtils.GD_ATTACHMENT_SUFFIX limit 1];
         System.assertEquals(lstAttachment.size(),1,'Attachment missing for Gate doc.');// Negative Test
