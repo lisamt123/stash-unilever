@@ -106,17 +106,7 @@ public with sharing Class IPM_CMIGateSectionController{
                             FROM IPM_Project_Document_Section_Content__c 
                             WHERE IPM_CMI_Country_isNull__c = :IPM_ConstantUtils.IPM_false AND IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument AND IPM_Project_Document_Section__c=:projDocSecId LIMIT 1000];
             }       
-            for(IPM_Gate_CMI__c cmi:gateCMIList){
-                 count=1;   
-                 for(IPM_Project_Document_Section_Content__c con:secConList){
-                    if(cmi.Id==con.IPM_Gate_CMI__c){
-                        displayCon.put(cmi.Test__c+con.IPM_CMI_Country__c,con);
-                        countryNames.add(cmi.Test__c+con.IPM_CMI_Country__c);
-                        ++count;
-                    }
-                }
-                contentCount.put(cmi.Id,count);
-            }
+            
             String query='SELECT Id,Country_Name__c,Country_Code__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
             string projectId=string.escapeSingleQuotes(project.Id);//exception of unused local varaibale of Sonar. Used in below query
             if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
@@ -136,6 +126,19 @@ public with sharing Class IPM_CMIGateSectionController{
                 for(IPM_Country__c c:countryList){
                     mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
                 }
+            }
+            // Moved the code block down to generate country name  based on the available countries
+            for(IPM_Gate_CMI__c cmi:gateCMIList){
+                 count=1;   
+                 for(IPM_Project_Document_Section_Content__c con:secConList){
+                    if(cmi.Id==con.IPM_Gate_CMI__c && mapCountryNameWithCode.containskey(con.IPM_CMI_Country__c) ){
+                    	    displayCon.put(cmi.Test__c+con.IPM_CMI_Country__c,con);
+	                        countryNames.add(cmi.Test__c+con.IPM_CMI_Country__c);
+	                        ++count;
+                    
+                    }
+                }
+                contentCount.put(cmi.Id,count);
             }
         }
         catch(Exception ex){
