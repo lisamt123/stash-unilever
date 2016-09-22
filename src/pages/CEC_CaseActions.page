@@ -30,7 +30,7 @@
                     <apex:pageBlockTable value="{!CaseActionList}" var="res" frame="none" rules="none">
                         <apex:column width="20%" colspan="2" headervalue="{!$Label.CEC_SurveyName}">{!res.Survey_Name__c}</apex:column>
                         <apex:column width="20%" colspan="2" headerValue="{!$Label.CEC_SurveyLink}">
-                           <apex:outputLink onclick="return popitup('{!JSENCODE($Setup.cec_Org_Settings__c.Survey_URL__c + res.Survey_Id__c + '&q1=' + res.Case_Id__c  +res.Q2_Data__c + res.Q3_Data__c + res.Q4_Data__c + res.Q5_Data__c + res.Q6_Data__c + res.Q7_Data__c + res.Q8_Data__c + res.Q9_Data__c  + res.Q10_Data__c  + res.Q11_Data__c + res.Q12_Data__c)}')">
+                           <apex:outputLink onclick="return popitup('{!JSENCODE($Setup.cec_Org_Settings__c.Survey_URL__c + res.Survey_Id__c + '&q1=' + res.Case_Id__c  +'&q2=' + URLENCODE(res.Q2_Data__c) + '&q3=' + URLENCODE(res.Q3_Data__c) + '&q4=' + URLENCODE(res.Q4_Data__c) + '&q5=' + URLENCODE(res.Q5_Data__c) + '&q6=' + URLENCODE(res.Q6_Data__c) + '&q7=' +URLENCODE(res.Q7_Data__c) + '&q8=' + URLENCODE(res.Q8_Data__c) + '&q9=' + URLENCODE(res.Q9_Data__c)  + '&q10=' + URLENCODE(res.Q10_Data__c)  + '&q11=' + URLENCODE(res.Q11_Data__c) + '&q12=' + URLENCODE(res.Q12_Data__c))}')">
                                 {!$Label.CEC_ClickHere}
                             </apex:outputLink>
                         </apex:column>

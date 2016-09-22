@@ -1,0 +1,120 @@
+<aura:component controller="MB_Controller_Charts" implements="force:appHostable">
+        <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system.min.css" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system-ltng.min.css" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
+    <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+   
+    <ltng:require styles="/resource/MB_Charts/slick/slick.css,/resource/MB_Charts/slick/slick-theme.css"  
+                  scripts="/resource/MB_Charts/d3.min.js,/resource/MB_Charts/jquery-1.11.1.min.js,
+                             /resource/MB_Charts/slick/slick.min.js,/resource/MB_Charts/d3pie.js"  afterScriptsLoaded="{!c.doinit}"/>
+    
+    <style>
+        body{
+            background:#D1D1D1; 
+        }
+        a.canvasjs-chart-credit,.canvasjs-chart-tooltip>div {
+           display: none;
+        }
+        .canvasjs-chart-container,.canvasjs-chart-tooltip{
+           position: initial !important;
+        } 
+         .main_carousel {
+            border-radius: 5px;
+        }	
+        .slick-dots {
+        
+        bottom: -25px !important;
+        }
+        .legend {                                                   
+        font-size: 12px;                                          
+      }                                                           
+      rect {                                                      
+        stroke-width: 2;                                          
+      }  
+      svg {
+        position: absolute;
+        top: 51px;
+     }
+    </style>
+    <aura:attribute name="UsageType" type="String"/>
+    <aura:attribute name="iPassYou" type="Decimal"></aura:attribute>
+    <aura:attribute name="iPassColleagues" type="Decimal"></aura:attribute>
+    <aura:attribute name="showspinner" type="boolean" default="true"/>
+    <aura:attribute name="deviceName" type="String"/>
+    <aura:attribute name="CurrentMonth" type="String"/>
+    <aura:attribute name="deviceId" type="String"/>
+    <aura:attribute name="result" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
+    <aura:attribute name="Avgresult" type="MB_Wrapper_Class.MB_Device_Wrapper_Class"/>
+    <aura:if isTrue="{!v.showspinner=='false'}">
+    <div>
+        <img class="back-button" src="/resource/Lightning_designing_style/assets/icons/utility/back_60.png" onclick="{!c.gotoDevices}"></img>
+        <div class="sectiona_a">
+            <div class="slds-text-heading--small head_c-1">iPass</div>
+            <div class="head_d-1">
+                <div>
+                    <div><img class="icon-styles-1" src="/resource/MB_Icons/MB_Icons/chart_60.png" /></div>
+                    <div onclick="{!c.gotoDetailesText}"><img class="icon-styles-2" src="/resource/MB_Icons/MB_Icons/list_60.png" /></div>
+                </div>
+            </div><div style="clear:both"></div>
+        </div>
+  <!-- code for pie charts -->
+        <div class="slds-text-heading--small usage">
+        Usage
+        </div>
+        <div class="main_carousel">
+            <div class="carousel">
+                
+                <div class="car_main">
+                    <div class="slds-text-body--small chart_main">iPass (MB)</div>
+                    <div class="slds-text-body--regular chart_sub">Domestic -vs- Roaming</div>
+                    <div class="chartstext">
+                        <div style="width:25%;float:left">
+                            <div id="pie4" class="sub_carousel"></div>
+                        </div>
+                        <div style="width:39%;float:right;padding: 1.2rem 0.5rem 0 2.3rem;text-align: left;">
+                            <span class="charttext" style="color:#0C8EFF;font-size:10px">DOMESTIC</span><br/><span style="color:#0C8EFF">{!v.result.totalDomesticIpassUsage}MB</span><br/><br/>
+                        	<span class="charttext" style="color:#4F6A92;font-size:10px">ROAMING</span><br/><span style="color:#4F6A92">{!v.result.totalInternationalIpassUsage}MB</span>
+                        </div>
+                    </div>
+                </div>              
+            </div>
+        </div>
+  <!-- code for column charts -->
+        <div class="slds-text-heading--small insights">
+        Insights
+        </div>
+        <div class="main_carousel">
+            <div class="carousel_column">
+ 
+                <div class="car_main">
+                    <div class="slds-text-body--small chart_main">iPass (MB)</div>
+                    <div class="slds-text-body--regular chart_sub">Roaming Data -vs- Roaming iPass</div>
+                   <div class="Insights">
+                        <div class="slds-text-body--regular">
+                            <div class="bar_data">
+                                <div  class="line_bars_ipass"></div>
+                                <div  class="line_bar_ipass"></div>
+                            </div>
+                            <div class="bar_text">
+                                <div Style="color:#0C8EFF"><span class="charttext" >Roaming Data</span><br/><span>{!v.Avgresult.totalIpassUsageIn}MB</span><br/><br/></div>
+                                <div Style="color:#F88962"><span class="charttext" >Roaming iPass</span><br/><span>{!v.Avgresult.totalAverageIpassUsageIn}MB</span></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>              
+            </div>
+        </div><br/> 
+        <c:MB_Action_bar componentName="MB_Devices" selectedMonth="{!v.CurrentMonth}"/>
+    </div>
+    <aura:set attribute="else">
+               <div class="slds-spinner_container">
+                  <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                     <div class="slds-spinner__dot-a"></div>
+                     <div class="slds-spinner__dot-b"></div>
+                 </div>
+               </div>
+         </aura:set>
+    </aura:if>	
+    
+</aura:component>

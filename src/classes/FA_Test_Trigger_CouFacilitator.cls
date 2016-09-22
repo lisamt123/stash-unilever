@@ -404,19 +404,15 @@ global class FA_Test_Trigger_CouFacilitator{
                   }
                }    
                
-            for( FA_Course__Share tFacilShare2 : [select ParentId,Id from FA_Course__Share])
-                                                               
+    for( FA_Course__Share tFacilShare2 : [select ParentId,Id from FA_Course__Share])                                                               
                                                                   
-               {            
-                  if (tFacilShare2.ParentId== ObjCoOcc.FA_Course__c)         
-                             {           
-                               flag2= True;  
-                             } 
-                             else
-                             {
-                               flag2=false;
-                             }
-   }                      
+    {  
+        if (tFacilShare2.ParentId == ObjCoOcc.FA_Course__c)         
+        {           
+            flag2= True;         
+        } 
+
+   } 
           test.stopTest(); 
           system.assertEquals(true,flag2);
  }

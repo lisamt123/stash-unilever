@@ -1,6 +1,6 @@
 <aura:component access="global" controller="ICB_CheckInCheckOut_CC" >
     <aura:attribute name="visit"  type="Event" />
-    <aura:attribute name="content"  type="ContentDocument" />
+    <aura:attribute name="golden"  type="ContentDocument" />
     <aura:attribute name="recordId"  type="String" />
     <aura:attribute name="idGolden"  type="String"/>
     <aura:attribute name="lat"  type="String" />

@@ -10,7 +10,7 @@ Class.
 ========================================================================
 History                                                            
 -------                                                            
-VERSION    AUTHOR            			 DATE            DETAIL                   
+VERSION    AUTHOR                        DATE            DETAIL                   
 1.0        Masood Ahmad Ansari           April-2016      INITIAL DEVELOPMENT   
 
 ***********************************************************************/
@@ -67,7 +67,7 @@ public class CEC_FufilmentProductInlineControllerTest {
     public static testMethod void testsaveList(){
          User u = CEC_TestDataFactory.getStandardCECTestUser();
         System.runAs(u) {
-        id caseId = [Select id From Case Limit 1].id;
+        //id caseId = [Select id From Case Limit 1].id;
         cec_Fulfilment__c fulfilment =[Select Id, Case__r.Country__r.Country__r.ISO_3166_1_Code__c,
                                        Case__r.CEC_Product__c, Case__r.CEC_Product__r.Name, isApproved__c
                                        FROM cec_Fulfilment__c LIMIT 1];
@@ -78,14 +78,14 @@ public class CEC_FufilmentProductInlineControllerTest {
         CEC_FufilmentProductInlineController controller = new CEC_FufilmentProductInlineController(stdController);
         
         controller.productId = productObj.id;
-        controller.productQuantity ='1';
+        controller.productQuantity =1;
         test.StartTest();
         
         controller.saveList(); 
         
         test.StopTest();
         CEC_Fulfilment_Product__c fulfilmentProduct = [Select id, Fulfilment_Id__c, Product_Quantity__c FROM CEC_Fulfilment_Product__c WHERE Product__c =: productObj.id LIMIT 1 ]; 
-    	system.assert(fulfilmentProduct != null);
+        system.assert(fulfilmentProduct != null);
         system.assertEquals(1,fulfilmentProduct.Product_Quantity__c);
         system.assertEquals(fulfilment.id, fulfilmentProduct.Fulfilment_Id__c);
     }

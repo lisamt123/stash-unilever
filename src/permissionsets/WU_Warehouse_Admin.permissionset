@@ -5,6 +5,11 @@
         <field>WU_Master_Warehouse__c.WU_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>User.WU_Permission_set_Check__c</field>
+        <readable>true</readable>
+</fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Approval_Status__c</field>
@@ -273,6 +278,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_WarehousePOC_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>WU_Master_Warehouse__c.WU_Warehouse_Secondary_POC_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>	
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>WU_Master_Warehouse__c.Submitted_by__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

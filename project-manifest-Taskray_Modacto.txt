@@ -2,14 +2,16 @@ src
 src/dashboards
 src/dashboards/TRDASHBOARDS__TaskRay/Strategy_Dashboard.dashboard
 src/flows
-src/flows/TASKRAY_Set_Color_by_Country-1.flow
-src/flows/TASKRAY_Set_Last_Use_Field-6.flow
+src/flows/TASKRAY_Set_Color_by_Country-2.flow
+src/flows/TASKRAY_Set_Last_Use_Field-7.flow
 src/globalPicklists
 src/globalPicklists/Country.globalPicklist
 src/objects
 src/objects/TASKRAY__Project_Task__c.object
 src/objects/TASKRAY__Project__c.object
 src/objects/User.object
+src/permissionsets
+src/permissionsets/TaskRayCustom.permissionset
 src/reportTypes
 src/reportTypes/Taskray_User_Usage.reportType
 src/reports
@@ -20,3 +22,5 @@ src/reports/TASKRAY__TaskRay_Reports/Strategy_task_status.report
 src/reports/TASKRAY__TaskRay_Reports/Task_Status_by_Owner.report
 src/reports/TASKRAY__TaskRay_Reports/Task_status_by_Pillar.report
 src/reports/TASKRAY__TaskRay_Reports/Task_status_by_project.report
+src/reports/TASKRAY__TaskRay_Reports/Taskray_Budget.report
+src/reports/TASKRAY__TaskRay_Reports/Taskray_Savings.report

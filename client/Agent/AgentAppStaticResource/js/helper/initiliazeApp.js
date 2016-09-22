@@ -1,0 +1,1 @@
+window.appVersion="",define(["require",function(require){require(["angular","routes/mainRoutes","module/AgentAppAngularConfig"],function(angular){console.log("Boot Strap Angular"),angular.bootstrap(document,["myApp"])})}]);

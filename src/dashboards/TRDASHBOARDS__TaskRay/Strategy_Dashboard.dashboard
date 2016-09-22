@@ -59,21 +59,6 @@
     </dashboardFilters>
     <dashboardFilters>
         <dashboardFilterOptions>
-            <operator>between</operator>
-            <values>1/1/2016</values>
-            <values>12/31/2016</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>between</operator>
-            <values>1/1/2017</values>
-            <values>12/31/2017</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>between</operator>
-            <values>1/1/2018</values>
-            <values>12/31/2018</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
             <operator>equals</operator>
             <values>LAST_QUARTER</values>
         </dashboardFilterOptions>
@@ -96,26 +81,6 @@
         <dashboardFilterOptions>
             <operator>equals</operator>
             <values>NEXT_YEAR</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>between</operator>
-            <values>1/1/2016</values>
-            <values>3/31/2016</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>between</operator>
-            <values>1/4/2016</values>
-            <values>6/30/2016</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>between</operator>
-            <values>7/1/2016</values>
-            <values>9/30/2016</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>between</operator>
-            <values>10/1/2016</values>
-            <values>12/31/2016</values>
         </dashboardFilterOptions>
         <name>Time Period</name>
     </dashboardFilters>

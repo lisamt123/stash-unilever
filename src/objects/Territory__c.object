@@ -71,7 +71,7 @@
         <description>Territory ID.</description>
         <externalId>true</externalId>
         <label>Territory ID</label>
-        <length>4</length>
+        <length>6</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

@@ -1,0 +1,15 @@
+src
+src/permissionsets
+src/permissionsets/Oblix_SWOP_Readonly_User_V1.permissionset
+src/permissionsets/Oblix_SWOP_Readonly_User.permissionset
+src/permissionsets/Oblix_SWOP_Super_User_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL_1_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL_2_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL3_4_Agency.permissionset
+src/permissionsets/Oblix_SWOP_UL3_4_V1.permissionset
+src/permissionsets/Oblix_SWOP_AG_1_Agency.permissionset
+src/permissionsets/Oblix_SWOP_Agency_Global_User.permissionset
+src/permissionsets/Oblix_SWOP_Agency_Super_User.permissionset
+src/permissionsets/Oblix_SWOP_Global_User_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL_1_Agency.permissionset
+src/permissionsets/Oblix_SWOP_UL_2_Agency.permissionset

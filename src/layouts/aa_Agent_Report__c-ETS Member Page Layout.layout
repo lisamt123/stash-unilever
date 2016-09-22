@@ -35,6 +35,7 @@
         <rightComponents>
             <componentType>CustomButtons</componentType>
         </rightComponents>
+        <useInlineFiltersInConsole>false</useInlineFiltersInConsole>
     </feedLayout>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -68,11 +69,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Retailer__c</field>
+                <field>OtherBrandName__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Approve_Reject__c</field>
+                <field>OtherCompanyName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Retailer__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -85,11 +90,11 @@
                 <field>Sub_Topics__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Cluster_Name__c</field>
+                <behavior>Edit</behavior>
+                <field>ClusterId__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>Country__c</field>
             </layoutItems>
             <layoutItems>

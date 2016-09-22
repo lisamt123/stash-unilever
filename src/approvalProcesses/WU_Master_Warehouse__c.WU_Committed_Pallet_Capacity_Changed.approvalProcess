@@ -14,6 +14,7 @@
         <field>WU_Warehouse_Capacity__c</field>
         <field>WU_Total_Utilization__c</field>
         <field>WU_AverageUtilization__c</field>
+		<field>Submitted_by__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>true</allowDelegate>
@@ -54,6 +55,10 @@
     <initialSubmissionActions>
         <action>
             <name>Submitted</name>
+            <type>FieldUpdate</type>
+        </action>
+		<action>
+            <name>Field_Update_Submitted_By</name>
             <type>FieldUpdate</type>
         </action>
         <action>

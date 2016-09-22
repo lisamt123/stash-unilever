@@ -18,7 +18,7 @@ public with sharing class CEC_UserTriggerHelperTest{
 
     @testSetup static void setUpTestData() {
 
-        User u = CEC_TestDataFactory.createStandardCECTestUser();
+        CEC_TestDataFactory.createStandardCECTestUser();
     }
 
     // Test Method for updateLanguageSkillSet when language is less than 255 character

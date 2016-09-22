@@ -80,5 +80,10 @@ public with sharing class CEC_Constants {
     public static final String issuedDebitCardNumber = '82472182382234';
     public static final String newDebitCardNumber = '23847238497238';
     public static final String chequebookName = 'CB1';
+    public static final String USD = 'USD';
+    public static final String lastName = 'Test Account';
+    public static final String textileFactoryName = 'testTextileFactory';
+    public static final String productFactoryName = 'testProductFactory';
+    public static final String retrievalStatus = 'Retrieval Complete';
     
 }

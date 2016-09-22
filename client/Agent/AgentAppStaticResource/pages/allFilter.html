@@ -1,0 +1,44 @@
+<div class="container" ng-repeat ="report in displayData">
+	<form id="theForm" name ="report.myForm" enctype="multipart/form-data" ng-model="unileverForm">
+		<!-- CANCEL BUTTON -->
+		<div class="row" id="mainform">
+			<div class="col-xs-12 cancelButton">
+				<a class="btn btn-default" href="#">Cancel</a>
+			</div>
+		
+	
+	<!-- form element-->
+	<div class="col-xs-12 formElements">
+		
+			
+<p>
+			<label class="titleLabel">Country <i class="fa fa-star"></i></label>
+			<select class="form-control" name="country" ng-model="selectedcountry"  id="countrylist" ng-options="country as country.Name for country in Country">
+			
+			</select>
+    </p>
+
+	<p>
+			<label class="titleLabel">Town</i></label>
+			<input type='text' class="form-control" name="town" id="townList" ng-model="report.town" placeholder="Town" />
+		
+
+		</p>
+
+			
+				
+
+				
+	</div>
+	
+	
+	
+		<button class="btn btn-primary col-xs-12" ng-click="divShowHide()">
+					<b>Submit this Report</b>
+		</button>
+	</div>
+
+	</form>
+</div>
+
+ 
