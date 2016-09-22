@@ -5191,7 +5191,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         </filters>
         <label>All Operator Accounts</label>
         <language>en_US</language>
-    </listViews>
+
     </listViews>
     <listViews>
         <fullName>My_Distributor_Accounts</fullName>
