@@ -51,10 +51,10 @@
 		</apex:pageBlock>
 		<br/>
 		
-		<center>
-			<apex:commandButton action="{!saveAll}" value="Continue" rendered="{!!showError}"/>&nbsp;&nbsp;
-			<apex:commandButton action="{!back}" value="Back" />
-		</center>
+		
+			<apex:commandButton action="{!saveAll}" value="Continue" rendered="{!!showError}" style="display:block; margin-left:auto; margin-right:auto"/>&nbsp;&nbsp;
+			<apex:commandButton action="{!back}" value="Back" style="display:block; margin-left:auto; margin-right:auto"/>
+		
 		
 	</apex:form>
 	
