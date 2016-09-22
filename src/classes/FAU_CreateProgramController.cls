@@ -10,7 +10,7 @@ public with sharing class FAU_CreateProgramController {
 
     public PageReference ContinueProcess() {
         Recordtype oRecordtype;
-        Date dtStartDate = oFAUProgram.FAU_Start_Date__c;
+       // Date dtStartDate = oFAUProgram.FAU_Start_Date__c;
         String theId = ApexPages.currentPage().getParameters().get('id');
         
         system.debug('##### Entering continue1: ');

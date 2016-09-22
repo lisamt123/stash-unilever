@@ -18,8 +18,8 @@ private class FAU_EmailTemplateSenderContllerTest
       @isTest
     static void testSetupEmailSender()
     {
-    	
-    	FAU_Participant__c[] lParticipant =new FAU_Participant__c[]{}; 
+        
+        FAU_Participant__c[] lParticipant =new FAU_Participant__c[]{}; 
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
@@ -30,19 +30,19 @@ private class FAU_EmailTemplateSenderContllerTest
              = FAU_TestUtil.createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
 
         /*for(Integer i = 100; i >=0 ; i--) { 
-	        FAU_Participant__c anotherParticipantRecord = new FAU_Participant__c();
-	        anotherParticipantRecord.FAU_Invite_State__c = participantRecord.FAU_Invite_State__c;
-	        anotherParticipantRecord.FAU_Program_Wave__c = FAU_Program_Wave__c.Id;
-	        anotherParticipantRecord.FAU_User__c = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS).Id;
-	        lParticipant.add(anotherParticipantRecord);
-	    }*/
+            FAU_Participant__c anotherParticipantRecord = new FAU_Participant__c();
+            anotherParticipantRecord.FAU_Invite_State__c = participantRecord.FAU_Invite_State__c;
+            anotherParticipantRecord.FAU_Program_Wave__c = FAU_Program_Wave__c.Id;
+            anotherParticipantRecord.FAU_User__c = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS).Id;
+            lParticipant.add(anotherParticipantRecord);
+        }*/
 
-	    lParticipant.add(ParticipantRecord);
+        lParticipant.add(ParticipantRecord);
         
         PageReference pageReference = Page.FAU_EmailTemplateSender;
         Test.setCurrentPage(pageReference);
 
-		ApexPages.StandardSetController standardController = new ApexPages.StandardSetController(lParticipant); 
+        ApexPages.StandardSetController standardController = new ApexPages.StandardSetController(lParticipant); 
 
         FAU_EmailTemplateSenderController controller;
 
@@ -65,8 +65,8 @@ private class FAU_EmailTemplateSenderContllerTest
     @isTest
     static void testEmailSending()
     {
-    	
-    	FAU_Participant__c[] lParticipant =new FAU_Participant__c[]{}; 
+        
+        FAU_Participant__c[] lParticipant =new FAU_Participant__c[]{}; 
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
         Date startDateFixture = Date.newInstance(2015, 10, 25);
@@ -76,26 +76,26 @@ private class FAU_EmailTemplateSenderContllerTest
 
         Account a = new Account(Name = 'Test Account ');
         insert a;
-		Contact c = new Contact(firstname='Test',lastname='Test',AccountId=a.Id, email='test@test.com');
+        Contact c = new Contact(firstname='Test',lastname='Test',AccountId=a.Id, email='test@test.com');
         insert c;
 
         FAU_Participant__c participantRecord
              = FAU_TestUtil.createParticipantFixture(user, startDateFixture, locationFixture, inviteStateFixture);
 
         /*for(Integer i = 100; i >=0 ; i--) { 
-	        FAU_Participant__c anotherParticipantRecord = new FAU_Participant__c();
-	        anotherParticipantRecord.FAU_Invite_State__c = participantRecord.FAU_Invite_State__c;
-	        anotherParticipantRecord.FAU_Program_Wave__c = FAU_Program_Wave__c.Id;
-	        anotherParticipantRecord.FAU_User__c = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS).Id;
-	        lParticipant.add(anotherParticipantRecord);
-	    }*/
+            FAU_Participant__c anotherParticipantRecord = new FAU_Participant__c();
+            anotherParticipantRecord.FAU_Invite_State__c = participantRecord.FAU_Invite_State__c;
+            anotherParticipantRecord.FAU_Program_Wave__c = FAU_Program_Wave__c.Id;
+            anotherParticipantRecord.FAU_User__c = createUserWithProfile(PROFILE_PARTICIPANT_HOLDS).Id;
+            lParticipant.add(anotherParticipantRecord);
+        }*/
 
-	    lParticipant.add(ParticipantRecord);
+        lParticipant.add(ParticipantRecord);
         
         PageReference pageReference = Page.FAU_EmailTemplateSender;
         Test.setCurrentPage(pageReference);
 
-		ApexPages.StandardSetController standardController = new ApexPages.StandardSetController(lParticipant); 
+        ApexPages.StandardSetController standardController = new ApexPages.StandardSetController(lParticipant); 
 
         FAU_EmailTemplateSenderController controller = new FAU_EmailTemplateSenderController(standardController);
 
@@ -104,12 +104,12 @@ private class FAU_EmailTemplateSenderContllerTest
         Test.startTest(); 
 
         //System.runAs(user)
-        //{	
-        	List<SelectOption> temp = controller.getMyPersonalTemplateOptions();
-        	controller.settemplate((String) EmailTemplateId);
-        	//controller.setSelected(lParticipant);
-        	String EmailTemplate = controller.gettemplate();
-        	controller.sendEmails();
+        //{ 
+            //List<SelectOption> temp = controller.getMyPersonalTemplateOptions();
+            controller.settemplate((String) EmailTemplateId);
+            //controller.setSelected(lParticipant);
+           // String EmailTemplate = controller.gettemplate();
+            controller.sendEmails();
 
         //}
         Test.stopTest();
