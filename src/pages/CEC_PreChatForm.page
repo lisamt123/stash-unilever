@@ -1,6 +1,6 @@
 <apex:page showHeader="false"> 
     <!-- This script takes the endpoint URL parameter passed from the deployment 
-      page and makes it the action for the form -->
+      page and makes it the action for the form. -->
     <script type="text/javascript">
     (function() { 
         function handlePageLoad() {
@@ -30,7 +30,7 @@
         </div>
         
         <div class='footer'>
-            <p style="color:red;">Required items are maked with *.</p>            
+            <p style="color:red;">Required items are marked with *.</p>            
         </div>
         
         <input type="hidden" name="liveagent.prechat:caseOrigin" value="Chat" />
