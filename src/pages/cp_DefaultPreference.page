@@ -100,9 +100,9 @@
 		</apex:actionStatus>
 		<apex:pageMessages id="errorMess"/>
 
-		<center>
-			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true"/> 
-		</center>
+       
+			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true" style="display:block; margin-left:auto; margin-right:auto"/> 
+		
 		<br/>
 
 		<!-- MY SELECTION -->
