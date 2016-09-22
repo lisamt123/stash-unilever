@@ -99,6 +99,15 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                   processFinancials(newFinancialList,upsertFinancialYearMap,upsertConsolidatedFinancialMap,consolidationChangedFinancialList);
                   repeatCount++;
                 } 
+                
+                for(IPM_Financial__c financial : (List<IPM_Financial__c>)Trigger.new)
+                {
+                    IPM_Financial__c  oldFinancial = (IPM_Financial__c )Trigger.oldMap.get(financial.Id);
+                    if(isFinancialChange(financial, oldFinancial))
+                    {
+                        finIdsforProjY3iToSync.add(financial.Id); 
+                    }
+                }
             }
 
                 //Insert new Financial Years to Consolidated Financials.
@@ -391,10 +400,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					targetLaunchChangedDateMap.put(financial.Id,financial); 
 					changedFinancialSet.add(financial.Id);
 				}
-				if(isFinancialChange(financial, oldFinancial))
-				{
-					finIdsforProjY3iToSync.add(financial.Id);    
-				} 
+			 
 			}
 			//Insert new Financial Years to Consolidated Financials when TLD is changed for any default Financial.
 			insertFinancialsOnTLDChg(targetLaunchChangedDateMap);
