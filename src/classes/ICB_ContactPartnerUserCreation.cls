@@ -138,8 +138,8 @@ public with sharing class ICB_ContactPartnerUserCreation
             String alias = contact.email.substringBefore('@');
 
             newUser = new User(
-                alias = alias.substring(0,4) + system.now().day(),
-                email = contact.ICB_Type__c == types.get(0) ? contact.email.substringBefore('@').tolowercase() + '@no-reply.com' : userEmail, 
+                alias = alias.substring(0,2) + system.now().day() + system.now().second(),
+                email = contact.ICB_Type__c == types.get(0) ? contact.email.substringBefore('@').tolowercase() + '@no-reply.com' : contact.email, 
                 emailencodingkey = 'UTF-8',
                 firstname = contact.firstName, 
                 lastname = contact.lastname, 
