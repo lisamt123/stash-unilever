@@ -4,4 +4,8 @@ src/classes/Oblix_VersionControl.cls
 src/classes/Oblix_VersionControl.cls-meta.xml
 src/classes/Oblix_VersionControl_Test.cls
 src/classes/Oblix_VersionControl_Test.cls-meta.xml
+src/objects
+src/objects/Oblix_SOW_Projects__c.object
+src/reportTypes
+src/reportTypes/Oblix_SWOP_SOW.reportType
 
