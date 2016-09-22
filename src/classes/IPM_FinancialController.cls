@@ -448,8 +448,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
                     {
                         finLocal=[SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
-                        WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
-                        AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+                        WHERE Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
                         globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
                     }
                     else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
@@ -1451,7 +1450,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
             //Incremental PL Values to show when misaligned with Regional and Local
             else if (finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_INCREMENTAL) {
-                finWrapper.lstIncrementalPLValueMarketShare.add(new IPM_FinancialValueWrapper(finYear, project, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VOLUME ,1,currentFinancial,currentTab));
+                finWrapper.lstIncrementalPLValueMarketShare.add(new IPM_FinancialValueWrapper(finYear, project, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE ,1,currentFinancial,currentTab));
                 finWrapper.lstIncrementalPLVolume.add(new IPM_FinancialValueWrapper(finYear, project, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_VOLUME ,2,currentFinancial,currentTab));
                 finWrapper.lstIncrementalPLVolumeTons.add(new IPM_FinancialValueWrapper(finYear, project,fieldSuffix, IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS ,2,currentFinancial,currentTab));
                 finWrapper.lstIncrementalPLTurnover.add(new IPM_FinancialValueWrapper(finYear, project, fieldSuffix,IPM_ConstantUtils.FIELD_LITERAL_TURNOVER ,2,currentFinancial,currentTab));
