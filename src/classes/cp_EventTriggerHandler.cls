@@ -5,13 +5,13 @@ public  class cp_EventTriggerHandler {
     public static final String EVENT_STATUS_SUBMITTED       = 'Submitted';
 
     public static final list<String> NON_LOCAL_EVENTS       = new list<String>{};
-    private boolean m_isExecuting;                        
-    private integer BatchSize;                              
+    //private boolean m_isExecuting;                        
+    //private integer BatchSize;                              
     
-    public cp_EventTriggerHandler(boolean isExecuting, integer size){
+    /*public cp_EventTriggerHandler(boolean isExecuting, integer size){
        m_isExecuting = isExecuting;
         BatchSize = size;
-    }
+    }*/
 
     // ********************* HEADINGS ********************* //
     
@@ -200,10 +200,10 @@ public  class cp_EventTriggerHandler {
 
         for (Id eventId : newEventMap.keySet()) 
         {
-            if(oldEventMap.get(eventId).ReApprovalRequired__c !=true)
-                {
+            //if(oldEventMap.get(eventId).ReApprovalRequired__c !=true)
+               // {
                 eventIds.add(eventId);  
-                }
+              //  }
             /*if (    oldEventMap.get(eventId).ReApprovalRequired__c 
                 !=  newEventMap.get(eventId).ReApprovalRequired__c 
                 &&  newEventMap.get(eventId).ReApprovalRequired__c == true) 
@@ -235,10 +235,10 @@ public  class cp_EventTriggerHandler {
 
         for (Id eventId : newEventMap.keySet()) 
         {
-            if(oldEventMap.get(eventId).ReApprovalRequired__c !=false)
-            {
+            //if(oldEventMap.get(eventId).ReApprovalRequired__c !=false)
+            //{
                 eventIds.add(eventId);
-            }
+            //}
             /*if (    oldEventMap.get(eventId).ReApprovalRequired__c 
                 !=  newEventMap.get(eventId).ReApprovalRequired__c 
                 &&  newEventMap.get(eventId).ReApprovalRequired__c == false
