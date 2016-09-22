@@ -22,6 +22,8 @@ public with sharing class ICB_ContactPartnerUserCreation
     private static List<String> recordTypeId;
     private static List<String> recorTypeName;
     
+    //private static List<User> listUser;
+    
     public static final ICB_ContactPartnerUserCreation instance = new ICB_ContactPartnerUserCreation();
     
     public ICB_ContactPartnerUserCreation() 
@@ -31,13 +33,22 @@ public with sharing class ICB_ContactPartnerUserCreation
     
     static 
     {
-        permissions 		= new List<String> { ICB_ContactTypes__c.getValues('Permission_Salesman').Value__c, ICB_ContactTypes__c.getValues('Permission_Operator').Value__c};
-            types 				= new List<String> { ICB_ContactTypes__c.getValues('Type_Salesman').Value__c, ICB_ContactTypes__c.getValues('Type_Operator').Value__c };
-                recordTypeId 		= new List<String> {Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Operator').getRecordTypeId(), Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Salesman').getRecordTypeId()};
-                    userEmail 			= ICB_ContactTypes__c.getValues('User_Email').Value__c;
-        profileCommunity 	= ICB_ContactTypes__c.getValues('Profile_Community').Value__c;
-        recorTypeName		= new List<String> { 'Ice Cream Operator', 'Ice Cream Salesman'};
-            myProfile 			=  [SELECT id FROM Profile WHERE name =: profileCommunity];
+       permissions 			= new List<String> { ICB_ContactTypes__c.getValues('Permission_Salesman').Value__c, ICB_ContactTypes__c.getValues('Permission_Operator').Value__c};
+       types 				= new List<String> { ICB_ContactTypes__c.getValues('Type_Salesman').Value__c, ICB_ContactTypes__c.getValues('Type_Operator').Value__c };
+       recordTypeId 		= new List<String> {Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Operator').getRecordTypeId(), Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Salesman').getRecordTypeId()};
+       userEmail 			= ICB_ContactTypes__c.getValues('User_Email').Value__c;
+       profileCommunity 	= ICB_ContactTypes__c.getValues('Profile_Community').Value__c;
+       recorTypeName		= new List<String> { 'Ice Cream Operator', 'Ice Cream Salesman'};
+       myProfile 			= [SELECT id FROM Profile WHERE name =: profileCommunity];
+      /* listUser 			= [SELECT Id, 
+                                   Contact.ICB_Type__c, 
+                                   Contact.Name,
+                                   Contact.ICB_Community_User__c,
+                                   CreatedDate
+                                   FROM User 
+                                   WHERE Contact.RecordType.Name =: recorTypeName
+                                   AND Contact.ICB_Community_User__c = false
+                                   AND Contact.ICB_Type__c IN: (types)];*/
         
     }
     
@@ -47,10 +58,10 @@ public with sharing class ICB_ContactPartnerUserCreation
     }
     
     /*********************************************************
-* Purpose: Create new User when new contact is created
-* Parameters: oldTrigger & newTrigger values
-* Returns: none 
-*********************************************************/
+    * Purpose: Create new User when new contact is created
+    * Parameters: oldTrigger & newTrigger values
+    * Returns: none 
+    *********************************************************/
     public void createNewUser(List<Contact> contact) 
     {
         
@@ -77,38 +88,38 @@ public with sharing class ICB_ContactPartnerUserCreation
     }
     
     /****************
-* Purpose: Create new User when contacts updated with an Email.
-* Parameters: oldTrigger & newTrigger values
-* Returns: none 
-***************/
+    * Purpose: Create new User when contacts updated with an Email.
+    * Parameters: oldTrigger & newTrigger values
+    * Returns: none 
+    ***************/
     /*public void updateUser(List<Contact> contactOld, List<Contact> contactNew) 
-{
-System.debug('Entering <updateUser>' + contactOld);
-System.debug('Entering <updateUser>' + contactNew);
-List<User> users = new List<User>();
-try {
-
-for(Integer i = 0; i < contactOld.size(); i++) 
-{
-if(contactOld.get(i).email == null && contactNew.get(i).email != null) 
-{
-users.add(create(contactNew.get(i)));
-}
-}
-Database.insert(users);
-} 
-catch (Exception e) 
-{
-system.debug(Label.ICB_ERROR_MESSAGE +  e.getMessage());
-} 
-System.debug('Exiting <updateUser>');
-} */
+    {
+    System.debug('Entering <updateUser>' + contactOld);
+    System.debug('Entering <updateUser>' + contactNew);
+    List<User> users = new List<User>();
+    try {
+    
+    for(Integer i = 0; i < contactOld.size(); i++) 
+    {
+    if(contactOld.get(i).email == null && contactNew.get(i).email != null) 
+    {
+    users.add(create(contactNew.get(i)));
+    }
+    }
+    Database.insert(users);
+    } 
+    catch (Exception e) 
+    {
+    system.debug(Label.ICB_ERROR_MESSAGE +  e.getMessage());
+    } 
+    System.debug('Exiting <updateUser>');
+    } */
     
     /***********************************
-* Purpose: Create new User.
-* Parameters: contacts
-* Returns: A created User 
-************************************/
+    * Purpose: Create new User.
+    * Parameters: contacts
+    * Returns: A created User 
+    ************************************/
     private User create(Contact contact) 
     {
         
@@ -122,13 +133,13 @@ System.debug('Exiting <updateUser>');
         
         try 
         {  
-            
-            String userName = contact.email.substringBefore('@').tolowercase() + system.now().day() + userEmail;
+            Integer value = Integer.valueOf(math.rint(math.random()*1000));
+            String userName = contact.email.substringBefore('@').tolowercase() + value + userEmail;
             String alias = contact.email.substringBefore('@');
-            system.debug('username? ' + userName);
+
             newUser = new User(
                 alias = alias.substring(0,4) + system.now().day(),
-                email = contact.email, 
+                email = contact.ICB_Type__c == types.get(0) ? contact.email.substringBefore('@').tolowercase() + '@no-reply.com' : userEmail, 
                 emailencodingkey = 'UTF-8',
                 firstname = contact.firstName, 
                 lastname = contact.lastname, 
@@ -136,8 +147,8 @@ System.debug('Exiting <updateUser>');
                 localesidkey = 'pt_BR',
                 contactId = contact.Id,
                 timezonesidkey = 'America/Sao_Paulo', 
-                Username =  userName + math.rint(math.random()*1000),
-                CommunityNickname = contact.email.substringBefore('@').tolowercase() + math.rint(math.random()*1000),
+                Username =  userName,
+                CommunityNickname = contact.email.substringBefore('@').tolowercase(),
                 ProfileId = myProfile.Id,
                 IsActive = true);
             newUser.setOptions(dmo); 
@@ -152,32 +163,34 @@ System.debug('Exiting <updateUser>');
     }
     
     /***********************************
-* Purpose: Define the permissionSet used based on the Contact that has been created.
-* It Considered the list of Users by the recordType, type of the User and the value of the community User 
-* Parameters: none
-* Returns: void
-************************************/
+    * Purpose: Define the permissionSet used based on the Contact that has been created.
+    * It Considered the list of Users by the recordType, type of the User and the value of the community User 
+    * Parameters: none
+    * Returns: void
+    ************************************/
     private static void definePermissionSetting() 
     {
         System.debug('Entering <definePermissionSetting>');
+
         Map<Id, String> mapPermission = new Map<Id, String>();
-        List<PermissionSet> listPermission = [SELECT Id, Label 
+        List<PermissionSet> listPermission 	= [SELECT Id, Label 
                                               FROM PermissionSet 
                                               WHERE Label IN: permissions];
+        List<User> 			listUsuarios 	= [SELECT Id, 
+                                               Contact.ICB_Type__c, 
+                                               Contact.Name,
+                                               Contact.ICB_Community_User__c,
+                                               CreatedDate
+                                               FROM User 
+                                               WHERE Contact.RecordType.Name =: recorTypeName
+                                               AND Contact.ICB_Community_User__c = false
+                                               AND Contact.ICB_Type__c IN: (types)];
         
         try 
         { 
             
             List<PermissionSetAssignment> psa = new List<PermissionSetAssignment>();
-            List<User> listUser = [SELECT Id, 
-                                   Contact.ICB_Type__c, 
-                                   Contact.Name,
-                                   Contact.ICB_Community_User__c,
-                                   CreatedDate
-                                   FROM User 
-                                   WHERE Contact.RecordType.Name =: recorTypeName
-                                   AND Contact.ICB_Community_User__c = false
-                                   AND Contact.ICB_Type__c IN: (types)];
+           
             
             for(PermissionSet psMap : [SELECT Id, Label 
                                        FROM PermissionSet 
@@ -185,17 +198,17 @@ System.debug('Exiting <updateUser>');
             {
                 mapPermission.put(psMap.id, psMap.Label);
             }
-            
-            
+                        
             Set<Id> setIdUserPermission = new Set<Id>();
             for(PermissionSetAssignment vPs : [SELECT Id, AssigneeId FROM PermissionSetAssignment 
-                                               WHERE AssigneeId IN: listUser 
+                                               WHERE AssigneeId IN: listUsuarios 
                                                AND PermissionSetId IN: mapPermission.keySet()]) 
             {
                 setIdUserPermission.add(vPs.AssigneeId);                
             }
             
-            for(User myUsers : listUser) 
+            
+            for(User myUsers : listUsuarios) 
             {
                 if(!setIdUserPermission.contains(myUsers.Id))  {
                     
@@ -210,6 +223,8 @@ System.debug('Exiting <updateUser>');
                     }
                 }
             }
+            //Define the group for the User
+            insertUserGroup();
             Database.upsert(psa);
             
             updateContact();
@@ -219,12 +234,49 @@ System.debug('Exiting <updateUser>');
         {
             system.debug(Label.ICB_ERROR_MESSAGE + e.getMessage());
         }
-        // Datetime tempo = system.now().addHours(1);
-        //      System.schedule('Processa New Contact ' +
-        //                    system.now().format('yyyy.MM.dd.hh.mm.ss.SSS'), tempo.second() +' '+ tempo.minute() +' '+ tempo.hour() +' '+ tempo.day() +' '+ tempo.month() +' ? '+ tempo.year(), new ICB_PartnerUserCreation_BatchSchedule());
+       /*  Datetime tempo = system.now().addHours(1);
+              System.schedule('Processa New Contact ' +
+                            system.now().format('yyyy.MM.dd.hh.mm.ss.SSS'), tempo.second() +' '+ tempo.minute() +' '+ tempo.hour() +' '+ tempo.day() +' '+ tempo.month() +' ? '+ tempo.year(), new ICB_PartnerUserCreation_BatchSchedule());*/
         
     }
     
+    
+    /***********************************
+    * Purpose: Insert the User created on the PublicGroup
+    * Parameters: none
+    * Returns: void
+    ************************************/
+    @future
+    private static void insertUserGroup() 
+    {
+         System.debug('Entering <insertUserGroup>');
+        List<GroupMember> vListGroup = new List<GroupMember>();
+        List<User> 		ListUserGroup 	= [SELECT Id, 
+                                               Contact.ICB_Type__c, 
+                                               Contact.Name,
+                                               Contact.ICB_Community_User__c,
+                                               CreatedDate
+                                               FROM User 
+                                               WHERE Contact.RecordType.Name =: recorTypeName
+                                               AND Contact.ICB_Community_User__c = false
+                                               AND Contact.ICB_Type__c IN: (types)];
+       // system.debug('VALOR DO GRUPO: ' + ICB_ContactTypes__c.getValues('PublicGroup').Value__c);
+    	Group groupId = [SELECT Name, Id FROM Group WHERE NAME =: ICB_ContactTypes__c.getValues('PublicGroup').Value__c];
+        for(User vUser : ListUserGroup) {
+        	GroupMember vGroupMember = new GroupMember(UserOrGroupId = vUser.Id, GroupId = groupId.Id);
+            vListGroup.add(vGroupMember);
+        }
+	    
+        insert(vListGroup);
+        System.debug('Exiting <insertUserGroup>');
+    }
+    
+     
+    /***********************************
+    * Purpose: Insert the User created on the PublicGroup
+    * Parameters: none
+    * Returns: void
+    ************************************/
     @future
     private static void updateContact() 
     {
@@ -259,20 +311,12 @@ System.debug('Exiting <updateUser>');
     
     private static List<Contact> getContacts()
     {
-        system.debug('QUEM É VOCÊ? ' + types);
         List<Contact> contato = [SELECT Id, FirstName, LastName, Email, Name, ICB_Type__c 
                                  FROM Contact 
                                  WHERE ICB_Type__c =: types 
                                  AND RecordTypeId IN: recordTypeId
                                  AND Email != NULL
                                  AND ICB_Community_User__c = false];
-        /*Integer i = 0;
-        for(User user : [select id, ContactId from user where ContactId IN: contato])
-        {
-            contato.remove(i);
-            i++;
-        }
-        */
         
         return contato;
     }
