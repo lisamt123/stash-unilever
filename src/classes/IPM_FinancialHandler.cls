@@ -368,10 +368,20 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             }
             
             if(newfinancial.Local_Project__c !=null && oldfinancial.Local_Project__c != newfinancial.Local_Project__c)
-	        {
-	            newfinancial.Copy_Regional_to_Local__c = true;
-	            finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
-	        }
+            {   
+                if(newfinancial.Regional_Project__c != null)
+                {
+                    newfinancial.Copy_Regional_to_Local__c = true;
+                }
+                else
+                {
+                    newfinancial.Copy_Global_to_Local__c = true; 
+                }
+                
+                finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
+            }
+            
+            
         }
     }
     

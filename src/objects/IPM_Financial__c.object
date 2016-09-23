@@ -503,6 +503,17 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Copy_Local_to_Global__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy Local fields to Global fields with help of a workflow.</description>
+        <externalId>false</externalId>
+        <label>Copy Local to Global</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Copy_Local_to_Regional__c</fullName>
         <defaultValue>false</defaultValue>
         <description>This checkbox is used to copy local fields to Regional fields with help of a workflow.</description>
@@ -1679,6 +1690,17 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         <description>use this field for the hard validation from the gate document.</description>
         <externalId>false</externalId>
         <label>IsFinancialInvalid</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsKeyFinancialAtCapability__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This Field is used to check that if the financial is key at capability phase</description>
+        <externalId>false</externalId>
+        <label>IsKeyFinancialAtCapability</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

@@ -25,7 +25,7 @@ public with sharing class IPM_FinancialHelper
     
     public static final Set<String> COPYOVER_FIELDSET = new Set<String>   
         {
-            'Copy_Global_to_Regional__c','Copy_Global_to_Local__c','Copy_Regional_to_Local__c','Copy_Local_to_Regional__c'
+            'Copy_Global_to_Regional__c','Copy_Global_to_Local__c','Copy_Regional_to_Local__c','Copy_Local_to_Regional__c','Copy_Local_to_Global__c'
         };
     
     

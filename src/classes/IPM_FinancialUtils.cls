@@ -195,5 +195,50 @@ public with sharing class IPM_FinancialUtils
 	    }
     }
     
+    /*****************************************************************************************************************************
+    * @description  Used for Rendering Countries checkbox on Top Down Tab.
+    */
+    
+    
+    public static boolean showCountryCheckboxes(String Project_GKM,String IPM_Phase){
+    	
+    	if(Project_GKM == 'GKM3')
+    	{
+    		return True;
+    	}
+    	else if(IPM_Phase == 'Ideas')
+    	{
+    		return True;
+    	}
+    	else return False; 
+    }
+    
+    /*****************************************************************************************************************************
+    * @description  Used for enable or disable Countries checkbox on Top Down Tab.
+    */
+    
+    public static boolean showEnableCheckboxes(String Project_GKM,String IPM_Phase, String finType){
+    	
+    	if(Project_GKM == 'GKM3')
+    	{
+
+    		if(IPM_Phase == 'Feasibility' || IPM_Phase == 'Capability')	{
+    			if(finType.equalsIgnoreCase(IPM_ConstantUtils.Nonkey)){
+    				return false;
+    			}
+    			else {
+    				return true;
+    				}
+    		}
+    		return true;
+    	}
+    	else if(IPM_Phase != 'Ideas')
+    	{
+    		return true;
+    	}
+    	else return false; 
+    }
+    
+    
     
 }

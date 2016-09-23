@@ -60,8 +60,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public List<IPM_Financial__c> finList{get;set;}//list out local project names while checking the validation
     public integer totalLocalProjects{get;set;}//total local projects
     public set<String>localBCProjectName{get;set;}//set of Business unconfirmed local project name
+    public String localBCProjectNameStr{get;set;}// Set message for Business case confirm
     public set<String>localFinProjectName{get;set;}//set of misAligned local project name
+    public String localFinProjectNameStr{get;set;}//set of misAligned local project name  
     public set<String>localTLDProjectName{get;set;}//set of misAligned local project name
+    public String localTLDProjectNameStr{get;set;}//set of TLD misAligned local project name  
     public boolean financialAlignment{get;set;}//check for financial alignment
     public boolean tldAlignment{get;set;}//check for TLD alignment
     public integer totalFinProject{get;set;}//total financial misAligned local project name
@@ -72,6 +75,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public boolean isEcoDesignSecNegotiable;
     public string stopDisclaimer{get;set;}
     public Boolean hideGCLTRCLTQuestions{get;set;}
+    public Boolean isGKM3Model{get;set;} // impover valiation message for GKM3
     //REQ03006
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
@@ -86,6 +90,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 		isPDLApproved = true;    
         isDefaultAvailable=false;
         hideGCLTRCLTQuestions = false;
+        isGKM3Model = false;
         isOperational=false;
         showSkipSections=false;
         showStop=true;
@@ -823,7 +828,13 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         localBCProjectName=new set<String>();
         localFinProjectName=new set<String>();
         localTLDProjectName=new set<String>();
+        
+        localBCProjectNameStr = localFinProjectNameStr = localTLDProjectNameStr = '';
+        
         documentSectionId=null;
+        String localProjects, localProjectsTLD, localProjectBC;
+        localProjects = localProjectsTLD = localProjectBC = '';      
+        
         if((IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) || IPM_ConstantUtils.GATE_KEEPING_MODEL_3.equals(project.IPM_ProjectGKM__c)) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c)))
         {
             finList=new List<IPM_Financial__c>();
@@ -838,6 +849,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         businessCasePending=true;
                         showValidation=false;
                         localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+  			localProjectBC = + fin.Local_Project__r.IPM_Project_Name__c + ',';
                     }else if(IPM_ConstantUtils.PHASE_CAPABILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.Is_BC_Confirmed_Capability__c && !fin.Local_Project__r.Is_Archieved__c ){
                         totalLocalProjects=totalLocalProjects+1;
                         businessCasePending=true;
@@ -849,6 +861,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 						//bypassed the check for GKM3 - Interim
 						if(fin.Misaligned__c){
 							localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+  							localProjects = + fin.Local_Project__r.IPM_Project_Name__c + ',';
 							showValidation=false;  
 							financialAlignment=true;
 							totalFinProject=totalFinProject+1;
@@ -856,12 +869,14 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
 						//Target launch date alignment
 						if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
 							localTLDProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+  							localProjectsTLD = + fin.Local_Project__r.IPM_Project_Name__c + ',';
 							showValidation=false;  
 							tldAlignment=true;  
 							totalTLDProject=totalTLDProject+1;
 						}
 					}
                 }
+			showValidationMessage(localProjects, localProjectsTLD, localProjectBC);
                 //to display bd/bb alignment section on page
                 List<IPM_Project_Document_Section__c> projectSectionList=new List<IPM_Project_Document_Section__c>();
                 if(tldAlignment || financialAlignment || businessCasePending){
@@ -872,6 +887,22 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     documentSectionId=projectSectionList[0].id;
                 }
         }
+    }
+    private void showValidationMessage(String localProjects, String localProjectsTLD, String localProjectBC)
+    {
+    	    if(isGKM3Model){
+	              localProjects = localProjects.removeEnd(IPM_ConstantUtils.COMMA);
+	           	  localProjectsTLD = localProjectsTLD.removeEnd(IPM_ConstantUtils.COMMA);
+	           	  localProjectBC = localProjectBC.removeEnd(IPM_ConstantUtils.COMMA);
+	          	  localFinProjectNameStr = string.format(System.Label.IPM_Finance_Align_Improved, new string[]{localProjects});
+	          	  localTLDProjectNameStr = string.format(System.Label.IPM_TDL_Align_Improved, new string[]{localProjectsTLD});
+	          	  localBCProjectNameStr =  string.format(System.Label.IPM_confirm_business_case_in_gate_Improved, new string[]{localProjectBC});
+            }else{
+	              localFinProjectNameStr = System.Label.IPM_Finance_Align; 
+	              localTLDProjectNameStr = System.Label.IPM_TDL_Align;
+	              localBCProjectNameStr =  System.Label.IPM_confirm_business_case_in_gate;
+            }
+    	
     }
     public void approvePDLDocument()
     {

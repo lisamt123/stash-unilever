@@ -10038,5 +10038,57 @@ If you discover that stopping this project was a mistake you can undo this actio
         <shortDescription>IPM_GlobalClaimRemoval</shortDescription>
         <value>Confirm Global Claim Removal</value>
     </labels>
+	<labels>
+        <fullName>IPM_Local_project_create_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Local project create message</shortDescription>
+        <value>Please add a MCO Rollout Leader to the MCO in your Rollout Plan to trigger creation of the Local Rollout project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Finance_Align_Improved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Finance Align improved message for GKM3 projects</shortDescription>
+        <value>Please align Financials for {0} between your view and Local view before proposal.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_TDL_Align_Improved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TLD validation improved message used for GKM3</shortDescription>
+        <value>Please align launch dates for {0} between your view and Local view before proposal</value>
+    </labels>
+	 <labels>
+        <fullName>IPM_confirm_business_case_in_gate_Improved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM confirm business case in gate for GKM3 Proposal</shortDescription>
+        <value>Please confirm business case for {0} before proposal.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_OVER_FIN_BC_F_OR_C_GKM3</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM OVER FIN BC F OR C GKM3</shortDescription>
+        <value>You are about to refresh the Financial Business Case from the Local Project Leader. This action will overwrite the numbers you submitted so far. Are you sure you want to continue?</value>
+    </labels>
+    <labels>
+        <fullName>IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM OVER FIN BC MR OR MD OR PLE PREV KEY GKM3</shortDescription>
+        <value>You are about to refresh the Financial Business Case from the Local Project Leader. This action will overwrite the numbers you submitted before Market Ready Gate approval. Are you sure you want to continue?</value>
+    </labels>
+    <labels>
+        <fullName>IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM OVER FIN BC MR OR MD OR PLE PREV NONKEY GKM3</shortDescription>
+        <value>You are about to refresh the Financial Business Case from the Local Project Leader.Please make sure you subtract the gTO and iTO numbers from the Non-Key Business Case in Financials to avoid double counting.Are you sure you want to continue?</value>
+    </labels>
 </CustomLabels>
 

@@ -258,7 +258,13 @@
                                                                 <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
                                                                     <!-- Variables -->
                                                                     <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
-                                                                 
+                                                                    
+                                                                    <!-- Rendered when current financial's misaligned field is true and its not edit mode and its not a consolidated financial record and span is Global.-->
+                                                                    <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop),project.IPMProject_Span__c == 'Global', isEditable,currentFinancial.Gate_Keeping_Model__c == 'GKM3')}">
+                                                                        <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}','{!LabelValueGKM3}');">{!$Label.IPM_ACCEPT_LOCAL_BC}</div>
+                                                                        <apex:actionFunction name="refreshFromLocal" action="{!refreshFromLocal}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
+                                                                    </apex:outputPanel>
+                                                                    
                                                                     <!-- Rendered when current financial's misaligned filed is true and its not edit mode and its not a consolidated financial record and span is Regional.-->
                                                                     <apex:outputPanel rendered="{!AND(currentFinancial.Misaligned__c,showMisalignment, NOT(isEditMode), NOT(isConsolidated),NOT(isProjectStop),project.IPMProject_Span__c == 'Regional', isEditable)}">
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromLocalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_LOC_FIN_BUSINESS_CASE}');">{!$Label.IPM_ACCEPT_LOCAL_BC}</div>
@@ -346,11 +352,11 @@
                                                                         <apex:variable value="{!1}" var="rowNum"/>
                                                                         <apex:repeat value="{!associatedCountryList}" var="clist" rendered="{! AND( NOT(isProjectStop),associatedCountryList.size >0 ) }" > 
                                                                             <!-- Rendered when project phase is Ideas and tab is TopDown-->
-                                                                            <apex:outputPanel styleClass="cntryContainer pull-left" rendered="{!OR(project.IPM_Phase__c =='Ideas',globalCharter)}">
-                                                                                <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="updateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(globalCharter,project.IPM_Phase__c <> 'Ideas',!isEditable)}"/>
+                                                                            <apex:outputPanel styleClass="cntryContainer pull-left" rendered="{!OR(showcheckbox,globalCharter)}">
+                                                                                <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="updateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(globalCharter,disablecheckbox,!isEditable)}"  />
                                                                                 <label>{!clist.Country_Name__c}</label>                                                                                                                          
                                                                             </apex:outputPanel>
-                                                                            <apex:outputPanel styleClass="cntryContainer pull-left" rendered="{!AND(project.IPM_Phase__c !='Ideas',topDown)}">
+                                                                            <apex:outputPanel styleClass="cntryContainer pull-left" rendered="{!AND(!showcheckbox,topDown)}">
                                                                                 <label>{!clist.Country_Name__c}</label>
                                                                             </apex:outputPanel>
                                                                         <apex:variable var="rowNum" value="{!rowNum + 1}"/>
@@ -514,6 +520,15 @@
     
                                                         <!-- Rollup Summary Tab -->
                                                         <div role="tabpanel" class="tab-pane {!IF(currentTab == 'rollup', 'active', '')}" id="rollup">
+                                                        
+                                                            <apex:outputPanel id="rollup" rendered="{!AND(currentTab== 'rollup',currentFinancial.Local_Project__c == NULL,!isConsolidatedOrNonkey)}" >
+	                                                            <div class="finAlertBox">
+	                                                                <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
+	                                                                <div class="col-sm-11 finalerttext">
+	                                                                  <p><apex:outputText value="{!$Label.IPM_Local_project_create_message}" /></p>
+	                                                                </div>
+	                                                            </div>
+                                                        	</apex:outputPanel>
                                                             <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
                                                                 <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,project.IPMProject_Span__c == 'Global',NOT(isEditModeBottomUp), isConsolidated)}">
                                                                      <!-- Rendered when record is editable and project phase is not PLE-->   
