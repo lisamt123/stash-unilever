@@ -45,7 +45,7 @@ public with sharing class FAU_MilestoneHandler
     
     public void bulkAfter()
     {
-    	if(triggerShouldExecute){
+        if(triggerShouldExecute){
             if(Trigger.isInsert) {
                 lMilestoneParticipantsUpdate = FAUMilestoneCls.createMilestoneParticipants(trigger.new);
             }
@@ -63,21 +63,33 @@ public with sharing class FAU_MilestoneHandler
     }
      
 
+
+
     public void beforeDelete(SObject so)
     {   
+
     }
     
+
+
     public void afterInsert(SObject so) 
     {
     }
     
+
+
     public void afterUpdate(SObject oldSo, SObject so)
     {
     }
     
+
+
     public void afterDelete(SObject so)
     {
     }
+
+
+
     
     /**
      * andFinally

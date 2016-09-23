@@ -1,4 +1,4 @@
-@isTest(seeAllData = true)
+@isTest(seeAllData = false)
 private class FAU_CreateTemplateControllerTest {
 
 	private static testMethod void ContinueProcessTest(){

@@ -1,4 +1,4 @@
-@isTest(seeAllData = true)
+@isTest(seeAllData = false)
 private class FAU_CreateProgramControllerTest {
 
 	private static testMethod void ContinueProcessTest(){
@@ -9,4 +9,5 @@ private class FAU_CreateProgramControllerTest {
 		System.assert(controller.ContinueProcess()!=null);
 	}
 	
+
 }
