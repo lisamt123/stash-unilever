@@ -61,8 +61,6 @@ src/classes/ICB_PriceBookCreation_Test.cls
 src/classes/ICB_PriceBookCreation_Test.cls-meta.xml
 src/classes/ICB_PriceBookCreation.cls
 src/classes/ICB_PriceBookCreation.cls-meta.xml
-src/classes/ICB_PriceBookProductsInsert.cls
-src/classes/ICB_PriceBookProductsInsert.cls-meta.xml
 src/classes/ICB_SetupMobileChannel.cls
 src/classes/ICB_SetupMobileChannel.cls-meta.xml
 src/classes/ICB_SetupMobileChannel_Test.cls
@@ -86,8 +84,6 @@ src/permissionsets
 src/permissionsets/ICB_Mobile_Channel_Backoffice_Salesforce.permissionset
 src/permissionsets/ICB_Mobile_Channel_Operator_PCL.permissionset
 src/permissionsets/ICB_Mobile_Channel_Salesmen_PCL.permissionset
-src/sites
-src/sites/Mobile_Channel.site
 src/labels
 src/labels/ICB.labels
 src/triggers
@@ -144,11 +140,6 @@ src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeader.css
 src/aura/ICB_MobileChannelHeader/ICB_MobileChannelHeaderController.js
 src/aura/ICB_OperatorInventory/ICB_OperatorInventory.app
 src/aura/ICB_OperatorInventory/ICB_OperatorInventory.app-meta.xml
-src/aura/ICB_PriceTable/ICB_PriceTable.cmp
-src/aura/ICB_PriceTable/ICB_PriceTable.cmp-meta.xml
-src/aura/ICB_PriceTable/ICB_PriceTable.css
-src/aura/ICB_PriceTable/ICB_PriceTableController.js
-src/aura/ICB_PriceTable/ICB_PriceTableHelper.js
 src/aura/ICB_PriceTaBleHeader/ICB_PriceTaBleHeader.cmp
 src/aura/ICB_PriceTaBleHeader/ICB_PriceTaBleHeader.cmp-meta.xml
 src/aura/ICB_PriceTaBleHeader/ICB_PriceTaBleHeader.css
@@ -189,9 +180,6 @@ src/tabs/ICB_Close_Sales.tab
 src/tabs/ICB_Cockpit.tab
 src/tabs/ICB_Inventory.tab
 src/tabs/ICB_Price_List.tab
-src/siteDotComSites
-src/siteDotComSites/Mobile_Channel1.site
-src/siteDotComSites/Mobile_Channel1.site-meta.xml
 src/flexipages
 src/flexipages/ICB_Cockpit.flexipage
 src/flexipages/ICB_Inventory.flexipage
@@ -213,6 +201,8 @@ src/groups
 src/groups/ICB_Mobile_Channel.group
 src/objectTranslations
 src/objectTranslations/Account-en_US.objectTranslation
+src/objectTranslations/Contact-pt_BR.objectTranslation
+src/objectTranslations/ICB_Sales_Locale__c-pt_BR.objectTranslation
 src/objectTranslations/Asset-en_US.objectTranslation
 src/objectTranslations/Asset-pt_BR.objectTranslation
 src/objectTranslations/Contact-en_US.objectTranslation

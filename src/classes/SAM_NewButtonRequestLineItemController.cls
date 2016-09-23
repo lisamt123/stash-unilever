@@ -36,7 +36,7 @@ public with sharing class SAM_NewButtonRequestLineItemController{
                 requestLkId = rli.md_Request_ID__c;
             }
             system.debug('requestObj >>>'+requestObj );
-            recordTypeInfoList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_IBM_RW','SAM_Microsoft_RW','SAM_Oracle_RW','SAM_Other_Product_RW','SAM_SAP_RW')] ;
+            recordTypeInfoList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_IBM_RW','SAM_Microsoft_RW','SAM_Oracle_RW','SAM_SAP_RW','SAM_XOther_Product_RW') ] ;
         }
         
     /*******************************************************************
@@ -53,7 +53,7 @@ public with sharing class SAM_NewButtonRequestLineItemController{
         
         try {
             //Dinesh 26/7 - replace below hardcoded values with constants
-            schemeList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_IBM_RW','SAM_Microsoft_RW','SAM_Oracle_RW','SAM_Other_Product_RW','SAM_SAP_RW')] ;
+            schemeList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where DeveloperName IN('SAM_IBM_RW','SAM_Microsoft_RW','SAM_Oracle_RW','SAM_SAP_RW','SAM_XOther_Product_RW')] ;
            
             system.debug('schemeList !!'+schemeList );
             if(!schemeList.isEmpty()) {

@@ -66,6 +66,10 @@ public class SAM_Constants{
     public static final String PRODUCTDETAIL = 'Mandatory to add atleast one Product Detail';
     public static final String GOLIVEDATECANNOTBEPASTDATE = 'Go Live Date should be greater than current date';
     
+    public static final String GLOBALLANDSCAPE = 'Global';
+    public static final String COUNTRYMANDATORY = 'Country of Deployment is mandatory';
+    public static final String COUNTRYREVERSEMANDATORY = 'Not Require when Landscapes is Global';
+    
     public static final String RETURL = 'retURL';
     
     public static final String DO_PO_APPLICABLE = 'DO/PO Applicable (O)';
