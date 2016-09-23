@@ -6,8 +6,8 @@
     </types>
     <types>
     	<members>FA_Course_Facilitator__c-en_US</members>
-    	<members>FA_Occurence_Member__c-en_US</members>
-    	<members>FA_Member_ChatterGroup__c-en_US</members>
+    	<members>FA_Occurence_members__c-en_US</members>
+    	<members>FA_members_ChatterGroup__c-en_US</members>
     	<members>FA_Feedback__c-en_US</members>
     	<members>FA_Course_ChatterGroup__c-en_US</members>
         <members>FA_Course_Occurence__c-en_US</members>
@@ -22,13 +22,38 @@
 		<members>FA_ErrorLog__c</members>
 		<members>FA_Feedback__c</members>
 		<members>FA_Feedback_Questionnaire__c</members>
-		<members>FA_Member_ChatterGroup__c</members>
-		<members>FA_Occurence_Member__c</members>
-		<members>FA_Pre_Work_Task_Assignment__c</members>
+		<members>FA_members_ChatterGroup__c</members>
+		<members>FA_Occurence_members__c</members>
+		<members>FA_Pre_Work_Task_Asignment__c</members>
 		<members>FA_Pre_Work_Task__c</members>
 		<members>FA_UserPreference__c</members>
         <name>CustomObject</name>  
 	</types>  
+	<types>
+		<members>FA CourseFacilitator External ID</members>
+		<members>FA CourseOccurence External ID</members>
+		<members>FA_Alert_For_Admin</members>
+		<members>FA_Course_Cancellation_Mail</members>
+		<members>FA_Course_Invitation_Mail</members>
+		<members>FA_Feedback_Update</members>
+		<members>FA_OccMem_External_ID</members>
+		<members>FA_Update_External_ID_Of_Pre_Work_Task</members>
+		<members>FA_Training_Room_External_ID</members>
+		<members>Alert_for_Admin_user_pref</members>
+		<name>FieldUpdate</name>
+	</types>
+	<types>
+		<members>FA_CourseFacilitator_External_ID</members>
+		<members>FA Email Invitation</members>
+		<members>FA Feedback Mail</members>
+		<members>FA Update External ID</members>
+		<members>FA_AlertforAdmin</members>
+		<members>FA_Cancellation Mail</members>
+		<members>FA Update External ID Of Pre Work Task</members>
+		<members>FA Update External ID Of Training Room</members>
+		<members>FA_AlertforAdmin_UserPre</members>
+		<name>WorkflowRule</name>
+	</types>
 	<types>
 		<members>FA_Config_Settings__c</members>
 		<members>FA_Course__c</members>
@@ -39,10 +64,10 @@
 		<members>FA_FBQuestionSet__c</members>
 		<members>FA_Feedback__c</members>
 		<members>FA_Feedback_Questionnaire__c</members>
-		<members>FA_Member_ChatterGroup__c</members>
-		<members>FA_Occurence_Member__c</members>
+		<members>FA_members_ChatterGroup__c</members>
+		<members>FA_Occurence_members__c</members>
 		<members>FA_Pre_Work_Task__c</members>
-		<members>FA_Pre_Work_Task_Assignment__c</members>
+		<members>FA_Pre_Work_Task_Asignment__c</members>
 		<members>FA_Training_Room__c</members>
 		<members>FA_Training_Venue__c</members>
 		<members>FA_UserPreference__c</members>
