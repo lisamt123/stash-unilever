@@ -52,6 +52,7 @@
 		<member>FA Update External ID Of Pre Work Task</member>
 		<member>FA Update External ID Of Training Room</member>
 		<member>FA_AlertforAdmin_UserPre</member>
+		<name>WorkflowRule</name>
 	</types>
 	<types>
 		<members>FA_Config_Settings__c</members>
