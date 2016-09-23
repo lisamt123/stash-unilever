@@ -86,7 +86,7 @@ public with sharing class SAM_QLITrigger_Util{
             for(SAM_Quote_Line_Item__c obj :lstRequest){
                 ReqID.add(obj.md_Request__c);
             }
-            List<SAM_Request__c> ReqList = [Select id,pkl_Status__c from SAM_Request__c where id=:ReqID];
+            List<SAM_Request__c> ReqList = [Select id,pkl_Status__c,pkl_SAM_team_Status__c from SAM_Request__c where id=:ReqID];
             for(SAM_Request__c req:ReqList ){
                 mapReqIDRecord.put(req.Id,req);
             }
@@ -100,7 +100,7 @@ public with sharing class SAM_QLITrigger_Util{
             }
             for(SAM_Quote_Line_Item__c obj :lstRequest){
                  SAM_Request__c requestRec = mapReqIDRecord.get(obj.md_Request__c);
-                if(!Test.isRunningTest() && Userinfo.getUserId() != null && AssigntoID != null && (!AssigntoID.contains(Userinfo.getUserId()) || (requestRec.pkl_Status__c != SAM_Constants.INPROGRESS && requestRec.pkl_Status__c != SAM_Constants.INFORMATION_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.DRAFT_QUOTE_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.QUOTE_REJECTED ))){
+                if(!Test.isRunningTest() && Userinfo.getUserId() != null && AssigntoID != null && (!AssigntoID.contains(Userinfo.getUserId()) || (requestRec.pkl_Status__c != SAM_Constants.INPROGRESS && requestRec.pkl_Status__c != SAM_Constants.INFORMATION_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.DRAFT_QUOTE_PROVIDED && requestRec.pkl_Status__c != SAM_Constants.QUOTE_REJECTED && requestRec.pkl_SAM_team_Status__c != SAM_Constants.INPROGRESS ))){
                     obj.addError('You are not authorized to create Quote at this status.');
                 }
             }

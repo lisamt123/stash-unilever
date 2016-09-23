@@ -38,7 +38,8 @@ public with sharing class SAM_Request_PublisherFieldUpdate{
                 publishers.add(requestLineItem.pkl_Publisher__c);
               }
               request.txt_CrossCharge_Publisher__c  = String.Join(new List<String>(publishers),',');
-              //System.debug(publishers); 
+              System.debug('Publishers After Quote Approved - '+ publishers); 
+              System.debug('request.txt_CrossCharge_Publisher__c - '+ request.txt_CrossCharge_Publisher__c); 
             }
             update requests;
         }

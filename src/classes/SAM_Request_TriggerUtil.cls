@@ -13,7 +13,7 @@ VERSION     AUTHOR                 DATE            DETAIL Description
 1.0         Dineshisng Girase    18/07/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class SAM_Request_TriggerUtil{
-	public static boolean isSubmitted=false;
+    public static boolean isSubmitted=false;
     /*******************************************************************
     Purpose: If the request is other than Saved status, this method will prevent its delition
     Parameters: List of SAM_Request__c
@@ -52,7 +52,7 @@ public with sharing class SAM_Request_TriggerUtil{
             } 
             isSubmitted = true;
         }
-		
+        
     }
 
     /*******************************************************************
@@ -105,30 +105,89 @@ public with sharing class SAM_Request_TriggerUtil{
                     }
                 }
             }
-            if(newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && newlstRequest[i].rol_Product_detail_count_having_cross_ch__c>0 && oldlstRequest[i].pkl_SAM_team_Status__c != SAM_Constants.AWAITINGCHARGE && newlstRequest[i].pkl_SAM_team_Status__c == SAM_Constants.AWAITINGCHARGE){
-                if(Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id).size()<1){
-					if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
-						newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');	
-					}else
-						newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
+            if(((newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && newlstRequest[i].rol_Product_detail_count_having_cross_ch__c>0) || newlstRequest[i].txt_Request_Type__c == SAM_Constants.SAM_RW_CROSSCHARGE_REQUEST) && oldlstRequest[i].pkl_SAM_team_Status__c != SAM_Constants.AWAITINGCHARGE && newlstRequest[i].pkl_SAM_team_Status__c == SAM_Constants.AWAITINGCHARGE){                if(Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id).size()<1){
+                    if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
+                        newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');  
+                    }else
+                        newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
                 }
                 else{ 
-					boolean approval_Emails_Flag = false;
+                    boolean approval_Emails_Flag = false;
                     for(Attachment objAttachment:Req_attch_Approval_EmailsMap.get(newlstRequest[i].Id)){
                         if(objAttachment.Name.containsIgnoreCase(String.valueOf(newlstRequest[i].num_Cross_Charging_Version__c))){
-							approval_Emails_Flag = true;
-						}
-					}
-					if(!approval_Emails_Flag){
-						if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
-							newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');	
-					}else
-							newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
-					}                            
+                            approval_Emails_Flag = true;
+                        }
+                    }
+                    if(!approval_Emails_Flag){
+                        if(newlstRequest[i].num_Cross_Charging_Version__c != null && newlstRequest[i].num_Cross_Charging_Version__c>0){
+                            newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_'+ newlstRequest[i].num_Cross_Charging_Version__c+'".');  
+                    }else
+                            newlstRequest[i].addError(' You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails_Version_0"');
+                    }                            
                 }
                 
             } 
         }
      }
-
-}
+     
+    /*******************************************************************
+    Purpose: Auto create Quotations for every Product Line Item when Software Purchase Required = Yes
+    Parameters: List of SAM_Request__c
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static void CreateQuotationPerProduct(list<SAM_Request__c> NewlstRequest,list<SAM_Request__c> OldlstRequest){    
+            
+            try
+            {
+                List<SAM_Request__c> requestsToUpdate = new List<SAM_Request__c>();
+                List<SAM_Quote_Line_Item__c> requestQuotations = new List<SAM_Quote_Line_Item__c>();
+                for(integer i = 0 ; i < NewlstRequest.size(); i++){             
+                    if(NewlstRequest[i].Quotation_Record_Count__c == 0 && OldlstRequest[i].pkl_Software_Purchase_Req__c <> 'Yes' && NewlstRequest[i].pkl_Software_Purchase_Req__c == 'Yes'  )
+                    {   
+                        requestsToUpdate.Add(NewlstRequest[i]);
+                    }
+                                 
+                } 
+                List<SAM_Request_Line_Item__c> requestProducts = [Select md_Request_ID__c,Name,txt_Publisher__c From SAM_Request_Line_Item__c Where md_Request_ID__c in :requestsToUpdate order by CreatedDate];
+                Integer productCount = requestProducts.Size();
+                Integer count = 1;
+                for(SAM_Request_Line_Item__c requestProduct : requestProducts)
+                {
+                    requestQuotations.Add(new SAM_Quote_Line_Item__c(
+                    md_Request__c = requestProduct.md_Request_ID__c, 
+                    Name = requestProduct.Name, 
+                    pkl_Publisher__c = requestProduct.txt_Publisher__c,                 
+                    num_Quantity__c = 1,
+                    pkl_Currency_Type__c = 'EUR',
+                    num_List_Price__c = 0,
+                    pkl_Discount_Applicable__c = 'No',
+                    Maintainence_Applicable__c = 'No',
+                    pkl_Line_Status__c = 'Completed',
+                    pkl_Charging_Type__c = 'Cross Charge Applicable (X)',
+                    pkl_Run_Cost_Applicable__c = 'No',
+                    pkl_DO_PO_Details_Applicable__c = 'No',
+                    pkl_Build_Details_Applicable__c = 'No',                 
+                    pkl_Quotation_Available__c = 'No',
+                    CreatedDate = Datetime.now().addSeconds(-productCount+count),
+                    num_Quotation_Number__c = count
+                    ));
+                    count++;                    
+                }                
+                Insert requestQuotations;
+                Integer serialNumber = 1;
+                for(SAM_Quote_Line_Item__c quote : requestQuotations)
+                {
+                    quote.num_Quotation_Number__c = serialNumber ;
+                    serialNumber ++;
+                }   
+                Update requestQuotations;
+            }
+            catch(Exception e)
+            { 
+                System.debug('Quotation Line Items could NOT be created because of error : ' + e.getMessage());
+            }
+            
+        }
+        
+    }
