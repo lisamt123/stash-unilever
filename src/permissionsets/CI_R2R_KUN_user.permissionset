@@ -17,10 +17,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CI_R2R_Budget_Trigger_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CI_R2R_GetHistory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -353,6 +349,10 @@
         <object>CI_R2R_Innovation__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <pageAccesses>
+        <apexPage>CI_R2R_Comments_Section</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>CI_R2R_Comments_Section_for_SME</apexPage>
         <enabled>true</enabled>
