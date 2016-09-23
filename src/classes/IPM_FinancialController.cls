@@ -120,16 +120,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     public String getLabelValueGKM3() {
         
-        String buttonLabel;
-        if(project.IPM_Phase__c == 'Capability'||project.IPM_Phase__c == 'Feasibility'){
+        String buttonLabel = IPM_ConstantUtils.BLANK;
+        if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
             buttonLabel = Label.IPM_OVER_FIN_BC_F_OR_C_GKM3;
         }
-        if(project.IPM_Phase__c == 'Market Ready'||project.IPM_Phase__c == 'Market Deployment'||project.IPM_Phase__c == 'PLE'){
+        if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT ||project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE ){
             if(project.IPM_Phase__c == currentFinancial.Added_At_Stage__c){
                 buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
             }
             else{
-                if(currentFinancial.IsKeyFinancialAtCapability__c == true){
+                if(currentFinancial.IsKeyFinancialAtCapability__c){
                     buttonLabel = Label.IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3;
                 }
                 else{
@@ -189,7 +189,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     } 
     public String tldAcceptFromValue{
         get {
-          if(project.IPM_ProjectGKM__c == 'GKM3')
+          if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3)
             {
               if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
               {
@@ -601,7 +601,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
             {
-                if(project.IPM_ProjectGKM__c == 'GKM3'){
+                if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3){
                     tabLabelMyView = IPM_ConstantUtils.TAB_TOPDOWN_LABEL;
                     tabLabelTopDown = IPM_ConstantUtils.TAB_GLOBALCHARTER_LABEL;
                     tabLabelRollup = IPM_ConstantUtils.TAB_LOCALBBROLLUP_LABEL;
@@ -1042,7 +1042,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
         lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
                                                     (SELECT 
-                                                        Id,Name,recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c,                                    
+                                                        Id,Name,recordTypeID,Financial_External_ID__c,                                    
                                                         Status__c,IPM_Key_Financial__c,Status_Global__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                                         FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
@@ -1096,10 +1096,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         String financialType = '';
-        if(project.IPM_ProjectGKM__c == 'GKM3'){
+        if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3){
             if(project.IPM_Phase__c == 'Capability'||project.IPM_Phase__c == 'Feasibility'){
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c,Status__c,IPM_Key_Financial__c, 
+                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
@@ -1109,7 +1109,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
             else{
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c,Status__c,IPM_Key_Financial__c, 
+                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
@@ -1127,14 +1127,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
               }
         }
         else {
-        If(project.IPM_ProjectGKM__c!='GKM3'){
+        If(project.IPM_ProjectGKM__c!=IPM_ConstantUtils.GKM_3){
             financialType = 'IPM_Financials_regional__r';
         }
         else{
             financialType = 'IPM_Financials_local__r';
         }
         
-        String baseQuery = 'SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c,MCO_Tab_Display_Name__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM '+financialType+' WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true  OR IPM_ShowAtGlobal__c = true )  ORDER BY Sorting_Order__c, Financial_External_Id__c )';                                             
+        String baseQuery = 'SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM '+financialType+' WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true  OR IPM_ShowAtGlobal__c = true )  ORDER BY Sorting_Order__c, Financial_External_Id__c )';                                             
         String baseFromClause = ' FROM IPM_Project__c ';
         String baseWhereClause = ' WHERE IPM_Parent_Project__c =:projectId ';
         String baseOrderByClause = ' ORDER BY Market_Cluster_Name__c limit:maxLimit '; 
@@ -2580,7 +2580,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
             {
-                if(project.IPM_ProjectGKM__c=='GKM3'){
+                if(project.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_3){
                     return IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
                 }
                 return IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
@@ -2845,7 +2845,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 update mcoCountryRolloutPlan;
                 getFinancials();                 
             }
-            else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_ProjectGKM__c=='GKM3')
+            else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_3)
             {
                 mcoCountryRolloutPlan.Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
                 mcoCountryRolloutPlan.Local_Project_Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
@@ -2943,7 +2943,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 flag = true;
                 isMisalignedTLD  = true;
                 validationErrorMessageforTLD = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
-                if(project.IPM_ProjectGKM__c == 'GKM3')
+                if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3)
                 {
                   validationErrorMessageforTLD = String.format(Label.IPM_TLD_VR_Misaligned_At_Global,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
                 }
