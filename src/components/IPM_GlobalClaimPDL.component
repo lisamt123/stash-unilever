@@ -7,28 +7,6 @@
 *************************************************************************
 -->
 <apex:component allowDML="true" controller="IPM_GlobalClaimPDLController">
-<style>
-    .glbPLDtableHead thead th{height: 40px;background-color: #dceefa;}
-    .glbPLDtablebody{background-color: #f2f8fc;margin-top: -20px;}
-    .claimHeader{width:195px;float:left;}
-    .glbCmnWidth{width:400px;}
-    .removeClaimText{padding:10px;}
-    .glbPLDdrpdown{margin-top: -20px;}
-    .glbPLDdrpdown>tbody>tr:nth-child(even) {background: #f8f8f8;}
-    .selectClaim{position:relative;}
-    .gatepdlContainer{width: 100%;float: left;height: 100%;}
-    .claimList{width:100%;}
-    .paddleft{padding:0px 20px;}
-    .noteclaim label {font-weight:normal; padding:5px 0px;}
-    .globalclaim {font-weight: bold;border-bottom: 2px solid #ddd;}
-</style>
-<script>
-function deletionHandling(projectClaimId)
-{
-    jq('#removeClaim .deleteclaimbtn').on("click",function(){deleteClaim(projectClaimId);});
-	jq("#ipmDeleteModal").modal('hide');
-}
-</script>
     <apex:attribute name="projId" description="Getting Project Id" type="Id" assignTo="{!projectId}"/>
     <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay" />
     <apex:actionFunction name="deleteClaim" action="{!deleteClaim}" reRender="ProjectClaimTableId" status="Loading">
@@ -60,7 +38,7 @@ function deletionHandling(projectClaimId)
 	                       <td rowspan="0" class="pl15 glbCmnWidth"><div>Global</div></td>
 	                          
 	                        <td class="">
-	                            <apex:inputField value="{!projectClaim.IPM_Claim__c}" styleclass="pldTextbox" onblur="autoSave();"/>
+                                	<apex:inputField value="{!projectClaim.IPM_Claim__c}" html-maxlength="50" styleclass="pldTextbox" onblur="autoSave();"/> 
 	                            
 	                        </td>
 	                        
@@ -222,38 +200,5 @@ function deletionHandling(projectClaimId)
         </div> 
   
     </apex:outputPanel>
-    
-    
-    
-<script>
-    jq(document).on('click', '.pdlCheckbox input[type="checkbox"]:not(:disabled)', function() {
-        var chkInput = jq(this);
-        if (chkInput.is(':checked')) {
-            chkInput.next('label').addClass('selected');
-        } else {
-            chkInput.next('label').removeClass('selected');
-        }
-    });
-    jq(document).on("click", ".deleteClaim", function(e) {
-        e.preventDefault ? e.preventDefault() : e.returnValue = false;
-        jq("#removeClaim .modal-dialog").width("600px");
-        jq("#removeClaim .modal-dialog").height("180px");
-        jq("#removeClaim .modal-dialog").css({
-            "margin-top": "10%",
-            "z-index": "999"
-        })
-    });
-     jq(document).on('click', '.claimList input[type="checkbox"], .claimList ul li', function(e) {
-        e.stopPropagation();
-    });
-     jq(document).on('show.bs.dropdown', '.clickClaimDrpdown', function(){
-         jq(".claimList").hide(); 
-        jq(this).find('.claimList').show(); 
-    });
-    jq(document).click(function(e) {
-        if( e.target.id !== 'claimListUL') {
-            jq(".claimList").hide();    
-        }   
-    });
-</script>
+
 </apex:component>
