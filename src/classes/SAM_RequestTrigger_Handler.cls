@@ -49,7 +49,7 @@ public with sharing class SAM_RequestTrigger_Handler
         }
     }
     
-    public void beforeUpdate(List<SObject> lstsObjectOld, List<SObject> lstsObjectNew)
+    public void beforeUpdate(List<SObject> lstsObjectNew,List<SObject> lstsObjectOld)
     {
         if(triggerShouldExecute)
         {
@@ -58,7 +58,9 @@ public with sharing class SAM_RequestTrigger_Handler
             SAM_Request_TriggerUtil.validationForBuildDetail(trigger.new,trigger.old);
             SAM_Request_TriggerUtil.PreventRequestAssignment(trigger.new,trigger.old);
             //SAM_Request_TriggerUtil.PreventEditAfterClose(trigger.new,trigger.old); 
-           // SAM_Request_TriggerUtil.StatusUpdate(lstsObjectNew,lstsObjectOld);         
+           // SAM_Request_TriggerUtil.StatusUpdate(lstsObjectNew,lstsObjectOld); 
+            
+           
         }
     }
     
@@ -86,6 +88,7 @@ public with sharing class SAM_RequestTrigger_Handler
            //SAM_Request_TriggerUtil.SAM_email_attachment(trigger.new,trigger.old);
             //SAM_Request_TriggerUtil.ResetNextActionPicklists(lstsObjectNew,lstsObjectOld);
             //SAM_Request_TriggerUtil.requestStatusOnChildRecord(trigger.new,trigger.old);
+            SAM_Request_TriggerUtil.CreateQuotationPerProduct(trigger.new,trigger.old);
         }
     }
     

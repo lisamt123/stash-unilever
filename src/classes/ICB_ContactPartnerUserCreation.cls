@@ -21,6 +21,7 @@ public with sharing class ICB_ContactPartnerUserCreation
     private static List<String> types;
     private static List<String> recordTypeId;
     private static List<String> recorTypeName;
+    
     //private static List<User> listUser;
     
     public static final ICB_ContactPartnerUserCreation instance = new ICB_ContactPartnerUserCreation();
@@ -137,8 +138,8 @@ public with sharing class ICB_ContactPartnerUserCreation
             String alias = contact.email.substringBefore('@');
 
             newUser = new User(
-                alias = alias.substring(0,4) + system.now().day(),
-                email = contact.ICB_Type__c == types.get(0) ? contact.email.substringBefore('@').tolowercase() + '@no-reply.com' : userEmail, 
+                alias = alias.substring(0,2) + system.now().day() + system.now().second(),
+                email = contact.ICB_Type__c == types.get(0) ? contact.email.substringBefore('@').tolowercase() + '@no-reply.com' : contact.email, 
                 emailencodingkey = 'UTF-8',
                 firstname = contact.firstName, 
                 lastname = contact.lastname, 
@@ -172,9 +173,10 @@ public with sharing class ICB_ContactPartnerUserCreation
         System.debug('Entering <definePermissionSetting>');
 
         Map<Id, String> mapPermission = new Map<Id, String>();
-        List<PermissionSet> listPermission 	= [SELECT Id, Label 
+        /*List<PermissionSet> listPermission 	= [SELECT Id, Label 
                                               FROM PermissionSet 
-                                              WHERE Label IN: permissions];
+                                              WHERE Label IN: permissions];*/
+        Map<String,Id> mapLabelPermission = new Map<String, Id>();
         List<User> 			listUsuarios 	= [SELECT Id, 
                                                Contact.ICB_Type__c, 
                                                Contact.Name,
@@ -196,10 +198,9 @@ public with sharing class ICB_ContactPartnerUserCreation
                                        WHERE Label IN: permissions]) 
             {
                 mapPermission.put(psMap.id, psMap.Label);
+                mapLabelPermission.put(psMap.Label, psMap.Id);
             }
-            
-            system.debug('MAP DE PERMISSIONSET: ' + mapPermission.keySet());
-            
+                        
             Set<Id> setIdUserPermission = new Set<Id>();
             for(PermissionSetAssignment vPs : [SELECT Id, AssigneeId FROM PermissionSetAssignment 
                                                WHERE AssigneeId IN: listUsuarios 
@@ -207,20 +208,17 @@ public with sharing class ICB_ContactPartnerUserCreation
             {
                 setIdUserPermission.add(vPs.AssigneeId);                
             }
-            
-            
             for(User myUsers : listUsuarios) 
             {
                 if(!setIdUserPermission.contains(myUsers.Id))  {
-                    
                     if (myUsers.Contact.ICB_Type__c == types.get(0)) 
                     {                
-                        psa.add(new PermissionSetAssignment(PermissionSetId = listPermission.get(0).Id, AssigneeId = myUsers.Id));
+                        psa.add(new PermissionSetAssignment(PermissionSetId = mapLabelPermission.get(permissions.get(0)), AssigneeId = myUsers.Id));
                         
                     } 
                     else if (myUsers.Contact.ICB_Type__c == types.get(1)) 
                     {
-                        psa.add(new PermissionSetAssignment(PermissionSetId = listPermission.get(1).Id, AssigneeId = myUsers.Id));
+                        psa.add(new PermissionSetAssignment(PermissionSetId = mapLabelPermission.get(permissions.get(1)), AssigneeId = myUsers.Id));
                     }
                 }
             }
@@ -250,6 +248,7 @@ public with sharing class ICB_ContactPartnerUserCreation
     @future
     private static void insertUserGroup() 
     {
+         System.debug('Entering <insertUserGroup>');
         List<GroupMember> vListGroup = new List<GroupMember>();
         List<User> 		ListUserGroup 	= [SELECT Id, 
                                                Contact.ICB_Type__c, 
@@ -260,6 +259,7 @@ public with sharing class ICB_ContactPartnerUserCreation
                                                WHERE Contact.RecordType.Name =: recorTypeName
                                                AND Contact.ICB_Community_User__c = false
                                                AND Contact.ICB_Type__c IN: (types)];
+       // system.debug('VALOR DO GRUPO: ' + ICB_ContactTypes__c.getValues('PublicGroup').Value__c);
     	Group groupId = [SELECT Name, Id FROM Group WHERE NAME =: ICB_ContactTypes__c.getValues('PublicGroup').Value__c];
         for(User vUser : ListUserGroup) {
         	GroupMember vGroupMember = new GroupMember(UserOrGroupId = vUser.Id, GroupId = groupId.Id);
@@ -267,6 +267,7 @@ public with sharing class ICB_ContactPartnerUserCreation
         }
 	    
         insert(vListGroup);
+        System.debug('Exiting <insertUserGroup>');
     }
     
      

@@ -432,13 +432,14 @@
     </fields>
     <fields>
         <fullName>fml_Cross_Charge_Amount_for_report__c</fullName>
+        <description>For finance report</description>
         <externalId>false</externalId>
-        <formula>txt_Cross_Charge_Amount_in_euros__c + rol_Total_CAPEX_in_for_X_type__c</formula>
+        <formula>txt_Cross_Charge_Amount_in_euros__c +  rol_Total_CAPEX_in_for_X_type__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Total Cross Charge Amount (€)</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -458,17 +459,14 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>fml_Total_Applicable_Cross_Charge__c</fullName>
+        <fullName>fml_Software_Engagement_Type__c</fullName>
         <externalId>false</externalId>
-        <formula>rol_Total_Annual_Maint_in_for_X_type__c +  rol_Total_CAPEX_in_for_X_type__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Total Applicable Cross Charge (€) old</label>
-        <precision>18</precision>
+        <formula>IF(rol_Charging_type_count_of_X__c &gt;0, &apos;Cross Charge Applicable (X)&apos;+BR(),null)+IF( rol_Charging_type_count_of_DOPO__c &gt;0, &apos;DO/PO Applicable (O)&apos;+BR(),null) + IF( rol_Charging_type_count_of_I__c  &gt;0, &apos;Innovation Purchased (I)&apos;+BR(),null) +IF( rol_Charging_type_count_of_P__c &gt;0, &apos;Engage with Procurement (P)&apos;,null)</formula>
+        <label>Software Engagement Type</label>
         <required>false</required>
-        <scale>4</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Number</type>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -479,7 +477,7 @@
         <label>Total €</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -621,6 +619,17 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <description>Records the request comment history</description>
         <externalId>false</externalId>
         <label>Request Comment History</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ltxt_SaaS_Comments__c</fullName>
+        <description>If SaaS is selected as Yes, then this is mandatory.</description>
+        <externalId>false</externalId>
+        <label>SaaS Comments</label>
         <length>32768</length>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2537,6 +2546,66 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>rol_Charging_type_count_of_DOPO__c</fullName>
+        <externalId>false</externalId>
+        <label>Charging type count of DOPO</label>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
+            <operation>equals</operation>
+            <value>DO/PO Applicable (O)</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Charging_type_count_of_I__c</fullName>
+        <externalId>false</externalId>
+        <label>Charging type count of I</label>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation Purchased (I)</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Charging_type_count_of_P__c</fullName>
+        <externalId>false</externalId>
+        <label>Charging type count of P</label>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
+            <operation>equals</operation>
+            <value>Engage with Procurement (P)</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>rol_Charging_type_count_of_X__c</fullName>
+        <externalId>false</externalId>
+        <label>Charging type count of X</label>
+        <summaryFilterItems>
+            <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
+            <operation>equals</operation>
+            <value>Cross Charge Applicable (X)</value>
+        </summaryFilterItems>
+        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>rol_DO_detail_validation_count__c</fullName>
         <externalId>false</externalId>
         <label>DO detail validation count</label>
@@ -2598,22 +2667,6 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <inlineHelpText>Vertical summation of all the line items w.r.t Total Annual Maint (€)</inlineHelpText>
         <label>Total (Total Annual Maint ) (€)</label>
         <summarizedField>SAM_Quote_Line_Item__c.Total_Annual_Maint__c</summarizedField>
-        <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>rol_Total_Annual_Maint_in_for_X_type__c</fullName>
-        <externalId>false</externalId>
-        <label>Total Annual Maint in € for X type</label>
-        <summarizedField>SAM_Quote_Line_Item__c.Total_Annual_Maint__c</summarizedField>
-        <summaryFilterItems>
-            <field>SAM_Quote_Line_Item__c.pkl_Charging_Type__c</field>
-            <operation>equals</operation>
-            <value>Cross Charge Applicable (X)</value>
-        </summaryFilterItems>
         <summaryForeignKey>SAM_Quote_Line_Item__c.md_Request__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -2854,9 +2907,9 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <fullName>txt_Cross_Charge_Amount_in_euros__c</fullName>
         <externalId>false</externalId>
         <label>Cross Charge Amount (€)</label>
-        <precision>18</precision>
+        <precision>16</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -2970,7 +3023,7 @@ For SAM User: Write/View response for the query</inlineHelpText>
         <description>MANDATORY(Saved)</description>
         <externalId>false</externalId>
         <label>Master Clarity Id</label>
-        <length>255</length>
+        <length>50</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3176,7 +3229,7 @@ This field will be read only for all user</description>
         <columns>txt_Cost_Center_CC__c</columns>
         <columns>txt_ICC_GLC_LCC__c</columns>
         <columns>pkl_Mode_of_Charging__c</columns>
-        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>fml_SAM_demand_manager__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All Request</label>
@@ -3190,16 +3243,15 @@ This field will be read only for all user</description>
         <columns>NAME</columns>
         <columns>txt_Request_Type_for_UI__c</columns>
         <columns>pkl_Status__c</columns>
-        <columns>lkp_Assign_To__c</columns>
         <columns>txt_SA_Clarity_Id__c</columns>
         <columns>txt_Portfolio__c</columns>
         <columns>txt_Name_of_the_Project__c</columns>
-        <columns>txt_CrossCharge_Publisher__c</columns>
         <columns>date_Go_Live_Date__c</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>Last_Quote_Sent_On__c</columns>
+        <columns>fml_Software_Engagement_Type__c</columns>
         <columns>date_Finance_Submission_Date__c</columns>
-        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>fml_SAM_demand_manager__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <columns>Ticket_Age__c</columns>
         <filterScope>Everything</filterScope>
@@ -3225,7 +3277,7 @@ This field will be read only for all user</description>
         <columns>txt_Cost_Center_CC__c</columns>
         <columns>txt_ICC_GLC_LCC__c</columns>
         <columns>pkl_Mode_of_Charging__c</columns>
-        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>fml_SAM_demand_manager__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Mine</filterScope>
         <label>My Request</label>
@@ -3242,12 +3294,12 @@ This field will be read only for all user</description>
         <columns>txt_SA_Clarity_Id__c</columns>
         <columns>txt_Portfolio__c</columns>
         <columns>txt_Name_of_the_Project__c</columns>
-        <columns>txt_CrossCharge_Publisher__c</columns>
         <columns>date_Go_Live_Date__c</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>Last_Quote_Sent_On__c</columns>
+        <columns>fml_Software_Engagement_Type__c</columns>
         <columns>date_Finance_Submission_Date__c</columns>
-        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>fml_SAM_demand_manager__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>My Request</label>
@@ -3264,12 +3316,12 @@ This field will be read only for all user</description>
         <columns>txt_SA_Clarity_Id__c</columns>
         <columns>txt_Portfolio__c</columns>
         <columns>txt_Name_of_the_Project__c</columns>
-        <columns>txt_CrossCharge_Publisher__c</columns>
         <columns>date_Go_Live_Date__c</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>Last_Quote_Sent_On__c</columns>
+        <columns>fml_Software_Engagement_Type__c</columns>
         <columns>date_Finance_Submission_Date__c</columns>
-        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>fml_SAM_demand_manager__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <columns>Ticket_Age__c</columns>
         <filterScope>Mine</filterScope>
@@ -3294,7 +3346,7 @@ This field will be read only for all user</description>
         <columns>txt_Cost_Center_CC__c</columns>
         <columns>txt_ICC_GLC_LCC__c</columns>
         <columns>pkl_Mode_of_Charging__c</columns>
-        <columns>txt_CC_SAM_Demand_Manager__c</columns>
+        <columns>fml_SAM_demand_manager__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>SAM Finance Queue</label>
@@ -3313,10 +3365,10 @@ This field will be read only for all user</description>
         <columns>txt_SA_Clarity_Id__c</columns>
         <columns>txt_Portfolio__c</columns>
         <columns>txt_Name_of_the_Project__c</columns>
-        <columns>txt_CrossCharge_Publisher__c</columns>
         <columns>date_Go_Live_Date__c</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>Quote_Final_Provided_Date__c</columns>
+        <columns>Last_Quote_Sent_On__c</columns>
+        <columns>fml_Software_Engagement_Type__c</columns>
         <columns>date_Finance_Submission_Date__c</columns>
         <columns>fml_SAM_demand_manager__c</columns>
         <columns>UPDATEDBY_USER</columns>
@@ -39478,9 +39530,9 @@ This field will be read only for all user</description>
         <fullName>Master_Clarity_Alphanumeric_Data</fullName>
         <active>true</active>
         <description>It accepts any thing between A-Z, a-z, 0-9 and space (no other special characters allowed).</description>
-        <errorConditionFormula>AND(( NOT( ISBLANK(txt_Master_Clarity_Id__c ) ) ),(NOT( REGEX( txt_Master_Clarity_Id__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorConditionFormula>AND(( NOT( ISBLANK(txt_Master_Clarity_Id__c) ) ),(NOT( REGEX( txt_Master_Clarity_Id__c, &quot;[0-9]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Master_Clarity_Id__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Action_Comments_Validation</fullName>
@@ -39689,7 +39741,7 @@ OR(txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot; ,txt_Request_Type__c
     <validationRules>
         <fullName>SAM_Cloud_Platforms_Validation_reverse</fullName>
         <active>true</active>
-        <description>Mandatory ff Host platform is Cloud</description>
+        <description>Mandatory if Host platform is Cloud</description>
         <errorConditionFormula>AND( 
 NOT(ISBLANK(mpkl_Cloud_Platforms__c)), 
 NOT((ISPICKVAL(pkl_Deployments__c, &quot;Cloud&quot;))), 
@@ -39733,19 +39785,34 @@ OR(txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot; ,txt_Request_Type__c
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Country_deployment_reverse</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+NOT(ISBLANK(mpkl_Country_of_Deployment__c )), 
+OR(ISPICKVAL(pkl_SAM_Requester_Status__c, &quot;Information Provided&quot;) , ISPICKVAL(pkl_SAM_team_Status__c , &quot;Information Provided&quot;)), AND(NOT(ISBLANK(mpkl_Landscape_Details__c )),
+NOT(INCLUDES(mpkl_Landscape_Details__c , &apos;Cordillera&apos;)),NOT(INCLUDES(mpkl_Landscape_Details__c , &apos;Fusion&apos;)),NOT(INCLUDES(mpkl_Landscape_Details__c , &apos;Sirius&apos;)),NOT(INCLUDES(mpkl_Landscape_Details__c , &apos;U2K2&apos;)),NOT(INCLUDES(mpkl_Landscape_Details__c , &apos;Legacy&apos;)),NOT(INCLUDES(mpkl_Landscape_Details__c , &apos;Others&apos;))) , 
+NOT(ISNULL(txt_Request_Type__c 
+)), 
+txt_Request_Type__c 
+= &quot;SAM_RW_Project_Request&quot; 
+)</errorConditionFormula>
+        <errorDisplayField>mpkl_Country_of_Deployment__c</errorDisplayField>
+        <errorMessage>Not Require when Landscapes is Global</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Country_of_Deployment_Validation</fullName>
         <active>true</active>
         <description>Country of Deployment field validation.</description>
         <errorConditionFormula>AND( 
 ISNULL(mpkl_Country_of_Deployment__c ),
-OR(ISPICKVAL(pkl_SAM_Requester_Status__c, &quot;Information Provided&quot;) , ISPICKVAL(pkl_SAM_team_Status__c , &quot;Information Provided&quot;)),
+OR(ISPICKVAL(pkl_SAM_Requester_Status__c, &quot;Information Provided&quot;) , ISPICKVAL(pkl_SAM_team_Status__c , &quot;Information Provided&quot;)), OR(INCLUDES(mpkl_Landscape_Details__c , &apos;Cordillera&apos;),INCLUDES(mpkl_Landscape_Details__c , &apos;Fusion&apos;),INCLUDES(mpkl_Landscape_Details__c , &apos;Sirius&apos;),INCLUDES(mpkl_Landscape_Details__c , &apos;U2K2&apos;),INCLUDES(mpkl_Landscape_Details__c , &apos;Legacy&apos;),INCLUDES(mpkl_Landscape_Details__c , &apos;Others&apos;)),
 NOT(ISNULL(txt_Request_Type__c  
  )),
 txt_Request_Type__c  
   = &quot;SAM_RW_Project_Request&quot;
 )</errorConditionFormula>
         <errorDisplayField>mpkl_Country_of_Deployment__c</errorDisplayField>
-        <errorMessage>Country of Deployment is mandatory.</errorMessage>
+        <errorMessage>Country of Deployment is mandatory, when Landscapes is other then &quot;Global&quot;.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_CrossChargeAmount_Negative_Validtion</fullName>
@@ -39789,7 +39856,7 @@ txt_Request_Type__c
         <errorConditionFormula>AND( ISBLANK( ltxt_CrossCharge_SAM_Comments__c ) ,TEXT(pkl_SAM_team_Status__c)=$Label.SAM_Awaiting_Charge 
 , txt_Request_Type__c =&quot;SAM_RW_CrossCharge_Request&quot; )</errorConditionFormula>
         <errorDisplayField>ltxt_CrossCharge_SAM_Comments__c</errorDisplayField>
-        <errorMessage>SAM Comments is mandatory.</errorMessage>
+        <errorMessage>Comments is Mandatory.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Cross_Charge_Submission_Date_Val</fullName>
@@ -40575,18 +40642,18 @@ txt_Request_Type__c   = &quot;SAM_RW_Project_Request&quot;
     <validationRules>
         <fullName>SAM_Publisher_CC_Alpha</fullName>
         <active>true</active>
-        <errorConditionFormula>AND(( NOT( ISBLANK(txt_CrossCharge_Publisher__c ) ) ),(NOT( REGEX( txt_CrossCharge_Publisher__c , &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <errorConditionFormula>AND(( NOT( ISBLANK(txt_CrossCharge_Publisher__c ) ) ),(NOT( REGEX( txt_CrossCharge_Publisher__c , &quot;[a-zA-Z0-9, ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_CrossCharge_Publisher__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>SAM_Query_Answered_Validation</fullName>
         <active>true</active>
-        <description>Query Requester cannot change request status to Query Answered</description>
+        <description>Query Requester cannot change request status to Query Answered. CONTAINS(ltxt_User_Public_Groups__c , &apos;SAM_Team&apos;),  replaces CreatedById = OwnerId,</description>
         <errorConditionFormula>AND( 
 Text(pkl_SAM_team_Status__c)=  $Label.SAM_Query_Answered  , 
 Text( pkl_Status__c ) &lt;&gt; $Label.SAM_Query_Answered,
-CreatedById = OwnerId,
+CONTAINS(ltxt_User_Public_Groups__c , &apos;SAM_Team&apos;),
 txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot; 
 )</errorConditionFormula>
         <errorDisplayField>pkl_SAM_team_Status__c</errorDisplayField>
@@ -40628,8 +40695,8 @@ txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot;
     <validationRules>
         <fullName>SAM_Query_Requestor_EmailId_Validation</fullName>
         <active>true</active>
-        <description>Requestor Email Id Validation</description>
-        <errorConditionFormula>AND( ISBLANK(  eml_Requester_Email_Id__c  ) ,Text(pkl_SAM_team_Status__c)  =   $Label.SAM_Closed , txt_Request_Type__c = &apos;SAM_RW_Query_Request&apos;)</errorConditionFormula>
+        <description>Requestor Email Id mandatory Validation</description>
+        <errorConditionFormula>AND( ISBLANK( eml_Requester_Email_Id__c ) ,Text(pkl_SAM_team_Status__c) = $Label.SAM_Closed , txt_Request_Type__c = &apos;SAM_RW_Query_Request&apos;)</errorConditionFormula>
         <errorDisplayField>eml_Requester_Email_Id__c</errorDisplayField>
         <errorMessage>Requester Email Id is mandatory.</errorMessage>
     </validationRules>
@@ -40834,6 +40901,34 @@ NOT(ISNULL(txt_Request_Type__c
         <errorMessage>SA Clarity Id is mandatory.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>SAM_Saas_Comments_reverse</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+NOT(ISBLANK( ltxt_SaaS_Comments__c )), 
+NOT((ISPICKVAL( pkl_SAAS_Yes_No__c , &quot;Yes&quot;))), 
+OR(TEXT(pkl_SAM_Requester_Status__c)= $Label.SAM_Information_Provided , TEXT(pkl_SAM_team_Status__c)= $Label.SAM_Information_Provided), 
+NOT(ISNULL(txt_Request_Type__c 
+)), 
+OR(txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot; ,txt_Request_Type__c = &quot;SAM_RW_Non_Project_Request&quot;) 
+)</errorConditionFormula>
+        <errorDisplayField>ltxt_SaaS_Comments__c</errorDisplayField>
+        <errorMessage>Require only when SaaS is select Yes</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>SAM_Saas_comments</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+ISBLANK( ltxt_SaaS_Comments__c ), 
+ISPICKVAL( pkl_SAAS_Yes_No__c , &quot;Yes&quot;), 
+OR(TEXT(pkl_SAM_Requester_Status__c)= $Label.SAM_Information_Provided , TEXT(pkl_SAM_team_Status__c)= $Label.SAM_Information_Provided), 
+NOT(ISNULL(txt_Request_Type__c 
+)), 
+OR(txt_Request_Type__c = &quot;SAM_RW_Project_Request&quot; ,txt_Request_Type__c = &quot;SAM_RW_Non_Project_Request&quot;) 
+)</errorConditionFormula>
+        <errorDisplayField>ltxt_SaaS_Comments__c</errorDisplayField>
+        <errorMessage>SaaS Comments is mandatory when SaaS is select Yes</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>SAM_Scope_of_the_Project_Validation</fullName>
         <active>true</active>
         <description>Scope of the Project  field Validation</description>
@@ -40893,9 +40988,9 @@ TEXT(pkl_SAM_team_Status__c) = $Label.SAM_Quote_Provided
     <validationRules>
         <fullName>SA_Clarity_Alphanumeric_Data</fullName>
         <active>true</active>
-        <description>It accepts any thing between A-Z, a-z, 0-9 and space (no other special characters allowed).</description>
-        <errorConditionFormula>AND(( NOT( ISBLANK(txt_SA_Clarity_Id__c) ) ),(NOT( REGEX( txt_SA_Clarity_Id__c, &quot;[a-zA-Z0-9 ]+&quot;))))</errorConditionFormula>
+        <description>It accepts any thing between 0-9  (no other special characters allowed).</description>
+        <errorConditionFormula>AND(( NOT( ISBLANK(txt_SA_Clarity_Id__c) ) ),(NOT( REGEX( txt_SA_Clarity_Id__c, &quot;[0-9]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_SA_Clarity_Id__c</errorDisplayField>
-        <errorMessage>&quot;Invalid Data&quot;, Please Enter Alphabets/Numeric values only</errorMessage>
+        <errorMessage>&quot;Invalid Data&quot;, Please Enter Numeric values only</errorMessage>
     </validationRules>
 </CustomObject>
