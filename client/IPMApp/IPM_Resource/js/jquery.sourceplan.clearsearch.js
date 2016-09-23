@@ -77,7 +77,7 @@
                                 .outerHeight();
                         btn.css({
                             top : height / 2 - btn.height() / 2,
-                            left : width - height / 2 - btn.height() / 2 - 22
+                            left : width - height / 2 - btn.height() / 2
                         });
                     }
 

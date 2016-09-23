@@ -30,7 +30,7 @@ jq(document).ready(function() {
     jq("#applyFilter").on("click", function() {
         applyFilter();
     });
-	dropDownFilter();
+    dropDownFilter();
     chkAll();
     chkSub();
    
@@ -195,7 +195,7 @@ function wrapGeography() {
             }
         });
     }
-	
+    
 function applyFilter() {
         var checkedPhases = [];
         var checkedProjectTypes = [];
@@ -220,7 +220,7 @@ function applyFilter() {
         }
         applyFltr(checkedPhases.toString(), jq('.tldFrom').val(), jq('.tldTo').val(), jq('.my').is(":checked"), jq('.aPro').is(":checked"), geoAll, clusters, mcos, countries.toString(), iTORange1, iTORange2, brandPositionsnew.toString(), checkedProjectTypes.toString(), jq('#ActiveProjects').is(':checked'), jq('#StoppedProjects').is(':checked'), unAssigned);
     }
-	
+    
 function dropDownFilter(){
 jq("div.brandSearchResultsClass").on("click", "div", function(event) {
         brandsVal = jq(this).text();
@@ -256,8 +256,8 @@ jq("div.brandSearchResultsClass").on("click", "div", function(event) {
             jq('.brandSearchResultsClass').hide();
         }
     });
-	
-	 /* Below works on click event. It removes the list when clicked on it */
+    
+     /* Below works on click event. It removes the list when clicked on it */
     jq(".filterBrandList").on("click", ".brndFilter", function() {
         brandPositionsnew.splice(jq.inArray(jq(this).text(), brandPositionsnew), 1);
         jq(this).remove();
