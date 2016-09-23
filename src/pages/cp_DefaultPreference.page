@@ -100,13 +100,14 @@
 		</apex:actionStatus>
 		<apex:pageMessages id="errorMess"/>
 
-		<center>
-			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true"/> 
-		</center>
+       
+			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true" style="display:block; margin-left:auto; margin-right:auto"/> 
+		
 		<br/>
 
 		<!-- MY SELECTION -->
-		<center>
+		<form align="Center">
+            
 			<apex:panelGrid styleclass="defaultSelection" cellpadding="5" cellspacing="5" rendered="{!!ISBLANK(selectedPlannerName)}">
 				<!--<span>Default Planner </span><br/> -->
 				<span style="color:white;font-weight:bold;">{!selectedPlannerName}</span>
@@ -114,11 +115,11 @@
 			<apex:panelGrid styleclass="defaultSelection" style="background-color:#FFB30D;width:80%" cellpadding="5" cellspacing="5" rendered="{!ISBLANK(selectedPlannerName)}">
 				<span>{!$Label.cp_UserPreferenceValidationMessage}</span>
 			</apex:panelGrid>
-		</center>
+		 </form>
 		<br/><br/>
 
 		<!-- CENTRAL SECTION -->
-		<center>
+      <form align="Center">
 		<apex:outputPanel layout="block" styleClass="section" rendered="{!!isMarket}">
 		<apex:pageBlock title="Central Planner" mode="mainDetail">
 		<table class="maintable" cellpadding="5" cellspacing="5">
@@ -263,12 +264,12 @@
 		</table>
 		</apex:pageBlock>
 		</apex:outputPanel>
-		</center>
+        </form>
 
 		<br/><br/>
-		<center>
-			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true"/> 
-		</center>
+		
+			<apex:commandButton action="{!backToPlanner}" value="Back to Planner" immediate="true" style="display:block; margin-left:auto; margin-right:auto"/> 
+		
 
 	</apex:form>
 
