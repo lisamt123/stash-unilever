@@ -2,6 +2,9 @@ src/classes
 src/classes/WU_SetWarehousePOCHandler.cls
 src/classes/WU_SetWarehousePOCHandler.cls-meta.xml
 
+src/objects
+src/objects/WU_Master_Warehouse__c.object
+
 
 
 src/permissionsets
