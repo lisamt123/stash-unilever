@@ -891,12 +891,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     private void showValidationMessage(String localProjects, String localProjectsTLD, String localProjectBC)
     {
     	    if(isGKM3Model){
-	              localProjects = localProjects.removeEnd(IPM_ConstantUtils.COMMA);
-	           	  localProjectsTLD = localProjectsTLD.removeEnd(IPM_ConstantUtils.COMMA);
-	           	  localProjectBC = localProjectBC.removeEnd(IPM_ConstantUtils.COMMA);
-	          	  localFinProjectNameStr = string.format(System.Label.IPM_Finance_Align_Improved, new string[]{localProjects});
-	          	  localTLDProjectNameStr = string.format(System.Label.IPM_TDL_Align_Improved, new string[]{localProjectsTLD});
-	          	  localBCProjectNameStr =  string.format(System.Label.IPM_confirm_business_case_in_gate_Improved, new string[]{localProjectBC});
+	          	  localFinProjectNameStr = string.format(System.Label.IPM_Finance_Align_Improved, new string[]{localProjects.removeEnd(IPM_ConstantUtils.COMMA)});
+	          	  localTLDProjectNameStr = string.format(System.Label.IPM_TDL_Align_Improved, new string[]{localProjectsTLD.removeEnd(IPM_ConstantUtils.COMMA)});
+	          	  localBCProjectNameStr =  string.format(System.Label.IPM_confirm_business_case_in_gate_Improved, new string[]{localProjectBC.removeEnd(IPM_ConstantUtils.COMMA)});
             }else{
 	              localFinProjectNameStr = System.Label.IPM_Finance_Align; 
 	              localTLDProjectNameStr = System.Label.IPM_TDL_Align;
