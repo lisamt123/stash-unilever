@@ -736,19 +736,17 @@
                         <apex:param name="selectedStoppedProject" assignTo="{!selectedStoppedProject}" value=""/>
                         <apex:param name="unassigned" assignTo="{!unassigned}" value=""/>
                     </apex:actionFunction>
-                    <apex:actionFunction name="toggleSortProjects" action="{!toggleSortProjects}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();chkAll()"/>
-                    <apex:actionFunction name="toggleSortPhases" action="{!toggleSortPhases}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();chkAll()" />
-                    <apex:actionFunction name="toggleSortPLs" action="{!toggleSortPLs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();chkAll()"/>
-                    <apex:actionFunction name="toggleSortGKs" action="{!toggleSortGKs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();chkAll()"/>
-                    <apex:actionFunction name="toggleSortITOs" action="{!toggleSortITOs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();chkAll()"/>
-                    <apex:actionFunction name="toggleSortTLDs" action="{!toggleSortTLDs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();chkAll()"/>
+                    <apex:actionFunction name="toggleSortProjects" action="{!toggleSortProjects}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();"/>
+                    <apex:actionFunction name="toggleSortPhases" action="{!toggleSortPhases}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();" />
+                    <apex:actionFunction name="toggleSortPLs" action="{!toggleSortPLs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();"/>
+                    <apex:actionFunction name="toggleSortGKs" action="{!toggleSortGKs}" rerender="prjPanel,paginationSec" status="myStatus"  oncomplete="sortProjectsJsFunc();"/>
+                    <apex:actionFunction name="toggleSortITOs" action="{!toggleSortITOs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();"/>
+                    <apex:actionFunction name="toggleSortTLDs" action="{!toggleSortTLDs}" rerender="prjPanel,paginationSec" status="myStatus" oncomplete="sortProjectsJsFunc();"/>
                     <apex:actionFunction name="securityCheckFunc" action="{!getusertype}" reRender="securityPanel" />
-                    <apex:actionFunction name="getGeoClustersFunction" action="{!getGeoInfoAndCount}" reRender="filterSideBarGeoClusters" oncomplete="rerenderAccordion();chkAll();chkSub();"/>
-                    <apex:actionFunction name="getFiltersCountFunc" action="{!getFiltersCount}" reRender="filterSideBarTypeStatusPhasePanel,filterSideBarMainType" oncomplete="projectTypeCheck();typeCheck();"/>
-                    <apex:actionFunction name="getMainProjSectionFunc" action="{!getMainProjSection}" reRender="mainProjPanel"  oncomplete="sortProjectsJsFunc();chkAll();"/>
-                </apex:form>
-                
-                <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectSearchComp.js')}"/>                    
+                    <apex:actionFunction name="getGeoClustersFunction" action="{!getGeoInfoAndCount}" reRender="filterSideBarGeoClusters" oncomplete="chkAll();chkSub();rerenderAccordion();"/>
+                    <apex:actionFunction name="getFiltersCountFunc" action="{!getFiltersCount}" reRender="filterSideBarTypeStatusPhasePanel,filterSideBarMainType" oncomplete="chkAll();chkSub();projectTypeCheck();"/>
+                    <apex:actionFunction name="getMainProjSectionFunc" action="{!getMainProjSection}" reRender="mainProjPanel"  oncomplete="sortProjectsJsFunc();"/>
+                </apex:form>                  
             </div>
             <div id="ipmModalDiv">
                 <c:IPM_ModalHeaderDiv />
@@ -764,7 +762,7 @@
         var IPMAppAllprojects={stop:'{!selectedStoppedProject}'};
     </script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_initAllProjects.js')}" type="text/javascript"></script>
-    
+    <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectSearchComp.js')}"/> 
     <script>
         jq(document).ready(function () {
         ipmModal('#createProject','Create Project','70%','370px','10%');

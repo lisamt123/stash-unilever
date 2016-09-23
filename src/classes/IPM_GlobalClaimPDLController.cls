@@ -11,6 +11,7 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	public List<IPM_Country_Level_Claim__c> contryLevelClaimList{get; set;}
 	public Boolean showCountryClaim{get;set;}
 	public String projClaimId{get;Set;}
+	private static final String IPM_GLOBALCLAIMPDLCONTROLLER_STR = IPM_GlobalClaimPDLController.class.getName();
 	
 	
 	public IPM_GlobalClaimPDLController()
@@ -261,7 +262,15 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 		if(projClaimId != null)
 		{
 			IPM_Project_Claim__c projClaim = new IPM_Project_Claim__c(id=projClaimId);
-			delete projClaim;
+			try
+			{
+				delete projClaim;
+			}
+			catch(Exception ex)
+			{
+				ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GLOBALCLAIMPDLCONTROLLER_STR,
+                'Claims',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);	
+			}
 		}
 		prepareCountryClaimDetails();
 		return null;
