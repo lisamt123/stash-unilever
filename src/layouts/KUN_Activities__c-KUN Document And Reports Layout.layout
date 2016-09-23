@@ -13,6 +13,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Process_Area__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Short_Description__c</field>
             </layoutItems>
         </layoutColumns>
@@ -20,6 +24,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Active__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Cluster__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>

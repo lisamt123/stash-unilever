@@ -241,25 +241,25 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>NOT([IPM_Project_Resource__c].IPM_NotifyProjectStop__c)</stringValue>
+                <stringValue>AND(PRIORVALUE([IPM_Project_Resource__c].IPM_NotifyProjectStop__c) != [IPM_Project_Resource__c].IPM_NotifyProjectStop__c , [IPM_Project_Resource__c].IPM_NotifyProjectStop__c = FALSE )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_3</name>
         <dataType>Boolean</dataType>
-        <expression>NOT({!myVariable_current.IPM_NotifyProjectStop__c})</expression>
+        <expression>AND(PRIORVALUE({!myVariable_current.IPM_NotifyProjectStop__c}) != {!myVariable_current.IPM_NotifyProjectStop__c} , {!myVariable_current.IPM_NotifyProjectStop__c} = FALSE )</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>NOT([IPM_Project_Resource__c].IPM_NotifyProjectStop__c)</stringValue>
+                <stringValue>AND(PRIORVALUE([IPM_Project_Resource__c].IPM_NotifyProjectStop__c) != [IPM_Project_Resource__c].IPM_NotifyProjectStop__c , [IPM_Project_Resource__c].IPM_NotifyProjectStop__c = FALSE )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_3_pmetrule</name>
         <dataType>Boolean</dataType>
-        <expression>NOT({!myVariable_old.IPM_NotifyProjectStop__c})</expression>
+        <expression>AND(PRIORVALUE({!myVariable_old.IPM_NotifyProjectStop__c}) != {!myVariable_old.IPM_NotifyProjectStop__c} , {!myVariable_old.IPM_NotifyProjectStop__c} = FALSE )</expression>
     </formulas>
-    <interviewLabel>IPM_send_email_when_project_stopped_completely-3_IPM_Project_Resource__c</interviewLabel>
+    <interviewLabel>IPM_send_email_when_project_stopped_completely-11_IPM_Project_Resource__c</interviewLabel>
     <label>IPM send email when project stopped completely or reactivated</label>
     <processMetadataValues>
         <name>ObjectType</name>

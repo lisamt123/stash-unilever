@@ -70,6 +70,7 @@ public class ICB_PartnerUserCreation_BatchSch_Test
         ICB_SobjectInstance_SP2_Test.insertContactTypes('User_Email','@operadorkibon.com');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Profile_Community','Partner Community Login Basic');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('RecordType','Ice Cream');
+        ICB_SobjectInstance_SP2_Test.insertContactTypes('PublicGroup','Mobile Channel');
         
     }
 }

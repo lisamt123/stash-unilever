@@ -44,48 +44,16 @@
         <label><!-- Process Area --></label>
         <name>Process_Area__c</name>
         <picklistValues>
-            <masterLabel>Data-to-Insight (D2I)</masterLabel>
-            <translation><!-- Data-to-Insight (D2I) --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Deliver</masterLabel>
             <translation><!-- Deliver --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Govern-to-Comply (G2C)</masterLabel>
-            <translation><!-- Govern-to-Comply (G2C) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Hire-to-Retire (H2R)</masterLabel>
-            <translation><!-- Hire-to-Retire (H2R) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Information &amp; Technology (IT)</masterLabel>
-            <translation><!-- Information &amp; Technology (IT) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Information Management (IM)</masterLabel>
-            <translation><!-- Information Management (IM) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Launch-to-Grow (L2G)</masterLabel>
-            <translation><!-- Launch-to-Grow (L2G) --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Make</masterLabel>
             <translation><!-- Make --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Master Data Management (MDM)</masterLabel>
-            <translation><!-- Master Data Management (MDM) --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Order-to-Cash (O2C)</masterLabel>
             <translation><!-- Order-to-Cash (O2C) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Other</masterLabel>
-            <translation><!-- Other --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Plan-to-Forecast (P2F)</masterLabel>
@@ -104,12 +72,8 @@
             <translation><!-- Record-to-Report (R2R) --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Source-to-Pay (S2P)</masterLabel>
-            <translation><!-- Source-to-Pay (S2P) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Supply-to-Finance (SCF)</masterLabel>
-            <translation><!-- Supply-to-Finance (SCF) --></translation>
+            <masterLabel>Supply-Chain-Finance (SCF)</masterLabel>
+            <translation><!-- Supply-Chain-Finance (SCF) --></translation>
         </picklistValues>
     </fields>
     <fields>
