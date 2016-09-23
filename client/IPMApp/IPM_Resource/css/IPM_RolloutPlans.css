@@ -762,3 +762,4 @@ th div.proLeaderColumn span:last-child{width:87%;}
 .rollouttable .localSelectList{width:80%;}
 span.checkNull{display:none;}
 .container-fluid .proInit{display:none;}
+.addRolloutUrlStrClass,.deleteMCORolloutUrlStrClass,.cancelRolloutUrlStrClass,.saveRolloutUrlStrClass,.editRolloutUrlStrClass{display:none;}
