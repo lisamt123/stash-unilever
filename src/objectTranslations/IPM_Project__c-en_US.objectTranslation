@@ -1028,6 +1028,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Parent_BI --></label>
+        <name>IPM_Parent_BI__c</name>
+    </fields>
+    <fields>
         <label><!-- Parent Project Name --></label>
         <name>IPM_Parent_Project_Name__c</name>
     </fields>

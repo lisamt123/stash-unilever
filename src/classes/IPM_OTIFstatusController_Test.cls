@@ -108,6 +108,12 @@ private class IPM_OTIFstatusController_Test {
         system.RunAs(otifUser){
             Test.startTest();
             IPM_OTIFstatusController otif=new IPM_OTIFstatusController();
+            PageReference pageRef = Page.IPM_ProjectDocumentSectionEditor;
+
+            Test.setCurrentPageReference(pageRef); 
+            System.currentPageReference().getParameters().put('id', project.Id);
+            System.currentPageReference().getParameters().put('projDocSecId', projDocSec.Id);
+
             otif.secConId=project.Id;
             otif.updateOTIFStatus();
             System.assertNotEquals(otif.secCon.IPM_Content_Type__c,IPM_ConstantUtils.OTIF_CONTENT_TYPE,System.Label.IPM_CATCH_BLOCK_CALLED);

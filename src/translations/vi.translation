@@ -9713,10 +9713,6 @@
                 <name>Platform</name>
             </columns>
             <columns>
-                <label><!-- Product Design Lock - Due Date --></label>
-                <name>Product Design Lock - Due Date</name>
-            </columns>
-            <columns>
                 <label><!-- Project Description --></label>
                 <name>Project Description</name>
             </columns>
@@ -10924,6 +10920,14 @@
         <label><!-- SWOP - SOW Campaigns and Assets --></label>
         <name>Oblix_SWOP_SOW</name>
         <sections>
+            <columns>
+                <label><!-- Stages Projected --></label>
+                <name>Stages Projected</name>
+            </columns>
+            <columns>
+                <label><!-- Total Campaign Fees for this FY --></label>
+                <name>Total Campaign Fees for this FY</name>
+            </columns>
             <label><!-- SWOP --></label>
             <name>SWOP</name>
         </sections>
@@ -10932,6 +10936,10 @@
             <name>SWOP Project Assets</name>
         </sections>
         <sections>
+            <columns>
+                <label><!-- Stages Completed --></label>
+                <name>Stages Completed</name>
+            </columns>
             <label><!-- SWOP Projects --></label>
             <name>SWOP Projects</name>
         </sections>
