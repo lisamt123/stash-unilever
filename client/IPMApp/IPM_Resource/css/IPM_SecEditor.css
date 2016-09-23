@@ -861,3 +861,5 @@ div.metric table.ecoDesignCountry tbody tr td div.cellWidth:first-child{
 .paddleft{padding:0px 20px;}
 .noteclaim label {font-weight:normal; padding:5px 0px;}
 .globalclaim {font-weight: bold;border-bottom: 2px solid #ddd;}
+.channelList.claimList  ul {height: auto;min-height:auto;}
+.claimList .pdlCheckbox {width: 45px;}
