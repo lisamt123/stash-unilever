@@ -8868,10 +8868,6 @@
                 <name>Platform</name>
             </columns>
             <columns>
-                <label><!-- Product Design Lock - Due Date --></label>
-                <name>Product Design Lock - Due Date</name>
-            </columns>
-            <columns>
                 <label><!-- Project Description --></label>
                 <name>Project Description</name>
             </columns>

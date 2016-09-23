@@ -14924,6 +14924,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Project_Phantom_Non_Key__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Project_Route__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -20171,6 +20176,11 @@
         <editable>true</editable>
         <field>IPM_Project__c.IPM_PM_Approach__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project__c.IPM_Parent_BI__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

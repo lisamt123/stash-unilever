@@ -3118,6 +3118,33 @@ IF(AND(Year_1_iTO_Regional__c/1000&gt;=(Local_Project__r.IPM_Company_Card__r.IPM
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7I0L000000GrZl_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DUMMY1</label>
+        <queue>IPM_a7I0L000000GrZl</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GrZq_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BIG BANG EU _EU</label>
+        <queue>IPM_a7I0L000000GrZq</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GrZv_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DUMMY2</label>
+        <queue>IPM_a7I0L000000GrZv</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>IPM_a7IE00000004SYI_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_TESTDEPLOY1_SEAA</label>

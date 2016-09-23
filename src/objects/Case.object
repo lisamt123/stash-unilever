@@ -3971,7 +3971,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_Bangladesh_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_Bangladesh</role>
             <role>CEC_User_Bangladesh</role>
@@ -4003,31 +4002,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_HGS_Europe</role>
             <role>CEC_User_Benelux</role>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_Benelux_queue</fullName>
-        <columns>Language__c</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>First_Response_Date__c</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CASES.ORIGIN</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New,Review Needed,In Progress</value>
-        </filters>
-        <label>CEC Benelux WH Nieuw/Herzien</label>
-        <language>nl_NL</language>
     </listViews>
     <listViews>
         <fullName>CEC_Benelux_queue1</fullName>
@@ -6764,6 +6738,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6802,6 +6777,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6839,7 +6815,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC Philippines - All Cases - E-MAIL</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_Philippines</role>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>CEC_User_Philippines</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6878,6 +6855,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -6899,13 +6877,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>In Progress,Escalated,Pending with Courier,Awaiting Information from Consumer</value>
         </filters>
-        <label>CEC Philippines - All Cases</label>
+        <label>CEC Philippines - All Cases - PENDING</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_Philippines</role>
+            <role>CEC_User_Philippines</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -8418,7 +8397,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Mine</filterScope>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notContain</operation>
+            <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>My Open Cases - DO NOT EDIT</label>

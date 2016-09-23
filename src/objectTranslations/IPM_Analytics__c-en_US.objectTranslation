@@ -325,6 +325,10 @@
         <name>IPM_Project_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Project/Phantom/Non Key --></label>
+        <name>IPM_Project_Phantom_Non_Key__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Project Route --></label>
         <name>IPM_Project_Route__c</name>
     </fields>

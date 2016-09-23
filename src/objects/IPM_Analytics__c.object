@@ -897,6 +897,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Project_Phantom_Non_Key__c</fullName>
+        <description>To determine what kind of record it is.</description>
+        <externalId>false</externalId>
+        <label>Project/Phantom/Non Key</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Route__c</fullName>
         <externalId>false</externalId>
         <label>IPM Project Route</label>

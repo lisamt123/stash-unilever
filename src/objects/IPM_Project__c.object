@@ -2514,6 +2514,29 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Parent_BI__c</fullName>
+        <description>To Capture the Child Business Impact used in BD BB Report</description>
+        <externalId>false</externalId>
+        <formula>IF(  ISPICKVAL( IPM_SourceProjectType__c , &apos;Original&apos;) ,
+	IF( ISPICKVAL( IPMProject_Span__c , &apos;Global&apos;) ,  BI__c ,
+	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;), ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;),ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;) ),  
+		           IPM_Parent_Project__r.BI__c ,
+	IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Local&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM4&apos;)),NOT(ISPICKVAL( IPM_ProjectGKM__c , &apos;GKM3&apos;))),
+				   IPM_Parent_Project__r.IPM_Parent_Project__r.BI__c,
+				   
+				   
+				   IF(AND(ISPICKVAL( IPMProject_Span__c , &apos;Regional&apos;),ISPICKVAL( IPM_Project_Type__c ,    &apos;Rollout&apos;)),IPM_Parent_Project__r.BI__c ,BI__c))))
+
+
+,&apos;&apos;)</formula>
+        <label>Parent_BI</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Parent_Project_Name__c</fullName>
         <externalId>false</externalId>
         <formula>IF( TEXT(IPMProject_Span__c) = &apos;Regional&apos; ,  IPM_Parent_Project__r.IPM_Project_Name__c ,  IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c )</formula>
@@ -4109,6 +4132,33 @@ OwnerId))</formula>
         <filterScope>Queue</filterScope>
         <label>IPM_a7I0L000000Gr3U</label>
         <queue>IPM_a7I0L000000Gr3U</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GrZl_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DUMMY1</label>
+        <queue>IPM_a7I0L000000GrZl</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GrZq_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BIG BANG EU _EU</label>
+        <queue>IPM_a7I0L000000GrZq</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I0L000000GrZv_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DUMMY2</label>
+        <queue>IPM_a7I0L000000GrZv</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

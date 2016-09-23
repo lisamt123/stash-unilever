@@ -1116,6 +1116,52 @@ public without sharing class IPM_Utils {
         }
      return projIdiTOMap; 
 }
+
+/*************************************************************************************************************************************
+    * @description          Method to create project-iTo Map : key-projectId ,value-ITO value
+    * @param                Project Ids
+    */
+     public  static Map<Id, String> createProjectSpecificBusinessImpactMap(List<Id> projList) {    
+        string biValue = '';
+         Map<Id,String> projIdBIMap =  new Map<Id,String>();
+         string consolidatedRecordTypeId = getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT);
+      
+        //query financial year and financial deatils
+        IPM_Financial__c[] finDetails = [SELECT Business_Impact_Global__c, Business_Impact_Regional__c,RecordTypeId,IPM_Project_Rollout__c,Regional_Project__c,Local_Project__c,Parent_Project__r.IPM_Phase__c,
+        										Regional_Project__r.IPM_Phase__c,Regional_Project__r.IPM_Project_Type__c
+        										  FROM IPM_Financial__c
+                                                  WHERE (Parent_Project__c IN : projList OR Regional_Project__c IN : projList OR Local_Project__c IN : projList)
+                                                  LIMIT 50000];
+        if(!finDetails.isEmpty()){
+            for(IPM_Financial__c fin :finDetails){
+                
+                //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
+                if(fin.RecordTypeId == consolidatedRecordTypeId 
+                    && fin.IPM_Project_Rollout__c == null && fin.Regional_Project__c == null && fin.Local_Project__c == null
+                    && fin.Business_Impact_Global__c != null && fin.Parent_Project__c != null ) 
+                {
+                    biValue = fin.Parent_Project__r.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS ? (fin.Business_Impact_Global__c):(fin.Business_Impact_Regional__c); 
+
+                    projIdBIMap.put(fin.Parent_Project__c,biValue);
+                }
+                
+                //Regional Financial : RT = CONSOLIDATED + Regional Project != null + Local Project = null
+                else if(fin.RecordTypeId == consolidatedRecordTypeId
+                         && fin.Regional_Project__c != null && fin.Local_Project__c == null
+                         && fin.Regional_Project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                {
+                    biValue = fin.Business_Impact_Regional__c;
+                    projIdBIMap.put(fin.Regional_Project__c,biValue);
+                    
+                }
+              
+            }
+        }
+     
+     return projIdBIMap; 
+}
+
+
 /*********************************************************************************************************************
     * @description          Method to  update Y3iTo's of project 
     * @param                Project Ids
@@ -1131,7 +1177,25 @@ public static void updateProjectY3ITOValue(List<Id> projListForY3ITOUpdate) {
 	 	if(y3iTOUpdateProjList!=Null && !y3iTOUpdateProjList.isEmpty()){
 	 		update y3iTOUpdateProjList;
 	 	}
+        updateProjectBIValue(projListForY3ITOUpdate);
 	 }
+} 
+/*********************************************************************************************************************
+    * @description          Method to  update Y3iTo's of project 
+    * @param                Project Ids
+    */
+public static void updateProjectBIValue(List<Id> projListForY3ITOUpdate) { 
+     Map<Id,String> projIdBIMap= IPM_Utils.createProjectSpecificBusinessImpactMap(projListForY3ITOUpdate);
+     List<IPM_Project__c> biTOUpdateProjList = new List<IPM_Project__c>();
+     if(projIdBIMap!=null && !projIdBIMap.isEmpty()){
+        for(Id projId :projIdBIMap.keyset()){
+            IPM_Project__c projForBITOUpdate = new IPM_Project__c(Id=projId,BI__c=projIdBIMap.get(projId)) ;
+            biTOUpdateProjList.add(projForBITOUpdate);
+        }
+        if(biTOUpdateProjList!=Null && !biTOUpdateProjList.isEmpty()){
+            update biTOUpdateProjList;
+        }
+     }
 } 
 /*******************************************************************************************************************************
     * @description          Method to  update IPM_Sum_Y3iTO__c of project cluster as sum of Y3iTo's pf projects under the cluster
