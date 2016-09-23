@@ -1042,7 +1042,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
         lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
                                                     (SELECT 
-                                                        Id,Name,recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c,                                    
+                                                        Id,Name,recordTypeID,Financial_External_ID__c,                                    
                                                         Status__c,IPM_Key_Financial__c,Status_Global__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                                         FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
                                                         ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
@@ -1099,7 +1099,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if(project.IPM_ProjectGKM__c == 'GKM3'){
             if(project.IPM_Phase__c == 'Capability'||project.IPM_Phase__c == 'Feasibility'){
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c,Status__c,IPM_Key_Financial__c, 
+                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
@@ -1109,7 +1109,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
             else{
             lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,MCO_Tab_Display_Name__c,Status__c,IPM_Key_Financial__c, 
+                                         (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
                                           WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
@@ -1134,7 +1134,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             financialType = 'IPM_Financials_local__r';
         }
         
-        String baseQuery = 'SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c,MCO_Tab_Display_Name__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM '+financialType+' WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true  OR IPM_ShowAtGlobal__c = true )  ORDER BY Sorting_Order__c, Financial_External_Id__c )';                                             
+        String baseQuery = 'SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c  FROM '+financialType+' WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND ( isActive__c = true  OR IPM_ShowAtGlobal__c = true )  ORDER BY Sorting_Order__c, Financial_External_Id__c )';                                             
         String baseFromClause = ' FROM IPM_Project__c ';
         String baseWhereClause = ' WHERE IPM_Parent_Project__c =:projectId ';
         String baseOrderByClause = ' ORDER BY Market_Cluster_Name__c limit:maxLimit '; 
