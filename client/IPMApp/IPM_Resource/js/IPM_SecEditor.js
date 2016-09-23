@@ -421,10 +421,7 @@ jq(document).on('click', '.pdlCheckbox input[type="checkbox"]:not(:disabled)', f
     jq(document).click(function(e) {
         if(e.target.id !== 'claimListUL') {
             jq(".claimList").hide();    
-        }
-        else
-        {
-        }   
+        }  
     });
 	
 	
