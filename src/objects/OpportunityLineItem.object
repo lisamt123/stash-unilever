@@ -148,6 +148,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -338,6 +339,7 @@
     <fields>
         <fullName>FS_Rate__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Enter the currency for Rate</inlineHelpText>
         <label>Rate</label>
         <precision>8</precision>
         <required>false</required>
@@ -386,6 +388,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>

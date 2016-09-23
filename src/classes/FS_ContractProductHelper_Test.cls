@@ -17,7 +17,7 @@ private class FS_ContractProductHelper_Test {
             //Enable for opportunity trigger
             testdata.enableOpportunityTrigger();
             FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues('FS_Stages');       
-            string STATUS_Proposal=stages.FS_Stage_Proposal__c;
+            string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
             string STATUS_COMMITMENT=stages.FS_Stage_Commitment__c;
             string STATUS_WON=stages.FS_Stage_Won__c;
             //Preparing data, so that the Contract Product is created by the opp trigger           
@@ -34,14 +34,14 @@ private class FS_ContractProductHelper_Test {
             INSERT con;
             
             Id oppRecType1 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();
-            Opportunity oppExisting = new Opportunity(Name = 'Existing Opp', recordtypeid=oppRecType1,AccountId = acc.Id,StageName = STATUS_Proposal,CloseDate = Date.today(), ContractId=con.id);
+            Opportunity oppExisting = new Opportunity(Name = 'Existing Opp', recordtypeid=oppRecType1,AccountId = acc.Id,StageName = STATUS_Prospecting,CloseDate = Date.today(), ContractId=con.id);
             INSERT oppExisting;
                         
             //Set up Opportunity records
             Id oppRecType2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
             List<Opportunity> listOpportunities = new List<Opportunity>();
             for(integer i=0;i<10;i++){
-                listOpportunities.add(new Opportunity(Name = 'Opp'+i, recordtypeid=oppRecType2,AccountId = acc.Id,StageName = STATUS_Proposal,CloseDate = Date.today(), ContractId=con.id));
+                listOpportunities.add(new Opportunity(Name = 'Opp'+i, recordtypeid=oppRecType2,AccountId = acc.Id,StageName = STATUS_Prospecting,CloseDate = Date.today(), ContractId=con.id));
             }
             INSERT listOpportunities;
             
@@ -96,7 +96,7 @@ private class FS_ContractProductHelper_Test {
             opp.Name = 'Test'; 
             opp.recordtypeid=oppRecType2;
             opp.AccountId = acc.Id;
-            opp.StageName = STATUS_Proposal;
+            opp.StageName = STATUS_Prospecting;
             opp.CloseDate = Date.today();
             opp.ContractId=con.Id;
             

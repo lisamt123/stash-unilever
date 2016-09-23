@@ -96,11 +96,11 @@
                 <fullName>Inbound Mail - Follow Up</fullName>
                 <default>false</default>
             </picklistValues>
-	    <picklistValues>
+            <picklistValues>
                 <fullName>Planned</fullName>
                 <default>false</default>
             </picklistValues>
-	                <picklistValues>
+            <picklistValues>
                 <fullName>Out-of-Route</fullName>
                 <default>false</default>
             </picklistValues>
@@ -110,6 +110,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -175,8 +176,20 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
-    </fields>    
+    </fields>
+    <fields>
+        <fullName>FS_SurveyName__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Survey Name</label>
+        <referenceTo>Survey__c</referenceTo>
+        <relationshipLabel>Activities</relationshipLabel>
+        <relationshipName>Activities</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>FS_Task_Type__c</fullName>
         <description>It gives values of different task types which can be selected on an activity</description>
@@ -194,21 +207,9 @@
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+	<required>false</required>
         <type>Picklist</type>
     </fields>
-
-    <fields>
-        <fullName>FS_SurveyName__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>Survey Name</label>
-        <referenceTo>Survey__c</referenceTo>
-        <relationshipLabel>Activities</relationshipLabel>
-        <relationshipName>Activities</relationshipName>
-        <required>false</required>
-        <type>Lookup</type>
-    </fields>
-
     <fields>
         <fullName>FS_VisitwithChef__c</fullName>
         <defaultValue>false</defaultValue>
@@ -450,6 +451,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>

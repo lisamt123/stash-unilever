@@ -58,13 +58,12 @@ public with sharing class FS_UtilTestDataSetup {
     Public List<Opportunity> setUpMABEOpportunityData(List<Contract> listContract){
         //Fetch custom settings for opportunity stages        
         FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues(oppStageName);    
-        string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;
-        string STATUS_Proposal=stages.FS_Stage_Proposal__c;             
+        string STATUS_Prospecting=stages.FS_Stage_Prospecting__c;                  
         //Set up Opportunity records
         List<Opportunity> opportunities = new List<Opportunity>();            
         for(contract con:listContract){
             For(Integer i=0;i<10;i++){
-                opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,stageName = STATUS_Proposal,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=newRecordTypeId,DealApproved__c=false));   
+                opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,stageName = STATUS_Prospecting,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=newRecordTypeId,DealApproved__c=false));   
             }                                 
             opportunities.add(new Opportunity(Name = 'FS Test Opportunity',AccountId = con.AccountId ,StageName = STATUS_Prospecting,CloseDate = Date.today()+30,contractId=con.id,recordtypeId=existingRecordTypeId));
         }
@@ -167,9 +166,7 @@ public with sharing class FS_UtilTestDataSetup {
     }
     
     //Update opportunities to stage 4
-    Public List<Opportunity> closeOpportunity(List<Opportunity> oppList){
-    FS_OpportunityStages__c oppStages=new FS_OpportunityStages__C(name=oppstageName,FS_Stage_Prospecting__c='01 - Prospecting',FS_Stage_Proposal__c='03 - Proposal',FS_Stage_Commitment__c='04 - Verbal Commitment',FS_Stage_Won__c='05 – Won');
-    Insert oppStages;
+    Public List<Opportunity> closeOpportunity(List<Opportunity> oppList){    
     FS_OpportunityStages__c stages=FS_OpportunityStages__c.getValues(oppstageName);   
     string STATUS_COMMITMENT=stages.FS_Stage_Commitment__c;
         List<Opportunity> ListNewOppToBeclosed=new List<Opportunity>();

@@ -118,6 +118,7 @@ public with sharing class FS_CreateContact_CC {
                 req.setHeader(FS_ContactUtility.CONTENTTYPETEXT, FS_ContactUtility.APPPLICATIONJSONTEXT);
                 req.setHeader(FS_ContactUtility.CLIENTIDTEXT, clientId);
                 req.setHeader(FS_ContactUtility.CLIENTSECRETTEXT, clientSecret);
+                req.setTimeout(120000);
                 req.setEndpoint(Label.FS_UrlId);
                 req.setMethod(FS_ContactUtility.POSTTEXTVALUE);         
                 req.setBody(reqString);

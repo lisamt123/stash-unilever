@@ -55,15 +55,15 @@
         <trackHistory>true</trackHistory>
     </fields>
     <recordTypes>
+        <fullName>FS_Pricebook</fullName>
+        <active>true</active>
+        <label>FS Pricebook</label>
+    </recordTypes>
+    <recordTypes>
         <fullName>Price_Book</fullName>
         <active>true</active>
         <description>Standard price book.</description>
         <label>Price Book</label>
-    </recordTypes>
-    <recordTypes>
-        <fullName>FS_Pricebook</fullName>
-        <active>true</active>
-        <label>FS Pricebook</label>
     </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>PRICEBOOK2.NAME</customTabListAdditionalFields>

@@ -176,6 +176,7 @@
             <isOptional>true</isOptional>
         </lookupFilter>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -227,17 +228,18 @@ Is the customer growing?</inlineHelpText>
         <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-
     </fields>
     <fields>
         <fullName>CampaignId</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>CloseDate</fullName>
         <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
@@ -252,6 +254,7 @@ Is the customer growing?</inlineHelpText>
             <isOptional>false</isOptional>
         </lookupFilter>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -271,7 +274,7 @@ Is the customer growing?</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
     </fields>
-        <fields>
+    <fields>
         <fullName>DealApproved__c</fullName>
         <defaultValue>false</defaultValue>
         <description>It is determined based on the actions when an approval request is  approved or rejected .</description>
@@ -300,9 +303,9 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>Description</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
     </fields>
-
     <fields>
         <fullName>ExpectedRevenue</fullName>
         <trackTrending>false</trackTrending>
@@ -369,6 +372,71 @@ Is the customer growing?</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>FS_DistributorTMI__c</fullName>
+        <externalId>false</externalId>
+        <label>Distributor TMI</label>
+        <picklist>
+            <picklistValues>
+                <fullName>US Direct / CED</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US Sysco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reinhart</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PFG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US GFS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US OTher</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US Only (Food Buy, Aramark, Sodexho, Compass)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA Sysco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA GFS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colabor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CA Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>FS_Distributor_Type__c</fullName>
         <description>Formula field that retrieves the Distributor Type of the Distributor Account</description>
         <externalId>false</externalId>
@@ -406,6 +474,7 @@ Is the customer growing?</inlineHelpText>
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -741,6 +810,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -749,6 +819,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
     <fields>
         <fullName>FS_distributor__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is being used for TPR process for Russia cluster</description>
         <externalId>false</externalId>
         <label>Distributor</label>
         <lookupFilter>
@@ -826,6 +897,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -911,6 +983,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -928,7 +1001,9 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
             <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -943,6 +1018,7 @@ IMAGE(&quot;/img/samples/color_red.gif&quot;, &quot;red&quot;, 20, 20)
         <relationshipName>Opportunities</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -975,6 +1051,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>IsPrivate</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
@@ -1027,12 +1104,14 @@ Is the customer growing?</inlineHelpText>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Name</fullName>
         <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
@@ -1050,6 +1129,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>NextStep</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
@@ -1068,6 +1148,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>OwnerId</fullName>
         <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -1084,6 +1165,7 @@ Is the customer growing?</inlineHelpText>
     <fields>
         <fullName>Probability</fullName>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
@@ -1216,6 +1298,7 @@ Enter competitor pricing if available</inlineHelpText>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1814,7 +1897,7 @@ Enter competitor pricing if available</inlineHelpText>
         <filters>
             <field>OPPORTUNITY.STAGE_NAME</field>
             <operation>equals</operation>
-            <value>04 – Best Few</value>
+            <value>04 - Verbal Commitment,3a-Won</value>
         </filters>
         <filters>
             <field>OPPORTUNITY.CLOSED</field>
@@ -1903,7 +1986,7 @@ Enter competitor pricing if available</inlineHelpText>
         <filters>
             <field>OPPORTUNITY.STAGE_NAME</field>
             <operation>equals</operation>
-            <value>04 – Best Few</value>
+            <value>04 - Verbal Commitment,3a-Won</value>
         </filters>
         <filters>
             <field>OPPORTUNITY.CLOSED</field>
@@ -3726,12 +3809,11 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 04 - Verbal Commitment</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Opportunity_for_Stage_4</fullName>
+        <fullName>Opportunity_for_Stage_3</fullName>
         <active>true</active>
-        <description>It is used to prevent Opportunity from being updated with &apos;04 - Verbal Commitment&apos; or &apos;05 – Won&apos;  Stage without any Product selected.</description>
-        <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;04 - Verbal Commitment&apos;) ,  HasOpportunityLineItem=false,false)</errorConditionFormula>
-        <errorDisplayField>Account_History__c</errorDisplayField>
-        <errorMessage>An opportunity at stage 04 must have at least one line item.  Please add a line item to your opportunity in stage 03, then advance it to stage 04.</errorMessage>
+        <description>It is used to prevent Opportunity from being updated with &apos;03-Proposal&apos; Stage without any Product selected.</description>
+        <errorConditionFormula>IF( ISPICKVAL( StageName , &apos;03 - Proposal&apos;) ,  HasOpportunityLineItem=false,false)</errorConditionFormula>
+        <errorMessage>An opportunity at stage 03 must have at least one line item. Please add a line item to your opportunity in stage 03, then submit for approval.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_for_Stage_5</fullName>
@@ -3740,7 +3822,6 @@ LEN(FS_ReasonDescription__c) = 0), True, False)</errorConditionFormula>
         <errorConditionFormula>IF(ISPICKVAL(StageName,&apos;05 – Won&apos;),  NOT( DealApproved__c =true) , false)</errorConditionFormula>
         <errorMessage>Opportunities must be approved in order to advance it to 05 - Won</errorMessage>
     </validationRules>
-
     <validationRules>
         <fullName>Required_Cases_Pieces_field</fullName>
         <active>true</active>

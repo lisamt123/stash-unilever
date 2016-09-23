@@ -8,9 +8,10 @@
     <tab>standard-Opportunity</tab>
     <tab>standard-Product2</tab>
     <tab>standard-report</tab>
-    <tab>standard-dashboard</tab>
-    <tab>FS_Segmentation__c</tab>
+    <tab>standard-Dashboard</tab>
     <tab>FS_Account_Plan__c</tab>
     <tab>FS_Defined_Objective__c</tab>
+    <tab>E2F__Search_on_FIND_API</tab>
+    <tab>FS_Segmentation__c</tab>
     <tab>FS_MonthlyPlanning</tab>
 </CustomApplication>

@@ -255,7 +255,8 @@ Public with sharing class FS_ContactDetail_CC {
                 req.setHeader(FS_ContactUtility.CONTENTTYPETEXT, FS_ContactUtility.APPPLICATIONJSONTEXT);
                 req.setHeader(FS_ContactUtility.CLIENTIDTEXT, clientId);
                 req.setHeader(FS_ContactUtility.CLIENTSECRETTEXT, clientSecret);
-                req.setEndpoint('https://pii.eu.cloudhub.io/api/siteLead');
+                req.setTimeout(120000);
+                req.setEndpoint(Label.FS_UrlId);
                 req.setMethod('PUT');         
                 req.setBody(reqString);
                 
