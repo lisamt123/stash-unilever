@@ -19,7 +19,6 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
     private static final String COMPANY_CARD_NOT_INSERTED='Company Cards are not inserted';
     private static final String PROJECT_NOT_INSERTED = 'Projects not Inserted';
     private static final String COUNTRY_NOT_INSERTED = 'Country not Inserted';
-    private static final String COUNTRY_NOT_DELETED='Countries not deleted!';
     private static final String PROJECTRESOURCE_NOT_INSERTED_ASSERTION = 'Project Resources not Inserted';
     
      /***********************************
@@ -128,7 +127,6 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
            IPM_project__c tempProject = projectList[0];
            
            List<IPM_Country__c> countriesToDeleteLst = [Select id,IPM_project__c from IPM_Country__c Where IPM_project__c =: tempProject.id];
-           Id proID = countriesToDeleteLst[0].IPM_project__c;
           
            delete countriesToDeleteLst;
            
@@ -136,8 +134,7 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
            
             //Eco design sync status should be Ready when the countries are deleted
            System.assert(statusAfterDelete[0].IPM_Countries__r.size() == 0, 'All countries deleted');
-           //System.assertEquals('Ready',[Select Id,EcoDesign_Sync_Status__c from IPM_Project__c where ID = :tempProject.id limit 1 ][0].EcoDesign_Sync_Status__c,COUNTRY_NOT_DELETED+'===='+ tempProject.IPM_ProjectSubType__c);
-          
+           
            test.stopTest();
         }
         
@@ -174,7 +171,6 @@ private with sharing class IPM_ChatterUtilsHelper_Test {
            System.assertEquals(20, [Select count() from IPM_Country__c where id in:iDs],COUNTRY_NOT_INSERTED);
         
            List<IPM_Country__c> countriesToDeleteLst = [Select id,IPM_project__c from IPM_Country__c WHERE ID IN :ipmCountryList  limit 2];
-           Id proId = countriesToDeleteLst[0].IPM_project__c;
            delete countriesToDeleteLst;
            
          
