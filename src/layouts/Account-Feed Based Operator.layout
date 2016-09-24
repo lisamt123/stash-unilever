@@ -204,7 +204,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_PotentialShare</field>
+                <field>FS_PotentialShare__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
