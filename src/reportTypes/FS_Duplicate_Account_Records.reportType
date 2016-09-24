@@ -642,7 +642,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>INN__c</field>
+            <field>FS_INN__c</field>
             <table>Account</table>
         </columns>
         <columns>
@@ -707,7 +707,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>FS_UFSPotentialShare__c</field>
+            <field>FS_PotentialShare__c</field>
             <table>Account</table>
         </columns>
         <columns>

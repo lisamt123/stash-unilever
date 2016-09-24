@@ -47,7 +47,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>INN__c</field>
+                <field>FS_INN__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -131,24 +131,18 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>FS_City__c</field>
+                <field>FS_RussianCity__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Region__c</field>
+                <field>FS_RusianRegion__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_Zone__c</field>
+                <field>FS_RussianZone__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>FS_Building__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>FS_Street__c</field>
-            </layoutItems>
+
+
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_DistributionGroupArea__c</field>
@@ -196,7 +190,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_UFSPotentialShare__c</field>
+                <field>FS_PotentialShare__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

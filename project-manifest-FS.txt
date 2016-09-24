@@ -1,3 +1,27 @@
 src
+src/layouts/Account-Distributor.layout
+src/layouts/Account-Feed Based Distributor.layout
+src/layouts/Account-Feed Based Operator.layout
+src/layouts/Account-Operator Russia Read Only.layout
+src/layouts/Account-Operators Russia.layout
+src/layouts/Account-Operators.layout
 src/objects/Account.object
-src/workflows/Account.workflow
+src/pages/FS_RelatedRTMVisibleFields.page
+src/pages/FS_RelatedRTMVisibleFields.page-meta.xml
+src/reports/FS_Russia_Reports/FS_All_Customers.report
+src/reportTypes/FS_Account_levels.reportType
+src/reportTypes/FS_AccountWithOpportunities.reportType
+src/reportTypes/FS_Duplicate_Account_Records.reportType
+
+
+
+
+
+
+
+
+
+
+
+
+

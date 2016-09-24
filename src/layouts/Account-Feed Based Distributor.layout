@@ -75,7 +75,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>INN__c</field>
+                <field>FS_INN__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

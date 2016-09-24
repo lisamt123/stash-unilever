@@ -19,13 +19,13 @@
         <field>ROLLUP_DESCRIPTION</field>
     </columns>
     <columns>
-        <field>Account.FS_City__c</field>
+        <field>Account.FS_RussianCity__c</field>
     </columns>
     <columns>
-        <field>Account.FS_Region__c</field>
+        <field>Account.FS_RusianRegion__c</field>
     </columns>
     <columns>
-        <field>Account.FS_Zone__c</field>
+        <field>Account.FS_RussianZone__c</field>
     </columns>
     <columns>
         <field>PARENT.NAME</field>
@@ -48,7 +48,7 @@
     <reportType>AccountList@Account.FS_OperatorOutlet__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <sortColumn>Account.FS_Zone__c</sortColumn>
+    <sortColumn>Account.FS_RussianZone__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>DUE_DATE</dateColumn>

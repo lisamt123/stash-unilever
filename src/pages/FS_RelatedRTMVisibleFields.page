@@ -17,7 +17,7 @@
             <apex:outputField value="{!account.FS_SegmentRussia__c}"/>
             <apex:outputField value="{!account.FS_SubSegmentRussia__c}"/>
             <apex:outputField value="{!account.FS_AmountOfVisitors__c}"/>
-            <apex:outputField value="{!account.FS_UFSPotentialShare__c}"/>
+            <apex:outputField value="{!account.FS_PotentialShare__c}"/>
             <apex:outputField value="{!account.FS_ABCSegmentation__c}"/>
         </apex:pageBlockSection>
     </apex:pageBlock>

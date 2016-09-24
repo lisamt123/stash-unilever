@@ -1327,7 +1327,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>FS_ABCSegmentation__c</fullName>
         <description>This field is to calculate the ABC segmentation for each Account from the Segmentation custom object</description>
         <externalId>false</externalId>
-        <formula>IF(AND(FS_UFSPotentialShare__c &gt;0,FS_UFSPotentialShare__c &lt;3000),&apos;C&apos;,IF(FS_UFSPotentialShare__c&gt;=5000,&apos;A&apos;,IF(AND(FS_UFSPotentialShare__c&gt;=3000,FS_UFSPotentialShare__c&lt;5000),&apos;B&apos;,&apos;&apos;)))</formula>
+        <formula>IF(AND(FS_PotentialShare &gt;0,FS_PotentialShare &lt;3000),&apos;C&apos;,IF(FS_PotentialShare&gt;=5000,&apos;A&apos;,IF(AND(FS_PotentialShare&gt;=3000,FS_PotentialShare&lt;5000),&apos;B&apos;,&apos;&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>ABC Segmentation</label>
         <required>false</required>
@@ -1389,16 +1389,7 @@ Branded are essential = 5</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>FS_Building__c</fullName>
-        <description>Created for Russia specific to generate reports</description>
-        <externalId>false</externalId>
-        <label>Building</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>TextArea</type>
-    </fields>
+
     <fields>
         <fullName>FS_BuyingGroup__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -1447,7 +1438,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
-        <fullName>FS_City__c</fullName>
+        <fullName>FS_RussianCity__c</fullName>
         <description>Created to display the Russia specific city values.</description>
         <externalId>false</externalId>
         <label>City</label>
@@ -2128,12 +2119,12 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>FS_Region__c</fullName>
+        <fullName>FS_RusianRegion__c</fullName>
         <description>To display the Russia related Regions</description>
         <externalId>false</externalId>
         <label>RFS Region</label>
         <picklist>
-            <controllingField>FS_City__c</controllingField>
+            <controllingField>FS_RussianCity__c</controllingField>
             <picklistValues>
                 <fullName>Moscow</fullName>
                 <default>false</default>
@@ -2362,16 +2353,7 @@ At least 3 out of 4 = 5</inlineHelpText>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
-    <fields>
-        <fullName>FS_Street__c</fullName>
-        <description>Created for Russia specific to generate reports</description>
-        <externalId>false</externalId>
-        <label>Street</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>TextArea</type>
-    </fields>
+
     <fields>
         <fullName>FS_SubSegmentRussia__c</fullName>
         <externalId>false</externalId>
@@ -2487,7 +2469,7 @@ At least 3 out of 4 = 5</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>FS_UFSPotentialShare__c</fullName>
+        <fullName>FS_PotentialShare</fullName>
         <externalId>false</externalId>
         <formula>FS_Food_Price_Value__c  *  FS_OperatorOutlet__r.FS_PotentialUFSShareOfFoodCost__c  *  FS_ConvenienceFactor__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -2499,12 +2481,12 @@ At least 3 out of 4 = 5</inlineHelpText>
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>FS_Zone__c</fullName>
+        <fullName>FS_RussianZone__c</fullName>
         <description>Zone is created for display the Russia specific Zone for Russia users.</description>
         <externalId>false</externalId>
         <label>RFS Zone</label>
         <picklist>
-            <controllingField>FS_Region__c</controllingField>
+            <controllingField>FS_RusianRegion__c</controllingField>
             <picklistValues>
                 <fullName>Moscow &amp; CFO</fullName>
                 <default>false</default>
@@ -2671,7 +2653,7 @@ At least 3 out of 4 = 5</inlineHelpText>
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>INN__c</fullName>
+        <fullName>FS_INN__c</fullName>
         <externalId>false</externalId>
         <label>INN</label>
         <length>20</length>
@@ -9262,7 +9244,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_City__c</picklist>
+            <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
                 <default>false</default>
@@ -9654,7 +9636,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Region__c</picklist>
+            <picklist>FS_RusianRegion__c</picklist>
             <values>
                 <fullName>Belorussia</fullName>
                 <default>false</default>
@@ -9846,7 +9828,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Zone__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
                 <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
@@ -11759,7 +11741,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_City__c</picklist>
+            <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
                 <default>false</default>
@@ -12143,7 +12125,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Region__c</picklist>
+            <picklist>FS_RusianRegion__c</picklist>
             <values>
                 <fullName>Belorussia</fullName>
                 <default>false</default>
@@ -12335,7 +12317,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Zone__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
                 <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
@@ -14331,7 +14313,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_City__c</picklist>
+            <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
                 <default>false</default>
@@ -14715,7 +14697,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Region__c</picklist>
+            <picklist>FS_RusianRegion__c</picklist>
             <values>
                 <fullName>Belorussia</fullName>
                 <default>false</default>
@@ -14907,7 +14889,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Zone__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
                 <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
@@ -16890,7 +16872,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_City__c</picklist>
+            <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
                 <default>false</default>
@@ -17274,7 +17256,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Region__c</picklist>
+            <picklist>FS_RusianRegion__c</picklist>
             <values>
                 <fullName>Belorussia</fullName>
                 <default>false</default>
@@ -17428,7 +17410,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Zone__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
                 <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
@@ -18660,7 +18642,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_City__c</picklist>
+            <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
                 <default>false</default>
@@ -19044,7 +19026,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Region__c</picklist>
+            <picklist>FS_RusianRegion__c</picklist>
             <values>
                 <fullName>Belorussia</fullName>
                 <default>false</default>
@@ -19198,7 +19180,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Zone__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
                 <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
@@ -20515,7 +20497,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_City__c</picklist>
+            <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
                 <default>false</default>
@@ -20899,7 +20881,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Region__c</picklist>
+            <picklist>FS_RusianRegion__c</picklist>
             <values>
                 <fullName>Belorussia</fullName>
                 <default>false</default>
@@ -21053,7 +21035,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Zone__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
                 <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
@@ -22724,7 +22706,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_City__c</picklist>
+            <picklist>FS_RussianCity__c</picklist>
             <values>
                 <fullName>ABAKAN</fullName>
                 <default>false</default>
@@ -23108,7 +23090,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Region__c</picklist>
+            <picklist>FS_RusianRegion__c</picklist>
             <values>
                 <fullName>Belorussia</fullName>
                 <default>false</default>
@@ -23262,7 +23244,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>FS_Zone__c</picklist>
+            <picklist>FS_RussianZone__c</picklist>
             <values>
                 <fullName>Moscow %26 CFO</fullName>
                 <default>false</default>
@@ -24194,7 +24176,7 @@ OR(ISCHANGED( Name),ISCHANGED(  CurrencyIsoCode )),  $Profile.Name =&apos;Unilev
         <fullName>FS_UserNotabletochangetheCity</fullName>
         <active>true</active>
         <description>To validate the city when user trying to change the city value after creation</description>
-        <errorConditionFormula>AND($Profile.Name =&apos;Unilever Food Solution - Russia&apos;, RecordType.Name =&apos;Operator&apos;, ISPICKVAL(Status__c, &apos;Active&apos;)  , ISCHANGED( FS_City__c ))</errorConditionFormula>
+        <errorConditionFormula>AND($Profile.Name =&apos;Unilever Food Solution - Russia&apos;, RecordType.Name =&apos;Operator&apos;, ISPICKVAL(Status__c, &apos;Active&apos;)  , ISCHANGED( FS_RussianCity__c ))</errorConditionFormula>
         <errorMessage>You have no access to change the city.</errorMessage>
     </validationRules>
     <validationRules>

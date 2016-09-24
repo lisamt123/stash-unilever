@@ -322,7 +322,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>INN__c</field>
+            <field>FS_INN__c</field>
             <table>Account</table>
         </columns>
         <columns>
