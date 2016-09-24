@@ -7415,24 +7415,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Thailand_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.CLOSED</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>CEC Thailand Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Thailand_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Thailand</role>
-            <role>CEC_User_Thailand</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_UKI_Dotcom_E_Mails</fullName>
         <booleanFilter>1 AND (2 OR 4 OR 5 OR 6) AND 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
