@@ -5187,7 +5187,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Account.Operator_Russia</value>
+            <value>Account.FS_OperatorRussia</value>
         </filters>
         <label>All Operator Accounts</label>
         <language>en_US</language>
@@ -5231,7 +5231,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 	<filters>
             <field>ACCOUNT.RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Account.Operator_Russia</value>
+            <value>Account.FS_OperatorRussia</value>
         </filters>
         <label>My Operator Accounts</label>
         <language>en_US</language>
@@ -10956,7 +10956,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
 
     </recordTypes>   
     <recordTypes>
-        <fullName>Operator_Russia</fullName>
+        <fullName>FS_OperatorRussia</fullName>
         <active>true</active>
         <description>This is used to make the Page uneditable</description>
         <label>Operator Russia</label>

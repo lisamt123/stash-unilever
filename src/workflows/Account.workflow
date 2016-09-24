@@ -340,7 +340,7 @@
     <fieldUpdates>
         <fullName>Record_Type_Update</fullName>
         <field>RecordTypeId</field>
-        <lookupValue>Operator_Russia</lookupValue>
+        <lookupValue>FS_OperatorRussia</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>Record Type Update</name>
         <notifyAssignee>false</notifyAssignee>
