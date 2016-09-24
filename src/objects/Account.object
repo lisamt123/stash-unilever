@@ -1327,7 +1327,7 @@ Data Source : SAP | Integration : Mule | Security Level : Restricted</descriptio
         <fullName>FS_ABCSegmentation__c</fullName>
         <description>This field is to calculate the ABC segmentation for each Account from the Segmentation custom object</description>
         <externalId>false</externalId>
-        <formula>IF(AND(FS_PotentialShare &gt;0,FS_PotentialShare &lt;3000),&apos;C&apos;,IF(FS_PotentialShare&gt;=5000,&apos;A&apos;,IF(AND(FS_PotentialShare&gt;=3000,FS_PotentialShare&lt;5000),&apos;B&apos;,&apos;&apos;)))</formula>
+        <formula>IF(AND(FS_PotentialShare__c &gt;0,FS_PotentialShare__c &lt;3000),&apos;C&apos;,IF(FS_PotentialShare__c&gt;=5000,&apos;A&apos;,IF(AND(FS_PotentialShare__c&gt;=3000,FS_PotentialShare__c&lt;5000),&apos;B&apos;,&apos;&apos;)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>ABC Segmentation</label>
         <required>false</required>
@@ -2469,7 +2469,7 @@ At least 3 out of 4 = 5</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>FS_PotentialShare</fullName>
+        <fullName>FS_PotentialShare__c</fullName>
         <externalId>false</externalId>
         <formula>FS_Food_Price_Value__c  *  FS_OperatorOutlet__r.FS_PotentialUFSShareOfFoodCost__c  *  FS_ConvenienceFactor__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>

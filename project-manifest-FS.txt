@@ -1,10 +1,8 @@
 src
-src/layouts/Account-Distributor.layout
 src/layouts/Account-Feed Based Distributor.layout
 src/layouts/Account-Feed Based Operator.layout
 src/layouts/Account-Operator Russia Read Only.layout
 src/layouts/Account-Operators Russia.layout
-src/layouts/Account-Operators.layout
 src/objects/Account.object
 src/pages/FS_RelatedRTMVisibleFields.page
 src/pages/FS_RelatedRTMVisibleFields.page-meta.xml
