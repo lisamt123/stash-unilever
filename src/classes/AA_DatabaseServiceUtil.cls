@@ -126,10 +126,13 @@ public with sharing class AA_DatabaseServiceUtil {
               
                 if(ids !=',')
                 {
-              
-                ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
-                mentionSegment.id = Id.ValueOf(ids);
-                feedItemInput.body.messageSegments.add(mentionSegment);
+                    
+                    ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
+                    mentionSegment.id = Id.ValueOf(ids);
+                    feedItemInput.body.messageSegments.add(mentionSegment);
+                    ConnectApi.TextSegmentInput textSegment4 = new ConnectApi.TextSegmentInput();
+                    textSegment4.text = ' ' ;
+                    feedItemInput.body.messageSegments.add(textSegment4);  
                 }
                
             }
