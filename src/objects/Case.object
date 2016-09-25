@@ -8386,22 +8386,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>My_Open_SMS_Cases_PHIL_TEST</fullName>
-        <columns>CASES.LAST_UPDATE</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CORE.USERS.ALIAS</columns>
+        <fullName>My_Open_Cases_DO_NOT_EDIT12</fullName>
         <filterScope>Mine</filterScope>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>In Progress</value>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
         </filters>
-        <label>My Open SMS Cases - PHIL - TEST</label>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>SMS / Text Messages</value>
+        </filters>
+        <label>My Open Cases - SMS - DO NOT EDIT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases_SMS_DO_NOT_EDIT</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email,Email Philippines</value>
+        </filters>
+        <label>My Open Cases - E-MAIL - DO NOT EDIT</label>
         <language>en_US</language>
     </listViews>
     <listViews>
