@@ -11,7 +11,7 @@ History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Pooja Kanani       04/08/2016     INITIAL DEVELOPMENT CSR:
-2.0        Pooja Kanani        09/19/2016    Modified for SonarQube
+2.0         Pooja Kanani        09/19/2016    Modified for SonarQube
 ***********************************************************************/
 @isTest
 public  class SAM_InformationController_Test {
@@ -48,7 +48,8 @@ public  class SAM_InformationController_Test {
         
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
         insert objRequest;
-        objRequest.txt_Master_Clarity_Id__c = '123';
+        //objRequest.txt_Master_Clarity_Id__c = NULL;
+        objRequest.txt_Master_Clarity_Id__c = '0';
         objRequest.pkl_Deployments__c = 'Cloud';
         objRequest.mpkl_Cloud_Platforms__c = null;
         update objRequest;

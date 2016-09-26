@@ -156,12 +156,9 @@
     <columns>
         <field>SAM_Request__c.Quote_Line_Items__r$pkl_Build_Details_Applicable__c</field>
     </columns>
-    <columns>
-        <field>SAM_Request__c$fml_SAM_demand_manager__c</field>
-    </columns>
     <currency>EUR</currency>
     <format>Summary</format>
-    <name>SAM daily demand tracker new</name>
+    <name>SAM Daily Demand Tracker</name>
     <params>
         <name>co</name>
         <value>1</value>
