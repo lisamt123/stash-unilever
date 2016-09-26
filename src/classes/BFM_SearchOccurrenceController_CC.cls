@@ -1,4 +1,4 @@
-public class BFM_SearchOccurrenceController_CC{
+public with sharing class BFM_SearchOccurrenceController_CC{
     public ApexPages.StandardSetController con{get; set;}
     public BFM_Occurrence__c searchOccurrence{get;set;}
     public Boolean secondBlock{get;set;} 
