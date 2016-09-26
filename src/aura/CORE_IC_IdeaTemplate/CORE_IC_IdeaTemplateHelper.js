@@ -1,6 +1,6 @@
 ({
     
-scrollToLocation : function(component, location) {
+scrollToLocation : function(component) {
     
    
    	  var cssScrolltoTop = $(".scroller");

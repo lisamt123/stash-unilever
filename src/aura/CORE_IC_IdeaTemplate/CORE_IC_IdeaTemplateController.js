@@ -39,7 +39,7 @@
         action.setCallback(this, function(response) { 
             response=response.getReturnValue();
            if(response != 'Lightning Experience'){
-           helper.scrollToLocation(component, "top"); 
+           helper.scrollToLocation(component); 
          }
         });    
         $A.enqueueAction(action);
