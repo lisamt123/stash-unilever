@@ -1,8 +1,8 @@
 public with sharing class FS_UtilTestDataSetup {    
     Private Map<String, String> recordIdBasedonDeveloperName=FS_Utility.recordTypewithName('Opportunity');
     String oppStageName='FS_Stages';
-    Id newRecordTypeId=recordIdBasedonDeveloperName.get('NAFSMABETool');
-    Id existingRecordTypeId=recordIdBasedonDeveloperName.get('Existing');  
+    Id newRecordTypeId=recordIdBasedonDeveloperName.get('FS_OpportunityMABE');
+    Id existingRecordTypeId=recordIdBasedonDeveloperName.get('FS_ExistingBusiness');  
     //Method to create user
     Public user createTestUser(){
         String profile='System Administrator';

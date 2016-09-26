@@ -33,12 +33,12 @@ private class FS_ContractProductHelper_Test {
             con.CurrencyIsoCode = 'EUR';
             INSERT con;
             
-            Id oppRecType1 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();
+            Id oppRecType1 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Existing Business').getRecordTypeId();
             Opportunity oppExisting = new Opportunity(Name = 'Existing Opp', recordtypeid=oppRecType1,AccountId = acc.Id,StageName = STATUS_Prospecting,CloseDate = Date.today(), ContractId=con.id);
             INSERT oppExisting;
                         
             //Set up Opportunity records
-            Id oppRecType2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+            Id oppRecType2 = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Opportunity MABE').getRecordTypeId();
             List<Opportunity> listOpportunities = new List<Opportunity>();
             for(integer i=0;i<10;i++){
                 listOpportunities.add(new Opportunity(Name = 'Opp'+i, recordtypeid=oppRecType2,AccountId = acc.Id,StageName = STATUS_Prospecting,CloseDate = Date.today(), ContractId=con.id));

@@ -139,7 +139,8 @@ public with sharing class FS_TPRCalculationHelper {
             	}
                 
             } catch(Exception e) {
-            System.debug( 'The following exception has occurred: '+e.getMessage() );
+            System.debug( 'The following exception has occurred: '+e.getMessage());
+            System.debug( 'Stack Trace: '+e.getStackTraceString());
             ExceptionLoggingHelper.createErrorLog(userInfo.getUserId(), 
                                                   'FS_TPRCalculationHelper', 
                                                   'calculateTPR', 

@@ -2,7 +2,7 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
     <description>Account Validation Reject From Manager</description>
-    <encodingKey>ISO-8859-1</encodingKey>
+    <encodingKey>UTF-8</encodingKey>
     <name>Account Validation Reject From Manager</name>
     <style>none</style>
     <subject>{!Account.Name} is Rejected</subject>

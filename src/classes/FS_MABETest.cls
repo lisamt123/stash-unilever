@@ -13,7 +13,7 @@ private class FS_MABETest {
             List<Contract> listContract=testData.setUpContractData(accounts);
             List<Opportunity> opportunities=testData.setUpMABEOpportunityData(listContract);  
             List<Opportunity> listNewOpp=new List<Opportunity>();
-            Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+            Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Opportunity MABE').getRecordTypeId();
             listNewOpp=[select id,ContractId,DealApproved__c,stagename from Opportunity where recordtypeId=:newRecordTypeId and Name='FS Test Opportunity' and id in : opportunities];
             testdata.setUpOpportunityLineItemData(listNewOpp);
             List<OpportunityLineItem> listOli;
@@ -31,7 +31,7 @@ private class FS_MABETest {
         system.runAs(SalesRepUser){
             Test.startTest();
             List<Opportunity> listNewOpp=new List<Opportunity>();
-            Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+            Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Opportunity MABE').getRecordTypeId();
             listNewOpp=[select id,ContractId,DealApproved__c,stagename from Opportunity where recordtypeId=:newRecordTypeId and DealApproved__c=true and Name = 'FS Test Opportunity'];
             system.assertEquals(true,!listNewOpp.isEmpty());
             List<Opportunity> listNewOppToBeclosed=new List<Opportunity>();            
@@ -46,7 +46,7 @@ private class FS_MABETest {
             system.assertEquals(true,!contractList.isEmpty());            
             Update listNewOppToBeclosed;            
             List<Opportunity> listExistingOpp=new List<Opportunity>();
-            Id existingRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Existing').getRecordTypeId();
+            Id existingRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Existing Business').getRecordTypeId();
             //Get list of Existing Opportunities
             listExistingOpp=[select id,ContractId from Opportunity where recordtypeId=:existingRecordTypeId and ContractId in :contractList];
             system.assertEquals(true,!listContract.isEmpty());
@@ -69,7 +69,7 @@ private class FS_MABETest {
         string STATUS_WON=stages.FS_Stage_Won__c;
         test.startTest();
         List<Opportunity> listNewOpp=new List<Opportunity>();
-        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Opportunity MABE').getRecordTypeId();
         listNewOpp=[select id,ContractId from Opportunity where recordtypeId=:newRecordTypeId];
         List<Opportunity> listNewOppToBeclosed=new List<Opportunity>();
         listNewOppToBeclosed=new List<Opportunity>();
@@ -115,7 +115,7 @@ private class FS_MABETest {
         FS_OpportunityStages__c stages=FS_OpportunityStages__c.getinstance('FS_Stages');
         string STATUS_WON=stages.FS_Stage_Won__c; 
         List<Opportunity> ListNewOpp=new List<Opportunity>();
-        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Opportunity MABE').getRecordTypeId();
         ListNewOpp=[select id,ContractId,DealApproved__c,stagename from Opportunity where recordtypeId=:newRecordTypeId and DealApproved__c=true and Name = 'FS Test Opportunity' limit 2];
         List<Opportunity> ListNewOppToBeclosed=new List<Opportunity>();       
         Set<Id> ContractList=New Set<Id>();

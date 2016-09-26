@@ -21,7 +21,7 @@ public with sharing class FS_ContractProductHelper {
         }
         
         //Retrieve the product schedule from the associated Opportunity Product
-        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+        Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Opportunity MABE').getRecordTypeId();
         OppList = [SELECT Id FROM Opportunity WHERE RecordTypeId =:newRecordTypeId and isWOn = true and ContractId in : ContractIdList];
         system.debug('OppList -->'+OppList ); 
         OLIList = [select id, Opportunity.AccountId, Product2Id, Contract_Product__c from OpportunityLineItem where OpportunityId in : OppList and Product2Id in : ProductIdList];
@@ -77,7 +77,7 @@ public with sharing class FS_ContractProductHelper {
                     ProductIdList.add(cp.Product__c);
                 }
                 system.debug(ContractIdList);
-                Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Opportunity with Pricing (MA-BE)').getRecordTypeId();
+                Id newRecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('NAFS Opportunity MABE').getRecordTypeId();
                 system.debug('CustomSettingList -->'+CustomSettingList);
                 for(FS_Contract_Product_Opportunity_Map__c cs :CustomSettingList ){
                     OppIdList.add(id.ValueOf(cs.FS_Opportunity__c));
