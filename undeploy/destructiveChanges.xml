@@ -27,6 +27,9 @@
 		<members>FA_Pre_Work_Task_Assignment__c</members>
 		<members>FA_Pre_Work_Task__c</members>
 		<members>FA_UserPreference__c</members>
+		<members>FA_Training_Room__c</members>
+		<members>FA_Training_Venue__c</members>
+		<members>FA_Course__c</members>
         <name>CustomObject</name>  
 		</types>  
 	    <version>37.0</version>
