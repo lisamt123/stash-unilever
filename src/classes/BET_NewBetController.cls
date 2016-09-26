@@ -13,10 +13,7 @@ public with sharing class BET_NewBetController {
 
     public uw_BET__c bet {get; set;}
     public BET_CategoryComponentData componentData {get;set;}
-
-    //FabricConditioner begin
-    private static Boolean fbEnabled = BET_FabricCoditioners__c.getOrgDefaults().Enabled__c;
-    //FabricConditioner end
+    
 
     /************************************************************
         Purpose: Controller class for BET_newBet.page
@@ -43,16 +40,12 @@ public with sharing class BET_NewBetController {
 
             categoryMigrated = IPM_BETUpdateService.CategoryCheck(bet.Product_Category__c);
             categoryNotMigrated = !categoryMigrated;
-            //FabricConditioner begin
-            fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(bet.Product_Category__c) : false;
-            //FabricConditioner end
+            
         }
         componentData = new BET_CategoryComponentData(bet);
         componentData.categoryMigrated = categoryMigrated;
         componentData.categoryNotMigrated = categoryNotMigrated;
-        //FabricConditioner begin
-        componentData.fabricConditionerCategory = fabricConditionerCategory;
-        //FabricConditioner end
+        
     }
 
 }

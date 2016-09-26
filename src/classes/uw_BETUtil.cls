@@ -9,15 +9,15 @@ Purpose: Class is a placeholder for helper methods in BET application
 History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
-1.0 -   Maciej Krol          	01/12/2014     	INITIAL DEVELOPMENT
+1.0 -   Maciej Krol             01/12/2014      INITIAL DEVELOPMENT
 1.1 -   Michal Bluj             29/07/2015      MDO Objects related changes
 **********************************************************************/
 public with sharing class uw_BETUtil {
 
-	//available search types in applications
-	public static final String brandSearch='brandSearch';
-	public static final String categorySearch='categorySearch';
-	public static final String keywordSearch='keywordSearch';
+    //available search types in applications
+    public static final String brandSearch='brandSearch';
+    public static final String categorySearch='categorySearch';
+    public static final String keywordSearch='keywordSearch';
 
     public static final String CLEAR_FILTERS = 'Clear filter';
     public static final String CATEGORIES = 'Categories';
@@ -25,12 +25,12 @@ public with sharing class uw_BETUtil {
 
     private uw_BETUtil(){}
 
-	/*******************************************************************
-	Purpose: Method return filters for bet used in search page  
-	Parameters: [String,String]
-	Returns: [String]
-	Throws [Exceptions]: [optional] 
-	********************************************************************/
+    /*******************************************************************
+    Purpose: Method return filters for bet used in search page  
+    Parameters: [String,String]
+    Returns: [String]
+    Throws [Exceptions]: [optional] 
+    ********************************************************************/
     public static List<uw_BETWrapper.FilterLineItemWrapper> getFiltersForBet(String brandId, String categoryId){
         System.debug('Entering getFiltersForBet : ' + brandId + ', ' + categoryId);
         List<uw_BETWrapper.FilterLineItemWrapper> filterInfoList = new List<uw_BETWrapper.FilterLineItemWrapper>();
@@ -136,11 +136,6 @@ public with sharing class uw_BETUtil {
     public static List<String> validateBET(uw_BET__c betObject, BET_CategoryComponentData compData){
         System.debug('Entering validateBET : ' + betObject + ', ' + compData);
         List<String> errors = validateIPMBetFields(betObject);
-        //FabricConditioner begin
-        if(String.isBlank(betObject.Inoplan_Project__c) && !compData.categoryMigrated && !compData.fabricConditionerCategory && !String.isBlank(betObject.Product_Category__c)){
-            errors.add(Label.BET_InoplanProjectMandatory);
-        }
-        //FabricConditioner end
         System.debug('Exit validateBET : ' + errors);
         return errors;
     }

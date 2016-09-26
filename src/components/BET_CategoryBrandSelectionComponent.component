@@ -1,12 +1,12 @@
 <apex:component controller="BET_CategoryBrandSelectionController">
 
-	<apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery-ui.js" />
     <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
     
-	<apex:attribute name="betobj" assignTo="{!bet}" 
+    <apex:attribute name="betobj" assignTo="{!bet}" 
                     description="Identifier of an related BET"
                     type="uw_BET__c" required="true"/>
-	<apex:attribute name="cdata" assignTo="{!compData}" 
+    <apex:attribute name="cdata" assignTo="{!compData}" 
                     description="Data transfer object" 
                     type="BET_CategoryComponentData" required="false"/>
 
@@ -80,69 +80,6 @@
         </div>
     </apex:outputPanel>
 
-    <!-- FabricConditioner begin -->
-    <apex:outputPanel id="fabricConditioners1" rendered="{!bet.id == null}">
-        <apex:outputPanel rendered="{!fabricConditionerCategory}">
-            <div class="form-item" style="padding-bottom: 10px;">
-                <div class="item-label">
-                    <apex:outputLabel >
-                        {!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}
-                    </apex:outputLabel>
-                </div>
-                <!--<div class="item-input-checkbox">-->
-                <div class="item-input" style="left: 245px;">
-                    <apex:actionRegion >
-                        <!--<apex:inputCheckbox value="{!bet.Is_Fabric_Conditioners__c}">
-                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
-                                                reRender="projectsPanels,brandPositioningPanel"/>
-                        </apex:inputCheckbox>-->
-                        <div class="styled-select" style="width: 155px;">
-                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false" style="width: 200px;">
-                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
-                                                reRender="projectsPanels,brandPositioningPanel,fabricConditioners1"/>
-                            <apex:selectOptions value="{!fabricConditioners}" />
-                        </apex:selectList>
-                        </div>
-
-                    </apex:actionRegion>
-                </div>
-            </div>
-        </apex:outputPanel>
-    </apex:outputPanel>
-
-
-    <apex:outputPanel id="fabricConditioners2" rendered="{!bet.id != null}">
-        <apex:outputPanel rendered="{!fabricConditionerCategory}">
-            <div class="form-item" style="padding-bottom: 10px;">
-                <div class="item-label">
-                    <apex:outputLabel >
-                        {!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}
-                    </apex:outputLabel>
-                </div>
-                <!--<div class="item-input-checkbox">-->
-                <div class="item-input" style="left: 265px;">
-                    <apex:actionRegion >
-                        <!--<apex:inputCheckbox value="{!bet.Is_Fabric_Conditioners__c}">
-                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
-                                                reRender="projectsPanels,brandPositioningPanel"/>
-                        </apex:inputCheckbox>-->
-                        <div class="styled-select" style="width: 155px;">
-                        <apex:selectList value="{!fabricConditioner}" size="1" multiselect="false" style="width: 200px;">
-                            <apex:actionSupport event="onchange" action="{!onFabricConditionersChange}" 
-                                                reRender="projectsPanels,brandPositioningPanel"/>
-                            <apex:selectOptions value="{!fabricConditioners}" />
-                        </apex:selectList>
-                        </div>
-
-                    </apex:actionRegion>
-                </div>
-            </div>
-        </apex:outputPanel>
-    </apex:outputPanel>
-
-
-    <!-- FabricConditioner end -->
-
     <apex:outputPanel id="brandPositioningPanel">
         <div class="form-item">
             <div class="item-label">
@@ -203,11 +140,9 @@
     </div>
 
     <apex:outputPanel id="projectsPanels" style="padding-top:30px;">
-        <!-- FabricConditioner begin -->
-        <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null,fabricConditioner == 'No')}">
-        <!-- FabricConditioner end -->
+        
         <!-- should be replaced with -->
-        <!-- <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null)}"> -->
+        <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null)}">
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
@@ -224,14 +159,12 @@
                     <apex:outputLabel >{!$Label.BET_LinkBetToIPMProject}</apex:outputLabel>
                 </div>
             </div>
-        <!-- FabricConditioner begin -->
-        </apex:outputPanel>
-        <!-- FabricConditioner end -->
-        <!-- FabricConditioner begin -->
-        <apex:outputPanel rendered="{!AND(categoryNotMigrated,fabricConditioner == 'No')}">
-        <!-- FabricConditioner end -->
+        
+     </apex:outputPanel>
+        
+        
         <!-- should be replaced with -->
-        <!-- <apex:outputPanel rendered="{!categoryNotMigrated}">-->
+        <apex:outputPanel rendered="{!categoryNotMigrated}">
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_InoplanProjectName}</apex:outputLabel>
@@ -244,9 +177,9 @@
                     </apex:actionRegion>
                 </div>
             </div>
-        <!-- FabricConditioner begin -->
+
         </apex:outputPanel>
-        <!-- FabricConditioner end -->
+
     </apex:outputPanel>
 
 </apex:component>
