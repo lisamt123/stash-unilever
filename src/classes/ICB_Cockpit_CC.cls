@@ -27,9 +27,9 @@ public with sharing class ICB_Cockpit_CC
     private static final String CONST_INCREMENT;
     private static final String CONST_OPERATION_IS_CLOSED;
     private static final String CONST_OPERATION_OPEN;
-    private static final String CONST_TYPE_LIST;
     private static final String CONST_TYPE_CONTACT_SALES;
     private static final String CONST_TYPE_CONTACT_OPERATOR;
+    private static final String CONST_STAGE_AVAILABLE;
     //private static Id idRecTypeStandard;
     private static Map<Id,Contact> mapContact;
     private static Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem;
@@ -52,9 +52,9 @@ public with sharing class ICB_Cockpit_CC
         CONST_INCREMENT = 'increment';
         CONST_OPERATION_IS_CLOSED = 'isClosed';
         CONST_OPERATION_OPEN = 'open';
-        CONST_TYPE_LIST = 'List<ICB_Wrapper_Cockpit_CC>';
         CONST_TYPE_CONTACT_SALES = 'Ice Cream Salesman';
         CONST_TYPE_CONTACT_OPERATOR = 'Operator';
+        CONST_STAGE_AVAILABLE = 'Available';
         mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
         mapUserPhoto = new Map<Id, String>();
         mapInventory = new Map<String,ICB_Wrapper_Cockpit_CC>();
@@ -176,8 +176,8 @@ public with sharing class ICB_Cockpit_CC
             opp.ICB_Contact__c = idContact;
             opp.ICB_Sales_Locale__c = mapContact.get(idContact).ICB_Sales_Locale__c;
             
-            Database.insert(opp);
-            createOppItem(opp.id,inventoryList, opp.Name);
+            Database.upsert(opp);
+            createOppItem(opp.id,inventoryList);
             getInventories(accountName, CONST_SOLICITATION, idContact);
             updateInventory(inventoryList,CONST_DECREMENT);
             System.debug('Exiting <createOpportunity>: ');
@@ -208,7 +208,7 @@ public with sharing class ICB_Cockpit_CC
         {
             if(isClosed)
             {
-                List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(listJson);
+                List<ICB_Wrapper_Cockpit_CC> listInventories = ICB_Cockpit_Helper.deserializeJSON(listJson);
                 //List<ICB_Wrapper_Cockpit_CC> returnListInventories = deserializeJSON(listJson);
                 //List<Opportunity> oppList = new List<Opportunity>();
                 for(ICB_Wrapper_Cockpit_CC wrapper : listInventories)
@@ -237,29 +237,33 @@ public with sharing class ICB_Cockpit_CC
     Throws [Exceptions]: Exception
     ********************************************************************/
     @AuraEnabled
-    public static void updateOppItem(String inventoryList, String operation)
+    public static void updateOppItem(String inventoryList, String operation,String idContact)
     {
-        System.debug('Entering <updateOppItem>: '+ inventoryList);
-        System.debug('Entering <updateOppItem>: '+ operation);
-       
-        List<OpportunityLineItem> oppItem = new List<OpportunityLineItem>();
+        System.debug('Entering <updateOppItem><inventoryList>: '+ inventoryList);
+        System.debug('Entering <updateOppItem><operation>: '+ operation);
+		System.debug('Entering <updateOppItem><idContact>: '+ idContact);       
         
+        List<OpportunityLineItem> oppItem = new List<OpportunityLineItem>();
+        Set<String> setProduct = new Set<String>();
+         
         try
         {
+            List<ICB_Wrapper_Cockpit_CC> listInventories = new List<ICB_Wrapper_Cockpit_CC>();
             if(!inventoryList.equalsIgnoreCase(CONST_EMPTY))
             {
-                List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(inventoryList);
+                listInventories = ICB_Cockpit_Helper.deserializeJSON(inventoryList);
                 setMapsIvtPb(listInventories);
             }
-            
             for(OpportunityLineItem opp : ICB_Cockpit_CC_DAO.updateOppItemListOppItem(mapPriceBook))
             {
+                setProduct.add(opp.Product2Id + String.valueOf(opp.Opportunity.ICB_Contact__c));
                 if(operation.equalsIgnoreCase(CONST_OPERATION_IS_CLOSED))
                 {
                     opp.ICB_IS_CLOSED__c = true;
                     oppItem.add(opp);
                 }
-                if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity >= 0 )
+                if(operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && mapInventory.get(opp.PriceBookEntry.Name).quantity > 0 
+                   && idContact == opp.Opportunity.ICB_Contact__c)
                 {
                     opp.Quantity = mapInventory.get(opp.PriceBookEntry.Name).quantity == null ? 0 : mapInventory.get(opp.PriceBookEntry.Name).quantity + opp.Quantity;
                     opp.TotalPrice = opp.Quantity * mapPriceBook.get(opp.PriceBookEntryId).UnitPrice;
@@ -267,7 +271,7 @@ public with sharing class ICB_Cockpit_CC
                     oppItem.add(opp);
                     updateInventory(inventoryList,CONST_DECREMENT);
                 }
-                else if(mapInventory.get(opp.PriceBookEntry.Name).quantity <= opp.Quantity)
+                else if(mapInventory.get(opp.PriceBookEntry.Name).quantity <= opp.Quantity && !operation.equalsIgnoreCase(CONST_OPERATION_OPEN) && idContact == opp.Opportunity.ICB_Contact__c)
                 {
                     
                     Integer valueQtd =  (Integer)opp.Quantity - mapInventory.get(opp.PriceBookEntry.Name).quantity;
@@ -300,10 +304,10 @@ public with sharing class ICB_Cockpit_CC
                     
                     oppItem.add(opp);
                 }
+      			
             }
-            
-            Database.update(oppItem);
-             
+            Database.upsert(oppItem);
+            createOppItemNewProduct(idContact, listInventories, setProduct);
         }
         catch(Exception e)
         {
@@ -311,7 +315,31 @@ public with sharing class ICB_Cockpit_CC
         }
         System.debug('Exiting <updateOppItem>');
     }
-
+    /*******************************************************************
+    Purpose: Create opportunity line items based when have a new product 
+    Parameters: @listInventories(list of items)
+				@oppId(id of opportunity)
+    			@setProduct(products that not contains in list)
+    Returns: Void
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    private static void createOppItemNewProduct(String idContact,List<ICB_Wrapper_Cockpit_CC> listInventories,Set<String> setProduct)
+    {
+        System.debug('Entering <createOppItemNewProduct><oppId>: '+ idContact);
+        System.debug('Entering <createOppItemNewProduct><listInventories>: '+ listInventories);
+		System.debug('Entering <createOppItemNewProduct><setProduct>: '+ setProduct); 
+        String oppId = [Select Id From Opportunity Where ICB_Contact__c =: idContact AND StageName =: CONST_STAGE_AVAILABLE].Id;
+        for(ICB_Wrapper_Cockpit_CC ivt : listInventories)
+        {
+            if(!setProduct.contains(ivt.invetoryItem.ICB_Product__c + idContact))
+            {
+                List<ICB_Wrapper_Cockpit_CC> inventory = new List<ICB_Wrapper_Cockpit_CC>();
+                inventory.add(ivt);
+                createOppItem(oppId, JSON.serializePretty(inventory));                
+            }
+        }
+        System.debug('Exiting <createOppItemNewProduct>');
+    }
     /*******************************************************************
     Purpose: Create opportunity line items based in opportunity create
     Parameters: @inventoryList(list of items)
@@ -320,13 +348,12 @@ public with sharing class ICB_Cockpit_CC
     Returns: Void
     Throws [Exceptions]: NONE
     ********************************************************************/
-    private static void createOppItem(Id oppId,String inventoryList, String oppName)
+   	private static void createOppItem(Id oppId,String inventoryList)
     {
         System.debug('Entering <createOppItem>: '+oppId);
         System.debug('Entering <createOppItem>: '+inventoryList);
-        System.debug('Entering <createOppItem>: '+oppName);
         
-        List<ICB_Wrapper_Cockpit_CC> listInventories = deserializeJSON(inventoryList);
+        List<ICB_Wrapper_Cockpit_CC> listInventories = ICB_Cockpit_Helper.deserializeJSON(inventoryList);
         OpportunityLineItem oppItem;
         
         List<OpportunityLineItem> listOppItem = new List<OpportunityLineItem>();
@@ -357,7 +384,7 @@ public with sharing class ICB_Cockpit_CC
             }
             
         }
-        Database.insert(listOppItem);
+        Database.upsert(listOppItem);
         System.debug('Exiting <createOppItem>');
     }
     
@@ -373,17 +400,16 @@ public with sharing class ICB_Cockpit_CC
         System.debug('Entering <updateInventory>: '+ inventoryList);
         System.debug('Entering <updateInventory>: '+ operation);
         
-        List<ICB_Wrapper_Cockpit_CC> listInventory = deserializeJSON(inventoryList);
+        List<ICB_Wrapper_Cockpit_CC> listInventory = ICB_Cockpit_Helper.deserializeJSON(inventoryList);
         List<ICB_Inventory_Line_Item__c> listUpdateIvt = new List<ICB_Inventory_Line_Item__c>();
-        
+        setMapsIvtPb(listInventory);
         for(ICB_Wrapper_Cockpit_CC ivt : listInventory)
         {
             if(ivt.quantity <= (ivt.invetoryItem.ICB_Quantity_Unit__c + ivt.quantityMin))
             {
                 if(!operation.equals(CONST_INCREMENT))
                 {
-                     ivt.invetoryItem.ICB_Quantity_Unit__c = ivt.quantity == ivt.invetoryItem.ICB_Quantity_Unit__c ? 0 : 
-                    										 ivt.invetoryItem.ICB_Quantity_Unit__c - (ivt.quantity - ivt.quantityMin);  
+                    ivt.invetoryItem.ICB_Quantity_Unit__c = ivt.invetoryItem.ICB_Quantity_Unit__c - (ivt.quantity - ivt.quantityMin);  
                     listUpdateIvt.add(ivt.invetoryItem);        
                 }
             }
@@ -392,20 +418,7 @@ public with sharing class ICB_Cockpit_CC
         System.debug('Exiting <updateInventory>: ');
     }
     
-    /*******************************************************************
-    Purpose: Deserialize JSON received of controller javascript
-    Parameters: @jsonList(list of items)
-    Returns: List<ICB_Wrapper_Cockpit_CC>
-    Throws [Exceptions]: NONE
-    ********************************************************************/
-    private static List<ICB_Wrapper_Cockpit_CC> deserializeJSON(String jsonList)
-    {
-        System.debug('Entering <deserializeJSON>: '+ jsonList);
-        Type idArrType=Type.forName(CONST_TYPE_LIST);
-        List<ICB_Wrapper_Cockpit_CC> listInventories = (List<ICB_Wrapper_Cockpit_CC>) JSON.deserialize(jsonList, idArrType);
-        System.debug('Exiting <deserializeJSON>: ' + JSON.serializePretty(listInventories));
-        return listInventories;
-    } 
+    
     
      /*******************************************************************
     Purpose: Return names of products to used for retrieve price books 

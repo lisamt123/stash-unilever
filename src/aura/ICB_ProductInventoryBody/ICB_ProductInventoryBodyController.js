@@ -31,6 +31,7 @@
         
         // Send action off to be executed
         $A.enqueueAction(action);
+        
     },
     posiviteAdd : function(component, event, helper){
         var selectedItem = event.currentTarget; // Get the target object
@@ -55,11 +56,13 @@
             selectedStore.ICB_Quantity_Unit__c -=1;
         }
         component.set("v.Inventory",list); 
+        
     },
     
     whatButton : function(component, event, helper){
         var whichOne = event.getSource().getLocalId();
-        console.log(whichOne);    
+        console.log(whichOne); 
+        
     },
     
     // Updated the inventory operator based a list line item list.
@@ -90,6 +93,11 @@
         $A.enqueueAction(action);
         location.reload(true);
         console.log("Exit <updateList>");
-	}
+        
+    },
+    Onfocus : function(component, event, helper){
+		var test = $A.get('e.ui:updateSize');
+      	test.fire();
+    }
     
 })
