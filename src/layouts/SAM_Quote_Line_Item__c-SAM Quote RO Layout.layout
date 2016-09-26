@@ -22,6 +22,10 @@
                 <field>pkl_Publisher__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_Publishers_Details__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>Name</field>
             </layoutItems>
@@ -65,10 +69,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>pkl_Maintainence_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>num_Maintainence_Percentage__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

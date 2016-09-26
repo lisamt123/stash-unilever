@@ -327,6 +327,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SAM_Quote_Line_Item__c.txt_Publishers_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SAM_Quote_Line_Item__c.txt_Run_Cost_Publisher__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -432,7 +437,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SAM_Request_Line_Item__c.pkl_Hard_Partitioning__c</field>
+        <field>SAM_Request_Line_Item__c.pkl_Hard_Partitioning_new__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -517,7 +522,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>SAM_Request_Line_Item__c.txt_Diagnostic__c</field>
+        <field>SAM_Request_Line_Item__c.txt_Diagnostic_new__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -587,6 +592,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SAM_Request_Line_Item__c.txt_Partitioning_new__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SAM_Request_Line_Item__c.txt_Physical_Machine_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -609,6 +619,11 @@
         <editable>true</editable>
         <field>SAM_Request_Line_Item__c.txt_Product_Description__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request_Line_Item__c.txt_Product_Type_Name__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -648,6 +663,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SAM_Request_Line_Item__c.txt_Tuning__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SAM_Request_Line_Item__c.txt_Tuning_new__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -823,6 +843,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.fml_Software_Engagement_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.fml_Total_Applicable_Cross_Charge__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1048,6 +1073,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.rol_Total_Annual_Maint_in__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Total_Annual_Maint_in_for_X_type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -69,7 +69,8 @@
                 <field>txt_Version__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>num_Number_of_VMS__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
