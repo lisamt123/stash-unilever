@@ -339,7 +339,8 @@
     <fields>
         <fullName>fml_Maintainence_Amount__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(  ISPICKVAL(pkl_Maintainence_Type__c, &apos;Amount&apos;)  ,  (IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_Maintainence_Cost__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_Maintainence_Cost__c/num_GBP_EUR__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),( num_Maintainence_Cost__c/num_USD_EUR__c ),(0))))) )) , num_Maintainence_Cost__c*fml_License_Cost__c)</formula>
+        <formula>IF(  ISPICKVAL(pkl_Maintainence_Type__c, &apos;Amount&apos;)  ,  (IF( ISPICKVAL( pkl_Currency_Type__c , &apos;EUR&apos;),( num_Maintainence_Cost__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;GBP&apos;),( num_Maintainence_Cost__c/num_GBP_EUR__c ),(IF(ISPICKVAL( pkl_Currency_Type__c , &apos;USD&apos;),( num_Maintainence_Cost__c/num_USD_EUR__c ),(0))))) )) ,  ( num_Maintainence_Cost__c /100)*fml_License_Cost__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Maintenance Cost (€)</label>
         <precision>18</precision>
         <required>false</required>
@@ -1040,6 +1041,18 @@ false )</formula>
         <inlineHelpText>Enter the name/ team which maintains the project post PGLS exit</inlineHelpText>
         <label>Project Maintenance</label>
         <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Publishers_Details__c</fullName>
+        <description>Stores the publisher names for different  quotations including other product types.Should be used in Reports and concatenation into Request &gt; Publisher ( txt_CrossCharge_Publisher__c field )</description>
+        <externalId>false</externalId>
+        <label>Other Publishers</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -4268,6 +4281,24 @@ false )</formula>
         <errorConditionFormula>AND(ISCHANGED(Name),TEXT( pkl_Request_status__c )&lt;&gt; $Label.SAM_Open ,TEXT( pkl_Request_status__c )&lt;&gt; $Label.SAM_In_Progress  ,TEXT( pkl_Request_status__c )&lt;&gt; $Label.SAM_Draft_Quote_Provided ,TEXT( pkl_Request_status__c )&lt;&gt; $Label.SAM_Quote_Rejected ,TEXT( pkl_Request_status__c )&lt;&gt; $Label.SAM_Information_Provided )</errorConditionFormula>
         <errorDisplayField>Name</errorDisplayField>
         <errorMessage>This cannot be updated.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Publishers_Details_Mandatory</fullName>
+        <active>true</active>
+        <description>This is mandatory when Publisher is Other Products</description>
+        <errorConditionFormula>AND(ISPICKVAL( pkl_Publisher__c , &apos;Other Product&apos;) ,
+ ISBLANK(txt_Publishers_Details__c  ) )</errorConditionFormula>
+        <errorDisplayField>txt_Publishers_Details__c</errorDisplayField>
+        <errorMessage>Mandatory when Publisher is Other Product</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Publishers_Details_Reverse_Validation</fullName>
+        <active>true</active>
+        <description>User should not set this field when Publisher is not  &apos;Other Product&apos;</description>
+        <errorConditionFormula>AND(NOT(ISPICKVAL( pkl_Publisher__c , &apos;Other Product&apos;)) ,
+ NOT(ISBLANK(txt_Publishers_Details__c  )) )</errorConditionFormula>
+        <errorDisplayField>txt_Publishers_Details__c</errorDisplayField>
+        <errorMessage>Cannot set when Publisher is Not &apos;Other Product&apos;</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Quotation_as_Completed_without_attaching</fullName>

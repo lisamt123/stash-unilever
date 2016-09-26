@@ -278,14 +278,14 @@
                 <stringValue>SAM_Missing_Info_Provided_By_Requester</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_38_A4</name>
+        <name>myRule_39_A4</name>
         <label>Send Info Provided Email to Assigned SAM Mem and Requester</label>
-        <locationX>3800</locationX>
+        <locationX>3900</locationX>
         <locationY>500</locationY>
         <actionName>SAM_Request__c.SAM_Missing_Info_Provided_By_Requester</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_38_A5</targetReference>
+            <targetReference>myRule_39_A5</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -301,14 +301,14 @@
                 <stringValue>SAM_Request_PublisherFieldUpdate</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_42_A3</name>
+        <name>myRule_43_A3</name>
         <label>Update Publisher</label>
-        <locationX>4200</locationX>
+        <locationX>4300</locationX>
         <locationY>400</locationY>
         <actionName>SAM_Request_PublisherFieldUpdate</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_42_A4</targetReference>
+            <targetReference>myRule_43_A4</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -360,14 +360,14 @@
                 <stringValue>SAM_QuoteApproved_By_Requester</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_42_A5</name>
+        <name>myRule_43_A5</name>
         <label>Send Quote Approved Email to SAM Member and Requester</label>
-        <locationX>4200</locationX>
+        <locationX>4300</locationX>
         <locationY>600</locationY>
         <actionName>SAM_Request__c.SAM_QuoteApproved_By_Requester</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_42_A6</targetReference>
+            <targetReference>myRule_43_A6</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -383,14 +383,14 @@
                 <stringValue>SAM_Quote_Rejected_by_Requester</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_46_A4</name>
+        <name>myRule_47_A4</name>
         <label>Send Quote Rejection Email to SAM Member and Requester</label>
-        <locationX>4600</locationX>
+        <locationX>4700</locationX>
         <locationY>500</locationY>
         <actionName>SAM_Request__c.SAM_Quote_Rejected_by_Requester</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_46_A5</targetReference>
+            <targetReference>myRule_47_A5</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -452,14 +452,14 @@
                 <stringValue>SAM_More_CC_Details_Needed_fromSAMT_ToRequester</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_54_A3</name>
+        <name>myRule_55_A3</name>
         <label>Email to Requester for CC details</label>
-        <locationX>5400</locationX>
+        <locationX>5500</locationX>
         <locationY>400</locationY>
         <actionName>SAM_Request__c.SAM_More_CC_Details_Needed_fromSAMT_ToRequester</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_54_A4</targetReference>
+            <targetReference>myRule_55_A4</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -475,14 +475,14 @@
                 <stringValue>SAM_CrossCharge_Completed_By_ULFT</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_60_A4</name>
+        <name>myRule_61_A4</name>
         <label>Send CC Complete email to Finance team, Sam member and requester</label>
-        <locationX>6000</locationX>
+        <locationX>6100</locationX>
         <locationY>500</locationY>
         <actionName>SAM_Request__c.SAM_CrossCharge_Completed_By_ULFT</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_60_A5</targetReference>
+            <targetReference>myRule_61_A5</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -498,14 +498,14 @@
                 <stringValue>SAM_AdditionalCCdetails_RequestFromULFT_To_SAMT</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_63_A4</name>
+        <name>myRule_64_A4</name>
         <label>Send Awaiting CC details email to SAM Member</label>
-        <locationX>6300</locationX>
+        <locationX>6400</locationX>
         <locationY>500</locationY>
         <actionName>SAM_Request__c.SAM_AdditionalCCdetails_RequestFromULFT_To_SAMT</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_63_A5</targetReference>
+            <targetReference>myRule_64_A5</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -521,14 +521,14 @@
                 <stringValue>SAM_CossCharge_Rejected_By_Finance_Team</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_66_A4</name>
+        <name>myRule_67_A4</name>
         <label>Send CC Reject email to Finance team,SAM member and Requester</label>
-        <locationX>6600</locationX>
+        <locationX>6700</locationX>
         <locationY>500</locationY>
         <actionName>SAM_Request__c.SAM_CossCharge_Rejected_By_Finance_Team</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_66_A5</targetReference>
+            <targetReference>myRule_67_A5</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -544,14 +544,14 @@
                 <stringValue>SAM_Additional_CC_Dtails_FromRequester_ToSAMTeam</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_69_A4</name>
+        <name>myRule_70_A4</name>
         <label>Requester Email CC details to SAM Member</label>
-        <locationX>6900</locationX>
+        <locationX>7000</locationX>
         <locationY>500</locationY>
         <actionName>SAM_Request__c.SAM_Additional_CC_Dtails_FromRequester_ToSAMTeam</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_69_A5</targetReference>
+            <targetReference>myRule_70_A5</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -567,15 +567,35 @@
                 <stringValue>SAM_ULSAMT_Answers_the_Query</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_83_A3</name>
+        <name>myRule_84_A3</name>
         <label>Send Query Answered Email to SAM Member and Requester</label>
-        <locationX>8300</locationX>
+        <locationX>8400</locationX>
         <locationY>400</locationY>
         <actionName>SAM_Request__c.SAM_ULSAMT_Answers_the_Query</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_83_A4</targetReference>
+            <targetReference>myRule_84_A4</targetReference>
         </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>SAM_Invalid_Req_Closed_By_SAMTeamMember</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_87_A4</name>
+        <label>Send Close Email to Requester</label>
+        <locationX>8700</locationX>
+        <locationY>500</locationY>
+        <actionName>SAM_Request__c.SAM_Invalid_Req_Closed_By_SAMTeamMember</actionName>
+        <actionType>emailAlert</actionType>
         <inputParameters>
             <name>SObjectRowId</name>
             <value>
@@ -590,14 +610,14 @@
                 <stringValue>SAM_ULEMP_resubmits_the_query</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_90_A3</name>
+        <name>myRule_92_A3</name>
         <label>Send Query Re-Submit Email</label>
         <locationX>8800</locationX>
         <locationY>400</locationY>
         <actionName>SAM_Request__c.SAM_ULEMP_resubmits_the_query</actionName>
         <actionType>emailAlert</actionType>
         <connector>
-            <targetReference>myRule_90_A4</targetReference>
+            <targetReference>myRule_92_A4</targetReference>
         </connector>
         <inputParameters>
             <name>SObjectRowId</name>
@@ -613,14 +633,14 @@
                 <stringValue>SAM_Email_Attachment_InvocableMethod</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_94_A3</name>
+        <name>myRule_96_A3</name>
         <label>SAM_FinalQuote_Resubmitted_After_Modification</label>
         <locationX>8800</locationX>
         <locationY>400</locationY>
         <actionName>SAM_Email_Attachment_InvocableMethod</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_94_A4</targetReference>
+            <targetReference>myRule_96_A4</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1017,7 +1037,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision39_myRule_38_pkl_SAM_Requester_Status_c</targetReference>
+            <targetReference>isChangedDecision40_myRule_39_pkl_SAM_Requester_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -1038,22 +1058,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision39_myRule_38_pkl_SAM_Requester_Status_c</targetReference>
+                <targetReference>isChangedDecision40_myRule_39_pkl_SAM_Requester_Status_c</targetReference>
             </connector>
             <label>isChangedRule_36_myRule_35_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision39_myRule_38_pkl_SAM_Requester_Status_c</name>
-        <label>isChangedDecision39_myRule_38_pkl_SAM_Requester_Status_c</label>
+        <name>isChangedDecision40_myRule_39_pkl_SAM_Requester_Status_c</name>
+        <label>isChangedDecision40_myRule_39_pkl_SAM_Requester_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision40_myRule_38_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision41_myRule_39_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_39_myRule_38_pkl_SAM_Requester_Status_c</name>
+            <name>isChangedRule_40_myRule_39_pkl_SAM_Requester_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1070,22 +1090,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision40_myRule_38_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision41_myRule_39_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_39_myRule_38_pkl_SAM_Requester_Status_c</label>
+            <label>isChangedRule_40_myRule_39_pkl_SAM_Requester_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision40_myRule_38_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision40_myRule_38_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision41_myRule_39_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision41_myRule_39_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision43_myRule_42_pkl_SAM_Requester_Status_c</targetReference>
+            <targetReference>isChangedDecision44_myRule_43_pkl_SAM_Requester_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_40_myRule_38_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_41_myRule_39_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1102,22 +1122,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision43_myRule_42_pkl_SAM_Requester_Status_c</targetReference>
+                <targetReference>isChangedDecision44_myRule_43_pkl_SAM_Requester_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_40_myRule_38_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_41_myRule_39_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision43_myRule_42_pkl_SAM_Requester_Status_c</name>
-        <label>isChangedDecision43_myRule_42_pkl_SAM_Requester_Status_c</label>
+        <name>isChangedDecision44_myRule_43_pkl_SAM_Requester_Status_c</name>
+        <label>isChangedDecision44_myRule_43_pkl_SAM_Requester_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision44_myRule_42_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision45_myRule_43_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_43_myRule_42_pkl_SAM_Requester_Status_c</name>
+            <name>isChangedRule_44_myRule_43_pkl_SAM_Requester_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1134,22 +1154,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision44_myRule_42_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision45_myRule_43_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_43_myRule_42_pkl_SAM_Requester_Status_c</label>
+            <label>isChangedRule_44_myRule_43_pkl_SAM_Requester_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision44_myRule_42_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision44_myRule_42_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision45_myRule_43_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision45_myRule_43_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision47_myRule_46_pkl_SAM_Requester_Status_c</targetReference>
+            <targetReference>isChangedDecision48_myRule_47_pkl_SAM_Requester_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_44_myRule_42_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_45_myRule_43_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1166,22 +1186,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision47_myRule_46_pkl_SAM_Requester_Status_c</targetReference>
+                <targetReference>isChangedDecision48_myRule_47_pkl_SAM_Requester_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_44_myRule_42_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_45_myRule_43_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision47_myRule_46_pkl_SAM_Requester_Status_c</name>
-        <label>isChangedDecision47_myRule_46_pkl_SAM_Requester_Status_c</label>
+        <name>isChangedDecision48_myRule_47_pkl_SAM_Requester_Status_c</name>
+        <label>isChangedDecision48_myRule_47_pkl_SAM_Requester_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision48_myRule_46_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision49_myRule_47_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_47_myRule_46_pkl_SAM_Requester_Status_c</name>
+            <name>isChangedRule_48_myRule_47_pkl_SAM_Requester_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1198,22 +1218,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision48_myRule_46_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision49_myRule_47_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_47_myRule_46_pkl_SAM_Requester_Status_c</label>
+            <label>isChangedRule_48_myRule_47_pkl_SAM_Requester_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision48_myRule_46_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision48_myRule_46_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision49_myRule_47_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision49_myRule_47_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision51_myRule_50_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision52_myRule_51_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_48_myRule_46_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_49_myRule_47_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1230,22 +1250,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision51_myRule_50_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision52_myRule_51_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_48_myRule_46_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_49_myRule_47_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision51_myRule_50_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision51_myRule_50_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision52_myRule_51_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision52_myRule_51_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision55_myRule_54_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision56_myRule_55_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_51_myRule_50_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_52_myRule_51_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1262,22 +1282,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision55_myRule_54_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision56_myRule_55_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_51_myRule_50_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_52_myRule_51_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision55_myRule_54_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision55_myRule_54_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision56_myRule_55_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision56_myRule_55_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision58_myRule_57_pkl_SAM_Finance_Status_c</targetReference>
+            <targetReference>isChangedDecision59_myRule_58_pkl_SAM_Finance_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_55_myRule_54_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_56_myRule_55_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1294,22 +1314,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision58_myRule_57_pkl_SAM_Finance_Status_c</targetReference>
+                <targetReference>isChangedDecision59_myRule_58_pkl_SAM_Finance_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_55_myRule_54_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_56_myRule_55_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision58_myRule_57_pkl_SAM_Finance_Status_c</name>
-        <label>isChangedDecision58_myRule_57_pkl_SAM_Finance_Status_c</label>
+        <name>isChangedDecision59_myRule_58_pkl_SAM_Finance_Status_c</name>
+        <label>isChangedDecision59_myRule_58_pkl_SAM_Finance_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision61_myRule_60_pkl_SAM_Finance_Status_c</targetReference>
+            <targetReference>isChangedDecision62_myRule_61_pkl_SAM_Finance_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_58_myRule_57_pkl_SAM_Finance_Status_c</name>
+            <name>isChangedRule_59_myRule_58_pkl_SAM_Finance_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1326,9 +1346,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision61_myRule_60_pkl_SAM_Finance_Status_c</targetReference>
+                <targetReference>isChangedDecision62_myRule_61_pkl_SAM_Finance_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_58_myRule_57_pkl_SAM_Finance_Status_c</label>
+            <label>isChangedRule_59_myRule_58_pkl_SAM_Finance_Status_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -1364,16 +1384,16 @@
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision61_myRule_60_pkl_SAM_Finance_Status_c</name>
-        <label>isChangedDecision61_myRule_60_pkl_SAM_Finance_Status_c</label>
+        <name>isChangedDecision62_myRule_61_pkl_SAM_Finance_Status_c</name>
+        <label>isChangedDecision62_myRule_61_pkl_SAM_Finance_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision64_myRule_63_pkl_SAM_Finance_Status_c</targetReference>
+            <targetReference>isChangedDecision65_myRule_64_pkl_SAM_Finance_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_61_myRule_60_pkl_SAM_Finance_Status_c</name>
+            <name>isChangedRule_62_myRule_61_pkl_SAM_Finance_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1390,22 +1410,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision64_myRule_63_pkl_SAM_Finance_Status_c</targetReference>
+                <targetReference>isChangedDecision65_myRule_64_pkl_SAM_Finance_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_61_myRule_60_pkl_SAM_Finance_Status_c</label>
+            <label>isChangedRule_62_myRule_61_pkl_SAM_Finance_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision64_myRule_63_pkl_SAM_Finance_Status_c</name>
-        <label>isChangedDecision64_myRule_63_pkl_SAM_Finance_Status_c</label>
+        <name>isChangedDecision65_myRule_64_pkl_SAM_Finance_Status_c</name>
+        <label>isChangedDecision65_myRule_64_pkl_SAM_Finance_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision67_myRule_66_pkl_SAM_Finance_Status_c</targetReference>
+            <targetReference>isChangedDecision68_myRule_67_pkl_SAM_Finance_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_64_myRule_63_pkl_SAM_Finance_Status_c</name>
+            <name>isChangedRule_65_myRule_64_pkl_SAM_Finance_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1422,22 +1442,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision67_myRule_66_pkl_SAM_Finance_Status_c</targetReference>
+                <targetReference>isChangedDecision68_myRule_67_pkl_SAM_Finance_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_64_myRule_63_pkl_SAM_Finance_Status_c</label>
+            <label>isChangedRule_65_myRule_64_pkl_SAM_Finance_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision67_myRule_66_pkl_SAM_Finance_Status_c</name>
-        <label>isChangedDecision67_myRule_66_pkl_SAM_Finance_Status_c</label>
+        <name>isChangedDecision68_myRule_67_pkl_SAM_Finance_Status_c</name>
+        <label>isChangedDecision68_myRule_67_pkl_SAM_Finance_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision70_myRule_69_pkl_SAM_Requester_Status_c</targetReference>
+            <targetReference>isChangedDecision71_myRule_70_pkl_SAM_Requester_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_67_myRule_66_pkl_SAM_Finance_Status_c</name>
+            <name>isChangedRule_68_myRule_67_pkl_SAM_Finance_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1454,22 +1474,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision70_myRule_69_pkl_SAM_Requester_Status_c</targetReference>
+                <targetReference>isChangedDecision71_myRule_70_pkl_SAM_Requester_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_67_myRule_66_pkl_SAM_Finance_Status_c</label>
+            <label>isChangedRule_68_myRule_67_pkl_SAM_Finance_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision70_myRule_69_pkl_SAM_Requester_Status_c</name>
-        <label>isChangedDecision70_myRule_69_pkl_SAM_Requester_Status_c</label>
+        <name>isChangedDecision71_myRule_70_pkl_SAM_Requester_Status_c</name>
+        <label>isChangedDecision71_myRule_70_pkl_SAM_Requester_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision71_myRule_69_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision72_myRule_70_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_70_myRule_69_pkl_SAM_Requester_Status_c</name>
+            <name>isChangedRule_71_myRule_70_pkl_SAM_Requester_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1486,22 +1506,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision71_myRule_69_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision72_myRule_70_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_70_myRule_69_pkl_SAM_Requester_Status_c</label>
+            <label>isChangedRule_71_myRule_70_pkl_SAM_Requester_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision71_myRule_69_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision71_myRule_69_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision72_myRule_70_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision72_myRule_70_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision74_myRule_73_pkl_SAM_Requester_Status_c</targetReference>
+            <targetReference>isChangedDecision75_myRule_74_pkl_SAM_Requester_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_71_myRule_69_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_72_myRule_70_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1518,22 +1538,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision74_myRule_73_pkl_SAM_Requester_Status_c</targetReference>
+                <targetReference>isChangedDecision75_myRule_74_pkl_SAM_Requester_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_71_myRule_69_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_72_myRule_70_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision74_myRule_73_pkl_SAM_Requester_Status_c</name>
-        <label>isChangedDecision74_myRule_73_pkl_SAM_Requester_Status_c</label>
+        <name>isChangedDecision75_myRule_74_pkl_SAM_Requester_Status_c</name>
+        <label>isChangedDecision75_myRule_74_pkl_SAM_Requester_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision75_myRule_73_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision76_myRule_74_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_74_myRule_73_pkl_SAM_Requester_Status_c</name>
+            <name>isChangedRule_75_myRule_74_pkl_SAM_Requester_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1550,22 +1570,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision75_myRule_73_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision76_myRule_74_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_74_myRule_73_pkl_SAM_Requester_Status_c</label>
+            <label>isChangedRule_75_myRule_74_pkl_SAM_Requester_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision75_myRule_73_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision75_myRule_73_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision76_myRule_74_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision76_myRule_74_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision78_myRule_77_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision79_myRule_78_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_75_myRule_73_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_76_myRule_74_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1582,22 +1602,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision78_myRule_77_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision79_myRule_78_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_75_myRule_73_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_76_myRule_74_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision78_myRule_77_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision78_myRule_77_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision79_myRule_78_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision79_myRule_78_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision81_myRule_80_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision82_myRule_81_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_78_myRule_77_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_79_myRule_78_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1614,22 +1634,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision81_myRule_80_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision82_myRule_81_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_78_myRule_77_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_79_myRule_78_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision81_myRule_80_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision81_myRule_80_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision82_myRule_81_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision82_myRule_81_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision84_myRule_83_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision85_myRule_84_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_81_myRule_80_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_82_myRule_81_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1646,22 +1666,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision84_myRule_83_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision85_myRule_84_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_81_myRule_80_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_82_myRule_81_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision84_myRule_83_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision84_myRule_83_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision85_myRule_84_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision85_myRule_84_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision87_myRule_86_pkl_SAM_Requester_Status_c</targetReference>
+            <targetReference>isChangedDecision88_myRule_87_pkl_SAM_Requester_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_84_myRule_83_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_85_myRule_84_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1678,22 +1698,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision87_myRule_86_pkl_SAM_Requester_Status_c</targetReference>
+                <targetReference>isChangedDecision88_myRule_87_pkl_SAM_Requester_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_84_myRule_83_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_85_myRule_84_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision87_myRule_86_pkl_SAM_Requester_Status_c</name>
-        <label>isChangedDecision87_myRule_86_pkl_SAM_Requester_Status_c</label>
+        <name>isChangedDecision88_myRule_87_pkl_SAM_Requester_Status_c</name>
+        <label>isChangedDecision88_myRule_87_pkl_SAM_Requester_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision88_myRule_86_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision89_myRule_87_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_87_myRule_86_pkl_SAM_Requester_Status_c</name>
+            <name>isChangedRule_88_myRule_87_pkl_SAM_Requester_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1710,22 +1730,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision88_myRule_86_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision89_myRule_87_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_87_myRule_86_pkl_SAM_Requester_Status_c</label>
+            <label>isChangedRule_88_myRule_87_pkl_SAM_Requester_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision88_myRule_86_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision88_myRule_86_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision89_myRule_87_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision89_myRule_87_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision91_myRule_90_pkl_SAM_Requester_Status_c</targetReference>
+            <targetReference>isChangedDecision93_myRule_92_pkl_SAM_Requester_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_88_myRule_86_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_89_myRule_87_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1742,22 +1762,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision91_myRule_90_pkl_SAM_Requester_Status_c</targetReference>
+                <targetReference>isChangedDecision93_myRule_92_pkl_SAM_Requester_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_88_myRule_86_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_89_myRule_87_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision91_myRule_90_pkl_SAM_Requester_Status_c</name>
-        <label>isChangedDecision91_myRule_90_pkl_SAM_Requester_Status_c</label>
+        <name>isChangedDecision93_myRule_92_pkl_SAM_Requester_Status_c</name>
+        <label>isChangedDecision93_myRule_92_pkl_SAM_Requester_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision92_myRule_90_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision94_myRule_92_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_91_myRule_90_pkl_SAM_Requester_Status_c</name>
+            <name>isChangedRule_93_myRule_92_pkl_SAM_Requester_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1774,22 +1794,22 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision92_myRule_90_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision94_myRule_92_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_91_myRule_90_pkl_SAM_Requester_Status_c</label>
+            <label>isChangedRule_93_myRule_92_pkl_SAM_Requester_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision92_myRule_90_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision92_myRule_90_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision94_myRule_92_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision94_myRule_92_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision95_myRule_94_pkl_SAM_team_Status_c</targetReference>
+            <targetReference>isChangedDecision97_myRule_96_pkl_SAM_team_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_92_myRule_90_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_94_myRule_92_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1806,14 +1826,14 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision95_myRule_94_pkl_SAM_team_Status_c</targetReference>
+                <targetReference>isChangedDecision97_myRule_96_pkl_SAM_team_Status_c</targetReference>
             </connector>
-            <label>isChangedRule_92_myRule_90_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_94_myRule_92_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision95_myRule_94_pkl_SAM_team_Status_c</name>
-        <label>isChangedDecision95_myRule_94_pkl_SAM_team_Status_c</label>
+        <name>isChangedDecision97_myRule_96_pkl_SAM_team_Status_c</name>
+        <label>isChangedDecision97_myRule_96_pkl_SAM_team_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -1821,7 +1841,7 @@
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_95_myRule_94_pkl_SAM_team_Status_c</name>
+            <name>isChangedRule_97_myRule_96_pkl_SAM_team_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -1840,7 +1860,7 @@
             <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_95_myRule_94_pkl_SAM_team_Status_c</label>
+            <label>isChangedRule_97_myRule_96_pkl_SAM_team_Status_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -2977,7 +2997,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision37</targetReference>
+            <targetReference>myDecision38</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -3058,16 +3078,16 @@
                 <numberValue>10.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision37</name>
-        <label>myDecision37</label>
+        <name>myDecision38</name>
+        <label>myDecision38</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision41</targetReference>
+            <targetReference>myDecision42</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_38</name>
+            <name>myRule_39</name>
             <conditionLogic>(1 AND 2)OR(3 AND 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3125,7 +3145,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_39_myRule_38_pkl_SAM_Requester_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_40_myRule_39_pkl_SAM_Requester_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -3187,14 +3207,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_40_myRule_38_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_41_myRule_39_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_38_A1</targetReference>
+                <targetReference>myRule_39_A1</targetReference>
             </connector>
             <label>Is Next Action(Requester)-Information Provided</label>
         </rules>
@@ -3206,16 +3226,16 @@
                 <numberValue>11.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision41</name>
-        <label>myDecision41</label>
+        <name>myDecision42</name>
+        <label>myDecision42</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision45</targetReference>
+            <targetReference>myDecision46</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_42</name>
+            <name>myRule_43</name>
             <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3273,7 +3293,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_43_myRule_42_pkl_SAM_Requester_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_44_myRule_43_pkl_SAM_Requester_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -3335,14 +3355,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_44_myRule_42_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_45_myRule_43_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_42_A1</targetReference>
+                <targetReference>myRule_43_A1</targetReference>
             </connector>
             <label>Is Next Action(Requester)-Quote Approved</label>
         </rules>
@@ -3354,16 +3374,16 @@
                 <numberValue>12.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision45</name>
-        <label>myDecision45</label>
+        <name>myDecision46</name>
+        <label>myDecision46</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision49</targetReference>
+            <targetReference>myDecision50</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_46</name>
+            <name>myRule_47</name>
             <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3421,7 +3441,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_47_myRule_46_pkl_SAM_Requester_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_48_myRule_47_pkl_SAM_Requester_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -3483,14 +3503,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_48_myRule_46_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_49_myRule_47_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_46_A1</targetReference>
+                <targetReference>myRule_47_A1</targetReference>
             </connector>
             <label>Is Next Action(Requester)-Quote Rejected</label>
         </rules>
@@ -3502,16 +3522,16 @@
                 <numberValue>13.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision49</name>
-        <label>myDecision49</label>
+        <name>myDecision50</name>
+        <label>myDecision50</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision53</targetReference>
+            <targetReference>myDecision54</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_50</name>
+            <name>myRule_51</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3569,14 +3589,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_51_myRule_50_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_52_myRule_51_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_50_A1</targetReference>
+                <targetReference>myRule_51_A1</targetReference>
             </connector>
             <label>Is Next Action(SAM Team)-Awaiting Charge</label>
         </rules>
@@ -3588,16 +3608,16 @@
                 <numberValue>14.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision53</name>
-        <label>myDecision53</label>
+        <name>myDecision54</name>
+        <label>myDecision54</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision56</targetReference>
+            <targetReference>myDecision57</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_54</name>
+            <name>myRule_55</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3655,14 +3675,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_55_myRule_54_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_56_myRule_55_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_54_A1</targetReference>
+                <targetReference>myRule_55_A1</targetReference>
             </connector>
             <label>Is Next Action(SAM Team)-Awaiting CC details(Pending with Requester)</label>
         </rules>
@@ -3674,16 +3694,16 @@
                 <numberValue>15.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision56</name>
-        <label>myDecision56</label>
+        <name>myDecision57</name>
+        <label>myDecision57</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision59</targetReference>
+            <targetReference>myDecision60</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_57</name>
+            <name>myRule_58</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3741,14 +3761,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_58_myRule_57_pkl_SAM_Finance_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_59_myRule_58_pkl_SAM_Finance_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_57_A1</targetReference>
+                <targetReference>myRule_58_A1</targetReference>
             </connector>
             <label>Is Next Action(Finance)-Cross-Charge In Progress</label>
         </rules>
@@ -3760,16 +3780,16 @@
                 <numberValue>16.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision59</name>
-        <label>myDecision59</label>
+        <name>myDecision60</name>
+        <label>myDecision60</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision62</targetReference>
+            <targetReference>myDecision63</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_60</name>
+            <name>myRule_61</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3827,14 +3847,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_61_myRule_60_pkl_SAM_Finance_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_62_myRule_61_pkl_SAM_Finance_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_60_A1</targetReference>
+                <targetReference>myRule_61_A1</targetReference>
             </connector>
             <label>Is Next Action(Finance)-Charging Completed</label>
         </rules>
@@ -3846,16 +3866,16 @@
                 <numberValue>17.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision62</name>
-        <label>myDecision62</label>
+        <name>myDecision63</name>
+        <label>myDecision63</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision65</targetReference>
+            <targetReference>myDecision66</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_63</name>
+            <name>myRule_64</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3913,14 +3933,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_64_myRule_63_pkl_SAM_Finance_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_65_myRule_64_pkl_SAM_Finance_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_63_A1</targetReference>
+                <targetReference>myRule_64_A1</targetReference>
             </connector>
             <label>Is Next Action(Finance)-Awaiting CC details (Pending with ULSMT)</label>
         </rules>
@@ -3932,16 +3952,16 @@
                 <numberValue>18.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision65</name>
-        <label>myDecision65</label>
+        <name>myDecision66</name>
+        <label>myDecision66</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision68</targetReference>
+            <targetReference>myDecision69</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_66</name>
+            <name>myRule_67</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -3999,14 +4019,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_67_myRule_66_pkl_SAM_Finance_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_68_myRule_67_pkl_SAM_Finance_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_66_A1</targetReference>
+                <targetReference>myRule_67_A1</targetReference>
             </connector>
             <label>Is Next Action(Finance)-Charging Rejected</label>
         </rules>
@@ -4018,16 +4038,16 @@
                 <numberValue>19.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision68</name>
-        <label>myDecision68</label>
+        <name>myDecision69</name>
+        <label>myDecision69</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision72</targetReference>
+            <targetReference>myDecision73</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_69</name>
+            <name>myRule_70</name>
             <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -4085,7 +4105,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_70_myRule_69_pkl_SAM_Requester_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_71_myRule_70_pkl_SAM_Requester_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4147,14 +4167,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_71_myRule_69_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_72_myRule_70_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_69_A1</targetReference>
+                <targetReference>myRule_70_A1</targetReference>
             </connector>
             <label>Is Next Action(Requester)-CC details provided</label>
         </rules>
@@ -4166,16 +4186,16 @@
                 <numberValue>20.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision72</name>
-        <label>myDecision72</label>
+        <name>myDecision73</name>
+        <label>myDecision73</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision76</targetReference>
+            <targetReference>myDecision77</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_73</name>
+            <name>myRule_74</name>
             <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -4233,7 +4253,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_74_myRule_73_pkl_SAM_Requester_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_75_myRule_74_pkl_SAM_Requester_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4295,14 +4315,14 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_75_myRule_73_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_76_myRule_74_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_73_A1</targetReference>
+                <targetReference>myRule_74_A1</targetReference>
             </connector>
             <label>Is Next Action(Requester)-Details Provided</label>
         </rules>
@@ -4314,16 +4334,16 @@
                 <numberValue>21.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision76</name>
-        <label>myDecision76</label>
+        <name>myDecision77</name>
+        <label>myDecision77</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision79</targetReference>
+            <targetReference>myDecision80</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_77</name>
+            <name>myRule_78</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -4350,7 +4370,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_78_myRule_77_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_79_myRule_78_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4388,95 +4408,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_77_A1</targetReference>
+                <targetReference>myRule_78_A1</targetReference>
             </connector>
             <label>Is Next Action(SAM Team)-On Hold</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>22.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision79</name>
-        <label>myDecision79</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision82</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_80</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>isChangedRule_81_myRule_80_pkl_SAM_team_Status_c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.pkl_SAM_team_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Resume</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_80_A1</targetReference>
-            </connector>
-            <label>Is Next Action(SAM Team) - Resume</label>
         </rules>
     </decisions>
     <decisions>
@@ -4569,19 +4503,19 @@
         <processMetadataValues>
             <name>index</name>
             <value>
-                <numberValue>23.0</numberValue>
+                <numberValue>22.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision82</name>
-        <label>myDecision82</label>
+        <name>myDecision80</name>
+        <label>myDecision80</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision85</targetReference>
+            <targetReference>myDecision83</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_83</name>
+            <name>myRule_81</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -4608,7 +4542,93 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_84_myRule_83_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_82_myRule_81_pkl_SAM_team_Status_c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>myVariable_current.pkl_SAM_team_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Resume</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_81_A1</targetReference>
+            </connector>
+            <label>Is Next Action(SAM Team) - Resume</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>23.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision83</name>
+        <label>myDecision83</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision86</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_84</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference>isChangedRule_85_myRule_84_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4646,7 +4666,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_83_A1</targetReference>
+                <targetReference>myRule_84_A1</targetReference>
             </connector>
             <label>Is Next Action(SAM Team) - Query Answered</label>
         </rules>
@@ -4658,16 +4678,16 @@
                 <numberValue>24.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision85</name>
-        <label>myDecision85</label>
+        <name>myDecision86</name>
+        <label>myDecision86</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision89</targetReference>
+            <targetReference>myDecision91</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_86</name>
+            <name>myRule_87</name>
             <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -4694,7 +4714,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_87_myRule_86_pkl_SAM_Requester_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_88_myRule_87_pkl_SAM_Requester_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4756,7 +4776,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_88_myRule_86_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_89_myRule_87_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4794,7 +4814,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_86_A1</targetReference>
+                <targetReference>myRule_87_A1</targetReference>
             </connector>
             <label>Is Next Action(Requester)-Answer Accepted</label>
         </rules>
@@ -4806,16 +4826,16 @@
                 <numberValue>25.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision89</name>
-        <label>myDecision89</label>
+        <name>myDecision91</name>
+        <label>myDecision91</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision93</targetReference>
+            <targetReference>myDecision95</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_90</name>
+            <name>myRule_92</name>
             <conditionLogic>(1 AND 2) OR (3 AND 4)</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -4842,7 +4862,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_91_myRule_90_pkl_SAM_Requester_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_93_myRule_92_pkl_SAM_Requester_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4904,7 +4924,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_92_myRule_90_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_94_myRule_92_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -4942,7 +4962,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_90_A1</targetReference>
+                <targetReference>myRule_92_A1</targetReference>
             </connector>
             <label>Is NextAction(Requester)- Need More Info</label>
         </rules>
@@ -4954,13 +4974,13 @@
                 <numberValue>26.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision93</name>
-        <label>myDecision93</label>
+        <name>myDecision95</name>
+        <label>myDecision95</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_94</name>
+            <name>myRule_96</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -5018,7 +5038,7 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_95_myRule_94_pkl_SAM_team_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_97_myRule_96_pkl_SAM_team_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -5056,12 +5076,12 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_94_A1</targetReference>
+                <targetReference>myRule_96_A1</targetReference>
             </connector>
             <label>Is Next Action(SAM Team) - Quote Provided ReSubmit</label>
         </rules>
     </decisions>
-    <description>Added ownership reporting update for In Progress status . This flow changes the request status ,updates owner at different status, Sends Status change emails, Re-Opens request</description>
+    <description>Implement the Query Answer Accepted logic</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -5111,10 +5131,21 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>TODAY() </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_37_myRule_35_A1_date_Request_End_Date_c</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>$Label.SAM_Finance_Queue_Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_52_myRule_50_A2_OwnerId</name>
+        <name>formula_53_myRule_51_A2_OwnerId</name>
         <dataType>String</dataType>
         <expression>$Label.SAM_Finance_Queue_Id</expression>
     </formulas>
@@ -5144,14 +5175,25 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>TODAY() </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_90_myRule_87_A1_date_Request_End_Date_c</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>NOW() </stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_96_myRule_94_A1_Last_Quote_Sent_On_c</name>
+        <name>formula_98_myRule_96_A1_Last_Quote_Sent_On_c</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
-    <interviewLabel>SAM_Status_Update_and_Quotation_Record_Type_Update-22_SAM_Request__c</interviewLabel>
+    <interviewLabel>SAM_Status_Update_and_Quotation_Record_Type_Update-48_SAM_Request__c</interviewLabel>
     <label>SAM Request Re-Open, Status and Owner Update and Send Status change Emails</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -5936,6 +5978,33 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Request End Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>GlobalConstant</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>date_Request_End_Date__c</field>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>ID</stringValue>
                 </value>
             </processMetadataValues>
@@ -6252,6 +6321,33 @@
             <value>
                 <booleanValue>false</booleanValue>
             </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Request End Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>GlobalConstant</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>date_Request_End_Date__c</field>
         </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
@@ -7018,7 +7114,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Ownership Reporting</stringValue>
+                    <stringValue>Request Status</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -7470,7 +7566,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Ownership Reporting</stringValue>
+                    <stringValue>Request Status</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -7481,7 +7577,7 @@
             </processMetadataValues>
             <field>pkl_Ownership_Reporting__c</field>
             <value>
-                <stringValue>Quote Provided</stringValue>
+                <stringValue>Pending-Requester</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -8212,6 +8308,36 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Request End Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>date_Request_End_Date__c</field>
+            <value>
+                <elementReference>formula_37_myRule_35_A1_date_Request_End_Date_c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
@@ -8455,12 +8581,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_38_A1</name>
+        <name>myRule_39_A1</name>
         <label>Set STATUS to Information Provided</label>
-        <locationX>3800</locationX>
+        <locationX>3900</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_38_A2</targetReference>
+            <targetReference>myRule_39_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -8556,12 +8682,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_38_A2</name>
+        <name>myRule_39_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>3800</locationX>
+        <locationX>3900</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_38_A3</targetReference>
+            <targetReference>myRule_39_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -8678,12 +8804,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_38_A3</name>
+        <name>myRule_39_A3</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>3800</locationX>
+        <locationX>3900</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_38_A4</targetReference>
+            <targetReference>myRule_39_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -8792,12 +8918,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_38_A5</name>
+        <name>myRule_39_A5</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>3800</locationX>
+        <locationX>3900</locationX>
         <locationY>600</locationY>
         <connector>
-            <targetReference>myRule_38_A6</targetReference>
+            <targetReference>myRule_39_A6</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -8863,9 +8989,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_38_A6</name>
+        <name>myRule_39_A6</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>3800</locationX>
+        <locationX>3900</locationX>
         <locationY>700</locationY>
         <filters>
             <processMetadataValues>
@@ -8931,12 +9057,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_42_A1</name>
+        <name>myRule_43_A1</name>
         <label>Set STATUS to Quote Approved</label>
-        <locationX>4200</locationX>
+        <locationX>4300</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_42_A2</targetReference>
+            <targetReference>myRule_43_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -8997,7 +9123,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Ownership Reporting</stringValue>
+                    <stringValue>Request Status</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -9008,7 +9134,7 @@
             </processMetadataValues>
             <field>pkl_Ownership_Reporting__c</field>
             <value>
-                <stringValue>Quote-Approved</stringValue>
+                <stringValue>Pending-SAM</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -9062,12 +9188,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_42_A2</name>
+        <name>myRule_43_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>4200</locationX>
+        <locationX>4300</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_42_A3</targetReference>
+            <targetReference>myRule_43_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -9184,12 +9310,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_42_A4</name>
+        <name>myRule_43_A4</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>4200</locationX>
+        <locationX>4300</locationX>
         <locationY>500</locationY>
         <connector>
-            <targetReference>myRule_42_A5</targetReference>
+            <targetReference>myRule_43_A5</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -9298,12 +9424,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_42_A6</name>
+        <name>myRule_43_A6</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>4200</locationX>
+        <locationX>4300</locationX>
         <locationY>700</locationY>
         <connector>
-            <targetReference>myRule_42_A7</targetReference>
+            <targetReference>myRule_43_A7</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -9369,9 +9495,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_42_A7</name>
+        <name>myRule_43_A7</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>4200</locationX>
+        <locationX>4300</locationX>
         <locationY>800</locationY>
         <filters>
             <processMetadataValues>
@@ -9437,12 +9563,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_46_A1</name>
+        <name>myRule_47_A1</name>
         <label>Set STATUS to Quote Rejected</label>
-        <locationX>4600</locationX>
+        <locationX>4700</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_46_A2</targetReference>
+            <targetReference>myRule_47_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -9538,12 +9664,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_46_A2</name>
+        <name>myRule_47_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>4600</locationX>
+        <locationX>4700</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_46_A3</targetReference>
+            <targetReference>myRule_47_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -9660,12 +9786,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_46_A3</name>
+        <name>myRule_47_A3</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>4600</locationX>
+        <locationX>4700</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_46_A4</targetReference>
+            <targetReference>myRule_47_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -9774,12 +9900,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_46_A5</name>
+        <name>myRule_47_A5</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>4600</locationX>
+        <locationX>4700</locationX>
         <locationY>600</locationY>
         <connector>
-            <targetReference>myRule_46_A6</targetReference>
+            <targetReference>myRule_47_A6</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -9845,9 +9971,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_46_A6</name>
+        <name>myRule_47_A6</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>4600</locationX>
+        <locationX>4700</locationX>
         <locationY>700</locationY>
         <filters>
             <processMetadataValues>
@@ -10166,12 +10292,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_50_A1</name>
+        <name>myRule_51_A1</name>
         <label>Set STATUS to Awaiting Charge</label>
-        <locationX>5000</locationX>
+        <locationX>5100</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_50_A2</targetReference>
+            <targetReference>myRule_51_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -10297,12 +10423,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_50_A2</name>
+        <name>myRule_51_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>5000</locationX>
+        <locationX>5100</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_50_A3</targetReference>
+            <targetReference>myRule_51_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -10344,7 +10470,7 @@
             </processMetadataValues>
             <field>OwnerId</field>
             <value>
-                <elementReference>formula_52_myRule_50_A2_OwnerId</elementReference>
+                <elementReference>formula_53_myRule_51_A2_OwnerId</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -10449,12 +10575,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_50_A3</name>
+        <name>myRule_51_A3</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>5000</locationX>
+        <locationX>5100</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_50_A4</targetReference>
+            <targetReference>myRule_51_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -10520,9 +10646,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_50_A4</name>
+        <name>myRule_51_A4</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>5000</locationX>
+        <locationX>5100</locationX>
         <locationY>500</locationY>
         <filters>
             <processMetadataValues>
@@ -10588,12 +10714,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_54_A1</name>
+        <name>myRule_55_A1</name>
         <label>Set STATUS to Awaiting CC details (Pending with ULEMP)</label>
-        <locationX>5400</locationX>
+        <locationX>5500</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_54_A2</targetReference>
+            <targetReference>myRule_55_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -10719,12 +10845,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_54_A2</name>
+        <name>myRule_55_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>5400</locationX>
+        <locationX>5500</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_54_A3</targetReference>
+            <targetReference>myRule_55_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -10841,12 +10967,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_54_A4</name>
+        <name>myRule_55_A4</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>5400</locationX>
+        <locationX>5500</locationX>
         <locationY>500</locationY>
         <connector>
-            <targetReference>myRule_54_A5</targetReference>
+            <targetReference>myRule_55_A5</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -10912,9 +11038,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_54_A5</name>
+        <name>myRule_55_A5</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>5400</locationX>
+        <locationX>5500</locationX>
         <locationY>600</locationY>
         <filters>
             <processMetadataValues>
@@ -10980,12 +11106,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_57_A1</name>
+        <name>myRule_58_A1</name>
         <label>Set STATUS to Charging In Progress</label>
-        <locationX>5700</locationX>
+        <locationX>5800</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_57_A2</targetReference>
+            <targetReference>myRule_58_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -11141,12 +11267,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_57_A2</name>
+        <name>myRule_58_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>5700</locationX>
+        <locationX>5800</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_57_A3</targetReference>
+            <targetReference>myRule_58_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -11263,12 +11389,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_57_A3</name>
+        <name>myRule_58_A3</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>5700</locationX>
+        <locationX>5800</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_57_A4</targetReference>
+            <targetReference>myRule_58_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -11334,9 +11460,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_57_A4</name>
+        <name>myRule_58_A4</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>5700</locationX>
+        <locationX>5800</locationX>
         <locationY>500</locationY>
         <filters>
             <processMetadataValues>
@@ -11402,12 +11528,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_60_A1</name>
+        <name>myRule_61_A1</name>
         <label>Set STATUS to Charging Completed</label>
-        <locationX>6000</locationX>
+        <locationX>6100</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_60_A2</targetReference>
+            <targetReference>myRule_61_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -11468,7 +11594,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Ownership Reporting</stringValue>
+                    <stringValue>Request Status</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -11479,7 +11605,7 @@
             </processMetadataValues>
             <field>pkl_Ownership_Reporting__c</field>
             <value>
-                <stringValue>Charging-Completed</stringValue>
+                <stringValue>Pending-SAM</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -11533,12 +11659,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_60_A2</name>
+        <name>myRule_61_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>6000</locationX>
+        <locationX>6100</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_60_A3</targetReference>
+            <targetReference>myRule_61_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -11655,12 +11781,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_60_A3</name>
+        <name>myRule_61_A3</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>6000</locationX>
+        <locationX>6100</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_60_A4</targetReference>
+            <targetReference>myRule_61_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -11769,12 +11895,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_60_A5</name>
+        <name>myRule_61_A5</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>6000</locationX>
+        <locationX>6100</locationX>
         <locationY>600</locationY>
         <connector>
-            <targetReference>myRule_60_A6</targetReference>
+            <targetReference>myRule_61_A6</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -11840,9 +11966,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_60_A6</name>
+        <name>myRule_61_A6</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>6000</locationX>
+        <locationX>6100</locationX>
         <locationY>700</locationY>
         <filters>
             <processMetadataValues>
@@ -11908,12 +12034,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_63_A1</name>
+        <name>myRule_64_A1</name>
         <label>Set STATUS to Awaiting CC details (Pending with ULSMT)</label>
-        <locationX>6300</locationX>
+        <locationX>6400</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_63_A2</targetReference>
+            <targetReference>myRule_64_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12039,12 +12165,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_63_A2</name>
+        <name>myRule_64_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>6300</locationX>
+        <locationX>6400</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_63_A3</targetReference>
+            <targetReference>myRule_64_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12161,12 +12287,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_63_A3</name>
+        <name>myRule_64_A3</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>6300</locationX>
+        <locationX>6400</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_63_A4</targetReference>
+            <targetReference>myRule_64_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12275,12 +12401,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_63_A5</name>
+        <name>myRule_64_A5</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>6300</locationX>
+        <locationX>6400</locationX>
         <locationY>600</locationY>
         <connector>
-            <targetReference>myRule_63_A6</targetReference>
+            <targetReference>myRule_64_A6</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12346,9 +12472,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_63_A6</name>
+        <name>myRule_64_A6</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>6300</locationX>
+        <locationX>6400</locationX>
         <locationY>700</locationY>
         <filters>
             <processMetadataValues>
@@ -12414,12 +12540,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_66_A1</name>
+        <name>myRule_67_A1</name>
         <label>Set STATUS to Charging Rejected</label>
-        <locationX>6600</locationX>
+        <locationX>6700</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_66_A2</targetReference>
+            <targetReference>myRule_67_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12545,12 +12671,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_66_A2</name>
+        <name>myRule_67_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>6600</locationX>
+        <locationX>6700</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_66_A3</targetReference>
+            <targetReference>myRule_67_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12667,12 +12793,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_66_A3</name>
+        <name>myRule_67_A3</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>6600</locationX>
+        <locationX>6700</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_66_A4</targetReference>
+            <targetReference>myRule_67_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12781,12 +12907,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_66_A5</name>
+        <name>myRule_67_A5</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>6600</locationX>
+        <locationX>6700</locationX>
         <locationY>600</locationY>
         <connector>
-            <targetReference>myRule_66_A6</targetReference>
+            <targetReference>myRule_67_A6</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -12852,9 +12978,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_66_A6</name>
+        <name>myRule_67_A6</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>6600</locationX>
+        <locationX>6700</locationX>
         <locationY>700</locationY>
         <filters>
             <processMetadataValues>
@@ -12920,12 +13046,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_69_A1</name>
+        <name>myRule_70_A1</name>
         <label>Set STATUS to CC details provided</label>
-        <locationX>6900</locationX>
+        <locationX>7000</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_69_A2</targetReference>
+            <targetReference>myRule_70_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13021,12 +13147,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_69_A2</name>
+        <name>myRule_70_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>6900</locationX>
+        <locationX>7000</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_69_A3</targetReference>
+            <targetReference>myRule_70_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13143,12 +13269,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_69_A3</name>
+        <name>myRule_70_A3</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>6900</locationX>
+        <locationX>7000</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_69_A4</targetReference>
+            <targetReference>myRule_70_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13257,12 +13383,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_69_A5</name>
+        <name>myRule_70_A5</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>6900</locationX>
+        <locationX>7000</locationX>
         <locationY>600</locationY>
         <connector>
-            <targetReference>myRule_69_A6</targetReference>
+            <targetReference>myRule_70_A6</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13328,9 +13454,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_69_A6</name>
+        <name>myRule_70_A6</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>6900</locationX>
+        <locationX>7000</locationX>
         <locationY>700</locationY>
         <filters>
             <processMetadataValues>
@@ -13396,12 +13522,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_73_A1</name>
+        <name>myRule_74_A1</name>
         <label>Set STATUS to Details Provided</label>
-        <locationX>7300</locationX>
+        <locationX>7400</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_73_A2</targetReference>
+            <targetReference>myRule_74_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13497,12 +13623,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_73_A2</name>
+        <name>myRule_74_A2</name>
         <label>Reset Next Action picklists</label>
-        <locationX>7300</locationX>
+        <locationX>7400</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_73_A3</targetReference>
+            <targetReference>myRule_74_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13619,12 +13745,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_73_A3</name>
+        <name>myRule_74_A3</name>
         <label>Update Owner To SAM Member</label>
-        <locationX>7300</locationX>
+        <locationX>7400</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_73_A4</targetReference>
+            <targetReference>myRule_74_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13733,12 +13859,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_73_A4</name>
+        <name>myRule_74_A4</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>7300</locationX>
+        <locationX>7400</locationX>
         <locationY>500</locationY>
         <connector>
-            <targetReference>myRule_73_A5</targetReference>
+            <targetReference>myRule_74_A5</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13804,9 +13930,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_73_A5</name>
+        <name>myRule_74_A5</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>7300</locationX>
+        <locationX>7400</locationX>
         <locationY>600</locationY>
         <filters>
             <processMetadataValues>
@@ -13872,12 +13998,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_77_A1</name>
+        <name>myRule_78_A1</name>
         <label>Set Status Before On Hold field to current STATUS value to</label>
-        <locationX>7700</locationX>
+        <locationX>7800</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_77_A2</targetReference>
+            <targetReference>myRule_78_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -13973,12 +14099,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_77_A2</name>
+        <name>myRule_78_A2</name>
         <label>Set STATUS to On Hold</label>
-        <locationX>7700</locationX>
+        <locationX>7800</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_77_A3</targetReference>
+            <targetReference>myRule_78_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14020,7 +14146,7 @@
             </processMetadataValues>
             <field>pkl_Ownership_Reporting__c</field>
             <value>
-                <stringValue>Request-Onhold</stringValue>
+                <stringValue>Pending-SAM</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -14074,12 +14200,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_77_A3</name>
+        <name>myRule_78_A3</name>
         <label>Reset Next Action picklists</label>
-        <locationX>7700</locationX>
+        <locationX>7800</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_77_A4</targetReference>
+            <targetReference>myRule_78_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14196,12 +14322,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_77_A4</name>
+        <name>myRule_78_A4</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>7700</locationX>
+        <locationX>7800</locationX>
         <locationY>500</locationY>
         <connector>
-            <targetReference>myRule_77_A5</targetReference>
+            <targetReference>myRule_78_A5</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14267,9 +14393,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_77_A5</name>
+        <name>myRule_78_A5</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>7700</locationX>
+        <locationX>7800</locationX>
         <locationY>600</locationY>
         <filters>
             <processMetadataValues>
@@ -14335,12 +14461,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_80_A1</name>
+        <name>myRule_81_A1</name>
         <label>Set STATUS to value of Status Before On Hold field</label>
-        <locationX>8000</locationX>
+        <locationX>8100</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_80_A2</targetReference>
+            <targetReference>myRule_81_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14436,12 +14562,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_80_A2</name>
+        <name>myRule_81_A2</name>
         <label>Reset Next Action Picklists</label>
-        <locationX>8000</locationX>
+        <locationX>8100</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_80_A3</targetReference>
+            <targetReference>myRule_81_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14558,12 +14684,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_80_A3</name>
+        <name>myRule_81_A3</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>8000</locationX>
+        <locationX>8100</locationX>
         <locationY>400</locationY>
         <connector>
-            <targetReference>myRule_80_A4</targetReference>
+            <targetReference>myRule_81_A4</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14629,9 +14755,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_80_A4</name>
+        <name>myRule_81_A4</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>8000</locationX>
+        <locationX>8100</locationX>
         <locationY>500</locationY>
         <filters>
             <processMetadataValues>
@@ -14697,12 +14823,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_83_A1</name>
+        <name>myRule_84_A1</name>
         <label>Set STATUS to Query Answered</label>
-        <locationX>8300</locationX>
+        <locationX>8400</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_83_A2</targetReference>
+            <targetReference>myRule_84_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14763,7 +14889,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Ownership Reporting</stringValue>
+                    <stringValue>Request Status</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -14774,7 +14900,7 @@
             </processMetadataValues>
             <field>pkl_Ownership_Reporting__c</field>
             <value>
-                <stringValue>Query-Responded</stringValue>
+                <stringValue>Pending-Requester</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -14828,12 +14954,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_83_A2</name>
+        <name>myRule_84_A2</name>
         <label>Reset Next Action Picklists</label>
-        <locationX>8300</locationX>
+        <locationX>8400</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_83_A3</targetReference>
+            <targetReference>myRule_84_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -14950,12 +15076,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_83_A4</name>
+        <name>myRule_84_A4</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>8300</locationX>
+        <locationX>8400</locationX>
         <locationY>500</locationY>
         <connector>
-            <targetReference>myRule_83_A5</targetReference>
+            <targetReference>myRule_84_A5</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -15021,9 +15147,9 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_83_A5</name>
+        <name>myRule_84_A5</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>8300</locationX>
+        <locationX>8400</locationX>
         <locationY>600</locationY>
         <filters>
             <processMetadataValues>
@@ -15089,12 +15215,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_86_A1</name>
+        <name>myRule_87_A1</name>
         <label>Set STATUS to Answer Accepted</label>
-        <locationX>8600</locationX>
+        <locationX>8700</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_86_A2</targetReference>
+            <targetReference>myRule_87_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -15143,6 +15269,36 @@
             <processMetadataValues>
                 <name>dataType</name>
                 <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Request End Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>date_Request_End_Date__c</field>
+            <value>
+                <elementReference>formula_90_myRule_87_A1_date_Request_End_Date_c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
                     <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
@@ -15155,7 +15311,7 @@
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Ownership Reporting</stringValue>
+                    <stringValue>Request Status</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -15166,7 +15322,7 @@
             </processMetadataValues>
             <field>pkl_Ownership_Reporting__c</field>
             <value>
-                <stringValue>Query-Resolved</stringValue>
+                <stringValue>Request-Closed</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -15277,7 +15433,7 @@
             </processMetadataValues>
             <field>pkl_Status__c</field>
             <value>
-                <stringValue>Answer Accepted</stringValue>
+                <stringValue>Closed</stringValue>
             </value>
         </inputAssignments>
         <object>SAM_Request__c</object>
@@ -15301,12 +15457,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_86_A2</name>
+        <name>myRule_87_A2</name>
         <label>SAM Product Request Status Update</label>
-        <locationX>8600</locationX>
+        <locationX>8700</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_86_A3</targetReference>
+            <targetReference>myRule_87_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -15348,7 +15504,7 @@
             </processMetadataValues>
             <field>pkl_Request_Status__c</field>
             <value>
-                <stringValue>Answer Accepted</stringValue>
+                <stringValue>Closed</stringValue>
             </value>
         </inputAssignments>
         <object>SAM_Request_Line_Item__c</object>
@@ -15372,10 +15528,13 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_86_A3</name>
+        <name>myRule_87_A3</name>
         <label>SAM Quote Request Status Update</label>
-        <locationX>8600</locationX>
+        <locationX>8700</locationX>
         <locationY>400</locationY>
+        <connector>
+            <targetReference>myRule_87_A4</targetReference>
+        </connector>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -15416,7 +15575,7 @@
             </processMetadataValues>
             <field>pkl_Request_status__c</field>
             <value>
-                <stringValue>Answer Accepted</stringValue>
+                <stringValue>Closed</stringValue>
             </value>
         </inputAssignments>
         <object>SAM_Quote_Line_Item__c</object>
@@ -15440,12 +15599,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_90_A1</name>
+        <name>myRule_92_A1</name>
         <label>Update Status and Action Picklists</label>
         <locationX>8800</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_90_A2</targetReference>
+            <targetReference>myRule_92_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -15622,12 +15781,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_90_A2</name>
+        <name>myRule_92_A2</name>
         <label>Update Owner</label>
         <locationX>8800</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_90_A3</targetReference>
+            <targetReference>myRule_92_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -15736,12 +15895,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_90_A4</name>
+        <name>myRule_92_A4</name>
         <label>SAM Product Request Status Update</label>
         <locationX>8800</locationX>
         <locationY>500</locationY>
         <connector>
-            <targetReference>myRule_90_A5</targetReference>
+            <targetReference>myRule_92_A5</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -15807,7 +15966,7 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_90_A5</name>
+        <name>myRule_92_A5</name>
         <label>SAM Quote Request Status Update</label>
         <locationX>8800</locationX>
         <locationY>600</locationY>
@@ -15875,12 +16034,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_94_A1</name>
+        <name>myRule_96_A1</name>
         <label>Set STATUS to Quote Provided</label>
         <locationX>8800</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_94_A2</targetReference>
+            <targetReference>myRule_96_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -15922,7 +16081,7 @@
             </processMetadataValues>
             <field>Last_Quote_Sent_On__c</field>
             <value>
-                <elementReference>formula_96_myRule_94_A1_Last_Quote_Sent_On_c</elementReference>
+                <elementReference>formula_98_myRule_96_A1_Last_Quote_Sent_On_c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -15982,7 +16141,7 @@
             </processMetadataValues>
             <field>pkl_Ownership_Reporting__c</field>
             <value>
-                <stringValue>Quote Provided</stringValue>
+                <stringValue>Pending-Requester</stringValue>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -16036,12 +16195,12 @@
                 <stringValue>[SAM_Request__c]</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_94_A2</name>
+        <name>myRule_96_A2</name>
         <label>Reset Next Action Picklists</label>
         <locationX>8800</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myRule_94_A3</targetReference>
+            <targetReference>myRule_96_A3</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -16158,12 +16317,12 @@
                 <stringValue>[SAM_Request__c].Request_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_94_A4</name>
+        <name>myRule_96_A4</name>
         <label>SAM Product Request Status Update</label>
         <locationX>8800</locationX>
         <locationY>500</locationY>
         <connector>
-            <targetReference>myRule_94_A5</targetReference>
+            <targetReference>myRule_96_A5</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -16229,7 +16388,7 @@
                 <stringValue>[SAM_Request__c].Quote_Line_Items__r</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_94_A5</name>
+        <name>myRule_96_A5</name>
         <label>SAM Quote Request Status Update</label>
         <locationX>8800</locationX>
         <locationY>600</locationY>
