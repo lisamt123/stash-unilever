@@ -522,11 +522,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>fml_Total_Applicable_Cross_Charge__c</field>
-            <table>SAM_Request__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>rol_Total_CAPEX_in__c</field>
             <table>SAM_Request__c</table>
         </columns>

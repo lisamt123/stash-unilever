@@ -19,6 +19,11 @@
         <field>WU_Master_Warehouse__c.WU_Warehouse_Secondary_POC_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.Submitted_by__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Approval_Status__c</field>
@@ -80,7 +85,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_CityName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -95,7 +100,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Country__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -170,7 +175,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_MCO__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -180,7 +185,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Network__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -205,12 +210,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_SAPCode_s__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -340,7 +345,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Committed_Max_PalletStorage__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -391,7 +396,7 @@
     </fieldPermissions>
     <label>WU-Logistics Leadership Team</label>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
@@ -410,7 +415,7 @@
     </objectPermissions>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
-        <visible>false</visible>
+        <visible>True</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>

@@ -412,6 +412,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SAM_Request_Line_Item__c.num_Number_of_VMS__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SAM_Request_Line_Item__c.num_Number_of_Virtual_Cores__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -437,6 +442,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>SAM_Request_Line_Item__c.pkl_Instance_Type__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>SAM_Request_Line_Item__c.pkl_New_SID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -458,6 +468,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SAM_Request_Line_Item__c.pkl_Request_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SAM_Request_Line_Item__c.pkl_SID_Details_SAP__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -623,6 +638,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>SAM_Request_Line_Item__c.txt_Software_Product_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SAM_Request_Line_Item__c.txt_System_Type_Others_SAP__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -798,11 +818,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>SAM_Request__c.fml_Total_Applicable_Cross_Charge__c</field>
+        <field>SAM_Request__c.fml_Software_Engagement_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -873,6 +893,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.ltxt_Request_Comment_History__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>SAM_Request__c.ltxt_SaaS_Comments__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -982,6 +1007,26 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>SAM_Request__c.rol_Charging_type_count_of_DOPO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Charging_type_count_of_I__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Charging_type_count_of_P__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>SAM_Request__c.rol_Charging_type_count_of_X__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>SAM_Request__c.rol_DO_detail_validation_count__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -1003,11 +1048,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>SAM_Request__c.rol_Total_Annual_Maint_in__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>SAM_Request__c.rol_Total_Annual_Maint_in_for_X_type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1331,15 +1371,15 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <recordType>SAM_Request_Line_Item__c.SAM_Other_Product_RW</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <recordType>SAM_Request_Line_Item__c.SAM_SAP_RO</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>SAM_Request_Line_Item__c.SAM_SAP_RW</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>SAM_Request_Line_Item__c.SAM_XOther_Product_RW</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
