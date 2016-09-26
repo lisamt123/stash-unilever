@@ -1,5 +1,13 @@
 ({
     scrollToLocation : function(component, location) {
+       /* //var cssScrolltoTop = $(".scroller"); // css class to find scroll position
+        var cssScrolltoTop = component.find("scrollID").get("v.class");
+        if (cssScrolltoTop) {
+            var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
+            if (cssScrolltoTopTransform) {
+                cssScrolltoTop.css("transform", "translate3d(0px, 0px, 0px)"); //set 'transform' since lighntning architecture uses css 'transfrom' property to scroll 
+            }
+        }*/
       var scroller = this.getScroller(component),
             payload = {
                 time: 300,
