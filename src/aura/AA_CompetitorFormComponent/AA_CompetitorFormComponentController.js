@@ -159,8 +159,14 @@
              if(newBrandNameList.length > 0){
              	component.find("competitorName").set("v.value",newBrandNameList[0].Id);
              }
+             else if(newBrandNameList.length === 0) {
+                 component.set("v.disableOnBrandChange", true);
+             }
              if(newCategoryList.length > 0){
              	component.find("category").set("v.value",newCategoryList[0].Id);
+             }
+             else if(newCategoryList.length === 0) {
+                 component.set("v.disableOnBrandChange", true);
              }
              
          });
