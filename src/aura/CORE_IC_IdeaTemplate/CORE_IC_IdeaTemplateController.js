@@ -20,7 +20,7 @@
          });    
         if(component.get("v.articleId")!=undefined ){ 
         	console.log(component.get("v.articleType")+'---------------2--------------'+component.get("v.articleId"));
-           // alert("hi" +component.get("v.articleId"));
+          
         	var componentName;
             if(component.get("v.articleType")==="Idea"){
                 componentName="markup://c:CORE_IC_IdeaDetail";

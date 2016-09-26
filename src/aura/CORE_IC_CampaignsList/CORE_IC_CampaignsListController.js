@@ -7,8 +7,7 @@
         action.setCallback(this, function(response) {
         	var state = response.getState();
         	if (state === "SUCCESS") {    
-                if(response.getReturnValue().FeaturedCampaigns!=null){
-                    //component.set("v.showMoreLimit",2);     
+                if(response.getReturnValue().FeaturedCampaigns!=null){  
                     component.set("v.showMoreLimit",response.getReturnValue().ShowMoreLimit);
                     var campaignsList = response.getReturnValue().FeaturedCampaigns;                                 
                     var activeCampaignsArray = [];
