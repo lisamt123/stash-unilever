@@ -123,19 +123,22 @@ public with sharing class IPM_GlobalClaimPDLController extends IPM_ProjectInterm
 	        				cntyLvl = new CountryClaimsWrapper(DBCountryLevelClaimObj,true);
 	        				selectedClaimList.add(DBCountryLevelClaimObj.IPM_Claim__c);	
 	        			}
-	        			else
+	        			else if(!showCountryClaim)
 	        			{
 	        				cntyLvl = new CountryClaimsWrapper(new IPM_Country_Level_Claim__c( IPM_Project_Claim__c=projClm.id, IPM_Claim__c = projClm.IPM_Claim__c,IPM_Country__c = cntryEle.Id),false);
 	        			}
 	        			
-		        		if(rolloutLevelWp.countryLevelMapWp.containsKey(cntryEle.id))
-		        		{
-							rolloutLevelWp.countryLevelMapWp.get(cntryEle.id).add(cntyLvl);
-						}
-						else
-						{
-							rolloutLevelWp.countryLevelMapWp.put(cntryEle.id,new List<CountryClaimsWrapper>{cntyLvl});
-						}	
+	        			if(cntyLvl!=null)
+	        			{
+			        		if(rolloutLevelWp.countryLevelMapWp.containsKey(cntryEle.id))
+			        		{
+								rolloutLevelWp.countryLevelMapWp.get(cntryEle.id).add(cntyLvl);
+							}
+							else
+							{
+								rolloutLevelWp.countryLevelMapWp.put(cntryEle.id,new List<CountryClaimsWrapper>{cntyLvl});
+							}	
+	        			}
 	        		}
 	        		if(!selectedClaimList.isEmpty())
 	        		{ 
