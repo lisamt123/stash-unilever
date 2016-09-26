@@ -78,6 +78,9 @@
     	<members>Template</members>
     	<members>Wrapper</members>
     	<members>Category</members>
+    	<members>myLogOut</members>
+    	<members>ChatterConfig</members>
+    	<members>ChatterUIFileUpload</members>
 		<name>ApexPage</name>
     </types>
     
