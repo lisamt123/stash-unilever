@@ -154,8 +154,6 @@ public with sharing class IPM_Resource_Allocation {
             IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c FROM 
             IPM_Project__c WHERE id=:projectID LIMIT 1];
         category=Ipmproject.IPM_Category_Text__c;
-         searchTeambyCat= ipmproject.IPM_ProjectGKM__c!=GKM3?IPM_ConstantUtils.TEAM_MYCATEGORY :MY_MCO;
-        
 
         // get user profile map
         string invokedFrom = Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.INVOKED_FROM); 
@@ -163,6 +161,9 @@ public with sharing class IPM_Resource_Allocation {
         {
             isInvokedFromRollouts = true;   
         }
+        
+        searchTeambyCat= (!isInvokedFromRollouts && ipmproject.IPM_ProjectGKM__c == GKM3 && ipmproject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) 
+           ||( ipmproject.IPM_ProjectGKM__c!=GKM3)?IPM_ConstantUtils.TEAM_MYCATEGORY :MY_MCO;
         
         Set<String> excludeCatSelGKMs  = new Set<String>{IPM_ConstantUtils.GKM_1,IPM_ConstantUtils.GKM_2,IPM_ConstantUtils.GKM_4};
         
@@ -244,7 +245,7 @@ public with sharing class IPM_Resource_Allocation {
             }
             changeRoleType = roleType;
             
-            if(IPM_ConstantUtils.TEAM_GUEST==roleType&&ipmproject.IPM_ProjectGKM__c!=GKM3)
+            if(IPM_ConstantUtils.TEAM_GUEST == roleType && !(ipmproject.IPM_ProjectGKM__c==GKM3 && ipmproject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL ))
             {
                 searchTeambyCat=IPM_ConstantUtils.TEAM_ALLCATEGORY;
             }
@@ -347,7 +348,7 @@ public with sharing class IPM_Resource_Allocation {
 	   
 	   else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
 	        {
-	        	String filterCat = ipmproject.IPM_ProjectGKM__c==GKM3 ? filterCatList :CAT_STRNG; 
+                    String filterCat = ipmproject.IPM_ProjectGKM__c==GKM3 ? (!isInvokedFromRollouts && ipmproject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL ? CAT_STRNG:filterCatList)  :CAT_STRNG; 
 	            UQuery=IPM_ConstantUtils.BLANK;
 	            UQuery = BEGIN_QUERY_TEAM;
 	            UQuery = UQuery+MID_QUERY_TEAM;
