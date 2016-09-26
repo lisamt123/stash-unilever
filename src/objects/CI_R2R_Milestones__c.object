@@ -66,6 +66,14 @@
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>Milestone_Description__c</fullName>
         <externalId>false</externalId>
         <label>Milestone Description</label>
@@ -124,6 +132,14 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Target_Closure_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Closure Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <label>CI_R2R Milestones</label>
     <listViews>
