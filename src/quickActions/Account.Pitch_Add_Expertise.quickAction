@@ -16,4 +16,6 @@
     <targetObject>Pitch_Expertise__c</targetObject>
     <targetParentField>Account__c</targetParentField>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>
+

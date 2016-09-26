@@ -50,7 +50,7 @@
     <scope>user</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>WU_Master_Warehouse__c.WU_ToDate__c</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>WU_Master_Warehouse__c.WU_FromDate__c</dateColumn>
+        <interval>INTERVAL_THISMONTH</interval>
     </timeFrameFilter>
 </Report>

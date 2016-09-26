@@ -1,0 +1,527 @@
+<!--=========================================================-->
+<!--Name:  VEP_VisitorSafety_VF                                  -->
+<!--Copyright notice: @ Unilever                             -->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- Purpose: This page has list of Q&A to be validated and 
+    Pass generation if visitor passes the Quiz-->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- History                                                 -->
+<!-- ---------------------------------------------------------->
+<!-- VERSION     AUTHOR            DATE            DETAIL             -->
+<!-- 1.0 -       Leena         Jan-2016      INITIAL DEVELOPMENT   -->
+
+<apex:page cache="false" sidebar="false" showHeader="false"  standardStylesheets="false"  docType="html-5.0" controller="VEP_SafetyQuiz_CC" >
+
+<head>
+
+    <meta charset="utf-8" />        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     
+    <!-- CSS Libs -->
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/font-awesome.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/animate.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/select2.min.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.VEP_MAP1, '/MapPage/flat-blue.css')}" />
+    
+    <!-- Static Resources for CSS -->
+
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_jquery_1_11_2, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_Bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script>            
+   <link href="{!URLFOR($Resource.VEP_csstemplate)}" rel="stylesheet"/>
+    <link href="{!URLFOR($Resource.VEP_Progressbar_css)}" rel="stylesheet"/>
+   
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/bootstrap-switch.min.js')}"></script> 
+    <script type="text/javascript" src="{!URLFOR($Resource.VEP_MAP1, '/MapPage/app.js')}"></script> 
+    
+</head>
+
+
+<script>
+  $ = jQuery.noConflict();
+  function completepass(){
+      $("#inactivepass").removeClass("active");
+     $("#inactivepass").addClass("completed");
+  }
+  function completequiz(){
+      $("#activequiz").removeClass("active");
+     $("#activequiz").addClass("completed");
+     $("#inactivepass").removeClass("disabled");
+     $("#inactivepass").addClass("active");
+  }
+ $(document).ready(function (){
+    $('a[title]').tooltip();
+    $('ul.nav li').on('click', function(e) {
+        if ($(this).hasClass('disabled')) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    $('ul.nav li').on('click', function(e) {
+        if ($(this).hasClass('completed')) {
+            e.preventDefault();
+            return false;
+        }
+    });        
+});
+</script>
+
+<script>
+$(document).ready(function(){/* off-canvas sidebar toggle */
+$('[data-toggle=offcanvas]').click(function() {
+    $(this).toggleClass('visible-xs text-center');
+    $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
+    $('.row-offcanvas').toggleClass('active');
+    $('#lg-menu').toggleClass('hidden-xs').toggleClass('visible-xs');
+    $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
+    $('#btnShow').toggle();
+});
+});
+$( document ).ready(function(){
+//   Hide the border by commenting out the variable below
+    var $on = 'section';
+    $($on).css({
+      'background':'none',
+      'border':'none',
+      'box-shadow':'none'
+    });
+}); 
+</script>
+
+<script>
+  $ = jQuery.noConflict();
+function checkValues()
+{
+"use strict";
+$('input[class*="quizCheck-"]').each( function() {
+    var classID = null;
+    var classes = $(this).attr('class').split(' ');
+    var len = classes.length;
+   for (var i = 0; i < len; ++i) {    
+        var classq = classes[i];
+        if (classq.match( /^quizCheck-/ )) {            
+           classID = classq;
+             break;
+        }
+    }
+    if (classID) {
+      $(document).ready(function(){
+            $('.'+classID).bind('click', function() {
+                $('.'+classID).not(this).attr('checked', false);
+            });
+           });
+    }
+});
+}
+</script>
+
+
+
+
+<style>
+
+.iframe-container {
+position: relative;
+margin: 5px;
+height: 0;
+overflow: hidden;
+}
+.iframe-container-for-wxh-500x350 {
+padding: 25px 25px 70% 25px; /* padding-bottom = h/w as a % */
+}
+.iframe-container iframe {
+position: absolute;
+top: 0;
+left: 0;
+margin: 0;
+padding: 0;
+width: 100%;
+height: 100%;
+border: 1px inset #7a8b8b;
+/* put following styles (necessary for overflow and
+scrolling handling) in div container around iframe
+because not stable in CSS
+-webkit-overflow-scrolling: touch;
+overflow: auto; */
+}
+
+
+</style>
+<body class="flat-blue">
+<div class="app-container">
+              <div class="row content-container">
+                    <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-expand-toggle">
+                                <i class="fa fa-bars icon"></i>
+                            </button>
+                            <ol class="breadcrumb navbar-breadcrumb">
+                            
+                                <li> 
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}" alt="Unilever Logo"/>
+                                <apex:outputPanel id="headingTop">
+                                <apex:outputText value="Safety Induction Video" rendered="{!videopanel}"/>
+                                <apex:outputText value="Safety Quiz" rendered="{!If(QApanel || Resultpanel,true,false)}"/>
+                                <apex:outputText value="Visitor Pass" rendered="{!visitorPasspanel}"/>
+                                <apex:outputText value="Thank You" rendered="{!Thankupanel}"/>
+                                </apex:outputPanel>
+                                </li>
+                            </ol>
+                            <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-th icon"></i>
+                            </button>
+                        </div>
+                        <apex:outputPanel rendered="{!If(visitorId!=null,true,false)}">
+                        <ul class="nav navbar-nav navbar-right">
+                        <button type="button" class="navbar-right-expand-toggle pull-right visible-xs">
+                            <i class="fa fa-times icon"></i>
+                        </button>
+                        
+                        <li class="dropdown profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {!$User.FirstName} {!$User.LastName}
+                            
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInDown">
+
+                                <li>
+                                    <div class="profile-info">
+                                  
+                                        <h4 class="username">{!$User.FirstName} {!$User.LastName}</h4>
+                                        <p>{!$User.Email}</p>
+                                    
+                                        
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                     </apex:outputPanel> 
+                </div>
+            </nav>
+            <div class="side-menu sidebar-inverse">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="side-menu-container">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <div class="icon fa fa-hand-o-right"></div>
+                                <div class="title">Visitor Entry Portal</div>
+                            </a>
+                            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                                <i class="fa fa-times icon"></i>
+                            </button>
+                        </div>
+                       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </div>      
+
+                      <div class="container-fluid">
+                <div class="side-body padding-top">
+                        <!-- content -->                      
+                        <div class="row">
+                <form id="brd">             
+                <div class="board noprint" id="brd">
+                    <div class="board-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs text-center" id="myTab">
+                    <div class="liner"></div>
+                   
+                  <li class="completed">
+                  <a href="#profile" data-toggle="tab" title="VEP Form">
+                     <span class="round-tabs">
+                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle" alt="Raise a Request"/>
+                                    
+                     </span> 
+                     
+                    </a>
+                   <p class="bold" >Raise a Request</p> 
+                 </li>
+                 <li class="completed"><a href="#messages" data-toggle="tab" title="Factory Manger Aproval">
+                     <span class="round-tabs">
+                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle" alt="Factory Manager Approval"/>
+
+                     </span> </a>
+                     <p class="bold" >Factory Manager Approval</p>
+                     </li>
+                      
+                     <li class="active" id="activequiz"><a href="#settings" data-toggle="tab" title="Safety Quiz">
+                         <span class="round-tabs">
+                                 <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle" alt="Safety Quiz"/>
+                         
+                         </span> 
+                     </a><p class="bold" >Pass Safety Quiz</p>
+                     </li>
+
+                     <li class="disabled" id="inactivepass"><a href="#doner" data-toggle="tab" title="Print Pass">
+                         <span class="round-tabs">
+                              <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle" alt="Recieve Pass"/>
+                         </span> </a>
+                         <p class="bold" >Receive visitor Pass</p>
+                     </li>
+                 
+                     </ul>
+                </div>
+                </div>
+            </form>
+                           
+            <div class="col-sm-12" id="facPanel">
+            <apex:form id="apexfrm"> 
+                <apex:outputPanel rendered="{!ErrPanel}">
+                        
+                      <div style="padding-left: 15%; padding-right: 15%; padding-top: 3%;">
+                          <div class = "panel panel-primary">
+                              <div class = "panel-heading">Error</div>
+                              <div class="panel-body">
+                              {!ErrMessage}
+                              </div>
+                          </div>
+                       </div>
+                </apex:outputPanel>
+                
+                 <apex:outputPanel rendered="{!videopanel}">
+                      <div class="container" >
+                         
+                          <div class = "panel panel-primary">
+                          <div style="padding-left: 15%; padding-right: 15%; padding-top: 3%;">
+                              <div class="iframe-container iframe-container-for-wxh-500x350" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                              <iframe width="854" height="510" src="{!$label.VEP_SafetyQuiz_Url}" frameborder="0" mozallowfullscreen="true" allowfullscreen="true" webkitallowfullscreen="true" allowTransparency="true"/>
+                              
+                               <!--<iframe width="854" height="510" src="https://www.dropbox.com/s/er0abz3qe5u1oe6/VTS_01_1.VOB?dl=0" frameborder="0" mozallowfullscreen="true" allowfullscreen="true" webkitallowfullscreen="true" allowTransparency="true"/>-->
+                               <!-- <apex:flash play="true" loop="true" src="https://www.dropbox.com/s/er0abz3qe5u1oe6/VTS_01_1.VOB?dl=0" height="500" width="100%"  />-->
+                              <!-- <apex:iframe src="https://www.dropbox.com/s/er0abz3qe5u1oe6/VTS_01_1.VOB?dl=0&output=embed" scrolling="true" id="theIframe"/>-->
+
+                              
+  
+  
+ 
+                              </div>
+                              
+
+                         
+                          </div>
+                          <br/>
+                          <apex:commandButton styleclass="btn btn-primary center-block" action="{!showQApage}"  value="Next" rerender="apexfrm,headingTop" onComplete="checkValues();"></apex:commandButton>
+                         </div>
+                      </div>
+                  </apex:outputPanel> 
+                                  
+                  <apex:outputPanel rendered="{!If(QApanel || Resultpanel,true,false)}">
+                      <apex:outputPanel rendered="{!QApanel}">     
+                          <div style="padding-left: 15%; padding-right: 15%; padding-top: 2%;">
+                            <h4> Please answer the Questions</h4>
+                          
+                              <div class = "panel panel-primary">
+                              <div class = "panel-heading">Knowledge Check</div>
+                                      <div class="panel-body">
+                                      <apex:repeat value="{!QuesRecords}" var="Ques">
+                                      <p><strong>{!Ques.Question__c}</strong></p>
+                                      <!--<p class="text-primary"><i>select the correct answers</i></p>-->
+                                      <apex:repeat value="{!MapQAnsWrapper[Ques.id]}" var="Ans">
+                                      <apex:inputCheckbox styleClass="quizCheck-{!Ques.id} chradio" id="roundedOne" value="{!Ans.checked}"/>  
+                                      
+                                      
+                                                                  
+                                      {!Ans.answ.Answer__c}<br/>
+                                      </apex:repeat> <br/>
+                                        </apex:repeat>                 
+                                      </div>       
+                              </div>
+                          
+                                     <!-- <apex:commandButton styleclass="btn btn-primary" action="{!first}" disabled="{!(!hasPrevious)}"  value="First"></apex:commandButton>&nbsp;-->
+                               <apex:commandButton styleclass="btn btn-primary" action="{!previous}" rendered="{!hasPrevious}" value="Previous" rerender="apexfrm" onComplete="checkValues();"></apex:commandButton>&nbsp;
+                               <apex:commandButton styleclass="btn btn-primary" action="{!next}" rendered="{!hasNext}" value="Next" rerender="apexfrm" onComplete="checkValues();"></apex:commandButton>&nbsp;
+                              <!-- <apex:commandButton styleclass="btn btn-primary" action="{!last}" disabled="{!(!hasNext)}" value="Last"></apex:commandButton>&nbsp;-->
+                               <apex:commandButton styleclass="btn btn-primary pull-right openp" value="submit" action="{!submitTest}" id="myBtn" rendered="{!If(hasPrevious && !hasNext,true,false)}" reRender="apexfrm"></apex:commandButton>
+                          </div>   
+                    
+                      </apex:outputPanel>
+                      <apex:outputPanel rendered="{!Resultpanel}">
+
+                            <apex:outputPanel rendered="{!if(correctPercentage>=70,true,false)}">
+                            <div style="padding-left: 15%; padding-right: 15%; padding-top: 5%;">
+                                <div class = "panel panel-primary">
+                                     <div class = "panel-heading">Congrats</div>
+                                      <div class="panel-body">                  
+                                        <p>You have Passed the Safety Quiz </p>                 
+                                      </div>       
+                                  </div> 
+                                  <apex:commandButton styleclass="btn-submit btn btn-primary pull-left" action="{!visitorPass}" onclick="completequiz();" value="Next" reRender="apexfrm,brd,headingTop"></apex:commandButton>         
+                            </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!if(correctPercentage<70,true,false)}">
+                            <div style="padding-left: 15%; padding-right: 15%; padding-top: 5%;">
+                                <div class = "panel panel-primary">
+                                     <div class = "panel-heading">Result</div>
+                                      <div class="panel-body">                  
+                                        <p>You have not cleared Safety Quiz! </p> 
+                                        <p>Please do it again.</p>                
+                                      </div>
+                                      
+                                  </div> 
+                                  <apex:commandButton styleclass="btn btn-primary pull-left" action="{!back2Video}"  value="Back to Video"></apex:commandButton>    &nbsp;&nbsp;
+                                 <!-- <apex:commandButton styleclass="btn btn-primary"  action="{!back2Question}" value="Back to Questionniare" ></apex:commandButton> -->              
+                            </div>
+                            </apex:outputPanel>
+                    </apex:outputPanel>
+            
+              </apex:outputPanel> 
+              <!--Visitor Pass-->
+                  <apex:outputPanel rendered="{!visitorPasspanel}">
+                      
+                      <div style="padding-left: 15%; padding-right: 15%; padding-top: 5%;">
+                        <div class = "panel panel-primary">
+                             <div class = "panel-heading">Factory Visit Request : {!vPass.name}</div>
+                              <div class="panel-body">
+                                  <div class="form-group">
+                                      <label class="col-lg-2 control-label">Hello: </label>
+                                      <label class="col-lg-4">{!vpass.visitor__r.name}</label>
+                                     
+                                  </div>
+                                  <div class="clearfix" style="height: 10px;clear: both;"></div>
+                                  <div class="form-group">                                                                                                                                   
+                                      <label class="col-lg-2 control-label">Factory To Visit </label>
+                                      <label class="col-lg-4">{!vPass.visitor__r.Factory_to_Visit__c}</label>
+                                      
+                                  </div>
+                                  
+                                  <div class="clearfix" style="height: 10px;clear: both;"></div>
+                                  
+                                  <div class="form-group">
+                                      <label class="col-lg-2 control-label">Date </label>
+                                      <label class="col-lg-1">From</label>
+                                      
+                                      <apex:outputText styleclass="col-lg-2" value="{0,date,MM/dd/yy}"> <apex:param value="{!vPass.visitor__r.Date_From__c}" /> </apex:outputText>
+                                     
+                                      <label class="col-lg-1">To</label>
+                                      <apex:outputText styleclass="col-lg-2" value="{0,date,MM/dd/yy}"> <apex:param value="{!vPass.visitor__r.Date_To__c}" /> </apex:outputText>
+                                     
+                                      
+                                  </div>
+                                  <div class="clearfix" style="height: 10px;clear: both;"></div>
+                                  <div class="clearfix" style="height: 10px;clear: both;"></div>
+                                  
+                                  <div class="form-group">
+                                      <label class="col-lg-4 control-label">Purpose of Visit </label>
+                                      
+                                      <label class="col-lg-5">{!vPass.visitor__r.Reason_for_Visit__c}</label>
+                                      
+                                  </div>
+                                  <div class="clearfix" style="height: 10px;clear: both;"></div>
+                                  <div class="form-group">
+                                      <label class="col-lg-4 control-label">Approved By </label>
+                                      
+                                      <label class="col-lg-5">{!vPass.visitor__r.Person_to_meet__r.name}</label>
+                                      
+                                  </div>
+                                  <div class="clearfix" style="height: 10px;clear: both;"></div>
+                                  
+                                  <apex:commandLink styleclass="btn btn-primary pull-left noprint" target="_blank" value="Download" action="{!generatePdf}"/>
+                                 <!-- <apex:commandButton styleclass="btn btn-primary pull-left noprint" onclick="printFunc();return false;"  value="Print"></apex:commandButton> -->   &nbsp;&nbsp;
+                                  <apex:commandButton styleclass="btn btn-primary noprint" onclick="completepass();" action="{!closepage}"  value="Close" reRender="apexfrm,brd,headingTop"></apex:commandButton>              
+                              </div>
+                        </div>
+                        </div>
+                  </apex:outputPanel>  
+                                    
+               <apex:outputPanel rendered="{!Thankupanel}">
+                  
+                  <div style="padding-left: 15%; padding-right: 15%; padding-top: 5%;">
+                        <div class = "panel panel-primary">
+                            <div class = "panel-heading"></div>
+                            <div class="panel-body">
+                                Thank you for using Visitor Entry portal,<br/>
+                                Hope you have a pleasant visit at the factory
+                                <div class="clearfix" style="height: 10px;clear: both;"></div>
+                                <apex:commandButton styleclass="btn btn-primary noprint" onclick="winClose();"  value="Ok"></apex:commandButton> 
+                            </div>
+                        </div>
+                  </div>
+               </apex:outputPanel>   
+                     
+
+          </apex:form>
+                      
+        </div>
+                           
+       </div><!--/row-->
+                    
+            <div class="row" id="footer">    
+              <div class="col-sm-6"/>
+                
+              </div>
+              
+          
+          <hr/>
+          
+          <h4 class="text-center">
+          <a href="#" target="ext">©Unilever 2015</a>
+          </h4>
+            
+          <hr/>
+                        
+                      
+                    </div><!-- /footer -->
+                </div><!-- /padding -->
+                
+            </div>
+            <!-- /main -->
+            
+               
+        
+</div>
+
+
+</body>
+<script type="text/javascript">
+    function printFunc(){
+        window.print();
+    }
+    
+    function winClose()
+    {
+        
+        window.top.close();
+    }
+</script>  
+  <style>
+ @media print {
+ .noprint {display:none;}
+ }
+ 
+ 
+ @media screen and (max-width: 992px) {
+  h3 {
+    font-size: 90%;
+  }
+  p.bold {
+    font-size: 90%;
+  }
+  
+}
+
+@media screen and (max-width: 768px) {
+  h3 {
+    font-size: 90%;
+    
+  }
+  p.bold {
+    font-size: 90%;
+  }
+  .Rsize{
+      font-size: 75%;
+  }
+  
+}
+.chradio{
+    -webkit-appearance: radio;
+}
+ </style>
+</apex:page>

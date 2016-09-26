@@ -29,12 +29,14 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
         
     public void beforeInsert(SObject so)
     {
-        return;// Sonar Document empty method
+        Oblix_AssetHandlerLogic.setEnforceTriggerUpdate((Oblix_Project_Assets__c) so);
+        Oblix_AssetHandlerLogic.adjustAssetFields((Oblix_Project_Assets__c) so);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        return;
+        Oblix_AssetHandlerLogic.setEnforceTriggerUpdate((Oblix_Project_Assets__c) so);
+        Oblix_AssetHandlerLogic.adjustAssetFields((Oblix_Project_Assets__c) so);
     }
      
 

@@ -29,7 +29,9 @@
             display        : block;
             padding        : 15px 15px;
         }
-
+        #lms-nav-header{
+            display:block !important;
+        }
 
         /** KW **/
         /*#AppBodyHeader div.zen #tabContainer {
@@ -58,7 +60,7 @@
     </div> -->
 
 
-    <header id="lms-nav-header" class="navbar navbar-inverse bs-docs-nav lms-nav" role="banner">
+    <header id="lms-nav-header" class="navbar navbar-inverse bs-docs-nav lms-nav" role="banner" >
         <div class="container">
             <div class="navbar-header">
                 <button class="navbar-toggle collapsed" data-target=".bs-navbar-collapse" data-toggle="collapse" type="button">
@@ -104,7 +106,7 @@
 
                 <!-- <p class="navbar-text pull-right">
                     <apex:image value="{!loggedUsernameImageUrl}" styleClass="profilePic-header"/>
-                    <a href="{!$Page.MyProfile}" class="navbar-link">{!loggedUsername}</a>
+                    <a href="{!$Page.PBS_MyProfile}" class="navbar-link">{!loggedUsername}</a>
                 </p> -->
             </nav>
         </div>

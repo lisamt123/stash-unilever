@@ -57,7 +57,6 @@ private with sharing class IPM_MilestoneHandler_Test
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList; 
-            
             System.assert(projectList.size() > 0, 'project successfully not created');
         }
      }
@@ -120,7 +119,7 @@ private with sharing class IPM_MilestoneHandler_Test
                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(), 'Standard milestones mismatched.');
                 
                 // Project default phase would always be set as IDEAS.
-                System.assertEquals(project.IPM_Phase__c,'Ideas', 'Default phase should be Ideas'); // Phase would be always ideas for Global Project.
+                System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
                 
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -233,7 +232,7 @@ private with sharing class IPM_MilestoneHandler_Test
                 System.assert(regionalProject.IPM_Milestones__r.size()>0, 'Regional Project Milestones successfully not created.');
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility', 'Invalid phase'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility'); // Phase would be feasibility for Regional Projects.
                 
             }
         }

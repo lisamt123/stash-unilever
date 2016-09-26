@@ -35,4 +35,6 @@
     <targetObject>Case</targetObject>
     <targetParentField>Parent</targetParentField>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>
+

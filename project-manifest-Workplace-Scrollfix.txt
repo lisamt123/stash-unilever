@@ -1,0 +1,25 @@
+src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.cmp
+<<<<<<< HEAD
+src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.cmp-meta.xml
+=======
+
+src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.cmp-meta.xml
+
+>>>>>>> develop
+src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.css
+src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocationController.js
+
+src/aura/CORE_WP_HomePage/CORE_WP_HomePage.cmp
+
+src/aura/CORE_WP_HomePage/CORE_WP_HomePage.cmp-meta.xml
+
+src/aura/CORE_WP_HomePage/CORE_WP_HomePage.css
+
+src/aura/CORE_WP_HomePage/CORE_WP_HomePage.svg
+
+<<<<<<< HEAD
+=======
+src/aura/CORE_WP_HomePage/CORE_WP_HomePageHelper.js
+
+>>>>>>> develop
+src/aura/CORE_WP_HomePage/CORE_WP_HomePageController.js

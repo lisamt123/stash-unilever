@@ -1,0 +1,223 @@
+{
+	"organizations": [],
+	"labels": {
+		"dimensions": {
+			"PV_Count": "PV Count",
+			"Customer_type": "Customer type",
+			"Customer": "Customer",
+			"Sales_route": "Sales route",
+			"Local_Outlet_Name": "Local Outlet Name",
+			"Outlet_classification": "Outlet classification",
+			"Date_of_audit_Hour": "Date_of_audit_Hour",
+			"Trade_Format": "Trade Format",
+			"Date_of_audit_Month": "Date_of_audit_Month",
+			"Compliance_Level": "Compliance Level",
+			"Date_of_audit_Minute": "Date_of_audit_Minute",
+			"Date_of_audit_Day": "Date_of_audit_Day",
+			"Product_category": "Product category",
+			"Commune": "Commune",
+			"Secondary_Customer": "Secondary Customer",
+			"Local_Sales_Workforce_2": "Local Sales Workforce 2",
+			"Date_of_audit": "Date of audit",
+			"SOF_Audited": "SOF Audited",
+			"DT_route_type": "DT route type",
+			"Local_Sales_Workforce_1": "Local Sales Workforce 1",
+			"Cabinet": "Cabinet",
+			"Banner": "Banner",
+			"COTC_Compliance": "COTC Compliance",
+			"Channel": "Channel",
+			"Date_of_audit_Year": "Date_of_audit_Year",
+			"Store_location": "Store location",
+			"Cluster": "Cluster",
+			"PV_Compliance": "PV Compliance",
+			"Sales_territory": "Sales territory",
+			"City": "City",
+			"Local_Customer_Name": "Local Customer Name",
+			"PV_Audited": "PV Audited",
+			"Province": "Province",
+			"Date_of_audit_Week": "Date_of_audit_Week",
+			"X4P_5P_6P": "4P/5P/6P",
+			"Date_of_audit_Quarter": "Date_of_audit_Quarter",
+			"Date_of_audit_Second": "Date_of_audit_Second",
+			"Product_division": "Product division",
+			"Customer_subtype": "Customer subtype",
+			"Subchannel": "Subchannel",
+			"Sales_area": "Sales area",
+			"Store_area": "Store area",
+			"SOF_Compliance": "SOF Compliance",
+			"Country": "Country",
+			"Region": "Region",
+			"SOF_Count": "SOF Count",
+			"Sales_region": "Sales region"
+		},
+		"measures": {
+			"SP_Compliance": "SP Compliance",
+			"COTC_Audited": "COTC Audited",
+			"Void_Count": "Void Count",
+			"NPD_Compliance": "NPD Compliance",
+			"Date_of_audit_day_epoch": "Date_of_audit_day_epoch",
+			"NPD_Count": "NPD Count",
+			"Priority_Promo_Compliance": "Priority Promo Compliance",
+			"COTC_OSA": "COTC OSA",
+			"Date_of_audit_sec_epoch": "Date_of_audit_sec_epoch",
+			"OSA_Count": "OSA Count",
+			"OSA_Audited": "OSA Audited",
+			"PS_Compliance": "PS Compliance",
+			"COTC_OOS": "COTC OOS",
+			"Priority_Promo_Audited": "Priority Promo Audited",
+			"OOS_Count": "OOS Count",
+			"Pack_Compliance": "Pack Compliance",
+			"Promo_Compliance": "Promo Compliance",
+			"SP_Audited": "SP Audited",
+			"Priority_Promo_Count": "Priority Promo Count",
+			"NPD_Audited": "NPD Audited",
+			"Price_Compliance": "Price Compliance",
+			"COTC_Void": "COTC Void",
+			"OSA_Compliance": "OSA Compliance",
+			"SP_Count": "SP Count",
+			"Product_Compliance": "Product Compliance"
+		},
+		"measure_filters": {},
+		"keys": {}
+	},
+	"formats": {
+		"measures": {
+			"SP_Compliance": [
+				"",
+				1
+			],
+			"Diff": [
+				"#,###.00%",
+				"1"
+			],
+			"COTC_Audited": [
+				"",
+				1
+			],
+			"Void_Count": [
+				"",
+				1
+			],
+			"NPD_Compliance": [
+				"",
+				1
+			],
+			"NPD_Count": [
+				"",
+				1
+			],
+			"Priority_Promo_Compliance": [
+				"",
+				1
+			],
+			"COTC_OSA": [
+				"",
+				1
+			],
+			"OSA_Count": [
+				"",
+				1
+			],
+			"OSA_Audited": [
+				"",
+				1
+			],
+			"PS_Compliance": [
+				"",
+				1
+			],
+			"COTC_OOS": [
+				"",
+				1
+			],
+			"Priority_Promo_Audited": [
+				"",
+				1
+			],
+			"comp": [
+				"#,##.00%",
+				"100"
+			],
+			"OOS_Count": [
+				"",
+				1
+			],
+			"Pack_Compliance": [
+				"",
+				1
+			],
+			"Promo_Compliance": [
+				"",
+				1
+			],
+			"SP_Audited": [
+				"",
+				1
+			],
+			"Priority_Promo_Count": [
+				"",
+				1
+			],
+			"NPD_Audited": [
+				"",
+				1
+			],
+			"Price_Compliance": [
+				"#,###.00%",
+				"100"
+			],
+			"COTC_Void": [
+				"",
+				1
+			],
+			"r": [
+				"#,##.00%",
+				"100"
+			],
+			"OSA_Compliance": [
+				"",
+				1
+			],
+			"SP_Count": [
+				"",
+				1
+			],
+			"Product_Compliance": [
+				"",
+				1
+			]
+		}
+	},
+	"types": {
+		"Date of audit": {
+			"dims": {
+				"week": "Date_of_audit_Week",
+				"hour": "Date_of_audit_Hour",
+				"month": "Date_of_audit_Month",
+				"year": "Date_of_audit_Year",
+				"day": "Date_of_audit_Day",
+				"fullField": "Date_of_audit",
+				"minute": "Date_of_audit_Minute",
+				"quarter": "Date_of_audit_Quarter",
+				"second": "Date_of_audit_Second"
+			},
+			"meas": {
+				"epoch_second": "Date_of_audit_sec_epoch",
+				"epoch_day": "Date_of_audit_day_epoch"
+			},
+			"type": "date"
+		}
+	},
+	"colors": {
+		"+-": {
+			"+": "#008B00",
+			"-": "#FF3030"
+		}
+	},
+	"values_query_columns": [],
+	"hide_dimensions": [
+		"+-"
+	],
+	"hide_measures": [],
+	"dimensions": []
+}

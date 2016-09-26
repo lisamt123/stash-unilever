@@ -153,6 +153,9 @@ public with sharing class CPA_TriggerFactory
         if (soType == CPA_Resource_Requirement__c.sObjectType){
             return new CPA_Resource_Requirement_Handler();
         }
+         if (soType == CPA_User_Defined_Attribute__c.sObjectType){
+            return new CPA_User_Defined_Attribute_Handler();
+        }
         
         return null;
     }

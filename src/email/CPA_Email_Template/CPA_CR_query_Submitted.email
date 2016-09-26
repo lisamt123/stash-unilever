@@ -1,13 +1,1 @@
-<messaging:emailTemplate subject="{!RelatedTo.CR_ID__c} : Query Submitted" recipientType="User"  relatedToType="CPA_Queries__c" >
-<messaging:htmlEmailBody >
-Hi,<br/><br/>
-
-{!RelatedTo.Capture_creator__c} posted a query for {!RelatedTo.CR_ID__c} with ID {!RelatedTo.Name} on {!RelatedTo.Createddate}.<br/>
-
-You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupCR_Query__c} ">{!RelatedTo.CR_ID__c} </a> <br/><br/>
-
-Regards,<br/><br/>
-Automation Contract System
-
-</messaging:htmlEmailBody>
-</messaging:emailTemplate>
+<messaging:emailTemplate subject="From Hubble: Query Submitted for CR with ID {!RelatedTo.CR_ID__c} By {!RelatedTo.LastModifiedBy.Name}" recipientType="User"  relatedToType="CPA_Queries__c"> <messaging:htmlEmailBody > Hello,<br/><br/>  {!RelatedTo.LastModifiedBy.Name} posted a query for CR with ID {!RelatedTo.CR_ID__c}  on {!Now()}.<br/>  Please follow the below link to know the status and take any appropriate action required.<br/> <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id}">{!RelatedTo.name} </a> <br/><br/>    For any queries, please use 'Queries' section in the application or contact Supplier Management Team (ApplicationSupplier.PM@unilever.com). <br/><br/>  Thanks and Regards,<br/> Hubble - Contract Management System. <br/><br/>  </messaging:htmlEmailBody> </messaging:emailTemplate>

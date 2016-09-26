@@ -5,4 +5,5 @@
     <page>BET_SingleAssetUpload</page>
     <type>VisualforcePage</type>
     <width>-100</width>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

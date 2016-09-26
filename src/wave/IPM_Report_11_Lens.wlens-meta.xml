@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WaveLens xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <content xsi:nil="true"/>
+    <application>UL_Reports</application>
+    <datasets>IPM_Report_7_Dataset</datasets>
+    <description>Gates Approved in a specific period; last week, month, quarter, year.</description>
+    <masterLabel>IPM Report 11 Lens</masterLabel>
+    <visualizationType>hbar</visualizationType>
+</WaveLens>

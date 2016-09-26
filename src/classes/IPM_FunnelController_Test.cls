@@ -4,12 +4,13 @@
 * @description  This class is used to test the functionality of IPM_FileUploadController class 
 */ 
 @isTest
-public with sharing class IPM_FunnelController_Test {
+private with sharing class IPM_FunnelController_Test {
     private static IPM_Project__c project;
     private static user testUser;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static List<user>userList=new List<user>();
-     
+    
+    
     private static void initializeData(){
         testUser=IPM_TestFactory_Helper.createUser(false);
         insert testUser;
@@ -45,8 +46,7 @@ public with sharing class IPM_FunnelController_Test {
             funnelController.currentProjectPhaseSeq=4;
             funnelController.getAssociatedProjectPhases();
             funnelController.ipmProject.IPM_CompanyCardText__c='Global Company Card';
-            List<string> projectPhases = funnelController.getAssociatedProjectPhases();
-            system.assertEquals(funnelController.ipmProject, project, 'project record is not same');
+           system.assertEquals(funnelController.ipmProject, project, 'project record should be same');
             
         }
         test.stopTest();

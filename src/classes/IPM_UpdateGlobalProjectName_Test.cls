@@ -151,10 +151,6 @@ private class IPM_UpdateGlobalProjectName_Test {
           finYear.Copy_Global_to_Regional__c=true;
           finYear.Copy_Local_to_Regional__c=true;
           finYear.Copy_Regional_to_Local__c=true;       
-          
-          insert finYear;       
-          List<IPM_Financial_Year__c> finyrList=[SELECT Charter_Approved__c FROM IPM_Financial_Year__c WHERE ID=:finYear.id LIMIT 1];
-          system.assertEquals(finyrList[0].Charter_Approved__c,true,'financial chater approver is:'+finyrList[0].Charter_Approved__c);  
         }
     }
     

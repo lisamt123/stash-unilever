@@ -1,0 +1,9 @@
+Hi,
+<br/><br/>
+Requesting to travel to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} and approved by {!Vep_Visitor__c.Person_to_Meet__c}
+<br/><br/>
+
+Thanks&Regards,
+<br/>
+{!Vep_Visitor__c.Name}<br/>
+{!Vep_Visitor__c.Email__c}

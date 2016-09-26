@@ -118,6 +118,15 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+	<fieldUpdates>
+        <fullName>Field_Update_Submitted_By</fullName>
+        <field>Submitted_by__c</field>
+        <formula>$User.FirstName + " " + $User.LastName</formula>
+        <name>Field Update Submitted By</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <fieldUpdates>
         <fullName>WU_Update_Warehouse_Capacity_Record_Type</fullName>
         <field>RecordTypeId</field>

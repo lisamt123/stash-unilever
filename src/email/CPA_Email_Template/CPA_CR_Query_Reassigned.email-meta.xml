@@ -5,6 +5,6 @@
     <encodingKey>ISO-8859-1</encodingKey>
     <name>CPA  CR Query Reassigned</name>
     <style>none</style>
-    <subject>Query Reassigned for  with ID  by</subject>
+    <subject>Query Reassigned for  CR with ID  by</subject>
     <type>visualforce</type>
 </EmailTemplate>

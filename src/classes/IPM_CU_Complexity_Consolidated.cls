@@ -22,7 +22,8 @@ public with sharing class IPM_CU_Complexity_Consolidated {
         secContentList=[select IPM_Increased_By__c,IPM_Decreased_By__c,IPM_Project_Effect__c,IPM_Project_Document_Section__r.IPM_Gate_Document_Summary__c,
                         IPM_Project_Document_Section__r.IPM_PDP_Document_Summary__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,
                        IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Name__c
-                       from IPM_Project_Document_Section_Content__c where IPM_Content_Type__c='Cu_Complexity' and
+                       from IPM_Project_Document_Section_Content__c where IPM_Content_Type__c='Cu_Complexity' and 
+                       IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.Is_Archieved__c = false and 
                        IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c=:projectId
                        and IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c=:gateType and
                        (IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__r.IPM_Phase__c='Feasibility' OR

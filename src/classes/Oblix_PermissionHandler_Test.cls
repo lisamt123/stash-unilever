@@ -23,7 +23,7 @@ private class Oblix_PermissionHandler_Test {
         MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
         Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL, brand.id);
         MDO_Category__c category = Oblix_TestUtils.createSmallProductCategory();
-
+        system.assert(category!=null,'category inserted');
         User currentUser = new User(Id = UserInfo.getUserId());
         currentUser.ManagerId = superuser.Id;
         update currentUser;
@@ -67,7 +67,7 @@ private class Oblix_PermissionHandler_Test {
         System.runAs(superuser) {
 
             System.assertEquals(true, Oblix_PermissionHandler.isNextApprover(mSow.Id));
-            System.assertEquals(true, Oblix_PermissionHandler.canSubmitForApproval(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
+            System.assertEquals(true, Oblix_PermissionHandler.canSubmitForApproval(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, NULL,NULL));
             System.assertEquals(false, Oblix_PermissionHandler.canRejectSOW(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(false, Oblix_PermissionHandler.canApproveSOW(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
 
@@ -77,9 +77,9 @@ private class Oblix_PermissionHandler_Test {
 
 
     }
-	
-	@isTest static void testSuperUser() {
-		initTestUsers();
+    
+    @isTest static void testSuperUser() {
+        initTestUsers();
 
         MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
         Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL, brand.id);
@@ -88,20 +88,21 @@ private class Oblix_PermissionHandler_Test {
         Test.startTest();
         System.runAs(superuser) {
 
-            System.assertEquals(true, Oblix_PermissionHandler.hasEditAccess(mSow.Id));
+            System.assertEquals(true, Oblix_PermissionHandler.hasEditAccess(mSow));
             System.assertEquals(true, Oblix_PermissionHandler.canCreateSOW());
-            System.assertEquals(true, Oblix_PermissionHandler.canSeeFinancialField(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
+            System.assertEquals(true, Oblix_PermissionHandler.canSeeFinancialField(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
+            System.assertEquals(true, Oblix_PermissionHandler.canSeeFinancialField(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, null));
             System.assertEquals(true, Oblix_PermissionHandler.canDeleteSOW(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(true, Oblix_PermissionHandler.canSetCompletionStage(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
             System.assertEquals(true, Oblix_PermissionHandler.canSetProjectedStage(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
-            System.assertEquals(true, Oblix_PermissionHandler.canSeeGeographicScale());
-            System.assertEquals(true, Oblix_PermissionHandler.canSeeAgencyHubFields());
+            //System.assertEquals(true, Oblix_PermissionHandler.canSeeGeographicScale());
+            //System.assertEquals(true, Oblix_PermissionHandler.canSeeAgencyHubFields());
             System.assertEquals(true, Oblix_PermissionHandler.canCancelCampaign(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
             System.assertEquals(true, Oblix_PermissionHandler.canManageNonCampaign(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(true, Oblix_PermissionHandler.canManageCampaign(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id, 'New'));
-            System.assertEquals(true, Oblix_PermissionHandler.canManageAssetBasket(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id, 'New'));
+            System.assertEquals(true, Oblix_PermissionHandler.canManageAssetBasket(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id, 'New', null));
             System.assertEquals(false, Oblix_PermissionHandler.isNextApprover(mSow.Id));
-            System.assertEquals(true, Oblix_PermissionHandler.canSubmitForApproval(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
+            System.assertEquals(true, Oblix_PermissionHandler.canSubmitForApproval(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, NULL,NULL));
             System.assertEquals(false, Oblix_PermissionHandler.canRejectSOW(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(false, Oblix_PermissionHandler.canApproveSOW(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, mSow.Id));
             System.assertEquals(true, Oblix_PermissionHandler.canAddNewAttachment(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER));
@@ -115,12 +116,12 @@ private class Oblix_PermissionHandler_Test {
             System.assertEquals(true, Oblix_PermissionHandler.hasSuperUserpermissionSet());
 
             System.assertEquals(true, Oblix_PermissionHandler.isOnlyBrandCatEditor(brand.Id, category.Id, superuser.id));
-            System.assertEquals(true, Oblix_PermissionHandler.canAdjustFee(brand.Id, category.Id, superuser.id));
+            System.assertEquals(true, Oblix_PermissionHandler.canAdjustFee(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER,brand.Id, category.Id, superuser.id));
 
 
         }
         Test.stopTest();
-	}
+    }
 
     @isTest static void testUL1() {
         initTestUsers();
@@ -162,7 +163,7 @@ private class Oblix_PermissionHandler_Test {
         MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
         Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL, brand.id);
         MDO_Category__c category = Oblix_TestUtils.createSmallProductCategory();
-
+        system.assertequals(mSow!=null,category!=null,'category inserted');
         Test.startTest();
         System.runAs(ul3) {
 
@@ -173,11 +174,11 @@ private class Oblix_PermissionHandler_Test {
             System.assertEquals(false, Oblix_PermissionHandler.hasAG2permissionSet());
             System.assertEquals(false, Oblix_PermissionHandler.hasSuperUserpermissionSet());
 
-            System.assertEquals(false, Oblix_PermissionHandler.canAdjustFee(brand.Id, category.Id, ul3.id));
+            System.assertEquals(false, Oblix_PermissionHandler.canAdjustFee(Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER,brand.Id, category.Id, ul3.id));
 
         }
         Test.stopTest();
     }
 
-	
+    
 }

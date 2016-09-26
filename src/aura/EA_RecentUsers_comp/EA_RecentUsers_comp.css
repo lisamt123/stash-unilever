@@ -1,0 +1,11 @@
+.THIS .recent_profile_img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  margin-left: 10px;
+  margin-top:18px;
+  margin-bottom:20px;
+  list-style: none;
+  float: left;
+}

@@ -46,7 +46,7 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>MonthInYear</dateGranularity>
-        <field>Account.Stocked_Products__r$UID_Start_Date__c</field>
+        <field>Account.Stocked_Products__r$UID_End_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
@@ -63,7 +63,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
+        <dateColumn>Account.Stocked_Products__r$UID_End_Date__c</dateColumn>
         <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

@@ -1,0 +1,10 @@
+Hi {!Visitor__c.Name},
+<br/><br/>
+Thank you for the request.
+<br/><br/>
+Your Factory visit has been Rejected by Mr./Mrs. {!Vep_Visitor__c.Factory_Manager_Name__c} on {!Vep_Visitor__c.LastModifiedDate}.
+<br/><br/>
+
+
+Thank You,<br/>
+Factory Visit Portal, HUL.

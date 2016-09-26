@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <aggregates>
-        <calculatedFormula>(PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UID_Stocked_Product__c.UID_Start_Date__c, 0) - 
-PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UID_Stocked_Product__c.UID_Start_Date__c, 12)) / 
-PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UID_Stocked_Product__c.UID_Start_Date__c, 12)</calculatedFormula>
+        <calculatedFormula>(PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UID_Stocked_Product__c.UID_End_Date__c, 0) - 
+PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UID_Stocked_Product__c.UID_End_Date__c, 12)) / 
+IF(PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UID_Stocked_Product__c.UID_End_Date__c, 12) == 0, 1, PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UID_Stocked_Product__c.UID_End_Date__c, 12))</calculatedFormula>
         <datatype>percent</datatype>
         <developerName>FORMULA1</developerName>
-        <downGroupingContext>Account.Stocked_Products__r$UID_Start_Date__c</downGroupingContext>
+        <downGroupingContext>Account.Stocked_Products__r$UID_End_Date__c</downGroupingContext>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
         <masterLabel>Growth</masterLabel>
@@ -18,12 +18,12 @@ PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UI
         <backgroundFadeDir>Diagonal</backgroundFadeDir>
         <chartSummaries>
             <axisBinding>y</axisBinding>
-            <column>FORMULA1</column>
+            <column>RowCount</column>
         </chartSummaries>
         <chartType>VerticalColumn</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
+        <groupingColumn>Account.Stocked_Products__r$UID_End_Date__c</groupingColumn>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -41,8 +41,8 @@ PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UI
     </columns>
     <format>Summary</format>
     <groupingsDown>
-        <dateGranularity>Month</dateGranularity>
-        <field>Account.Stocked_Products__r$UID_Start_Date__c</field>
+        <dateGranularity>MonthInYear</dateGranularity>
+        <field>Account.Stocked_Products__r$UID_End_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Market Growth - Inventory Sales (M) (V)2</name>
@@ -54,7 +54,7 @@ PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c:SUM, UI
     <scope>organization</scope>
     <showDetails>false</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
+        <dateColumn>Account.Stocked_Products__r$UID_End_Date__c</dateColumn>
         <interval>INTERVAL_PREVCURFY</interval>
     </timeFrameFilter>
 </Report>

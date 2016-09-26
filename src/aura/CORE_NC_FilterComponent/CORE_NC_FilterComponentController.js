@@ -1,6 +1,19 @@
 ({
 	//On page load bind the default/previously selected filter option
     updateFilterSelection : function(component, event, helper) {
+        var action = component.get("c.getTopicNames");
+        action.setCallback(this, function(response) {
+        	var state = response.getState();
+            console.log('------------0----------------'+response.getReturnValue());
+        	if (state === "SUCCESS") {
+                component.set("v.newsArticleTopics",response.getReturnValue());
+                var FilterType=component.get("v.selectedFilter");
+        		component.set("v.newSelectedFilter",FilterType);
+            }
+        });
+        $A.enqueueAction(action);
+                           
+                
         var filterStyle = component.find("showAll");
         $A.util.addClass(filterStyle, "inactiveFilterOption");
         filterStyle = component.find("showCategories");
@@ -126,5 +139,8 @@
         var FilterType=component.get("v.selectedFilter");
         var selectEvent = $A.get("e.c:CORE_NC_FilterEvent");
         selectEvent.setParams({"selectedFilter": FilterType,"displayFilterPage":false }).fire();
+    },
+    changeFilterTopic: function(component, event, helper) {
+        component.set("v.newSelectedFilter",event.getParam("selectedTopic"));
     },
 })

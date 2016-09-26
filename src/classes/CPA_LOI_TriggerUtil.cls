@@ -10,7 +10,7 @@ Purpose: This Class is used to perform operation on before update event of LOI T
 History
 -------
 VERSION     AUTHOR                     DATE            DETAIL Description
-1.0         Shreyas Mangalvedhekar     11/01/2016     INITIAL DEVELOPMENT CSR:
+1.0     Pooja  Kanani   11/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 public with sharing class CPA_LOI_TriggerUtil{
     public static boolean isSubmitted=false;
@@ -93,7 +93,7 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Author      :  
     * Description : This method restric to create new LOI if first LOI is Cancel
     */  
-    public static void checkforCancel (List<CPA_LOI__c> newList){
+   /* public static void checkforCancel (List<CPA_LOI__c> newList){
         
         set<ID> setPWORFId = new set<Id>();
         
@@ -112,7 +112,7 @@ public with sharing class CPA_LOI_TriggerUtil{
                     }               
             }
         }
-    }
+    }*/
     
     /** Justification: We are prepopulating some values from Parent record, to check whether those fields are not null
      * we have put in multiple if conditions.
@@ -127,7 +127,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         for(CPA_LOI__c objNewLOI : newLOI){
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
-        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId,mpkl_Project_Phases__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
+        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId,pkl_Phases_covered_by_the_WAR__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,txt_Clarity_ID__c,txt_OtherProjectPhases__c from CPA_PWORF__c where ID  IN: setPWORF]){
                 mapPWORF.put(objPworf.Id,objPworf);
             }
             
@@ -158,13 +158,15 @@ public with sharing class CPA_LOI_TriggerUtil{
                 if(objNewLOI.txt_Unilever_Budget_Approver_Name__c == null && objPWORFTemp.txt_Unilever_Budget_Approver_Name__c !=null) 
                     objNewLOI.txt_Unilever_Budget_Approver_Name__c = objPWORFTemp.txt_Unilever_Budget_Approver_Name__c;
                 
-                if(objNewLOI.mpkl_Phases_covered_by_WAR__c == null && objPWORFTemp.mpkl_Project_Phases__c !=null)
-                    objNewLOI.mpkl_Phases_covered_by_WAR__c = objPWORFTemp.mpkl_Project_Phases__c;
+                if(objNewLOI.mpkl_Phases_covered_by_WAR__c == null && objPWORFTemp.pkl_Phases_covered_by_the_WAR__c !=null)
+                    objNewLOI.mpkl_Phases_covered_by_WAR__c = objPWORFTemp.pkl_Phases_covered_by_the_WAR__c;
+                if(objNewLOI.txt_Other_Phases_Covered_by_W_R__c == null && objPWORFTemp.txt_OtherProjectPhases__c !=null)
+                    objNewLOI.txt_Other_Phases_Covered_by_W_R__c = objPWORFTemp.txt_OtherProjectPhases__c;
                 //string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
                 Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
               
-                if(objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
-                        objNewLOI.addError('Only ' + objPWORFTemp.mpkl_Project_Phases__c.replaceAll(';', ', ') + ' Project Phases are allow');
+                if(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c != null && objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.pkl_Phases_covered_by_the_WAR__c)) 
+                        objNewLOI.addError('Only ' + objPWORFTemp.pkl_Phases_covered_by_the_WAR__c.replaceAll(';', ', ') + ' Project Phases are allow');
             }
         }
     }
@@ -238,7 +240,7 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Author      : Pooja Kanani  
     * Description : This method cancel all LOI
     */
-    public static List<CPA_LOI__c>  cancelAllLOI(List<CPA_LOI__c> newLOI){
+    /*public static List<CPA_LOI__c>  cancelAllLOI(List<CPA_LOI__c> newLOI){
         set<Id> setPWORF = new set<ID>();
         List<CPA_LOI__c> ListnewLOI  = new List<CPA_LOI__c>();
         for(CPA_LOI__c objNewLOI : newLOI){
@@ -251,7 +253,7 @@ public with sharing class CPA_LOI_TriggerUtil{
                 ListnewLOI.add(objLoi);
             }
         return  ListnewLOI;
-    }
+    }*/
     
     /** Method Name : getInternalPWOIDFromPWORF
     * Parameter   : newPWO

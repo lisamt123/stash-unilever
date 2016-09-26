@@ -5,7 +5,7 @@
 *************************************************************/
 
 @isTest
-public class  IPM_BCCController_Test {
+private class  IPM_BCCController_Test {
     private static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     private static PageReference pRef;
@@ -21,7 +21,6 @@ public class  IPM_BCCController_Test {
     @Description : to Intialize(insert) the data for Project, 
         IPM_Project_Rollout__c, IPM_Financial__c objects
 ***************************************************************************/
-	
     static void initializeData(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
@@ -49,7 +48,7 @@ public class  IPM_BCCController_Test {
             insert projectList;
             project=projectList[0];
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,'TestComments1','project created successfully');//positive test
+            System.assertEquals(projlList1[0].Name,'TestComments1','project not created successfully');//positive test
             
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{testUser,testUser,testUser});
             insert regionalRolloutList;

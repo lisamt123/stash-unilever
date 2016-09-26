@@ -4,22 +4,21 @@
 * @description  This class is used to test the functionality of IPM_GateDocumentRiskManagement class 
 */
 @isTest
-public class IPM_GateDocumentRiskManagement_Test{
+private class IPM_GateDocumentRiskManagement_Test{
 
-    public static IPM_Project__c project;// Project object initialization
-    public static IPM_Project_Document__c projDoc;
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static IPM_Project__c project;// Project object initialization
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    public static IPM_GateDocumentRiskManagement ipm_gateRiskManage;
-    public static List<IPM_Questionnaire__c> quesList;
+    private static IPM_GateDocumentRiskManagement ipm_gateRiskManage;
+    private static List<IPM_Questionnaire__c> quesList;
     private static final string TEST_COMMENTS_STR='TestComments1';
-    private static final string PROJECT_DOC_CREATED_STR='Project Document created';
-    public static PageReference  pRef;
-    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    public static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
-    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
-    public static User globalUser;
-    public static User stdUserForRiskMang;
+    private static final string PROJECT_DOC_NOT_CREATED='Project Document not created';
+    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    private static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    private static User globalUser;
+    private static User stdUserForRiskMang;
+    private static String QUESTIONANNAIRE_NOT_UPDATED = 'Questionannaire not updated properly';
 
     /*************************************************************************************************************************
     * @description Test Data
@@ -33,7 +32,7 @@ public class IPM_GateDocumentRiskManagement_Test{
         }       
         
         List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForRiskMang.id LIMIT 1];
-        System.AssertEquals(userLists[0].id, stdUserForRiskMang.id,'user id is:'+userLists[0].id);//positive test
+        System.AssertEquals(userLists[0].id, stdUserForRiskMang.id,'user not created successfully');//positive test
         
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -43,7 +42,7 @@ public class IPM_GateDocumentRiskManagement_Test{
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not inserted');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForRiskMang);
@@ -52,7 +51,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             
             project=projectList[0];
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'Project creation failed');//positive test
         }
     }
     
@@ -71,15 +70,15 @@ public class IPM_GateDocumentRiskManagement_Test{
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
             projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
-            System.assertEquals(projlList[0].id,project.id);//positive test
+            System.assertEquals(projlList[0].id,project.id, 'Project not created properly');//positive test
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
                 quesList=projectObj.IPM_Questionnaires__r;
-                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_NOT_CREATED);
             }
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
-            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
+            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id, 'Project Documnent does not match');
             
             ipm_gateRiskManage=new IPM_GateDocumentRiskManagement();
             
@@ -96,6 +95,8 @@ public class IPM_GateDocumentRiskManagement_Test{
         system.runAs(globalUser){
             quesList[0].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
             update quesList[0];
+            List<IPM_Questionnaire__c> questList = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
+            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projectId=projectListObj[0].Id;
             ipm_gateRiskManage.qId=quesList[0].Id;
             IPM_GateDocumentRiskManagement.questions=new List<IPM_Questionnaire__c>();
@@ -106,7 +107,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             ipm_gateRiskManage.score=5;
             ipm_gateRiskManage.saveScore();
             List<IPM_Questionnaire__c>quesListObj=[select IPM_Score__c from IPM_Questionnaire__c where Id=:ipm_gateRiskManage.posQuestionsList[0].Id];
-            System.assertEquals(quesListObj[0].IPM_Score__c,ipm_gateRiskManage.score,'score saved');
+            System.assertEquals(quesListObj[0].IPM_Score__c,ipm_gateRiskManage.score,'score not saved properly');
             test.stopTest();
         }
     }
@@ -120,6 +121,8 @@ public class IPM_GateDocumentRiskManagement_Test{
         system.runAs(globalUser){
             quesList[0].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
             update quesList[0];
+            List<IPM_Questionnaire__c> questList = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
+            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projectId=projectListObj[0].Id;
             ipm_gateRiskManage.qId=quesList[0].Id;
             ipm_gateRiskManage.getRecords();  
@@ -127,6 +130,8 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].IPM_Active_RQS__c=true;
             quesList[0].IPM_RQS_Gate_Type__c=IPM_ConstantUtils.CHARTER_GATE;
             update quesList[0];
+            List<IPM_Questionnaire__c> questList1 = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
+            system.assertEquals(questList1[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projDocType=IPM_ConstantUtils.CHARTER_GATE;
             ipm_gateRiskManage.getRecords(); 
             ipm_gateRiskManage.projDocType=IPM_ConstantUtils.CONTRACT_GATE;
@@ -134,11 +139,13 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].IPM_Active_RQS__c=false;
             quesList[0].IPM_Is_Added_Question__c=false;
             update quesList[0];
+            List<IPM_Questionnaire__c> questList2 = [Select id, IPM_Active_RQS__c from IPM_Questionnaire__c where id=:quesList[0].Id];
+            system.assertEquals(questList2[0].IPM_Active_RQS__c, false, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.getPOSList();
             ipm_gateRiskManage.generateMitigationPlan();
             ipm_gateRiskManage.getRecords(); 
             List<IPM_Questionnaire__c>quesListObj=[SELECT Id,IPM_Is_Added_Question__c FROM IPM_Questionnaire__c where Id=:ipm_gateRiskManage.questionsList[0].Id];
-            System.assertEquals(quesListObj[0].IPM_Is_Added_Question__c,false,'records retrieved');
+            System.assertEquals(quesListObj[0].IPM_Is_Added_Question__c,false,'records not retrieved properly');
             test.stopTest();
         }
     }
@@ -154,7 +161,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             ipm_gateRiskManage.qId=quesList[0].Id;
             ipm_gateRiskManage.saveRQSScore();
             List<IPM_Questionnaire__c>quesListObj=[SELECT Id,IPM_Score__c,IPM_Is_Added_Question__c FROM IPM_Questionnaire__c where Id=:ipm_gateRiskManage.question.Id];
-            System.assertEquals(quesListObj[0].IPM_Score__c,ipm_gateRiskManage.score,'score saved');
+            System.assertEquals(quesListObj[0].IPM_Score__c,ipm_gateRiskManage.score,'score not saved');
             test.stopTest();
         }
     }
@@ -169,6 +176,8 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
             quesList[0].IPM_Score__c = IPM_ConstantUtils.POS_QUESTIONNAIRE_SCORE;
             update quesList[0];
+            List<IPM_Questionnaire__c> questList = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
+            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projectId=projectListObj[0].Id;
             ipm_gateRiskManage.rqsSeqActiveNumberCharter=new List<String>();
             ipm_gateRiskManage.rqsSeqActiveNumberCharter.add('1');
@@ -180,12 +189,16 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].IPM_Score__c = IPM_ConstantUtils.POS_QUESTIONNAIRE_SCORE;
             quesList[0].IPM_Sequence_Number__c=1;
             update quesList[0];
+            List<IPM_Questionnaire__c> questList1 = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
+            system.assertEquals(questList1[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.proceed();
             quesList[0].IPM_Sequence_Number__c=2;
             update quesList[0];
+            List<IPM_Questionnaire__c> questList2 = [Select id, IPM_Sequence_Number__c from IPM_Questionnaire__c where id=:quesList[0].Id];
+            system.assertEquals(questList2[0].IPM_Sequence_Number__c, 2, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.proceed();
             List<IPM_Questionnaire__c>quesListObj=[SELECT Id FROM IPM_Questionnaire__c where IPM_Project__c =:ipm_gateRiskManage.projectId limit 1];
-            System.assertEquals(quesListObj[0].Id,quesList[0].Id,'record is there so we can proceed');
+            System.assertEquals(quesListObj[0].Id,quesList[0].Id,'questioannaire not present');
             test.stopTest();
             
         }
@@ -206,7 +219,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             ipm_gateRiskManage.question.IPM_RQS_Question_Type__c='Consumer';
             ipm_gateRiskManage.addQuestion();
             List<IPM_Questionnaire__c>quesListObj=[SELECT Id,IPM_RQS_Gate_Type__c FROM IPM_Questionnaire__c where Id=:ipm_gateRiskManage.question.Id limit 1];
-            System.assertEquals(quesListObj.size(),0,'clear view state');
+            System.assertEquals(quesListObj.size(),0,'questioannaire not cleared properly');
             test.stopTest();
             
         }
@@ -226,7 +239,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             ipm_gateRiskManage.backToPos();
             ipm_gateRiskManage.deleteQuestion();
             List<IPM_Questionnaire__c>quesListObj=[SELECT Id FROM IPM_Questionnaire__c WHERE Id=:ipm_gateRiskManage.qId];
-            System.assertEquals(quesListObj.size(),0,'record deleted');
+            System.assertEquals(quesListObj.size(),0,'record not deleted properly');
             test.stopTest();
         }
     }

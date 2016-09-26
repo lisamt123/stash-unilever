@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>VEP_Email to Factory Manger Template</name>
+    <style>none</style>
+    <subject>Factory Visit Request</subject>
+    <textOnly>Hello {!Vep_Visitor__c.Person_to_Meet__c},
+
+A Factory Request has been requested by {!Vep_Visitor__c.Name} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c}
+
+Base Location: {!Vep_Visitor__c.Base_Location__c}
+Reason for visit: {!Vep_Visitor__c.Reason_for_Visit__c}
+Person to Meet: {!Vep_Visitor__c.00Nc0000001NXDZ}
+
+Health Details:
+{!If(Vep_Visitor__c.Are_you_suffering_from_Asthma__c &amp;&amp; Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c &amp;&amp; Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c &amp;&amp; Vep_Visitor__c.Do_you_use_any_Inhaler__c &amp;&amp; Vep_Visitor__c.Do_you_have_any_chronicbreathing_problem__c &amp;&amp; Vep_Visitor__c.Are_you_allergic_to_dust_or_smoke__c &amp;&amp; Vep_Visitor__c.Need_help_when_heavybreathingencounterd__c,&apos; &apos;,&apos;NA
+&apos;)} {!If(Vep_Visitor__c.Are_you_suffering_from_Asthma__c == true, &quot;Visitor Suffering from Asthma: Yes
+&quot;,&quot; &quot;)} {!If(Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c==true, &apos;Visitor felt chest pain recently: Yes
+&apos;,&apos;&apos;)} {!If(Vep_Visitor__c.Do_you_use_any_Inhaler__c ==true, &apos;Visitor is using inhaler: Yes
+&apos;,&apos;&apos;)} {!If(Vep_Visitor__c.Do_you_have_any_chronicbreathing_problem__c==true, &apos;Visitor has chronic breathing problem: Yes
+&apos;,&apos;&apos;)} {!If(Vep_Visitor__c.Are_you_allergic_to_dust_or_smoke__c==true, &apos;Visitor allergic to dust or smoke: Yes
+&apos;,&apos;&apos;)} {!If(Vep_Visitor__c.Need_help_when_heavybreathingencounterd__c==true, &apos;Visitor need assistance when heavy breathing is encountered: Yes
+&apos;,&apos;&apos;)}
+
+Please click {!Vep_Visitor__c.Link} to Approve/Reject
+
+
+
+Factory Visit Portal,
+HUL</textOnly>
+    <type>custom</type>
+</EmailTemplate>

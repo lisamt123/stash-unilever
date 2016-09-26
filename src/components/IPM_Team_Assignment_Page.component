@@ -21,7 +21,7 @@
                                 <div class="col-sm-6 noPadleft pageTitlefont">
                                     {!$Label.IPM_Team}
                                 </div>
-                                <apex:outputPanel rendered="{! if(OR(isCoreMemEditable=true,isEditable=true),'true','false')}">
+                                <apex:outputPanel rendered="{! IF(AND(OR(isCoreMemEditable=true,isEditable=true),NOT(isStopped)),'true','false')}">
                                 <apex:outputPanel rendered="{!!isShowEditmode}">
                                     <div class="txtRight pull-right editButton">
                                         <input type="button" class="ipmButton primary" data-dismiss="modal" onclick="refreshTeam()" value="{!$Label.IPM_Edit_Team}"/>
@@ -274,7 +274,7 @@
                                  <apex:outputPanel rendered="{!!isCoreMemEditable}">
                                      <a href="#" class="milestones ipmButton primary" onClick="custnextTab(this)">{!$Label.IPM_Continue}</a> 
                                  </apex:outputPanel>                                
-                                 <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_SAVE_AND_CONTINUE}" styleClass="milestones ipmButton primary" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" />
+                                 <apex:commandLink action="{!SaveTeamMembers}" value="{!$Label.IPM_SAVE_AND_CONTINUE}" styleClass="milestones ipmButton primary" onComplete="closepopupteam();" reRender="gotomiles,PLShow,DPLShow,TPLShow,GateKShow" rendered="{!isCoreMemEditable}" onClick="skipValidation();"/>
                                 </div> 
                             </div>
                         </apex:outputPanel>

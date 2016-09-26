@@ -1,0 +1,126 @@
+<apex:page controller="PBS_SubFolderController_CC" docType="html" title="Sub folder" showHeader="true" >
+<head>
+  <title>Sub folder</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="{!URLFOR($Resource.almond_uilib_mt, 'css/subfolder.css')}" />
+  <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
+    <style>
+        #hero-banner{
+            background: url({!JSENCODE(learningcategory.Background_Image_URL__c)});
+            color : {!JSINHTMLENCODE(learningcategory.Text_Color__c)};
+        }
+    </style>  
+</head>
+<apex:composition template="PBS_Header_Template" />
+<div class="row bodyRow group align-center">
+        
+        <div class=" col-xs-4"><div class="home-title">WELCOME TO </div><div class="home-title-bold">PLANCRAFT</div></div>
+        <div class="col-xs-6 home-detail">
+            <ul>
+            <li>{!$User.FirstName} {!$User.LastName}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="{!$Page.PBS_EditProfile}" target="_self">EDIT PROFILE</a></li>
+            </ul>
+        </div>
+</div>
+<apex:composition template="PBS_LMS_Template" >
+<apex:define name="body">
+<apex:form >
+      <!---Ad Main section---->
+        
+        <div class="container">
+        
+        <div class="jobsportpolio_section">
+            
+        <apex:define name="hero-banner-badge">
+            <div id="hb-right" class="col-xs-12 col-sm-12 col-md-12">
+                <div class="banner-title-left" style="background: url({!JSENCODE(learningcategory.Background_Image_URL__c)})">
+                    <span>{!$Label.ALMS_Category}</span>
+                    <h1>{!learningcategory.Name}</h1>
+                </div>
+           </div>
+        </apex:define>
+
+        <apex:define name="hero-banner-footer">
+         <span></span>
+        </apex:define>
+        
+            
+
+<!--        <div class="brownbg">
+        <div class="bgyellow">
+        <apex:define name="hero-banner-badge">
+                <div id="hb-right" class="col-xs-12 col-sm-12 col-md-12">
+                <div class="banner-title-left" >
+                    <span>{!$Label.ALMS_Category}</span>
+                    <h1>{!categoryName}</h1>
+                </div>
+                </div> 
+        </apex:define>  -->                                      
+                                                      
+        </div>
+        <div class="customgroup">
+        <ul>
+         <li>
+         <span class="select-label">Geography</span>
+         <apex:selectList required="true" multiselect="false" size="1" label="Type" styleClass="fillnav" value="{!selectedGeography}">
+         
+         <apex:selectOptions value="{!GeographyOptions}"/>
+         </apex:selectList>
+         <span><img title= "Select Geography" src="{!URLFOR($Resource.almond_uilib_mt, 'img/ic.png')}" class="icimg" alt="Select Geography"/></span>
+         </li>
+         <li>
+         <span class="select-label">Work Level</span>
+         <apex:selectList required="true" multiselect="false" size="1" label="Type" styleClass="fillnav" value="{!selectedWorkLevel}">
+         <apex:selectOptions value="{!WorkLevelOptions}"/>
+         </apex:selectList>
+         <span><img title="Select Work Level" src="{!URLFOR($Resource.almond_uilib_mt, 'img/ic.png')}" class="icimg" alt=""/></span>
+         </li>
+         <li>
+             <span class="select-label">Job Profile</span>
+         <apex:selectList required="true" multiselect="false" size="1" label="Type" styleClass="fillnav" value="{!selectedJobProfile}">
+         <apex:selectOptions value="{!JobProfileOptions}"/>
+         </apex:selectList>
+         <span><img title="Select Planner Type" src="{!URLFOR($Resource.almond_uilib_mt, 'img/ic.png')}" class="icimg" alt=""/></span>
+         </li>
+         <li>
+             <span class="select-label">Course Type</span>
+         <apex:selectList required="true" multiselect="false" size="1" label="Type" styleClass="fillnav" value="{!selectedCourseType}">
+         <apex:selectOptions value="{!CourseTypeOptions}"/>
+         </apex:selectList>
+         <span><img title ="Select Course Type" src="{!URLFOR($Resource.almond_uilib_mt, 'img/ic.png')}" class="icimg" alt=""/></span>
+         </li>
+         <li>
+             <span class="select-label"></span>
+            <apex:commandButton value="Search" styleClass="redirect-button" action="{!filterResults}"/>
+            
+         </li>
+    
+        </ul>
+        <apex:actionStatus id="status">
+                <apex:facet name="start">
+                    <apex:outputPanel >
+                        <c:PBS_LMSStatus statusComponentId="{!$Component.status}"/>
+                    </apex:outputPanel>
+                </apex:facet>
+            </apex:actionStatus>
+            
+            <script>
+                jQuery(document).ready(function($){
+                    $(document.body).delegate('.redirect-button', 'click', function(){
+                        var itemUrl = $(this).attr('item-url');
+                        //Retain navigation history
+                        almond.redirectHandlerWithStatus(itemUrl,true);
+                    });
+                });
+            </script> 
+        </div>
+                                                     
+
+      </div>
+        
+      <!--  </div>-->
+       <!-- </div>-->
+</apex:form>        
+</apex:define>
+</apex:composition>
+</apex:page>

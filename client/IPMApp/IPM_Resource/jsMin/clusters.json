@@ -1,0 +1,708 @@
+[
+    {
+        "Cluster": "Africa",
+        "Region": [
+            {
+                "RegionName": "West Africa",
+                "Country": [
+                    {
+                        "CountryName": "Cote d'Ivorie",
+                        "code": "ci"
+                    },
+                    {
+                        "CountryName": "Ghana",
+                        "code": "gh"
+                    },
+                    {
+                        "CountryName": "Niger",
+                        "code": "ne"
+                    }
+                ]
+            },
+            {
+                "RegionName": "ESA",
+                "Country": [
+                    {
+                        "CountryName": "Kenya",
+                        "code": "ke"
+                    },
+                    {
+                        "CountryName": "Malawi",
+                        "code": "mw"
+                    },
+                    {
+                        "CountryName": "Mozambique",
+                        "code": "mz"
+                    },
+                    {
+                        "CountryName": "Tanzania",
+                        "code": "tz"
+                    },
+                    {
+                        "CountryName": "Uganda",
+                        "code": "ug"
+                    },
+                    {
+                        "CountryName": "Zambia",
+                        "code": "zm"
+                    },
+                    {
+                        "CountryName": "Zimbabwe",
+                        "code": "zw"
+                    }
+                ]
+            },
+            {
+                "RegionName": "South Africa",
+                "Country": [
+                    {
+                        "CountryName": "South Africa",
+                        "code": "za"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Nigeria",
+                "Country": [
+                    {
+                        "CountryName": "Nigeria",
+                        "code": "ng"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Cluster": "Europe",
+        "Region": [
+            {
+                "RegionName": "CEE",
+                "Country": [
+					{
+                        "CountryName": "Bosnia & Herzegovina",
+                        "code": "ba"
+                    },
+                    {
+                        "CountryName": "Croatia",
+                        "code": "hr"
+                    },
+                    {
+                        "CountryName": "Czech Republic",
+                        "code": "cz"
+                    },
+                    {
+                        "CountryName": "Hungary",
+                        "code": "hu"
+                    },
+                    {
+                        "CountryName": "Slovakia",
+                        "code": "sk"
+                    },
+					{
+                        "CountryName": "Slovenia",
+                        "code": "si"
+                    },
+					{
+                        "CountryName": "Estonia",
+                        "code": "ee"
+                    },
+					{
+                        "CountryName": "Latvia",
+                        "code": "lv"
+                    },
+					{
+                        "CountryName": "Lithuania",
+                        "code": "lt"
+                    },
+					{
+                        "CountryName": "Poland",
+                        "code": "pl"
+                    },
+					{
+                        "CountryName": "Albania",
+                        "code": "al"
+                    },
+					{
+                        "CountryName": "Bulgaria",
+                        "code": "bg"
+                    },
+					{
+                        "CountryName": "Macedonia",
+                        "code": "mk"
+                    },
+					{
+                        "CountryName": "Moldova",
+                        "code": "md"
+                    },
+					{
+                        "CountryName": "Montenegro",
+                        "code": "me"
+                    },
+					{
+                        "CountryName": "Romania",
+                        "code": "ro"
+                    },
+					{
+                        "CountryName": "Serbia",
+                        "code": "rs"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Benelux",
+                "Country": [
+                    {
+                        "CountryName": "Belgium",
+                        "code": "be"
+                    },
+                    {
+                        "CountryName": "Luxembourg",
+                        "code": "lu"
+                    },
+                    {
+                        "CountryName": "Netherlands",
+                        "code": "nl"
+                    }
+                ]
+            },
+            {
+                "RegionName": "DACH",
+                "Country": [
+                    {
+                        "CountryName": "Austria",
+                        "code": "at"
+                    },
+					{
+                        "CountryName": "Germany",
+                        "code": "de"
+                    },
+					{
+                        "CountryName": "Switzerland",
+                        "code": "ch"
+                    }
+                ]
+            },
+            {
+                "RegionName": "France",
+                "Country": [
+                    {
+                        "CountryName": "France",
+                        "code": "fr"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Greece",
+                "Country": [
+                    {
+                        "CountryName": "Greece",
+                        "code": "gr"
+                    }
+                ]
+            },
+			{
+                "RegionName": "Italy",
+                "Country": [
+                    {
+                        "CountryName": "Italy",
+                        "code": "it"
+                    }
+                ]
+            },
+			{
+                "RegionName": "Nordic",
+                "Country": [
+                    {
+                        "CountryName": "Denmark",
+                        "code": "dk"
+                    },
+					{
+                        "CountryName": "Finland",
+                        "code": "fi"
+                    },
+					{
+                        "CountryName": "Norway",
+                        "code": "no"
+                    },
+					{
+                        "CountryName": "Sweden",
+                        "code": "se"
+                    }
+                ]
+            },
+			{
+                "RegionName": "Portugal",
+                "Country": [
+                    {
+                        "CountryName": "Portugal",
+                        "code": "pt"
+                    }
+                ]
+            },
+			{
+                "RegionName": "Spain",
+                "Country": [
+                    {
+                        "CountryName": "Spain",
+                        "code": "es"
+                    }
+                ]
+            },
+			{
+                "RegionName": "UK & Ireland",
+                "Country": [
+                    {
+                        "CountryName": "Ireland",
+                        "code": "ie"
+                    },
+					{
+                        "CountryName": "UK",
+                        "code": "gb"
+                    }
+                ]
+            }
+        ]
+    },
+	{
+        "Cluster": "Latin America",
+        "Region": [
+            {
+                "RegionName": "Brazil",
+                "Country": [
+                    {
+                        "CountryName": "Brazil",
+                        "code": "br"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Mexico",
+                "Country": [
+                    {
+                        "CountryName": "Mexico",
+                        "code": "mx"
+                    },
+					{
+                        "CountryName": "Cuba",
+                        "code": "cu"
+                    },
+					{
+                        "CountryName": "Dominican Republic",
+                        "code": "do"
+                    },
+					{
+                        "CountryName": "Trinidad & Tobago",
+                        "code": "tt"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Middle Americas",
+                "Country": [
+                    {
+                        "CountryName": "Colombia",
+                        "code": "co"
+                    },
+					{
+                        "CountryName": "Costa Rica",
+                        "code": "cr"
+                    },
+					{
+                        "CountryName": "Ecuador",
+                        "code": "ec"
+                    },
+					{
+                        "CountryName": "El Salvador",
+                        "code": "sv"
+                    },
+					{
+                        "CountryName": "Guatemala",
+                        "code": "gt"
+                    },
+					{
+                        "CountryName": "Honduras",
+                        "code": "hn"
+                    },
+					{
+                        "CountryName": "Nicaragua",
+                        "code": "ni"
+                    },
+					{
+                        "CountryName": "Panama",
+                        "code": "pa"
+                    },
+					{
+                        "CountryName": "Venezuela",
+                        "code": "ve"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Southern Cone",
+                "Country": [
+                    {
+                        "CountryName": "Argentina",
+                        "code": "ar"
+                    },
+					{
+                        "CountryName": "Bolivia",
+                        "code": "bo"
+                    },
+					{
+                        "CountryName": "Chile",
+                        "code": "cl"
+                    },
+					{
+                        "CountryName": "Paraguay",
+                        "code": "py"
+                    },
+					{
+                        "CountryName": "Peru",
+                        "code": "pe"
+                    },
+					{
+                        "CountryName": "Uruguay",
+                        "code": "uy"
+                    }
+                ]
+            }
+        ]
+    },
+	{
+        "Cluster": "NAMET & RUB",
+        "Region": [
+            {
+                "RegionName": "NAME",
+                "Country": [
+                    {
+                        "CountryName": "Bahrain",
+                        "code": "bh"
+                    },
+					{
+                        "CountryName": "Kuwait",
+                        "code": "kw"
+                    },
+					{
+                        "CountryName": "Oman",
+                        "code": "om"
+                    },
+					{
+                        "CountryName": "Qatar",
+                        "code": "qa"
+                    },
+					{
+                        "CountryName": "United Arab Emirates",
+                        "code": "ae"
+                    },
+					{
+                        "CountryName": "Saudi Arabia",
+                        "code": "sa"
+                    },
+					{
+                        "CountryName": "Yemen",
+                        "code": "ye"
+                    },
+					{
+                        "CountryName": "Algeria",
+                        "code": "dz"
+                    },
+					{
+                        "CountryName": "Libya",
+                        "code": "ly"
+                    },
+					{
+                        "CountryName": "Morocco",
+                        "code": "ma"
+                    },
+					{
+                        "CountryName": "Tunisia",
+                        "code": "tn"
+                    },
+					{
+                        "CountryName": "Egypt",
+                        "code": "eg"
+                    },
+					{
+                        "CountryName": "Iraq",
+                        "code": "iq"
+                    },
+					{
+                        "CountryName": "Jordan",
+                        "code": "jo"
+                    },
+					{
+                        "CountryName": "Lebanon",
+                        "code": "lb"
+                    },
+					{
+                        "CountryName": "Palestine",
+                        "code": "ps"
+                    },
+					{
+                        "CountryName": "Sudan",
+                        "code": "sd"
+                    },
+					{
+                        "CountryName": "Syria",
+                        "code": "sy"
+                    }
+                ]
+            },
+            {
+                "RegionName": "RUB",
+                "Country": [
+                    {
+                        "CountryName": "Belarus",
+                        "code": "by"
+                    },
+					{
+                        "CountryName": "Russian Federation",
+                        "code": "ru"
+                    },
+					{
+                        "CountryName": "Ukraine",
+                        "code": "ua"
+                    }
+                ]
+            },
+            {
+                "RegionName": "TUI&I",
+                "Country": [
+                    {
+                        "CountryName": "Iran",
+                        "code": "ir"
+                    },
+					{
+                        "CountryName": "Israel",
+                        "code": "il"
+                    },
+					{
+                        "CountryName": "Turkey",
+                        "code": "tr"
+                    },
+					{
+                        "CountryName": "Azerbaijan",
+                        "code": "az"
+                    },
+					{
+                        "CountryName": "Kazakhstan",
+                        "code": "kz"
+                    },
+					{
+                        "CountryName": "Kyrgyzstan",
+                        "code": "kg"
+                    },
+					{
+                        "CountryName": "Tajikistan",
+                        "code": "tj"
+                    },
+					{
+                        "CountryName": "Turkmenistan",
+                        "code": "tm"
+                    },
+					{
+                        "CountryName": "Uzbekistan",
+                        "code": "uz"
+                    }
+                ]
+            }
+        ]
+    },
+	{
+        "Cluster": "North America",
+        "Region": [
+            {
+                "RegionName": "Puerto Rico",
+                "Country": [
+                    {
+                        "CountryName": "Puerto Rico",
+                        "code": "pr"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Canada",
+                "Country": [
+                    {
+                        "CountryName": "Canada",
+                        "code": "ca"
+                    }
+                ]
+            },
+            {
+                "RegionName": "USA",
+                "Country": [
+                    {
+                        "CountryName": "USA",
+                        "code": "us"
+                    }
+                ]
+            }
+        ]
+    },
+	{
+        "Cluster": "North Asia",
+        "Region": [
+            {
+                "RegionName": "China",
+                "Country": [
+                    {
+                        "CountryName": "China",
+                        "code": "cn"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Japan",
+                "Country": [
+                    {
+                        "CountryName": "Japan",
+                        "code": "jp"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Hong Kong & Korea & Taiwan",
+                "Country": [
+                    {
+                        "CountryName": "Hong Kong",
+                        "code": "hk"
+                    },
+					{
+                        "CountryName": "Korea",
+                        "code": "kr"
+                    },
+					{
+                        "CountryName": "Taiwan",
+                        "code": "tw"
+                    }
+                ]
+            }            
+        ]
+    },
+	{
+        "Cluster": "SEAA",
+        "Region": [
+            {
+                "RegionName": "ANZ",
+                "Country": [
+                    {
+                        "CountryName": "Australia",
+                        "code": "au"
+                    },
+					{
+                        "CountryName": "New Zealand",
+                        "code": "nz"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Indonesia",
+                "Country": [
+                    {
+                        "CountryName": "Indonesia",
+                        "code": "id"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Malaysia & Singapore",
+                "Country": [
+                    {
+                        "CountryName": "Malaysia",
+                        "code": "my"
+                    },
+					{
+                        "CountryName": "Singapore",
+                        "code": "sg"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Philippines",
+                "Country": [
+                    {
+                        "CountryName": "Philippines",
+                        "code": "ph"
+                    }
+                ]
+            },
+			{
+                "RegionName": "Thailand",
+                "Country": [
+                    {
+                        "CountryName": "Thailand",
+                        "code": "th"
+                    },
+					{
+                        "CountryName": "Cambodia",
+                        "code": "kh"
+                    },
+					{
+                        "CountryName": "Laos",
+                        "code": "la"
+                    }
+                ]
+            },
+			{
+                "RegionName": "Vietnam",
+                "Country": [
+                    {
+                        "CountryName": "Vietnam",
+                        "code": "vn"
+                    }
+                ]
+            }
+        ]
+    },
+	{
+        "Cluster": "South Asia",
+        "Region": [
+            {
+                "RegionName": "Bangladesh",
+                "Country": [
+                    {
+                        "CountryName": "Bangladesh",
+                        "code": "bd"
+                    }
+                ]
+            },
+            {
+                "RegionName": "India",
+                "Country": [
+                    {
+                        "CountryName": "India",
+                        "code": "in"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Nepal",
+                "Country": [
+                    {
+                        "CountryName": "Nepal",
+                        "code": "np"
+                    }
+                ]
+            },
+            {
+                "RegionName": "Pakistan",
+                "Country": [
+                    {
+                        "CountryName": "Pakistan",
+                        "code": "pk"
+                    }
+                ]
+            },
+			{
+                "RegionName": "Sri Lanka",
+                "Country": [
+                    {
+                        "CountryName": "Sri Lanka",
+                        "code": "lk"
+                    }
+                ]
+            }
+        ]
+    }
+]

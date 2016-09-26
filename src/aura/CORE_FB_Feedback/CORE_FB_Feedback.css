@@ -1,0 +1,141 @@
+.THIS .feedback-header{
+    text-align: center;
+}
+.THIS .feedback-text{
+    margin-bottom: -13px;
+    line-height: 1rem;
+    word-spacing: .1rem;
+    padding-top: 5px;
+}
+.THIS .feedback-comment-text{
+    clear:both;
+    margin-bottom: 15px;
+}
+.THIS .feedback-rate-text{
+    clear:both;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.THIS .feedback-comment-textarea, .THIS .feedback-rate-star{
+    margin-bottom: 20px;
+}
+.THIS .feedback-buttons{
+    text-align:right;
+    margin-left:10px;
+}
+.THIS .feedback-rate-star img{
+    float:left;
+    width: 27px;
+    margin-right: 5px;
+}
+.THIS body{
+    padding:0px !important;
+    background-color: rgba(128, 128, 128, 0.62);
+}
+.THIS form .stars {
+    margin: 0px !important;
+}
+.THIS hr{
+    margin: 1rem -15px !important;
+}
+.THIS .feedback_container{
+    padding: 15px;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    left: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
+.THIS .slds-textarea {
+    height: 100px;
+}
+.THIS .slds-button--neutral {
+    margin-left: 10px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.THIS .slds-text-heading--small {
+    font-size: 1.3rem;
+}
+.THIS .close-button{
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    font-size: 18px;
+    color: #DCDCDC;
+    font-family: sans-serif;
+    width: 20px;
+}
+.THIS .success-icon{
+    width: 6%;
+    margin-right: 13px;
+    margin-top: -2px;
+}
+.THIS .slds-notify--toast {
+    min-width: auto;
+}
+/*.THIS ::-webkit-input-placeholder { 
+    color: #CFD7E6;
+}
+.THIS :-ms-input-placeholder { 
+    color: #CFD7E6;
+}
+.THIS ::-moz-placeholder {
+    color: #CFD7E6;
+    opacity: 1;
+}
+.THIS :-moz-placeholder { 
+    color: #CFD7E6;
+    opacity: 1;
+}*/
+.THIS .slds-notify-container, .THIS .slds-notify_container{
+    top:40%;
+}
+.THIS .spinner-img{
+    width:10%;
+    position: absolute;
+    top:50%;
+}
+.THIS .slds-box {
+    border: 0px solid rgb(216, 221, 230);
+}
+.THIS.close-button{
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-size: 18px;
+    color: #DCDCDC;
+    font-family: sans-serif;
+    width: 25px;
+}
+.THIS.feedback_container{
+    padding: 15px;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    left: 10px;
+    right: 10px;
+    border-radius: 5px;
+}
+.THIS hr{
+    margin: 1rem -15px !important;
+}
+.THIS form .stars {
+    margin: 0px !important;
+    margin-left: -3px !important;
+}
+.THIS.success-icon{
+    width: 6%;
+    margin-right: 13px;
+    margin-top: -2px;
+}
+.THIS .error-text{
+    font-size:1rem;
+}
+.THIS .error-cross{
+    position: absolute;
+    top: 3px;
+    width: 79%;
+    left: 18%;
+}

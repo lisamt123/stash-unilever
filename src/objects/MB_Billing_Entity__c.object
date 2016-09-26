@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Billing_Currency__c</fullName>
+        <description>Billing currency code</description>
+        <externalId>false</externalId>
+        <label>Billing Currency</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_Month__c</fullName>
+        <description>Billing cycle month and year</description>
+        <externalId>false</externalId>
+        <label>Billing Month</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Call_Minutes__c</fullName>
+        <description>Call usage in minutes</description>
+        <externalId>false</externalId>
+        <label>Call Minutes</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Charge_Type__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MB_Charge_Type__c Look up relation</description>
+        <externalId>false</externalId>
+        <label>Charge Type</label>
+        <referenceTo>MB_Charge_Type__c</referenceTo>
+        <relationshipLabel>Billing Entities</relationshipLabel>
+        <relationshipName>Billing_Entities</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Data_Consumed_In_MB__c</fullName>
+        <description>Data usage in MB</description>
+        <externalId>false</externalId>
+        <label>Data Consumed In MB</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Device_Details__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MB_Device_Details__c Look up relation</description>
+        <externalId>false</externalId>
+        <label>Device Details</label>
+        <referenceTo>MB_Device_Details__c</referenceTo>
+        <relationshipLabel>Billing Entities</relationshipLabel>
+        <relationshipName>Billing_Entities</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Item_Count__c</fullName>
+        <description>Count of usage</description>
+        <externalId>false</externalId>
+        <label>Item Count</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Local_Net_Amount__c</fullName>
+        <description>Bill amount of each billing entity</description>
+        <externalId>false</externalId>
+        <label>Local Net Amount</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Messages__c</fullName>
+        <description>Messages count</description>
+        <externalId>false</externalId>
+        <label>Messages</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_Usage_Consumed__c</fullName>
+        <description>Non Usage Consumed</description>
+        <externalId>false</externalId>
+        <label>Non Usage Consumed</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Name__c</fullName>
+        <description>Device service name</description>
+        <externalId>false</externalId>
+        <label>Service Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Usage_Type__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>MB_Usage_Type__c Look up relation</description>
+        <externalId>false</externalId>
+        <label>Usage Type</label>
+        <referenceTo>MB_Usage_Type__c</referenceTo>
+        <relationshipLabel>Billing Entities</relationshipLabel>
+        <relationshipName>Billing_Entities</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>User_Country__c</fullName>
+        <description>Country of user</description>
+        <externalId>false</externalId>
+        <formula>User__r.Country</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>User Country</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User_Email__c</fullName>
+        <description>Email of user</description>
+        <externalId>false</externalId>
+        <formula>User__r.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>User Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>User look up relation</description>
+        <externalId>false</externalId>
+        <label>User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Billing_Entities</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>iPass_Consumed_In_MB__c</fullName>
+        <description>iPass usage in MB</description>
+        <externalId>false</externalId>
+        <label>iPass Consumed In MB</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Billing Entity</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Billing_Month__c</columns>
+        <columns>User__c</columns>
+        <columns>Local_Net_Amount__c</columns>
+        <columns>Charge_Type__c</columns>
+        <columns>Usage_Type__c</columns>
+        <columns>Call_Minutes__c</columns>
+        <columns>Data_Consumed_In_MB__c</columns>
+        <columns>iPass_Consumed_In_MB__c</columns>
+        <columns>Messages__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>User__c</field>
+            <operation>equals</operation>
+            <value>normal user</value>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>BE-{DD}-{MM}-{YY}-{00000000}</displayFormat>
+        <label>Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Billing Entities</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

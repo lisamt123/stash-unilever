@@ -70,6 +70,38 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Category__c</fullName>
+        <description>Categories</description>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Personal Care</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Foods</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refreshments</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cross Category</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Geography__c</fullName>
         <externalId>false</externalId>
         <label>Geography</label>
@@ -83,7 +115,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Asia / Africa (U2K2)</fullName>
+                <fullName>Asia / Africa / NAMET (U2K2)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

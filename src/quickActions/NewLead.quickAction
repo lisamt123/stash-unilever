@@ -34,4 +34,5 @@
     <standardLabel>New</standardLabel>
     <targetObject>Lead</targetObject>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

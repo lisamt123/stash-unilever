@@ -6,11 +6,79 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>ANANT INTERNATIONAL LIMITED</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>BESTBUY MALDIVES PVT LTD</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>BNG TRADING</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>COCOGE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q INTERNATIONAL DISTRIBUTORS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q SAIPAN CO.,LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ESSOR IMPORT SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>FEDERATED DISTRIBUTORS INCORPORATED</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GETZ BROS. PHILIPPINES INC.</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GRAND DRAGON ENTERPRISES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ISLAND SUPPLY COMPANY PTE LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>LF ASIA DISTRIBUTION</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MIKONOS SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MORGAN VERNEX</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MOTIBHAI &amp; COMPANY</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT SA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>YEES COLD STORAGE SEAFOOD LTD</values>
         </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
@@ -72,43 +140,51 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Jan</values>
+            <values>01</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Feb</values>
+            <values>02</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Mar</values>
+            <values>03</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Apr</values>
+            <values>04</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>May</values>
+            <values>05</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Jun</values>
+            <values>06</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Jul</values>
+            <values>07</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Aug</values>
+            <values>08</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Sep</values>
+            <values>09</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Oct</values>
+            <values>10</values>
+        </dashboardFilterOptions>
+	<dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>11</values>
+        </dashboardFilterOptions>
+	<dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>12</values>
         </dashboardFilterOptions>
         <name>Report Month</name>
     </dashboardFilters>
@@ -139,7 +215,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Category__c</groupingColumn>
-            <header>Primary Category Sales Value (USD)</header>
+            <header>Primary Category Sales Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Primary_Category_Sales_Value_USD_PRD</report>
             <showPercentage>false</showPercentage>
@@ -171,7 +247,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Category__c</groupingColumn>
-            <header>Secondary Category Sales Value (USD)</header>
+            <header>Secondary Category Sales Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Secondary_Category_Sales_Value_USD_PRD</report>
             <showPercentage>false</showPercentage>
@@ -268,7 +344,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Channel__c</groupingColumn>
-            <header>Channel-wise Sales Value (USD)</header>
+            <header>Channel-wise Sales Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Channel_wise_Sales_Value_USD_PRD</report>
             <showPercentage>true</showPercentage>
@@ -303,7 +379,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Brand__c</groupingColumn>
-            <header>Primary Brand-wise Sales Value (USD)</header>
+            <header>Primary Brand-wise Sales Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Primary_Brand_wise_Sales_Value_USD_PRD</report>
             <showPercentage>true</showPercentage>
@@ -336,7 +412,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Brand__c</groupingColumn>
-            <header>Secondary Brand-wise Sales Value (USD)</header>
+            <header>Secondary Brand-wise Sales Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Secondary_Brand_wise_Sales_Value_USD_PRD</report>
             <showPercentage>true</showPercentage>
@@ -470,7 +546,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Material_Name__c</groupingColumn>
-            <header>Primary SKU-wise Sales Value (USD)</header>
+            <header>Primary SKU-wise Sales Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Primary_SKU_wise_Sales_Value_USD_PRD</report>
             <showPercentage>true</showPercentage>
@@ -502,7 +578,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Material_Name__c</groupingColumn>
-            <header>Secondary SKU-wise Sales Value (USD)</header>
+            <header>Secondary SKU-wise Sales Value</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Secondary_SKU_wise_Sales_Value_USD_PRD</report>
             <showPercentage>true</showPercentage>

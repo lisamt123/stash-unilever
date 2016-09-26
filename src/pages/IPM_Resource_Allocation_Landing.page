@@ -24,7 +24,9 @@
         <apex:pageBlock id="pgb1">
             <apex:pagemessages id="pgmsg"/>
             <div class="addMemberContainer">
+             <!--Below rendered condition is used for executing the output panel if CoreMembers details is empty -->
                 <apex:outputPanel rendered="{! if(CoreMembers !='','false','true')}">
+                    <!-- output panel for guest user -->
                     <apex:outputPanel rendered="{! if(RoleType='Guest','false','true')}">
                         <div class="col-sm-12 radioContainer clearfix">                        
                             <div class="categoryButtons">
@@ -52,7 +54,9 @@
                     <div class="col-sm-12">
                         <span class="categoryTitle">
                             <apex:outputPanel id="mycatNallcat">
+                            <!-- Below rendered condition is used for showing output text -->
                                 <apex:outputText value="{!$Label.IPM_Select_members_from_my_category}" rendered="{! if(SearchTeambyCat='mycategory','true','false')}" id="mycat"/> 
+                                <!-- Below rendered condition is used for showing output text -->
                                 <apex:outputText value="{!$Label.IPM_Select_members_from_all_categories}" rendered="{! if(SearchTeambyCat='allcategory','true','false')}" id="allcat"/> 
                             </apex:outputPanel>   
                         </span>
@@ -60,7 +64,7 @@
                     <div class="greyContainer">
                         <div class="col-sm-12 greybg">
                             <div class="col-sm-12 noPadleft categorySearch teamSearch1">
-                                <apex:inputtext html-placeholder="Search name, email ID" value="{!SearchTeamMem}">
+                                <apex:inputtext styleClass="teamSearchInput" html-placeholder="Search name, email ID" value="{!SearchTeamMem}">
                                     <apex:actionSupport event="onkeyup" action="{!FilterTeamMember}" reRender="SameCat,memberNotFound"/>
                                 </apex:inputtext>
                                 <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}"  />
@@ -70,7 +74,9 @@
                             </div>
                             <apex:outputPanel layout="block" id="SameCat">
                                 <div class="teamMemberList" >
+                                <!-- Below rendered condition is used for showing output text -->
                                     <apex:outputText rendered="{! if(IsNoMatchfound !='','true','false')}" value="{!$Label.IPM_NO_MATCHES_FOUND}" id="memberNotFound" />
+                                   <!-- Below rendered condition is used for showing user list if IsNoMatchfound is false-->
                                     <apex:outputPanel layout="block" rendered="{! if(IsNoMatchfound !='','false','true')}">
                                         <table class="ipmTable table table-bordered">
                                             <tbody>
@@ -88,7 +94,9 @@
                                                             <div class="memberNameContainer">
                                                                 <apex:outputText styleClass="teamMemberName" value="{!TM.listofuser.IPM_User__r.Name} | "/>
                                                                 <apex:outputLink styleClass="teamMembermail" value="mailto:{!TM.listofuser.IPM_User__r.email}">{!TM.listofuser.IPM_User__r.email}</apex:outputLink>
+                                                              <!-- Below rendered condition is used for showing output text -->
                                                                 <apex:outputText styleClass="memberDetails" value=" | {!TM.listofuser.IPM_User_Role__c} " rendered="{! if(TM.listofuser.IPM_User_Role__c!=null,'true','false')}"/>
+                                                                <!-- Below rendered condition is used for showing output text -->
                                                                 <apex:outputText styleClass="memberDetails" value=" | {!TM.listofuser.IPM_User__r.UserRole.Name} " rendered="{! if(TM.listofuser.IPM_User__r.UserRole.Name!=null,'true','false')}"/>
                                                             </div>
                                                         </td>
@@ -103,9 +111,10 @@
                     </div>
                     <div class="txtRight addButtonContainer pull-right">
                         <apex:commandLink styleClass="ipmButton convertLowercase cancelButton" onclick="dismissModal();" value="{!$Label.IPM_CANCEL}"/>
-                        <apex:commandLink styleClass="ipmButton convertLowercase primary" action="{!AddMemberToWrapper}" value="{!$Label.IPM_ADD_SELECTED_MEMBERS}" status="Loading" html-data-dismiss="modal" rerender="none" onComplete="closepopup()"/>
+                        <apex:commandLink styleClass="ipmButton convertLowercase primary" action="{!AddMemberToWrapper}" value="{!$Label.IPM_ADD_SELECTED_MEMBERS}" status="Loading" html-data-dismiss="modal" rerender="none" onclick="skipValidation();" onComplete="closepopup()"/>
                     </div>
                 </apex:outputPanel>
+                <!-- Below rendered condition will execute output panel if  CoreMembers is not empty-->
                 <apex:outputPanel rendered="{! if(CoreMembers !='','true','false')}">
                     <div class="cust-overlay"></div>
                     <div class="greyContainer">
@@ -120,6 +129,7 @@
                                 <span class="categoryTitle">{!$Label.IPM_SELECT_FROM_LIST}</span>
                             </div>
                             <apex:outputPanel id="SearchCoreMem">
+                            <!-- Below rendered condition is used for showing output text -->
                                 <apex:outputText rendered="{! if(IsNoMatchfound !='','true','false')}" value="{!$Label.IPM_NO_MATCHES_FOUND}" id="resourceNotFound" />
                                 <div class="editList ipmRadioButton">
                                     <table class="ipmTable table table-bordered">
@@ -150,13 +160,13 @@
                     </apex:actionFunction>
                     <div class="addButtonContainer editbContainer pull-right">
                         <apex:commandLink styleClass="buttonmarRight convertLowercase ipmButton cancelButton" onclick="dismissModal();" value="{!$Label.IPM_CANCEL}"/>
-                        <apex:commandLink styleClass="buttonmarRight convertLowercase ipmButton primary" action="{!updateCoreMember}" value="{!$Label.IPM_Update} {!ButtonLabel}" html-data-dismiss="modal" status="Loading" rerender="none" onComplete="closepopup()"/>
+                        <apex:commandLink styleClass="buttonmarRight convertLowercase ipmButton primary" action="{!updateCoreMember}" value="{!$Label.IPM_Update} {!ButtonLabel}" html-data-dismiss="modal" status="Loading" rerender="none" onclick="skipValidation();" onComplete="closepopup()"/>
                     </div>
                 </apex:outputPanel>
             </div>  
             <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> 
             <script>
-                var IPMApp = {teamurl:'{!URLFOR($Page.IPM_Team)}', projectID:'{!projectID}'};  
+                var IPMApp = {teamurl:'{!URLFOR($Page.IPM_Team)}', projectID:'{!projectID}',wmessage:'{!$Label.IPM_Unsaved_Alert}'};  
             </script>
             
         </apex:pageBlock>

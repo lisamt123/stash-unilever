@@ -25,7 +25,7 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
         if(Oblix_ProjectHandler.triggerShouldExecute){
             if(Trigger.isInsert) {
 
-                Oblix_ProjectHandlerLogic.retrieveCampaignForAdjustment(Trigger.New);
+                Oblix_ProjectHandlerLogic.retrieveCampaignForAdjustment(Trigger.New, true);
 
                 //System.debug('Entering Trigger beforeInsert'); 
                 //mids_campaign_id_hub_summary_text = Oblix_ProjectHandlerLogic.retrieveCampaignHubSummary(Trigger.New);
@@ -47,7 +47,7 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
             if(Trigger.isUpdate) {
                 System.debug('Entering Trigger beforeUpdate'); 
 
-                Oblix_ProjectHandlerLogic.retrieveCampaignForAdjustment(Trigger.New);
+                Oblix_ProjectHandlerLogic.retrieveCampaignForAdjustment(Trigger.New, false);
 
                 //mids_campaign_id_hub_summary_text = Oblix_ProjectHandlerLogic.retrieveCampaignHubSummary(Trigger.New);
                 //mids_campaign_id_asset_deliverables_text = Oblix_ProjectHandlerLogic.retrieveAssetDeliverables(Trigger.New);

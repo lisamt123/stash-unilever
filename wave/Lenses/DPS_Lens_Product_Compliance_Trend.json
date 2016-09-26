@@ -1,0 +1,49 @@
+{
+    "name": "Lens_Product_Compliance_Trend",
+    "label": "Lens: Product Compliance Trend",
+    "visualizationType": "time",
+    "state": {
+        "query": {
+            "measures": [
+                [
+                    "avg",
+                    "OSA_Compliance",
+                    "OSACompliance",
+                    {
+                        "display": "Product Compliance (%)",
+                        "format": "percentage"
+                    }
+                ]
+            ],
+            "groups": [
+                [
+                    "Date_of_audit_Year",
+                    "Date_of_audit_Month"
+                ]
+            ],
+            "filters": [
+                [
+                    "Date_of_audit",
+                    [
+                        [
+                            [
+                                "month",
+                                -12
+                            ],
+                            [
+                                "month",
+                                0
+                            ]
+                        ]
+                    ],
+                    ">=<="
+                ]
+            ]
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SSSSA2",
+        "name": "PRODUCT_DATA_AGGREGATED",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SSSSA2"
+    }
+}

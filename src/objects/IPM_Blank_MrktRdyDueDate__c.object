@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This is used to set due date to blank if project TLD is less than specified days</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>No_Of_Days__c</fullName>
+        <description>This is used to set due date to blank if project TLD is less than specified days</description>
+        <externalId>false</externalId>
+        <label>No Of Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>IPM_Blank_MrktRdyDueDate</label>
+    <visibility>Public</visibility>
+</CustomObject>

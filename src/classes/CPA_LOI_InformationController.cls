@@ -51,7 +51,7 @@ global with sharing class CPA_LOI_InformationController {
     boolean CreateRequiredFieldMessage(id loiId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
-         LoiRec = [select id,isValidated__c,cur_Total_value_in_Euro_being_requested__c,txt_Other_Phases_Covered_by_W_R__c,num_Total_value_in_being_requested_for__c,num_Total_number_of_man_days_requested__c,chk_Contract_Attached__c,pkl_Status__c,pkl_Currency__c,num_Expense_charges_of_LOI__c,txt_Internal_PWO_ID__c,dt_LOI_End_date__c,dt_LOI_Start_Date__c,mpkl_Phases_covered_by_WAR__c,txt_PWO_number__c,txt_PWO_title__c,txt_Unilever_Clarity_ID__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txt_Other_Currency__c, Total_Number_of_Man_days_being_requested__c from CPA_LOI__c where id =: loiId];
+         LoiRec = [select id,isValidated__c,cur_Total_value_in_Euro_being_requested__c,txt_Other_Phases_Covered_by_W_R__c,num_Total_value_in_being_requested_for__c,num_Total_number_of_man_days_requested__c,chk_Contract_Attached__c,pkl_Status__c,pkl_Currency__c,num_Expense_charges_of_LOI__c,txt_Internal_PWO_ID__c,dt_LOI_End_date__c,dt_LOI_Start_Date__c,mpkl_Phases_covered_by_WAR__c,txt_PWO_number__c,txt_PWO_title__c,txt_Unilever_Clarity_ID__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txt_Other_Currency__c, Total_Number_of_Man_days_being_requested__c,dat_Sent_for_Signature_Date__c from CPA_LOI__c where id =: loiId];
         
          if(LoiRec != null){
               if((LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED) || !callFromVF){
@@ -69,13 +69,13 @@ global with sharing class CPA_LOI_InformationController {
                 if(LoiRec.num_Expense_charges_of_LOI__c == null)
                     RequiredFieldMap.put('Expense charges of LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.num_Total_number_of_man_days_requested__c == null)
-                    RequiredFieldMap.put('Total number of man days requested',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('W@R total number of man days requested',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.num_Total_value_in_being_requested_for__c == null)
                     RequiredFieldMap.put('W@R € spend approved at MC Rates',CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 if(LoiRec.cur_Total_value_in_Euro_being_requested__c == null)
-                    RequiredFieldMap.put('Total value in Euro being requested',CPA_ConstantsForContractingAppClasses.MANDATORY);    
+                    RequiredFieldMap.put('W@R total value in € being requested',CPA_ConstantsForContractingAppClasses.MANDATORY);    
                 if(!LoiRec.chk_Contract_Attached__c )
-                    RequiredFieldMap.put('Contract document not attached. Please attach Contract Order as PDF document type with filename prefixed with LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Contract has not been attached. Attach the contract as PDF document type and append the file name with a prefix – LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.mpkl_Phases_covered_by_WAR__c == null)
                     RequiredFieldMap.put('Phases covered by WAR',CPA_ConstantsForContractingAppClasses.MANDATORY);          
                 if(LoiRec.txt_PWO_number__c == null)
@@ -116,8 +116,8 @@ global with sharing class CPA_LOI_InformationController {
                 if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_Start_Date__c < system.today()){
                     RequiredFieldMap.put('LOI Start Date','LOI Start Date can not be a date from the past.');
                 }*/
-                if(LoiRec.dt_LOI_End_date__c != null &&  LoiRec.dt_LOI_End_date__c < LoiRec.dt_LOI_Start_Date__c){
-                    RequiredFieldMap.put('LOI End date','LOI End Date can not be before Start date');
+                if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_End_date__c != null &&  LoiRec.dt_LOI_End_date__c < LoiRec.dt_LOI_Start_Date__c){
+                    RequiredFieldMap.put('LOI End date',CPA_ConstantsForContractingAppClasses.ENDDATECANNOTBEBEFORESTARTDATE);
                 }
             }
          }
@@ -125,9 +125,13 @@ global with sharing class CPA_LOI_InformationController {
 
         CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(LoiRec.pkl_Status__c);
         CPA_Status_Msg__c customSettingStatusMsg1 = CPA_Status_Msg__c.getInstance(CPA_ConstantsForContractingAppClasses.READYTOSUBMIT);
-
+        string returnFromDocSign = 'LOI' + CPA_ConstantsForContractingAppClasses.RETURNFROMDOCSIGN;
+        
         if(customSettingStatusMsg1 !=null && customSettingStatusMsg1.LOI_Status_Msg__c != null && callFromVF && RequiredFieldMap.isEmpty() && LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg1.LOI_Status_Msg__c));
+        }
+        else if(callFromVF && returnFromDocSign != null && LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED && LoiRec.dat_Sent_for_Signature_Date__c !=null){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, returnFromDocSign));
         }
         else if(customSettingStatusMsg.LOI_Status_Msg__c != null && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.LOI_Status_Msg__c));

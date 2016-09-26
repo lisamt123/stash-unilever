@@ -123,6 +123,10 @@
                 <behavior>Edit</behavior>
                 <field>IPM_Section_External_Id__c</field>
             </layoutItems>
+			<layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_GK_Answers_Multiselect__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

@@ -1,0 +1,64 @@
+<!--====================================================-->
+<!--Name:  CEC_Fulfilment_Product_Inline                 -->
+<!--Copyright notice: @ Unilever                        -->
+<!--====================================================-->
+<!--====================================================-->
+<!-- Purpose:This page is used to enter Product,Quantity-->
+<!--====================================================-->
+<!--====================================================-->
+<!-- History                                            -->
+<!-- -------                                            -->
+<!-- VERSION  AUTHOR        DATE            DETAIL               RELEASE/CSR     -->
+<!-- 1.0 -    Masood        April-2016      INITIAL DEVELOPMENT  Sprint 11       -->
+
+
+
+<apex:page id="page" standardController="cec_Fulfilment__c" showHeader="false" extensions="CEC_FufilmentProductInlineController" >
+    <apex:stylesheet value="{!URLFOR($Resource.cec_TypeaheadStyles, 'cec_TypeaheadStyles.css')}"/>
+    <apex:includeScript value="/support/console/34.0/integration.js"/>    
+    <apex:form id="form">
+        <apex:pageBlock id="pageBlock" mode="maindetail" >      
+            <apex:inputHidden id="productId" value="{!productId}"/>                
+            
+            <apex:pageBlockSection columns="2" id="displayProduct" rendered="{!$Permission.CEC_Product_Fulfilment}"> 
+                <apex:pageBlockSectionItem id="productItem1_2" rendered="{!IF(caseCountryCode!=null, true, false)}"> 
+                    <apex:outputLabel value="{!$Label.CEC_Product}"/>
+                    <c:Typeahead searchBoxId="productSearchBox" object="mdm_Case_Product__c" destinationForSelectedId="productId" placeholder="{!productName}" searchScope="All" filterClause="ISO_Country_Code__c=\'{!caseCountryCode}\' AND Active_for_CEC__c=true"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="productQuantityItem" >
+                    <apex:outputLabel value="{!$Label.CEC_Product_Quantity}"/>
+                    <apex:inputText id="productFulfilmentQuantity" value="{!productQuantity}"/> 
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" id="displayProductError" rendered="{!!$Permission.CEC_Product_Fulfilment}">
+               <h1 style="text-align:center; display: block;"> {!$Label.CEC_Insufficient_Privileges} </h1>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <div align="center" draggable="false" >
+            <apex:commandButton id="addProductBtn" value="{!$Label.CEC_Add_Product}" action="{!saveList}" oncomplete="displayErrorMessage('{!errorMsg}')" onclick="if (validateInput() == false) { return false; }" rendered="{!$Permission.CEC_Product_Fulfilment}"/>
+        </div>    
+    </apex:form>
+    <script language="javascript" type = "text/javascript" >
+    function displayErrorMessage(errormessage){
+        if (errormessage == null || errormessage == '') {
+            refreshFulfilmentTab();
+        } else {
+            alert(errormessage);
+        }
+    }
+    function refreshFulfilmentTab() {
+        sforce.console.getFocusedSubtabId(doRefresh); 
+		    }
+    var doRefresh = function doRefresh(result) {
+        sforce.console.refreshSubtabById(result.id);
+    };
+    function validateInput(){
+        var prodSearchText = document.getElementById("productSearchBox").value;
+        if(prodSearchText == ''){
+            alert('{!$Label.CEC_Mandatory_Message}');
+            return false;
+        }
+    }    
+    </script>
+</apex:page>

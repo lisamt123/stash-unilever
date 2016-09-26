@@ -49,4 +49,5 @@
     <standardLabel>New</standardLabel>
     <targetObject>Event</targetObject>
     <type>Create</type>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

@@ -1,0 +1,33 @@
+Hello {!Vep_Visitor__c.Person_to_Meet__c},
+<br/><br/>
+A Factory Request has been requested by {!Vep_Visitor__c.Name} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c}<br/><br/>
+Base Location: {!Vep_Visitor__c.Base_Location__c}<br/>
+Reason for visit: {!Vep_Visitor__c.Reason_for_Visit__c}<br/>
+Person to Meet: {!Vep_Visitor__c.Person_to_Meet__c}<br/><br/>
+
+
+
+
+Health Details:<br/>
+{!If(Vep_Visitor__c.Are_you_suffering_from_Asthma__c || Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c || Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c || Vep_Visitor__c.Do_you_use_any_Inhaler__c || Vep_Visitor__c.Do_you_have_any_chronicbreathing_problem__c || Vep_Visitor__c.Are_you_allergic_to_dust_or_smoke__c || Vep_Visitor__c.Need_help_when_heavybreathingencounterd__c,' ','NA<br/>')}
+{!If(Vep_Visitor__c.Are_you_suffering_from_Asthma__c == true, "Visitor Suffering from Asthma: Yes<br/> "," ")}
+{!If(Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c==true, 'Visitor felt chest pain recently: Yes <br/>','')}
+{!If(Vep_Visitor__c.Do_you_use_any_Inhaler__c ==true, 'Visitor is using inhaler: Yes <br/>','')}
+{!If(Vep_Visitor__c.Do_you_have_any_chronicbreathing_problem__c==true, 'Visitor has chronic breathing problem: Yes <br/>','')}
+{!If(Vep_Visitor__c.Are_you_allergic_to_dust_or_smoke__c==true, 'Visitor allergic to dust or smoke: Yes <br/>','')}
+{!If(Vep_Visitor__c.Need_help_when_heavybreathingencounterd__c==true, 'Visitor need assistance when heavy breathing is encountered: Yes <br/>','')}
+
+
+
+
+
+<br/><br/>
+Please <a href="{!Vep_Visitor__c.Link}">Click Here</a> to Approve/Reject 
+
+
+<br/><br/> 
+<br/><br/>
+
+
+Factory Visit Portal,<br/>
+HUL

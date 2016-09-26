@@ -39,7 +39,7 @@
                         <apex:selectList multiselect="false" size="1" value="{!distributionType}" disabled="{!!isEditable}">
                         <apex:selectOption itemValue=""  itemLabel="{!$Label.IPM_SELECT}"></apex:selectOption>
                         <apex:selectOption itemValue="Numeric"  itemLabel="{!$Label.IPM_NUMERIC}"></apex:selectOption>
-                        <apex:selectOption itemValue="Weightage" itemLabel="{!$Label.IPM_WEIGHTAGE}"></apex:selectOption>
+                        <apex:selectOption itemValue="Weightage" itemLabel="{!$Label.IPM_WEIGHTED}"></apex:selectOption>
                         </apex:selectList>
                     </label>
                 </div>

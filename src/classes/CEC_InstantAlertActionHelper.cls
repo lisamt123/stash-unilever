@@ -12,8 +12,9 @@ History
 VERSION    AUTHOR            DATE            DETAIL                   
 1.0      Sathish           Dec-2015      New class refactored from CEC_AlertActionHelper Class.   
 1.1      Koti              Dec-2015      Added updateInactiveAlertTrackerItems() method.
+1.2      Sathish           Feb-2016      Updated getMatchingAlertRules() method for CSC-4037
 *************************************************************************************/
-public without sharing class CEC_InstantAlertActionHelper {
+public with sharing class CEC_InstantAlertActionHelper {
     
     // A wrapper class which holds all the alert related data for a case. Key - CaseId, Value - CaseAlertWrapper.
     private Map<Id, AlertRuleWrapper> alertRuleWrapperMap = new Map<Id, AlertRuleWrapper>();
@@ -166,31 +167,96 @@ public without sharing class CEC_InstantAlertActionHelper {
         System.debug('Entering  getMatchingAlertRules() method newCaseMap =' + newCaseMap);
         
         // Get all the Alert Rule ID's matching for all the cases available in newCaseMap.
+        Case caseObj;        
+        String caseMarket;
+        // set of Alertrule Ids
         Set<Id> allAlertRuleIdSet = null;
-        List<String> caseL0ProductCategoryList = new List<String>();
-        List<String> caseL2ProductCategoryList = new List<String>();        
-        List<String> caseReasonCodeList = new List<String>();
+        // set of L0 Product category
+        Set<String> caseL0ProductCategoryList = new Set<String>();
+        // set of L2 Product category
+        Set<String> caseL2ProductCategoryList = new Set<String>();
+        // set of L4 Product category
+        Set<String> caseL4ProductCategoryList = new Set<String>();
+        // 
+        Set<String> caseNoProdSizeDescList = new Set<String>();
+        // set of R5 reason code
+        Set<String> caseR5ReasonCodeList = new Set<String>();
+        String l0ProductCategoryConcatValue, l2ProductCategoryConcatValue, l4ProductCategoryConcatValue, r5ReasonCodeConcatValue; 
         
         for(Id caseIdItr : caseIds){
-            caseL0ProductCategoryList.add(newCaseMap.get(caseIdItr).L0_Product_Category__c);
-            caseL2ProductCategoryList.add(newCaseMap.get(caseIdItr).L2_Product_Category__c);
-            caseReasonCodeList.add(newCaseMap.get(caseIdItr).L5_Code__c);
+            caseObj = newCaseMap.get(caseIdItr);
+            // Get L0 value. If it is null return empty.
+            l0ProductCategoryConcatValue = (String.isNotBlank(caseObj.L0_Product_Category__c))?
+                                            caseObj.L0_Product_Category__c:'';
+            //l2ProductCategoryConcatValue = Concatenate L0 + L1 + L2 values for each case
+            l2ProductCategoryConcatValue = CEC_Util.constructFinalProdCategoryValue(
+                                            l0ProductCategoryConcatValue,
+                                            caseObj.L1_Product_Category__c,
+                                            caseObj.L2_Product_Category__c);
+            // l4ProductCategoryConcatValue = Concatenate L0 + L1 + L2 + L3 + L4 values for each case
+            l4ProductCategoryConcatValue = CEC_Util.constructFinalProdCategoryValue(
+                                            l2ProductCategoryConcatValue, 
+                                            caseObj.L3_Product_Category__c,
+                                            caseObj.L4_Product_Category__c);
+            // r5ReasonCodeConcatValue = Concatenate R1 + R2 + R3 + R4 + R5 values for each case
+            r5ReasonCodeConcatValue = (String.isNotBlank(caseObj.Global_Reason_L1_desc__c))?
+                                            caseObj.Global_Reason_L1_desc__c:'';
+
+            r5ReasonCodeConcatValue = CEC_Util.constructFinalReasonCodeValue(r5ReasonCodeConcatValue,
+                                        caseObj.Global_Reason_L2_desc__c, caseObj.Global_Reason_L3_desc__c,
+                                        caseObj.Global_Reason_L4_desc__c, caseObj.Global_Reason_L5_desc__c);
+
+            // Concatenate L0 values for each case
+            caseL0ProductCategoryList.add(l0ProductCategoryConcatValue);
+            caseL2ProductCategoryList.add(l2ProductCategoryConcatValue);
+            caseL4ProductCategoryList.add(l4ProductCategoryConcatValue);
+            caseR5ReasonCodeList.add(r5ReasonCodeConcatValue);
+            // Get the Consumer Product No size info in the String list
+            if(String.isNotBlank(caseObj.Consumer_Product_Descriptor_no_size__c)) {
+                caseNoProdSizeDescList.add(caseObj.Consumer_Product_Descriptor_no_size__c);
+            }
+            
         }
+
+        System.debug('**** caseL0ProductCategoryList = ' + caseL0ProductCategoryList) ;
+        System.debug('**** caseL2ProductCategoryList = ' + caseL2ProductCategoryList) ;
+        System.debug('**** caseL4ProductCategoryList = ' + caseL4ProductCategoryList) ;
+        System.debug('**** caseNoProdSizeDescList = ' + caseNoProdSizeDescList) ;
         
-        // Get all safety & quality alert rules matching the case product category and reason codes       
-        List<cec_Alert_Rule__c> alertRules = [SELECT Id, L0_Product_Category__c, L2_Product_Category__c, 
-                                              L5_Reason_Code__c, Market__c, All_Market__c, Group_By_Day_Code__c, X30_Days_Limit__c
-                                              FROM cec_Alert_Rule__c 
-                                              WHERE Active__c = true AND 
-                                              ((Type__c = 'Safety' AND (L0_Product_Category__c IN :caseL0ProductCategoryList)) OR 
-                                               (Type__c = 'Quality' AND (L2_Product_Category__c IN :caseL2ProductCategoryList))) AND 
-                                              L5_Reason_Code__c IN :caseReasonCodeList];
+        // Get all safety & quality alert rules matching the case product category and reason codes  
+        /* The Query condition is to select all the alert rules matching the following condition.     
+                1. Active - True.
+                2. Type :
+                    2.1 Safety : 
+                        2.1.1 Product Level: 0, Check only L0 Prod Category.
+                        2.1.2 Product Level : 4, Check all L0, L1, L2, L3, L4 Prod Category.
+                    2.2 Quality :
+                        2.2.1. Product Level: 2, Check all L0, L1, L2 Prod Category.
+                        2.2.2 Product Level : 4, Check all L0, L1, L2, L3, L4 Prod Category.
+                3. Case Product : not null and matches 'Consumer Product Descriptor No Size' value.
+                4. Reason Code:
+                    4.1 Level 5 : Check all R1, R2, R3, R4, R5 reason code values.
+
+            High Level Query Criteria for the above mentioned points is : 1 AND (2 OR 3) AND 4
+
+        */
+        List<cec_Alert_Rule__c> alertRules =    [SELECT Id, L0_Product_Category__c, L2_Product_Category__c,
+                                                L4_Product_Category__c, L5_Reason_Code__c, Market__c,
+                                                All_Market__c, Group_By_Day_Code__c, X30_Days_Limit__c,
+                                                Consumer_Product_Descriptor_no_size__c, Product_Level__c, Case_Product__c,
+                                                Product_Category_Concat_Value__c, ReasonCode_Concat_Value__c
+                                                FROM cec_Alert_Rule__c 
+                                                WHERE Active__c = true AND 
+                                                (((Type__c = 'Safety' AND (Product_Level__c = '0' AND Product_Category_Concat_Value__c IN :caseL0ProductCategoryList)) OR 
+                                                (Type__c = 'Quality' AND (Product_Level__c = '2' AND Product_Category_Concat_Value__c IN :caseL2ProductCategoryList)) OR
+                                                (Product_Level__c = '4' AND Product_Category_Concat_Value__c IN :caseL4ProductCategoryList)) OR  
+                                                (Case_Product__c != null AND Consumer_Product_Descriptor_no_size__c IN : caseNoProdSizeDescList)) AND 
+                                                ReasonCode_Concat_Value__c IN :caseR5ReasonCodeList];
         
-        
+        System.debug('**** Matching Alert Rules = ' + alertRules);
         // Assign the corresponding alert rule for the cases
-        Case caseObj;        
-        String caseMarket; 
-        /** For each case construct the Alert Rules and add it to the wrapper. Also maintain a separate copy       
+
+        /** For each case, construct the Alert Rules and add it to the wrapper. Also maintain a separate copy       
             to maintain all the alert rules for all the cases for a easy DML Insert operation **/
         for(Id caseIdItr: caseIds){  
             
@@ -201,13 +267,42 @@ public without sharing class CEC_InstantAlertActionHelper {
             }else{
                 caseMarket = caseObj.Market__c;  
             }            
+            // Get L0 value. If it is null return empty.
+            l0ProductCategoryConcatValue = (String.isNotBlank(caseObj.L0_Product_Category__c))?
+                                            caseObj.L0_Product_Category__c:'';
+            //l2ProductCategoryConcatValue = Concatenate L0 + L1 + L2 values for each case
+            l2ProductCategoryConcatValue = CEC_Util.constructFinalProdCategoryValue(
+                                            l0ProductCategoryConcatValue,
+                                            caseObj.L1_Product_Category__c,
+                                            caseObj.L2_Product_Category__c);
+            // l4ProductCategoryConcatValue = Concatenate L0 + L1 + L2 + L3 + L4 values for each case
+            l4ProductCategoryConcatValue = CEC_Util.constructFinalProdCategoryValue(
+                                            l2ProductCategoryConcatValue, 
+                                            caseObj.L3_Product_Category__c,
+                                            caseObj.L4_Product_Category__c);
+            // r5ReasonCodeConcatValue = Concatenate R1 + R2 + R3 + R4 + R5 values for each case
+            r5ReasonCodeConcatValue = (String.isNotBlank(caseObj.Global_Reason_L1_desc__c))?
+                                            caseObj.Global_Reason_L1_desc__c:'';
+
+            r5ReasonCodeConcatValue = CEC_Util.constructFinalReasonCodeValue(r5ReasonCodeConcatValue,
+                                        caseObj.Global_Reason_L2_desc__c, caseObj.Global_Reason_L3_desc__c,
+                                        caseObj.Global_Reason_L4_desc__c, caseObj.Global_Reason_L5_desc__c);
+
             for(cec_Alert_Rule__c aRule: alertRules){
                 
-                system.debug('*****30 Days Limit Alert Rule*******'+aRule.X30_Days_Limit__c);
-                if((aRule.L0_Product_Category__c == caseObj.L0_Product_Category__c || 
-                    aRule.L2_Product_Category__c == caseObj.L2_Product_Category__c) && 
-                   aRule.L5_Reason_Code__c == caseObj.L5_Code__c && 
-                   (aRule.Market__c == caseMarket || aRule.All_Market__c == true)){
+                System.debug('*****30 Days Limit Alert Rule*******'+aRule.X30_Days_Limit__c);
+
+
+                if(((aRule.Product_Level__c == CEC_Constants.VALUE_ZERO && 
+                        aRule.Product_Category_Concat_Value__c == l0ProductCategoryConcatValue) || 
+                    (aRule.Product_Level__c == CEC_Constants.VALUE_TWO && 
+                        aRule.Product_Category_Concat_Value__c == l2ProductCategoryConcatValue) ||
+                    (aRule.Product_Level__c == CEC_Constants.VALUE_FOUR && 
+                        aRule.Product_Category_Concat_Value__c == l4ProductCategoryConcatValue) ||
+                    (aRule.Case_Product__c != null &&
+                        aRule.Consumer_Product_Descriptor_no_size__c == caseObj.Consumer_Product_Descriptor_no_size__c)) && 
+                    aRule.ReasonCode_Concat_Value__c == r5ReasonCodeConcatValue && 
+                    (aRule.Market__c == caseMarket || aRule.All_Market__c)){
                        
                        if (alertRuleWrapperMap.get(aRule.Id) == null) {
                            alertRuleWrapperMap.put(aRule.Id, new AlertRuleWrapper(aRule.Id, aRule));
@@ -280,6 +375,9 @@ public without sharing class CEC_InstantAlertActionHelper {
                 
                 if(alertWrapper.caseList != null && !alertWrapper.caseList.IsEmpty()) {
                     for(Case caseObj : alertWrapper.caseList) {
+                    
+                        uniqueId = null;
+                        
                         // Create Unique Id based on the daycode check on the alert rule.
                         if(!alertRule.Group_By_Day_Code__c && caseObj.DayCode__c == null){
                             uniqueId = alertRule.Id + caseObj.Consumer_Product_Descriptor_no_size__c;
@@ -306,9 +404,9 @@ public without sharing class CEC_InstantAlertActionHelper {
                                 alertTracker.Trigger_Batch__c = TRUE;
                                 // Add the alert tracker in the master list to do the insert
                                 masterAlertTrackerList.add(alertTracker);
-                                // Add the alert tracker to the map in the wrapper per Case Id.
-                                alertWrapper.addAlertTracker(caseObj.Id, alertTracker);
                             }
+                            // Add the alert tracker to the map in the wrapper per Case Id.
+                            alertWrapper.addAlertTracker(caseObj.Id, alertTracker);
                         }                        
                     }
                 }
@@ -326,7 +424,7 @@ public without sharing class CEC_InstantAlertActionHelper {
         Method to create the Alert Tracker Items records for the cases.
     ********************************************************************/
     private void createAlertTrackerItems() {
-        System.debug('Entering createAlertTrackerItems() method');
+        System.debug('Entering createAlertTrackerItems() method. alertRuleWrapperMap = ' + alertRuleWrapperMap);
         if(alertRuleWrapperMap.size()> 0) {
             cec_Alert_Tracker_Item__c alertTrackerItem;
             List<cec_Alert_Tracker_Item__c> masterAlertTrackerItemList = new List<cec_Alert_Tracker_Item__c>();

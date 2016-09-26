@@ -1,0 +1,18 @@
+<!--=========================================================-->
+<!--Name:  VEP_VisitorPass_OnBehalf                                  -->
+<!--Copyright notice: @ Unilever                             -->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- Purpose: This component is used to get the visitor pass number
+      and display in email template of visitor on behalf-->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- History                                                 -->
+<!-- ---------------------------------------------------------->
+<!-- VERSION     AUTHOR        DATE            DETAIL          -->
+<!-- 1.0 -       Leena         Feb-2016      INITIAL DEVELOPMENT -->
+
+<apex:component controller="VEP_VisitorPassonBehalf" access="global">
+    <apex:attribute name="VisitorValue" description="Attribute for product year" type="String" required="required" assignTo="{!VisitorId}" /> 
+    {!VisitorDetail.name}
+</apex:component>

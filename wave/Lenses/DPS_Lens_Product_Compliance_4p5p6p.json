@@ -1,0 +1,47 @@
+{
+    "name": "Lens_Product_Compliance_4p5p6p",
+    "label": "Lens: Product Compliance (4p5p6p)",
+    "visualizationType": "stackhbar",
+    "state": {
+        "query": {
+            "measures": [
+                [
+                    "product",
+                    "score",
+                    "product_score",
+                    {
+                        "display": "KPI Score",
+                        "format": "percentage"
+                    }
+                ]
+            ],
+            "groups": [
+                "X4P_5P_6P",
+                "KPI Type"
+            ],
+            "filters": [
+                [
+                    "Date_of_audit",
+                    [
+                        [
+                            [
+                                "month",
+                                -6
+                            ],
+                            [
+                                "month",
+                                -6
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "pigql": " q = load \"PRODUCT_DATA_AGGREGATED\";q = filter q by 'Country' in all; q = filter q by 'X4P_5P_6P' in all; q = filter q by 'Region' in all; q = filter q by 'Channel' in all; q = filter q by 'Product_category' in all; q = filter q by 'Customer' in all;q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"];q = filter q by 'Cluster' in all; q = filter q by 'Country' in all;  q = filter q by 'Region' in all; q = filter q by 'Province' in all;  q = filter q by 'City' in all;  q = filter q by 'Sales_area' in all;  q = filter q by 'Sales_territory' in all;  q = filter q by 'Trade_Format' in all;  q = filter q by 'Channel' in all;  q = filter q by 'Subchannel' in all;  q = filter q by 'X4P_5P_6P' in all;  q = filter q by 'Customer_type' in all;  q = filter q by 'Customer_subtype' in all;  q = filter q by 'Customer' in all;  q = filter q by 'Banner' in all;  q = filter q by 'Product_division' in all;  q = filter q by 'Product_category' in all;  OSA = group q by 'X4P_5P_6P'; OOS = group q by 'X4P_5P_6P'; Void = group q by 'X4P_5P_6P'; OSA = foreach OSA generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Total_OSA')/sum('Total_Audited') as 'product_score', \" OSA\" as 'KPI Type'; OOS = foreach OOS generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Total_OOS')/sum('Total_Audited') as 'product_score', \"OOS\" as 'KPI Type'; Void = foreach Void generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Total_Void')/sum('Total_Audited') as 'product_score', \"Void\" as 'KPI Type'; Product = group OSA by 'X4P_5P_6P', OOS by 'X4P_5P_6P', Void by 'X4P_5P_6P';Product = union OSA, OOS, Void;"
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SSSSA2",
+        "name": "PRODUCT_DATA_AGGREGATED",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SSSSA2"
+    }
+}

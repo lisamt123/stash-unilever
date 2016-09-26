@@ -1,7 +1,0 @@
-.htmlDetailElementTable img {width:100%; max-width:100%;}
-.modal-content{height:100%;float:left;width:100%;}
-.modal-body{height:100%;padding:0 !important;}
-#ipmConfirmModal .modal-dialog, #ipmModalBosscardAccept .modal-dialog{width:35%;height:30%;margin-top: 23%;}
-#ipmConfirmModal #closeBtn, #ipmModalBosscardAccept #closeBtn{padding: 0 !important;width: 12%;height: 45px;text-align: center;font-size:3.5em;color:#003229;cursor:pointer;line-height: 1;}
-.confirmContent{height:75%;}
-.confirm-title{height:65%;font-size: 1.2em;}

@@ -80,7 +80,8 @@ CPA_Trigger_Pattern__c objHLEPattern = CPA_Trigger_Pattern__c.getValues(CPA_Cons
         if(triggerShouldExecute){ 
          CPA_HLERequest_TriggerUtil.unlockrecord(trigger.old,trigger.new);//to perform recall Approval process
          CPA_HLERequest_TriggerUtil.sLAValues(trigger.old,trigger.new);
-         CPA_HLERequest_TriggerUtil.requireApprovalComments(trigger.new);
+         CPA_HLERequest_TriggerUtil.requireApprovalComments(trigger.new);        
+         CPA_HLERequest_TriggerUtil.restricSMTULPMToAcceptReject(trigger.new,trigger.old);
         }
     }
     

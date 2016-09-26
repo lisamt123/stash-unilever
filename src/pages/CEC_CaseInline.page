@@ -4,7 +4,7 @@
 <!--====================================================-->
 <!--====================================================-->
 <!-- Purpose:This page is used to enter Product, Reason 
- and Missing Information to new case or an existed case-->
+and Missing Information to new case or an existed case-->
 <!--====================================================-->
 <!--====================================================-->
 <!-- History                                            -->
@@ -26,9 +26,9 @@
                 
                 <apex:pageBlockSectionItem id="productItem1_1" onDataclick="checkForValidProductCode();" rendered="{!IF(selectedCountryCode!=null, true, false)}"> 
                     <apex:outputLabel value="{!$Label.CEC_Product}"/>            
-                    <c:Typeahead searchBoxId="productSearchBox" object="mdm_Case_Product__c" destinationForSelectedId="productId" placeholder="{!productName}" searchScope="All" filterClause="ISO_Country_Code__c=\'{!selectedCountryCode}\' AND Active_for_CEC__c=true" />
+                    <c:Typeahead searchBoxId="productSearchBox" object="mdm_Case_Product__c" primaryField="Product_Name_Other__c" destinationForSelectedId="productId" placeholder="{!productName}" searchScope="All" filterClause="ISO_Country_Code__c=\'{!selectedCountryCode}\' AND Active_for_CEC__c=true"/>
                 </apex:pageBlockSectionItem>
-                                
+                
                 <apex:pageBlockSectionItem id="productItem1_2" onDataclick="checkForValidProductCode();" rendered="{!IF(selectedCountryCode==null, true, false)}"> 
                     <apex:outputLabel value="{!$Label.CEC_Product}"/>
                     <c:Typeahead searchBoxId="productSearchBox" object="mdm_Case_Product__c" destinationForSelectedId="productId" placeholder="{!productName}" searchScope="All" filterClause="Active_for_CEC__c=true"/>
@@ -36,11 +36,28 @@
                 
                 <apex:pageBlockSectionItem id="productItem2">
                     <apex:outputLabel value="{!$Label.CEC_Product_Hierarchy}"/>
-                    <apex:outputLabel id="ProductHierarchy" value="{!productHierarchy}">            
+                    <apex:outputLabel id="ProductHierarchy" value="{!productHierarchy}"> 
                     </apex:outputLabel>
                 </apex:pageBlockSectionItem>
-
+                
             </apex:pageBlockSection>
+            <apex:outputPanel id="inActiveProduct" layout="block">
+            <apex:pageBlockSection id="productError" columns="2" rendered="{!IF((productStatus == 'inactive' ) , true, false)}"> 
+              
+                <apex:pageBlockSectionItem id="productItemError" dataStyle="display: inline-block;line-height: 3em;width :100%"> 
+                    <apex:outputLabel value=""/>
+                    <apex:outputLabel value="{!$Label.CEC_Delisted_Product}" style="font-weight:bold;padding-left: 3px;"/>
+                </apex:pageBlockSectionItem> 
+               
+                <apex:pageBlockSectionItem id="productItemError_1" dataStyle=" line-height: 2.5em;padding-right:8em;"> 
+                    <apex:outputLabel value="{!$Label.CEC_Product_Last_Manufactured_Date}" style="display: inline-block;line-height: 2.5em;"/>
+                    <apex:outputLabel value="{!productMFD}">    
+                    </apex:outputLabel>
+                </apex:pageBlockSectionItem>
+               
+            </apex:pageBlockSection>
+            </apex:outputPanel>
+            
             <apex:pageBlockSection id="reason" columns="2">          
                 
                 <apex:pageBlockSectionItem id="reasonItem1_1" onDataclick="checkForValidReasonCode();" rendered="{!IF(selectedCountryCode!=null, true, false)}">
@@ -72,7 +89,7 @@
                     <apex:commandLink value="{!$Label.CEC_ProductLocator}" onclick="return popitup('/apex/CEC_IRIProductLocator?id={!$CurrentPage.parameters.id}')"/>
                 </apex:pageBlockSectionItem> 
             </apex:pageBlockSection>
-
+            
             
             <apex:outputPanel id="MissingInfoSectionOuter" layout="block" rendered="{!!isEmptyCountryVerbatimCheck}">
                 <apex:pageBlockSection id="MissingInfoSection" columns="2" rendered="{!missingInfoSectionDisplay}">
@@ -149,74 +166,74 @@
         </apex:pageBlock>
         <apex:actionFunction name="callProcessProdCode" action="{!processProductionCode}" />
         <apex:actionFunction name="callUpdateReasonHierarchy" action="{!updateReasonHierarchy}" rerender="ReasonHierarchy,KnowledgeArticles" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
-        <apex:actionFunction name="callUpdateProductHierarchy" action="{!updateProductHierarchy}" rerender="ProductHierarchy,KnowledgeArticles" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
+        <apex:actionFunction name="callUpdateProductHierarchy" action="{!updateProductHierarchy}" rerender="ProductHierarchy,KnowledgeArticles,inActiveProduct" oncomplete="checkAlertAction({!popupAlertCheck},{!questionnaireAlertCheck},'{!popupAlertMsg}')"/>
     </apex:form>
     <script src = "/soap/ajax/28.0/connection.js" type = "text/javascript"/>
     <script language="javascript" type = "text/javascript" >
         function refreshPrimaryTab() {
-            sforce.console.getFocusedPrimaryTabId(doRefresh);
+        sforce.console.getFocusedPrimaryTabId(doRefresh);
+    }
+    var doRefresh = function doRefresh(result) {
+        sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
+    };
+    var refreshSuccess = function refreshSuccess(result) {
+        if (result.success != true) {
+            alert('{!$Label.CEC_NewCaseError_BeforeAddNewArticle}');
         }
-        var doRefresh = function doRefresh(result) {
-            sforce.console.refreshPrimaryTabById(result.id, true, refreshSuccess);
-        };
-        var refreshSuccess = function refreshSuccess(result) {
-            if (result.success != true) {
-                alert('{!$Label.CEC_NewCaseError_BeforeAddNewArticle}');
-            }
-        };
-        function checkForValidReasonCode() {
-            callCountryVerbatimValidation();
-            var reasonIdVal = document.getElementById("page:form:pageBlock:reasonId").value;
-            if (reasonIdVal != '' && reasonIdVal.length == 18) {
-                callUpdateReasonHierarchy();
-            }
+    };
+    function checkForValidReasonCode() {
+        callCountryVerbatimValidation();
+        var reasonIdVal = document.getElementById("page:form:pageBlock:reasonId").value;
+        if (reasonIdVal != '' && reasonIdVal.length == 18) {
+            callUpdateReasonHierarchy();
         }
-        function checkForValidProductCode() {
-            callCountryVerbatimValidation();
-            var productIdVal = document.getElementById("page:form:pageBlock:productId").value;
-            if (productIdVal != '' && productIdVal.length == 18) {
-                callUpdateProductHierarchy();
-            }
+    }
+    function checkForValidProductCode() {
+        callCountryVerbatimValidation();
+        var productIdVal = document.getElementById("page:form:pageBlock:productId").value;
+        if (productIdVal != '' && productIdVal.length == 18) {
+            callUpdateProductHierarchy();
         }
-        function checkUpdatePacksizeAvailabilityDetails(){
-            callCountryVerbatimValidation();
-            updatePacksizeAvailabilityDetails();
+    }
+    function checkUpdatePacksizeAvailabilityDetails(){
+        callCountryVerbatimValidation();
+        updatePacksizeAvailabilityDetails();
+    }
+    function callCountryVerbatimValidation() {
+        if({!isEmptyCountryVerbatimCheck}){
+            exceptionMsg = '{!$Label.CEC_CaseCountryVerbitimMessage}'; 
+            checkAlertAction(true, false, exceptionMsg);          
         }
-        function callCountryVerbatimValidation() {
-            if({!isEmptyCountryVerbatimCheck}){
-                exceptionMsg = '{!$Label.CEC_CaseCountryVerbitimMessage}'; 
-                checkAlertAction(true, false, exceptionMsg);          
-            }
+    }
+    // Open Knowledge Article in primary tab
+    function openArticleinPrimarytab(articleIdentity) {
+        sforce.console.openPrimaryTab(null, '/' + articleIdentity, true);
+    }
+    function checkAlertAction(popupAlertCheck, questionnaireAlertCheck, popupAlertMsg){
+        if(popupAlertCheck){
+            alert(popupAlertMsg);
         }
-        // Open Knowledge Article in primary tab
-        function openArticleinPrimarytab(articleIdentity) {
-            sforce.console.openPrimaryTab(null, '/' + articleIdentity, true);
+        if(questionnaireAlertCheck) {
+            focusCaseActionTab();
+        }           
+    }
+    function focusCaseActionTab() {
+        sforce.console.focusSidebarComponent(JSON.stringify({componentType: 'VISUALFORCE', pageName: 'CEC_CaseActions'}),"",true);
+        sforce.console.getFocusedPrimaryTabId(doPrimaryTabRefresh);            
+    }
+    var doPrimaryTabRefresh = function doPrimaryTabRefresh(result) {
+        sforce.console.refreshPrimaryTabById(result.id, true, refreshPrimaryTabSuccess);
+    };
+    var refreshPrimaryTabSuccess = function refreshPrimaryTabSuccess(result) {
+        if (result.success != true) {
+            alert('{!$Label.CEC_CaseRefreshAlertError}');
         }
-        function checkAlertAction(popupAlertCheck, questionnaireAlertCheck, popupAlertMsg){
-            if(popupAlertCheck){
-                alert(popupAlertMsg);
-            }
-            if(questionnaireAlertCheck) {
-                focusCaseActionTab();
-            }           
-        }
-        function focusCaseActionTab() {
-            sforce.console.focusSidebarComponent(JSON.stringify({componentType: 'VISUALFORCE', pageName: 'CEC_CaseActions'}),"",true);
-            sforce.console.getFocusedPrimaryTabId(doPrimaryTabRefresh);            
-        }
-        var doPrimaryTabRefresh = function doPrimaryTabRefresh(result) {
-            sforce.console.refreshPrimaryTabById(result.id, true, refreshPrimaryTabSuccess);
-        };
-        var refreshPrimaryTabSuccess = function refreshPrimaryTabSuccess(result) {
-            if (result.success != true) {
-                alert('{!$Label.CEC_CaseRefreshAlertError}');
-            }
-        };
-        //open the Product Range visualforce page in a popup.
-        function popitup(url) {
-            newwindow=window.open(url,'name','width=1000, height=600');
-            if (window.focus) {newwindow.focus()}
-            return false;
-        }
-       </script>
+    };
+    //open the Product Range visualforce page in a popup.
+    function popitup(url) {
+        newwindow=window.open(url,'name','width=1000, height=600');
+        if (window.focus) {newwindow.focus()}
+        return false;
+    }
+    </script>
 </apex:page>

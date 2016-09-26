@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This is set up to manage SLA for contract process management.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>DBTD_SLA1__c</fullName>
+        <description>This defines SLA1 for DBTD project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA1 for DBTD project type.</inlineHelpText>
+        <label>DBTD SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DBTD_SLA2__c</fullName>
+        <description>This defines SLA2 for DBTD project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA2 for DBTD project type.</inlineHelpText>
+        <label>DBTD SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Others_SLA1__c</fullName>
+        <description>This defines SLA1 for Others project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA1 for Others project type.</inlineHelpText>
+        <label>Others SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Others_SLA2__c</fullName>
+        <description>This defines SLA2 for Others project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA2 for Others project type.</inlineHelpText>
+        <label>Others SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PADBTD_SLA1__c</fullName>
+        <defaultValue>&quot;NA&quot;</defaultValue>
+        <description>This defines SLA1 for PADBTD project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA1 for PADBTD project type.</inlineHelpText>
+        <label>PADBTD SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PADBTD_SLA2__c</fullName>
+        <description>This defines SLA2 for PADBTD project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA2 for PADBTD project type.</inlineHelpText>
+        <label>PADBTD SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PA_SLA1__c</fullName>
+        <defaultValue>&quot;NA&quot;</defaultValue>
+        <description>This defines SLA1 for PA project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA1 for PA project.</inlineHelpText>
+        <label>PA SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PA_SLA2__c</fullName>
+        <defaultValue>&quot;NA&quot;</defaultValue>
+        <description>This defines SLA2 for PA project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This defines SLA2 for PA project type.</inlineHelpText>
+        <label>PA SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RA_SLA1__c</fullName>
+        <defaultValue>&quot;NA&quot;</defaultValue>
+        <description>This set SLA1 for RA project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This set SLA1 for RA project type.</inlineHelpText>
+        <label>RA SLA1</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RA_SLA2__c</fullName>
+        <description>This captures SLA2 for RA project type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This captures SLA2 for RA project type.</inlineHelpText>
+        <label>RA SLA2</label>
+        <length>3</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CPA_SLA Configuration</label>
+    <visibility>Public</visibility>
+</CustomObject>

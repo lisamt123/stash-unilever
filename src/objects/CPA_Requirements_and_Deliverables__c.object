@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>It describes Unilever’s requirements in respect of this Project . Identify the main deliverable expected and the specific milestone goals that Supplier is required to meet. These requirements should be already approved by the Unilever business</description>
@@ -53,7 +52,6 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -134,7 +132,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
     <listViews>
         <fullName>CAP_ULPM_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -143,7 +141,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
     <listViews>
         <fullName>CAP_VDM_Queue_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -152,7 +150,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
     <listViews>
         <fullName>CPA_SMT_Requirements_and_Deliverables</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -176,7 +174,7 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;  and PermissionSet.Name in (&apos;CPA_SMT&apos;,&apos;CPA_ADM&apos;,&apos;CPA_ULPM&apos;)&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
@@ -192,7 +190,7 @@ alert(&quot;New Requirements and Deliverables can be created before Associated P
 { 
 alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
 }else{ 
-window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_parent&quot;); 
 } 
 
 }else if(permissionSetName == &quot;CPA_SMT&quot;){ 
@@ -200,7 +198,7 @@ if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;)
 { 
 alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
 }else{ 
-window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);	
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_parent&quot;);	
 } 
 }</url>
     </webLinks>

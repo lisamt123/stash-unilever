@@ -69,7 +69,7 @@ public with sharing class CPA_LOITrigger_Handler
     public void beforeInsert(SObject so)
     {
         if(triggerShouldExecute){
-            CPA_LOI_TriggerUtil.checkforCancel(trigger.new);
+            //CPA_LOI_TriggerUtil.checkforCancel(trigger.new); commented by Pooja for bug #428 in radar
             CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);
             //added by dinesh to generate internal LOI ID and internal PWO ID
             //CPA_LOI_TriggerUtil.internalLIOID(trigger.new);

@@ -1,0 +1,2649 @@
+{
+    "label": "Proposition Dashboard",
+    "state": {
+        "gridLayouts": [],
+        "layouts": [],
+        "steps": {
+            "CTA_Compliance_23": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -2
+                                    ],
+                                    [
+                                        "month",
+                                        -2
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "CTA_Compliance_24": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_1) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"1 month ahead\"];r = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"2 month ago\"];w = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"1 month ago\"..\"1 month ago\"];c = cogroup q by all, r by all, w by all; c = foreach c generate  ( (sum(w.CTA_Compliance)/count(w))*100) - ((sum(r.CTA_Compliance)/count(r))*100) as 'Percent_Diff';",
+                    "measures": [
+                        [
+                            "Percent",
+                            "Diff",
+                            "Percent_Diff",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_35": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "CTA Score %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Country' in {{ selection(Country_29) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_32) }}; q = filter q by 'Region' in {{ selection(Region_34) }}; q = filter q by 'Channel' in {{ selection(Channel_35) }}; q = filter q by 'Product_category' in {{ selection(Product_category_36) }}; q = filter q by 'Customer' in {{ selection(Customer_37) }}; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_1) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by 'Country' in {{ selection(Country_20) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_31) }}; q = filter q by 'Region' in {{ selection(Region_33) }}; q = filter q by 'Channel' in {{ selection(Channel_27) }}; q = filter q by 'Product_category' in {{ selection(Product_category_26) }}; q = filter q by 'Customer' in {{ selection(Customer_28) }}; q = group q by 'Channel'; q = foreach q generate 'Channel' as 'Channel', sum('CTA_Message') as 'sum_CTA_Message', sum('CTA_Compliant') as 'sum_CTA_Compliant',  sum('CTA_Compliant')/sum('CTA_Message') as 'avg_CTA_Compliant';  q = limit q 2000;",
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_type_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "CTA_Compliance_22": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -1
+                                    ],
+                                    [
+                                        "month",
+                                        -1
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_36": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "CTA Score %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Country' in {{ selection(Country_29) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_32) }}; q = filter q by 'Region' in {{ selection(Region_34) }}; q = filter q by 'Channel' in {{ selection(Channel_35) }}; q = filter q by 'Product_category' in {{ selection(Product_category_36) }}; q = filter q by 'Customer' in {{ selection(Customer_37) }}; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_1) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by 'Country' in {{ selection(Country_20) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_31) }}; q = filter q by 'Region' in {{ selection(Region_33) }}; q = filter q by 'Channel' in {{ selection(Channel_27) }}; q = filter q by 'Product_category' in {{ selection(Product_category_26) }}; q = filter q by 'Customer' in {{ selection(Customer_28) }}; q = group q by 'Product_category'; q = foreach q generate 'Product_category' as 'Product_category', sum('CTA_Message') as 'sum_CTA_Message', sum('CTA_Compliant') as 'sum_CTA_Compliant',  sum('CTA_Compliant')/sum('CTA_Message') as 'avg_CTA_Compliant';  q = limit q 2000;",
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_10": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_19": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_20": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_33": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_34": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "CTA Score %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Country' in {{ selection(Country_29) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_32) }}; q = filter q by 'Region' in {{ selection(Region_34) }}; q = filter q by 'Channel' in {{ selection(Channel_35) }}; q = filter q by 'Product_category' in {{ selection(Product_category_36) }}; q = filter q by 'Customer' in {{ selection(Customer_37) }}; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_1) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by 'Country' in {{ selection(Country_20) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_31) }}; q = filter q by 'Region' in {{ selection(Region_33) }}; q = filter q by 'Channel' in {{ selection(Channel_27) }}; q = filter q by 'Product_category' in {{ selection(Product_category_26) }}; q = filter q by 'Customer' in {{ selection(Customer_28) }}; q = group q by 'Region'; q = foreach q generate 'Region' as 'Region', sum('CTA_Message') as 'sum_CTA_Message', sum('CTA_Compliant') as 'sum_CTA_Compliant',  sum('CTA_Compliant')/sum('CTA_Message') as 'avg_CTA_Compliant';  q = limit q 2000;",
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_15": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_18": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_37": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "CTA Score %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Country' in {{ selection(Country_29) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_32) }}; q = filter q by 'Region' in {{ selection(Region_34) }}; q = filter q by 'Channel' in {{ selection(Channel_35) }}; q = filter q by 'Product_category' in {{ selection(Product_category_36) }}; q = filter q by 'Customer' in {{ selection(Customer_37) }}; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_1) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by 'Country' in {{ selection(Country_20) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_31) }}; q = filter q by 'Region' in {{ selection(Region_33) }}; q = filter q by 'Channel' in {{ selection(Channel_27) }}; q = filter q by 'Product_category' in {{ selection(Product_category_26) }}; q = filter q by 'Customer' in {{ selection(Customer_28) }}; q = group q by 'Customer'; q = foreach q generate 'Customer' as 'Customer', sum('CTA_Message') as 'sum_CTA_Message', sum('CTA_Compliant') as 'sum_CTA_Compliant',  sum('CTA_Compliant')/sum('CTA_Message') as 'avg_CTA_Compliant'; q = limit q 10;",
+                    "limit": [
+                        [
+                            10
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "City_6": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "City"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Trade_Format_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Trade_Format"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_29": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "CTA Score %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Country' in {{ selection(Country_29) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_32) }}; q = filter q by 'Region' in {{ selection(Region_34) }}; q = filter q by 'Channel' in {{ selection(Channel_35) }}; q = filter q by 'Product_category' in {{ selection(Product_category_36) }}; q = filter q by 'Customer' in {{ selection(Customer_37) }}; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_1) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by 'Country' in {{ selection(Country_20) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_31) }}; q = filter q by 'Region' in {{ selection(Region_33) }}; q = filter q by 'Channel' in {{ selection(Channel_27) }}; q = filter q by 'Product_category' in {{ selection(Product_category_26) }}; q = filter q by 'Customer' in {{ selection(Customer_28) }}; q = group q by 'Country'; q = foreach q generate 'Country' as 'Country', sum('CTA_Message') as 'sum_CTA_Message', sum('CTA_Compliant') as 'sum_CTA_Compliant',  sum('CTA_Compliant')/sum('CTA_Message') as 'avg_CTA_Compliant';  q = limit q 2000;",
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_27": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Province_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Province"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Subchannel_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Subchannel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_25": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -12
+                                    ],
+                                    [
+                                        "month",
+                                        0
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_12) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_3) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_4) }}"
+                        ],
+                        [
+                            "Province",
+                            "{{ selection(Province_5) }}"
+                        ],
+                        [
+                            "City",
+                            "{{ selection(City_6) }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ selection(Sales_territory_8) }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ selection(Sales_area_7) }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ selection(Trade_Format_9) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_10) }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ selection(Subchannel_11) }}"
+                        ],
+                        [
+                            "Banner",
+                            "{{ selection(Banner_16) }}"
+                        ],
+                        [
+                            "Customer_type",
+                            "{{ selection(Customer_type_13) }}"
+                        ],
+                        [
+                            "Customer_subtype",
+                            "{{ selection(Customer_subtype_14) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_15) }}"
+                        ],
+                        [
+                            "Cluster",
+                            "{{ selection(Cluster_2) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_20) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_29) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_18) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_27) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_35) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_28) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_37) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_33) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_34) }}"
+                        ],
+                        [
+                            "Product_division",
+                            "{{ selection(Product_division_17) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_31) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_32) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_26) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_36) }}"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "CTA_Message_38": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "CTA_Message"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_26": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_32": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "CTA Score %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Country' in {{ selection(Country_29) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_32) }}; q = filter q by 'Region' in {{ selection(Region_34) }}; q = filter q by 'Channel' in {{ selection(Channel_35) }}; q = filter q by 'Product_category' in {{ selection(Product_category_36) }}; q = filter q by 'Customer' in {{ selection(Customer_37) }}; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_of_audit_Year_1) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by 'Country' in {{ selection(Country_20) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_31) }}; q = filter q by 'Region' in {{ selection(Region_33) }}; q = filter q by 'Channel' in {{ selection(Channel_27) }}; q = filter q by 'Product_category' in {{ selection(Product_category_26) }}; q = filter q by 'Customer' in {{ selection(Customer_28) }}; q = group q by 'X4P_5P_6P'; q = foreach q generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('CTA_Message') as 'sum_CTA_Message', sum('CTA_Compliant') as 'sum_CTA_Compliant',  sum('CTA_Compliant')/sum('CTA_Message') as 'avg_CTA_Compliant';  q = limit q 2000;",
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_31": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_12": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Banner_16": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Banner"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_39": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "format": "percentage",
+                        "header": "Availability",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "CTA_Compliant"
+                                ]
+                            ],
+                            "groups": [
+                                "CTA_Message"
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -2
+                                            ],
+                                            [
+                                                "month",
+                                                -2
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_12) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_3) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_4) }}"
+                                ],
+                                [
+                                    "Province",
+                                    "{{ selection(Province_5) }}"
+                                ],
+                                [
+                                    "City",
+                                    "{{ selection(City_6) }}"
+                                ],
+                                [
+                                    "Sales_territory",
+                                    "{{ selection(Sales_territory_8) }}"
+                                ],
+                                [
+                                    "Sales_area",
+                                    "{{ selection(Sales_area_7) }}"
+                                ],
+                                [
+                                    "Trade_Format",
+                                    "{{ selection(Trade_Format_9) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_10) }}"
+                                ],
+                                [
+                                    "Subchannel",
+                                    "{{ selection(Subchannel_11) }}"
+                                ],
+                                [
+                                    "Banner",
+                                    "{{ selection(Banner_16) }}"
+                                ],
+                                [
+                                    "Customer_type",
+                                    "{{ selection(Customer_type_13) }}"
+                                ],
+                                [
+                                    "Customer_subtype",
+                                    "{{ selection(Customer_subtype_14) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_15) }}"
+                                ],
+                                [
+                                    "Cluster",
+                                    "{{ selection(Cluster_2) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_20) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_29) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_18) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_27) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_35) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_28) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_37) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_33) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_34) }}"
+                                ],
+                                [
+                                    "Product_division",
+                                    "{{ selection(Product_division_17) }}"
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_31) }}"
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_32) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_26) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_36) }}"
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "pigql": "q = load \"DPS_CTA_RAW\"; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }};  cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'CTA_Message', last by 'CTA_Message'; diff = foreach diff generate last.CTA_Message as 'CTA_Message', (avg(cur['CTA_Compliant'])-avg(last['CTA_Compliant'])) as 'Percent_Diff';",
+                            "groups": [
+                                "CTA_Message"
+                            ]
+                        },
+                        "showBars": false
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "pigql": "q = load \"DPS_CTA_RAW\"; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }};  cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'CTA_Message', last by 'CTA_Message'; diff = foreach diff generate last.CTA_Message as 'CTA_Message', (avg(cur['CTA_Compliant'])-avg(last['CTA_Compliant'])) as 'Percent_Diff';",
+                            "groups": [
+                                "CTA_Message"
+                            ]
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Customer_28": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "limit": [
+                        [
+                            10
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_subtype_14": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_subtype"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_40": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_41": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Year"
+                    ]
+                },
+                "selectMode": "single",
+                "start": [
+                    [
+                        [
+                            "month",
+                            -6
+                        ],
+                        [
+                            "month",
+                            -6
+                        ]
+                    ]
+                ],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_area_7": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_area"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_30": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliant",
+                            "avg_CTA_Compliant",
+                            {
+                                "display": "CTA Score %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_CTA_AGGREGATED\"; q = filter q by 'Country' in {{ selection(Country_29) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_32) }}; q = filter q by 'Region' in {{ selection(Region_34) }}; q = filter q by 'Channel' in {{ selection(Channel_35) }}; q = filter q by 'Product_category' in {{ selection(Product_category_36) }}; q = filter q by 'Customer' in {{ selection(Customer_37) }}; q = filter q by 'Cluster' in {{ selection(Cluster_2) }}; q = filter q by 'Country' in {{ selection(Country_3) }}; q = filter q by 'Region' in {{ selection(Region_4) }}; q = filter q by 'Province' in {{ selection(Province_5) }}; q = filter q by 'City' in {{ selection(City_6) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_8) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_7) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_9) }}; q = filter q by 'Channel' in {{ selection(Channel_10) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_11) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_12) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_13) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_14) }}; q = filter q by 'Customer' in {{ selection(Customer_15) }}; q = filter q by 'Banner' in {{ selection(Banner_16) }}; q = filter q by 'Product_division' in {{ selection(Product_division_17) }}; q = filter q by 'Product_category' in {{ selection(Product_category_18) }}; q = filter q by 'Country' in {{ selection(Country_20) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_31) }}; q = filter q by 'Region' in {{ selection(Region_33) }}; q = filter q by 'Channel' in {{ selection(Channel_27) }}; q = filter q by 'Product_category' in {{ selection(Product_category_26) }}; q = filter q by 'Customer' in {{ selection(Customer_28) }}; q = group q by ('Date_of_audit_Year', 'Date_of_audit_Month'); q = foreach q generate 'Date_of_audit_Year' as 'Date_of_audit_Year', 'Date_of_audit_Month' as 'Date_of_audit_Month', 'Date_of_audit_Year' + \"~~~\" + 'Date_of_audit_Month' as 'Date_of_audit_Year~~~Date_of_audit_Month', sum('CTA_Message') as 'sum_CTA_Message', sum('CTA_Compliant') as 'sum_CTA_Compliant',  sum('CTA_Compliant')/sum('CTA_Message') as 'avg_CTA_Compliant';  q = limit q 2000;",
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Country_3": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_division_17": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_division"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_Region_21": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "CTA_Compliance",
+                            "avg_CTA_Compliance",
+                            {
+                                "display": "Proposition Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "heatmap"
+                }
+            },
+            "Cluster_2": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_4": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_territory_8": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_territory"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_CTA_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            }
+        },
+        "widgets": {
+            "text_18": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 1110,
+                    "zIndex": 24
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of CTA availability in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_19": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 800,
+                    "zIndex": 26
+                },
+                "parameters": {
+                    "text": "Proposition Score by Country"
+                }
+            },
+            "text_13": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1180,
+                    "zIndex": 15
+                },
+                "parameters": {
+                    "text": "Proposition Compliance Trend"
+                }
+            },
+            "text_10": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3030,
+                    "zIndex": 12
+                },
+                "parameters": {
+                    "text": "Proposition Compliance by Category"
+                }
+            },
+            "text_53": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4290,
+                    "zIndex": 64
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the list of percentages of CTA availability grouped by each question\nfor the latest month, and also the percentage increase or decrease compared to the previous month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_12": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3470,
+                    "zIndex": 14
+                },
+                "parameters": {
+                    "text": "Proposition Compliance by Top Customers "
+                }
+            },
+            "datefilter_1": {
+                "type": "dateselector",
+                "position": {
+                    "h": 80,
+                    "w": 410,
+                    "x": 40,
+                    "y": 80,
+                    "zIndex": 100000
+                },
+                "parameters": {
+                    "expanded": false,
+                    "step": "Date_of_audit_Year_1"
+                }
+            },
+            "text_11": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2450,
+                    "zIndex": 13
+                },
+                "parameters": {
+                    "text": "Proposition Compliance by Channel"
+                }
+            },
+            "text_50": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4020,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "text": "CTA Availability by Question"
+                }
+            },
+            "box_16": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 4600,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0)"
+                }
+            },
+            "box_15": {
+                "type": "box",
+                "position": {
+                    "h": 80,
+                    "w": 260,
+                    "x": 90,
+                    "y": 4450,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(246, 249, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_3": {
+                "type": "text",
+                "position": {
+                    "x": 450,
+                    "y": 150,
+                    "zIndex": 6
+                },
+                "parameters": {
+                    "text": "Customer"
+                }
+            },
+            "chart_6": {
+                "type": "chart",
+                "position": {
+                    "h": 450,
+                    "w": 500,
+                    "x": 40,
+                    "y": 2510,
+                    "zIndex": 21
+                },
+                "parameters": {
+                    "step": "Channel_27",
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_2": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 150,
+                    "zIndex": 4
+                },
+                "parameters": {
+                    "text": "Geography"
+                }
+            },
+            "chart_5": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 3090,
+                    "zIndex": 20
+                },
+                "parameters": {
+                    "step": "Product_category_26",
+                    "visualizationType": "hbar"
+                }
+            },
+            "box_13": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 4390,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(248, 250, 251, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_5": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3400,
+                    "zIndex": 4
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition\ncompliant grouped by categories for the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "box_12": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 4020,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(248, 252, 253, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_4": {
+                "type": "text",
+                "position": {
+                    "x": 800,
+                    "y": 150,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "text": "Product"
+                }
+            },
+            "chart_7": {
+                "type": "chart",
+                "position": {
+                    "h": 400,
+                    "w": 500,
+                    "x": 40,
+                    "y": 3530,
+                    "zIndex": 22
+                },
+                "parameters": {
+                    "step": "Customer_28",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_2": {
+                "type": "chart",
+                "position": {
+                    "h": 250,
+                    "w": 500,
+                    "x": 40,
+                    "y": 860,
+                    "zIndex": 8
+                },
+                "parameters": {
+                    "step": "Country_20",
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_7": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 800,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "text": "Proposition Compliance by Country"
+                }
+            },
+            "box_10": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 3470,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(244, 248, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_4": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 1240,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_25",
+                    "visualizationType": "time"
+                }
+            },
+            "text_8": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2010,
+                    "zIndex": 10
+                },
+                "parameters": {
+                    "text": "Proposition Compliance by Region"
+                }
+            },
+            "chart_20": {
+                "type": "chart",
+                "position": {
+                    "h": 400,
+                    "w": 500,
+                    "x": 680,
+                    "y": 3530,
+                    "zIndex": 44
+                },
+                "parameters": {
+                    "step": "Customer_37",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "comparetable_1": {
+                "type": "comparetable",
+                "position": {
+                    "h": 210,
+                    "w": 500,
+                    "x": 40,
+                    "y": 4070,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "step": "compare_39",
+                    "selectModeOverride": "single"
+                }
+            },
+            "dimfilter_7": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 560,
+                    "zIndex": 100007
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_territory_8"
+                }
+            },
+            "box_1": {
+                "type": "box",
+                "position": {
+                    "h": 90,
+                    "w": 290,
+                    "x": 860,
+                    "y": 30,
+                    "zIndex": 24
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(248, 252, 253, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.13)",
+                    "stretch": true,
+                    "imageUrl": "01523000000Hvz6"
+                }
+            },
+            "dimfilter_8": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 200,
+                    "zIndex": 100008
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Trade_Format_9"
+                }
+            },
+            "text_1": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 30,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "text": "Period"
+                }
+            },
+            "dimfilter_9": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 260,
+                    "zIndex": 100009
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Channel_10"
+                }
+            },
+            "box_3": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 800,
+                    "zIndex": 50
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(239, 244, 246, 0.01)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "h": 750,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 10,
+                    "zIndex": 49
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(241, 246, 248, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.98)"
+                }
+            },
+            "dimfilter_3": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 320,
+                    "zIndex": 100003
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Region_4"
+                }
+            },
+            "dimfilter_4": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 380,
+                    "zIndex": 100004
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Province_5"
+                }
+            },
+            "dimfilter_5": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 440,
+                    "zIndex": 100005
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "City_6"
+                }
+            },
+            "dimfilter_16": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 810,
+                    "y": 200,
+                    "zIndex": 100016
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_division_17"
+                }
+            },
+            "dimfilter_6": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 500,
+                    "zIndex": 100006
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_area_7"
+                }
+            },
+            "dimfilter_17": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 810,
+                    "y": 260,
+                    "zIndex": 100017
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_category_18"
+                }
+            },
+            "dimfilter_14": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 560,
+                    "zIndex": 100014
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_15"
+                }
+            },
+            "dimfilter_15": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 620,
+                    "zIndex": 100015
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Banner_16"
+                }
+            },
+            "dimfilter_1": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 200,
+                    "zIndex": 100001
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Cluster_2"
+                }
+            },
+            "dimfilter_12": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 440,
+                    "zIndex": 100012
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_type_13"
+                }
+            },
+            "dimfilter_2": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 40,
+                    "y": 260,
+                    "zIndex": 100002
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Country_3"
+                }
+            },
+            "dimfilter_13": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 500,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_subtype_14"
+                }
+            },
+            "text_41": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 4390,
+                    "zIndex": 48
+                },
+                "parameters": {
+                    "text": "Count of Audited Perfect Stores"
+                }
+            },
+            "text_40": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 3940,
+                    "zIndex": 47
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition\ncompliant grouped by top customers for the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "number_2": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 40,
+                    "y": 4450,
+                    "zIndex": 62
+                },
+                "parameters": {
+                    "measureField": "count",
+                    "step": "all_40",
+                    "textColor": "rgb(243, 73, 73)",
+                    "title": " "
+                }
+            },
+            "chart_19": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 680,
+                    "y": 3090,
+                    "zIndex": 41
+                },
+                "parameters": {
+                    "step": "Product_category_36",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_18": {
+                "type": "chart",
+                "position": {
+                    "h": 450,
+                    "w": 500,
+                    "x": 680,
+                    "y": 2510,
+                    "zIndex": 39
+                },
+                "parameters": {
+                    "step": "Channel_35",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_17": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 680,
+                    "y": 2070,
+                    "zIndex": 35
+                },
+                "parameters": {
+                    "step": "Region_34",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_16": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 40,
+                    "y": 2070,
+                    "zIndex": 34
+                },
+                "parameters": {
+                    "step": "Region_33",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_15": {
+                "type": "chart",
+                "position": {
+                    "h": 250,
+                    "w": 500,
+                    "x": 680,
+                    "y": 1680,
+                    "zIndex": 30
+                },
+                "parameters": {
+                    "step": "X4P_5P_6P_32",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_14": {
+                "type": "chart",
+                "position": {
+                    "h": 250,
+                    "w": 500,
+                    "x": 680,
+                    "y": 860,
+                    "zIndex": 29
+                },
+                "parameters": {
+                    "step": "Country_29",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_13": {
+                "type": "chart",
+                "position": {
+                    "h": 250,
+                    "w": 500,
+                    "x": 40,
+                    "y": 1680,
+                    "zIndex": 29
+                },
+                "parameters": {
+                    "step": "X4P_5P_6P_31",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_12": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 500,
+                    "x": 680,
+                    "y": 1240,
+                    "zIndex": 26
+                },
+                "parameters": {
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_30",
+                    "exploreLink": false,
+                    "visualizationType": "time"
+                }
+            },
+            "text_36": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 3400,
+                    "zIndex": 42
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of CTA availability grouped by\ncategories for the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_35": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 3030,
+                    "zIndex": 40
+                },
+                "parameters": {
+                    "text": "Proposition Score by Category\n"
+                }
+            },
+            "text_38": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 3940,
+                    "zIndex": 45
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of CTA availability grouped by\ntop customers for the country in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_37": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 3470,
+                    "zIndex": 43
+                },
+                "parameters": {
+                    "text": "Proposition Score by Top Customers "
+                }
+            },
+            "text_32": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 2450,
+                    "zIndex": 38
+                },
+                "parameters": {
+                    "text": "Proposition Score by Channel"
+                }
+            },
+            "text_31": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2380,
+                    "zIndex": 37
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition\ncompliant grouped by regions of the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_34": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 2970,
+                    "zIndex": 39
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of enrolled stores that were Proposition\ncompliant grouped by channels for the country in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_33": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 2970,
+                    "zIndex": 38
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of CTA availability grouped by\nchannels for the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_10": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 320,
+                    "zIndex": 100010
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Subchannel_11"
+                }
+            },
+            "dimfilter_11": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 450,
+                    "y": 380,
+                    "zIndex": 100011
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "X4P_5P_6P_12",
+                    "title": "Tier"
+                }
+            },
+            "text_30": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 2380,
+                    "zIndex": 36
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of CTA availability grouped by\nregions of the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 1180,
+                    "zIndex": 52
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(244, 248, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_7": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 1620,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(237, 243, 246, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_6": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 3030,
+                    "zIndex": 53
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(241, 246, 248, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_9": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 2010,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(241, 246, 248, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_8": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1200,
+                    "x": 20,
+                    "y": 2450,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(244, 248, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_29": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 2010,
+                    "zIndex": 33
+                },
+                "parameters": {
+                    "text": "Proposition Score by Region"
+                }
+            },
+            "text_28": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 1940,
+                    "zIndex": 32
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of CTA availability grouped by\n4P, 5P and 6P stores for the country in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_25": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 1620,
+                    "zIndex": 27
+                },
+                "parameters": {
+                    "text": "Proposition Score by 4P/5P/6P\n"
+                }
+            },
+            "text_24": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 1550,
+                    "zIndex": 29
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of CTA availability for the\ncountry over a period of last 12 months.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_27": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1940,
+                    "zIndex": 31
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were\nProposition compliant for the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_26": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1620,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "text": "Proposition Compliance by 4P/5P/6P"
+                }
+            },
+            "text_20": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1110,
+                    "zIndex": 25
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of enrolled stores that were\nProposition compliant in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_23": {
+                "type": "text",
+                "position": {
+                    "x": 40,
+                    "y": 1550,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the percentage of enrolled stores that were\nProposition compliant for the country over a period of last 12 months.",
+                    "textAlignment": "left"
+                }
+            },
+            "text_22": {
+                "type": "text",
+                "position": {
+                    "x": 680,
+                    "y": 1180,
+                    "zIndex": 26
+                },
+                "parameters": {
+                    "text": "Proposition Score Trend"
+                }
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb8A0000000SRySAM",
+            "name": "DPS_CTA_AGGREGATED"
+        },
+        {
+            "id": "0Fb8A0000000SS3SAM",
+            "name": "DPS_CTA_RAW"
+        }
+    ]
+}

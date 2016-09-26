@@ -6,17 +6,26 @@ public with sharing class Oblix_TestUtils {
     public static final String BRAND_STATUS_ACTIVE = 'active';
     public static final String DEFAULT_SMALL_PROD_CAT_NAME = 'testsmallproductcategory';
     public static final String DEFAULT_BIG_PROD_CAT_NAME = 'testbigproductcategory';
+
+    public static final String UTF8 = 'UTF-8';
+    public static final String CATEGORY_FINANCE = 'Category Finance';
+    public static final String EUROPE_LONDON = 'Europe/London';
+
+
+    public static final String JOB_STATUS_SYNC_COMPLETED = 'Sync Completed';
+    public static final String JOB_STATUS_SYNC_REQUESTED = 'Sync Requested';
+    public static final String JOB_STATUS_SYNC_REQUIRED = 'Sync Required';
     
     private static final String EN_US  = 'en_us';
     private Oblix_TestUtils(){}
     
     public static User createTestUser(){
-        Profile profile = [Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       
+        Profile profile = [Select Id from Profile where Name='System Administrator'];       
      
         User user = new User(Alias = 'test123', Email = 'standarduser@unilever.com', 
-          EmailEncodingKey = 'UTF-8', LastName = 'af test', LanguageLocaleKey = EN_US, 
+          EmailEncodingKey = UTF8, LastName = 'af test', LanguageLocaleKey = EN_US, 
           LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'sf test one', 
-          TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+          TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
           UserName = 'testuseradmin@test123321.com');
         insert user; 
 
@@ -28,9 +37,9 @@ public with sharing class Oblix_TestUtils {
         PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_UL_1_V1'];
      
         User user = new User(Alias = 'QA1', Email = 'standarduser@unilever.com.qa1', 
-        EmailEncodingKey = 'UTF-8', LastName = 'qa1 test', LanguageLocaleKey = EN_US, 
+        EmailEncodingKey = UTF8, LastName = 'qa1 test', LanguageLocaleKey = EN_US, 
         LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'qa1user', 
-        TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+        TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
         UserName = 'testuser@test123321.com');
         insert user; 
 
@@ -39,7 +48,40 @@ public with sharing class Oblix_TestUtils {
 
         return user;
     }
+    
+    public static User createSuperUser(){
+        Profile profile = [Select Id from Profile where Name='Marketing User'];       
+        PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_Super_User_V1'];
+     
+        User user = new User(Alias = 'S_User', Email = 'Super_User_Test@unilever.com.superuser', 
+        EmailEncodingKey = UTF8, LastName = 'Super_User_Test test', LanguageLocaleKey = EN_US, 
+        LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Super_User_Test', 
+        TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
+        UserName = 'Super_User_Test@Super_User_Test123.com');
+        insert user; 
 
+        PermissionSetAssignment pa = new PermissionSetAssignment(permissionSetId = permission_set.Id, AssigneeId = user.Id);
+        insert pa;
+
+        return user;
+    }
+    
+    public static User createAdminSuperUser(){
+        Profile profile = [Select Id from Profile where Name='System Administrator'];       
+        PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_Super_User_V1'];
+     
+        User user = new User(Alias = 'S_Admin', Email = 'Admin_Super_User_Test@unilever.com.superuser', 
+        EmailEncodingKey = UTF8, LastName = 'Admin_Super_User_Test test', LanguageLocaleKey = EN_US, 
+        LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'Admin_Super_User_Test', 
+        TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
+        UserName = 'Admin_Super_User_Test@Admin_Super_User_Test123.com');
+        insert user; 
+
+        PermissionSetAssignment pa = new PermissionSetAssignment(permissionSetId = permission_set.Id, AssigneeId = user.Id);
+        insert pa;
+
+        return user;
+    }
 
     public static MDO_Brand__c createBrand(String name, String status){
         MDO_Brand__c brand = new MDO_Brand__c(Name = name,status__c = status);
@@ -59,7 +101,7 @@ public with sharing class Oblix_TestUtils {
     public static Marketing_SOW__c createTestMarketingSow(String name, String status, Id brandId, Id smallCategoryId, Id bigCategoryId, Id accountId){
         Marketing_SOW__c marketingSow = new Marketing_SOW__c();
         marketingSow.Active__c = true;
-        marketingSow.Name = name == null ? DEFAULT_MARKETING_SOW_NAME : name;
+        marketingSow.Name_Prefix__c = name == null ? DEFAULT_MARKETING_SOW_NAME : name;
         marketingSow.SOW_Status__c = status == null ? SOW_STATUS_OPEN : status;
         marketingSow.OblixBrand__c = brandId;
         marketingSow.SmallProductCategory__c = smallCategoryId;
@@ -101,9 +143,10 @@ public with sharing class Oblix_TestUtils {
 
     public static Oblix_SOW_Projects__c createSowProjects(String name, Id marketingSowId){
         Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
-        project.Name = name;
+        project.Name_Prefix__c = name;
         project.Financial_Year__c = marketingSowId;
         project.Campaign_Countries__c = 'France, UK, Germany';
+        System.DEBUG('Project Name : ' + project);
         insert project;
         return project;
     }
@@ -118,8 +161,21 @@ public with sharing class Oblix_TestUtils {
     public static Marketing_Basics__c createMarketingBasics(Id marketingSowId){
         Marketing_Basics__c mbasics = new Marketing_Basics__c();
         mbasics.Oblix_SOWMarketing__c = marketingSowId;
+        mbasics.RecordTypeId = Oblix_Utils.RT_NON_CAMPAIGN_RESOURCE_ID;
+        mbasics.Hourly_Rate_or_FTE__c = 10;
         insert mbasics;
         return mbasics;
+    }
+
+
+    public static List<Marketing_Basics__c> createMarketingBasics(Id sow_id, Integer records_to_create){
+        List<Marketing_Basics__c> list_records_to_return = new List<Marketing_Basics__c>();
+
+        for (Integer i =0; i<records_to_create; i++){
+            list_records_to_return.add(new Marketing_Basics__c(Name = 'TEST_NON_CAMPAIGN_' + i, Oblix_SOWMarketing__c = sow_id ));
+        }
+
+        return list_records_to_return;
     }
 
 
@@ -143,6 +199,28 @@ public with sharing class Oblix_TestUtils {
         return asset;
     }
 
+    public static Oblix_Project_Assets__c createProjectAssets(Id projectId,String name,String type,String subCategory){
+        Asset_Scoring__c assetScoring = new Asset_Scoring__c();
+        assetScoring.Name = name;
+        assetScoring.Type__c = type;
+        assetScoring.Sub_Category__c = subCategory;
+        assetScoring.Point_Score__c = 150;
+        assetScoring.mdm_id__c = 'ASSET000144';
+        insert assetScoring;
+                
+                
+        Oblix_Project_Assets__c asset = new Oblix_Project_Assets__c();
+        asset.Quantity__c = 2;
+        asset.Asset_Type__c = type;
+        asset.Sub_Category__c = subCategory;  
+        asset.Agency_Projects__c = projectId;
+        asset.FULL_Description__c = assetScoring.Id;
+        insert asset;
+        System.DEBUG('Inserted Asset : ' + asset); 
+        return asset;
+    }
+
+
     public static Attachment createAttachment(String name, String body, Id parentId){
         Attachment attach = new Attachment();
         attach.Name = name;
@@ -151,6 +229,19 @@ public with sharing class Oblix_TestUtils {
         insert attach;
         return attach; 
     }
+
+
+    public static List<Attachment> createAttachment(Id parent_Id, Integer records_to_create ){
+        
+        List<Attachment> list_attachments = new List<Attachment>();
+
+        for (Integer i = 0 ; i < records_to_create; i++){
+            list_attachments.add(new Attachment(Name = 'Unite_Test_Attachment_'+i, Body = Blob.valueOf('Unit Test Attachment Body'), ParentId = parent_Id ));
+        }
+        
+        return list_attachments;
+    }
+
 
     public static Account createAccount(){
         Account acc = new Account();
@@ -181,11 +272,38 @@ public with sharing class Oblix_TestUtils {
     public static List<Oblix_Settings__c> createOblixCustomSettings(){
         List<Oblix_Settings__c> oblix_settings = new List<Oblix_Settings__c>();
 
-        String settings_json_string = '[{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_BRIEFING","Value__c":"10","Label__c":"Briefing","Attribute_1__c":"1"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_EXECUTION","Value__c":"25","Label__c":"Creative Execution","Attribute_1__c":"4"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_IDEATIOIN","Value__c":"30","Label__c":"Creative Ideation","Attribute_1__c":"3"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_PRODUCTION","Value__c":"15","Label__c":"Production","Attribute_1__c":"5"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_STRATEGY","Value__c":"20","Label__c":"Strategy & Planning","Attribute_1__c":"2"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_10_TO_20","Value__c":"0.25","Label__c":"Incremental Turnover 10M - 20M","Attribute_1__c":"S/M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_20_TO_30","Value__c":"0.35","Label__c":"Incremental Turnover 20M - 30M","Attribute_1__c":"M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_30_TO_40","Value__c":"0.45","Label__c":"Incremental Turnover 30M - 40M","Attribute_1__c":"M/L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_ABOVE_40","Value__c":"0.5","Label__c":"Incremental Turnover >40M","Attribute_1__c":"L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_BELOW_10","Value__c":"0.15","Label__c":"Incremental Turnover <10M","Attribute_1__c":"S"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_1","Value__c":"0.1","Label__c":"1 location"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_2","Value__c":"0.15","Label__c":"Up to 2 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_3","Value__c":"0.2","Label__c":"Up to 3 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_4","Value__c":"0.25","Label__c":"Up to 4 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_5","Value__c":"0.3","Label__c":"Up to 5 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_IDEA_EXISTING","Value__c":"0.6","Label__c":"Existing"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_IDEA_NEW_MULTI","Value__c":"1.2","Label__c":"New – Multi channel"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_IDEA_NEW_ONE","Value__c":"1","Label__c":"New – One channel"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_1","Value__c":"0.15","Label__c":"Local campaign, single language only"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_2","Value__c":"0.25","Label__c":"Local / regional campaign, mutiple languages (5)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_3","Value__c":"0.35","Label__c":"Multiple countries (5-10), multiple language (5-10)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_4","Value__c":"0.45","Label__c":"Multiple countries (11-15), mutiple language (c.15)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_5","Value__c":"0.5","Label__c":"Global campaign (all market clusters)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_100_TO_200","Value__c":"0.25","Label__c":"Total turnover €100-€200m","Attribute_1__c":"S/M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_200_TO_300","Value__c":"0.35","Label__c":"Total turnover €200-€300m","Attribute_1__c":"M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_300_TO_400","Value__c":"0.45","Label__c":"Total turnover €300-€400m","Attribute_1__c":"M/L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_ABOVE_400","Value__c":"0.5","Label__c":"Total turnover >€400m","Attribute_1__c":"L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_BELOW_100","Value__c":"0.15","Label__c":"Total turnover <€100m","Attribute_1__c":"S"}]';
+        String settings_json_string = '[{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_BRIEFING","Value__c":"10","Label__c":"Briefing","Attribute_1__c":"1"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"FX_TEXT_MESSAGE","Value__c":"Please note : on %date% fees were automatically updated with the current Unilever Planning rates. This may have resulted in a movement in both campaign and non-campaign fees since you last logged in.","Label__c":"Briefing","Attribute_1__c":""},{"attributes":{"type":"Oblix_Settings__c"},"Name":"FX_DURATION_IN_DAYS","Value__c":"10","Label__c":"","Attribute_1__c":""},{"attributes":{"type":"Oblix_Settings__c"},"Name":"FX_UPDATED_DATE","Value__c":"01/01/2016","Label__c":"","Attribute_1__c":""},{"attributes":{"type":"Oblix_Settings__c"},"Name":"BRAND_LED_GROWTH_LABEL","Value__c":"Brand Led Growth","Label__c":"","Attribute_1__c":""},{"attributes":{"type":"Oblix_Settings__c"},"Name":"INNOVATION_LABEL","Value__c":"Innovation","Label__c":"","Attribute_1__c":""},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_EXECUTION","Value__c":"25","Label__c":"Creative Execution","Attribute_1__c":"4"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_IDEATIOIN","Value__c":"30","Label__c":"Creative Ideation","Attribute_1__c":"3"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_PRODUCTION","Value__c":"15","Label__c":"Production","Attribute_1__c":"5"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"PROJECT_STAGE_STRATEGY","Value__c":"20","Label__c":"Strategy & Planning","Attribute_1__c":"2"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_10_TO_20","Value__c":"0.25","Label__c":"Incremental Turnover 10M - 20M","Attribute_1__c":"S/M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_20_TO_30","Value__c":"0.35","Label__c":"Incremental Turnover 20M - 30M","Attribute_1__c":"M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_30_TO_40","Value__c":"0.45","Label__c":"Incremental Turnover 30M - 40M","Attribute_1__c":"M/L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_ABOVE_40","Value__c":"0.5","Label__c":"Incremental Turnover >40M","Attribute_1__c":"L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_BRAND_GROWTH_BELOW_10","Value__c":"0.15","Label__c":"Incremental Turnover <10M","Attribute_1__c":"S"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_1","Value__c":"0.1","Label__c":"1 location"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_2","Value__c":"0.15","Label__c":"Up to 2 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_3","Value__c":"0.2","Label__c":"Up to 3 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_4","Value__c":"0.25","Label__c":"Up to 4 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_HUB_PARENTERS_5","Value__c":"0.3","Label__c":"Up to 5 locations"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_IDEA_EXISTING","Value__c":"0.6","Label__c":"Existing"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_IDEA_NEW_MULTI","Value__c":"1.2","Label__c":"New – Multi channel"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_IDEA_NEW_ONE","Value__c":"1","Label__c":"New – One channel"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_1","Value__c":"0.15","Label__c":"Local campaign, single language only"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_2","Value__c":"0.25","Label__c":"Local / regional campaign, mutiple languages (5)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_3","Value__c":"0.35","Label__c":"Multiple countries (5-10), multiple language (5-10)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_4","Value__c":"0.45","Label__c":"Multiple countries (11-15), mutiple language (c.15)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_PROJECT_MARKET_5","Value__c":"0.5","Label__c":"Global campaign (all market clusters)"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_100_TO_200","Value__c":"0.25","Label__c":"Total turnover €100-€200m","Attribute_1__c":"S/M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_200_TO_300","Value__c":"0.35","Label__c":"Total turnover €200-€300m","Attribute_1__c":"M"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_300_TO_400","Value__c":"0.45","Label__c":"Total turnover €300-€400m","Attribute_1__c":"M/L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_ABOVE_400","Value__c":"0.5","Label__c":"Total turnover >€400m","Attribute_1__c":"L"},{"attributes":{"type":"Oblix_Settings__c"},"Name":"SCORE_INNOVATION_TURNOVER_BELOW_100","Value__c":"0.15","Label__c":"Total turnover <€100m","Attribute_1__c":"S"}]';
         oblix_settings = (list<Oblix_Settings__c>) json.deserialize(settings_json_string,list<Oblix_Settings__c>.class);
 
         return oblix_settings;
     }
+
+    public static List<Oblix_FX_Change__c> createOblixFXChangeCustomSetting(){
+        List<Oblix_FX_Change__c> retList = new List<Oblix_FX_Change__c>();
+
+        Oblix_FX_Change__c csRec = new Oblix_FX_Change__c();
+
+        csRec.SetupOwnerId = UserInfo.getOrganizationId();
+        csRec.Acknowledged__c = false;
+        csRec.FX_Date__c = '01/01/2015';
+        csRec.Org_FX_Date__c = Date.Today();
+        retList.add(csRec);
+        
+        return retList;
+    }
+
+    public static List<Oblix_Job_Orchestration__c> createOblixJobOrchestrationCustomSetting(){
+        List<Oblix_Job_Orchestration__c> retList = new List<Oblix_Job_Orchestration__c>();
+
+        Oblix_Job_Orchestration__c csRec = new Oblix_Job_Orchestration__c();
+
+        csRec.SetupOwnerId = UserInfo.getOrganizationId();
+        csRec.Job_Is_Running__c = false;
+        retList.add(csRec);
+        
+        return retList;
+    }
+
 
     public static Map<Id, Oblix_SOW_Projects__c> insertCampaignsWithRelatedRecords(Integer number_of_campaigns,Integer  number_of_assets,Integer  number_of_hubs, Id sow_id,String brand_led_growth, String scale_1, String scale_2, String campaign_idea ){
 
@@ -248,7 +366,7 @@ public with sharing class Oblix_TestUtils {
             project = new Oblix_SOW_Projects__c();
 
             // make sure it is a unique name
-            project.Name = 'TEST_CAMPAIGN_' + date.today().format() + '_' +cam_num; 
+            project.Name_Prefix__c = 'TEST_CAMPAIGN_' + date.today().format() + '_' +cam_num; 
             project.Financial_Year__c = sow_id;
             project.Campaign_Countries__c = 'France, UK, Germany';
 
@@ -257,7 +375,12 @@ public with sharing class Oblix_TestUtils {
             project.Project_Scale_1__c = scale_1;
             project.Project_Scale_2__c = scale_2;
             project.Campaign_Idea__c = campaign_idea;
-
+            
+            project.Percentage_of_Fee_for_this_FY__c = 22.5;
+            project.Percentage_of_Fees_PFY__c = 22.5;
+            project.Total_Fees_for_Project__c = 12000;
+            project.Campaign_Total_Adjustment__c = 10;
+            project.Fees_PFY_Paid_Using_CFY_Calc__c = 100;
             list_new_campaigns.add(project);
         }
 
@@ -443,6 +566,79 @@ public with sharing class Oblix_TestUtils {
     }
 
 
+
+    public static List<Oblix_Calculator__c> createRoleRateCalculatorRecords(Id countryId, Id agencyId){
+
+        String country_calc_json = '';
+        country_calc_json += '[{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.288", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.945", "Role_Title__c":"Art Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.2881", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.946", "Role_Title__c":"Copywriter", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.2882", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.945", "Role_Title__c":"Creative Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Analytics", "Financial_Year__c":"FY2016", "FTE__c":"50000.2883", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.946", "Role_Title__c":"Data Analyst", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.2884", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.947", "Role_Title__c":"Designer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Planning", "Financial_Year__c":"FY2016", "FTE__c":"50000.2885", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.946", "Role_Title__c":"Digital Planning Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.2886", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.947", "Role_Title__c":"Information Architect", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.2887", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.948", "Role_Title__c":"Junior Art Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.2888", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.947", "Role_Title__c":"Junior Copywriter", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Production", "Financial_Year__c":"FY2016", "FTE__c":"50000.2889", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.948", "Role_Title__c":"Junior Project Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Planning", "Financial_Year__c":"FY2016", "FTE__c":"50000.289", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.949", "Role_Title__c":"Planner", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Production", "Financial_Year__c":"FY2016", "FTE__c":"50000.2891", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.948", "Role_Title__c":"Project Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.2894", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.949", "Role_Title__c":"Senior Art Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.2895", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.95", "Role_Title__c":"Senior Designer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Planning", "Financial_Year__c":"FY2016", "FTE__c":"50000.2896", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.951", "Role_Title__c":"Senior Planner", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Production", "Financial_Year__c":"FY2016", "FTE__c":"50000.2897", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.95", "Role_Title__c":"Senior Project Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.2898", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.951", "Role_Title__c":"Senior Software Developer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.2899", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.952", "Role_Title__c":"Software Developer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.29", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.951", "Role_Title__c":"Technology Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.2901", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.952", "Role_Title__c":"Technology Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.2902", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.953", "Role_Title__c":"Tester", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6337", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2098", "Role_Title__c":"Art Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6338", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2097", "Role_Title__c":"Copywriter", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6339", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.2098", "Role_Title__c":"Creative Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Analytics", "Financial_Year__c":"FY2016", "FTE__c":"50000.634", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2099", "Role_Title__c":"Data Analyst", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6341", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2098", "Role_Title__c":"Designer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Planning", "Financial_Year__c":"FY2016", "FTE__c":"50000.6342", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.2099", "Role_Title__c":"Digital Planning Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.6343", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.21", "Role_Title__c":"Information Architect", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6344", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2099", "Role_Title__c":"Junior Art Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6345", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.21", "Role_Title__c":"Junior Copywriter", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Production", "Financial_Year__c":"FY2016", "FTE__c":"50000.6346", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2101", "Role_Title__c":"Junior Project Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Planning", "Financial_Year__c":"FY2016", "FTE__c":"50000.6347", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.21", "Role_Title__c":"Planner", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Production", "Financial_Year__c":"FY2016", "FTE__c":"50000.6348", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.2101", "Role_Title__c":"Project Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6351", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.2102", "Role_Title__c":"Senior Art Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Creative", "Financial_Year__c":"FY2016", "FTE__c":"50000.6352", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2103", "Role_Title__c":"Senior Designer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Planning", "Financial_Year__c":"FY2016", "FTE__c":"50000.6353", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2102", "Role_Title__c":"Senior Planner", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Production", "Financial_Year__c":"FY2016", "FTE__c":"50000.6354", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.2103", "Role_Title__c":"Senior Project Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.6355", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2104", "Role_Title__c":"Senior Software Developer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.6356", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2103", "Role_Title__c":"Software Developer", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.6357", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.2104", "Role_Title__c":"Technology Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.6358", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2105", "Role_Title__c":"Technology Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Technology", "Financial_Year__c":"FY2016", "FTE__c":"50000.6359", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2104", "Role_Title__c":"Tester", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.2877", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.944", "Role_Title__c":"Account Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.2878", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.945", "Role_Title__c":"Account Executive", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.2879", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.944", "Role_Title__c":"Account Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.6349", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2102", "Role_Title__c":"Senior Account Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.635", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2101", "Role_Title__c":"Senior Account Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.6334", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.2097", "Role_Title__c":"Account Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.6335", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"25.2096", "Role_Title__c":"Account Executive", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.6336", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.2097", "Role_Title__c":"Account Manager", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.2892", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"35.949", "Role_Title__c":"Senior Account Director", "RecordTypeId":"REC_TO_REPLACE"},';
+        country_calc_json += '{"attributes":{"type":"Oblix_Calculator__c"},"Agency_Department__c":"Account Management", "Financial_Year__c":"FY2016", "FTE__c":"50000.2893", "Name":"Argentina", "OblixCountry__c":"COUNTRY_ID_TO_REPLACE", "Oblix_Agency__c":"AGENCY_ID_TO_REPLACE", "Role_Daily_Rate_EUR__c":"45.95", "Role_Title__c":"Senior Account Manager", "RecordTypeId":"REC_TO_REPLACE"}]';
+
+        // replace the record type for the intended environment
+        Id record_type_id = Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Role_Rate');
+        country_calc_json = country_calc_json.replace('REC_TO_REPLACE', record_type_id);
+
+        country_calc_json = country_calc_json.replace('COUNTRY_ID_TO_REPLACE', countryId);
+        country_calc_json = country_calc_json.replace('AGENCY_ID_TO_REPLACE', agencyId);
+        //system.debug('calculator_string: '+country_calc_json);
+
+        List<Oblix_Calculator__c> list_calculator_records = (List<Oblix_Calculator__c>) json.deserialize(country_calc_json,list<Oblix_Calculator__c>.class);
+
+
+        return list_calculator_records;
+
+    }
+
+
     public static List<MDO_Geography__c> createMDOgeography(){
         //List<MDO_Geography__c> list_mdo_geography = new List<MDO_Geography__c>();
         
@@ -575,9 +771,9 @@ public with sharing class Oblix_TestUtils {
     public static User createMarketingUser(String name){
         Profile profile = [SELECT Id FROM Profile WHERE Name='Marketing User'];
         return new User(Alias = name+'ut', Email = name+'unittest@unilever.com', 
-            EmailEncodingKey = 'UTF-8', LastName = 'LastName', LanguageLocaleKey = EN_US, 
+            EmailEncodingKey = UTF8, LastName = 'LastName', LanguageLocaleKey = EN_US, 
             LocaleSidKey = EN_US, ProfileId = profile.Id, FirstName = name, 
-            TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
+            TimeZoneSidKey = EUROPE_LONDON,AF_Agency_Fees_User_Type__c = CATEGORY_FINANCE,isActive = true, 
             UserName = name+'@unilever.com.unittest');
     }
 

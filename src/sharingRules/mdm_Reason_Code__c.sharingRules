@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_ANZ_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals ANZ - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_ANZ</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>AU,NZ</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Bangladesh_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Bangladesh - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Bangladesh</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>BD</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Indonesia_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Indonesia - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Indonesia</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>ID</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Philippines_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Philippines - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Philippines</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>PH</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_South_Africa_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals South Africa - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_South_Africa</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>ZA</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Thailand_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Thailand - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Thailand</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>TH</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Vietnam_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Vietnam - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Vietnam</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country__c</field>
+            <operation>equals</operation>
+            <value>VN</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

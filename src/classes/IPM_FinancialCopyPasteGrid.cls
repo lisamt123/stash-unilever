@@ -302,6 +302,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                            finUpdate.Volume_Unit_Global__c = volumeUnit;
                            finUpdate.Last_Saved_by_Global__c = UserInfo.getUserId();
                            finUpdate.Last_Saved_Global__c = System.now(); 
+                           finUpdate.Status_Global__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                         }
                         if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
                            finUpdate.NPV_Regional__c = SetFieldValues(NPV);
@@ -312,6 +313,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                            finUpdate.Volume_Unit_Regional__c = volumeUnit;
                            finUpdate.Last_Saved_by_Regional__c = UserInfo.getUserId();
                            finUpdate.Last_Saved_Regional__c = System.now();
+                           finUpdate.Status_Regional__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                         } 
                          if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
                             finUpdate.NPV_Local__c = SetFieldValues(NPV);
@@ -322,6 +324,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                             finUpdate.Volume_Unit_Local__c = volumeUnit;
                             finUpdate.Last_Saved_by_Local__c = UserInfo.getUserId();
                             finUpdate.Last_Saved_Local__c = System.now();
+                            finUpdate.Status_Local__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                         }
                         finUpdate.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;                                              
                         update finUpdate;

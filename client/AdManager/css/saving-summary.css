@@ -1,0 +1,96 @@
+.saving_summary_container a {
+    color: #3399cc !important;
+}
+.leftbar {
+    float: left;
+    width: 71.3%;
+}
+.rightbar {
+    float: right;
+    width: 27.3%;
+}
+.inputclass select {
+    width: 245px !important;
+}
+.inputclass input {
+    width: 230px !important;
+}
+.inputclass {
+    width: auto !important;
+}
+.inputpanel {
+    margin-right: 12px;
+}
+.input-section {
+    min-height: 212px;
+}
+.mainleftfield {
+    width: 450px;
+    float: left;
+    margin-left: 50px;
+    margin-bottom: 16px;
+}
+.subleftfield {
+    float: left;
+    width: 178px;
+}
+.subrightfield {
+    float: left;
+    width: 250px;
+}
+.advance-search-popup input[type="text"] {
+    width: 82% !important;
+}
+.advance-search-popup select {
+    width: 92% !important
+}
+.initial-search input[type="text"] {
+    width: 85% !important;
+}
+.initial-search select {
+    width: 94% !important
+}
+select {
+    width: 245px;
+}
+.job-field-parent {
+    width: 24.5% !important;
+}
+.apexp:last-child {
+    overflow-x: initial;
+}
+.apexp {
+    overflow-x: scroll;
+}
+.outerNoSidebar {
+    overflow-x: initial !important;
+    table-layout: fixed !important;
+    width: 100%;
+}
+.job-field-input-multiselect select {
+    height: 108px;
+    width: 92% !important;
+}
+.advance-search-popup {
+    left: 20%;
+    width: 870px;
+    top: 20%;
+    background-color: #FFFFFF;
+    border: 1px solid #333333;
+    z-index: 10;
+    position: fixed;
+    overflow-y: auto;
+}
+.displayinlineblock {
+    display: inline-block;
+    vertical-align: top;
+}
+.submitted-saving-list tr.dataRow td {
+    border-bottom: 1px solid #E6E6E6 !important;
+}
+.submitted-saving-list tr.dataRow.last td {
+    border-bottom: none !important;
+}
+body .bPageBlock {
+    margin-bottom: 0px !important;
+}

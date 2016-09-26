@@ -1,0 +1,2301 @@
+{
+    "label": "Place Dashboard",
+    "state": {
+        "gridLayouts": [],
+        "layouts": [],
+        "steps": {
+            "Customer_subtype_21": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_subtype"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_28": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Place_Compliance",
+                            "avg_Place_Compliance",
+                            {
+                                "display": "Place Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_31": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Place_Compliance",
+                            "avg_Price_Compliance",
+                            {
+                                "display": "Place Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_34": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Place_Compliance",
+                            "avg_Price_Compliance",
+                            {
+                                "display": "Place Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Cluster",
+                            "{{ selection(Cluster_9) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_10) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_11) }}"
+                        ],
+                        [
+                            "Province",
+                            "{{ selection(Province_12) }}"
+                        ],
+                        [
+                            "City",
+                            "{{ selection(City_13) }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ selection(Sales_area_14) }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ selection(Sales_territory_15) }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ selection(Trade_Format_16) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_17) }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ selection(Subchannel_18) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_19) }}"
+                        ],
+                        [
+                            "Customer_type",
+                            "{{ selection(Customer_type_20) }}"
+                        ],
+                        [
+                            "Customer_subtype",
+                            "{{ selection(Customer_subtype_21) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_22) }}"
+                        ],
+                        [
+                            "Banner",
+                            "{{ selection(Banner_23) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_25) }}"
+                        ],
+                        [
+                            "Product_division",
+                            "{{ selection(Product_division_24) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_28) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_29) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_30) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_31) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_32) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_33) }}"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Product_category_32": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Place_Compliance",
+                            "avg_Price_Compliance",
+                            {
+                                "display": "Place Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_30": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Place_Compliance",
+                            "avg_Price_Compliance",
+                            {
+                                "display": "Place Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Banner_23": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Banner"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_4": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "SSP = load \"DPS_PLACE_AGGREGATED\"; SOS = load \"DPS_PLACE_AGGREGATED\"; PSP = load \"DPS_PLACE_AGGREGATED\";SSP = filter SSP by 'Country' in {{ selection(Country_28) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SSP = filter SSP by 'Region' in {{ selection(Region_30) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_31) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_32) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_33) }};SOS = filter SOS by 'Country' in {{ selection(Country_28) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SOS = filter SOS by 'Region' in {{ selection(Region_30) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_31) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_32) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_33) }};PSP = filter PSP by 'Country' in {{ selection(Country_28) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};PSP = filter PSP by 'Region' in {{ selection(Region_30) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_31) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_32) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_33) }}; SSP = filter SSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SSP = filter SSP by 'Cluster' in {{ selection(Cluster_9) }};SSP = filter SSP by 'Country' in {{ selection(Country_10) }};SSP = filter SSP by 'Region' in {{ selection(Region_11) }};SSP = filter SSP by 'Province' in {{ selection(Province_12) }};SSP = filter SSP by 'City' in {{ selection(City_13) }};SSP = filter SSP by 'Sales_area' in {{ selection(Sales_area_14) }};SSP = filter SSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};SSP = filter SSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_17) }};SSP = filter SSP by 'Subchannel' in {{ selection(Subchannel_18) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SSP = filter SSP by 'Customer_type' in {{ selection(Customer_type_20) }};SSP = filter SSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_22) }};SSP = filter SSP by 'Banner' in {{ selection(Banner_23) }};SSP = filter SSP by 'Product_division' in {{ selection(Product_division_24) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_25) }};PSP = filter PSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};PSP = filter PSP by 'Cluster' in {{ selection(Cluster_9) }};PSP = filter PSP by 'Country' in {{ selection(Country_10) }};PSP = filter PSP by 'Region' in {{ selection(Region_11) }};PSP = filter PSP by 'Province' in {{ selection(Province_12) }};PSP = filter PSP by 'City' in {{ selection(City_13) }};PSP = filter PSP by 'Sales_area' in {{ selection(Sales_area_14) }};PSP = filter PSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};PSP = filter PSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_17) }};PSP = filter PSP by 'Subchannel' in {{ selection(Subchannel_18) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};PSP = filter PSP by 'Customer_type' in {{ selection(Customer_type_20) }};PSP = filter PSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_22) }};PSP = filter PSP by 'Banner' in {{ selection(Banner_23) }};PSP = filter PSP by 'Product_division' in {{ selection(Product_division_24) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_25) }};SOS = filter SOS by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SOS = filter SOS by 'Cluster' in {{ selection(Cluster_9) }};SOS = filter SOS by 'Country' in {{ selection(Country_10) }};SOS = filter SOS by 'Region' in {{ selection(Region_11) }};SOS = filter SOS by 'Province' in {{ selection(Province_12) }};SOS = filter SOS by 'City' in {{ selection(City_13) }};SOS = filter SOS by 'Sales_area' in {{ selection(Sales_area_14) }};SOS = filter SOS by 'Sales_territory' in {{ selection(Sales_territory_15) }};SOS = filter SOS by 'Trade_Format' in {{ selection(Trade_Format_16) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_17) }};SOS = filter SOS by 'Subchannel' in {{ selection(Subchannel_18) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SOS = filter SOS by 'Customer_type' in {{ selection(Customer_type_20) }};SOS = filter SOS by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_22) }};SOS = filter SOS by 'Banner' in {{ selection(Banner_23) }};SOS = filter SOS by 'Product_division' in {{ selection(Product_division_24) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_25) }}; SSP = group SSP by 'Channel'; SOS = group SOS by 'Channel'; PSP = group PSP by 'Channel'; SSP = foreach SSP generate 'Channel' as 'Channel', sum('Sum_of_PLACE_SSP_Answer')/sum('Sum_of_PLACE_SSP_Question') as 'place_score', \"SSP Score\" as 'Measure'; SOS = foreach SOS generate 'Channel' as 'Channel', sum('Sum_of_Unilever_Length')/sum('Sum_of_Total_Category_Length') as 'place_score', \"SOS Score\" as 'Measure'; PSP = foreach PSP generate 'Channel' as 'Channel', sum('Sum_of_PLACE_PSP_Answer')/sum('Sum_of_PLACE_PSP_Question') as 'place_score', \"PSP Score\" as 'Measure'; PLACE = group SSP by 'Channel', SOS by 'Channel', PSP by 'Channel'; PLACE = union SOS, PSP, SSP; PLACE = order PLACE by 'Channel' asc;",
+                    "measures": [
+                        [
+                            "place",
+                            "score",
+                            "place_score",
+                            {
+                                "display": "Score (%)",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_33": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Place_Compliance",
+                            "avg_Price_Compliance",
+                            {
+                                "display": "Place Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "limit": 10,
+                    "groups": [
+                        "Customer"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_area_14": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_area"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_division_24": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_division"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Province_12": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Province"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_29": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Place_Compliance",
+                            "avg_Price_Compliance",
+                            {
+                                "display": "Place Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "City_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "City"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_territory_15": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_territory"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Subchannel_18": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Subchannel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_25": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_10": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Local_Outlet_Name_27": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Trade_Format_16": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Trade_Format"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_6": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "SSP = load \"DPS_PLACE_AGGREGATED\"; SOS = load \"DPS_PLACE_AGGREGATED\"; PSP = load \"DPS_PLACE_AGGREGATED\";SSP = filter SSP by 'Country' in {{ selection(Country_28) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SSP = filter SSP by 'Region' in {{ selection(Region_30) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_31) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_32) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_33) }};SOS = filter SOS by 'Country' in {{ selection(Country_28) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SOS = filter SOS by 'Region' in {{ selection(Region_30) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_31) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_32) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_33) }};PSP = filter PSP by 'Country' in {{ selection(Country_28) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};PSP = filter PSP by 'Region' in {{ selection(Region_30) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_31) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_32) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_33) }}; SSP = filter SSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SSP = filter SSP by 'Cluster' in {{ selection(Cluster_9) }};SSP = filter SSP by 'Country' in {{ selection(Country_10) }};SSP = filter SSP by 'Region' in {{ selection(Region_11) }};SSP = filter SSP by 'Province' in {{ selection(Province_12) }};SSP = filter SSP by 'City' in {{ selection(City_13) }};SSP = filter SSP by 'Sales_area' in {{ selection(Sales_area_14) }};SSP = filter SSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};SSP = filter SSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_17) }};SSP = filter SSP by 'Subchannel' in {{ selection(Subchannel_18) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SSP = filter SSP by 'Customer_type' in {{ selection(Customer_type_20) }};SSP = filter SSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_22) }};SSP = filter SSP by 'Banner' in {{ selection(Banner_23) }};SSP = filter SSP by 'Product_division' in {{ selection(Product_division_24) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_25) }};PSP = filter PSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};PSP = filter PSP by 'Cluster' in {{ selection(Cluster_9) }};PSP = filter PSP by 'Country' in {{ selection(Country_10) }};PSP = filter PSP by 'Region' in {{ selection(Region_11) }};PSP = filter PSP by 'Province' in {{ selection(Province_12) }};PSP = filter PSP by 'City' in {{ selection(City_13) }};PSP = filter PSP by 'Sales_area' in {{ selection(Sales_area_14) }};PSP = filter PSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};PSP = filter PSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_17) }};PSP = filter PSP by 'Subchannel' in {{ selection(Subchannel_18) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};PSP = filter PSP by 'Customer_type' in {{ selection(Customer_type_20) }};PSP = filter PSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_22) }};PSP = filter PSP by 'Banner' in {{ selection(Banner_23) }};PSP = filter PSP by 'Product_division' in {{ selection(Product_division_24) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_25) }};SOS = filter SOS by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SOS = filter SOS by 'Cluster' in {{ selection(Cluster_9) }};SOS = filter SOS by 'Country' in {{ selection(Country_10) }};SOS = filter SOS by 'Region' in {{ selection(Region_11) }};SOS = filter SOS by 'Province' in {{ selection(Province_12) }};SOS = filter SOS by 'City' in {{ selection(City_13) }};SOS = filter SOS by 'Sales_area' in {{ selection(Sales_area_14) }};SOS = filter SOS by 'Sales_territory' in {{ selection(Sales_territory_15) }};SOS = filter SOS by 'Trade_Format' in {{ selection(Trade_Format_16) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_17) }};SOS = filter SOS by 'Subchannel' in {{ selection(Subchannel_18) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SOS = filter SOS by 'Customer_type' in {{ selection(Customer_type_20) }};SOS = filter SOS by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_22) }};SOS = filter SOS by 'Banner' in {{ selection(Banner_23) }};SOS = filter SOS by 'Product_division' in {{ selection(Product_division_24) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_25) }}; SSP = group SSP by 'Customer'; SOS = group SOS by 'Customer'; PSP = group PSP by 'Customer'; SSP = foreach SSP generate 'Customer' as 'Customer', sum('Sum_of_PLACE_SSP_Answer')/sum('Sum_of_PLACE_SSP_Question') as 'place_score', \"SSP Score\" as 'Measure'; SOS = foreach SOS generate 'Customer' as 'Customer', sum('Sum_of_Unilever_Length')/sum('Sum_of_Total_Category_Length') as 'place_score', \"SOS Score\" as 'Measure';  PSP = foreach PSP generate 'Customer' as 'Customer', sum('Sum_of_PLACE_PSP_Answer')/sum('Sum_of_PLACE_PSP_Question') as 'place_score', \"PSP Score\" as 'Measure';  PLACE = group SSP by 'Customer', SOS by 'Customer', PSP by 'Customer'; PLACE = union SOS, PSP, SSP; SOS = order SOS by 'Customer' desc; PSP = order PSP by 'Customer' desc;  SSP = order SSP by 'Customer' desc; PLACE = order PLACE by 'Customer' desc; SOS = limit SOS 10; PSP = limit PSP 10; SSP = limit SSP 10; PLACE = limit PLACE 30;",
+                    "measures": [
+                        [
+                            "place",
+                            "score",
+                            "place_score",
+                            {
+                                "display": "Score (%)",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Customer",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_type_20": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_7": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "pigql": " SSP = load \"DPS_PLACE_AGGREGATED\";SOS = load \"DPS_PLACE_AGGREGATED\"; PSP = load \"DPS_PLACE_AGGREGATED\"; SSP = filter SSP by 'Country' in {{ selection(Country_28) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SSP = filter SSP by 'Region' in {{ selection(Region_30) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_31) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_32) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_33) }};SOS = filter SOS by 'Country' in {{ selection(Country_28) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SOS = filter SOS by 'Region' in {{ selection(Region_30) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_31) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_32) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_33) }};PSP = filter PSP by 'Country' in {{ selection(Country_28) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};PSP = filter PSP by 'Region' in {{ selection(Region_30) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_31) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_32) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_33) }}; SSP = filter SSP by 'Cluster' in {{ selection(Cluster_9) }};SSP = filter SSP by 'Country' in {{ selection(Country_10) }};SSP = filter SSP by 'Region' in {{ selection(Region_11) }};SSP = filter SSP by 'Province' in {{ selection(Province_12) }};SSP = filter SSP by 'City' in {{ selection(City_13) }};SSP = filter SSP by 'Sales_area' in {{ selection(Sales_area_14) }};SSP = filter SSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};SSP = filter SSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_17) }};SSP = filter SSP by 'Subchannel' in {{ selection(Subchannel_18) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SSP = filter SSP by 'Customer_type' in {{ selection(Customer_type_20) }};SSP = filter SSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_22) }};SSP = filter SSP by 'Banner' in {{ selection(Banner_23) }};SSP = filter SSP by 'Product_division' in {{ selection(Product_division_24) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_25) }}; PSP = filter PSP by 'Cluster' in {{ selection(Cluster_9) }};PSP = filter PSP by 'Country' in {{ selection(Country_10) }};PSP = filter PSP by 'Region' in {{ selection(Region_11) }};PSP = filter PSP by 'Province' in {{ selection(Province_12) }};PSP = filter PSP by 'City' in {{ selection(City_13) }};PSP = filter PSP by 'Sales_area' in {{ selection(Sales_area_14) }};PSP = filter PSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};PSP = filter PSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_17) }};PSP = filter PSP by 'Subchannel' in {{ selection(Subchannel_18) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};PSP = filter PSP by 'Customer_type' in {{ selection(Customer_type_20) }};PSP = filter PSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_22) }};PSP = filter PSP by 'Banner' in {{ selection(Banner_23) }};PSP = filter PSP by 'Product_division' in {{ selection(Product_division_24) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_25) }};SOS = filter SOS by 'Cluster' in {{ selection(Cluster_9) }};SOS = filter SOS by 'Country' in {{ selection(Country_10) }};SOS = filter SOS by 'Region' in {{ selection(Region_11) }};SOS = filter SOS by 'Province' in {{ selection(Province_12) }};SOS = filter SOS by 'City' in {{ selection(City_13) }};SOS = filter SOS by 'Sales_area' in {{ selection(Sales_area_14) }};SOS = filter SOS by 'Sales_territory' in {{ selection(Sales_territory_15) }};SOS = filter SOS by 'Trade_Format' in {{ selection(Trade_Format_16) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_17) }};SOS = filter SOS by 'Subchannel' in {{ selection(Subchannel_18) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SOS = filter SOS by 'Customer_type' in {{ selection(Customer_type_20) }};SOS = filter SOS by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_22) }};SOS = filter SOS by 'Banner' in {{ selection(Banner_23) }};SOS = filter SOS by 'Product_division' in {{ selection(Product_division_24) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_25) }}; SSP = group SSP by ('Date_of_audit_Year', 'Date_of_audit_Month'); SOS = group SOS by ('Date_of_audit_Year', 'Date_of_audit_Month'); PSP = group PSP by ('Date_of_audit_Year', 'Date_of_audit_Month'); SSP = foreach SSP generate 'Date_of_audit_Year' + \"~~~\" + 'Date_of_audit_Month' as 'Date_of_audit_Year~~~Date_of_audit_Month', sum('Sum_of_PLACE_SSP_Answer')/sum('Sum_of_PLACE_SSP_Question') as 'place_score', \"SSP Score\" as 'Measure'; SOS = foreach SOS generate 'Date_of_audit_Year' + \"~~~\" + 'Date_of_audit_Month' as 'Date_of_audit_Year~~~Date_of_audit_Month', sum('Sum_of_Unilever_Length')/sum('Sum_of_Total_Category_Length') as 'place_score', \"SOS Score\" as 'Measure'; PSP = foreach PSP generate 'Date_of_audit_Year' + \"~~~\" + 'Date_of_audit_Month' as 'Date_of_audit_Year~~~Date_of_audit_Month', sum('Sum_of_PLACE_PSP_Answer')/sum('Sum_of_PLACE_PSP_Question') as 'place_score', \"PSP Score\" as 'Measure'; PLACE = group SSP by 'Date_of_audit_Year~~~Date_of_audit_Month', SOS by 'Date_of_audit_Year~~~Date_of_audit_Month', PSP by 'Date_of_audit_Year~~~Date_of_audit_Month'; PLACE = union SOS, PSP, SSP;",
+                    "measures": [
+                        [
+                            "place",
+                            "score",
+                            "place_score",
+                            {
+                                "display": "Score (%)",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ],
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_SOS_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Customer_22": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_26": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PSP_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "format": "percentage",
+                        "header": "Question Score for PSP",
+                        "query": {
+                            "pigql": "q = load \"DPS_PSP_RAW\"; q = filter q by 'Country' in {{ selection(Country_28) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};q = filter q by 'Region' in {{ selection(Region_30) }};q = filter q by 'Channel' in {{ selection(Channel_31) }};q = filter q by 'Product_category' in {{ selection(Product_category_32) }};q = filter q by 'Customer' in {{ selection(Customer_33) }};q = filter q by 'Cluster' in {{ selection(Cluster_9) }};q = filter q by 'Country' in {{ selection(Country_10) }};q = filter q by 'Region' in {{ selection(Region_11) }};q = filter q by 'Province' in {{ selection(Province_12) }};q = filter q by 'City' in {{ selection(City_13) }};q = filter q by 'Sales_area' in {{ selection(Sales_area_14) }};q = filter q by 'Sales_territory' in {{ selection(Sales_territory_15) }};q = filter q by 'Trade_Format' in {{ selection(Trade_Format_16) }};q = filter q by 'Channel' in {{ selection(Channel_17) }};q = filter q by 'Subchannel' in {{ selection(Subchannel_18) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};q = filter q by 'Customer_type' in {{ selection(Customer_type_20) }};q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};q = filter q by 'Customer' in {{ selection(Customer_22) }};q = filter q by 'Banner' in {{ selection(Banner_23) }};q = filter q by 'Product_division' in {{ selection(Product_division_24) }};q = filter q by 'Product_category' in {{ selection(Product_category_25) }};q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; q = group q by 'Questions'; q = foreach q generate Questions as 'Questions', avg('Answer') as 'PSP_Score';",
+                            "measures": [
+                                [
+                                    "PSP",
+                                    "Score"
+                                ]
+                            ],
+                            "groups": [
+                                "Questions"
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "% Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_PSP_RAW\"; q = filter q by 'Country' in {{ selection(Country_28) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};q = filter q by 'Region' in {{ selection(Region_30) }};q = filter q by 'Channel' in {{ selection(Channel_31) }};q = filter q by 'Product_category' in {{ selection(Product_category_32) }};q = filter q by 'Customer' in {{ selection(Customer_33) }};q = filter q by 'Cluster' in {{ selection(Cluster_9) }};q = filter q by 'Country' in {{ selection(Country_10) }};q = filter q by 'Region' in {{ selection(Region_11) }};q = filter q by 'Province' in {{ selection(Province_12) }};q = filter q by 'City' in {{ selection(City_13) }};q = filter q by 'Sales_area' in {{ selection(Sales_area_14) }};q = filter q by 'Sales_territory' in {{ selection(Sales_territory_15) }};q = filter q by 'Trade_Format' in {{ selection(Trade_Format_16) }};q = filter q by 'Channel' in {{ selection(Channel_17) }};q = filter q by 'Subchannel' in {{ selection(Subchannel_18) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};q = filter q by 'Customer_type' in {{ selection(Customer_type_20) }};q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};q = filter q by 'Customer' in {{ selection(Customer_22) }};q = filter q by 'Banner' in {{ selection(Banner_23) }};q = filter q by 'Product_division' in {{ selection(Product_division_24) }};q = filter q by 'Product_category' in {{ selection(Product_category_25) }}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'Questions', last by 'Questions'; diff = foreach diff generate last.Questions as 'Questions',avg(last['Answer']) as 'Last Month', avg(cur['Answer']) as 'Current Month', avg(cur['Answer'])-avg(last['Answer']) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "Questions"
+                            ]
+                        },
+                        "showBars": true
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Question Score for SSP",
+                        "query": {
+                            "pigql": "q = load \"DPS_SSP_RAW\"; q = filter q by 'Country' in {{ selection(Country_28) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};q = filter q by 'Region' in {{ selection(Region_30) }};q = filter q by 'Channel' in {{ selection(Channel_31) }};q = filter q by 'Product_category' in {{ selection(Product_category_32) }};q = filter q by 'Customer' in {{ selection(Customer_33) }};q = filter q by 'Cluster' in {{ selection(Cluster_9) }};q = filter q by 'Country' in {{ selection(Country_10) }};q = filter q by 'Region' in {{ selection(Region_11) }};q = filter q by 'Province' in {{ selection(Province_12) }};q = filter q by 'City' in {{ selection(City_13) }};q = filter q by 'Sales_area' in {{ selection(Sales_area_14) }};q = filter q by 'Sales_territory' in {{ selection(Sales_territory_15) }};q = filter q by 'Trade_Format' in {{ selection(Trade_Format_16) }};q = filter q by 'Channel' in {{ selection(Channel_17) }};q = filter q by 'Subchannel' in {{ selection(Subchannel_18) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};q = filter q by 'Customer_type' in {{ selection(Customer_type_20) }};q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};q = filter q by 'Customer' in {{ selection(Customer_22) }};q = filter q by 'Banner' in {{ selection(Banner_23) }};q = filter q by 'Product_division' in {{ selection(Product_division_24) }};q = filter q by 'Product_category' in {{ selection(Product_category_25) }};q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; q = group q by 'Questions'; q = foreach q generate Questions as 'Questions', avg('Answer') as 'SSP_Score';",
+                            "measures": [
+                                [
+                                    "SSP",
+                                    "Score"
+                                ]
+                            ],
+                            "groups": [
+                                "Questions"
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "% Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_SSP_RAW\"; q = filter q by 'Country' in {{ selection(Country_28) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};q = filter q by 'Region' in {{ selection(Region_30) }};q = filter q by 'Channel' in {{ selection(Channel_31) }};q = filter q by 'Product_category' in {{ selection(Product_category_32) }};q = filter q by 'Customer' in {{ selection(Customer_33) }};q = filter q by 'Cluster' in {{ selection(Cluster_9) }};q = filter q by 'Country' in {{ selection(Country_10) }};q = filter q by 'Region' in {{ selection(Region_11) }};q = filter q by 'Province' in {{ selection(Province_12) }};q = filter q by 'City' in {{ selection(City_13) }};q = filter q by 'Sales_area' in {{ selection(Sales_area_14) }};q = filter q by 'Sales_territory' in {{ selection(Sales_territory_15) }};q = filter q by 'Trade_Format' in {{ selection(Trade_Format_16) }};q = filter q by 'Channel' in {{ selection(Channel_17) }};q = filter q by 'Subchannel' in {{ selection(Subchannel_18) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};q = filter q by 'Customer_type' in {{ selection(Customer_type_20) }};q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};q = filter q by 'Customer' in {{ selection(Customer_22) }};q = filter q by 'Banner' in {{ selection(Banner_23) }};q = filter q by 'Product_division' in {{ selection(Product_division_24) }};q = filter q by 'Product_category' in {{ selection(Product_category_25) }}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'Questions', last by 'Questions'; diff = foreach diff generate last.Questions as 'Questions',avg(last['Answer']) as 'Last Month', avg(cur['Answer']) as 'Current Month', avg(cur['Answer'])-avg(last['Answer']) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "Questions"
+                            ]
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Country_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "SSP = load \"DPS_PLACE_AGGREGATED\"; SOS = load \"DPS_PLACE_AGGREGATED\"; PSP = load \"DPS_PLACE_AGGREGATED\";SSP = filter SSP by 'Country' in {{ selection(Country_28) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SSP = filter SSP by 'Region' in {{ selection(Region_30) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_31) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_32) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_33) }};SOS = filter SOS by 'Country' in {{ selection(Country_28) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SOS = filter SOS by 'Region' in {{ selection(Region_30) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_31) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_32) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_33) }};PSP = filter PSP by 'Country' in {{ selection(Country_28) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};PSP = filter PSP by 'Region' in {{ selection(Region_30) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_31) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_32) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_33) }}; SSP = filter SSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SSP = filter SSP by 'Cluster' in {{ selection(Cluster_9) }};SSP = filter SSP by 'Country' in {{ selection(Country_10) }};SSP = filter SSP by 'Region' in {{ selection(Region_11) }};SSP = filter SSP by 'Province' in {{ selection(Province_12) }};SSP = filter SSP by 'City' in {{ selection(City_13) }};SSP = filter SSP by 'Sales_area' in {{ selection(Sales_area_14) }};SSP = filter SSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};SSP = filter SSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_17) }};SSP = filter SSP by 'Subchannel' in {{ selection(Subchannel_18) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SSP = filter SSP by 'Customer_type' in {{ selection(Customer_type_20) }};SSP = filter SSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_22) }};SSP = filter SSP by 'Banner' in {{ selection(Banner_23) }};SSP = filter SSP by 'Product_division' in {{ selection(Product_division_24) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_25) }};PSP = filter PSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};PSP = filter PSP by 'Cluster' in {{ selection(Cluster_9) }};PSP = filter PSP by 'Country' in {{ selection(Country_10) }};PSP = filter PSP by 'Region' in {{ selection(Region_11) }};PSP = filter PSP by 'Province' in {{ selection(Province_12) }};PSP = filter PSP by 'City' in {{ selection(City_13) }};PSP = filter PSP by 'Sales_area' in {{ selection(Sales_area_14) }};PSP = filter PSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};PSP = filter PSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_17) }};PSP = filter PSP by 'Subchannel' in {{ selection(Subchannel_18) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};PSP = filter PSP by 'Customer_type' in {{ selection(Customer_type_20) }};PSP = filter PSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_22) }};PSP = filter PSP by 'Banner' in {{ selection(Banner_23) }};PSP = filter PSP by 'Product_division' in {{ selection(Product_division_24) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_25) }};SOS = filter SOS by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SOS = filter SOS by 'Cluster' in {{ selection(Cluster_9) }};SOS = filter SOS by 'Country' in {{ selection(Country_10) }};SOS = filter SOS by 'Region' in {{ selection(Region_11) }};SOS = filter SOS by 'Province' in {{ selection(Province_12) }};SOS = filter SOS by 'City' in {{ selection(City_13) }};SOS = filter SOS by 'Sales_area' in {{ selection(Sales_area_14) }};SOS = filter SOS by 'Sales_territory' in {{ selection(Sales_territory_15) }};SOS = filter SOS by 'Trade_Format' in {{ selection(Trade_Format_16) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_17) }};SOS = filter SOS by 'Subchannel' in {{ selection(Subchannel_18) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SOS = filter SOS by 'Customer_type' in {{ selection(Customer_type_20) }};SOS = filter SOS by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_22) }};SOS = filter SOS by 'Banner' in {{ selection(Banner_23) }};SOS = filter SOS by 'Product_division' in {{ selection(Product_division_24) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_25) }}; SSP = group SSP by 'Country'; SOS = group SOS by 'Country'; PSP = group PSP by 'Country'; SSP = foreach SSP generate 'Country' as 'Country', sum('Sum_of_PLACE_SSP_Answer')/sum('Sum_of_PLACE_SSP_Question') as 'place_score', \"SSP Score\" as 'Measure'; SOS = foreach SOS generate 'Country' as 'Country', sum('Sum_of_Unilever_Length')/sum('Sum_of_Total_Category_Length') as 'place_score', \"SOS Score\" as 'Measure'; PSP = foreach PSP generate 'Country' as 'Country', sum('Sum_of_PLACE_PSP_Answer')/sum('Sum_of_PLACE_PSP_Question') as 'place_score', \"PSP Score\" as 'Measure'; PLACE = group SSP by 'Country', SOS by 'Country', PSP by 'Country'; PLACE = union SOS, PSP, SSP; PLACE = order PLACE by 'Country' asc;",
+                    "measures": [
+                        [
+                            "place",
+                            "score",
+                            "place_score",
+                            {
+                                "display": "Score (%)",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "SSP = load \"DPS_PLACE_AGGREGATED\"; SOS = load \"DPS_PLACE_AGGREGATED\"; PSP = load \"DPS_PLACE_AGGREGATED\";SSP = filter SSP by 'Country' in {{ selection(Country_28) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SSP = filter SSP by 'Region' in {{ selection(Region_30) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_31) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_32) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_33) }};SOS = filter SOS by 'Country' in {{ selection(Country_28) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SOS = filter SOS by 'Region' in {{ selection(Region_30) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_31) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_32) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_33) }};PSP = filter PSP by 'Country' in {{ selection(Country_28) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};PSP = filter PSP by 'Region' in {{ selection(Region_30) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_31) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_32) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_33) }};SSP = filter SSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SSP = filter SSP by 'Cluster' in {{ selection(Cluster_9) }};SSP = filter SSP by 'Country' in {{ selection(Country_10) }};SSP = filter SSP by 'Region' in {{ selection(Region_11) }};SSP = filter SSP by 'Province' in {{ selection(Province_12) }};SSP = filter SSP by 'City' in {{ selection(City_13) }};SSP = filter SSP by 'Sales_area' in {{ selection(Sales_area_14) }};SSP = filter SSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};SSP = filter SSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_17) }};SSP = filter SSP by 'Subchannel' in {{ selection(Subchannel_18) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SSP = filter SSP by 'Customer_type' in {{ selection(Customer_type_20) }};SSP = filter SSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_22) }};SSP = filter SSP by 'Banner' in {{ selection(Banner_23) }};SSP = filter SSP by 'Product_division' in {{ selection(Product_division_24) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_25) }};PSP = filter PSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};PSP = filter PSP by 'Cluster' in {{ selection(Cluster_9) }};PSP = filter PSP by 'Country' in {{ selection(Country_10) }};PSP = filter PSP by 'Region' in {{ selection(Region_11) }};PSP = filter PSP by 'Province' in {{ selection(Province_12) }};PSP = filter PSP by 'City' in {{ selection(City_13) }};PSP = filter PSP by 'Sales_area' in {{ selection(Sales_area_14) }};PSP = filter PSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};PSP = filter PSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_17) }};PSP = filter PSP by 'Subchannel' in {{ selection(Subchannel_18) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};PSP = filter PSP by 'Customer_type' in {{ selection(Customer_type_20) }};PSP = filter PSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_22) }};PSP = filter PSP by 'Banner' in {{ selection(Banner_23) }};PSP = filter PSP by 'Product_division' in {{ selection(Product_division_24) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_25) }};SOS = filter SOS by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SOS = filter SOS by 'Cluster' in {{ selection(Cluster_9) }};SOS = filter SOS by 'Country' in {{ selection(Country_10) }};SOS = filter SOS by 'Region' in {{ selection(Region_11) }};SOS = filter SOS by 'Province' in {{ selection(Province_12) }};SOS = filter SOS by 'City' in {{ selection(City_13) }};SOS = filter SOS by 'Sales_area' in {{ selection(Sales_area_14) }};SOS = filter SOS by 'Sales_territory' in {{ selection(Sales_territory_15) }};SOS = filter SOS by 'Trade_Format' in {{ selection(Trade_Format_16) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_17) }};SOS = filter SOS by 'Subchannel' in {{ selection(Subchannel_18) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SOS = filter SOS by 'Customer_type' in {{ selection(Customer_type_20) }};SOS = filter SOS by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_22) }};SOS = filter SOS by 'Banner' in {{ selection(Banner_23) }};SOS = filter SOS by 'Product_division' in {{ selection(Product_division_24) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_25) }}; SSP = group SSP by 'Product_category'; SOS = group SOS by 'Product_category'; PSP = group PSP by 'Product_category'; SSP = foreach SSP generate 'Product_category' as 'Product_category', sum('Sum_of_PLACE_SSP_Answer')/sum('Sum_of_PLACE_SSP_Question') as 'place_score', \"SSP Score\" as 'Measure'; SOS = foreach SOS generate 'Product_category' as 'Product_category', sum('Sum_of_Unilever_Length')/sum('Sum_of_Total_Category_Length') as 'place_score', \"SOS Score\" as 'Measure'; PSP = foreach PSP generate 'Product_category' as 'Product_category', sum('Sum_of_PLACE_PSP_Answer')/sum('Sum_of_PLACE_PSP_Question') as 'place_score', \"PSP Score\" as 'Measure'; PLACE = group SSP by 'Product_category', SOS by 'Product_category', PSP by 'Product_category'; PLACE = union SOS, PSP, SSP; PLACE = order PLACE by 'Product_category' asc;",
+                    "measures": [
+                        [
+                            "place",
+                            "score",
+                            "place_score",
+                            {
+                                "display": "Score (%)",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_SOS_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_Year_Date_Month_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "start": [
+                    [
+                        [
+                            "month",
+                            -6
+                        ],
+                        [
+                            "month",
+                            -6
+                        ]
+                    ]
+                ],
+                "type": "aggregate",
+                "useGlobal": false,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_2": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "SSP = load \"DPS_PLACE_AGGREGATED\"; SOS = load \"DPS_PLACE_AGGREGATED\"; PSP = load \"DPS_PLACE_AGGREGATED\"; SSP = filter SSP by 'Country' in {{ selection(Country_28) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SSP = filter SSP by 'Region' in {{ selection(Region_30) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_31) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_32) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_33) }};SOS = filter SOS by 'Country' in {{ selection(Country_28) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SOS = filter SOS by 'Region' in {{ selection(Region_30) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_31) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_32) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_33) }};PSP = filter PSP by 'Country' in {{ selection(Country_28) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};PSP = filter PSP by 'Region' in {{ selection(Region_30) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_31) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_32) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_33) }};SSP = filter SSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SSP = filter SSP by 'Cluster' in {{ selection(Cluster_9) }};SSP = filter SSP by 'Country' in {{ selection(Country_10) }};SSP = filter SSP by 'Region' in {{ selection(Region_11) }};SSP = filter SSP by 'Province' in {{ selection(Province_12) }};SSP = filter SSP by 'City' in {{ selection(City_13) }};SSP = filter SSP by 'Sales_area' in {{ selection(Sales_area_14) }};SSP = filter SSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};SSP = filter SSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_17) }};SSP = filter SSP by 'Subchannel' in {{ selection(Subchannel_18) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SSP = filter SSP by 'Customer_type' in {{ selection(Customer_type_20) }};SSP = filter SSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_22) }};SSP = filter SSP by 'Banner' in {{ selection(Banner_23) }};SSP = filter SSP by 'Product_division' in {{ selection(Product_division_24) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_25) }};PSP = filter PSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};PSP = filter PSP by 'Cluster' in {{ selection(Cluster_9) }};PSP = filter PSP by 'Country' in {{ selection(Country_10) }};PSP = filter PSP by 'Region' in {{ selection(Region_11) }};PSP = filter PSP by 'Province' in {{ selection(Province_12) }};PSP = filter PSP by 'City' in {{ selection(City_13) }};PSP = filter PSP by 'Sales_area' in {{ selection(Sales_area_14) }};PSP = filter PSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};PSP = filter PSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_17) }};PSP = filter PSP by 'Subchannel' in {{ selection(Subchannel_18) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};PSP = filter PSP by 'Customer_type' in {{ selection(Customer_type_20) }};PSP = filter PSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_22) }};PSP = filter PSP by 'Banner' in {{ selection(Banner_23) }};PSP = filter PSP by 'Product_division' in {{ selection(Product_division_24) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_25) }};SOS = filter SOS by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SOS = filter SOS by 'Cluster' in {{ selection(Cluster_9) }};SOS = filter SOS by 'Country' in {{ selection(Country_10) }};SOS = filter SOS by 'Region' in {{ selection(Region_11) }};SOS = filter SOS by 'Province' in {{ selection(Province_12) }};SOS = filter SOS by 'City' in {{ selection(City_13) }};SOS = filter SOS by 'Sales_area' in {{ selection(Sales_area_14) }};SOS = filter SOS by 'Sales_territory' in {{ selection(Sales_territory_15) }};SOS = filter SOS by 'Trade_Format' in {{ selection(Trade_Format_16) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_17) }};SOS = filter SOS by 'Subchannel' in {{ selection(Subchannel_18) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SOS = filter SOS by 'Customer_type' in {{ selection(Customer_type_20) }};SOS = filter SOS by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_22) }};SOS = filter SOS by 'Banner' in {{ selection(Banner_23) }};SOS = filter SOS by 'Product_division' in {{ selection(Product_division_24) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_25) }}; SSP = group SSP by 'X4P_5P_6P'; SOS = group SOS by 'X4P_5P_6P'; PSP = group PSP by 'X4P_5P_6P'; SSP = foreach SSP generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Sum_of_PLACE_SSP_Answer')/sum('Sum_of_PLACE_SSP_Question') as 'place_score', \"SSP Score\" as 'Measure'; SOS = foreach SOS generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Sum_of_Unilever_Length')/sum('Sum_of_Total_Category_Length') as 'place_score', \"SOS Score\" as 'Measure'; PSP = foreach PSP generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Sum_of_PLACE_PSP_Answer')/sum('Sum_of_PLACE_PSP_Question') as 'place_score', \"PSP Score\" as 'Measure'; PLACE = group SSP by 'X4P_5P_6P', SOS by 'X4P_5P_6P', PSP by 'X4P_5P_6P'; PLACE = union SOS, PSP, SSP; PLACE = order PLACE by 'X4P_5P_6P' asc;",
+                    "measures": [
+                        [
+                            "place",
+                            "score",
+                            "place_score",
+                            {
+                                "display": "Score (%)",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_3": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "SSP = load \"DPS_PLACE_AGGREGATED\"; SOS = load \"DPS_PLACE_AGGREGATED\"; PSP = load \"DPS_PLACE_AGGREGATED\";SSP = filter SSP by 'Country' in {{ selection(Country_28) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SSP = filter SSP by 'Region' in {{ selection(Region_30) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_31) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_32) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_33) }};SOS = filter SOS by 'Country' in {{ selection(Country_28) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};SOS = filter SOS by 'Region' in {{ selection(Region_30) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_31) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_32) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_33) }};PSP = filter PSP by 'Country' in {{ selection(Country_28) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_29) }};PSP = filter PSP by 'Region' in {{ selection(Region_30) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_31) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_32) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_33) }};SSP = filter SSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SSP = filter SSP by 'Cluster' in {{ selection(Cluster_9) }};SSP = filter SSP by 'Country' in {{ selection(Country_10) }};SSP = filter SSP by 'Region' in {{ selection(Region_11) }};SSP = filter SSP by 'Province' in {{ selection(Province_12) }};SSP = filter SSP by 'City' in {{ selection(City_13) }};SSP = filter SSP by 'Sales_area' in {{ selection(Sales_area_14) }};SSP = filter SSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};SSP = filter SSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};SSP = filter SSP by 'Channel' in {{ selection(Channel_17) }};SSP = filter SSP by 'Subchannel' in {{ selection(Subchannel_18) }};SSP = filter SSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SSP = filter SSP by 'Customer_type' in {{ selection(Customer_type_20) }};SSP = filter SSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SSP = filter SSP by 'Customer' in {{ selection(Customer_22) }};SSP = filter SSP by 'Banner' in {{ selection(Banner_23) }};SSP = filter SSP by 'Product_division' in {{ selection(Product_division_24) }};SSP = filter SSP by 'Product_category' in {{ selection(Product_category_25) }};PSP = filter PSP by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};PSP = filter PSP by 'Cluster' in {{ selection(Cluster_9) }};PSP = filter PSP by 'Country' in {{ selection(Country_10) }};PSP = filter PSP by 'Region' in {{ selection(Region_11) }};PSP = filter PSP by 'Province' in {{ selection(Province_12) }};PSP = filter PSP by 'City' in {{ selection(City_13) }};PSP = filter PSP by 'Sales_area' in {{ selection(Sales_area_14) }};PSP = filter PSP by 'Sales_territory' in {{ selection(Sales_territory_15) }};PSP = filter PSP by 'Trade_Format' in {{ selection(Trade_Format_16) }};PSP = filter PSP by 'Channel' in {{ selection(Channel_17) }};PSP = filter PSP by 'Subchannel' in {{ selection(Subchannel_18) }};PSP = filter PSP by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};PSP = filter PSP by 'Customer_type' in {{ selection(Customer_type_20) }};PSP = filter PSP by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};PSP = filter PSP by 'Customer' in {{ selection(Customer_22) }};PSP = filter PSP by 'Banner' in {{ selection(Banner_23) }};PSP = filter PSP by 'Product_division' in {{ selection(Product_division_24) }};PSP = filter PSP by 'Product_category' in {{ selection(Product_category_25) }};SOS = filter SOS by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }};SOS = filter SOS by 'Cluster' in {{ selection(Cluster_9) }};SOS = filter SOS by 'Country' in {{ selection(Country_10) }};SOS = filter SOS by 'Region' in {{ selection(Region_11) }};SOS = filter SOS by 'Province' in {{ selection(Province_12) }};SOS = filter SOS by 'City' in {{ selection(City_13) }};SOS = filter SOS by 'Sales_area' in {{ selection(Sales_area_14) }};SOS = filter SOS by 'Sales_territory' in {{ selection(Sales_territory_15) }};SOS = filter SOS by 'Trade_Format' in {{ selection(Trade_Format_16) }};SOS = filter SOS by 'Channel' in {{ selection(Channel_17) }};SOS = filter SOS by 'Subchannel' in {{ selection(Subchannel_18) }};SOS = filter SOS by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_19) }};SOS = filter SOS by 'Customer_type' in {{ selection(Customer_type_20) }};SOS = filter SOS by 'Customer_subtype' in {{ selection(Customer_subtype_21) }};SOS = filter SOS by 'Customer' in {{ selection(Customer_22) }};SOS = filter SOS by 'Banner' in {{ selection(Banner_23) }};SOS = filter SOS by 'Product_division' in {{ selection(Product_division_24) }};SOS = filter SOS by 'Product_category' in {{ selection(Product_category_25) }}; SSP = group SSP by 'Region'; SOS = group SOS by 'Region'; PSP = group PSP by 'Region'; SSP = foreach SSP generate 'Region' as 'Region', sum('Sum_of_PLACE_SSP_Answer')/sum('Sum_of_PLACE_SSP_Question') as 'place_score', \"SSP Score\" as 'Measure'; SOS = foreach SOS generate 'Region' as 'Region', sum('Sum_of_Unilever_Length')/sum('Sum_of_Total_Category_Length') as 'place_score', \"SOS Score\" as 'Measure'; PSP = foreach PSP generate 'Region' as 'Region', sum('Sum_of_PLACE_PSP_Answer')/sum('Sum_of_PLACE_PSP_Question') as 'place_score', \"PSP Score\" as 'Measure'; PLACE = group SSP by 'Region', SOS by 'Region', PSP by 'Region'; PLACE = union SOS, PSP, SSP; PLACE = order PLACE by 'Region' asc;",
+                    "measures": [
+                        [
+                            "place",
+                            "score",
+                            "place_score",
+                            {
+                                "display": "Score (%)",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_19": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_17": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PLACE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            }
+        },
+        "widgets": {
+            "text_18": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 2150,
+                    "zIndex": 26
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by regions of the country in\n the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_17": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1720,
+                    "zIndex": 25
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Compliance by Region"
+                }
+            },
+            "text_19": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 2220,
+                    "zIndex": 27
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Score by Channel"
+                }
+            },
+            "dimfilter_29": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 240,
+                    "zIndex": 100022
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Country_10"
+                }
+            },
+            "text_14": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1300,
+                    "zIndex": 22
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Compliance by 4P/5P/6P"
+                }
+            },
+            "text_16": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 1720,
+                    "zIndex": 24
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Score by Region"
+                }
+            },
+            "text_15": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 1650,
+                    "zIndex": 23
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by 4P, 5P and 6P stores for the \ncountry in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_10": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 1240,
+                    "zIndex": 18
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of SOS, PSP and SSP for the country over a period of last 12 months.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_12": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 1300,
+                    "zIndex": 20
+                },
+                "parameters": {
+                    "text": "Place Score by 4P/5P/6P"
+                }
+            },
+            "datefilter_1": {
+                "type": "dateselector",
+                "position": {
+                    "h": 80,
+                    "w": 260,
+                    "x": 240,
+                    "y": 30,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "step": "Date_Year_Date_Month_1",
+                    "title": "Date"
+                }
+            },
+            "text_11": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 900,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Compliance Trend"
+                }
+            },
+            "dimfilter_32": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 330,
+                    "y": 180,
+                    "zIndex": 100025
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "City_13"
+                }
+            },
+            "dimfilter_33": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 330,
+                    "y": 240,
+                    "zIndex": 100026
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_area_14"
+                }
+            },
+            "dimfilter_30": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 300,
+                    "zIndex": 100023
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Region_11"
+                }
+            },
+            "dimfilter_31": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 360,
+                    "zIndex": 100024
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Province_12"
+                }
+            },
+            "box_18": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1650,
+                    "x": 40,
+                    "y": 4650,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(250, 250, 250, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_9": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 800,
+                    "x": 910,
+                    "y": 950,
+                    "zIndex": 7
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_7",
+                    "exploreLink": false,
+                    "visualizationType": "time"
+                }
+            },
+            "chart_6": {
+                "type": "chart",
+                "position": {
+                    "h": 580,
+                    "w": 800,
+                    "x": 910,
+                    "y": 3590,
+                    "zIndex": 6
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Customer_6",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_3": {
+                "type": "text",
+                "position": {
+                    "x": 800,
+                    "y": 130,
+                    "zIndex": 20
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Customer"
+                }
+            },
+            "box_14": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1650,
+                    "x": 60,
+                    "y": 4260,
+                    "zIndex": 62
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.96)"
+                }
+            },
+            "chart_5": {
+                "type": "chart",
+                "position": {
+                    "h": 580,
+                    "w": 800,
+                    "x": 910,
+                    "y": 2920,
+                    "zIndex": 5
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Product_category_5",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_2": {
+                "type": "text",
+                "position": {
+                    "x": 230,
+                    "y": 130,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Geography"
+                }
+            },
+            "box_13": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1650,
+                    "x": 70,
+                    "y": 3540,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.97)"
+                }
+            },
+            "box_12": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1650,
+                    "x": 60,
+                    "y": 2870,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_4": {
+                "type": "text",
+                "position": {
+                    "x": 1220,
+                    "y": 130,
+                    "zIndex": 21
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Product"
+                }
+            },
+            "box_11": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1650,
+                    "x": 60,
+                    "y": 2220,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_2": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 800,
+                    "x": 910,
+                    "y": 1350,
+                    "zIndex": 1
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "X4P_5P_6P_2",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "text_7": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 440,
+                    "zIndex": 15
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Compliance by Country"
+                }
+            },
+            "box_10": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1650,
+                    "x": 60,
+                    "y": 1720,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.99)"
+                }
+            },
+            "chart_1": {
+                "type": "chart",
+                "position": {
+                    "h": 390,
+                    "w": 800,
+                    "x": 910,
+                    "y": 490,
+                    "zIndex": 0
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Country_1",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_6": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 440,
+                    "zIndex": 14
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Score by Country"
+                }
+            },
+            "chart_4": {
+                "type": "chart",
+                "position": {
+                    "h": 530,
+                    "w": 800,
+                    "x": 910,
+                    "y": 2270,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Channel_4",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_9": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 900,
+                    "zIndex": 17
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Score Trend"
+                }
+            },
+            "chart_3": {
+                "type": "chart",
+                "position": {
+                    "h": 390,
+                    "w": 800,
+                    "x": 910,
+                    "y": 1770,
+                    "zIndex": 2
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Region_3",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "text_8": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 840,
+                    "zIndex": 16
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of SOS, PSP and SSP in the latest month.\n"
+                }
+            },
+            "box_3": {
+                "type": "box",
+                "position": {
+                    "h": 90,
+                    "w": 360,
+                    "x": 1330,
+                    "y": 20,
+                    "zIndex": 27
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.02)",
+                    "imageUrl": "01523000000Hvz6"
+                }
+            },
+            "text_1": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 40,
+                    "zIndex": 49
+                },
+                "parameters": {
+                    "fontSize": 36,
+                    "text": "Period"
+                }
+            },
+            "comparetable_2": {
+                "type": "comparetable",
+                "position": {
+                    "h": 290,
+                    "w": 800,
+                    "x": 60,
+                    "y": 4310,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "step": "compare_26",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "h": 420,
+                    "w": 1650,
+                    "x": 60,
+                    "y": 10,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.97)"
+                }
+            },
+            "text_47": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 4180,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by top \ncustomers for the country in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_46": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 3470,
+                    "zIndex": 53
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by categories \nfor the country in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_43": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1650,
+                    "zIndex": 50
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of 4P, 5P and 6P stores that were Place compliant for the country in \nthe latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_42": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1240,
+                    "zIndex": 49
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant for the country over a \nperiod of last 12 months.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_1": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 180,
+                    "zIndex": 100001
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Cluster_9"
+                }
+            },
+            "text_45": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2800,
+                    "zIndex": 52
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped channels for \nthe country in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_2": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1430,
+                    "y": 180,
+                    "zIndex": 100000
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_category_25"
+                }
+            },
+            "text_44": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2150,
+                    "zIndex": 51
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant grouped by regions of \nthe country in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_41": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 840,
+                    "zIndex": 48
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of enrolled stores that were Place compliant in the latest month.\n"
+                }
+            },
+            "number_1": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 70,
+                    "y": 4730,
+                    "zIndex": 39
+                },
+                "parameters": {
+                    "measureField": "count",
+                    "step": "Local_Outlet_Name_27",
+                    "textColor": "rgb(250, 68, 68)",
+                    "title": ""
+                }
+            },
+            "chart_17": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 800,
+                    "x": 60,
+                    "y": 950,
+                    "zIndex": 47
+                },
+                "parameters": {
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_34",
+                    "visualizationType": "time"
+                }
+            },
+            "chart_16": {
+                "type": "chart",
+                "position": {
+                    "h": 570,
+                    "w": 800,
+                    "x": 60,
+                    "y": 3590,
+                    "zIndex": 46
+                },
+                "parameters": {
+                    "step": "Customer_33",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_15": {
+                "type": "chart",
+                "position": {
+                    "h": 500,
+                    "w": 800,
+                    "x": 60,
+                    "y": 2920,
+                    "zIndex": 45
+                },
+                "parameters": {
+                    "step": "Product_category_32",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_14": {
+                "type": "chart",
+                "position": {
+                    "h": 530,
+                    "w": 800,
+                    "x": 60,
+                    "y": 2270,
+                    "zIndex": 44
+                },
+                "parameters": {
+                    "step": "Channel_31",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_13": {
+                "type": "chart",
+                "position": {
+                    "h": 390,
+                    "w": 800,
+                    "x": 60,
+                    "y": 1770,
+                    "zIndex": 43
+                },
+                "parameters": {
+                    "step": "Region_30",
+                    "visualizationType": "vbar"
+                }
+            },
+            "chart_12": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 800,
+                    "x": 60,
+                    "y": 1350,
+                    "zIndex": 42
+                },
+                "parameters": {
+                    "step": "X4P_5P_6P_29",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_11": {
+                "type": "chart",
+                "position": {
+                    "h": 390,
+                    "w": 800,
+                    "x": 60,
+                    "y": 490,
+                    "zIndex": 41
+                },
+                "parameters": {
+                    "step": "Country_28",
+                    "visualizationType": "hbar"
+                }
+            },
+            "text_36": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 4560,
+                    "zIndex": 37
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the list of percentages of PSP and SSP grouped by each question \nfor the latest month, and also the percentage increase or decrease compared to \nthe previous month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "text_35": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 4260,
+                    "zIndex": 36
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Score by Question"
+                }
+            },
+            "text_37": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 4650,
+                    "zIndex": 38
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Count of Audited Perfect Stores"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "h": 70,
+                    "w": 310,
+                    "x": 70,
+                    "y": 4720,
+                    "zIndex": 40
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.97)"
+                }
+            },
+            "box_4": {
+                "type": "box",
+                "position": {
+                    "h": 20,
+                    "w": 1650,
+                    "x": 50,
+                    "y": 5010,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "backgroundColor": "rgb(239, 244, 246)",
+                    "borderColor": "rgba(0, 0, 0, 0)"
+                }
+            },
+            "box_7": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1650,
+                    "x": 60,
+                    "y": 440,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_9": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1650,
+                    "x": 60,
+                    "y": 1300,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_8": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1640,
+                    "x": 60,
+                    "y": 900,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(252, 252, 252, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "text_25": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 3540,
+                    "zIndex": 33
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Score by Top Customers"
+                }
+            },
+            "text_24": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2870,
+                    "zIndex": 32
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Compliance by Category"
+                }
+            },
+            "dimfilter_38": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 620,
+                    "y": 360,
+                    "zIndex": 100031
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "X4P_5P_6P_19",
+                    "title": "Tier"
+                }
+            },
+            "text_27": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 3540,
+                    "zIndex": 35
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Compliance by Top Customers"
+                }
+            },
+            "dimfilter_39": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 880,
+                    "y": 180,
+                    "zIndex": 100032
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_type_20"
+                }
+            },
+            "text_26": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 4180,
+                    "zIndex": 34
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by top customers for the \ncountry in the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_36": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 620,
+                    "y": 240,
+                    "zIndex": 100029
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Channel_17"
+                }
+            },
+            "text_21": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2220,
+                    "zIndex": 29
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Compliance by Channel"
+                }
+            },
+            "dimfilter_37": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 620,
+                    "y": 300,
+                    "zIndex": 100030
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Subchannel_18"
+                }
+            },
+            "text_20": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 2800,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by channels for the country \nin the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_34": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 330,
+                    "y": 300,
+                    "zIndex": 100027
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_territory_15"
+                }
+            },
+            "text_23": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 3470,
+                    "zIndex": 31
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the percentage of SOS, PSP and SSP grouped by categories for the country \nin the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_35": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 620,
+                    "y": 180,
+                    "zIndex": 100028
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Trade_Format_16"
+                }
+            },
+            "text_22": {
+                "type": "text",
+                "position": {
+                    "x": 910,
+                    "y": 2870,
+                    "zIndex": 30
+                },
+                "parameters": {
+                    "fontSize": 25,
+                    "text": "Place Score by Category"
+                }
+            },
+            "dimfilter_43": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1170,
+                    "y": 180,
+                    "zIndex": 100036
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_division_24"
+                }
+            },
+            "dimfilter_41": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 880,
+                    "y": 300,
+                    "zIndex": 100034
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_22"
+                }
+            },
+            "dimfilter_42": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 880,
+                    "y": 360,
+                    "zIndex": 100035
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Banner_23"
+                }
+            },
+            "dimfilter_40": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 880,
+                    "y": 240,
+                    "zIndex": 100033
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_subtype_21"
+                }
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb8A0000000SScSAM",
+            "name": "DPS_PLACE_AGGREGATED"
+        },
+        {
+            "id": "0Fb8A0000000SShSAM",
+            "name": "DPS_PSP_RAW"
+        },
+        {
+            "id": "0Fb8A0000000SSrSAM",
+            "name": "DPS_SOS_AGGREGATED"
+        },
+        {
+            "id": "0Fb8A0000000SSmSAM",
+            "name": "DPS_SSP_RAW"
+        }
+    ]
+}

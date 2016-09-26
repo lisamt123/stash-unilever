@@ -40,6 +40,8 @@
     <reportType>CustomEntityCustomEntity$WU_Master_Warehouse__c$WU_Warehouse_Capacity_Detail__c</reportType>
     <scope>user</scope>
     <showDetails>true</showDetails>
+    <sortColumn>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization_Week__c</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>WU_Master_Warehouse__c.WU_FromDate__c</dateColumn>
         <interval>INTERVAL_THISMONTH</interval>

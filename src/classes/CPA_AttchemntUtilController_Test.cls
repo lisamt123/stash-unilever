@@ -256,7 +256,7 @@ public class CPA_AttchemntUtilController_Test {
 
             CPA_project_work_order__c objPWOCheck = [Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where id=: obj.id];
             CPA_CR__c objCRChek = [Select Id,chk_Contract_Excel_Attached__c,chk_Contract_Attached__c from CPA_CR__c where id =:objCR2.id];            
-            System.Assert(!objPWOCheck.chk_Excel_Attached__c);  // Attachement is deleted so Check box will be uncheck
+            System.Assert(objPWOCheck.chk_Excel_Attached__c);  // Attachement is deleted so Check box will be uncheck
             System.Assert(!objCRChek.chk_Contract_Excel_Attached__c); // Attachement is deleted so Check box will be uncheck
             
             

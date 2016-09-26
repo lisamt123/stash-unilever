@@ -10,6 +10,7 @@
     <aura:attribute name="activityForRating" type="Everyday_Activity__c"></aura:attribute>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"></aura:handler>
     <aura:attribute name="rating" type="integer"/>
+    <aura:attribute name="userPreviousRating" type="string"/>
     <aura:attribute name="numbers" type="integer[]"/>
     <aura:attribute name="remain" type="integer[]" />
     <aura:attribute name="showrating" type="boolean" default="false"/>
@@ -55,27 +56,33 @@
                 <div class="rateTitle">Rate this activity</div>
                 
                 <div class="default-rating" style="margin-left:5px;">
-                    
-                    <aura:if isTrue="{!v.participant_rating !=undefined }">
+                   
+                    <aura:if isTrue="{!v.userPreviousRating != 0 }">
+                       <span>
                         <aura:iteration items="{!v.numbers}" var="rating" indexVar="index">
                             <span>
                                 <img  value="{!rating}" class="starfill_f"  data-index="{!index}" onclick="{!c.imageClick}" src="/resource/EA_StaticResource/assets/images/blue_star.svg" alt="person name" />
                             </span>
                         </aura:iteration>
-                        
-                        <aura:iteration var="rating1" items="{!v.remain}" indexVar="{!v.rateStars}">
+                        </span>
+                        <span>
+                         <aura:iteration var="rating1" items="{!v.remain}" indexVar="index">
                             <span>
-                                <img  value="{!rating1}"   data-index="{!v.rateStars}"  onclick="{!c.imageClick}" class="starunfill_f" src="/resource/EA_StaticResource/assets/images/unfil_star.svg" alt="person name" />
+                                <img  value="{!rating1}"   data-index="{!index}"  onclick="{!c.emptyImageClick}" class="starunfill_f" src="/resource/EA_StaticResource/assets/images/unfil_star.svg" alt="person name" />
                             </span>
-                        </aura:iteration>
+                         </aura:iteration>
+                        </span>     
                     </aura:if>
-                    <aura:if isTrue="{!v.participant_rating ==undefined}">
-                        <aura:iteration var="rating1" items="[1,2,3,4,5]"   indexVar="index2">
-                            
+                    <aura:if isTrue="{!v.userPreviousRating == 0}">
+                      <span>
+                        <aura:iteration var="rating1" items="[1,2,3,4,5]" indexVar="index">
+                           
                             <span>
-                                <img  data-index="{!index2}" onclick="{!c.imageClick}"  value="{!rating1}" class="starunfill_f" src="/resource/EA_StaticResource/assets/images/unfil_star.svg" alt="person name" />
+                                <img  data-index="{!index}" onclick="{!c.imageClick}"  value="{!rating1}" class="starunfill_f" src="/resource/EA_StaticResource/assets/images/unfil_star.svg" alt="person name" />
                             </span>
-                        </aura:iteration>
+                            
+                         </aura:iteration>
+                       </span>    
                     </aura:if>
                 </div>
             </aura:if>
@@ -84,8 +91,9 @@
                 <textarea  id="commentText" class="box-text" placeholder="Upto 240 characters"></textarea>
                 <!-- <ui:inputText aura:id="comments" label="Comments"  placeholder="upto 240 characters" /> -->
             </div> 
+            <!-- EA Release 1.2 : Comments should not be mandatory. Date- 12/4/2016 -->
             <aura:if isTrue="{!v.showError}">
-               <div style="align:right;color:red"><span>Please Provide Comments</span></div>
+               <div style="align:right;color:red"><span>Please provide star rating.</span></div>
             </aura:if>
         </div>   
         <button class="cancel_btn" onclick="{!c.gotoDetail}">Cancel</button>

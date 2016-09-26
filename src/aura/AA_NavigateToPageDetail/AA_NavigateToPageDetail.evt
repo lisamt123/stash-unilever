@@ -1,0 +1,10 @@
+<aura:event type="APPLICATION">
+    <aura:attribute name="navigate" type="String"/>
+    <aura:attribute name="filterType" type="String" description="store report filter type here"/>
+    <aura:attribute name="sortType" type="String"/>
+    <aura:attribute name="applyFilter" type="String"/>
+    <aura:attribute name="limitRecords" type="Integer"/>
+    <aura:attribute name="offSet" type="Integer"/>
+    <aura:attribute name="countryId" type="String" />
+    <aura:attribute name="clusterId" type="String" />
+</aura:event>

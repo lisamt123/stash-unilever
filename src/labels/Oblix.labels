@@ -1,0 +1,2533 @@
+    <labels>
+        <fullName>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</shortDescription>
+        <value>Total Turnover &gt;40M</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Activity</shortDescription>
+        <value>Activity</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_AssetScoring_PrefixObject</fullName>
+        <categories>Asset Scoring Prefix</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_AssetScoring_PrefixObject</shortDescription>
+        <value>a6N</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_100_200</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_100_200</shortDescription>
+        <value>€100-€200m</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</shortDescription>
+        <value>Total Turnover 10M - 20M</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</shortDescription>
+        <value>€200-€300m</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</shortDescription>
+        <value>Total Turnover &lt;10M</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</shortDescription>
+        <value>Total Turnover 20M - 30M</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</shortDescription>
+        <value>€300-€400m</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</shortDescription>
+        <value>Total Turnover 30M - 40M</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</shortDescription>
+        <value>&gt;€400m</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_BrandLedGrowth_Less100</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_BrandLedGrowth_Less100</shortDescription>
+        <value>&lt;€100m</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_BrandLedGrowth</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_BrandLedGrowth</shortDescription>
+        <value>Brand Led Growth</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_Existing</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_Existing</shortDescription>
+        <value>Existing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_HubsPartners1</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_HubsPartners1</shortDescription>
+        <value>1 location</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_HubsPartners2</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_HubsPartners2</shortDescription>
+        <value>Up to 2 locations</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_HubsPartners3</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_HubsPartners3</shortDescription>
+        <value>Up to 3 locations</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_HubsPartners4</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_HubsPartners4</shortDescription>
+        <value>Up to 4 locations</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_HubsPartners5</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_HubsPartners5</shortDescription>
+        <value>Up to 5 locations</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_Innovation</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_Innovation</shortDescription>
+        <value>Innovation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_Market1</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_Market1</shortDescription>
+        <value>Local campaign, single language only</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_Market2</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_Market2</shortDescription>
+        <value>Local / regional campaign, mutiple languages (5)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_NewMulti</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_NewMulti</shortDescription>
+        <value>New – Multi channel</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Innovation_Projects_NewOne</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_NewOne</shortDescription>
+        <value>New – One channel</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Marketing_Basics_c</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Marketing_Basics__c</shortDescription>
+        <value>Marketing_Basics__c</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market3</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Innovation_Projects_Market3</shortDescription>
+        <value>Multiple countries (5-10), multiple language (5-10)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market4</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market4</shortDescription>
+        <value>Multiple countries (11-15), mutiple language (c.15)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market5</fullName>
+        <categories>Oblix Calculator</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market5</shortDescription>
+        <value>Global campaign/s suitable for  &gt;15 number of markets</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Role</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Role</shortDescription>
+        <value>-Role-</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_SOWSTATUS_AWAITINGAPPROVAL</fullName>
+        <categories>Approval Process Trigger</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_SOWSTATUS_AWAITINGAPPROVAL</shortDescription>
+        <value>Awaiting Unilever Approval</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_SOW_Marketing_Clone_Procedure</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SOW Marketing Clone Procedure</shortDescription>
+        <value>SOW Marketing Clone Procedure</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_SWOPReportFolder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_SWOPReportFolder</shortDescription>
+        <value>SWOP Reporting</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_Select_Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_Select_Other</shortDescription>
+        <value>Select Other and describe if not listed</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_05_Current</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current</shortDescription>
+        <value>Current</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Soci_Digit_Requir</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social Digital Requirements</shortDescription>
+        <value>No Picklist items will be loaded</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social/ Digital requirements</shortDescription>
+        <value>Analyzing social media landscape and provide point-of-view and recommendations to improve existing social presence and beyond. Community management of social platforms.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social Digital Requirements</shortDescription>
+        <value>Social media strat and content calendar for 1 social media channel with weekly updates. (eg facebook) PER MONTH</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social Digital Requirements</shortDescription>
+        <value>Social media strat and content calendar for 1 social media channel with daily updates.(eg twitter) PER MONTH</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social Digital Requirements</shortDescription>
+        <value>Social media strat and content calendar for 2-4 social media channel with weekly updates. PER MONTH</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social Digital Requirements</shortDescription>
+        <value>Social media strat and content calendar for 5-7 social media channel with weekly updates. PER MONTH</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social Digital Requirements</shortDescription>
+        <value>Social media strat and content calendar for 8+ social media channel with frequent updates. PER MONTH</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Always on Social/ Digital requirements</shortDescription>
+        <value>Always on Social</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Attachments</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attachments</shortDescription>
+        <value>Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Radio, Webcast, Podcast</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
+        <value>Final output will be supported with a high investment in media, a high quality finish is required, typically longer development time, a more guaranteed result, multiple time lengths. Examples include TV Master, Reshoot, Voice to camera shoots, branded videos, product demos</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
+        <value>Production of a new film master, with creative development work already complete. Requires agency in casting and oversight of production. Ie/ reshoot of an existing script</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
+        <value>Creative development of a new master only. No production. Assumes several new scripts created for testing.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
+        <value>Full creative development and production of new master, requiring several scripts / executions for testing, (2-3 routes). One version selected post testing taken to full development including selection of talent, oversight of standard shoot.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
+        <value>Full creative development and production of new master, requiring several scripts / executions for testing, (&gt;3). One version selected post testing taken to full development including selection of talent, oversight of complex shoot (eg multiple locations)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION - FULL</shortDescription>
+        <value>Origination Full</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION - LITE</shortDescription>
+        <value>Final output will be typically supported with a lower investment in media. A mid to low quality finish is acceptable. Typically faster development time, smaller screen, short lifecycle, limited frequency of exposure (audience may only see it once). Examples include simple behind the scenes footage, tactical video for social, campaign teaser video, etc)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – LITE</shortDescription>
+        <value>Production of a new simple video - eg/ 7 second video for vine</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – LITE</shortDescription>
+        <value>Full creative development and production of a simple video &lt;15 seconds eg/ educational video on use, you tube preroll, short video recipes etc</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – LITE</shortDescription>
+        <value>Full creative development and production of a simple video up to 30 seconds</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – LITE</shortDescription>
+        <value>Full creative development and production of a simple video, 30-60 seconds</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION – LITE</shortDescription>
+        <value>Full creative development and production of a simple video, &gt;60 seconds</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ORIGINATION - LITE</shortDescription>
+        <value>Origination Lite</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisuel</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio Visual</shortDescription>
+        <value>Audio Visual</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_AudioVisuel_Description</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TV, Video, etc</shortDescription>
+        <value>TV, Video, etc</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Creation of audio assets that require script writing. Ranges from simple production of a radio spot through to long form &gt;60 seconds such as webcast or podcast.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Production of new audio content. OR adaptation of audio content.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Creative development of audio content. No production.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Full creative development and production of audio content, up to 30 seconds</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Full creative development and production of audio content, 30-60 seconds</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Full creative development and production of audio content, &gt;60 seconds</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Audio</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_A_Re_E</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio Visual Adaps &amp; Re-Edits</shortDescription>
+        <value>Simple Adaptation, Simple Edit, Moderate Edit, Complex Re-Edit, Complex Adaptation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
+        <value>Changes made to existing film or radio master. Can include changing music, language, end pack shot, change of voice over or super. May include reshooting of new footage.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
+        <value>Simple editing of script (for radio) using existing footage (for TV/Online/Mobile)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
+        <value>Simple editing of script and changing of 2D pack shots and supers (for TV/Online/Mobile).</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
+        <value>Moderate editing of script and changing of 3D pack shots and animated supers (for TV/Online/Mobile).</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
+        <value>Complex Re-edit where an existing script needs some elements / scenes reshot, but overall story remains in tact. Eg/ recreating a recipe script with new ingredients and local products.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
+        <value>Complex Adaptation where an existing script needs to be re-written with complex changes, eg/ taking an existing UK script to launch a product in China. New story needs new end to end filming and production.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
+        <value>Adaptations and Reedits</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Origination_F</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio Visual Origination - Full</shortDescription>
+        <value>TV Master, Re-Shoot, Voice to camera shots, Branded videos, Product Demos, Cinema Film</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Audio_Visual_Origination_L</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio Visual Origination - Lite</shortDescription>
+        <value>Campaign Teaser Video, Behind the scenes footage, Tactical video</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Big_Cat</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Big Cat</shortDescription>
+        <value>Big Cat</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Brand</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Brand</shortDescription>
+        <value>Brand</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_By</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_By</shortDescription>
+        <value>by</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_C_D_and_T</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cut Downs and Tags</shortDescription>
+        <value>Tag, Cutdown</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Campaign</shortDescription>
+        <value>Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_ClearFilters</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show All</shortDescription>
+        <value>Show All</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Briefing</shortDescription>
+        <value>Completed Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Creative_Execution</shortDescription>
+        <value>Completed Creative Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Creative_Ideation</shortDescription>
+        <value>Completed Creative Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Production</shortDescription>
+        <value>Completed Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Completed_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Completed_Strategy_Planning</shortDescription>
+        <value>Completed Strategy &amp; Planning</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Create_Sow_Plus</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create Sow +</shortDescription>
+        <value>Create Sow +</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Cut_downs_Tag_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cut downs &amp; Tag</shortDescription>
+        <value>Each cutdown will need to be tailored to the specified medium duration/size/usage and ensure that it stays true to the original idea. Requires some creative thinking to ensure that the story remains aligned to the original requirements of the project. Changes for timelength, frame ordering, language etc</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Cut_downs_Tag_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cut Downs and Tags</shortDescription>
+        <value>Simple Tag for radio</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Cut_downs_Tag_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cut Downs and Tags</shortDescription>
+        <value>Opening or end frame Tag. No new footage, Tag created from existing footage.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Cut_downs_Tag_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cut Downs and Tags</shortDescription>
+        <value>Cut down for timelength 60&quot; 45&quot; 30&quot; 15&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Cut_downs_Tag_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cut Downs and Tags</shortDescription>
+        <value>Opening or end frame Tag. Requires the creation of new footage.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cut downs &amp; Tag</shortDescription>
+        <value>Cut downs and Tags</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Rep_Dash</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>No picklist items will be loaded</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>Develop measurements framework and guide the Digital Production agency to ensure all relevant digital assets/ pages are accurately tagged and tracking is implemented. Regular campaign reporting to propose optimization during the campaign and work with Digital Production agency to implement optimization. :</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>Simple campaign analytics and reporting.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>Simple customer segmentation and targeting strategy. Creation of measurement framework. Moderate campaign analytics and reporting.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>Simple customer segmentation and targeting strategy. Creation of measurement framework. Large amounts of campaign analytics and reporting.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>Simple/Moderate customer segmentation and targeting strategy. Creation of measurement framework. Large amounts of campaign analytics and reporting.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>Complex data segmentation strategy to identify audiences. Creation of tracking framework. Campaign analytics, reporting and optimisation.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Data, Analytics, Reporting, Dashboards</shortDescription>
+        <value>Data Analytics Reporting Dashboards</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_Cmp_Asst</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital Campaign Assets</shortDescription>
+        <value>Static Banners, Static landing pages, Static page take overs, Flash Banners, Flash Landing Pages, Flash take overs, Simple Microsite, Complex Microsite, Youtube uploads, EDM, Enewsletters</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>Changes made to existing digital assets. Includes localisation.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>Banner or landing page adaptations (complex)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>Digital strategy adaptation / refresh. Eg/ mobile or UX strategy</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>EDM/eNewsletters - Adapt copy, design &amp; layout.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>Micro site adaptation for language or localised creative concept
+8 Page / 10 Sections</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>Complex website revamp or localisation. Eg/ Inclusion of registration module, Mobile App adaptation, interactive game adaptation.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>Digital Adaptation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digit_adpt_requir</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital adaptation requirements</shortDescription>
+        <value>Banner adaptations, Landing page adaptations, Digital strategy adaptation, EDM adaptation, eNewsletter adaptation, Mobile app adaptation, interactive game adaptation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital</shortDescription>
+        <value>Digital</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_Description</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Websites,Digit assets,Data Soc med</shortDescription>
+        <value>Websites, Digital assets, Data, Social media</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital campaign assets</shortDescription>
+        <value>Creative conceptualization and develop key mock up/ visuals to guide digital production agency in the building of digital assets for the campaign. Digital requirements are add ons to the core ATL campaign, requires a short development time, and testing effort.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital campaign assets</shortDescription>
+        <value>Digital campaign assets</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital campaign assets</shortDescription>
+        <value>Banner, landing page, page take over, youtube uploads (includes writing the copy for you tube clips etc).</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital campaign assets</shortDescription>
+        <value>EDM/eNewsletters (Standard) - Originate copy, design &amp; layout</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital campaign assets</shortDescription>
+        <value>EDM/eNewsletters (Complex) - Originate copy, design &amp; layout</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital campaign assets</shortDescription>
+        <value>Simple app for social media eg/ facebook contest</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Digital campaign assets</shortDescription>
+        <value>Micro site creation (Complex)
+8 Page / 10 Sections</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential</shortDescription>
+        <value>Experiential</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Decription</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential, promotional ideas</shortDescription>
+        <value>Experiential, promotional ideas</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Origin</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional Ideas - Origination</shortDescription>
+        <value>Simple Adaptation, Moderate Adaptation, Complex Adaptation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ADAPTATION</shortDescription>
+        <value>Changes made to existing experiential idea eg/ adapting an activation event in US for Australia market.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ADAPTATION</shortDescription>
+        <value>Simple adaptation of an existing experiential idea. Eg, similar execution idea will be activated in a new location requiring minor changes.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ADAPTATION</shortDescription>
+        <value>Moderate adaptation of an existing experiential idea. Eg, existing idea will be activated in a different location and / or for a different product line or in a different type of retail concept etc.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ADAPTATION</shortDescription>
+        <value>Complex adaptation of an existing experiential idea. Eg. Existing idea will be activated in a significantly different way which adds complexity to the idea execution requiring some fundemental changes to the core idea.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ADAPTATION</shortDescription>
+        <value>Experiential - Promotional ideas ADAPTATION</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
+        <value>Creative conceptualisation and development of visuals to guide events or activation agency in the execution of experiential or activation or promotional ideas for the campaign.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
+        <value>Production of existing experiential ideas.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
+        <value>Creative development of new simple experiential ideas for inclusion in BET. No production.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
+        <value>Creative development of new complex experiential ideas for inclusion in BET. No production.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
+        <value>Full creative development and production of a experiential ideas in one location</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
+        <value>Full creative development and production of a experiential ideas in multiple locations</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Experiential / Promotional ideas ORIGINATION</shortDescription>
+        <value>Experiential - Promotional ideas ORIGINATION</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Export</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Export</shortDescription>
+        <value>Export</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Filter</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Filter</shortDescription>
+        <value>Filter</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Financial_Year</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Financial Year</shortDescription>
+        <value>Financial Year</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Last_updated</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Last_updated</shortDescription>
+        <value>Last updated</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Origination</fullName>
+        <categories>UI/UX</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Origination</shortDescription>
+        <value>Origination</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Briefing</shortDescription>
+        <value>Projected Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Creative_Execution</shortDescription>
+        <value>Projected Creative Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Creative_Ideation</shortDescription>
+        <value>Projected Creative Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Production</shortDescription>
+        <value>Projected Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Projected_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Projected_Strategy_Planning</shortDescription>
+        <value>Projected Strategy &amp; Planning</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_SOW_list</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SOW list</shortDescription>
+        <value>SOW list</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Small_Cat</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Small Cat</shortDescription>
+        <value>Small Cat</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digit</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Mobile marketing strategy, UX Strategy, Interactive Game, Mobile App Conceptualisation, Website optimisation for Mobile</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digital_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Creative conceptualization and develop key mock up/ visuals to guide digital production agency in the building of digital assets for the campaign. Digital requirements are central to the campaign, requires a long development lead time, functional testing, prototyping and reiterations.  Includes highly specialised digital resources such as mobile, user experience design.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digital_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Standard specialist digital strategic requirements. Eg/ mobile marketing strategy. UX Strategy  for a small brand</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digital_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Complex specialist digital strategic requirements. Eg/ complex mobile marketing strategy. UX Strategy  for a large brand</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digital_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Complex Interactive game creation / mobile app conceptualisation.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digital_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Complex website optimisation for Mobile.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digital_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Complex website/platform creation, including ideation, large amounts of UX, functionality testing, maintenance (~30 pages)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Specialist_Digital_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Specialist Digital</shortDescription>
+        <value>Specialist Digital</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ADAPT_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ADAPTATION</shortDescription>
+        <value>Changes required to existing copy writing and art direction.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ADAPT_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ADAPTATION</shortDescription>
+        <value>Small copy amend or adaptation of copy. OR Simple layout amend, or photo / pack replacement.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ADAPT_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ADAPTATION</shortDescription>
+        <value>Multiple simple amends eg/ new logo, new headline, layout reformat, resizing. Moderate copy rewrite, moderate changes to design or layout.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ADAPT_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ADAPTATION</shortDescription>
+        <value>Complex adaptation of existing idea for local relevance. Significant copy rewrite. Adaption of layout, artwork for new copy, image, several sizes.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ADAPTATION</shortDescription>
+        <value>Adaptation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static Imagery</shortDescription>
+        <value>Creation of creative assets that require copy and art direction. Ranges from simple tactical executions through to strategic print work.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Score1</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ORIGINATION</shortDescription>
+        <value>Development of a Key Visual (shoot, talent, production and post production) or new Logo design</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ORIGINATION</shortDescription>
+        <value>Out of Home materials - Bus wraps / shelters/ billboards / street banners</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ORIGINATION</shortDescription>
+        <value>New tactical print, requiring new tactical creative concept, new call to action, new simple copy, new headline. Uses KV or other existing photography.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ORIGINATION</shortDescription>
+        <value>Strategic Print - Full creative development and production of new print, requiring several copy versions and layouts (up to 2). Includes new photography</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Score5</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ORIGINATION</shortDescription>
+        <value>Strategic Print - Full creative development and production of new print, requiring several copy versions and layouts (&gt;2). Includes new photography.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static imagery ORIGINATION</shortDescription>
+        <value>Origination</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Static_Img</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static Imagery</shortDescription>
+        <value>Static Imagery</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Static_Img_Adpt</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static Imagery - Adaptation</shortDescription>
+        <value>Simple Adaptation, Moderate Adaptation, Complex Adaptation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Static_Img_Description</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>KV, logo, OOH, Billboards, vehicle wraps, etc</shortDescription>
+        <value>KV, logo, OOH, Billboards, vehicle wraps, etc</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Static_Img_Origin</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Static Imagery - Origination</shortDescription>
+        <value>Key Visual, Logo, Bus Wraps, Bus Shelters, Billboards, Street Banners, Tactical Print, Strategic Print</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stim_require_Definition</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stimulus requirements</shortDescription>
+        <value>Development of creative material for use in the creative testing process, Qualitative research and preview</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stim_require_Score2</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stimulus requirements</shortDescription>
+        <value>Adaptation of stimulus materials</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stim_require_Score3</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stimulus requirements</shortDescription>
+        <value>Stimulus for qual testing. Examples include Mood boards and/or audio, Extended stills (storyboard and illustrations)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stim_require_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stimulus requirements</shortDescription>
+        <value>Stimulus for quant testing. Examples include Time bound animatics (incl Stillomatic), Near-finished, time bound high quality AV)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stim_require_Subcategory</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stimulus requirements</shortDescription>
+        <value>Stimulus requirements</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stimulus</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stimulus</shortDescription>
+        <value>Mood Boards, Extended Stills, Storyboard, Animatics, Stillomatics, Finished Film, Photomatic, Narration, Stilomatic, Concept Quals,</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Stimulus_Materials</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stimulus Materials</shortDescription>
+        <value>Stimulus Materials - Research requirements</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Updated</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Updated</shortDescription>
+        <value>Updated</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Activity</shortDescription>
+        <value>Activity</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Book</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Book</shortDescription>
+        <value>Brand Book</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Communication_Idea</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Communication_Idea</shortDescription>
+        <value>Brand Communication Idea</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Key_Presentations</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Key_Presentations</shortDescription>
+        <value>Brand Key Presentations</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Meetings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Meetings</shortDescription>
+        <value>Brand Leadership Meetings</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Workshops</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Leadership_Workshops</shortDescription>
+        <value>Brand Leadership Workshops</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Led_Training</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Led_Training</shortDescription>
+        <value>Brand Led Training for the agency</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_Technical_Infrastructure</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_Technical_Infrastructure</shortDescription>
+        <value>Brand Technical &amp;/or Infrastructure</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Brand_equity_development</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Brand_equity_development</shortDescription>
+        <value>Brand equity development</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Briefing</shortDescription>
+        <value>Completed_Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution</shortDescription>
+        <value>Completed_Creative_Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation</shortDescription>
+        <value>Completed_Creative_Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Production</shortDescription>
+        <value>Completed_Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning</shortDescription>
+        <value>Completed_Strategy_Planning</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Global_Status_Meetings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Global_Status_Meetings</shortDescription>
+        <value>Global Status Meetings</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Network_Co_ordination_other_agencies</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Network_Co_ordination_other_agencies</shortDescription>
+        <value>Network Co-ordination (other agencies)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Network_Competitive_Reviews</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Network_Competitive_Reviews</shortDescription>
+        <value>Competitive Reviews</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Briefing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Briefing</shortDescription>
+        <value>Projected_Briefing</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution</shortDescription>
+        <value>Projected_Creative_Execution</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation</shortDescription>
+        <value>Projected_Creative_Ideation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Production</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Production</shortDescription>
+        <value>Projected_Production</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning</shortDescription>
+        <value>Projected_Strategy_Planning</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Regional_Status_Meetings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Regional_Status_Meetings</shortDescription>
+        <value>Regional Status Meetings</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_Status_Reports</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_Status_Reports</shortDescription>
+        <value>Status Reports</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Utils_USLP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Utils_USLP</shortDescription>
+        <value>USLP</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_View</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_View</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_View_list_of_Attachments</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View list of Attachments</shortDescription>
+        <value>View list of Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_View_project_details</fullName>
+        <categories>Oblix_VF05_SOWDetails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>View project details</shortDescription>
+        <value>View project details</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UI_SELECT_ONE_FILTER</fullName>
+        <categories>UI/UX</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UI_SELECT_ONE_FILTER</shortDescription>
+        <value>Please Select at least one Filter</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_VF02_Project_Asset</fullName>
+        <categories>title</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Project Asset</shortDescription>
+        <value>Project Asset</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Activity</shortDescription>
+        <value>Activity</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_Attachments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_Attachments</shortDescription>
+        <value>Add Attachments</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_Campaign</shortDescription>
+        <value>Add Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_New_Attachment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_New_Attachment</shortDescription>
+        <value>Add New Attachment</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_Non_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_Non_Campaign</shortDescription>
+        <value>Add Non Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_Non_Campaign_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_Non_Campaign_Items</shortDescription>
+        <value>Add Non Campaign Items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_details</shortDescription>
+        <value>Add more details</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_details_optional</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_details_optional</shortDescription>
+        <value>Add more details (Optional)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_items</shortDescription>
+        <value>Add items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Add_to_project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Add_to_project</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Adjust_Fee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Adjust_Fee</shortDescription>
+        <value>Adjust Fee</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Agency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Agency</shortDescription>
+        <value>Agency</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Agency_Department</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Agency_Department</shortDescription>
+        <value>Agency Department</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Agency_Hub_Split</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Agency_Hub_Split</shortDescription>
+        <value>Agency Hub Split</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_All_SOW_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_All_SOW_Items</shortDescription>
+        <value>All SOW Items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Approval</shortDescription>
+        <value>Approval</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Approved</shortDescription>
+        <value>Approved:</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Attachment_List</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Attachment_List</shortDescription>
+        <value>Attachment list</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Back</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Back_To_Dashboard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Back_To_Dashboard</shortDescription>
+        <value>Back To Dashboard</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Back_to_SOW</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Back_to_SOW</shortDescription>
+        <value>Back to Sow</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Business_Value_Drivers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Business_Value_Drivers</shortDescription>
+        <value>Business Value Drivers</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Cancel_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Cancel_Campaign</shortDescription>
+        <value>Cancel Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Cancel_description</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel description</shortDescription>
+        <value>In order to cancel a campaign you will have to mark its completion stage at the point of cancellation :</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Chatter_Feed_for</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Chatter_Feed_for</shortDescription>
+        <value>Chatter Feed for</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Choose_Attachment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Choose_Attachment</shortDescription>
+        <value>Choose attachment</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Choose_Countries</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Choose_Countries</shortDescription>
+        <value>Choose Countries</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Choose_stages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Choose_stages</shortDescription>
+        <value>Choose stages for this FY</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Clone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Clone</shortDescription>
+        <value>Clone</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Clone_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Clone_Campaign</shortDescription>
+        <value>Clone Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Clone_SOW_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Clone_SOW_Title</shortDescription>
+        <value>Clone this SOW</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Comming_Soon</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Comming_Soon</shortDescription>
+        <value>Comming soon</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Completed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Completed</shortDescription>
+        <value>Completed</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Confirm_Stages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Confirm_Stages</shortDescription>
+        <value>Confirm which stages of the project will be completed in the current year.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Copy_Question</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Copy_Question</shortDescription>
+        <value>Are you sure you want to make a copy</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Cost</shortDescription>
+        <value>Cost</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Cost_estimate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Cost_estimate</shortDescription>
+        <value>Cost estimate requires Agency Hub Split and Value Drivers to be completed</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Countries</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Countries</shortDescription>
+        <value>Countries</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Countries_Region</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_TimeLines</shortDescription>
+        <value>Countries and Region</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Create_SOW</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Create_SOW</shortDescription>
+        <value>Create SOW</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Created_By</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Created_By</shortDescription>
+        <value>Created By</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Created_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Created_Date</shortDescription>
+        <value>Created Date</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Current</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Current</shortDescription>
+        <value>Current:</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Dates_for_Campaign_Timeline</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Dates_for_Campaign_Timeline</shortDescription>
+        <value>Dates for Campaign Timeline</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Dedicate_Resource</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Dedicated_Resource</shortDescription>
+        <value>Dedicated Resource</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delete_SOW_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Delete_SOW_Title</shortDescription>
+        <value>Delete this SOW</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delete_item</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Delete_item</shortDescription>
+        <value>Delete item</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delivered</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delivered</shortDescription>
+        <value>Delivered</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Determined_by_Agency_Hubs_Split_selector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Determined_by_Agency_Hubs_Split_selector</shortDescription>
+        <value>Determined by Agency Hubs Split selector</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Determined_by_Countries_selector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Determined_by_Countries_selector</shortDescription>
+        <value>Determined by Countries selector</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Edit_Add_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Edit_Add_Items</shortDescription>
+        <value>Add / Edit items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Edit_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Edit_Campaign</shortDescription>
+        <value>Edit Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Edit_Non_Campaign_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Edit_Non_Campaign_Items</shortDescription>
+        <value>Edit Non Campaign items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Estimation_Cost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Estimation_Cost</shortDescription>
+        <value>Estimated Fee</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Fee</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Fee</shortDescription>
+        <value>% Fee</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Fill_date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Fill_date</shortDescription>
+        <value>Fill any Date would you like to see in Campaign Timeline</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Financials</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Financials</shortDescription>
+        <value>Financials</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Fixed_resource</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Fixed_resource</shortDescription>
+        <value>Dedicated resource</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_GBVP</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBVP</shortDescription>
+        <value>GBVP adjustment</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Go</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Go</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Go_back_to_the_edit_mode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Go_back_to_the_edit_mode</shortDescription>
+        <value>Go back to the edit mode</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Hi</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Hi</shortDescription>
+        <value>Hi</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Hourly_rate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Hourly_rate</shortDescription>
+        <value>Hourly Rate</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_How_Many_Files</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_How_Many_Files</shortDescription>
+        <value>How many files you want to upload?</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Identifying_priorities</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Identifying_priorities</shortDescription>
+        <value>Identifying priorities for the brand based on the incremental turnover the project drives</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Identifying_priorities2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Identifying_priorities2</shortDescription>
+        <value>Identifying priorities for the brand based on the total turnover the campaign is protecting (Select this option, only if incremental turnover value is unavailable)</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Lead_Agency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Lead_Agency</shortDescription>
+        <value>Lead Agency</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_List_lead_agency_market</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_List_lead_agency_market</shortDescription>
+        <value>List lead agency market and any other supporting agency hub with %</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit</shortDescription>
+        <value>Marketing SOW Campaign Edit</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_New_Attachment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_New_Attachment</shortDescription>
+        <value>New Attachment</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_New_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_New_Campaign</shortDescription>
+        <value>New Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Next_Stage_Is</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Next_Stage_Is</shortDescription>
+        <value>Next Stage is</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_No_Copies_Financial_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_No_Copies_Financial_Year</shortDescription>
+        <value>No copies are left for this financial year</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_No_Permission_To_Clone_SW</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_No_Permission_To_Clone_SW</shortDescription>
+        <value>You don&apos;t have the permission to clone this Statement of work</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Non_Campaign_items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Non_Campaign_items</shortDescription>
+        <value>Non Campaign items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Online_Planner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Online _Planner</shortDescription>
+        <value>Online Planner</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Option</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Option</shortDescription>
+        <value>Option</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Other_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Other_Items</shortDescription>
+        <value>Other Items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Paid_Cancellation</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Paid cancellation</shortDescription>
+        <value>Value to be paid on Cancellation</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Parent_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Parent_Name</shortDescription>
+        <value>Parent Name</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_PerToBePaid</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Percentage to be paid</shortDescription>
+        <value>Percentage to be paid this financial year</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Platform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Platform</shortDescription>
+        <value>Platform</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Please_Choose</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Please_Choose</shortDescription>
+        <value>Please Choose Innovation Projects or Brand Led Growth</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Please_describe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Please_describe</shortDescription>
+        <value>Please describe if not listed</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Project_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Project_Id</shortDescription>
+        <value>Project Id</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Projected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Projected</shortDescription>
+        <value>Projected</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Reporting</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Reporting</shortDescription>
+        <value>Reporting</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Resource</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Resource</shortDescription>
+        <value>Resource</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Role_title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Role_title</shortDescription>
+        <value>Role title</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_SWOP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_SWOP</shortDescription>
+        <value>SWOP</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_SWOP_Other_Items_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_SWOP_Other_Items_Edit</shortDescription>
+        <value>SWOP Other Items Edit</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Save_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Save_Campaign</shortDescription>
+        <value>Save Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Save_Sow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Save_Sow</shortDescription>
+        <value>Save Sow</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Scope_of_Work</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Scope_of_Work</shortDescription>
+        <value>Scope of Work</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Sow_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Sow_Campaign</shortDescription>
+        <value>Sow Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Stage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Stage</shortDescription>
+        <value>Stage</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Stages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Stages</shortDescription>
+        <value>Stages</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_SubCategory</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_SubCategory</shortDescription>
+        <value>SubCategory</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_This_will_impact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_This_will_impact</shortDescription>
+        <value>This will impact the proportion of the fee that is paid in the current FY.</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_TimeLines</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_TimeLines</shortDescription>
+        <value>TimeLines and Other info</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Time_Scales</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Time_Scales</shortDescription>
+        <value>Time Scales</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_To_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_To_Delete</shortDescription>
+        <value>To Delete</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Unsaved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Unsaved</shortDescription>
+        <value>Unsaved</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Updates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Updates</shortDescription>
+        <value>Updates</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Value_drivers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Value_drivers</shortDescription>
+        <value>Value drivers</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_2</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_Campaign</shortDescription>
+        <value>View Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_Campaign_TimeLine</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_Campaign_TimeLine</shortDescription>
+        <value>View Campaign TimeLine</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_Campaign_details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_Campaign_details</shortDescription>
+        <value>View Campaign details</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_PDF_format</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_PDF_format</shortDescription>
+        <value>View PDF format</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_SOW</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_SOW</shortDescription>
+        <value>View SOW</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_as_list</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_as_list</shortDescription>
+        <value>View as list</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_non</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_non</shortDescription>
+        <value>View Non</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_non_Campaign</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_non_Campaign</shortDescription>
+        <value>View non Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Visible_to_Unilever</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Visible_to_Unilever</shortDescription>
+        <value>Visible to Unilever only</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_hours</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_hours</shortDescription>
+        <value>hrs</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_items</shortDescription>
+        <value>items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_items_big</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_items_big</shortDescription>
+        <value>Items</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_update_to_project</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_update_to_project</shortDescription>
+        <value>Update</value>
+    </labels>
+    

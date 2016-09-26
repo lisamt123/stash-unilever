@@ -1,0 +1,499 @@
+<apex:page cache="false" sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="false" controller="WWP_LossTree_CC">  
+
+
+  <div>  
+        <div class="app-container">
+            <div class="row content-container">
+                <nav class="navbar navbar-default navbar-fixed-top navbar-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                           <!-- <button type="button" class="navbar-expand-toggle">
+                                <i class="fa fa-bars icon"></i>--
+                            </button>-->
+                            <ol class="breadcrumb navbar-breadcrumb">
+                                <img height="60px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.CCFOT_Reports_UnileverLogo)}" alt="Unilever Logo"/>
+                                <li > LOSSTREE                            
+                                </li>
+                            </ol>                           
+                        </div>                
+                    </div>
+                </nav>
+                </div>
+                </div>
+               
+   </div>
+   <div>             
+
+    <script>
+    Function showPanelsDiv(){
+    
+    alert('called');
+    }
+    
+    </script>
+
+
+
+<!-- Static Resources for CSS -->
+    <!-- CSS Libs -->
+    <script type="text/javascript" src="{!URLFOR($Resource.WWP_Jquery1, '/jquery-1.11.2/dist/jquery.min.js')}"></script>
+
+        <script type="text/javascript" src="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/js/jquery.dataTables.min.js')}"></script>
+    <!--<apex:includeScript value="{!$Resource.WWP_Jquery}"/>-->
+   <!--<script type="text/javascript" src="{!$Resource.WWP_Jquery}"></script>-->
+    <link href="{!URLFOR($Resource.WWP_bootstrap, '/bootstrap-3.3.5/dist/css/bootstrap.min.css')}" rel="stylesheet"/> 
+     <script type="text/javascript" src="{!URLFOR($Resource.WWP_bootstrap, '/bootstrap-3.3.5/dist/js/bootstrap.min.js')}"></script> 
+    <link href="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/css/dataTables.bootstrap.min.css')}" rel="stylesheet"/>
+
+    <script type="text/javascript" src="{!URLFOR($Resource.WWP_dataTables, '/DataTables-1.10.11/media/js/dataTables.bootstrap.min.js')}"></script>
+    
+<style>
+
+
+select
+{
+          width:100%;
+          
+}
+
+.buttonstyle{
+    
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 1px;
+    border-width: 1px;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    text-align: center;
+}
+</style> 
+    
+    
+<script>
+function tablerender(){
+alert('ssss');
+    updatetable();
+}
+</script>   
+    
+    
+    
+    
+    
+                
+                
+                <!-- Logic Here-->
+             
+ <body style="margin-top: 8%;">                 
+    <apex:form id="frm1">
+    <apex:actionFunction name="updatetable" action="{!updateLossTree}" rerender="resetor" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')"/>   
+    <div class="container-fluid">
+    <div>
+
+    <div class="panel panel-primary">
+    <div class = "panel-heading">Select Report Type, Plant Code:</div>  
+    <div class="panel-body">
+        <div class="form-group">
+          <label class="col-lg-2" >Report Type  </label>
+          <div class="col-lg-4">
+          <apex:inputField value="{!lossTree.Loss_Type__c}" id="lossT" styleclass="form-control"/>
+                        
+          </div>
+        </div>
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+        <div class="form-group">
+          <label class="col-lg-2" >Plant Code  </label>
+          <div class="col-lg-4"> 
+              <apex:selectList value="{!lossTree.Plant_Code__c}" styleclass="form-control" size="1"  >
+               <apex:actionSupport event="onchange" action="{!showPanelsDiv}"/>
+                <apex:selectOptions value="{!listPlantCodes}" />
+              </apex:selectList>
+         <!-- <apex:inputField value="{!lossTree.Plant_Code__c}" styleclass="form-control"/> -->                                              
+                         
+          </div>
+        </div>
+        
+        <apex:outputpanel rendered="{!showingPanel}">Tolerance level  for {!code1} = {!plantCode}</apex:outputpanel>
+        
+        
+        
+        
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+
+        <div class="form-group">
+          <label class="col-lg-2" >Week  </label>
+          <div class="col-lg-4"> 
+              <apex:selectList value="{!selectedWeek}" styleclass="form-control" size="1">
+                <apex:selectOptions value="{!listWeekCodes}"/>
+              </apex:selectList>
+         <!-- <apex:inputField value="{!lossTree.Plant_Code__c}" styleclass="form-control"/> -->                                              
+                         
+          </div>
+        </div>
+        
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+        
+        
+        
+        <div class="form-group">
+          <label class="col-lg-2" >Display All  </label>
+          <div class="col-lg-4">
+          <apex:inputCheckbox value="{!dispalyall}" id="dall"/>
+                        
+          </div>
+      </div>
+        <div class="clearfix" style="height: 10px;clear: both;"></div>
+        <apex:commandButton styleclass="buttonstyle" value="Submit" action="{!fetchLossTree}" reRender="frm" oncomplete="refreshdata();" status="status" disabled="{!if(listPlantCodes.size>1,false,true)}">
+             <apex:actionStatus id="status">
+            <apex:facet name="start">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
+                <img src="/img/loading.gif" alt="In progress..."/>
+            </div>
+            </apex:facet>
+        </apex:actionStatus>
+        </apex:commandButton>
+        
+    </div>
+    </div>
+          
+       </div>
+
+
+
+           <apex:outputPanel id="frm">
+          <apex:outputPanel id="msg">
+          <apex:outputPanel rendered="{!if(message!=null,true,false)}"><p style="color:red">{!message}</p></apex:outputPanel>
+           <apex:outputPanel rendered="{!if(successmessage!=null,true,false)}"><p style="color:green">{!successmessage}</p></apex:outputPanel>
+           </apex:outputPanel>
+           <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0,true,false)}">
+           <div class="panel panel-primary" > 
+           <div class = "panel-heading">Loss Tree Details</div>   
+            <div class="panel-body">
+            
+            
+            
+            
+           <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c='Output Reliability',true,false)}"  >
+             <div class="table-responsive" >
+                    <table id="myTable1" class="display table" width="100%" >
+ 
+                        <thead>  
+                        <tr> 
+                            <th> <input type="checkbox"  onclick="selectAllCheckboxes(this,'inputId')" value=""/> </th> 
+                            <th>SKU</th>  
+                            <th>SKU Description</th>
+                            <th>Plant Code</th>  
+                            <th>Week</th>  
+                            <th>Planned Production</th>
+                            <th>Actual Production</th>
+                            <th>ABS value</th>
+                            <th>OR%</th>
+                            
+                            <th class="col-md-2">Loss Level 1</th>
+                            <th class="col-md-2">Loss Level 2</th>
+                            <th class="col-md-2">Loss Level 3</th>
+                            <th>Remarks</th>
+                            <th>Reset</th>
+                           
+                            
+                        </tr>  
+                        </thead>  
+                        <tbody> 
+                         
+                            <apex:repeat value="{!listLossTreeW}" var="w" id="resetor">
+                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
+                                    
+                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId"/>  
+                                    </td>
+                                    <td>{!w.wlt.SKU__c}</td>
+                                    <td>{!w.wlt.SKU_Description__c}</td>
+                                    <td>{!w.wlt.Plant_Code__c}</td>
+                                    <td>{!w.wlt.Week__c}</td>
+                                    <td>{!w.wlt.Planned_Production__c}</td> 
+                                    <td>{!w.wlt.Actual_Production__c}</td>
+                                    <td>{!w.wlt.OR_Loss_Value__c}</td>
+                                    
+                                    <td>{!w.wlt.OR__c}</td>
+                                    
+                                    <td><apex:selectList value="{!w.selectbox1}" style="height:30px" size="1" onchange="change1213('{!w.i}',this);" id="or1" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox2}" size="1" style="height:30px" onchange="change2123('{!w.i}',this);" id="or2" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox3}" size="1" style="height:30px" onchange="change3132('{!w.i}',this);" id="or3" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>
+                                    <td><apex:inputtext value="{!w.Remarks}" id="rem"/></td>
+                                    <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}"  value="Reset" onclick="resetAll('{!w.i}');" rerender="resetor"/>  </td>
+                                    
+                                </tr>
+                            </apex:repeat>
+                            
+                        </tbody>
+                    </table>
+                     
+                    </div>
+                   <!-- <button styleclass="buttonstyle" onclick="tablerender();"/>-->
+            <apex:commandButton styleclass="buttonstyle" value="Update" action="{!updateLossTree}" status="status1" rerender="frm" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')">
+  
+            
+            <apex:actionStatus id="status1">
+            <apex:facet name="start">
+            <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.75; z-index: 1000; background-color: black;">
+                &nbsp;
+            </div>
+            <div style="position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1001; margin: 30% 50%">
+                <img src="/img/loading.gif" alt="In progress..."/>
+            </div>
+            </apex:facet>
+        </apex:actionStatus>
+ 
+            
+            
+            </apex:commandButton> 
+           </apex:outputPanel>
+                                 
+           <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c=='MRP Compliance',true,false)}">
+             
+                    <table id="myTable" class="display table" width="100%" >
+
+ 
+                        <thead>  
+                        <tr> 
+                            <th><input type="checkbox"  onclick="selectAllCheckboxes(this,'inputId')" value=""/></th> 
+                            <th>PR</th>  
+                            <th>SKU</th> 
+                            <th>SKU Description</th> 
+                            <th>Plant Code</th>  
+                            <th>Week</th>  
+                            <th>Planned Recipt</th>
+                            <th>Actual receipt</th>
+                            
+                            <th>ABS value</th>
+                            <th class="col-md-2">Loss Level 1</th>
+                            <th class="col-md-2">Loss Level 2</th>
+                            <th>Remarks</th>
+                            <th> Reset </th>
+                            
+                        </tr>  
+                        </thead>  
+                        <tbody> 
+                        
+                            <apex:repeat value="{!listLossTreeW}" var="w" id="resetm">
+                            
+                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
+                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId1"/>  </td>
+                                    <td>{!w.wlt.PR__c}</td>
+                                    <td>{!w.wlt.SKU__c}</td>
+                                    <td>{!w.wlt.SKU_Description__c}</td>
+                                    <td>{!w.wlt.Plant_Code__c}</td>
+                                    <td>{!w.wlt.Week__c}</td>
+                                    <td>{!w.wlt.Planned_Receipt__c}</td>
+                                    <td>{!w.wlt.Actual_Receipt__c}</td> 
+                                    <td>{!w.wlt.MRP_Loss_Value__c}</td>
+                                    
+                                    <td><apex:selectList value="{!w.selectbox1}" size="1" onchange="change12('{!w.i}',this);" id="mrp1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox2}" size="1" onchange="change21('{!w.i}',this);" id="mrp2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
+                                    <td><apex:inputtext value="{!w.Remarks}" id="rem1"/></td>
+                                    <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" rerender="resetm"/>  </td>
+                                    
+                                </tr>
+                                
+                            </apex:repeat>
+                            
+                        </tbody>
+                    </table>
+                    <apex:commandButton styleclass="buttonstyle" value="Update" action="{!updateLossTree}" rerender="frm" oncomplete="refreshdata()"/>
+           </apex:outputPanel>
+           
+           <apex:outputPanel rendered="{!if(listLossTree!=null && listLossTree.size>0 && lossTree.Loss_Type__c=='Dispatch Compliance',true,false)}">
+                 <div class="table-responsive" >
+                    <table id="myTable1" class="display table" width="100%" >
+
+ 
+                        <thead>  
+                        <tr>
+                            <th><input type="checkbox"  onclick="selectAllCheckboxes(this,'inputId')" value=""/></th>  
+                            <th>SKU</th>  
+                            <th>SKU Description</th>
+                            <th>Plant Code</th>  
+                            <th>Week</th>  
+                            <th>Planned Dispatch</th>
+                            <th>Actual Dispatch</th>
+                            <th>ABS value</th>
+                            <th>DC%</th>
+                            <th class="col-md-2">Loss Level 1</th>
+                            <th class="col-md-2">Loss Level 2</th>
+                            <th class="col-md-2">Loss Level 3</th>
+                            <th>Remarks</th>
+                            <th> Reset </th>
+                          
+                        </tr>  
+                        </thead>  
+                        <tbody> 
+                            <apex:repeat value="{!listLossTreeW}" var="w" id="ds">
+                                <tr style="background-color:{!if(w.wlt.createddate+7<=now(),'#ff9999','')};">
+                                    <td><apex:inputCheckbox value="{!w.checkbox1}" id="inputId2" />  </td>
+                                    <td>{!w.wlt.SKU__c}</td>
+                                    <td>{!w.wlt.SKU_Description__c}</td>
+                                    <td>{!w.wlt.Plant_Code__c}</td>
+                                    <td>{!w.wlt.Week__c}</td>
+                                    <td>{!w.wlt.Planned_Dispatch__c}</td> 
+                                    <td>{!w.wlt.Actual_Dispatch__c}</td> 
+                                    <td>{!w.wlt.DC_Loss_Value__c}</td>
+                                    <td>{!w.wlt.DC__c}</td>
+                                    <td><apex:selectList value="{!w.selectbox1}" style="height:30px" size="1" onchange="change1213('{!w.i}',this);" id="dc1" disabled="{!w.isdisabled}" ><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox2}" size="1" style="height:30px" onchange="change2123('{!w.i}',this);" id="dc2" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox3}" size="1" style="height:30px" onchange="change3132('{!w.i}',this);" id="dc3" disabled="{!w.isdisabled}"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>
+                                   <!-- <td><apex:selectList value="{!w.selectbox1}" size="1" onchange="change1213('{!w.i}',this);" id="dc1"><apex:selectOptions value="{!w.listbox1}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox2}" size="1" onchange="change2123('{!w.i}',this);" id="dc2"><apex:selectOptions value="{!w.listbox2}"/></apex:selectList></td>
+                                    <td><apex:selectList value="{!w.selectbox3}" size="1" onchange="change3132('{!w.i}',this);" id="dc3"><apex:selectOptions value="{!w.listbox3}"/></apex:selectList></td>-->
+                                    <td><apex:inputtext value="{!w.Remarks}" id="rem2"/></td>
+                                    <td><apex:commandButton title="Reset" style="height:25px" image="{!$Resource.WWP_ResetImage}" value="Reset" onclick="resetAll('{!w.i}');" reRender="ds"/>  </td>
+                                   
+                                </tr>
+                            </apex:repeat>
+                        </tbody>
+                    </table>
+                    
+                    </div>
+                    <apex:commandButton styleclass="buttonstyle" value="Update" action="{!updateLossTree}" rerender="frm" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')"/> 
+               
+                   <!-- <apex:commandButton styleclass="buttonstyle" value="Update" action="{!updateLossTree}" rerender="frm" oncomplete="refreshdata('{!lossTree.Loss_Type__c}')"/>-->
+           </apex:outputPanel>
+
+           
+           </div>
+           </div>
+         </apex:outputPanel> 
+                   
+        </apex:outputPanel>
+           
+           
+           </div>
+           <apex:actionFunction action="{!control1213}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2" name="AFchange1213">          
+           <apex:param name="firstParam" value="" />
+           <apex:param name="secondParam" value="" />           
+           </apex:actionFunction>
+           
+           <apex:actionFunction action="{!control2123}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2" name="AFchange2123">
+           <apex:param name="firstParam2" value="" />
+           <apex:param name="secondParam2" value="" />           
+           </apex:actionFunction>
+           
+           <apex:actionFunction action="{!control3132}" rerender="or1,or2,or3,dc1,dc2,dc3,rem,rem2,inputId,inputId2" name="AFchange3132">
+           <apex:param name="firstParam3" value="" />
+           <apex:param name="secondParam3" value="" />           
+           </apex:actionFunction>
+           <apex:actionFunction action="{!controlmrp12}" rerender="mrp1,mrp2,rem1" name="AFchange12">
+           <apex:param name="mrpfirstParam" value="" />
+           <apex:param name="mrpsecondParam" value="" />           
+           </apex:actionFunction>
+           <apex:actionFunction action="{!controlmrp21}" rerender="mrp1,mrp2,rem1,inputId1" name="AFchange21">
+           <apex:param name="mrpfirstParam2" value="" />
+           <apex:param name="mrpsecondParam2" value="" />           
+           </apex:actionFunction>
+           <apex:actionFunction action="{!resetline}" rerender="or1,or2,or3,mrp1,mrp2,dc1,dc2,dc3,rem,rem1,rem2" name="resetvalues" status="dcstatus">
+           <apex:param name="resetite" value="" />                   
+           </apex:actionFunction>
+           
+    </apex:form>
+    </body>
+
+        
+                <!--Logic End---->
+                
+                
+    <script type="text/javascript">
+        function selectAllCheckboxes(obj,receivedInputID){
+            var inputCheckBox = document.getElementsByTagName("input");                  
+            for(var i=0; i<inputCheckBox.length; i++){          
+                if(inputCheckBox[i].id.indexOf(receivedInputID)!=-1){                                     
+                    inputCheckBox[i].checked = obj.checked;
+                }
+            }
+        }
+    </script>            
+                
+    
+    
+                
+               
+<script>
+
+function change1213(ite,lossname){
+    
+   AFchange1213(ite,lossname.value);
+   
+}
+function change2123(ite,losssubmaily){
+    AFchange2123(ite,losssubmaily.value);
+}
+function change3132(ite,lossdesc){
+
+    AFchange3132(ite,lossdesc.value);
+    
+    
+}
+function change12(ite,lossname){
+    AFchange12(ite,lossname.value);
+}
+function change21(ite,lossfamily){
+    AFchange21(ite,lossfamily.value);
+}
+function resetAll(ite){
+    resetvalues(ite);
+}
+</script>
+<script>
+j$ = jQuery.noConflict();
+
+
+j$(document).ready(function() {
+
+var table = j$('#myTable1').DataTable();
+ 
+j$('#myTable1').on( 'page.dt', function () {
+    alert("test");
+} );
+
+
+} );
+
+</script>
+
+<script>
+function refreshdata(){
+var losstype = j$('[id$="lossT"]').val();
+    if(losstype == 'MRP Compliance'){
+    j$('[id$="myTable"]').dataTable({
+        "paging":   true, "ordering": true,
+        "info":     false,
+        "bStateSave": false,
+        "bFilter": false,        
+        "bSearchable":false,
+        "fixedColumns": true,
+        "bLengthChange": true,
+        "scrollY": 300,
+        "order": [[ 4, "asc"],[8,"asc"],[1,"asc"]],
+       "columnDefs": [ { "orderable": false, "targets": [0,9,10]} ] });}   
+     if(losstype == 'Output Reliability' || losstype == 'Dispatch Compliance'){
+    j$('[id$="myTable1"]').dataTable({
+        "paging":   true,"ordering": true,
+        "fixedColumns": true,
+        "info":     false,
+        "bFilter": false,
+        "order": [[ 4, "asc" ], [8,"asc"],[1,"asc"]],
+       "columnDefs": [ { "orderable": false, "targets": [0,9,10,11,12,13]}  ],
+         "bStateSave": false,
+         "scrollY": 300,  
+        "bSearchable":false,
+        "bLengthChange": true });}    }
+</script>
+
+</div>
+</apex:page>

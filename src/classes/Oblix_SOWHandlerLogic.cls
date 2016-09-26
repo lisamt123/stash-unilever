@@ -97,7 +97,8 @@ public with sharing class Oblix_SOWHandlerLogic {
                                                             FROM Oblix_User_Permission__c 
                                                             WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
                                                                 AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds 
-                                                                AND Level_of_Access__c = :Oblix_Utils.USER_PERMISSION_APPROVER];
+                                                                AND Level_of_Access__c = :Oblix_Utils.USER_PERMISSION_APPROVER
+                                                                AND User_id__r.IsActive = true];
 
         // build a map of brandId_bigcategoryId as keys and list of approver ids as values, which we will use to populate approver fields on SOWs
         for(Oblix_User_Permission__c up : userPermissions){
@@ -140,10 +141,11 @@ public with sharing class Oblix_SOWHandlerLogic {
         }
         
         List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId, Level_of_Access__c,
-                                                                User_id__r.Contact.AccountId
+                                                                User_id__r.Contact.AccountId, User_id__r.IsActive
                                                             FROM Oblix_User_Permission__c 
                                                             WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
-                                                                AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds];
+                                                                AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds
+                                                                AND User_id__r.IsActive = TRUE];
 
         // build a map of brandId_bigcategoryId as keys and list of approver ids as values, which we will use to populate approver fields on SOWs
         for(Oblix_User_Permission__c up : userPermissions){
@@ -179,7 +181,7 @@ public with sharing class Oblix_SOWHandlerLogic {
 
                 for(Oblix_User_Permission__c userPermission : brandCatKey_UserIds_map.get(brandCatKey)){
 
-                    if(sow.OwnerId != userPermission.User_id__c &&
+                    if(sow.OwnerId != userPermission.User_id__c && userPermission.User_id__r.IsActive &&
                         ( (userPermission.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER) 
                             || 
                           (userPermission.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_AGENCY_USER && userPermission.User_id__r.Contact.AccountId == sow.Oblix_AgencyEstimate__c) )){
@@ -188,7 +190,10 @@ public with sharing class Oblix_SOWHandlerLogic {
                         ms.ParentId = sow.Id;
                         ms.UserOrGroupId =  userPermission.User_id__c;
                         ms.RowCause = Schema.Marketing_SOW__Share.RowCause.MANUAL;
-                        ms.AccessLevel = userPermission.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_READ_ONLY ? 'Read' : 'Edit';
+                        // S.S. 02.06.2016. - requirement to add attachments require to have edit access to SOWs, and edit needs to be prevented through VF and
+                        // Oblix_PermissionHandler class
+                        //ms.AccessLevel = userPermission.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_READ_ONLY ? 'Read' : 'Edit';
+                        ms.AccessLevel = 'Edit';
                         sharesToInsert.add(ms);
 
                     }
@@ -245,8 +250,9 @@ public with sharing class Oblix_SOWHandlerLogic {
                 }
                 // to be uncommented if more than one user will be able to approve:
                 // if(unileverApprovers.iterator().hasNext()) sow.Unilever_SOW_Approver_Name_2__c = unileverApprovers.iterator().next();
-            } else {
+            } else if(sow.Unilever_SOW_Approver_Name__c != null){
                 // if no approvers are defined, clear the current approver value
+                isChanged = true;
                 sow.Unilever_SOW_Approver_Name__c = null;
             }
 
@@ -260,8 +266,9 @@ public with sharing class Oblix_SOWHandlerLogic {
                 }
                 // to be uncommented if more than one user will be able to approve:
                 // if(agencyApprovers.iterator().hasNext()) sow.Agency_SOW_Approver_Name_2__c = agencyApprovers.iterator().next();
-            } else {
+            } else if(sow.Agency_SOW_Approver_Name__c != null){
                 // if no approvers are defined, clear the current approver value
+                isChanged = true;
                 sow.Agency_SOW_Approver_Name__c = null;
             }
 
@@ -271,4 +278,31 @@ public with sharing class Oblix_SOWHandlerLogic {
 
     }
 
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-02-07
+    * @description  Build SOW name by combining the prefix and suffix of SOW name
+    ********************************************************************************/
+    public static void setSOWname(Marketing_SOW__c sow){
+              
+        Integer financial_year = getFinancialYear(sow);
+
+        if (String.isEmpty(sow.Name_Suffix__c)){
+            sow.Name = sow.Name_Prefix__c + Oblix_Utils.FY_SEPARATOR + financial_year;
+        }
+        else{
+            sow.Name = sow.Name_Prefix__c + Oblix_Utils.FY_SEPARATOR + financial_year + ' (' + sow.Name_Suffix__c + ')';
+        }  
+    }
+
+    public static Integer getFinancialYear(Marketing_SOW__c sow){
+        Integer financial_year =  System.Today().year();
+
+        if (String.isNotEmpty(sow.Financial_Year__c)){    
+            financial_year = Integer.valueOf(sow.Financial_Year__c.subStringAfter(Oblix_Utils.FY_PREFIX)); 
+        }
+        return financial_year;
+
+    }
 }

@@ -44,20 +44,32 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
+    <description>To Create CMI Concept Test</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>External_Id__c</fullName>
+        <description>External Id : Required for Data Migration</description>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Approx_Results_Timing__c</fullName>
+        <description>To store result timing of CMI</description>
         <externalId>false</externalId>
         <label>Approx. Results Timing</label>
         <required>false</required>
@@ -67,6 +79,7 @@
     </fields>
     <fields>
         <fullName>Country__c</fullName>
+        <description>Contains the countries code where CMI test conducted</description>
         <externalId>false</externalId>
         <label>Country</label>
         <picklist>
@@ -95,6 +108,7 @@
     </fields>
     <fields>
         <fullName>Element__c</fullName>
+        <description>Contains CMI elements name</description>
         <externalId>false</externalId>
         <label>Element</label>
         <picklist>
@@ -132,19 +146,8 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>External_Id__c</fullName>
-        <description>External Id : Required for Data Migration</description>
-        <externalId>true</externalId>
-        <label>External Id</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Gate__c</fullName>
+        <description>Contains CMI gate type</description>
         <externalId>false</externalId>
         <label>Gate</label>
         <picklist>
@@ -168,6 +171,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Added_At__c</fullName>
+        <description>Contains gate name where CMI test conducted</description>
         <externalId>false</externalId>
         <label>IPM CMI Added At</label>
         <picklist>
@@ -191,6 +195,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Colour_Score_Method__c</fullName>
+        <description>Contains CMI overall color score method name</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Colour Score Method</label>
         <picklist>
@@ -214,6 +219,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Records_Count__c</fullName>
+        <description>Contains number of CMI records</description>
         <externalId>false</externalId>
         <label>IPM CMI Records Count</label>
         <precision>18</precision>
@@ -226,6 +232,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project__c</fullName>
+        <description>Relationship to IPM Project</description>
         <externalId>false</externalId>
         <label>IPM Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -261,6 +268,7 @@
     </fields>
     <fields>
         <fullName>Input__c</fullName>
+        <description>Contains CMI test inputs</description>
         <externalId>false</externalId>
         <label>Input</label>
         <picklist>
@@ -361,6 +369,7 @@
     </fields>
     <fields>
         <fullName>KPI__c</fullName>
+        <description>Contains CMI Test KPI&apos;s</description>
         <externalId>false</externalId>
         <label>KPI</label>
         <picklist>
@@ -423,6 +432,7 @@
     </fields>
     <fields>
         <fullName>Results__c</fullName>
+        <description>To store result of CMI test</description>
         <externalId>false</externalId>
         <label>Results</label>
         <picklist>
@@ -710,6 +720,7 @@
     </fields>
     <fields>
         <fullName>Test__c</fullName>
+        <description>Contains CMI Test name</description>
         <externalId>false</externalId>
         <label>Test</label>
         <picklist>

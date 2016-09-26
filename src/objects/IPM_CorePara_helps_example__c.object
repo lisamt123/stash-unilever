@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object is used to store help and example of core parameter</description>
@@ -53,12 +52,12 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IMP_Core_Parameter_example_three__c</fullName>
+        <description>store core parameter examples</description>
         <externalId>false</externalId>
         <label>Core Parameter example three</label>
         <length>32768</length>
@@ -88,6 +87,7 @@
     </fields>
     <fields>
         <fullName>IPM_Core_Parameter_Helps__c</fullName>
+        <description>Store core parameter help text</description>
         <externalId>false</externalId>
         <label>IPM_Core_Parameter_Helps</label>
         <length>32768</length>
@@ -107,6 +107,7 @@
     </fields>
     <fields>
         <fullName>IPM_Core_Parameter_example_five__c</fullName>
+        <description>store core parameter examples</description>
         <externalId>false</externalId>
         <label>Core Parameter example five</label>
         <length>32768</length>
@@ -116,6 +117,7 @@
     </fields>
     <fields>
         <fullName>IPM_Core_Parameter_example_four__c</fullName>
+        <description>store core parameter examples</description>
         <externalId>false</externalId>
         <label>Core Parameter example four</label>
         <length>32768</length>
@@ -125,6 +127,7 @@
     </fields>
     <fields>
         <fullName>IPM_Core_Parameter_example_two__c</fullName>
+        <description>store core parameter examples</description>
         <externalId>false</externalId>
         <label>Core Parameter example two</label>
         <length>32768</length>

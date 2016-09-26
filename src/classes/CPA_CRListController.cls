@@ -98,8 +98,15 @@ public with sharing class CPA_CRListController {
                  innerCrObj[i-1].name = rs.Name;
                  innerCrObj[i-1].efforts =  rs.num_Total_Resource_Efforts_CR__c;
                  innerCrObj[i-1].totalcost =  rs.num_Total_charge_of_CR__c;
-                 innerCrObj[i-1].expense =  rs.num_Total_Expenses_of_CR__c;
-                    if( rs.num_Total_charge_of_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c>0) {
+                 
+                 if(rs.chk_isStandalone_CR__c){
+                   
+                     innerCrObj[i-1].expense =  rs.num_Expense_charges_of_CR__c;
+                 }else {
+                     innerCrObj[i-1].expense =  rs.num_Total_Expenses_of_CR__c;
+                 }
+                 
+                 if( rs.num_Total_charge_of_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c>0) {
                         // Blendrate1 = innerCrObj[i-1].BlendRate= rs.num_Varied_Target_Blend_Rate__c;
                         Blendrate1 = innerCrObj[i-1].BlendRate=rs.num_Effort_Cost__c / rs.num_Total_Resource_Efforts_CR__c;
                          blendratetotal+=innerCrObj[i-1].BlendRate;
@@ -116,8 +123,10 @@ public with sharing class CPA_CRListController {
                     totalBlendrate +=  rs.num_Effort_Cost__c;
                     
                 }
-                if( rs.num_Total_Expenses_of_CR__c !=null){ 
+                if( rs.num_Total_Expenses_of_CR__c !=null && !rs.chk_isStandalone_CR__c){ 
                     expensetotal +=  rs.num_Total_Expenses_of_CR__c;
+                }else if(rs.num_Expense_charges_of_CR__c !=null && rs.chk_isStandalone_CR__c){
+                    expensetotal +=  rs.num_Expense_charges_of_CR__c;
                 }
                 if(rs.pkl_Status__c != CPA_ConstantsForContractingAppClasses.SAVED && rs.pkl_Status__c != CPA_ConstantsForContractingAppClasses.CANCELLED && rs.pkl_Status__c != CPA_ConstantsForContractingAppClasses.RETURNED ){
                     countOFCR = countOFCR+1;
@@ -141,7 +150,7 @@ public with sharing class CPA_CRListController {
     public List<CPA_CR__c> getCrList(String Id) {
           List<CPA_CR__c> crList = new List<CPA_CR__c>();
       
-          crList =[Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Effort_Cost__c,num_Total_charge_of_CR__c,pkl_Status__c,num_Expense_charges_of_CR__c,num_Total_Resource_Efforts_CR__c,num_Total_Expenses_of_CR__c,num_Varied_Target_Blend_Rate__c From CPA_CR__c Where CPA_Project_Work_Order__c =:Id ];
+          crList =[Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Effort_Cost__c,num_Total_charge_of_CR__c,pkl_Status__c,num_Expense_charges_of_CR__c,num_Total_Resource_Efforts_CR__c,num_Total_Expenses_of_CR__c,num_Varied_Target_Blend_Rate__c,RecordTypeid,chk_isStandalone_CR__c From CPA_CR__c Where CPA_Project_Work_Order__c =:Id ];
           
           if(crList.size() > 0) {
           List<CPA_CR__c >lstTemp = new List<CPA_CR__c >();

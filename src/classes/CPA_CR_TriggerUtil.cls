@@ -130,9 +130,10 @@ public with sharing class CPA_CR_TriggerUtil{
             if(!objnewCR.chk_isStandalone_CR__c){
                 setPWO.add(objnewCR.CPA_Project_Work_Order__c);
             }
-        }
-        if(setPWO.size()>0 && setPWO !=null){  
-            for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,mpkl_Project_Phases__c,pkl_Region__c,txt_PWO_number__c from CPA_project_work_order__c where ID  IN: setPWO]){
+        }       
+        if(setPWO.size()>0 && setPWO !=null){
+            changeRecordHistory(newCR,setPWO);
+            for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,mpkl_Project_Phases__c,pkl_Region__c,txt_PWO_number__c,txt_Other_Project_Phases__c from CPA_project_work_order__c where ID  IN: setPWO]){
                     mapPWO.put(objPwo.Id,objPwo);
                 }
                 
@@ -157,6 +158,8 @@ public with sharing class CPA_CR_TriggerUtil{
                     
                     if(objnewCR.pkl_Project_Phases__c == null && objPWOTemp.mpkl_Project_Phases__c !=null)
                         objnewCR.pkl_Project_Phases__c = objPWOTemp.mpkl_Project_Phases__c;
+                    if(objnewCR.txt_Other_Project_Phases__c == null && objPWOTemp.txt_Other_Project_Phases__c !=null)
+                        objnewCR.txt_Other_Project_Phases__c = objPWOTemp.txt_Other_Project_Phases__c;
                     if(objnewCR.Region_impacted__c   == null && objPWOTemp.pkl_Region__c !=null)
                         objnewCR.Region_impacted__c  = objPWOTemp.pkl_Region__c;
                     if(objPWOTemp.mpkl_Project_Phases__c!= null && objnewCR.pkl_Project_Phases__c !=null && !objnewCR.pkl_Project_Phases__c.containsOnly(objPWOTemp.mpkl_Project_Phases__c)) 
@@ -164,9 +167,40 @@ public with sharing class CPA_CR_TriggerUtil{
                     if(objPWOTemp.pkl_Region__c != null && objnewCR.Region_impacted__c != null && objnewCR.Region_impacted__c != objPWOTemp.pkl_Region__c) 
                             objnewCR.addError('CR can be created for '+objPWOTemp.pkl_Region__c+ ' Region');
                         objnewCR.PWO_number__c = objPWOTemp.txt_PWO_number__c;
+                       
                 }
             }
         }
+    }
+    /** Method Name : changeRecordHistory
+    * Parameter   : newCR
+    * Return type : None
+    * Author      : Pooja Kanani
+    * Created on  : 15/04/2016
+    * Description : This method per populate change record history
+    */
+public static void changeRecordHistory(List<CPA_CR__c> newCRList, Set<ID> setPWOID){
+        Map<ID,List<CPA_CR__c>> PWO_CR_Map = new Map<ID,List<CPA_CR__c>>();
+        integer CRcount = 0;        
+        
+        for (CPA_project_work_order__c pwo : [SELECT ID,(SELECT id FROM CRs__r) FROM CPA_project_work_order__c WHERE ID IN :setPWOID]){
+            if(pwo.CRs__r != NULL && pwo.CRs__r.size()>0){ 
+                //CRcount  = pwo.CRs__r.size();
+                PWO_CR_Map.put(pwo.ID,pwo.CRs__r); 
+            }
+        }
+        for(CPA_CR__c cr:newCRList){
+            List<CPA_CR__c>relatedAllCR = new List<CPA_CR__c>();
+            relatedAllCR = PWO_CR_Map.get(cr.CPA_Project_Work_Order__c);
+            if(relatedAllCR!=null && relatedAllCR.size()>0){
+            CRcount  = relatedAllCR.size();
+            }
+            if(CRcount==1){ cr.mpkl_Change_Record_history__c = '1st Change';
+            }else if(CRcount==2){cr.mpkl_Change_Record_history__c = '2nd Change';
+            }else if(CRcount==3){cr.mpkl_Change_Record_history__c ='3rd Change';
+            }else if(CRcount>=4){cr.mpkl_Change_Record_history__c = '4th Change';}          
+        }
+        
     }
     /** Method Name : requireApprovalComments
     * Parameter   : newCRList
@@ -260,7 +294,7 @@ public with sharing class CPA_CR_TriggerUtil{
     * Return type : None
     * Description : This method is used to perform Standalone CR as per Rule AC.10.10.03
     */
-    public static void standaloneCR(List<CPA_CR__c> newCNFList){
+   public static void standaloneCR(List<CPA_CR__c> newCNFList){
         List<CPA_project_work_order__c> ListnewPWO  = new List<CPA_project_work_order__c>();
         List<CPA_CR__c> ListnewCR  = new List<CPA_CR__c>();
         map<Id,Id> mapPWO = new map<ID,Id>();
@@ -281,10 +315,10 @@ public with sharing class CPA_CR_TriggerUtil{
 
                 
                 newPWO.txt_Unilever_Project_Name__c = objCR.txta_Unilever_Project_Name__c;
-                newPWO.txt_Unilever_Reference__c = objCR.txt_Unilever_Reference__c;
+                newPWO.txt_Standalone_PWO_clarity_ID__c = objCR.txt_Unilever_Reference__c;
                 
                 newPWO.chk_isStandalone_CR__c = true;
-                newPWO.txt_Unilever_Reference__c = objCR.txt_Unilever_Reference__c;
+               // newPWO.txt_Unilever_Reference__c = objCR.txt_Unilever_Reference__c;
                 newPWO.mpkl_Project_Phases__c = objCR.pkl_Project_Phases__c;
                 newPWO.txt_PWO_number__c = objCR.PWO_number__c;
                 newPWO.pkl_Region__c = objCR.Region_impacted__c;
@@ -330,6 +364,7 @@ public with sharing class CPA_CR_TriggerUtil{
         List<CPA_project_work_order__c> lstTemp = new List<CPA_project_work_order__c>();
         for(CPA_project_work_order__c obj : ListnewPWO){
             obj.pkl_Status__c = 'Signed';
+            obj.txt_Previous_Status_Value__c = 'Signed';
             lstTemp.add(obj);
             mapPWO.put(obj.txt_Linked_Standalone_CR__c,obj.ID);         
         }
@@ -363,7 +398,7 @@ public with sharing class CPA_CR_TriggerUtil{
     * Author       : Pooja Kanani
     * Description  : This method is used to update PWO with the latest CR number
     */
-    public static void newCR(list<CPA_CR__c> newCRList){
+    /*public static void newCR(list<CPA_CR__c> newCRList){
         List<CPA_project_work_order__c> lstTemp= new List<CPA_project_work_order__c>();
         set<ID> pwoID = new set<ID>();
         map<ID,String>pwomap = new map<ID,String>();
@@ -386,7 +421,7 @@ public with sharing class CPA_CR_TriggerUtil{
                 update lstTemp; 
             }
         }
-    }
+    }*/
     
     /**Method Name : calculateDelta
     * Parameter    : oldCRList1, newCR1
@@ -529,7 +564,12 @@ public with sharing class CPA_CR_TriggerUtil{
                 double dobCosttoSub = 0;
                 for(CPA_CR__c objCR : mapPWOtoListCR.get(objPWOID)){
                     if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SIGNED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SentForClosure  || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.DELIVERED){
-                     dobCosttoadd = dobCosttoadd+objCR.num_Total_charge_of_CR__c;
+                     //Dinesh added this null check to avoid null pointer exception
+                     //when we import CR and try to proceed.
+                     //14/04/2016 - Dinesh commented it as no need to modify code for data migration
+                     //if(objCR.num_Total_charge_of_CR__c != null){
+                         dobCosttoadd = dobCosttoadd + objCR.num_Total_charge_of_CR__c;
+                     //}
                  }
                 }
                 if( mapPWO.get(objPWOID) !=null ){

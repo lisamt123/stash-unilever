@@ -1,5 +1,5 @@
 /**********************************************************************  
-Name:  CPA_AttchemntUnit ()  Copyright © 2015  Salesforce  
+Name:  CPA_AttchemntUnit ()  Copyright © 2016  Salesforce  
 ====================================================== 
 ====================================================== 
 Purpose:                                                           
@@ -8,10 +8,11 @@ Purpose:
  ====================================================== 
  History                                                             
  -------                                                             
- VERSION  AUTHOR                        DATE              DETAIL                                        Description    
- 1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT                              CSR: 
- 1.1      Shreyas Mangalvedhekar        16/03/2015      use of Custom Label                              CSR: 
- 1.2      Shreyas Mangalvedhekar        21/03/2015      Varied Target Blend Rate* marked blank           CSR: 
+ VERSION  AUTHOR                        DATE              DETAIL                                                    Description    
+ 1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT                                             CSR: 
+ 1.1      Shreyas Mangalvedhekar        16/03/2015      use of Custom Label                                             CSR: 
+ 1.2      Shreyas Mangalvedhekar        21/03/2015      Varied Target Blend Rate* marked blank                          CSR: 
+ 1.2      Shreyas Mangalvedhekar        16/04/2015      Changes done by Shreyas For Radar : 222 221 220 219 217         CSR: 
  ***********************************************************************/
 
 public with sharing class CPA_AttachmentUtil {
@@ -72,13 +73,22 @@ public with sharing class CPA_AttachmentUtil {
     ********************************************************************/  
     public static void DeleteLOI(List<Attachment> lstAttachment) {
          set<ID>setLOI = new set<Id>();
+         map<ID,Attachment> mapLOIAttch = new map<ID,Attachment> ();
           for(Attachment objAttachment : lstAttachment){
                 setLOI.add(objAttachment.ParentId);
+                mapLOIAttch.put(objAttachment.ParentId,objAttachment);
             }
          List<CPA_LOI__c> listLOI = new List<CPA_LOI__c>();
-         for(CPA_LOI__c obj : [Select Id,chk_Contract_Attached__c from CPA_LOI__c where id IN:setLOI]){
-              obj.chk_Contract_Attached__c = false;
-              listLOI.add(obj);
+         for(CPA_LOI__c obj : [Select Id,pkl_Status__c,chk_Contract_Attached__c from CPA_LOI__c where id IN:setLOI]){
+              if(obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  obj.pkl_Status__c == '' || obj.pkl_Status__c == null){
+                  obj.chk_Contract_Attached__c = false;
+                  listLOI.add(obj);
+              }else {
+                  Attachment objLOI_temp = mapLOIAttch.get(obj.Id);
+                if(objLOI_temp!=null){
+                    objLOI_temp.addError(CPA_ConstantsForContractingAppClasses.CONTRACTDELETE );
+                }
+              }
          }
          if(listLOI!=null && listLOI.size()>0){
              update listLOI;
@@ -178,116 +188,125 @@ public with sharing class CPA_AttachmentUtil {
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static void deleteCommericalData(List<Attachment> lstatt)    {
-        List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
-        set<Id> setPWOID = new set<Id>();
-        set<Id> setCRID = new set<Id>();
-        
-        for(Attachment objAtta : lstatt){
-            string srtTemp = objAtta.ParentId;
-            if(objAtta.Name.startswith(CPA_ConstantsForContractingAppClasses.COMMERCIAL)) {
-                if( srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID )) {
-                    setPWOID.add(objAtta.ParentId);
-                }   
-                else if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)){
-                    setCRID.add(objAtta.ParentId);
-                }
-            }
-        }
-        listComDetail = [Select Id, Name , CR__c,Project_Work_Order__c from CPA_Commercial_Details__c where Project_Work_Order__c IN : setPWOID OR CR__c IN :setCRID];
-        List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_RMS_value__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Effort_Cost__c,num_Authorisation_man_days__c,num_Varied_Target_Blend_Rate__c from CPA_project_work_order__c where ID IN :setPWOID];
-        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Total_Resource_Cost_CR__c,num_Effort_Cost__c,num_Delta_Efforts__c,num_Total_Resource_Efforts_CR__c,num_Total_Expenses_of_CR__c,num_Varied_Target_Blend_Rate__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c  from CPA_CR__c where ID IN:  setCRID];
-        List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();
-        List<CPA_CR__c> lstTempCR = new List<CPA_CR__c>();
-        
-        if(listComDetail!=null && listComDetail.size()>0){
-            delete listComDetail;
-            for(CPA_project_work_order__c obj :lstPWO ){
-                obj.num_Expense_charges_of_work_order__c = NULL;
-                obj.pec_Expense__c=NULL;
-                obj.pec_Estimated_Off_shore__c=NULL;
-                obj.pec_Estimated_On_shore__c=NULL;
-                obj.num_Estimated_Man_days_of_PWO__c=NULL;
-                obj.num_Estimated_Value_of_PWO__c=NULL;
-                obj.num_Target_Blend_Rate__c=NULL;
-                obj.num_Total_work_order_charge__c=NULL;
-                obj.num_Authorisation_charges__c =NULL;
-                obj.num_Authorisation_man_days__c =NULL;
-                obj.num_Effort_Cost__c =NULL;
-                obj.num_RMS_value__c = NULL;
-                obj.num_Varied_Target_Blend_Rate__c = NULL;
-                obj.chk_Excel_Attached__c = false;
-                
-                lstTemp.add(obj);
-            }
-            for(CPA_CR__c obj1 : lstCR){
-                obj1.num_Estimated_Man_days_of_CR__c = NULL;
-                obj1.num_Estimated_Man_days_of_CR__c = NULL;
-                obj1.num_Estimated_Value_of_CR__c = NULL;
-                obj1.num_Target_Blend_Rate__c = NULL;
-                obj1.num_Total_charge_of_CR__c = NULL;
-                obj1.num_Expense_charges_of_CR__c = NULL;
-                obj1.pec_Expense__c = NULL;
-                obj1.num_Authorisation_charges__c = NULL;
-                obj1.num_Authorisation_man_days__c = NULL;
-                obj1.num_RMS_value__c = NULL;
-                obj1.chk_Contract_Excel_Attached__c = false;
-                obj1.num_Total_Resource_Cost_CR__c =NULL;
-                obj1.num_Effort_Cost__c =NULL;
-                obj1.num_Delta_Efforts__c = NULL;
-                obj1.num_Total_Resource_Efforts_CR__c = NULL;
-                obj1.num_Total_Expenses_of_CR__c  = NULL;
-                obj1.num_Varied_Target_Blend_Rate__c = NULL;
-                obj1.pec_Estimated_Off_shore__c =NULL;
-                obj1.pec_Estimated_On_shore__c= NULL;
-                lstTempCR.add(obj1);
-            }
-            if(lstTemp !=null && lstTemp.size()>0){
-                update lstTemp;
-            }
-            if(lstTempCR !=null && lstTempCR.size()>0){
-                update lstTempCR;
+   
+public static void deleteCommericalData(List<Attachment> lstatt)    {
+    List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
+    set<Id> setPWOID = new set<Id>();
+    set<Id> setCRID = new set<Id>();
+    set<Id> setPWOID_NO_Delete = new set<Id>();
+    set<Id> setCRID_NO_Delete = new set<Id>();
+    map<ID,Attachment> mapPWOAttch = new map<ID,Attachment> ();
+    map<ID,Attachment> mapCRAttch = new map<ID,Attachment> ();
+    
+    for(Attachment objAtta : lstatt){
+        string srtTemp = objAtta.ParentId;
+        if(objAtta.Name.startswith(CPA_ConstantsForContractingAppClasses.COMMERCIAL)) {
+            if( srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID )) {
+                setPWOID.add(objAtta.ParentId);
+                mapPWOAttch.put(objAtta.ParentId,objAtta);
+            }   
+            else if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)){
+                setCRID.add(objAtta.ParentId);
+                mapCRAttch.put(objAtta.ParentId,objAtta);
             }
         }
     }
+    listComDetail = [Select Id, Name , CR__c,Project_Work_Order__c from CPA_Commercial_Details__c where Project_Work_Order__c IN : setPWOID OR CR__c IN :setCRID];
+    List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_RMS_value__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Effort_Cost__c,num_Authorisation_man_days__c,num_Varied_Target_Blend_Rate__c,pkl_Status__c,num_Contingency_Charges__c,num_Discounts__c,pec_Variance__c from CPA_project_work_order__c where ID IN :setPWOID];
+    List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Total_Resource_Cost_CR__c,num_Effort_Cost__c,num_Delta_Efforts__c,num_Total_Resource_Efforts_CR__c,num_Total_Expenses_of_CR__c,num_Varied_Target_Blend_Rate__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pkl_Status__c,num_Contingency_Charges__c,num_Discounts__c  from CPA_CR__c where ID IN:  setCRID];
+    List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();
+    List<CPA_CR__c> lstTempCR = new List<CPA_CR__c>();
+    
+    if(listComDetail!=null && listComDetail.size()>0){
+        
+        for(CPA_project_work_order__c obj :lstPWO ){
+            if(obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || obj.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  obj.pkl_Status__c == '' || obj.pkl_Status__c == null){
+                lstTemp.add(CPA_AttchemntCommerical_util.CommericalDataBlankPWO(obj));
+            }else{
+                Attachment objPWO_temp = mapPWOAttch.get(obj.id);
+                if(objPWO_temp !=null){
+                    objPWO_temp.addError(CPA_ConstantsForContractingAppClasses.COMMERICALDELETE );
+                }
+            }
+            
+        }
+        for(CPA_CR__c obj1 : lstCR){
+            if(obj1.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || obj1.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  obj1.pkl_Status__c == '' || obj1.pkl_Status__c == null){            
+            lstTempCR.add(CPA_AttchemntCommerical_util.CommericalDataBlankCR(obj1));
+            }else{
+                Attachment objCR_temp = mapCRAttch.get(obj1.Id);
+                if(objCR_temp!=null){
+                    objCR_temp.addError(CPA_ConstantsForContractingAppClasses.COMMERICALDELETE );
+                }
+            }
+        }
+        if(lstTemp !=null && lstTemp.size()>0){
+            update lstTemp;
+        }
+        if(lstTempCR !=null && lstTempCR.size()>0){
+            update lstTempCR;
+        }
+        delete listComDetail;
+    }
+}
     /*******************************************************************
     Purpose: This method is used to delete Contracts
     Parameters: lstatt
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static void deleteContract(List<Attachment> lstatt)    {
+     public static void deleteContract(List<Attachment> lstatt)    {
         List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
         set<Id> setPWOID = new set<Id>();
         set<Id> setCRID = new set<Id>();
         List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();
         List<CPA_CR__c> lstTempCR = new List<CPA_CR__c>();
+        map<ID,Attachment> mapPWOAttch = new map<ID,Attachment> ();
+        map<ID,Attachment> mapCRAttch = new map<ID,Attachment> ();
         
         for(Attachment objAtta : lstatt){
             string srtTemp = objAtta.ParentId;
             if( srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) && objAtta.Name.startswith('PWO')) {
                 setPWOID.add(objAtta.ParentId);
+                mapPWOAttch.put(objAtta.ParentId,objAtta);
             }   
             else if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID) && objAtta.Name.startswith('CR')){
                 setCRID.add(objAtta.ParentId);
+                mapCRAttch.put(objAtta.ParentId,objAtta);
             }
         }
        
-        List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID, chk_PDF_Attached__c ,Name from CPA_project_work_order__c where ID IN :setPWOID];
-        List<CPA_CR__c> lstCR = [Select Id,Name,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c from CPA_CR__c where ID IN:  setCRID];
-        
+        List<CPA_project_work_order__c>lstPWO = [Select pkl_Status__c,chk_Excel_Attached__c,ID, chk_PDF_Attached__c ,Name from CPA_project_work_order__c where ID IN :setPWOID];
+        List<CPA_CR__c> lstCR = [Select pkl_Status__c,Id,Name,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c from CPA_CR__c where ID IN:  setCRID];
+        /*Changes done by Shreyas For Radar : 222 221 220 219 217 : 16th April 2016 */
         for(CPA_CR__c objCR : lstCR){
-            objCR.chk_Contract_Attached__c = false;
-            lstTempCR.add(objCR);
+            if(objCR!=null && objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objCR.pkl_Status__c == '' || objCR.pkl_Status__c == null){
+                objCR.chk_Contract_Attached__c = false;
+                lstTempCR.add(objCR);
+            }
+            else{
+                Attachment objCR_temp = mapCRAttch.get(objCR.Id);
+                if(objCR_temp!=null){
+                    objCR_temp.addError(CPA_ConstantsForContractingAppClasses.CONTRACTDELETE);
+                }
+                
+            }            
         }
         for(CPA_project_work_order__c objPWO :lstPWO ){
-           objPWO.chk_PDF_Attached__c = false;
-           lstTemp.add(objPWO);
+            if(objPWO!= null && objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || objPWO.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  ||  objPWO.pkl_Status__c == '' || objPWO.pkl_Status__c == null){
+               objPWO.chk_PDF_Attached__c = false;
+               lstTemp.add(objPWO);
+            }else {
+                Attachment objPWO_temp = mapPWOAttch.get(objPWO.id);
+                if(objPWO_temp !=null){
+                    objPWO_temp.addError(CPA_ConstantsForContractingAppClasses.CONTRACTDELETE);
+                }               
+            }
         }
-              
-        if(lstCR!=null && lstCR.size()>0){
-            update lstCR;
-        }
+          /*Changes done by Shreyas For Radar : 222 221 220 219 217 : 16th April 2016 */     
+        if(lstTemp!=null && lstTemp.size()>0){
+            update lstTemp;
+        } 
         if(lstTemp !=null && lstTemp.size()>0){
             update lstTemp;
         }
@@ -411,7 +430,7 @@ public with sharing class CPA_AttachmentUtil {
         List<CPA_project_work_order__c> lstUpdatePWO = new List < CPA_project_work_order__c>();
         
         
-        List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_RMS_value__c,num_Authorisation_man_days__c,num_Effort_Cost__c from CPA_project_work_order__c where ID IN :setPWOID];
+        List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_RMS_value__c,num_Authorisation_man_days__c,num_Effort_Cost__c,num_Contingency_Charges__c,num_Discounts__c  from CPA_project_work_order__c where ID IN :setPWOID];
         
         if(lstPWO !=null && setPWOID !=null){
             for(CPA_project_work_order__c objPWO : lstPWO){
@@ -426,7 +445,6 @@ public with sharing class CPA_AttachmentUtil {
             
             for(CPA_project_work_order__c objPWO : lstPWO){
                 Decimal  intTotalmandays = 0;
-                //Decimal  intEstimatedValue = 0;
                 Decimal  intIndicativeExpenses  = 0;
                 Decimal  intNonPayroll   = 0;
                 Decimal  intPMOTax = 0;
@@ -437,10 +455,10 @@ public with sharing class CPA_AttachmentUtil {
                 Decimal  intRMS = 0;
                 Decimal  intOther = 0;
                 Decimal  intCostResource = 0;
-                //Decimal  intTotalcost = 0;
                 Decimal  intoffshower = 0;
                 Decimal  intOnshower = 0;
                 Decimal  intNoOfResources = 0;
+
                 for(CPA_Commercial_Details__c objCOm : mapPWOComDetai.get(objPWO.id)){
                     if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RESOURCE || objCOm.num_Entity_Type__c ==1 ){
                         intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
@@ -482,6 +500,8 @@ public with sharing class CPA_AttachmentUtil {
                     }
                 }
                 objPWO.num_Estimated_Value_of_PWO__c = (intCostResource  + intContingencyCharges + intNonPayroll +intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
+                objPWO.num_Discounts__c =  intDiscounts;
+                objPWO.num_Contingency_Charges__c = intContingencyCharges;
                 objPWO.num_Estimated_Man_days_of_PWO__c = intTotalmandays;
                 if(intTotalmandays> 0){
                     objPWO.num_Varied_Target_Blend_Rate__c = intCostResource / intTotalmandays;
@@ -523,8 +543,8 @@ public with sharing class CPA_AttachmentUtil {
     
         map<ID,list<CPA_Commercial_Details__c>> mapCRComDetai = new map<ID,list<CPA_Commercial_Details__c>>();      
         List<CPA_CR__c> lstUpdateCR = new List < CPA_CR__c>();
-        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Effort_Cost__c,num_Total_Resource_Cost_CR__c ,num_Total_Resource_Efforts_CR__c from CPA_CR__c where ID IN:  setCRID];
-        
+        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Effort_Cost__c,num_Total_Resource_Cost_CR__c ,num_Total_Resource_Efforts_CR__c,num_Contingency_Charges__c,num_Discounts__c,RecordTypeid,num_Total_Expenses_of_CR__c  from CPA_CR__c where ID IN:  setCRID];
+        ID StandCRRecordtype = Schema.SObjectType.CPA_CR__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.STANDALONECR).getRecordTypeId();
         if(lstCR !=null && setCRID !=null){
             for(CPA_CR__c objCR : lstCR){
                 List <CPA_Commercial_Details__c>lstTemp = new List<CPA_Commercial_Details__c>();
@@ -538,7 +558,6 @@ public with sharing class CPA_AttachmentUtil {
             }
             for(CPA_CR__c objCR : lstCR){
                 Decimal  intTotalmandays = 0;
-                //Decimal  intEstimatedValue = 0;
                 Decimal  intIndicativeExpenses  = 0;
                 Decimal  intNonPayroll   = 0;
                 Decimal  intPMOTax = 0;
@@ -549,7 +568,6 @@ public with sharing class CPA_AttachmentUtil {
                 Decimal  intRMS = 0;
                 Decimal  intOther = 0;
                 Decimal  intCostResource = 0;
-                //Decimal  intTotalcost = 0;
                 Decimal  intoffshower = 0;
                 Decimal  intOnshower = 0;
                 Decimal  intNoOfResources = 0;
@@ -608,6 +626,8 @@ public with sharing class CPA_AttachmentUtil {
                 objCR.num_Authorisation_man_days__c = intAuthorisationman;
                 objCR.num_Expense_charges_of_CR__c  =intIndicativeExpenses;
                 objCR.num_RMS_value__c  =intRMS;
+                objCR.num_Discounts__c =  intDiscounts;
+                objCR.num_Contingency_Charges__c = intContingencyCharges;
                 if(intCostResource!=null& intCostResource > 0){
                     objCR.pec_Expense__c = (intIndicativeExpenses/ intCostResource)*100;
                     objCR.num_Effort_Cost__c  = intCostResource;
@@ -618,6 +638,14 @@ public with sharing class CPA_AttachmentUtil {
                 if(intNoOfResources> 0){
                     objCR.pec_Estimated_Off_shore__c = (intoffshower/intNoOfResources)*100;
                     objCR.pec_Estimated_On_shore__c = (intOnshower/intNoOfResources)*100;
+                }
+                
+                if(objCR.RecordTypeid == StandCRRecordtype){
+                    if(objCR.num_Estimated_Value_of_CR__c != null){
+                            objCR.num_Total_charge_of_CR__c = objCR.num_Estimated_Value_of_CR__c;    //CHages for Standalone CR
+                    }else if(objCR.num_Expense_charges_of_CR__c!=null){
+                        objCR.num_Total_Expenses_of_CR__c = objCR.num_Expense_charges_of_CR__c;  //CHages for Standalone CR
+                    }
                 }
                 lstUpdateCR.add(objCR);
                

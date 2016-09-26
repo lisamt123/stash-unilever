@@ -1,0 +1,41 @@
+{
+    "name": "Lens_PS_Overall_Com_4p5p6p",
+    "label": "Lens: PS Overall (Com 4p5p6p)",
+    "visualizationType": "hbar",
+    "state": {
+        "query": {
+            "measures": [
+                [
+                    "avg",
+                    "PS_Compliance"
+                ]
+            ],
+            "groups": [
+                "X4P_5P_6P"
+            ],
+            "filters": [
+                [
+                    "Date of audit",
+                    [
+                        [
+                            [
+                                "month",
+                                -6
+                            ],
+                            [
+                                "month",
+                                -6
+                            ]
+                        ]
+                    ],
+                    ">=<="
+                ]
+            ]
+        }
+    },
+    "dataset": {
+        "id": "0Fb8A0000000SS8SAM",
+        "name": "PS_COMPLIANCE_AGGREGATED",
+        "url": "/services/data/v37.0/wave/datasets/0Fb8A0000000SS8SAM"
+    }
+}

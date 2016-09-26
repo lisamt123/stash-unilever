@@ -119,6 +119,9 @@ public with sharing class IPM_ProjectHelper
     
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
+    
+	
+	
      /**************************************************************
     * @description: Used for Resetting Cache in case Project Handler is invoked again. 
     */
@@ -260,7 +263,6 @@ public with sharing class IPM_ProjectHelper
         {
             projectMasterMap = projectDetailMap;
         }
-        
         
         Set<String> categorySet = new Set<String>();
         
@@ -458,7 +460,7 @@ public with sharing class IPM_ProjectHelper
             {
                 // Get Section Content Specific information.
                 
-                List<IPM_Project_Document_Section__c> projectSectionList = new List<IPM_Project_Document_Section__c>(projectSectionMap.values());
+                List<IPM_Project_Document_Section__c> projectSectionList = new List<IPM_Project_Document_Section__c>(projectSectionMap.values()); // NO Sonar Issue, used in dynamic SOQL
                 String projectSectionContentQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Document_Section_Content__c',false,null,true);
                 String projectSectionContentWhereClause = ' WHERE IPM_Project_Document_Section__c in :projectSectionList '+LIMIT_CLAUSE_STR;
                 projectSectionContentQuery = projectSectionContentQuery + projectSectionContentWhereClause;
@@ -664,6 +666,11 @@ public with sharing class IPM_ProjectHelper
     */
     public static void manageProjectDocuments(Map<Id,IPM_Project__c> projectMap)
     {                                               
+        /* Early exit if map is empty*/
+        if(projectMap == null || projectMap.isEmpty()){
+        	return;
+        }
+        
         /* Used for DML Operations */        
         List<IPM_Project_Document__c> preparedprojectDocumentList = new List<IPM_Project_Document__c>();
         preparedprojectDocumentList = IPM_ProjectDocumentHelper.manageProjectDocuments(projectMap);
@@ -690,6 +697,8 @@ public with sharing class IPM_ProjectHelper
             
             if(upsertSectionList !=null)
             {
+                IPM_ProjectDocumentSectionHandler.SKIP_SECTION_TASK_ASSOCIATION = true;
+                
                 upsert upsertSectionList Id;
                 
                 // Create a Map of project To Map of Document To Section
@@ -708,6 +717,7 @@ public with sharing class IPM_ProjectHelper
 
                 IPM_ProjectSectionContentHelper.createOTIFStatus(projectDocumentToSecMap,projectToDocumentMap,projectMap);          
                 IPM_ProjectQuestionnaireHelper.manageQuestionnaire(upsertSectionList,preparedprojectDocumentList,projectMap);
+                IPM_ProjectSectionContentHelper.createGlobalFinancialActionStandard(projectDocumentToSecMap,projectToDocumentMap,projectMap);
                 IPM_ProjectSectionContentHelper.createFinancialActionStandard(projectDocumentToSecMap,projectToDocumentMap,projectMap);
                 IPM_ProjectSectionContentHelper.manageCMISections(projectDocumentToSecMap,projectToDocumentMap,projectMap);
                 IPM_ProjectSectionContentHelper.manageCustomerEvidenceConcepts(projectMap,preparedprojectDocumentList,upsertSectionList);
@@ -725,6 +735,12 @@ public with sharing class IPM_ProjectHelper
     */
     public static void manageProjectCountryNRolloutReferences(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Project__c> oldProjectMap)
     {
+        
+        if(incomingProjectMap == null || incomingProjectMap.isEmpty())
+        {
+        	return;
+        }
+        
         Map<Id,IPM_Project_Rollout__c> updateRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
         Map<Id,IPM_Country__c> updateCountriesMap = new Map<Id,IPM_Country__c>();
         
@@ -836,12 +852,25 @@ public with sharing class IPM_ProjectHelper
     
     /**************************************************************
     * @description: Used for populating References on Financials,Creating financials based on certain Criteria.
+	* @ The incoming project is checked against the PM_ProjectType__c custom setting, to check if the refernces on financial object are to be updated
+	* @ Based on the whether the financial is KEY, NONKEY Or DEFAULT the postFixToUniqueFinancialKeySet is calculated.
+	* @ This information is fetched from the IPM_ProjectType__c custom setting based on the informations about the incoming project.
+	* @ projectToPostFixToUniqueFinancialKeySet is then prepared, which holds the projectId and its unique Financial Key set
+	* @ The the fields to update for different kind of financials is fetched from IPM_Project_Type using the projectToPostFixToUniqueFinancialKeySet
+	* @ The references on the incoming project is then updated based on whether the project spanc is local or regional (references like local_project__c, regional_Project and rollout references)
+	* @ Then copyover of financial is initiated for the required projects, based on project Type information
+	* @ After this the new financials are created as required.
     * @param1 incomingProjectMap : incoming Project Map  
     */
     
    
     public static void manageProjectFinancials(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Project__c> oldProjectMap)
     {
+        if(incomingProjectMap == null || incomingProjectMap.isEmpty())
+        {
+        	return;
+        }
+        
         Map<String,IPM_Financial__c> finUniqueKeyToFinancialMap = new Map<String,IPM_Financial__c>();
         Map<String,IPM_Financial__c> financialsToUpsert = new Map<String,IPM_Financial__c>();
         
@@ -945,7 +974,6 @@ public with sharing class IPM_ProjectHelper
                     Map<String,Set<String>> postFixToUniqueFinancialKeySet = projectToPostFixToUniqueFinancialKeySet.get(project.Id);
                 
                     Id associatedRolloutId = project.IPM_Project_Rollout__c;
-                    IPM_Project_Rollout__c rolloutDetail = sourceRolloutMasterMap.get(associatedRolloutId);
                     
                     IPM_Project_Type__c associatedProjectType =IPM_Utils.retrieveProjectType(project); 
                 
@@ -1271,6 +1299,11 @@ public with sharing class IPM_ProjectHelper
     
     public static void updateSustainabilityPeriod(Map<String,IPM_Project__c> financialYearUpdates)
     {
+        if(financialYearUpdates.isEmpty())
+        {
+        	return;
+        }
+        
         // Get the financials asssociated with Project. Default Sustainability Period is 3 years. This would be invoked only in case of update for Original Projects.
         // Financials with Parent
         List<String> incomingProjectsIds =  new List<String>(financialYearUpdates.keySet());
@@ -1325,6 +1358,11 @@ public with sharing class IPM_ProjectHelper
     
     public static void refreshProjectRolloutCountryMapping(Map<Id,IPM_Project__c> projectPhaseChange,Map<Id,IPM_Project__c> oldProjectMap) 
     {
+        if(projectPhaseChange == null || projectPhaseChange.isEmpty())
+        {
+        	return;
+        }
+        
         Set<Id> phaseChangeProjectIdSet = projectPhaseChange.keySet();
         
         if(phaseChangeProjectIdSet != null && !phaseChangeProjectIdSet.isEmpty())
@@ -1351,11 +1389,11 @@ public with sharing class IPM_ProjectHelper
                     }
                 }
             }
-        	// Prepare the SOQL to get the Country records related to IPM Projects
+            // Prepare the SOQL to get the Country records related to IPM Projects
             String countryQuery = IPM_Utils.prepareSOQLQuery('IPM_Country__c',false,null,true);
             String countryWhereClause = ' WHERE IPM_Project__c in :incomingProjectIds OR IPM_Regional_Project__c in :incomingProjectIds OR IPM_Local_Project__c in:incomingProjectIds '+LIMIT_CLAUSE_STR;
             countryQuery = countryQuery + countryWhereClause;
-        	// get the country list related to Project
+            // get the country list related to Project
             List<IPM_Country__c> countryList = database.query(countryQuery);
             // prepare the country related data 
             for(IPM_Country__c country : countryList)
@@ -1366,7 +1404,7 @@ public with sharing class IPM_ProjectHelper
                 {
                     globalCountries = projectToCountryMap.get(globalProjectID);
                 }
-                globalCountries.put(country.Country_Name__c,country);
+                globalCountries.put(country.Country_Code__c,country);
                 projectToCountryMap.put(globalProjectID,globalCountries);
                 
                 Id regionalProjectID = country.IPM_Regional_Project__c;
@@ -1376,7 +1414,7 @@ public with sharing class IPM_ProjectHelper
                 {
                     regionalCountries = projectToCountryMap.get(regionalProjectID);
                 }
-                regionalCountries.put(country.Country_Name__c,country);
+                regionalCountries.put(country.Country_Code__c,country);
                 projectToCountryMap.put(regionalProjectID,regionalCountries);
                 
                 Id localProjectID = country.IPM_Local_Project__c;
@@ -1386,7 +1424,7 @@ public with sharing class IPM_ProjectHelper
                 {
                     localCountries = projectToCountryMap.get(localProjectID);
                 }
-                localCountries.put(country.Country_Name__c,country);
+                localCountries.put(country.Country_Code__c,country);
                 projectToCountryMap.put(localProjectID,localCountries);
             }
             
@@ -1399,14 +1437,14 @@ public with sharing class IPM_ProjectHelper
                 for(Id projectId : projectToRolloutMap.keySet())
                 {
                     IPM_Project__c oldProject = null;
-                    Map<Id,IPM_Project_Rollout__c> rolloutMap = projectToRolloutMap.get(projectId);
+                    Map<Id,IPM_Project_Rollout__c> rolloutsMap = projectToRolloutMap.get(projectId);
                     
                     if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
                     {
                         oldProject = oldProjectMap.get(projectId);
                         if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
                         {
-                            for(IPM_Project_Rollout__c rollout : rolloutMap.values())
+                            for(IPM_Project_Rollout__c rollout : rolloutsMap.values())
                             {
                                 // Update Rollouts with Charter References. Set Charter Approved as true
                                 rollout.IPM_CharterApproved__c = true;
@@ -1437,7 +1475,7 @@ public with sharing class IPM_ProjectHelper
                 for(Id projectId : projectToCountryMap.keySet())
                 {
                     IPM_Project__c oldProject = null;
-                    Map<String,IPM_Country__c> countryMap = projectToCountryMap.get(projectId);
+                    Map<String,IPM_Country__c> countriesMap = projectToCountryMap.get(projectId);
                     
                     if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
                     {
@@ -1445,7 +1483,7 @@ public with sharing class IPM_ProjectHelper
                         
                         if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
                         {
-                            for(IPM_Country__c country : countryMap.values())
+                            for(IPM_Country__c country : countriesMap.values())
                             {
                                country.IPM_CharterApproved__c = true;
                                
@@ -1456,7 +1494,6 @@ public with sharing class IPM_ProjectHelper
                                     IPM_Project_Rollout__c rollout  = updateProjectRollout.get(country.local_Rollout__c); 
                                     if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
                                     {
-                                        String financialExternalId = IPM_Utils.getFinancialExternalId(rollout);
                                         country.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
                                     }
                                }
@@ -1512,6 +1549,9 @@ public with sharing class IPM_ProjectHelper
     */ 
     public static void processFastTrackProjects(Map<Id, IPM_Project__c> ipmFastTrackProjectMap){
         
+        if(ipmFastTrackProjectMap.isEmpty()){
+        	return;
+        }
         List<IPM_Project__c> childProjectListToUpdate = new List<IPM_Project__c>(); // List of child IPMProjects to be updated
         for(IPM_Project__c childProject :    [SELECT Id, 
                                                      IPM_Fast_Track_Project__c, 
@@ -1604,6 +1644,7 @@ public with sharing class IPM_ProjectHelper
                             delete countryList;
             }
             List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectIdSetToBeDeleted Limit 5000];
+            
             if(projList != null && !projList.isEmpty())
             {
                 delete projList;
@@ -1628,5 +1669,89 @@ public with sharing class IPM_ProjectHelper
             SKIP_TRIGGER_EXECUTION = false;
         }
     }
+		
+		
+			
+
+			
+			
+		
+		
+		
+
+		
+
+	
+
+
+
+
+				
+							
+				
+
+
+					
+				
+
+		
+            
+                
+                
+                
+                
+        
+        
+            
+                
+            
+            
+                
+            
+            
+        
+        
     
+        
+    
+    // for copying over the MPA value from parent project to its child project
+    
+    public static void copyOverMPAValue(Map<Id,IPM_Project__c> projectMPAMap) {
+    if(projectMPAMap.isEmpty()){
+    	return;
+    }
+    
+    List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    Set<String> parentIdSet = new Set<String>();
+    for(Id projectId : projectMPAMap.keySet() ) {
+        String parentId;
+        parentId = projectId;
+        parentId = parentId.substring(0,15);
+        parentIdSet.add(parentId);
+        
+    }
+
+    
+
+    projectList = [select Id,IPM_Answer_of_Q1__c,IPMProject_Span__c,Name,IPM_Parent_Project__c,IPM_Global_Project_Id__c  from IPM_Project__c 
+    where (IPM_Global_Project_Id__c IN: parentIdSet AND IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT ) OR (IPM_Parent_Project__c IN: parentIdSet AND IPMProject_Span__c =:IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL ) LIMIT 50000];
+    
+    
+    for(IPM_Project__c proj : projectList) {
+        for(Id projMap : projectMPAMap.keySet()) {
+        
+            if(proj.IPM_Global_Project_Id__c == projMap || (proj.IPM_Parent_Project__c == projMap && proj.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL )){
+        
+                proj.IPM_Answer_of_Q1__c = projectMPAMap.get(projMap).IPM_Answer_of_Q1__c;
+        
+        }
+    }
+  
+    
+    }
+    if(!projectList.isEmpty()) {
+        update projectList;
+    }
+    }
+
 }

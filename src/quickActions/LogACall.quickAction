@@ -30,4 +30,5 @@
     <standardLabel>LogACall</standardLabel>
     <targetObject>Task</targetObject>
     <type>LogACall</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

@@ -151,6 +151,8 @@
             </tr>
             
             <!-- Volume -->
+	<apex:outputText rendered="{!OR(isConsolidated,AND(fieldSuffix=='Regional',ipmFinancial.Volume_Unit_Regional__c='Total 000 Units'),AND(fieldSuffix=='Global',ipmFinancial.Volume_Unit_Global__c='Total 000 Units'),AND(fieldSuffix=='Local',ipmFinancial.Volume_Unit_Local__c='Total 000 Units'),AND(fieldSuffix=='Charter',ipmFinancial.Volume_Unit_Charter__c='Total 000 Units'))}" >    
+             
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                 <td class="fintleblubg {!IF(isInnovation, IF(AND(showMisalignment, (ipmFinancial.Volume_Unit_Difference__c != NULL), ipmFinancial.Volume_Unit_Difference__c > 0), 'misaligned', ''), '')}">
@@ -315,11 +317,13 @@
                 <apex:variable value="{!rowCount + 1}" var="rowCount"/>
             </tr>
 
+		</apex:outputText>   
             <!-- Volume Tons -->
             <!--
                 This block will be rendered for consolisated records
             -->
-            <apex:outputText rendered="{!isConsolidated}">
+            <apex:outputText rendered="{!OR(AND(fieldSuffix=='Regional',ipmFinancial.Volume_Unit_Regional__c='Total Tons'),AND(fieldSuffix=='Global',ipmFinancial.Volume_Unit_Global__c='Total Tons'),AND(fieldSuffix=='Local',ipmFinancial.Volume_Unit_Local__c='Total Tons'),AND(fieldSuffix=='Charter',ipmFinancial.Volume_Unit_Charter__c='Total Tons'),isConsolidated)}">
+              
                 <tr>
                     <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                     <td class="fintleblubg {!IF(isInnovation, IF(AND(showMisalignment, (ipmFinancial.Volume_Unit_Difference__c!= NULL), ipmFinancial.Volume_Unit_Difference__c > 0), 'misaligned', ''), '')}">

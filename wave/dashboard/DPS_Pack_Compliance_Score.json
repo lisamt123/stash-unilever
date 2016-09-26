@@ -1,0 +1,3790 @@
+{
+    "label": "Pack Dashboard",
+    "description": "updated with Mobile",
+    "state": {
+        "gridLayouts": [],
+        "layouts": [
+            {
+                "device": "default",
+                "pages": [
+                    {
+                        "rows": [
+                            " | header_image {rowspan=2}",
+                            "row:{height=40}",
+                            "header_period {colspan=2}",
+                            "datefilter_date {colspan=2}",
+                            "row:{height=40}",
+                            "header_geo {colspan=2}",
+                            "dimfilter_cluster | dimfilter_city",
+                            "dimfilter_country | dimfilter_salesA",
+                            "dimfilter_region | dimfilter_salesT",
+                            "dimfilter_province",
+                            "row:{height=40}",
+                            "header_customer {colspan=2}",
+                            "dimfilter_tradeFormat | dimfilter_customerType",
+                            "dimfilter_channel | dimfilter_customerSubtype",
+                            "dimfilter_subchannel | dimfilter_customer",
+                            "dimfilter_4p5p6p | dimfilter_banner",
+                            "row:{height=40}",
+                            "header_product {colspan=2}",
+                            "dimfilter_productDivision | dimfilter_productBrand",
+                            "dimfilter_productCategory | dimfilter_SKU",
+                            "dimfilter_productMarket",
+                            "dimfilter_productSector",
+                            "row:{height=40}"
+                        ]
+                    },
+                    {
+                        "rows": [
+                            "row:{height=40}",
+                            "header_comCountry {colspan=2}",
+                            "chart_comCountry {colspan=2}",
+                            "chartDesc_comCountry {colspan=2}",
+                            "row:{height=40}",
+                            "header_comTrend {colspan=2}",
+                            "chart_comTrend {colspan=2}",
+                            "chartDesc_comTrend {colspan=2}",
+                            "row:{height=40}",
+                            "header_com4p5p6p {colspan=2}",
+                            "chart_com4p5p6p {colspan=2}",
+                            "chartDesc_com4p5p6p {colspan=2}",
+                            "row:{height=40}",
+                            "header_comRegion {colspan=2}",
+                            "chart_comRegion {colspan=2}",
+                            "chartDesc_comRegion {colspan=2}",
+                            "row:{height=40}",
+                            "header_comChannel {colspan=2}",
+                            "chart_comChannel {colspan=2}",
+                            "chartDesc_comChannel {colspan=2}",
+                            "row:{height=40}",
+                            "header_comCategory {colspan=2}",
+                            "chart_comCategory {colspan=2}",
+                            "chartDesc_comCategory {colspan=2}",
+                            "row:{height=40}",
+                            "header_comCustomers {colspan=2}",
+                            "chart_comCustomers {colspan=2}",
+                            "chartDesc_comCustomers {colspan=2}",
+                            "row:{height=40}"
+                        ]
+                    },
+                    {
+                        "rows": [
+                            "row:{height=40}",
+                            "header_scoreCountry {colspan=2}",
+                            "chart_scoreCountry {colspan=2}",
+                            "chartDesc_scoreCountry {colspan=2}",
+                            "row:{height=40}",
+                            "header_scoreTrend {colspan=2}",
+                            "chart_scoreTrend {colspan=2}",
+                            "chartDesc_scoreTrend {colspan=2}",
+                            "row:{height=40}",
+                            "header_score4p5p6p {colspan=2}",
+                            "chart_score4p5p6p {colspan=2}",
+                            "chartDesc_score4p5p6p {colspan=2}",
+                            "row:{height=40}",
+                            "header_scoreRegion {colspan=2}",
+                            "chart_scoreRegion {colspan=2}",
+                            "chartDesc_scoreRegion {colspan=2}",
+                            "row:{height=40}",
+                            "header_scoreChannel {colspan=2}",
+                            "chart_scoreChannel {colspan=2}",
+                            "chartDesc_scoreChannel {colspan=2}",
+                            "row:{height=40}",
+                            "header_scoreCategory {colspan=2}",
+                            "chart_scoreCategory {colspan=2}",
+                            "chartDesc_scoreCategory {colspan=2}",
+                            "row:{height=40}",
+                            "header_scoreCustomers {colspan=2}",
+                            "chart_scoreCustomers {colspan=2}",
+                            "chartDesc_scoreCustomers {colspan=2}",
+                            "row:{height=40}",
+                            "header_countAuditScores {colspan=2}",
+                            "count_auditScores {colspan=2}",
+                            "row:{height=40}"
+                        ]
+                    }
+                ],
+                "version": 1
+            }
+        ],
+        "steps": {
+            "Score_41": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by all; q = foreach q generate sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "Average Score this Month"
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_sector_53": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_sector"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_37": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Compliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -12
+                                    ],
+                                    [
+                                        "month",
+                                        0
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_47) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_18) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_19) }}"
+                        ],
+                        [
+                            "Province",
+                            "{{ selection(Province_20) }}"
+                        ],
+                        [
+                            "City",
+                            "{{ selection(City_21) }}"
+                        ],
+                        [
+                            "Sales_territory",
+                            "{{ selection(Sales_territory_22) }}"
+                        ],
+                        [
+                            "Sales_area",
+                            "{{ selection(Sales_area_23) }}"
+                        ],
+                        [
+                            "Trade_Format",
+                            "{{ selection(Trade_Format_24) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_25) }}"
+                        ],
+                        [
+                            "Subchannel",
+                            "{{ selection(Subchannel_26) }}"
+                        ],
+                        [
+                            "Banner",
+                            "{{ selection(Banner_49) }}"
+                        ],
+                        [
+                            "Customer_type",
+                            "{{ selection(Customer_type_27) }}"
+                        ],
+                        [
+                            "Customer_subtype",
+                            "{{ selection(Customer_subtype_28) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_29) }}"
+                        ],
+                        [
+                            "Cluster",
+                            "{{ selection(Cluster_17) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_3) }}"
+                        ],
+                        [
+                            "Country",
+                            "{{ selection(Country_39) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_31) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_11) }}"
+                        ],
+                        [
+                            "Channel",
+                            "{{ selection(Channel_12) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_13) }}"
+                        ],
+                        [
+                            "Customer",
+                            "{{ selection(Customer_14) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_50) }}"
+                        ],
+                        [
+                            "Region",
+                            "{{ selection(Region_51) }}"
+                        ],
+                        [
+                            "Product_division",
+                            "{{ selection(Product_division_30) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_46) }}"
+                        ],
+                        [
+                            "X4P_5P_6P",
+                            "{{ selection(X4P_5P_6P_48) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_10) }}"
+                        ],
+                        [
+                            "Product_category",
+                            "{{ selection(Product_category_9) }}"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Score_42": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\"; q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"1 month ago\"..\"1 month ago\"]; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by all; q = foreach q generate sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Subchannel_26": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Subchannel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_38": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by ('Date_of_audit_Year', 'Date_of_audit_Month'); q = foreach q generate 'Date_of_audit_Year' as 'Date_of_audit_Year', 'Date_of_audit_Month' as 'Date_of_audit_Month', 'Date_of_audit_Year' + \"~~~\" + 'Date_of_audit_Month' as 'Date_of_audit_Year~~~Date_of_audit_Month', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Score_40": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"1 month ahead\"];r = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"2 month ago\"];w = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"1 month ago\"..\"1 month ago\"];c = cogroup q by all, r by all, w by all; c = foreach c generate sum(r.Score)/sum(r.Audited_SKUs)*100  as 'r_Scores', sum(w.Score)/sum(w.Audited_SKUs)*100  as 'w_Scores', ( (sum(w.Score)/sum(w.Audited_SKUs))*100) - ((sum(r.Score)/sum(r.Audited_SKUs))*100) as 'Percent_Diff';",
+                    "measures": [
+                        [
+                            "Percent",
+                            "Diff",
+                            "Percent_Diff",
+                            {
+                                "display": "% difference",
+                                "format": "percentage"
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Banner_49": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Banner"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_subtype_28": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_subtype"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_market_52": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_market"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_17": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ],
+                    "formula": ""
+                },
+                "selectMode": "multi",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_57": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "format": "percentage",
+                        "header": "Availability",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "NPD"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -2
+                                            ],
+                                            [
+                                                "month",
+                                                -2
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_47) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_18) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_19) }}"
+                                ],
+                                [
+                                    "Province",
+                                    "{{ selection(Province_20) }}"
+                                ],
+                                [
+                                    "City",
+                                    "{{ selection(City_21) }}"
+                                ],
+                                [
+                                    "Sales_territory",
+                                    "{{ selection(Sales_territory_22) }}"
+                                ],
+                                [
+                                    "Sales_area",
+                                    "{{ selection(Sales_area_23) }}"
+                                ],
+                                [
+                                    "Trade_Format",
+                                    "{{ selection(Trade_Format_24) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_25) }}"
+                                ],
+                                [
+                                    "Subchannel",
+                                    "{{ selection(Subchannel_26) }}"
+                                ],
+                                [
+                                    "Banner",
+                                    "{{ selection(Banner_49) }}"
+                                ],
+                                [
+                                    "Customer_type",
+                                    "{{ selection(Customer_type_27) }}"
+                                ],
+                                [
+                                    "Customer_subtype",
+                                    "{{ selection(Customer_subtype_28) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_29) }}"
+                                ],
+                                [
+                                    "Cluster",
+                                    "{{ selection(Cluster_17) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_3) }}"
+                                ],
+                                [
+                                    "Country",
+                                    "{{ selection(Country_39) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_31) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_11) }}"
+                                ],
+                                [
+                                    "Channel",
+                                    "{{ selection(Channel_12) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_13) }}"
+                                ],
+                                [
+                                    "Customer",
+                                    "{{ selection(Customer_14) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_50) }}"
+                                ],
+                                [
+                                    "Region",
+                                    "{{ selection(Region_51) }}"
+                                ],
+                                [
+                                    "Product_division",
+                                    "{{ selection(Product_division_30) }}"
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_46) }}"
+                                ],
+                                [
+                                    "X4P_5P_6P",
+                                    "{{ selection(X4P_5P_6P_48) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_10) }}"
+                                ],
+                                [
+                                    "Product_category",
+                                    "{{ selection(Product_category_9) }}"
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_NPD_RAW\"; q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }};  q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'SKU', last by 'SKU'; diff = foreach diff generate last.SKU as 'SKU',avg(last['NPD']) as 'Last Month', avg(cur['NPD']) as 'Current Month', (avg(cur['NPD'])-avg(last['NPD'])) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Difference",
+                        "query": {
+                            "pigql": "q = load \"DPS_NPD_RAW\"; q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }};  q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; cur = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 months ago\"..\"2 months ago\"]; last = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"3 months ago\"..\"3 months ago\"]; diff = group cur by 'SKU', last by 'SKU'; diff = foreach diff generate last.SKU as 'SKU',avg(last['NPD']) as 'Last Month', avg(cur['NPD']) as 'Current Month', (avg(cur['NPD']) - avg(last['NPD'])) as 'Percent_Diff';",
+                            "measures": [
+                                [
+                                    "Percent",
+                                    "Diff"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ]
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "compare_15": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "format": "percentage",
+                        "header": "Previous Month",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Compliance"
+                                ]
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -2
+                                            ],
+                                            [
+                                                "month",
+                                                -2
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Current Month",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Compliance"
+                                ]
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -1
+                                            ],
+                                            [
+                                                "month",
+                                                -1
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "%diff",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Compliance"
+                                ]
+                            ],
+                            "formula": "B-A",
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                0
+                                            ],
+                                            [
+                                                "monht",
+                                                0
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "% diff",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Compliance"
+                                ]
+                            ],
+                            "formula": "B-A",
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                0
+                                            ],
+                                            [
+                                                "monht",
+                                                0
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "compare_16": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "format": "percentage",
+                        "header": "Previous Month",
+                        "query": {
+                            "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by all; q = foreach q generate sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                            "measures": [
+                                [
+                                    "ave",
+                                    "Score"
+                                ]
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -2
+                                            ],
+                                            [
+                                                "month",
+                                                -2
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "Current Month",
+                        "query": {
+                            "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by all; q = foreach q generate sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                            "measures": [
+                                [
+                                    "ave",
+                                    "Score"
+                                ]
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                -1
+                                            ],
+                                            [
+                                                "month",
+                                                -1
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "%diff",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Score"
+                                ]
+                            ],
+                            "formula": "B-A",
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                0
+                                            ],
+                                            [
+                                                "monht",
+                                                0
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "% diff",
+                        "query": {
+                            "measures": [
+                                [
+                                    "avg",
+                                    "Score"
+                                ]
+                            ],
+                            "formula": "B-A",
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    [
+                                        [
+                                            [
+                                                "month",
+                                                0
+                                            ],
+                                            [
+                                                "monht",
+                                                0
+                                            ]
+                                        ]
+                                    ],
+                                    ">=<="
+                                ]
+                            ]
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Product_category_31": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Month_7": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPDCompliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Date_of_audit_Month_8": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "NPD_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Trade_Format_24": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Trade_Format"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_Region_34": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance"
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "heatmap"
+                }
+            },
+            "Compliance_43": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -2
+                                    ],
+                                    [
+                                        "month",
+                                        -2
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_25": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Compliance_45": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\"; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"1 month ahead\"];r = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"2 month ago\"..\"2 month ago\"];w = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"1 month ago\"..\"1 month ago\"];c = cogroup q by all, r by all, w by all; c = foreach c generate  ( (sum(w.Compliance)/count(w))*100) - ((sum(r.Compliance)/count(r))*100) as 'Percent_Diff';",
+                    "measures": [
+                        [
+                            "Percent",
+                            "Diff",
+                            "Percent_Diff",
+                            {
+                                "display": "% difference",
+                                "format": "percentage"
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Compliance_44": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -1
+                                    ],
+                                    [
+                                        "month",
+                                        -1
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_brand_54": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_brand"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_type_27": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_60": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_4": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Score",
+                            "NPD_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_3": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPD_Compliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_18": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "multi",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPDCompliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_58": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance"
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -12
+                                    ],
+                                    [
+                                        "month",
+                                        0
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "time"
+                }
+            },
+            "Channel_12": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by 'Channel'; q = foreach q generate 'Channel' as 'Channel', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Local_Outlet_Name_59": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "Local_Outlet_Name"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Compliance_36": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        0
+                                    ],
+                                    [
+                                        "month",
+                                        0
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_47": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_50": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "avg_Compliance",
+                            {
+                                "display": "Pack Compliance"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Product_category_10": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPDCompliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Compliance_35": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance"
+                        ]
+                    ],
+                    "filters": [
+                        [
+                            "Date_of_audit",
+                            [
+                                [
+                                    [
+                                        "month",
+                                        -1
+                                    ],
+                                    [
+                                        "month",
+                                        -1
+                                    ]
+                                ]
+                            ],
+                            ">=<="
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_46": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPD_Compliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_51": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by ('Country', 'Region'); q = foreach q generate 'Country' as 'Country', 'Region' as 'Region', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Customer_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by 'Customer'; q = foreach q generate 'Customer' as 'Customer', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 10;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "limit": [
+                        [
+                            10
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "SKU_55": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "SKU"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_division_30": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_division"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Audited_SKUs_56": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "sum",
+                            "Audited_SKUs"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_14": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPDCompliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "limit": [
+                        [
+                            10
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Date_Year_Date_Month_14": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "start": [
+                    [
+                        [
+                            "month",
+                            -6
+                        ],
+                        [
+                            "month",
+                            -6
+                        ]
+                    ]
+                ],
+                "type": "aggregate",
+                "useGlobal": false,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "compare_33": {
+                "isFacet": true,
+                "isGlobal": false,
+                "selectMode": "single",
+                "type": "multi",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_RAW"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "comparisontable"
+                },
+                "columns": [
+                    {
+                        "header": "Total NPD",
+                        "query": {
+                            "measures": [
+                                [
+                                    "sum",
+                                    "NPD"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    "{{ selection(Date_Year_Date_Month_14) }}"
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "header": "Total Stores Auditied",
+                        "query": {
+                            "measures": [
+                                [
+                                    "count",
+                                    "*"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "filters": [
+                                [
+                                    "Date_of_audit",
+                                    "{{ selection(Date_Year_Date_Month_14) }}"
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "% Availability of Product",
+                        "query": {
+                            "measures": [
+                                [
+                                    "count",
+                                    "*"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "formula": "A/B"
+                        }
+                    },
+                    {
+                        "format": "percentage",
+                        "header": "% Availability of Product",
+                        "query": {
+                            "measures": [
+                                [
+                                    "count",
+                                    "*"
+                                ]
+                            ],
+                            "groups": [
+                                "SKU"
+                            ],
+                            "formula": "A/B"
+                        },
+                        "showBars": true
+                    }
+                ],
+                "globalQuery": {}
+            },
+            "Region_19": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "multi",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_48": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by 'X4P_5P_6P'; q = foreach q generate 'X4P_5P_6P' as 'X4P_5P_6P', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_29": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_39": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\"; q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by 'Country'; q = foreach q generate 'Country' as 'Country', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "groups": [
+                        "Country"
+                    ],
+                    "filters": [
+                        []
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Province_20": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Province"
+                    ]
+                },
+                "selectMode": "multi",
+                "start": [],
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_area_23": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_area"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by 'Product_category'; q = foreach q generate 'Product_category' as 'Product_category', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "City_21": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "City"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_territory_22": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_territory"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPD_Compliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_2": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }}; q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }};q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by 'Cluster'; q = foreach q generate 'Cluster' as 'Cluster', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "q = load \"DPS_NPD_AGGREGATED\";q = filter q by 'Banner' in {{ selection(Banner_49) }};q = filter q by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_47) }}; q = filter q by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_14) }}; q = filter q by 'Cluster' in {{ selection(Cluster_17) }}; q = filter q by 'Country' in {{ selection(Country_18) }}; q = filter q by 'Region' in {{ selection(Region_19) }}; q = filter q by 'Province' in {{ selection(Province_20) }}; q = filter q by 'City' in {{ selection(City_21) }}; q = filter q by 'Sales_territory' in {{ selection(Sales_territory_22) }}; q = filter q by 'Sales_area' in {{ selection(Sales_area_23) }}; q = filter q by 'Trade_Format' in {{ selection(Trade_Format_24) }}; q = filter q by 'Channel' in {{ selection(Channel_25) }}; q = filter q by 'Subchannel' in {{ selection(Subchannel_26) }}; q = filter q by 'Customer_type' in {{ selection(Customer_type_27) }}; q = filter q by 'Customer_subtype' in {{ selection(Customer_subtype_28) }}; q = filter q by 'Customer' in {{ selection(Customer_29) }}; q = filter q by 'Product_division' in {{ selection(Product_division_30) }}; q = filter q by 'Product_category' in {{ selection(Product_category_31) }}; q = group q by ('Country', 'Region'); q = foreach q generate 'Country' as 'Country', 'Region' as 'Region', sum('Audited_SKUs') as 'sum_Audited_SKUs', sum('Score') as 'sum_Score',  sum('Score')/sum('Audited_SKUs') as 'ave_Score'; q = limit q 2000;",
+                    "measures": [
+                        [
+                            "ave",
+                            "Score",
+                            "ave_Score",
+                            {
+                                "display": "NPD Score",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "heatmap"
+                }
+            },
+            "Region_6": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "avg",
+                            "Compliance",
+                            "NPDCompliance",
+                            {
+                                "display": "Pack Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_NPD_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "heatmap"
+                }
+            }
+        },
+        "widgets": {
+            "dimfilter_4p5p6p": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 630,
+                    "y": 330,
+                    "zIndex": 100016
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "X4P_5P_6P_47",
+                    "title": "Tier"
+                }
+            },
+            "header_comChannel": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 2100,
+                    "zIndex": 26
+                },
+                "parameters": {
+                    "text": "Pack Compliance by Channel"
+                }
+            },
+            "header_comCountry": {
+                "type": "text",
+                "position": {
+                    "x": 100,
+                    "y": 480,
+                    "zIndex": 16
+                },
+                "parameters": {
+                    "text": "Pack Compliance  by Country"
+                }
+            },
+            "datefilter_date": {
+                "type": "dateselector",
+                "position": {
+                    "h": 100,
+                    "w": 250,
+                    "x": 210,
+                    "y": 20,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "step": "Date_Year_Date_Month_14",
+                    "title": "Date"
+                }
+            },
+            "dimfilter_productBrand": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1440,
+                    "y": 150,
+                    "zIndex": 100020
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_brand_54"
+                }
+            },
+            "chart_scoreCustomers": {
+                "type": "chart",
+                "position": {
+                    "h": 440,
+                    "w": 710,
+                    "x": 820,
+                    "y": 3210,
+                    "zIndex": 12
+                },
+                "parameters": {
+                    "step": "Customer_13",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chartDesc_scoreTrend": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 1170,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for the\ncountry over a period of last 12 months.",
+                    "textAlignment": "left"
+                }
+            },
+            "header_scoreCategory": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 2670,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "text": "Pack Score by Category"
+                }
+            },
+            "dimfilter_productDivision": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1180,
+                    "y": 150,
+                    "zIndex": 100014
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_division_30"
+                }
+            },
+            "chart_score4p5p6p": {
+                "type": "chart",
+                "position": {
+                    "h": 220,
+                    "w": 710,
+                    "x": 820,
+                    "y": 1300,
+                    "zIndex": 53
+                },
+                "parameters": {
+                    "step": "X4P_5P_6P_48",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "box_19": {
+                "type": "box",
+                "position": {
+                    "h": 60,
+                    "w": 270,
+                    "x": 110,
+                    "y": 4500,
+                    "zIndex": 62
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(244, 247, 248, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "dimfilter_channel": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 630,
+                    "y": 210,
+                    "zIndex": 100009
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Channel_25"
+                }
+            },
+            "box_17": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 4440,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(241, 246, 248, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "dimfilter_productSector": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1180,
+                    "y": 330,
+                    "zIndex": 100019
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_sector_53"
+                }
+            },
+            "box_15": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 3740,
+                    "zIndex": 67
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(255, 255, 255, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "count_auditScores": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 80,
+                    "y": 4500,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "measureField": "count",
+                    "step": "all_60",
+                    "textColor": "rgb(239, 53, 53)",
+                    "title": " "
+                }
+            },
+            "box_13": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 1600,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(254, 254, 254, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_12": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 1250,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(244, 247, 248, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "dimfilter_subchannel": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 630,
+                    "y": 270,
+                    "zIndex": 100010
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Subchannel_26"
+                }
+            },
+            "box_11": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 3150,
+                    "zIndex": 50
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.99)"
+                }
+            },
+            "box_10": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 2670,
+                    "zIndex": 49
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chartDesc_NPDSKU": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 4360,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart lists all the audited NPD SKUs in the country, the % of\n enrolled stores that they were available in the latest month,\nand the variance in availability from the previous month.",
+                    "textAlignment": "left"
+                }
+            },
+            "header_comRegion": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 1600,
+                    "zIndex": 18
+                },
+                "parameters": {
+                    "text": "Pack Compliance by Region"
+                }
+            },
+            "comparetable_2": {
+                "type": "comparetable",
+                "position": {
+                    "h": 500,
+                    "w": 500,
+                    "x": 80,
+                    "y": 3810,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "step": "compare_57",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "h": 450,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 10,
+                    "zIndex": 41
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "dimfilter_region": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 270,
+                    "zIndex": 100003
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Region_19",
+                    "selectModeOverride": "multi"
+                }
+            },
+            "chartDesc_scoreCountry": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 720,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for the country\nin the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "header_comTrend": {
+                "type": "text",
+                "position": {
+                    "x": 90,
+                    "y": 800,
+                    "zIndex": 20
+                },
+                "parameters": {
+                    "text": "Pack Compliance  Trend"
+                }
+            },
+            "chartDesc_scoreChannel": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 2600,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores across all the\nChannels in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_country": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 210,
+                    "zIndex": 100002
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Country_18",
+                    "selectModeOverride": "multi"
+                }
+            },
+            "dimfilter_city": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 330,
+                    "y": 150,
+                    "zIndex": 100005
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "City_21"
+                }
+            },
+            "header_com4p5p6p": {
+                "type": "text",
+                "position": {
+                    "x": 70,
+                    "y": 1250,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "text": "Pack Compliance by 4P / 5P / 6P"
+                }
+            },
+            "dimfilter_tradeFormat": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 630,
+                    "y": 150,
+                    "zIndex": 100008
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Trade_Format_24"
+                }
+            },
+            "chart_scoreTrend": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 700,
+                    "x": 820,
+                    "y": 860,
+                    "zIndex": 49
+                },
+                "parameters": {
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_38",
+                    "exploreLink": false,
+                    "visualizationType": "time"
+                }
+            },
+            "box_21": {
+                "type": "box",
+                "position": {
+                    "h": 70,
+                    "w": 260,
+                    "x": 80,
+                    "y": 4700,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(251, 253, 253, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0)"
+                }
+            },
+            "header_product": {
+                "type": "text",
+                "position": {
+                    "x": 1190,
+                    "y": 100,
+                    "zIndex": 36
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Product",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_comCustomers": {
+                "type": "chart",
+                "position": {
+                    "h": 440,
+                    "w": 710,
+                    "x": 80,
+                    "y": 3210,
+                    "zIndex": 13
+                },
+                "parameters": {
+                    "step": "Customer_14",
+                    "visualizationType": "hbar"
+                }
+            },
+            "dimfilter_productMarket": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1180,
+                    "y": 270,
+                    "zIndex": 100018
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_market_52"
+                }
+            },
+            "header_scoreChannel": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 2100,
+                    "zIndex": 25
+                },
+                "parameters": {
+                    "text": "Pack Score by Channel"
+                }
+            },
+            "header_comCategory": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 2670,
+                    "zIndex": 24
+                },
+                "parameters": {
+                    "text": "Pack Compliance by Category"
+                }
+            },
+            "header_image": {
+                "type": "box",
+                "position": {
+                    "h": 80,
+                    "w": 280,
+                    "x": 1410,
+                    "y": 20,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(246, 249, 250, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.16)",
+                    "stretch": true,
+                    "imageUrl": "01523000000Hvz6"
+                }
+            },
+            "header_scoreCustomers": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 3150,
+                    "zIndex": 29
+                },
+                "parameters": {
+                    "text": "Pack Score by Top Customers"
+                }
+            },
+            "chart_comChannel": {
+                "type": "chart",
+                "position": {
+                    "h": 430,
+                    "w": 700,
+                    "x": 80,
+                    "y": 2160,
+                    "zIndex": 10
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Channel_11",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chartDesc_com4p5p6p": {
+                "type": "text",
+                "position": {
+                    "x": 70,
+                    "y": 1530,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of 4P, 5P and 6P stores that were Pack compliant for the\ncountry in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "header_score4p5p6p": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 1250,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "text": "Pack Score by 4P / 5P / 6P"
+                }
+            },
+            "chartDesc_comTrend": {
+                "type": "text",
+                "position": {
+                    "x": 70,
+                    "y": 1170,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were Pack compliant for the\ncountry over a period of last 12 months.",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_com4p5p6p": {
+                "type": "chart",
+                "position": {
+                    "h": 220,
+                    "w": 700,
+                    "x": 70,
+                    "y": 1300,
+                    "zIndex": 52
+                },
+                "parameters": {
+                    "step": "X4P_5P_6P_46",
+                    "visualizationType": "vbar"
+                }
+            },
+            "chartDesc_comChannel": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 2600,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were Pack compliant across all the Channels \nin the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_comTrend": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 700,
+                    "x": 70,
+                    "y": 860,
+                    "zIndex": 48
+                },
+                "parameters": {
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_37",
+                    "visualizationType": "time"
+                }
+            },
+            "chartDesc_comCountry": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 720,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were Pack compliant\nfor the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_comCategory": {
+                "type": "chart",
+                "position": {
+                    "h": 330,
+                    "w": 700,
+                    "x": 80,
+                    "y": 2730,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "step": "Product_category_10",
+                    "visualizationType": "hbar"
+                }
+            },
+            "chart_comRegion": {
+                "type": "chart",
+                "position": {
+                    "h": 350,
+                    "w": 700,
+                    "x": 80,
+                    "y": 1660,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "step": "Region_50",
+                    "visualizationType": "vbar"
+                }
+            },
+            "header_scoreTrend": {
+                "type": "text",
+                "position": {
+                    "x": 850,
+                    "y": 800,
+                    "zIndex": 21
+                },
+                "parameters": {
+                    "text": "Pack Score by Trend"
+                }
+            },
+            "header_scoreRegion": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 1600,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "text": "Pack Score by Region"
+                }
+            },
+            "chartDesc_comCategory": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 3070,
+                    "zIndex": 64
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of MT enrolled stores that were Pack compliant across all the\nProduct categories in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_comCountry": {
+                "type": "chart",
+                "position": {
+                    "h": 180,
+                    "w": 700,
+                    "x": 60,
+                    "y": 530,
+                    "zIndex": 2
+                },
+                "parameters": {
+                    "step": "Country_3",
+                    "visualizationType": "hbar"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 480,
+                    "zIndex": 44
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_4": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 800,
+                    "zIndex": 43
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_scoreCountry": {
+                "type": "chart",
+                "position": {
+                    "h": 180,
+                    "w": 700,
+                    "x": 820,
+                    "y": 530,
+                    "zIndex": 48
+                },
+                "parameters": {
+                    "step": "Country_39",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "box_9": {
+                "type": "box",
+                "position": {
+                    "h": 50,
+                    "w": 1670,
+                    "x": 60,
+                    "y": 2100,
+                    "zIndex": 48
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "header_scoreCountry": {
+                "type": "text",
+                "position": {
+                    "x": 800,
+                    "y": 480,
+                    "zIndex": 17
+                },
+                "parameters": {
+                    "text": "Pack Score by Country"
+                }
+            },
+            "dimfilter_customer": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 890,
+                    "y": 270,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_29"
+                }
+            },
+            "dimfilter_salesT": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 330,
+                    "y": 270,
+                    "zIndex": 100007
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_territory_22"
+                }
+            },
+            "dimfilter_customerSubtype": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 890,
+                    "y": 210,
+                    "zIndex": 100012
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_subtype_28"
+                }
+            },
+            "dimfilter_SKU": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1440,
+                    "y": 210,
+                    "zIndex": 100021
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "SKU_55"
+                }
+            },
+            "chart_scoreChannel": {
+                "type": "chart",
+                "position": {
+                    "h": 430,
+                    "w": 700,
+                    "x": 820,
+                    "y": 2160,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Channel_12",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "header_countAuditScores": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 4440,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "text": "Count of Audited Perfect Stores"
+                }
+            },
+            "chartDesc_comRegion": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 2030,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores that were Pack compliant in different regions\nof the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "link_3": {
+                "type": "link",
+                "position": {
+                    "x": 1470,
+                    "y": 1320,
+                    "zIndex": 1
+                },
+                "parameters": {
+                    "destination": "X4P_5P_6P_48",
+                    "includeState": true,
+                    "text": "🔎",
+                    "destinationType": "explore"
+                }
+            },
+            "link_4": {
+                "type": "link",
+                "position": {
+                    "x": 1470,
+                    "y": 1690,
+                    "zIndex": 2
+                },
+                "parameters": {
+                    "destination": "Region_51",
+                    "includeState": true,
+                    "text": "🔎",
+                    "destinationType": "explore"
+                }
+            },
+            "dimfilter_province": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 330,
+                    "zIndex": 100004
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Province_20",
+                    "selectModeOverride": "multi"
+                }
+            },
+            "link_1": {
+                "type": "link",
+                "position": {
+                    "x": 1470,
+                    "y": 550,
+                    "zIndex": 64
+                },
+                "parameters": {
+                    "destination": "Country_39",
+                    "includeState": true,
+                    "text": "🔎",
+                    "destinationType": "explore"
+                }
+            },
+            "chartDesc_scoreCustomers": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 3660,
+                    "zIndex": 66
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of NPD SKUs that were available in the enrolled stores for\nTop Customers within a country in the latest month.",
+                    "textAlignment": "left",
+                    "textColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chartDesc_score4p5p6p": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 1530,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of NPD SKUs that were available in 4P, 5P and 6P\nstores in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "link_2": {
+                "type": "link",
+                "position": {
+                    "x": 1470,
+                    "y": 870,
+                    "zIndex": 0
+                },
+                "parameters": {
+                    "destination": "Date_of_audit_Year_Date_of_audit_Month_38",
+                    "includeState": true,
+                    "text": "🔎",
+                    "destinationType": "explore"
+                }
+            },
+            "dimfilter_salesA": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 330,
+                    "y": 210,
+                    "zIndex": 100006
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_area_23"
+                }
+            },
+            "dimfilter_customerType": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 890,
+                    "y": 150,
+                    "zIndex": 100011
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_type_27"
+                }
+            },
+            "header_NPDSKU": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 3750,
+                    "zIndex": 31
+                },
+                "parameters": {
+                    "text": "NPD SKUs Availability"
+                }
+            },
+            "chartDesc_comCustomers": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 3660,
+                    "zIndex": 65
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of enrolled stores for Top Customers within a country which were\nPack Compliant in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "header_period": {
+                "type": "text",
+                "position": {
+                    "x": 70,
+                    "y": 20,
+                    "zIndex": 37
+                },
+                "parameters": {
+                    "fontSize": 36,
+                    "text": "Period",
+                    "textAlignment": "left"
+                }
+            },
+            "header_comCustomers": {
+                "type": "text",
+                "position": {
+                    "x": 80,
+                    "y": 3150,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "text": "Pack Compliance by Top Customers"
+                }
+            },
+            "chart_scoreCategory": {
+                "type": "chart",
+                "position": {
+                    "h": 330,
+                    "w": 700,
+                    "x": 820,
+                    "y": 2730,
+                    "zIndex": 8
+                },
+                "parameters": {
+                    "legend": true,
+                    "step": "Product_category_9",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chartDesc_scoreRegion": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 2030,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of NPD SKUs that were available in enrolled stores in different regions\nof the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "header_customer": {
+                "type": "text",
+                "position": {
+                    "x": 770,
+                    "y": 100,
+                    "zIndex": 35
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Customer",
+                    "textAlignment": "left"
+                }
+            },
+            "link_5": {
+                "type": "link",
+                "position": {
+                    "x": 1470,
+                    "y": 2170,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "destination": "Channel_12",
+                    "includeState": true,
+                    "text": "🔎",
+                    "destinationType": "explore"
+                }
+            },
+            "dimfilter_productCategory": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1180,
+                    "y": 210,
+                    "zIndex": 100015
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_category_31"
+                }
+            },
+            "chartDesc_scoreCategory": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 3070,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "fontSize": 16,
+                    "text": "This chart displays the % of NPD SKUs that were available in MT enrolled stores across all the\nProduct categories in the country in the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_scoreRegion": {
+                "type": "chart",
+                "position": {
+                    "h": 350,
+                    "w": 710,
+                    "x": 820,
+                    "y": 1660,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "step": "Region_51",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "dimfilter_banner": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 890,
+                    "y": 330,
+                    "zIndex": 100017
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Banner_49"
+                }
+            },
+            "dimfilter_cluster": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 70,
+                    "y": 150,
+                    "zIndex": 100001
+                },
+                "parameters": {
+                    "expanded": false,
+                    "instant": false,
+                    "measureField": "count",
+                    "step": "Cluster_17",
+                    "selectModeOverride": "multi"
+                }
+            },
+            "header_geo": {
+                "type": "text",
+                "position": {
+                    "x": 240,
+                    "y": 100,
+                    "zIndex": 34
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Geography",
+                    "textAlignment": "left"
+                }
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb8A0000000SReSAM",
+            "name": "DPS_NPD_AGGREGATED"
+        },
+        {
+            "id": "0Fb8A0000000SRjSAM",
+            "name": "DPS_NPD_RAW"
+        }
+    ]
+}

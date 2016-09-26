@@ -1,0 +1,1 @@
+<apex:page action="{!URLFOR($Action.VEP_Visitor_Pass__c.List, $ObjectType.VEP_Visitor_Pass__c)}"/>

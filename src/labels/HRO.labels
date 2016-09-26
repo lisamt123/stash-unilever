@@ -1,0 +1,89 @@
+    <labels>
+        <fullName>HROCapabilityLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROCapabilityLink</shortDescription>
+        <value>htttp://www.google.com</value>
+    </labels>
+    <labels>
+        <fullName>HROCultureLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROCultureLink</shortDescription>
+        <value>https://developer.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>HRONetworkLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HRONetworkLink</shortDescription>
+        <value>https://www.yahoo.com/</value>
+    </labels>
+    <labels>
+        <fullName>HROOwnershipLink</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROOwnershipLink</shortDescription>
+        <value>http://www.salesforce.com</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoBeforeArrival</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoBeforeArrival</shortDescription>
+        <value>There are several things that you can do prior to your new leader starting, to ensure that their day one experience is a great one.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoBeonBoard</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoBeonBoard</shortDescription>
+        <value>As the on-boarding journey for your new leader comes to an end, there are some simple things you can do as their manager, to ensure that their development remains a key priority for you both.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoDay1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoDay1</shortDescription>
+        <value>It is your new leader’s first day and first impressions really count, so make sure you think about the things that make all the difference. The tasks below will help get the on-boarding experience off to the right start.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth1</shortDescription>
+        <value>A month in and your new leader has hopefully started to integrate and make an impact. That said, there will still be a lot for them to learn and navigate. The tasks below will ensure that their on-boarding journey continues to support them.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth2</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth2</shortDescription>
+        <value>It is month two for your new leader. They are now embedded in the team and the organisation. But ongoing support is what will help accelerate their impact, and enable them to make the difference we hired them to make. The tasks below will help ensure that the on-boarding journey continues smoothly.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoMonth3</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoMonth3</shortDescription>
+        <value>Your new leader has been part of Unilever, and your team for 3 months now. As they integrate fully, there are some simple things you can do to help elevate their position and demonstrate your investment in their development.</value>
+    </labels>
+    <labels>
+        <fullName>HROPhaseIntroInfoWeek1</fullName>
+        <categories>HRO</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>HROPhaseIntroInfoWeek1</shortDescription>
+        <value>Your new leader has now been with us for a week. It has probably been a week full of information, so help them navigate their new role and their surroundings by continuing with their on-boarding journey. The tasks below will help.</value>
+    </labels>
+    

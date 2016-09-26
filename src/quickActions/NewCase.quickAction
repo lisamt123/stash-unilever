@@ -29,4 +29,5 @@
     <standardLabel>New</standardLabel>
     <targetObject>Case</targetObject>
     <type>Create</type>
+     <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

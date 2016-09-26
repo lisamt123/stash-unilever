@@ -1,6 +1,0 @@
-src
-src/staticresources
-src/staticresources/PBSResources.resource
-src/staticresources/PBSResources.resource-meta.xml
-src/staticresources/PCResources.resource
-src/staticresources/PCResources.resource-meta.xml

@@ -1,7 +1,7 @@
 <aura:component controller="EA_LookupSObjectController">
     <!-- Required Scripts/Styles -->
     <!-- Salesforce Lightning Design System : https://www.lightningdesignsystem.com/ -->
-    <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-ltng.css" />
+    <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-ltn.css" />
      
     <!-- Attributes -->
     <aura:attribute name="sObjectAPIName" type="String" required="true"
@@ -30,6 +30,22 @@
       width: 95%;
       margin-left: 2.5%;
     }
+    .slds .slds-lookup__menu_SFDC {
+      width: 95%;
+      margin-left: 2.5%;
+    }
+    .slds .slds-input-SFDC {
+    background-color: white;
+    color: #16325c;
+    border: 1px solid #d8dde6;
+      border-radius: 4px;
+    width: 100%;
+    -webkit-transition: border 0.1s linear, background-color 0.1s linear;
+            transition: border 0.1s linear, background-color 0.1s linear;
+    display: inline-block;
+    padding: 0 16px 0 12px;
+    line-height: 34px;
+    min-height: calc(34px + 2px); }
     </style>
     <!-- Events -->
     <aura:registerEvent name="updateLookupIdEvent" type="c:EA_UpdateLookupId_Event"/>    
@@ -51,19 +67,22 @@
                     <c:svg class="search_icon_big slds-input__icon" xlinkHref="/resource/EA_StaticResource/assets/icons/utility-sprite/svg/symbols.svg#search" />
                 	<!-- This markup is for when searching for a string -->
                     <!--<ui:inputText aura:id="lookup" placeholder="{!'Add up to ' + (v.maxLimit - v.participantCount) +' friends'}" value="{!v.searchString}" class="slds-input" updateOn="keyup" keyup="{!c.search}" />-->
-                    <ui:inputText aura:id="lookup" placeholder="Search for colleagues" value="{!v.searchString}" class="slds-input to_so_placeholder" updateOn="keyup" keyup="{!c.search}" />
+                    <ui:inputText aura:id="lookup" placeholder="Search for colleagues" value="{!v.searchString}" class="slds-input-SFDC to_so_placeholder" updateOn="keyup" keyup="{!c.search}" />
                 </div>
                     
             </div>
             <!-- This is the lookup list markup. Initially it's hidden -->
-            <div aura:id="lookuplist" class="slds-lookup__menu slds-hide" role="listbox">
+          <!--  <div aura:id="lookuplist" class="slds-lookup__menu slds-hide" role="listbox"> -->
+             <div aura:id="lookuplist" class="slds-lookup__menu_SFDC slds-hide" role="listbox">
                 <div class="slds-lookup__item">
+                
                     <span class="slds-button">
                         <c:svg class="slds-icon slds-icon-text-default slds-icon--small" xlinkHref="/resource/EA_StaticResource/assets/icons/utility-sprite/svg/symbols.svg#search" />
                         &quot;{!v.searchString}&quot; in {!v.pluralLabel}
                     </span>
                 </div>
-                <ul aura:id="lookuplist-items" class="slds-lookup__list" role="presentation">
+                 <ul aura:id="lookuplist-items" class="slds-lookup__list" role="presentation"> 
+                
                 </ul>
             </div>
             <div aura:id="clearBtn">

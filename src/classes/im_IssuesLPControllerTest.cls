@@ -33,14 +33,15 @@ private class im_IssuesLPControllerTest {
     }
 
     private static testMethod void testAttributeInit() {
-    initData();	      
+    initData();       
         im_IssuesLPController controller = new im_IssuesLPController();
         
         Test.startTest();
         string testgetIntroduction = controller.Introduction;
         string testgetDashboardId = controller.DashboardId;  
         Test.stopTest();
-    }
+        system.assert(testgetIntroduction.contains('TEST_intro'),'Assert failed');
+       }
 
     private static testMethod void testOpenLinkExternal() {
         initData();       

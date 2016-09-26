@@ -6,4 +6,5 @@
     <page>ONE_Correspond_Email_Action</page>
     <type>VisualforcePage</type>
     <width>-100</width>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
 </QuickAction>

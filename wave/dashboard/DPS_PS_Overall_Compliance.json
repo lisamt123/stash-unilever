@@ -1,0 +1,2223 @@
+{
+    "label": "PS Overall Compliance Dashboard",
+    "description": "updated version - with mobile",
+    "state": {
+        "gridLayouts": [],
+        "layouts": [
+            {
+                "device": "default",
+                "pages": [
+                    {
+                        "rows": [
+                            "| box_2 {rowspan=2}",
+                            "row:{height=40}",
+                            "text_note {colspan=2}",
+                            "row:{height=40}",
+                            "header_period {colspan=2}",
+                            "datefilter_1 {colspan=2}",
+                            "row:{height=40}",
+                            "header_geo {colspan=2}",
+                            "dimfilter_cluster | dimfilter_city",
+                            "dimfilter_country | dimfilter_salesA",
+                            "dimfilter_region | dimfilter_salesT",
+                            "dimfilter_province",
+                            "row:{height=40}",
+                            "header_customer {colspan=2}",
+                            "dimfilter_TradeFormat | dimfilter_customerType",
+                            "dimfilter_channel | dimfilter_custSubType",
+                            "dimfilter_subchannel | dimfilter_customer",
+                            "dimfilter_4p5p6p | dimfilter_banner",
+                            "row:{height=40}",
+                            "header_product {colspan=2}",
+                            "dimfilter_prodDivision | dimfilter_prodCat",
+                            "row:{height=40}",
+                            "header_enrollTargetCountry {colspan=2}",
+                            "chart_enrollTargetCountry {colspan=2}",
+                            "chartDesc_enrollTargetCountry {colspan=2}",
+                            "| link_enrollCountry",
+                            "row:{height=40}",
+                            "header_comTargetCountry {colspan=2}",
+                            "chart_comTargetCountry {colspan=2}",
+                            "chartDesc_comTargetCountry {colspan=2}",
+                            "| link_comCountry",
+                            "row:{height=40}",
+                            "header_enrollComTrend {colspan=2}",
+                            "chart_enrollComTrend {colspan=2}",
+                            "chartDesc_enrollComTrend {colspan=2}",
+                            "row:{height=40}",
+                            "header_enrollCom4p5p6p {colspan=2}",
+                            "chart_enrollCom4p5p6p {colspan=2} | row:{height=150}",
+                            "chartDesc_4p5p6p {colspan=2}",
+                            "row:{height=40}",
+                            "header_comScoreMonth {colspan=2}",
+                            "chart_comScoreMonth {colspan=2}",
+                            "chartDesc_KPIscores {colspan=2}",
+                            "row:{height=40}",
+                            "header_diffPrevMonth {colspan=2}",
+                            "chart_diffPrevMonth {colspan=2}",
+                            "chartDesc_diffPrevMonth {colspan=2}",
+                            "row:{height=40}",
+                            "header_comTargetRegion {colspan=2}",
+                            "chart_comTargetRegion {colspan=2}",
+                            "chartDesc_comTargetRegion {colspan=2}",
+                            "| link_comRegion",
+                            "row:{height=40}",
+                            "header_enrollComChannel {colspan=2}",
+                            "chart_enrollComChannel {colspan=2}",
+                            "chartDesc_enrollComChannel {colspan=2}",
+                            "row:{height=40}",
+                            "header_enrollComCat {colspan=2}",
+                            "chart_enrollComCat {colspan=2}",
+                            "chartDesc_enrollComCat {colspan=2}",
+                            "row:{height=40}",
+                            "header_enrollComCustomers {colspan=2}",
+                            "chart_enrollComCustomers {colspan=2}",
+                            "chartDesc_enrollComCust {colspan=2}",
+                            "row:{height=40}",
+                            "header_countAuditScores {colspan=2}",
+                            "number_2 {colspan=2}",
+                            "row:{height=30}"
+                        ]
+                    }
+                ],
+                "version": 1
+            }
+        ],
+        "steps": {
+            "Cluster_10": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; d = load \"DPS_PS_ENROLLMENT_TARGET\"; u = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }}; d = filter d by 'Cluster' in {{ selection(Cluster_13) }}; d = filter d by 'Country' in {{ selection(Country_14) }}; d = filter d by 'Region' in {{ selection(Region_15) }}; d = filter d by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(Date_Year_Date_Month_1) }}; d = filter d by 'Cluster' in {{ selection(Province_16) }}; d = filter d by 'Cluster' in {{ selection(City_17) }}; d = filter d by 'Cluster' in {{ selection(Sales_area_18) }}; d = filter d by 'Cluster' in {{ selection(Sales_territory_19) }}; d = filter d by 'Cluster' in {{ selection(Trade_Format_20) }}; d = filter d by 'Cluster' in {{ selection(Channel_21) }}; d = filter d by 'Cluster' in {{ selection(Subchannel_22) }}; d = filter d by 'Cluster' in {{ selection(X4P_5P_6P_23) }};  d = filter d by 'Cluster' in {{ selection(Customer_type_24) }}; d = filter d by 'Cluster' in {{ selection(Customer_subtype_25) }}; d = filter d by 'Cluster' in {{ selection(Customer_26) }}; d = filter d by 'Cluster' in {{ selection(Banner_27) }}; d = filter d by 'Cluster' in {{ selection(Product_division_28) }}; d = filter d by 'Cluster' in {{ selection(Product_category_29) }}; c = group a by 'Country'; c = foreach c generate 'Country' as 'Country', avg(a.PS_Compliance) as 'ps_record', \"Actual\" as 'Measure'; d = group d by 'Country'; d = foreach d generate 'Country' as 'Country', avg(d.Compliance_Target) as 'ps_record', \"Target\" as 'Measure'; u = group c by 'Country', d by 'Country'; u = union d, c; u = order u by 'Country' asc;",
+                    "measures": [
+                        [
+                            "ps",
+                            "record",
+                            "ps_record",
+                            {
+                                "display": "Perfect Store Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_ENROLLMENT_TARGET"
+                    }
+                ],
+                "visualizationParameters": {
+                    "options": {
+                        "sqrt": true
+                    },
+                    "visualizationType": "hbar"
+                }
+            },
+            "Cluster_13": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Cluster"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_23": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Banner_27": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Banner"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_area_18": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_area"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Local_Outlet_Name_31": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "Local_Outlet_Name"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Channel_8": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; b = load \"DPS_PS_ENROLLED_STORE\"; b = filter b by 'Cluster' in {{ selection(Cluster_13) }}; b = filter b by 'Country' in {{ selection(Country_14) }};b = filter b by 'Country' in {{ selection(Country_14) }}; b = filter b by 'Region' in {{ selection(Region_15) }};b = filter b by 'Province' in {{ selection(Province_16) }}; b = filter b by 'City' in {{ selection(City_17) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_18) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_19) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_20) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_22) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; b = filter b by 'Customer' in {{ selection(Customer_26) }}; b = filter b by 'Banner' in {{ selection(Banner_27) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Product_division' in {{ selection(Product_division_28) }}; b = filter b by 'Product_category' in {{ selection(Product_category_29) }};b = filter b by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }}; c = cogroup a by 'Channel', b by 'Channel'; c = foreach c generate a.'Channel' as 'Channel', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled';",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Customer_subtype_25": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_subtype"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_Region_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; d = load \"DPS_PS_ENROLLMENT_TARGET\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }}; d = filter d by 'Cluster' in {{ selection(Cluster_13) }}; d = filter d by 'Country' in {{ selection(Country_14) }}; d = filter d by 'Region' in {{ selection(Region_15) }}; d = filter d by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(Date_Year_Date_Month_1) }}; c = cogroup a by 'Region', d by 'Region'; c = foreach c generate a.'Region' as 'Region', avg(a.PS_Compliance) as 'ps_comp', case when count(d) == 0 then 0 else avg(d.Compliance_Target) end as 'target_comp';",
+                    "measures": [
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ],
+                        [
+                            "target",
+                            "comp",
+                            "target_comp",
+                            {
+                                "display": "Target"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "heatmap"
+                }
+            },
+            "Region_15": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Region"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "City_17": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "City"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_division_28": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_division"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Province_16": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Province"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Trade_Format_20": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Trade_Format"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_14": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Country"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Sales_territory_19": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Sales_territory"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Customer_type_24": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer_type"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Country_11": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_ENROLLED_STORE\"; d = load \"DPS_PS_ENROLLMENT_TARGET\"; u = load \"DPS_PS_ENROLLED_STORE\"; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }};a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }};a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }};a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; d = filter d by 'Cluster' in {{ selection(Cluster_13) }}; d = filter d by 'Country' in {{ selection(Country_14) }}; d = filter d by 'Region' in {{ selection(Region_15) }}; d = filter d by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(Date_Year_Date_Month_1) }}; d = filter d by 'Cluster' in {{ selection(Province_16) }}; d = filter d by 'Cluster' in {{ selection(City_17) }}; d = filter d by 'Cluster' in {{ selection(Sales_area_18) }}; d = filter d by 'Cluster' in {{ selection(Sales_territory_19) }}; d = filter d by 'Cluster' in {{ selection(Trade_Format_20) }}; d = filter d by 'Cluster' in {{ selection(Channel_21) }}; d = filter d by 'Cluster' in {{ selection(Subchannel_22) }}; d = filter d by 'Cluster' in {{ selection(X4P_5P_6P_23) }};  d = filter d by 'Cluster' in {{ selection(Customer_type_24) }}; d = filter d by 'Cluster' in {{ selection(Customer_subtype_25) }}; d = filter d by 'Cluster' in {{ selection(Customer_26) }}; d = filter d by 'Cluster' in {{ selection(Banner_27) }}; d = filter d by 'Cluster' in {{ selection(Product_division_28) }}; d = filter d by 'Cluster' in {{ selection(Product_category_29) }}; c = group a by 'Country'; c = foreach c generate 'Country' as 'Country', count(a) as 'ps_record', \"Actual\" as 'Measure'; d = group d by 'Country'; d = foreach d generate 'Country' as 'Country', sum(d.Enrollment_Target) as 'ps_record', \"Target\" as 'Measure'; u = group c by 'Country', d by 'Country'; u = union d, c; u = order u by 'Country' asc;",
+                    "measures": [
+                        [
+                            "ps",
+                            "record",
+                            "ps_record",
+                            {
+                                "display": "Perfect Store Enrollment"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Country",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_ENROLLMENT_TARGET"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Channel_21": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Channel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Date_of_audit_Year_Date_of_audit_Month_5": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; b = load \"DPS_PS_ENROLLED_STORE\"; b = filter b by 'Cluster' in {{ selection(Cluster_13) }}; b = filter b by 'Country' in {{ selection(Country_14) }};b = filter b by 'Country' in {{ selection(Country_14) }}; b = filter b by 'Region' in {{ selection(Region_15) }};b = filter b by 'Province' in {{ selection(Province_16) }}; b = filter b by 'City' in {{ selection(City_17) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_18) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_19) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_20) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_22) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; b = filter b by 'Customer' in {{ selection(Customer_26) }}; b = filter b by 'Banner' in {{ selection(Banner_27) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Product_division' in {{ selection(Product_division_28) }}; b = filter b by 'Product_category' in {{ selection(Product_category_29) }}; b = filter b by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"12 months ago\"..\"current month\"];a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"12 months ago\"..\"current month\"]; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }}; c = cogroup a by 'Date_of_audit_Month', b by 'Date_of_audit_Month'; c = foreach c generate a.'Date_of_audit_Month' as 'Date_of_audit_Month', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled';",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Date_of_audit_Month"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Customer_9": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; b = load \"DPS_PS_ENROLLED_STORE\"; b = filter b by 'Cluster' in {{ selection(Cluster_13) }}; b = filter b by 'Country' in {{ selection(Country_14) }};b = filter b by 'Country' in {{ selection(Country_14) }}; b = filter b by 'Region' in {{ selection(Region_15) }};b = filter b by 'Province' in {{ selection(Province_16) }}; b = filter b by 'City' in {{ selection(City_17) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_18) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_19) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_20) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_22) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; b = filter b by 'Customer' in {{ selection(Customer_26) }}; b = filter b by 'Banner' in {{ selection(Banner_27) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Product_division' in {{ selection(Product_division_28) }}; b = filter b by 'Product_category' in {{ selection(Product_category_29) }};b = filter b by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }}; c = cogroup a by 'Customer', b by 'Customer'; c = foreach c generate a.'Customer' as 'Customer', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled'; c = order c by 'ps_comp' desc; c = limit c 10",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "limit": 10,
+                    "groups": [
+                        "Customer"
+                    ],
+                    "order": [
+                        [
+                            -1,
+                            {
+                                "ascending": false
+                            }
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "options": {
+                        "sqrt": true
+                    },
+                    "visualizationType": "vbar"
+                }
+            },
+            "Customer_26": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Customer"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_29": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_40": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "compliance = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; score = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; scoreSOF = load \"DPS_PS_OVERALL_AGGREGATED\";compliance = filter compliance by 'Cluster' in {{ selection(Cluster_13) }}; compliance = filter compliance by 'Country' in {{ selection(Country_14) }}; compliance = filter compliance by 'Region' in {{ selection(Region_15) }}; compliance = filter compliance by 'Province' in {{ selection(Province_16) }}; compliance = filter compliance by 'City' in {{ selection(City_17) }}; compliance = filter compliance by 'Sales_area' in {{ selection(Sales_area_18) }}; compliance = filter compliance by 'Sales_territory' in {{ selection(Sales_territory_19) }}; compliance = filter compliance by 'Trade_Format' in {{ selection(Trade_Format_20) }}; compliance = filter compliance by 'Channel' in {{ selection(Channel_21) }}; compliance = filter compliance by 'Subchannel' in {{ selection(Subchannel_22) }}; compliance = filter compliance by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; compliance = filter compliance by 'Customer_type' in {{ selection(Customer_type_24) }}; compliance = filter compliance by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; compliance = filter compliance by 'Customer' in {{ selection(Customer_26) }}; compliance = filter compliance by 'Banner' in {{ selection(Banner_27) }}; compliance= filter compliance by 'Product_division' in {{ selection(Product_division_28) }}; compliance = filter compliance by 'Product_category' in {{ selection(Product_category_29) }}; score = filter score by 'Cluster' in {{ selection(Cluster_13) }}; score = filter score by 'Country' in {{ selection(Country_14) }}; score = filter score by 'Region' in {{ selection(Region_15) }}; score = filter score by 'Province' in {{ selection(Province_16) }}; score = filter score by 'City' in {{ selection(City_17) }}; score = filter score by 'Sales_area' in {{ selection(Sales_area_18) }}; score = filter score by 'Sales_territory' in {{ selection(Sales_territory_19) }}; score = filter score by 'Trade_Format' in {{ selection(Trade_Format_20) }}; score = filter score by 'Channel' in {{ selection(Channel_21) }}; score = filter score by 'Subchannel' in {{ selection(Subchannel_22) }}; score = filter score by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; score = filter score by 'Customer_type' in {{ selection(Customer_type_24) }}; score = filter score by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; score = filter score by 'Customer' in {{ selection(Customer_26) }}; score = filter score by 'Banner' in {{ selection(Banner_27) }}; score= filter score by 'Product_division' in {{ selection(Product_division_28) }}; score = filter score by 'Product_category' in {{ selection(Product_category_29) }}; scoreSOF = filter scoreSOF by 'Cluster' in {{ selection(Cluster_13) }}; scoreSOF = filter scoreSOF by 'Country' in {{ selection(Country_14) }}; scoreSOF = filter scoreSOF by 'Region' in {{ selection(Region_15) }}; scoreSOF = filter scoreSOF by 'Province' in {{ selection(Province_16) }}; scoreSOF = filter scoreSOF by 'City' in {{ selection(City_17) }}; scoreSOF = filter scoreSOF by 'Sales_area' in {{ selection(Sales_area_18) }}; scoreSOF = filter scoreSOF by 'Sales_territory' in {{ selection(Sales_territory_19) }}; scoreSOF = filter scoreSOF by 'Trade_Format' in {{ selection(Trade_Format_20) }}; scoreSOF = filter scoreSOF by 'Channel' in {{ selection(Channel_21) }}; scoreSOF = filter scoreSOF by 'Subchannel' in {{ selection(Subchannel_22) }}; scoreSOF = filter scoreSOF by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; scoreSOF = filter scoreSOF by 'Customer_type' in {{ selection(Customer_type_24) }}; scoreSOF = filter scoreSOF by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; scoreSOF = filter scoreSOF by 'Customer' in {{ selection(Customer_26) }}; scoreSOF = filter scoreSOF by 'Banner' in {{ selection(Banner_27) }}; scoreSOF= filter scoreSOF by 'Product_division' in {{ selection(Product_division_28) }}; scoreSOF = filter scoreSOF by 'Product_category' in {{ selection(Product_category_29) }}; compliance = filter compliance by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; score  = filter score by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; scoreSOF  = filter scoreSOF by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; compliance = group compliance by all; score = group score by all;scoreSOF = group scoreSOF by all;productcompliance = foreach compliance generate \"Product Compliance\" as 'Measure', avg(Product_Compliance) as 'PS_Comp', \"0\" as '+-';productscore = foreach score generate \"OSA Score\" as 'Measure', (avg(OSA_Count)/avg(OSA_Audited)) as 'PS_Comp', \"0\" as '+-';packcompliance = foreach compliance generate \"Pack Compliance\" as 'Measure', avg(Pack_Compliance) as 'PS_Comp', \"0\" as '+-';packscore = foreach score generate \"NPD Score\" as 'Measure', (avg(NPD_Count)/avg(NPD_Audited)) as 'PS_Comp', \"0\" as '+-';pricecompliance = foreach compliance generate \"Price Compliance\" as 'Measure', avg(Price_Compliance) as 'PS_Comp', \"0\" as '+-';pricescore = foreach score generate \"SP Score\" as 'Measure', (avg(SP_Count)/avg(SP_Audited)) as 'PS_Comp', \"0\" as '+-';promocompliance = foreach compliance generate \"Promo Compliance\" as 'Measure', avg(Price_Compliance) as 'PS_Comp', \"0\" as '+-';promoscore = foreach score generate \"Promo Score\" as 'Measure', (avg(Priority_Promo_Count)/avg(Priority_Promo_Audited)) as 'PS_Comp', \"0\" as '+-';sofscore = foreach scoreSOF generate \"SOF Score\" as 'Measure', (avg(SOF_Count)/avg(SOF_Audited)) as 'PS_Comp', \"0\" as '+-';u = group productcompliance by all, productscore by all, packcompliance by all, packscore by all, pricecompliance by all, pricescore by all, promocompliance by all, sofscore by all, promoscore by all;u = union productcompliance, productscore, packcompliance, packscore, pricecompliance, pricescore, promocompliance, sofscore, promoscore;",
+                    "measures": [
+                        [
+                            "PS",
+                            "Comp",
+                            "PS_Comp",
+                            {
+                                "display": "Compliance and Score for Latest Month",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Measure",
+                        "+-"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_41": {
+                "isFacet": false,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "compliance = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; score = load \"DPS_PS_COMPLIANCE_AGGREGATED\";scoreSOF = load \"DPS_PS_OVERALL_AGGREGATED\"; compliance = filter compliance by 'Cluster' in {{ selection(Cluster_13) }}; compliance = filter compliance by 'Country' in {{ selection(Country_14) }}; compliance = filter compliance by 'Region' in {{ selection(Region_15) }}; compliance = filter compliance by 'Province' in {{ selection(Province_16) }}; compliance = filter compliance by 'City' in {{ selection(City_17) }}; compliance = filter compliance by 'Sales_area' in {{ selection(Sales_area_18) }}; compliance = filter compliance by 'Sales_territory' in {{ selection(Sales_territory_19) }}; compliance = filter compliance by 'Trade_Format' in {{ selection(Trade_Format_20) }}; compliance = filter compliance by 'Channel' in {{ selection(Channel_21) }}; compliance = filter compliance by 'Subchannel' in {{ selection(Subchannel_22) }}; compliance = filter compliance by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; compliance = filter compliance by 'Customer_type' in {{ selection(Customer_type_24) }}; compliance = filter compliance by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; compliance = filter compliance by 'Customer' in {{ selection(Customer_26) }}; compliance = filter compliance by 'Banner' in {{ selection(Banner_27) }}; compliance= filter compliance by 'Product_division' in {{ selection(Product_division_28) }}; compliance = filter compliance by 'Product_category' in {{ selection(Product_category_29) }}; score = filter score by 'Cluster' in {{ selection(Cluster_13) }}; score = filter score by 'Country' in {{ selection(Country_14) }}; score = filter score by 'Region' in {{ selection(Region_15) }}; score = filter score by 'Province' in {{ selection(Province_16) }}; score = filter score by 'City' in {{ selection(City_17) }}; score = filter score by 'Sales_area' in {{ selection(Sales_area_18) }}; score = filter score by 'Sales_territory' in {{ selection(Sales_territory_19) }}; score = filter score by 'Trade_Format' in {{ selection(Trade_Format_20) }}; score = filter score by 'Channel' in {{ selection(Channel_21) }}; score = filter score by 'Subchannel' in {{ selection(Subchannel_22) }}; score = filter score by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; score = filter score by 'Customer_type' in {{ selection(Customer_type_24) }}; score = filter score by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; score = filter score by 'Customer' in {{ selection(Customer_26) }}; score = filter score by 'Banner' in {{ selection(Banner_27) }}; score= filter score by 'Product_division' in {{ selection(Product_division_28) }}; score = filter score by 'Product_category' in {{ selection(Product_category_29) }}; scoreSOF = filter scoreSOF by 'Cluster' in {{ selection(Cluster_13) }}; scoreSOF = filter scoreSOF by 'Country' in {{ selection(Country_14) }}; scoreSOF = filter scoreSOF by 'Region' in {{ selection(Region_15) }}; scoreSOF = filter scoreSOF by 'Province' in {{ selection(Province_16) }}; scoreSOF = filter scoreSOF by 'City' in {{ selection(City_17) }}; scoreSOF = filter scoreSOF by 'Sales_area' in {{ selection(Sales_area_18) }}; scoreSOF = filter scoreSOF by 'Sales_territory' in {{ selection(Sales_territory_19) }}; scoreSOF = filter scoreSOF by 'Trade_Format' in {{ selection(Trade_Format_20) }}; scoreSOF = filter scoreSOF by 'Channel' in {{ selection(Channel_21) }}; scoreSOF = filter scoreSOF by 'Subchannel' in {{ selection(Subchannel_22) }}; scoreSOF = filter scoreSOF by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; scoreSOF = filter scoreSOF by 'Customer_type' in {{ selection(Customer_type_24) }}; scoreSOF = filter scoreSOF by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; scoreSOF = filter scoreSOF by 'Customer' in {{ selection(Customer_26) }}; scoreSOF = filter scoreSOF by 'Banner' in {{ selection(Banner_27) }}; scoreSOF= filter scoreSOF by 'Product_division' in {{ selection(Product_division_28) }}; scoreSOF = filter scoreSOF by 'Product_category' in {{ selection(Product_category_29) }}; lastmonthcompliance = filter compliance by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"]; lastmonthscore  = filter score by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"];thismonthcompliance = filter compliance by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"]; thismonthscore  = filter score by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"];lastmonthscoreSOF  = filter scoreSOF by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"6 months ago\"..\"6 months ago\"];thismonthscoreSOF  = filter scoreSOF by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in [\"5 months ago\"..\"5 months ago\"];thismonthcompliance = group thismonthcompliance by all; thismonthscore = group thismonthscore by all;lastmonthcompliance = group lastmonthcompliance by all;lastmonthscore = group lastmonthscore by all;productCompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;productScore = cogroup lastmonthscore by all, thismonthscore by all; productCompliance = foreach productCompliance generate \"Product Compliance\" as 'Measure', avg(thismonthcompliance.Product_Compliance) - avg(lastmonthcompliance.Product_Compliance) as 'PS_Comp'; productScore = foreach productScore generate \"OSA Score\" as 'Measure', (avg(thismonthscore.OSA_Count)/avg(thismonthscore.OSA_Audited)) - (avg(lastmonthscore.OSA_Count)/avg(lastmonthscore.OSA_Audited)) as 'PS_Comp'; productCompliance = foreach productCompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ; productScore = foreach productScore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; npdcompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;npdscore = cogroup lastmonthscore by all, thismonthscore by all; npdcompliance = foreach npdcompliance generate \"Pack Compliance\" as 'Measure', avg(thismonthcompliance.Pack_Compliance) - avg(lastmonthcompliance.Pack_Compliance) as 'PS_Comp';npdscore = foreach npdscore generate \"NPD Score\" as 'Measure', (avg(thismonthscore.NPD_Count)/avg(thismonthscore.NPD_Audited)) - (avg(lastmonthscore.NPD_Count)/avg(lastmonthscore.NPD_Audited)) as 'PS_Comp'; npdcompliance = foreach npdcompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; npdscore = foreach npdscore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; pricecompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;pricescore = cogroup lastmonthscore by all, thismonthscore by all; pricecompliance = foreach pricecompliance generate \"Price Compliance\" as 'Measure', avg(thismonthcompliance.Price_Compliance) - avg(lastmonthcompliance.Price_Compliance) as 'PS_Comp'; pricescore = foreach pricescore generate \"SP Score\" as 'Measure', (avg(thismonthscore.SP_Count)/avg(thismonthscore.SP_Audited)) - (avg(lastmonthscore.SP_Count)/avg(lastmonthscore.SP_Audited))  as 'PS_Comp'; pricecompliance = foreach pricecompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ; pricescore = foreach pricescore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-'; promoCompliance = cogroup lastmonthcompliance by all, thismonthcompliance by all;promoScore = cogroup lastmonthscore by all, thismonthscore by all; promoScoreSOF = cogroup lastmonthscoreSOF by all, thismonthscoreSOF by all; promoCompliance = foreach promoCompliance generate \"Promo Compliance\" as 'Measure', avg(thismonthcompliance.Promo_Compliance) - avg(lastmonthcompliance.Promo_Compliance) as 'PS_Comp'; promoScoreSOF = foreach promoScoreSOF generate \"SOF Score\" as 'Measure', (avg(thismonthscoreSOF.SOF_Count)/avg(thismonthscoreSOF.SOF_Audited)) - (avg(lastmonthscoreSOF.SOF_Count)/avg(lastmonthscoreSOF.SOF_Audited)) as 'PS_Comp'; promoScore = foreach promoScore generate \"Promo Score\" as 'Measure', (avg(thismonthscore.Priority_Promo_Count)/avg(thismonthscore.Priority_Promo_Audited)) - (avg(lastmonthscore.Priority_Promo_Count)/avg(lastmonthscore.Priority_Promo_Audited)) as 'PS_Comp'; promoCompliance = foreach promoCompliance generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-' ; promoScoreSOF = foreach promoScoreSOF generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';promoScore = foreach promoScore generate 'Measure', 'PS_Comp', case when 'PS_Comp' > 0 then \"+\" else \"-\" end as '+-';u = group productCompliance by all, npdcompliance by all, pricecompliance by all, productScore by all, npdscore by all, pricescore by all, promoCompliance by all, promoScoreSOF by all, promoScore by all; u = union productCompliance,productScore,  npdcompliance,npdscore, pricecompliance, pricescore, promoCompliance, promoScoreSOF, promoScore;",
+                    "measures": [
+                        [
+                            "PS",
+                            "Comp",
+                            "PS_Comp",
+                            {
+                                "display": "% Difference Compared to Previous Month",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Measure",
+                        "+-"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "all_42": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Region_100": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; d = load \"DPS_PS_ENROLLMENT_TARGET\"; u = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }}; d = filter d by 'Cluster' in {{ selection(Cluster_13) }}; d = filter d by 'Country' in {{ selection(Country_14) }}; d = filter d by 'Region' in {{ selection(Region_15) }}; d = filter d by date('Date_Year', 'Date_Month', 'Date_Day') in {{ selection(Date_Year_Date_Month_1) }}; d = filter d by 'Cluster' in {{ selection(Province_16) }}; d = filter d by 'Cluster' in {{ selection(City_17) }}; d = filter d by 'Cluster' in {{ selection(Sales_area_18) }}; d = filter d by 'Cluster' in {{ selection(Sales_territory_19) }}; d = filter d by 'Cluster' in {{ selection(Trade_Format_20) }}; d = filter d by 'Cluster' in {{ selection(Channel_21) }}; d = filter d by 'Cluster' in {{ selection(Subchannel_22) }}; d = filter d by 'Cluster' in {{ selection(X4P_5P_6P_23) }};  d = filter d by 'Cluster' in {{ selection(Customer_type_24) }}; d = filter d by 'Cluster' in {{ selection(Customer_subtype_25) }}; d = filter d by 'Cluster' in {{ selection(Customer_26) }}; d = filter d by 'Cluster' in {{ selection(Banner_27) }}; d = filter d by 'Cluster' in {{ selection(Product_division_28) }}; d = filter d by 'Cluster' in {{ selection(Product_category_29) }}; c = group a by 'Region'; c = foreach c generate 'Region' as 'Region', avg(a.PS_Compliance) as 'ps_record', \"Actual\" as 'Measure'; d = group d by 'Region'; d = foreach d generate 'Region' as 'Region', avg(d.Compliance_Target) as 'ps_record', \"Target\" as 'Measure'; u = group c by 'Region', d by 'Region'; u = union d, c; u = order u by 'Region' asc;",
+                    "measures": [
+                        [
+                            "ps",
+                            "record",
+                            "ps_record",
+                            {
+                                "display": "Perfect Store Compliance",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Region",
+                        "Measure"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "options": {
+                        "sqrt": true
+                    },
+                    "visualizationType": "hbar"
+                }
+            },
+            "X4P_5P_6P_6": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; b = load \"DPS_PS_ENROLLED_STORE\"; b = filter b by 'Cluster' in {{ selection(Cluster_13) }}; b = filter b by 'Country' in {{ selection(Country_14) }};b = filter b by 'Country' in {{ selection(Country_14) }}; b = filter b by 'Region' in {{ selection(Region_15) }};b = filter b by 'Province' in {{ selection(Province_16) }}; b = filter b by 'City' in {{ selection(City_17) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_18) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_19) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_20) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_22) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; b = filter b by 'Customer' in {{ selection(Customer_26) }}; b = filter b by 'Banner' in {{ selection(Banner_27) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Product_division' in {{ selection(Product_division_28) }}; b = filter b by 'Product_category' in {{ selection(Product_category_29) }};b = filter b by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }};c = cogroup a by 'X4P_5P_6P', b by 'X4P_5P_6P'; c = foreach c generate a.'X4P_5P_6P' as 'X4P_5P_6P', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled';",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "X4P_5P_6P"
+                    ]
+                },
+                "selectMode": "none",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Date_Year_Date_Month_1": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        [
+                            "Date_of_audit_Year",
+                            "Date_of_audit_Month"
+                        ]
+                    ]
+                },
+                "selectMode": "single",
+                "start": [
+                    [
+                        [
+                            "month",
+                            -6
+                        ],
+                        [
+                            "month",
+                            -6
+                        ]
+                    ]
+                ],
+                "type": "aggregate",
+                "useGlobal": false,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            },
+            "Product_category_7": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "pigql": "a = load \"DPS_PS_COMPLIANCE_AGGREGATED\"; b = load \"DPS_PS_ENROLLED_STORE\"; b = filter b by 'Cluster' in {{ selection(Cluster_13) }}; b = filter b by 'Country' in {{ selection(Country_14) }};b = filter b by 'Country' in {{ selection(Country_14) }}; b = filter b by 'Region' in {{ selection(Region_15) }};b = filter b by 'Province' in {{ selection(Province_16) }}; b = filter b by 'City' in {{ selection(City_17) }}; b = filter b by 'Sales_area' in {{ selection(Sales_area_18) }}; b = filter b by 'Sales_territory' in {{ selection(Sales_territory_19) }}; b = filter b by 'Trade_Format' in {{ selection(Trade_Format_20) }}; b = filter b by 'Subchannel' in {{ selection(Subchannel_22) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; b = filter b by 'Customer' in {{ selection(Customer_26) }}; b = filter b by 'Banner' in {{ selection(Banner_27) }}; b = filter b by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; b = filter b by 'Product_division' in {{ selection(Product_division_28) }}; b = filter b by 'Product_category' in {{ selection(Product_category_29) }};b = filter b by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by date('Date_of_audit_Year', 'Date_of_audit_Month', 'Date_of_audit_Day') in {{ selection(Date_Year_Date_Month_1) }}; a = filter a by 'Cluster' in {{ selection(Cluster_13) }}; a = filter a by 'Country' in {{ selection(Country_14) }}; a = filter a by 'Region' in {{ selection(Region_15) }}; a = filter a by 'Province' in {{ selection(Province_16) }}; a = filter a by 'City' in {{ selection(City_17) }}; a = filter a by 'Sales_area' in {{ selection(Sales_area_18) }}; a = filter a by 'Sales_territory' in {{ selection(Sales_territory_19) }}; a = filter a by 'Trade_Format' in {{ selection(Trade_Format_20) }}; a = filter a by 'Channel' in {{ selection(Channel_21) }}; a = filter a by 'Subchannel' in {{ selection(Subchannel_22) }}; a = filter a by 'X4P_5P_6P' in {{ selection(X4P_5P_6P_23) }}; a = filter a by 'Customer_type' in {{ selection(Customer_type_24) }}; a = filter a by 'Customer_subtype' in {{ selection(Customer_subtype_25) }}; a = filter a by 'Customer' in {{ selection(Customer_26) }}; a = filter a by 'Banner' in {{ selection(Banner_27) }}; a = filter a by 'Product_division' in {{ selection(Product_division_28) }}; a = filter a by 'Product_category' in {{ selection(Product_category_29) }}; c = cogroup a by 'Product_category', b by 'Product_category'; c = foreach c generate a.'Product_category' as 'Product_category', avg(a.PS_Compliance) as 'ps_comp', count(b) as 'number_enrolled'; ",
+                    "measures": [
+                        [
+                            "nummber",
+                            "enrolled",
+                            "number_enrolled",
+                            {
+                                "display": "Number of Enrolled PS"
+                            }
+                        ],
+                        [
+                            "ps",
+                            "comp",
+                            "ps_comp",
+                            {
+                                "display": "PS Compliance %",
+                                "format": "percentage"
+                            }
+                        ]
+                    ],
+                    "groups": [
+                        "Product_category"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "vbar"
+                }
+            },
+            "Subchannel_22": {
+                "isFacet": true,
+                "isGlobal": false,
+                "query": {
+                    "measures": [
+                        [
+                            "count",
+                            "*"
+                        ]
+                    ],
+                    "groups": [
+                        "Subchannel"
+                    ]
+                },
+                "selectMode": "single",
+                "type": "aggregate",
+                "useGlobal": true,
+                "datasets": [
+                    {
+                        "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+                    }
+                ],
+                "visualizationParameters": {
+                    "visualizationType": "hbar"
+                }
+            }
+        },
+        "widgets": {
+            "dimfilter_4p5p6p": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 640,
+                    "y": 390,
+                    "zIndex": 100011
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "X4P_5P_6P_23"
+                }
+            },
+            "chartDesc_KPIscores": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2650,
+                    "zIndex": 5
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the compliance percentage for each P, and the scores for\n its relevent KPIs, for the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_prodDivision": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1190,
+                    "y": 210,
+                    "zIndex": 100016
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_division_28"
+                }
+            },
+            "link_12": {
+                "type": "link",
+                "position": {
+                    "x": 520,
+                    "y": 4120,
+                    "zIndex": 62
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000BdWAI",
+                    "text": "🔎 Enrolled Stores",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "link_13": {
+                "type": "link",
+                "position": {
+                    "x": 520,
+                    "y": 4160,
+                    "zIndex": 63
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000BOWAY",
+                    "text": "🔎 Compliance",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "link_10": {
+                "type": "link",
+                "position": {
+                    "x": 520,
+                    "y": 3690,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000BYWAY",
+                    "text": "🔎 Enrolled Stores",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "chart_diffPrevMonth": {
+                "type": "chart",
+                "position": {
+                    "h": 500,
+                    "w": 760,
+                    "x": 630,
+                    "y": 2140,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "step": "all_41",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "link_11": {
+                "type": "link",
+                "position": {
+                    "x": 520,
+                    "y": 3730,
+                    "zIndex": 61
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000BOWAY",
+                    "text": "🔎 Compliance",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "link_comCountry": {
+                "type": "link",
+                "position": {
+                    "x": 470,
+                    "y": 660,
+                    "zIndex": 52
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000BiWAI",
+                    "includeState": true,
+                    "text": "🔎",
+                    "visualizationType": "stackvbar",
+                    "destinationType": "lens"
+                }
+            },
+            "chartDesc_comTargetRegion": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 3120,
+                    "zIndex": 7
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the actual Perfect Store compliance \npercentage (bars), and the target Perfect Store compliance \npercentage (line), for each region, for the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "datefilter_1": {
+                "type": "dateselector",
+                "position": {
+                    "h": 80,
+                    "w": 260,
+                    "x": 270,
+                    "y": 30,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "step": "Date_Year_Date_Month_1",
+                    "title": "Date"
+                }
+            },
+            "dimfilter_channel": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 640,
+                    "y": 270,
+                    "zIndex": 100009
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Channel_21"
+                }
+            },
+            "box_18": {
+                "type": "box",
+                "position": {
+                    "h": 80,
+                    "w": 300,
+                    "x": 70,
+                    "y": 4530,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_14": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 4470,
+                    "zIndex": 23
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_enrollComCat": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 560,
+                    "x": 60,
+                    "y": 3680,
+                    "zIndex": 6
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "Product_category_7",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "box_13": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 4050,
+                    "zIndex": 22
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chartDesc_comTargetCountry": {
+                "type": "text",
+                "position": {
+                    "x": 750,
+                    "y": 1130,
+                    "zIndex": 0
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the target and actual Perfect Store \nCompliance percentage for each country, for the latest \nmonth.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_prodCat": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 1190,
+                    "y": 270,
+                    "zIndex": 100017
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Product_category_29"
+                }
+            },
+            "link_comRegion": {
+                "type": "link",
+                "position": {
+                    "x": 540,
+                    "y": 2870,
+                    "zIndex": 60
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000BEWAY",
+                    "text": "🔎",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "box_12": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 3620,
+                    "zIndex": 21
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_enrollComCustomers": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 560,
+                    "x": 60,
+                    "y": 4110,
+                    "zIndex": 8
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "Customer_9",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "dimfilter_subchannel": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 640,
+                    "y": 330,
+                    "zIndex": 100010
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Subchannel_22"
+                }
+            },
+            "box_10": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 3190,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "chart_enrollComTrend": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 440,
+                    "x": 60,
+                    "y": 1260,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "Date_of_audit_Year_Date_of_audit_Month_5",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "chart_enrollTargetCountry": {
+                "type": "chart",
+                "position": {
+                    "h": 570,
+                    "w": 560,
+                    "x": 60,
+                    "y": 550,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "sqrt": true,
+                    "legend": true,
+                    "multiMetrics": true,
+                    "step": "Country_11",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "box_1": {
+                "type": "box",
+                "position": {
+                    "h": 10,
+                    "w": 1440,
+                    "x": 50,
+                    "y": 4590,
+                    "zIndex": 11
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 87, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0)"
+                }
+            },
+            "box_3": {
+                "type": "box",
+                "position": {
+                    "h": 450,
+                    "w": 1430,
+                    "x": 60,
+                    "y": 10,
+                    "zIndex": 28
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.97)"
+                }
+            },
+            "header_enrollComTrend": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1210,
+                    "zIndex": 19
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Enrollment and Compliance Trend"
+                }
+            },
+            "box_2": {
+                "type": "box",
+                "position": {
+                    "h": 90,
+                    "w": 360,
+                    "x": 1120,
+                    "y": 20,
+                    "zIndex": 27
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgba(0, 0, 0, 0.02)",
+                    "imageUrl": "01523000000Hvz6"
+                }
+            },
+            "dimfilter_region": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 90,
+                    "y": 330,
+                    "zIndex": 100003
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Region_15"
+                }
+            },
+            "chart_comTargetCountry": {
+                "type": "chart",
+                "position": {
+                    "h": 570,
+                    "w": 590,
+                    "x": 750,
+                    "y": 550,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "sqrt": true,
+                    "legend": true,
+                    "multiMetrics": true,
+                    "step": "Cluster_10",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "chartDesc_diffPrevMonth": {
+                "type": "text",
+                "position": {
+                    "x": 630,
+                    "y": 2650,
+                    "zIndex": 6
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the difference in percentage compared to  previous month for the \nrespective P compliance or KPI score\n",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_comScoreMonth": {
+                "type": "chart",
+                "position": {
+                    "h": 500,
+                    "w": 560,
+                    "x": 60,
+                    "y": 2140,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "step": "all_40",
+                    "exploreLink": false,
+                    "visualizationType": "hbar"
+                }
+            },
+            "chartDesc_enrollComCust": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 4400,
+                    "zIndex": 10
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores\n (bars) and the actual Perfect Store Compliance percentage \n(line), grouped by customers, for the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "number_2": {
+                "type": "number",
+                "position": {
+                    "w": 300,
+                    "x": 60,
+                    "y": 4530,
+                    "zIndex": 51
+                },
+                "parameters": {
+                    "measureField": "count",
+                    "step": "all_42",
+                    "textAlignment": "center",
+                    "textColor": "rgb(244, 68, 68)",
+                    "title": " "
+                }
+            },
+            "dimfilter_country": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 90,
+                    "y": 270,
+                    "zIndex": 100002
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Country_14"
+                }
+            },
+            "header_diffPrevMonth": {
+                "type": "text",
+                "position": {
+                    "x": 630,
+                    "y": 2090,
+                    "zIndex": 4
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "% Difference Compared to Previous Month"
+                }
+            },
+            "header_enrollTargetCountry": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 490,
+                    "zIndex": 14
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Enrollment vs. Target by Country"
+                }
+            },
+            "dimfilter_city": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 350,
+                    "y": 210,
+                    "zIndex": 100005
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "City_17"
+                }
+            },
+            "header_product": {
+                "type": "text",
+                "position": {
+                    "x": 1230,
+                    "y": 150,
+                    "zIndex": 27
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Product",
+                    "textAlignment": "left"
+                }
+            },
+            "link_enrollCountry": {
+                "type": "link",
+                "position": {
+                    "x": 1190,
+                    "y": 660,
+                    "zIndex": 51
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000B4WAI",
+                    "includeState": true,
+                    "text": "🔎",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "chartDesc_enrollComTrend": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1570,
+                    "zIndex": 1
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the 12 month trend of actual \nnumber of Enrolled Perfect Stores (bars) and the \nactual Perfect Store Compliance percentage (line).\n",
+                    "textAlignment": "left"
+                }
+            },
+            "chart_enrollComChannel": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 560,
+                    "x": 60,
+                    "y": 3250,
+                    "zIndex": 7
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "Channel_8",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "single"
+                }
+            },
+            "header_comScoreMonth": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2090,
+                    "zIndex": 3
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "Compliance and Score for Latest Month"
+                }
+            },
+            "chartDesc_enrollComCat": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 3980,
+                    "zIndex": 9
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores \n(bars) and the actual Perfect Store Compliance percentage (line), \ngrouped by categories, for the latest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "header_enrollComChannel": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 3190,
+                    "zIndex": 23
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Enrollment and Compliance by Channel"
+                }
+            },
+            "box_5": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 490,
+                    "zIndex": 14
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_4": {
+                "type": "box",
+                "position": {
+                    "h": 60,
+                    "w": 490,
+                    "x": 1500,
+                    "y": 10,
+                    "zIndex": 13
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(201, 178, 0, 0.35)"
+                }
+            },
+            "box_7": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 1640,
+                    "zIndex": 16
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_6": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 1210,
+                    "zIndex": 15
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "box_9": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 2710,
+                    "zIndex": 18
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "header_enrollComCat": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 3620,
+                    "zIndex": 22
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Enrollment and Compliance by Category"
+                }
+            },
+            "dimfilter_custSubType": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 900,
+                    "y": 270,
+                    "zIndex": 100013
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_subtype_25"
+                }
+            },
+            "box_8": {
+                "type": "box",
+                "position": {
+                    "h": 40,
+                    "w": 1440,
+                    "x": 60,
+                    "y": 2090,
+                    "zIndex": 17
+                },
+                "parameters": {
+                    "backgroundColor": "rgba(0, 140, 201, 0)",
+                    "borderColor": "rgb(0, 0, 0)"
+                }
+            },
+            "header_enrollComCustomers": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 4050,
+                    "zIndex": 24
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Enrollment and Compliance by Top Customers"
+                }
+            },
+            "dimfilter_customer": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 900,
+                    "y": 330,
+                    "zIndex": 100014
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_26"
+                }
+            },
+            "dimfilter_salesT": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 350,
+                    "y": 330,
+                    "zIndex": 100007
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_territory_19"
+                }
+            },
+            "header_comTargetRegion": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2710,
+                    "zIndex": 16
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Compliance vs. Target by Region"
+                }
+            },
+            "text_note": {
+                "type": "text",
+                "position": {
+                    "x": 1500,
+                    "y": 10,
+                    "zIndex": 12
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "Note: Targets are only available at Country and Region level. If filters \nare applied for other than these 2 fields, the target information will \nnot show up for Country and Region charts.",
+                    "textAlignment": "left"
+                }
+            },
+            "chartDesc_enrollTargetCountry": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1130,
+                    "zIndex": 32
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the target and actual number of \nEnrolled Perfect Stores for each country, for the \nlatest month.\n",
+                    "textAlignment": "left"
+                }
+            },
+            "header_comTargetCountry": {
+                "type": "text",
+                "position": {
+                    "x": 750,
+                    "y": 490,
+                    "zIndex": 15
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Compliance vs. Target by Country"
+                }
+            },
+            "header_countAuditScores": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 4470,
+                    "zIndex": 17
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "Count of Audited Perfect Stores"
+                }
+            },
+            "chart_enrollCom4p5p6p": {
+                "type": "chart",
+                "position": {
+                    "h": 300,
+                    "w": 450,
+                    "x": 60,
+                    "y": 1700,
+                    "zIndex": 5
+                },
+                "parameters": {
+                    "dualAxis": true,
+                    "step": "X4P_5P_6P_6",
+                    "exploreLink": false,
+                    "visualizationType": "combo",
+                    "selectModeOverride": "none"
+                }
+            },
+            "chartDesc_4p5p6p": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 2000,
+                    "zIndex": 2
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores (bars) \nand the actual Perfect Store Compliance percentage (line), \ngrouped by 4P, 5P or 6P Perfect Stores, for the latest month.",
+                    "textAlignment": "left"
+                }
+            },
+            "link_4": {
+                "type": "link",
+                "position": {
+                    "x": 480,
+                    "y": 1260,
+                    "zIndex": 54
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000BJWAY",
+                    "includeState": true,
+                    "text": "🔎 Enrolled Stores",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "dimfilter_province": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 90,
+                    "y": 390,
+                    "zIndex": 100004
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Province_16"
+                }
+            },
+            "dimfilter_salesA": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 350,
+                    "y": 270,
+                    "zIndex": 100006
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Sales_area_18"
+                }
+            },
+            "dimfilter_customerType": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 900,
+                    "y": 210,
+                    "zIndex": 100012
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Customer_type_24"
+                }
+            },
+            "dimfilter_TradeFormat": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 640,
+                    "y": 210,
+                    "zIndex": 100008
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Trade_Format_20"
+                }
+            },
+            "header_period": {
+                "type": "text",
+                "position": {
+                    "x": 90,
+                    "y": 30,
+                    "zIndex": 24
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Period",
+                    "textAlignment": "left"
+                }
+            },
+            "header_enrollCom4p5p6p": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 1640,
+                    "zIndex": 21
+                },
+                "parameters": {
+                    "fontSize": 20,
+                    "text": "PS Enrollment and Compliance by 4P/5P/6P"
+                }
+            },
+            "link_9": {
+                "type": "link",
+                "position": {
+                    "x": 530,
+                    "y": 3300,
+                    "zIndex": 59
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000B9WAI",
+                    "text": "🔎 Compliance",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "header_customer": {
+                "type": "text",
+                "position": {
+                    "x": 820,
+                    "y": 150,
+                    "zIndex": 26
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Customer",
+                    "textAlignment": "left"
+                }
+            },
+            "link_7": {
+                "type": "link",
+                "position": {
+                    "x": 480,
+                    "y": 1730,
+                    "zIndex": 57
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000AzWAI",
+                    "text": "🔎 Compliance",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "link_8": {
+                "type": "link",
+                "position": {
+                    "x": 530,
+                    "y": 3260,
+                    "zIndex": 58
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000AuWAI",
+                    "text": "🔎 Enrolled Stores",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "link_5": {
+                "type": "link",
+                "position": {
+                    "x": 480,
+                    "y": 1300,
+                    "zIndex": 55
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000AkWAI",
+                    "includeState": true,
+                    "text": "🔎 Compliance",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "link_6": {
+                "type": "link",
+                "position": {
+                    "x": 480,
+                    "y": 1690,
+                    "zIndex": 56
+                },
+                "parameters": {
+                    "destination": "0FK8A00000000ApWAI",
+                    "text": "🔎 Enrolled Stores",
+                    "visualizationType": "hbar",
+                    "destinationType": "lens"
+                }
+            },
+            "header_geo": {
+                "type": "text",
+                "position": {
+                    "x": 270,
+                    "y": 150,
+                    "zIndex": 25
+                },
+                "parameters": {
+                    "fontSize": 30,
+                    "text": "Geography",
+                    "textAlignment": "left"
+                }
+            },
+            "dimfilter_banner": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 900,
+                    "y": 390,
+                    "zIndex": 100015
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Banner_27"
+                }
+            },
+            "dimfilter_cluster": {
+                "type": "listselector",
+                "position": {
+                    "h": 50,
+                    "w": 250,
+                    "x": 90,
+                    "y": 210,
+                    "zIndex": 100001
+                },
+                "parameters": {
+                    "expanded": false,
+                    "measureField": "count",
+                    "step": "Cluster_13"
+                }
+            },
+            "chart_comTargetRegion": {
+                "type": "chart",
+                "position": {
+                    "h": 370,
+                    "w": 630,
+                    "x": 60,
+                    "y": 2760,
+                    "zIndex": 52
+                },
+                "parameters": {
+                    "sqrt": true,
+                    "legend": true,
+                    "step": "Region_100",
+                    "exploreLink": false,
+                    "visualizationType": "vbar"
+                }
+            },
+            "chartDesc_enrollComChannel": {
+                "type": "text",
+                "position": {
+                    "x": 60,
+                    "y": 3550,
+                    "zIndex": 8
+                },
+                "parameters": {
+                    "fontSize": 15,
+                    "text": "This chart displays the actual number of Enrolled Perfect Stores\n (bars) and the actual Perfect Store Compliance percentage \n(line), grouped by channels, for the latest month.\n",
+                    "textAlignment": "left"
+                }
+            }
+        }
+    },
+    "datasets": [
+        {
+            "id": "0Fb8A0000000SS8SAM",
+            "name": "DPS_PS_COMPLIANCE_AGGREGATED"
+        },
+        {
+            "id": "0Fb8A0000000SSDSA2",
+            "name": "DPS_PS_ENROLLED_STORE"
+        },
+        {
+            "id": "0Fb8A0000000SSISA2",
+            "name": "DPS_PS_ENROLLMENT_TARGET"
+        },
+        {
+            "id": "0Fb8A0000000SSNSA2",
+            "name": "DPS_PS_OVERALL_AGGREGATED"
+        }
+    ]
+}

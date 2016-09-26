@@ -11,12 +11,24 @@
         $A.enqueueAction(action);
  	},
     doInit: function(component, event, helper) {
+        
+        var ids=[];
+        ids=component.get("v.booleanValue");
+        var activity=component.get("v.activity");
+        for(var i=0;i<ids.length;i++)
+        {
+            
+            if(ids[i] === activity.activityId)
+            {
+                component.set("v.check_image",true);
+            }
+        }
         var pageindex=component.get("v.index");
         var cont=component.get("v.showcontent");
         var aid=component.get("v.activity");
-     /*start*/   var actual_para=aid.Description__c;
-         
-        var max_len = 180;  
+     /*start*/   var actual_para=aid.description;
+         console.log("coming");
+        var max_len = 150;  
          
        	var trunc = actual_para;
 	  	if (trunc.length > max_len) {  
@@ -29,21 +41,9 @@
         
         component.set("v.ActivityDesc",trunc);
         
+       
        /*end*/ 
-        var action=component.get("c.getbooleanvalue");
-     	action.setParams({"actID":aid.Id});
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if (state === "SUCCESS" && response.getReturnValue()!== '') {
-                var items = response.getReturnValue();
-                if(items === true){
-                    component.set("v.check_image",true);
-                }else{
-                    component.set("v.check_image",false);
-                }
-            }
-        });
-        $A.enqueueAction(action);
+       
         var rectype=component.get("v.themerecordtype");
         var action=component.get("v.themeColors");
         for (var prop in action) {
@@ -52,25 +52,29 @@
             }
         }
       	var actvity=component.get("v.activity");
+        console.log(actvity.activityRating);
     	var numbers = [];
-        for (var i = 0; i < actvity.Rating__c; i++) {
+        for (var i = 0; i < actvity.activityRating; i++) {
             numbers.push({
                 value: i
             });
         }
         var remain = [];
-        for (var i = 0; i < 5-actvity.Rating__c; i++) {
+        for (var i = 0; i < 5-actvity.activityRating; i++) {
             remain.push({
                 value: i
             });
         }
         component.set("v.numbers", numbers);
         component.set("v.remain", remain);
+        setTimeout( "jQuery('.outer_sec').show();",1000 );
+        
+        
     },
     getbooleanvalue1 :function(component, event, helper) {
-        var aid=component.get("v.EAactivityid");
+        var aid=component.get("v.activity");
         var action=component.get("c.getbooleanvalue");
-        action.setParams({"actID":aid});
+        action.setParams({"actID":aid.activityId});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!== '') {
@@ -92,7 +96,7 @@
     insertteamrecord1 : function(component, event, helper) {
         var activityid = component.get("v.activity");
         var action = component.get("c.insertteamrecord");
-        action.setParams({"ActivityID" : activityid.Id});
+        action.setParams({"ActivityID" : activityid.activityId});
         action.setCallback(this,function(response){
         });
         $A.enqueueAction(action);
@@ -102,16 +106,27 @@
         cmp.set("v.EAactivityid",id);
     },
     commentspage2 :function(component, event, helper) {
+        
+        helper.scrollToLocation(component, "top");
         var activity = component.get("v.activity");
         var pagename='swipe';
         var index=component.get("v.index");
         console.log(pagename);
+        // Get the current slide
+		var currentSlide = $('.carousel').slick('slickCurrentSlide');
+        component.set("v.pageIndex",currentSlide);
+        console.log("CurrentSlide"+ currentSlide);
+        
         var shareEvent=$A.get("e.c:EA_Showshare_Event");
-        shareEvent.setParams({"activity":activity,"pagename":pagename,"index":index});
+        shareEvent.setParams({"activity":activity,"pagename":pagename,"index":index,"activityId":activity.activityId,"navigatePageIndex":currentSlide});
+       
         shareEvent.fire();
 
+         
     },
     callfeedback:function(cmp,event,helper){
+        
+        helper.scrollToLocation(cmp, "top");
         var activity = cmp.get("v.activity");
         var feedbacevent=$A.get("e.c:EA_Feedback_Event");
         var pagename='swipe'; 
@@ -120,31 +135,40 @@
 		var currentSlide = $('.carousel').slick('slickCurrentSlide');
         cmp.set("v.pageIndex",currentSlide);
         console.log("CurrentSlide"+ currentSlide);
-        feedbacevent.setParams({"activityId":activity.Id,"pagename":pagename,"index":index,"navigatePageIndex":currentSlide});
+        feedbacevent.setParams({"activityId":activity.activityId,"pagename":pagename,"index":index,"navigatePageIndex":currentSlide});
         //feedbacevent.setParams({"activityId":activity.Id,"pagename":pagename,"index":pageIndex});
         feedbacevent.fire();
     },
     calltodoactivity:function(cmp,event,helper){
+       helper.scrollToLocation(cmp, "top");
         var page='swipe';
         var activity = cmp.get("v.activity");
+        // Get the current slide
+		var currentSlide = $('.carousel').slick('slickCurrentSlide');
+        cmp.set("v.pageIndex",currentSlide);
+        console.log("CurrentSlide"+ currentSlide);
         var callactivity=$A.get("e.c:EA_ToDoActivity_Event");
-        callactivity.setParams({"activityId":activity.Id,"pagename":page});
+        callactivity.setParams({"activityId":activity.activityId,"pagename":page,"navigatePageIndex":currentSlide});
         callactivity.fire();
     },
     callShowDetailCard:function(cmp,event,helper){
         var actvity=cmp.get("v.activity");
-        var rating;
-        var id=actvity.Id;
+        
+        var id=actvity.activityId;
+        console.log("id-->"+id);
         var page='swipe';
-        var index = 0;
+       // var index = 0;
         // Get the current slide
 		var currentSlide = $('.carousel').slick('slickCurrentSlide');
         cmp.set("v.pageIndex",currentSlide);
         console.log("Current Slide Index:"+ currentSlide);
-       	var num=actvity.participant_rating;
-        var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
-        detailpageEvent.setParams({"actvityid":id,"pagename":page,"index":index,"navigatePageIndex":currentSlide});
-    	detailpageEvent.fire();
+        console.log("comin in detail");
+       	//var num=actvity.participant_rating;
+        var detailevent=cmp.get("v.activity");
+        var detailevent=$A.get("e.c:EA_Detailpage_Event");
+       
+       detailevent.setParams({"actvityid":id,"pagename":page,"navigatePageIndex":currentSlide});
+    	detailevent.fire();
     },
     showsummaryCard:function(cmp,event,helper){
         cmp.set("v.showcontent",false);
@@ -152,10 +176,11 @@
     },
 	gotoDetail : function(component, event, helper) {
         var actvity=component.get("v.activity");
-        var id=actvity.Id;
+        var id=actvity.activityId;
         var index=component.get("v.index");
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
         detailpageEvent.setParams({"actvityid":id,"showcontent":true,"index":index});
     	detailpageEvent.fire();
+        
 	}
 })

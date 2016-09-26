@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <aggregates>
-        <calculatedFormula>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization_Week__c:SUM</calculatedFormula>
+        <calculatedFormula>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization_Week__c:AVG</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <isActive>true</isActive>
@@ -18,6 +18,14 @@
     <columns>
         <field>WU_Master_Warehouse__c.WU_Region__c</field>
     </columns>
+    <filter>
+        <criteriaItems>
+            <column>WU_Master_Warehouse__c.WU_Utilization_Type__c</column>
+            <operator>equals</operator>
+            <value>Monthly</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Matrix</format>
     <groupingsAcross>
         <dateGranularity>Month</dateGranularity>

@@ -96,8 +96,8 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>OwnerId</field>
+                <behavior>Edit</behavior>
+                <field>lkp_Owner__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
@@ -120,10 +120,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Request_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txta_Other_Request_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -282,12 +278,16 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <platformActionList>
+        <actionListContext>Record</actionListContext>
+    </platformActionList>
     <relatedLists>
         <customButtons>New_Resource_Requirement</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>txt_Resource_Location__c</fields>
         <fields>txt_Role_Level_1_13__c</fields>
+        <fields>Man_Days__c</fields>
         <fields>per_Budget_Expenses_of_Resource_Cost__c</fields>
         <fields>dat_Indicative_timeline_End_date__c</fields>
         <fields>dat_Indicative_timeline_Start_date__c</fields>
@@ -299,11 +299,10 @@
         <customButtons>New_Requirements_and_Deliverables</customButtons>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
+        <fields>Business_Process_Area_del__c</fields>
         <fields>High_Level_Description_del__c</fields>
         <fields>Requirement_Type_del__c</fields>
         <fields>New_or_changed_requirement_del__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>OBJECT_ID</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -315,6 +314,8 @@
         <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>btn_New_User_Defined_Attribute</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>

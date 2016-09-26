@@ -5,7 +5,10 @@
 *              all the classes 
 */
 public class IPM_ConstantUtils {
-     
+    // General Constants
+    public static String IPM_true = 'true';
+    public static String IPM_false = 'false';
+    public static String IPM_STOPPED = 'Stopped';
     //UI Compatibilty
     public static String UA_COMPATIBLE='X-UA-Compatible';
     public static String IE_EDGE='IE=edge';
@@ -32,10 +35,12 @@ public class IPM_ConstantUtils {
     public static String STATUS_NOT_STARTED = 'Not Started';
     public static String STATUS_STARTED = 'Started';
     public static String STATUS_NOT_FILLED = 'Filled-in';
+    public static String STATUS_FILLED_IN = 'Filled-in';
     public static String STATUS_APPROVED = 'Approved';
-    public static String PD_STATUS_STOPPED = 'Stopped';
+    public static String PD_STATUS_STOPPED = IPM_STOPPED;
     public static String GD_ATTACHMENT_SUFFIX = 'Gate_Document';
     public static final String COMMENT_TYPE='TextPost';
+    
     
     //used across classes to get the gate document type
     public static final String CHARTER_GATE='Charter';
@@ -100,12 +105,18 @@ public class IPM_ConstantUtils {
     public static final String OTIF_BASES_III='Bases III';
     public static final String OTIF_SPEC_BILLS_OF_MATERIALS_IN_INTERSPEC='Spec/Bills of Materials in Interspec';
     public static final String OTIF_TECHNICAL_AND_PRODUCTION_CAPABILITY_CONFIRMED='Technical and Production Capability Confirmed';
-    public static final String OTIF_COMMUNICATION_BET_FINAL_RELEASE_AVAILABILITY='Communication: BET Final Release Availability';
-    public static final String OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE='Communication: Full Think Big Pack Available';    
+    public static final String OTIF_COMMUNICATION_BET_FINAL_RELEASE_AVAILABILITY='BET Final Release Status';
+    public static final String OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE='What is the Consumer test scoring on Communication?';    
     public static final String OTIF_CONCEPT_TEST='Concept Test';    
     public static final String OTIF_FIRST_PROD_CONF_SPEC_FINALISED='First Production Confirmed and Specifications Finalised';        
-    public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';    
+    public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';
     
+    public static final String CONTRACT_PRODUCT ='What is the Consumer test scoring on Product?';
+    public static final String CONTRACT_FULL_MIX ='What is the Consumer test scoring on Full mix?';
+    public static final String CONTRACT_COMMUNICATION ='What is the Consumer test scoring on Communication?';       
+    // Newly added OTIF questions 
+    public static final String CONTRACT_PACK ='What is the Consumer test scoring on Pack ?';    
+    public static final String CONTRACT_PRICE ='What is the Consumer test scoring on Price ?';    
      //for gate Document
     public static final String INTRODUCTION_HEADER_SEQUENCE='1';
     public static final String EXTERNAL_HEADER_SEQUENCE='2';
@@ -180,6 +191,9 @@ public class IPM_ConstantUtils {
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
     
+    public static Integer repeatCount=0;//this is to avoid  recursion in IPM_FinancialHandler class
+    
+    
     // financial constant
     
     public static final string YEAR_3='3';
@@ -195,7 +209,8 @@ public class IPM_ConstantUtils {
     public static final string EXCEPTION_SAVEFINANCIALS='saveFinancials';
     public static final string EXCEPTION_REFRESHFROMLOCAL='refreshFromLocal';
     public static final string EXCEPTION_REFRESHFROMREGIONAL='refreshFromRegional';
-    
+    public static final string EXCEPTION_REFRESHFROMGLOBAL='refreshFromGlobal';
+    public static final string CONSOLIDATED='CONSOLIDATED';
     
     
     
@@ -205,9 +220,12 @@ public class IPM_ConstantUtils {
     public static String PHASE_MARKET_READY='Market Ready';
     public static String PHASE_MARKET_DEPLOYMENT='Market Deployment';
     public static String PHASE_PLE='PLE';
+    public static set<String> PHASE_SET_WO_PLE = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_MARKET_DEPLOYMENT} ;
+    public static set<String> PHASE_SET_WO_MARKET_DEPLOYMENT = new set<String> {PHASE_IDEAS, PHASE_FEASIBILITY, PHASE_CAPABILITY, PHASE_MARKET_READY, PHASE_PLE} ;
     
     public static String IPMGLOBAL = 'Global';
     public static String IPMREGIONAL = 'Regional';
+    public static String IPMLOCAL = 'Local';
     
     public static String FUNCTIONAL_ROLE_ALL='All';
     public static String FUNCTIONAL_ROLE_BD='BD';
@@ -247,12 +265,12 @@ public class IPM_ConstantUtils {
     
     //All the phases & their respective Gates
     public static final Map<String, String> phaseGateDocumentMap = new Map<String, String>{'Ideas' => 'Charter', 'Feasibility' => 'Contract',
-                                                                                      'Capability' => 'Market Ready', 'Market Ready' => 'Market Deployment',
-                                                                                      'Market Deployment' => 'n/a','PLE' => 'n/a','Stopped' => 'n/a'};
+                                                                                      PHASE_CAPABILITY => 'Market Ready', 'Market Ready' => 'Market Deployment',
+                                                                                      'Market Deployment' => 'n/a','PLE' => 'n/a',IPM_STOPPED => 'n/a'};
     
-    public static final Map<String,Integer> phaseSequence = new Map<String,Integer>{'Ideas' => 1,'Feasibility' => 2,'Capability' => 3,'Market Ready' => 4,'Market Deployment' => 5,'PLE' => 6};
+    public static final Map<String,Integer> phaseSequence = new Map<String,Integer>{'Ideas' => 1,'Feasibility' => 2,PHASE_CAPABILITY => 3,'Market Ready' => 4,'Market Deployment' => 5,'PLE' => 6};
     
-    public static final List<String> DEFAULT_PHASE_SEQ = new List<String>{'Ideas','Feasibility','Capability','Market Ready','Market Deployment','PLE'};
+    public static final List<String> DEFAULT_PHASE_SEQ = new List<String>{'Ideas','Feasibility',PHASE_CAPABILITY,'Market Ready','Market Deployment','PLE'};
                                                                                       
     //Permission set variables starts
     public static final String PERMISSION_CENTRAL='IPM_Central_Team';
@@ -349,6 +367,8 @@ public class IPM_ConstantUtils {
     public static final String VOLUME_UNIT_000_UNITS = 'Total \'000 Units';
     public static final String INVALID_DATA_TO_SAVE = 'Please rectify the values indicated in red in the table. The Business case cannot be submitted until the values are modified.';
     public static final Decimal INVALID_VALUE = 0;
+    public static final String RED = 'Red';
+    public static final String YELLOW = 'Yellow';
     //Financial variables ends
     
     //Miscelanious variables starts
@@ -357,6 +377,7 @@ public class IPM_ConstantUtils {
     public static String FINANCE_MEMBER_CONSTANT ='Finance Member';
     public static String HHC_CONSTANT = 'HHC';
     public static String HOUSEHOLDCARE_CONSTANT = 'Household Care';
+    public static String LAUNDRY_CONSTANT = 'Laundry';
     
     //For Financial
     public static String FINANCIAL_CONSOLIDATE = '_CONSOLIDATED';
@@ -454,6 +475,7 @@ public class IPM_ConstantUtils {
      public static final String FIELD_LITERAL_BIC = 'BIC_';
      public static final String FIELD_LITERAL_CAPEX = 'CAPEX_';
      public static final String FIELD_LITERAL_PAYBACK = 'Payback_';
+     public static final String FIELD_LITERAL_STATUS = 'Status_';
 
      public static final String FIELD_LITERAL_GM_BPS = 'GM_Y1_bps_vs_DNDS_';
      public static final String FIELD_LITERAL_PBO_BPS = 'PBO_Y1_bps_vs_DNDS_';
@@ -520,11 +542,13 @@ public class IPM_ConstantUtils {
     public static String PROJECT_MILESTONES='IPM Project Milestones';
     
     //Gate document various status
-    public static final String DOCUMENT_STATUS_STOPPED='Stopped';
+    public static final String DOCUMENT_STATUS_STOPPED=IPM_STOPPED;
     public static final String DOCUMENT_STATUS_POSTPONED='Postponed';
     public static final String DOCUMENT_STATUS_PROPOSED='Proposed';
     public static final String DOCUMENT_STATUS_APPROVED='Approved';
-     public static final String DOCUMENT_STATUS_APPROVEDWITHEDITS = 'Approved with Edits';
+    public static final String DOCUMENT_STATUS_APPROVEDWITHEDITS = 'Approved with Edits';
+    public static final set<String> STATUS_SET_WO_APPROVED = new set<String> {STATUS_NOT_STARTED, STATUS_IN_PROGRESS, DOCUMENT_STATUS_PROPOSED, IPM_STOPPED, DOCUMENT_STATUS_POSTPONED, DOCUMENT_STATUS_APPROVEDWITHEDITS};
+    
     //For Section History
     public static final String HISTORY_SECTION_NAME = 'IPM_Section_Name__c';
     public static final String HISTORY_SECTION_SEQUENCE = 'IPM_Section_Sequence__c';
@@ -623,7 +647,7 @@ public class IPM_ConstantUtils {
     public static final String ROLLOUT_PL_TYPE = 'Project';
     public static final String ROLLOUT_FL_TYPE = 'Finance';
     public static final String ROLLOUT_CNTRY_TYPE = 'Country';
-    public static final String USER_FUNCTON_CL = 'Country Leader';
+    public static final String USER_FUNCTON_CL = 'MCO Rollout Leader';
     public static final String ROLLOUTID = 'RolloutId';
     public static final String LEADERMEMID = 'LeaderMemid';
     public static final String EDITMODE = 'EditMode';
@@ -708,6 +732,11 @@ public class IPM_ConstantUtils {
     
     //Task share
     public static final String IPM_TASK_RECORDTYPE='IPM Project Tasks';
+    public static final String FUTURE_ADHOC_TASKS = 'Future Adhoc';
+    public static final String FUTURE_STANDARD_TASKS = 'Future Standard';
+    public static final String STANDARD_TASKS = 'Standard';
+    public static final String TEMPLATE_TASKS = 'Template Task';
+    
     // Task Object
     
      public static String INVALIDPROJECT ='Invalid project';
@@ -787,6 +816,7 @@ public class IPM_ConstantUtils {
      public static final String CUSTOMER_CHANNELS = 'Customers/Channels';
      
     public static final Set<String> PDF_SECTION_LIST = new Set<String>{'Text','Checklist','Static Table','Dynamic Complex Table','Dynamic Simple Table'};
+    public static final Set<String> SECTION_LIST_WO_HEADER_SUBHEADER = new Set<String>{'Text','Checklist','Static Table','Dynamic Complex Table','Dynamic Simple Table','Project Parameters'};
     
     public static final String DEFAULT_CSS_KEY = 'default';
     
@@ -848,7 +878,14 @@ public class IPM_ConstantUtils {
     public static final Integer BET_DUEDATE_H2_MONTH=6;
     public static final Integer BET_DUEDATE_H2_DAY=30;
     
-    
+    public static final String GKM_1 = 'GKM1';
+    public static final String GKM_2 = 'GKM2';
+    public static final String GKM_3 = 'GKM3';
+    public static final String GKM_4 = 'GKM4';
+    public static final String GKM_5 = 'GKM5';
+    public static final String GKM_6 = 'GKM6';
+    public static final String GKM_7 = 'GKM7';
+    public static final String GKM_8 = 'GKM8';
     
      
     
@@ -1007,7 +1044,7 @@ public class IPM_ConstantUtils {
    public static final String SF_SECTION_TYPE='sectionType';
    
    //task pagination size
-   public static final integer NO_OF_RECORDS =5;
+   public static final integer NO_OF_RECORDS = 20;
    
 
    
@@ -1042,10 +1079,13 @@ public class IPM_ConstantUtils {
   //For Financial Action Standards Component
    public static final String IPM_FINANCIAL_ACTION_STANDARD='Business_Case_Action_Standards';
    public static final Decimal IPM_FINANCIAL_ACTION_STANDARD_VALUE=0;
+   public static final String IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS='Global Action Standards';
+   public static final String IPM_FINANCIAL_ACTION_STANDARDS='Action Standards';
    
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';
    public static final String IPM_SUBSECTOR='Sub Sector';
+    public static final String IPM_SECTOR='Sector';
    public static final String FEEDBACK_FROM_LAST_GATE='Feedback_from_Last_Gate';
    public static final String MASTER_PROJECT_NAME = 'IPM_MasterProject';
    
@@ -1194,6 +1234,35 @@ public class IPM_ConstantUtils {
    public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
    public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
-   public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+   public static final String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+   public static final String Original_SHIPTO_TRADE_TLD = 'Target Launch Date(Ship to Trade)';
+   
    public static final Integer KB_TO_BYTES = 1024;
+   public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
+   
+   //Market performance field names
+   
+   public static final string PERFORMANCE_PERIOD='Period__c';   
+   public static final string BREAKELINE='<br/>';
+   public static final string EURO='EUR';
+   public static final string MONITONING_PER_EXTERNAL_ID='Monitoring_Performance_in_Market';
+   public static final string MISALIGNED_CSS='misalignedField'; 
+   
+   public static final string SIX_THREE='6.3'; 
+   
+   public static final string BET_CURRENT_STATUS = 'BETCurrentStatus__c';
+   
+   public static final string Clustering = 'Clustering';
+   public static final String SHOW_AT_GLOBAL = 'IPM_ShowAtGlobal__c';
+   public static final String SHOW_AT_REGIONAL = 'IPM_ShowAtRegional__c';
+   public static final String SHOW_AT_LOCAL = 'IPM_ShowAtLocal__c';
+   
+   public static final string BRAND_NOT_FOUND = 'No matching brand (yet), please contact your IPM BP';
+    // Platform As 'Not Appliable'
+   public static final string PLATFORM_NA = 'Not Applicable';
+   //IPM_Project_Phantom_NonKey valuse OTIF Report
+    public static final String Nonkey = 'NONKEY';
+    public static final String Project = 'PROJECT';
+    public static final String Phantom = 'PHANTOM';
+    
 }
