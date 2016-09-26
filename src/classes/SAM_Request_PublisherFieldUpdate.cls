@@ -28,17 +28,27 @@ public with sharing class SAM_Request_PublisherFieldUpdate{
         try
         {
            
-           List<SAM_Request__c> requests = [SELECT Name,txt_CrossCharge_Publisher__c,txt_Request_Type__c,(Select pkl_Publisher__c,pkl_Charging_Type__c FROM Quote_Line_Items__r ) FROM SAM_Request__c where Id in :recIds];           
+           List<SAM_Request__c> requests = [SELECT Name,txt_CrossCharge_Publisher__c,txt_Request_Type__c,(Select pkl_Publisher__c,pkl_Charging_Type__c,txt_Publishers_Details__c FROM Quote_Line_Items__r ) FROM SAM_Request__c where Id in :recIds];           
             for(SAM_Request__c request : requests)
             {
               Set<string> publishers = new Set<String>();
               for(SAM_Quote_Line_Item__c requestLineItem : request.Quote_Line_Items__r)
               {
                if(requestLineItem.pkl_Charging_Type__c == Label.SAM_Cross_Charge_Applicable)
-                publishers.add(requestLineItem.pkl_Publisher__c);
+                {
+                    if(requestLineItem.pkl_Publisher__c == 'Other Product')
+                    {
+                    publishers.add(requestLineItem.txt_Publishers_Details__c);
+                    }
+                    else
+                    {
+                      publishers.add(requestLineItem.pkl_Publisher__c);
+                    }
+                }
               }
               request.txt_CrossCharge_Publisher__c  = String.Join(new List<String>(publishers),',');
-              //System.debug(publishers); 
+              //System.debug('Publishers After Quote Approved - '+ publishers); 
+              //System.debug('request.txt_CrossCharge_Publisher__c - '+ request.txt_CrossCharge_Publisher__c); 
             }
             update requests;
         }

@@ -47,14 +47,17 @@ private class SAM_TriggerUtilMethods_Test {
     public Static testMethod  void SAM_Request_Util_Test(){ 
         SAM_StatusMsgCustomSetting();
 
-        Test.startTest();   
+        //Test.startTest();   
                         
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
         User u = SAM_TestRequestClass_util.createTestUser();
-        objRequest.lkp_Assign_To__c= u.id;       
+        
+        objRequest.lkp_Assign_To__c= u.id;  
+        objRequest.pkl_Software_Purchase_Req__c  = null;    
         insert objRequest;
         
-        objRequest.txt_SA_Clarity_Id__c = SAM_Constants.TEST+SAM_Constants.TEST;
+        
+        objRequest.txt_SA_Clarity_Id__c = '67890';
         update objRequest;
         
         SAM_Request_Line_Item__c ObjRLI =  SAM_TestRequestClass_util.createProductDetails(objRequest);
@@ -65,14 +68,19 @@ private class SAM_TriggerUtilMethods_Test {
         objRequest.chk_Is_Quote_Submitted_Once__c = false;
         update objRequest;      
         
-
-        SAM_Quote_Line_Item__c ObjQLI =  SAM_TestRequestClass_util.createQuotationDetails(objRequest);
-        insert ObjQLI;
+        //SAM_Quote_Line_Item__c ObjQLI =  SAM_TestRequestClass_util.createQuotationDetails(objRequest);
+        //insert ObjQLI;
        
+        SAM_Quote_Line_Item__c QLI = [Select id, pkl_Line_Status__c,md_Request__c from  SAM_Quote_Line_Item__c where md_Request__c=:objRequest.id limit 1];
+        If(QLI != null){
+            QLI.pkl_Line_Status__c = 'Completed';
+        	update QLI;
+            }
         
         objRequest.pkl_SAM_team_Status__c = SAM_Constants.QUOTE_PROVIDED;        
         update objRequest;
         
+        Test.startTest();   
         objRequest.pkl_SAM_Requester_Status__c = SAM_Constants.QUOTE_APPROVED;
         update objRequest;
         
@@ -100,6 +108,7 @@ private class SAM_TriggerUtilMethods_Test {
             Boolean expectedExceptionThrown =  (e.getMessage().contains('You are not authorized to delete this record')) ? true : false;
             System.AssertEquals(expectedExceptionThrown, true);
         } 
+        
         list<SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable> sendEmailAttachments = new list<SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable>();
         SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable sendEmailAttachment = new SAM_Email_Attachment_InvocableMethod.SendEmailClassVariable();
         sendEmailAttachment.recordId = objRequest.id;
@@ -160,7 +169,7 @@ private class SAM_TriggerUtilMethods_Test {
         objRequest.lkp_Assign_To__c= u.id;       
         insert objRequest;
         
-        objRequest.txt_SA_Clarity_Id__c = SAM_Constants.TEST+SAM_Constants.TEST;
+        objRequest.txt_SA_Clarity_Id__c = '67890';
         update objRequest;
         
         SAM_Request_Line_Item__c ObjRLI =  SAM_TestRequestClass_util.createProductDetails(objRequest);

@@ -32,14 +32,23 @@
         console.log("Entering <updateListPrice>");
         var action = component.get("c.updateValues");
         var productUpdate = component.get('v.productList');
-        
+        for(var i=0; i < productUpdate.length; i++){
+            if(productUpdate[i].UnitPrice < 0){
+                productUpdate[i].UnitPrice = 0;
+            }
+            if(productUpdate[i].ICB_Purchase_Price__c < 0){
+                productUpdate[i].ICB_Purchase_Price__c = 0;
+            }
+            if(productUpdate[i].ICB_Manufacture_Price__c < 0){
+                productUpdate[i].ICB_Manufacture_Price__c = 0;
+            }
+        }
         action.setParams({ listProduct : productUpdate });
         
         // Add callback behavior for when response is received
         action.setCallback(this, function(response) {
-            var state = response.getState();        
+            var state = response.getState(); 
         });
-        
         $A.enqueueAction(action);
         location.reload(true);
         console.log("Exit <updateListPrice>");
