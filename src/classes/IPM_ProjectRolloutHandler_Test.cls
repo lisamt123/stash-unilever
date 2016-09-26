@@ -247,6 +247,7 @@ private class IPM_ProjectRolloutHandler_Test
             for(IPM_Project__c project : projectList)
             {
                 project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+                project.IPM_ProjectGKM__c='GKM2';
             }  
             
             update projectList;
@@ -538,8 +539,7 @@ private class IPM_ProjectRolloutHandler_Test
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1,'No document created for the project');
-                
+               
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
@@ -648,10 +648,8 @@ private class IPM_ProjectRolloutHandler_Test
     {
         
         // Get the newly created Projects from Database. 
-
       
-        Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
-        
+        Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();        
        
         Test.startTest();
         // Get the list of user's for project leaders.
@@ -786,6 +784,7 @@ private class IPM_ProjectRolloutHandler_Test
                 countryId.add(country.id);
             }
             integer size=0;
+            Test.stopTest();
             // delete local rollout      
             try {  
                 
@@ -802,7 +801,7 @@ private class IPM_ProjectRolloutHandler_Test
             {  
                 System.assertEquals(0,size,'DML is not excuted successfully');
             }
-            Test.stopTest();
+            
             
             
         }
@@ -959,6 +958,7 @@ private class IPM_ProjectRolloutHandler_Test
             {
                 countryId.add(country.id);
             }
+            Test.stopTest();
             integer size=0;
             List<IPM_Project_Rollout__c> localRolloutUpList = new List<IPM_Project_Rollout__c>();
             List<IPM_Project__c> regProj = [Select id From IPM_Project__c Where IPMProject_Span__c = 'Global'];
@@ -989,7 +989,7 @@ private class IPM_ProjectRolloutHandler_Test
             {  
                  System.assertEquals(0,size,'DML not excuted successfully');
             }
-            Test.stopTest();
+            
         }
     }
     /**************************************************************
@@ -1348,6 +1348,7 @@ private class IPM_ProjectRolloutHandler_Test
             {
                 countryId.add(country.id);
             }
+            Test.stopTest();
             integer size=0;
             List<IPM_Project_Rollout__c> localRolloutUpList = new List<IPM_Project_Rollout__c>();
             List<IPM_Project__c> regProj = [Select id From IPM_Project__c Where IPMProject_Span__c = 'Global'];
@@ -1387,7 +1388,7 @@ private class IPM_ProjectRolloutHandler_Test
             {  
                System.assertEquals(0,size,'DML not executed successfully');
             }
-            Test.stopTest();
+            
         }
     }  
 }

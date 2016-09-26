@@ -227,10 +227,8 @@ private class IPM_ProjectOverviewCtrol_Test {
             PageReference pRef1 = new PageReference(sPageRefURL+projectList[0].Id);
         	Test.setCurrentPage(pRef1);
         
-        	IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
-        	IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-        	system.assert(overCtrl1.childProjectsIncompleteAlert != null, 'There are no alerts for child projects progression through phases.');
-        	
+            
+            
        }
     }
 

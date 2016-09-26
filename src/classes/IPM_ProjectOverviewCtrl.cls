@@ -22,7 +22,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public List<String> lstRolloutProjectAlertMessage {get;set;} //Alert message for Rollout local projec leader is blank
     public List<String> lstFinTLDAlertMessage {get;set;} //Alert message for financial TLD misalignment
     public List<String> lstFinDataMissingAlertMessage {get;set;} 
-        public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
+    public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
     public IPM_Task__c[] tasksList{get;set;}//list of tasks to be made displayed
     public Integer noOfNotifications{get;set;}//number of notifications that a page can display
     public IPM_Project_Document__c projectDoc{get; set;}//current gate document that the project is associated with
@@ -55,7 +55,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public List<IPM_Project_Rollout__c> lstprojectRollout{get;set;}
     public boolean isAcessDuetoTeam{get;set;}
     private static final String DATEFORMAT='dd MMMM yyyy';
-
+    private String pld_STR;
+    public transient boolean isPDL{get;set;}
+    public transient String status_PDL{get;set;}
     /****************************************************************************************************************************
     * internal set variables for all the associated project documents, sections, tasks & milestones ids
     */
@@ -154,7 +156,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public Boolean hideFinSection{get;set;}//varibale to check whether user has acces to financial record
     //Phase 2.0
     public boolean displayGateDocument{get;set;}//display gate document status and document percentage
-    public boolean showStopButton{get;set;}//  to show Stop Project button 
+    public boolean showStopButton{get;set;}//  to show Stop Project button
     public String stopButtonHoverText{get;set;}//hover text of  Stop Project button 
     public boolean isStopped{get;set;}
     public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
@@ -231,6 +233,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
        else{
            currPhase = projObj.IPM_Temporary_Phase__c;
        }
+       lstFinDataMissingAlertMessage = new list<String>();
        init();
        getGatedocumentRendered();
        // Adding Alert for Local Project leader is blank for rollout Projects
@@ -253,6 +256,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
        if(currentProjecttype != null && currentProjecttype.IPM_Gate_Document__c != null){
            currGateToDisplay = Label.IPM_IN + IPM_ConstantUtils.IPM_SPACE +   currentProjecttype.IPM_Gate_Document__c;
        }
+	   if(IPM_ConstantUtils.CONTRACT_GATE.Equals(currentProjecttype.IPM_Gate_Document__c) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3 .equals(project.IPM_ProjectGKM__c))
+	   {
+			currGateToDisplay +=IPM_ConstantUtils.PDLAMP;
+	   }
        
        /*** Logic to Display the "Reactivate Project" button on Project Overview page for IPM Business Partner   
    			For Stopped project in Ideas phase for 38 months, "Reactivate Project" button will be displayed for IPM Business Partner
@@ -368,6 +375,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
 	displayGateDocument=false;
         showStopButton=false;
 	isStopped = false;
+	isPDL = false;
+        status_PDL = BLANK_STR;
     }
     //DEF3195-Earliest Target Launch is not displayed on overview page
     public string getEarlTLD(){
@@ -381,7 +390,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /*
         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        project = [SELECT IPM_LocalProject_Brand__c,IPM_Is_Invoked_From_Rollout__c,IPM_GateKeepingModel__c,IPM_ShowProjectStop__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        project = [SELECT IPM_LocalProject_Brand__c,IPM_Parent_Project__r.IPM_Brand_Positioning__c,IPM_Is_Invoked_From_Rollout__c,IPM_GateKeepingModel__c,IPM_ShowProjectStop__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,IPM_EligibleForReactivation__c,IPM_StoppedByProject__c,
         IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c, IPM_CancelStoppingProjectTill__c, 
         IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,IPM_Stopped_At_Span__c, 
@@ -481,6 +490,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
         // get the stopped date ipm ProjectCancel Page
         for(IPM_Project_Document__c eachDoc : project.Project_Documents__r) {
             projectDocsSet.add(eachDoc.Id);
+			if(IPM_ConstantUtils.PRODUCT_DESIGN_LOCK.Equals(eachDoc.IPM_GateDocuments__c))
+            {
+            	status_PDL = eachDoc.IPM_Document_Status__c;
+            }
             if(IPM_Utils.phaseGateDocumentMap.containsKey(currPhase)) {
                 currGate = IPM_Utils.phaseGateDocumentMap.get(currPhase);
                 if(eachDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_APPROVED) {
@@ -488,6 +501,14 @@ public with sharing class IPM_ProjectOverviewCtrl {
                 }
                 projectDoc = eachDoc;
             }
+        }
+		if(IPM_ConstantUtils.CONTRACT_GATE.Equals(currGate) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3 .equals(project.IPM_ProjectGKM__c))
+        {
+            pld_STR = IPM_ConstantUtils.PRODUCT_DESIGN_LOCK ;
+            isPDL = true;
+        }
+        else{
+            pld_STR = currGate;
         }
       /*projectDocStatusStyleClass = projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED ?  'greyFont'  
                                                         : projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED ?  IPM_ConstantUtils.IPM_BOSS_CSS_STOPPED 
@@ -582,7 +603,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				}
 				
 			}
-			if(globalbusinessImpactStr.equalsIgnoreCase(IPM_ConstantUtils.EDITMODE_FALSE))
+			if(globalbusinessImpactStr != null && globalbusinessImpactStr.equalsIgnoreCase(IPM_ConstantUtils.EDITMODE_FALSE))
             {
                 hideFinSection = false;
 			}
@@ -626,22 +647,51 @@ public with sharing class IPM_ProjectOverviewCtrl {
         }
         }
         
-        //Adding alert for Regional-Local financial
-        List<IPM_Financial__c> RegionalOrLocalFins = new List<IPM_Financial__c>();
-        RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
-                                                        FROM IPM_Financial__c WHERE Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
-        lstFinAlertMessage = new list<String>();       
-        lstFinTLDAlertMessage = new list<String>();
-        LstLocalFinTLDMisalignedMessage = new List<String>();
-                lstFinDataMissingAlertMessage = new list<String>();
 
-        for(IPM_Financial__c fin: RegionalOrLocalFins ){  
-            if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c && (system.today() > fin.Misaligned_Date__c)){               
-                lstFinAlertMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Regional_Project__r.Name+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Regional.Project Name} and {Local.Project Name} are  misaligned.
-                ++noOfNotifications;                
-            }
-     
-        }        
+        
+          
+     	//Adding alert for Financial Misalignment For Global - Regional - Local business cases
+     	//Adding alert for if Regional-Local financial is misaligned (Other than GKM3) 
+	    if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3)
+	    {
+	        List<IPM_Financial__c> RegionalOrLocalFins = new List<IPM_Financial__c>();
+			RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c, Gate_Keeping_Model__c,Global_External_Id__c 
+	        FROM IPM_Financial__c WHERE  Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
+	        lstFinAlertMessage = new list<String>();       
+	        lstFinTLDAlertMessage = new list<String>();
+	        LstLocalFinTLDMisalignedMessage = new List<String>();
+	                lstFinDataMissingAlertMessage = new list<String>();
+	
+	        for(IPM_Financial__c fin: RegionalOrLocalFins ){  
+				if(fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c ){               
+	                lstFinAlertMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Regional_Project__r.Name+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Regional.Project Name} and {Local.Project Name} are  misaligned.
+	                ++noOfNotifications;                
+	            } 
+	        }  
+			//Adding alert for if Global-Local financial is misaligned (for GKM3)   
+		}else if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_ProjectGKM__c == IPM_ConstantUtils.GATE_KEEPING_MODEL_3)
+		{
+	
+			List<IPM_Financial__c> GlobalOrLocalFins = new List<IPM_Financial__c>();
+			GlobalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, IPM_Project_Rollout__c,IPM_Project_Rollout__r.IPM_Project__c, IPM_Project_Rollout__r.IPM_Project__r.Name, IPM_Project_Rollout__r.IPM_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c, Gate_Keeping_Model__c,Global_External_Id__c 
+			FROM IPM_Financial__c WHERE  IPM_Project_Rollout__r.IPM_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
+			
+			
+			lstFinAlertMessage = new list<String>();       
+			lstFinTLDAlertMessage = new list<String>();
+			LstLocalFinTLDMisalignedMessage = new List<String>();
+			lstFinDataMissingAlertMessage = new list<String>();
+		
+			for(IPM_Financial__c fin: GlobalOrLocalFins ){  
+				
+	
+				if(fin.Local_Project__c != NULL && fin.IPM_Project_Rollout__c != null && fin.IPM_Project_Rollout__r.IPM_Project__c != NULL && fin.Misaligned__c){               
+					lstFinAlertMessage.add(IPM_ConstantUtils.FIN_MISALIGNED_ALERT1 +fin.Global_External_Id__c+ IPM_ConstantUtils.FIN_MISALIGNED_ALERT2 +fin.Local_Project__r.Name+IPM_ConstantUtils.FIN_MISALIGNED_ALERT3); //The financials for project {Global.Project Name} and {Local.Project Name} are  misaligned.
+					++noOfNotifications;                
+				}
+	 		
+			}        
+		}        
         
         //Adding alert for TLD misalignment
         if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
@@ -733,8 +783,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                                 IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
-                                                                                IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND 
+                                                                                (IPM_Project_Document__r.IPM_GateDocuments__c = :currGate OR IPM_Project_Document__r.IPM_GateDocuments__c = :pld_STR) AND
             (IPM_FunctionalRole__c not in :functionalRoleSet OR IPM_FunctionalRole__c in :plFunctionalRoleSet) AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
@@ -743,8 +793,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
             IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
-                                                                                IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND 
+                                                                                (IPM_Project_Document__r.IPM_GateDocuments__c = :currGate OR IPM_Project_Document__r.IPM_GateDocuments__c = :pld_STR) AND
                                                                                 IPM_FunctionalRole__c =: userRole AND
                                                                                 IPM_Default_Section__c = true 
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000];

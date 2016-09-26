@@ -45,11 +45,13 @@
             </apex:outputPanel>
         </div>
   
-        <apex:outputPanel id="validationErrorMsg" >
-            <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!NOT(ISBLANK(validationError))}"/> 
-        </apex:outputPanel>
+        <apex:outputPanel id="validationErrorMsg" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}" > 
+            <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" /> 
+        </apex:outputPanel> 
         
-        <table class="ipmTable table table-bordered myListTable">
+        <!-- ---- Table Heading for Non GKM3 Models starts here  ---------->
+        <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+            <table class="ipmTable table table-bordered myListTable">
             <thead class="">
                 <tr>
                     <th width="34px" scope="col" colspan="1">
@@ -90,6 +92,44 @@
                 </tr>
             </thead>
         </table>
+        </apex:outputPanel>
+        <!-- ---- Table Heading for Non GKM3 Models ends here  ---------->
+        
+        <!-- ---- Table Heading for GKM3 Models starts here  ---------->
+        <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c = 'GKM3'}">
+            <table class="ipmTable table table-bordered myListTable">
+                <thead class="">
+                    <tr>
+                        <th width="34px" scope="col" colspan="1"> 
+                            <div>
+                                <div class="colCompleted incHeight"><span> </span></div>
+                            </div>
+                        </th>
+                        <th scope="col" width="150px" colspan="1">
+                            <div>
+                                <div class="colProject incHeight"><span>{!$Label.IPM_ROLLOUT_NAME}</span></div>
+                            </div>              
+                        </th>
+                       <th scope="col" width="60px" colspan="1">
+                            <div>
+                                <div class="colCategory incHeight"><span>{!$Label.IPM_KEY}</span></div>
+                            </div>
+                        </th>
+                        <th scope="col" width="190px" colspan="1">
+                            <div>
+                                <div class="colCategory incHeight"><span>{!$Label.IPM_TARGET_LAUNCH_DATE}</span></div>
+                            </div>
+                        </th>
+                        <th scope="col" width="100px" colspan="1">
+                            <div>
+                                <div class="colPhase incHeight"><span>{!$Label.IPM_Status}</span></div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </apex:outputPanel>    
+        <!-- ---- Table Heading for GKM3 Models ends here  ---------->
         <apex:outputPanel id="rolloutsPanel" >
         <apex:outputPanel id="rolloutPanel">
             <div class="tableAccrdion">
@@ -260,9 +300,16 @@
                                             </div>
                                         </th>
                                         <th scope="col" width="150px" colspan="">                                                    
-                                                <span class="rollsubhead">
-                                                    <strong>{!regionalRollout.IPM_Rollout_Project__c}</strong>
-                                                </span>                                       
+                                            <span class="rollsubhead">
+                                                <strong>
+                                                    <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+                                                        {!regionalRollout.IPM_Rollout_Project__c}
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c = 'GKM3'}">
+                                                        {!regionalRollout.Market_Cluster_Name__c}
+                                                    </apex:outputPanel>
+                                                </strong>
+                                            </span>                                        
                                         </th> 
                                         <th scope="col" width="60px" colspan="">                                                
                                                 <span class="rollsubhead">
@@ -270,17 +317,19 @@
                                                 </span>                                        
                                         </th>
                                         <th scope="col" width="190px" colspan="1">
-                                            <apex:outputField value="{!regionalRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>                                            
+                                            <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+                                                <apex:outputField value="{!regionalRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}" />
+                                            </apex:outputPanel>
                                         </th>
-                                        <th scope="col" width="100px" colspan="1">                                          
-                                        </th>
+                                        <th scope="col" width="100px" colspan="1"> </th>   
+                                        
                                          
                                         <th scope="col" width="180px" colspan="1">
-                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             
-                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
+                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
                                                                                            
                                                <apex:outputPanel id="projectLeaderPanel" rendered="{!AND(isEditable,isEditMode)}">
                                                     <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Regional_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Project_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
@@ -291,12 +340,12 @@
                                             </apex:outputPanel>
                                         </th>
                                         
-                                        <th scope="col" width="130px" colspan="1"> 
-                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                        <th scope="col" width="120px" colspan="1"> 
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             
-                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">   
+                                            <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block" rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">   
                                                                                       
                                                 <apex:outputPanel id="financeLeaderPanel" rendered="{!AND(isEditMode,isEditable)}"> 
                                                     <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Add_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!regionalRollout.Id}&RolloutSpan=Regional" data-backdrop="static" data-keyboard="false" >
@@ -317,50 +366,91 @@
                             <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
                             <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />
                                 <div class="pt20">
-                                    <table class="rollouttable editable">                                 
-                                        <tr>
-                                            <td scope="col" width="34px">
-                                                <div class="incHeight">
-                                                    <span class="rollsubhead">
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="150px">
-                                                <div>              
-                                                    <span class="rollsubhead wordwrap">
-                                                        {!localRollout.IPM_Rollout_Project__c}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="60px">
-                                                <div class="incHeight">              
-                                                    <span class="key wordwrap">
-                                                        <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!localRollout.KeyMCO__c}"/>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="190px">
-                                                <div class="incHeight">                                                     
-                                                    <input type="hidden" id="hiddenDateVal" /> 
-                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
-                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="checkTLDDate(this)"/> 
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="100px">
-                                            	<!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
-                                                <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
-                                                <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
-                                            </td>
-                                            <td scope="col" width="180px">
-                                                <div class="incHeight">
-                                                </div>
-                                            </td>
-                                            <td scope="col" width="130px">
-                                                <div>
-                                                </div>
-                                            </td>                
-                                        </tr>                                    
-                                    </table>
+                                	<apex:outputPanel rendered="{!project.IPM_ProjectGKM__c != 'GKM3'}">
+                                	 
+	                                    <table class="rollouttable editable">                                 
+	                                        <tr>
+	                                            <td scope="col" width="34px">
+	                                                <div class="incHeight">
+	                                                    <span class="rollsubhead">
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="150px">
+	                                                <div>              
+	                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c)),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
+	                                                        {!localRollout.IPM_Rollout_Project__c}
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="60px">
+	                                                <div class="incHeight">              
+	                                                    <span class="key wordwrap">
+	                                                        <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!localRollout.KeyMCO__c}"/>
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="190px">
+	                                                <div class="incHeight">     
+	                                                                                          
+	                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
+                                                        <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="alignTLD(this);"/> 
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="100px">
+	                                                <!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
+	                                                <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
+	                                                <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
+	                                            </td>
+	                                              
+	                                            <td scope="col" width="180px" ></td>
+	                                            <td scope="col" width="120px" > </td> 
+	                                            
+	                                        </tr> 
+	                                        </table>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel rendered="{!project.IPM_ProjectGKM__c = 'GKM3'}">
+                                        
+	                                        <table class="rollouttable editable">                                 
+	                                        <tr>
+	                                            <td scope="col" width="34px">
+	                                                <div class="incHeight">
+	                                                    <span class="rollsubhead">
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="150px">
+	                                                <div>              
+	                                                    <span class="rollsubhead wordwrap" title="{!IF(AND(project.IPM_ProjectGKM__c = 'GKM3',NOT(localRollout.KeyMCO__c)),$Label.IPM_Non_Key_Project_Creation_GKM3, '')}">
+	                                                        {!localRollout.IPM_Rollout_Project__c}
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="60px">
+	                                                <div class="incHeight">              
+	                                                    <span class="key wordwrap">
+	                                                        <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!localRollout.KeyMCO__c}"/>
+	                                                    </span>
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="190px">
+	                                                <div class="incHeight">     
+	                                                                                          
+	                                                    <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!OR(NOT(isEditMode),AND(isEditMode,NOT(isEditable) ) )}"/>
+                                                        <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!AND(isEditMode,isEditable)}" onchange="alignTLD(this);"/> 
+	                                                </div>
+	                                            </td>
+	                                            <td scope="col" width="100px">
+	                                                <!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
+	                                                <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
+	                                                <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
+	                                            </td>
+	                                              
+	                                        </tr> 
+	                                        </table>
+                                        
+                                        </apex:outputPanel>
                                     <table class="rollouttable editable">
                                         <tr class="secrow">
                                             <td width="3%"> </td>
@@ -488,6 +578,13 @@
                 <div class="modal-body">
                     <div class="removeapprpopup">
                         <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
+                        <apex:outputpanel rendered="{!showAllignAllMCOChoice}" >
+	                        <p><span class="removeApprText">{!$Label.IPM_Align_AllMCO_TLD}</span></p>
+	                        <apex:selectRadio value="{!alignAllMCOTLDs}" styleclass="ipmRadioButton"> 
+	                            <apex:selectoption itemvalue="True"  itemlabel="Yes"/> 
+	                            <apex:selectoption itemvalue="False"  itemlabel="No"/> 
+	                        </apex:selectRadio>
+                        </apex:outputpanel>
                         <div class="remvButtonContainer pull-right">  
                             <div class="pull-left buttonMarginRight noPadright">
                                 <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
@@ -497,7 +594,10 @@
                     <apex:commandLink value="{!$Label.Agree_and_Proceed}" rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  onclick="setChangedDate();skipValidation();" oncomplete="hideTldWarningDialog();" status="loadingStatus">
                     </apex:commandLink>
                         
-                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}" status="loadingStatus" />
+                        <apex:actionFunction name="saveChangedTLDjs" action="{!saveRollout}"/>  
+                        <apex:actionFunction name="alignTLDs"   action="{!null}" rerender=""> 
+                            <apex:param name="endDate" assignTo="{!allignedDateValue}" value=""/>      
+                        </apex:actionFunction>
                          </div>
                         </div>
                     </div>        

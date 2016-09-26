@@ -33,6 +33,21 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Base_II__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Base_I__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Bases_III__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Brand_Positioning__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -406,7 +421,11 @@
         <field>IPM_Analytics__c.IPM_Auto_Aligned_Fin_TLD__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Analytics__c.IPM_Auto_Aligned_Fin_TLD_for_financial__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Analytics__c.IPM_BET_Final_Release_Due_date__c</field>
@@ -665,6 +684,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Analytics__c.IPM_Project_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Project_Phantom_Non_Key__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -5282,6 +5306,11 @@
         <field>IPM_Project__c.BET_Archive_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Project__c.IPM_Parent_BI__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.BET_Archived_BET_Text__c</field>

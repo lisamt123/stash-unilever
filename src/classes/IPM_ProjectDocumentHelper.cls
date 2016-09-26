@@ -51,6 +51,7 @@ public with sharing class IPM_ProjectDocumentHelper
                 }
             }  
         }
+		createPDLDocument(projectMap);
         return preparedprojectDocumentList;
     }
     public static void createProjectdocument(IPM_Project__c project,IPM_Project_Type__c associatedProjectType,List<IPM_Project_Document__c> preparedprojectDocumentList, String projectGate)
@@ -499,5 +500,87 @@ public with sharing class IPM_ProjectDocumentHelper
                 }
             }
         }
+    }
+	/********************************************************************************************************
+    @Description:Create PDL Document for GKM3 model in feasibility phase
+    @Param:Map of incoming projects
+    ********************************************************************************************************/
+    public static void createPDLDocument(Map<Id,IPM_Project__c> projectMap){
+    	List<IPM_Project_Document__c> projDocList = new List<IPM_Project_Document__c>(); //declare project document list which need to upsert
+    	List<IPM_Project_Document__c> existingProjDocList = new List<IPM_Project_Document__c>();//declare project document list to hold existing PDL document 
+    	list<IPM_Document_Template__c> pdlDocimentTemplates = new list<IPM_Document_Template__c>();//declare document template list
+    	Set<id> projectIdForDocs = new Set<id>();//set of project id which having PDL document,haldle for complexity change
+    	pdlDocimentTemplates =[SELECT id,IPM_Project_Template__c,IPM_Document_Type__c,IPM_Document_Order__c,
+						    	(SELECT IPM_Section_Name__c,External_ID__c,IPM_Section_Sequence__c,IPM_FunctionalRole__c,
+						         IPM_Section_Help_Text__c,IPM_Negotiable__c,IPM_IS_Default_Section__c,IPM_Section_Type__c,
+						         IPM_Character_Limit__c,IPM_Has_Appendix__c, Is_IPM_Global_Consolidated__c FROM IPM_Sections__r) FROM IPM_Document_Template__c WHERE IPM_Document_Template_Name__c =: IPM_ConstantUtils.PRODUCT_DESIGN_LOCK LIMIT 1];
+    	
+    	existingProjDocList = [SELECT id,IPM_Project__c FROM IPM_Project_Document__c WHERE IPM_GateDocuments__c = :IPM_ConstantUtils.PRODUCT_DESIGN_LOCK AND IPM_Project__c IN:projectMap.keySet() LIMIT 50000];
+    	if(!pdlDocimentTemplates.isEmpty())
+    	{
+	    	for(IPM_Project_Document__c prodDcument :existingProjDocList)
+	    	{
+	    		projectIdForDocs.add(prodDcument.IPM_Project__c);
+	    	}
+	    	for(IPM_Project__c project : projectMap.Values())
+	    	{
+	    		if(!projectIdForDocs.contains(project.id) && IPM_ConstantUtils.GATE_KEEPING_MODEL_3.Equals(project.IPM_ProjectGKM__c) && 
+	    		IPM_ConstantUtils.PHASE_FEASIBILITY.Equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.Equals(project.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.Equals(project.IPMProject_Span__c))
+	    		{
+	    			IPM_Project_Document__c projDoc = new IPM_Project_Document__c(); 
+		            projDoc.IPM_Project__c = project.Id;
+		            projDoc.IPM_Project_Template__c = pdlDocimentTemplates[0].IPM_Project_Template__c;
+		            projDoc.IPM_Document_Template__c = pdlDocimentTemplates[0].ID; 
+		            projDoc.IPM_GateDocuments__c = pdlDocimentTemplates[0].IPM_Document_Type__c; 
+		            projDoc.IPM_Document_Complexity__c = project.IPM_Complexity__c;                                         
+		            projDoc.IPM_Document_Order__c=pdlDocimentTemplates[0].IPM_Document_Order__c; 
+		            projDoc.IPM_Project_External_Id__c = project.Project_External_ID__c;
+		            projDoc.IPM_Document_Status__c =  IPM_ConstantUtils.STATUS_NOT_STARTED;
+	    			projDocList.add(projDoc);
+	    				
+	    		}
+	    	}
+      	}
+    	
+    	if(!projDocList.isEmpty())
+    	{
+    		upsert projDocList;//exception handled through transactional
+	    	createNewPDLsection(projDocList,pdlDocimentTemplates);                        
+	    }
+    	
+    }
+    /***************************************************************************************************
+    @Description:Create GKM3 PDL document setion
+    @Param1:List of documents
+    @Param2:List of master sections
+    ****************************************************************************************************/
+    public static void createNewPDLsection(List<IPM_Project_Document__c>projDocList,List<IPM_Document_Template__c>pdlDocimentTemplates){
+    	list<IPM_Project_Document_Section__c> pdlDocumentSectionList = new list<IPM_Project_Document_Section__c>();
+        for(IPM_Project_Document__c projectDocument : projDocList){
+	        for(IPM_Section__c section : pdlDocimentTemplates[0].IPM_Sections__r)
+	        {
+	            IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
+	            projDocSect.IPM_Project_Document__c = projectDocument.Id;
+	            projDocSect.IPM_Section_Name__c = section.IPM_Section_Name__c;
+	            projDocSect.IPM_Master_Section_External_Id__c = section.External_ID__c; 
+	            projDocSect.IPM_Section__c = section.Id;
+	            projDocSect.IPM_Section_Sequence_Number__c = section.IPM_Section_Sequence__c;
+	            projDocSect.IPM_FunctionalRole__c = section.IPM_FunctionalRole__c;
+	            projDocSect.IPM_Section_Help_Text_Long__c = section.IPM_Section_Help_Text__c;
+	            projDocSect.IPM_Negotiable__c = section.IPM_Negotiable__c;
+	      		projDocSect.IPM_Default_Section__c=section.IPM_IS_Default_Section__c;
+	            projDocSect.IPM_Section_Type__c = section.IPM_Section_Type__c;
+	            projDocSect.IPM_Has_Appendix__c=section.IPM_Has_Appendix__c;
+	            projDocSect.Is_IPM_Global_Consolidated__c=section.Is_IPM_Global_Consolidated__c;
+	            projDocSect.IPM_Summary_Character_Remaining__c = section.IPM_Character_Limit__c;
+	            pdlDocumentSectionList.add(projDocSect);
+	            
+	        }
+        }
+    	if(!pdlDocumentSectionList.isEmpty())
+    	{
+    		upsert pdlDocumentSectionList;	//exception handled through transactional
+    	}
+    
     }
 }

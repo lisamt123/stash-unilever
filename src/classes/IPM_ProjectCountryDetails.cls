@@ -590,6 +590,47 @@ public with sharing class IPM_ProjectCountryDetails{
     }
     
     
+    public static void checkAtLeastOneAssmnt(Map<Id,IPM_Project__c> projectMap)
+    {       
+        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r  where    IPM_Country__r.isActive__c=true) from IPM_Project__c Where Id IN:projectMap.keySet() LIMIT 50000]; 
+        
+        set<id> setAssProjIds = new set<id>();
+        //find all Projects which have an assessment for the current project phase
+       if(projList != null && !projList.isEmpty())
+       {
+            for(IPM_Project__c proj : projList)
+            {
+                if(proj.IPM_Assessments__r != null && !proj.IPM_Assessments__r.isEmpty())
+                {
+                    for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r)
+                    {
+                        if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) )
+                        {
+                            projectMap.get(proj.Id).IPM_Exists_AtLeast_OneAssmntPerEICountry__c= true;
+                            setAssProjIds.add(proj.Id);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        //Update eligible projects
+         if(projList != null && !projList.isEmpty())
+         {
+            for(IPM_Project__c proj : projList)
+            {
+                if(!setAssProjIds.isEmpty() && setAssProjIds.contains(proj.id))
+                {
+                    projectMap.get(proj.Id).IPM_Exists_AtLeast_OneAssmntPerEICountry__c= true;          
+                }
+                else
+                {
+                    projectMap.get(proj.Id).IPM_Exists_AtLeast_OneAssmntPerEICountry__c= false;
+                }               
+            }               
+         }
+    }
     /****************************************************************************
     @Description : check if the Projects have at least one assessment for them
     @Params projIdSet:   the set of IDs of the projects which need to be updated with IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag.
@@ -598,27 +639,41 @@ public with sharing class IPM_ProjectCountryDetails{
     *****************************************************************************/
     
     public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){       
-        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
-        List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();   
-        
+        List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r  where    IPM_Country__r.isActive__c=true) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
+        Map<Id,IPM_Project__c> toUpdateProjMap = new Map<Id,IPM_Project__c>();   
+        set<id> setAssProjIds = new set<id>();
         //find all Projects which have an assessment for the current project phase
-                                if(projList != null && !projList.isEmpty()){
+       if(projList != null && !projList.isEmpty()){
+
             for(IPM_Project__c proj : projList){
                 if(proj.IPM_Assessments__r != null && !proj.IPM_Assessments__r.isEmpty()){
                     for(IPM_Assessment__c assmnt : proj.IPM_Assessments__r){
                         if( assmnt.IPM_Country__c != null && String.isNotBlank(proj.IPM_Phase__c) && String.isNotBlank(assmnt.Project_Phase__c) && String.valueOf(proj.IPM_Phase__c).equalsIgnoreCase(assmnt.Project_Phase__c) ){
-                            toUpdateProjList.add(new IPM_Project__c( Id = proj.Id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true ));
-                        	break;
+                            toUpdateProjMap.put(proj.Id, new IPM_Project__c(Id= proj.Id,IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true));
+                            setAssProjIds.add(proj.Id);
+                            break;
                         }
                     }
                 }
             }
         }
+        
+        //Update eligible projects
+         if(projList != null && !projList.isEmpty()){
+            for(IPM_Project__c proj : projList){
+                if(!setAssProjIds.isEmpty() && setAssProjIds.contains(proj.id)){
+                    toUpdateProjMap.put(proj.Id, new IPM_Project__c(Id= proj.Id,IPM_Exists_AtLeast_OneAssmntPerEICountry__c = true));         
+                }
+                else{
+                    toUpdateProjMap.put(proj.Id, new IPM_Project__c(Id= proj.Id,IPM_Exists_AtLeast_OneAssmntPerEICountry__c = false));
+                }               
+            }               
+         }
                                 
         //update the project with appropriate value of IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag
-        if(toUpdateProjList != null && !toUpdateProjList.isEmpty()){
+        if(toUpdateProjMap != null && !toUpdateProjMap.isEmpty()){
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
-            Update toUpdateProjList;
+            Update toUpdateProjMap.values();
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
         checkAtLeastOneAssmntPerEICountryVar = true;
@@ -800,7 +855,7 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params ProjectsToEvaluate:  Set Of Project Ids
     *****************************************************************************/
     public static Map<Id,Boolean> getProjectIdToSyncMap(Set<Id> projectsToEvaluate) {
-        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
+        Map<Id,IPM_Project__c> projIdProjectMap =new Map<Id,IPM_Project__c> ([Select Id,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, IPM_ProjectGKM__c From IPM_Project__c Where Id IN :projectsToEvaluate LIMIT 50000 ]);
         Map<Id,Boolean> projectIdToSyncMap =  new Map<Id,Boolean>(); //Map of Project Id and Boolean(Whetehr the project is to be synced or not)
         
         for(IPM_Project__c project: projIdProjectMap.values()){

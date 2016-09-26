@@ -70,7 +70,6 @@ jq.fn.preload = function() {
 };
 
 jq(document).ready(function(){
-
 /* Below script works on click event. It is used to select Table Row and change the row color if the checkbox is checked. */
     jq(document).on('click', '.ipmCheckbox input[type="checkbox"]:not(:disabled)', function() {
         var chkInput = jq(this);
@@ -83,3 +82,43 @@ jq(document).ready(function(){
         }
     });
 });
+
+function getBrandPositionValues() {
+    if(document.getElementById("srchBrand").value.replace(/%/g,"").length > 1) {
+        var brandState = {
+            brandSearchResults : document.getElementById("brandSearchResults"),
+            startTime : new Date().getTime()
+        };
+        
+        var callback = {
+            onSuccess: getBrandPositionSuccess,
+            onFailure: getBrandPositionFailed,
+            source: brandState
+        };
+        
+        sforce.connection.query(
+            "SELECT Name Brands FROM MDO_BrandPosition__c WHERE ID in (SELECT brand_position_id__c FROM MDO_BrandPositions__c) AND Name LIKE '%" + document.getElementById("srchBrand").value.replace(/%/g,"") + "%' GROUP BY Name",
+            callback);
+    }
+}
+    
+function getBrandPositionFailed(error, source) {
+    source.brandSearchResults.innerHTML = "An error has occurred: " + error;
+}
+
+function getBrandPositionSuccess(queryResult, source) {
+    if (queryResult.size > 0) {
+        var brandSearchResults = "";
+        var records = queryResult.getArray('records');
+        if(document.getElementById("srchBrand").value != '' && document.getElementById("srchBrand").value.replace(/%/g,"").length > 1) {
+            for (var i = 0; i < records.length; i++) {
+                var BrandPositions = records[i];
+                brandSearchResults += "<div>"+BrandPositions.Brands + "</div>";
+            }
+        }
+        else {
+            brandSearchResults = '';
+        }
+        source.brandSearchResults.innerHTML = brandSearchResults;
+    }
+}

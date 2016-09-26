@@ -1,26 +1,179 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
-	<labels>
-        <fullName>IPM_No_Sector_is_selected</fullName>
+<labels>
+        <fullName>IPM_Align_AllMCO_TLD</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>No Sector is selected</shortDescription>
-        <value>No Sector is selected</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Select_Sector</fullName>
+        <shortDescription>Align TLD of all MCO&apos;s</shortDescription>
+        <value>Do you wish to align ALL MCOs to this MCO&apos;s new TLD?</value>
+</labels>
+<labels>
+        <fullName>IPM_PDL_Not_Approved</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Select Sector</shortDescription>
-        <value>Select Sector</value>
-    </labels>
-	<labels>
-        <fullName>IPM_Sector</fullName>
+        <shortDescription>PDL Not Approved</shortDescription>
+        <value>Sorry! this cannot be approved yet. See below for details</value>
+</labels>
+<labels>
+        <fullName>IPM_Product_Design_Lock_Document</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Sector</shortDescription>
-        <value>Sector</value>
+        <shortDescription>Product Design Lock Document</shortDescription>
+        <value>Product Design Lock Document:</value>
     </labels>
+<labels>
+        <fullName>IPM_Fill_PDL_Document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fill PDL Document</shortDescription>
+        <value>First get your Product Design Lock Document confirmed at GCLT</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Select_This_MCO_Members</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select members from this MCO</shortDescription>
+        <value>Select members from this MCO</value>
+    </labels>
+    <labels>
+        <fullName>Show_AllUsers_PersonalCare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>show me all users within IPM Navigator from Personal Care</shortDescription>
+        <value>Show me all users within IPM Navigator from Personal Care</value>
+    </labels>
+    <labels>
+        <fullName>Show_My_MCO_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show me users from my MCO</shortDescription>
+        <value>Show me users from my MCO</value>
+    </labels>
+	<labels>
+	        <fullName>IPM_ABOUT_PDL_APPROVED_STATE</fullName>
+	        <categories>EPIC244</categories>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM_ABOUT_PDL_APPROVED_STATE</shortDescription>
+	        <value>This selection is for your Product Design Lock Document approval.</value>
+	    </labels>
+	<labels>
+	        <fullName>IPM_ABOUT_PDL_IN_PROGRESS_STATE</fullName>
+	        <categories>EPIC244</categories>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM_ABOUT_PDL_IN_PROGRESS_STATE</shortDescription>
+	        <value>This selection indicates that the Product Design Lock Document is in progress.</value>
+	    </labels>
+	<labels>
+	        <fullName>IPM_COMMENTS_FOR_PDL_DOC</fullName>
+	        <categories>EPIC244</categories>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM_COMMENTS_FOR_PDL_DOC</shortDescription>
+	        <value>Comments on status update (optional)</value>
+	    </labels>
+	<labels>
+	        <fullName>IPM_COMMENTS_FOR_PDL_GATE_DOC</fullName>
+	        <categories>EPIC244</categories>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM_COMMENTS_FOR_PDL_GATE_DOC</shortDescription>
+	        <value>Comments from Product Design Lock Approval</value>
+	    </labels>
+	<labels>
+	        <fullName>IPM_PDLPhaseChangeBKProcessWarning</fullName>
+	        <categories>EPIC244</categories>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM_PDLPhaseChangeBKProcessWarning</shortDescription>
+	        <value>Changing the status of the Product Design Lock Document to Approved will make all sections read-only. This action cannot be reversed</value>
+	    </labels>
+	<labels>
+	        <fullName>IPM_PDL_Validation_Msg1</fullName>
+	        <categories>EPIC244</categories>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM_PDL_Validation_Msg1</shortDescription>
+	        <value>Sorry! Your Product Design Lock Document cannot be approved yet. See below for details</value>
+	    </labels>
+	<labels>
+	        <fullName>IPM_PDL_Validation_Msg2</fullName>
+	        <categories>EPIC244</categories>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM_PDL_Validation_Msg2</shortDescription>
+	        <value>Please complete the following sections</value>
+	</labels>
+
+	<labels>
+	        <fullName>Accept_from_Global</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>Accept from Global</shortDescription>
+	        <value>Accept Global TLD</value>
+	</labels>
+	<labels>
+	        <fullName>IPM_TLD_VR_Misaligned_At_Global</fullName>
+	        <language>en_US</language>
+	        <protected>false</protected>
+	        <shortDescription>IPM TLD VR Misaligned At Global</shortDescription>
+	        <value>Target Launch Date for {0} is misaligned: Value at Global = {1} value at Local = {2}.</value>
+	</labels>
+    <labels>
+	<fullName>IPM_Input_Dont_Use_Char</fullName>
+	<categories>IPM_ProjectSearchPage</categories>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM_Input_Dont_Use_Char</shortDescription>
+	<value>Please do not use the character &apos;%&apos;. It will not be considered.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Current_PDL_Document_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current PDL Document Status</shortDescription>
+        <value>Current PDL Document Status</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Product_Design_Lock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Design Lock</shortDescription>
+        <value>Product Design Lock</value>
+    </labels>
+    <labels>
+		<fullName>IPM_PDL_Due_Date_Before_Contract</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_PDL_Due_Date_Before_Contract</shortDescription>
+		<value>The Product Design Lock due date must be the same as, or earlier than, the Contract Gate due date.</value>
+	</labels>
+	<labels>
+		<fullName>IPM_Contract_Due_Date_After_PDL</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_Contract_Due_Date_After_PDL</shortDescription>
+		<value>The Contract Gate due date must be the same as, or after, the Product Design Lock due date.</value>
+	</labels>
+	<labels>
+		<fullName>IPM_PDL_Due_Date_After_Charter</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_PDL_Due_Date_After_Charter</shortDescription>
+		<value>The Product Design Lock due date must be on or after the Charter Gate due date.</value>
+	</labels>
+	<labels>
+		<fullName>IPM_Charter_Due_Date_Before_PDL</fullName>
+		<categories>Milestone</categories>
+		<language>en_US</language>
+		<protected>false</protected>
+		<shortDescription>IPM_Charter_Due_Date_Before_PDL</shortDescription>
+		<value>The Charter Gate due date must be on or before both Product Design Lock and Contract Gate due date.</value>
+	</labels>
     <labels>
         <fullName>IPM_ShowEntity</fullName>
         <language>en_US</language>
@@ -40,9 +193,8 @@
         <protected>false</protected>
         <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
         <value>BOSSCARD Shared Via Chatter</value>
-    </labels>
-	
-	 <labels>
+    </labels>	
+    <labels>
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -349,6 +501,13 @@
         <protected>false</protected>
         <shortDescription>IPM ASK IPM</shortDescription>
         <value>Ask IPM</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ASK_IPM_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ASK_IPM_URL</shortDescription>
+        <value>https://unilever.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9E0000000Qc6Y</value>
     </labels>
     <labels>
         <fullName>IPM_ASSIGNEE</fullName>
@@ -5297,7 +5456,7 @@ White Space is a strategic classifier – it means launching an existing Unileve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Milestone_Desc</shortDescription>
-        <value>Below key milestones required by your category. Please add a due date for each milestone.&lt;br/&gt;
+        <value>Below are the key milestones required by your category. Please add a due date for each milestone.&lt;br/&gt;
 For either option it is possible to add/remove sections and To-do&apos;s later. You may also add mini-milestones.</value>
     </labels>
     <labels>
@@ -9733,6 +9892,203 @@ If you discover that stopping this project was a mistake you can undo this actio
         <protected>false</protected>
         <shortDescription>IPM  Team Members Report</shortDescription>
         <value>IPM  Team Members Report&apos;s Extract</value>
+    </labels>
+    <labels>
+			<fullName>IPM_KEY_MCO_NEEDS_GKM3</fullName>
+			<language>en_US</language>
+			<protected>false</protected>
+			<shortDescription>IPM_KEY_MCO_NEEDS_GKM3</shortDescription>
+			<value>An MCO is marked as Key if it has a large contribution to the Business Case. 
+
+	Consolidation of the  Key MCOs should make up at least 75% of the Business Case and only Key MCOs need to confirm the Business Case at Contract and Market Ready Gates. 
+
+	MCOs not indicated as Key will have a consolidated Business Case (per Market Cluster) and the Local Rollout Projects will only be created after Market Ready Gate</value>
+    </labels>
+	
+	<labels>
+        <fullName>IPM_Non_Key_Project_Creation_GKM3</fullName>
+        <categories>IPM</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Non Key Project Creation GKM3</shortDescription>
+        <value>This Local Rollout Project will be created after Market Ready Gate.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_NonKey_Business_Case_Changed_Alert</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM NonKey Business Case Changed Alert</shortDescription>
+        <value>The MCOs included in this Non-Key Business Case have changed. Please review the Business Case.</value>
+    </labels>
+	
+	<labels>
+        <fullName>IPM_MCO_Leader_for_GKM3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MCO Leader for GKM3</shortDescription>
+        <value>Please fill MCO Rollout Leader in Key MCOs before proposing your document.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_MCO_Leader_and_Launch_Date_for_GKM3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MCO Leader and Launch Date for GKM3</shortDescription>
+        <value>Please fill MCO Rollout Leader and Target Launch Date in all MCOs before proposing your document.</value>
+    </labels>
+	
+	<labels>
+        <fullName>IPM_Rollout_AS_Caps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Rollout_AS</shortDescription>
+        <value>Rollout As</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Sector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sector</shortDescription>
+        <value>Sector</value>
+    </labels>
+	<labels>
+        <fullName>IPM_No_Sector_is_selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Sector is selected</shortDescription>
+        <value>No Sector is selected</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Select_Sector</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Sector</shortDescription>
+        <value>Select Sector</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Accept_Global_BC</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Accept Global BC</shortDescription>
+        <value>Accept Global BC</value>
+    </labels>
+	<labels>
+        <fullName>IPM_ABOUT_TO_REFRESH_GLOBAL_FIN_BUSINESS_CASE</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM ABOUT TO REFRESH GLOBAL FIN BUSINESS CASE</shortDescription>
+        <value>You are about to refresh the Financial Business Case from the Global Project Leader. Are you sure you want to continue?</value>
+    </labels>
+	<labels>
+        <fullName>IPM_AT_GLOBAL_LEVEL</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_AT_GLOBAL_LEVEL</shortDescription>
+        <value>at Global level =</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Select_This_MCO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select users from this MCO</shortDescription>
+        <value>Select users from this MCO</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Select_All</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select from all of Unilever</shortDescription>
+        <value>Select from all of Unilever</value>
+    </labels>
+	<labels>
+        <fullName>IPM_GlobalClaimsFromPDL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GlobalClaimsFromPDL</shortDescription>
+        <value>Global Claims from Product Design Lock Document</value>
+    </labels>
+	<labels>
+        <fullName>IPM_GlobalClaimsOnLocal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GlobalClaimsOnLocal</shortDescription>
+        <value>Please indicate in your Summary text box which Claims you intend to use - these will go to your Gate Document.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ClaimDeletionAlertMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ClaimDeletionAlertMessage</shortDescription>
+        <value>Deleting this Global Claim will remove the claim from all countries to which it has been added.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_DeleteClaimButtonText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_DeleteClaimButtonText</shortDescription>
+        <value>Delete Global Claim</value>
+    </labels>
+    <labels>
+        <fullName>IPM_GlobalClaimRemoval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GlobalClaimRemoval</shortDescription>
+        <value>Confirm Global Claim Removal</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Local_project_create_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Local project create message</shortDescription>
+        <value>Please add a MCO Rollout Leader to the MCO in your Rollout Plan to trigger creation of the Local Rollout project</value>
+    </labels>
+	<labels>
+        <fullName>IPM_Finance_Align_Improved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Finance Align improved message for GKM3 projects</shortDescription>
+        <value>Please align Financials for {0} between your view and Local view before proposal.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_TDL_Align_Improved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TLD validation improved message used for GKM3</shortDescription>
+        <value>Please align launch dates for {0} between your view and Local view before proposal</value>
+    </labels>
+	 <labels>
+        <fullName>IPM_confirm_business_case_in_gate_Improved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM confirm business case in gate for GKM3 Proposal</shortDescription>
+        <value>Please confirm business case for {0} before proposal.</value>
+    </labels>
+	<labels>
+        <fullName>IPM_OVER_FIN_BC_F_OR_C_GKM3</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM OVER FIN BC F OR C GKM3</shortDescription>
+        <value>You are about to refresh the Financial Business Case from the Local Project Leader. This action will overwrite the numbers you submitted so far. Are you sure you want to continue?</value>
+    </labels>
+    <labels>
+        <fullName>IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_KEY_GKM3</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM OVER FIN BC MR OR MD OR PLE PREV KEY GKM3</shortDescription>
+        <value>You are about to refresh the Financial Business Case from the Local Project Leader. This action will overwrite the numbers you submitted before Market Ready Gate approval. Are you sure you want to continue?</value>
+    </labels>
+    <labels>
+        <fullName>IPM_OVER_FIN_BC_MR_OR_MD_OR_PLE_PREV_NONKEY_GKM3</fullName>
+        <categories>Financial</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM OVER FIN BC MR OR MD OR PLE PREV NONKEY GKM3</shortDescription>
+        <value>You are about to refresh the Financial Business Case from the Local Project Leader.Please make sure you subtract the gTO and iTO numbers from the Non-Key Business Case in Financials to avoid double counting.Are you sure you want to continue?</value>
     </labels>
 </CustomLabels>
 

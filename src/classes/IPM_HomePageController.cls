@@ -91,7 +91,7 @@ public with sharing class IPM_HomePageController
 *@Description : This is to order the projectsNames
 ****************************************************************/
         
-        List<IPM_Project__c> lstProjects =[Select Name,IPM_Project_Type__c,Rollout_Plan_Target_Launch_Date__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPMRegion__c,IPM_Bosscard__r.Name,
+        List<IPM_Project__c> lstProjects =[Select Name,IPM_ProjectGKM__c,IPM_Project_Type__c,Rollout_Plan_Target_Launch_Date__c,IPMProject_Span__c,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPMRegion__c,IPM_Bosscard__r.Name,
                                            IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Logo__c,IPM_Brand__c,IPM_Category_Text__c,Deputy_Project_Leader__r.Name,IPM_Target_Launch_Dates__c,
                                            BET_TLD_First_Release_Date__c,BET_MS_First_Release_Date__c,IPM_Project_Leader__r.Name,BET_TLD_Final_Release_Date__c,BET_MS_Final_Release_Date__c,
                                             (SELECT IPM_Project_Name__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c from IPM_Projects__r),

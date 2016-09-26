@@ -182,17 +182,22 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             newProject.IPM_ProjectSubType__c='Innovation/Renovation';
             newProject.Name=LOCALPROJECTNAME;
             newProject.IPM_Project_Name__c=LOCALPROJECTNAME;
+            newProject.IPM_ProjectGKM__c = 'GKM2';
             insert newProject;
             List<IPM_Project__c>checkProjectList=[select IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:newProject.ID LIMIT 1];   
             system.assertEquals(checkProjectList[0].IPM_Project_Name__c,LOCALPROJECTNAME,'project name not matched');     
             IPM_TestFactory_Helper.createIPMCountryList(true,1);
             
             //Finance record for global project which is NON consolidate             
-             IPM_Financial__c localRolloutFin = [SELECT id, Local_Project__c,Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
-             Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
+             IPM_Financial__c localRolloutFin = [SELECT id, Local_Project__c,Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, 
+                                                 Regional_External_Id__c, Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c 
+                                                 from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
+             
              system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
              localRolloutFin.Local_Project__c=newProject.id;
+             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
              update localRolloutFin;
+             IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
              IPM_Financial__c localRolloutFins = [SELECT id, Local_Project__c FROM IPM_Financial__c WHERE id=:localRolloutFin.id];
              system.assertEquals(localRolloutFins.Local_Project__c,newProject.id, 'Finance record for Local rollout project is not UPDATED.');
             

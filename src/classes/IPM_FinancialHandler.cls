@@ -6,7 +6,7 @@
 */
 public with sharing class IPM_FinancialHandler implements ITrigger
 {   
-    private Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>();
+	
     
     //removed DEFAULT_FINANCIAL_RECORDTYPE for SONAR Issue
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
@@ -78,6 +78,12 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         {  
             List<IPM_Financial__c> newFinancialList = (List<IPM_Financial__c>) Trigger.new;
             
+            // Manual Misalignment
+            List<IPM_Financial__c> newFinancial = IPM_FinancialHelper.updateManualMisalignment(newFinancialList);
+           
+            if(!newFinancial.isEmpty()){
+                update newFinancial;
+            } 
             
             if(Trigger.isInsert)
             {
@@ -93,6 +99,15 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                   processFinancials(newFinancialList,upsertFinancialYearMap,upsertConsolidatedFinancialMap,consolidationChangedFinancialList);
                   repeatCount++;
                 } 
+                
+                for(IPM_Financial__c financial : (List<IPM_Financial__c>)Trigger.new)
+                {
+                    IPM_Financial__c  oldFinancial = (IPM_Financial__c )Trigger.oldMap.get(financial.Id);
+                    if(isFinancialChange(financial, oldFinancial))
+                    {
+                        finIdsforProjY3iToSync.add(financial.Id); 
+                    }
+                }
             }
 
                 //Insert new Financial Years to Consolidated Financials.
@@ -122,10 +137,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         upsert upsertConsolidatedFinancialMap.values() Financial_External_ID__c;
         
         
-        if(Trigger.isUpdate)
-        {
-            IPM_FinancialHelper.checkIfMisAligned((List<IPM_Financial__c>)Trigger.New,financialDetailMap);
-        }
     }
     
     /**
@@ -357,10 +368,20 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             }
             
             if(newfinancial.Local_Project__c !=null && oldfinancial.Local_Project__c != newfinancial.Local_Project__c)
-	        {
-	            newfinancial.Copy_Regional_to_Local__c = true;
-	            finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
-	        }
+            {   
+                if(newfinancial.Regional_Project__c != null)
+                {
+                    newfinancial.Copy_Regional_to_Local__c = true;
+                }
+                else
+                {
+                    newfinancial.Copy_Global_to_Local__c = true; 
+                }
+                
+                finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
+            }
+            
+            
         }
     }
     
@@ -389,10 +410,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					targetLaunchChangedDateMap.put(financial.Id,financial); 
 					changedFinancialSet.add(financial.Id);
 				}
-				if(isFinancialChange(financial, oldFinancial))
-				{
-					finIdsforProjY3iToSync.add(financial.Id);    
-				} 
+			 
 			}
 			//Insert new Financial Years to Consolidated Financials when TLD is changed for any default Financial.
 			insertFinancialsOnTLDChg(targetLaunchChangedDateMap);

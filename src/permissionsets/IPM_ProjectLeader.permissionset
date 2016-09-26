@@ -989,7 +989,30 @@
         <apexClass>IPM_ExportTeamMembersReportController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    
+	<classAccesses>
+        <apexClass>IPM_GlobalClaimPDLController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Country_Level_Claim__c.IPM_Claim__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Country_Level_Claim__c.Country_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project_Claim__c.IPM_Claim__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Project_Rollout__c.IPM_Project_GKM__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics_OTIF__c.Comm_BET_Final_Release_Availability__c</field>
@@ -1013,6 +1036,21 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics_OTIF__c.IPM_Attractive_Business_Case__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Base_II__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Base_I__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics_OTIF__c.IPM_Bases_III__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1393,7 +1431,11 @@
         <field>IPM_Analytics__c.IPM_Auto_Aligned_Fin_TLD__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Analytics__c.IPM_Auto_Aligned_Fin_TLD_for_financial__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_BET_Final_Release_Due_date__c</field>
@@ -2552,6 +2594,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+	<field>IPM_Project__c.IPM_Parent_BI__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Country__c.IPM_Project__c</field>
         <readable>true</readable>
@@ -3302,9 +3349,74 @@
         <readable>true</readable>
     </fieldPermissions>
 	<fieldPermissions>
-	<editable>true</editable>
-	<field>IPM_Financial__c.IPM_ShowAtGlobal__c</field>
-	<readable>true</readable>
+		<editable>true</editable>
+		<field>IPM_Financial_Year__c.Gate_Keeping_Model__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	
+	
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells_Global__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells_Regional__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Red_Validation_Cells_Local__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Yellow_Validation_Cells_Global__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Yellow_Validation_Cells_Regional__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Yellow_Validation_Cells_Local__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	
+	
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Gate_Keeping_Model__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.Is_Nonkey_Business_Case_Changed__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.MisalignmentManual__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Source_Project__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>false</editable>
+		<field>IPM_Financial__c.Target_Project__c</field>
+		<readable>true</readable>
+	</fieldPermissions>
+	<fieldPermissions>
+		<editable>true</editable>
+		<field>IPM_Financial__c.IPM_ShowAtGlobal__c</field>
+		<readable>true</readable>
 	</fieldPermissions>
 	<fieldPermissions>
 		<editable>true</editable>
@@ -8221,7 +8333,24 @@
         <object>IPM_User_Profile__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>IPM_Project_Claim__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+	<objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>IPM_Country_Level_Claim__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
 
 
     <pageAccesses>
