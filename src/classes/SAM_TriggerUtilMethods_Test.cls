@@ -68,13 +68,15 @@ private class SAM_TriggerUtilMethods_Test {
         objRequest.chk_Is_Quote_Submitted_Once__c = false;
         update objRequest;      
         
-        //SAM_Quote_Line_Item__c ObjQLI =  SAM_TestRequestClass_util.createQuotationDetails(objRequest);
-        //insert ObjQLI;
+        SAM_Quote_Line_Item__c ObjQLI =  SAM_TestRequestClass_util.createQuotationDetails(objRequest);
+        insert ObjQLI;
        
-        SAM_Quote_Line_Item__c QLI = [Select id, pkl_Line_Status__c,md_Request__c from  SAM_Quote_Line_Item__c where md_Request__c=:objRequest.id limit 1];
-        If(QLI != null){
-            QLI.pkl_Line_Status__c = 'Completed';
-        	update QLI;
+        List<SAM_Quote_Line_Item__c> QLI = [Select id, pkl_Line_Status__c,md_Request__c from  SAM_Quote_Line_Item__c where md_Request__c=:objRequest.id];
+        for(SAM_Quote_Line_Item__c q:QLI){
+            q.pkl_Line_Status__c = 'Completed';
+        }
+        If(QLI != null && QLI.size()>0){  
+            update QLI;
             }
         
         objRequest.pkl_SAM_team_Status__c = SAM_Constants.QUOTE_PROVIDED;        
