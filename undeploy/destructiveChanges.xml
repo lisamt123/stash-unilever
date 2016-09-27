@@ -14,6 +14,7 @@
         <name>CustomObjectTranslation</name>
     </types>
 	<types>  
+		<members>FA_Occurence_Member__c</members>
         <members>Course_Attachment__c</members>
 		<members>FA_Course_ChatterGroup__c</members>
 		<members>FA_Course_Facilitator__c</members>
