@@ -11,7 +11,7 @@ History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Pooja Kanani       04/08/2016     INITIAL DEVELOPMENT CSR:
-2.0        Pooja Kanani        09/19/2016    Modified for SonarQube
+2.0         Pooja Kanani        09/19/2016    Modified for SonarQube
 ***********************************************************************/
 @isTest
 public  class SAM_InformationController_Test {
@@ -48,20 +48,23 @@ public  class SAM_InformationController_Test {
         
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
         insert objRequest;
-        objRequest.txt_Master_Clarity_Id__c = NULL;
+        //objRequest.txt_Master_Clarity_Id__c = NULL;
+        objRequest.txt_Master_Clarity_Id__c = '0';
+        objRequest.pkl_Deployments__c = 'Cloud';
+        objRequest.mpkl_Cloud_Platforms__c = null;
         update objRequest;
         
        Test.setCurrentPage(new PageReference('SAM_RequestInformationPage'));
        System.currentPageReference().getParameters().put('id', objRequest.id);
        SAM_RequestInformationController  controller = new SAM_RequestInformationController (new ApexPages.StandardController(objRequest));
-       controller.submit();
+        controller.submit();
         controller.reminderAction();
         controller.emailSentAction();
-       controller.canelAction();
+        controller.canelAction();
         
         Test.stopTest();
         SAM_Request__c objRequestValue = [select id,pkl_Status__c from SAM_Request__c where id =: objRequest.id];
-        System.assert(objRequestValue.pkl_Status__c == SAM_Constants.OPEN);
+        System.assert(objRequestValue.pkl_Status__c != SAM_Constants.OPEN);
     }
 /*******************************************************************
     Purpose: This method covers comments page
@@ -76,7 +79,9 @@ public  class SAM_InformationController_Test {
         
         SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
         insert objRequest;
-        
+      
+        objRequest.mpkl_Cloud_Platforms__c = 'Amazon';
+        update objRequest;
         
        Test.setCurrentPage(new PageReference('SAM_CommentPage'));
        System.currentPageReference().getParameters().put('id', objRequest.id);
@@ -87,5 +92,57 @@ public  class SAM_InformationController_Test {
         
         Test.stopTest();
         System.assert(objRequest.pkl_Status__c != SAM_Constants.OPEN);
-    }    
+    } 
+    /*******************************************************************
+    Purpose: This method covers Request mandatory fields methods
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void CrossChargewithoutAttach_Test() {
+        SAM_StatusMsgCustomSetting();
+        
+        Test.startTest();
+        
+        SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
+        RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Request__c' AND Name='Cross Charge' limit 1] ;
+        objRequest.recordtypeid = rt.id;
+        insert objRequest;
+        
+        Test.setCurrentPage(new PageReference('SAM_RequestInformationPage'));
+        System.currentPageReference().getParameters().put('id', objRequest.id);
+        SAM_RequestInformationController  controller = new SAM_RequestInformationController (new ApexPages.StandardController(objRequest));
+        controller.submit();
+        
+        Test.stopTest();
+        SAM_Request__c objRequestValue = [select id,pkl_Status__c from SAM_Request__c where id =: objRequest.id];
+        System.assert(objRequestValue.pkl_Status__c != SAM_Constants.OPEN);
+    }
+    /*******************************************************************
+    Purpose: This method covers Request mandatory fields methods
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void CrossChargewithAttach_Test() {
+        SAM_StatusMsgCustomSetting();
+        
+        Test.startTest();
+        
+        SAM_Request__c objRequest = SAM_TestRequestClass_util.SAM_Request();
+        RecordType rt =[select id,Name from RecordType where sObjectType='SAM_Request__c' AND Name='Cross Charge' limit 1] ;
+        objRequest.recordtypeid = rt.id;
+        insert objRequest;
+        SAM_TestRequestClass_util.addApproval_EmailsAttachmentToParent(objRequest.id);
+        
+        Test.setCurrentPage(new PageReference('SAM_RequestInformationPage'));
+        System.currentPageReference().getParameters().put('id', objRequest.id);
+        SAM_RequestInformationController  controller = new SAM_RequestInformationController (new ApexPages.StandardController(objRequest));
+        controller.submit();
+        
+        Test.stopTest();
+        SAM_Request__c objRequestValue = [select id,pkl_Status__c from SAM_Request__c where id =: objRequest.id];
+        System.assert(objRequestValue.pkl_Status__c != SAM_Constants.OPEN);
+    }
+
 }

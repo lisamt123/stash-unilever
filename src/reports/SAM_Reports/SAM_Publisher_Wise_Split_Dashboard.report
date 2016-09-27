@@ -14,7 +14,7 @@
             <column>SAM_Quote_Line_Item__c.Spend_In_Euros__c</column>
         </chartSummaries>
         <chartType>VerticalColumn</chartType>
-        <enableHoverLabels>true</enableHoverLabels>
+        <enableHoverLabels>false</enableHoverLabels>
         <expandOthers>true</expandOthers>
         <groupingColumn>SAM_Quote_Line_Item__c.pkl_Publisher__c</groupingColumn>
         <legendPosition>Right</legendPosition>

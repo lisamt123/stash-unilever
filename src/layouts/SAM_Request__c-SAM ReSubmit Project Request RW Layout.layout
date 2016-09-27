@@ -17,10 +17,6 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>ltxt_Request_Comment_History__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -41,6 +37,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Ticket_Age__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>fml_SAM_demand_manager__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -96,6 +96,14 @@
                 <behavior>Edit</behavior>
                 <field>date_Request_End_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>date_Finance_Submission_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>fml_Software_Engagement_Type__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -120,6 +128,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_SAAS_Yes_No__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ltxt_SaaS_Comments__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -286,7 +298,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>rol_Total_CAPEX_in_for_X_type__c</field>
+                <field>fml_Total_Applicable_Cross_Charge__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -299,6 +311,20 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>rol_Total_Run_Cost_Year_2__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns/>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Action Comments History</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ltxt_Request_Comment_History__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>
@@ -360,7 +386,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>num_Quotation_Number__c</fields>
-        <fields>txt_Run_Cost_Publisher__c</fields>
+        <fields>pkl_Publisher__c</fields>
         <fields>num_Quantity__c</fields>
         <fields>fml_List_Price__c</fields>
         <fields>num_Discount_Percentage__c</fields>

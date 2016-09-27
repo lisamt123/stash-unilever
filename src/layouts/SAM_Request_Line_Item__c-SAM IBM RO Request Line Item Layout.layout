@@ -24,22 +24,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>pkl_Instance_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>txt_Installation_Machine_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Location__c</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Physical_instance__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Physical_Server_Name__c</field>
+                <field>num_License_Quantity__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
@@ -74,14 +67,6 @@
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>pkl_Virtual_instance__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Virtual_Server_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
