@@ -197,7 +197,7 @@ public without sharing class IPM_ProjectJobHelper
         String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
         String eligibleRolloutValue = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
         String rolloutWhereClause = ' WHERE (IPM_Project__c IN: incomingProjectIds OR Regional_Project__c IN: incomingProjectIds ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue'; 
-        
+        Set<String> projectExternalIdSet = new Set<String>(); 
         if(rolloutIdSet!=null && !rolloutIdSet.isEmpty())
         {
             rolloutWhereClause = rolloutWhereClause + ' AND Id in:rolloutIdSet '; 
@@ -277,7 +277,8 @@ public without sharing class IPM_ProjectJobHelper
                             List<IPM_Project__c> preparedProjectList = IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedRegionalRolloutsMap.values() );
                             for(IPM_Project__c project : preparedProjectList)
                             {
-                                rolloutProjectsMap.put(project.IPM_Project_Name__c,project);    
+                                rolloutProjectsMap.put(project.IPM_Project_Name__c,project);  
+                                projectExternalIdSet.add(project.IPM_Project_Name__c);  
                             } 
                             
                             for(IPM_Project_Rollout__c projectRollout : associatedRegionalRolloutsMap.values())
@@ -303,7 +304,8 @@ public without sharing class IPM_ProjectJobHelper
                                 
                                  for(IPM_Project__c project : preparedProjectList)
                                 {
-                                    rolloutProjectsMap.put(project.IPM_Project_Name__c,project);    
+                                    rolloutProjectsMap.put(project.IPM_Project_Name__c,project);   
+                                    projectExternalIdSet.add(project.IPM_Project_Name__c); 
                                 } 
 
                                 for(IPM_Project_Rollout__c projectRollout : associatedLocalRolloutsMap.values())
@@ -329,6 +331,13 @@ public without sharing class IPM_ProjectJobHelper
         
         if(!rolloutProjectsMap.isEmpty())
         {
+        	for(IPM_Project__c project : [SELECT Id,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c in : projectExternalIdSet])
+        	{
+        		if(rolloutProjectsMap.containsKey(project.IPM_Project_Name__c))
+        		{
+        			rolloutProjectsMap.remove(project.IPM_Project_Name__c);
+        		}
+        	}
             upsert rolloutProjectsMap.values() IPM_Project_Name__c;
         }
     } 
