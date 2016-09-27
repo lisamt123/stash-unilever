@@ -14,12 +14,16 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 ***********************************************************************/
 
 public with sharing class FAU_EmailTemplateSenderController {
+
     String idTemplate;
+
 
     //Constructor
 
     public FAU_EmailTemplateSenderController(ApexPages.StandardSetController standardController) {
+
         this.standardController = standardController;
+
         //addFieldsTo(standardController);
         
         // commented by Suman Sarita Mahapatra to avoid "Detects when a local variable is declared and/or assigned, but not used." in Sonar.
@@ -41,10 +45,10 @@ public with sharing class FAU_EmailTemplateSenderController {
         idTemplate = s;
     }
 
-
     /*******************************************************************
        Purpose:     Retrieves the Email Templates avaiable to the user to be placed in a dropdown                                                
     ********************************************************************/
+
     public List<SelectOption> getMyPersonalTemplateOptions() {
         List<SelectOption> options = new List<SelectOption>();
         for (EmailTemplate t : [
@@ -54,17 +58,20 @@ public with sharing class FAU_EmailTemplateSenderController {
         ]) {
             options.add(new SelectOption(t.Id,t.Name));
         }
+
+
         return options; 
     }
 
     /*******************************************************************
+
        Purpose:     Send Emails to the selected list using the template selected                                                
     ********************************************************************/
      public PageReference sendEmails() 
     { 
+
         //system.debug('##### Template ID: ' + selectedTemplateId); 
         system.debug('##### idTemplate: ' + idTemplate);
-
 
         if (idTemplate <> null){
             FAU_EmailSender.sendEmailToParticipants((List<FAU_Participant__c>) standardController.getSelected(), (Id) idTemplate);
@@ -78,6 +85,8 @@ public with sharing class FAU_EmailTemplateSenderController {
 
 
 // - - - private attributes - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -     
+
+
     /*******************************************************************
        Purpose:     %%%%% Is this Needed?                                               
     ********************************************************************/    

@@ -37,7 +37,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
         addFieldsTo(standardController);
 
         this.standardController = standardController;
-           If ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c)){
+            If ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c) == true){
                 isLocal = false;
             }else{
                 isLocal = true;
@@ -52,6 +52,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
             } else {
                 hotelAlreadySetUpInModule = false;
             }
+
        }
        if(!Test.isRunningTest()) isNotCampus = ((FAU_Module_Participant__c)this.standardController.getRecord()).recordType.DeveloperName != 'FAU_Campus';
             
@@ -76,7 +77,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
        Purpose:     Sets the isLocal Variable                                               
     ********************************************************************/
     public PageReference updateisLocal() {
-            if ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c)){
+            if ((((FAU_Module_Participant__c)this.standardController.getRecord()).FAU_Is_Local__c) == true){
                 isLocal = false;
             }else{
                 isLocal = true;
@@ -119,8 +120,10 @@ public with sharing class FAU_Module_Part_ControllerExt {
                 for(ApexPages.Message message : messages){
                     ApexPages.addMessage(message);
                 }
+
                 return null;
             }
+
         }catch (System.DMLException e) {
             ApexPages.addMessages(e);
             return null;
@@ -147,6 +150,7 @@ public with sharing class FAU_Module_Part_ControllerExt {
             if(recordToSave.FAU_Accommodation_Type__c == null) errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Accommodation Type is mandatory'));
             if(String.isBlank(recordToSave.FAU_Hotel_Name__c) && recordToSave.FAU_Accommodation_Type__c != null && recordToSave.FAU_Accommodation_Type__c != 'Stay Home') errorMessages.add(new ApexPages.Message(Apexpages.Severity.ERROR,'Hotel Name is mandatory'));
         }
+
         if(recordToSave.FAU_Dietary_Restrictions__c != null){
             if(recordToSave.FAU_Dietary_Restrictions__c.contains('Other')){
                 if(String.isBlank(recordToSave.FAU_Dietary_Restrictions_Describe_Other__c)){
@@ -154,8 +158,12 @@ public with sharing class FAU_Module_Part_ControllerExt {
                 }
             }
         }
+
+
+
         return errorMessages;
         
+
     }
 
     /*******************************************************************

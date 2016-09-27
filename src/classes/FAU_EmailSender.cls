@@ -19,6 +19,8 @@ public without sharing class FAU_EmailSender {
         
     }  
 
+
+
     /*******************************************************************
        Purpose:     Send Email to Webparticipants (with Meeting Request)
     ********************************************************************/
@@ -132,7 +134,7 @@ public without sharing class FAU_EmailSender {
         String Z='Z\n';//Modified by yugandhar,declared new string Z
         String yyyymmdd = 'yyyyMMdd';// Changes made by Suman Sarita Mahapatra 28/04/2016 , to rectify "The String literal 'yyyymmdd' appears 5 times in this file; " in sonar.
         String HMS = 'HHmmss'; // Changes made by Bibhu
-
+        
         txtInvite += 'BEGIN:VCALENDAR\n';
         txtInvite += 'PRODID:-//Microsoft Corporation//Outlook 12.0 MIMEDIR//EN\n';
         txtInvite += 'VERSION:2.0\n';
@@ -215,7 +217,7 @@ public without sharing class FAU_EmailSender {
         System.Debug('##### FAU_EmailSender - Before Second Send'); 
         List<Messaging.SendEmailResult> results1 = Messaging.sendEmail(lstMsgsToSend, false);
         if (!results1.get(0).isSuccess()) {
-           // System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
+            //System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
             String errorMessage = results1.get(0).getErrors()[0].getMessage();
             System.Debug('##### FAU_EmailSender - Message Error:' + errorMessage); 
         }

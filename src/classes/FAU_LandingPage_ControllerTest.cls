@@ -2,6 +2,7 @@
 private class FAU_LandingPage_ControllerTest {
 
     static testMethod void controllerTest() {
+
       
       User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
@@ -17,7 +18,7 @@ private class FAU_LandingPage_ControllerTest {
        // FAU_LandingPage_Controller controller = new FAU_LandingPage_Controller(new ApexPages.StandardController(participantRecord));
         
         Test.stopTest();
-        //system.assert('singapore', participantRecord.locationFixture );
+        
         try{
         system.assert(null,participantRecord );
         }catch(Exception e)

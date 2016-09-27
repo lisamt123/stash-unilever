@@ -19,6 +19,7 @@ private class FAU_EmailTemplateSenderContllerTest
     static void testSetupEmailSender()
     {
         
+
         FAU_Participant__c[] lParticipant =new FAU_Participant__c[]{}; 
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
@@ -66,6 +67,7 @@ private class FAU_EmailTemplateSenderContllerTest
     static void testEmailSending()
     {
         
+
         FAU_Participant__c[] lParticipant =new FAU_Participant__c[]{}; 
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
@@ -105,10 +107,11 @@ private class FAU_EmailTemplateSenderContllerTest
 
         //System.runAs(user)
         //{ 
+
             //List<SelectOption> temp = controller.getMyPersonalTemplateOptions();
             controller.settemplate((String) EmailTemplateId);
             //controller.setSelected(lParticipant);
-           // String EmailTemplate = controller.gettemplate();
+            //String EmailTemplate = controller.gettemplate();
             controller.sendEmails();
 
         //}

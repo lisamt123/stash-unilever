@@ -76,7 +76,8 @@ public with sharing class FAU_ProgramHandler
     public void bulkAfter()
     {
         if(triggerShouldExecute){
-            if(Trigger.isUpdate) {
+
+        if(Trigger.isUpdate) {
                 List<FAU_Program__c> completedPrograms = new List<FAU_Program__c>();
                 for(sObject p : Trigger.new){
                     FAU_Program__c program = (FAU_Program__c)p;
@@ -84,6 +85,8 @@ public with sharing class FAU_ProgramHandler
                         completedPrograms.add(program);
                     }
                 }
+
+
                 relatedCompletedParticipants = FAU_ProgramClsSC.getAndCompleteProgramsRelatedParticipants(completedPrograms);
 
                 List<FAU_Program__c> updatedParticipantPrograms = new List<FAU_Program__c>();
@@ -96,8 +99,8 @@ public with sharing class FAU_ProgramHandler
                 }
                 relatedUpdateParticipants = FAU_ProgramClsSC.getAndUpdateProgramsRelatedParticipants(updatedParticipantPrograms);
 
-
             }
+
         }
     }
         
@@ -126,15 +129,19 @@ public with sharing class FAU_ProgramHandler
 
             }else if(so.get('FAU_Status__c') <> 'Draft'){
                 oProgramInsert = FAU_ProgramClsSC.createProgramObjects(false,  mRecordTypes,
+
+
                                                     (FAU_Program__c) so, 
                                                     lModules,  lModulesInsert,
                                                     lWebinars, lWebinarsInsert,
                                                     lMilestones, lMilestonesInsert);
+
             }
 
             System.debug('Entering FAU_ProgramHandler.oProgramInsert:' + oProgramInsert);
             if (oProgramInsert <> null){
                 lProgramInsert.add(oProgramInsert);
+
             }
         }*/
     }
@@ -148,8 +155,10 @@ public with sharing class FAU_ProgramHandler
     
     public void afterInsert(SObject so) 
     {
+
        /* if(triggerShouldExecute){
             //1.2 lModules.addAll(FAU_ProgramClsSC.addProgramModule((FAU_Program__c)so)); 
+
         }*/
     }
     // This Class is implementing ITrigger, So can't remove this Function

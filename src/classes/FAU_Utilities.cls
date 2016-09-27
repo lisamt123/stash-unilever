@@ -16,7 +16,8 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 public without sharing class FAU_Utilities {
     /*******************************************************************
        Purpose:     Commit saves to the database                                                      
-    ********************************************************************/
+
+       ********************************************************************/
     public static void saveDatabase (String sAction, SObject[] sObjectstoSave, Boolean bDMLOption){
         System.debug('Entering FAU_Utilities.saveDatabase Size:' + sObjectstoSave.size());
         Database.SaveResult[] srObjectstoSaves = new Database.SaveResult[]{};
@@ -40,7 +41,11 @@ public without sharing class FAU_Utilities {
                     }
                 }
             }
-        }else{
+
+
+
+
+            }else{
             System.debug('#### No Records to insert/update.');
         }
 
@@ -48,15 +53,19 @@ public without sharing class FAU_Utilities {
 
     }
 
+
+
     /*******************************************************************
        Purpose:     Commit deletes to the database                                                      
     ********************************************************************/ 
     public static void deleteDatabase (SObject[] sObjectstoDelete, Boolean bDMLOption){
         System.debug('Entering FAU_Utilities.deleteDatabase Size:' + sObjectstoDelete.size());
+
         
         if (sObjectstoDelete.size() > 0 ){
 
             Database.DeleteResult[] drObjectstoDeletes= Database.delete(sObjectstoDelete, bDMLOption);
+
             
             for (Database.DeleteResult drObjectstoDelete : drObjectstoDeletes){
                 if(!drObjectstoDelete.isSuccess()){
@@ -68,9 +77,13 @@ public without sharing class FAU_Utilities {
                     }
                 }
             }
-        }else{
+
+
+
+            }else{
             System.debug('#### No Records to delete.');
         }
+
         System.debug('Exiting FAU_Utilities.deleteDatabase' );
     }
 }
