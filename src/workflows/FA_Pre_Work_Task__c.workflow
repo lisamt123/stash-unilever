@@ -9,15 +9,4 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
-        <fullName>FA Update External ID Of Pre Work Task</fullName>
-        <actions>
-            <name>FA_Update_External_ID_Of_Pre_Work_Task</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <description>To avoid duplicates of the record.</description>
-        <formula>ISNEW()||ISCHANGED(FA_OccMember__c)|| ISCHANGED( FA_Occurence_Task__c)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
 </Workflow>

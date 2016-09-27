@@ -9,15 +9,4 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
-        <fullName>FA Update External ID Of Training Room</fullName>
-        <actions>
-            <name>FA_Training_Room_External_ID</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <description>This workflow will update the external Id field on the Training Room record</description>
-        <formula>ISNEW() || ISCHANGED(Name)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
 </Workflow>
