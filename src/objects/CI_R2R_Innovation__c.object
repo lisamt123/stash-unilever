@@ -196,8 +196,6 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <picklist>
-            <restricted>true</restricted>
-            
                 <sorted>false</sorted>
                 <picklistValues>
                     <fullName>USD</fullName>

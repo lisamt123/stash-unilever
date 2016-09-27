@@ -139,7 +139,6 @@
                 <fullName>2000</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>true</trackHistory>
@@ -322,8 +321,7 @@
             <picklistValues>
                 <fullName>19193</fullName>
                 <default>false</default>
-            </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
+            </picklistValues>            
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -468,7 +466,6 @@ CI_R2R_Innovation__r.Project3__c
                 <fullName>UL internal cross-charge</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>

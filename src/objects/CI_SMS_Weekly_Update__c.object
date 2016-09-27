@@ -106,9 +106,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <picklist>
-            <restricted>true</restricted>
-            
+        <picklist>            
                 <sorted>false</sorted>
                 <picklistValues>
                     <fullName>APM/SCOA/Reporting updates</fullName>
@@ -176,9 +174,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <picklist>
-            <restricted>true</restricted>
-            
+        <picklist>            
                 <sorted>false</sorted>
                 <picklistValues>
                     <fullName>Account Reconciliation</fullName>
@@ -493,9 +489,7 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <picklist>
-            <restricted>true</restricted>
-            
+        <picklist>            
                 <sorted>false</sorted>
                 <picklistValues>
                     <fullName>Open</fullName>
