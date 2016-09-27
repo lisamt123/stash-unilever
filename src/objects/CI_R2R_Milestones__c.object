@@ -103,35 +103,32 @@
         <fullName>RAG__c</fullName>
         <externalId>false</externalId>
         <label>RAG</label>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>Null</fullName>
+                <default>false</default>
+            </picklistValues>
+			<picklistValues>
+                <fullName>NA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Red</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Amber</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Green</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Null</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>NA</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Target_Closure_Date__c</fullName>

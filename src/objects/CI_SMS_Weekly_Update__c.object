@@ -106,56 +106,56 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
+        <picklist>
             <restricted>true</restricted>
-            <valueSetDefinition>
+            
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>APM/SCOA/Reporting updates</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Business / Global Functions initiated</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Continuous Improvements</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Controls Embedding / enhancement</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Dependency</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>EFCR roll out</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Efficiency</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Efficiency (with 3PSP)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GPM &amp; Exception resolution</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Local / Fiscal projects</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>System Related</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            
+        </picklist>
     </fields>
     <fields>
         <fullName>Project_Name__c</fullName>
@@ -176,76 +176,76 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
+        <picklist>
             <restricted>true</restricted>
-            <valueSetDefinition>
+            
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>Account Reconciliation</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Continuous Improvement</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Fixed Assets</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Financial Reporting</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>FX Revaluation</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Intercompany</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Journal Entries</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GL MDM</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Period-End</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Project</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>SAP Roles</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Tools</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GPM</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>SCOA</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Direct Tax</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Indirect Tax</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            
+        </picklist>
     </fields>
     <fields>
         <fullName>RAG_Color__c</fullName>
@@ -273,31 +273,31 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
+            
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>Red</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Amber</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Green</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Null</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>NA</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            
+        </picklist>
     </fields>
     <fields>
         <fullName>SME_Weekly_Name__c</fullName>
@@ -318,171 +318,171 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
+            
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>AAR</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>All Countries</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>America</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Arabia*ANZ also</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Benelux</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>BENELUX &amp; DACH</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Brazil</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>China</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Indonesia</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Europe</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>France</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GCAD</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Ghana</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Grater Caribbean</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>HK and TW</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>India &amp; Sri Lanka</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>India - Branch and HO</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Latam</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Latam excluding Mexico</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Mexico</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Mexico, UASCC</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Middle America</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>MYSG</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>North America</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>North America and Europe</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>P&amp;H</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>PHP(phillipines)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>RUB</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Sirius Phase I (CEE, NORDICS, DACH)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Souther cone</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Turkey</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>UAE</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>UAPL</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Various</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Sirius Phase II (Benelux, France)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Sirius Phase III (Spain)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GB</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Ireland</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Italy</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Poland</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            
+        </picklist>
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
@@ -493,28 +493,28 @@ IF(CIR2R_Innovation__c &lt;&gt; null, CIR2R_Innovation__r.Project3__c,
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
+        <picklist>
             <restricted>true</restricted>
-            <valueSetDefinition>
+            
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>Open</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>In Progress</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>On Hold</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Closed</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            
+        </picklist>
     </fields>
     <fields>
         <fullName>Target_Closure__c</fullName>

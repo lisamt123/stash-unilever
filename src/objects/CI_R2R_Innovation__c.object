@@ -85,67 +85,65 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
                 <sorted>true</sorted>
-                <value>
+                <picklistValues>
                     <fullName>3PSP FTE Savings</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Audit reference</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Clear R&amp;R</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Compliance requirement</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Cost Reduction</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Dependency</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Efficiency</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GL hygiene</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GPM Alignment</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Harmonization &amp; Standardization</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Process Efficiency</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Risk mitigation</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>System improvement / alignment</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>TBC</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
     </fields>
     <fields>
         <fullName>Business_cost__c</fullName>
@@ -197,28 +195,27 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
+        <picklist>
             <restricted>true</restricted>
-            <valueSetDefinition>
+            
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>USD</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>EUR</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>INR</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GBP</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
     </fields>
     <fields>
         <fullName>Funnel_Status__c</fullName>
@@ -229,43 +226,41 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>1 Pre-ideas</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>2 Ideas</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>3 Capability</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>4 Feasibility</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>5 Launch</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>6 Implemented</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>ON HOLD</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>CLOSED</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
     </fields>
     <fields>
         <fullName>Geographical_Scope__c</fullName>
@@ -275,183 +270,181 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
                 <sorted>true</sorted>
-                <value>
+                <picklistValues>
                     <fullName>AAR</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>All Countries</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>America</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Arabia*ANZ also</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Benelux</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>BENELUX &amp; DACH</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Brazil</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>China</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Europe</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>France</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GB</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GCAD</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Geographical Scope</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Ghana</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Global</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Grater Caribbean</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>HK and TW</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>India &amp; Sri Lanka</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>India - Branch and HO</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Indonesia</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Ireland</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Italy</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Latam</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Latam excluding Mexico</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Mexico</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Mexico, UASCC</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Middle America</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>MYSG</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>North America</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>North America and Europe</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Others</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>P&amp;H</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>PHP(phillipines)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Poland</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>RUB</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Sirius Phase I (CEE, NORDICS, DACH)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Sirius Phase II (Benelux, France)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Sirius Phase III (Spain)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Souther cone</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Turkey</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>UAE</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>UAPL</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Various</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
@@ -474,35 +467,33 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>Cordillera</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Fusion</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Sirius</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>U2K2</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Global</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>TBC</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
         <visibleLines>6</visibleLines>
     </fields>
     <fields>
@@ -550,55 +541,53 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>APM/SCOA/Reporting updates</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Business / Global Functions initiated</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Continuous Improvements</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Controls Embedding / enhancement</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Dependency</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>EFCR roll out</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Efficiency</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Efficiency (with 3PSP)</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GPM &amp; Exception resolution</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Local / Fiscal projects</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>System Related</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
     </fields>
     <fields>
         <fullName>Project_Description__c</fullName>
@@ -614,116 +603,82 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
         <fullName>Project_Lead_del__c</fullName>
         <externalId>false</externalId>
         <label>Project Lead</label>
-        <required>false</required>
+        <picklist>
+            <controllingField>R2R_SME_Area__c</controllingField>
+            <picklistValues>
+                <fullName>Kamila Marzetz</fullName>
+                <default>false</default>
+                <controllingFieldValues>Account Reconciliation</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Niraj Kothari</fullName>
+                <default>false</default>
+                <controllingFieldValues>Direct Tax</controllingFieldValues>
+                <controllingFieldValues>FX Revaluation</controllingFieldValues>
+                <controllingFieldValues>GL MDM</controllingFieldValues>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+                <controllingFieldValues>Period-End</controllingFieldValues>
+                <controllingFieldValues>SAP Roles</controllingFieldValues>
+                <controllingFieldValues>Tax</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Padma Prasad</fullName>
+                <default>false</default>
+                <controllingFieldValues>Fixed Assets</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cristina Butu</fullName>
+                <default>false</default>
+                <controllingFieldValues>Financial Reporting</controllingFieldValues>
+                <controllingFieldValues>SCOA</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Valeria Gulyas</fullName>
+                <default>false</default>
+                <controllingFieldValues>Continuous Improvement</controllingFieldValues>
+                <controllingFieldValues>GPM</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sankarnarayanan V</fullName>
+                <default>false</default>
+                <controllingFieldValues>Intercompany</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nikoletta Pinter</fullName>
+                <default>false</default>
+                <controllingFieldValues>Financial Reporting</controllingFieldValues>
+                <controllingFieldValues>Indirect Tax</controllingFieldValues>
+                <controllingFieldValues>Tax</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vivekaa Arumugam</fullName>
+                <default>false</default>
+                <controllingFieldValues>Continuous Improvement</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Veerabhadran VK</fullName>
+                <default>false</default>
+                <controllingFieldValues>FX Revaluation</controllingFieldValues>
+                <controllingFieldValues>GL MDM</controllingFieldValues>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+                <controllingFieldValues>Period-End</controllingFieldValues>
+                <controllingFieldValues>SAP Roles</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ashwathi Upalakkal</fullName>
+                <default>false</default>
+                <controllingFieldValues>Journal Entries</controllingFieldValues>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sheetal Pinjarkar</fullName>
+                <default>false</default>
+                <controllingFieldValues>Tools</controllingFieldValues>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <controllingField>R2R_SME_Area__c</controllingField>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Kamila Marzetz</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Niraj Kothari</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Padma Prasad</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Cristina Butu</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Valeria Gulyas</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Sankarnarayanan V</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Nikoletta Pinter</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Vivekaa Arumugam</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Veerabhadran VK</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Ashwathi Upalakkal</fullName>
-                    <default>false</default>
-                </value>
-                <value>
-                    <fullName>Sheetal Pinjarkar</fullName>
-                    <default>false</default>
-                </value>
-            </valueSetDefinition>
-            <valueSettings>
-                <controllingFieldValue>SAP Roles</controllingFieldValue>
-                <controllingFieldValue>Direct Tax</controllingFieldValue>
-                <controllingFieldValue>FX Revaluation</controllingFieldValue>
-                <controllingFieldValue>Journal Entries</controllingFieldValue>
-                <controllingFieldValue>GL MDM</controllingFieldValue>
-                <controllingFieldValue>Period-End</controllingFieldValue>
-                <valueName>Niraj Kothari</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>SAP Roles</controllingFieldValue>
-                <controllingFieldValue>FX Revaluation</controllingFieldValue>
-                <controllingFieldValue>Journal Entries</controllingFieldValue>
-                <controllingFieldValue>GL MDM</controllingFieldValue>
-                <controllingFieldValue>Period-End</controllingFieldValue>
-                <valueName>Veerabhadran VK</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Tools</controllingFieldValue>
-                <valueName>Sheetal Pinjarkar</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>GPM</controllingFieldValue>
-                <controllingFieldValue>Continuous Improvement</controllingFieldValue>
-                <valueName>Valeria Gulyas</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>SCOA</controllingFieldValue>
-                <controllingFieldValue>Financial Reporting</controllingFieldValue>
-                <valueName>Cristina Butu</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Indirect Tax</controllingFieldValue>
-                <controllingFieldValue>Financial Reporting</controllingFieldValue>
-                <valueName>Nikoletta Pinter</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Account Reconciliation</controllingFieldValue>
-                <valueName>Kamila Marzetz</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Continuous Improvement</controllingFieldValue>
-                <valueName>Vivekaa Arumugam</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Fixed Assets</controllingFieldValue>
-                <valueName>Padma Prasad</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Intercompany</controllingFieldValue>
-                <valueName>Sankarnarayanan V</valueName>
-            </valueSettings>
-            <valueSettings>
-                <controllingFieldValue>Journal Entries</controllingFieldValue>
-                <valueName>Ashwathi Upalakkal</valueName>
-            </valueSettings>
-        </valueSet>
     </fields>
     <fields>
         <fullName>Project_Name__c</fullName>
@@ -757,75 +712,73 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>Account Reconciliation</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Continuous Improvement</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Fixed Assets</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Financial Reporting</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>FX Revaluation</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Intercompany</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Journal Entries</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GL MDM</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Period-End</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Project</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>SAP Roles</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Tools</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>GPM</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>SCOA</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Direct Tax</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Indirect Tax</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
     </fields>
     <fields>
         <fullName>RAG_Color__c</fullName>
@@ -855,31 +808,29 @@ Green- On track</inlineHelpText>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-        <valueSet>
-            <valueSetDefinition>
+        <picklist>
                 <sorted>false</sorted>
-                <value>
+                <picklistValues>
                     <fullName>Red</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Amber</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Green</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>Null</fullName>
                     <default>false</default>
-                </value>
-                <value>
+                </picklistValues>
+                <picklistValues>
                     <fullName>NA</fullName>
                     <default>false</default>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+                </picklistValues>
+            </picklist>
     </fields>
     <fields>
         <fullName>Target_Completion_Date__c</fullName>
