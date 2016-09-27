@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>TopToBottom</backgroundFadeDirection>
     <backgroundStartColor>#9999FF</backgroundStartColor>
-    <dashboardType>SpecifiedUser</dashboardType>
+    <dashboardType>MyTeamUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Medium</columnSize>

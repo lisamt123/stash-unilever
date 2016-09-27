@@ -3,7 +3,7 @@
     <backgroundEndColor>#FFFFFF</backgroundEndColor>
     <backgroundFadeDirection>TopToBottom</backgroundFadeDirection>
     <backgroundStartColor>#9999FF</backgroundStartColor>
-    <dashboardType>SpecifiedUser</dashboardType>
+    <dashboardType>MyTeamUser</dashboardType>
     <isGridLayout>false</isGridLayout>
     <leftSection>
         <columnSize>Medium</columnSize>
@@ -37,12 +37,6 @@
                 <column>AMOUNT</column>
                 <showTotal>false</showTotal>
                 <sortBy>RowValueDescending</sortBy>
-            </dashboardTableColumn>
-            <dashboardTableColumn>
-                <aggregateType>Average</aggregateType>
-                <calculatePercent>false</calculatePercent>
-                <column>PROBABILITY</column>
-                <showTotal>true</showTotal>
             </dashboardTableColumn>
             <displayUnits>Integer</displayUnits>
             <drillEnabled>false</drillEnabled>
@@ -99,26 +93,29 @@
             <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
             <dashboardTableColumn>
-                <column>ACCOUNT</column>
+                <column>OPPORTUNITY_NAME</column>
             </dashboardTableColumn>
             <dashboardTableColumn>
+                <aggregateType>Sum</aggregateType>
                 <calculatePercent>false</calculatePercent>
-                <column>RowCount</column>
+                <column>AMOUNT</column>
                 <showTotal>true</showTotal>
                 <sortBy>RowValueDescending</sortBy>
             </dashboardTableColumn>
-            <displayUnits>Integer</displayUnits>
+            <displayUnits>Thousands</displayUnits>
             <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
-            <footer>Top Open Activities</footer>
-            <header>Open Activities</header>
+            <footer>Top Closed Oppportunities</footer>
+            <header>Closed Opportunities</header>
+            <indicatorBreakpoint1>25000.0</indicatorBreakpoint1>
+            <indicatorBreakpoint2>50000.0</indicatorBreakpoint2>
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>15</maxValuesDisplayed>
-            <report>FS_Sales_Marketing_Dashboard_Reports/Sales_Person_Activity</report>
+            <report>FS_Sales_Marketing_Dashboard_Reports/Sales_Person_MTD_Sales</report>
             <showPicturesOnTables>true</showPicturesOnTables>
-            <title>Activities This Week</title>
+            <title>Current Month</title>
         </components>
         <components>
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
@@ -171,29 +168,26 @@
             <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <componentType>Table</componentType>
             <dashboardTableColumn>
-                <column>OPPORTUNITY_NAME</column>
+                <column>ACCOUNT</column>
             </dashboardTableColumn>
             <dashboardTableColumn>
-                <aggregateType>Sum</aggregateType>
                 <calculatePercent>false</calculatePercent>
-                <column>AMOUNT</column>
+                <column>RowCount</column>
                 <showTotal>true</showTotal>
                 <sortBy>RowValueDescending</sortBy>
             </dashboardTableColumn>
-            <displayUnits>Thousands</displayUnits>
+            <displayUnits>Integer</displayUnits>
             <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
-            <footer>Top Closed Oppportunities</footer>
-            <header>Closed Opportunities</header>
-            <indicatorBreakpoint1>25000.0</indicatorBreakpoint1>
-            <indicatorBreakpoint2>50000.0</indicatorBreakpoint2>
+            <footer>Top Open Activities</footer>
+            <header>Open Activities</header>
             <indicatorHighColor>#54C254</indicatorHighColor>
             <indicatorLowColor>#C25454</indicatorLowColor>
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>15</maxValuesDisplayed>
-            <report>FS_Sales_Marketing_Dashboard_Reports/Sales_Person_MTD_Sales</report>
+            <report>FS_Sales_Marketing_Dashboard_Reports/Sales_Person_Activity</report>
             <showPicturesOnTables>true</showPicturesOnTables>
-            <title>Current Month</title>
+            <title>Activities This Week</title>
         </components>
     </rightSection>
     <runningUser>chatter.support@unilever.com</runningUser>

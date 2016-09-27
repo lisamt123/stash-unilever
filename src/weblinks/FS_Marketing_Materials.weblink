@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomPageWebLink xmlns="http://soap.sforce.com/2006/04/metadata">
     <availability>online</availability>
-    <description>This Link is used to connect directly to Unilever Food Solutions Canada Website.</description>
+    <description>Marketing Materials for RUssia</description>
     <displayType>link</displayType>
     <encodingKey>UTF-8</encodingKey>
     <hasMenubar>false</hasMenubar>
@@ -10,11 +10,11 @@
     <height>600</height>
     <isResizable>true</isResizable>
     <linkType>url</linkType>
-    <masterLabel>UFS website - CA</masterLabel>
+    <masterLabel>Marketing Materials</masterLabel>
     <openType>newWindow</openType>
     <position>none</position>
     <protected>false</protected>
     <showsLocation>false</showsLocation>
     <showsStatus>false</showsStatus>
-    <url>https://www.unileverfoodsolutions.ca/</url>
+    <url>https://drive.google.com/drive/folders/0B2bgSU93beKucHBKa2YybW9qRWs</url>
 </CustomPageWebLink>
