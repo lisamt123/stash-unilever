@@ -39,7 +39,7 @@ public with sharing class CPA_CR_TriggerUtil{
                         req.setComments('Recalling and unlocking request.');
                         req.setAction('Removed');
                         req.setWorkitemId(piwi.Id);
-                        Approval.ProcessResult result =  Approval.process(req);
+                        //Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
                     }
                 }
@@ -63,7 +63,7 @@ public with sharing class CPA_CR_TriggerUtil{
             req.setComments('Submitted for approval. Please approve.');
             req.setObjectId(newCRList[i].Id);
             // submit the approval request for processing
-            Approval.ProcessResult result = Approval.process(req);
+            //Approval.ProcessResult result = Approval.process(req);
             // display if the reqeust was successful
 
             isSubmitted = true;
