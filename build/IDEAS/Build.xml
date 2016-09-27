@@ -65,6 +65,7 @@
       <runTest>TestDataFactory</runTest>
       <runTest>UserTestUtil</runTest>
       <runTest>UserTrigger_Test</runTest>
+	  <runTest>Core_IC_IdeaControllerTest</runTest>
     </sf:deploy>
   </target>  
 
