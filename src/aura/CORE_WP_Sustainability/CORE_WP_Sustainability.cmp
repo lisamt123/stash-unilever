@@ -3,6 +3,7 @@
     <aura:attribute name="workplaceLocationId" type="String"/>
     <aura:attribute name="noDataErrorMessage" type="Boolean" default="false"/>
     <aura:attribute name="divWidth" type="Integer" default="0"/>
+    <aura:attribute name="sustainabilityDetail" type="String"/>
     <!--  <canvas aura:id="chart" id="myChart" width="800" height="800"/>  -->
     <div class="topBarStyle">
         <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
