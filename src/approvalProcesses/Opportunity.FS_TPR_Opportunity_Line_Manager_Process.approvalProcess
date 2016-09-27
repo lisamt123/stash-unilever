@@ -27,7 +27,7 @@
     <emailTemplate>FS_Email_Templates/FS_Opportunity_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <formula>RecordType.DeveloperName = &apos;UFS_Opportunity_Russia&apos;  &amp;&amp;    ISPICKVAL( StageName , &apos;1-New&apos;)</formula>
+        <formula>RecordType.DeveloperName = &apos;FS_OpportunityTPR&apos;  &amp;&amp;    ISPICKVAL( StageName , &apos;1-New&apos;)</formula>
     </entryCriteria>
     <finalApprovalActions>
         <action>
@@ -44,6 +44,12 @@
         </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Approval_request_email_template_to_approver_for_Final_Reject</name>
+            <type>Alert</type>
+        </action>
+    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <label>FS TPR Opportunity Line Manager Process</label>
     <nextAutomatedApprover>

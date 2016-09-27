@@ -30,7 +30,7 @@
             <criteriaItems>
                 <field>Opportunity.RecordType</field>
                 <operation>equals</operation>
-                <value>Opportunity with Pricing (MA-BE)</value>
+                <value>NAFS Opportunity MABE</value>
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>

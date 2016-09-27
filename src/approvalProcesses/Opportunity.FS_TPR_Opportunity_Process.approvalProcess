@@ -82,7 +82,7 @@
     <emailTemplate>FS_Email_Templates/FS_TPR_Opportunity_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <formula>RecordType.DeveloperName = &apos;UFS_Opportunity_Russia&apos;  
+        <formula>RecordType.DeveloperName = &apos;FS_OpportunityTPR&apos;  
 &amp;&amp; FS_startDateTPR__c &gt;= TODAY()  
 &amp;&amp; FS_endDateTPR__c  &gt;=  TODAY() 
 &amp;&amp; NOT(ISBLANK(FS_distributor__r.Id ))
@@ -97,6 +97,12 @@
         </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>FS_TPRRejectionAction</name>
+            <type>Alert</type>
+        </action>
+    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <label>FS TPR Opportunity Process</label>
     <nextAutomatedApprover>
