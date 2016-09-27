@@ -617,7 +617,6 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
                 <controllingFieldValues>Journal Entries</controllingFieldValues>
                 <controllingFieldValues>Period-End</controllingFieldValues>
                 <controllingFieldValues>SAP Roles</controllingFieldValues>
-                <controllingFieldValues>Tax</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Padma Prasad</fullName>
@@ -646,7 +645,6 @@ IF ( ISPICKVAL(R2R_SME_Area__c, &apos;Indirect Tax&apos;), (text(YEAR(today())) 
                 <default>false</default>
                 <controllingFieldValues>Financial Reporting</controllingFieldValues>
                 <controllingFieldValues>Indirect Tax</controllingFieldValues>
-                <controllingFieldValues>Tax</controllingFieldValues>
             </picklistValues>
             <picklistValues>
                 <fullName>Vivekaa Arumugam</fullName>
