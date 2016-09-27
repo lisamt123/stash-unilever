@@ -465,13 +465,13 @@ Returns: It will return brand records.
         listOfBrand = new List<SelectOption>();
         listOfBrand.add(new selectOption(NONE,NONE));
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-        Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(categoryName,brandPos);
+        Set<MDO_Brand__C> brandlst = utiltyObj.brandValues(categoryName,brandPos);
         Set<String> brnadNameSet = new Set<String>();
-        for(MDO_BrandPositions__c bps : brandlst){
-            if(!brnadNameSet.contains(bps.brand_id__r.name)){
-                listOfBrand.add(new selectOption(bps.brand_id__r.name,bps.brand_id__r.name));
+        for(MDO_Brand__C bps : brandlst){
+            if(!brnadNameSet.contains(bps.name)){
+                listOfBrand.add(new selectOption(bps.name,bps.name));
 
-                brnadNameSet.add(bps.brand_id__r.name);
+                brnadNameSet.add(bps.name);
             }
         }
         }
