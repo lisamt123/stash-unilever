@@ -137,16 +137,16 @@ Returns:
         try{  
        
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-        Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
+        Set<MDO_BrandPosition__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(NONE,NONE));
         Set<String> brnadPosNameSet = new Set<String>();
-        for(MDO_BrandPositions__c bps : brandPositionlst){
+        for(MDO_BrandPosition__c bps : brandPositionlst){
 
-            if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
-                listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
+            if(!brnadPosNameSet.contains(bps.name)){
+                listOfBrandPosition.add(new selectOption(bps.name,bps.name));
 
-                brnadPosNameSet.add(bps.brand_position_id__r.name);
+                brnadPosNameSet.add(bps.name);
             }
         }
        
