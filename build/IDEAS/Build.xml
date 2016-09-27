@@ -42,7 +42,7 @@
 
 
   <target name="validate">
-    <echo level="info">Agent App Lightning Deployment</echo>
+    <echo level="info">Ideas Lightning Deployment</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
