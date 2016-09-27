@@ -9,14 +9,4 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
-        <fullName>FA Update External ID Of Course Occurence</fullName>
-        <actions>
-            <name>FA_CourseOccurence_External_ID</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <formula>ISNEW()</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
 </Workflow>
