@@ -28,9 +28,6 @@
             width: 280px;
         }
         }
-        .slds-card__header {
-        padding: .75rem 1.3rem .25rem;
-        }
     </style>
     <div class="slds-card ">
         <div class="slds-card__header ideaTile">
@@ -64,7 +61,7 @@
                                   <aura:if isTrue="{!v.chatterValue}">    
                                     <a href="{!'mailto:?subject='+v.MailSubjectIdea+'%20%22'+v.ideasListItem.IdeaTitle+'%20%22'+'&amp;body='+v.MailToBody3+'%20%22'+v.ideasListItem.IdeaTitle+'%22%20'+v.MailToBody4+'%20'+v.MailToBody5}" 
                                     style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                        <p class="slds-truncate">Share via Email</p>
+                                        <p class="slds-truncate">Email</p>
                                     </a>
                                     
 	                         <aura:set attribute="else">
