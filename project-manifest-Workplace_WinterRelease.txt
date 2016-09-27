@@ -12,7 +12,7 @@ src/aura/CORE_WP_ChangeLocation
 src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.cmp
 src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.cmp-meta.xml
 src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocation.css
-src/aura/CORE_WP_ChangeLocation/File CORE_WP_ChangeLocationController.js
+src/aura/CORE_WP_ChangeLocation/CORE_WP_ChangeLocationController.js
 src/aura/CORE_WP_DepartmentsByFloor
 src/aura/CORE_WP_DepartmentsByFloor/CORE_WP_DepartmentsByFloor.cmp
 src/aura/CORE_WP_DepartmentsByFloor/CORE_WP_DepartmentsByFloor.cmp-meta.xml
@@ -62,7 +62,7 @@ src/aura/CORE_WP_Sustainability/CORE_WP_Sustainability.css
 src/aura/CORE_WP_Sustainability/CORE_WP_SustainabilityController.js
 src/aura/CORE_WP_Transport
 src/aura/CORE_WP_Transport/CORE_WP_Transport.cmp
-src/aura/CORE_WP_Transport/File CORE_WP_Transport.cmp-meta.xml
+src/aura/CORE_WP_Transport/CORE_WP_Transport.cmp-meta.xml
 src/aura/CORE_WP_Transport/CORE_WP_Transport.css
 src/aura/CORE_WP_Transport/CORE_WP_TransportController.js
 src/aura/CORE_WP_Transport/CORE_WP_TransportHelper.js
