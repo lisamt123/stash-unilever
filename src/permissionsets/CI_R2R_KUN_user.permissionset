@@ -170,6 +170,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_R2R_Innovation__c.CI_Funnel_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CI_R2R_Innovation__c.Comments__c</field>
         <readable>true</readable>
@@ -332,6 +337,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CI_SMS_Weekly_Update__c.RAG__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CI_SMS_Weekly_Update__c.SME_Weekly_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -160,6 +160,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CI_Funnel_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>CI Funnel Name</label>
+        <length>12</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Comments__c</fullName>
         <externalId>false</externalId>
         <label>Comments</label>
