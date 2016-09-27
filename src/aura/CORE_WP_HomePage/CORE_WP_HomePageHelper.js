@@ -1,6 +1,14 @@
 ({
 	scrollToLocation : function(component, location) {
-        var scroller = this.getScroller(component),
+        var cssScrolltoTop = $(".scroller");
+        //var cssScrolltoTop = component.find("scrollID").get("v.class");
+        if (cssScrolltoTop) {
+            var cssScrolltoTopTransform = cssScrolltoTop.css("transform");
+            if (cssScrolltoTopTransform) {
+                cssScrolltoTop.css("transform", "translate3d(0px, 0px, 0px)"); //set 'transform' since lighntning architecture uses css 'transfrom' property to scroll 
+            }
+        }
+      /*  var scroller = this.getScroller(component),
             payload = {
                 time: 300,
             };
@@ -29,6 +37,6 @@
 		var displayErrorMessage="SCROLLER NOT FOUND. If this is broken, it's because this was a temporary workaround for something that will be fixed in 202.";
         $A.assert(scroller && scroller.isInstanceOf("ui:scroller"), displayErrorMessage);
         
-        return scroller;
+        return scroller; */
     }
 })
