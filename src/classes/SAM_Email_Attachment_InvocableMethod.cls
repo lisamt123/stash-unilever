@@ -20,7 +20,7 @@ public static void SendEmailWithAttachment(List<SendEmailClassVariable> inputs)
     {
         setrequID.add(var.recordId);
     }
-    for(SAM_request__c req:[select id,CreatedById,createdby.email,lkp_Assign_To__r.email,(select id,pkl_Charging_Type__c,pkl_Line_Status__c from Quote_Line_Items__r) from SAM_request__c where id=:setrequID]){       
+    for(SAM_request__c req:[select id,CreatedById,createdby.email,lkp_Assign_To__r.email,(select id,pkl_Charging_Type__c,pkl_Line_Status__c from Quote_Line_Items__r) from SAM_request__c where id in :setrequID]){       
         set<ID> setrelatedQLI = new set<ID>();
         mapIDEmail.put(req.id,req.createdby.email);
         mapIDEmailAssign.put(req.id,req.lkp_Assign_To__r.email);
@@ -44,7 +44,7 @@ public static void SendEmailWithAttachment(List<SendEmailClassVariable> inputs)
         if(attList != null && attList.size()>0){
             for(Attachment att : attList)
             {
-                if(mapreqIDQLI.get(var.recordId).contains(att.ParentId)){
+                if(mapreqIDQLI.size() >0 && mapreqIDQLI.get(var.recordId).contains(att.ParentId)){
                     // Create the emessage attachment
                     Messaging.EmailFileAttachment efa = new Messaging.EmailFileAttachment();
                     efa.setFileName(att.Name);
@@ -56,7 +56,15 @@ public static void SendEmailWithAttachment(List<SendEmailClassVariable> inputs)
                 
             }
         }
-        if(mapIDemailTem.get(var.templateDeveloperName) != null){
+        if( mapIDemailTem.get(var.templateDeveloperName) != null &&
+            mapIDEmail.get(var.recordId) != null &&
+            mapIDEmailAssign.get(var.recordId) != null &&
+            var != null &&
+            mapIDCreatedById.get(var.recordId) != null && 
+            owa != null &&
+            mapIDEmail.get(var.recordId) != null &&
+            label.SAM_from_address != null            
+            ){
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
             message.toAddresses = new String[] {mapIDEmail.get(var.recordId),mapIDEmailAssign.get(var.recordId)};
             message.setTemplateId(mapIDemailTem.get(var.templateDeveloperName));
@@ -65,12 +73,14 @@ public static void SendEmailWithAttachment(List<SendEmailClassVariable> inputs)
             message.setOrgWideEmailAddressId(owa.id);
             //message.setCcAddresses = new String[] {mapIDEmail.get(var.recordId)};
             String[] CCEmails = new String[]{label.SAM_from_address};
-            message.setCCAddresses(CCEmails);
+            if(CCEmails != null ) {message.setCCAddresses(CCEmails);}
             //message.setReplyTo(label.SAM_from_address);
             //message.setSenderDisplayName(label.SAM_from_address_display_name);
             message.setTreatTargetObjectAsRecipient(false);
             message.setFileAttachments(efaList);
-            Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+            if(!Test.isRunningTest()){
+                Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+            }
         }
     }
 }
