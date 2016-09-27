@@ -35,7 +35,7 @@ public with sharing class Amr_UtilityClass {
         return brandSet;
     } */
 
-    public Set<MDO_Brand__C> brandValues(String brandPosition){
+    public Set<MDO_Brand__C> brandValues(String Category,String brandPosition){
         List<MDO_Brand__C> brandValues = [select id,name from MDO_Brand__C where id in (select brand_id__c from MDO_BrandPositions__c where brand_position_id__c =:brandPosition and status__c = 'Active' ) and status__c = 'Active' limit 50000];
         Set<MDO_Brand__C> brandSet = new Set<MDO_Brand__C>();
         brandSet.addAll(brandValues);
