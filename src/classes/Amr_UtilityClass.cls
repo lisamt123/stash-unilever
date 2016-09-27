@@ -16,10 +16,10 @@ public with sharing class Amr_UtilityClass {
         return brandPostitionSet;
     } */
 
-    public Set<MDO_BrandPositions__c> brandPostitionValues(String Category){
+    public Set<MDO_BrandPosition__c> brandPostitionValues(String Category){
     
-        List<MDO_BrandPositions__c> brandPositionLst = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c = :Category and status__c = 'Active') and status__c = 'Active' limit 50000];
-        Set<MDO_BrandPositions__c> brandPostitionSet = new Set<MDO_BrandPositions__c>();
+        List<MDO_BrandPosition__c> brandPositionLst = [Select id, name from MDO_BrandPosition__c where id in (select brand_position_id__c from MDO_BrandPositions__c where product_category_id__c = :Category and status__c = 'Active') and status__c = 'Active' limit 50000];
+        Set<MDO_BrandPosition__c> brandPostitionSet = new Set<MDO_BrandPosition__c>();
         
         brandPostitionSet.addAll(brandPositionLst);
         
