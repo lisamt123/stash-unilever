@@ -474,16 +474,16 @@ public with sharing class IPM_Resource_Allocation {
         {
             if(roleType==IPM_ConstantUtils.TEAM_GUEST)
             {
-                uQuery=uQuery+' AND IPM_HoldCategory__c !=null)AND';
+                uQuery=uQuery+' IPM_HoldCategory__c !=null AND';
                 uQuery=uQuery+'(IPM_User__r.name LIKE :querySearchTeamMem  OR IPM_User__r.email LIKE :querySearchTeamMem OR ';
                 uQuery=uQuery+'IPM_User_Role__c LIKE :querySearchTeamMem) AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
             }
             else
             {
-                uQuery=uQuery+' AND IPM_HoldCategory__c !=null AND ';
-                uQuery=uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\')AND(IPM_User__r.name LIKE :querySearchTeamMem  OR ';
+                uQuery=uQuery+'  IPM_HoldCategory__c !=null AND ';
+                uQuery=uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\' AND(IPM_User__r.name LIKE :querySearchTeamMem  OR ';
                 uQuery=uQuery+SRCH_FILTER;
-                uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
+                uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT; 
             }
         }
         try
