@@ -56,17 +56,18 @@ public static void SendEmailWithAttachment(List<SendEmailClassVariable> inputs)
                 
             }
         }
-         if(mapIDemailTem.get(var.templateDeveloperName) != null){
+        if(mapIDemailTem.get(var.templateDeveloperName) != null){
             Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
             message.toAddresses = new String[] {mapIDEmail.get(var.recordId),mapIDEmailAssign.get(var.recordId)};
             message.setTemplateId(mapIDemailTem.get(var.templateDeveloperName));
             message.setWhatId(var.recordId);
             message.setTargetObjectId(mapIDCreatedById.get(var.recordId));
             message.setOrgWideEmailAddressId(owa.id);
-            //message.setReplyTo(label.SAM_from_address);
-            //message.setSenderDisplayName(label.SAM_from_address_display_name);
+            //message.setCcAddresses = new String[] {mapIDEmail.get(var.recordId)};
             String[] CCEmails = new String[]{label.SAM_from_address};
             message.setCCAddresses(CCEmails);
+            //message.setReplyTo(label.SAM_from_address);
+            //message.setSenderDisplayName(label.SAM_from_address_display_name);
             message.setTreatTargetObjectAsRecipient(false);
             message.setFileAttachments(efaList);
             Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});

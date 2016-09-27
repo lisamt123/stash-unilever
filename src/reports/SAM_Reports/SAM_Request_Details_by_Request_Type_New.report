@@ -95,12 +95,6 @@
         </values>
         <values>
             <sourceValues>
-                <sourceValue>Quote Provided</sourceValue>
-            </sourceValues>
-            <value>Quote -Provided</value>
-        </values>
-        <values>
-            <sourceValues>
                 <sourceValue>Pending-Finance</sourceValue>
             </sourceValues>
             <value>Pending- Finance</value>
@@ -113,75 +107,57 @@
         </values>
         <values>
             <sourceValues>
-                <sourceValue>Quote-Approved</sourceValue>
-            </sourceValues>
-            <value>Quote-Approved</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Charging-Completed</sourceValue>
-            </sourceValues>
-            <value>Charging-Completed</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Request-Onhold</sourceValue>
-            </sourceValues>
-            <value>Request-Onhold</value>
-        </values>
-        <values>
-            <sourceValues>
                 <sourceValue>Request-Closed</sourceValue>
             </sourceValues>
             <value>Request-Closed</value>
         </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Query-Resolved</sourceValue>
-            </sourceValues>
-            <value>Query-Resolved</value>
-        </values>
-        <values>
-            <sourceValues>
-                <sourceValue>Query-Responded</sourceValue>
-            </sourceValues>
-            <value>Query-Responded</value>
-        </values>
     </buckets>
-    <columns>
-        <field>CUST_NAME</field>
-    </columns>
-    <columns>
-        <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
-    </columns>
-    <columns>
-        <field>SAM_Request__c.pkl_Ownership_Reporting__c</field>
-    </columns>
-    <columns>
-        <field>SAM_Request__c.date_Request_Start_Date__c</field>
-    </columns>
-    <columns>
-        <field>SAM_Request__c.Quote_Final_Provided_Date__c</field>
-    </columns>
-    <columns>
-        <field>SAM_Request__c.date_Request_End_Date__c</field>
-    </columns>
-    <columns>
-        <field>SAM_Request__c.Ticket_Age__c</field>
-    </columns>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>VerticalColumnStacked</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>SAM_Request__c.txt_Request_Type_for_UI__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <secondaryGroupingColumn>BucketField_80153495</secondaryGroupingColumn>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
     <currency>EUR</currency>
-    <description>Request Type &amp; SAM Demand Management - ticket ageing</description>
-    <format>Tabular</format>
-    <name>SAM Request Type &amp; SDM - ticket ageing</name>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>BucketField_80153495</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>SAM_Request__c.txt_Request_Type_for_UI__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>SAM Request Details by Request Type New</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
     <reportType>CustomEntity$SAM_Request__c</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
-    <sortColumn>CUST_NAME</sortColumn>
-    <sortOrder>Asc</sortOrder>
+    <showDetails>false</showDetails>
     <timeFrameFilter>
         <dateColumn>SAM_Request__c.date_Query_End_Date__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
