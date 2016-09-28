@@ -2843,6 +2843,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>WU_Permission_set_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Permission set Check</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Work_Level__c</fullName>
         <externalId>false</externalId>
         <label>Work Level</label>
