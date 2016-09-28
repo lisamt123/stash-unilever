@@ -68,7 +68,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     @TestVisible private Map<id,IPM_Project_Rollout__c> rolloutToUpdateBrand;
     public map<id,set<string>> holdRolloutidBrandMap{get;set;}//map of local rollout id and set of brands
     @TestVisible private Map<string,IPM_Country__c> rolloutCountryMap;//map for country name and country details
-    public Map<Id,Boolean> showClusterNameMap{get;set;}
     public String filterforProject;
     public Boolean alignAllMCOTLDs{get;set;} 
     public Date allignedDateValue{get;set;}
@@ -150,7 +149,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         alignAllMCOTLDs=false;
         rolloutToUpdateBrand = new map<id,IPM_Project_Rollout__c>();
         rolloutCountryMap = new Map<string,IPM_Country__c>();
-        showClusterNameMap = new Map<Id,Boolean>();
         nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
         if(projectTolocalRolloutToCountryMap!=null)
         {
@@ -292,13 +290,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 if(!localrolloutCountryMap.isEmpty())
                 {
                     rolloutCountryNamesMap.putAll(localrolloutCountryMap);
-                    showClusterNameMap.put(regionalId,true);
                 }
-                else
-                {
-                    showClusterNameMap.put(regionalId,false);
-                }
-                
                 //Add Unique Names
                 if(!marketClusterRolloutMap.containsKey(regionalId) && lstcompleteRollout.containsKey(regionalId))
                 {
@@ -365,7 +357,17 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         isStatusEditable = false;
         leaderCount = 0;
         
-        getRegionalProjectsGlobal(); // List of child Project(inclding Local Rollouts) based on Span
+        setLocalProjectNames = new Set<String>();
+        setRegionalProjectNames = new Set<String>();
+        
+        if(project.IPM_ProjectGKM__c != 'GKM3')
+        {
+        	getRegionalProjectsGlobal(); // List of child Project(inclding Local Rollouts) based on Span
+        }
+        else
+        {
+        	getGKM3SpecificLocalProjects();
+        }
         getRegionalRollouts(); // List of Child Rollouts(inclding Local Rollouts) which have not been converted to Projects.
         
         for(IPM_Project_Rollout__c rollout : lstcompleteRollout.values())
@@ -382,6 +384,45 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         }
      }
     
+    private void getGKM3SpecificLocalProjects()
+    {
+    	 // If it is a Global Project, get regional Projects and associated Rollouts against regional Projects.
+                
+            String queryString = 'SELECT Id,IPM_Rollout_Status__c,IPM_Project_Rollout__c,IPM_Project_Rollout__r.Regional_Rollout__c, Name,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c,IPM_Finance_Lead__c, Rollout_Plan_Target_Launch_Date__c, ';
+            
+            queryString+= ' (SELECT ';
+            
+            for (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet())
+            {
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
+                {
+                    queryString+= field + ', ';
+                }
+            }
+            queryString+= ' Id, IPM_Local_Project__r.IPM_Project_Leader__c,IPM_Local_Project__r.Rollout_Plan_Target_Launch_Date__c, IPM_Local_Project__r.IPM_Finance_Lead__c,IPM_Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, IPM_Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl FROM IPM_Countries2__r  where ( isActive__c = true OR '+ showEntity + ' = true )' ;
+            queryString+= ' ORDER BY Name) ';
+                      
+            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId ';
+            if(project.Is_Archieved__c)
+            {
+                queryString+= '  AND Is_Archieved__c = true AND IPM_StoppedByProject__c = :projectId ';      
+            } 
+            else
+            {
+                queryString+= '  AND Is_Archieved__c =: isArchiveFalse '; 
+            } 
+            queryString+= ' ORDER BY IPM_Project_Name__c LIMIT 50000';
+            
+            system.debug('PS::query='+queryString);
+            lstcompleteProjects = new Map<Id,IPM_Project__c>((List<IPM_Project__c>)Database.query(queryString));
+            
+            for(IPM_Project__c localProject : lstcompleteProjects.values())
+            {
+            	localProjIdTLDMap.put(localProject.Id,localProject.Rollout_Plan_Target_Launch_Date__c);	 
+            }
+            
+            
+    }
     /*******************************************************************************************************
     * @description  Method to get the list of regional projects to be displayed
     * @param        NONE
@@ -389,17 +430,15 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     private void getRegionalProjectsGlobal()
     {
-        setRegionalProjectNames = new Set<String>();
-        setLocalProjectNames = new Set<String>();
         
         Set<Id> localRolloutIdSet = new Set<Id>();
         
         Map<Id,IPM_Project__c> associatedProjectMap = new Map<Id,IPM_Project__c>(); 
-            
-        if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        
+        if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) )
         { // If it is a Global Project, get regional Projects and associated Rollouts against regional Projects.
                 
-            String queryString = 'SELECT Id,IPM_Rollout_Status__c,IPM_RolloutStatus__c,Name,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c,IPM_Finance_Lead__c, Rollout_Plan_Target_Launch_Date__c, ';
+            String queryString = 'SELECT Id,IPM_Rollout_Status__c,Name,IPM_Project_Leader__r.SmallPhotoUrl,IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c,IPM_Finance_Lead__c, Rollout_Plan_Target_Launch_Date__c, ';
             
             queryString+= ' (SELECT ';
             
@@ -410,7 +449,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id, Local_Project__r.IPM_Project_Leader__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Regional_PL__r.smallphotourl,Finance_Member__r.smallphotourl FROM Regional_Project_Rollout__r  where ( isActive__c = true OR '+ showEntity + ' = true )' ;
+            queryString+= ' Id, Local_Project__r.IPM_Project_Leader__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c, Local_Project__r.IPM_Finance_Lead__c,Local_Project__r.IPM_Project_Leader__r.SmallPhotoUrl, Local_Project__r.IPM_Finance_Lead__r.SmallPhotoUrl,IPM_Regional_PL__r.smallphotourl,Finance_Member__r.smallphotourl FROM Regional_Project_Rollout__r  where ( isActive__c = true OR '+ showEntity + ' = true )' ;
             queryString+= ' ORDER BY IPM_Rollout_Project__c), ';
             
             queryString+= ' (SELECT ';
@@ -658,7 +697,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id,Local_Project__r.IPM_No_Rollout_Disabled__c,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE Regional_Project__c =: projectId AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setLocalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true )'; 
+            queryString+= ' Id,Local_Project__r.IPM_No_Rollout_Disabled__c,IPM_Regional_PL__r.Name,Finance_Member__r.Name,IPM_Regional_PL__r.SmallPhotoUrl,Finance_Member__r.SmallPhotoUrl FROM IPM_Project_Rollout__c WHERE (Regional_Project__c =: projectId OR IPM_Project__c =: projectId)  AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND (NOT IPM_Rollout_Project__c IN: setLocalProjectNames) AND ( isActive__c = true OR '+ showEntity + ' = true )'; 
         }       
         
         queryString+= ' ORDER BY IPM_Rollout_Project__c LIMIT 50000';

@@ -2848,8 +2848,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_ProjectGKM__c==IPM_ConstantUtils.GKM_3)
             {
                 mcoCountryRolloutPlan.Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
-                mcoCountryRolloutPlan.Local_Project_Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
+                mcoCountryRolloutPlan.Local_Project_Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;
+                localRolloutProject.Rollout_Plan_Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;
                 update mcoCountryRolloutPlan;
+                update localRolloutProject;
                 getFinancials();                 
             }
            
@@ -2935,6 +2937,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     localProjectRolloutTLDYear = rolloutList[0].Target_Launch_Date__c.year(); 
                     
                     localProjectName = rolloutList[0].Local_Project__r.name;
+                }
+                if(rolloutList!=null && !rolloutList.isEmpty())
+                {
+                	mcoCountryRolloutPlan = rolloutList[0];
+                	localRolloutProject = rolloutList[0].Local_Project__r;
                 }
             }
             // check for the misalignment
