@@ -276,16 +276,6 @@
         <field>ICB_Setup_Photo__c.ICB_Parent_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
-        <editable>false</editable>
-        <field>ICB_Setup_Photo__c.CreatedById</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>ICB_Setup_Photo__c.LastModifiedById</field>
-        <readable>true</readable>
-    </fieldPermissions>
      
     <fieldPermissions>
         <editable>false</editable>
@@ -307,21 +297,7 @@
         <field>Opportunity.Amount</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.CampaignId</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.ContractId</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.CreatedById</field>
-        <readable>true</readable>
-    </fieldPermissions>
+     
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Description</field>
@@ -337,11 +313,7 @@
         <field>Opportunity.ForecastCategoryName</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.LastModifiedById</field>
-        <readable>true</readable>
-    </fieldPermissions>
+   
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.StageName</field>
@@ -372,25 +344,11 @@
         <field>Opportunity.ICB_Total_Sold_Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.IsPrivate</field>
-        <readable>true</readable>
-    </fieldPermissions>
+   
     <fieldPermissions>
         <editable>false</editable>
         <field>Opportunity.Probability</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.LeadSource</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.NextStep</field>
-        <readable>false</readable>
     </fieldPermissions>
      <fieldPermissions>
         <editable>true</editable>
@@ -403,11 +361,7 @@
         <field>Opportunity.RecordTypeId</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Opportunity.PartnerAccountId</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    
      <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.Pricebook2Id</field>
@@ -433,21 +387,13 @@
         <field>OpportunityLineItem.Description</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.CreatedById</field>
-        <readable>true</readable>
-    </fieldPermissions>
+     
     <fieldPermissions>
         <editable>false</editable>
         <field>OpportunityLineItem.Discount</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.LastModifiedById</field>
-        <readable>true</readable>
-    </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>OpportunityLineItem.Quantity</field>
@@ -488,11 +434,7 @@
         <field>OpportunityLineItem.ListPrice</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>OpportunityLineItem.OpportunityId</field>
-        <readable>true</readable>
-    </fieldPermissions>
+  
        <fieldPermissions>
         <editable>true</editable>
         <field>OpportunityLineItem.Product2Id</field>
@@ -523,11 +465,7 @@
         <field>Asset.ICB_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>OpportunityLineItem.ICB_Total_Purchase_List_Price__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
+ 
     <label>ICB Mobile Channel Backoffice Salesforce</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
