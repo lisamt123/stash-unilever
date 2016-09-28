@@ -19,8 +19,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
   private static final String LOCAL_PL = 'LOCAL_PL';
   private static final String GLOBAL_COMPANY_CARD = 'Global Company Card';
   private static final String PROJECTS_NOT_CREATED = 'Projects not created';
-  private static final string TEST_STR = 'test';
-
+  private static final string FIELDSUFFIX = 'Global';
   
   /***********************************
   Description of the purpose of the method. 
@@ -89,7 +88,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
       List<IPM_Project__c> projectListTemp = [Select id From IPM_Project__c Where id IN : projectList limit 1000 ];
       system.assert(projectListTemp.size() > 0,PROJECTS_NOT_CREATED);
       
-      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
+      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
       
       Test.startTest();
      
@@ -140,7 +139,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
       User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
       List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
-      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
+      List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
       List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where name NOT IN ('IPM_MasterProject')];
       
       lstProjects[0].IPM_SourceProjectType__c = 'Original';
@@ -177,7 +176,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
-      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
 	  List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
       
       PageReference pageRef = Page.IPM_Financial;
@@ -214,9 +213,17 @@ private class IPM_FinancialControllerSoftVldtns_Test
       
       User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1000];
       
-      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
-	  List<IPM_Project__c> lstProjects = [Select id, name, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
+      List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Local_Project__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
+	  List<IPM_Project__c> lstProjects = [Select id, name, IPMProject_Span__c, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
       
+      String queryString='Select ';
+      For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
+  		  if (!field.equalsignoreCase('Id') ){
+              queryString+= field + ', ';
+          }
+      }
+      queryString += ' id From IPM_Financial_year__c  WHERE IPM_Financial__c =\'' + lstFin[0].Id + '\'';
+      List<IPM_Financial_year__c> FinYears = Database.query(queryString);
       PageReference pageRef = Page.IPM_Financial;
       Test.setCurrentPage(pageRef);
 
@@ -246,7 +253,7 @@ private class IPM_FinancialControllerSoftVldtns_Test
           
 
         List<IPM_FinancialValueWrapper> lstIncrementalPLProfit = new List<IPM_FinancialValueWrapper>();
-        IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,TEST_STR,currentFinancial,IPM_ConstantUtils.TAB_MYVIEW_NAME);
+        IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(FinYears[0], lstProjects[0], FIELDSUFFIX, IPM_ConstantUtils.FIELD_LITERAL_VOLUME, 0, lstFin[0],IPM_ConstantUtils.TAB_MYVIEW_NAME);
         lstIncrementalPLProfit.add(valueWrapper);
         boolean flag = finController2.validateGrossProfit(lstIncrementalPLProfit);
         system.assertEquals(flag, true, 'Gross profit validation failed');
@@ -279,8 +286,5 @@ private class IPM_FinancialControllerSoftVldtns_Test
         
         Test.stopTest();
       }
-
   }
-  
-
 }

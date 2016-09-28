@@ -110,6 +110,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public set<String> validationSettingSet;
     public String projectType; 
     public transient Boolean isFinancialInvalidValueChanged; 
+    public Boolean isFinEditable {get;set;}
     
     //for Exchange rate
     String[] currencies = new String[]{};
@@ -147,31 +148,31 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         } 
         set;} 
     public boolean isFinancialInvalidInnovation;
-	//Fix4355 Variable to check NONKEY
-	public Boolean isNonkey
-	{
-		get	{
-				Boolean flag = false;
-				if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))
-					{    
-                		flag = true;
-            		}
-            	return flag;
-        	} 		
-		set;	
-	}
+    //Fix4355 Variable to check NONKEY
+    public Boolean isNonkey
+    {
+        get {
+                Boolean flag = false;
+                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))
+                    {    
+                        flag = true;
+                    }
+                return flag;
+            }       
+        set;    
+    }
 
     // Variable is used to show confirm button for key and non-key for GKM3 and only key for rest of GKM
     public Boolean KeyNonKeyGKM{
-	  get {
-	  		 Boolean flag = false;	
-	  		 if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3)
-	  		 {
-	  		 	flag = true;
-	  		 }	
-	  		 return flag;
-	  }
-	      set;    
+      get {
+             Boolean flag = false;  
+             if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && project.IPM_ProjectGKM__c != IPM_ConstantUtils.GATE_KEEPING_MODEL_3)
+             {
+                flag = true;
+             }  
+             return flag;
+      }
+          set;    
     }
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
@@ -203,14 +204,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
             else
             {
-            	if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-            	{
-            		return Label.Accept_from_Regional;
-            	}
-            	else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-            	{
-            		return Label.Accept_from_Local;
-            	}
+                if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+                {
+                    return Label.Accept_from_Regional;
+                }
+                else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                {
+                    return Label.Accept_from_Local;
+                }
             }
             return IPM_ConstantUtils.BLANK;
         }
@@ -230,9 +231,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             Date tld = null;
             String dateStr = IPM_ConstantUtils.BLANK;
             if(project != null){
-            	if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
-            		tld = currentFinancial.Target_Launch_Date__c;
-            	} else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+                if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
+                    tld = currentFinancial.Target_Launch_Date__c;
+                } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                     tld = project.IPM_Target_Launch_Dates__c;
                 } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
                     if(currentFinancial != null){
@@ -397,7 +398,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     milestoneFinanceDataValidationMessage = Label.IPM_Finacial_Data_Missing;
                 }
                 localProjectConditions();
-              
+                
+                //check financial is editable i.e. to show edit button or not
+                isFinEditable = isFinancialEditable(project, currentFinancial);
             }
         } 
         catch (Exception ex)
@@ -945,13 +948,45 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND ( isActive__c = true OR IPM_ShowAtGlobal__c = true)
                                                             ORDER BY Market_Cluster_Name__c Limit: IPM_ConstantUtils.MaxLimit];
         
-        For (IPM_Project_Rollout__c regionalRollout : lstRegionalRollout)
-        { 
-            if(!regionalRollout.IPM_Financials__r.isEmpty())
-            {
-                lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c,regionalRollout.IPM_Financials__r) );
-            }
-        }
+        
+        Map<String,List<IPM_Financial__c>> localFinancialMap = new Map<String,List<IPM_Financial__c>>();
+        if(project.IPM_ProjectGKM__c == IPM_ConstantUtils.GKM_3 && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY){
+        	
+        	List<IPM_Project__c> lstLocalProject = new List<IPM_Project__c>();
+			
+			lstLocalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id,recordTypeID,Financial_External_Id__c, Status__c,IPM_Key_Financial__c,Status_Global__c,Status_Local__c,Status_Regional__c from IPM_Financials_local__r Where IPM_Project_Rollout__c = null) FROM IPM_Project__c WHERE IPM_Parent_Project__c =: project.id Limit: IPM_ConstantUtils.MaxLimit];
+			
+			
+			
+			if(!lstLocalProject.isEmpty()){
+				for(IPM_Project__c localProject: lstLocalProject){
+				
+					if(localFinancialMap.containsKey(localProject.Market_Cluster_Name__c)){
+						localFinancialMap.get(localProject.Market_Cluster_Name__c).add(localProject.IPM_Financials_local__r);
+					}
+					else{
+						localFinancialMap.put(localProject.Market_Cluster_Name__c,localProject.IPM_Financials_local__r);
+					}
+				
+				}
+			 
+			}
+		}	
+		
+		if(!lstRegionalRollout.isEmpty() ){
+			Set<IPM_Financial__c> consolidatedFinancialSet = new Set<IPM_Financial__c>();
+			for(IPM_Project_Rollout__c regionalRollout :lstRegionalRollout){
+				consolidatedFinancialSet.clear();
+				if(!localFinancialMap.isEmpty() && localFinancialMap.containsKey(regionalRollout.Market_Cluster_Name__c)){
+					consolidatedFinancialSet.addAll(localFinancialMap.get(regionalRollout.Market_Cluster_Name__c));
+				}
+				
+				consolidatedFinancialSet.addAll(regionalRollout.IPM_Financials__r);
+				
+				
+				lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, new List<IPM_Financial__c>(consolidatedFinancialSet)) );
+			}
+		}
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
       
@@ -1102,7 +1137,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                          (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
-                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
+                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND(NOT Financial_External_ID__c like : nonKeyLike) 
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
                                   WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
@@ -1112,7 +1147,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                          (SELECT Id,Name,recordTypeID,Financial_External_ID__c,Status__c,IPM_Key_Financial__c, 
                                           Status_Global__c,Local_Project__c,Added_At_Stage__c,Status_Local__c,Status_Regional__c 
                                           FROM IPM_Financials__r 
-                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Added_At_Stage__c =: IPM_ConstantUtils.PHASE_IDEAS
+                                          WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
                                           ORDER BY Sorting_Order__c, recordTypeID,Financial_External_Id__c)
                                   FROM IPM_Project_Rollout__c
                                   WHERE IPM_Project__c =: project.id AND IPM_CharterApproved__c = true AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
@@ -1398,7 +1433,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> LstCurrentFinancial = new List<IPM_Financial__c>();
         LstCurrentFinancial = Database.query(queryString);
-                    
+        
+        
+                 
         if(!LstCurrentFinancial.isEmpty()){
             currentFinancial = LstCurrentFinancial[0];
          }
@@ -1421,7 +1458,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
             }
            
-           	generateFinancialsFromCY();
+            generateFinancialsFromCY();
            
             getCountryList();
             calculateIsNonKeyBusinessCaseChanged();
@@ -1774,9 +1811,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             getFinancials();
             getMisalignmentVisibility();
-            isEditMode = FALSE;
+            isEditMode = false;
             isEditModeBottomUp = false;
-                        
+            isFinEditable = isFinancialEditable(project, currentFinancial);
+                           
             redValidationCellsString = IPM_ConstantUtils.BLANK;
             yellowValidationCellsString = IPM_ConstantUtils.BLANK;
             getCurrentFinancialType(currentFinancial);
@@ -1833,6 +1871,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             isEditMode = true;
             isEditModeBottomUp = false;
+            isFinEditable = isFinancialEditable(project, currentFinancial);
             
             if(!isProjectStop && (toShowEditOpern||toShowEditButton))
             {
@@ -1873,6 +1912,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
              milestoneFinanceDataValidationMessage = IPM_ConstantUtils.BLANK;
              isEditMode = false;
              isEditModeBottomUp = false;
+             isFinEditable = isFinancialEditable(project, currentFinancial);
              
             
             
@@ -2018,7 +2058,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
            currentTab.equalsIgnoreCase(IPM_ConstantUtils.TAB_MYVIEW_NAME) &&
            isFinancialEditable(project,finToValidate)
           ){
-          	
+            
             Boolean isValidateIncrementalTurnoverFailed= false;
             Boolean isValidateIncrementalProfitFailed= false; 
             Boolean isValidateGrossProfitFailed= false;
@@ -2450,15 +2490,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             softValidate(currentFinancial);
             
             //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
-			isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
-			
-			if(isFinancialInvalidValueChanged){
-				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
-				update currentFinancial;
-				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
-			}
-			
-			refreshFinancials();
+            isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+            
+            if(isFinancialInvalidValueChanged){
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+                update currentFinancial;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+            }
+            
+            refreshFinancials();
             
         } 
         catch (Exception ex) 
@@ -2499,14 +2539,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             
             
             //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
-			isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
-			
-			if(isFinancialInvalidValueChanged){
-				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
-				update currentFinancial;
-				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
-			}
-			
+            isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+            
+            if(isFinancialInvalidValueChanged){
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+                update currentFinancial;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+            }
+            
 
         } 
         catch (Exception ex) 
@@ -2546,13 +2586,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             softValidate(currentFinancial);
             
             //set the isFinancialInvalid__c flag on the financial (as true or false). If the new value is different from the old one then update the financial record
-			isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
-			
-			if(isFinancialInvalidValueChanged){
-				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
-				update currentFinancial;
-				IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
-			}
+            isFinancialInvalidValueChanged = checkIsFinancialInvalid(isFinancialInvalid,isFinancialInvalidInnovation, currentFinancial);
+            
+            if(isFinancialInvalidValueChanged){
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = TRUE;
+                update currentFinancial;
+                IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = FALSE;
+            }
 
         } 
         catch (Exception ex) 
@@ -2926,7 +2966,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 {
                     financialExternalIdString = currentFinancial.Financial_External_ID__c;
                 }
-                queryText = 'Select id,Target_Launch_Date__c, Local_Project__c, Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name from IPM_Project_Rollout__c where name like \'' +financialExternalIdString+'\' and IPM_Rollout_Span__c like \'Local\'';
+                queryText = 'Select id,Target_Launch_Date__c, Local_Project__c, Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.name,Previous_Target_Launch_Date__c, MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where name like \'' +financialExternalIdString+'\' and IPM_Rollout_Span__c like \'Local\'';
                 List<IPM_Project_Rollout__c> rolloutList = Database.query(queryText);
                 if(!rolloutList.isEmpty() && rolloutList[0].Local_Project__r.IPM_Target_Launch_Dates__c!=null)
                 {
@@ -2934,8 +2974,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     localProjectTLDYear = rolloutList[0].Local_Project__r.IPM_Target_Launch_Dates__c.year();
                     
                     localProjectRolloutTLD = rolloutList[0].Target_Launch_Date__c.format();
-                    localProjectRolloutTLDYear = rolloutList[0].Target_Launch_Date__c.year(); 
-                    
+                    localProjectRolloutTLDYear = rolloutList[0].Target_Launch_Date__c.year();
                     localProjectName = rolloutList[0].Local_Project__r.name;
                 }
                 if(rolloutList!=null && !rolloutList.isEmpty())
@@ -2969,8 +3008,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isTargetLaunchDateMisaligned =  flag; 
         //check for the operational type project to check for the misalignment.                              
             checkOperationPrjMisAlignment();
-        } 
-	/************************************************************************************************************** 
+        }
+    /************************************************************************************************************** 
     * This method check operation project misalignment 
     * @parmas
     * @param        NONE
@@ -3823,25 +3862,25 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     **************************************************************************************************************/
     public Boolean isFinancialEditable(IPM_Project__c proj, IPM_Financial__c finToEvaluate){
         
-        Boolean isFinConsolidated = finToEvaluate.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE);
+        IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(project);
         
-        if(proj.IPM_Phase__c != 'Ideas' && 
-           (project.IPM_Phase__c == 'PLE' ||proj.IPM_Project_Type__c != 'Operational') && 
-           (   project.IPM_Phase__c == 'PLE' ||
-               (proj.IPMProject_Span__c == 'Global' && !isFinConsolidated) ||
-               (proj.IPMProject_Span__c == 'Regional' && isFinConsolidated))  ){
-                  if((proj.IPMProject_Span__c == 'Global' ||  proj.IPMProject_Span__c == 'Regional') && isFinConsolidated && !isEditMode && !isProjectStop && toShowEditButton){
-                    return true;
-                  }
-                  else{
-                        return false;
-                 }
+        String editVisibilitystr = projectType.Financial_Edit_Visibility__c;
         
-        }
         
-        else if(isEditMode!= null && !isEditMode && isProjectStop!=null && !isProjectStop && toShowEditButton!= null && toShowEditButton){
-                return true;
-        }
+        Boolean isfinEditable;
+        getCurrentFinancialType(finToEvaluate);
+
+   		if(!String.IsBlank(editVisibilitystr) && editVisibilitystr.contains(currentFinancialType)){
+   			isfinEditable = true;
+   		}        	    
+	    else{
+	        isfinEditable = false;
+	    }
+        
+
+		if(isEditMode!= null && !isEditMode && isProjectStop!=null && !isProjectStop && toShowEditButton!= null && toShowEditButton && isfinEditable && isEditable){
+            return true;
+    	}
         else{
             return false;
         }
@@ -4007,19 +4046,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * finToEvaluate : The financial record to evaluate
     **************************************************************************************************************/
     public Boolean checkIsFinancialInvalid(Boolean isFinancialInvalid, Boolean isFinancialInvalidInnovation, IPM_Financial__c finToEvaluate){
-		  Boolean isChanged = false;
-		  
-	      if((isFinancialInvalid || isFinancialInvalidInnovation) && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
-	        finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, true);
-	        isChanged = true;
-	      }
-	      else if((!isFinancialInvalid && !isFinancialInvalidInnovation) && (Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
-	        finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, false);
-	        isChanged = true;
-	      }
-	      return isChanged;
-    }
-    
-    
-        
+          Boolean isChanged = false;
+          
+          if((isFinancialInvalid || isFinancialInvalidInnovation) && !(Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
+            finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, true);
+            isChanged = true;
+          }
+          else if((!isFinancialInvalid && !isFinancialInvalidInnovation) && (Boolean)finToEvaluate.get(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)){
+            finToEvaluate.put(IPM_ConstantUtils.FIELD_IS_FINANCIAL_INVALID+project.IPMProject_Span__c+IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, false);
+            isChanged = true;
+          }
+          return isChanged;
+    }       
 }

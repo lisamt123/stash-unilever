@@ -33,6 +33,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Financial_Edit_Visibility__c</fullName>
+        <externalId>false</externalId>
+        <label>Financial Edit Visibility</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>GKM_Model__c</fullName>
         <externalId>false</externalId>
         <label>GKM Model</label>
