@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="CurrentMonth" type="string"></aura:attribute>
+    <aura:attribute name="UsageType" type="string"></aura:attribute>
+</aura:event>

@@ -64,7 +64,7 @@ public class PBS_LearningDeleteSharedAsgmtsExt_Test {
             PBS_LMSService_CC.upsertAssignments(selectedUserIds,tplanId,null);
         }
 
-        List<PBS_Learning_Assignment__c> las = [select id,Shared_Learning_Assignment__c,User__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
+        //List<PBS_Learning_Assignment__c> las = [select id,Shared_Learning_Assignment__c,User__c from PBS_Learning_Assignment__c limit:integer.valueof(System.Label.PBS_soqllimit)];
 
         List<PBS_Learning_Assignment__c> taskLearningAssignments = [select id,Shared_Learning_Assignment__c
             from PBS_Learning_Assignment__c

@@ -77,7 +77,7 @@ private class IPM_ProjectCountryDetails_Test {
             
             update toUpdateProjList;
             List<IPM_Project__c> updatedProjList = [Select id,IPM_Strategic_Intent__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 50000]; 
-         	system.assertEquals(updatedProjList[0].IPM_Strategic_Intent__c,PROJ_STRATEGIC_INTENT,'Projects\' strategic intent update failed ');
+            system.assertEquals(updatedProjList[0].IPM_Strategic_Intent__c,PROJ_STRATEGIC_INTENT,'Projects\' strategic intent update failed ');
             
             IPM_Project__c globalProjNew = IPM_TestFactory_Helper.createIPMProject(false);
             globalProjNew.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
@@ -107,11 +107,11 @@ private class IPM_ProjectCountryDetails_Test {
             insert localProjNew;
 
             MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
-            	insert geo;     
+                insert geo;     
             MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
-            	insert market;
+                insert market;
             MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
-            	insert marketGeo;      
+                insert marketGeo;      
             List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<4 ; i++) {
                     IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
@@ -170,7 +170,7 @@ private class IPM_ProjectCountryDetails_Test {
             update projToUpdate;
             
             List<IPM_Project__c> updatedProjList = [Select id,IPM_Strategic_Intent__c,IPM_Project_Name__c from IPM_Project__c limit 50000]; 
-         	system.assertEquals(updatedProjList[0].IPM_Project_Name__c,'testProject01','Projects\' name update failed ');
+            system.assertEquals(updatedProjList[0].IPM_Project_Name__c,'testProject01','Projects\' name update failed ');
             projectResList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 5);
             for(Integer i = 0; i < projectResList.size(); i++){
                 projectResList[i].IPM_Role_Type__c = IPM_ConstantUtils.IPM_ROLE_FINANCE;
@@ -202,14 +202,14 @@ private class IPM_ProjectCountryDetails_Test {
             System.assert(insertedTempCountryList.size()>0,'Countries Not Created Properly');
             IPM_Assessment__c assessment1 = IPM_TestFactory_Helper.createAssessments(false, projToUpdate.id, tempCountry.id,IPM_ConstantUtils.PHASE_IDEAS );      
 
-			//Insert the assessment
+            //Insert the assessment
             insert assessment1;
             List<IPM_Assessment__c> insertedAssessmentList = [Select Id from IPM_Assessment__c limit 100];
             System.assert(insertedAssessmentList.size()>0,'Assessments not inserted');
             //Delete assessment so that there no assessment for the country and the IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag on the project is set to false
             delete assessment1;
             IPM_Project__c projWithNoAssessment = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
-           	System.assertEquals(false,projWithNoAssessment.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
+            System.assertEquals(false,projWithNoAssessment.IPM_Exists_AtLeast_OneAssmntPerEICountry__c,'Flag IPM_Exists_AtLeast_OneAssmntPerEICountry__c not not set properly');
             
             
             IPM_Country__c tempCountry2 = new  IPM_Country__c(
@@ -238,12 +238,12 @@ private class IPM_ProjectCountryDetails_Test {
             List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
             toUpdateProjList = [Select Id,IPM_Strategic_Intent__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 50000];
 
-			MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
-            	insert geo;     
+            MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+                insert geo;     
             MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
-            	insert market;
+                insert market;
             MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
-            	insert marketGeo;      
+                insert marketGeo;      
             List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<4 ; i++) {
                     IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
@@ -316,15 +316,15 @@ private class IPM_ProjectCountryDetails_Test {
             localProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
             insert localProjNew;
             
-    		MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
-            	insert geo;     
+            MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+                insert geo;     
             MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
-            	insert market;
+                insert market;
             MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
-            	insert marketGeo;      
+                insert marketGeo;      
             List<MDO_MarketGeographys__c> insertedMarketGeographies = [Select id from MDO_MarketGeographys__c limit 100];
             System.assertEquals(insertedMarketGeographies.size(),1,'Market Geogrphies not inserted'); 
-            	
+                
             List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<4 ; i++) {
                     IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
@@ -336,6 +336,8 @@ private class IPM_ProjectCountryDetails_Test {
             insert countryList;
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Where Id =:toUpdateProjList[0].Id limit 1][0];
             System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
+            IPM_ProjectCountryDetails.getAvailableBrands(localProjNew);
+            IPM_ProjectCountryDetails.setEISectionStatus(new List<IPM_Project__c>{globalProjNew});
             test.stopTest();
         }
     }

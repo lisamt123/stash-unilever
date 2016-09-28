@@ -95,12 +95,15 @@ public with sharing class PBS_LMSHeaderController_CC {
         section = null;
         List<String> sections;
         for (PBS_AlmondNavigation__c item : navigationItems) {
+         
             if (pageURL.contains(item.URL__c)) {
                 section = item.Name;
             } else if (!String.isBlank(item.SectionOtherPages__c)) {
+           
                 sections = item.SectionOtherPages__c.split(',');
                 for (String sectionPart : sections) {
                     if (pageURL.contains(sectionPart)) {
+                    
                         section = item.Name;
                         break;
                     }

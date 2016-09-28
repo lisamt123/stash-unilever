@@ -1,0 +1,19 @@
+.THIS .homePageSectionTitle {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.THIS .test{
+    padding: 10px;
+    background-color: #F5F6F7 !important;
+}
+
+.THIS .answer_list{
+    display:none;
+    padding: 20px 0px;
+}
+
+.THIS hr{
+    margin: 0 0 1rem 0;
+}

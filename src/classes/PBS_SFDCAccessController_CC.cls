@@ -193,12 +193,12 @@ global class PBS_SFDCAccessController_CC {
      *  This function returns the instance object to use based on the current sharing mode set in smode.
      */
     private AccessControllerInterface getACImpl() {
-        if (smode == SharingMode.WITH)
-            return acws;
-        else if (smode == SharingMode.WITHOUT)
-            return acwos;
-        else // we always enforce smode to be a valid value - so no need to check it here again if null or incorrect value
-            return acis;
+        if (smode == SharingMode.WITH){
+            return acws;}
+        else if (smode == SharingMode.WITHOUT){
+            return acwos;}
+        else {// we always enforce smode to be a valid value - so no need to check it here again if null or incorrect value
+            return acis;}
     }
 
     /**
@@ -214,13 +214,13 @@ global class PBS_SFDCAccessController_CC {
      * </PRE>
      */
     global void setSharingMode(SharingMode smode) {
-        if (smode == null)
-            throw new AccessControlDmlException('SharingMode must not be null');
+        if (smode == null){
+            throw new AccessControlDmlException('SharingMode must not be null');}
 
-        if (smode == SharingMode.WITH || smode == SharingMode.WITHOUT || smode == SharingMode.INHERIT)
-            this.smode = smode;
-        else
-            throw new AccessControlDmlException('Invalid value for SharingMode');
+        if (smode == SharingMode.WITH || smode == SharingMode.WITHOUT || smode == SharingMode.INHERIT){
+            this.smode = smode;}
+        else{
+            throw new AccessControlDmlException('Invalid value for SharingMode');}
     }
 
     /**
@@ -771,25 +771,25 @@ global class PBS_SFDCAccessController_CC {
         private abstract Database.DeleteResult[] dbDelete(sObject [] objs);
 
         private void setOperationMode(OperationMode omode) {
-            if (omode == null)
-                throw new AccessControlDmlException('OperationMode must not be null');
+            if (omode == null){
+                throw new AccessControlDmlException('OperationMode must not be null');}
 
-            if (omode == OperationMode.ALL_OR_NONE || omode == OperationMode.BEST_EFFORT)
-                this.omode = omode;
-            else
-                throw new AccessControlDmlException('Invalid value for OperationMode');
+            if (omode == OperationMode.ALL_OR_NONE || omode == OperationMode.BEST_EFFORT){
+                this.omode = omode;}
+            else{
+                throw new AccessControlDmlException('Invalid value for OperationMode');}
         }
 
         private void setArrayOperationMode(OperationMode oarrmode) {
-            if (oarrmode == null)
-                throw new AccessControlDmlException('OperationMode must not be null');
+            if (oarrmode == null){
+                throw new AccessControlDmlException('OperationMode must not be null');}
 
-            if (oarrmode == OperationMode.ALL_OR_NONE)
-                this.arrayAllOrNoneParam = true;
-            else if (oarrmode == OperationMode.BEST_EFFORT)
-                this.arrayAllOrNoneParam = false;
-            else
-                throw new AccessControlDmlException('Invalid value for OperationMode');
+            if (oarrmode == OperationMode.ALL_OR_NONE){
+                this.arrayAllOrNoneParam = true;}
+            else if (oarrmode == OperationMode.BEST_EFFORT){
+                this.arrayAllOrNoneParam = false;}
+            else{
+                throw new AccessControlDmlException('Invalid value for OperationMode');}
         }
 
         // Shortcut function
@@ -989,16 +989,16 @@ global class PBS_SFDCAccessController_CC {
          * Returns the cleanObj created and inserted into db.
          */
         public SObject insertAsUser(SObject devObj, List<String> fieldsToSet) {
-            if (devObj == null || fieldsToSet == null || fieldsToSet.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devObj == null || fieldsToSet == null || fieldsToSet.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (!(d.isCreateable()))
+            if (!(d.isCreateable())){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             Map<String, Schema.SObjectField> fieldMap = PBS_SFDCPlugins_CC.SFDC_DescribeInfoCache.fieldMapFor(devObj.getSObjectType()); // potentially saves a fields call below
             Set<String> creatableFields = fieldsToStringSet(getCreatableFields(fieldMap));
@@ -1011,13 +1011,13 @@ global class PBS_SFDCAccessController_CC {
                 fieldName = fieldName.toLowerCase();
                 if (creatableFields == null || (!creatableFields.contains(fieldName))) {
                     // creatableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
-                    if (omode == OperationMode.ALL_OR_NONE)
+                    if (omode == OperationMode.ALL_OR_NONE){
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
                         throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                             d.getName(),
-                                            fieldName);
+                                            fieldName);}
                 }
                 else {
                     // user has permission to set fieldName and it was request by the developer - so set it
@@ -1039,16 +1039,16 @@ global class PBS_SFDCAccessController_CC {
         /* Same as insertAsUser(SObject, List&lt;String&gt;) but with Schema.SObjectField instead of string.
          */
         public SObject insertAsUser(SObject devObj, List<Schema.SObjectField> fieldsToSet) {
-            if (devObj == null || fieldsToSet == null || fieldsToSet.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devObj == null || fieldsToSet == null || fieldsToSet.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if ((!d.isCreateable()))
+            if ((!d.isCreateable())){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             // start from a fresh sObject of same type and only set fields the user is allowed to set
             sObject cleanObj = devObj.getSObjectType().newSObject();
@@ -1057,13 +1057,13 @@ global class PBS_SFDCAccessController_CC {
             for (Schema.SObjectField field : fieldsToSet) {
                 if (!(field.getDescribe().isCreateable())) {
                     // field is not allowed to be created by current user
-                    if (omode == OperationMode.ALL_OR_NONE)
+                    if (omode == OperationMode.ALL_OR_NONE){
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
                         throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                             d.getName(),
-                                            field.getDescribe().getName());
+                                            field.getDescribe().getName());}
                 }
                 else {
                     // user has permission to set fieldName and it was request by the developer - so set it
@@ -1093,16 +1093,17 @@ global class PBS_SFDCAccessController_CC {
          * In addition throw an exception if the user does not have the CREATE permission on the object.
          */
         public PBS_SFDCAccessControlResults_CC.InsertResults insertAsUser(SObject [] devObjs, List<String> fieldsToSet) {
-            if (devObjs == null || devObjs.size() == 0 || fieldsToSet == null || fieldsToSet.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devObjs == null || devObjs.size() == 0 || fieldsToSet == null || fieldsToSet.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
-            if (!d.isCreateable())
+            if (!d.isCreateable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                                         d.getName(),
                                                         null);
+                  }
             Map<String, Schema.SObjectField> fieldMap = PBS_SFDCPlugins_CC.SFDC_DescribeInfoCache.fieldMapFor(devObjs.getSObjectType());
             Set<String> creatableFields = fieldsToStringSet(getCreatableFields(fieldMap));
 
@@ -1124,13 +1125,13 @@ global class PBS_SFDCAccessController_CC {
                     fieldName = fieldName.toLowerCase();
                     if (creatableFields == null || (!creatableFields.contains(fieldName))) {
                         // creatableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
-                        if (omode == OperationMode.ALL_OR_NONE)
+                        if (omode == OperationMode.ALL_OR_NONE){
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
                             throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                                 d.getName(),
-                                                fieldName);
+                                                fieldName);}
                     }
                     else {
                         // user has permission to set fieldName and it was request by the developer - so set it
@@ -1157,16 +1158,16 @@ global class PBS_SFDCAccessController_CC {
         /* Same as insertAsUser(SObject [], List&lt;String&gt;) but with Schema.SObjectField instead of string.
          */
         public PBS_SFDCAccessControlResults_CC.InsertResults insertAsUser(SObject [] devObjs, List<Schema.SObjectField> fieldsToSet) {
-            if (devObjs == null || devObjs.size() == 0 || fieldsToSet == null || fieldsToSet.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devObjs == null || devObjs.size() == 0 || fieldsToSet == null || fieldsToSet.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
-            if (!d.isCreateable())
+            if (!d.isCreateable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             /*
               create a clean array by cloning the array, empty it, and refill the member objects by creating clean ones.
@@ -1185,13 +1186,13 @@ global class PBS_SFDCAccessController_CC {
                 for (Schema.SObjectField field : fieldsToSet) {
                     if (!(field.getDescribe().isCreateable())) {
                         // field is not allowed to be created by current user
-                        if (omode == OperationMode.ALL_OR_NONE)
+                        if (omode == OperationMode.ALL_OR_NONE){
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to set fieldName
                             throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionReason.NO_CREATE,
                                                 d.getName(),
-                                                field.getDescribe().getName());
+                                                field.getDescribe().getName());}
                     }
                     else {
                         // user has permission to set fieldName and it was request by the developer - so set it
@@ -1223,16 +1224,16 @@ global class PBS_SFDCAccessController_CC {
          * Returns the cleanObj that was actually used to update the db.
          */
         public SObject updateAsUser(SObject devObj, List<String> fieldsToUpdate) {
-            if (devObj == null || fieldsToUpdate == null || fieldsToUpdate.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devObj == null || fieldsToUpdate == null || fieldsToUpdate.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (!d.isUpdateable())
+            if (!d.isUpdateable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             Map<String,Schema.SObjectField> fieldsMap = PBS_SFDCPlugins_CC.SFDC_DescribeInfoCache.fieldMapFor(devObj.getSObjectType());
 
@@ -1252,13 +1253,13 @@ global class PBS_SFDCAccessController_CC {
                 fieldName = fieldName.toLowerCase();
                 if (updateableFields == null || (!updateableFields.contains(fieldName))) {
                     // updateableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
-                    if (omode == OperationMode.ALL_OR_NONE)
+                    if (omode == OperationMode.ALL_OR_NONE){
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
                         throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                             d.getName(),
-                                            fieldName);
+                                            fieldName);}
                 }
                 else {
                     // user has permission to update fieldName and it was request by the developer - so update it
@@ -1278,37 +1279,37 @@ global class PBS_SFDCAccessController_CC {
         /* Same as updateAsUser(SObject, List&lt;String&gt;) but with Schema.SObjectField instead of string.
          */
         public SObject updateAsUser(SObject devObj, List<Schema.SObjectField> fieldsToUpdate) {
-            if (devObj == null || fieldsToUpdate == null || fieldsToUpdate.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devObj == null || fieldsToUpdate == null || fieldsToUpdate.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (!d.isUpdateable())
+            if (!d.isUpdateable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             // first load the existing object as current user (enforcing sharing based on sharing mode)
             SObject cleanObj = getObject(devObj);
-            if (cleanObj == null)
+            if (cleanObj == null){
                 throw new PBS_SFDCAccessControlException('Record does not exist or not shared with current user',
                                                         PBS_SFDCAccessControlException.ExceptionType.NO_RECORD_FOUND,
                                                         PBS_SFDCAccessControlException.ExceptionReason.GENERIC,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             // set all fields that were requested and the user has permission to update - throw an exception if a field was requested and user can't update and in ALL_OR_NONE mode
             for (Schema.SObjectField field : fieldsToUpdate) {
                 if (!(field.getDescribe().isUpdateable())) {
                     // field is not allowed to be updated by current user
-                    if (omode == OperationMode.ALL_OR_NONE)
+                    if (omode == OperationMode.ALL_OR_NONE){
                         // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
                         throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                             PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                             d.getName(),
-                                            field.getDescribe().getName());
+                                            field.getDescribe().getName());}
                 }
                 else {
                     // user has permission to update fieldName and it was request by the developer - so update it
@@ -1336,8 +1337,8 @@ global class PBS_SFDCAccessController_CC {
          * In addition throw an exception if the user does not have the UPDATE permission on the object.
          */
         public PBS_SFDCAccessControlResults_CC.UpdateResults updateAsUser(Map<ID, sObject> devMap, List<String> fieldsToUpdate) {
-            if (devMap == null || devMap.size() == 0 || fieldsToUpdate == null || fieldsToUpdate.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devMap == null || devMap.size() == 0 || fieldsToUpdate == null || fieldsToUpdate.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             // We must accepted a map argument from user instead of an array,
             // because, the user should be able to convert into map just using map.putAll(sobject_array).
@@ -1346,34 +1347,34 @@ global class PBS_SFDCAccessController_CC {
             // sobject value (in apex v16)
 
             Schema.DescribeSObjectResult d = devMap.getSObjectType().getDescribe();
-            if (!d.isUpdateable())
+            if (!d.isUpdateable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             Map<String,Schema.SObjectField> fieldsMap = PBS_SFDCPlugins_CC.SFDC_DescribeInfoCache.fieldMapFor(devMap.getSObjectType());
 
             // first load the existing objects as current user (enforcing sharing based on sharing mode)
             SObject [] cleanObjs = getObjects(devMap.values());
-            if (cleanObjs == null || cleanObjs.size() != devMap.size())
+            if (cleanObjs == null || cleanObjs.size() != devMap.size()){
                 throw new PBS_SFDCAccessControlException('At least some record do not exist or are not shared with current user',
                                                         PBS_SFDCAccessControlException.ExceptionType.NO_RECORD_FOUND,
                                                         PBS_SFDCAccessControlException.ExceptionReason.GENERIC,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             Set<String> updateableFields = fieldsToStringSet(getUpdateableFields(fieldsMap));
 
             // for each object in the array set only updateable fields
             for (sObject cleanObj: cleanObjs) {
-                if (!(devMap.containsKey(cleanObj.id)))
+                if (!(devMap.containsKey(cleanObj.id))){
                     throw new PBS_SFDCAccessControlException('At least some record do not exist or are not shared with current user',
                                                             PBS_SFDCAccessControlException.ExceptionType.NO_RECORD_FOUND,
                                                             PBS_SFDCAccessControlException.ExceptionReason.GENERIC,
                                                             d.getName(),
-                                                            null);
+                                                            null);}
 
                 sObject devObj = devMap.get(cleanObj.id);
 
@@ -1382,13 +1383,13 @@ global class PBS_SFDCAccessController_CC {
                     fieldName = fieldName.toLowerCase();
                     if (updateableFields == null || (!updateableFields.contains(fieldName))) {
                         // updateableFields is either null which means no fields are allowed to be set by user, or is not null but does not contain the current fieldName
-                        if (omode == OperationMode.ALL_OR_NONE)
+                        if (omode == OperationMode.ALL_OR_NONE){
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
                             throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                                 d.getName(),
-                                                fieldName);
+                                                fieldName);}
                     }
                     else {
                         // user has permission to update fieldName and it was request by the developer - so update it
@@ -1411,8 +1412,8 @@ global class PBS_SFDCAccessController_CC {
         /* Same as updateAsUser(Map&lt;ID, sObject&gt;, List&lt;String&gt;) but with Schema.SObjectField instead of string.
          */
         public PBS_SFDCAccessControlResults_CC.UpdateResults updateAsUser(Map<ID, sObject> devMap, List<Schema.SObjectField> fieldsToUpdate) {
-            if (devMap == null || devMap.size() == 0 || fieldsToUpdate == null || fieldsToUpdate.size() == 0)
-                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);
+            if (devMap == null || devMap.size() == 0 || fieldsToUpdate == null || fieldsToUpdate.size() == 0){
+                throw new AccessControlDmlException(NULL_OR_EMPTY_PARAMETER);}
 
             // We must accepted a map argument from user instead of an array,
             // because, the user should be able to convert into map just using map.putAll(sobject_array).
@@ -1421,30 +1422,30 @@ global class PBS_SFDCAccessController_CC {
             // sobject value (in apex v16)
 
             Schema.DescribeSObjectResult d = devMap.getSObjectType().getDescribe();
-            if (!d.isUpdateable())
+            if (!d.isUpdateable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             // first load the existing objects as current user (enforcing sharing based on sharing mode)
             SObject [] cleanObjs = getObjects(devMap.values());
-            if (cleanObjs == null || cleanObjs.size() != devMap.size())
+            if (cleanObjs == null || cleanObjs.size() != devMap.size()){
                 throw new PBS_SFDCAccessControlException('At least some record do not exist or are not shared with current user',
                                                         PBS_SFDCAccessControlException.ExceptionType.NO_RECORD_FOUND,
                                                         PBS_SFDCAccessControlException.ExceptionReason.GENERIC,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             // for each object in the array set only updateable fields
             for (sObject cleanObj: cleanObjs) {
-                if (!(devMap.containsKey(cleanObj.id)))
+                if (!(devMap.containsKey(cleanObj.id))){
                     throw new PBS_SFDCAccessControlException('At least some record do not exist or are not shared with current user',
                                                             PBS_SFDCAccessControlException.ExceptionType.NO_RECORD_FOUND,
                                                             PBS_SFDCAccessControlException.ExceptionReason.GENERIC,
                                                             d.getName(),
-                                                            null);
+                                                            null);}
 
                 sObject devObj = devMap.get(cleanObj.id);
 
@@ -1452,13 +1453,13 @@ global class PBS_SFDCAccessController_CC {
                 for (Schema.SObjectField field : fieldsToUpdate) {
                     if (!(field.getDescribe().isUpdateable())) {
                         // field is not allowed to be updated by current user
-                        if (omode == OperationMode.ALL_OR_NONE)
+                        if (omode == OperationMode.ALL_OR_NONE){
                             // if operation mode == ALL_OR_NONE - throw exception because user does not have permission to update fieldName
                             throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionType.FIELD_ACCESS_VIOLATION,
                                                 PBS_SFDCAccessControlException.ExceptionReason.NO_UPDATE,
                                                 d.getName(),
-                                                field.getDescribe().getName());
+                                                field.getDescribe().getName());}
                     }
                     else {
                         // user has permission to update fieldName and it was request by the developer - so update it
@@ -1481,16 +1482,16 @@ global class PBS_SFDCAccessController_CC {
         /* Check to see if the user can delete this object. Throw exception if not. If he can, delete the object.
          */
         public void deleteAsUser(SObject devObj) {
-            if (devObj == null)
-                throw new AccessControlDmlException('null parameter');
+            if (devObj == null){
+                throw new AccessControlDmlException('null parameter');}
 
             Schema.DescribeSObjectResult d = devObj.getSObjectType().getDescribe();
-            if (!d.isDeletable())
+            if (!d.isDeletable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_DELETE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             try {
                 // call dbDelete() to enforce sharing rules if required
@@ -1506,16 +1507,16 @@ global class PBS_SFDCAccessController_CC {
          *      ALL_OR_NONE - if any of the records can't be deleted by the user, don't delete any.
          */
         public PBS_SFDCAccessControlResults_CC.DeleteResults deleteAsUser(SObject [] devObjs) {
-            if (devObjs == null || devObjs.size() == 0)
-                throw new AccessControlDmlException('null parameter');
+            if (devObjs == null || devObjs.size() == 0){
+                throw new AccessControlDmlException('null parameter');}
 
             Schema.DescribeSObjectResult d = devObjs.getSObjectType().getDescribe();
-            if (!d.isDeletable())
+            if (!d.isDeletable()){
                 throw new PBS_SFDCAccessControlException(ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionType.OBJECT_ACCESS_VIOLATION,
                                                         PBS_SFDCAccessControlException.ExceptionReason.NO_DELETE,
                                                         d.getName(),
-                                                        null);
+                                                        null);}
 
             Database.DeleteResult [] results = null;
             try {
@@ -1580,10 +1581,10 @@ global class PBS_SFDCAccessController_CC {
 
             // add all Ids
             for (SObject obj : objArray) {
-                if (!emptyIds)
-                    Soql += ' or ';
-                else
-                    emptyIds = false;
+                if (!emptyIds){
+                    Soql += ' or ';}
+                else{
+                    emptyIds = false;}
 
                 Soql += 'ID=\'' + String.escapeSingleQuotes(obj.Id) + '\'';
             }

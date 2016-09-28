@@ -36,7 +36,7 @@ public with sharing class PBS_ProfileService
     {
         List<PBS_Profile__c> profileList = [
             SELECT
-                Id, Name, User_Role__c, User_Role__r.Name, User__c, User__r.Name, Work_Level__c, Geography__c, Buddy__c
+                Id, Name, User_Role__c, User_Role__r.Name, User__c, User__r.Name, Work_Level__c, Geography__c, Category__c, Buddy__c
             FROM
                 PBS_Profile__c
             WHERE
@@ -64,7 +64,9 @@ public with sharing class PBS_ProfileService
             return true;
         } else if (oldObject.Geography__c != currentObject.Geography__c) {
             return true;
-        } else if (oldObject.User_Role__c != currentObject.User_Role__c) {
+        }else if (oldObject.Category__c != currentObject.Category__c) {
+            return true; 
+        }else if (oldObject.User_Role__c != currentObject.User_Role__c) {
             return true;
         } else if (oldObject.user__c != currentObject.user__c) {
             return true;
@@ -84,7 +86,7 @@ public with sharing class PBS_ProfileService
             return true;
         } else if (oldObject.Geography__c != currentObject.Geography__c) {
             return true;
-        } else if (oldObject.PBS_Standard_Job_Profile__c != currentObject.PBS_Standard_Job_Profile__c) {
+        }  else if (oldObject.PBS_Standard_Job_Profile__c != currentObject.PBS_Standard_Job_Profile__c) {
             return true;
         }
         return false;

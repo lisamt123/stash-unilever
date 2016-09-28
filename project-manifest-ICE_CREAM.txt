@@ -50,6 +50,10 @@ src/dashboards/Shared_Dashboards/KPIsDeVisita.dashboard
 src/flows
 src/flows/ICE_Flow_teste-3.flow
 src/flows/ICB_Populate_Field-1.flow
+src/flows/ICB_AssignSalesAreaEvent-1.flow
+src/flows/ICB_Populate_Field-2.flow
+src/flows/ICB_Populate_Field-3.flow
+src/flows/ICB_Update_Sales_Area-1.flow
 src/groups
 src/groups/ICB_IceCreamBRBackOffice.group
 src/groups/ICB_IceCreamBRSalesRepresentative.group
@@ -80,6 +84,7 @@ src/profiles/ReadOnly.profile
 src/permissionsets
 src/permissionsets/ICB_BackOffice.permissionset
 src/permissionsets/ICB_SalesRepresentative.permissionset
+src/permissionsets/ICB_Admin.permissionset
 src/quickActions
 src/quickActions/Event.ICB_CheckIn.quickAction
 src/quickActions/Account.ICB_NewVisit.quickAction

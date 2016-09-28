@@ -32,7 +32,13 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
     public transient List<PBS_TrainingPlanWithAchievement_CC> tPlans{get;private set;}
 
     public PBS_Learning_Category__c learningcategory {get; private set;}
-
+    
+    String categoryId;
+    public String geography;
+    public String course;
+    public String profile;
+    public String worklevel;
+        
     public PBS_TrainingCatalogDetailController_CC(){
         learningcategory = new PBS_Learning_Category__c();
         init();
@@ -41,8 +47,15 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
     private void init(){
         trainingPlans = new List<PBS_Training_Plan__c>();
 
-        //Fetch categoryId from url
-        String categoryId = Apexpages.currentPage().getParameters().get('id');
+        //Fetch categoryId and other parameteres from url
+        categoryId = Apexpages.currentPage().getParameters().get('id');
+        geography = Apexpages.currentPage().getParameters().get('geo');
+        course = Apexpages.currentPage().getParameters().get('course');
+        profile = Apexpages.currentPage().getParameters().get('profile');
+        worklevel = Apexpages.currentPage().getParameters().get('worklevel');
+        
+        System.debug(geography+' '+course+' '+profile+' '+worklevel);
+        
         if(String.isBlank(categoryId)){
             tPlans = new List<PBS_TrainingPlanWithAchievement_CC>();
             PBS_LMSUtils_CC.addErrorMessage(System.Label.ALMS_Invalid_Category_Id);
@@ -54,11 +67,20 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
                 List<Id> sortedTPlanIds = new List<Id>();
 
                 if(PBS_LMSUtils_CC.isPortalUser()){
-                    sortedTPlanIds = PBS_LMSCommunitiesService_CC.getTrainingPlanIdsForCategory(new Set<Id>{categoryId},PBS_LMSUtils_CC.getUserAccountId());
+                    System.debug('a portal user');                    
+                    sortedTPlanIds = PBS_LMSCommunitiesService_CC.getTrainingPlanIdsForCategory(new Set<Id>{categoryId},PBS_LMSUtils_CC.getUserAccountId());                 
+                    
                 }else{
-                    sortedTPlanIds = PBS_LMSService_CC.getTrainingPlanIdsForCategory(new Set<Id>{categoryId});
+                    System.debug('Not a portal user');
+                    //sortedTPlanIds = PBS_LMSService_CC.getTrainingPlanIdsForCategory(new Set<Id>{categoryId});
+                    if(geography!=null && geography !=null &&course != null && worklevel !=null ){
+                        System.debug('When extra parameteres are present');
+                        sortedTPlanIds = getTrainingPlanIdsForCategory(new Set<Id>{categoryId},geography,course,profile,worklevel);
+                    }else{
+                        sortedTPlanIds = PBS_LMSService_CC.getTrainingPlanIdsForCategory(new Set<Id>{categoryId});
+                    }
                 }
-
+                System.debug(sortedTPlanIds);
                 if(sortedTPlanIds.size()>0){
                     //Return a sorted list of training plans
                     Map<Id,PBS_Training_Plan__c> trainingPlansMap = new Map<Id,PBS_Training_Plan__c>();
@@ -121,6 +143,56 @@ public with sharing class PBS_TrainingCatalogDetailController_CC extends PBS_LMS
                 tPlans.add(tplach);
             }
         }
+    }
+    
+    private static List<Id> getTrainingPlanIdsForCategory(Set<Id> categoryIds,String geography,String course,String profile,String worklevel){
+
+        //BEGIN Access Check
+        Map<Schema.sObjectType,List<String>> relatedFieldsObjects = new Map<Schema.sObjectType,List<String>>();
+        relatedFieldsObjects.put(PBS_Training_Plan__c.sObjectType,new List<String>{
+            'Id'
+            ,'Name'
+        });
+        PBS_LMS_ESAPI_CC.isAuthorizedToView(relatedFieldsObjects);
+        //END Access Check
+
+        List<Id> matchedTplanIds = new List<Id>();
+
+        //Get training plan ids from training plan category ids
+        Map<Id,List<Id>> categoryTplanMap = getCategoryTrainingPlanMap(categoryIds,geography,course,profile,worklevel);
+        for(Id cId : categoryTplanMap.keySet()){
+            if(categoryTplanMap.get(cId) != null){
+                matchedTplanIds.addAll(categoryTplanMap.get(cId));
+            }
+        }
+
+        return matchedTplanIds;
+    }
+
+    //Get a list of training plan ids grouped by learning category Id
+    private static Map<Id,List<Id>> getCategoryTrainingPlanMap(Set<Id> categoryIds,String geography,String course,String profile,String worklevel){
+        Set<String> geoset = new Set<String>{geography,'Global'};
+        Map<Id,List<Id>> result = new Map<Id,List<Id>>();
+        Set<Id> catIds = categoryIds;
+        //String geo = geography;
+        //Get training plan ids from training plan category ids
+        System.debug(catIds);
+        System.debug('Geo ='+ geography);
+        //String soqlQuery = 'select Learning_Category__c,Training_Plan__c from PBS_Training_Plan_Category__c WHERE Learning_Category__c IN :catIds AND Geography__c=:geography AND Work_Level__c=:worklevel AND PlannerType__c =:profile AND Journey_Type__c =:course order by Order__c asc NULLS LAST'; 
+        String soqlQuery = 'select Learning_Category__c,Training_Plan__c from PBS_Training_Plan_Category__c WHERE Learning_Category__c IN :catIds AND Geography__c IN :geoset AND Work_Level__c=:worklevel AND PlannerType__c =:profile AND Journey_Type__c =:course order by Order__c asc NULLS LAST'; 
+ 
+        System.debug((List<PBS_Training_Plan_Category__c>)Database.query(soqlQuery));
+        for (PBS_Training_Plan_Category__c tpc : (List<PBS_Training_Plan_Category__c>)Database.query(soqlQuery)){
+            if(tpc.Training_Plan__c != null){
+                if(result.get(tpc.Learning_Category__c) == null){
+                    result.put(tpc.Learning_Category__c, new List<Id>{tpc.Training_Plan__c});
+                }else{
+                    result.get(tpc.Learning_Category__c).add(tpc.Training_Plan__c);
+                }
+            }
+        }
+
+        return result;
     }
 
 }

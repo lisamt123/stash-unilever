@@ -1,7 +1,10 @@
 Dear  Manager,
 
 Warehouse ID: {!WU_Master_Warehouse__c.WU_SAPCode_s__c}  
-Warehouse Name : {!WU_Master_Warehouse__c.WU_SAPName_s__c}  
+
+Warehouse Name : {!WU_Master_Warehouse__c.WU_LocationName__c}  
+
+Submitted by : {!WU_Master_Warehouse__c.Submitted_by__c} 
 
 Prior Committed/Max Pallet Utilization :  {!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c}
 

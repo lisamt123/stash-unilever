@@ -1,4 +1,4 @@
-public with sharing class BET_TriggerFactory {
+public class BET_TriggerFactory {
 
 	private BET_TriggerFactory(){}
 

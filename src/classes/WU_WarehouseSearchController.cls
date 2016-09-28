@@ -3,9 +3,11 @@
 *@Date :            December 2015
 *@Description :     controller class for VF Page WU WarehouseSearch
 *************************************************************/
-public class WU_WarehouseSearchController {
+public with sharing class WU_WarehouseSearchController {
 
-     
+    public string emailLoggedUser1;
+    public String loggedInUser;
+    
     private Integer PAGESIZE= 30;
     public WU_Master_Warehouse__c warehouseCapacity {get;set;}
     public WU_Master_Warehouse__c warehouseCapacityLookuP {get;set;}

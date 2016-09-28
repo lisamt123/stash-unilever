@@ -1,0 +1,13 @@
+Dear {!SAM_Request__c.CreatedBy},
+
+Your Service Request number {!SAM_Request__c.Name} has been submitted to SAM Demand Management. The status of the request is Open. 
+
+Your request will be ansawered at the earliest.
+
+You can access your Service Request via the link below;
+{!SAM_Request__c.Link} 
+
+This is an automatically generated email, please do not reply.
+
+Thanks,
+SAM Demand Management

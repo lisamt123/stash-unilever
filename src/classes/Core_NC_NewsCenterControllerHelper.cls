@@ -15,7 +15,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     public static List<Core_NC_NewsWrapperClass> getGlobalNewsForMostRecent(String NewsType) {
         List<News_Article__c > lstNews=new List<News_Article__c>();
         DateTime dt;
-            dt=System.now().addDays(-Integer.valueof(CORE_NEWS_ARTICLE__c.getinstance('GlobalNewsDaysNumber').Text_Value__c));
+             dt=System.now().addDays(-Integer.valueof(CORE_NEWS_ARTICLE__c.getinstance('GlobalNewsDaysNumber').Text_Value__c));
         if(NewsType=='GlobalNews'){
             lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY News_Publish_Date__c DESC];
         }else if(NewsType=='PaulsBlog'){
@@ -33,17 +33,17 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     * @return List<Core_NC_NewsWrapperClass> wrapper
     */     
     public static List<Core_NC_NewsWrapperClass> getTrendingNews(String NewsType,String SortType) {
-        List<Core_NC_NewsWrapperClass> lstwrapper =new List<Core_NC_NewsWrapperClass>();
+        // List<Core_NC_NewsWrapperClass> lstwrapper =new List<Core_NC_NewsWrapperClass>();
         List<News_Article__c > lstNews=new List<News_Article__c>();
         DateTime dt;
-            dt=System.now().addDays(-Integer.valueof(CORE_NEWS_ARTICLE__c.getinstance('TrendingNewsDaysNumber').Text_Value__c));
+             dt=System.now().addDays(-Integer.valueof(CORE_NEWS_ARTICLE__c.getinstance('TrendingNewsDaysNumber').Text_Value__c));
         if(NewsType=='GlobalNews'){
             if(SortType=='View'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and View_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY View_Count__c DESC,News_Publish_Date__c DESC];
             } else if(SortType=='Like'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Like_Count_RSF__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Like_Count_RSF__c DESC,News_Publish_Date__c DESC];
-            }else if(SortType=='Comment') lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Comment_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Comment_Count__c DESC,News_Publish_Date__c DESC];
+             }else if(SortType=='Comment') lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and Site_Type__c='News Centre' and Comment_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Comment_Count__c DESC,News_Publish_Date__c DESC];
         }
         else if(NewsType=='MyNews'){
-            User usr=[SELECT Function__c,MCO__c FROM User where id=:Userinfo.getuserId()];
+             User usr=[SELECT Function__c,MCO__c FROM User where id=:Userinfo.getuserId()];
         if(SortType=='View') {lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and View_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY View_Count__c DESC,News_Publish_Date__c DESC];
         } else if(SortType=='Like'){ lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and Like_Count_RSF__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Like_Count_RSF__c DESC,News_Publish_Date__c DESC];
         }else if(SortType=='Comment') {lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Article_Topics__c,News_Body__c,Sub_Title__c,Site_Name__c,News_Publish_Date__c FROM News_Article__c Where News_Publish_Date__c >:dt and News_Publish_Date__c<=:System.now() and (Site_Name__c =: usr.Function__c or Site_Name__c =: usr.MCO__c) and Comment_Count__c>0 and Archived__c=false and Hidden__c=false and Video_Article__c=false ORDER BY Comment_Count__c DESC,News_Publish_Date__c DESC];
@@ -83,7 +83,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
         newsLike.News_Article__c=NewsId;
         insert newsLike;
         Integer LikeCount=[SELECT count() FROM NewsArticleLike__c WHERE News_Article__c = :NewsId];
-        return LikeCount;
+         return LikeCount;
     }
     
     /*******************************************************************************************************
@@ -93,21 +93,21 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     */ 
     public static List<Core_NC_NewsWrapperClass> getWrapperData(List<News_Article__c> lstNews){
         List<Core_NC_NewsWrapperClass> lstwrapper =new List<Core_NC_NewsWrapperClass>();
-        List<Document> lstDocument=[SELECT Id FROM Document where Name=:'NewsDefault'];
+         List<Document> lstDocument=[SELECT Id FROM Document where Name=:'NewsDefault'];
         Set<Id> setNewsId=new Set<Id>();
         for(News_Article__c news:lstNews){
             setNewsId.add(news.Id);
         }
         List<Attachment> lstAttachment=[SELECT Id,parentId FROM Attachment where parentId in :setNewsId];
-        Map<Id,List<Id>> mapAttachment=new Map<Id,List<Id>>(); 
+         Map<Id,List<Id>> mapAttachment=new Map<Id,List<Id>>(); 
         for(Attachment attach: lstAttachment){
-            if(!mapAttachment.containsKey(attach.parentId))
-               mapAttachment.put(attach.parentId,new List<Id>());            
+             if(!mapAttachment.containsKey(attach.parentId))
+                mapAttachment.put(attach.parentId,new List<Id>());            
             mapAttachment.get(attach.parentId).add(attach.Id);
         }
         for(News_Article__c news:lstNews){
-            Core_NC_NewsWrapperClass wrapper=new Core_NC_NewsWrapperClass();
-            String strNewsBanner='';
+             Core_NC_NewsWrapperClass wrapper=new Core_NC_NewsWrapperClass();
+             //String strNewsBanner='';
             wrapper.Name=news.Title__c;
             wrapper.PublishedDate=news.News_Publish_Date__c.format('d MMM yyyy');
             Id attachid;
@@ -136,7 +136,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     */ 
     public static Core_NC_NewsDetailWrapperClass getWrapperData(News_Article__c news){
         Core_NC_NewsDetailWrapperClass wrapper=new Core_NC_NewsDetailWrapperClass();
-        String strNewsBanner='';
+        // String strNewsBanner='';
         Boolean bolDefaultImage=false;
         wrapper.Name=news.Title__c;
         wrapper.PublishedDate=news.News_Publish_Date__c.format('d MMM yyyy');
@@ -164,7 +164,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
             List<String> RelatedNewsArticle=new List<String>();
             String strRelatedNews=news.Related_News_Article__c.ReplaceAll(', ',',');
             RelatedNewsArticle=strRelatedNews.split(',');
-            for(string strId:RelatedNewsArticle) setNewsId.add(Id.valueof(strId));
+             for(string strId:RelatedNewsArticle) setNewsId.add(Id.valueof(strId));
         }
         List<News_Article__c> lstNews=[SELECT Id,Comment_Count__c,CreatedDate,Like_Count_RSF__c,Name,Title__c,News_Body__c,News_Article_Topics__c,Sub_Title__c,Site_Name__c,Related_News_Article__c,News_Publish_Date__c FROM News_Article__c Where Id in:setNewsId and Archived__c=false and Hidden__c=false and Video_Article__c=false ];
         wrapper.RelatedNewsDetail=getWrapperData(lstNews);
@@ -172,7 +172,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
         wrapper.SharepointURL=news.Sharepoint_URL__c;
         wrapper.DefaultImage=bolDefaultImage;
             wrapper.MyNewsSiteNameColorCode=CORE_NEWS_ARTICLE__c.getInstance('MyNewsSiteNameColorCode').Text_Value__c;
-
+ 
         return wrapper;
     }
     
@@ -184,9 +184,9 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
     public static Boolean postNewsToChatter(String NewsTitle,String NewsLink,String FeedBody,String FeedTo,String GroupNames) {
         system.debug('~~~~'+GroupNames);
         Boolean Success=false;
-        List<string> lstGroup=new List<string>();
-        Set<Id> setGroup=new Set<Id>();
-        List<CollaborationGroup> lstCollGroup=new List<CollaborationGroup>();
+         List<string> lstGroup=new List<string>();
+         Set<Id> setGroup=new Set<Id>();
+         List<CollaborationGroup> lstCollGroup=new List<CollaborationGroup>();
         List<FeedItem> feedItemsToInsert=new List<FeedItem>();
         if(FeedTo=='Group'){
             lstGroup=GroupNames.split(',');
@@ -195,7 +195,7 @@ public with sharing class Core_NC_NewsCenterControllerHelper {
                 setGroup.add(grp.Id);
             }
             for(Id grpId:setGroup){
-                 feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = FeedBody, ParentId =grpId,
+                  feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = FeedBody, ParentId =grpId,
                                 LinkURL = NewsLink, Title = NewsTitle));
             }
         }
