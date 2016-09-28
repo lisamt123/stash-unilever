@@ -22,6 +22,7 @@ private class  IPM_BCCController_Test {
         IPM_Project_Rollout__c, IPM_Financial__c objects
 ***************************************************************************/
     static void initializeData(){
+        Test.startTest();
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -118,7 +119,7 @@ private class  IPM_BCCController_Test {
             
             List<IPM_Financial__c> finListObj=[SELECT Local_Project__c,ID,Project_Sustainability_Period__c,RecordTypeId,IPM_Project_Rollout__c,Parent_Project__c from IPM_Financial__c WHERE ID=:fin.ID LIMIT 1];
             System.assertEquals(finListObj[0].Local_Project__c,project.Id,'finance data not created successfully');//positive test
-            
+            Test.stopTest();
             pRef = Page.IPM_ProjectDocumentSectionEditor;
             pRef.getParameters().put('Id',project.Id);
             Test.setCurrentPage(pRef);
@@ -131,11 +132,10 @@ private class  IPM_BCCController_Test {
     /*******************************************************************************************************
 * @description: testMethod to save data 
 */
-    public static testMethod void doSave(){
-        initializeData();
-        
+    public static testMethod void doSave(){        
+        initializeData();       
         system.RunAs(testUser){
-            Test.startTest();
+            
             ipmBcc.finance=fin;
             ipmBcc.projList=new List<IPM_Project__c>();
             ipmBcc.projList=projectList;
@@ -146,7 +146,7 @@ private class  IPM_BCCController_Test {
             system.assertEquals(finConList[0].Local_Project__c ,fin.Local_Project__c,'save failed');
             ipmBcc.finance.IPM_Business_Case_Confirmed__c=null;
             ipmBcc.save();
-            Test.stopTest();
+            
             List<IPM_Financial__c> finConLists=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:ipmBcc.finance.Id ];
             system.assertNotEquals(finConLists[0].IPM_Business_Case_Confirmed__c,true,'status should not be changed');//negative test
            
@@ -157,11 +157,10 @@ private class  IPM_BCCController_Test {
     /*******************************************************************************************************
 * @description: testMethod to save data 
 */
-    public static testMethod void doChangeStatus(){
+    public static testMethod void doChangeStatus(){     
         initializeData();
-        
+
         system.RunAs(testUser){
-            Test.startTest();
             ipmBcc.finance=fin;
             ipmBcc.projList=new List<IPM_Project__c>();
             ipmBcc.projList=projectList;
@@ -171,7 +170,6 @@ private class  IPM_BCCController_Test {
             system.assert(finConList[0].IPM_Business_Case_Confirmed__c,'status not changed');
             ipmBcc.finance.id=null;
             ipmBcc.changeStatus();
-             Test.stopTest();
             List<IPM_Financial__c> finConLists=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:fin.Id ];
             system.assertNotEquals(!finConLists.isEmpty(),true,'Financial list should be empty');//negative test
            
