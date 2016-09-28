@@ -204,15 +204,7 @@ public with sharing class IPM_EcoDesignSection {
     }
     
     public void checkTakeMeEcoDesginButtonVisible() {
-        if(project.First_Sync_To_EcoDesign__c && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL 
-            && project.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal  && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS &&  
-            (project.IPM_GateKeepingModel__c == GKM1 || project.IPM_GateKeepingModel__c == GKM2)) {
-                firstSyncToEcoDesign = true;    
-        }
-        else if(project.IPM_Project_Type__c == ROLLOUT) {
-            firstSyncToEcoDesign = true;
-        }
-        else if(project.First_Sync_To_EcoDesign__c && project.IPM_GateKeepingModel__c == GKM4) {
+        if(project.First_Sync_To_EcoDesign__c && !projectType.IPM_Dont_Sync_Proj_To_EcoDesign__c) {
                 firstSyncToEcoDesign = true;    
         }
     }
