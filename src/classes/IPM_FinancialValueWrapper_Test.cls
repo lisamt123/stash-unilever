@@ -12,7 +12,7 @@ public class IPM_FinancialValueWrapper_Test {
    private static Set<String> projectNameSet = new Set<String>{'TestComments1'};
    private static final String GLOBAL_PL = 'GLOBAL_PL';
    /***********************************
-  Description of the purpose of the method. 
+  Description of the purpose of the method.
   @name: projectSetUp
   @Description: To test insertAssessments method
   ***********************************/
@@ -40,9 +40,11 @@ public class IPM_FinancialValueWrapper_Test {
             projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForFinValueWpr);
             insert projectList;      		
         }  
+        List<IPM_Project__c>projList=[Select Id, Name from IPM_Project__c where Id=:projectList[0].Id Limit 1];
+        System.assertEquals(projList[0].Name,'TestComments1','Project record not saved successfully');
         
         List<IPM_Financial__c> consolidatedFinLst = new List <IPM_Financial__c>([Select Id, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c Where Financial_external_Id__c like '%CONSOLIDATED' limit 1000]);
-      
+        
 	    Test.startTest();
 	     
 	     //creating local financials starts
@@ -56,6 +58,7 @@ public class IPM_FinancialValueWrapper_Test {
 	     }
 	      
          insert finYearLst;
+         
       	 Test.stopTest();
       	
   }
@@ -64,13 +67,13 @@ public class IPM_FinancialValueWrapper_Test {
    /*************************************
    * @Description: Test Method invocation
    ***************************************/ 
-   static testMethod void testFinancialValueWrapper()
+   static testMethod void testFinancialValueWrapper() 
      {
         
       	User globalProjectLeader = [Select Id,Name,lastName from User where LastName =:GLOBAL_PL limit 1];
       
       	List<IPM_Financial__c> lstFin = new List <IPM_Financial__c>([Select Id, Local_Project__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c from IPM_Financial__c limit 1000]);
-	  	List<IPM_Project__c> lstProjects = [Select id, name, IPMProject_Span__c, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name NOT IN ('IPM_MasterProject')];
+	  	List<IPM_Project__c> lstProjects = [Select id, name, IPMProject_Span__c, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c from IPM_Project__c Where Name IN: projectNameSet];
       
       	String queryString='Select ';
       	For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
@@ -79,11 +82,11 @@ public class IPM_FinancialValueWrapper_Test {
           	}
       	}
       	queryString += ' id From IPM_Financial_year__c  WHERE IPM_Financial__c =\'' + lstFin[0].Id + '\'';
-      	List<IPM_Financial_year__c> FinYears = Database.query(queryString);
+      	List<IPM_Financial_year__c> finYears = Database.query(queryString);
         test.startTest();
         system.runAs(globalProjectLeader){      		
 			IPM_FinancialValueWrapper valueWrapper = new IPM_FinancialValueWrapper(FinYears[0], lstProjects[0], FIELDSUFFIX, IPM_ConstantUtils.FIELD_LITERAL_VOLUME, 0, lstFin[0],IPM_ConstantUtils.TAB_MYVIEW_NAME);
-			
+			System.assertEquals(valueWrapper.scale, 0, 'Scale should be 0'); 
         }
         test.stopTest();
      }
