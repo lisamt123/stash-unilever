@@ -205,6 +205,18 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>FS_DiscountVolume__c</fullName>
+        <externalId>false</externalId>
+        <formula>FS_grossSalesValue__c  *  FS_TemporaryProductDiscount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Discount Volume</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FS_DistributorMarkup__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Distributor Markup</description>
@@ -410,11 +422,22 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>FS_UniqueProduct__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>Created to restrict adding same products (adding unique products )to opportunity.</description>
+        <externalId>false</externalId>
+        <label>Unique Product</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>FS_additionalDiscount__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Sum of discount for Pre-paid and Self-Collection. If any of these checkboxes are checked, their corresponding discount will be added to this field.</description>
         <externalId>false</externalId>
-        <label>Additional Discount</label>
+        <label>Total TTS</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -678,6 +701,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <required>false</required>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -759,8 +783,25 @@
         <fullName>FS_Schedule_On_Existing_Opportunity</fullName>
         <active>true</active>
         <description>It is used to restrict user to do product scheduling on existing opportunity</description>
-        <errorConditionFormula>AND(HasQuantitySchedule=true, Opportunity.RecordType.DeveloperName=&apos;Existing&apos;)</errorConditionFormula>
+        <errorConditionFormula>AND(HasQuantitySchedule=true, Opportunity.RecordType.DeveloperName=&apos;FS_ExistingBusiness&apos;)</errorConditionFormula>
         <errorMessage>Product scheduling can not be done for Existing opportunity</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FS_TPRshouldnotbeanegativevalue</fullName>
+        <active>true</active>
+        <description>Purpose:&quot; TPR %&quot; shouldn&apos;t be a negative value and &quot;TPR %&quot; should be less 100.00%</description>
+        <errorConditionFormula>AND(OR(
+   FS_tprPercent__c&lt;0.0,
+   FS_tprPercent__c&gt;1 
+),$Profile.Name =&apos;Unilever Food Solution - Russia&apos;, Opportunity.RecordType.Name =&apos;UFS Opportunity Russia&apos;)</errorConditionFormula>
+        <errorMessage>TPR% shouldn&apos;t be a negative value and should be less than 100.00%</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FS_Valuenecessarynotgreaterthanlistpric</fullName>
+        <active>true</active>
+        <description>Purpose: Value necessary not greater than list price.</description>
+        <errorConditionFormula>AND(( FS_valueNecessaryWithVAT__c &gt; ListPrice), $Profile.Name =&apos;Unilever Food Solution - Russia&apos;, Opportunity.RecordType.Name =&apos;UFS Opportunity Russia&apos;)</errorConditionFormula>
+        <errorMessage>Value necessary (w/ VAT) not greater than list price.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Opportunity_Products_Stage_5</fullName>

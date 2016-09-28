@@ -63,37 +63,37 @@ public class FS_TPRCalculationTest {
             System.assertEquals(2.00, oppProd1.FS_tprPercent__c.setScale(2));
             
             //System.debug('oppProd.FS_additionalDiscount__c: ' + oppProd1.FS_additionalDiscount__c);
-            System.assertEquals(3.00, oppProd1.FS_additionalDiscount__c.setScale(2));
+            System.assertEquals(15.00, oppProd1.FS_additionalDiscount__c.setScale(2));
             
             //System.debug('oppProd.FS_grossSalesValue__c: ' + oppProd1.FS_grossSalesValue__c);
             System.assertEquals(328893.75, oppProd1.FS_grossSalesValue__c.setScale(2));
             
             //System.debug('oppProd.FS_netInvoiceValue__c: ' + oppProd1.FS_netInvoiceValue__c);
-            System.assertEquals(274955.18, oppProd1.FS_netInvoiceValue__c.setScale(2));
+            System.assertEquals(273968.49, oppProd1.FS_netInvoiceValue__c.setScale(2));
             
             //System.debug('oppProd.FS_temporaryPriceReduction__c: ' + oppProd1.FS_temporaryPriceReduction__c);
-            System.assertEquals(16444.69, oppProd1.FS_temporaryPriceReduction__c.setScale(2));
+            System.assertEquals( 6577.88, oppProd1.FS_temporaryPriceReduction__c.setScale(2));
             
             //System.debug('oppProd.FS_turnover__c: ' + oppProd1.FS_turnover__c);
-            System.assertEquals(244710.11, oppProd1.FS_turnover__c.setScale(2));
+            System.assertEquals(243831.96, oppProd1.FS_turnover__c.setScale(2));
             
             //System.debug('oppProd.FS_productCost__c: ' + oppProd1.FS_productCost__c);
             System.assertEquals(166615.00, oppProd1.FS_productCost__c.setScale(2));
             
             //System.debug('oppProd.FS_supplyCost__c: ' + oppProd1.FS_supplyCost__c);
-            System.assertEquals(19576.81, oppProd1.FS_supplyCost__c.setScale(2));
+            System.assertEquals(19506.56, oppProd1.FS_supplyCost__c.setScale(2));
             
             //System.debug('oppProd.FS_supplyCostChain__c: ' + oppProd1.FS_supplyCostChain__c);
-            System.assertEquals(186191.81, oppProd1.FS_supplyCostChain__c.setScale(2));
+            System.assertEquals(186121.56, oppProd1.FS_supplyCostChain__c.setScale(2));
             
             //System.debug('oppProd.FS_grossProfit__c: ' + oppProd1.FS_grossProfit__c);
-            System.assertEquals(58518.30, oppProd1.FS_grossProfit__c.setScale(2));
+            System.assertEquals(57710.40, oppProd1.FS_grossProfit__c.setScale(2));
             
             //System.debug('oppProd.FS_grossMargin__c: ' + oppProd1.FS_grossMargin__c);
-            System.assertEquals(23.91, oppProd1.FS_grossMargin__c.setScale(2));
+            System.assertEquals(23.67, oppProd1.FS_grossMargin__c.setScale(2));
             
             //System.debug('oppProd.FS_gmWhenTPREqualsZero__c: ' + oppProd1.FS_gmWhenTPREqualsZero__c);
-            System.assertEquals(27.32, oppProd1.FS_gmWhenTPREqualsZero__c.setScale(2));
+            System.assertEquals(25.03, oppProd1.FS_gmWhenTPREqualsZero__c.setScale(2));
         
         }
         System.debug('end');
@@ -155,7 +155,7 @@ public class FS_TPRCalculationTest {
                             FS_casesPiece__c
                     FROM Opportunity
                     WHERE Id =: oppProd1.OpportunityId];
-			*/
+            */
             //System.debug('>>> opp1A: ' + opp1);
             
             
@@ -164,37 +164,37 @@ public class FS_TPRCalculationTest {
             System.assertEquals(2.00, oppProd1.FS_tprPercent__c.setScale(2));
             
             //System.debug('oppProd.FS_additionalDiscount__c: ' + oppProd1.FS_additionalDiscount__c);
-            System.assertEquals(3.00, oppProd1.FS_additionalDiscount__c.setScale(2));
+            System.assertEquals(15.00, oppProd1.FS_additionalDiscount__c.setScale(2));
             
             //System.debug('oppProd.FS_grossSalesValue__c: ' + oppProd1.FS_grossSalesValue__c);
             System.assertEquals(1315575.00, oppProd1.FS_grossSalesValue__c.setScale(2));
             
             //System.debug('oppProd.FS_netInvoiceValue__c: ' + oppProd1.FS_netInvoiceValue__c);
-            System.assertEquals(1099820.70, oppProd1.FS_netInvoiceValue__c.setScale(2));
+            System.assertEquals(1095873.98, oppProd1.FS_netInvoiceValue__c.setScale(2));
             
             //System.debug('oppProd.FS_temporaryPriceReduction__c: ' + oppProd1.FS_temporaryPriceReduction__c);
-            System.assertEquals(65778.75, oppProd1.FS_temporaryPriceReduction__c.setScale(2));
+            System.assertEquals(26311.50, oppProd1.FS_temporaryPriceReduction__c.setScale(2));
             
             //System.debug('oppProd.FS_turnover__c: ' + oppProd1.FS_turnover__c);
-            System.assertEquals(978840.42, oppProd1.FS_turnover__c.setScale(2));
+            System.assertEquals(975327.84, oppProd1.FS_turnover__c.setScale(2));
             
             //System.debug('oppProd.FS_productCost__c: ' + oppProd1.FS_productCost__c);
             System.assertEquals(666460.00, oppProd1.FS_productCost__c.setScale(2));
             
             //System.debug('oppProd.FS_supplyCost__c: ' + oppProd1.FS_supplyCost__c);
-            System.assertEquals(78307.23, oppProd1.FS_supplyCost__c.setScale(2));
+            System.assertEquals(78026.23, oppProd1.FS_supplyCost__c.setScale(2));
             
             //System.debug('oppProd.FS_supplyCostChain__c: ' + oppProd1.FS_supplyCostChain__c);
-            System.assertEquals(744767.23, oppProd1.FS_supplyCostChain__c.setScale(2));
+            System.assertEquals(744486.23, oppProd1.FS_supplyCostChain__c.setScale(2));
             
             //System.debug('oppProd.FS_grossProfit__c: ' + oppProd1.FS_grossProfit__c);
-            System.assertEquals(234073.19, oppProd1.FS_grossProfit__c.setScale(2));
+            System.assertEquals(230841.61, oppProd1.FS_grossProfit__c.setScale(2));
             
             //System.debug('oppProd.FS_grossMargin__c: ' + oppProd1.FS_grossMargin__c);
-            System.assertEquals(23.91, oppProd1.FS_grossMargin__c.setScale(2));
+            System.assertEquals(23.67, oppProd1.FS_grossMargin__c.setScale(2));
             
             //System.debug('oppProd.FS_gmWhenTPREqualsZero__c: ' + oppProd1.FS_gmWhenTPREqualsZero__c);
-            System.assertEquals(27.32, oppProd1.FS_gmWhenTPREqualsZero__c.setScale(2));
+            System.assertEquals(25.03, oppProd1.FS_gmWhenTPREqualsZero__c.setScale(2));
         
         }
         System.debug('end');
@@ -261,7 +261,7 @@ public class FS_TPRCalculationTest {
             //System.assertEquals(18, oppProd1.FS_vat__c.setScale(2));
             
             //System.debug('oppProd.FS_necessaryTPR__c: ' + oppProd1.FS_necessaryTPR__c);
-            System.assertEquals(33.45, oppProd1.FS_necessaryTPR__c.setScale(2));
+            System.assertEquals( 31.10, oppProd1.FS_necessaryTPR__c.setScale(2));
         
         }
         System.debug('end');
@@ -270,7 +270,7 @@ public class FS_TPRCalculationTest {
     //Update OppProduct with Given Price
     static testMethod void testUpdateOppProductWithGivenPrice() {
     
-		System.debug('start this');
+        System.debug('start this');
         
         setAllData();
         //Fetch Test User Data     
@@ -340,7 +340,7 @@ public class FS_TPRCalculationTest {
             //System.assertEquals(18, oppProd1.FS_vat__c.setScale(2));
             
             System.debug('oppProd.FS_necessaryTPR__c1: ' + oppProd1.FS_necessaryTPR__c);
-            System.assertEquals(84.29, oppProd1.FS_necessaryTPR__c.setScale(2));
+            System.assertEquals(83.81, oppProd1.FS_necessaryTPR__c.setScale(2));
             
         }
         System.debug('end');        
@@ -373,17 +373,17 @@ public class FS_TPRCalculationTest {
             //set up custom setting for opportunity stages
             testData.setUpOpportunityStages();
             //Set up Custom settings for Opportunity Trigger
-            testdata.enableOpportunityTrigger();       	
+            testdata.enableOpportunityTrigger();        
             
             insert new FS_casePiece__c(FS_Case__c = 'cases', FS_Piece__c = 'piece');        
             insert new FSVATRU__c(FS_Value_1__c = 10, FS_Value_2__c = 18);        
             insert new FS_SalesOrgCode__c(FS_RU_Code__c = 'R', FS_UA_Code__c = 'U');
             insert new FS_Distributor_Type__c(FS_C_C__c = 'C&C',
-                                          	FS_Direct__c = 'Direct',
-                                          	FS_Logist__c = 'Logist',
-                                          	FS_Partner__c = 'Partner',
-                                          	FS_Slabco__c = 'Slabco',
-                                          	FS_Strategic__c = 'Strategic');
+                                            FS_Direct__c = 'Direct',
+                                            FS_Logist__c = 'Logist',
+                                            FS_Partner__c = 'Partner',
+                                            FS_Slabco__c = 'Slabco',
+                                            FS_Strategic__c = 'Strategic');
         
             //set operatorAccount
             Account operatorAccount = new Account();
@@ -464,7 +464,7 @@ public class FS_TPRCalculationTest {
             //System.debug('prod: ' + prod);
             //System.debug('pbe: ' + pbe);
             //System.debug('opp: ' + opp);            
-    	}
+        }
         
     }
 }

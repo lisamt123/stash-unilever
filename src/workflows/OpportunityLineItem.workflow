@@ -15,7 +15,6 @@
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Fixed_Price_Review_of_Opportunity_Product</template>
     </alerts>
-
     <fieldUpdates>
         <fullName>FS_UpdateSalesPrice</fullName>
         <description>Updating sales price to zero.</description>
@@ -25,6 +24,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>FS_UpdateSample</fullName>
@@ -35,6 +35,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>FS_UpdateTPRCalculationFlag</fullName>
@@ -56,6 +57,27 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>FS_UpdateuniqueProduct</fullName>
+        <description>Update the unique product field to restrict adding same products to opportunity.</description>
+        <field>FS_UniqueProduct__c</field>
+        <formula>OpportunityId+Product2Id</formula>
+        <name>FS Update unique Product</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>FS Adding Unique Products</fullName>
+        <actions>
+            <name>FS_UpdateuniqueProduct</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Created to restrict adding same products to opportunity.</description>
+        <formula>AND($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,  Opportunity.RecordType.Name =&quot;UFS Opportunity Russia&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>FS Fixed Price Process</fullName>
         <actions>
@@ -82,12 +104,8 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>OpportunityLineItem.Discount</field>
-            <operation>equals</operation>
-            <value>100</value>
-        </criteriaItems>
         <description>If 100% discount for samples ordering, the lines items should be flagged as samples</description>
+        <formula>AND(Opportunity.RecordType.DeveloperName= &apos;FS_OpportunityTPR&apos;, Discount = 1)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

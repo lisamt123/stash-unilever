@@ -1,25 +1,9 @@
 src
-src/layouts/Account-Feed Based Distributor.layout
-src/layouts/Account-Feed Based Operator.layout
-src/layouts/Account-Operator Russia Read Only.layout
-src/layouts/Account-Operators Russia.layout
-src/objects/Account.object
-src/pages/FS_RelatedRTMVisibleFields.page
-src/pages/FS_RelatedRTMVisibleFields.page-meta.xml
-src/reports/FS_Russia_Reports/FS_All_Customers.report
-src/reportTypes/FS_Account_levels.reportType
-src/reportTypes/FS_AccountWithOpportunities.reportType
-src/reportTypes/FS_Duplicate_Account_Records.reportType
-
-
-
-
-
-
-
-
-
-
-
-
-
+src/classes/FS_TPRCalculationHelper.cls
+src/classes/FS_TPRCalculationHelper.cls-meta.xml
+src/classes/FS_TPRCalculationTest.cls
+src/classes/FS_TPRCalculationTest.cls-meta.xml
+src/objects/Opportunity.object
+src/objects/OpportunityLineItem.object
+src/workflows/OpportunityLineItem.workflow
+src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout

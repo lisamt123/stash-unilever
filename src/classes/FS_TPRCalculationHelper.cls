@@ -14,17 +14,17 @@ VERSION AUTHOR         DATE         DETAIL Description
 public with sharing class FS_TPRCalculationHelper {
 
     public static void calculateTPR(List<OpportunityLineItem> oppProdList, boolean isUpdate) {
-    	
+        
         List<OpportunityLineItem> finalOppProdList = new List<OpportunityLineItem>();
         
         //Query Opportunity Entries
         Set<Id> opportunityIdList = new Set<Id>();
-		for(OpportunityLineItem oli : oppProdList) {
+        for(OpportunityLineItem oli : oppProdList) {
             opportunityIdList.add(oli.OpportunityId);
         }
         
         Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([SELECT ID,
-                                                                        	FS_Distributor_Type__c,
+                                                                            FS_Distributor_Type__c,
                                                                             FS_supplyCost__c,
                                                                             FS_casesPiece__c,
                                                                             FS_offInvoice__c,
@@ -32,9 +32,9 @@ public with sharing class FS_TPRCalculationHelper {
                                                                             FS_selfCollection__c, 
                                                                             FS_prePaid__c, 
                                                                             FS_distributor__c
-                                           								FROM Opportunity
-                                           								WHERE Id IN : opportunityIdList]);
-        		
+                                                                        FROM Opportunity
+                                                                        WHERE Id IN : opportunityIdList]);
+                
         //Query Pricebook Entries
         Set<Id> PricebookEntryIdList = new Set<Id>();
         for(OpportunityLineItem oli : oppProdList) {
@@ -42,9 +42,9 @@ public with sharing class FS_TPRCalculationHelper {
         }
         
         Map<Id, PricebookEntry> priceBookEntryMap = new Map<Id, PricebookEntry>([SELECT Id, 
-                                                                                 		FS_salesOrgCode__c, 
-                                                                                 		FS_VAT__c,
-                                                                                 		UnitPrice
+                                                                                        FS_salesOrgCode__c, 
+                                                                                        FS_VAT__c,
+                                                                                        UnitPrice
                                                                                  FROM PricebookEntry
                                                                                  WHERE Id IN : PricebookEntryIdList]);
         //Query Product Entries
@@ -54,29 +54,29 @@ public with sharing class FS_TPRCalculationHelper {
         }
         
         Map<Id, Product2> product2Map = new Map<Id, Product2>([SELECT Id,                                                                   
-                                                               	   FS_TemporaryProductDiscountTable__c,
+                                                                   FS_TemporaryProductDiscountTable__c,
                                                                    FS_stdPerUnit__c, 
                                                                    FS_ZSU__c,
-                                                               	   FS_VATRU__c,
-                                                               	   FS_VATUA__c
-                                                   			   FROM Product2
-                                                  			   WHERE Id IN : ProductIdList]);
+                                                                   FS_VATRU__c,
+                                                                   FS_VATUA__c
+                                                               FROM Product2
+                                                               WHERE Id IN : ProductIdList]);
         
         //Query TemporaryTPR Entries
         Set<Id> temporaryTPRList = new Set<Id>();
         for(Product2 prod : product2Map.values()) {
             if(prod.FS_TemporaryProductDiscountTable__c != null) {
-            	temporaryTPRList.add(prod.FS_TemporaryProductDiscountTable__c);    
+                temporaryTPRList.add(prod.FS_TemporaryProductDiscountTable__c);    
             }            
         }
         
         Map<Id, FS_TemporaryProductDiscount__c> temporaryTPRMap = new Map<Id, FS_TemporaryProductDiscount__c>([SELECT Id,
-                                                                                      	FS_C_C__c,
-                                                                                      	FS_Direct__c,
-                                                                                      	FS_Logist__c,
-                                                                                      	FS_Partner__c,
-                                                                                      	FS_Slabco__c,
-                                                                                      	FS_Strategic__c
+                                                                                        FS_C_C__c,
+                                                                                        FS_Direct__c,
+                                                                                        FS_Logist__c,
+                                                                                        FS_Partner__c,
+                                                                                        FS_Slabco__c,
+                                                                                        FS_Strategic__c
                                                                                       FROM FS_TemporaryProductDiscount__c
                                                                                       WHERE Id IN : temporaryTPRList]);
            
@@ -88,18 +88,24 @@ public with sharing class FS_TPRCalculationHelper {
                 if(isUpdate) {
                 
                     //Calculate Additional Discount
-                    oppProd.FS_additionalDiscount__c = FS_TPRUtil.calculateAdditionalDiscount(oppProd, opportunityMap);
+                    //oppProd.FS_additionalDiscount__c = FS_TPRUtil.calculateAdditionalDiscount(oppProd, opportunityMap);
+                     
+                     oppProd.FS_additionalDiscount__c = opportunityMap.get(oppProd.opportunityID).FS_onInvoice__c;
+                    
+
                     
                     //Calculate Temporary Discount
                     
                     if(temporaryTPRMap.size() > 0) {
-                    	oppProd.FS_TemporaryProductDiscount__c = FS_TPRUtil.calculateTemporaryProductDiscount(oppProd, opportunityMap, product2Map, temporaryTPRMap);    
+                        oppProd.FS_TemporaryProductDiscount__c = FS_TPRUtil.calculateTemporaryProductDiscount(oppProd, opportunityMap, product2Map, temporaryTPRMap);    
                     } else {
                         oppProd.FS_TemporaryProductDiscount__c = 0;
                     }                    
                                         
                     //Calculate Total TPR %            
-                    oppProd.FS_totalTPRPercentage__c = oppProd.FS_tprPercent__c + oppProd.FS_additionalDiscount__c;
+                    //oppProd.FS_totalTPRPercentage__c = oppProd.FS_tprPercent__c + oppProd.FS_additionalDiscount__c;
+                   
+                    oppProd.FS_totalTPRPercentage__c = oppProd.FS_tprPercent__c ;
                     
                     //Calculate GSV
                     oppProd.FS_grossSalesValue__c = FS_TPRUtil.calculateGSV(oppProd, opportunityMap, product2Map, priceBookEntryMap);
@@ -136,7 +142,7 @@ public with sharing class FS_TPRCalculationHelper {
                     }                
                     
                     finalOppProdList.add(oppProd);
-            	}
+                }
                 
             } catch(Exception e) {
             System.debug( 'The following exception has occurred: '+e.getMessage());
@@ -147,7 +153,7 @@ public with sharing class FS_TPRCalculationHelper {
                                                   e.getMessage(), 
                                                   e, null, null, null, 
                                                   0,'Food Solution');
-        	}            
+            }            
         }        
     }
     
