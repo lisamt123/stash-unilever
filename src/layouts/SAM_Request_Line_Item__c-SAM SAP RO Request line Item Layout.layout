@@ -32,10 +32,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_New_System_Existing__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>pkl_SID_Details_SAP__c</field>
             </layoutItems>
             <layoutItems>
