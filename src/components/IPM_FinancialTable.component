@@ -24,6 +24,7 @@
     <apex:attribute name="validationErrorMessageCal" type="string" description="Flag to check if there is validation error message for financial values of calendar table"/>
     <apex:attribute name="isNonkey" type="Boolean" description="Identify whether Financial is NONKEY." />
     <apex:attribute name="isProjectStop" type="Boolean" description="Identify whether project is stopped." /> 
+    <apex:attribute name="exrate" type="Decimal" description="the exchange rate by which to multiply values on local currency page"/> 
     
     <!-- Validation Message -->
     <!--
@@ -689,7 +690,7 @@
                                                                                     <br/>{!$Label.IPM_TURNOVER} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.redValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -697,7 +698,7 @@
                         <apex:outputText rendered="{!AND(GrossTurnoverMisAligned,project.IPM_Project_Type__c == 'Operational',NOT(isEditMode))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.redValidationErrorMessage}"> 
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -705,7 +706,7 @@
                          <apex:outputText rendered="{!AND(NOT(isEditMode),NOT(GrossTurnoverMisAligned))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.redValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -718,7 +719,7 @@
                         -->
                         
                         <apex:outputText value="{0,number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode) }">
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
@@ -741,7 +742,7 @@
                         <apex:outputText rendered="{!AND(NOT(isEditMode),NOT(IncrementalTurnoverMisAligned))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -751,7 +752,7 @@
                                                                                     <br/>{!$Label.IPM_TURNOVER} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -763,7 +764,7 @@
                             2. Incremental Turnover aligned and non-edit mode
                         -->
                         <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated, isEditMode)}">
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
@@ -839,14 +840,14 @@
                                                                                     <br/>{!$Label.IPM_GROSS_PROFIT} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(NOT(GrossProfitMisAligned),NOT(isEditMode))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span >
                         </apex:outputText>
@@ -859,7 +860,7 @@
                             <apex:param value="{!valueWrapper.value}" />
                         </apex:outputText-->
                         <apex:outputText value="{0, number,###,###,###.##}" rendered="{! AND(isConsolidated,isEditMode) }"> 
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
@@ -884,14 +885,14 @@
                                                                                     <br/>{!$Label.IPM_GROSS_PROFIT} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(NOT(IncrementalProfitMisAligned),NOT(isEditMode))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -900,8 +901,9 @@
                             1. Consolidated and Edit mode
                             2. Incremental Profit aligned and non-edit mode
                         -->
+                      
                         <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}"> 
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
@@ -979,14 +981,14 @@
                                                                                     <br/>{!$Label.IPM_BMI} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(NOT(GrossAdvertisingMisAligned),NOT(isEditMode))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -996,7 +998,7 @@
                             2. Gross Advertising aligned and non-edit mode
                         -->
                         <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}">
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
@@ -1022,14 +1024,14 @@
                                                                                     <br/>{!$Label.IPM_BMI} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(NOT(IncrementalAdvertisingMisAligned),NOT(isEditMode))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -1039,7 +1041,7 @@
                             2. Incremental Advertising aligned and non-edit mode
                         -->
                         <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}">
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
@@ -1117,14 +1119,14 @@
                                                                                     <br/>{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(NOT(isEditMode),NOT(GrossPOBMisAligned))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -1135,7 +1137,7 @@
                             2. Gross POB aligned and non-edit mode
                         -->
                         <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}"> 
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met
@@ -1160,14 +1162,14 @@
                                                                                     <br/>{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!valueWrapper.bottomFinATLabel} {!valueWrapper.bottomFinValue}
                                                                                     <br/>{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
                         <apex:outputText rendered="{!AND(NOT(IncrementalPOBMisAligned),NOT(isEditMode))}">
                             <span class="info" data-html="true" data-original-title="{!valueWrapper.yellowValidationErrorMessage}">
                                 <apex:outputText value="{0, number,###,###,###.##}">
-                                    <apex:param value="{!valueWrapper.value}" />
+                                    <apex:param value="{!valueWrapper.value*exrate}" />
                                 </apex:outputText>
                             </span>
                         </apex:outputText>
@@ -1178,7 +1180,7 @@
                             2. Incremental POB aligned and non-edit mode
                         -->
                         <apex:outputText value="{0, number,###,###,###.##}" rendered="{!AND(isConsolidated,isEditMode)}"> 
-                            <apex:param value="{!valueWrapper.value}" />
+                            <apex:param value="{!valueWrapper.value*exrate}" />
                         </apex:outputText>
                         <!--
                             This block will be rendered when the following condition is met

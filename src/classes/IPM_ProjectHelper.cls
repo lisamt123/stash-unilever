@@ -944,6 +944,16 @@ public with sharing class IPM_ProjectHelper
                                 }
                             }
                             else{
+                            	
+                            	if(project != null && projectToRolloutMap != null && projectToRolloutMap.get(project.Id) != null){
+                            		for(IPM_Project_Rollout__c associatedRollout : projectToRolloutMap.get(project.Id).values())
+	                                {
+	                                    if(associatedRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+	                                    {
+	                                        uniqueFinancialKeySet.add(associatedRollout.IPM_Rollout_Project__c+IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
+	                                    }
+	                                }
+	                            }
                             	uniqueFinancialKeySet.add(project.IPM_Project_Name__c +IPM_ConstantUtils.UNDERSCORE+ KEY_POSTFIX);
                             }  
                         }
