@@ -653,11 +653,7 @@
         <tab>standard-Document</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    <tabSettings>
-        <tab>ICB_Batimento_Vendas</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
+     <tabSettings>
         <tab>ICB_Close_Sales</tab>
         <visibility>None</visibility>
     </tabSettings>
