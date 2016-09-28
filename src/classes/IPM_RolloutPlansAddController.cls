@@ -1011,6 +1011,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 
             if(isProjectGKM3){
                 processUnSelectedCountries(setCountryCodesGlobalUnselected,IPM_ConstantUtils.ROLLOUT_TYPE_MCO);
+				processGlobalMCORollouts();
             }
                 processRegionalMCORollouts();
                 processRegionalCountryRollouts(); 
