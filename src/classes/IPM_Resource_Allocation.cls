@@ -18,6 +18,7 @@ public with sharing class IPM_Resource_Allocation {
     private static final String QUERY_FIELDS_STR = 'ipm_user__r.smallphotourl,';
     private static final String QUERY_WHERE_STR = 'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True ';
     private static final String QUERY_HOLDCATEGORY_STR = ' and IPM_HoldCategory__c like \'%';
+    private static final String QUERY_HOLDCATEGORY_STRING = 'IPM_HoldCategory__c like \'%';
     private static final String QUERY_STRING_PROFILE='IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True AND ';
     public static final String IPM_RESOURCEALLOCATION_STR = IPM_Resource_Allocation.class.getName();
     private static final string ADD_MEMBER_TO_WRAPPER = 'AddMemberToWrapper';
@@ -454,7 +455,7 @@ public with sharing class IPM_Resource_Allocation {
 	            	if(String.IsNotBlank(category))
 		            {
 		                
-		                uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')' +AND_STRING;
+		                uQuery=uQuery+QUERY_HOLDCATEGORY_STRING+ String.escapeSingleQuotes(category) + '%\'' +AND_STRING;
 		            }
 		            
 		            if(String.IsNotBlank(changeRoleType))
@@ -473,16 +474,16 @@ public with sharing class IPM_Resource_Allocation {
         {
             if(roleType==IPM_ConstantUtils.TEAM_GUEST)
             {
-                uQuery=uQuery+' AND IPM_HoldCategory__c !=null)AND';
+                uQuery=uQuery+' IPM_HoldCategory__c !=null AND';
                 uQuery=uQuery+'(IPM_User__r.name LIKE :querySearchTeamMem  OR IPM_User__r.email LIKE :querySearchTeamMem OR ';
                 uQuery=uQuery+'IPM_User_Role__c LIKE :querySearchTeamMem) AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
             }
             else
             {
-                uQuery=uQuery+' AND IPM_HoldCategory__c !=null AND ';
-                uQuery=uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\')AND(IPM_User__r.name LIKE :querySearchTeamMem  OR ';
+                uQuery=uQuery+'  IPM_HoldCategory__c !=null AND ';
+                uQuery=uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\' AND(IPM_User__r.name LIKE :querySearchTeamMem  OR ';
                 uQuery=uQuery+SRCH_FILTER;
-                uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
+                uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT; 
             }
         }
         try

@@ -817,8 +817,8 @@ public with sharing class IPM_NewTask {
     		string sectionExternalId = SectionToExtenalIdSectionMap.get(selectedSectionId).toUpperCase();
     		set<string> roleSet = sectionToFunctionalRoleMap.get(sectionExternalId);
     		set<string> finalRoleSet =  new set<string>();
-    		
-    		
+    		if(roleSet!=null && tasks.IPM_Function__c!=null)
+    		{ 
     		for(string role : roleSet)
     		{
     			string roleValue = role;
@@ -840,6 +840,8 @@ public with sharing class IPM_NewTask {
     		if(!finalRoleSet.isEmpty() && !finalRoleSet.contains(tasks.IPM_Function__c) && tasks.IPM_SectionExternalIDFormula__c.equalsIgnoreCase(sectionExternalId) )
     		{
     			options.add(new SelectOption(tasks.IPM_Function__c,tasks.IPM_Function__c));
+	    			finalRoleSet.add(tasks.IPM_Function__c);
+	    		} 
     		} 
     	}
 		return options;

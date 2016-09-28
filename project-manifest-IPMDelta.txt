@@ -1,3 +1,13 @@
 src
-src/classes/IPM_FinancialHandler.cls
-src/classes/IPM_FinancialHandler.cls-meta.xml
+src/classes
+src/classes/IPM_NewTask.cls
+src/classes/IPM_NewTask.cls-meta.xml
+src/classes/IPM_ProjectJobHelper.cls
+src/classes/IPM_ProjectJobHelper.cls-meta.xml
+src/classes/IPM_Resource_Allocation.cls
+src/classes/IPM_Resource_Allocation.cls-meta.xml
+src/pages
+src/pages/IPM_EditTask.page
+src/pages/IPM_EditTask.page-meta.xml
+src/permissionsets
+src/permissionsets/IPMNG_Basic.permissionset
