@@ -20,15 +20,12 @@
         <div class="slds-page-header" role="banner">
             <div class="slds-grid " >
                 <div class="slds-col header-align">
-                    {!$Label.c.ICB_PRICELIST_HEADER_SUB_TITLE}
+                    <br/>
                     <h1 class="slds-text-heading--medium">
-                        <ui:outputNumber value="{!v.qtdProducts}"/>
-                        &nbsp;<ui:outputText value="{!v.HeaderTitle}"/>
+                        <br/>
                     </h1>
                 </div>
-                <ui:button label="Atualizar" press="{!c.updateListPrice}">
-                    
-                </ui:button>
+                <ui:button label="{!$Label.c.ICB_UPDATE_INVENTORY}" press="{!c.updateListPrice}"/>
             </div>
         </div>
     </aura:if>

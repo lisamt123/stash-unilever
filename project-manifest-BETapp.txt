@@ -1,4 +1,4 @@
 src
-src/staticresources
-src/staticresources/BETApp.resource
-src/staticresources/BETApp.resource-meta.xml
+src/classes
+src/classes/uw_BatchJobHelper.cls
+src/classes/uw_BatchJobHelper.cls-meta.xml

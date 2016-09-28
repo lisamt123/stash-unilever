@@ -6,7 +6,7 @@ Purpose: Class used on the trigger SetupMobileChannel
 
 History 
 
-VERSION AUTHOR 				DATE 		DETAIL Description
+VERSION AUTHOR 				DATE 		DETAIL Description	
 1.0 	CARLOS HENRIQUE  02/09/2016  INITIAL DEVELOPMENT.
 ***********************************************************************/
 public with sharing class ICB_SetupMobileChannel {
@@ -31,8 +31,8 @@ public with sharing class ICB_SetupMobileChannel {
         Id 		priceBookId = null; // Store the price book Id created. 
         Id 		inventoryId	= null; // Store the inventory Id creatd.        
         String  IdRecType	= null;
-        String salesmanId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(ICB_ContactTypes__c.getValues('Type_Salesman').Value__c).getRecordTypeId();
-        String operatorId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get(ICB_ContactTypes__c.getValues('RecordType_Operator').Value__c).getRecordTypeId();
+        String salesmanId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Salesman').getRecordTypeId();
+        String operatorId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Ice Cream Operator').getRecordTypeId();
         
         
         // Pass the parameters to variables. 
@@ -45,7 +45,7 @@ public with sharing class ICB_SetupMobileChannel {
             System.debug('Entering <accountName>'+accountId);
         }
         
-        if(IdRecType == salesmanId || IdRecType == operatorId) 
+        if((salesmanId != null || operatorId != null) && (IdRecType == salesmanId || IdRecType == operatorId))
         {
             
             // Retrive the partner info from account to be used as parameter. 
@@ -142,6 +142,7 @@ public with sharing class ICB_SetupMobileChannel {
                     }
                 }
             }
+            
         }
     }
     

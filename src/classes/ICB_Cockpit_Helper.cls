@@ -20,19 +20,19 @@ public with sharing class ICB_Cockpit_Helper
     private static final String CONST_STAGE_AVAILABLE;
     private static final String CONST_STATUS_ITEM_OPP_STOCK;
     private static final String CONST_STAGE_PENDING;
-    private static final String CONST_EMPTY;
     private static final String CONST_SOLICITATION;
+    private static final String CONST_TYPE_LIST;
     private static List<OpportunityLineItem> listOppItemUp;
     
     Static
     {
         CONST_STATUS_ITEM_OPP_SOLD_PENDING = 'sold pending stock';
-        CONST_EMPTY = '';
         CONST_STAGE_CLOSED = 'Closed';
         CONST_STAGE_AVAILABLE = 'Available';
         CONST_STAGE_PENDING = 'Pending';
         CONST_STATUS_ITEM_OPP_STOCK = 'stock';
         CONST_SOLICITATION = 'Solicitation';
+        CONST_TYPE_LIST = 'List<ICB_Wrapper_Cockpit_CC>';
         listOppItemUp = new List<OpportunityLineItem>();
     }
     /*******************************************************************
@@ -41,7 +41,7 @@ public with sharing class ICB_Cockpit_Helper
     Returns: Map<String,ICB_Wrapper_Cockpit_CC>
     Throws [Exceptions]: NONE
     ********************************************************************/
-    public static Map<String,ICB_Wrapper_Cockpit_CC> returnMapLineItem(List<OpportunityLineItem> listOpportunityLineItem)
+    public static Map<String,ICB_Wrapper_Cockpit_CC> returnMapLineItem(List<OpportunityLineItem> listOpportunityLineItem,Boolean isClosed)
     {
         System.debug('Entering <returnMapLineItem>: '+ JSON.serializePretty(listOpportunityLineItem));
         Map<String,ICB_Wrapper_Cockpit_CC> mapLineItem = new Map<String,ICB_Wrapper_Cockpit_CC>();
@@ -57,15 +57,16 @@ public with sharing class ICB_Cockpit_Helper
                     item.quantityIce = 0;
                 }
             }
-            if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING && oppItem.ICB_STATUS_SALES__c != CONST_EMPTY)
+            if(oppItem.ICB_STATUS_SALES__c == CONST_STATUS_ITEM_OPP_SOLD_PENDING )
             {
                 item.quantityIce = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : item.quantityIce + oppItem.ICB_ITEMS_RETURNED__c;
                 item.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
             }
             else
             {
-                item.quantityIce = oppItem.Quantity == null ? 0 : item.quantityIce + oppItem.Quantity; 
+                item.quantityIce = isClosed ? item.quantityIce + oppItem.ICB_ITEMS_RETURNED__c : item.quantityIce + oppItem.Quantity; 
             }
+            
             item.oppLineItem = oppItem;
             mapLineItem.put(oppItem.OpportunityId, item);
         } 
@@ -119,6 +120,21 @@ public with sharing class ICB_Cockpit_Helper
         System.debug('Exiting <returnListWrapper>: '+ JSON.serializePretty(listWrapper));
         return listWrapper;
     }
+    
+    /*******************************************************************
+    Purpose: Deserialize JSON received of controller javascript
+    Parameters: @jsonList(list of items)
+    Returns: List<ICB_Wrapper_Cockpit_CC>
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    public static List<ICB_Wrapper_Cockpit_CC> deserializeJSON(String jsonList)
+    {
+        System.debug('Entering <deserializeJSON>: '+ jsonList);
+        Type idArrType=Type.forName(CONST_TYPE_LIST);
+        List<ICB_Wrapper_Cockpit_CC> listInventories = (List<ICB_Wrapper_Cockpit_CC>) JSON.deserialize(jsonList, idArrType);
+        System.debug('Exiting <deserializeJSON>: ' + JSON.serializePretty(listInventories));
+        return listInventories;
+    } 
     /*******************************************************************
     Purpose: Method helper the returnListWrapper
     Parameters: @operation(current operation)
@@ -164,6 +180,8 @@ public with sharing class ICB_Cockpit_Helper
         {
             secondItem.quantity = oppItem.Quantity == null ? 0 : (Integer)oppItem.Quantity; 
             secondItem.quantityMin = oppItem.ICB_ITEMS_RETURNED__c == null ? 0 : (Integer)oppItem.ICB_ITEMS_RETURNED__c;
+            oppItem.ICB_IS_CLOSED__C = true;
+            listOppItemUp.add(oppItem);
             isStock = true;
             item = secondItem;
         }

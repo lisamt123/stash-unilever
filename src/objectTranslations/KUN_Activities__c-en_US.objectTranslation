@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>KUN Activities</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>KUN Activities</value>
+    </caseValues>
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cluster --></label>
+        <name>Cluster__c</name>
+        <picklistValues>
+            <masterLabel>North Asia</masterLabel>
+            <translation><!-- North Asia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEAA</masterLabel>
+            <translation><!-- SEAA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South Asia</masterLabel>
+            <translation><!-- South Asia --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- End date --></label>
+        <name>End_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expert Group --></label>
+        <name>Expert_Group__c</name>
+    </fields>
+    <fields>
+        <label><!-- Process Area --></label>
+        <name>Process_Area__c</name>
+        <picklistValues>
+            <masterLabel>Deliver</masterLabel>
+            <translation><!-- Deliver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Make</masterLabel>
+            <translation><!-- Make --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Order-to-Cash (O2C)</masterLabel>
+            <translation><!-- Order-to-Cash (O2C) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Plan-to-Forecast (P2F)</masterLabel>
+            <translation><!-- Plan-to-Forecast (P2F) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Procurement</masterLabel>
+            <translation><!-- Procurement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchase-to-Pay (P2P)</masterLabel>
+            <translation><!-- Purchase-to-Pay (P2P) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Record-to-Report (R2R)</masterLabel>
+            <translation><!-- Record-to-Report (R2R) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply-Chain-Finance (SCF)</masterLabel>
+            <translation><!-- Supply-Chain-Finance (SCF) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Profile Id --></label>
+        <name>Profile_Id__c</name>
+        <relationshipLabel><!-- KUN Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Role --></label>
+        <name>Role__c</name>
+    </fields>
+    <fields>
+        <label><!-- Short Description --></label>
+        <name>Short_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sub Process Area --></label>
+        <name>Sub_Process_Area__c</name>
+    </fields>
+    <fields>
+        <label><!-- URL --></label>
+        <name>URL__c</name>
+    </fields>
+    <layouts>
+        <layout>KUN  News Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- News --></label>
+            <section>News</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN  Spotlight Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Spotlight --></label>
+            <section>Spotlight</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN Broadcast Message Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN Document And Reports Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN Events Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Event Description --></label>
+            <section>Event Description</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN Experts Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN Facts and Figures Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN Global Business Actions Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>KUN Quick Link Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Global Business Actions --></label>
+        <name>KUN_Actions_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Broadcast Message --></label>
+        <name>KUN_Broadcast_Message_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Business Documents --></label>
+        <name>KUN_Business_Matrix_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Compliance Process Indicator --></label>
+        <name>KUN_Compliance_Process_Indicator</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Global Business Events --></label>
+        <name>KUN_Events_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ask the Experts Configuration --></label>
+        <name>KUN_Experts_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Facts &amp; Figures --></label>
+        <name>KUN_FactsFigures_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- IT Project Portfolios Documents --></label>
+        <name>KUN_IT_Project_Portfolios</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Business News Letter --></label>
+        <name>KUN_News_Letter_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Business News --></label>
+        <name>KUN_News_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Other Documents --></label>
+        <name>KUN_Other_Documents_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Quick Link --></label>
+        <name>KUN_Quick_Link</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Spotlight --></label>
+        <name>KUN_Spotlight_RT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Training Documents --></label>
+        <name>KUN_Training_Documents</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- User Education Tickets --></label>
+        <name>KUN_User_Education_Tickets</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

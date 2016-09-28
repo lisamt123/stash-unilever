@@ -1,0 +1,490 @@
+src
+src/classes/GEL_Global_Exception_Trigger_Test.cls
+src/classes/GEL_Global_Exception_Trigger_Test.cls-meta.xml
+src/classes/GEL_Global_Exception_TriggerFactory.cls
+src/classes/GEL_Global_Exception_TriggerFactory.cls-meta.xml
+src/classes/GEL_Global_Exception_TriggerHandler.cls
+src/classes/GEL_Global_Exception_TriggerHandler.cls-meta.xml
+src/dashboards/GEL_Dashboard-meta.xml
+src/dashboards/GEL_Dashboard/GEL_Global_Exceptions.dashboard
+src/email/GEL_Global_Exception_Log-meta.xml
+src/email/GEL_Global_Exception_Log/GEL_AlertTemplate_To_Raiser.email
+src/email/GEL_Global_Exception_Log/GEL_AlertTemplate_To_Raiser.email-meta.xml
+src/email/GEL_Global_Exception_Log/GEL_Details_requested_by_Process_Owner.email
+src/email/GEL_Global_Exception_Log/GEL_Details_requested_by_Process_Owner.email-meta.xml
+src/email/GEL_Global_Exception_Log/GEL_Email_to_Process_Owner_after_creating_exception.email
+src/email/GEL_Global_Exception_Log/GEL_Email_to_Process_Owner_after_creating_exception.email-meta.xml
+src/email/GEL_Global_Exception_Log/GEL_Further_details_are_provided_by_exception_raiser.email
+src/email/GEL_Global_Exception_Log/GEL_Further_details_are_provided_by_exception_raiser.email-meta.xml
+src/email/GEL_Global_Exception_Log/GEL_When_exception_is_Closed_Raiser_Notified.email
+src/email/GEL_Global_Exception_Log/GEL_When_exception_is_Closed_Raiser_Notified.email-meta.xml
+src/layouts/GEL_Global_Exception_Log__c-GEL Global Exception Log Final.layout
+src/layouts/GEL_Global_Exception_Log__c-GEL Global Exception Log Layout.layout
+src/objects/GEL_Global_Exception_Log__c.object
+src/permissionsets/GEL_Admin.permissionset
+src/permissionsets/GEL_Exception_Raiser.permissionset
+src/permissionsets/GEL_Process_Owner.permissionset
+src/reports/GEL_Global_Exception_Reports-meta.xml
+src/reports/GEL_Global_Exception_Reports/GEL_As_Per_Status.report
+src/reports/GEL_Global_Exception_Reports/GEL_Based_On_ETC_BO_Owner.report
+src/reports/GEL_Global_Exception_Reports/GEL_Based_On_Process.report
+src/reports/GEL_Global_Exception_Reports/GEL_Combination_of_Process_and_Open_Excp_Cat.report
+src/reports/GEL_Global_Exception_Reports/GEL_Combination_of_Process_and_Potential_Sol.report
+src/reports/GEL_Global_Exception_Reports/GEL_Combination_of_process_and_PPE_category.report
+src/reports/GEL_Global_Exception_Reports/GEL_Combination_of_Process_and_Status.report
+src/reports/GEL_Global_Exception_Reports/GEL_Country_Wise_Summary.report
+src/reports/GEL_Global_Exception_Reports/GEL_ETC_BO_Owner_and_Status_Report.report
+src/reports/GEL_Global_Exception_Reports/GEL_Summary_of_Status_and_Country.report
+src/reports/GEL_Global_Exception_Reports/GEL_Summary_of_Status_and_ETC_BO_Owner.report
+src/tabs/GEL_Global_Exception_Log__c.tab
+src/triggers/GEL_Global_Exception_Log_Trigger.trigger
+src/triggers/GEL_Global_Exception_Log_Trigger.trigger-meta.xml
+src/workflows/GEL_Global_Exception_Log__c.workflow
+src/applications
+src/applications/KUN_Community_APP.app
+src/classes
+src/classes/Kun_Community_Test.cls
+src/classes/Kun_Community_Test.cls-meta.xml
+src/classes/KUN_Profile_CC_Test.cls
+src/classes/KUN_Profile_CC_Test.cls-meta.xml
+src/classes/Kun_HomeView_CC.cls
+src/classes/Kun_HomeView_CC.cls-meta.xml
+src/classes/KUN_Links.cls
+src/classes/KUN_Links.cls-meta.xml
+src/classes/KUN_Profile_CC.cls
+src/classes/KUN_Profile_CC.cls-meta.xml
+src/classes/KUN_ProfileTriggerHandler.cls
+src/classes/KUN_ProfileTriggerHandler.cls-meta.xml
+src/classes/KUNDataFactory.cls
+src/classes/KUNDataFactory.cls-meta.xml
+src/groups
+src/groups/KUN_Administrators_Community.group
+src/groups/KUN_Community_Users.group
+src/labels
+src/labels/KUN.LABELS
+src/layouts
+src/layouts/KUN_Activities__c-KUN  News Layout.layout
+src/layouts/KUN_Activities__c-KUN  Spotlight Layout.layout
+src/layouts/KUN_Activities__c-KUN Broadcast Message Layout.layout
+src/layouts/KUN_Activities__c-KUN Document And Reports Layout.layout
+src/layouts/KUN_Activities__c-KUN Events Layout.layout
+src/layouts/KUN_Activities__c-KUN Experts Layout.layout
+src/layouts/KUN_Activities__c-KUN Facts and Figures Layout.layout
+src/layouts/KUN_Activities__c-KUN Global Business Actions Layout.layout
+src/layouts/KUN_Activities__c-KUN Quick Link Layout.layout
+src/layouts/KUN_Profile__c-KUN Profile Layout.layout
+src/objects
+src/objects/KUN_Activities__c.object
+src/objects/KUN_Profile__c.object
+src/objectTranslations
+src/objectTranslations/KUN_Activities__c-en_US.objectTranslation
+src/objectTranslations/KUN_Profile__c-en_US.objectTranslation
+src/pages
+src/pages/Kun_HomeView.page
+src/pages/Kun_HomeView.page-meta.xml
+src/pages/KUN_Profile_VF.page
+src/pages/KUN_Profile_VF.page-meta.xml
+src/permissionsets
+src/permissionsets/KUN_APP_Administrator.permissionset
+src/permissionsets/KUN_Super_Administrator.permissionset
+src/permissionsets/KUN_Users.permissionset
+src/reports
+src/reports/KUN_Community_Reports
+src/reports/KUN_Community_Reports/KUN_data_Bangladesh.report
+src/reports/KUN_Community_Reports/KUN_data_China.report
+src/reports/KUN_Community_Reports/KUN_Data_IIndonesia.report
+src/reports/KUN_Community_Reports/KUN_Data_India.report
+src/reports/KUN_Community_Reports/KUN_data_Japan.report
+src/reports/KUN_Community_Reports/KUN_data_Malaysia.report
+src/reports/KUN_Community_Reports/KUN_data_Pakistan.report
+src/reports/KUN_Community_Reports/KUN_data_Philippines.report
+src/reports/KUN_Community_Reports/KUN_data_Singapore.report
+src/reports/KUN_Community_Reports/KUN_data_Thailand.report
+src/reports/KUN_Community_Reports/KUn_data_Vietnam.report
+src/reports/KUN_Community_Reports-meta.xml
+src/reportTypes
+src/reportTypes/KUN_Profiles_with_User_Info.reportType
+src/staticresources
+src/staticresources/KUN.resource
+src/staticresources/KUN.resource-meta.xml
+src/tabs
+src/tabs/KUN_Activities__c.tab
+src/tabs/KUN_Community_TAB.tab
+src/tabs/KUN_Profile__c.tab
+src/tabs/KUN_Profile_tab.tab
+src/triggers
+src/triggers/KUN_ProfileTrigger.trigger
+src/triggers/KUN_ProfileTrigger.trigger-meta.xml
+src/applications
+src/applications/SAM_Demand_Management.app
+src/classes
+src/classes/SAM_Constants.cls
+src/classes/SAM_Constants.cls-meta.xml
+src/classes/SAM_Email_Attachment_InvocableMethod.cls
+src/classes/SAM_Email_Attachment_InvocableMethod.cls-meta.xml
+src/classes/SAM_InformationController_Test.cls
+src/classes/SAM_InformationController_Test.cls-meta.xml
+src/classes/SAM_Interface_Trigger.cls
+src/classes/SAM_Interface_Trigger.cls-meta.xml
+src/classes/SAM_NewButtonOverrideController_Test.cls
+src/classes/SAM_NewButtonOverrideController_Test.cls-meta.xml
+src/classes/SAM_NewButtonOverrideController.cls
+src/classes/SAM_NewButtonOverrideController.cls-meta.xml
+src/classes/SAM_NewButtonRequestLineItemContr_Test.cls
+src/classes/SAM_NewButtonRequestLineItemContr_Test.cls-meta.xml
+src/classes/SAM_NewButtonRequestLineItemController.cls
+src/classes/SAM_NewButtonRequestLineItemController.cls-meta.xml
+src/classes/SAM_QLINewButtonOverrideController_Test.cls
+src/classes/SAM_QLINewButtonOverrideController_Test.cls-meta.xml
+src/classes/SAM_QLINewButtonOverrideController.cls
+src/classes/SAM_QLINewButtonOverrideController.cls-meta.xml
+src/classes/SAM_QLITrigger_Handler.cls
+src/classes/SAM_QLITrigger_Handler.cls-meta.xml
+src/classes/SAM_QLITrigger_Util.cls
+src/classes/SAM_QLITrigger_Util.cls-meta.xml
+src/classes/SAM_Request_GroupMemberShipUtils.cls
+src/classes/SAM_Request_GroupMemberShipUtils.cls-meta.xml
+src/classes/SAM_Request_PublisherFieldUpdate.cls
+src/classes/SAM_Request_PublisherFieldUpdate.cls-meta.xml
+src/classes/SAM_Request_TriggerUtil.cls
+src/classes/SAM_Request_TriggerUtil.cls-meta.xml
+src/classes/SAM_RequestAgeing_Test.cls
+src/classes/SAM_RequestAgeing_Test.cls-meta.xml
+src/classes/SAM_RequestAgeing.cls
+src/classes/SAM_RequestAgeing.cls-meta.xml
+src/classes/SAM_RequestAgeUpdate_Test.cls
+src/classes/SAM_RequestAgeUpdate_Test.cls-meta.xml
+src/classes/SAM_RequestAgeUpdate.cls
+src/classes/SAM_RequestAgeUpdate.cls-meta.xml
+src/classes/SAM_RequestApexSharing.cls
+src/classes/SAM_RequestApexSharing.cls-meta.xml
+src/classes/SAM_RequestInformationController.cls
+src/classes/SAM_RequestInformationController.cls-meta.xml
+src/classes/SAM_RequestTrigger_Handler.cls
+src/classes/SAM_RequestTrigger_Handler.cls-meta.xml
+src/classes/SAM_RLITrigger_Handler.cls
+src/classes/SAM_RLITrigger_Handler.cls-meta.xml
+src/classes/SAM_RLITrigger_TriggerUtil.cls
+src/classes/SAM_RLITrigger_TriggerUtil.cls-meta.xml
+src/classes/SAM_ScheduleBatchProAgeUpdate_Test.cls
+src/classes/SAM_ScheduleBatchProAgeUpdate_Test.cls-meta.xml
+src/classes/SAM_ScheduleBatchProAgeUpdate.cls
+src/classes/SAM_ScheduleBatchProAgeUpdate.cls-meta.xml
+src/classes/SAM_testCustomSettingClass_util.cls
+src/classes/SAM_testCustomSettingClass_util.cls-meta.xml
+src/classes/SAM_TestRequestClass_util.cls
+src/classes/SAM_TestRequestClass_util.cls-meta.xml
+src/classes/SAM_TriggerFactory.cls
+src/classes/SAM_TriggerFactory.cls-meta.xml
+src/classes/SAM_TriggerUtilMethods_Test.cls
+src/classes/SAM_TriggerUtilMethods_Test.cls-meta.xml
+src/dashboard
+src/dashboard/SAM_Dashbords.dashboard
+src/dashboard/SAM_DashBoards-meta.xml
+src/documents
+src/documents/SAM_Demand
+src/documents/SAM_Demand/SAM Logo.jpg
+src/documents/SAM_Demand/SAM_Logo.jpg-meta.xml
+src/documents/SAM_Demand-meta.xml
+src/email
+src/email/SAM_Email_Template_Folder
+src/email/SAM_Email_Template_Folder/RequestAccepted_By_SAM_Team_Member_To_SAMAdmin.email
+src/email/SAM_Email_Template_Folder/RequestAccepted_By_SAM_Team_Member_To_SAMAdmin.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_AdditionalCCDetailsProvided_From_Requester_To_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_AdditionalCCDetailsProvided_From_Requester_To_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_AdditionalChargingDetailsNeeded_To_Requester_From_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_AdditionalChargingDetailsNeeded_To_Requester_From_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_AwaitingAdditionalFinanceDetails_By_ULFT.email
+src/email/SAM_Email_Template_Folder/SAM_AwaitingAdditionalFinanceDetails_By_ULFT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_CCApproved_By_ULFT_To_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_CCApproved_By_ULFT_To_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_CCRejected_From_ULFT_To_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_CCRejected_From_ULFT_To_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_DetailsRequired_DO_Build_From_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_DetailsRequired_DO_Build_From_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_DetailsRequired_To_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_DetailsRequired_To_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_DraftQuote_By_SAMT_To_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_DraftQuote_By_SAMT_To_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteProvided_By_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_FinalQuoteReSubmitted_To_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_MissingInfoProvided_To_SAMT_From_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_MissingInfoProvided_To_SAMT_From_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_More_Info_Required_To_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_More_Info_Required_To_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_NoSoftwareSpend_Closed.email
+src/email/SAM_Email_Template_Folder/SAM_NoSoftwareSpend_Closed.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_QuerryAnswered_To_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_QuerryAnswered_To_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_QueryClosed_By_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_QueryClosed_By_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_QueryResubmitted.email
+src/email/SAM_Email_Template_Folder/SAM_QueryResubmitted.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_QuoteApproved_By_Requester_To_SAMT.email
+src/email/SAM_Email_Template_Folder/SAM_QuoteApproved_By_Requester_To_SAMT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_QuoteRejected_To_SAMT_From_Requester.email
+src/email/SAM_Email_Template_Folder/SAM_QuoteRejected_To_SAMT_From_Requester.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_Request_Submitted_to_SAM_Demand_Team.email
+src/email/SAM_Email_Template_Folder/SAM_Request_Submitted_to_SAM_Demand_Team.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_RequestAssigned_To_SAM_Member.email
+src/email/SAM_Email_Template_Folder/SAM_RequestAssigned_To_SAM_Member.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_RequestOpen_To_Admin.email
+src/email/SAM_Email_Template_Folder/SAM_RequestOpen_To_Admin.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_RequestReassigned.email
+src/email/SAM_Email_Template_Folder/SAM_RequestReassigned.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_Submits_Missing_Finance_Info_To_ULFT.email
+src/email/SAM_Email_Template_Folder/SAM_Submits_Missing_Finance_Info_To_ULFT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_SumbitsForFinanceCharge_To_ULFT.email
+src/email/SAM_Email_Template_Folder/SAM_SumbitsForFinanceCharge_To_ULFT.email-meta.xml
+src/email/SAM_Email_Template_Folder/SAM_Email_Template_Folder-meta.xml
+src/email/SAM_Email_Template_Folder-meta.xml
+src/flows
+src/flows/SAM_Get_User_Public_Groups_and_Set_Requester_field-12
+src/flows/SAM_Owner_Update_Upon_Assigned_To_field_update-12
+src/flows/SAM_Set_New_Product_Request_Status_field-5
+src/flows/SAM_Set_New_Quotation_Request_Status_field-4
+src/flows/SAM_Status_Update_and_Quotation_Record_Type_Update-22
+src/flows/SAM_Update_Comment_History_field-3
+src/groups
+src/groups/SAM_Admin.group
+src/groups/SAM_Finance_Team.group
+src/groups/SAM_Team.group
+src/groups/SAM_Requester_group.group
+src/labels
+src/labels/SAM.labels
+src/layouts
+src/layouts/SAM_Quote_Line_Item__c-SAM Non Proj Quote RO Layout.layout
+src/layouts/SAM_Quote_Line_Item__c-SAM Non Proj Quote RW Layout.layout
+src/layouts/SAM_Quote_Line_Item__c-SAM Non Proj Quote RW%2FRO Layout.layout
+src/layouts/SAM_Quote_Line_Item__c-SAM Quote RO Layout.layout
+src/layouts/SAM_Quote_Line_Item__c-SAM Quote RW Layout.layout
+src/layouts/SAM_Quote_Line_Item__c-SAM Quote RW%2FRO Layout.layout
+src/layouts/SAM_Request__c-SAM Cross Charge Request Close.layout
+src/layouts/SAM_Request__c-SAM Cross Charge Request Complete.layout
+src/layouts/SAM_Request__c-SAM Cross Charge Request Finance Awaiting Charge Queue.layout
+src/layouts/SAM_Request__c-SAM Cross Charge Request Finance.layout
+src/layouts/SAM_Request__c-SAM Cross Charge Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM Non Project Close Layout.layout
+src/layouts/SAM_Request__c-SAM Non Project Close1.layout
+src/layouts/SAM_Request__c-SAM Non_Project RW Req Quote Provided%2FApprove.layout
+src/layouts/SAM_Request__c-SAM Non_Project RW SAM Team On hold.layout
+src/layouts/SAM_Request__c-SAM Non_Project RW SAM Team%2FQuote Rejected.layout
+src/layouts/SAM_Request__c-SAM Project Close1.layout
+src/layouts/SAM_Request__c-SAM Project Finance On Awaiting Charge With Queue.layout
+src/layouts/SAM_Request__c-SAM Project Finance On Awaiting Charge1.layout
+src/layouts/SAM_Request__c-SAM Project Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM Project RW Req Quote Provided1.layout
+src/layouts/SAM_Request__c-SAM Project RW SAM Team On hold.layout
+src/layouts/SAM_Request__c-SAM Project RW SAM Team1.layout
+src/layouts/SAM_Request__c-SAM Query Request Answered Layout.layout
+src/layouts/SAM_Request__c-SAM Query Request Closed.layout
+src/layouts/SAM_Request__c-SAM Query Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM Query Request SAM Team on Open.layout
+src/layouts/SAM_Request__c-SAM Query Request SAM team.layout
+src/layouts/SAM_Request__c-SAM ReSubmit Cross Charge Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM ReSubmit Non Project Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM ReSubmit Project Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM ReSubmit Query Request RW Layout.layout
+src/layouts/SAM_Request__c-SAM RW Non Project Request.layout
+src/layouts/SAM_Request_Line_Item__c-SAM IBM RO Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM IBM RW Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM Microsoft RO Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM Microsoft RW Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM Oracle RO Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM Oracle RW Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM Other Product RO Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM Other Product RW Request Line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM SAP RO Request line Item Layout.layout
+src/layouts/SAM_Request_Line_Item__c-SAM SAP RW Request line Item Layout.layout
+src/objects
+src/objects/SAM_Mandatory_fields_for_submit__c.object
+src/objects/SAM_Quote_Line_Item__c.object
+src/objects/SAM_Request__c.object
+src/objects/SAM_Request_Line_Item__c.object
+src/objects/SAM_success_messages__c.object
+src/objects/SAM_Trigger_Pattern__c.object
+src/pages
+src/pages/SAM_CommentPage.page
+src/pages/SAM_CommentPage.page-meta.xml
+src/pages/SAM_NewButtonOverridePage.page
+src/pages/SAM_NewButtonOverridePage.page-meta.xml
+src/pages/SAM_NewButtonRequestLineItemPage.page
+src/pages/SAM_NewButtonRequestLineItemPage.page-meta.xml
+src/pages/SAM_QLI_NewButtonOverridePage.page
+src/pages/SAM_QLI_NewButtonOverridePage.page-meta.xml
+src/pages/SAM_RequestInformationPage.page
+src/pages/SAM_RequestInformationPage.page-meta.xml
+src/permissionsets
+src/permissionsets/SAM_Admin.permissionset
+src/permissionsets/SAM_Finance_Team.permissionset
+src/permissionsets/SAM_Requestor.permissionset
+src/permissionsets/SAM_System_Administrator.permissionset
+src/permissionsets/SAM_Team.permissionset
+src/queues
+src/queues/SAM_Admin_Queue.queue
+src/queues/SAM_Finance_Queue.queue
+src/queues/SAM_Team.queue
+src/reports
+src/reports/SAM_Finance
+src/reports/SAM_Finance/SAM_Finance_Report.report
+src/reports/SAM_Finance-meta.xml
+src/reports/SAM_Reports
+src/reports/SAM_Reports/Request_Details_by_Numbers.report
+src/reports/SAM_Reports/Request_Type_SAM_Demand_Management_t.report
+src/reports/SAM_Reports/SAM_Charging_Type.report
+src/reports/SAM_Reports/SAM_daily_demand_tracker_using_reporttype.report
+src/reports/SAM_Reports/SAM_Daily_Demand_Tracker.report
+src/reports/SAM_Reports/SAM_Dash_ReqCount_By_Portfolio.report
+src/reports/SAM_Reports/SAM_Finance_Report.report
+src/reports/SAM_Reports/SAM_Overall_Details_By_SAMDemandManager.report
+src/reports/SAM_Reports/SAM_Overall_Details_By_Status.report
+src/reports/SAM_Reports/SAM_Publisher_Wise_Split_Dashboard.report
+src/reports/SAM_Reports/SAM_Quotation_Line_Status_Details.report
+src/reports/SAM_Reports/SAM_Request_Details_by_Request_Type.report
+src/reports/SAM_Reports/SAM_Request_Details_by_Status.report
+src/reports/SAM_Reports/SAM_Request_Details_SAM_Demand_Manager.report
+src/reports/SAM_Reports/Status_wise_Number.report
+src/reports/SAM_Reports-meta.xml
+src/reportTypes
+src/reportTypes/SAM_Quote_Details_Dashboard.reportType
+src/reportTypes/SAM_Quote_Details_Dashboard1.reportType
+src/reportTypes/SAM_Request_Details.reportType
+src/reportTypes/SAM_Request_with_Product.reportType
+src/reportTypes/SAM_Request_with_Quotations.reportType
+src/sharingRules
+src/sharingRules/SAM_Request__c.sharingRules
+src/tabs
+src/tabs/SAM_Request__c.tab
+src/triggers
+src/triggers/SAM_QLI_Trigger.trigger
+src/triggers/SAM_QLI_Trigger.trigger-meta.xml
+src/triggers/SAM_Request_Trigger.trigger
+src/triggers/SAM_Request_Trigger.trigger-meta.xml
+src/triggers/SAM_RLI_Trigger.trigger
+src/triggers/SAM_RLI_Trigger.trigger-meta.xml
+src/workflows
+src/workflows/SAM_Quote_Line_Item__c.workflow
+src/workflows/SAM_Request__c.workflow
+src/workflows/SAM_Request_Line_Item__c.workflow
+src/applications/CI_R2R_Budget.app
+src/applications/CI_R2R_Innovation.app
+src/applications/CI_SME_Weekly_Update.app
+src/classes/CI_R2R_Budget_Trigger_Test.cls
+src/classes/CI_R2R_Budget_Trigger_Test.cls-meta.xml
+src/classes/CI_R2R_Budget_TriggerHandler.cls
+src/classes/CI_R2R_Budget_TriggerHandler.cls-meta.xml
+src/classes/CI_R2R_GetHistory_Test.cls
+src/classes/CI_R2R_GetHistory_Test.cls-meta.xml
+src/classes/CI_R2R_GetHistory.cls
+src/classes/CI_R2R_GetHistory.cls-meta.xml
+src/classes/CI_R2R_Innovation_Trigger_Test.cls
+src/classes/CI_R2R_Innovation_Trigger_Test.cls-meta.xml
+src/classes/CI_R2R_Innovation_TriggerFactory.cls
+src/classes/CI_R2R_Innovation_TriggerFactory.cls-meta.xml
+src/classes/CI_R2R_Innovation_TriggerHandler.cls
+src/classes/CI_R2R_Innovation_TriggerHandler.cls-meta.xml
+src/classes/CI_R2R_SME_GetHistory_Test.cls
+src/classes/CI_R2R_SME_GetHistory_Test.cls-meta.xml
+src/classes/CI_R2R_SME_GetHistory.cls
+src/classes/CI_R2R_SME_GetHistory.cls-meta.xml
+src/dashboards/CI_R2R_Dashboard-meta.xml
+src/dashboards/CI_R2R_Dashboard/CI_R2R_Dashboard.dashboard
+src/documents/CI_R2R_Documents-meta.xml
+src/documents/CI_R2R_Documents/CI_R2R_Color_Amber.png
+src/documents/CI_R2R_Documents/CI_R2R_Color_Amber.png-meta.xml
+src/documents/CI_R2R_Documents/CI_R2R_Color_Green.png
+src/documents/CI_R2R_Documents/CI_R2R_Color_Green.png-meta.xml
+src/documents/CI_R2R_Documents/CI_R2R_Color_Red.png
+src/documents/CI_R2R_Documents/CI_R2R_Color_Red.png-meta.xml
+src/flows/CI_R2R_Update_Scope_of_SME_Weekly_Update-19.flow
+src/flows/CI_R2R_Update_RAG_and_Closure_Date_to_Master_Object-1.flow
+src/layouts/CI_R2R_Budget__c-R2R Budget Layout.layout
+src/layouts/CI_R2R_Innovation__c-R2R Innovation Layout.layout
+src/layouts/CI_R2R_Milestones__c-CI_R2R Milestones Layout.layout
+src/layouts/CI_Accounting_Treatment__c-CI_Accounting Treatment Layout.layout
+src/layouts/CI_SMS_Weekly_Update__c-CI_SME without CI.layout
+src/layouts/CI_SMS_Weekly_Update__c-SME Weekly Update Layout.layout
+src/objects/CI_R2R_Budget__c.object
+src/objects/CI_R2R_Innovation__c.object
+src/objects/CI_R2R_Milestones__c.object
+src/objects/CI_Accounting_Treatment__c.object
+src/objects/CI_SMS_Weekly_Update__c.object
+src/objects/CI_R2R_Budget_Mapping__c.object
+src/pages/CI_R2R_Comments_Section_for_SME.page
+src/pages/CI_R2R_Comments_Section_for_SME.page-meta.xml
+src/pages/CI_R2R_Comments_Section.page
+src/pages/CI_R2R_Comments_Section.page-meta.xml
+src/pages/CI_R2R_Innovations_Help_Page.page
+src/pages/CI_R2R_Innovations_Help_Page.page-meta.xml
+src/pages/CI_R2R_SME_Weekly_Update_Help_Page.page
+src/pages/CI_R2R_SME_Weekly_Update_Help_Page.page-meta.xml
+src/permissionsets/CI_R2R_Admin.permissionset
+src/permissionsets/CI_R2R_KUN_user.permissionset
+src/permissionsets/CI_R2R_SME_End_User.permissionset
+src/reports/CI_R2R_Innovation_Reports-meta.xml
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Account_Reconciliation_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Budget_Approved_Records.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Continous_Improvement_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Direct_Tax_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Financial_Reporting_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Fixed_Assets_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_FX_Revaluation_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_GL_MDM_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_GPM_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Indirect_Tax_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Intercompany_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Period_End_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Project_Lead_Wise_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Project_Phase_wise_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Project_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Quarter_Wise_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Quartr_Wise_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_R2R_SME_Area_wise_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_RAG_Status_Wise_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_SAP_Roles_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_SCOA_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_SME_equals_JE.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_SME_Vs_Project_Category_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_SME_Vs_Project_Name_Category.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Summary_of_SME_and_Project_Category.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Summary_of_SME_with_Pname_Categor.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Tax_Summary.report
+src/reports/CI_R2R_Innovation_Reports/CI_R2R_Tools_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports-meta.xml
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Direct_Tax_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Financial_Reporting_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Fixed_Assets_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_FX_Revaluation_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_GL_MDM_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_GPM_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Indirect_Tax_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Journal_Entries_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Period_End_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Project_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_RAG_Status_Wise_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_SAP_Roles_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_SCOA_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Status_Wise_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Tax_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2R_SME_Tools_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2RSME_Intercompany_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2RSMEAccount_Reconciliation_Summary.report
+src/reports/CI_R2R_SME_Weekly_Update_Reports/CI_R2RSMEContinuous_Improvements_Summary.report
+src/staticresources/CI_R2R_Innovations_Image.resource
+src/staticresources/CI_R2R_Innovations_Image.resource-meta.xml
+src/tabs/CI_R2R_Budget__c.tab
+src/tabs/CI_R2R_Innovation__c.tab
+src/tabs/CI_R2R_Milestones__c.tab
+src/tabs/CI_Accounting_Treatment__c.tab
+src/tabs/CI_SMS_Weekly_Update__c.tab
+src/triggers/CI_R2R_Innovation_Trigger.trigger
+src/triggers/CI_R2R_Innovation_Trigger.trigger-meta.xml
+src/triggers/CI_R2R_Update_Cost_Centre.trigger
+src/triggers/CI_R2R_Update_Cost_Centre.trigger-meta.xml
+src/workflows/CI_Accounting_Treatment__c.workflow
+src/workflows/CI_R2R_Budget__c.workflow
+src/workflows/CI_R2R_Innovation__c.workflow
+src/workflows/CI_SMS_Weekly_Update__c.workflow
+src/profiles/Unilever - Force MultiApp Standard.profile

@@ -21,6 +21,11 @@
         <field>WU_Master_Warehouse__c.WU_Average_Current_Month_Utilization__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>WU_Master_Warehouse__c.Submitted_by__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Average_Current_Utilization__c</field>
@@ -387,7 +392,7 @@
         <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>WU_Master_Warehouse__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>

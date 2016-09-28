@@ -131,7 +131,7 @@ global with sharing class Oblix_VersionControl implements Schedulable {
 
             String job_name = cron_job_name + ' ' + i;
             String job_schedule = '0 ' + i + ' * * * ?';
-
+            i=i+1;
             System.schedule(job_name, job_schedule, new Oblix_VersionControl());
         }
     }
