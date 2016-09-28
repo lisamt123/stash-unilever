@@ -29,14 +29,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ICB_CalendarView_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_CalendarView_CC_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ICB_CheckInCheckOut_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
