@@ -1535,7 +1535,7 @@ public with sharing class IPM_ProjectHelper
                                if(updateProjectRollout.containsKey(country.local_Rollout__c)) 
                                {
                                     IPM_Project_Rollout__c rollout  = updateProjectRollout.get(country.local_Rollout__c); 
-                                    if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                                    if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE && country.IPM_FinancialAtCharter__c==null )
                                     {
                                         country.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
                                     }
