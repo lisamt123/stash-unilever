@@ -286,11 +286,7 @@
         <field>ICB_Setup_Photo__c.LastModifiedById</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>ICB_Setup_Photo__c.OwnerId</field>
-        <readable>true</readable>
-    </fieldPermissions>
+     
     <fieldPermissions>
         <editable>false</editable>
         <field>ICB_Setup_Photo__c.Name</field>
@@ -401,11 +397,7 @@
         <field>Opportunity.Name</field>
         <readable>true</readable>
     </fieldPermissions>
-     <fieldPermissions>
-        <editable>true</editable>
-        <field>Opportunity.OwnerId</field>
-        <readable>true</readable>
-    </fieldPermissions>
+     
     <fieldPermissions>
         <editable>true</editable>
         <field>Opportunity.RecordTypeId</field>
@@ -528,7 +520,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Asset.Type</field>
+        <field>Asset.ICB_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
