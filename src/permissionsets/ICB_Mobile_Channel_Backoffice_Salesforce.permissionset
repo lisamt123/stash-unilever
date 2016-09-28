@@ -13,30 +13,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ICB_CalculatePlanDistaance_Batch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_CalculatePlanDistaance_Batch_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_CalculatePlanDistance_BatchSch_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_CalculatePlanDistance_BatchSchedule</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_CheckInCheckOut_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_CheckInCheckOut_CC_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ICB_Cockpit_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -58,26 +34,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_ContactPartnerUserCreation</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_ContactPartnerUserCreation_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_ImportVisits</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_ImportVisits_Schedule</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_ImportVisits_Schedule_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_ImportVisits_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -125,10 +85,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>ICB_PhotoTest_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>ICB_PriceBookCreation</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -138,18 +94,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_PriceBookEntryDAO</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PriceBookProductsInsert</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PriceTable_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_PriceTable_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -206,10 +150,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>ICB_Wrapper_Cockpit_CC</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ICB_eventRecorver_CC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <description>Spark Project - Mobility to Mobile Channel - Permission Set for Backoffice users with license type Salesforce</description>
