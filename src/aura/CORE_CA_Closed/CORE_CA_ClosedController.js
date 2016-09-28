@@ -24,7 +24,15 @@
         }
         component.set("v.showspinnerclosed",true);
         var filterOption = event.getSource();
-        var filter=filterOption.get("v.title");
+        /* winter'17 fix for 'title' of markup://ltng:require not visible to component start */
+        var filter;
+        var x= filterOption.toString();
+        filter="Show All";
+        if(event.getName()==='press'){
+            filter=filterOption.get("v.buttonTitle");
+        }
+        
+      /*   winter'17 fix for 'title' of markup://ltng:require not visible to component end */
         var filteroptions;
         if(filter== "Show All")
         {
