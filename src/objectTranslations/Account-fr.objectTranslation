@@ -899,6 +899,10 @@
         <name>ICB_CNPJ__c</name>
     </fields>
     <fields>
+        <label><!-- Mobile Channel --></label>
+        <name>ICB_Mobile_Channel__c</name>
+    </fields>
+    <fields>
         <name>Industry</name>
         <picklistValues>
             <masterLabel>Agriculture</masterLabel>

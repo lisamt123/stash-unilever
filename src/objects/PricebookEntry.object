@@ -31,6 +31,28 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>ICB_Manufacture_Price__c</fullName>
+        <defaultValue>0.00</defaultValue>
+        <description>Used to indicate the price of products which operator pays to Unilever to distribute the products to salesman.</description>
+        <externalId>false</externalId>
+        <label>Manufacture Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ICB_Purchase_Price__c</fullName>
+        <defaultValue>0.00</defaultValue>
+        <description>Used to indicate how the operator spends with Unilever products.</description>
+        <externalId>false</externalId>
+        <label>Purchase Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>IsActive</fullName>
     </fields>
     <fields>

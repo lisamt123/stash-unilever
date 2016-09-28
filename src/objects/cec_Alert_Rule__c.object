@@ -891,14 +891,20 @@
         <columns>Alert_Type_Image__c</columns>
         <columns>Case_Product__c</columns>
         <columns>Group_By_Day_Code__c</columns>
-        <columns>L5_Product_Category__c</columns>
-        <columns>L5_Reason_Code__c</columns>
+        <columns>L0_Product_Category__c</columns>
+        <columns>L2_Product_Category__c</columns>
+        <columns>L4_Product_Category__c</columns>
         <columns>L7_Product_Category__c</columns>
         <columns>Market__c</columns>
         <columns>Threshold__c</columns>
         <columns>OWNER.ALIAS</columns>
         <columns>Type__c</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>DACH</value>
+        </filters>
         <label>GH View</label>
         <language>en_US</language>
     </listViews>
