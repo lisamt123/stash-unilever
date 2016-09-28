@@ -2105,14 +2105,6 @@ Enter competitor pricing if available</inlineHelpText>
                 <won>true</won>
             </picklistValues>
             <picklistValues>
-                <fullName>Not Pursued</fullName>
-                <default>false</default>
-                <closed>true</closed>
-                <forecastCategory>Omitted</forecastCategory>
-                <probability>0</probability>
-                <won>false</won>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Lost Existing Business</fullName>
                 <default>false</default>
                 <closed>false</closed>
