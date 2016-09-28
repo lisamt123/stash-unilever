@@ -38,16 +38,15 @@ private class FAU_UtilitiesTest
         }
 
 
-
         Test.startTest();
 
         FAU_Utilities.saveDatabase('insert', lPrograms, false);
         
         Test.stopTest();
         
-        //Integer iNumberProgams = [Select Id FROM FAU_Program__c].size();
-
-
+      //  Integer iNumberProgams = [Select Id FROM FAU_Program__c].size();
+        Integer iNumberProgams = [Select Count() FROM FAU_Program__c limit 10000];
+        
         System.assertEquals(300, iNumberProgams);
 
         System.debug('Exiting FAU_UtilitiesTest.testInsertSave');
@@ -76,9 +75,7 @@ private class FAU_UtilitiesTest
         }
 
 
-
         
-
 
         FAU_Utilities.saveDatabase('insert', lPrograms, false);
         
@@ -86,7 +83,6 @@ private class FAU_UtilitiesTest
             for(Integer i = (lPrograms.size()-1); i >=0 ; i--) { 
                 lPrograms[i].FAU_Primary_Location__c = 'location1';
             }
-
             FAU_Utilities.saveDatabase('update', lPrograms, false);
         Test.stopTest();
         
@@ -108,12 +104,9 @@ private class FAU_UtilitiesTest
         List<FAU_Program__c> lPrograms = new List<FAU_Program__c>();
         
         
-
-
         FAU_Program__c program = new FAU_Program__c();
         lPrograms.add(program);
         
-
 
 
         Test.startTest();
@@ -125,8 +118,6 @@ private class FAU_UtilitiesTest
                 System.debug('#### FAU_UtilitiesTest: The following exception has occurred: ' + e.getMessage());
             }
         }
-
-
         Test.stopTest();
         
         //Integer iNumberProgams = [Select Id FROM FAU_Program__c].size();

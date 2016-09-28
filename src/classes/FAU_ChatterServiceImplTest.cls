@@ -16,7 +16,6 @@ VERSION  AUTHOR            DATE              DETAIL                 Description
 private class FAU_ChatterServiceImplTest {
     
 
-
     @isTest static void testCreateChatterGroups()
     {
         //FAU_ChatterService service = new FAU_ChatterServiceImpl();
@@ -34,7 +33,6 @@ private class FAU_ChatterServiceImplTest {
         programs.add(program3);
         names.add(program3.Name);
         
-
         Test.startTest();
 
         insert programs;
@@ -48,11 +46,9 @@ private class FAU_ChatterServiceImplTest {
 
         for(CollaborationGroup chatterGroup : groups) 
         {
-
             System.assert(names.contains(chatterGroup.Name));
             System.assertEquals(chatterGroup.CollaborationType, 'Private');
         }
-
 
         System.assertNotEquals(groups[0].OwnerId, groups[1].OwnerId);
         System.assertNotEquals(groups[1].OwnerId, groups[2].OwnerId);
@@ -69,7 +65,7 @@ private class FAU_ChatterServiceImplTest {
 
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
-        //FAU_Webinar__c webinar = FAU_TestUtil.createWebinar(program);
+       // FAU_Webinar__c webinar = FAU_TestUtil.createWebinar(program);
 
         program.FAU_Status__c = 'Active';
         update program;
@@ -113,5 +109,4 @@ private class FAU_ChatterServiceImplTest {
         System.assertEquals(cgGroups.size(), 0);
     }
     
-
 }

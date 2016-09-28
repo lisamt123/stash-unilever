@@ -63,32 +63,26 @@ public with sharing class FAU_MilestoneHandler
     }
      
 
-
-
-    public void beforeDelete(SObject so)
-    {   
-
+  // This Class is implementing ITrigger, So can't remove this Function
+  
+   public void beforeDelete(SObject so)
+    { 
     }
-    
-
-
+     // This Class is implementing ITrigger, So can't remove this Function
+     
     public void afterInsert(SObject so) 
     {
     }
-    
-
-
+     // This Class is implementing ITrigger, So can't remove this Function
+     
     public void afterUpdate(SObject oldSo, SObject so)
     {
     }
-    
-
-
+     // This Class is implementing ITrigger, So can't remove this Function
+     
     public void afterDelete(SObject so)
-    {
-    }
-
-
+   {
+   } 
 
     
     /**
