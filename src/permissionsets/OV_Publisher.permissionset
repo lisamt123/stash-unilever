@@ -3877,6 +3877,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TestDataFactory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6643,6 +6647,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </pageAccesses>
     <pageAccesses>
         <apexPage>myLogOut</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>test</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>

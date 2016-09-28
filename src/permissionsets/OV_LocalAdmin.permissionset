@@ -3877,6 +3877,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TestDataFactory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -6644,6 +6648,10 @@ Create Libaries and Content</description>
     </pageAccesses>
     <pageAccesses>
         <apexPage>myLogOut</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>test</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
