@@ -29,7 +29,7 @@
         }
         
         ::-moz-placeholder {  /* Firefox 19+ */
-        	color: #CFDA8B8D07E6;  
+        	color: #A8B8D0;  
         }
         
         :-ms-input-placeholder {  
@@ -51,7 +51,7 @@
     	<div class="slds-text-heading--small feedback-header">{!$Label.c.CORE_FB_App_Name}</div>
         <hr></hr>
      	<div class="slds-text-body--regular feedback-text">
-           {!$Label.c.CORE_FB_MESSAGE}
+           {!$Label.c.CORE_FB_Message}
             
         </div>
         <div class="feedback-rate">
@@ -181,18 +181,18 @@
                     </span>
                 </button>
             </div>
-             <aura:if isTrue="{!v.success_toast}">
-    <div >
-    <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
-      <div class="slds-modal__container slds-modal--prompt" onclick="{!c.close}">
-          <div class="slds-box slds-theme--success">
-            <p style="text-align:left;width:100%;">Thanks for the feedback<img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" ></img></p>
-          </div>
-      </div>
-    </div>
-    <div class="slds-backdrop slds-backdrop--open"></div>
-  </div>
-    </aura:if>
+            <aura:if isTrue="{!v.success_toast}">
+                <div >
+                    <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
+                        <div class="slds-modal__container slds-modal--prompt" onclick="{!c.close}">
+                            <div class="slds-box slds-theme--success">
+                                <p style="text-align:left;width:100%;">Thanks for the feedback<img style="float:right;width:8%;" src="/resource/Lightning_designing_style/assets/icons/utility/close.svg" ></img></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop slds-backdrop--open"></div>
+                </div>
+            </aura:if>
      <aura:if isTrue="{!v.showError}">
         <div>
     <div aria-hidden="false" role="dialog" class="slds-modal slds-modal--prompt slds-fade-in-open">
