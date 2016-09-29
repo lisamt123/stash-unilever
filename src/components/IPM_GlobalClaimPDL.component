@@ -188,7 +188,7 @@
 		                        <td>
 		                        <apex:repeat value="{!rolloutWrap.countryLevelMapWp[countryObj]}" var="claimWrap">
 		                        	
-		                            <apex:outputText value="{!claimWrap.countryLvlClaim.IPM_Claim__c}" /> <br/>
+		                            <apex:outputText value="{!claimWrap.countryLvlClaim.IPM_Claim__c}" rendered="{!(claimWrap.countryLvlClaim.IPM_Claim__c <> '')}"/> <br/>
 		                        </apex:repeat>
 		                        </td>
 		                    </tr>
