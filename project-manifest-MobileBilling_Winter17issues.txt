@@ -1,3 +1,5 @@
+src
+src/aura
 src/aura/MB_Action_bar/MB_Action_bar.cmp
 src/aura/MB_Action_bar/MB_Action_bar.cmp-meta.xml
 src/aura/MB_Action_bar/MB_Action_bar.css
