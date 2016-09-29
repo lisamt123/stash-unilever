@@ -13,11 +13,14 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 ****************************************************************************/
 @isTest
 public class CEC_CaseTriggerHelperExtTest {
+
+    Private static final string brand = 'Knorr';
+    Private static final string country = 'United Kingdom';
     
     @testSetup static void setUpTestData() {
         
         User u = CEC_TestDataFactory.createStandardCECTestUser();
-        u.Market__c = 'United Kingdom';
+        u.Market__c = country ;
         update u;
         Id recTypeId =[Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id; 
          
@@ -54,8 +57,8 @@ public class CEC_CaseTriggerHelperExtTest {
          System.runAs(u) {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
-                                                    WHERE Market__c = 'United Kingdom' LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c='Knorr',Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
+                                                    WHERE Market__c = :country LIMIT 1];
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
                 insert cbm;
                 
                 
@@ -64,7 +67,7 @@ public class CEC_CaseTriggerHelperExtTest {
                 newcase.SuppliedName=CEC_Constants.suppliedName;
                 newcase.Status=CEC_Constants.caseStatus;
                 newcase.Origin='Web';  
-                newcase.Brand__c ='Knorr';
+                newcase.Brand__c = brand;
                 newcase.Country__c = cmmUK.id;
                 newcase.Social_Media_External_Id__c= 'unitedkingdom.knorr';
                 
@@ -86,8 +89,8 @@ public class CEC_CaseTriggerHelperExtTest {
          System.runAs(u) {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
-                                                    WHERE Market__c = 'United Kingdom' LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c='Knorr',Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
+                                                    WHERE Market__c = :country  LIMIT 1];
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand,Inbound_Email__c='unitedkingdom.knorr@unilever.com',Skill__c='Coffee & Snacks');
                 insert cbm;
                 
                 
@@ -96,7 +99,7 @@ public class CEC_CaseTriggerHelperExtTest {
                 newcase.SuppliedName=CEC_Constants.suppliedName;
                 newcase.Status=CEC_Constants.caseStatus;
                 newcase.Origin='Web';  
-                newcase.Brand__c ='Knorr';
+                newcase.Brand__c = brand;
                 newcase.Country__c = cmmUK.id;
                
                 insert newcase;
@@ -119,15 +122,15 @@ public class CEC_CaseTriggerHelperExtTest {
          System.runAs(u) {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
-                                                    WHERE Market__c = 'United Kingdom' LIMIT 1];
+                                                    WHERE Market__c = :country  LIMIT 1];
                                                     
                 cmmUK.Consumer_Phone_Search_Digits__c = 6;
                 update cmmUK;
                 
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c='Knorr',Inbound_Email__c='3456464748@unilever.com',Skill__c='Coffee & Snacks');
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand,Inbound_Email__c='3456464748@unilever.com',Skill__c='Coffee & Snacks');
                 insert cbm;
                 
-                List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account];
+                List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account Limit 1];
                 System.debug('@@@Accounts@@@'+ accts [0]);
                  
                 List<Case> cases = new List<Case>();
@@ -139,7 +142,7 @@ public class CEC_CaseTriggerHelperExtTest {
                     newcase.SuppliedName=CEC_Constants.suppliedName;
                     newcase.Status=CEC_Constants.caseStatus;
                     newcase.Origin='SMS / text Messages';  
-                    newcase.Brand__c ='Knorr';
+                    newcase.Brand__c = brand;
                     newcase.Country__c = cmmUK.id;
                     newcase.SMS_Inbound_Number__c = '3456464748';
                     
@@ -165,11 +168,11 @@ public class CEC_CaseTriggerHelperExtTest {
          System.runAs(u) {
             
                 CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 
-                                                    WHERE Market__c = 'United Kingdom' LIMIT 1];
-                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c='Knorr',Inbound_Email__c='3456464748@unilever.com',Skill__c='Coffee & Snacks');
+                                                    WHERE Market__c = :country LIMIT 1];
+                cec_Case_Brand_Mapping__c cbm = new cec_Case_Brand_Mapping__c(Country__c= cmmUK.id,Brand__c=brand ,Inbound_Email__c='3456464748@unilever.com',Skill__c='Coffee & Snacks');
                 insert cbm;
                 
-                List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account];
+                List<Account> accts = [SELECT Id,PersonContactId,Owner.Market__c,Mobile_Phone_No_Special_Char__c,SMS_Search_Mobile_Number__c  FROM Account limit 1];
                 
                 System.debug('@@@Accounts@@@'+ accts [0]);
                 
@@ -182,7 +185,7 @@ public class CEC_CaseTriggerHelperExtTest {
                     newcase.SuppliedName=CEC_Constants.suppliedName;
                     newcase.Status=CEC_Constants.caseStatus;
                     newcase.Origin='SMS / text Messages';  
-                    newcase.Brand__c ='Knorr';
+                    newcase.Brand__c = brand;
                     newcase.Country__c = cmmUK.id;
                     
                     cases.add(newcase);

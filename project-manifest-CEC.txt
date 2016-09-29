@@ -16,6 +16,8 @@ src/classes/CEC_CaseTriggerHelperTest.cls
 src/classes/CEC_CaseTriggerHelperTest.cls-meta.xml
 src/classes/CEC_Util.cls
 src/classes/CEC_Util.cls-meta.xml
+src/classes/CEC_Constants.cls
+src/classes/CEC_Constants.cls-meta.xml
 src/customPermissions/CEC_Disable_Case_Trigger.customPermission
 src/flows/CEC_Update_Case_Social_Media_External_Id-8.flow
 src/flows/CEC_SMS_Case_Creation_Process-11.flow
