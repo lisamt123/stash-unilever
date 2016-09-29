@@ -14,26 +14,26 @@ Assign PL or FL for rollouts.
 public with sharing class IPM_Resource_Allocation {   
     
     //String Literals replacement
-    private static final String QUERY_ROLE_STR = 'IPM_User_Role__c=\'';
+    private static final String QUERY_ROLE_STR = 'IPM_User_Role__c=\''; 
     private static final String QUERY_FIELDS_STR = 'ipm_user__r.smallphotourl,';
-    private static final String QUERY_WHERE_STR = 'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True ';
-    private static final String QUERY_HOLDCATEGORY_STR = ' and IPM_HoldCategory__c like \'%';
+    private static final String QUERY_WHERE_STR = 'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True '; 
+    private static final String QUERY_HOLDCATEGORY_STR = ' and IPM_HoldCategory__c like \'%'; 
     private static final String QUERY_HOLDCATEGORY_STRING = 'IPM_HoldCategory__c like \'%';
     private static final String QUERY_STRING_PROFILE='IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True AND ';
-    public static final String IPM_RESOURCEALLOCATION_STR = IPM_Resource_Allocation.class.getName();
+    public static final  String IPM_RESOURCEALLOCATION_STR = IPM_Resource_Allocation.class.getName();
     private static final string ADD_MEMBER_TO_WRAPPER = 'AddMemberToWrapper';
     private static final string UPDATE_CORE_MEMBER = 'UpdateCoreMember';
     private static final string CREATE_FINANCE_MEMBER ='createfinanceMember';
     private static final string DELETE_FINANCE_MEMBER ='deletefinanceMember';
     private static final string FILTER_LEADER_MEMBER ='FilterLeaderMember';
-    private static final string SAME_CATEGORY_ROLLOUT_PROFILES ='getSameCategoryRolloutProfiles';
+    private static final string SAME_CATEGORY_ROLLOUT_PROFILES ='getSameCategoryRolloutProfiles'; 
     private static final string ASSIGN_LEADER_MEMBER ='assignLeaderMember'; // used in exception message
     private static final string BEGIN_QUERY ='SELECT IPM_User__c,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,';
     private static final string BEGIN_QUERY_TEAM ='SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,';
     private static final string MID_QUERY_TEAM =' IPM_User__r.SmallPhotoUrl,';
     private static final string PERCENTAGE_SLASH='%\'';
-    private static final String MCO_STRING = ' IPM_Company_Card__r.IPM_MCO__c = \'';
-    private static final String BCKWRD_SLASH = '\'';  
+	private static final String MCO_STRING = ' IPM_Company_Card__r.IPM_MCO__c = \'';
+	private static final String BCKWRD_SLASH = '\'';  
     private static final string QUERY_LIMIT=' limit 50000';
     private static final string GKM3_CAT='Personal Care' ;
     private static final string MY_MCO='myMCO' ;
@@ -123,12 +123,15 @@ public with sharing class IPM_Resource_Allocation {
     //@description:to render / hode My/All Category selections 
     public Boolean isMyORAllCatSelectAva{get;set;} 
     //@description: leader user profiles filtered from IPM_RolloutPlansTableController 
-    public list<IPM_User_Profile__c> leaderUsers{get;set;}    
+    public list<IPM_User_Profile__c> leaderUsers{get;set;}
+     
     public IPM_Project_Rollout__c cntxtRLOut{get;set;} 
+     
     @TestVisible private set<id>plDPLSet=new set<id>();//set project leader id's and deputy project leader id's
     @TestVisible private set<id>dupPLDPLSet=new set<id>();//set project leader id's and deputy project leader id's
     @TestVisible private set<id>projectPLDPLSet=new set<id>();//set of PL and DPL id's
     @TestVisible public  IPM_Project__c ipmproject{get;set;}  
+    
     private Map<String,IPM_Category__c> customSettingCategory = IPM_Category__c.getAll();
     private string filterCatList;
 
@@ -143,6 +146,7 @@ public with sharing class IPM_Resource_Allocation {
     
         IPM_IECompatible.ieFix();//Added for compatibility fix
         avoidDupUser=new set<id>();
+        leaderUsers = new list<IPM_User_Profile__c>(); 
         string RoletypeRND=IPM_ConstantUtils.BLANK;
         isNoMatchfound=IPM_ConstantUtils.BLANK;
         changeRoleType=IPM_ConstantUtils.BLANK;
@@ -173,7 +177,6 @@ public with sharing class IPM_Resource_Allocation {
         // check if the Team Management is invoked or Member (PL and Finance) selection for Rollouts is invoked 
        if(isInvokedFromRollouts!=null && isInvokedFromRollouts)
         {
-            leaderUsers = new list<IPM_User_Profile__c>();
             
             leaderType = Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.ROLLOUT_LEADER_TYPE);           
             rolloutId = Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.ROLLOUTID);            
@@ -261,7 +264,7 @@ public with sharing class IPM_Resource_Allocation {
     */
     public void getSameCategoryPartOne()
     {
-    	list<IPM_Project_Resource__c>lstoldres=[SELECT IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID LIMIT 50000];
+      list<IPM_Project_Resource__c>lstoldres=[SELECT IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID LIMIT 50000];
         for(IPM_Project_Resource__c res:lstoldres)
         { 
             if(string.isNotBlank(roleType) && roleType.equals(res.IPM_Role_Type__c) && plDPLSet.contains(res.IPM_User__c)){
@@ -278,7 +281,7 @@ public with sharing class IPM_Resource_Allocation {
     */
     public void getSameCategoryPartThree()
     {
-    	if(!dupPLDPLSet.isEmpty()&& String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c)) && !dupPLDPLSet.isEmpty() && !dupPLDPLSet.contains(ipmproject.Deputy_Project_Leader__c)){
+      if(!dupPLDPLSet.isEmpty()&& String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c)) && !dupPLDPLSet.isEmpty() && !dupPLDPLSet.contains(ipmproject.Deputy_Project_Leader__c)){
            projectPLDPLSet.add(ipmproject.Deputy_Project_Leader__c);   
          }
         if(!dupPLDPLSet.isEmpty()&& String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Leader__c)) && !dupPLDPLSet.contains(ipmproject.IPM_Project_Leader__c)){
@@ -291,14 +294,14 @@ public with sharing class IPM_Resource_Allocation {
             projectPLDPLSet.add(ipmproject.IPM_Project_Leader__c);
         }
     }
-	/*************************************************************************************************************
+  /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
     */
     public void getSameCategoryPartTwo(string UQuery)
     {
-		list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
-		map<id,id>uniqueUsers=new map<id,id>();
-		lstuser=database.query(UQuery);
+    list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
+    map<id,id>uniqueUsers=new map<id,id>();
+    lstuser=database.query(UQuery);
             for(IPM_User_Profile__c u:lstuser)
             {
                 if((avoidDupUser.contains(u.IPM_User__r.id) && u.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) || !avoidDupUser.contains(u.IPM_User__r.id) )
@@ -321,47 +324,47 @@ public with sharing class IPM_Resource_Allocation {
             {
                 teamMembers.add(new wrapperclass(u));
             }
-	}
+  }
     /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
     */
     public void getSameCategory()
     {
         getSameCategoryPartOne();
-		teamMembers=new list<wrapperclass>();
+    teamMembers=new list<wrapperclass>();
         string UQuery=IPM_ConstantUtils.BLANK;
         
         filterCategoriesString();
               
        if(searchTeambyCat==MY_MCO)  
-	        {
-				String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
-			    String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c;
-				UQuery = QUERY_STRING +MCO_STRING + resolvedField+BCKWRD_SLASH ; 
-					
-			    if(String.IsNotBlank(String.valueOf(changeRoleType)))
-	            {
-	                UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
-	            }
-	            
-	            UQuery= UQuery + OLD_SRC_FLTR+QUERY_LIMIT;
-	        }  
-	   
-	   else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
-	        {
+          {
+        String QUERY_STRING = BEGIN_QUERY_TEAM + MID_QUERY_TEAM + QUERY_STRING_PROFILE ; 
+          String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c;
+        UQuery = QUERY_STRING +MCO_STRING + resolvedField+BCKWRD_SLASH ; 
+          
+          if(String.IsNotBlank(String.valueOf(changeRoleType)))
+              {
+                  UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
+              }
+              
+              UQuery= UQuery + OLD_SRC_FLTR+QUERY_LIMIT;
+          }  
+     
+     else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
+          {
                     String filterCat = ipmproject.IPM_ProjectGKM__c==GKM3 ? (!isInvokedFromRollouts && ipmproject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL ? CAT_STRNG:filterCatList)  :CAT_STRNG; 
-	            UQuery=IPM_ConstantUtils.BLANK;
-	            UQuery = BEGIN_QUERY_TEAM;
-	            UQuery = UQuery+MID_QUERY_TEAM;
-	            UQuery = UQuery+QUERY_STRING_PROFILE;
-	            UQuery = UQuery+SOQL_INCLUDES+ filterCat ; 
-	           
-	            if(String.IsNotBlank(String.valueOf(changeRoleType)))
-	            {
-	                UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
-	            }
-	            UQuery= UQuery + OLD_SRC_FLTR+QUERY_LIMIT;
-	        }
+              UQuery=IPM_ConstantUtils.BLANK;
+              UQuery = BEGIN_QUERY_TEAM;
+              UQuery = UQuery+MID_QUERY_TEAM;
+              UQuery = UQuery+QUERY_STRING_PROFILE;
+              UQuery = UQuery+SOQL_INCLUDES+ filterCat ; 
+             
+              if(String.IsNotBlank(String.valueOf(changeRoleType)))
+              {
+                  UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
+              }
+              UQuery= UQuery + OLD_SRC_FLTR+QUERY_LIMIT;
+          }
         else if(IPM_ConstantUtils.TEAM_ALLCATEGORY==searchTeambyCat)
         {
             if(IPM_ConstantUtils.TEAM_GUEST==roleType)
@@ -390,14 +393,14 @@ public with sharing class IPM_Resource_Allocation {
         }
         try
         {
-			getSameCategoryPartTwo(UQuery);
+      getSameCategoryPartTwo(UQuery);
             
         }
         catch(QueryException ex)
         {
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
         }
-	}
+  }
     /*************************************************************************************************************
     * @description:Search for same category members
     */
@@ -414,62 +417,62 @@ public with sharing class IPM_Resource_Allocation {
         uQuery=uQuery+QUERY_PORTION1;
         
         filterCategoriesString();
-        	
-       	if(searchTeambyCat==MY_MCO) 
-	        {
-	        	 
-				String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c; 
-				uQuery = uQuery  + MCO_STRING + resolvedField+BCKWRD_SLASH ; 
-					
-			    if(String.IsNotBlank(String.valueOf(changeRoleType)))
-	            {
-	                uQuery=uQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
-	            }
-	            
-	            uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
-	            uQuery=uQuery+SRCH_FILTER;
-	            uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
-	            
-	        }
-	        
-	        else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY){
-	        	
-	        	
-	        	if(ipmproject.IPM_ProjectGKM__c==GKM3 )
-	        	{
-		        	String filterCat = ipmproject.IPM_ProjectGKM__c==GKM3 ? filterCatList :CAT_STRNG; 
-		            UQuery=IPM_ConstantUtils.BLANK;
-		            UQuery = BEGIN_QUERY_TEAM;
-		            UQuery = UQuery+MID_QUERY_TEAM; 
-		            UQuery = UQuery+QUERY_PORTION1;
-		            UQuery = UQuery+SOQL_INCLUDES+ filterCat ;
-		            
-		            if(String.IsNotBlank(String.valueOf(changeRoleType)))
-		            {
-		                UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
-		            }
-	        	}
-	            
-	            else  
-	            {
-	            	if(String.IsNotBlank(category))
-		            {
-		                
-		                uQuery=uQuery+QUERY_HOLDCATEGORY_STRING+ String.escapeSingleQuotes(category) + '%\'' +AND_STRING;
-		            }
-		            
-		            if(String.IsNotBlank(changeRoleType))
-		            {
-		                
-		                uQuery= uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH; 
-		            }
-	            }
-	          
-	            uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
-	            uQuery=uQuery+SRCH_FILTER;
-	            uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
-	           
-	        }
+          
+         if(searchTeambyCat==MY_MCO) 
+          {
+             
+        String resolvedField =  ipmproject.IPM_Project_Rollout__r.MCO_Name__c; 
+        uQuery = uQuery  + MCO_STRING + resolvedField+BCKWRD_SLASH ; 
+          
+          if(String.IsNotBlank(String.valueOf(changeRoleType)))
+              {
+                  uQuery=uQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
+              }
+              
+              uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
+              uQuery=uQuery+SRCH_FILTER;
+              uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
+              
+          }
+          
+          else if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY){
+            
+            
+            if(ipmproject.IPM_ProjectGKM__c==GKM3 )
+            {
+              String filterCat = ipmproject.IPM_ProjectGKM__c==GKM3 ? filterCatList :CAT_STRNG; 
+                UQuery=IPM_ConstantUtils.BLANK;
+                UQuery = BEGIN_QUERY_TEAM;
+                UQuery = UQuery+MID_QUERY_TEAM; 
+                UQuery = UQuery+QUERY_PORTION1;
+                UQuery = UQuery+SOQL_INCLUDES+ filterCat ;
+                
+                if(String.IsNotBlank(String.valueOf(changeRoleType)))
+                {
+                    UQuery=UQuery+AND_STRING+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH;
+                }
+            }
+              
+              else  
+              {
+                if(String.IsNotBlank(category))
+                {
+                    
+                    uQuery=uQuery+QUERY_HOLDCATEGORY_STRING+ String.escapeSingleQuotes(category) + '%\'' +AND_STRING;
+                }
+                
+                if(String.IsNotBlank(changeRoleType))
+                {
+                    
+                    uQuery= uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+BCKWRD_SLASH; 
+                }
+              }
+            
+              uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
+              uQuery=uQuery+SRCH_FILTER;
+              uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
+             
+          }
         else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
         {
             if(roleType==IPM_ConstantUtils.TEAM_GUEST)
@@ -850,7 +853,7 @@ public with sharing class IPM_Resource_Allocation {
     public static void createFinanceMember(Map<Id,Id>newproAndUserMap)
     {
         if(newproAndUserMap == null || newproAndUserMap.isEmpty()){
-        	return;
+          return;
         }
         
         list<IPM_Project_Resource__c>lstnewResource=new list<IPM_Project_Resource__c>();
@@ -943,7 +946,7 @@ public with sharing class IPM_Resource_Allocation {
         if(!lstRegRollout.isEmpty())
         {
             inContextRollout = lstRegRollout[0];
-		}	
+    }  
         
         
        
@@ -1141,7 +1144,6 @@ public with sharing class IPM_Resource_Allocation {
         try
         {
             lstuser=database.query(UQuery);
-     
         }
         
         catch(Exception ex)
@@ -1332,5 +1334,6 @@ public with sharing class IPM_Resource_Allocation {
         filterCatList =filterCatList.removeEnd(',')+')';  
         
     }
+    
       
 }
