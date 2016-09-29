@@ -18,14 +18,7 @@
         <protected>false</protected>
         <shortDescription>IT Project Portfolios Documents Record Type ListView Id</shortDescription>
         <value>a0W?fcf=00B22000000QuJQ</value>
-    </labels>
-    <labels>
-        <fullName>KUN_ODRT_LVID_LBL</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Others Documents Record type ListView Id</shortDescription>
-        <value>a0W?fcf=00B22000000QuJL</value>
-    </labels>
+    </labels>   
     <labels>
         <fullName>KUN_TDRT_LVID_LBL</fullName>
         <language>en_US</language>

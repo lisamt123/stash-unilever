@@ -329,7 +329,7 @@ private class IPM_FinancialControllerRegional_Test {
              //Load Tab MyView
              loadTab(localRolloutProject.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
-             loadTab(localRolloutProject.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
+             //loadTab(localRolloutProject.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
          }
      }
 

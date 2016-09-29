@@ -21,6 +21,7 @@ public with sharing class ICB_Cockpit_Helper
     private static final String CONST_STATUS_ITEM_OPP_STOCK;
     private static final String CONST_STAGE_PENDING;
     private static final String CONST_SOLICITATION;
+    private static final String CONST_TYPE_LIST;
     private static List<OpportunityLineItem> listOppItemUp;
     
     Static
@@ -31,6 +32,7 @@ public with sharing class ICB_Cockpit_Helper
         CONST_STAGE_PENDING = 'Pending';
         CONST_STATUS_ITEM_OPP_STOCK = 'stock';
         CONST_SOLICITATION = 'Solicitation';
+        CONST_TYPE_LIST = 'List<ICB_Wrapper_Cockpit_CC>';
         listOppItemUp = new List<OpportunityLineItem>();
     }
     /*******************************************************************
@@ -118,6 +120,21 @@ public with sharing class ICB_Cockpit_Helper
         System.debug('Exiting <returnListWrapper>: '+ JSON.serializePretty(listWrapper));
         return listWrapper;
     }
+    
+    /*******************************************************************
+    Purpose: Deserialize JSON received of controller javascript
+    Parameters: @jsonList(list of items)
+    Returns: List<ICB_Wrapper_Cockpit_CC>
+    Throws [Exceptions]: NONE
+    ********************************************************************/
+    public static List<ICB_Wrapper_Cockpit_CC> deserializeJSON(String jsonList)
+    {
+        System.debug('Entering <deserializeJSON>: '+ jsonList);
+        Type idArrType=Type.forName(CONST_TYPE_LIST);
+        List<ICB_Wrapper_Cockpit_CC> listInventories = (List<ICB_Wrapper_Cockpit_CC>) JSON.deserialize(jsonList, idArrType);
+        System.debug('Exiting <deserializeJSON>: ' + JSON.serializePretty(listInventories));
+        return listInventories;
+    } 
     /*******************************************************************
     Purpose: Method helper the returnListWrapper
     Parameters: @operation(current operation)

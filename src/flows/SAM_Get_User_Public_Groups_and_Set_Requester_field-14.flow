@@ -120,7 +120,7 @@
         <dataType>Boolean</dataType>
         <expression>true</expression>
     </formulas>
-    <interviewLabel>SAM_Get_User_Public_Groups_and_Set_Requester_field-4_SAM_Request__c</interviewLabel>
+    <interviewLabel>SAM_Get_User_Public_Groups_and_Set_Requester_field-5_SAM_Request__c</interviewLabel>
     <label>SAM Set User Public Groups Requester field and Assigned To field</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -272,6 +272,36 @@
                 <stringValue>SAM_RW_Query_Request</stringValue>
             </value>
         </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Requester Email Id</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>eml_Requester_Email_Id__c</field>
+            <value>
+                <elementReference>myVariable_current.CreatedBy.Email</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>

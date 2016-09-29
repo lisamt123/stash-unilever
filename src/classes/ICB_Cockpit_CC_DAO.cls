@@ -148,7 +148,7 @@ public with sharing class ICB_Cockpit_CC_DAO
                                                                     ICB_Quantity_Unit__c 
                                                             FROM ICB_Inventory_Line_Item__c 
                                                             WHERE ICB_Inventory__r.Name =: accountName 
-                                                            AND ICB_Product__r.Family =: CONST_FAMILY_IMPULSE AND ICB_Product__r.isActive = true];
+                                                            AND ICB_Product__r.Family =: CONST_FAMILY_IMPULSE AND ICB_Product__r.isActive = true ORDER BY ICB_Product__r.Name];
         System.debug('Exiting <getInventoriesIventoryLineItem>: ' + JSON.serializePretty(inventoryList));
         return inventoryList;
     }
@@ -163,11 +163,13 @@ public with sharing class ICB_Cockpit_CC_DAO
          System.debug('Entering <updateOppItemListOppItem>');
         List<OpportunityLineItem> oppItemList = [SELECT 	Id,
                                                            OpportunityId,
+                                                 		   Opportunity.ICB_Contact__c,
                                                            TotalPrice, 
                                                            ICB_STATUS_SALES__c,
                                                            ICB_ITEMS_RETURNED__c,
                                                            PriceBookEntry.Name,
                                                            Quantity,
+                                                 		   Product2Id,
                                                            PriceBookEntryId 
                                                    FROM OpportunityLineItem 
                                                    WHERE PriceBookEntryId =: mapPriceBook.keySet() 

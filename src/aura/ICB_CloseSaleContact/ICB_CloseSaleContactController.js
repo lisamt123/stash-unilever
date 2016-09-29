@@ -14,15 +14,5 @@
         helper.changeCheck(component,event,"checkbox"); 
         location.reload(true);
         console.log('Exit <changeCheckBox>');
-    },
-    decrementValue : function(component, event, helper) {
-        console.log('Entering <decrementValue>');
-        helper.ascDescValue(component,event,"decrement");
-        console.log('Exit <decrementValue>');
-    },
-    incrementValue : function(component, event, helper) {
-        console.log('Entering <incrementValue>');
-        helper.ascDescValue(component,event,"increment");
-        console.log('Exit <incrementValue>');
     }
 })
