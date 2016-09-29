@@ -44,7 +44,7 @@ private class FAU_UtilitiesTest
         
         Test.stopTest();
         
-      //  Integer iNumberProgams = [Select Id FROM FAU_Program__c].size();
+        Integer iNumberProgams = [Select Id FROM FAU_Program__c].size();
         Integer iNumberProgams = [Select Count() FROM FAU_Program__c limit 10000];
         
         System.assertEquals(300, iNumberProgams);
@@ -120,7 +120,7 @@ private class FAU_UtilitiesTest
         }
         Test.stopTest();
         
-        //Integer iNumberProgams = [Select Id FROM FAU_Program__c].size();
+        Integer iNumberProgams = [Select Id FROM FAU_Program__c].size();
         Integer iNumberProgams = [Select count() FROM FAU_Program__c limit 10000];
         System.assertEquals(0, iNumberProgams);
 

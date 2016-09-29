@@ -286,7 +286,7 @@ private class FAU_ParticipantControllerExtensionTest
             System.assertEquals(2, webinars.size());
             List<String> webinarIds = new List<String>();
             webinarIds.add(webinars[0].Id);
-          //  List<SelectOption> options = controller.webinarOptions;
+            List<SelectOption> options = controller.webinarOptions;
             controller.selectedWebinar = webinars[1].Id;
             controller.selectedWebinars = webinarIds;
             controller.acceptInvite();

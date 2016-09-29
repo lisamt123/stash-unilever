@@ -69,8 +69,8 @@ public class FAU_Participant_Biography_Doc_ConTest{
         
             PageReference pf = new PageReference('/apex/FAU_Participant_Biography_Doc?Id='+programobj.id);
             test.setCurrentPage(pf);
-           // ApexPages.StandardController controller = new ApexPages.StandardController(programobj);
-            //FAU_Participant_Biography_Doc_Controller testctrl = new FAU_Participant_Biography_Doc_Controller(controller);
+            ApexPages.StandardController controller = new ApexPages.StandardController(programobj);
+            FAU_Participant_Biography_Doc_Controller testctrl = new FAU_Participant_Biography_Doc_Controller(controller);
         }
     }
 }

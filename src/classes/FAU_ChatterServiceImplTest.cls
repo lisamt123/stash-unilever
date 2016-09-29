@@ -18,7 +18,7 @@ private class FAU_ChatterServiceImplTest {
 
     @isTest static void testCreateChatterGroups()
     {
-        //FAU_ChatterService service = new FAU_ChatterServiceImpl();
+        FAU_ChatterService service = new FAU_ChatterServiceImpl();
 
         List<FAU_Program__c> programs = new List<FAU_Program__c>();
         Set<String> names = new Set<String>();
@@ -57,7 +57,7 @@ private class FAU_ChatterServiceImplTest {
 
     @isTest static void testAddParticipantsToProgramChatterGroup()
     {
-        //FAU_ChatterService service = new FAU_ChatterServiceImpl();
+        FAU_ChatterService service = new FAU_ChatterServiceImpl();
 
         FAU_Program__c program = FAU_TestUtil.buildProgram('Brewery Event Organization', Date.newInstance(2014, 08, 27), 'Singapore');
 
@@ -65,7 +65,7 @@ private class FAU_ChatterServiceImplTest {
 
         User user = FAU_TestUtil.createUserWithProfile(FAU_TestUtil.PROFILE_PARTICIPANT_HOLDS);
 
-       // FAU_Webinar__c webinar = FAU_TestUtil.createWebinar(program);
+        FAU_Webinar__c webinar = FAU_TestUtil.createWebinar(program);
 
         program.FAU_Status__c = 'Active';
         update program;

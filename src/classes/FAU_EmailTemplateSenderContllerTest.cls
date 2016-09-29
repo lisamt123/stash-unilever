@@ -108,10 +108,10 @@ private class FAU_EmailTemplateSenderContllerTest
         //System.runAs(user)
         //{ 
 
-            //List<SelectOption> temp = controller.getMyPersonalTemplateOptions();
+            List<SelectOption> temp = controller.getMyPersonalTemplateOptions();
             controller.settemplate((String) EmailTemplateId);
             //controller.setSelected(lParticipant);
-            //String EmailTemplate = controller.gettemplate();
+            String EmailTemplate = controller.gettemplate();
             controller.sendEmails();
 
         //}
