@@ -3068,7 +3068,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_DO_WE_NEED_TO_UPDATE_TASKS</shortDescription>
-        <value>Do We need to update tasks?</value>
+        <value>Do you want the system to update tasks automatically?</value>
     </labels>
     <labels>
         <fullName>IPM_DO_YOU_WANT_TO_CRT_PRO_RESOURCE</fullName>
