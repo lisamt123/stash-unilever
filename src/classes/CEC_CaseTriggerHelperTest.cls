@@ -366,6 +366,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
         System.runAs(u) {
             Test.startTest();
             Account accountObj = [SELECT Id FROM Account WHERE PersonEmail='1cecTestForCase@UnileverTest.com' LIMIT 1];
+<<<<<<< HEAD
             
             mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='CEC_Constants.reasonCode', Retention_Days__c=5);
             insert reasonobj;
@@ -374,6 +375,16 @@ public with sharing class CEC_CaseTriggerHelperTest {
             insert reasonobj2;   
             
             mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'CEC_Constants.productBrand', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='CEC_Constants.productBrand');
+=======
+            
+            mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason', Retention_Days__c=5);
+            insert reasonobj;
+            
+            mdm_Reason_Code__c reasonObj2 = new mdm_Reason_Code__c(name='Test Reason');            
+            insert reasonobj2;   
+            
+            mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
+>>>>>>> feature/CEC_Dev
             insert productObj;  
             
             CEC_Case_Market_Mapping__c cmmUK = [SELECT Id FROM CEC_Case_Market_Mapping__c 

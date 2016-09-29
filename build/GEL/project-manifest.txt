@@ -12,4 +12,16 @@ src/email/GEL_Global_Exception_Log/GEL_When_exception_is_Closed_Raiser_Notified.
 src/layouts/GEL_Global_Exception_Log__c-GEL Global Exception Log Layout.layout
 src/layouts/GEL_Global_Exception_Log__c-GEL Global Exception Log Final.layout
 src/objects/GEL_Global_Exception_Log__c.object
+<<<<<<< HEAD
 src/workflows/GEL_Global_Exception_Log__c.workflow
+=======
+src/workflows/GEL_Global_Exception_Log__c.workflow
+src/reports/GEL_Global_Exception_Reports-meta.xml
+src/reports/GEL_Global_Exception_Reports/GEL_As_Per_Status.report
+src/reports/GEL_Global_Exception_Reports/GEL_Based_On_ETC_BO_Owner.report
+src/reports/GEL_Global_Exception_Reports/GEL_Based_On_Process.report
+src/reports/GEL_Global_Exception_Reports/GEL_Country_Wise_Summary.report
+src/reports/GEL_Global_Exception_Reports/GEL_ETC_BO_Owner_and_Status_Report.report
+src/reports/GEL_Global_Exception_Reports/GEL_Summary_of_Status_and_Country.report
+src/reports/GEL_Global_Exception_Reports/GEL_Summary_of_Status_and_ETC_BO_Owner.report
+>>>>>>> feature/CEC_Dev
