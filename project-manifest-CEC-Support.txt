@@ -3,5 +3,7 @@ src/permissionsets
 src/pages
 src/permissionsets/CEC_Manager.permissionset
 src/pages/CEC_PreChatForm.page
-src/pages/CEC_PreChatForm.page-meta.xml
+src/pages/CEC_PreChatForm.page-meta.xml 
+
+
 

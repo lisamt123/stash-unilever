@@ -3,6 +3,7 @@
     <ltng:require styles="/resource/Lightning_designing_style/assets/styles/salesforce-lightning-design-system-ltng.min.css" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/" />
     <ltng:require styles="/resource/Lightning_designing_style/assets/fonts/webfonts" />
+    <ltng:require scripts="/resource/MB_Charts/jquery-1.11.1.min.js" />
    
     
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />

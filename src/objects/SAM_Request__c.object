@@ -40878,7 +40878,7 @@ txt_Request_Type__c =&quot;SAM_RW_Query_Request&quot;
     </validationRules>
     <validationRules>
         <fullName>SAM_Requester_Alpha</fullName>
-        <active>true</active>
+        <active>false</active>
         <errorConditionFormula>AND(( NOT( ISBLANK(  txt_Query_Requestor__c ) ) ),(NOT( REGEX( txt_Query_Requestor__c , &quot;[a-zA-Z ]+&quot;))))</errorConditionFormula>
         <errorDisplayField>txt_Query_Requestor__c</errorDisplayField>
         <errorMessage>&quot;Invalid Data&quot;, Please Enter Aphalbets only</errorMessage>

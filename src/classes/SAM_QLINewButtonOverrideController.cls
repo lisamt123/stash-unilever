@@ -21,15 +21,20 @@ public with sharing class SAM_QLINewButtonOverrideController{
 public SAM_QLINewButtonOverrideController(ApexPages.StandardController controller){
      retUrl = Apexpages.CurrentPage().getParameters().get('retURL');
     if(retUrl.removeStart('/').startsWith(label.SAM_Request_Object_name)){
+        system.debug('retUrl.re1>>'+retUrl.removeStart('/'));
         requestObj = [select id,name,txt_Request_Type__c from SAM_Request__c where id =:retUrl.removeStart('/')];
         recordId = requestObj.name;
         requestLkId  = requestObj.id;
         requestType = requestObj.txt_Request_Type__c;
     }else{
-        SAM_Quote_Line_Item__c qli = [select md_Request__r.name,md_Request__r.txt_Request_Type__c, md_Request__c from SAM_Quote_Line_Item__c where id=:retUrl.removeStart('/')];
-        recordId = qli.md_Request__r.name;
-        requestLkId = qli.md_Request__c;
-        requestType = qli.md_Request__r.txt_Request_Type__c;
+        system.debug('retUrl.re2>>'+retUrl.removeStart('/'));
+        List<SAM_Quote_Line_Item__c> qli = [select md_Request__r.name,md_Request__r.txt_Request_Type__c, md_Request__c from SAM_Quote_Line_Item__c where id=:retUrl.removeStart('/')];
+        system.debug('qli>>>'+qli);
+        if(qli != null && qli.size() > 0 ){
+        	recordId = qli[0].md_Request__r.name;
+        	requestLkId = qli[0].md_Request__c;
+        	requestType = qli[0].md_Request__r.txt_Request_Type__c;
+        }
     }
 }
 

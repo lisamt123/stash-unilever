@@ -12,8 +12,9 @@
     <aura:attribute name="pannelType" type="String"/>
     <aura:attribute name="shareCampaign" type="Boolean"/>
     <aura:attribute name="chatterValue" type="Boolean"/>
-     <aura:attribute name="share" type="Boolean"/>
+   <aura:attribute name="share" type="Boolean"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
 	<style>
 	@media screen and (min-width:767px){
         .THIS.slds-card {
@@ -22,9 +23,6 @@
         margin-bottom:0px;
         }
         }
-        .slds-card__header {
-        padding: .75rem 1.3rem .25rem;
-        }   
     </style>
     <div class="slds-card">
         <div class="slds-card__header">
@@ -51,7 +49,7 @@
                              <aura:if isTrue="{!v.chatterValue}">      
   <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.campaignsListItem.CampaignTitle+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody2+'%20'+v.MailToBody3}" 
                                     style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                  <p class="slds-truncate">Share via Email</p>
+                                  <p class="slds-truncate"> Email</p>
                                   </a>
                                  <aura:set attribute="else">
   <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.campaignsListItem.CampaignTitle+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody4+'%20'}" 

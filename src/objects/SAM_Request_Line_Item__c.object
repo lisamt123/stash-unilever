@@ -315,7 +315,7 @@
         <fullName>pkl_Hyper_V_Farm__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Select (Yes/No) from the Drop Down, if the deployment is on Hyper-V Fram</inlineHelpText>
-        <label>Hyper - V Farm</label>
+        <label>Windows HyperV farm</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -570,6 +570,26 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Existing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_SQL_Server_Farm__c</fullName>
+        <externalId>false</externalId>
+        <label>SQL Server Farm</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
                 <default>false</default>
             </picklistValues>
             <restrictedPicklist>true</restrictedPicklist>
@@ -841,7 +861,7 @@
         <fullName>txt_New_System_Existing__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Is a new system created or hosted on existing system</inlineHelpText>
-        <label>New System/Existing</label>
+        <label>SID Name</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1349,6 +1369,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -1646,6 +1677,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -1938,6 +1980,17 @@
             </values>
             <values>
                 <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2243,6 +2296,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -2535,6 +2599,17 @@
             </values>
             <values>
                 <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2840,6 +2915,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -3136,6 +3222,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -3428,6 +3525,17 @@
             </values>
             <values>
                 <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3729,6 +3837,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>pkl_System_Type_Existing__c</picklist>
             <values>
                 <fullName>ABAP</fullName>
@@ -4022,6 +4141,17 @@
             </values>
             <values>
                 <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_SQL_Server_Farm__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

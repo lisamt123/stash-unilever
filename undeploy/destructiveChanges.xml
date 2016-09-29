@@ -14,6 +14,7 @@
         <name>CustomObjectTranslation</name>
     </types>
 	<types>  
+		<members>FA_Occurence_Member__c</members>
         <members>Course_Attachment__c</members>
 		<members>FA_Course_ChatterGroup__c</members>
 		<members>FA_Course_Facilitator__c</members>
@@ -23,10 +24,10 @@
 		<members>FA_Feedback__c</members>
 		<members>FA_Feedback_Questionnaire__c</members>
 		<members>FA_Member_ChatterGroup__c</members>
-		<members>FA_Occurence_Member__c</members>
 		<members>FA_Pre_Work_Task_Assignment__c</members>
 		<members>FA_Pre_Work_Task__c</members>
 		<members>FA_UserPreference__c</members>
+		<members>FA_Course__c</members>
         <name>CustomObject</name>  
 		</types>  
 	    <version>37.0</version>

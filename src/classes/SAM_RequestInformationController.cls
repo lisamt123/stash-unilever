@@ -228,7 +228,7 @@ public with sharing class SAM_RequestInformationController{
 			for(string key : reverseMandatoryFields.keySet()){
 				objectMap.put(key,reverseValidation_message.get(key));
 			}
-			if((requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST || requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST) && requestRecordValue.rol_Product_Details_Count__c == 0){
+			if(requestRecordValue.pkl_SAAS_Yes_No__c != 'Yes' && (requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST || requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST) && requestRecordValue.rol_Product_Details_Count__c == 0){
 				objectMap.put(SAM_Constants.PRODUCTDETAIL,SAM_Constants.MANDATORY);
 			}
 			if(requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && requestRecordValue.mpkl_Landscape_Details__c != SAM_Constants.GLOBALLANDSCAPE && requestRecordValue.mpkl_Country_of_Deployment__c == null){
@@ -322,7 +322,9 @@ public with sharing class SAM_RequestInformationController{
         String strBody='Hi '+user.FirstName+' '+user.lastname+','+'\n\n'+'The request with Id : '+reqInfo.Name+' is pending for your action with below details.'+'\n\n'+commentsStr+'\n\n'+'Kindly take the action.'+'\n\n'+'Thanks,'+'\n'+Userinfo.getname();
         system.debug('str!!!'+strBody);
         message.plainTextBody = strBody;
-        Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+        if(!Test.isRunningTest()){
+        	Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+        }
         }
     }
     
