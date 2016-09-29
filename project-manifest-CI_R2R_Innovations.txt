@@ -110,4 +110,3 @@ src/workflows/CI_Accounting_Treatment__c.workflow
 src/workflows/CI_R2R_Budget__c.workflow
 src/workflows/CI_R2R_Innovation__c.workflow
 src/workflows/CI_SMS_Weekly_Update__c.workflow
-src/profiles/Unilever - Force MultiApp Standard.profile
