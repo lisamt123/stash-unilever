@@ -35,7 +35,7 @@ src/classes/IPM_OTIFstatusController_Test.cls-meta.xml
 src/flows
 src/flows/IPM_send_email_when_project_stopped_completely-11.flow
 src/labels
-src/labels/IPM.labels
+src/labels/CustomLabels.labels
 src/objects
 src/objects/IPM_Analytics__c.object
 src/objects/IPM_Project__c.object
