@@ -27,9 +27,6 @@ src/aura/Core_NC_NewsList/Core_NC_NewsList.css
 src/aura/Core_NC_NewsList/Core_NC_NewsListController.js
 src/aura/Core_NC_NewsList/Core_NC_NewsListHelper.js
 src/aura/Core_NC_NewsList/Core_NC_NewsListRenderer.js
-src/staticresources
-src/staticresources/Lightning_designing_style.resource
-src/staticresources/Lightning_designing_style.resource-meta.xml
 src/triggers
 src/triggers/feedItem_before_insert.trigger
 src/triggers/feedItem_before_insert.trigger-meta.xml
