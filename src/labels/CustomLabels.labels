@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <labels>
+        <fullName>IPM_SELECT_SUSTAINABILITY_HELP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM SELECT SUSTAINABILITY HELP</shortDescription>
+        <value>Please note that Sustainability Period can be selected ONLY ONCE. The Sustainability Period of your project should be set as&lt;br&gt; either 3 years or 5 years according to your Project&apos;s Market Place Activity as per the following mapping: &lt;br/&gt; 
+Launch New Brand = 5 yrs &lt;br/&gt;
+Brand Extension = 5 yrs &lt;br/&gt;
+New Format = 5 yrs &lt;br/&gt;
+New Platform = 5 yrs &lt;br/&gt;
+Grow the Core = 3 yrs &lt;br/&gt;
+New Channels = 3 yrs &lt;br/&gt;
+New Variant / Size = 3 yrs &lt;br/&gt; 
+Brand Migration = 3 yrs &lt;br/&gt;
+BLG = 3 yrs &lt;br/&gt;
+&lt;br/&gt;
+If you make no selection now the Sustainability Period will default to 3 years on approval of your Charter Gate Document and&lt;br&gt; can then not be changed.</value>
+ </labels> 
+<labels>
 	<fullName>IPM_Product_Sourcing_Plan</fullName>
 	<language>en_US</language>
 	<protected>false</protected>
