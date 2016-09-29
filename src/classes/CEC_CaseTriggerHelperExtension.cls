@@ -20,20 +20,17 @@ public with sharing class CEC_CaseTriggerHelperExtension {
     Set<String> caseTransExtIdSet = new Set<String>();       // To store all Transient Extenal Id
     Map<Id, cec_Case_Brand_Mapping__c> cbmMap;               // To store CBB related to Transient Id
     Map<String, Id> transCBMMap = new Map<String, Id>();    
-    Final String originSocialMedia = 'Social';
     Integer mobNumLen = 0;
-    String mobNumber = '';
+    String mobNumber = '', rexMobNum = '', originSocialMedia = 'Social';
     Map<String, Set<String>> smsCaseMobNumMap = new Map<String, Set<String>>();//???
     List<Account> accntList = new List<Account>();
-    //List<String> mobNumList = new List<String>();
     Map<String, Account> mobRexNumAccntMap = new Map<String, Account>();
     Set<String> dupMobRexNumSet = new Set<String>();
     Set<String> smsAccntTransExtIdSet = new Set<String>();
-    
     Set<String> mobNumSet = new Set<String>();
     Set<String> rexMobNumSet = new Set<String>();
     Map<String, String> mobRexMobMap = new Map<String, String>();
-    String rexMobNum = '';
+
     
     
     public void checkSMSDupAccount(Map<String, Set<String>> caseMobNumMap){
@@ -76,90 +73,41 @@ public with sharing class CEC_CaseTriggerHelperExtension {
     }
     
     
-    
-    
-    
-    
-    public void updateCaseOwner(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
-        
+    public void checkSMSCaseDetails(Case caseRec){
+
         try{
             
-            System.debug('Inside updateCaseOwner' + newCaseList);
-            System.debug('Inside updateCaseOwner' + oldCaseMap);
-            
-            if(oldCaseMap == null){
-                
-                for(Case caseRec: newCaseList){
-                    
-                    System.debug('Inside For Loop' + CaseRec);
-                    
-                    if(caseRec.Social_Media_External_Id__c != null){
-                        caseSocialTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                    }
-                    else if(caseRec.SMS_Inbound_Number__c != null){
-                        caseSMSTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        
-                        if(caseRec.AccountId == null && caseRec.SMS_Mobile_Number__c != null){
-                            
-                            System.debug('I am here1');
-                            if(smsCaseMobNumMap.containsKey(caseRec.Transient_External_Id__c.toLowerCase())){
-                                mobNumSet = smsCaseMobNumMap.get(caseRec.Transient_External_Id__c.toLowerCase());
-                                mobNumSet.add(caseRec.SMS_Mobile_Number__c);
-                                smsCaseMobNumMap.put(caseRec.Transient_External_Id__c.toLowerCase(), mobNumSet);
-                                System.debug('I am here2');
-                            }
-                            else{
-                                mobNumSet = new Set<String>{caseRec.SMS_Mobile_Number__c};
-                                    smsCaseMobNumMap.put(caseRec.Transient_External_Id__c.toLowerCase(), mobNumSet);
-                                System.debug('I am here3');
-                            }
-                            
-                            System.debug('I am here4' + smsCaseMobNumMap);
-                        }
-                    }
-                    
+            if(caseRec.AccountId == null && caseRec.SMS_Mobile_Number__c != null){
+                                
+                System.debug('I am here1');
+                if(smsCaseMobNumMap.containsKey(caseRec.Transient_External_Id__c.toLowerCase())){
+                    mobNumSet = smsCaseMobNumMap.get(caseRec.Transient_External_Id__c.toLowerCase());
+                    mobNumSet.add(caseRec.SMS_Mobile_Number__c);
+                    smsCaseMobNumMap.put(caseRec.Transient_External_Id__c.toLowerCase(), mobNumSet);
+                    System.debug('I am here2');
+                }
+                else{
+                    mobNumSet = new Set<String>{caseRec.SMS_Mobile_Number__c};
+                        smsCaseMobNumMap.put(caseRec.Transient_External_Id__c.toLowerCase(), mobNumSet);
+                    System.debug('I am here3');
                 }
                 
+                System.debug('I am here4' + smsCaseMobNumMap);
             }
-            else{
-                
-                for(Case caseRec: newCaseList){
-                    if(caseRec.Social_Media_External_Id__c != null && OldCaseMap.get(caseRec.Id).Social_Media_External_Id__c == null){
-                        caseSocialTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                    }
-                    else if(caseRec.SMS_Inbound_Number__c != null && OldCaseMap.get(caseRec.Id).SMS_Inbound_Number__c  == null){
-                        caseSMSTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                        
-                        if(caseRec.AccountId == null && caseRec.SMS_Mobile_Number__c != null){
-                            //smsCaseMobNumMap.put(caseRec.Transient_External_Id__c.toLowerCase(), caseRec.Search_Mobile__c);
-                            //smsAccntTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
-                            
-                            if(smsCaseMobNumMap.containsKey(caseRec.Transient_External_Id__c.toLowerCase())){
-                                mobNumSet = smsCaseMobNumMap.get(caseRec.Transient_External_Id__c.toLowerCase());
-                                mobNumSet.add(caseRec.SMS_Mobile_Number__c);
-                                smsCaseMobNumMap.put(caseRec.Transient_External_Id__c.toLowerCase(), mobNumSet);
-                            }
-                            else{
-                                mobNumSet = new Set<String>{caseRec.SMS_Mobile_Number__c};
-                                    smsCaseMobNumMap.put(caseRec.Transient_External_Id__c.toLowerCase(), mobNumSet);
-                            }
-                            
-                        }
-                    }
-                    
-                }
-                
-            }
-            
-            System.debug('caseTransExtIdSet    ' + caseTransExtIdSet);
-            System.debug('smsCaseMobNumMap    ' + smsCaseMobNumMap);
-            
+        }
+        catch(Exception e){
+            System.debug('checkSMSCaseDetails Failure :' + e.getMessage());
+        }
+    }
+    
+
+
+    public void checkCBMDetails(){
+        
+        try{
+
             if(caseTransExtIdSet.size()>0){
-                
+                    
                 cbmMap = new Map<Id, cec_Case_Brand_Mapping__c>([Select Id, Inbound_Email__c, Country__c, Country__r.OwnerId, Country__r.Consumer_Phone_Search_Digits__c,Country__r.Market__c from cec_Case_Brand_Mapping__c where Inbound_Email__c IN :caseTransExtIdSet]);
                 
                 System.debug('cbm Map    ' + cbmMap);
@@ -191,6 +139,105 @@ public with sharing class CEC_CaseTriggerHelperExtension {
                     }
                 }
             }
+        }
+        catch(Exception e){
+            System.debug('checkCBMDetails Failure :' + e.getMessage());
+        }       
+
+    }
+
+    public void updateCaseDetails(List<Case> newCaseList){
+        try{
+
+                if(transCBMMap.size()>0){
+                    for(Case caseRec: newCaseList){
+                        
+                        if(transCBMMap.containsKey(caseRec.Transient_External_Id__c.toLowerCase())){
+                            
+                            caseRec.Case_Brand_Mapping__c = transCBMMap.get(caseRec.Transient_External_Id__c.toLowerCase());
+                            caseRec.Country__c = cbmMap.get(caseRec.Case_Brand_Mapping__c).Country__c;
+                            
+                            if(caseSMSTransExtIdSet.contains(caseRec.Transient_External_Id__c.toLowerCase())){
+                                caseRec.OwnerId = cbmMap.get(caseRec.Case_Brand_Mapping__c).Country__r.OwnerId;
+                                                           
+                                if(dupMobRexNumSet.contains(mobRexMobMap.get(caseRec.SMS_Mobile_Number__c))){
+                                    caseRec.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccountMobileNumber;
+                                }
+                                else{
+                                    try{
+                                        caseRec.AccountId = mobRexNumAccntMap.get(mobRexMobMap.get(caseRec.SMS_Mobile_Number__c)).Id;
+                                        caseRec.ContactId = mobRexNumAccntMap.get(mobRexMobMap.get(caseRec.SMS_Mobile_Number__c)).PersonContactId;
+                                    }
+                                    catch(Exception e){
+                                        System.debug('Update AccountId or ContactId Failed :' + e.getMessage());    
+                                    }
+                                }
+                            }
+                            
+                            if(caseSocialTransExtIdSet.contains(caseRec.Transient_External_Id__c.toLowerCase())){
+                                caseRec.Origin = originSocialMedia;
+                            }
+                            
+                            System.debug('Updated Case Record' + caseRec);
+                            
+                        }
+                    
+                }
+            }
+        }
+        catch(Exception e){
+            System.debug('updateCaseDetails Failure :' + e.getMessage());
+        }
+    }
+
+    
+    public void updateCaseOwner(List<Case> newCaseList, Map<Id, Case> oldCaseMap){
+        
+        try{
+            
+            System.debug('Inside updateCaseOwner' + newCaseList);
+            System.debug('Inside updateCaseOwner' + oldCaseMap);
+            
+            if(oldCaseMap == null){
+                
+                for(Case caseRec: newCaseList){
+                    
+                    System.debug('Inside For Loop' + CaseRec);
+                    
+                    if(caseRec.Social_Media_External_Id__c != null){
+                        caseSocialTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                    }
+                    else if(caseRec.SMS_Inbound_Number__c != null){
+                        caseSMSTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                        checkSMSCaseDetails(caseRec);
+                    }
+                    
+                }
+                
+            }
+            else{
+                
+                for(Case caseRec: newCaseList){
+                    if(caseRec.Social_Media_External_Id__c != null && OldCaseMap.get(caseRec.Id).Social_Media_External_Id__c == null){
+                        caseSocialTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                    }
+                    else if(caseRec.SMS_Inbound_Number__c != null && OldCaseMap.get(caseRec.Id).SMS_Inbound_Number__c  == null){
+                        caseSMSTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                        caseTransExtIdSet.add(caseRec.Transient_External_Id__c.toLowerCase());
+                        checkSMSCaseDetails(caseRec);
+                    }
+                    
+                }
+                
+            }
+            
+            System.debug('caseTransExtIdSet    ' + caseTransExtIdSet);
+            System.debug('smsCaseMobNumMap    ' + smsCaseMobNumMap);
+            
+            checkCBMDetails();
             
             System.debug('Updated SMS Case Mobile Num Map'+ smsCaseMobNumMap);
             if(smsCaseMobNumMap.size() > 0){
@@ -200,45 +247,8 @@ public with sharing class CEC_CaseTriggerHelperExtension {
             }
             
             System.debug('CBMMap    ' + transCBMMap);
-            
-            if(transCBMMap.size()>0){
-                for(Case caseRec: newCaseList){
-                    if(transCBMMap.containsKey(caseRec.Transient_External_Id__c.toLowerCase())){
-                        System.debug('Inside For Loop');
-                        
-                        caseRec.Case_Brand_Mapping__c = transCBMMap.get(caseRec.Transient_External_Id__c.toLowerCase());
-                        caseRec.Country__c = cbmMap.get(caseRec.Case_Brand_Mapping__c).Country__c;
-                        
-                        if(caseSMSTransExtIdSet.contains(caseRec.Transient_External_Id__c.toLowerCase())){
-                            caseRec.OwnerId = cbmMap.get(caseRec.Case_Brand_Mapping__c).Country__r.OwnerId;
-                            
-                            system.debug('Nagesh$$$$$$$$$$$$$$' + mobRexMobMap);
-                            system.debug('Nagesh$$$$$$$$$$$$$$' + mobRexNumAccntMap);
-                            
-                            if(dupMobRexNumSet.contains(mobRexMobMap.get(caseRec.SMS_Mobile_Number__c))){
-                                caseRec.Matching_Response__c = Label.CEC_MatchingResponse_DuplicateAccountMobileNumber;
-                            }
-                            else{
-                                try{
-                                    caseRec.AccountId = mobRexNumAccntMap.get(mobRexMobMap.get(caseRec.SMS_Mobile_Number__c)).Id;
-                                    caseRec.ContactId = mobRexNumAccntMap.get(mobRexMobMap.get(caseRec.SMS_Mobile_Number__c)).PersonContactId;
-                                }
-                                catch(Exception e){
-                                    System.debug('Update AccountId or ContactId Failed :' + e.getMessage());    
-                                }
-                            }
-                        }
-                        
-                        if(caseSocialTransExtIdSet.contains(caseRec.Transient_External_Id__c.toLowerCase())){
-                            caseRec.Origin = originSocialMedia;
-                        }
-                        
-                        System.debug('Updated Case Record' + caseRec);
-                        
-                    }
-                    
-                }
-            }
+
+            updateCaseDetails(newCaseList);
             
         }
         catch(Exception e){
