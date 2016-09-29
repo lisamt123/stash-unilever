@@ -1,6 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
 <labels>
+	<fullName>IPM_Product_Sourcing_Plan</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>Product &amp; Sourcing Plan</shortDescription>
+	<value>Product &amp; Sourcing Plan</value>
+</labels>
+
+<labels>
+	<fullName>IPM_Product_Sourcing_Plan_Global_Scope</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Sourcing Plan (Global Scope)</shortDescription>
+	<value>Product &amp; Sourcing Plan (Global Scope)</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Country_Association</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Country Association</shortDescription>
+	<value>The following countries have not been associated with the product yet:</value>
+</labels>
+<labels>
+	<fullName>IPM_Sourcing_Unit_Yet</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Sourcing Unit Yet</shortDescription>
+	<value>The following countries have not been associated with a sourcing unit yet:</value>
+</labels>
+<labels>
+	<fullName>IPM_Total_rows_in_table</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Total rows in table</shortDescription>
+	<value>Total rows in table:</value>
+</labels>
+<labels>
+	<fullName>IPM_Add_Blank_Row</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Add Blank Row</shortDescription>
+	<value>Add Blank Row</value>
+</labels>
+<labels>
+	<fullName>IPM_To_be_completed_by_Marketing</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM To be completed by Marketing</shortDescription>
+	<value>To be completed by Marketing</value>
+</labels>
+<labels>
+	<fullName>IPM_To_be_completed_by_Supply_Chain</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM To be completed by Supply Chain</shortDescription>
+	<value>To be completed by Supply Chain</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Name</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Name</shortDescription>
+	<value>Name</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Format</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Format</shortDescription>
+	<value>Format</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Formulation</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Formulation</shortDescription>
+	<value>Formulation</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Packaging</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Packaging</shortDescription>
+	<value>Packaging</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Size</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Size</shortDescription>
+	<value>Size</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_of_GTo</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product %of GTo</shortDescription>
+	<value>%of gTO</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Golden_Prototype</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product Golden Prototype</shortDescription>
+	<value>Golden Prototype</value>
+</labels>
+<labels>
+	<fullName>IPM_Product_Country_Mapping</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Product / Country Mapping</shortDescription>
+	<value>Product / Country Mapping</value>
+</labels>
+<labels>
+	<fullName>IPM_Sourcing_Units</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Sourcing Units</shortDescription>
+	<value>Sourcing Units</value>
+</labels>
+<labels>
+	<fullName>IPM_Capability_Confirmed</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Capability Confirmed</shortDescription>
+	<value>Capability Confirmed</value>
+</labels>
+<labels>
+	<fullName>IPM_Sourced_Into</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Sourced Into</shortDescription>
+	<value>Sourced Into</value>
+</labels>
+<labels>
+	<fullName>IPM_Clone_Message</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Clone Message</shortDescription>
+	<value>Create a copy of this row</value>
+</labels>
+<labels>
+	<fullName>IPM_Identical_Sourcing_Plan_Detected</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Identical Sourcing Plan Detected</shortDescription>
+	<value>Identical Sourcing Plan Detected</value>
+</labels>
+<labels>
+	<fullName>IPM_Close</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM Close</shortDescription>
+	<value>Close</value>
+</labels>
+<labels>
+	<fullName>IPM_gTO_Percent</fullName>
+	<language>en_US</language>
+	<protected>false</protected>
+	<shortDescription>IPM gTO Percent</shortDescription>
+	<value>% of gTO cannot be more than 100% or less than 0%</value>
+</labels>
+
+<labels>
         <fullName>IPM_Align_AllMCO_TLD</fullName>
         <language>en_US</language>
         <protected>false</protected>

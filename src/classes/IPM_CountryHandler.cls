@@ -256,7 +256,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(trigger.isDelete)
         {
-            //find the project Ids of all the deleted countries
+            set<id> countryIds = new set<id>();
+			//find the project Ids of all the deleted countries
             for(IPM_Country__c cntry:(List<IPM_Country__c>)Trigger.old)
             {
                 if(cntry.IPM_Project__c != null)
@@ -285,7 +286,9 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             if(projectIdSet != null && !projectIdSet.isEmpty())
             {
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
-            } 
+            }
+			//delete product plan related records
+            IPM_SourcePlanController.deleteProductForCountries(countryIds); 
         }
         
         // Validate if there are any rollouts which dont have any countries under them, if yes delete those Rollouts.
