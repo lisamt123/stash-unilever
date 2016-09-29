@@ -141,11 +141,11 @@
                 </div> 
             </aura:if>
             <aura:if isTrue="{! (v.limitRecords > v.totalReportCount)}">
-                <!--<aura:if isTrue="{!(v.NoReports)}">-->
+                <aura:if isTrue="{!(v.NoReports)}">
                     <div class="NoMore">
                         No more reports
                     </div>
-                <!--</aura:if>-->    	
+                </aura:if>    	
             </aura:if>
         </div>
     </div>
