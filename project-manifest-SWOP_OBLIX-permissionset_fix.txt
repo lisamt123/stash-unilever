@@ -6,4 +6,7 @@ src/classes/Oblix_PermissionHandler_Test.cls
 src/classes/Oblix_PermissionHandler_Test.cls-meta.xml
 src/permissionsets
 src/permissionsets/Oblix_SWOP_AG_3_Agency.permissionset
+src/pages
+src/pages/Oblix_CampaignSummary.page
+src/pages/Oblix_CampaignSummary.page-meta.xml
 src
