@@ -5,7 +5,9 @@
 *************************************************************/
 public with sharing class WU_WarehouseSearchController {
 
-     
+    public string emailLoggedUser1;
+    public String loggedInUser;
+    
     private Integer PAGESIZE= 30;
     public WU_Master_Warehouse__c warehouseCapacity {get;set;}
     public WU_Master_Warehouse__c warehouseCapacityLookuP {get;set;}

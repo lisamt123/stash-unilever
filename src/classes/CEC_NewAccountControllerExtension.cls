@@ -21,8 +21,8 @@ Controller class as extension for CEC_NewAccountController.
 global with sharing class CEC_NewAccountControllerExtension {
     
      //Check the Local Identifier match
-    public static void checkLocalidentifierMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){      
-        	
+    public void checkLocalidentifierMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){      
+            
         if(String.isNotBlank(newConsumer.Local_Identifier_No_Special_Char__c)) {
             // fetch local Identifier
             String searchLocalIdentifier = newConsumer.Local_Identifier_No_Special_Char__c;
@@ -31,15 +31,15 @@ global with sharing class CEC_NewAccountControllerExtension {
                     account.resultOrderFlag = true;
                     finalOrderedConsumerList.add(account);
                     accountIdSet.add(account.consumer.Id);
+                    system.debug('*******finalOrderedConsumerList********'+ finalOrderedConsumerList);
                 }
             }
         }       
     }
     
     //Check the email match
-    public static void checkEmailMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){
-        	finalOrderedConsumerList.clear(); 
-        	accountIdSet.clear();
+    public void checkEmailMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){
+            
         if(String.isNotBlank(newConsumer.PersonEmail)) {
             // fetch person email
             String searchEmailStr = newConsumer.PersonEmail;
@@ -54,7 +54,7 @@ global with sharing class CEC_NewAccountControllerExtension {
     }
     
     //Check the phone match
-    public static void checkPhoneMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){
+    public void checkPhoneMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){
        
         String searchPhoneStr = '',searchHomePhoneStr = '' ,searchMobilePhoneStr = '' ,searchOtherPhoneStr = '';
         
@@ -107,7 +107,7 @@ global with sharing class CEC_NewAccountControllerExtension {
     
     
     //Check the PostCode match
-    public static void checkPostCodeMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){
+    public void checkPostCodeMatch(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet,Account newConsumer){
        
         if(String.isNotBlank(newConsumer.PersonMailingPostalCode)) {
             String searchPostalCodeStr = newConsumer.PersonMailingPostalCode;
@@ -120,9 +120,9 @@ global with sharing class CEC_NewAccountControllerExtension {
             }
         }
     }
-	
+    
       //Check the Street & LastName match
-    public static void checkStreetAndLastName(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet, Account newConsumer){
+    public void checkStreetAndLastName(List<CEC_NewAccountController.ConsumerWrapper> duplicateConsumerList, List<CEC_NewAccountController.ConsumerWrapper> finalOrderedConsumerList, Set<Id> accountIdSet, Account newConsumer){
         
         if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.LastName)) {
             String searchStreetStr = newConsumer.PersonMailingStreet;

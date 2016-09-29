@@ -19,9 +19,9 @@
             component.set("v.allCompetitorNameList", responseData.competitorNameList);
             component.set("v.allCategoryList", responseData.categoryList);
         });
-        $A.run(function() {
+        //$A.run(function() {
             $A.enqueueAction(action); 
-        });
+        //});
         var actionIds = component.get("c.getfiterDataIds");
         actionIds.setCallback(this, function(a) {
             var responseId = a.getReturnValue();
@@ -124,19 +124,13 @@
         var brandId=component.get("v.competitorBrandId");
         console.log("brandId: "+brandId);
         if(brandId===component.get("v.otherCompetitorBrandId"))
-        {	console.log("inside other brand");
+        {
          component.set("v.others",true);
          component.set("v.Brand",false);
          component.set("v.disableOnBrandChange", true);
         }
-        /*else
-        {	
-            component.set("v.others",false);
-            component.set("v.Brand",true);
-        }*/
-        //To display the competitor name according to brand selection
         else if(brandId !=='null' && brandId !==component.get("v.otherCompetitorBrandId"))
-        {	console.log("inside perticular brand");
+        {
          component.set("v.others",false);
          component.set("v.Brand",true);
          
@@ -162,8 +156,19 @@
              }
              component.set("v.competitorNameList", newBrandNameList);
              component.set("v.categoryList", newCategoryList);
-             component.find("competitorName").set("v.value",newBrandNameList[0].Id);
-             component.find("category").set("v.value",newCategoryList[0].Id);
+             if(newBrandNameList.length > 0){
+             	component.find("competitorName").set("v.value",newBrandNameList[0].Id);
+             }
+             else if(newBrandNameList.length === 0) {
+                 component.set("v.disableOnBrandChange", true);
+             }
+             if(newCategoryList.length > 0){
+             	component.find("category").set("v.value",newCategoryList[0].Id);
+             }
+             else if(newCategoryList.length === 0) {
+                 component.set("v.disableOnBrandChange", true);
+             }
+             
          });
          $A.enqueueAction(action);
         }        
@@ -272,7 +277,7 @@
            || navigator.userAgent.match(/webOS/i)
            || navigator.userAgent.match(/iPhone/i)
            || navigator.userAgent.match(/iPad/i)){
-            helper.scrollToLocation(component, "top");            
+          helper.scrollToLocation(component, "top");            
         }
         if(navigator.userAgent.match(/iPod/i)
            || navigator.userAgent.match(/BlackBerry/i)

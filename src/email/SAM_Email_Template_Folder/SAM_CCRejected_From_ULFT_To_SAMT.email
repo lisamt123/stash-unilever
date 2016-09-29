@@ -1,0 +1,9 @@
+Hi {!SAM_Request__c.LastModifiedBy},
+
+You have rejected the Cross Charge service request {!SAM_Request__c.Name}.  The current status is "Charging Rejected".
+
+You can access the Service Request via the link below;
+{!SAM_Request__c.Link}
+
+Thanks,
+{!SAM_Request__c.lkp_Assign_To__c}

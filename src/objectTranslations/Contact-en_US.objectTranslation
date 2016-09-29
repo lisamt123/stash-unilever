@@ -822,6 +822,10 @@
         <name>CPF_Validation_Spark</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- The E-Mail must have at least 4 characters before the @ --></errorMessage>
+        <name>EMail_minimum_size</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Birthdate is mandatory. Please fill in an appropriate value. --></errorMessage>
         <name>Mandatory_Birthdate_Spark_Salesman</name>
     </validationRules>

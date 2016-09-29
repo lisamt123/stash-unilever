@@ -425,6 +425,7 @@ function dirApp() {
         jq("." + appDir).closest(".ipmAcrdnExpand").prev(".aHead").find(".expico").removeClass("fa-plus").addClass("fa-minus");
         jq("html, body").scrollTop(jq("." + appDir).offset().top);
         jq(".consumerContainer .ipmAcrdnExpand").show();
+        jq(".ecoDesignTable .ipmAcrdnExpand").show();
     });
 }
 jq(window).load(function(){
