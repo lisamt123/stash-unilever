@@ -4,7 +4,6 @@
 		<members>ChatterUIController</members>
 		<members>ChatterUIFileUpload</members>
 		<members>ControllerUtil</members>
-		<members>StringUtil</members>
 		<members>ChatterUIGroupService</members>
 		<members>ChatterUIPeopleService</members>
 		<members>FA_addTasksToOccMembers</members>
@@ -35,10 +34,18 @@
 		<members>TemplateControllerTest</members>
 		<members>Template</members>
 		<members>NavigationManager_TEST</members>
+		<members>NavigationManager</members>
+		<members>ChatterUIFileUpload</members>
+		<members>ChatterConfigController</members>
 		<name>ApexClass</name>
     </types>
     <types>
         <members>FourAcres_App</members>
+        <members>FA_Course__c</members>
+        <members>FA_Course_ChatterGroup__c</members>
+        <members>FA_Course_Occurence__c</members>
+        <members>FA_Training_Room__c</members>
+        <members>FA_Training_Venue__c</members>
         <name>CustomTab</name>
     </types>
 	<types>
@@ -68,11 +75,14 @@
     	<members>Template</members>
     	<members>Wrapper</members>
     	<members>Category</members>
+    	<members>myLogOut</members>
+    	<members>ChatterConfig</members>
+    	<members>ChatterUIFileUpload</members>
 		<name>ApexPage</name>
     </types>
     
 	<types>
-        <members>FA_Agile_LoginDetailImage</members>
+		<members>FA_Agile_LoginDetailImage</members>
 		<members>FA_Agile_LoginImage</members>
 		<members>FA_Help_CalenderImage</members>
 		<members>FA_Help_CentreCollapsedImage</members>
@@ -103,6 +113,14 @@
 		<members>FA_SG_Surf_and_Flora_Room</members>
 		<members>FA_SG_Taste_Cafeteria</members>
 		<members>FA_SG_Wall_Room</members>
+		<members>FA_Participant_Planner_Central_CB4L_Hybrid_User_PLATFORM</members>
+		<members>FA_Participant_Planner_Central_user_PLATFORM</members>
+		<members>FA_Participant_Planner_Market_CB4L_Hybrid_User_PLATFORM</members>
+		<members>FA_Participant_Planner_Market_User_PLATFORM</members>
+		<members>FA_Participant_RR_Brand_Manager</members>
+		<members>FA_Participant_RR_Brand_Moderator</members>
+		<members>FA_Participant_RR_Brand_Owner</members>
+		<members>FA_Participant_RR_Community_manager</members>
 		<name>CustomLabel</name>  
     </types>
 	<types>
@@ -118,7 +136,13 @@
     </types>
    
     <types>
-        <members>FA - Email Template</members>
+        <members>FA_Email_Template</members>
+        <members>FA_Email_Template/AF_Sendemail</members>
+        <members>FA_Email_Template/FA_Alert_for_Admin_Mail</members>
+        <members>FA_Email_Template/FA_Course_Cancellation_Mail</members>
+        <members>FA_Email_Template/FA_Course_Invitation_Mail</members>
+        <members>FA_Email_Template/FA_Feedback_Invitation_Mail</members>
+        <members>FA_Email_Template/FA_HTML_PreWork_Task_Reminder</members>
         <name>EmailTemplate</name>
     </types>
 	    <version>37.0</version>

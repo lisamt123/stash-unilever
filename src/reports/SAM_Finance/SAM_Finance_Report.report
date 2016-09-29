@@ -7,6 +7,12 @@
         <field>SAM_Request__c.txt_Reference_Request_ID__c</field>
     </columns>
     <columns>
+        <field>SAM_Request__c.txt_Request_Type_for_UI__c</field>
+    </columns>
+    <columns>
+        <field>SAM_Request__c.pkl_Status__c</field>
+    </columns>
+    <columns>
         <field>SAM_Request__c.txt_SA_Clarity_Id__c</field>
     </columns>
     <columns>
@@ -46,9 +52,25 @@
         <field>SAM_Request__c.eml_Invoice_Approver_Email__c</field>
     </columns>
     <columns>
+        <field>SAM_Request__c.fml_SAM_demand_manager__c</field>
+    </columns>
+    <columns>
         <field>SAM_Request__c.ltxt_CC_Finance_Comments__c</field>
     </columns>
     <currency>EUR</currency>
+    <filter>
+        <criteriaItems>
+            <column>SAM_Request__c.pkl_Status__c</column>
+            <operator>notEqual</operator>
+            <value>Saved,Open,In Progress,On Hold,Closed,Draft Quote Provided,Quote Approved,Quote Rejected,Awaiting Information,Information Provided,Quote Provided,Details Pending,Details Provided,Awaiting CC details (Pending with ULEMP)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>SAM_Request__c.txt_Request_Type_for_UI__c</column>
+            <operator>notEqual</operator>
+            <value>Query,Non Project</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
     <name>SAM Finance Report</name>
     <params>

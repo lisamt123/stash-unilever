@@ -1,3 +1,9 @@
 src
-src/flows
-src/flows/CEC_Update_Case_Social_Media_External_Id-20.flow
+src/permissionsets
+src/pages
+src/permissionsets/CEC_Manager.permissionset
+src/pages/CEC_PreChatForm.page
+src/pages/CEC_PreChatForm.page-meta.xml
+
+
+

@@ -89,6 +89,8 @@ src/labels/ICB.labels
 src/triggers
 src/triggers/ICB_Setup_Mobile_Channel.trigger
 src/triggers/ICB_Setup_Mobile_Channel.trigger-meta.xml
+src/triggers/ICB_FeedItem_MobileChannel.trigger
+src/triggers/ICB_FeedItem_MobileChannel.trigger-meta.xml
 src/aura
 src/aura/ICB_Inventory/ICB_Inventory.cmp
 src/aura/ICB_Inventory/ICB_Inventory.cmp-meta.xml
@@ -201,6 +203,8 @@ src/groups
 src/groups/ICB_Mobile_Channel.group
 src/objectTranslations
 src/objectTranslations/Account-en_US.objectTranslation
+src/objectTranslations/Contact-pt_BR.objectTranslation
+src/objectTranslations/ICB_Sales_Locale__c-pt_BR.objectTranslation
 src/objectTranslations/Asset-en_US.objectTranslation
 src/objectTranslations/Asset-pt_BR.objectTranslation
 src/objectTranslations/Contact-en_US.objectTranslation

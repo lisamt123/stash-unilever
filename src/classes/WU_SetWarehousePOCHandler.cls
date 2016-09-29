@@ -93,7 +93,7 @@ public without sharing class WU_SetWarehousePOCHandler
             
             
         }
-		
+        // changed on 15.09.2016
         setOwner(updatedItems);
 
     }
@@ -338,6 +338,8 @@ public without sharing class WU_SetWarehousePOCHandler
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.OwnerFullName}', 'User(s)');
                 if(whLst.WU_SAPCode_s__c!=null)
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_SAPCode_s__c}', whLst.WU_SAPCode_s__c);
+                if(whLst.Submitted_by__c!=null)
+                plainBody = plainBody.replace('{!WU_Master_Warehouse__c.Submitted_by__c}', whLst.Submitted_by__c);
                 if(whLst.WU_LocationName__c!=null)
                 plainBody = plainBody.replace('{!WU_Master_Warehouse__c.WU_LocationName__c}', whLst.WU_LocationName__c);
                 if(whLst.WU_Prior_CommittedPalletStorage__c!=null)
