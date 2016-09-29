@@ -90,6 +90,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     private static final String GATE_STR='gate';
 
     public String projectDocStatusStyleClass{get;set;}
+    public Boolean isOrgPrjRLplancreated{get;set;}
 
     public Map<String, String> objectFldMap = new Map<String, String>{
                                               TASK_SOBJECTNAME => 'IPM_Completed__c,IPM_Task_Name__c,IPM_Task_Complexity__c,IPM_Assignee__c,IPM_Task_Type__c',
@@ -151,6 +152,15 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public string earliestTLD=null;//DEF3195 Mukul to review
     public String projectPriority{get;set;}//varibale to show project priority for local rollout projects
     public Boolean hideFinSection{get;set;}//varibale to check whether user has acces to financial record
+    //Phase 2.0
+    public boolean displayGateDocument{get;set;}//display gate document status and document percentage
+    public boolean showStopButton{get;set;}//  to show Stop Project button 
+    public String stopButtonHoverText{get;set;}//hover text of  Stop Project button 
+    public boolean isStopped{get;set;}
+    public boolean reactivateProjectFlag{get; set;} // Boolean to display the 'Reactivate Project'
+    
+    public Boolean isBrandVisible{get;set;} //to display brand value
+    
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -176,7 +186,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         isAcessDuetoTeam=false;
         lstofuser=new list<IPM_Project__c>();
-        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Member__c FROM IPM_Project__c 
+        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Lead__c FROM IPM_Project__c 
                                        WHERE Id=:projectId  limit 1];
          if(lstofuser!=null && !lstofuser.isEmpty()) {
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
@@ -192,7 +202,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
             }
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
              (lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid() && lstofuser[0].Deputy_Project_Leader__c !=null) || (lstofuser[0].IPM_Project_Gatekeeper__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Gatekeeper__c !=null)||
-             (lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && lstofuser[0].IPM_Technical_Project_Leader__c !=null) || (lstofuser[0].IPM_Finance_Member__c==userinfo.getuserid() && lstofuser[0].IPM_Finance_Member__c !=null) ){
+             (lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && lstofuser[0].IPM_Technical_Project_Leader__c !=null) || (lstofuser[0].IPM_Finance_Lead__c==userinfo.getuserid() && lstofuser[0].IPM_Finance_Lead__c !=null) ){
              isAcessDuetoTeam=true;
             }
         }
@@ -222,7 +232,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
            currPhase = projObj.IPM_Temporary_Phase__c;
        }
        init();
-       
+       getGatedocumentRendered();
        // Adding Alert for Local Project leader is blank for rollout Projects
        lstRolloutProjectAlertMessage = new List<String>();
        if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
@@ -242,6 +252,19 @@ public with sharing class IPM_ProjectOverviewCtrl {
        IPM_Project_Type__c currentProjecttype =  IPM_Utils.retrieveProjectType(project);
        if(currentProjecttype != null && currentProjecttype.IPM_Gate_Document__c != null){
            currGateToDisplay = Label.IPM_IN + IPM_ConstantUtils.IPM_SPACE +   currentProjecttype.IPM_Gate_Document__c;
+       }
+       
+       /*** Logic to Display the "Reactivate Project" button on Project Overview page for IPM Business Partner   
+   			For Stopped project in Ideas phase for 38 months, "Reactivate Project" button will be displayed for IPM Business Partner
+       ***/
+       Integer noOfMonths = Integer.valueOf(Label.IPM_NoOfMonths_ForReactivation);
+       Date dateToCompare = System.today().addMonths(-noOfMonths); 
+       if(project.IPM_EligibleForReactivation__c && project.IPM_Stopped_Date_Time__c > dateToCompare)
+       {
+   	      //security for central team and BP users
+          IPM_CustomPermission custPermission = new IPM_CustomPermission();
+          reactivateProjectFlag = custPermission.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+          
        }
        
        /**********************************************************
@@ -267,6 +290,10 @@ public with sharing class IPM_ProjectOverviewCtrl {
             bPhaseChangeInProgress = true;
             bShowAlertsBar = false;
         }
+        if(!bPhaseChangeInProgress && !(project.IPM_PrepareForArchival__c || project.Is_Archieved__c) )
+        {
+        	isStopped = true;	
+        }
         
         /**********************************************************
     Logic to set boolean variable bShowShipToTradeButton in order to show Ship to Trade button 
@@ -285,13 +312,18 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /**********************************************************
     Logic to set boolean variable bShowChangeStatusButton in order to show Change Status button 
     ***********************************************************/     
-        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && 
+        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && !project.IPM_PrepareForArchival__c && !project.Is_Archieved__c && 
                     projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_NOT_STARTED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE ) && IsUpdateStatus)
         {
  	       bShowChangeStatusButton = true;
         }   
         else{
         	bShowChangeStatusButton = false;
+        }
+        
+        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c))
+        {   
+        	isBrandVisible=true; 
         }
         
     }
@@ -333,6 +365,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
         rolloutsGenerated = false;//Eco Design
         fin = new list<IPM_Financial__c>();
         hideFinSection =  true;
+	displayGateDocument=false;
+        showStopButton=false;
+	isStopped = false;
     }
     //DEF3195-Earliest Target Launch is not displayed on overview page
     public string getEarlTLD(){
@@ -346,18 +381,18 @@ public with sharing class IPM_ProjectOverviewCtrl {
         /*
         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        project = [SELECT Rollout_Plan_Target_Launch_Date__c,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
-        IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,
-        IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
-        IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,
+        project = [SELECT IPM_LocalProject_Brand__c,IPM_Is_Invoked_From_Rollout__c,IPM_GateKeepingModel__c,IPM_ShowProjectStop__c,Rollout_Plan_Target_Launch_Date__c,IPM_Category_Thresh__c,IPM_Threshold_Status__c,IPM_Project_Y3iTO__c,IPM_Cluster__r.name,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_StoppedByUser__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,IPM_EligibleForReactivation__c,IPM_StoppedByProject__c,
+        IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c, IPM_CancelStoppingProjectTill__c, 
+        IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,IPM_Stopped_At_Span__c, 
         IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
-        IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
-        Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
+        IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, IPM_PreviousDocumentStatus__c,IPM_PrepareForArchival__c, IPM_CountDown_Reference_Time__c,
+        Deputy_Project_Leader__c, IPM_Approver_of_Charter__c, IPM_Finance_Lead__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
         IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Actual_Launch_Date__c,
-        IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
+        IPM_ProjectGKM__c,IPM_Company_Card__c,IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
         IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
-        IPM_Project__c
+        IPM_Project__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Master_Task__r.IPM_Multiple_Functional_Role__c,IPM_Master_Task__r.IPM_Function__c,IPM_Function__c
         FROM Tasks__r 
         WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
         ORDER BY IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c limit 10000),
@@ -367,11 +402,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
         From Project_Documents__r limit 10000),
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
+        ,(SELECT Id,isActive__c,IPM_Rollout_Span__c FROM IPM_Project_Rollout__r ),(SELECT Id,isActive__c,IPM_Rollout_Span__c FROM Regional_Project_Rollout__r ) 
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
         ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
         ,(SELECT ipm_cpp_regional__c from IPM_Financials_Regional__r where Financial_External_ID__c =: lstofuser[0].name + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE limit 1)//Note: For Local project, Financial record without consilidate suffix will be used but for Regional as it will always have consolidation, record with _Consolidate will be used.
-        ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
-        (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
+        ,(SELECT Id,Is_Archieved__c,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r)
+        ,(SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
                              limit 10000)
                              FROM IPM_Project__c 
@@ -412,16 +448,16 @@ public with sharing class IPM_ProjectOverviewCtrl {
             rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name,IPM_Name__c,IPM_Type_of_gate__c, IPM_Due_Date__c ,IPM_Project__r.Is_Archieved__c
                                                                   from IPM_Milestone__c
                                                                   where IPM_Project__r.IPM_Parent_Project__c =: projectId 
-                                                                  AND IPM_Due_Date__c != NULL AND IPM_Due_Date__c >= TODAY
+                                                                  AND IPM_Due_Date__c >= TODAY
                                                                   AND IPM_Completed_On__c = null 
-                                                                  AND IPM_Phase__c != : IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT
+                                                                  AND IPM_Phase__c IN :IPM_ConstantUtils.PHASE_SET_WO_MARKET_DEPLOYMENT
                                                                   ORDER BY IPM_Due_Date__c asc, IPM_Project__r.IPM_Target_Launch_Dates__c asc limit 1]; 
              if(rolloutProjectRecentMilestone != null && !rolloutProjectRecentMilestone.isEmpty()){
                 gateDueDateMessage = string.format(System.Label.IPM_GateDueDateMesg, new string[] {String.valueof(rolloutProjectRecentMilestone[0].IPM_Name__c)});
              }                                                  
          }                
          if(projResList != NULL && projResList.isEmpty() && project.IPM_Project_Leader__c != UserInfo.getUserId() && project.IPM_Technical_Project_Leader__c != UserInfo.getUserId()
-            && project.Deputy_Project_Leader__c != UserInfo.getUserId() && project.IPM_Finance_Member__c != UserInfo.getUserId() && project.IPM_Project_Gatekeeper__c != UserInfo.getUserId()){
+            && project.Deputy_Project_Leader__c != UserInfo.getUserId() && project.IPM_Finance_Lead__c != UserInfo.getUserId() && project.IPM_Project_Gatekeeper__c != UserInfo.getUserId()){
             rolloutProjectRecentMilestone = null;
          }
          else if( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c ==  IPM_ConstantUtils.PHASE_IDEAS){
@@ -637,12 +673,15 @@ public with sharing class IPM_ProjectOverviewCtrl {
         //Calculate nearest Gate Due date for Rollout 
 
        //process for Tasks RL
+		list<IPM_Task__c> duplicateTasksList =  new list<IPM_Task__c>();
         for(IPM_Task__c eachTask : project.Tasks__r) {
             if(!eachTask.IPM_Completed__c) {
-                tasksList.add(eachTask);
+                duplicateTasksList.add(eachTask);
             }
             projectTasksSet.add(eachTask.Id);
         }
+        tasksList = IPM_TaskHelper.removeDuplicateTaskForUser(duplicateTasksList);
+        
         // Identify the due date for the Gate document for the project
         allIncompleteTasks = tasksList.size();
         
@@ -694,7 +733,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                                 IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
             (IPM_FunctionalRole__c not in :functionalRoleSet OR IPM_FunctionalRole__c in :plFunctionalRoleSet) AND  
                                                                                 IPM_Default_Section__c = true
@@ -704,7 +743,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
             IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
-                                                                                IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
+                                                                                IPM_Section_Status__c IN (:IPM_ConstantUtils.STATUS_NOT_STARTED,:IPM_ConstantUtils.STATUS_FILLED_IN) AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
                                                                                 IPM_FunctionalRole__c =: userRole AND
                                                                                 IPM_Default_Section__c = true 
@@ -744,10 +783,41 @@ public with sharing class IPM_ProjectOverviewCtrl {
         if(ApexPages.currentPage().getParameters().containsKey('showMembers')){
             memberCallFromURL = true;
         }
-        IPM_ProjectMetadata__c projMetadata = IPM_Utils.retrieveProjectMetadata(project);
+        IPM_Project_Metadata__mdt projMetadata = IPM_Utils.retrieveProjectMetadata(project);
         Boolean isRollout = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT);
         Boolean isLinkDenied = false;
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
+        // checking if rollout plan for original project has been created
+        isOrgPrjRLplancreated = isOriginal && (!project.IPM_Project_Rollout__r.isEmpty()  || !project.Regional_Project_Rollout__r.isEmpty() );  
+        IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
+        
+        Set<String> projectPhasesToBeExcluded = new Set<String>{IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT, IPM_ConstantUtils.PHASE_PLE};
+        
+        if( project.IPM_ShowProjectStop__c && isProjLeader && currentProjecttype != null && String.isBlank(currentProjecttype.IPM_Gate_Document__c) && !projectPhasesToBeExcluded.contains(project.IPM_Phase__c))
+        {   
+        	stopButtonHoverText=String.format(Label.IPM_Stop_project_hover_text,new List<String>{project.IPMProject_Span__c,project.IPMProject_Span__c});
+			Map<Id,IPM_Project_Rollout__c> assocoiatedRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+			assocoiatedRolloutMap.putAll(project.IPM_Project_Rollout__r);
+			assocoiatedRolloutMap.putAll(project.Regional_Project_Rollout__r);
+			assocoiatedRolloutMap.remove(null);
+			
+			Integer activeRolloutCounter = 0;
+			for(IPM_Project_Rollout__c	ipmPrjRLout :assocoiatedRolloutMap.values())
+				{
+						if(ipmPrjRLout.isActive__c)
+						{
+					activeRolloutCounter++;
+				}
+			}
+    
+			
+			if(activeRolloutCounter == 0)
+				{
+					showStopButton = true; 
+				}
+			}  
+	
+        
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
@@ -902,7 +972,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         Map<String, IPM_Milestone__c> mapToReturn = new Map<String, IPM_Milestone__c>();
         list<IPM_Milestone__c> lst = [SELECT IPM_Name__c,IPM_Phase__c,IPM_Completed__c,IPM_Type_of_gate__c,IPM_Project__r.IPM_Phase__c,LastModifiedBy.Name,
-        IPM_Project__r.Name,IPM_Project__r.IPM_Project_Name__c ,IPM_Due_Date__c,IPM_Project__r.IPM_Project_Leader__r.Name FROM IPM_Milestone__c WHERE Id IN :msIds limit 50000];
+        IPM_Project__r.Name,IPM_Project__r.Is_Archieved__c,IPM_Project__r.IPM_Project_Name__c ,IPM_Due_Date__c,IPM_Project__r.IPM_Project_Leader__r.Name FROM IPM_Milestone__c WHERE Id IN :msIds limit 50000];
         alertMessage = new Map<String,String>();
         alertMessageToday = new Map<String,String>();
         alertMessagePast = new Map<String,String>();
@@ -912,7 +982,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         List<IPM_Country__c> countryLst = [select id,name,Geography__r.Market_Type__c,IPM_Project__c from IPM_Country__c where IPM_Project__c =: projectId and Geography__r.Market_Type__c  =: IPM_ConstantUtils.MARKETTYPE_DEVELOPED limit 1] ;
         for(IPM_Milestone__c eachRec : lst) {
             mapToReturn.put(eachRec.Id, eachRec);
-            if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c){
+            if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c && !eachRec.IPM_Project__r.Is_Archieved__c){
                 if(String.IsNotBlank(String.valueOf(eachRec.IPM_Due_Date__c)) && !eachRec.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(eachRec.IPM_Due_Date__c));
                     if(DateValue<0){
@@ -1004,10 +1074,17 @@ public with sharing class IPM_ProjectOverviewCtrl {
     */
     public void markComplete() {
         try{
-            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
+			List<IPM_Task__c> updatedTaskList = new  List<IPM_Task__c>();
+        	
+            List<IPM_Task__c> tObj = [SELECT IPM_Completed__c, IPM_Completed_Date__c,IPM_Master_Task__c,IPM_Assignee__c,IPM_Project__c FROM IPM_Task__c WHERE Id =:taskId limit 50000];
             tObj[0].IPM_Completed__c = isChecked == 'true' ? true : false; 
             tObj[0].IPM_Completed_Date__c = isChecked == 'true' ? system.today() : null;
-            update tObj[0];
+
+            	
+            updatedTaskList = IPM_TaskHelper.completeOtherRelatedTasks(tObj[0]);
+            updatedTaskList.add(tObj[0]);
+            
+            update updatedTaskList;
         }
         catch (DmlException ex)
         {
@@ -1132,6 +1209,76 @@ public with sharing class IPM_ProjectOverviewCtrl {
      public void next() {
         bPaginated = true;
         con.next();
-     }     
-
+     }
+	/******************************************************************************************************************
+     @Description:to show/hide gate document status and percentage on project overview page.
+     ******************************************************************************************************************/    
+	@testvisible private void getGatedocumentRendered(){
+	 	IPM_Project_Type__c getProjectDetails=IPM_Utils.retrieveProjectType(project);
+	 	if(getProjectDetails!=null && !String.IsBlank(getProjectDetails.IPM_Gate_Document__c)){
+	 		displayGateDocument=true;
+	 	}
+	}    
+    /******************************************************************************************
+    @Description :Called on  click of the Stop Project  Button   .This  will stop the project .
+    @param: Not Applicable
+    @return: Void
+    *******************************************************************************************/
+     
+    public PageReference stopProject() 
+    {
+        try
+        {
+            project.Is_Archieved__c=true;               
+            update project; 
+            PageReference projectOverviewPage = Page.IPM_ProjectOverview;
+            projectOverviewPage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            projectOverviewPage.setRedirect(true);
+            return projectOverviewPage; 
+        }
+        catch (Exception ex)
+        {
+         	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                        'stopProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+                        
+        }
+        return null;   
+    }
+/***********************************************************************
+    @Description: This method will be invoked on click of 'Cancel Stopping Project' button from Project Overview page. This method is responsible to revert the project
+    			  Document status to previous state from Stopped.     
+    @param: none
+    @return: void
+    **********************************************************************/
+    public PageReference cancelStoppingProject(){
+    	
+    	try
+        {
+            if(System.now() < project.IPM_CancelStoppingProjectTill__c)
+            {
+                project.IPM_PrepareForArchival__c = false;
+                update project;    
+            }
+            else
+            {
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,Label.IPM_Passed_Cancellation_Widnow));       
+            }
+            
+            PageReference projectOverviewPage = Page.IPM_ProjectOverview;
+            projectOverviewPage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            projectOverviewPage.setRedirect(true);
+            return projectOverviewPage; 
+            
+    	}
+    	catch (Exception ex)
+        {
+         	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                        'cancelStoppingProject',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+                        
+        }
+    	
+    	return null;	
+    }
 }

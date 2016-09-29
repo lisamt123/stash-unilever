@@ -1,0 +1,14 @@
+Dear {!Account.Name}, 
+
+
+Thank you for taking the time to contact the Unilever Consumer Engagement Centre regarding your feedback on {!Case.Case_Brand__c}. 
+
+In order for us to continuously improve our service please could you complete our Customer Satisfaction Survey by clicking on the following link. 
+
+http://survey.clicktools.com/go?iv={!Case.CSAT_Survey_Id__c}&q1={!Case.Id}&q5={!Case.OwnerId} 
+
+
+Many thanks. 
+
+Consumer Engagement Team 
+Unilever

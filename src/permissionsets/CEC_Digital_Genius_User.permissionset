@@ -4,6 +4,16 @@
         <apexClass>dgec__DG_EmailPromtsExtension</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>Case.dgai__Sugestion_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Case.dgai__Template_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 	<description>Access to the DG components to be able to use the AI capability on Cases</description>
     <label>CEC - Digital Genius User</label>
     <pageAccesses>

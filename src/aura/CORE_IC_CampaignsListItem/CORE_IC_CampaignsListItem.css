@@ -28,4 +28,15 @@
     width: 35px;
     height: 35px;
     padding-bottom: 5px;
+    margin-right: -10px;
+    margin-left: 12px;
+}
+.THIS .slds-dropdown--right {
+    transform: translateX(-30px) !important;
+}
+@media screen and (min-width:768px){
+    .THIS .slds-dropdown--right {
+    transform: translateX(-62px)!important;
+    right: auto !important;
+}
 }

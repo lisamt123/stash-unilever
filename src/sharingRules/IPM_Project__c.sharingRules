@@ -60,7 +60,7 @@
             <group>IPM_HC_HHC_Business_Partners</group>
         </sharedTo>
         <criteriaItems>
-            <field>IPM_UserCategory__c</field>
+            <field>IPM_Category_Text__c</field>
             <operation>equals</operation>
             <value>Household Care</value>
         </criteriaItems>
@@ -73,7 +73,7 @@
             <group>IPM_HC_Laundry_Business_Partners</group>
         </sharedTo>
         <criteriaItems>
-            <field>IPM_UserCategory__c</field>
+            <field>IPM_Category_Text__c</field>
             <operation>equals</operation>
             <value>Laundry</value>
         </criteriaItems>

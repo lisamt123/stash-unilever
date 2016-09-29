@@ -30,12 +30,12 @@ public with sharing class AA_AgentAppServiceController {
     
     public AA_ApplicationWrapperObj insertAgentApp(AA_ApplicationWrapperObj appWrapperObj){
         try{
-            system.debug('Insert Agent app==>'+appWrapperObj);
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
             system.debug('insert object in db'+convertRequestAgentReport(objAgentApp));
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport(objAgentApp));
             //list<String> agentAPPDocumentIDInserted = 
+            list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport(objAgentApp));
             AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
             appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
@@ -65,8 +65,6 @@ public with sharing class AA_AgentAppServiceController {
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
-            
-            
         return appWrapperObj;
     }
     /**
@@ -108,7 +106,6 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
             //Adding userids  to be mentioned in the feed and topics names  to be inserted
-        system.debug('COnvert agent app from userIds==>'+objAgentApp.usertomentionIds);
           if(objAgentApp.usertomentionIds !=NUll && objAgentApp.usertomentionIds.size()>0){
         for(string str:objAgentApp.usertomentionIds)
         {
@@ -118,8 +115,6 @@ public with sharing class AA_AgentAppServiceController {
         userids=userids.removeEnd(',');
         newObjToBeInserted.TF_Mention_User__c=userids;
         } 
-         
-    
          system.debug('newObjToBeInserted cluster value'+newObjToBeInserted.ClusterId__c);
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
@@ -168,7 +163,15 @@ public with sharing class AA_AgentAppServiceController {
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = false;    
             }          
         }      
-       
+        }   
+        
+         if(!String.isEmpty(objAgentApp.TopicId)){
+            newObjToBeInserted.Topic__c  = objAgentApp.TopicId;
+            if(!String.isEmpty(objAgentApp.SubTopic)){
+                newObjToBeInserted.Sub_Topics__c  = objAgentApp.SubTopic;    
+            }
+            
+        }   
         //Adding New Brand Fields 
         newObjToBeInserted.OtherBrandName__c=objAgentApp.OtherBrandName;
         newObjToBeInserted.OtherCompanyName__c=objAgentApp.OtherCompetitor;
@@ -593,7 +596,6 @@ public with sharing class AA_AgentAppServiceController {
                    Each value fetching from database needs to be go thrugh null check before applying it to the current filter i.e. in below query
                    If null check is removed query will fail with exception even if one value is null
                 */   
-                
                 system.debug('userPref Values==>'+UserPref);
                  //if country only selected
                 if(UserPref.Country__c != NULL && UserPref.Cluster__c == NULL )
@@ -831,6 +833,7 @@ public with sharing class AA_AgentAppServiceController {
        system.debug('Soql query =====>'+soqlquery);
         List <aa_Agent_Report__c> tmpList=  database.query(soqlquery); 
         system.debug('tmpList===>'+tmpList);
+        List <aa_Agent_Report__c> tmpList=  database.query(soqlquery); 
         List<AA_WrapperUtility.agentReportDetail> objFinalReport = new List<AA_WrapperUtility.agentReportDetail>();        
         // To check whether current user has liked report or not 
                    Set<ID> feedIds=new Set<ID>();

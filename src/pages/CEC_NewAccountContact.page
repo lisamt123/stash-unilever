@@ -21,7 +21,7 @@
     <apex:includeScript value="{!URLFOR($Resource.jquery1112, 'jquery-1.11.2.min.js')}"/>
     <apex:includeScript value="/soap/ajax/28.0/connection.js"/>
     <apex:includeScript value="/support/console/30.0/integration.js"/>
-    <!--<apex:include pageName="pca__Component"/>-->
+    <apex:include pageName="pca__Component"/>
     <apex:form id="frm" >
         <apex:outputPanel styleClass="tabs" layout="block">  
             <ul>
@@ -92,6 +92,18 @@
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_Phone}"/>
                         <apex:inputField value="{!newConsumer.Phone}" id="consumerPhoneField" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Mobile_Phone}"/>
+                        <apex:inputField value="{!newConsumer.PersonMobilePhone}" id="consumerMobilePhoneField" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Home_Phone}"/>
+                        <apex:inputField value="{!newConsumer.PersonHomePhone}" id="consumerMobilePhoneField" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_Other_Phone}"/>
+                        <apex:inputField value="{!newConsumer.PersonOtherPhone}" id="consumerMobilePhoneField" />
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
                         <apex:outputLabel value="{!$Label.CEC_Unilever_Opt_In}"/>

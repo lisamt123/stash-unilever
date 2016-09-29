@@ -1,0 +1,140 @@
+<!--
+  Component Name: Core_CA_PendingSection
+  Author : Mindtree
+  Date: 03 June 2016
+  Requirement/Description: Closed tab of the Approval APP.
+-->
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable" controller="CORE_FB_Feedback_App_Controller">
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.doInit}" /> -->
+    <aura:attribute name="isFeedBackPopup" type="boolean" />
+    <style>
+        .hiddenClass{
+        color: red;
+        display: none;
+        }
+        .homePageHeader{
+        background:#4F6A92;
+        }
+        .headerBarIconStyle{
+        width: 40px;
+        margin-left: 20px;
+        float: left;
+        margin-right:20px;
+        }
+        .slds-tabs--default__nav {
+        border-bottom: 2px solid #CACACA;;
+        
+        .slds .slds-spinner--small {
+        width: 32px;
+        height: 32px;
+        margin-left: 40%;
+        }
+        .uiSpinner.spinner {
+        margin-top: 68px;
+        margin-bottom: -74px;
+        }
+        }
+        .slds-nubbin--top-left:before, .slds-nubbin--top-left:after { 
+        left: 12rem;
+        top: -0.5rem;
+        } 
+        @media screen and (max-width:336px){
+        .cCORE_CA_Pending .queryWithVendorTextWidth {
+        width: 90px!important;
+        margin-top: -21px;
+        font-size: 10px;
+        padding-top: 3px;
+        }
+        .cCORE_CA_PendingSection .expenseName {
+        width: 60%;
+        }
+        .slds-text-body--regular{
+        font-size:13px;
+        }
+        .slds-text-body--small{
+        font-size:12px;
+        }
+        .slds-text-heading--large{
+        font-size:28px;
+        }
+        .slds-text-heading--medium{
+        font-size:20px;
+        }
+        .slds-text-heading--small{
+        font-size:16px;
+        }
+        .slds-text-heading--label{
+        font-size:12px;
+        }
+        .slds-text-heading--label-normal{
+        font-size:12px;
+        }
+        
+    </style> 
+    <aura:attribute name="ApprovalData" type="Core_CA_WrapperUtility.MyApprovalsDataResponse[]"/>
+    <aura:attribute name="retainfilterValue" type="string"/>
+    <div onclick="{!c.navigateToDetail}"> 
+        
+        <ui:outputText aura:id="reqlId" value="{!v.ApprovalData.RequestId}"  class="hiddenClass"/>
+        <ui:outputText aura:id="appId" value="{!v.ApprovalData.ApproverId}" class="hiddenClass"/>    
+        <ui:outputText aura:id="srcId" value="{!v.ApprovalData.ExpenseType}" class="hiddenClass"/>    
+        
+        <span>    
+            <div border="1" class="homePageApprovalsListdiv">
+                <div>
+                    <div class = "local-div">
+                        <div class="name">
+                            {!v.ApprovalData.ExpenseID}<br/>
+                            <div class="expenseName truncate">{!v.ApprovalData.ExpenseName} </div>
+                            
+                            <aura:if isTrue="{!(v.ApprovalData.Action !='QUER' &amp;&amp; v.ApprovalData.Status !='Query With Vendor')}"> 
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Purchase Request' || v.ApprovalData.ExpenseType =='Expense')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.Amount} 
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Clarity' || v.ApprovalData.ExpenseType =='Invoice')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.ProjectBug} 
+                                        </div>
+                                    </aura:if>
+                            </aura:if>
+                            <aura:if isTrue="{!(v.ApprovalData.Action =='QUER' || v.ApprovalData.Status =='Query With Vendor')}"> 
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Purchase Request' || v.ApprovalData.ExpenseType =='Expense')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.Amount} 
+                                        </div>
+                                    </aura:if>
+                                    <aura:if isTrue="{!(v.ApprovalData.ExpenseType =='Clarity' || v.ApprovalData.ExpenseType =='Invoice')}">
+                                        <div class="slds-text-body--small right-class">
+                                            {!v.ApprovalData.Currencies}&nbsp;
+                                            {!v.ApprovalData.ProjectBug} 
+                                        </div>
+                                    </aura:if>
+                            </aura:if>
+                            
+                        </div >
+                        <div class="slds-text-body--small requestedBy truncate " style="width: 64%">
+                            {!v.ApprovalData.RequestedBy}</div>
+                        <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
+                            <aura:if isTrue="{!v.ApprovalData.Req_Status =='QUER'}">
+                                <div type="button" class="queryWithVendorIndicatorText queryWithVendorTextWidth right-class">
+                                    <!-- {!$Label.c.CORE_LBL_QUERY_WITH_VENDOR} -->
+                                    {!$Label.c.CORE_LBL_QUERY_UPPER}
+                                </div>
+                            </aura:if>
+                        </aura:if>
+                    </div>
+                    <div align="right" valign="bottom" style = "clear:both;">
+                        
+                    </div>
+                </div>
+            </div>
+        </span>       
+        
+    </div>
+    
+</aura:component>

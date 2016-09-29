@@ -1,4 +1,4 @@
-<aura:component >    
+<aura:component controller="Core_IC_IdeaController" >    
     <aura:attribute name="campaignsListItem" type="Core_CA_BaseApplicationWrapper"/>
     <aura:attribute name="newsType" type="String"/>
 	<aura:attribute name="url" type="String"/>
@@ -8,8 +8,13 @@
     <aura:attribute name="MailToBody1" type="String" />
     <aura:attribute name="MailToBody2" type="String" />
     <aura:attribute name="MailToBody3" type="String" />
+    <aura:attribute name="MailToBody4" type="String" />
     <aura:attribute name="pannelType" type="String"/>
     <aura:attribute name="shareCampaign" type="Boolean"/>
+    <aura:attribute name="chatterValue" type="Boolean"/>
+   <aura:attribute name="share" type="Boolean"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
 	<style>
 	@media screen and (min-width:767px){
         .THIS.slds-card {
@@ -33,16 +38,26 @@
                         <aura:if isTrue="{!v.shareCampaign}">
                           <div  aura:id="showOptions" class="slds-dropdown slds-dropdown--right sort " >
                             <ul class="dropdown__list" role="menu">
+                              <aura:if isTrue="{!v.chatterValue}">   
                                 <li class="slds-dropdown__item">
                                        <a  role="menuitem" onclick="{!c.navigateToChatter}" >
                                     <p class="slds-truncate"  >Share on Chatter</p>
                                    </a>
                                 </li>
+                              </aura:if>        
                                 <li class="slds-dropdown__item" onclick="{!c.hideChatterShare}">
+                             <aura:if isTrue="{!v.chatterValue}">      
   <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.campaignsListItem.CampaignTitle+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody2+'%20'+v.MailToBody3}" 
                                     style="color: #344A5F ;text-decoration: none;"  role="menuitem">
-                                  <p class="slds-truncate">Email</p>
+                                  <p class="slds-truncate"> Email</p>
                                   </a>
+                                 <aura:set attribute="else">
+  <a href="{!'mailto:?subject='+v.MailSubject+'%20%22'+v.campaignsListItem.CampaignTitle+'%20%22'+'&amp;body='+v.MailToBody1+'%20%22'+v.campaignsListItem.CampaignTitle+'%22%20'+v.MailToBody4+'%20'}" 
+                                    style="color: #344A5F ;text-decoration: none;"  role="menuitem">
+                                  <p class="slds-truncate">Share via Email</p>
+                                  </a>
+                               </aura:set>
+                           </aura:if>       
                                 </li>
                               </ul>
                             </div>

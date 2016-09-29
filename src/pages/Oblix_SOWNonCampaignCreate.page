@@ -157,7 +157,7 @@
                                                 <apex:outputText value="{!helper.currentActivity.hourlyRate}" id="hiddenRate" style="display:none;" rendered="{!can_see_financial_fields}"/>
                                                 
                                                 <!--<apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.keyCode == 46"/>-->
-                                                <apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);"/>
+                                                <apex:input type="number" styleClass="hourly_rate_box" html-min="0" html-step="0.01" value="{!helper.currentActivity.hoursSelected}"  disabled="{!IF(helper.currentActivity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" html-onPaste="return false;" onkeypress="return onKeyPressIsDigitAndDecimalValidation(event, this);"/>
                                                 hours                                
                                             </p>
                                             <apex:outputPanel id="addUpdateButton">
@@ -287,7 +287,7 @@
                                                     <apex:outputText value="{!helper.currentResource.hourlyRate}" id="hiddenDedicatedRate" style="display:none;" rendered="{!can_see_financial_fields}"/>
                                                     &nbsp;&nbsp;
                                                     
-                                                    <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " html-onPaste="return false;" onkeypress="return onKeyPress_IsDigitAndDecimalValidation(event, this);" />
+                                                    <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" html-step="0.01" value="{!helper.currentResource.hoursSelected}"  style="width:60px;" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " html-onPaste="return false;" onkeypress="return onKeyPressIsDigitAndDecimalValidation(event, this);" />
                                                 %    
                                                 </p>
                                                 <apex:outputPanel id="addResourceUpdateButton">

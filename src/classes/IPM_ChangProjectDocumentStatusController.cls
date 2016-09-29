@@ -39,6 +39,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Boolean rolloutRegionalPLFilledError{get; set;}
     public Boolean rolloutCountryPLFilledError{get; set;}
     public Boolean completedError{get; set;}
+    public Boolean belowThresholdError{get; set;}
     public String riskSectionId{get; set;}
     public Boolean showStop{get; set;}
     public Boolean showPostpone{get; set;}
@@ -68,6 +69,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public boolean isBDBBAlignment{get;set;}
     public string bd_BBAlignmentSequence{get;set;}
     public id documentSectionId{get;set;}
+    public boolean isEcoDesignSecNegotiable;
+    public string stopDisclaimer{get;set;}
     //REQ03006
     public Integer invalidFinancialsCount;
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
@@ -90,8 +93,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         financialAlignment=false;
         tldAlignment=false; 
         isBDBBAlignment=false;   
+        isEcoDesignSecNegotiable=false;
         bd_BBAlignmentSequence=IPM_ConstantUtils.BB_BD_ALIGNMENT;  
         isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
+        belowThresholdError=false;
+        stopDisclaimer=Label.IPM_StopDisclaimer2;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         
         if(projectId!=null)
@@ -101,7 +107,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             if(associatedProjectType!=null)
             {
                 String currentGate = associatedProjectType.IPM_Gate_Document__c;
-                        
+                
+                getStopDisclaimer(currentGate);
+                
                 projectDoc=[SELECT Id,IPM_Proposed_Date__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,
                 LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Updated_User_By__c,
                 IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Stopped_Comments__c,IPM_Project__r.IPM_Current_Document_Status__c
@@ -111,14 +119,14 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 Status=projectDoc.IPM_Document_Status__c;
                 
                 projSectionList=[SELECT Id,IPM_Section_Type__c,IPM_Default_Section__c,IPM_Negotiable__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Gate_Document_Summary__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
-                FROM IPM_Project_Document_Section__c 
-                WHERE (Not IPM_Section_Sequence__c like :IPM_ConstantUtils.APPENDIX_HEADER_SEQUENCE_FOR_QUERY) AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED AND IPM_Default_Section__c=true AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
-				AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER ORDER BY IPM_Section_Sequence__c asc];
+                                 FROM IPM_Project_Document_Section__c 
+                                 WHERE (Not IPM_Section_Sequence__c like :IPM_ConstantUtils.APPENDIX_HEADER_SEQUENCE_FOR_QUERY) AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED AND IPM_Default_Section__c=true 
+                                 AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER ORDER BY IPM_Section_Sequence__c asc];
 				
                 
                 projSectionListUpdate=[SELECT Id,IPM_Default_Section__c,IPM_Negotiable__c,IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Gate_Document_Summary__c 
                 FROM IPM_Project_Document_Section__c 
-                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED AND IPM_Default_Section__c=true AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER ORDER BY IPM_Section_Sequence__c asc];
+                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED AND IPM_Default_Section__c=true AND IPM_Section__r.IPM_Section_Type__c IN :IPM_ConstantUtils.SECTION_LIST_WO_HEADER_SUBHEADER ORDER BY IPM_Section_Sequence__c asc];
                 
                 String standardType = IPM_ConstantUtils.STANDARD;// variable used in query below NO SONAR
                 String milestoneQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null,true);
@@ -163,6 +171,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         if(!String.isBlank(Status))
         {
             projectDoc.IPM_Document_Status__c=Status;//setting the project document status
+            
+            IPM_Project_Metadata__mdt  projectMetadata = IPM_Utils.retrieveProjectMetadata(project);
+            if(projectMetadata!=null){
+            	project.IPM_ProjectGKM__c = projectMetadata.MasterLabel;
+            }
         }
         //functionality when Document status is STOPPED
         if(projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED)
@@ -265,7 +278,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         String projectWhereClause = ' WHERE id  =: projectId limit 1';
         projectWhereClause = projectQuery + projectWhereClause;
         List<IPM_Project__c> projList  = database.query(projectWhereClause);
-        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c)
+        if(projList != null && !projList.isEmpty() && IPM_Utils.isProjectToBeSyncedToEcoDesign(projList[0]) && !projList[0].IPM_Exists_AtLeast_OneAssmntPerEICountry__c && !isEcoDesignSecNegotiable)
         {
             ecoDesignNoAssessmentError = true;  
         }
@@ -433,6 +446,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }
                 if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID)
                 {
+			if(pds.IPM_Negotiable__c) 
+                	{
+                    		isEcoDesignSecNegotiable = pds.IPM_Negotiable__c;
+                	}
                     ecoDesignSectionId = pds.Id;
                 }
                 
@@ -523,6 +540,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 showValidation=false;
                 discriptionError=true;
             }
+            if(!project.Exempt_from_Threshold__c  && project.IPM_Threshold_Status__c ==System.Label.IPM_BelowThreshold && project.IPM_Current_Gate_Name__c==IPM_ConstantUtils.FIELD_SUFFIX_CHARTER && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
+            {
+                belowThresholdError=true;   
+            }
             
         }
         
@@ -583,15 +604,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         if(!String.isBlank(projectDoc.IPM_Stopped_Comments__c))
             {
                 showStop=true;
-                Date dt=date.parse(System.today().format());
-                projectDoc.IPM_Stopped_Date__c=dt;
-                projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();
-                project.IPM_Stopped_Date_Time__c=System.now();
-                project.Is_Archieved__c=true;
-                project.IPM_Stopped_By__c=UserInfo.getUserId();
+                project.IPM_PrepareForArchival__c = true; 
                 project.IPM_Stopped_Comments__c=projectDoc.IPM_Stopped_Comments__c;
-                project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
-                project.IPM_Document_Update_Comments__c = projectDoc.IPM_Stopped_Comments__c;
                 try
                 {               
                     update project;
@@ -611,6 +625,37 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
       
     }
+    
+    /******************getStopDisclaimer*************/
+	public void getStopDisclaimer(String currentGate)
+	{
+		if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
+		{
+			if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+			{
+				stopDisclaimer = Label.IPM_StopDisclaimer2;
+			}
+			else
+			{
+				stopDisclaimer = Label.IPM_StopDisclaimer3;
+			}
+		}
+		else if(String.isNotBlank(currentGate)) 
+		{
+			if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+			{
+	                    stopDisclaimer = String.format(Label.IPM_StopDisclaimer, new String[]{Label.IPM_ParentProjectStopDisclaimer});
+	                    if( project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL )
+	                    {
+	                        stopDisclaimer = String.format(Label.IPM_StopDisclaimer, new String[]{IPM_ConstantUtils.BLANK});    
+	                    } 
+			}
+			else
+			{
+				stopDisclaimer = Label.IPM_StopDisclaimer4;
+			}
+		}
+	}
     
     /***********************************************************************
     @Description :Used on click of the Submit Button if postpone     
@@ -927,6 +972,4 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
         }
     }
-    
-    
 }

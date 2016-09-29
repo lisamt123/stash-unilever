@@ -73,6 +73,7 @@ public abstract class AbstractStandardSetExtension
     {
         if(sourcesObjectList!=null && sourcesObjectList.size() > 0)
         {
+        	sortMilestones(sourcesObjectList);
             setCon = new  ApexPages.StandardSetController(sourcesObjectList);
         }
         else
@@ -199,6 +200,7 @@ public abstract class AbstractStandardSetExtension
         public boolean isLast {get;set;}
         public boolean isEditable {get;set;}
         public boolean isDeletable {get;set;}
+        public boolean showTLDInfoIcon {get;set;}
         
         public sObjectPaginationWrapper(sObject record,Boolean isChecked)
         {
@@ -218,6 +220,13 @@ public abstract class AbstractStandardSetExtension
         	this.isDeletable =  isDeletable;
         }
         
+        public sObjectPaginationWrapper(sObject record,Boolean isChecked,Boolean isEditable, Boolean isDeletable, Boolean showTLDInfoIcon){
+        	this.record =  record;
+        	this.isChecked = isChecked;
+        	this.isEditable =  isEditable;
+        	this.isDeletable =  isDeletable;
+        	this.showTLDInfoIcon =  showTLDInfoIcon;
+        }
     }
     
      /***************************************************************************
@@ -226,6 +235,15 @@ public abstract class AbstractStandardSetExtension
     
     public abstract String getQuery();
     
+     /***************************************************************************
+    * @description Method to be implemented by Implementing Class to provide sorted Milestone list.
+    */
+    
+ 	public virtual void sortMilestones(List<sObject> sourcesObjectList)
+ 	{
+ 	
+ 	}
+     
      /****************************************************************************
     * @description Used for getting Selected Records.
     */
