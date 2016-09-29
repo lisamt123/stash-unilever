@@ -44,6 +44,10 @@
             <name>Rejected</name>
             <type>FieldUpdate</type>
         </action>
+		<action>
+            <name>WU_RejectionNotification</name>
+            <type>EmailAlert</type>
+        </action>
         <action>
             <name>SetPriorValueForCommittedPallet</name>
             <type>FieldUpdate</type>

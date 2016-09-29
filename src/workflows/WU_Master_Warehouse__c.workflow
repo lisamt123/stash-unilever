@@ -42,6 +42,17 @@
         <senderType>CurrentUser</senderType>
         <template>Warehouse_Utilization/Warehouse_Committed_Capacity</template>
     </alerts>
+	<alerts>
+        <fullName>WU_RejectionNotification</fullName>
+        <description>WU RejectionNotification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>WU_WarehousePOC_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>WU_Warehouse_Committed_StoragetoPOC_Rejection</template>
+    </alerts>
     <alerts>
         <fullName>WU_Notify_WarehousePOC</fullName>
         <description>Notify WarehousePOC</description>
