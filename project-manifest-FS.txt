@@ -1,9 +1,11 @@
 src
-src/classes/FS_TPRCalculationHelper.cls
-src/classes/FS_TPRCalculationHelper.cls-meta.xml
-src/classes/FS_TPRCalculationTest.cls
-src/classes/FS_TPRCalculationTest.cls-meta.xml
-src/objects/Opportunity.object
-src/objects/OpportunityLineItem.object
-src/workflows/OpportunityLineItem.workflow
-src/layouts/Opportunity-Opportunity with TPR Calculation Layout.layout
+src/dashboards/FS_Dashboards/FS_NA_Opportunity_Pipeline_Dash_Board.dashboard
+src/reports/FS_SHARED_FOLDER/FS_Opportunity_Pipeline
+src/reports/FS_SHARED_FOLDER/Opp_Summary_Report
+src/reports/FS_SHARED_FOLDER/FS_Opportunities_by_Product_Focus
+src/reports/FS_SHARED_FOLDER/Sales_Manager_Pipeline_Next_90_days
+src/reports/FS_SHARED_FOLDER/FS_Opportunity_Pipeline_Total
+src/reports/FS_SHARED_FOLDER/Month_Over_Month_Close_Trend
+src/reports/FS_SHARED_FOLDER/Account_Def_Objctives_and_Opportunities
+src/reports/FS_SHARED_FOLDER/Open_Opportunities_by_Hierarchy
+src/reports/FS_SHARED_FOLDER/Stuck_Opportunities
