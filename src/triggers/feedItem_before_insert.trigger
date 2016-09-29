@@ -9,7 +9,7 @@ trigger feedItem_before_insert on FeedItem (before insert) {
        
          // Auto Question Logic handler Call   
             Core_NC_NewsArticleCommentCount handlerFeed=new Core_NC_NewsArticleCommentCount();
-                if(!Test.isRunningTest()){ 
+              if(!Test.isRunningTest()){ 
             handlerFeed.chatterPostAskPaul(Trigger.new);
           }
          

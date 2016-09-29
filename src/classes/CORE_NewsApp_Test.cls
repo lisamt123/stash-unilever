@@ -134,7 +134,7 @@ public class CORE_NewsApp_Test{
 
         FeedItem feedItemObject =new FeedItem();
         feedItemObject.Type='TextPost';
-        feedItemObject.Body='Hi?';
+        feedItemObject.Body='Newsbody';
         feedItemObject.ParentId=news3.Id;
           insert feedItemObject ;
          
@@ -151,8 +151,8 @@ public class CORE_NewsApp_Test{
     //Method Modified for Covering News Article Handler Class
     public static testMethod void TestNewsAppChatterShare(){
         Test.startTest();
-        String strSiteTypeOrName3='News Centre';
         String strSiteTypeOrName4='Pauls Blog';
+        String strSiteTypeOrName3='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Leadership',News_Body__c='Test Body6',
                                                   News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c=strSiteTypeOrName4,
@@ -166,31 +166,7 @@ public class CORE_NewsApp_Test{
         insert news3;
         System.assert(news3!= null);
         
-         List<CORE_NEWS_ARTICLE__c> lstCustSet = new List<CORE_NEWS_ARTICLE__c>();
-         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='Site', Text_Value__c='PaulsBlog'));
-         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='chatterBody', Text_Value__c='PaulPolmanSeemylatestblog'));
-         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='NEWS_ARTICLE_AVATAR_USER', Text_Value__c='005E0000005My3X'));
-         if(!lstCustSet.isEmpty()){
-            insert lstCustSet;  
-        }
-        
-        List<News_Article__c> triggerNew =new List<News_Article__c>();
-        triggerNew.add(new News_Article__c(Name='News1',News_Article_Topics__c='Marketplace',News_Body__c='Test Body7',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c='PaulsBlog',
-                                                  Site_Type__c='PaulsBlog',Sub_Title__c='Sub Title7',Summary__c='Test Summary7',Title__c='Title7',
-                                                  View_Count__c=10)); 
-         triggerNew.add(new News_Article__c(Name='News2',News_Article_Topics__c='Marketplace',News_Body__c='Test Body7',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c='Finance',
-                                                  Site_Type__c='MCO',Sub_Title__c='Sub Title7',Summary__c='Test Summary7',Title__c='Title7',
-                                                  View_Count__c=10)); 
-         if(!triggerNew .isEmpty()){
-            insert triggerNew ;  
-        }                                       
-          System.assert(triggerNew != null);                                                                               
-          Core_NC_NewsArticleHandler handler=new Core_NC_NewsArticleHandler();
-          handler.handleAfterInsert(triggerNew );
-     
-        
+      
         Attachment attachmnt6 =new Attachment();
         attachmnt6.name='textfileone6.txt';
         attachmnt6.body =blob.valueOf('my attachment text6');
@@ -211,6 +187,30 @@ public class CORE_NewsApp_Test{
         System.assert( Core_NC_NewsCenterController.getGroupNames()!=null);
      // System.assert( Core_NC_NewsCenterController.postNewsToChatter('Title1',news1.Sharepoint_URL__c,'Test','myFollowers','')!=null);
         System.assert(Core_NC_NewsCenterController.postNewsToChatter('Title2',news3.Sharepoint_URL__c,'Test','group','my_group1')!=null);
+        
+    // To test the customization in the appearance of post when Paul's Blog Article in inserted
+         List<CORE_NEWS_ARTICLE__c> lstCustSet = new List<CORE_NEWS_ARTICLE__c>();
+         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='Site', Text_Value__c='PaulsBlog'));
+         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='chatterBody', Text_Value__c='PaulPolmanSeemylatestblog'));
+         lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='NEWS_ARTICLE_AVATAR_USER', Text_Value__c='005E0000005My3X'));
+         if(!lstCustSet.isEmpty()){
+            insert lstCustSet;  
+        } 
+        List<News_Article__c> triggerNew =new List<News_Article__c>();
+        triggerNew.add(new News_Article__c(Name='News1',News_Article_Topics__c='Marketplace',News_Body__c='Test Body7',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c='PaulsBlog',
+                                                  Site_Type__c='PaulsBlog',Sub_Title__c='Sub Title7',Summary__c='Test Summary7',Title__c='Title7',
+                                                  View_Count__c=10)); 
+        triggerNew.add(new News_Article__c(Name='News2',News_Article_Topics__c='Marketplace',News_Body__c='Test Body7',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c='Finance',
+                                                  Site_Type__c='MCO',Sub_Title__c='Sub Title7',Summary__c='Test Summary7',Title__c='Title7',
+                                                  View_Count__c=10)); 
+         if(!triggerNew .isEmpty()){
+            insert triggerNew ;  
+        }                                       
+          System.assert(triggerNew != null);                                                                               
+          Core_NC_NewsArticleHandler handler=new Core_NC_NewsArticleHandler();
+          handler.handleAfterInsert(triggerNew );
         Test.stopTest();
     }
     
@@ -241,23 +241,24 @@ public class CORE_NewsApp_Test{
     }
     
     //Method to Test Auto Question For Ask Paul
-      public static testMethod void TestAutoQuestion(){
+   public static testMethod void TestAutoQuestion(){
         Test.startTest();
-          CollaborationGroup objgroup= new CollaborationGroup(Name = 'AskPaul', CollaborationType = 'public');
-          insert objgroup;
+           CollaborationGroup objgroup= new CollaborationGroup(Name = 'AskPaul', CollaborationType = 'public');
+           insert objgroup;
            List<CORE_NEWS_ARTICLE__c> lstCustSet = new List<CORE_NEWS_ARTICLE__c>();
-          lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GroupsToPost', Text_Value__c=objgroup.Id)); 
+           lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GroupsToPost', Text_Value__c=objgroup.Id)); 
            if(!lstCustSet.isEmpty()){
             insert lstCustSet;  
           }
-          System.assert(lstCustSet!= null);
-         List<FeedItem> lstCustSet2 = new List<FeedItem>();
-         lstCustSet2.add( new FeedItem(Type='TextPost',  Title='My Question?',Body='AskPaul',ParentId=objgroup.Id)); 
-         lstCustSet2.add( new FeedItem(Type='TextPost',  Title='Hi',Body='AskPaul?',ParentId=objgroup.Id)); 
-         Core_NC_NewsArticleCommentCount handlerFeeds=new Core_NC_NewsArticleCommentCount();
-         handlerFeeds.chatterPostAskPaul(lstCustSet2 );   
-        
-        Test.stopTest();
+             System.assert(lstCustSet!= null);
+  
+   List<FeedItem> lstCustSet2 = new List<FeedItem>();
+   lstCustSet2.add( new FeedItem(Type='TextPost',  Title='Hi',Body='AskPaul?',ParentId=objgroup.Id)); 
+   lstCustSet2.add( new FeedItem(Type='TextPost',  Body='Ask#Paul?',ParentId=objgroup.Id)); 
+   lstCustSet2.add( new FeedItem(Type='TextPost',  Body='This is my questions with a very long title lots of characters to see how it will look?',ParentId=objgroup.Id)); 
+   Core_NC_NewsArticleCommentCount handlerFeeds=new Core_NC_NewsArticleCommentCount();
+   handlerFeeds.chatterPostAskPaul(lstCustSet2 );   
+      Test.stopTest();
     }
     
 }
