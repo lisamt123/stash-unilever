@@ -4,7 +4,7 @@
         <fullName>FS_UpdateExternalKey</fullName>
         <description>Created to update the external key from Contract product and product</description>
         <field>External_Key__c</field>
-        <formula>Contract_Product__r.Contract__r.ContractNumber +&apos;-&apos;+Contract_Product__r.Product__r.UID_Material_ID__c + &apos;-&apos;+TEXT(FS_First_of_Month__c)</formula>
+        <formula>Contract_Product__r.Contract__r.ContractNumber +&apos;-&apos;+Contract_Product__r.Product__r.Name + &apos;-&apos;+TEXT(FS_First_of_Month__c)</formula>
         <name>FS Update External Key</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>

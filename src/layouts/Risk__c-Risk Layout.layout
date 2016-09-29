@@ -29,6 +29,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Quantity__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Amount__c</field>
             </layoutItems>
             <layoutItems>
@@ -54,8 +58,8 @@
                 <field>CurrencyIsoCode</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Quantity__c</field>
+                <behavior>Readonly</behavior>
+                <field>Collective_Risk_Value__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -131,6 +135,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Distributor__c</fields>
+        <fields>Quantity__c</fields>
+        <fields>Price__c</fields>
+        <fields>Product__c</fields>
+        <fields>Total__c</fields>
         <relatedList>Product_at_Risk__c.Risk__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -139,7 +148,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8A000000Iydv</masterLabel>
+        <masterLabel>00hV0000000O2nk</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

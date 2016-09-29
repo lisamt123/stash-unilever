@@ -72,6 +72,6 @@
     <successMessage>A new opportunity has been created.</successMessage>
     <targetObject>Opportunity</targetObject>
     <targetParentField>Defined_Objective__c</targetParentField>
-    <targetRecordType>Opportunity.UFS_Opportunity_Russia</targetRecordType>
+    <targetRecordType>Opportunity.FS_OpportunityTPR</targetRecordType>
     <type>Create</type>
 </QuickAction>

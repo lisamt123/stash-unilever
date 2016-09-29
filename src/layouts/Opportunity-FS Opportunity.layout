@@ -80,7 +80,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Type_from_Objective__c</field>
+                <field>FS_Type_from_Objective__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -98,13 +98,16 @@
                 <behavior>Edit</behavior>
                 <field>FS_Sub_Sector__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_DistributorTMI__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>CloseDate</field>
             </layoutItems>
-
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>StageName</field>
@@ -150,7 +153,6 @@
                 <behavior>Edit</behavior>
                 <field>FS_endDateTPR__c</field>
             </layoutItems>
-
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_casesPiece__c</field>
@@ -248,11 +250,6 @@
     <relatedContent>
         <relatedContentItems>
             <layoutItem>
-                <component>wits:newsPanel</component>
-            </layoutItem>
-        </relatedContentItems>
-        <relatedContentItems>
-            <layoutItem>
                 <behavior>Readonly</behavior>
                 <field>AccountId</field>
             </layoutItem>
@@ -301,9 +298,9 @@
         <fields>Product2</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
-        <fields>ListPrice</fields>
         <fields>FS_tprPercent__c</fields>
         <fields>Turnover__c</fields>
+        <fields>FS_DISTTMI__c</fields>
         <fields>FS_grossProfit__c</fields>
         <fields>FS_grossMargin__c</fields>
         <fields>FS_gmWhenTPREqualsZero__c</fields>
@@ -337,7 +334,6 @@
         <fields>Type__c</fields>
         <relatedList>Marketing_Fund__c.Opportunity__c</relatedList>
     </relatedLists>
-
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>

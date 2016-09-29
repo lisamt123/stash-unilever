@@ -33,6 +33,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>CanUseQuantitySchedule</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>ImageURL__c</field>
             </layoutItems>
             <layoutItems>
@@ -53,9 +57,16 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Net_Weight_lb__c</field>
+                <field>FS_FI_Category__c</field>
             </layoutItems>
-
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_FI_Market__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_FI_Division__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -89,6 +100,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>UID_Gross_Weight__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_NetWeight__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Net_Weight_lb__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -137,7 +156,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_ProductImage__c</field>
+                <field>ProductImage__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -160,15 +179,11 @@
                 <behavior>Edit</behavior>
                 <field>GTIN__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_NetWeight__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>UoM__c</field>
+                <field>UnitOfMeasure__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -280,27 +295,23 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L03_Sub_Division__c</field>
+                <field>L04_Category__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L04_Category__c</field>
+                <field>L05_Market__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L05_Market__c</field>
+                <field>L06_Sector__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L06_Sector__c</field>
+                <field>L11_BFPP__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L11_BFPP__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_L12_SPF__c</field>
+                <field>L12_SPF__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -370,7 +381,6 @@
     <relatedLists>
         <relatedList>RelatedPricebookEntryList</relatedList>
     </relatedLists>
-
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>FS_Monthly_Claimed_Cases__c.Product__c</relatedList>
@@ -393,7 +403,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8A000000EkJU</masterLabel>
+        <masterLabel>00hV0000000O2uA</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

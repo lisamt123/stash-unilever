@@ -41,16 +41,27 @@
         <field>ACCOUNT_NAME</field>
     </columns>
     <currency>USD</currency>
+    <description>Open opps by Zone, Region, Territory</description>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Opportunity.FS_Type_from_Objective__c</field>
+        <field>Account.Zone__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Closed Revenue This Quarter</name>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Region__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Territory__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Open Opportunities by Hierarchy</name>
     <params>
         <name>open</name>
-        <value>closedwon</value>
+        <value>open</value>
     </params>
     <params>
         <name>probability</name>
@@ -62,7 +73,7 @@
     </params>
     <reportType>Opportunity</reportType>
     <scope>organization</scope>
-    <showDetails>true</showDetails>
+    <showDetails>false</showDetails>
     <sortColumn>AMOUNT</sortColumn>
     <sortOrder>Desc</sortOrder>
     <timeFrameFilter>

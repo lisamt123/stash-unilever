@@ -52,7 +52,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_Distributor_Address__c</field>
+                <field>FSNA_TotalDeviatedRate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FSNA_TotalHQRate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FSNAMarginMarketCodeHelper__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Copy_of_DIST_TMI__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -60,7 +72,6 @@
                 <behavior>Edit</behavior>
                 <field>ServiceDate</field>
             </layoutItems>
-
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Actual_Quantity__c</field>
@@ -93,7 +104,6 @@
                 <behavior>Edit</behavior>
                 <field>ICB_Total_Purchase_Price__c</field>
             </layoutItems>
-	       
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>FS_Rate__c</field>
@@ -261,7 +271,7 @@
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
+        <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
@@ -301,10 +311,15 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
+    <miniLayout>
+        <fields>OpportunityId</fields>
+        <fields>Product2Id</fields>
+        <fields>Quantity</fields>
+        <fields>UnitPrice</fields>
+    </miniLayout>
     <multilineLayoutFields>Product2Id</multilineLayoutFields>
     <multilineLayoutFields>Quantity</multilineLayoutFields>
     <multilineLayoutFields>UnitPrice</multilineLayoutFields>
-    <multilineLayoutFields>ListPrice</multilineLayoutFields>
     <multilineLayoutFields>ServiceDate</multilineLayoutFields>
     <multilineLayoutFields>Discount</multilineLayoutFields>
     <multilineLayoutFields>Description</multilineLayoutFields>
@@ -315,4 +330,10 @@
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
+    <summaryLayout>
+        <masterLabel>00hE0000001DbIg</masterLabel>
+        <sizeX>4</sizeX>
+        <sizeY>0</sizeY>
+        <summaryLayoutStyle>Default</summaryLayoutStyle>
+    </summaryLayout>
 </Layout>

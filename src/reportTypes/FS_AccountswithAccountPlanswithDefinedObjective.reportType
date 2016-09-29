@@ -390,11 +390,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>FS_Payer__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>PersonContact</field>
             <table>Account</table>
         </columns>
@@ -1159,7 +1154,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Type_from_Objective__c</field>
+            <field>FS_Type_from_Objective__c</field>
             <table>Account.Account_Plans__r.Defined_Objectives__r.Opportunities__r</table>
         </columns>
         <columns>

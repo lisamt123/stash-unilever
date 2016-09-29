@@ -93,7 +93,7 @@
             <criteriaItems>
                 <field>User.Profile</field>
                 <operation>equals</operation>
-                <value>Unilever - Salesforce MultiApp Standard</value>
+                <value>Unilever Food Solution - NA</value>
             </criteriaItems>
         </entryCriteria>
         <label>Account Process Step 3</label>

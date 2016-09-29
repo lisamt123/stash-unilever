@@ -13,15 +13,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_MealsPerDay__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FS_AveragePricePerMeal__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_WeeksPerYear__c</field>
+                <field>FS_ConvenienceFactor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -29,19 +25,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>FS_WeeksPerYear__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>FS_FoodCost__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_FoodTurnover__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_FoodTurnoverRUB__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>FS_FoodPriceValue__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_MealsPerDay__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -52,12 +48,16 @@
                 <field>FS_PotentialUFSShareOfFoodCostEuro__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_ConvenienceFactor__c</field>
+                <behavior>Readonly</behavior>
+                <field>FS_FinalPotential__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_FinalPotential__c</field>
+                <field>FS_FoodTurnover__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_FoodTurnoverRUB__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -120,29 +120,13 @@
         <fields>TASK.LAST_UPDATE</fields>
         <relatedList>RelatedHistoryList</relatedList>
     </relatedLists>
-    <relatedLists>
-        <relatedList>RelatedNoteList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCOUNT.PHONE1</fields>
-        <fields>PC_EMAIL</fields>
-        <fields>ACCOUNT.SITE</fields>
-        <fields>PC_ADDRESS2_CITY</fields>
-        <fields>PC_ADDRESS2_ZIP</fields>
-        <fields>UID_Region__c</fields>
-        <fields>UID_Branch__c</fields>
-        <fields>UID_Geography__c</fields>
-        <fields>UID_Segment__c</fields>
-        <relatedList>Account.FS_OperatorOutlet__c</relatedList>
-    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hV0000000O2sI</masterLabel>
+        <masterLabel>00hV0000000O2nd</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

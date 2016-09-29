@@ -7,6 +7,9 @@
         <field>FS_Account_Plan__c.FS_Account_Business_Plan_Name__c</field>
     </columns>
     <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
         <field>FS_Account_Plan__c.FS_Completed__c</field>
     </columns>
     <columns>

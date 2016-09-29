@@ -30,7 +30,6 @@
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
             </layoutItems>
-	    
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ICB_Purchase_Price__c</field>
@@ -39,9 +38,6 @@
                 <behavior>Edit</behavior>
                 <field>ICB_Manufacture_Price__c</field>
             </layoutItems>
-
-	    
-	    
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CurrencyIsoCode</field>
@@ -94,15 +90,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_Weight_Value__c</field>
+                <field>Weight_Value__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>FS_Unit_conversion_factor__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_Amount_of_box_per_pallet__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

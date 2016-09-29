@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldOverrides>
-        <field>Account_Plan__c</field>
+        <field>EndDate</field>
+        <formula>FS_Defined_Objective__c.FS_Completion_Date__c</formula>
+    </fieldOverrides>
+    <fieldOverrides>
+        <field>FS_Account_Plan__c</field>
         <formula>FS_Defined_Objective__c.FS_Account_Plan__c</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>Customer__c</field>
+        <field>FS_Customer__c</field>
         <formula>FS_Defined_Objective__c.FS_Customer__c</formula>
     </fieldOverrides>
     <fieldOverrides>
-        <field>Defined_Objective__c</field>
+        <field>FS_Defined_Objective__c</field>
         <formula>FS_Defined_Objective__c.Id</formula>
-    </fieldOverrides>
-    <fieldOverrides>
-        <field>EndDate</field>
-        <formula>FS_Defined_Objective__c.FS_Completion_Date__c</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Name</field>
@@ -28,7 +28,6 @@
         <field>Status</field>
         <literalValue>Planned</literalValue>
     </fieldOverrides>
-    <label>Create Campaign</label>
     <optionsCreateFeedItem>true</optionsCreateFeedItem>
     <quickActionLayout>
         <layoutSectionStyle>TwoColumnsLeftToRight</layoutSectionStyle>
@@ -40,12 +39,12 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Account_Plan__c</field>
+                <field>FS_Account_Plan__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Defined_Objective__c</field>
+                <field>FS_Defined_Objective__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -55,7 +54,7 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
-                <field>Customer__c</field>
+                <field>FS_Customer__c</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
             <quickActionLayoutItems>
@@ -97,6 +96,7 @@
             </quickActionLayoutItems>
         </quickActionLayoutColumns>
     </quickActionLayout>
+    <standardLabel>CreateNew</standardLabel>
     <targetObject>Campaign</targetObject>
     <targetParentField>FS_Defined_Objective__c</targetParentField>
     <targetRecordType>Campaign.Trade_Event</targetRecordType>

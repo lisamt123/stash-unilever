@@ -64,6 +64,16 @@
             </quickActionLayoutItems>
             <quickActionLayoutItems>
                 <emptySpace>false</emptySpace>
+                <field>CurrencyIsoCode</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
+                <field>FSNA_Margin_Market_Code__c</field>
+                <uiBehavior>Required</uiBehavior>
+            </quickActionLayoutItems>
+            <quickActionLayoutItems>
+                <emptySpace>false</emptySpace>
                 <field>Amount</field>
                 <uiBehavior>Edit</uiBehavior>
             </quickActionLayoutItems>
@@ -72,6 +82,6 @@
     <successMessage>A new opportunity has been created.</successMessage>
     <targetObject>Opportunity</targetObject>
     <targetParentField>Defined_Objective__c</targetParentField>
-    <targetRecordType>Opportunity.NAFSMABETool</targetRecordType>
+    <targetRecordType>Opportunity.FS_OpportunityMABE</targetRecordType>
     <type>Create</type>
 </QuickAction>

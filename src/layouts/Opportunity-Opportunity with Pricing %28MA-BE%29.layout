@@ -40,19 +40,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_AverageGrossProfit__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_MarketTarget__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>FS_Fixed_Price_Count__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>FS_GrossMarginTarget__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -63,8 +51,8 @@
                 <field>FS_ClaimedCaseGenerated__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_Sub_Sector__c</field>
+                <behavior>Readonly</behavior>
+                <field>FS_Type_from_Objective__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -76,7 +64,6 @@
                 <behavior>Edit</behavior>
                 <field>AgreementDate__c</field>
             </layoutItems>
-
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>StageName</field>
@@ -107,15 +94,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_LumpSum__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>FS_Comment__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FSNA_BMI__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Type_from_Objective__c</field>
+                <field>FSNA_Distributor_TMI__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FS_LumpSum__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -124,17 +115,39 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Sub sector</label>
+        <label>Financial Summary</label>
         <layoutColumns>
             <layoutItems>
-                <height>50</height>
-                <page>FS_OpportunitySubsector</page>
-                <showLabel>false</showLabel>
-                <showScrollbars>false</showScrollbars>
-                <width>100%</width>
+                <behavior>Readonly</behavior>
+                <field>FSNA_TotalSpend__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_TotalRate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_TotalHQRate__c</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns/>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>FSNA_Margin_Market_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FSNA_Margin_Market_Target__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_GrossMarginTarget__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>FS_AverageGrossProfit__c</field>
+            </layoutItems>
+        </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -276,11 +289,6 @@
     <relatedContent>
         <relatedContentItems>
             <layoutItem>
-                <component>wits:newsPanel</component>
-            </layoutItem>
-        </relatedContentItems>
-        <relatedContentItems>
-            <layoutItem>
                 <behavior>Readonly</behavior>
                 <field>AccountId</field>
             </layoutItem>
@@ -296,9 +304,9 @@
         <fields>Product2</fields>
         <fields>Quantity</fields>
         <fields>UnitPrice</fields>
-        <fields>ListPrice</fields>
         <fields>FS_tprPercent__c</fields>
         <fields>Turnover__c</fields>
+        <fields>FS_DISTTMI__c</fields>
         <fields>FS_grossProfit__c</fields>
         <fields>FS_grossMargin__c</fields>
         <fields>FS_gmWhenTPREqualsZero__c</fields>
@@ -357,7 +365,6 @@
         <fields>Type__c</fields>
         <relatedList>Marketing_Fund__c.Opportunity__c</relatedList>
     </relatedLists>
-
     <relatedObjects>AccountId</relatedObjects>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>true</showHighlightsPanel>
@@ -365,7 +372,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h8A000000EfVa</masterLabel>
+        <masterLabel>00hV0000000O2sL</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

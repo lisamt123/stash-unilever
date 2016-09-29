@@ -80,7 +80,6 @@
             <field>CreatedDate</field>
             <table>Opportunity</table>
         </columns>
-
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>DealApproved__c</field>
@@ -116,7 +115,6 @@
             <field>ExpectedRevenue</field>
             <table>Opportunity</table>
         </columns>
-
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>ForecastCategoryName</field>
@@ -257,7 +255,6 @@
             <field>FS_Owner_Manager__c</field>
             <table>Opportunity</table>
         </columns>
-
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>PartnerAccount</field>
@@ -385,7 +382,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Type_from_Objective__c</field>
+            <field>FS_Type_from_Objective__c</field>
             <table>Opportunity</table>
         </columns>
         <columns>

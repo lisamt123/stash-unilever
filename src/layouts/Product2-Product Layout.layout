@@ -49,31 +49,27 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Net_Weight_lb__c</field>
+                <field>L03_Sub_Division__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L03_Sub_Division__c</field>
+                <field>L04_Category__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L04_Category__c</field>
+                <field>L05_Market__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L05_Market__c</field>
+                <field>L06_Sector__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L06_Sector__c</field>
+                <field>L11_BFPP__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>FS_L11_BFPP__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>FS_L12_SPF__c</field>
+                <field>L12_SPF__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -128,7 +124,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>FS_ProductImage__c</field>
+                <field>ProductImage__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
@@ -161,10 +157,6 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>UoM__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ProductCode</field>

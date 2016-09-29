@@ -74,7 +74,6 @@
             <field>CreatedDate</field>
             <table>Opportunity</table>
         </columns>
-
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>DealApproved__c</field>
@@ -220,7 +219,6 @@
             <field>RecordType</field>
             <table>Opportunity</table>
         </columns>
-
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>PartnerAccount</field>

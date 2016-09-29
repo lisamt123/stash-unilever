@@ -291,7 +291,7 @@
         <fields>UnitPrice</fields>
         <fields>ListPrice</fields>
         <fields>FS_tprPercent__c</fields>
-        <fields>Turnover__c</fields>
+        <fields>FS_turnover__c</fields>
         <fields>FS_gmWhenTPREqualsZero__c</fields>
         <fields>ProdDistributor__c</fields>
         <fields>FS_Sample__c</fields>

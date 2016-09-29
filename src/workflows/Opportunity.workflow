@@ -3,22 +3,22 @@
     <alerts>
         <fullName>Approval_request_email_template_to_Step3_approver</fullName>
         <description>&quot;Approval request email template&quot; to Step3 approver</description>
-    	<recipients>
+        <protected>false</protected>
+        <recipients>
             <recipient>FS_System_Admin</recipient>
             <type>group</type>
         </recipients>
-        <protected>false</protected>
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
     </alerts>
     <alerts>
         <fullName>Approval_request_email_template_to_Step_1_approver</fullName>
         <description>&quot;Approval request email template&quot; to Step 1 approver</description>
-    	<recipients>
+        <protected>false</protected>
+        <recipients>
             <recipient>FS_System_Admin</recipient>
             <type>group</type>
         </recipients>
-        <protected>false</protected>
         <senderType>CurrentUser</senderType>
         <template>FS_Email_Templates/FS_Opportunity_approval_request_email_template</template>
     </alerts>
@@ -180,7 +180,6 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-
     <fieldUpdates>
         <fullName>FS_Update_Stage_New_to_Negotiation</fullName>
         <description>Update the Stage field from New to Negotiation.</description>
@@ -334,5 +333,4 @@ FS_Push_Counter__c + 1
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-
 </Workflow>

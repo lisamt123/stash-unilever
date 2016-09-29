@@ -12,7 +12,6 @@
         <field>Name</field>
         <field>Owner</field>
         <field>FS_distributor__c</field>
-        
         <field>FS_kindOfTPR__c</field>
     </approvalPageFields>
     <approvalStep>
@@ -25,10 +24,8 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>chatter.support@unilever.com</name>
-                <type>user</type>
+                <type>userHierarchyField</type>
             </approver>
-            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <description>Line Manager approval</description>
         <label>Line Manager Approval</label>

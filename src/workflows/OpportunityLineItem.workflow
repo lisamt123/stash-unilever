@@ -16,6 +16,16 @@
         <template>FS_Email_Templates/FS_Fixed_Price_Review_of_Opportunity_Product</template>
     </alerts>
     <fieldUpdates>
+        <fullName>FS_DIST_TMI_To_Copy_of_Dist_TMI</fullName>
+        <description>Copy DIST TMI To Non Formula Field</description>
+        <field>Copy_of_DIST_TMI__c</field>
+        <formula>FS_DISTTMI__c</formula>
+        <name>FS DIST TMI To Copy of Dist TMI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FS_UpdateSalesPrice</fullName>
         <description>Updating sales price to zero.</description>
         <field>UnitPrice</field>
@@ -75,7 +85,21 @@
         </actions>
         <active>true</active>
         <description>Created to restrict adding same products to opportunity.</description>
-        <formula>AND($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,  Opportunity.RecordType.Name =&quot;UFS Opportunity Russia&quot;)</formula>
+        <formula>AND($Profile.Name=&quot;Unilever Food Solution - Russia&quot;,  Opportunity.RecordType.Name =&quot;RUFS Opportunity TPR&quot;)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>FS Copy DIST TMI To Non Formula Field</fullName>
+        <actions>
+            <name>FS_DIST_TMI_To_Copy_of_Dist_TMI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OpportunityLineItem.FS_DISTTMI__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Copy DIST TMI To Non Formula Field. Needed to roll-up DIST TMI formula field to the Opportunity</description>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

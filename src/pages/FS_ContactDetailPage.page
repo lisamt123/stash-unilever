@@ -79,7 +79,7 @@ function isNumberKey(evt)
             </apex:pageBlockSection>
             <apex:pageBlocksection title="{!ADDRESSTEXT}" columns="1" rendered="{!Not(EditMode)}">
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel value="{!MAILINGSTREETTEXT}" />
+                    <apex:outputLabel value="Comment" />
                     <apex:outputText value="{!varContactDetail.MailingStreet}" />
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
@@ -169,7 +169,7 @@ function isNumberKey(evt)
             </apex:pageBlockSection>
             <apex:pageBlocksection title="Address Information" columns="1" rendered="{!(EditMode)}">
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel value="Mailing Street" />
+                    <apex:outputLabel value="Comment" />
                    
                      <apex:inputText value="{!varContactDetail.MailingStreet}" />
                 </apex:pageBlockSectionItem>

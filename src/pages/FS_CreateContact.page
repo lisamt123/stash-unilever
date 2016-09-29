@@ -36,7 +36,7 @@ function isNumberKey(evt)
                 
             </apex:pageBlockSection>
             <apex:pageBlocksection title="Address Information" columns="1">
-                <apex:inputfield value="{!varContactDetail.MailingStreet}" />
+                <apex:inputfield value="{!varContactDetail.MailingStreet}"  label="Comment"/>
                 <apex:inputfield value="{!varContactDetail.MailingCity}" />
                 <apex:inputfield value="{!varContactDetail.MailingState}" />
                 <apex:inputfield value="{!varContactDetail.MailingPostalCode}" /> 

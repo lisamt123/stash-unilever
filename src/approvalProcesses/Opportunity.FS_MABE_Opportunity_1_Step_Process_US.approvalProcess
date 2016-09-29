@@ -347,7 +347,7 @@
     <emailTemplate>FS_Email_Templates/FS_Opportunity_approval_request_email_template</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <formula>AND( $Setup.FS_User_Territory__c.FS_UserType__c = &apos;1 Step MABE&apos;,  ISPICKVAL(StageName, &apos;03 - Proposal&apos;), RecordType.Name = &apos;Opportunity with Pricing (MA-BE)&apos;,  Account.RecordType.Name= &quot;Operator&quot;,Account.ShippingCountry= &quot;US&quot;)</formula>
+        <formula>AND( $Setup.FS_User_Territory__c.FS_UserType__c = &apos;1 Step MABE&apos;,  ISPICKVAL(StageName, &apos;03 - Proposal&apos;), RecordType.Name = &apos;NAFS Opportunity MABE&apos;,  Account.RecordType.Name= &quot;Operator&quot;,Account.ShippingCountry= &quot;US&quot;)</formula>
     </entryCriteria>
     <finalApprovalActions>
         <action>

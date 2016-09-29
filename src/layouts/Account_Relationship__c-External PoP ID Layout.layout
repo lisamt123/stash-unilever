@@ -65,19 +65,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <relatedLists>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>ACCOUNT.PHONE1</fields>
-        <fields>PC_EMAIL</fields>
-        <fields>ACCOUNT.SITE</fields>
-        <fields>PC_ADDRESS2_CITY</fields>
-        <fields>PC_ADDRESS2_ZIP</fields>
-        <fields>UID_Region__c</fields>
-        <fields>UID_Branch__c</fields>
-        <fields>UID_Geography__c</fields>
-        <fields>UID_Segment__c</fields>
-        <relatedList>Account.Cross_Account_ID__c</relatedList>
-    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

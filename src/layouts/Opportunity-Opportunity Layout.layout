@@ -96,7 +96,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Type_from_Objective__c</field>
+                <field>FS_Type_from_Objective__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
