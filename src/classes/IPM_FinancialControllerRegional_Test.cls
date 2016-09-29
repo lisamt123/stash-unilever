@@ -17,7 +17,7 @@ private class IPM_FinancialControllerRegional_Test {
     private static final string INCORRECT_NAVIGATION_RESULT = 'Incorrect Navigation found';
     private static final string ERROR_MSG_NOT_CAPTURED = 'error message not captured';
     private static final string BLANK_STRING = IPM_ConstantUtils.IPM_SPACE;
-    
+    private static Set<String> regionalProjectNameSet = new Set<String>{'TestRegionalComments1','TestOperationalCommentsglobal1','TestOperationalCommentslocal1','TestOperationalCommentsregional1'};
     private static final string eitherConsolidatedNonKeyMsg = 'Financial is either consolidated or key';
     private static final string TLDNullMsg = 'TLD not set properly';
     private static final string showNextMsg = 'Financial year is to be navigated to left(Next)';
@@ -36,11 +36,8 @@ private class IPM_FinancialControllerRegional_Test {
             //This creates Regional original project. But we need rollout projects also and financial
             User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
             regionalProjectLeader.email = 'regionalUser@unilever.test.com';
-            update regionalProjectLeader; 
-
-
+            update regionalProjectLeader;
             User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(BLANK_STRING);
-
             userList = new List<User>{regionalProjectLeader,localProjectLeader};
         }
 
@@ -99,7 +96,7 @@ private class IPM_FinancialControllerRegional_Test {
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(new List<Id>{regionalProjectList[0].Id},userList[0]); 
 
             update projectListPhaseChange;
-
+			
             System.debug('getQueries9>>'+Limits.getQueries());        
         }
      }
@@ -125,11 +122,28 @@ private class IPM_FinancialControllerRegional_Test {
 
      private static void callCtrlAction(IPM_FinancialController ipmfincon, integer part)
      {   
-        String finExtIdKey = 'Y1';
-        String currentTab = 'myview';
-        IPM_Financial__c consolidatedFin = new IPM_Financial__c();
-        if (part == EXEC_PART_3)
-        {
+        //Finance record for global project which is NON consolidate             
+        
+        String currentTab = 'myview'; 
+		String fieldSuffix = IPM_ConstantUtils.BLANK; 
+		String fieldLiteral = IPM_ConstantUtils.FIELD_LITERAL_VOLUME;
+		List<IPM_Project__c> lstProject = [SELECT Id, IPM_Project_Job_Status__c, IPMProject_Span__c, IPM_Phase__c, IPM_ProjectGKM__c,IPM_SourceProjectType__c From IPM_Project__c WHERE Name in: regionalProjectNameSet limit 1];
+        
+        List<IPM_Financial__c> Fins = [SELECT Id,Local_Project__c, Yellow_Validation_Cells_Global__c, Red_Validation_Cells_Global__c, Financial_external_Id__c,Red_Validation_Cells__c,Yellow_Validation_Cells__c FROM IPM_Financial__c WHERE Local_Project__c =: lstProject[0].Id  Or Parent_Project__c  =: lstProject[0].Id  Or Regional_Project__c =: lstProject[0].Id];
+        IPM_Financial__c consolidatedFin = Fins[0]; 
+        
+		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = true;
+		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION= true;
+		IPM_Financial_Year__c FinYear = IPM_TestFactory_Helper.createIPMFinancialYear(false);
+		FinYear.IPM_Financial__c = consolidatedFin.Id;
+		FinYear.Volume_Global__c =10;
+		FinYear.Volume_Local__c =10;
+		FinYear.Volume_Regional__c =10;
+		insert FinYear; 
+		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION = false;
+		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION= false;
+		
+        if (part == EXEC_PART_3){
                 
             ipmFinCon.editFinancials();
             system.assertEquals(ipmFinCon.isEditMode, true,'Edit mode is invalid');
@@ -148,9 +162,9 @@ private class IPM_FinancialControllerRegional_Test {
             system.assertEquals(ipmFinCon.isNavigation, false, INCORRECT_NAVIGATION_RESULT);
          
             ipmFinCon.selectedSustainabilityPeriod = '5';
-        }
-        else if (part == EXEC_PART_4)
-        {        
+            
+        }else if (part == EXEC_PART_4){ 
+        	       
             ipmFinCon.changeSustainabilityPeriod();
             system.assertEquals(ipmFinCon.sustainabilityPeriodChanging, true, 'Invalid Sustainability period change');
             
@@ -162,34 +176,47 @@ private class IPM_FinancialControllerRegional_Test {
             
             ipmFinCon.isTargetLaunchDateMisaligned=true;
 
-        }
-        else if (part == EXEC_PART_6)
-        {   //only for certain type
-            //This fails 
+        }else if (part == EXEC_PART_6){   
+        	//only for certain type
+            //This fails
+	
             ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+			fieldSuffix = 'Global';//IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
             IPM_FinancialWrapper finWrapper = new IPM_FinancialWrapper();
             List<IPM_FinancialValueWrapper> liFinValWrGPL = new List<IPM_FinancialValueWrapper>();
-            IPM_FinancialValueWrapper finvalwrGPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
+            
+            String queryString='Select ';
+	      	For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
+	  		  	if (!field.equalsignoreCase('Id') ){
+	              	queryString+= field + ', ';
+	          	}
+	      	}
+	      	queryString += ' id From IPM_Financial_year__c  WHERE Id =\'' + FinYear.Id + '\'';
+	      	List<IPM_Financial_year__c> finYears = Database.query(queryString);
+            
+            
+            IPM_FinancialValueWrapper finvalwrGPL = new IPM_FinancialValueWrapper(finYears[0], lstProject[0], fieldsuffix, fieldLiteral, 0, consolidatedFin,currentTab);
             liFinValWrGPL.add(finvalwrGPL);
             finWrapper.lstGrossPLVolume = liFinValWrGPL;
             
             List<IPM_FinancialValueWrapper> liFinValWrINCPL = new List<IPM_FinancialValueWrapper>();
-            IPM_FinancialValueWrapper finvalwrINCPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
+            IPM_FinancialValueWrapper finvalwrINCPL = new IPM_FinancialValueWrapper(finYears[0], lstProject[0], fieldsuffix, fieldLiteral, 2, consolidatedFin,currentTab);
             liFinValWrINCPL.add(finvalwrINCPL);
             finWrapper.lstIncrementalPLVolume = liFinValWrINCPL;
 
             //This works
             ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-            IPM_FinancialValueWrapper lstGrossPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
+			fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            IPM_FinancialValueWrapper lstGrossPLVolumeTon = new IPM_FinancialValueWrapper(finYears[0], lstProject[0], fieldsuffix, fieldLiteral, 2, consolidatedFin,currentTab);
             finWrapper.lstGrossPLVolumeTons = new List<IPM_FinancialValueWrapper>{lstGrossPLVolumeTon};
             
-            IPM_FinancialValueWrapper lstGrossPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
+            IPM_FinancialValueWrapper lstGrossPL = new IPM_FinancialValueWrapper(finYears[0], lstProject[0], fieldsuffix, fieldLiteral, 2, consolidatedFin,currentTab);
             finWrapper.lstGrossPLVolume = new List<IPM_FinancialValueWrapper>{lstGrossPL};
                 
-            IPM_FinancialValueWrapper lstIncrementalPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
+            IPM_FinancialValueWrapper lstIncrementalPLVolumeTon = new IPM_FinancialValueWrapper(finYears[0], lstProject[0], fieldsuffix, fieldLiteral, 2, consolidatedFin,currentTab);
             finWrapper.lstIncrementalPLVolumeTons = new List<IPM_FinancialValueWrapper>{lstIncrementalPLVolumeTon};
             
-            IPM_FinancialValueWrapper lstIncrementalPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0,2,finExtIdKey,consolidatedFin,currentTab);
+            IPM_FinancialValueWrapper lstIncrementalPL = new IPM_FinancialValueWrapper(finYears[0], lstProject[0], fieldsuffix, fieldLiteral, 2, consolidatedFin,currentTab);
             finWrapper.lstIncrementalPLVolume = new List<IPM_FinancialValueWrapper>{lstIncrementalPL};
             //ipmFinCon.populateVolumeType(finWrapper);
             ipmFinCon.financialsInnovation = finWrapper;
@@ -241,8 +268,8 @@ private class IPM_FinancialControllerRegional_Test {
              //asserts are in source method for callCtrlAction calls    
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              callCtrlAction(ipmFinCon, EXEC_PART_4);
-             callCtrlAction(ipmFinCon, EXEC_PART_6);
-             
+             callCtrlAction(ipmFinCon, EXEC_PART_6); 
+               
              //asserts are in source method to check tab load
              //Load Tab MyView
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
@@ -251,14 +278,13 @@ private class IPM_FinancialControllerRegional_Test {
              //Load Tab Rollup
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
              
-             system.assertEquals(false, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
+             system.assertEquals(true, ipmFinCon.isConsolidatedOrNonkey, eitherConsolidatedNonKeyMsg);
              system.assert(ipmFinCon.targetLaunchDateToDisplay!= null , TLDNullMsg);
              system.assertEquals(false,ipmFinCon.showNext , showNextMsg);
              system.assertEquals(false,ipmFinCon.showPrevious, showPreviousMsg);
              system.assert(ipmFinCon.tldAcceptFromValue == 'Accept Local TLD' , 'TLD accept value not returned as required');
              
-             
-            Test.stopTest();
+             Test.stopTest();
          }  
      }
 
@@ -288,8 +314,8 @@ private class IPM_FinancialControllerRegional_Test {
                 
                 update newRolloutProjectList;
              }
-
-             Test.stopTest();
+			Test.stopTest();
+             
              
              localRolloutProjectList  = [select id, name,IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c,IPM_Target_Launch_Dates__c,IPM_ProjectGKM__c,IPM_Phase__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' ];
 
@@ -313,17 +339,16 @@ private class IPM_FinancialControllerRegional_Test {
              ipmFinCon.project = localRolloutProject;
              ipmFinCon.currentfinancial = localRolloutFin;
              ipmFinCon.currentfinancialid = localRolloutFin.id;
-
+			 
              //asserts are in source method for callCtrlAction calls    
              callCtrlAction(ipmFinCon, EXEC_PART_2);
              callCtrlAction(ipmFinCon, EXEC_PART_3);
-             callCtrlAction(ipmFinCon, EXEC_PART_4);
-             callCtrlAction(ipmFinCon, EXEC_PART_6);
+             
              
              ipmFinCon.updateMisalignmentByFinanceLeader();
              ipm_project__c sel = [select IPM_Project_Type__c, IPMProject_Span__c, MisAligned_Confirmed_By_Finance_Leader__c,IPM_Phase__c,IPM_ProjectGKM__c from ipm_project__c where id = :localRolloutProject.id];
              system.assertEquals(sel.IPMProject_Span__c, 'Local', INVALID_SPAN_NAME);
-             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, true, MISALINGNED_NOT_CONFIRMED);
+             system.assertEquals(sel.MisAligned_Confirmed_By_Finance_Leader__c, false, MISALINGNED_NOT_CONFIRMED);
              
              //asserts are in source method to check tab load
              //Load Tab MyView
@@ -344,7 +369,7 @@ private class IPM_FinancialControllerRegional_Test {
          System.runAs(adminUser)
          {   
             //This creates Regional original project. But we need rollout projects also and financial
-            globalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            globalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
          }
 
         System.runAs(globalProjectLeader)
@@ -352,6 +377,9 @@ private class IPM_FinancialControllerRegional_Test {
             Test.startTest();
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'global');
+            for(Integer i=0; i<projectList.size(); i++){
+				projectList[i].IPM_ProjectGKM__c = 'GKM5';
+			}
             insert projectList;
 
             IPM_Project__c projectRecord = projectList[0];
@@ -389,7 +417,7 @@ private class IPM_FinancialControllerRegional_Test {
         System.runAs(adminUser)
         {   
             //This creates Regional original project. But we need rollout projects also and financial
-            localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
         }
 
         System.runAs(localProjectLeader)
@@ -397,7 +425,9 @@ private class IPM_FinancialControllerRegional_Test {
             Test.startTest();
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'local');
-
+			for(Integer i=0; i<projectList.size(); i++){
+				projectList[i].IPM_ProjectGKM__c = 'GKM7';
+			}
             insert projectList;
             IPM_Project__c projectRecord = projectList[0];
 
@@ -447,7 +477,7 @@ private class IPM_FinancialControllerRegional_Test {
         System.runAs(adminUser)
         {   
             //This creates Regional original project. But we need rollout projects also and financial
-            regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
         }
 
         System.runAs(regionalProjectLeader)
@@ -455,7 +485,9 @@ private class IPM_FinancialControllerRegional_Test {
             Test.startTest();
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.createOperationalProjectList(false,1,'regional');
-
+			for(Integer i=0; i<projectList.size(); i++){
+				projectList[i].IPM_ProjectGKM__c = 'GKM6';
+			}
             insert projectList;
             IPM_Project__c projectRecord = projectList[0];
 
@@ -467,7 +499,6 @@ private class IPM_FinancialControllerRegional_Test {
             Test.stopTest();
 
             setPage(projectRecord.Id); 
-
 
             list<IPM_Financial__c> regOpFin = [select id, name, Global_External_Id__c, Global_Project_Id__c from IPM_Financial__c where Regional_Project__c =:projectRecord.id limit 1]; 
              
@@ -482,8 +513,6 @@ private class IPM_FinancialControllerRegional_Test {
             callCtrlAction(ipmFinCon, EXEC_PART_2);
             
             callCtrlAction(ipmFinCon, EXEC_PART_3);
-             
-            
             
             //Load Tab MyView
             loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
