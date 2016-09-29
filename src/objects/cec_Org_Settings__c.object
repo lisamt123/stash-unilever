@@ -3,6 +3,17 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <description>CEC: Stores settings related to the CEC org and application</description>
     <enableFeeds>false</enableFeeds>
+	<fields>
+        <fullName>ACCC_Survey_Id__c</fullName>
+        <description>To Store the ACCC Survey Id.</description>
+        <externalId>false</externalId>
+        <label>ACCC Survey Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>LiveChatQuestionaireSpanishId__c</fullName>
         <description>CEC: to store survey id for live chats spanish</description>
