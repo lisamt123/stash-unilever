@@ -277,11 +277,11 @@
         <description>Advertising and Promotions percent of turnover difference between regional and local misalignment.</description>
         <externalId>false</externalId>
         <formula>IF(AP_of_TO_Regional__c &lt;&gt; 0, 
-	IF((ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c)/AP_of_TO_Regional__c) &gt; 0.05, 
-		ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c), 
-		0
-	), 
-	ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c)
+  IF((ABS((AP_of_TO_Regional__c - AP_of_TO_Local__c)/AP_of_TO_Regional__c)) &gt; 0.05, 
+    ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c), 
+    0
+  ), 
+  ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>A&amp;P (% of T/O) Difference</label>
@@ -395,11 +395,11 @@
         <description>Stores Advertising &amp; Promotions difference between regioanl span and local span</description>
         <externalId>false</externalId>
         <formula>IF(Advertising_Promotions_Regional__c &lt;&gt; 0, 
-	IF((ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)/Advertising_Promotions_Regional__c) &gt; 0.05, 
-		ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c), 
-		0
-	), 
-	ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)
+  IF((ABS((Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)/Advertising_Promotions_Regional__c)) &gt; 0.05, 
+    ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c), 
+    0
+  ), 
+  ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Advertising &amp; Promotions Difference</label>
@@ -641,11 +641,11 @@
         <description>GM of Turnover percentage value difference between the regional and local.</description>
         <externalId>false</externalId>
         <formula>IF(GM_of_TO_Regional__c &lt;&gt; 0, 
-	IF((ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c)/GM_of_TO_Regional__c) &gt; 0.05, 
-		ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c), 
-		0
-	), 
-	ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c)
+  IF((ABS((GM_of_TO_Regional__c - GM_of_TO_Local__c)/GM_of_TO_Regional__c)) &gt; 0.05, 
+    ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c), 
+    0
+  ), 
+  ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>GM (% of T/O) Difference</label>
@@ -785,11 +785,11 @@
         <description>Calculates difference between Regional gross profit and Local gross profit</description>
         <externalId>false</externalId>
         <formula>IF(Gross_Profit_Regional__c &lt;&gt; 0, 
-	IF((ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)/Gross_Profit_Regional__c) &gt; 0.05, 
-		ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c), 
-		0
-	), 
-	ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)
+  IF((ABS((Gross_Profit_Regional__c - Gross_Profit_Local__c)/Gross_Profit_Regional__c)) &gt; 0.05, 
+    ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c), 
+    0
+  ), 
+  ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross Profit Difference</label>
@@ -981,6 +981,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Name_isY0__c</fullName>
+        <description>This field will advice if Name = Y0 or not</description>
+        <externalId>false</externalId>
+        <formula>IF( Name = &apos;Y0&apos;, &apos;true&apos;, &apos;false&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field will advice if Name = Y0 or not</inlineHelpText>
+        <label>Name_isY0</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>PBO_of_TO_Charter__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Profit before over head of Turnover percentage at charter.</description>
@@ -1013,11 +1027,11 @@
         <description>Profit before overhead of Turnover value difference between regional and local values.</description>
         <externalId>false</externalId>
         <formula>IF(PBO_of_TO_Regional__c &lt;&gt; 0, 
-	IF((ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c)/PBO_of_TO_Regional__c) &gt; 0.05, 
-		ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c), 
-		0
-	), 
-	ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c)
+  IF((ABS((PBO_of_TO_Regional__c - PBO_of_TO_Local__c)/PBO_of_TO_Regional__c)) &gt; 0.05, 
+    ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c), 
+    0
+  ), 
+  ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>PBO (% of T/O) Difference</label>
@@ -1152,11 +1166,11 @@
         <description>To store difference between Profit Before Overheads Regional and Profit Before Overheads Local</description>
         <externalId>false</externalId>
         <formula>IF(Profit_Before_Overheads_Regional__c &lt;&gt; 0, 
-	IF((ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)/Profit_Before_Overheads_Regional__c) &gt; 0.05, 
-		ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c), 
-		0
-	), 
-	ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)
+  IF((ABS((Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)/Profit_Before_Overheads_Regional__c)) &gt; 0.05, 
+    ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c), 
+    0
+  ), 
+  ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Profit Before Overheads Difference</label>
@@ -1315,11 +1329,11 @@
         <description>Shows difference between Regional turnover and  Local turnover</description>
         <externalId>false</externalId>
         <formula>IF(Turnover_Regional__c &lt;&gt; 0, 
-	IF((ABS(Turnover_Regional__c - Turnover_Local__c)/Turnover_Regional__c) &gt; 0.05, 
-		ABS(Turnover_Regional__c - Turnover_Local__c), 
-		0
-	), 
-	ABS(Turnover_Regional__c - Turnover_Local__c)
+  IF((ABS((Turnover_Regional__c - Turnover_Local__c)/Turnover_Regional__c)) &gt; 0.05, 
+    ABS(Turnover_Regional__c - Turnover_Local__c), 
+    0
+  ), 
+  ABS(Turnover_Regional__c - Turnover_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Turnover Difference</label>
@@ -1433,11 +1447,11 @@
         <description>Shows difference between Value Market Share at Regional span and Value Market Share at Local span</description>
         <externalId>false</externalId>
         <formula>IF(Value_Market_Share_Regional__c &lt;&gt; 0, 
-	IF((ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c)/Value_Market_Share_Regional__c) &gt; 0.05, 
-		ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c), 
-		0
-	), 
-	ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c)
+  IF((ABS((Value_Market_Share_Regional__c - Value_Market_Share_Local__c)/Value_Market_Share_Regional__c)) &gt; 0.05, 
+    ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c), 
+    0
+  ), 
+  ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Value Market Share Difference</label>
@@ -1553,11 +1567,11 @@
         <description>Shows difference between volume at regional span and volume at local span</description>
         <externalId>false</externalId>
         <formula>IF(Volume_Regional__c &lt;&gt; 0, 
-	IF((ABS(Volume_Regional__c - Volume_Local__c)/Volume_Regional__c) &gt; 0.05, 
-		ABS(Volume_Regional__c - Volume_Local__c), 
-		0
-	), 
-	ABS(Volume_Regional__c - Volume_Local__c)
+  IF((ABS((Volume_Regional__c - Volume_Local__c)/Volume_Regional__c)) &gt; 0.05, 
+    ABS(Volume_Regional__c - Volume_Local__c), 
+    0
+  ), 
+  ABS(Volume_Regional__c - Volume_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Volume Difference</label>
@@ -1679,11 +1693,11 @@
         <description>Shows difference in tons between regional volume and local volume</description>
         <externalId>false</externalId>
         <formula>IF(Volume_Tons_Regional__c &lt;&gt; 0, 
-	IF((ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c)/Volume_Tons_Regional__c) &gt; 0.05, 
-		ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c), 
-		0
-	), 
-	ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c)
+  IF((ABS((Volume_Tons_Regional__c - Volume_Tons_Local__c)/Volume_Tons_Regional__c)) &gt; 0.05, 
+    ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c), 
+    0
+  ), 
+  ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c)
 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Volume Tons Difference</label>

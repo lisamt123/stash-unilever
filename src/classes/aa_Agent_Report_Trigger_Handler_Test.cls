@@ -3,7 +3,8 @@ public with sharing class aa_Agent_Report_Trigger_Handler_Test {
 
     //private static aa_Agent_Report__c objReport = null;
     static testMethod void callTriggerHandlerTest(){
-
+      // aa_Trigger_pattern__c custtrigger=new  aa_Trigger_pattern__c(Name='aa_Agent_Report_Trigger',chk_Check_Run__c=true);
+       //insert custtrigger;
        SObject so=new aa_Agent_Report__c();
        SObject oldSo=new aa_Agent_Report__c();
        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);

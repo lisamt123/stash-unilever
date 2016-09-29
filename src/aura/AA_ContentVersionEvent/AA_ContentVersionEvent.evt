@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Event template">
+	<aura:attribute name="vId" type="String" default="null" description=""/>
+    <aura:attribute name="cId" type="String" default="null" description=""/>
+</aura:event>

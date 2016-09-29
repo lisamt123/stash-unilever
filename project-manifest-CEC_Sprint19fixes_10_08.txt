@@ -1,4 +1,0 @@
-src
-src/remoteSiteSettings
-src/remoteSiteSettings/DigitalGenius_ConnectBackend.remoteSite
-

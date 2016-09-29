@@ -50,7 +50,9 @@
                         component.set("v.NewsList",updatedData); 
                     }                   
                 } else {
+                    //change for spinner error
                     component.set("v.ErrorMessage", true);
+                    component.set("v.showspinner",false);                    
                 }
         	}
         });

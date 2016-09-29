@@ -635,7 +635,18 @@ IF( REF__c  &lt;&gt; null,  REF__c ,  Name )
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
-    <label>GEL Global Exception Log</label>
+    <fields>
+        <fullName>Test_Owner_First_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>ETC_BO_Owner__r.FirstName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Test Owner First Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Exception</label>
     <listViews>
         <fullName>All</fullName>
         <columns>REF_Number__c</columns>

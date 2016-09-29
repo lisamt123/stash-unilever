@@ -99,7 +99,7 @@ font-size: 1.01rem;
 }
 .THIS .shareIdeaDetail{ 
        margin-top: -10px;
-    margin-right: 12px;
+    margin-right: 5px;
 }
 .THIS .seeAllIcon{
     width: 20px;
@@ -124,6 +124,9 @@ font-size: 1.01rem;
 .THIS .parentDiv, .THIS .leftParentDiv, .THIS .rightParentDiv {
     width: 100%;
 }
+.THIS .slds-dropdown--right {
+    right: 25px !important;
+}
 @media (min-width: 1100px) {
     .THIS .leftParentDiv {
         width: 70%;
@@ -142,4 +145,12 @@ font-size: 1.01rem;
     .THIS hr.lineBar {
         padding: 0px;
     }
+}
+@media (min-width:768px){
+    .THIS .shareIdeaDetail {
+    margin-right: 418px;
+}
+ .THIS .slds-dropdown--right {
+    right: 430px!important;
+}   
 }
