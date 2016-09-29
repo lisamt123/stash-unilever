@@ -4,7 +4,6 @@
 		<members>ChatterUIController</members>
 		<members>ChatterUIFileUpload</members>
 		<members>ControllerUtil</members>
-		<members>StringUtil</members>
 		<members>ChatterUIGroupService</members>
 		<members>ChatterUIPeopleService</members>
 		<members>FA_addTasksToOccMembers</members>
