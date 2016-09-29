@@ -33,8 +33,10 @@ public class ICB_ContactPartnerUserCreation_Test
     {
         createInstances();
         System.Test.startTest();
+          
         ICB_ContactPartnerUserCreation contactUser = new ICB_ContactPartnerUserCreation();
         System.assertNotEquals(null,ICB_ContactPartnerUserCreation.getInstance());
+      
         contactUser.createNewUser(new List<Contact>{contactOld});
         //contactUser.updateUser(new List<Contact>{contactOld}, new List<Contact>{contactNew});
         contactUser.userCreation();
@@ -82,6 +84,7 @@ public class ICB_ContactPartnerUserCreation_Test
         ICB_SobjectInstance_SP2_Test.insertContactTypes('User_Email','@operadorkibon.com');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('Profile_Community','Partner Community Login Basic');
         ICB_SobjectInstance_SP2_Test.insertContactTypes('RecordType','Ice Cream');
+        ICB_SobjectInstance_SP2_Test.insertContactTypes('PublicGroup','Mobile Channel');
         
     }
 }

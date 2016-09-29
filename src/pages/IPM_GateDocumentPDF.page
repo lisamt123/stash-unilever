@@ -880,8 +880,7 @@
                <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    
                 <c:IPM_OTIFStatusTableView otfType="Table" isEdtable="false" getSectionId="{!pds.Id}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='OTIF_Status',true,false)}"></c:IPM_OTIFStatusTableView>
                 <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!IF(pds.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',true,false)}"></c:IPM_GateKeeperListView> 
-           		<c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!pds.Id}"  rendered="{!pds.IPM_Master_Section_External_Id__c=='Environmental_Impact'}"></c:IPM_EcoDesignSection>
-           
+                
            <!---Components To BE Displayed within Sections END-->
            <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}" styleClass="bdText" />
            <apex:outputPanel layout="block" styleClass="appBlock" rendered="{!pds.IPM_Has_Appendix__c}"> 

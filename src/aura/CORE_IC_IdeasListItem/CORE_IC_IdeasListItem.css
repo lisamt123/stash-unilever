@@ -1,6 +1,6 @@
 .THIS .ideaListShare{
     left: auto;
-    right: 29px;
+    right: 24px;
     -webkit-transform: translateX(0);
     -ms-transform: translateX(0);
     transform: translateX(0);
@@ -45,10 +45,10 @@
 
 }
 .THIS .share-button {
-   width: 35px;
+	width: 35px;
     height: 35px;
     padding-bottom: 5px;
-    margin-bottom: -14px;
+    margin-right: -12px;
 }
 .THIS .margin-botton{
     margin-bottom: -6px;
