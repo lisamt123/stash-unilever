@@ -6,7 +6,7 @@
                              
 */
 
-global class CORE_CA_Delete_Fullyapproved_Batch implements Database.Batchable<SObject>{
+global with sharing class CORE_CA_Delete_Fullyapproved_Batch implements Database.Batchable<SObject>{
 
     global Database.QueryLocator start (Database.BatchableContext BC){
         date dt = system.today().addDays(-Integer.valueof(CORE_Chatter_Approval__c.getInstance('FullyApproved_deletePost_ChatterGroup').ReminderAlertDays__c));
@@ -65,6 +65,6 @@ global class CORE_CA_Delete_Fullyapproved_Batch implements Database.Batchable<SO
     }
 
     global void finish(Database.BatchableContext BC){
-    
+    	//method is meant to be empty
     }
 }

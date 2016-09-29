@@ -4,7 +4,7 @@
    Requirement/Project Name: Chatter Approvals
    Requirement/Description : Scheduler for the class 'CORE_CA_Delete_Fullyapproved_Batch'.
 */
-global class CORE_CA_Delete_Fullyapproved_Scheduler implements Schedulable{
+global with sharing class CORE_CA_Delete_Fullyapproved_Scheduler implements Schedulable{
   
    global void execute(SchedulableContext sc) {
        CORE_CA_Delete_Fullyapproved_Batch objFullyappr = new CORE_CA_Delete_Fullyapproved_Batch();
