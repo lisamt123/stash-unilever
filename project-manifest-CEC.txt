@@ -31,6 +31,7 @@ src/objects/CEC_Case_Market_Mapping__c.object
 src/objects/cec_Enclosure__c.object
 src/objects/cec_Org_Settings__c.object
 src/objects/smagicinteract__smsMagic__c.object
+src/objects/User.object
 src/pages/CEC_PreChatForm.page
 src/pages/CEC_PreChatForm.page-meta.xml
 src/pages/CEC_PreChatFormSpanish.page
@@ -41,5 +42,6 @@ src/permissionsets/CEC_CRUD.permissionset
 src/permissionsets/CEC_Disable_All_Trigger.permissionset
 src/permissionsets/CEC_Social_Media_Salesforce.permissionset
 src/permissionsets/CEC_User.permissionset
+src/permissionsets/TO_User.permissionset
 src/triggers/CEC_CaseTrigger.trigger
 src/triggers/CEC_CaseTrigger.trigger-meta.xml
