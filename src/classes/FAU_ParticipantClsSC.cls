@@ -58,7 +58,7 @@ public with sharing class FAU_ParticipantClsSC {
             programs.add(participant.FAU_Program_Wave__c);
         }
         
-        for(FAU_Program__c program : [select FAU_Participant_Chatter_Group_Id__c from FAU_Program__c limit 10000]){
+        for(FAU_Program__c program : [select FAU_Participant_Chatter_Group_Id__c from FAU_Program__c limit 50000]){
             programChatterGroup.put(program.id,program.FAU_Participant_Chatter_Group_Id__c);
         }
         

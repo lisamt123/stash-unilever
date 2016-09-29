@@ -188,8 +188,8 @@ public without sharing class FAU_EmailSender {
          // Send the emails in a transaction, then roll it back
         Savepoint beforeInserts = Database.setSavepoint();
 
-        //List<Messaging.SendEmailResult> results = Messaging.sendEmail(lstMsgs, false);
-        
+        List<Messaging.SendEmailResult> results = Messaging.sendEmail(lstMsgs, false); 
+                
         Database.rollback(beforeInserts);
         System.Debug('##### FAU_EmailSender - After Rollback'); 
 
@@ -215,8 +215,8 @@ public without sharing class FAU_EmailSender {
         System.Debug('##### FAU_EmailSender - Before Second Send'); 
         List<Messaging.SendEmailResult> results1 = Messaging.sendEmail(lstMsgsToSend, false);
         if (!results1.get(0).isSuccess()) {
-           // System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
-            String errorMessage = results1.get(0).getErrors()[0].getMessage();
+        System.StatusCode statusCode = results1.get(0).getErrors()[0].getStatusCode();
+        String errorMessage = results1.get(0).getErrors()[0].getMessage();
             System.Debug('##### FAU_EmailSender - Message Error:' + errorMessage); 
         }
         System.Debug('##### FAU_EmailSender - VEry End'); 
