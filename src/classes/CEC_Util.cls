@@ -14,7 +14,7 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 ****************************************************************************/
 
 
-public class CEC_Util {
+public with sharing class CEC_Util {
     static final string text = 'Text';
     static final string andString = ' and ';
     static final string fraction = 'Fraction';
@@ -242,24 +242,17 @@ public class CEC_Util {
     }
     
     // Check whether the current running user has access to the custom Permission name provided.
-    public static Boolean checkCustomPermissionAccess(String customPermissionName) {
+    public static Boolean checkCaseDisableTriggerAccess() {
         Boolean hasPermission = false;
-        Set<String> customPermissionForCurrentUser = new Set<String>();
-        Map<Id, String> customPermissionNamesById = new Map<Id, String> ();
-        CustomPermission customPermission = [SELECT Id, DeveloperName FROM CustomPermission WHERE 
-                                             DeveloperName = :customPermissionName LIMIT 1];
-        // Query to check the custom setting is assigned to the user.
-        List<SetupEntityAccess> setupEntities = [SELECT SetupEntityId FROM SetupEntityAccess
-                                                 WHERE SetupEntityId = :customPermission.Id AND
-                                                 ParentId IN 
-                                                 (SELECT PermissionSetId FROM PermissionSetAssignment
-                                                  WHERE AssigneeId = :UserInfo.getUserId())];
-        if (setupEntities != null && !setupEntities.isEmpty()) {
-            hasPermission = true;
+        System.debug('******* Entering CheckCaseDisableTriggerAccess method');
+        List<User> userList = [Select CEC_Disable_Case_Trigger__c From User Where Id = :UserInfo.getUserId()];
+        System.debug('******* userList = ' + userList);
+        if (userList!= null && !userList.isEmpty()) {
+            System.debug('******* userList[0].CEC_Disable_Case_Trigger__c = ' + userList[0].CEC_Disable_Case_Trigger__c);
+            hasPermission = userList[0].CEC_Disable_Case_Trigger__c;
         }
-        System.debug('*** IN Check CustomPermissionAccess Method : Custom PermissionName : ' + customPermissionName 
-                     + ' | HasPermission : ' + hasPermission);
-        return hasPermission;
+        System.debug('******* Existing CheckCaseDisableTriggerAccess method');
+        return hasPermission;            
     }
     
 }

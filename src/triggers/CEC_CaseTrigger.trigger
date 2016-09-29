@@ -19,7 +19,9 @@ VERSION  AUTHOR            DATE              DETAIL                  Description
 ****************************************************************************/
 trigger CEC_CaseTrigger on Case (before insert,after insert,before update,after update) { 
     // CSC-5082 Disable the trigger run if the user has custom permission CEC Disable Case Trigger
-    if (!CEC_Util.checkCustomPermissionAccess('CEC_Disable_Case_Trigger')) {
+    System.debug('***** Entering the trigger');
+    if (!CEC_Util.checkCaseDisableTriggerAccess()) {
+        System.debug('***** Executing the trigger logic');
         if(trigger.isAfter && trigger.isInsert){   
             System.debug('After Insert'); 
             CEC_CaseTriggerHelper caseHelper = new CEC_CaseTriggerHelper();
