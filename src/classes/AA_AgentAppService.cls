@@ -310,9 +310,9 @@ public with sharing class AA_AgentAppService  {
                             if(imageFilekeyWords.contains(fileExtension)){/*If Image file format associated with Chatter Post*/
                                 objGetAllReports.DocumentUrl = urlHost + sfcURLContent + objfeed.RelatedRecordId;
                             }else if(docFilekeyWords.contains(fileExtension)){ /*If perticular file format associated with Chatter Post*/
-                                if(item.RecordType.Name == 'Unilever Agent Published Report' && inDesktop == true ){
+                                if((item.RecordType.Name == 'Unilever Agent Published Report') && (inDesktop)){
                                     objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('UL Logo Id').Value__c;
-                                } else if(item.RecordType.Name == 'Competitor Report' && inDesktop == true){
+                                } else if((item.RecordType.Name == 'Competitor Report') && (inDesktop)){
                                     objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('CI Logo Id').Value__c;
                                 } 
                             }
@@ -324,9 +324,9 @@ public with sharing class AA_AgentAppService  {
             if(objGetAllReports.TotalCommentCount>=decresecomment)
                 objGetAllReports.TotalCommentCount=objGetAllReports.TotalCommentCount-decresecomment;
             /*Set UL or CI logo if no Chatter post Id associated with Agent Report */
-            if(objGetAllReports.DocumentUrl==null && item.RecordType.Name == 'Unilever Agent Published Report' && inDesktop == true){
+            if((objGetAllReports.DocumentUrl==null) && (item.RecordType.Name == 'Unilever Agent Published Report') && (inDesktop)){
                 objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('UL Logo Id').Value__c;
-            } else if(objGetAllReports.DocumentUrl==null && item.RecordType.Name == 'Competitor Report' && inDesktop == true){
+            } else if((objGetAllReports.DocumentUrl==null) && (item.RecordType.Name == 'Competitor Report') && (inDesktop)){
                 objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('CI Logo Id').Value__c;
             }
             objFinalReport.add(objGetAllReports);     
