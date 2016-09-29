@@ -188,7 +188,7 @@ public without sharing class FAU_EmailSender {
          // Send the emails in a transaction, then roll it back
         Savepoint beforeInserts = Database.setSavepoint();
 
-        //List<Messaging.SendEmailResult> results = Messaging.sendEmail(lstMsgs, false); Result has been declared but never used. (Bibhudananda)
+        List<Messaging.SendEmailResult> results = Messaging.sendEmail(lstMsgs, false); Result has been declared but never used. (Bibhudananda)
         
         Database.rollback(beforeInserts);
         System.Debug('##### FAU_EmailSender - After Rollback'); 

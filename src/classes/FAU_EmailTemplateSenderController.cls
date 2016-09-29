@@ -26,8 +26,7 @@ public with sharing class FAU_EmailTemplateSenderController {
 
         //addFieldsTo(standardController);
         
-        // commented by Suman Sarita Mahapatra to avoid "Detects when a local variable is declared and/or assigned, but not used." in Sonar.
-      // List<SObject> selectedObjects = (List<SObject>) standardController.getSelected();
+      List<SObject> selectedObjects = (List<SObject>) standardController.getSelected();
  
     }
     
@@ -54,7 +53,7 @@ public with sharing class FAU_EmailTemplateSenderController {
         for (EmailTemplate t : [
             select Id,Name 
             from EmailTemplate 
-            where FolderId = :UserInfo.getUserId()// uncommented by Suman Sarita Mahapatra 28/04/16 to rectify : "Avoid making queries which dont limit the results " in Sonar.
+           // where FolderId = :UserInfo.getUserId()
         ]) {
             options.add(new SelectOption(t.Id,t.Name));
         }

@@ -139,7 +139,7 @@ public with sharing class FAU_ProgramHandler
         }*/
     }
      
-//Implementin Itrigger So need to override below methods.
+//Implementin Itrigger So need to override below methods.   
     public void beforeDelete(SObject so)
     {   
     }
