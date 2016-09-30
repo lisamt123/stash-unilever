@@ -2564,7 +2564,8 @@
         <apexClass>CPA_testStatusMsgCustomSettingClass</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-        <classAccesses>
+    <classAccesses>
+    <classAccesses>
         <apexClass>EA_Constants</apexClass>
         <enabled>false</enabled>
     </classAccesses>
