@@ -790,6 +790,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     {
                         topDown = true;
                         getGlobalMyViewWrappers();
+                         showKeyFinancial = true; // This is set to true to show keyfinancial flag in phase from Feasibility to PLE
                     } 
                     else if(currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME){
                         getGlobalTopDownWrappers();
