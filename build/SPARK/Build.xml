@@ -55,10 +55,19 @@
       deployRoot="src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
+      <runTest>CommunitiesLandingControllerTest</runTest>
+      <runTest>CommunitiesLoginControllerTest</runTest>
+      <runTest>CommunitiesSelfRegConfirmControllerTest</runTest>
+      <runTest>CommunitiesSelfRegControllerTest</runTest>
+      <runTest>ExceptionLoggingHelper_Test</runTest>
+      <runTest>ExceptionsTest</runTest>
+      <runTest>TriggerFactoryTest</runTest>
+      <runTest>TestDataFactory</runTest>
+      <runTest>UserTestUtil</runTest>
+      <runTest>UserTrigger_Test</runTest>
       <runTest>ICB_Cockpit_CC_Test</runTest>
       <runTest>ICB_ContactPartnerUserCreation_Test</runTest>
       <runTest>ICB_PriceBookCreation_Test</runTest>
-      <-- Populate your Test Classes here in the above format and do not delete the aboce test clasess, these are mandotry test classes to be executed-->
     </sf:deploy>
   </target>  
 

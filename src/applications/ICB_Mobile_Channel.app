@@ -9,7 +9,6 @@
     <tab>standard-Contact</tab>
     <tab>standard-Asset</tab>
     <tab>ICB_Sales_Locale__c</tab>
-    <tab>standard-Contact</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
     <tab>standard-Document</tab>
