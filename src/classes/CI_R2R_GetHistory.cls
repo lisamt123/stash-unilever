@@ -25,7 +25,7 @@ public with sharing class CI_R2R_GetHistory {
        string cDate;
        string cName;           
        List<CI_R2R_Innovation__History> rrlist = [SELECT ParentId,createdBy.Name,OldValue,CreatedById,CreatedDate,NewValue, Field FROM CI_R2R_Innovation__History where parentId =:rrid and Field = 'Comments__c'];
-      
+       system.debug('rrList-->'+rrList);
        for(CI_R2R_Innovation__History cr : rrList){       
                newcomment = string.valueof(cr.NewValue);               
                oldcomment = string.valueof(cr.OldValue);               
