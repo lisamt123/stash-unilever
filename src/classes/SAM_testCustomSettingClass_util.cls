@@ -72,7 +72,7 @@ public with sharing class SAM_testCustomSettingClass_util {
         return saveMsg;
         
     }
-	/*******************************************************************
+    /*******************************************************************
     Purpose: This method is used to set saveMsg data
     Parameters: 
     Returns: 
@@ -87,7 +87,7 @@ public with sharing class SAM_testCustomSettingClass_util {
         return awaitingChargeMsg;
         
     }
-	/*******************************************************************
+    /*******************************************************************
     Purpose: This method is used to set saveMsg data
     Parameters: 
     Returns: 
@@ -102,7 +102,7 @@ public with sharing class SAM_testCustomSettingClass_util {
         return closedMsg;
         
     }
-	/*******************************************************************
+    /*******************************************************************
     Purpose: This method is used to set OpenMsg data
     Parameters: 
     Returns: 
@@ -117,7 +117,7 @@ public with sharing class SAM_testCustomSettingClass_util {
         return OpenMsg;
         
     }
-	/*******************************************************************
+    /*******************************************************************
     Purpose: This method is used to set SAM Mandatory fields for submit
     Parameters: 
     Returns: 
@@ -126,14 +126,14 @@ public with sharing class SAM_testCustomSettingClass_util {
     public static SAM_Mandatory_fields_for_submit__c createTest_SAM_Mandatory_fields_for_submit(){
 
         SAM_Mandatory_fields_for_submit__c Mandatory_fields = new SAM_Mandatory_fields_for_submit__c();
-		Mandatory_fields.name = '1';
+        Mandatory_fields.name = '1';
         Mandatory_fields.SAM_controlling_field__c = null;
-		Mandatory_fields.SAM_controlling_field_value__c = null;
-		Mandatory_fields.SAM_Field_API_name__c = 'txt_Master_Clarity_Id__c';
-		Mandatory_fields.SAM_Field_Label__c = 'Master Clarity Id *';
-		Mandatory_fields.SAM_is_mandatory__c = true;
-		Mandatory_fields.SAM_Record_type__c = 'SAM_RW_Project_Request';
-		Mandatory_fields.SAM_validation_message__c = 'Mandatory';    
+        Mandatory_fields.SAM_controlling_field_value__c = null;
+        Mandatory_fields.SAM_Field_API_name__c = 'txt_Master_Clarity_Id__c';
+        Mandatory_fields.SAM_Field_Label__c = 'Master Clarity Id *';
+        Mandatory_fields.SAM_is_mandatory__c = true;
+        Mandatory_fields.SAM_Record_type__c = 'SAM_RW_Project_Request';
+        Mandatory_fields.SAM_validation_message__c = 'Mandatory';    
         return Mandatory_fields;
         
     }
@@ -146,14 +146,14 @@ public with sharing class SAM_testCustomSettingClass_util {
     public static SAM_Mandatory_fields_for_submit__c createTest_SAM_controlling_fields_for_submit(){
 
         SAM_Mandatory_fields_for_submit__c Mandatory_fields = new SAM_Mandatory_fields_for_submit__c();
-		Mandatory_fields.name = '2';
+        Mandatory_fields.name = '2';
         Mandatory_fields.SAM_controlling_field__c = 'pkl_Deployments__c';
-		Mandatory_fields.SAM_controlling_field_value__c = 'Cloud';
-		Mandatory_fields.SAM_Field_API_name__c = 'mpkl_Cloud_Platforms__c';
-		Mandatory_fields.SAM_Field_Label__c = 'Cloud Platforms';
-		Mandatory_fields.SAM_is_mandatory__c = true;
-		Mandatory_fields.SAM_Record_type__c = 'SAM_RW_Project_Request';
-		Mandatory_fields.SAM_validation_message__c = 'Mandatory';  
+        Mandatory_fields.SAM_controlling_field_value__c = 'Cloud';
+        Mandatory_fields.SAM_Field_API_name__c = 'mpkl_Cloud_Platforms__c';
+        Mandatory_fields.SAM_Field_Label__c = 'Cloud Platforms';
+        Mandatory_fields.SAM_is_mandatory__c = true;
+        Mandatory_fields.SAM_Record_type__c = 'SAM_RW_Project_Request';
+        Mandatory_fields.SAM_validation_message__c = 'Mandatory';  
         Mandatory_fields.SAM_Reverse_Validation__c  = true;
         Mandatory_fields.SAM_Reverse_Validation_message__c = 'Mandatory'; 
         return Mandatory_fields;

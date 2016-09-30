@@ -186,8 +186,10 @@ This method is used for searching the Consumer Records and Displaying of Duplica
                        }
                        List<ConsumerWrapper> unOrderedConsumerList = duplicateConsumers.values(); 
                        // Set the Search results page title
+                       System.debug('********unOrderedConsumerList**********'+ unOrderedConsumerList);
                        
                        duplicateConsumerList = filterAndReorderSearchResults(unOrderedConsumerList);
+                       System.debug('********duplicateConsumerList**********'+ duplicateConsumerList );
                        
                        if (duplicateConsumerList.size() > 0) {
                            hasResultToDisplayFlag = true;
@@ -342,20 +344,21 @@ The rest of the Consumer records are ignored.
         
         System.debug('The Consumer List to be filtered/Ordered :: ' + duplicateConsumerList);
         
+        CEC_NewAccountControllerExtension  newAcctContExt = new CEC_NewAccountControllerExtension();
         // Order 1 : Check the Local Identifier match
-        CEC_NewAccountControllerExtension.checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        newAcctContExt.checkLocalidentifierMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 2 : Check the email match
-        CEC_NewAccountControllerExtension.checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        newAcctContExt.checkEmailMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 3 : Check the phone match
-        CEC_NewAccountControllerExtension.checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        newAcctContExt.checkPhoneMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 4 : Check the PostCode match
-        CEC_NewAccountControllerExtension.checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        newAcctContExt.checkPostCodeMatch(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         // Order 5 : Check the Street & LastName match
-        CEC_NewAccountControllerExtension.checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
+        newAcctContExt.checkStreetAndLastName(duplicateConsumerList, finalOrderedConsumerList, accountIdSet,newConsumer);
         
         //Order 6 : Display Street fuzzy match
         if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.PersonMailingCity)) {

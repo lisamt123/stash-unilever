@@ -20,7 +20,7 @@ public with sharing class KUN_Profile_CC {
            string strProfileId= ApexPages.currentPage().getParameters().get('sfdc.userId');        
            if(string.IsEmpty(strProfileId)) strProfileId= UserInfo.getUserId();       
             LIST<KUN_Profile__c> moProfiles =[ SELECT Capability__c,Cluster__c,E2E_Process__c,Employee_Type__c,
-                                               English_speaking__c,Id,KUN_Role_Type__c,Local_Process_Area__c, MCO__c,Name,Organization_Role__c,Organization__c,OwnerId,Position__c,Site__c 
+                                               English_speaking__c,Id,KUN_Role_Type__c,Local_Process_Area__c, MCO__c,Name,Organization__c,OwnerId,Position__c,Site__c 
                                                FROM KUN_Profile__c WHERE Unilever_Profile__c  =: strProfileId LIMIT 1]; 
                                                                    
            if (moProfiles != null && moProfiles .Size() > 0 ){

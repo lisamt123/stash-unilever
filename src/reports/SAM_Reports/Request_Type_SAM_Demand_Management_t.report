@@ -158,6 +158,15 @@
         <field>SAM_Request__c.pkl_Ownership_Reporting__c</field>
     </columns>
     <columns>
+        <field>SAM_Request__c.date_Request_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>SAM_Request__c.Quote_Final_Provided_Date__c</field>
+    </columns>
+    <columns>
+        <field>SAM_Request__c.date_Request_End_Date__c</field>
+    </columns>
+    <columns>
         <field>SAM_Request__c.Ticket_Age__c</field>
     </columns>
     <currency>EUR</currency>

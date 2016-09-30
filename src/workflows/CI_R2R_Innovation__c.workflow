@@ -364,20 +364,6 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>CI_R2R Tax</fullName>
-        <actions>
-            <name>Update_ProjectLead_Nikoletta</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>CI_R2R_Innovation__c.R2R_SME_Area__c</field>
-            <operation>equals</operation>
-            <value>Tax</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>CI_R2R Tools</fullName>
         <actions>
             <name>Update_ProjectLead_sheet</name>

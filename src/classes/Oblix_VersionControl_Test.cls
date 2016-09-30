@@ -73,7 +73,7 @@ public with sharing class Oblix_VersionControl_Test {
 
         List<CronTrigger> running_job = [SELECT Id FROM CronTrigger WHERE CronJobDetail.Name LIKE: all_cron_jobs];
         
-        system.assertEquals(60, running_job.size(), 'Expected number of cron jobs do not match!');
+        system.assertEquals(30, running_job.size(), 'Expected number of cron jobs do not match!');
         Oblix_VersionControl.cancelJobs();
 
         List<CronTrigger> abort_job = [SELECT Id FROM CronTrigger WHERE CronJobDetail.Name LIKE: all_cron_jobs];

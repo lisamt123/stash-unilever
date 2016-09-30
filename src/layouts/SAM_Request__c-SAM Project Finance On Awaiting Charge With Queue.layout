@@ -41,6 +41,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>fml_SAM_demand_manager__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>num_Draft_Version__c</field>
             </layoutItems>
             <layoutItems>
@@ -76,6 +80,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>ltxt_Comments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>fml_Software_Engagement_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>date_Finance_Submission_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -219,6 +231,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>ltxt_SaaS_Comments__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>ltxt_Application_S_w_Details__c</field>
             </layoutItems>
             <layoutItems>
@@ -337,7 +353,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>rol_Total_CAPEX_in_for_X_type__c</field>
+                <field>fml_Total_Applicable_Cross_Charge__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -456,8 +472,7 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>num_Quotation_Number__c</fields>
-        <fields>txt_Run_Cost_Publisher__c</fields>
+        <fields>pkl_Publisher__c</fields>
         <fields>num_Quantity__c</fields>
         <fields>fml_List_Price__c</fields>
         <fields>num_Discount_Percentage__c</fields>
@@ -465,6 +480,7 @@
         <fields>fml_Maintainence_Amount__c</fields>
         <fields>pkl_Charging_Type__c</fields>
         <fields>fml_Total_CAPEX__c</fields>
+        <fields>pkl_Line_Status__c</fields>
         <relatedList>SAM_Quote_Line_Item__c.md_Request__c</relatedList>
     </relatedLists>
     <relatedLists>

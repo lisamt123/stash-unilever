@@ -36,28 +36,32 @@
         </tr>
     
         <apex:variable var="s_no" value="{!1}"/>
-        <apex:repeat var="cx" value="{!relatedTo.Quote_Line_Items__r}">
-            <tr>
-                <td>{!s_no} </td>
-                <td>{!cx.pkl_Publisher__c}</td>
-                <td>{!cx.Name}</td>
-                <td>{!cx.pkl_Charging_Type__c}</td>
-                <td>{!cx.pkl_Run_Cost_Applicable__c}</td>
-                <td>{!cx.pkl_Line_Status__c}</td>
-                <td>{!cx.num_Quantity__c}</td>
-                <td>{!cx.fml_License_Cost__c}</td>
-                <td>{!cx.fml_Maintainence_Amount__c}</td>
-                <td>{!cx.fml_Total_CAPEX__c}</td>
-                <td>{!cx.Total_Annual_Maint__c}</td>
-                <apex:variable var="s_no" value="{!s_no+1}"/>
-            </tr>
+        <apex:repeat var="quoteLineItem" value="{!relatedTo.Quote_Line_Items__r}">
+            <apex:repeat var="cx" value="{!relatedTo.Quote_Line_Items__r}">
+                <apex:outputPanel rendered="{!cx.num_Quotation_Number__c == s_no}" layout="none">
+                    <tr>
+                        <td>{!cx.num_Quotation_Number__c} </td>
+                        <td>{!cx.pkl_Publisher__c}</td>
+                        <td>{!cx.Name}</td>
+                        <td>{!cx.pkl_Charging_Type__c}</td>
+                        <td>{!cx.pkl_Run_Cost_Applicable__c}</td>
+                        <td>{!cx.pkl_Line_Status__c}</td>
+                        <td>{!cx.num_Quantity__c}</td>
+                        <td>{!cx.fml_License_Cost__c}</td>
+                        <td>{!cx.fml_Maintainence_Amount__c}</td>
+                        <td>{!cx.fml_Total_CAPEX__c}</td>
+                        <td>{!cx.Total_Annual_Maint__c}</td>                        
+                    </tr>
+                </apex:outputPanel>
+            </apex:repeat>
+        <apex:variable var="s_no" value="{!s_no+1}"/>
         </apex:repeat>
     </table>
     <table width="759" cellspacing="0" border="1">
         <apex:repeat var="total" value="{!relatedTo}">
             <tr >
                 <th align="left" width="18%">Total CAPEX in (€)</th><td width="8%">{!total.rol_Total_CAPEX_in__c}</td>
-                <th align="left" width="30%">Total Applicable Cross Charge (€)</th><td width="8%">{!total.rol_Total_CAPEX_in_for_X_type__c}</td>
+                <th align="left" width="30%">Total Applicable Cross Charge (€)</th><td width="8%">{!total.fml_Total_Applicable_Cross_Charge__c}</td>
                 <th align="left" width="26%">Total Maintenance Cost (€)</th><td width="8%">{!total.rol_Total_Annual_Maint_in__c}</td>
             </tr>
         </apex:repeat>

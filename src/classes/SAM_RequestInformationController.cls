@@ -18,6 +18,7 @@ public with sharing class SAM_RequestInformationController{
  
     public Id requestId ;
     public Map<String,String> objectMap {get; set;}
+    public List<RecordType>recordTypeInfoList;
     Public SAM_Request__c requestRecord;
     public String mandatoryStringFlag {get; set;}   
     public String redirectUrl {public get; private set;}
@@ -26,7 +27,10 @@ public with sharing class SAM_RequestInformationController{
     public Boolean flagToShowSubmitbutton{get; set;}
     public String commentsStr{get;set;}
     public boolean reminderSetFlag{get;set;}
-    public boolean samTeamFlag; 
+    public boolean requestorFlag;
+    public boolean samAdminFlag;
+    public boolean samTeamFlag;
+    public boolean financeTeamFlag;  
     public boolean crossChargeInfoSetFlag{get;set;}
     public String subjectStr{get;set;}
     public Map<String,Schema.SobjectField> mandatoryFields;
@@ -45,17 +49,17 @@ public with sharing class SAM_RequestInformationController{
         this.stdController = stdController;
         shouldRedirect = false; 
         reminderSetFlag = false;
-        boolean requestorFlag =false;
-        boolean samAdminFlag = false;
+        requestorFlag =false;
+        samAdminFlag = false;
         samTeamFlag =false;
-        boolean financeTeamFlag =false;
+        financeTeamFlag =false;
         crossChargeInfoSetFlag =false;
         mandatoryFields = new Map<string,Schema.SobjectField>();
         reverseMandatoryFields = new Map<string,Schema.SobjectField>();
         validation_message = new Map<string,String>();
         reverseValidation_message = new Map<string,String>();
         
-        List<PermissionSetAssignment>loggedInUserPermissionList = [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId()];
+        List<PermissionSetAssignment> loggedInUserPermissionList = [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId()];
         PermissionSet requestorPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Requestor' limit 1];
         PermissionSet samAdminPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Admin' limit 1];
         PermissionSet samTeamPermissionSet = [select id,Name from PermissionSet where Name = 'SAM_Team' limit 1];
@@ -91,7 +95,7 @@ public with sharing class SAM_RequestInformationController{
         }    
          if(ApexPages.currentPage().getParameters().get(SAM_Constants.ID) != null) {      
             requestId = ApexPages.currentPage().getParameters().get(SAM_Constants.ID);
-            checkMessageValidation(requestId,requestorFlag,samAdminFlag,financeTeamFlag);
+            checkMessageValidation(requestId);
          }
      }
    
@@ -101,7 +105,7 @@ public with sharing class SAM_RequestInformationController{
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-     boolean checkMessageValidation(Id requestId,boolean requestorFlag,boolean samAdminFlag,boolean financeTeamFlag){
+     boolean checkMessageValidation(Id requestId){
         mandatoryStringFlag = null;
         string queryString = 'select ';
         objectMap = new Map<String,String>();
@@ -216,19 +220,30 @@ public with sharing class SAM_RequestInformationController{
     Throws [Exceptions]: 
     ********************************************************************/
     public void mapOFDisplayList(SAM_Request__c requestRecordValue,Map<String,Schema.SobjectField> mandatoryFields,Map<String,Schema.SobjectField> reverseMandatoryFields){
-        for(string key : mandatoryFields.keySet()){
-                if(requestRecordValue.get(mandatoryFields.get(key)) == null)
-                    objectMap.put(key,validation_message.get(key));
+		if(requestRecordValue.pkl_Status__c== SAM_Constants.SAVED){
+			for(string key : mandatoryFields.keySet()){
+					if(requestRecordValue.get(mandatoryFields.get(key)) == null)
+						objectMap.put(key,validation_message.get(key));
+				}
+			for(string key : reverseMandatoryFields.keySet()){
+				objectMap.put(key,reverseValidation_message.get(key));
+			}
+			if(requestRecordValue.pkl_SAAS_Yes_No__c != 'Yes' && (requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST || requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST) && requestRecordValue.rol_Product_Details_Count__c == 0){
+				objectMap.put(SAM_Constants.PRODUCTDETAIL,SAM_Constants.MANDATORY);
+			}
+			if(requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && requestRecordValue.mpkl_Landscape_Details__c != SAM_Constants.GLOBALLANDSCAPE && requestRecordValue.mpkl_Country_of_Deployment__c == null){
+				objectMap.put(Schema.SAM_Request__c.fields.mpkl_Country_of_Deployment__c.getDescribe().getLabel(),SAM_Constants.COUNTRYMANDATORY);
+			}
+			if(requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST && requestRecordValue.mpkl_Landscape_Details__c == SAM_Constants.GLOBALLANDSCAPE && requestRecordValue.mpkl_Country_of_Deployment__c != null){
+				objectMap.put(Schema.SAM_Request__c.fields.mpkl_Country_of_Deployment__c.getDescribe().getLabel(),SAM_Constants.COUNTRYREVERSEMANDATORY);
+			}
+			if(requestRecordValue.date_Go_Live_Date__c != null && requestRecordValue.date_Go_Live_Date__c <= system.today()){
+				objectMap.put(Schema.SAM_Request__c.fields.date_Go_Live_Date__c.getDescribe().getLabel(),SAM_Constants.GOLIVEDATECANNOTBEPASTDATE);
+			}
+            if(requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_CROSSCHARGE_REQUEST){
+                validationForApprovalEmail(requestRecordValue,objectMap);
             }
-        for(string key : reverseMandatoryFields.keySet()){
-            objectMap.put(key,reverseValidation_message.get(key));
-        }
-        if((requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_PROJECT_REQUEST || requestRecordValue.txt_Request_Type__c == SAM_Constants.SAM_RW_NON_PROJECT_REQUEST) && requestRecordValue.rol_Product_Details_Count__c == 0){
-            objectMap.put(SAM_Constants.PRODUCTDETAIL,SAM_Constants.MANDATORY);
-        }
-        if(requestRecordValue.date_Go_Live_Date__c != null && requestRecordValue.date_Go_Live_Date__c <= system.today()){
-            objectMap.put(Schema.SAM_Request__c.fields.date_Go_Live_Date__c.getDescribe().getLabel(),SAM_Constants.GOLIVEDATECANNOTBEPASTDATE);
-        }
+		}
     }
    /*******************************************************************
     Purpose: This method is used to validate status.
@@ -242,13 +257,13 @@ public with sharing class SAM_RequestInformationController{
         system.debug('i am in submit'+requestRecord);
         //Dinesh 27/7 - modified below line to fix SonarQube issue - Variable not assigned: Found 'UR'-anomaly for variable 'resultflag' (lines '140'-'147').
          //boolean resultFlag;
-         /*boolean resultFlag = false;
+         boolean resultFlag = false;
          if(requestId !=null){
              resultFlag= checkMessageValidation(requestId);
-         }*/
+         }
          //Dinesh 27/7 - modified below if condition to fix SonarQube issue - Avoid unnecessary comparisons in boolean expressions
          //if(resultFlag == true){
-         //if(resultFlag){
+         if(resultFlag){
              if(requestRecord.txt_Request_Type__c == SAM_Constants.SAM_RW_CROSSCHARGE_REQUEST){
                  requestRecord.pkl_Status__c= SAM_Constants.AWAITINGCHARGE;
              }else {
@@ -258,7 +273,7 @@ public with sharing class SAM_RequestInformationController{
              system.debug('requestRecord.pkl_Status__c>>'+requestRecord.pkl_Status__c);
              update requestRecord;
              system.debug('requestRecord>>'+requestRecord);
-         //}
+         }
          system.debug('requestRecord>>>'+requestRecord.pkl_Status__c); 
          redirectUrl = stdController.view().getUrl();
      }
@@ -307,7 +322,9 @@ public with sharing class SAM_RequestInformationController{
         String strBody='Hi '+user.FirstName+' '+user.lastname+','+'\n\n'+'The request with Id : '+reqInfo.Name+' is pending for your action with below details.'+'\n\n'+commentsStr+'\n\n'+'Kindly take the action.'+'\n\n'+'Thanks,'+'\n'+Userinfo.getname();
         system.debug('str!!!'+strBody);
         message.plainTextBody = strBody;
-        Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+        if(!Test.isRunningTest()){
+        	Messaging.SendEmail(new Messaging.SingleEmailMessage[]{message});
+        }
         }
     }
     
@@ -333,5 +350,19 @@ public with sharing class SAM_RequestInformationController{
        return pageRef;
         
    
-    }    
+    }
+	/*******************************************************************
+    Purpose: Request can not send for Charging without attaching Approval email details
+    Parameters: List of SAM_Request__c
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static void validationForApprovalEmail(SAM_Request__c requestrecord,Map<String,String>objectMap){
+        List<Attachment> lstAttachmentApproval_Emails = [SELECT ContentType,Id,Name,ParentId  FROM Attachment WHERE Name LIKE 'Approval_Emails%' and ParentId =:requestrecord.id];
+        
+		if(lstAttachmentApproval_Emails.size()<1){
+			objectMap.put('Approval Email Attachment','You can not Send the Request for  Cross charge without Budget and Invoice approval email attached with file name "Approval_Emails".'); 
+		}					
+		
+	}    
 }

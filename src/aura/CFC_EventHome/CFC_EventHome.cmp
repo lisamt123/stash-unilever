@@ -1,5 +1,6 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
-	<aura:handler name="init" value="{!this}" action="{!c.eventDemoPageLoad}" />
+    <ltng:require scripts="/resource/CORE_IC_IdeasLigthtning/js/jquery.js"  afterScriptsLoaded="{!c.eventDemoPageLoad}"/>
+	<!--aura:handler name="init" value="{!this}" action="{!c.eventDemoPageLoad}" /-->
     <aura:handler event="c:CFC_HandleEvent" action="{!c.navigateWithinComponent}" /> 
     <style>
         body {

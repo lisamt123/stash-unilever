@@ -51,12 +51,12 @@ public with sharing class SAM_TestRequestClass_util {
         reqRec.txt_Financial_Manager_Name__c = SAM_Constants.TEST;
         reqRec.date_Go_Live_Date__c = system.today();
         reqRec.pkl_SAAS_Yes_No__c = SAM_Constants.No;
-        reqRec.txt_SA_Clarity_Id__c = SAM_Constants.TEST;
+        reqRec.txt_SA_Clarity_Id__c = '12345'; //SAM_Constants.TEST; //Dinesh modified the data
         reqRec.pkl_Any_infrastructural_requirements__c = SAM_Constants.No;
         reqRec.eml_Infrastructure_Manager_Email__c = SAM_Constants.TEST_EMAIL ;
         reqRec.txt_Infrastructure_Manager_Name__c = SAM_Constants.TEST;
         reqRec.mpkl_Landscape_Details__c = 'Cordillera';
-        reqRec.txt_Master_Clarity_Id__c = SAM_Constants.TEST;
+        reqRec.txt_Master_Clarity_Id__c = '12345'; //Dinesh modified the data
         reqRec.txt_Scope_of_the_Project__c = SAM_Constants.TEST;
         reqRec.txt_Name_of_the_Project__c = SAM_Constants.TEST;
         reqRec.num_No_of_Users__c = 2;
