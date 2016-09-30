@@ -7884,7 +7884,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>DACH_Vacation_Queue_3</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10 ) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -7937,6 +7937,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Ute</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Katja</value>
         </filters>
         <label>DACH Vacation Queue 3</label>
         <language>en_US</language>
@@ -8463,6 +8468,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>My_Open_Cases_DO_NOT_EDIT11</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>NAME</columns>
         <columns>CASES.STATUS</columns>
@@ -8509,6 +8515,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Email,Email Philippines</value>
         </filters>
         <label>My Open Cases - E-MAIL - DO NOT EDIT</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases_SMS_DO_NOT_EDIT1</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Social</value>
+        </filters>
+        <label>My Open Cases - SOCIAL - DO NOT EDIT</label>
         <language>en_US</language>
     </listViews>
     <listViews>
