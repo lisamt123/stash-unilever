@@ -1720,6 +1720,7 @@
     <field>User.CEC_User_Reference__c</field>
     <readable>true</readable>
 </fieldPermissions>
+<label>TO - User</label>
 <objectPermissions>
     <allowCreate>false</allowCreate>
     <allowDelete>false</allowDelete>
