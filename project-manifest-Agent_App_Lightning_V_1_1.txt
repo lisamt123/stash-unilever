@@ -78,3 +78,9 @@ src/aura/AA_UnileverFormComponent/AA_UnileverFormComponent.css
 src/aura/AA_UnileverFormComponent/AA_UnileverFormComponentController.js
 src/aura/AA_UnileverFormComponent/AA_UnileverFormComponentHelper.js
 src/aura/AA_UnileverFormComponent/AA_UnileverFormComponentRenderer.js
+src/aura/AA_UploadContentVersion
+src/aura/AA_UploadContentVersion/AA_UploadContentVersion.cmp
+src/aura/AA_UploadContentVersion/AA_UploadContentVersion.cmp-meta.xml
+src/aura/AA_UploadContentVersion/AA_UploadContentVersion.css
+src/aura/AA_UploadContentVersion/AA_UploadContentVersionController.js
+src/aura/AA_UploadContentVersion/AA_UploadContentVersionHelper.js
