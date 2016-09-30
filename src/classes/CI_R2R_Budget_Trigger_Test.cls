@@ -1,4 +1,4 @@
-@isTest
+@isTest(seeAllData=true)
 private class CI_R2R_Budget_Trigger_Test{
     static testMethod void test_CI_R2R_Budget_Trigger(){
         Test.startTest(); 
