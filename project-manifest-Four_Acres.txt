@@ -41,6 +41,8 @@ src/classes/FAU_ParticipantHandler.cls-meta.xml
 src/classes/FAU_Participant_BioControllerExtTest.cls
 src/classes/FAU_Participant_BioControllerExtTest.cls-meta.xml
 src/classes/FAU_ProgramHandler.cls
+src/classes/ExceptionsTest.cls
+src/classes/ExceptionsTest.cls-meta.xml
 src/classes/FAU_ProgramHandler.cls-meta.xml
 src/classes/FAU_ProgramTest.cls
 src/classes/FAU_ProgramTest.cls-meta.xml
