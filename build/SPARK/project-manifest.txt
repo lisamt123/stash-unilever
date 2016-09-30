@@ -5,6 +5,8 @@ src/classes/ICB_ReturnStock_BatchSch_Test.cls
 src/classes/ICB_ReturnStock_BatchSch_Test.cls-meta.xml
 src/classes/ICB_ReturnStock_Batch_Test.cls
 src/classes/ICB_ReturnStock_Batch_Test.cls-meta.xml
+src/classes/ICB_PriceBookCreation_Test.cls
+src/classes/ICB_PriceBookCreation_Test.cls-meta.xml
 src/classes/ICB_Cockpit_CC_DAO.cls
 src/classes/ICB_Cockpit_CC_DAO.cls-meta.xml
 src/classes/ICB_ContactPartnerUserCreation.cls
