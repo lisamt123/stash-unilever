@@ -69,6 +69,9 @@
       <runTest>ICB_ContactPartnerUserCreation_Test</runTest>
       <runTest>ICB_PriceBookCreation_Test</runTest>
 	  <runTest>ICB_SobjectInstance_SP2_Test</runTest>
+      <runTest>ICB_InventoryProducts_CC_Test</runTest>
+      <runTest>ICB_ReturnStock_Batch_Test</runTest>
+      <runTest>ICB_ReturnStock_BatchSch_Test</runTest>
     </sf:deploy>
   </target>  
 
